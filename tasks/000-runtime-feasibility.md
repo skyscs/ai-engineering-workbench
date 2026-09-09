@@ -2,6 +2,9 @@
 
 ## Placement and goal
 
+Status: in progress, paused after an account usage-limit failure. See
+[runtime feasibility handoff](../docs/runtime-feasibility.md) before resuming.
+
 Run after Task 001 and before Task 002. Retained original task numbers are not
 the execution order for this one additional task. Reduce runtime risk before
 building the storage/UI workflow around an assumed CLI contract.

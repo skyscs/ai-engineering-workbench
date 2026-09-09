@@ -22,14 +22,36 @@ Verification completed so far:
   `Local daemon connected.` with the protected session endpoint.
 - SIGTERM closed the production daemon with exit status 0.
 
-CI has been defined but has not run on GitHub yet. The shell's system Node 18
+CI has been defined; its remote result has not been inspected. The shell's system Node 18
 was not changed; verification used an isolated Node 22.23.2 toolchain. Developers
 must select the pinned Node version before running project commands.
 
 ## Task 000 — Runtime feasibility
 
-Status: not started. Requires the user's choice of existing CLI connection/profile
-before the real synthetic investigation. No AI invocation has been made.
+Status: in progress, paused at the user's request after an account usage-limit failure.
+
+The user selected the current Codex CLI configuration, `gpt-5.6-terra`, with
+reasoning effort `medium`. Do not ask for this selection again on resumption.
+
+Confirmed: CLI 0.153.4, fixture generation, read access to both repositories and
+the artifact, and denied writes (EROFS) in all three fixture directories. The
+real invocation emitted JSONL and completed one read-only shell command before
+ending with `turn.failed` and exit code 1 because the account usage limit was reached.
+Fixture snapshots remained unchanged; no owned process group remained alive.
+
+The interim agent message is not a successful investigation result. Final structured
+output, explicit cancellation, timeout, missing auth/profile and full tool-boundary
+compatibility checks remain unverified. No additional AI run was made after the pause.
+
+See [runtime feasibility handoff](runtime-feasibility.md) for commands, captured
+evidence and the exact next step. Task 000 must not be marked verified yet.
+
+## Git handoff
+
+- Initial artifacts: `main`, commit `d51b051`.
+- Verified Task 001: `task/001-bootstrap`, commit `f7359a9`, pushed to origin.
+- Task 000 checkpoint: `task/000-runtime-feasibility`, based on Task 001.
+- Branches have not been merged into main; no pull request has been created.
 
 ## Tasks 002–011
 

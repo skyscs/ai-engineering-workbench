@@ -1,0 +1,5 @@
+[
+  { "directory": "client", "readable": true, "writeDenied": true, "code": "EROFS" },
+  { "directory": "service", "readable": true, "writeDenied": true, "code": "EROFS" },
+  { "directory": "artifacts", "readable": true, "writeDenied": true, "code": "EROFS" }
+]

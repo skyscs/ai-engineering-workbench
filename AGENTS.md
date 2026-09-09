@@ -40,7 +40,8 @@ For each task:
 5. continue to the next task only if the user's explicit assignment already includes it; otherwise stop after the assigned task. A permitted sequence does not require renewed permission after each task.
 
 Read `DEVELOPMENT_PLAN.md` and ADR 0004 for the revised task order and acceptance
-rules. Task 001 is scaffolded but unverified; Task 000 follows it before Task 002.
+rules. Current verification status is recorded in `docs/development-status.md`;
+Task 000 follows Task 001 before Task 002.
 
 ## Product constraints
 
