@@ -2,6 +2,8 @@
 
 ## Goal
 
+Status: verified. See [verification evidence](../docs/development-status.md).
+
 Create the repository skeleton and a minimal local application that starts a daemon and serves a web UI on localhost.
 
 ## Scope

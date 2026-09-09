@@ -62,16 +62,20 @@ See [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) for milestones and checks and
 
 The repository includes the Task 001 bootstrap scaffold: pnpm workspace layout, React/Vite web shell, Hono daemon, strict TypeScript configs, a `/api/health` endpoint, dev proxying, and a production-oriented build path where the daemon serves the built web UI.
 
-Task 001 remains unverified. Review additions are specification changes, not
-implemented functionality. See `START_HERE.md` for verification and the revised handoff.
+Task 001 now includes protected local API sessions, CSRF/Host/Origin checks,
+JSON API errors, graceful shutdown, a lockfile and automated checks.
+See [Development status](docs/development-status.md) for verification evidence
+and remaining work. Product features in Tasks 002–011 are not implemented yet.
 
 ## Quick start
 
-Prerequisites: Node.js 22.12+, pnpm 10.15.0, and Git. Task 001 must align
-package engines with this reviewed minimum and pin a tested Node patch version.
+Prerequisites: Node.js 22.12+, pnpm 10.15.0, and Git. The tested Node version
+is pinned to 22.23.2 in `.node-version` and `.nvmrc`. With nvm installed,
+run `nvm install` and `nvm use` from the repository root. Install pnpm 10.15.0
+for that Node environment if it is not already available.
 
 ```bash
-pnpm install
+pnpm install --frozen-lockfile
 pnpm dev
 ```
 
@@ -87,3 +91,34 @@ pnpm start
 ```
 
 The daemon then serves the built UI at `http://127.0.0.1:4242`.
+
+Use the exact `127.0.0.1` URLs above. Dev ports are fixed: Vite exits if 5173
+is occupied; the daemon reports an actionable error if 4242 is occupied.
+Set `AEW_OPEN_BROWSER=0` to disable automatic browser opening. Stop with Ctrl+C;
+the daemon also handles SIGTERM and allows up to five seconds for shutdown.
+
+## Validation
+
+```bash
+pnpm check
+```
+
+This runs strict TypeScript checks, Node's built-in test runner via tsx, and all
+workspace builds. CI performs the same checks from a frozen-lockfile installation.
+Internal packages are still placeholders; declare their workspace dependencies
+and exports when introducing their first consumers so recursive builds can order them.
+
+## Local API session
+
+The UI bootstraps a session through `POST /api/session` with the exact local
+Origin and `X-AEW-Client: web`. The daemon sets an HttpOnly, SameSite=Strict cookie
+scoped to `/api` and returns a CSRF token. Future mutation clients must send it as
+`X-AEW-CSRF` together with the session cookie and Origin. `DELETE /api/session`
+requires that protection and invalidates the session. Sensitive API reads require
+a session; the minimal health endpoint is public only on the allowed local host.
+
+Sessions expire after eight hours or daemon restart, are bounded to 64 per daemon,
+and are never logged. Development additionally permits the exact Vite origin
+`http://127.0.0.1:5173`; production accepts only `http://127.0.0.1:4242`.
+These controls protect the browser boundary; they do not authenticate other local
+processes running as the user. There is no network-facing or multi-user mode.

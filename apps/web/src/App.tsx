@@ -13,7 +13,13 @@ export function App() {
   useEffect(() => {
     const controller = new AbortController();
 
-    fetch('/api/health', { signal: controller.signal })
+    fetch('/api/session', {
+      method: 'POST', headers: { 'x-aew-client': 'web' }, signal: controller.signal
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error(`Session request failed with ${response.status}`);
+        return fetch('/api/health', { signal: controller.signal });
+      })
       .then(async (response) => {
         if (!response.ok) {
           throw new Error(`Health request failed with ${response.status}`);
