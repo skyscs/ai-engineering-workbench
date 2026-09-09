@@ -4,12 +4,14 @@
   "version": "0.0.1",
   "packageManager": "pnpm@10.15.0",
   "engines": {
-    "node": ">=22"
+    "node": ">=22.12.0"
   },
   "scripts": {
     "dev": "pnpm --parallel --filter @aew/daemon --filter @aew/web dev",
-    "build": "pnpm --filter @aew/web build && pnpm --filter @aew/daemon build && pnpm --filter './packages/**' build",
+    "build": "pnpm -r build",
     "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r --if-present test",
+    "check": "pnpm typecheck && pnpm test && pnpm build",
     "start": "pnpm --filter @aew/daemon start"
   }
 }

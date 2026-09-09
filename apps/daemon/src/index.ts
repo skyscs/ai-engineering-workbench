@@ -3,33 +3,18 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { serve } from '@hono/node-server';
-import { serveStatic } from '@hono/node-server/serve-static';
-import { Hono } from 'hono';
+import { createApp } from './app.js';
 
 const HOST = '127.0.0.1';
 const PORT = 4242;
-const VERSION = '0.0.1';
-
-const app = new Hono();
-
-app.get('/api/health', (context) =>
-  context.json({
-    status: 'ok',
-    service: 'ai-engineering-workbench-daemon',
-    version: VERSION
-  })
-);
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url));
 const packageDir = path.resolve(currentDir, '..');
 const publicDir = path.join(packageDir, 'public');
 
-if (existsSync(publicDir)) {
-  app.use('/*', serveStatic({ root: publicDir }));
-  app.get('*', serveStatic({ path: path.join(publicDir, 'index.html') }));
-}
+const app = createApp({ publicDir, development: process.env.NODE_ENV === 'development' });
 
-serve(
+const server = serve(
   {
     fetch: app.fetch,
     hostname: HOST,
@@ -44,6 +29,27 @@ serve(
     }
   }
 );
+
+server.on('error', (error: NodeJS.ErrnoException) => {
+  console.error(error.code === 'EADDRINUSE'
+    ? `Port ${PORT} is already in use. Stop the other local daemon and try again.`
+    : `Local daemon could not start (${error.code ?? 'UNKNOWN'}).`);
+  process.exitCode = 1;
+});
+
+let stopping = false;
+function shutdown(): void {
+  if (stopping) return;
+  stopping = true;
+  const deadline = setTimeout(() => {
+    console.error('Local daemon shutdown timed out.');
+    process.exit(1);
+  }, 5000);
+  deadline.unref();
+  server.close(() => clearTimeout(deadline));
+}
+process.on('SIGINT', shutdown);
+process.on('SIGTERM', shutdown);
 
 function openBrowser(url: string): void {
   const platform = process.platform;

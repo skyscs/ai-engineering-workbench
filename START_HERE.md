@@ -1,34 +1,32 @@
 # Start Here
 
-The baseline architecture is ready for implementation. Read `DEVELOPMENT_PLAN.md`
-for the reviewed sequence and `REVIEW.md` for identified gaps. The scaffold is
-not verified yet; documentation requirements below are not implemented features.
+Read `DEVELOPMENT_PLAN.md` for the reviewed sequence and `REVIEW.md` for the
+original scaffold review. Task 001 is now verified; see `docs/development-status.md`
+for evidence. The next task is the early runtime feasibility check (Task 000).
 
-## 1. Create a Git repository
+## 1. Get the project
 
 Use the development remote `git@github.com:skyscs/ai-engineering-workbench.git`.
-Check its current refs first. Clone it into an empty development directory, then
-copy this directory's contents into that checkout without the original ZIP.
-Preserve any existing remote history. For a confirmed empty remote, the first
-commit can record the imported scaffold:
+The initial artifacts have been published. Clone the existing repository:
 
 ```bash
-git add .
-git commit -m "chore: import v0.1 specification and unverified scaffold"
+git clone git@github.com:skyscs/ai-engineering-workbench.git
+cd ai-engineering-workbench
 ```
 
 If you create a public GitHub/GitLab repository, keep all examples synthetic and do not commit corporate artifacts, URLs, tokens, logs, or source code.
 
 ## 2. Install prerequisites
 
-- Node.js 22.12+ (Node 22 development line; pin an exact tested patch in Task 001)
+- Node.js 22.23.2 (pinned in .node-version and .nvmrc; minimum 22.12)
 - pnpm 10.15.0 as specified in packageManager
 - Git
 
 Then:
 
 ```bash
-pnpm install
+pnpm install --frozen-lockfile
+pnpm check
 pnpm dev
 ```
 
@@ -57,8 +55,8 @@ Set `AEW_OPEN_BROWSER=0` to disable automatic browser opening.
 
 ## 4. Codex development workflow
 
-Task 001 is scaffolded, but installation, build and acceptance checks must be
-completed first, including the review additions in its task file. Next run:
+Task 001 has passed local installation, build, test and browser smoke checks.
+Next run:
 
 ```text
 tasks/000-runtime-feasibility.md
@@ -85,6 +83,8 @@ Then instruct it:
 Implement Task 002 only. Do not start Task 003. Follow AGENTS.md and preserve the documented architecture. After implementation, run the relevant checks and summarize any deviations from the specification.
 ```
 
-## Verification note for this generated scaffold
+## Verification history
 
-The files were created in an execution environment without access to the npm registry. Package installation/build/typecheck could therefore not be executed here. The scaffold should be dependency-installed and verified on the target development machine before Task 001 is considered fully closed.
+The original archive was generated without registry access and was unverified.
+Task 001 subsequently established a lockfile, protected local API and reproducible
+checks. See `docs/development-status.md` for current evidence and limitations.

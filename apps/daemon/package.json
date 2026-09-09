@@ -4,9 +4,10 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
+    "dev": "tsx watch src/dev.ts",
     "build": "tsc -p tsconfig.json",
-    "typecheck": "tsc -p tsconfig.json --noEmit --pretty false",
+    "typecheck": "tsc -p tsconfig.check.json --pretty false",
+    "test": "node --import tsx --test tests/*.test.ts",
     "start": "node dist/index.js"
   },
   "dependencies": {
