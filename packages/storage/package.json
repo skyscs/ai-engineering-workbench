@@ -1,0 +1,13 @@
+{
+  "name": "@aew/storage",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit --pretty false"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2"
+  }
+}

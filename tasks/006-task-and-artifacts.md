@@ -1,0 +1,47 @@
+# Task 006 — Task creation and local artifacts
+
+## Goal
+
+Create engineering Tasks and import local artifacts into immutable task storage.
+
+## Scope
+
+- Task persistence/API/UI
+- title + description
+- select repositories manually
+- import local files through browser upload to local daemon
+- store artifact metadata and SHA-256
+- copy original into task artifact directory
+
+## Acceptance criteria
+
+- user can create a task
+- user can associate one or more registered repositories
+- imported artifact survives source-file removal/move
+- duplicate filename collisions are handled safely
+- original imported bytes are never modified by processing
+
+## Review additions
+
+- Add the minimal StageRun entity/storage now (before Task 008 needs it): lifecycle,
+  task/connection/profile references, immutable input snapshot, normalized error
+  and timestamps. Task 009 will add result types and investigation transitions.
+- Require repositories to belong to the task workspace. Snapshot description,
+  repo selection, artifact IDs/hashes and constraints when a run is started.
+- Stream uploads to generated paths; original names are display metadata only.
+  Default maximum is 100 MiB/file and 1 GiB/task, configurable locally. Enforce
+  limits while streaming, hash exact bytes, and finalize with the storage recovery
+  pattern. Test traversal, duplicates, interrupted upload and disk-full rollback.
+- Text/Markdown/logs are readable context. PNG/JPEG images are supplied only when
+  runtime capability is verified. PDFs/videos/other files are stored/downloadable
+  but marked not analyzed in v0.1; do not quietly claim their content was read.
+- Default text context limit is 1 MiB total; show explicit included/excluded files
+  and ranges before a run. Larger material requires user selection/excerpt; no
+  silent truncation. Preserve originals when creating derived excerpts.
+- Attachment download resolves IDs under the task's canonical storage root,
+  rejects symlink/path escapes, and uses attachment disposition and nosniff.
+
+## Exclusions
+
+- OCR/video analysis
+- repository auto-detection
