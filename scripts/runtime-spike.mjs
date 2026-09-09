@@ -3,9 +3,10 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { snapshot } from './runtime-fixture.mjs';
+import { classifyFailure, parseInvestigation } from './runtime-outcome.mjs';
 
 const [mode = 'investigate', root] = process.argv.slice(2);
-if (!['investigate', 'cancel', 'timeout', 'missing-profile'].includes(mode)) throw new Error('Unknown spike mode.');
+if (!['investigate', 'cancel', 'timeout', 'missing-profile', 'unsupported-option'].includes(mode)) throw new Error('Unknown spike mode.');
 if (!root || !path.basename(root).startsWith('aew-runtime-')) throw new Error('Expected a generated fixture root.');
 const manifest = JSON.parse(await readFile(path.join(root, 'manifest.json'), 'utf8'));
 const baseline = await snapshot(manifest);
@@ -17,6 +18,7 @@ for (const feature of ['apps', 'plugins', 'hooks', 'browser_use', 'computer_use'
   args.push('--disable', feature);
 }
 if (mode === 'missing-profile') args.push('--profile', 'aew-intentionally-missing-runtime-fixture');
+if (mode === 'unsupported-option') args.push('--aew-intentionally-unsupported-flag');
 if (mode === 'investigate') args.push('--output-schema', schema);
 args.push('-');
 
@@ -76,25 +78,15 @@ if (child.pid) {
   }
 }
 const unchanged = JSON.stringify(baseline) === JSON.stringify(await snapshot(manifest));
-const failureText = events.filter((event) => event.type === 'error' || event.type === 'turn.failed')
-  .map((event) => event.message ?? event.error?.message ?? '').join('\n') + stderr;
-const failureKind = /usage limit/i.test(failureText) ? 'usage_limit'
-  : /profile.*(?:not found|does not exist|missing)/i.test(failureText) ? 'missing_profile'
-    : outcome.exitCode !== 0 ? 'process_failed' : null;
-let structuredResult = null;
-try {
-  const value = JSON.parse(final);
-  const keys = ['summary', 'clientEvidence', 'serviceEvidence', 'artifactEvidence'];
-  if (value && keys.every((key) => typeof value[key] === 'string' && value[key].trim())
-    && Array.isArray(value.unresolvedQuestions) && value.unresolvedQuestions.every((question) => typeof question === 'string')
-    && Object.keys(value).length === 5) structuredResult = value;
-} catch { /* Partial messages are not completed investigation results. */ }
+const failureKind = classifyFailure({ events, stderr, ...outcome, stopped });
+const structuredResult = parseInvestigation(final, events, outcome.exitCode, stopped);
 const scenarioPassed = mode === 'investigate'
   ? outcome.exitCode === 0 && stopped === null && structuredResult !== null
     && events.some((event) => event.type === 'turn.completed') && !events.some((event) => event.type === 'turn.failed')
   : mode === 'cancel' ? stopped === 'cancelled'
     : mode === 'timeout' ? stopped === 'timeout'
-      : outcome.exitCode !== 0 && failureKind === 'missing_profile';
+      : mode === 'missing-profile' ? outcome.exitCode !== 0 && failureKind === 'missing_profile'
+        : outcome.exitCode !== 0 && failureKind === 'unsupported_option';
 const result = { mode, requestedModel: 'gpt-5.6-terra', requestedEffort: 'medium', ...outcome,
   stopped, unchanged, ownedGroupAlive, outputBytes, stderrBytes: stderr.length, failureKind,
   scenarioPassed: scenarioPassed && unchanged && !ownedGroupAlive,

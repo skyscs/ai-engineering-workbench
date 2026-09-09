@@ -2,7 +2,8 @@
 
 ## Placement and goal
 
-Status: in progress, paused after an account usage-limit failure. See
+Status: in progress. Resumed investigation/cancel/timeout passed; the missing-profile
+probe exposed a CLI safety limitation. Work is checkpointed at the user's request. See
 [runtime feasibility handoff](../docs/runtime-feasibility.md) before resuming.
 
 Run after Task 001 and before Task 002. Retained original task numbers are not

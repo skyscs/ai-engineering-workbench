@@ -1,0 +1,95 @@
+[
+  {
+    "mode": "investigate",
+    "requestedModel": "gpt-5.6-terra",
+    "requestedEffort": "medium",
+    "exitCode": 0,
+    "signal": null,
+    "stopped": null,
+    "unchanged": true,
+    "ownedGroupAlive": false,
+    "outputBytes": 10853,
+    "stderrBytes": 1372,
+    "failureKind": null,
+    "scenarioPassed": true,
+    "eventTypes": [
+      "thread.started",
+      "turn.started",
+      "error",
+      "item.completed",
+      "item.started",
+      "turn.completed"
+    ],
+    "final": {
+      "summary": "The regression is a cross-repository timeout-unit contract mismatch. The service changed the numeric timeout from 5000 milliseconds to 5 seconds, but the client continued assigning that raw value to `timeoutMs`; it therefore interpreted 5 seconds as 5 ms. The `timeoutUnit` metadata is not used by the client.",
+      "clientEvidence": "Client HEAD commit 86c5da768b1c77fd61e504d9ad96d068d05d1ecc (`feat: consume service timeout in milliseconds`) implements `return { timeoutMs: config.timeout };` in `request.mjs`. This treats every supplied value as milliseconds and does not inspect `config.timeoutUnit`.",
+      "serviceEvidence": "Service HEAD commit 181a8b6e7bddfc99c310b18b453f1250c6178345 (`refactor: publish timeout in seconds`) changed `config.mjs` from `{ timeout: 5000, timeoutUnit: \"milliseconds\" }` to `{ timeout: 5, timeoutUnit: \"seconds\" }`. Its parent commit 3699ebddd7811fbed2275861fcc18abba88f063b published the original 5000-ms value.",
+      "artifactEvidence": "`<fixture>/artifacts/request.log` states: `Expected request timeout: 5000ms` and `Observed request timeout after configuration update: 5ms`, exactly matching the unconverted raw value being passed into the client's millisecond field.",
+      "unresolvedQuestions": []
+    }
+  },
+  {
+    "mode": "cancel",
+    "requestedModel": "gpt-5.6-terra",
+    "requestedEffort": "medium",
+    "exitCode": 0,
+    "signal": null,
+    "stopped": "cancelled",
+    "unchanged": true,
+    "ownedGroupAlive": false,
+    "outputBytes": 1824,
+    "stderrBytes": 1372,
+    "failureKind": null,
+    "scenarioPassed": true,
+    "eventTypes": [
+      "thread.started",
+      "turn.started",
+      "error",
+      "item.completed",
+      "item.started"
+    ],
+    "final": null
+  },
+  {
+    "mode": "timeout",
+    "requestedModel": "gpt-5.6-terra",
+    "requestedEffort": "medium",
+    "exitCode": 0,
+    "signal": null,
+    "stopped": "timeout",
+    "unchanged": true,
+    "ownedGroupAlive": false,
+    "outputBytes": 101,
+    "stderrBytes": 196,
+    "failureKind": null,
+    "scenarioPassed": true,
+    "eventTypes": [
+      "thread.started",
+      "turn.started"
+    ],
+    "final": null
+  },
+  {
+    "mode": "missing-profile",
+    "requestedModel": "gpt-5.6-terra",
+    "requestedEffort": "medium",
+    "exitCode": 0,
+    "signal": null,
+    "stopped": null,
+    "unchanged": true,
+    "ownedGroupAlive": false,
+    "outputBytes": 9799,
+    "stderrBytes": 1372,
+    "failureKind": null,
+    "scenarioPassed": false,
+    "eventTypes": [
+      "thread.started",
+      "turn.started",
+      "error",
+      "item.completed",
+      "item.started",
+      "turn.completed"
+    ],
+    "final": null
+  }
+]
