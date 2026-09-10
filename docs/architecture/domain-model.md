@@ -11,13 +11,17 @@ Fields:
 - id
 - name
 - aiConnectionId
+- boundaryLocked
 - createdAt
 - updatedAt
 
 Invariants:
 
-- a Workspace has one active AI Connection in v0.1;
-- connection binding and launch settings cannot change once tasks exist in v0.1;
+- a Workspace owns one AI Connection in v0.1, created atomically with it;
+- connection binding is immutable; connections are not shared across workspaces;
+- launch settings cannot change after the first task locks the boundary;
+- Task 006 must lock the boundary in the same transaction as first-task creation;
+- the lock persists and cannot be undone, including after tasks are removed;
 - Tasks inherit the Workspace data boundary;
 - model overrides must remain within that connection.
 
@@ -90,19 +94,24 @@ Fields:
 
 ## AIConnection
 
-Represents an approved runtime/data boundary.
+Represents a configured runtime/data boundary. Task 003 stores metadata only;
+approval and successful runtime verification cannot be inferred from its existence.
 
 Fields:
 
 - id
-- workspaceId? (or separately reusable later)
 - name
 - runtimeType (`codex-cli` in v0.1)
-- configSelector/profile?
-- executablePath?
+- configProfile (nullable; null selects the current CLI configuration)
+- executablePath (nullable; null selects `codex` on PATH)
+- verificationStatus (`not_verified` in Task 003)
 - createdAt
+- updatedAt
 
-Must not contain OAuth/session secrets copied from Codex.
+Ownership is defined by the workspace's unique `aiConnectionId`. Must not contain
+OAuth/session secrets copied from Codex. See
+[ADR 0006](../decisions/0006-workspace-connection-ownership.md) for ownership,
+configuration validation and the limits of freezing a CLI selector.
 
 ## ModelProfile
 
@@ -113,11 +122,16 @@ Fields:
 - id
 - aiConnectionId
 - name
-- modelIdentifier?
-- reasoning/effort?
+- modelIdentifier (nullable, opaque)
+- reasoningEffort (nullable; `low`, `medium`, `high`, `xhigh`)
+- createdAt
+- updatedAt
 
 Arbitrary runtime arguments/environment overrides are excluded in v0.1. Validate
-supported effort settings and connection ownership; keep model identifiers opaque.
+the application's effort choices and connection ownership; keep model identifiers
+opaque. A null setting requests the CLI default; saving an effort choice does not
+verify that a model supports it. Profile ownership cannot change. Later StageRuns
+must retain immutable settings snapshots when a profile is edited.
 
 The model identifier is intentionally opaque; corporate proxies may expose non-public model names.
 

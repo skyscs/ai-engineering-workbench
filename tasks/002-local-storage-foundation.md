@@ -1,6 +1,6 @@
 # Task 002 — Local storage foundation
 
-Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge. See
+Status: accepted through the user's merge of PR #3 into main (d8d4bf2). See
 [development status](../docs/development-status.md) and
 [ADR 0005](../docs/decisions/0005-local-storage-lifecycle.md).
 

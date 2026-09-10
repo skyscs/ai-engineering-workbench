@@ -23,6 +23,12 @@ Create engineering Tasks and import local artifacts into immutable task storage.
 
 ## Review additions
 
+- Lock the workspace boundary in the same storage transaction as first-task
+  creation using Task 003's internal guard. Test rollback of both task and lock;
+  once committed, the lock must remain even if tasks are later removed.
+- Preserve task/run ownership and references when settings are deleted. Snapshot
+  profile values for each run so later edits cannot change historical inputs;
+  define explicit behavior for deleting a referenced profile.
 - Add the minimal StageRun entity/storage now (before Task 008 needs it): lifecycle,
   task/connection/profile references, immutable input snapshot, normalized error
   and timestamps. Task 009 will add result types and investigation transitions.

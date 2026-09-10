@@ -22,6 +22,10 @@ Allow a Workspace to register an existing local Git repository or clone one into
 
 ## Review additions
 
+- Add workspace ownership foreign keys and explicit workspace-deletion behavior
+  when introducing repositories. Do not let Task 003's settings deletion leave
+  dangling repository records or remove a user's checkout; managed clone cleanup
+  must follow the recorded operation/recovery contract.
 - Spawn Git with an argument array and no shell; validate option-like inputs,
   canonical paths and allowed clone transports (local, SSH, HTTPS). Disable
   unattended interactive credential prompting and bound command execution time.

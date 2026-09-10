@@ -4,8 +4,10 @@ import { DatabaseSync } from 'node:sqlite';
 import { StorageError } from './errors.js';
 import { migrate } from './migrations.js';
 import { resolveDataRoot, storagePaths } from './paths.js';
+import { createSettingsRepository, type SettingsRepository } from './settings.js';
 
 export { StorageError, resolveDataRoot };
+export type { SettingsRepository };
 export interface StorageStatus {
   status: 'ready';
   schemaVersion: number;
@@ -14,6 +16,7 @@ export interface StorageStatus {
   journalMode: string;
 }
 export interface Storage {
+  readonly settings: SettingsRepository;
   readonly paths: ReturnType<typeof storagePaths>;
   status(): StorageStatus;
   close(): void;
@@ -75,8 +78,12 @@ export function openStorage(options: { dataRoot?: string } = {}): Storage {
     const connection = db;
     const ownership = owner;
     let closed = false;
+    const ensureOpen = () => {
+      if (closed) throw new StorageError('STORAGE_CLOSED', 'The storage connection is closed.');
+    };
     return {
       paths,
+      settings: createSettingsRepository(connection, ensureOpen),
       status() {
         if (closed) throw new StorageError('STORAGE_CLOSED', 'The storage connection is closed.');
         return { status: 'ready', schemaVersion,

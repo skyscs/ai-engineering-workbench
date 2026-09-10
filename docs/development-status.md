@@ -66,7 +66,7 @@ supported restrictions and Task 008 obligations.
 
 ## Task 002 — Local storage foundation
 
-Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge.
+Status: accepted through the user's merge of PR #3 into main (d8d4bf2).
 
 Implemented: platform data-root resolution with `AEW_DATA_DIR`, private managed
 directories, built-in SQLite, foreign keys, WAL, bounded busy timeout, transactional
@@ -86,16 +86,44 @@ Clean source installation from the frozen lockfile and local package store passe
 the complete `pnpm check` (26 tests). Headless Chrome with a fresh profile rendered
 `Local daemon connected.`. No test used the normal application data directory.
 
-Next task: 003 — workspaces and AI connections. The P2 navigation issue AEW-001
-remains tracked separately; no change to its behavior is included in Task 002.
+The P2 navigation issue AEW-001 remains tracked separately; no change to its
+behavior is included in Task 002.
+
+## Task 003 — Workspaces and AI connection metadata
+
+Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge.
+
+Implemented: domain validation, schema version 2, workspace/owned-connection and
+model-profile persistence, protected CRUD API and browser forms. Connection/profile
+ownership cannot be reassigned. A persisted boundary lock prevents launch-setting
+changes and workspace deletion; Task 006 must integrate it atomically with
+first-task creation. ADR 0006 resolves one connection per workspace and documents
+the later repository/task deletion requirements.
+
+The UI distinguishes configured metadata from a verified runtime. No Codex
+subprocesses, credential reads or model invocations are introduced. Model IDs stay
+opaque; optional settings explicitly select CLI defaults.
+
+Validation: a clean source copy installed from the frozen lockfile and local
+package store passed the complete `pnpm check`: strict typecheck, 18 storage tests,
+11 HTTP tests, 7 runtime tests and the production build. Tests include rollback of
+the connection after an injected workspace-insertion failure and upgrade from
+schema version 1 with its migration record preserved. Real Chrome checks passed for creation,
+connection/profile edits, rename, persistence through production-to-development
+daemon restart, a 390px viewport and workspace deletion confirmation/cancellation.
+The [browser result](fixtures/workspaces/browser-result.json) contains synthetic
+fixture outcomes only. No test used the normal application data directory.
+
+Next task: 004 — repository registry. AEW-001 remains open and unchanged.
 
 ## Git handoff
 
 - Initial artifacts: `main`, commit `d51b051`.
 - Task 001: `task/001-bootstrap`, f7359a9, merged through PR #1 as aa56532.
 - Task 000: `task/000-runtime-feasibility`, e37635d, merged through PR #2 as 6b9a967.
-- Task 002: `task/002-local-storage`, based on merged main (6b9a967).
+- Task 002: `task/002-local-storage`, c8ca418, merged through PR #3 as d8d4bf2.
+- Task 003: `task/003-workspaces`, based on merged main (d8d4bf2).
 
-## Tasks 003–011
+## Tasks 004–011
 
 Status: not started. Execute in the order recorded in DEVELOPMENT_PLAN.md.

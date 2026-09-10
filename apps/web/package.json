@@ -9,6 +9,8 @@
     "typecheck": "tsc -b --pretty false"
   },
   "dependencies": {
+    "@aew/core": "workspace:*",
+    "@aew/shared": "workspace:*",
     "@vitejs/plugin-react": "^5.0.2",
     "vite": "^7.1.3",
     "typescript": "^5.9.2",

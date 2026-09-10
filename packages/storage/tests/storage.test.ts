@@ -9,6 +9,8 @@ import { test, type TestContext } from 'node:test';
 import { openStorage, resolveDataRoot } from '../src/index.js';
 import { migrate, migrations } from '../src/migrations.js';
 
+const baselineMigrations = migrations.slice(0, 1);
+
 function fixture(t: TestContext) {
   const root = mkdtempSync(path.join(tmpdir(), 'aew-storage-test-'));
   t.after(() => rmSync(root, { recursive: true, force: true }));
@@ -54,7 +56,7 @@ test('initialization is persistent and idempotent with private directories and v
   const dataRoot = path.join(fixture(t), 'data with spaces');
   const storage = openStorage({ dataRoot });
   t.after(() => storage.close());
-  assert.equal(storage.status().schemaVersion, 1);
+  assert.equal(storage.status().schemaVersion, migrations.length);
   assert.equal(storage.status().foreignKeys, true);
   assert.equal(storage.status().journalMode, 'wal');
   for (const dir of ['repositories', 'tasks', 'worktrees', 'logs']) assert.ok(lstatSync(path.join(dataRoot, dir)).isDirectory());
@@ -64,7 +66,7 @@ test('initialization is persistent and idempotent with private directories and v
   }
   const inspect = new DatabaseSync(storage.paths.database);
   const before = inspect.prepare('SELECT * FROM schema_migrations').all();
-  assert.deepEqual(inspect.prepare("SELECT name FROM sqlite_master WHERE type='table'").all().map((row) => row.name), ['schema_migrations']);
+  assert.deepEqual(inspect.prepare("SELECT name FROM sqlite_master WHERE type='table'").all().map((row) => row.name), ['schema_migrations', 'ai_connections', 'workspaces', 'model_profiles']);
   inspect.close();
   storage.close();
   storage.close();
@@ -80,14 +82,14 @@ test('initialization is persistent and idempotent with private directories and v
 test('failed migration rolls back DDL, data and version history as one transaction', () => {
   const db = new DatabaseSync(':memory:');
   try {
-    migrate(db);
+    migrate(db, baselineMigrations);
     const before = db.prepare('SELECT * FROM schema_migrations').all();
-    const broken = [...migrations, { version: 2, name: 'broken', sql: 'CREATE TABLE partial (id INTEGER); INSERT INTO missing VALUES (1);' }];
+    const broken = [...baselineMigrations, { version: 2, name: 'broken', sql: 'CREATE TABLE partial (id INTEGER); INSERT INTO missing VALUES (1);' }];
     assert.throws(() => migrate(db, broken), { code: 'MIGRATION_FAILED' });
     assert.equal(db.prepare('PRAGMA user_version').get()!.user_version, 1);
     assert.equal(db.prepare("SELECT name FROM sqlite_master WHERE name='partial'").get(), undefined);
     assert.deepEqual(db.prepare('SELECT * FROM schema_migrations').all(), before);
-    assert.equal(migrate(db), 1);
+    assert.equal(migrate(db, baselineMigrations), 1);
     assert.throws(() => migrate(db, [{ ...migrations[0]!, sql: migrations[0]!.sql + '\n-- changed' }]), { code: 'MIGRATION_MISMATCH' });
   } finally { db.close(); }
 });
@@ -95,19 +97,19 @@ test('failed migration rolls back DDL, data and version history as one transacti
 test('failure on a fresh database also rolls back migration bookkeeping', () => {
   const db = new DatabaseSync(':memory:');
   try {
-    assert.throws(() => migrate(db, [...migrations, { version: 2, name: 'broken', sql: 'INVALID SQL;' }]), { code: 'MIGRATION_FAILED' });
+    assert.throws(() => migrate(db, [...baselineMigrations, { version: 2, name: 'broken', sql: 'INVALID SQL;' }]), { code: 'MIGRATION_FAILED' });
     assert.equal(db.prepare('PRAGMA user_version').get()!.user_version, 0);
     assert.equal(db.prepare('PRAGMA application_id').get()!.application_id, 0);
     assert.deepEqual(db.prepare('SELECT name FROM sqlite_master').all(), []);
-    assert.equal(migrate(db), 1);
+    assert.equal(migrate(db, baselineMigrations), 1);
   } finally { db.close(); }
 });
 
 test('SQLite automatic rollback preserves the original migration failure', () => {
   const db = new DatabaseSync(':memory:');
   try {
-    migrate(db);
-    assert.throws(() => migrate(db, [...migrations, { version: 2, name: 'automatic_rollback', sql: `
+    migrate(db, baselineMigrations);
+    assert.throws(() => migrate(db, [...baselineMigrations, { version: 2, name: 'automatic_rollback', sql: `
       CREATE TABLE rollback_fixture (id INTEGER);
       CREATE TRIGGER rollback_insert BEFORE INSERT ON rollback_fixture
       BEGIN SELECT RAISE(ROLLBACK, 'fixture rollback'); END;
@@ -118,7 +120,7 @@ test('SQLite automatic rollback preserves the original migration failure', () =>
       return true;
     });
     assert.equal(db.prepare('PRAGMA user_version').get()!.user_version, 1);
-    assert.equal(migrate(db), 1);
+    assert.equal(migrate(db, baselineMigrations), 1);
   } finally { db.close(); }
 });
 
@@ -164,7 +166,7 @@ test('a killed owner releases ownership automatically for the next startup', asy
   assert.throws(() => openStorage({ dataRoot: root }), { code: 'DATA_DIR_IN_USE' });
   await kill(owner.child);
   const recovered = openStorage({ dataRoot: root });
-  assert.equal(recovered.status().schemaVersion, 1);
+  assert.equal(recovered.status().schemaVersion, migrations.length);
   recovered.close();
 });
 
@@ -180,7 +182,7 @@ test('process death during migration leaves the previous schema ready for retry'
   recovered.close();
   const db = new DatabaseSync(file);
   try {
-    assert.equal(db.prepare('PRAGMA user_version').get()!.user_version, 1);
+    assert.equal(db.prepare('PRAGMA user_version').get()!.user_version, migrations.length);
     assert.equal(db.prepare("SELECT name FROM sqlite_master WHERE name='incomplete'").get(), undefined);
     assert.equal(db.prepare('PRAGMA integrity_check').get()!.integrity_check, 'ok');
   } finally { db.close(); }
