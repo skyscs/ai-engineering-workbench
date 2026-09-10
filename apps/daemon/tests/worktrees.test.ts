@@ -19,7 +19,7 @@ async function fixture(t: TestContext, count = 1) {
   const storage = openStorage({ dataRoot: path.join(root, 'data') }), client = new GitClient({ env });
   const repositories = new RepositoryService(storage, client), service = new WorktreeService(storage, client);
   t.after(async () => { await service.close(); await repositories.close(); storage.close(); rmSync(root, { recursive: true, force: true }); });
-  const workspaceId = storage.settings.createWorkspace({ name: 'Fixture', connection: { name: 'CLI' } }).workspace.id;
+  const workspaceId = storage.settings.createWorkspace({ name: 'Fixture', connection: { name: 'CLI', configHome: root } }).workspace.id;
   const ids: string[] = [];
   for (let index = 0; index < count; index++) {
     const source = path.join(root, `source ${index}`); mkdirSync(source);

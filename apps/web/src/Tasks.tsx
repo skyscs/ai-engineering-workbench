@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import type { ContextSelection, Repository, RepositoryList, Task, TaskDetail } from '@aew/shared';
+import type { ContextSelection, Repository, RepositoryList, Task, TaskDetail, WorkspaceDetail } from '@aew/shared';
 import { api } from './api';
+import { Runtime } from './Runtime';
 import { Worktrees } from './Worktrees';
 
-export function Tasks({ workspaceId, csrf, disabled, setBusy, onCreated }: {
-  workspaceId: string; csrf: string | null; disabled: boolean; setBusy(value: boolean): void; onCreated(): Promise<void>;
+export function Tasks({ workspaceId, settings, csrf, disabled, setBusy, onCreated }: {
+  workspaceId: string; settings: WorkspaceDetail; csrf: string | null; disabled: boolean; setBusy(value: boolean): void; onCreated(): Promise<void>;
 }) {
   const base = `/workspaces/${workspaceId}/tasks`;
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -56,9 +57,10 @@ export function Tasks({ workspaceId, csrf, disabled, setBusy, onCreated }: {
       <button type="submit" disabled={!repositories.length}>Create task</button>
     </fieldset></form>}
     {detail && <div aria-label="Task detail"><h3>{detail.task.title}</h3><p className="task-description">{detail.task.description}</p>
-      <p className="hint">{detail.task.status === 'CONTEXT_READY' ? 'Context ready' : 'Created'} · context revision {detail.task.contextRevision}. AI investigation is coming in a later iteration.</p>
+      <p className="hint">{detail.task.status === 'CONTEXT_READY' ? 'Context ready' : 'Created'} · context revision {detail.task.contextRevision}.</p>
       <p>Selected repositories: {detail.task.repositoryIds.map((id) => repositories.find((r) => r.id === id)?.name ?? id).join(', ')}</p>
       <Worktrees key={detail.task.id} detail={detail} csrf={csrf} disabled={disabled} update={setDetail} />
+      <Runtime key={`runtime-${detail.task.id}`} detail={detail} settings={settings} csrf={csrf} disabled={disabled} update={setDetail} />
       {detail.imports.length > 0 && <details><summary>Incomplete imports ({detail.imports.length})</summary><ul>
         {detail.imports.map((item) => <li key={item.id}>{item.originalFilename}: {item.state} · {item.errorCode ?? 'In progress'}.
           {item.state === 'failed' ? ' Import the source again to retry.' : ' If the upload is no longer active, restart the daemon to recover it. RECOVERY_REQUIRED retains files for local repair.'}</li>)}

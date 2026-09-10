@@ -15,7 +15,7 @@ const workspaceInput = { name: 'Engineering', connection: { name: 'Local CLI' } 
 function fixture(t: TestContext, artifactLimits = { fileBytes: 100, taskBytes: 200, contextBytes: 40 }) {
   const root = fs.mkdtempSync(path.join(tmpdir(), 'aew-task-test-'));
   const storage = openStorage({ dataRoot: root, artifactLimits });
-  const workspaceId = storage.settings.createWorkspace(workspaceInput).workspace.id;
+  const workspaceId = storage.settings.createWorkspace({ ...workspaceInput, connection: { ...workspaceInput.connection, configHome: root } }).workspace.id;
   const repository = storage.repositories.register(workspaceId, 'Fixture', { localPath: path.join(root, 'repo'), commonGitDir: path.join(root, 'repo/.git'),
     remoteUrl: null, defaultBranch: 'refs/heads/main', baseRef: 'refs/heads/main', resolvedCommitSha: 'a'.repeat(40), shallow: false });
   const input = { title: 'Investigate regression', description: 'A defect.\nDetails.', repositoryIds: [repository.id] };

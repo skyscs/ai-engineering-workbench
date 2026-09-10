@@ -91,7 +91,7 @@ export function App() {
               }}><fieldset disabled={disabled}><label>Workspace name<input name="name" required maxLength={120} defaultValue={detail.workspace.name} /></label><button type="submit" className="secondary">Rename workspace</button></fieldset></form>
             </section>
             <Repositories key={detail.workspace.id} detail={detail} csrf={csrf} disabled={disabled} setBusy={setBusy} />
-            <Tasks key={`tasks:${detail.workspace.id}`} workspaceId={detail.workspace.id} csrf={csrf} disabled={disabled} setBusy={setBusy} onCreated={() => open(detail.workspace.id)} />
+            <Tasks key={`tasks:${detail.workspace.id}`} workspaceId={detail.workspace.id} settings={detail} csrf={csrf} disabled={disabled} setBusy={setBusy} onCreated={() => open(detail.workspace.id)} />
             <section className="panel"><div className="section-heading"><h2>AI connection</h2><span className="badge">Configured · not verified</span></div>
               <p className="hint">Settings are saved locally. Authentication, provider identity and runtime access have not been checked.</p>
               <ConnectionForm key={`${detail.connection.id}:${detail.connection.updatedAt}`} initial={detail.connection} locked={detail.workspace.boundaryLocked}

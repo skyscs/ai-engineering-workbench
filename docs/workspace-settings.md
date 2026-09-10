@@ -1,20 +1,24 @@
 # Workspace and AI connection settings
 
 Open the local UI and choose **New workspace**. Enter a workspace name and a
-connection label, then select the current CLI configuration or a named profile.
-Optionally enter an absolute Codex executable path. Saving creates the workspace
+connection label and the absolute path to the intended Codex configuration directory,
+then select its base configuration or a named profile. Optionally enter an absolute
+Codex executable path. Saving creates the workspace
 and its connection together. Select a workspace to rename it, edit its connection,
 or add, edit and delete model profiles.
 
 The **Configured · not verified** badge is deliberate: these are saved settings.
-This iteration does not run Codex or validate authentication, provider identity,
+Saving settings does not run Codex or validate authentication, provider identity,
 profile existence or model support. Authentication stays in the existing CLI
 setup. A model profile may leave model and effort unset to request CLI defaults;
 the Workbench never substitutes another connection or model after an error.
 
 Each workspace owns one connection. Model profiles cannot be shared across
-workspaces. Launch settings are editable until the workspace's data boundary is
-locked; the first-task integration will be added in Task 006. An unlocked
+workspaces. Launch settings are editable until the first task locks the workspace's
+data boundary. A missing configuration directory can be bound once after locking,
+provided there is no prior AI run and no active StageRun. A workspace with earlier
+AI history and no recorded directory requires a new workspace for further AI use.
+Historical run snapshots are never rewritten. An unlocked
 workspace without repository records can be deleted after confirmation, removing
 its connection and profiles. Task 004 blocks deletion when repositories exist;
 see the [repository guide](repository-registry.md).
@@ -51,12 +55,19 @@ Workspace creation body:
   "connection": {
     "name": "Corporate Codex",
     "executablePath": null,
-    "configProfile": "company_gateway"
+    "configProfile": "company_gateway",
+    "configHome": "/home/developer/.codex-company"
   }
 }
 ```
 
-Connection PUT accepts the same three fields as `connection` above. Workspace
+The directory must already exist and be readable. The server saves its canonical
+absolute path; it does not expand `~` or environment variables, create directories,
+or read authentication files. `configHome: null` saves incomplete settings but
+blocks AI execution. The daemon never selects its inherited `CODEX_HOME` or a
+default directory instead. See [ADR 0012](decisions/0012-explicit-codex-configuration-home.md).
+
+Connection PUT accepts the same four fields as `connection` above. Workspace
 PATCH accepts only `name`. Model profile POST/PUT body:
 
 ```json
@@ -67,7 +78,9 @@ PATCH accepts only `name`. Model profile POST/PUT body:
 }
 ```
 
-Optional settings default to null when omitted, including on PUT. See
+Optional settings default to null when omitted, including on PUT. Include the
+saved `configHome`, executable and profile when renaming a locked connection;
+omitting them would attempt to clear the frozen settings. See
 [ADR 0006](decisions/0006-workspace-connection-ownership.md) for field limits and
 ownership decisions. Errors use `{ error: { code, message } }`: invalid settings
 return 400, missing or foreign profiles return 404, and locked-boundary changes

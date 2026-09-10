@@ -14,6 +14,9 @@ The connection represents an approved data boundary. A task created in a corpora
 
 Changing a Workspace's AI Connection or its launch settings after tasks exist is
 out of scope for v0.1. Use a new connection/workspace for a changed data boundary.
+The only exception is binding a previously unset configuration directory once,
+before any AI run history exists and while no StageRun is active. Migration never
+infers this directory from the environment or rewrites historical snapshots.
 
 A configured profile is a user-declared connection, not verified corporate account
 isolation. External configuration may change; do not claim provider/account identity
@@ -39,6 +42,13 @@ Reuse existing Codex CLI authentication and configuration.
 The Workbench should not parse or copy Codex OAuth/session tokens merely to execute Codex. It should spawn the CLI and let Codex own its authentication lifecycle.
 
 If separate corporate/personal Codex profiles are used, store only the profile/config selector necessary to launch the desired CLI configuration.
+
+The connection explicitly stores a canonical configuration directory (`configHome`).
+Every Codex subprocess receives it as `CODEX_HOME`; missing settings or redirected
+directories fail without fallback. Known inherited OpenAI credential/routing
+overrides are rejected before spawning. The executable, external configuration,
+custom provider environment and credential store remain trusted: selecting a path
+does not prove account identity. See [ADR 0012](docs/decisions/0012-explicit-codex-configuration-home.md).
 
 ## Repository mutation
 

@@ -87,6 +87,7 @@ export function createArtifactStore(db: DatabaseSync, root: string, limits: Arti
   }
   function verifyContext(workspaceId: string, taskId: string, manifest: ContextManifest) {
     if (manifest.includedBytes > limits.contextBytes) throw new DomainError('INVALID_INPUT', 'Selected text exceeds the context limit. Choose smaller ranges.');
+    const selected: { artifactId: string; text: string }[] = [];
     for (const entry of manifest.entries) {
       if (!entry.range) continue;
       if (entry.kind !== 'text' || entry.range.end > entry.byteSize) throw new DomainError('INVALID_INPUT', 'Only valid text artifact byte ranges can be selected.');
@@ -103,9 +104,11 @@ export function createArtifactStore(db: DatabaseSync, root: string, limits: Arti
         try {
           const text = new TextDecoder('utf-8', { fatal: true }).decode(buffer);
           if (text.includes('\u0000')) throw new Error('Binary text');
+          selected.push({ artifactId: entry.id, text });
         } catch { throw new DomainError('INVALID_INPUT', 'Select valid UTF-8 text with complete character boundaries and no NUL bytes.'); }
       } finally { closeSync(fd); }
     }
+    return selected;
   }
   function finalize(row: ImportRow) {
     transaction(db, () => {

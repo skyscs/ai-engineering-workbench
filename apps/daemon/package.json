@@ -15,7 +15,8 @@
     "@aew/git": "workspace:*",
     "@aew/storage": "workspace:*",
     "@hono/node-server": "^1.19.1",
-    "hono": "^4.9.5"
+    "hono": "^4.9.5",
+    "@aew/ai": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.17.2",

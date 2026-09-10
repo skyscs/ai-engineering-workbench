@@ -19,7 +19,9 @@ Invariants:
 
 - a Workspace owns one AI Connection in v0.1, created atomically with it;
 - connection binding is immutable; connections are not shared across workspaces;
-- launch settings cannot change after the first task locks the boundary;
+- launch settings cannot change after the first task locks the boundary, except
+  one-time binding of an unset configuration directory before AI history exists
+  and while no StageRun is active (ADR 0012);
 - Task 006 must lock the boundary in the same transaction as first-task creation;
 - the lock persists and cannot be undone, including after tasks are removed;
 - Tasks inherit the Workspace data boundary;
@@ -123,7 +125,8 @@ Fields:
 - id
 - name
 - runtimeType (`codex-cli` in v0.1)
-- configProfile (nullable; null selects the current CLI configuration)
+- configHome (nullable canonical absolute directory; null blocks AI execution)
+- configProfile (nullable; null selects the base configuration in configHome)
 - executablePath (nullable; null selects `codex` on PATH)
 - verificationStatus (`not_verified` in Task 003)
 - createdAt

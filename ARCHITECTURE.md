@@ -216,6 +216,13 @@ Examples:
 
 A Workspace is bound to one AI Connection in v0.1.
 
+The connection saves the executable selector, a canonical configuration directory
+(`configHome`) and optional named CLI profile. The adapter passes the saved
+directory as `CODEX_HOME` to every subprocess, regardless of the daemon's inherited
+home. Missing settings block AI use. Schema 8 leaves earlier connections unbound;
+the narrow one-time binding exception and immutable history rules are recorded in
+[ADR 0012](docs/decisions/0012-explicit-codex-configuration-home.md).
+
 ### Model Profile
 
 Defines the requested model/execution profile for an individual stage run.

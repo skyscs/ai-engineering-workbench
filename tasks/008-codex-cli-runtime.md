@@ -1,5 +1,8 @@
 # Task 008 — Codex CLI runtime adapter
 
+Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge. See
+[development status](../docs/development-status.md) and [the runtime guide](../docs/codex-runtime.md).
+
 ## Goal
 
 Execute a non-interactive Codex run through the user's existing CLI configuration and stream normalized events to the daemon/UI.
@@ -28,6 +31,11 @@ Do not claim exact provider-payload auditing from the CLI runtime.
 
 ## Review additions
 
+- Save an explicit canonical configuration directory per connection and pass it as
+  `CODEX_HOME` for all diagnostics and model execution. Reject unbound/redirected
+  homes and known ambient authentication overrides without fallback. Migrate old
+  settings as unbound; allow one-time binding only without AI history or active
+  StageRuns. Preserve snapshots and show the directory before launch. See ADR 0012.
 - Consume Task 000 compatibility notes and Task 006 StageRun persistence. Reject
   unsupported CLI/configurations; never silently retry with broader permissions.
 - Preflight explicitly selected profiles before spawning: CLI 0.153.4 accepted a

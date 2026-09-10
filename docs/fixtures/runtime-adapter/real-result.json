@@ -1,0 +1,51 @@
+{
+  "runStatus": "succeeded",
+  "error": null,
+  "metadata": {
+    "version": "codex-cli 0.154.0",
+    "profile": null,
+    "accessMode": "read",
+    "enabledMcpServers": 0,
+    "readRoots": [
+      "<fixture>/worktrees/client",
+      "<fixture>/worktrees/service"
+    ],
+    "artifactDelivery": "selected-utf8-ranges-via-stdin"
+  },
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "unchanged": true,
+  "result": {
+    "summary": "Preliminary evidence points to a cross-repository timeout-unit contract mismatch: the configuration publisher changed its value from 5000 milliseconds to 5 seconds, while the consumer still copies that numeric value into a milliseconds field. This produces the observed 5ms timeout. This is not a verified root-cause report.",
+    "findings": [
+      "In configuration repository commit 9d389b8f8d48ef135e120c2a953152ab58ed9502 (`refactor: publish timeout in seconds`), `config.mjs` changed `timeout` from 5000 with `timeoutUnit: \"milliseconds\"` to 5 with `timeoutUnit: \"seconds\"`.",
+      "The prior configuration commit 29c388cc995de6e1c0cd775af644e4637239c95a published `timeout: 5000` in milliseconds.",
+      "In consumer repository commit 36d717416f00893b99c338bfba1a6bf8cde48d12 (`feat: consume service timeout in milliseconds`), `requestOptions(config)` returns `{ timeoutMs: config.timeout }` and does not inspect or convert `config.timeoutUnit`.",
+      "Therefore, at the pinned revisions, the consumer maps the publisher's numeric value 5 directly to `timeoutMs`, yielding 5ms. This matches the selected incident log's observed timeout.",
+      "The available Git refs show only the listed main/task-pin history for each repository; no coordinating consumer change or compatibility conversion is present in the inspected history."
+    ],
+    "unresolvedQuestions": [
+      "Whether the intended public contract after the publisher change was seconds, milliseconds, or a unit-independent duration representation is not established by the available source and history.",
+      "The inspected repositories contain no runtime traces, integration tests, release ordering, or deployment metadata, so this investigation cannot confirm which deployed revision first caused the incident or exclude external configuration overrides."
+    ]
+  },
+  "events": [
+    "runtime",
+    "progress",
+    "progress",
+    "progress",
+    "progress",
+    "progress",
+    "progress",
+    "progress",
+    "progress",
+    "progress",
+    "progress",
+    "progress",
+    "progress",
+    "progress",
+    "progress",
+    "progress",
+    "progress"
+  ]
+}

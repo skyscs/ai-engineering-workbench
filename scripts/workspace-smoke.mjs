@@ -9,7 +9,8 @@ import { fileURLToPath } from 'node:url';
 // CDP reference: https://chromedevtools.github.io/devtools-protocol/
 const fixture = await mkdtemp(path.join(tmpdir(), 'aew-workspace-smoke-'));
 const withSync = process.env.AEW_SMOKE_SYNC === '1';
-const withWorktrees = process.env.AEW_SMOKE_WORKTREES === '1';
+const withRuntime = process.env.AEW_SMOKE_RUNTIME === '1';
+const withWorktrees = process.env.AEW_SMOKE_WORKTREES === '1' || withRuntime;
 const withTasks = process.env.AEW_SMOKE_TASKS === '1' || withWorktrees;
 const withRepositories = process.env.AEW_SMOKE_REPOSITORIES === '1' || withSync || withTasks;
 const daemonDir = fileURLToPath(new URL('../apps/daemon/', import.meta.url));
@@ -73,6 +74,15 @@ async function connect(url) {
 let page;
 try {
   const env = { ...process.env, AEW_DATA_DIR: path.join(fixture, 'data'), AEW_OPEN_BROWSER: '0' };
+  const runtimeMode = path.join(fixture, 'runtime-mode'), runtimeExecutable = path.join(fixture, 'fixture-codex');
+  if (withRuntime) {
+    const config = path.join(fixture, 'cli-config'); await mkdir(config);
+    await writeFile(path.join(config, 'config.toml'), ''); await writeFile(path.join(config, 'corp_fixture.config.toml'), '');
+    await writeFile(runtimeMode, 'success');
+    const implementation = fileURLToPath(new URL('../packages/ai/tests/fixture-cli.cjs', import.meta.url));
+    await writeFile(runtimeExecutable, `#!${process.execPath}\nprocess.env.FIXTURE_MODE = require('node:fs').readFileSync(${JSON.stringify(runtimeMode)}, 'utf8');\nrequire(${JSON.stringify(implementation)});\n`, { mode: 0o700 });
+    env.CODEX_HOME = config; env.FIXTURE_PID = path.join(fixture, 'runtime-child-pid');
+  }
   const first = start(process.execPath, ['dist/index.js'], daemonDir, env);
   await daemonReady(first);
   const browser = start('google-chrome', ['--headless', '--no-sandbox', '--disable-gpu', '--disable-background-networking',
@@ -105,6 +115,7 @@ try {
   await fill('[name=connectionName]', 'Corporate fixture');
   await fill('[name=configMode]', 'named');
   await fill('[name=configProfile]', 'corp_fixture');
+  if (withRuntime) await fill('[name=executablePath]', runtimeExecutable);
   await click('form[aria-label="Create workspace"] button[type=submit]');
   await wait("Boolean(document.querySelector('form[aria-label=\"Edit connection\"]')) && " + saved);
   await fill('[name=profileName]', 'Review profile');
@@ -244,6 +255,37 @@ try {
     taskSnapshot = await snapshot();
     assert.equal(taskSnapshot.worktrees[0].resolvedCommitSha, row.resolvedCommitSha);
   }
+  if (withRuntime) {
+    const section = 'section[aria-label="AI runtime"]';
+    const taskRoute = `/api/workspaces/${before.workspace.id}/tasks/${taskSnapshot.task.id}`;
+    const snapshot = () => evaluate(`(async () => await (await fetch('${taskRoute}')).json())()`);
+    assert.equal(await evaluate(`document.querySelector('${section} > button').disabled`), true);
+    await fill('form[aria-label="Edit connection"] [name=configHome]', path.join(fixture, 'cli-config'));
+    await click('form[aria-label="Edit connection"] button[type=submit]'); await wait(saved);
+    await wait(`!document.querySelector('${section} > button').disabled`);
+    assert.ok(await evaluate(`document.querySelector('${section}').textContent.includes(${JSON.stringify(path.join(fixture, 'cli-config'))})`));
+    before = await evaluate(`(async () => await (await fetch('/api/workspaces/${before.workspace.id}')).json())()`);
+    assert.equal(before.connection.configHome, path.join(fixture, 'cli-config'));
+    assert.equal(await evaluate(`document.querySelector('form[aria-label="Edit connection"] [name=configHome]').disabled`), true);
+    await fill(`${section} select`, before.modelProfiles[0].id);
+    await click(`${section} > button`);
+    await wait(`document.querySelector('${section}').textContent.includes('Fixture café investigation')`);
+    const succeeded = (await snapshot()).latestRun;
+    assert.equal(succeeded.modelProfileId, before.modelProfiles[0].id);
+    assert.equal(succeeded.inputSnapshot.connection.configHome, before.connection.configHome);
+    await writeFile(runtimeMode, 'failure'); await click(`${section} > button`);
+    await wait(`document.querySelector('${section}').textContent.includes('AUTHENTICATION_REQUIRED')`);
+    assert.doesNotMatch(await evaluate(`document.querySelector('${section}').textContent`), /sk-secretfixture|user:password/);
+    const old = await evaluate(`(async () => await (await fetch('${taskRoute}/runtime-runs/${succeeded.id}')).json())()`);
+    assert.equal(old.run.status, 'succeeded'); assert.ok(old.result);
+    await writeFile(runtimeMode, 'sleep'); await click(`${section} > button`);
+    await wait(`Array.from(document.querySelectorAll('${section} button')).some(b => b.textContent === 'Cancel run')`);
+    await evaluate(`Array.from(document.querySelectorAll('${section} button')).find(b => b.textContent === 'Cancel run').click()`);
+    await wait(`document.querySelector('${section}').textContent.includes('cancelled')`);
+    await writeFile(runtimeMode, 'success'); await click(`${section} > button`);
+    await wait(`document.querySelector('${section}').textContent.includes('Fixture café investigation')`);
+    taskSnapshot = await snapshot(); assert.equal(taskSnapshot.latestRun.status, 'succeeded');
+  }
   const screenshot = await page.send('Page.captureScreenshot', { captureBeyondViewport: true });
   await writeFile(path.join(fixture, 'workspace-desktop.png'), Buffer.from(screenshot.data, 'base64'));
   await stop(first);
@@ -259,6 +301,7 @@ try {
     await click('section[aria-label="Tasks"] .workspace-list button');
     await wait("Boolean(document.querySelector('form[aria-label=\"Select text context\"]')) && " + usable);
   }
+  if (withRuntime) await wait("document.querySelector('section[aria-label=\"AI runtime\"]').textContent.includes('Fixture café investigation')");
   if (withRepositories) {
     await wait("document.querySelectorAll('.repository-list li').length === 3");
     const afterRepositories = await evaluate(`(async () => await (await fetch('/api/workspaces/${before.workspace.id}/repositories')).json())()`);
@@ -288,6 +331,7 @@ try {
   if (withSync) Object.assign(result, { noRemoteRefresh: 'passed', fetchAndPrune: 'passed', syncFailureDiagnostics: 'passed', lastSuccessPreserved: 'passed', syncRestartPersistence: 'passed' });
   if (withTasks) Object.assign(result, { twoRepositoryTask: 'passed', browserFileUpload: 'passed', sourceRemovalDownload: 'passed', explicitTextContext: 'passed', unsupportedFileExclusion: 'passed', taskRestartPersistence: 'passed', boundaryLock: 'passed' });
   if (withWorktrees) Object.assign(result, { twoRepositoryPreparation: 'passed', baseRefFailureAndRetry: 'passed', dirtyCleanupRejected: 'passed', cleanCleanup: 'passed', retainedPin: 'passed', recreatePinnedRevision: 'passed', worktreeRestartPersistence: 'passed' });
+  if (withRuntime) Object.assign(result, { runtimePreview: 'passed', selectedModelProfile: 'passed', runtimeFailureDiagnostics: 'passed', runtimeCancellation: 'passed', runtimeRetry: 'passed', priorRunPreserved: 'passed', runtimeRestartPersistence: 'passed', persistedEventReplay: 'passed', fixtureRuntimeInvocations: 4, explicitConfigurationDirectory: 'passed', unboundRuntimeBlocked: 'passed', oneTimeDirectoryBinding: 'passed', savedDirectoryDisplayedAndLocked: 'passed' });
   await writeFile(path.join(fixture, 'result.json'), JSON.stringify(result, null, 2));
   console.log(JSON.stringify({ fixture, ...result }, null, 2));
 } finally {

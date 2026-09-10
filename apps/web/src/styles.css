@@ -161,3 +161,6 @@ textarea { width: 100%; box-sizing: border-box; font: inherit; padding: 0.7rem; 
 .worktree-list { padding-left: 1.2rem; }
 .worktree-list li { margin-top: 1rem; overflow-wrap: anywhere; }
 .worktree-list pre { white-space: pre-wrap; }
+
+.runtime-section { border-top: 1px solid #94a3b8; margin-top: 1rem; padding-top: 1rem; overflow-wrap: anywhere; }
+.runtime-section .error { white-space: pre-wrap; }

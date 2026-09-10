@@ -1,3 +1,4 @@
+import { createRunJournal } from './run-journal.js';
 import { randomUUID } from 'node:crypto';
 import type { DatabaseSync } from 'node:sqlite';
 import { DomainError, parseTask, type ArtifactLimits, type RunFailure, type StageRun, type Task } from '@aew/core';
@@ -49,6 +50,7 @@ export function createTaskStore(db: DatabaseSync, ensureOpen: () => void, settin
   }
   return {
     artifacts,
+    journal: createRunJournal(db, run),
     worktrees,
     get,
     list(workspaceId: string) {
@@ -94,6 +96,7 @@ export function createTaskStore(db: DatabaseSync, ensureOpen: () => void, settin
           throw new DomainError('CONFLICT', 'Another investigation is active.');
         }
         const task = get(workspaceId, taskId), owner = settings.getWorkspace(workspaceId);
+        if (input.stage === 'investigation' && !owner.connection.configHome) throw new DomainError('CONFLICT', 'Choose and save the connection configuration directory before starting AI.');
         const prepared = worktrees.list(workspaceId, taskId);
         if (input.stage === 'investigation' && prepared.some((r) => r.status !== 'ready' || !r.resolvedCommitSha)) {
           throw new DomainError('CONFLICT', 'Prepare every selected repository before investigation.');
