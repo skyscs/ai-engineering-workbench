@@ -19,6 +19,11 @@ Safely refresh remote repository state without mutating the developer's working 
 
 ## Review additions
 
+- Revalidate the saved canonical checkout/common git-dir identity before mutation;
+  a path can move or be replaced after registration. Use Task 004's common git-dir
+  operation guard and refresh base-ref/commit/shallow metadata after successful
+  fetch. A no-remote refresh must still discover local commits added after empty
+  repository registration. Reject cloning/failed records as sync targets.
 - Serialize Git mutations by common git-dir. Check configured fetch refspecs;
   reject unsupported refspecs that can update local branches instead of assuming
   every custom configuration makes fetch harmless. No force or pull fallback.

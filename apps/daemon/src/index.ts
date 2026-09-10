@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { serve } from '@hono/node-server';
 import { createApp } from './app.js';
 import { openStorage, StorageError } from '@aew/storage';
+import { RepositoryService } from './repository-service.js';
 
 const HOST = '127.0.0.1';
 const PORT = 4242;
@@ -21,8 +22,9 @@ const storage = (() => {
 })();
 // Also releases ownership if startup fails before a server can accept requests.
 process.once('exit', () => storage.close());
+const repositories = new RepositoryService(storage);
 const app = createApp({ publicDir, development: process.env.NODE_ENV === 'development',
-  storageStatus: () => storage.status(), settings: storage.settings });
+  storageStatus: () => storage.status(), settings: storage.settings, repositories });
 
 const server = serve(
   {
@@ -57,7 +59,7 @@ function shutdown(): void {
     process.exit(1);
   }, 5000);
   deadline.unref();
-  server.close(() => {
+  void Promise.all([repositories.close(), new Promise<void>((resolve) => server.close(() => resolve()))]).then(() => {
     storage.close();
     clearTimeout(deadline);
   });

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import type { ModelProfile, Workspace, WorkspaceDetail, WorkspaceList } from '@aew/shared';
 import { api } from './api';
 import { ConnectionForm, ProfileForm, WorkspaceCreate } from './SettingsForms';
+import { Repositories } from './Repositories';
 
 export function App() {
   const [workspaces, setWorkspaces] = useState<Workspace[]>([]);
@@ -88,6 +89,7 @@ export function App() {
                 event.preventDefault(); const data = new FormData(event.currentTarget); void change(base, 'PATCH', { name: data.get('name') });
               }}><fieldset disabled={disabled}><label>Workspace name<input name="name" required maxLength={120} defaultValue={detail.workspace.name} /></label><button type="submit" className="secondary">Rename workspace</button></fieldset></form>
             </section>
+            <Repositories key={detail.workspace.id} detail={detail} csrf={csrf} disabled={disabled} setBusy={setBusy} />
             <section className="panel"><div className="section-heading"><h2>AI connection</h2><span className="badge">Configured · not verified</span></div>
               <p className="hint">Settings are saved locally. Authentication, provider identity and runtime access have not been checked.</p>
               <ConnectionForm key={`${detail.connection.id}:${detail.connection.updatedAt}`} initial={detail.connection} locked={detail.workspace.boundaryLocked}

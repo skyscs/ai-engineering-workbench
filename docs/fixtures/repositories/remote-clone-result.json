@@ -1,0 +1,9 @@
+{
+  "remoteClone": "passed",
+  "transport": "ssh",
+  "managedStatus": "ready",
+  "baseRef": "refs/remotes/origin/main",
+  "resolvedCommitSha": "8134f143aae23cb5279c0f76d59234019ea4d406",
+  "sshOverride": "ssh -F /dev/null",
+  "aiInvocations": 0
+}

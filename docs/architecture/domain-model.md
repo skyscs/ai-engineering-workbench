@@ -37,15 +37,29 @@ Fields:
 - remoteUrl
 - managedClone: boolean
 - localPath
-- defaultBranch/baseRef
-- lastFetchedAt
+- commonGitDir (canonical lock identity; nullable until clone succeeds)
+- defaultBranch (nullable, full symbolic ref)
+- baseRef (nullable for an empty repository)
+- resolvedCommitSha (nullable when no commit is selected)
+- shallow: boolean
+- status (`cloning`, `ready`, `failed`)
+- error? (normalized Git failure)
+- retainedFiles: boolean (incomplete/failed clone cleanup state)
+- lastFetchedAt? (introduced in Task 005)
 - createdAt
+- updatedAt
 
 Invariants:
 
-- localPath must resolve to a Git repository;
+- ready records have validated canonical checkout and common git-dir paths;
+- registration snapshots must be revalidated before later operations;
+- repository ownership cannot change; workspace deletion is blocked while records exist;
+- unfinished clone records survive restart and are marked failed without automatic retry;
 - synchronization never implies `git pull`;
 - credentials are not stored in this entity.
+
+See [ADR 0007](../decisions/0007-repository-registry-and-clone-recovery.md) for
+managed clone staging, cleanup and Git process boundaries.
 
 ## Task
 

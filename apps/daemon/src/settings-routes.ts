@@ -2,7 +2,7 @@ import { Hono, type Context } from 'hono';
 import { DomainError } from '@aew/core';
 import type { SettingsRepository } from '@aew/storage';
 
-async function input(context: Context): Promise<unknown> {
+export async function input(context: Context): Promise<unknown> {
   if (context.req.header('content-type')?.split(';')[0]?.trim() !== 'application/json') {
     throw new DomainError('INVALID_INPUT', 'Use application/json for settings requests.');
   }

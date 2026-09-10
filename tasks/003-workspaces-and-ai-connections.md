@@ -1,6 +1,6 @@
 # Task 003 — Workspaces and AI connection metadata
 
-Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge. See
+Status: accepted through the user's merge of PR #4 into main (8134f14). See
 [development status](../docs/development-status.md),
 [settings guide](../docs/workspace-settings.md) and
 [ADR 0006](../docs/decisions/0006-workspace-connection-ownership.md).

@@ -7,3 +7,5 @@ export interface WorkspaceDetail {
 }
 export interface WorkspaceList { workspaces: Workspace[] }
 export interface ApiError { error: { code: string; message: string } }
+export type { Repository, RepositoryInput, RepositoryMetadata, GitFailure } from '@aew/core';
+export interface RepositoryList { repositories: import('@aew/core').Repository[] }

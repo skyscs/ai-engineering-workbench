@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
-import { spawn } from 'node:child_process';
-import { mkdtemp, writeFile } from 'node:fs/promises';
+import { execFileSync, spawn } from 'node:child_process';
+import { mkdtemp, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 // Opt-in Linux browser acceptance. Requires a build, Chrome and a free port 4242.
 // CDP reference: https://chromedevtools.github.io/devtools-protocol/
 const fixture = await mkdtemp(path.join(tmpdir(), 'aew-workspace-smoke-'));
+const withRepositories = process.env.AEW_SMOKE_REPOSITORIES === '1';
 const daemonDir = fileURLToPath(new URL('../apps/daemon/', import.meta.url));
 const children = [];
 function start(command, args, cwd, env = process.env) {
@@ -123,6 +124,37 @@ try {
   assert.equal(before.connection.verificationStatus, 'not_verified');
   assert.equal(before.connection.configProfile, 'corp_fixture');
   assert.equal(before.modelProfiles[0].reasoningEffort, 'high');
+  let repositorySnapshot;
+  if (withRepositories) {
+    const source = path.join(fixture, 'source space 日本語');
+    await mkdir(source);
+    const git = (args) => execFileSync('git', ['-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid', ...args],
+      { cwd: source, env: { ...process.env, HOME: fixture, XDG_CONFIG_HOME: fixture, GIT_CONFIG_NOSYSTEM: '1' }, stdio: 'pipe' });
+    git(['init', '-b', 'trunk']); await writeFile(path.join(source, 'file'), 'committed'); git(['add', '.']); git(['commit', '-m', 'Fixture commit']);
+    await writeFile(path.join(source, 'file'), 'staged'); git(['add', '.']); await writeFile(path.join(source, 'file'), 'dirty');
+    const indexBefore = await readFile(path.join(source, '.git/index'));
+    const headBefore = await readFile(path.join(source, '.git/HEAD'));
+    await fill('[name=repositoryName]', 'Existing fixture'); await fill('[name=repositorySource]', source);
+    await click('form[aria-label="Add repository"] button[type=submit]');
+    await wait("document.querySelector('.repository-list').textContent.includes('Existing fixture') && " + usable);
+    await fill('[name=repositoryMode]', 'clone');
+    await fill('[name=repositoryName]', 'Managed fixture'); await fill('[name=repositorySource]', source);
+    await click('form[aria-label="Add repository"] button[type=submit]');
+    await wait("document.querySelectorAll('.repository-list li').length === 2 && !document.querySelector('.repository-list').textContent.includes('cloning') && " + usable);
+    await fill('[name=repositoryName]', 'Failed fixture'); await fill('[name=repositorySource]', source); await fill('[name=repositoryBaseRef]', 'missing');
+    // The same successful clone source is deliberately deduplicated; use a distinct local fixture.
+    const failureSource = path.join(fixture, 'not-git'); await mkdir(failureSource);
+    await fill('[name=repositorySource]', failureSource);
+    await click('form[aria-label="Add repository"] button[type=submit]');
+    await wait("document.querySelector('.repository-list').textContent.includes('GIT_FAILED') && " + usable);
+    repositorySnapshot = await evaluate(`(async () => await (await fetch('/api/workspaces/${before.workspace.id}/repositories')).json())()`);
+    assert.equal(repositorySnapshot.repositories.filter((item) => item.status === 'ready').length, 2);
+    assert.equal(repositorySnapshot.repositories.filter((item) => item.status === 'failed').length, 1);
+    assert.deepEqual(await readFile(path.join(source, '.git/index')), indexBefore);
+    assert.deepEqual(await readFile(path.join(source, '.git/HEAD')), headBefore);
+    assert.equal(await readFile(path.join(source, 'file'), 'utf8'), 'dirty');
+    await evaluate("document.querySelectorAll('.repository-list details').forEach(item => item.open = true)");
+  }
   const screenshot = await page.send('Page.captureScreenshot', { captureBeyondViewport: true });
   await writeFile(path.join(fixture, 'workspace-desktop.png'), Buffer.from(screenshot.data, 'base64'));
   await stop(first);
@@ -132,6 +164,11 @@ try {
   await wait(usable);
   const after = await evaluate(`(async () => await (await fetch('/api/workspaces/${before.workspace.id}')).json())()`);
   assert.deepEqual(after, before);
+  if (withRepositories) {
+    await wait("document.querySelectorAll('.repository-list li').length === 3");
+    const afterRepositories = await evaluate(`(async () => await (await fetch('/api/workspaces/${before.workspace.id}/repositories')).json())()`);
+    assert.deepEqual(afterRepositories, repositorySnapshot);
+  }
   await page.send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
   assert.equal(await evaluate('document.documentElement.scrollWidth <= window.innerWidth'), true);
   const mobile = await page.send('Page.captureScreenshot', { captureBeyondViewport: true });
@@ -142,10 +179,15 @@ try {
   assert.equal(await evaluate("document.querySelectorAll('.workspace-list li').length"), 1);
   await evaluate('window.confirm = () => true');
   await click('.workspace-content .danger');
-  await wait("document.querySelectorAll('.workspace-list li').length === 0 && " + saved);
+  if (withRepositories) {
+    await wait("document.querySelector('.feedback').textContent.includes('contains repository records')");
+    assert.equal(await evaluate("document.querySelectorAll('.workspace-list li').length"), 1);
+  } else await wait("document.querySelectorAll('.workspace-list li').length === 0 && " + saved);
   const result = { workspaceCreate: 'passed', connectionUpdate: 'passed', modelProfileCreateAndUpdate: 'passed',
     rename: 'passed', restartPersistence: 'passed', narrowViewport: 'passed', deletionConfirmation: 'passed',
     verifiedConnectionClaim: false, aiInvocations: 0 };
+  if (withRepositories) Object.assign(result, { repositoryRegistration: 'passed', managedClone: 'passed', failedCloneDiagnostics: 'passed',
+    repositoryRestartPersistence: 'passed', dirtyCheckoutPreserved: 'passed', workspaceDeletionBlocked: 'passed' });
   await writeFile(path.join(fixture, 'result.json'), JSON.stringify(result, null, 2));
   console.log(JSON.stringify({ fixture, ...result }, null, 2));
 } finally {

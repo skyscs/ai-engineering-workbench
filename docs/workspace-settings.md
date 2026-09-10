@@ -15,7 +15,9 @@ the Workbench never substitutes another connection or model after an error.
 Each workspace owns one connection. Model profiles cannot be shared across
 workspaces. Launch settings are editable until the workspace's data boundary is
 locked; the first-task integration will be added in Task 006. An unlocked
-workspace can be deleted after confirmation, removing its connection and profiles.
+workspace without repository records can be deleted after confirmation, removing
+its connection and profiles. Task 004 blocks deletion when repositories exist;
+see the [repository guide](repository-registry.md).
 
 **Refresh** reconnects the UI after a daemon restart and reloads saved settings.
 Failed writes are not retried automatically. If a change was saved but a following

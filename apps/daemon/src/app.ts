@@ -7,6 +7,9 @@ import { serveStatic } from '@hono/node-server/serve-static';
 import type { SettingsRepository, StorageStatus } from '@aew/storage';
 import { DomainError } from '@aew/core';
 import { settingsRoutes } from './settings-routes.js';
+import { GitError } from '@aew/git';
+import { repositoryRoutes } from './repository-routes.js';
+import type { RepositoryService } from './repository-service.js';
 
 const SESSION_COOKIE = 'aew_session';
 const SESSION_SECONDS = 8 * 60 * 60;
@@ -18,6 +21,7 @@ export interface AppOptions {
   now?: () => number;
   storageStatus?: () => StorageStatus;
   settings?: SettingsRepository;
+  repositories?: RepositoryService;
 }
 
 /** Create a local HTTP application without opening sockets or launching a browser. */
@@ -107,6 +111,7 @@ export function createApp(options: AppOptions = {}) {
   });
 
   if (options.settings) app.route('/api/workspaces', settingsRoutes(options.settings));
+  if (options.repositories) app.route('/api/workspaces', repositoryRoutes(options.repositories));
 
   app.all('/api', (context) => context.json({ error: { code: 'NOT_FOUND', message: 'Unknown API route.' } }, 404));
   app.all('/api/*', (context) => context.json({ error: { code: 'NOT_FOUND', message: 'Unknown API route.' } }, 404));
@@ -118,8 +123,9 @@ export function createApp(options: AppOptions = {}) {
   app.onError((error, context) => {
     if (error instanceof DomainError) {
       return context.json({ error: { code: error.code, message: error.message } },
-        error.code === 'NOT_FOUND' ? 404 : error.code === 'BOUNDARY_LOCKED' ? 409 : 400);
+        error.code === 'NOT_FOUND' ? 404 : ['BOUNDARY_LOCKED', 'CONFLICT'].includes(error.code) ? 409 : 400);
     }
+    if (error instanceof GitError) return context.json({ error: error.failure }, 422);
     // Do not include request bodies, cookies or exception messages in diagnostics.
     console.error(`HTTP request failed (${error.name}).`);
     return context.json({ error: { code: 'INTERNAL_ERROR', message: 'The local request failed.' } }, 500);

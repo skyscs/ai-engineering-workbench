@@ -68,8 +68,9 @@ See [Development status](docs/development-status.md) for verification evidence
 and remaining work. Task 002 adds local SQLite initialization, migrations and a
 protected storage status endpoint. Task 003 adds workspace, owned AI connection
 and model profile settings with persistence and a browser UI. Connections remain
-configured but not verified; no AI execution is available yet. Tasks 004–011 remain
-planned.
+configured but not verified; no AI execution is available yet. Task 004 adds local
+repository registration and managed cloning with persisted status and diagnostics.
+Tasks 005–011 remain planned.
 
 ## Quick start
 
@@ -172,3 +173,16 @@ Codex or verify authentication, provider identity or model availability.
 
 See the [settings guide and API](docs/workspace-settings.md) for field semantics,
 ownership rules and the optional `node scripts/workspace-smoke.mjs` browser check.
+
+## Repository registry
+
+Select a workspace and use **Repositories → Add a repository** to register an
+existing checkout or clone from a local path, SSH or HTTPS. Expand an entry for
+its path, base ref, commit, history limitations and clone diagnostics. Clones
+download history without checking out files. Existing checkouts remain unchanged.
+
+The locally verified target is Linux with Git 2.53.0 and Node 22.23.2. Authentication
+uses system Git credential helpers and OpenSSH-compatible configuration. See the
+[repository guide](docs/repository-registry.md) for API, authentication requirements,
+failed-clone recovery and the browser acceptance command. Workspaces containing
+repository records cannot be deleted in this iteration.

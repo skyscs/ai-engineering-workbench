@@ -55,6 +55,33 @@ export const migrations: readonly Migration[] = [{ version: 1, name: 'storage_fo
   CREATE TRIGGER model_profile_connection_immutable BEFORE UPDATE OF ai_connection_id ON model_profiles
     WHEN NEW.ai_connection_id != OLD.ai_connection_id
     BEGIN SELECT RAISE(ABORT, 'profile_connection_immutable'); END;
+` }, { version: 3, name: 'repository_registry', sql: `
+  CREATE TABLE repositories (
+    id TEXT PRIMARY KEY,
+    workspace_id TEXT NOT NULL REFERENCES workspaces(id) ON DELETE RESTRICT,
+    name TEXT NOT NULL CHECK(length(name) BETWEEN 1 AND 120),
+    source TEXT NOT NULL,
+    local_path TEXT NOT NULL,
+    common_git_dir TEXT,
+    remote_url TEXT,
+    default_branch TEXT,
+    base_ref TEXT,
+    resolved_commit_sha TEXT,
+    shallow INTEGER NOT NULL DEFAULT 0 CHECK(shallow IN (0, 1)),
+    managed_clone INTEGER NOT NULL CHECK(managed_clone IN (0, 1)),
+    status TEXT NOT NULL CHECK(status IN ('cloning', 'ready', 'failed')),
+    error_json TEXT,
+    retained_files INTEGER NOT NULL DEFAULT 0 CHECK(retained_files IN (0, 1)),
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL,
+    CHECK(status != 'ready' OR common_git_dir IS NOT NULL),
+    UNIQUE(workspace_id, local_path)
+  ) STRICT;
+  CREATE UNIQUE INDEX repository_clone_source ON repositories(workspace_id, source)
+    WHERE managed_clone = 1 AND status != 'failed';
+  CREATE TRIGGER repository_workspace_immutable BEFORE UPDATE OF workspace_id ON repositories
+    WHEN NEW.workspace_id != OLD.workspace_id
+    BEGIN SELECT RAISE(ABORT, 'repository_workspace_immutable'); END;
 ` }];
 
 const checksum = (migration: Migration) => createHash('sha256').update(migration.sql).digest('hex');

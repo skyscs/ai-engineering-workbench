@@ -35,10 +35,53 @@ export interface ModelProfile extends ModelProfileInput {
 export interface WorkspaceInput { name: string; connection: ConnectionInput }
 
 export class DomainError extends Error {
-  constructor(public readonly code: 'INVALID_INPUT' | 'NOT_FOUND' | 'BOUNDARY_LOCKED', message: string) {
+  constructor(public readonly code: 'INVALID_INPUT' | 'NOT_FOUND' | 'BOUNDARY_LOCKED' | 'CONFLICT', message: string) {
     super(message);
     this.name = 'DomainError';
   }
+}
+
+export interface GitFailure {
+  code: string;
+  message: string;
+  exitCode: number | null;
+  signal: string | null;
+  stderr: string;
+}
+export interface RepositoryMetadata {
+  localPath: string;
+  commonGitDir: string;
+  remoteUrl: string | null;
+  defaultBranch: string | null;
+  baseRef: string | null;
+  resolvedCommitSha: string | null;
+  shallow: boolean;
+}
+export interface Repository extends Omit<RepositoryMetadata, 'commonGitDir'> {
+  id: string;
+  workspaceId: string;
+  name: string;
+  commonGitDir: string | null;
+  managedClone: boolean;
+  status: 'cloning' | 'ready' | 'failed';
+  error: GitFailure | null;
+  retainedFiles: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface RepositoryInput {
+  name: string;
+  source: string;
+  baseRef: string | null;
+}
+export function parseRepositoryInput(value: unknown): RepositoryInput {
+  const input = object(value, ['name', 'source', 'baseRef']);
+  const source = text(input.source, 'source', 4096);
+  const baseRef = optionalText(input.baseRef, 'baseRef', 256);
+  if (source.startsWith('-') || baseRef?.startsWith('-')) {
+    throw new DomainError('INVALID_INPUT', 'Repository paths, URLs and refs cannot start with a hyphen.');
+  }
+  return { name: text(input.name, 'name', 120), source, baseRef };
 }
 
 function object(value: unknown, fields: string[]): Record<string, unknown> {
