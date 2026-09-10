@@ -13,6 +13,9 @@ importers:
       '@aew/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@aew/git':
+        specifier: workspace:*
+        version: link:../../packages/git
       '@aew/storage':
         specifier: workspace:*
         version: link:../../packages/storage
@@ -77,7 +80,17 @@ importers:
         version: 5.9.3
 
   packages/git:
+    dependencies:
+      '@aew/core':
+        specifier: workspace:*
+        version: link:../core
     devDependencies:
+      '@types/node':
+        specifier: ^22.17.2
+        version: 22.20.1
+      tsx:
+        specifier: ^4.20.4
+        version: 4.23.13
       typescript:
         specifier: ^5.9.2
         version: 5.9.3

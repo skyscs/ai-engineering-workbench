@@ -3,11 +3,16 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
+  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" } },
+  "dependencies": { "@aew/core": "workspace:*" },
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "typecheck": "tsc -p tsconfig.json --noEmit --pretty false"
+    "typecheck": "tsc -p tsconfig.check.json --pretty false",
+    "test": "node --import tsx --test tests/*.test.ts"
   },
   "devDependencies": {
+    "@types/node": "^22.17.2",
+    "tsx": "^4.20.4",
     "typescript": "^5.9.2"
   }
 }

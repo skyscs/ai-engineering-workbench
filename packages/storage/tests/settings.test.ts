@@ -132,7 +132,7 @@ test('upgrade from Task 002 preserves its migration record and creates usable se
   db.close();
   const upgraded = openStorage({ dataRoot: root });
   try {
-    assert.equal(upgraded.status().schemaVersion, 2);
+    assert.equal(upgraded.status().schemaVersion, migrations.length);
     upgraded.settings.createWorkspace(workspaceInput('Upgraded'));
     const check = new DatabaseSync(upgraded.paths.database);
     try { assert.deepEqual(check.prepare('SELECT * FROM schema_migrations WHERE version = 1').get(), original); }

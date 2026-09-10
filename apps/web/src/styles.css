@@ -146,3 +146,9 @@ button.workspace-item[aria-pressed='true'] { background: #eaf0fb; border-color: 
   .feedback p { background: #1e3828; }
   .feedback p.error { background: #402121; color: #ffb3b3; }
 }
+:where(.repositories) .repository-list { list-style: none; padding: 0; }
+:where(.repositories) .repository-list li { border-bottom: 1px solid #64748b55; padding: 1rem 0; }
+:where(.repositories) summary { cursor: pointer; overflow-wrap: anywhere; }
+:where(.repositories) dt { font-weight: 600; margin-top: .6rem; }
+:where(.repositories) dd { margin: .2rem 0 0; overflow-wrap: anywhere; }
+:where(.repositories) .error, :where(.repositories) pre { white-space: pre-wrap; overflow-wrap: anywhere; }

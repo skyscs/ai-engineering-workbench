@@ -5,9 +5,11 @@ import { StorageError } from './errors.js';
 import { migrate } from './migrations.js';
 import { resolveDataRoot, storagePaths } from './paths.js';
 import { createSettingsRepository, type SettingsRepository } from './settings.js';
+import { createRepositoryStore, interruptClones, type RepositoryStore } from './repositories.js';
 
 export { StorageError, resolveDataRoot };
 export type { SettingsRepository };
+export type { RepositoryStore };
 export interface StorageStatus {
   status: 'ready';
   schemaVersion: number;
@@ -17,6 +19,7 @@ export interface StorageStatus {
 }
 export interface Storage {
   readonly settings: SettingsRepository;
+  readonly repositories: RepositoryStore;
   readonly paths: ReturnType<typeof storagePaths>;
   status(): StorageStatus;
   close(): void;
@@ -73,6 +76,7 @@ export function openStorage(options: { dataRoot?: string } = {}): Storage {
     db = new DatabaseSync(paths.database);
     db.exec('PRAGMA foreign_keys = ON; PRAGMA busy_timeout = 1000; PRAGMA synchronous = FULL;');
     const schemaVersion = migrate(db);
+    interruptClones(db);
     const journalMode = db.prepare('PRAGMA journal_mode = WAL').get()!.journal_mode;
     if (journalMode !== 'wal') throw new StorageError('UNSUPPORTED_STORAGE', 'The data directory must support SQLite WAL mode.');
     const connection = db;
@@ -84,6 +88,7 @@ export function openStorage(options: { dataRoot?: string } = {}): Storage {
     return {
       paths,
       settings: createSettingsRepository(connection, ensureOpen),
+      repositories: createRepositoryStore(connection, ensureOpen),
       status() {
         if (closed) throw new StorageError('STORAGE_CLOSED', 'The storage connection is closed.');
         return { status: 'ready', schemaVersion,

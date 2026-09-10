@@ -1,5 +1,10 @@
 # Task 004 — Repository registry
 
+Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge. See
+[repository guide](../docs/repository-registry.md),
+[ADR 0007](../docs/decisions/0007-repository-registry-and-clone-recovery.md) and
+[development status](../docs/development-status.md).
+
 ## Goal
 
 Allow a Workspace to register an existing local Git repository or clone one into Workbench-managed storage.

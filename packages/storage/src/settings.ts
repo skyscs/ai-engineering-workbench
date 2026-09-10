@@ -99,6 +99,9 @@ export function createSettingsRepository(db: DatabaseSync, ensureOpen: () => voi
       transaction(() => {
         const owner = workspace(id);
         assertBoundaryEditable(owner.boundaryLocked);
+        if (db.prepare('SELECT id FROM repositories WHERE workspace_id = ? LIMIT 1').get(id)) {
+          throw new DomainError('CONFLICT', 'This workspace contains repository records and cannot be deleted.');
+        }
         db.prepare('DELETE FROM workspaces WHERE id = ?').run(id);
         db.prepare('DELETE FROM ai_connections WHERE id = ?').run(owner.aiConnectionId);
       });

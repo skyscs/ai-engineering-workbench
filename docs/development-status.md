@@ -91,7 +91,7 @@ behavior is included in Task 002.
 
 ## Task 003 — Workspaces and AI connection metadata
 
-Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge.
+Status: accepted through the user's merge of PR #4 into main (8134f14).
 
 Implemented: domain validation, schema version 2, workspace/owned-connection and
 model-profile persistence, protected CRUD API and browser forms. Connection/profile
@@ -114,7 +114,41 @@ daemon restart, a 390px viewport and workspace deletion confirmation/cancellatio
 The [browser result](fixtures/workspaces/browser-result.json) contains synthetic
 fixture outcomes only. No test used the normal application data directory.
 
-Next task: 004 — repository registry. AEW-001 remains open and unchanged.
+## Task 004 — Repository registry
+
+Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge.
+
+Implemented: system Git adapter, schema version 3, protected registration/clone
+APIs, repository list/detail forms, persisted clone lifecycle and restart recovery.
+Canonical checkout/common git-dir identities are recorded; ownership and duplicate
+checks protect workspace boundaries. Workspace deletion is blocked while repository
+records exist. ADR 0007 documents process/authentication limits and managed cleanup.
+
+Existing checkouts are inspected without modifying HEAD, index, working files or
+configuration. Managed clones use staged directories without checkout, templates
+or shared objects. Failures preserve redacted stderr/status. Graceful shutdown
+stops owned Git processes; abrupt restart retains recorded paths for inspection.
+No fetch or task-worktree behavior is introduced.
+
+Validation: a clean source copy installed from the frozen lockfile and local
+package store passed strict typecheck, all 50 tests (7 Git, 20 storage, 16 HTTP,
+7 runtime) and the production build. Git 2.53.0 / Node 22.23.2 were used locally.
+The transport/SSH regression confirms protocol restrictions after URL rewriting
+and invocation of a configured SSH command with noninteractive options.
+Chrome on the clean build passed registration, successful and failed clone,
+dirty-state preservation, restart persistence, mobile layout and blocked workspace
+deletion. No test used normal application data or an AI invocation.
+The [browser result](fixtures/repositories/browser-result.json) uses synthetic data.
+
+A separate [real SSH clone](fixtures/repositories/remote-clone-result.json) of
+`git@github.com:skyscs/ai-engineering-workbench.git` through the new service reached
+`ready` at merged main 8134f14 in an isolated data root. It used the session's
+existing `ssh -F /dev/null` override; no SSH configuration or credentials were
+changed. HTTPS authentication was not exercised against a real remote.
+
+Next task: 005 — explicit repository synchronization. AEW-001 remains open and
+unchanged. Repository removal and non-Linux process/durability support remain
+outside the verified Task 004 scope.
 
 ## Git handoff
 
@@ -122,8 +156,9 @@ Next task: 004 — repository registry. AEW-001 remains open and unchanged.
 - Task 001: `task/001-bootstrap`, f7359a9, merged through PR #1 as aa56532.
 - Task 000: `task/000-runtime-feasibility`, e37635d, merged through PR #2 as 6b9a967.
 - Task 002: `task/002-local-storage`, c8ca418, merged through PR #3 as d8d4bf2.
-- Task 003: `task/003-workspaces`, based on merged main (d8d4bf2).
+- Task 003: `task/003-workspaces`, 4d07a77, merged through PR #4 as 8134f14.
+- Task 004: `task/004-repository-registry`, based on merged main (8134f14).
 
-## Tasks 004–011
+## Tasks 005–011
 
 Status: not started. Execute in the order recorded in DEVELOPMENT_PLAN.md.
