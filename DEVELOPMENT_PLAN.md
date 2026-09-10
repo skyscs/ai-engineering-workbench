@@ -6,8 +6,8 @@ Development repository: `git@github.com:skyscs/ai-engineering-workbench.git`.
 The first release investigates defects, presents evidence and revises conclusions
 after human intervention. Agent-driven code implementation remains outside v0.1.
 
-Task 001 implementation and checks are tracked in [Development status](docs/development-status.md);
-subsequent tasks are not implemented yet.
+Implementation and verification for each iteration are tracked in
+[Development status](docs/development-status.md).
 This document replaces the initial discussion plan. REVIEW.md explains findings;
 ADR 0004 records architecture decisions. Original task numbers are preserved.
 All project artifacts, documentation, code comments and commit/PR descriptions

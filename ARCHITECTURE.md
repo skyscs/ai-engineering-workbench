@@ -37,13 +37,14 @@ The browser never accesses repositories or arbitrary local files directly. The d
 
 ### Daemon
 
-- Node.js 22.12+ (pin a tested Node 22 patch during bootstrap)
+- Node.js 22.13+ (tested and pinned to 22.23.2)
 - TypeScript
 - Hono
 
 ### Persistence
 
 - SQLite for structured state and metadata
+- Built-in `node:sqlite`, isolated inside `packages/storage`; see ADR 0005
 - Filesystem for repositories, worktrees, uploaded/copied artifacts, and generated reports
 
 ### Package management
@@ -101,6 +102,7 @@ Example on Linux:
 ```text
 ~/.local/share/ai-engineering-workbench/
   workbench.db
+  .owner.db             # Dedicated SQLite ownership lock; never unlink while running
   repositories/
     <repository-id>/
   tasks/

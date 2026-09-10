@@ -65,11 +65,12 @@ The repository includes the Task 001 bootstrap scaffold: pnpm workspace layout, 
 Task 001 now includes protected local API sessions, CSRF/Host/Origin checks,
 JSON API errors, graceful shutdown, a lockfile and automated checks.
 See [Development status](docs/development-status.md) for verification evidence
-and remaining work. Product features in Tasks 002–011 are not implemented yet.
+and remaining work. Task 002 adds local SQLite initialization, migrations and a
+protected storage status endpoint. Product features in Tasks 003–011 remain planned.
 
 ## Quick start
 
-Prerequisites: Node.js 22.12+, pnpm 10.15.0, and Git. The tested Node version
+Prerequisites: Node.js 22.13+, pnpm 10.15.0, and Git. The tested Node version
 is pinned to 22.23.2 in `.node-version` and `.nvmrc`. With nvm installed,
 run `nvm install` and `nvm use` from the repository root. Install pnpm 10.15.0
 for that Node environment if it is not already available.
@@ -122,3 +123,38 @@ and are never logged. Development additionally permits the exact Vite origin
 `http://127.0.0.1:5173`; production accepts only `http://127.0.0.1:4242`.
 These controls protect the browser boundary; they do not authenticate other local
 processes running as the user. There is no network-facing or multi-user mode.
+
+## Local storage
+
+Startup creates SQLite storage and managed directories before opening the HTTP
+port. Linux uses `$XDG_DATA_HOME/ai-engineering-workbench`, falling back to
+`~/.local/share/ai-engineering-workbench`. macOS uses `~/Library/Application Support/ai-engineering-workbench`;
+Windows uses `%LOCALAPPDATA%\ai-engineering-workbench` (path conventions are tested;
+full runtime verification is currently Linux-only).
+
+Set `AEW_DATA_DIR` to an absolute path for an isolated data directory:
+
+```bash
+AEW_DATA_DIR=/tmp/aew-demo AEW_OPEN_BROWSER=0 pnpm dev
+```
+
+Use a dedicated directory on a local filesystem. One daemon may own it at a time.
+Stop that daemon before copying the complete directory for backup; never delete
+`.owner.db` to bypass ownership. A crashed process releases the OS lock automatically.
+Startup refuses newer or inconsistent migration histories and reports an error.
+
+`GET /api/storage` requires the browser session and reports schema/SQLite versions,
+foreign-key status and journal mode. It does not expose filesystem paths. The
+public `/api/health` endpoint remains minimal.
+
+The storage package uses the experimental `node:sqlite` module included in the
+pinned Node release; its runtime warning is expected. See
+[ADR 0005](docs/decisions/0005-local-storage-lifecycle.md) for the driver and recovery
+contract. Restart `pnpm dev` after changing storage sources to rebuild that package.
+
+After `pnpm build`, the optional `node scripts/storage-smoke.mjs` checks production
+startup, development restart, ownership conflicts and shutdown using temporary
+data. It requires a free port 4242 and leaves its fixture for inspection.
+With Google Chrome installed, set `AEW_SMOKE_BROWSER=1` to also check the rendered
+UI in a fresh temporary browser profile. This optional headless test uses
+`--no-sandbox`; only the local fixture UI is opened.

@@ -4,13 +4,13 @@
   "version": "0.0.1",
   "packageManager": "pnpm@10.15.0",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=22.13.0"
   },
   "scripts": {
-    "dev": "pnpm --parallel --filter @aew/daemon --filter @aew/web dev",
+    "dev": "pnpm --filter @aew/storage build && pnpm --parallel --filter @aew/daemon --filter @aew/web dev",
     "build": "pnpm -r build",
-    "typecheck": "pnpm -r typecheck",
-    "test": "pnpm -r --if-present test && node --test scripts/tests/*.test.mjs",
+    "typecheck": "pnpm --filter @aew/storage build && pnpm -r typecheck",
+    "test": "pnpm --filter @aew/storage build && pnpm -r --if-present test && node --test scripts/tests/*.test.mjs",
     "check": "pnpm typecheck && pnpm test && pnpm build",
     "start": "pnpm --filter @aew/daemon start"
   }

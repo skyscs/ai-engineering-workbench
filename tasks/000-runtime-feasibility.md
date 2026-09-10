@@ -3,10 +3,10 @@
 ## Placement and goal
 
 Status: verified on Linux with Codex CLI 0.153.4 and the restricted default
-configuration, 2026-09-10. Missing-profile fallback is blocked by spike preflight.
+configuration, 2026-09-10; accepted through the user's merge of PR #2 (6b9a967).
+Missing-profile fallback is blocked by spike preflight.
 See [runtime compatibility and evidence](../docs/runtime-feasibility.md) for the
-supported boundary and the remaining production-adapter obligations. User acceptance
-and merge are separate from this verification.
+supported boundary and the remaining production-adapter obligations.
 
 Run after Task 001 and before Task 002. Retained original task numbers are not
 the execution order for this one additional task. Reduce runtime risk before
