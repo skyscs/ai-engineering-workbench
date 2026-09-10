@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["summary", "clientEvidence", "serviceEvidence", "artifactEvidence", "unresolvedQuestions"],
+  "properties": {
+    "summary": { "type": "string" },
+    "clientEvidence": { "type": "string" },
+    "serviceEvidence": { "type": "string" },
+    "artifactEvidence": { "type": "string" },
+    "unresolvedQuestions": { "type": "array", "items": { "type": "string" } }
+  }
+}

@@ -1,0 +1,87 @@
+[
+  {
+    "mode": "investigate",
+    "configuration": {
+      "version": "codex-cli 0.153.4",
+      "selection": "default",
+      "profile": null,
+      "disabledFeatures": [
+        "apps",
+        "plugins",
+        "hooks",
+        "browser_use",
+        "computer_use",
+        "image_generation",
+        "multi_agent"
+      ],
+      "enabledMcpServers": 0,
+      "webSearch": "disabled",
+      "externalNotification": "disabled"
+    },
+    "requestedModel": "gpt-5.6-terra",
+    "requestedEffort": "medium",
+    "exitCode": 0,
+    "signal": null,
+    "stopped": null,
+    "unchanged": true,
+    "ownedGroupAlive": false,
+    "outputBytes": 9837,
+    "stderrBytes": 0,
+    "failureKind": null,
+    "scenarioPassed": true,
+    "eventTypes": [
+      "thread.started",
+      "turn.started",
+      "item.completed",
+      "item.started",
+      "turn.completed"
+    ],
+    "final": {
+      "summary": "Timeout regressed from 5000ms to 5ms because the service changed the published timeout representation from `5000` milliseconds to `5` seconds, but the client continued assigning the raw numeric value to `timeoutMs` without converting units.",
+      "clientEvidence": "Client repository: commit 5fd1c5e6ca66783d9b91122363c1fccd018f7ff7 (`feat: consume service timeout in milliseconds`) implements `return { timeoutMs: config.timeout };` in `request.mjs`. This treats every incoming `config.timeout` value as milliseconds and does not inspect `timeoutUnit`.",
+      "serviceEvidence": "Service repository: commit f475add3e753a08a609d6741740e0293c736b5dc (`refactor: publish timeout in seconds`), following 2059417f19201e7b73f4f23c3ff753ab6e832a70 (`feat: publish timeout in milliseconds`), changes `config.mjs` from `{ timeout: 5000, timeoutUnit: \"milliseconds\" }` to `{ timeout: 5, timeoutUnit: \"seconds\" }`. The semantic timeout remains five seconds, but its raw value is now 5.",
+      "artifactEvidence": "Incident artifact `<fixture>/artifacts/request.log` records: `Expected request timeout: 5000ms` and `Observed request timeout after configuration update: 5ms`, exactly matching the unconverted service value consumed as milliseconds.",
+      "unresolvedQuestions": []
+    }
+  },
+  {
+    "mode": "unsupported-option",
+    "configuration": {
+      "version": "codex-cli 0.153.4",
+      "selection": "default",
+      "profile": null,
+      "disabledFeatures": [
+        "apps",
+        "plugins",
+        "hooks",
+        "browser_use",
+        "computer_use",
+        "image_generation",
+        "multi_agent"
+      ],
+      "enabledMcpServers": 0,
+      "webSearch": "disabled",
+      "externalNotification": "disabled"
+    },
+    "requestedModel": "gpt-5.6-terra",
+    "requestedEffort": "medium",
+    "exitCode": 2,
+    "signal": null,
+    "stopped": null,
+    "unchanged": true,
+    "ownedGroupAlive": false,
+    "outputBytes": 0,
+    "stderrBytes": 408,
+    "failureKind": "unsupported_option",
+    "scenarioPassed": true,
+    "eventTypes": [],
+    "final": null
+  },
+  {
+    "mode": "missing-profile",
+    "preflightOnly": true,
+    "failureKind": "missing_profile",
+    "scenarioPassed": true,
+    "unchanged": true
+  }
+]

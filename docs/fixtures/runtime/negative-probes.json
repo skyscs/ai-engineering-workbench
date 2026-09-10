@@ -1,0 +1,36 @@
+{
+  "version": "codex-cli 0.153.4",
+  "modelRequests": 0,
+  "missingAuth": {
+    "command": "login status",
+    "exitCode": 1,
+    "failureKind": "authentication_required"
+  },
+  "profileLayer": {
+    "selection": "named",
+    "profile": "canary",
+    "baseCanaryPresent": false,
+    "namedDisabledCanaryPresent": true
+  },
+  "missingProfile": "rejected_before_exec",
+  "invalidProfile": "rejected_before_exec",
+  "enabledMcp": "rejected_without_starting_server",
+  "cleanConfiguration": {
+    "version": "codex-cli 0.153.4",
+    "selection": "default",
+    "profile": null,
+    "disabledFeatures": [
+      "apps",
+      "plugins",
+      "hooks",
+      "browser_use",
+      "computer_use",
+      "image_generation",
+      "multi_agent"
+    ],
+    "enabledMcpServers": 0,
+    "webSearch": "disabled",
+    "externalNotification": "disabled"
+  },
+  "scenarioPassed": true
+}
