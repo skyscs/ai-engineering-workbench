@@ -1,5 +1,10 @@
 # Task 003 — Workspaces and AI connection metadata
 
+Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge. See
+[development status](../docs/development-status.md),
+[settings guide](../docs/workspace-settings.md) and
+[ADR 0006](../docs/decisions/0006-workspace-connection-ownership.md).
+
 ## Goal
 
 Introduce Workspace, AIConnection, and ModelProfile domain/storage/API concepts without executing AI yet.

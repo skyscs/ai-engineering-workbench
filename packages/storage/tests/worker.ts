@@ -11,7 +11,7 @@ if (mode === 'interrupt-migration') {
     Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0);
     return 0;
   });
-  migrate(db, [...migrations, { version: 2, name: 'interrupted_fixture',
+  migrate(db, [...migrations, { version: migrations.length + 1, name: 'interrupted_fixture',
     sql: 'CREATE TABLE incomplete (id INTEGER PRIMARY KEY); SELECT pause_migration();' }]);
 } else {
   try {

@@ -55,7 +55,7 @@ async function status() {
   const response = await fetch(`${url}/api/storage`, { headers: { cookie } });
   assert.equal(response.status, 200);
   const value = await response.json();
-  assert.equal(value.schemaVersion, 1);
+  assert.ok(Number.isInteger(value.schemaVersion) && value.schemaVersion >= 1);
   assert.equal(value.foreignKeys, true);
   assert.equal(value.journalMode, 'wal');
   return value;

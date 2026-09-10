@@ -21,7 +21,8 @@ const storage = (() => {
 })();
 // Also releases ownership if startup fails before a server can accept requests.
 process.once('exit', () => storage.close());
-const app = createApp({ publicDir, development: process.env.NODE_ENV === 'development', storageStatus: () => storage.status() });
+const app = createApp({ publicDir, development: process.env.NODE_ENV === 'development',
+  storageStatus: () => storage.status(), settings: storage.settings });
 
 const server = serve(
   {

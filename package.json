@@ -7,10 +7,11 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "dev": "pnpm --filter @aew/storage build && pnpm --parallel --filter @aew/daemon --filter @aew/web dev",
+    "dev": "pnpm build:packages && pnpm --parallel --filter @aew/daemon --filter @aew/web dev",
+    "build:packages": "pnpm -r --filter './packages/**' build",
     "build": "pnpm -r build",
-    "typecheck": "pnpm --filter @aew/storage build && pnpm -r typecheck",
-    "test": "pnpm --filter @aew/storage build && pnpm -r --if-present test && node --test scripts/tests/*.test.mjs",
+    "typecheck": "pnpm build:packages && pnpm -r typecheck",
+    "test": "pnpm build:packages && pnpm -r --if-present test && node --test scripts/tests/*.test.mjs",
     "check": "pnpm typecheck && pnpm test && pnpm build",
     "start": "pnpm --filter @aew/daemon start"
   }

@@ -1,0 +1,11 @@
+{
+  "workspaceCreate": "passed",
+  "connectionUpdate": "passed",
+  "modelProfileCreateAndUpdate": "passed",
+  "rename": "passed",
+  "restartPersistence": "passed",
+  "narrowViewport": "passed",
+  "deletionConfirmation": "passed",
+  "verifiedConnectionClaim": false,
+  "aiInvocations": 0
+}

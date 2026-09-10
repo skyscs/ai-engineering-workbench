@@ -4,7 +4,9 @@ import path from 'node:path';
 import { Hono } from 'hono';
 import { getCookie, setCookie, deleteCookie } from 'hono/cookie';
 import { serveStatic } from '@hono/node-server/serve-static';
-import type { StorageStatus } from '@aew/storage';
+import type { SettingsRepository, StorageStatus } from '@aew/storage';
+import { DomainError } from '@aew/core';
+import { settingsRoutes } from './settings-routes.js';
 
 const SESSION_COOKIE = 'aew_session';
 const SESSION_SECONDS = 8 * 60 * 60;
@@ -15,6 +17,7 @@ export interface AppOptions {
   publicDir?: string;
   now?: () => number;
   storageStatus?: () => StorageStatus;
+  settings?: SettingsRepository;
 }
 
 /** Create a local HTTP application without opening sockets or launching a browser. */
@@ -103,6 +106,8 @@ export function createApp(options: AppOptions = {}) {
     return context.body(null, 204);
   });
 
+  if (options.settings) app.route('/api/workspaces', settingsRoutes(options.settings));
+
   app.all('/api', (context) => context.json({ error: { code: 'NOT_FOUND', message: 'Unknown API route.' } }, 404));
   app.all('/api/*', (context) => context.json({ error: { code: 'NOT_FOUND', message: 'Unknown API route.' } }, 404));
 
@@ -111,6 +116,10 @@ export function createApp(options: AppOptions = {}) {
     app.get('*', serveStatic({ path: path.join(options.publicDir, 'index.html') }));
   }
   app.onError((error, context) => {
+    if (error instanceof DomainError) {
+      return context.json({ error: { code: error.code, message: error.message } },
+        error.code === 'NOT_FOUND' ? 404 : error.code === 'BOUNDARY_LOCKED' ? 409 : 400);
+    }
     // Do not include request bodies, cookies or exception messages in diagnostics.
     console.error(`HTTP request failed (${error.name}).`);
     return context.json({ error: { code: 'INTERNAL_ERROR', message: 'The local request failed.' } }, 500);

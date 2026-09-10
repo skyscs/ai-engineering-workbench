@@ -66,7 +66,10 @@ Task 001 now includes protected local API sessions, CSRF/Host/Origin checks,
 JSON API errors, graceful shutdown, a lockfile and automated checks.
 See [Development status](docs/development-status.md) for verification evidence
 and remaining work. Task 002 adds local SQLite initialization, migrations and a
-protected storage status endpoint. Product features in Tasks 003–011 remain planned.
+protected storage status endpoint. Task 003 adds workspace, owned AI connection
+and model profile settings with persistence and a browser UI. Connections remain
+configured but not verified; no AI execution is available yet. Tasks 004–011 remain
+planned.
 
 ## Quick start
 
@@ -106,8 +109,9 @@ pnpm check
 
 This runs strict TypeScript checks, Node's built-in test runner via tsx, and all
 workspace builds. CI performs the same checks from a frozen-lockfile installation.
-Internal packages are still placeholders; declare their workspace dependencies
-and exports when introducing their first consumers so recursive builds can order them.
+Internal package dependencies and exports order recursive builds. The typecheck,
+test and development commands first build internal packages so their consumers
+work from a clean checkout.
 
 ## Local API session
 
@@ -150,7 +154,7 @@ public `/api/health` endpoint remains minimal.
 The storage package uses the experimental `node:sqlite` module included in the
 pinned Node release; its runtime warning is expected. See
 [ADR 0005](docs/decisions/0005-local-storage-lifecycle.md) for the driver and recovery
-contract. Restart `pnpm dev` after changing storage sources to rebuild that package.
+contract. Restart `pnpm dev` after changing internal package sources to rebuild them.
 
 After `pnpm build`, the optional `node scripts/storage-smoke.mjs` checks production
 startup, development restart, ownership conflicts and shutdown using temporary
@@ -158,3 +162,13 @@ data. It requires a free port 4242 and leaves its fixture for inspection.
 With Google Chrome installed, set `AEW_SMOKE_BROWSER=1` to also check the rendered
 UI in a fresh temporary browser profile. This optional headless test uses
 `--no-sandbox`; only the local fixture UI is opened.
+
+## Workspace settings
+
+Choose **New workspace** in the UI, enter a name and configure its owned Codex CLI
+connection. Then add model profiles within that connection. Settings survive a
+daemon restart; use **Refresh** to reconnect. Saving settings does not execute
+Codex or verify authentication, provider identity or model availability.
+
+See the [settings guide and API](docs/workspace-settings.md) for field semantics,
+ownership rules and the optional `node scripts/workspace-smoke.mjs` browser check.

@@ -10,6 +10,9 @@ importers:
 
   apps/daemon:
     dependencies:
+      '@aew/core':
+        specifier: workspace:*
+        version: link:../../packages/core
       '@aew/storage':
         specifier: workspace:*
         version: link:../../packages/storage
@@ -32,6 +35,12 @@ importers:
 
   apps/web:
     dependencies:
+      '@aew/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@aew/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       '@vitejs/plugin-react':
         specifier: ^5.0.2
         version: 5.2.0(vite@7.3.6(@types/node@22.20.1)(tsx@4.23.13))
@@ -74,12 +83,23 @@ importers:
         version: 5.9.3
 
   packages/shared:
+    dependencies:
+      '@aew/core':
+        specifier: workspace:*
+        version: link:../core
     devDependencies:
       typescript:
         specifier: ^5.9.2
         version: 5.9.3
 
   packages/storage:
+    dependencies:
+      '@aew/core':
+        specifier: workspace:*
+        version: link:../core
+      '@aew/shared':
+        specifier: workspace:*
+        version: link:../shared
     devDependencies:
       '@types/node':
         specifier: ^22.17.2
