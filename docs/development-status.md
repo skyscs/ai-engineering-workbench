@@ -29,7 +29,7 @@ must select the pinned Node version before running project commands.
 
 ## Task 000 — Runtime feasibility
 
-Status: verified on Linux with CLI 0.153.4, 2026-09-10; not yet accepted/merged.
+Status: accepted through the user's merge of PR #2 into main (6b9a967).
 
 The user selected the current Codex CLI configuration, `gpt-5.6-terra`, with
 reasoning effort `medium`. Do not ask for this selection again on resumption.
@@ -62,16 +62,40 @@ Validation: `pnpm check` passed, including strict typechecking, seven HTTP tests
 seven runtime tests and the production build. Opt-in local negative probes passed.
 
 See [runtime compatibility and evidence](runtime-feasibility.md) for commands,
-supported restrictions and Task 008 obligations. Next in sequence: Task 002.
+supported restrictions and Task 008 obligations.
+
+## Task 002 — Local storage foundation
+
+Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge.
+
+Implemented: platform data-root resolution with `AEW_DATA_DIR`, private managed
+directories, built-in SQLite, foreign keys, WAL, bounded busy timeout, transactional
+versioned migrations with checksums and newer-schema refusal. A separate SQLite
+ownership lock rejects another daemon and releases on process death.
+
+The daemon initializes storage before listening, releases it on bind failure and
+shutdown, and exposes session-protected `GET /api/storage` without local paths.
+ADR 0005 records the driver choice and future file-operation recovery contract.
+Node 22.23.2 remains pinned; the minimum version is now 22.13 for `node:sqlite`.
+
+Validation: strict typecheck and production build passed; 11 SQLite/path/
+process tests, 8 HTTP tests and 7 runtime tests passed. Production-to-development
+restart smoke preserved migration history; same-root startup was rejected and an
+occupied-port failure released storage ownership. Graceful SIGTERM exited 0.
+Clean source installation from the frozen lockfile and local package store passed
+the complete `pnpm check` (26 tests). Headless Chrome with a fresh profile rendered
+`Local daemon connected.`. No test used the normal application data directory.
+
+Next task: 003 — workspaces and AI connections. The P2 navigation issue AEW-001
+remains tracked separately; no change to its behavior is included in Task 002.
 
 ## Git handoff
 
 - Initial artifacts: `main`, commit `d51b051`.
 - Task 001: `task/001-bootstrap`, f7359a9, merged through PR #1 as aa56532.
-- Task 000: `task/000-runtime-feasibility`; merged origin/main into this branch
-  without rewriting its published checkpoint history.
-- Task 000 has not been merged. Task 002 has not started.
+- Task 000: `task/000-runtime-feasibility`, e37635d, merged through PR #2 as 6b9a967.
+- Task 002: `task/002-local-storage`, based on merged main (6b9a967).
 
-## Tasks 002–011
+## Tasks 003–011
 
 Status: not started. Execute in the order recorded in DEVELOPMENT_PLAN.md.

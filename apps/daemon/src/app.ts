@@ -4,6 +4,7 @@ import path from 'node:path';
 import { Hono } from 'hono';
 import { getCookie, setCookie, deleteCookie } from 'hono/cookie';
 import { serveStatic } from '@hono/node-server/serve-static';
+import type { StorageStatus } from '@aew/storage';
 
 const SESSION_COOKIE = 'aew_session';
 const SESSION_SECONDS = 8 * 60 * 60;
@@ -13,6 +14,7 @@ export interface AppOptions {
   development?: boolean;
   publicDir?: string;
   now?: () => number;
+  storageStatus?: () => StorageStatus;
 }
 
 /** Create a local HTTP application without opening sockets or launching a browser. */
@@ -71,6 +73,13 @@ export function createApp(options: AppOptions = {}) {
   app.get('/api/health', (context) => context.json({
     status: 'ok', service: 'ai-engineering-workbench-daemon', version: '0.0.1'
   }));
+
+  app.get('/api/storage', (context) => {
+    if (!options.storageStatus) {
+      return context.json({ error: { code: 'STORAGE_UNAVAILABLE', message: 'Local storage is unavailable.' } }, 503);
+    }
+    return context.json(options.storageStatus());
+  });
 
   app.post('/api/session', (context) => {
     const existingId = getCookie(context, SESSION_COOKIE);

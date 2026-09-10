@@ -1,5 +1,9 @@
 # Task 002 — Local storage foundation
 
+Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge. See
+[development status](../docs/development-status.md) and
+[ADR 0005](../docs/decisions/0005-local-storage-lifecycle.md).
+
 ## Goal
 
 Add platform-safe application-data paths, SQLite initialization, migrations, and filesystem directories.

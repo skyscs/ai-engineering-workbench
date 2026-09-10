@@ -11,6 +11,7 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
+    "@aew/storage": "workspace:*",
     "@hono/node-server": "^1.19.1",
     "hono": "^4.9.5"
   },

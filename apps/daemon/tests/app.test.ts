@@ -4,6 +4,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { test } from 'node:test';
 import { createApp } from '../src/app.js';
+import { openStorage } from '@aew/storage';
 
 const host = '127.0.0.1:4242';
 const origin = `http://${host}`;
@@ -37,6 +38,32 @@ test('health is public but only accessible through the configured local host', a
     assert.equal((await request(app, '/api/health', { headers: { host: invalid } })).status, 403);
   }
   assert.equal((await app.request(`${origin}/api/health`)).status, 403);
+});
+
+test('storage status uses a real initialized database and requires a local session', async () => {
+  const dataRoot = await mkdtemp(path.join(os.tmpdir(), 'aew-http-storage-test-'));
+  const storage = openStorage({ dataRoot });
+  try {
+    const app = createApp({ storageStatus: () => storage.status() });
+    assert.equal((await request(app, '/api/storage')).status, 401);
+    const { cookie } = await session(app);
+    const response = await request(app, '/api/storage', { headers: { cookie } });
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get('cache-control'), 'no-store');
+    const status = await response.json() as Record<string, unknown>;
+    assert.equal(status.status, 'ready');
+    assert.equal(status.schemaVersion, 1);
+    assert.equal(status.foreignKeys, true);
+    assert.equal(status.journalMode, 'wal');
+    assert.ok(!JSON.stringify(status).includes(dataRoot));
+    assert.equal((await request(app, '/api/storage', { headers: { cookie, origin: 'https://evil.example' } })).status, 403);
+    const unavailable = createApp();
+    const other = await session(unavailable);
+    assert.equal((await request(unavailable, '/api/storage', { headers: { cookie: other.cookie } })).status, 503);
+  } finally {
+    storage.close();
+    await rm(dataRoot, { recursive: true, force: true });
+  }
 });
 
 test('rejects cross-origin and opaque-origin requests, even for session bootstrap', async () => {
