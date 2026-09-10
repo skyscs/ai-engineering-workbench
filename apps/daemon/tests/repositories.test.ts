@@ -28,7 +28,7 @@ async function fixture(t: TestContext) {
   const request = (route: string, method = 'GET', body?: unknown, overrides = {}) => app.request(`${origin}${route}`, {
     method, headers: { ...headers, ...overrides }, ...(body === undefined ? {} : { body: JSON.stringify(body) })
   });
-  return { root, source, storage, service, workspace, request, route };
+  return { root, source, storage, service, workspace, request, route, git, env };
 }
 async function finished(service: RepositoryService, workspaceId: string, id: string) {
   const deadline = Date.now() + 10000;
@@ -112,4 +112,68 @@ test('shutdown cancels an active clone and records its cleanup before storage cl
   await service.close();
   const row = storage.repositories.get(workspace.id, pending.id);
   assert.equal(row.status, 'failed'); assert.equal(row.error?.code, 'GIT_CANCELLED'); assert.equal(row.retainedFiles, false);
+});
+
+async function syncFinished(service: RepositoryService, workspaceId: string, id: string) {
+  const deadline = Date.now() + 10000;
+  while (Date.now() < deadline) {
+    const row = service.get(workspaceId, id);
+    if (row.syncStatus !== 'running') return row;
+    await new Promise((resolve) => setTimeout(resolve, 10));
+  }
+  throw new Error('Synchronization fixture did not finish.');
+}
+
+test('sync requires a protected empty-body POST, persists no-remote refresh and rejects duplicate or foreign requests', async (t) => {
+  const { source, service, storage, workspace, request, route } = await fixture(t);
+  const row = await service.register(workspace.id, { name: 'Local', source });
+  const url = `${route}/${row.id}/sync`;
+  assert.equal((await request(url, 'POST', {}, { cookie: '' })).status, 401);
+  assert.equal((await request(url, 'POST', {}, { 'x-aew-csrf': '' })).status, 403);
+  assert.equal((await request(url, 'POST', {}, { origin: 'https://evil.example' })).status, 403);
+  assert.equal((await request(url, 'POST', { args: ['pull'] })).status, 400);
+  assert.equal((await request('/api/workspaces/missing/repositories/' + row.id + '/sync', 'POST', {})).status, 404);
+  const response = await request(url, 'POST', {}); assert.equal(response.status, 202);
+  assert.equal((await response.json() as { syncStatus: string }).syncStatus, 'running');
+  assert.equal((await request(url, 'POST', {})).status, 409);
+  const done = await syncFinished(service, workspace.id, row.id);
+  assert.equal(done.syncStatus, 'no_remote'); assert.equal(done.lastFetchedAt, null); assert.ok(done.lastSyncAttemptAt); assert.ok(done.lastSyncCompletedAt);
+  const root = storage.paths.root; await service.close(); storage.close();
+  const reopened = openStorage({ dataRoot: root });
+  try { assert.deepEqual(reopened.repositories.get(workspace.id, row.id), done); } finally { reopened.close(); }
+});
+
+test('successful fetch and a later failure have independent timestamps and safe command diagnostics', async (t) => {
+  const { root, source, service, workspace, git } = await fixture(t);
+  const remote = path.join(root, 'bare.git'); git(['clone', '--bare', source, remote]); git(['remote', 'add', 'origin', remote]);
+  const row = await service.register(workspace.id, { name: 'Remote', source });
+  service.startSync(workspace.id, row.id);
+  const first = await syncFinished(service, workspace.id, row.id);
+  assert.equal(first.syncStatus, 'succeeded'); assert.ok(first.lastFetchedAt);
+  git(['remote', 'set-url', 'origin', path.join(root, 'missing.git')]);
+  service.startSync(workspace.id, row.id);
+  const failure = await syncFinished(service, workspace.id, row.id);
+  assert.equal(failure.syncStatus, 'failed'); assert.equal(failure.lastFetchedAt, first.lastFetchedAt);
+  assert.notEqual(failure.lastSyncAttemptAt, first.lastSyncAttemptAt);
+  assert.equal(failure.syncError?.command, 'git fetch --all --prune'); assert.equal(failure.syncError?.phase, 'fetch');
+  assert.equal(failure.syncError?.code, 'GIT_FAILED'); assert.ok(failure.syncError?.stderr); assert.ok(failure.syncError?.exitCode);
+  assert.equal(failure.status, 'ready');
+});
+
+test('linked checkout synchronization is serialized across workspaces and shutdown records interruption', async (t) => {
+  const { root, source, storage, workspace, git, env } = await fixture(t);
+  const linked = path.join(root, 'linked'); git(['worktree', 'add', '--detach', linked]);
+  const real = new RepositoryService(storage, new GitClient({ env }));
+  const a = await real.register(workspace.id, { name: 'Main', source });
+  const other = storage.settings.createWorkspace({ name: 'Other', connection: { name: 'Other' } }).workspace;
+  const b = await real.register(other.id, { name: 'Linked', source: linked, baseRef: 'HEAD' });
+  await real.close();
+  const fake = path.join(root, 'slow-git'); writeFileSync(fake, `#!${process.execPath}\nsetInterval(()=>{},1000);`, { mode: 0o700 });
+  const service = new RepositoryService(storage, new GitClient({ executable: fake }));
+  service.startSync(workspace.id, a.id);
+  assert.throws(() => service.startSync(other.id, b.id), { code: 'CONFLICT' });
+  await service.close();
+  const done = storage.repositories.get(workspace.id, a.id);
+  assert.equal(done.syncStatus, 'failed'); assert.equal(done.syncError?.code, 'GIT_CANCELLED'); assert.equal(done.lastFetchedAt, null);
+  assert.equal(storage.repositories.get(other.id, b.id).syncStatus, 'idle');
 });

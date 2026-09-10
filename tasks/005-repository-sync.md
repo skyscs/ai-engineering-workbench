@@ -1,5 +1,10 @@
 # Task 005 — Repository synchronization
 
+Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge. See
+[synchronization guide](../docs/repository-synchronization.md),
+[ADR 0008](../docs/decisions/0008-explicit-repository-synchronization.md) and
+[development status](../docs/development-status.md).
+
 ## Goal
 
 Safely refresh remote repository state without mutating the developer's working branch.

@@ -49,8 +49,9 @@ ownership is uncertain, leave the files in place. A retry uses a new container.
 Failed records remain as history even after manual file cleanup.
 
 Workspace deletion is blocked while repository records exist. Repository removal
-and successful-clone cleanup are not exposed yet. Fetch belongs to Task 005;
-this iteration records metadata at registration time.
+and successful-clone cleanup are not exposed yet. Use Task 005's explicit
+[Fetch updates](repository-synchronization.md) action to refresh supported remote
+branch mappings and local metadata.
 
 ## API
 

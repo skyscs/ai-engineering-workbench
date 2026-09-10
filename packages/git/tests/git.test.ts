@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, renameSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -116,4 +116,83 @@ test('Git transport restrictions survive URL rewriting and inherited repository 
   const args = JSON.parse(readFileSync(argumentsFile, 'utf8')) as string[];
   assert.ok(args.includes('-oBatchMode=yes')); assert.ok(args.includes('-oStrictHostKeyChecking=yes'));
   assert.ok(args.some((value) => value.includes('git-upload-pack')));
+});
+
+test('fetch advances and prunes remote branches while preserving dirty checkout, local refs, tags and task pins', async (t) => {
+  const { root, repo, command, commit, git } = fixture(t); commit();
+  command(['branch', 'obsolete']);
+  const remote = path.join(root, 'remote.git'), checkout = path.join(root, 'checkout');
+  command(['clone', '--bare', repo, remote]); command(['clone', remote, checkout]);
+  const old = command(['rev-parse', 'HEAD'], checkout);
+  command(['update-ref', 'refs/aew/tasks/fixture', old], checkout);
+  command(['tag', 'local-only'], checkout);
+  command(['config', 'fetch.pruneTags', 'true'], checkout);
+  command(['config', 'remote.origin.pruneTags', 'true'], checkout);
+  command(['config', 'remote.origin.tagOpt', '--tags'], checkout);
+  writeFileSync(path.join(checkout, 'tracked.txt'), 'staged'); command(['add', '.'], checkout);
+  writeFileSync(path.join(checkout, 'tracked.txt'), 'dirty'); writeFileSync(path.join(checkout, 'untracked'), 'keep');
+  writeFileSync(path.join(checkout, '.git/FETCH_HEAD'), 'previous fetch marker');
+  const files = ['.git/HEAD', '.git/index', '.git/config', '.git/FETCH_HEAD', 'tracked.txt', 'untracked'];
+  const before = files.map((file) => readFileSync(path.join(checkout, file)));
+  writeFileSync(path.join(repo, 'next'), 'upstream'); command(['add', '.']); command(['commit', '-m', 'Upstream change']);
+  command(['push', remote, 'trunk', ':obsolete']); command(['tag', 'new-upstream-tag']); command(['push', remote, '--tags']);
+  const expected = await git.identity(checkout);
+  await git.exclusive(expected.commonGitDir, async () => git.fetchAll(expected, await git.prepareFetch(expected)));
+  assert.equal(command(['rev-parse', 'refs/remotes/origin/trunk'], checkout), command(['rev-parse', 'HEAD']));
+  assert.equal(command(['rev-parse', 'refs/heads/trunk'], checkout), old);
+  assert.equal(command(['rev-parse', 'refs/aew/tasks/fixture'], checkout), old);
+  assert.equal(command(['rev-parse', 'refs/tags/local-only'], checkout), old);
+  assert.throws(() => command(['show-ref', '--verify', 'refs/remotes/origin/obsolete'], checkout));
+  assert.throws(() => command(['show-ref', '--verify', 'refs/tags/new-upstream-tag'], checkout));
+  files.forEach((file, i) => assert.deepEqual(readFileSync(path.join(checkout, file)), before[i]));
+  assert.equal((await git.inspect(checkout, 'refs/remotes/origin/obsolete', true)).resolvedCommitSha, null);
+});
+
+test('preflight rejects branch/tag/pin mappings, mirrored or skipped remotes and symbolic ref escapes', async (t) => {
+  const { root, repo, command, commit, git } = fixture(t); commit();
+  command(['remote', 'add', 'origin', path.join(root, 'offline.git')]);
+  const expected = await git.identity(repo), initial = command(['rev-parse', 'HEAD']);
+  for (const destination of ['refs/heads/*', 'refs/tags/*', 'refs/aew/tasks/*', 'refs/remotes/other/*']) {
+    command(['config', 'remote.origin.fetch', `+refs/heads/*:${destination}`]);
+    await assert.rejects(git.prepareFetch(expected), { code: 'INVALID_INPUT' });
+    assert.equal(command(['rev-parse', 'HEAD']), initial);
+  }
+  command(['config', 'remote.origin.fetch', '+refs/heads/*:refs/remotes/origin/*']);
+  for (const field of ['mirror', 'skipFetchAll', 'skipDefaultUpdate']) {
+    command(['config', `remote.origin.${field}`, 'true']);
+    await assert.rejects(git.prepareFetch(expected), { code: 'INVALID_INPUT' });
+    command(['config', '--unset', `remote.origin.${field}`]);
+  }
+  command(['symbolic-ref', 'refs/remotes/origin/trunk', 'refs/heads/trunk']);
+  await assert.rejects(git.prepareFetch(expected), { code: 'INVALID_INPUT' });
+  command(['symbolic-ref', '--delete', 'refs/remotes/origin/trunk']);
+  command(['update-ref', 'refs/remotes/origin/trunk', initial]);
+  command(['symbolic-ref', 'refs/heads/alias', 'refs/remotes/origin/trunk']);
+  await assert.rejects(git.prepareFetch(expected), { code: 'INVALID_INPUT' });
+  command(['symbolic-ref', '--delete', 'refs/heads/alias']);
+  command(['symbolic-ref', 'HEAD', 'refs/remotes/origin/trunk']);
+  await assert.rejects(git.prepareFetch(expected), { code: 'INVALID_INPUT' });
+  command(['symbolic-ref', 'HEAD', 'refs/heads/trunk']);
+  assert.deepEqual(await git.prepareFetch(expected), ['origin']);
+});
+
+test('preflight refuses redirected canonical paths and empty repositories refresh without a remote', async (t) => {
+  const { root, repo, command, commit, git } = fixture(t);
+  const expected = await git.identity(repo);
+  assert.deepEqual(await git.prepareFetch(expected), []);
+  commit(); assert.ok((await git.inspect(repo, null, true)).resolvedCommitSha);
+  const moved = path.join(root, 'moved'); renameSync(repo, moved); symlinkSync(moved, repo, 'dir');
+  await assert.rejects(git.prepareFetch(expected), { code: 'CONFLICT' });
+  assert.equal(command(['rev-parse', 'HEAD'], moved), (await git.inspect(moved, null)).resolvedCommitSha);
+});
+
+test('a multi-remote failure reports failure even when an earlier remote already updated', async (t) => {
+  const { root, repo, command, commit, git } = fixture(t); commit();
+  const remote = path.join(root, 'healthy.git'); command(['clone', '--bare', repo, remote]);
+  command(['remote', 'add', 'a-healthy', remote]); command(['remote', 'add', 'z-missing', path.join(root, 'missing.git')]);
+  const expected = await git.identity(repo);
+  await assert.rejects(git.fetchAll(expected, await git.prepareFetch(expected)), (error: unknown) => {
+    assert.ok(error instanceof GitError); assert.equal(error.failure.code, 'GIT_FAILED'); assert.ok(error.failure.stderr); return true;
+  });
+  assert.equal(command(['rev-parse', 'refs/remotes/a-healthy/trunk']), command(['rev-parse', 'HEAD']));
 });

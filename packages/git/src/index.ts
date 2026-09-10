@@ -57,8 +57,12 @@ export class GitClient {
 
   stop(): void { this.stopping = true; for (const controller of this.controllers) controller.abort(); }
 
-  async exclusive<T>(commonGitDir: string, run: () => Promise<T>): Promise<T> {
+  assertAvailable(commonGitDir: string): void {
     if (this.locks.has(commonGitDir)) throw new DomainError('CONFLICT', 'Another Git operation is using this repository.');
+  }
+
+  async exclusive<T>(commonGitDir: string, run: () => Promise<T>): Promise<T> {
+    this.assertAvailable(commonGitDir);
     this.locks.add(commonGitDir);
     try { return await run(); } finally { this.locks.delete(commonGitDir); }
   }
@@ -115,10 +119,15 @@ export class GitClient {
     catch (error) { if (error instanceof GitError && error.failure.code === 'GIT_FAILED' && error.failure.exitCode === absentCode && !error.failure.stderr) return null; throw error; }
   }
 
-  async inspect(source: string, requestedRef: string | null): Promise<RepositoryMetadata> {
+  async identity(source: string): Promise<{ localPath: string; commonGitDir: string }> {
     const directory = await canonicalDirectory(source);
     const localPath = await canonicalDirectory((await this.run(['rev-parse', '--show-toplevel'], directory)).stdout.trim());
     const commonGitDir = await canonicalDirectory((await this.run(['rev-parse', '--path-format=absolute', '--git-common-dir'], localPath)).stdout.trim());
+    return { localPath, commonGitDir };
+  }
+
+  async inspect(source: string, requestedRef: string | null, allowMissingRef = false): Promise<RepositoryMetadata> {
+    const { localPath, commonGitDir } = await this.identity(source);
     const remote = await this.optional(['config', '--get', 'remote.origin.url'], localPath, 1);
     const defaultBranch = await this.optional(['symbolic-ref', '--quiet', 'refs/remotes/origin/HEAD'], localPath, 1);
     const headBranch = await this.optional(['symbolic-ref', '--quiet', 'HEAD'], localPath, 1);
@@ -130,22 +139,73 @@ export class GitClient {
     let resolvedCommitSha: string | null = null;
     if (empty && requestedRef === null) baseRef = null;
     else {
-      if (!baseRef) invalid('No default branch could be detected. Enter an explicit base ref.');
-      resolvedCommitSha = await this.optional(['rev-parse', '--verify', '--quiet', '--end-of-options', `${baseRef}^{commit}`], localPath, 1);
-      if (!resolvedCommitSha) invalid('The base ref must resolve to an existing commit.');
+      if (!baseRef && !allowMissingRef) invalid('No default branch could be detected. Enter an explicit base ref.');
+      if (baseRef) resolvedCommitSha = await this.optional(['rev-parse', '--verify', '--quiet', '--end-of-options', `${baseRef}^{commit}`], localPath, 1);
+      if (!resolvedCommitSha && !allowMissingRef) invalid('The base ref must resolve to an existing commit.');
     }
     const shallow = (await this.run(['rev-parse', '--is-shallow-repository'], localPath)).stdout.trim() === 'true';
     return { localPath, commonGitDir, remoteUrl: remote ? redact(remote) : null,
       defaultBranch: defaultBranch ?? headBranch, baseRef, resolvedCommitSha, shallow };
   }
 
-  async clone(source: string, target: string, cwd: string): Promise<void> {
+  private async sshCommand(cwd: string): Promise<string> {
     const inherited = this.options.env ?? process.env;
     const configured = inherited.GIT_SSH_COMMAND ?? await this.optional(['config', '--get', 'core.sshCommand'], cwd, 1);
     const executable = inherited.GIT_SSH;
     const ssh = configured ?? (executable ? "'" + executable.replaceAll("'", "'\\''") + "'" : 'ssh');
+    return `${ssh} -oBatchMode=yes -oStrictHostKeyChecking=yes`;
+  }
+
+  async clone(source: string, target: string, cwd: string): Promise<void> {
     // No checkout, submodules, templates, shared objects or hardlinks to the source.
-    await this.run(['-c', `core.sshCommand=${ssh} -oBatchMode=yes -oStrictHostKeyChecking=yes`,
+    await this.run(['-c', `core.sshCommand=${await this.sshCommand(cwd)}`,
       '-c', 'core.fsync=all', '-c', 'core.fsyncMethod=fsync', 'clone', '--no-checkout', '--no-local', '--template=', '--', source, target], cwd, this.options.timeoutMs ?? 120000);
+  }
+
+  async prepareFetch(expected: { localPath: string; commonGitDir: string }): Promise<string[]> {
+    const actual = await this.identity(expected.localPath);
+    if (actual.localPath !== expected.localPath || actual.commonGitDir !== expected.commonGitDir) {
+      throw new DomainError('CONFLICT', 'The repository canonical path or common git-dir changed. Register the intended checkout again.');
+    }
+    const cwd = actual.localPath;
+    const remotes = (await this.run(['remote'], cwd)).stdout.trim().split('\n').filter(Boolean);
+    if (remotes.length > 32) invalid('At most 32 configured remotes are supported for synchronization.');
+    if (!remotes.length) return remotes;
+    const worktrees = (await this.run(['worktree', 'list', '--porcelain', '-z'], cwd)).stdout.split('\0');
+    if (worktrees.some((field) => field.startsWith('branch ') && !field.startsWith('branch refs/heads/'))) {
+      invalid('A checkout HEAD points outside local branches. Restore a normal local branch or detached HEAD before synchronization.');
+    }
+    const symbolicRefs = (await this.run(['for-each-ref', '--format=%(refname) %(symref)'], cwd)).stdout.trim().split('\n');
+    for (const ref of symbolicRefs) {
+      const [source, target] = ref.trim().split(' ');
+      if (target && !remotes.some((name) => source === `refs/remotes/${name}/HEAD` && target.startsWith(`refs/remotes/${name}/`) && target !== source)) {
+        invalid('Unsupported symbolic ref. Synchronization must not indirectly change local branches, tags or task pins.');
+      }
+    }
+    for (const name of remotes) {
+      if (!/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(name)) invalid('Synchronization requires simple remote names containing letters, digits, dots, underscores or hyphens.');
+      await this.run(['check-ref-format', `refs/remotes/${name}/probe`], cwd);
+      const values = await this.optional(['config', '--null', '--get-all', `remote.${name}.fetch`], cwd, 1);
+      const specs = values?.split('\0').filter(Boolean) ?? [];
+      if (specs.length !== 1 || ![ `+refs/heads/*:refs/remotes/${name}/*`, `refs/heads/*:refs/remotes/${name}/*` ].includes(specs[0]!)) {
+        invalid('Unsupported fetch refspec. Each remote must map refs/heads/* only to its own refs/remotes/<name>/* namespace.');
+      }
+      for (const field of ['mirror', 'skipFetchAll', 'skipDefaultUpdate']) {
+        const value = await this.optional(['config', '--type=bool', '--get', `remote.${name}.${field}`], cwd, 1);
+        if (value === 'true') invalid('Mirrored or skipped remotes are not supported by workspace synchronization.');
+      }
+    }
+    return remotes;
+  }
+
+  async fetchAll(expected: { localPath: string; commonGitDir: string }, remotes: string[]): Promise<void> {
+    // Recheck the complete plan immediately before mutation; never repair repository configuration.
+    const current = await this.prepareFetch(expected);
+    if (JSON.stringify(current) !== JSON.stringify(remotes)) throw new DomainError('CONFLICT', 'Remote configuration changed during synchronization. Retry explicitly.');
+    const overrides = remotes.flatMap((name) => ['-c', `remote.${name}.pruneTags=false`, '-c', `remote.${name}.tagOpt=--no-tags`]);
+    await this.run(['-c', `core.sshCommand=${await this.sshCommand(expected.localPath)}`,
+      '-c', 'fetch.pruneTags=false', '-c', 'fetch.writeCommitGraph=false', ...overrides,
+      'fetch', '--all', '--prune', '--no-prune-tags', '--no-tags', '--no-recurse-submodules',
+      '--no-write-fetch-head', '--no-auto-maintenance', '--jobs=1'], expected.localPath, this.options.timeoutMs ?? 120000);
   }
 }
