@@ -4,6 +4,7 @@ import { devNull } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { DomainError, type GitFailure, type RepositoryMetadata } from '@aew/core';
+export { WorktreeGit, worktreePlan, type WorktreePlan } from './worktrees.js';
 
 export function redact(value: string): string {
   return value.replace(/(https?:\/\/)[^\s/]*@/gi, '$1[redacted]@')

@@ -3,7 +3,9 @@
 Select a workspace, register repositories, then choose **Tasks → New task**.
 Enter a title and description and select at least one ready repository. Creating
 the first task permanently locks the workspace's AI connection launch settings.
-Task creation does not prepare worktrees or run AI yet.
+Task creation does not automatically prepare worktrees or run AI. Use
+**Task worktrees → Prepare worktrees** as described in the
+[worktree guide](task-worktrees.md).
 
 Open a task and use **Import local artifacts** to select files in the browser.
 Each file is copied into managed local storage with a generated ID and SHA-256.
@@ -65,7 +67,8 @@ and task. JSON failures use the established 400/404/409 error responses.
 Task titles allow 120 characters; descriptions allow 65536 characters including
 line breaks, within the text context budget. Select 1–32 distinct ready repositories
 from the same workspace. Task JSON bodies are capped at 512 KiB; context selection
-JSON at 256 KiB. There is no task edit/delete or public StageRun execution API yet.
+JSON at 256 KiB. There is no task edit/delete or public AI execution API yet.
+Deterministic worktree operations expose StageRuns through the worktree API.
 
 Upload headers: `X-AEW-Filename` is `encodeURIComponent(originalFilename)`,
 `X-AEW-File-Size` is the exact decimal byte count, and `Content-Type` is the file's
@@ -73,9 +76,9 @@ MIME type (use `application/octet-stream` if unknown). Send raw bytes, not multi
 form data. Downloads always use `application/octet-stream` with attachment
 disposition and nosniff, regardless of the original MIME type.
 
-TaskRepository base refs and commit SHAs are initial metadata; Task 007 will
-prepare and pin worktrees. Minimal StageRun persistence is internal until runtime
-integration. A referenced model profile cannot be deleted; its current settings
+TaskRepository base refs and commit SHAs begin as initial metadata; preparation
+resolves and pins worktrees. AI runtime integration remains future work.
+A referenced model profile cannot be deleted; its current settings
 may be edited while immutable run snapshots preserve historical inputs.
 
 ## Browser acceptance

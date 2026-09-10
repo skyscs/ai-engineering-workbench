@@ -95,7 +95,7 @@ export function openStorage(options: { dataRoot?: string; artifactLimits?: Parti
       if (closed) throw new StorageError('STORAGE_CLOSED', 'The storage connection is closed.');
     };
     const settings = createSettingsRepository(connection, ensureOpen);
-    const tasks = createTaskStore(connection, ensureOpen, settings, paths.tasks, limits);
+    const tasks = createTaskStore(connection, ensureOpen, settings, paths.tasks, limits, paths.worktrees);
     tasks.artifacts.recover();
     return {
       paths,

@@ -10,6 +10,7 @@ export interface ApiError { error: { code: string; message: string } }
 export type { Repository, RepositoryInput, RepositoryMetadata, GitFailure } from '@aew/core';
 export interface RepositoryList { repositories: import('@aew/core').Repository[] }
 export type { SyncFailure } from '@aew/core';
+export type { TaskWorktree, GitWorktreeFailure } from '@aew/core';
 export type { Task, TaskInput, Artifact, ContextManifest, ContextSelection, ArtifactLimits, StageRun } from '@aew/core';
 export interface TaskDetail {
   task: import('@aew/core').Task;
@@ -17,4 +18,6 @@ export interface TaskDetail {
   context: import('@aew/core').ContextManifest;
   limits: import('@aew/core').ArtifactLimits;
   imports: { id: string; originalFilename: string; state: string; errorCode: string | null }[];
+  worktrees: import('@aew/core').TaskWorktree[];
+  latestRun: import('@aew/core').StageRun | null;
 }

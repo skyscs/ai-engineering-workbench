@@ -3,6 +3,7 @@ import type { DatabaseSync } from 'node:sqlite';
 import { DomainError, parseTask, type ArtifactLimits, type RunFailure, type StageRun, type Task } from '@aew/core';
 import type { SettingsRepository } from './settings.js';
 import { createArtifactStore } from './artifacts.js';
+import { createWorktreeStore } from './worktrees.js';
 
 export function transaction<T>(db: DatabaseSync, run: () => T): T {
   db.exec('BEGIN IMMEDIATE');
@@ -10,10 +11,10 @@ export function transaction<T>(db: DatabaseSync, run: () => T): T {
   catch (error) { if (db.isTransaction) db.exec('ROLLBACK'); throw error; }
 }
 export type TaskStore = ReturnType<typeof createTaskStore>;
-export function createTaskStore(db: DatabaseSync, ensureOpen: () => void, settings: SettingsRepository, root: string, limits: ArtifactLimits) {
+export function createTaskStore(db: DatabaseSync, ensureOpen: () => void, settings: SettingsRepository, root: string, limits: ArtifactLimits, worktreeRoot: string) {
   function get(workspaceId: string, id: string): Task {
     ensureOpen(); settings.getWorkspace(workspaceId);
-    const row = db.prepare(`SELECT id, workspace_id AS workspaceId, title, description, status,
+    const row = db.prepare(`SELECT id, workspace_id AS workspaceId, title, description, CASE WHEN context_ready = 1 THEN 'CONTEXT_READY' ELSE status END AS status,
       context_revision AS contextRevision, created_at AS createdAt, updated_at AS updatedAt
       FROM tasks WHERE id = ? AND workspace_id = ?`).get(id, workspaceId);
     if (!row) throw new DomainError('NOT_FOUND', 'Task not found in this workspace.');
@@ -28,11 +29,15 @@ export function createTaskStore(db: DatabaseSync, ensureOpen: () => void, settin
     if (db.prepare("SELECT id FROM artifact_imports WHERE task_id = ? AND state IN ('uploading', 'prepared')").get(id)) {
       throw new DomainError('CONFLICT', 'An artifact import is pending. Finish it or restart the daemon to recover it.');
     }
+    if (db.prepare("SELECT task_id FROM task_worktrees WHERE task_id = ? AND status IN ('preparing', 'removing')").get(id)) {
+      throw new DomainError('CONFLICT', 'Worktree recovery is pending. Restart the daemon before changing context.');
+    }
   }
   function bump(id: string) {
     db.prepare('UPDATE tasks SET context_revision = context_revision + 1, updated_at = ? WHERE id = ?').run(new Date().toISOString(), id);
   }
   const artifacts = createArtifactStore(db, root, limits, { get, editable, bump });
+  const worktrees = createWorktreeStore(db, worktreeRoot, get, editable);
   function run(workspaceId: string, taskId: string, id: string): StageRun {
     get(workspaceId, taskId);
     const row = db.prepare(`SELECT id, task_id AS taskId, ai_connection_id AS aiConnectionId,
@@ -44,6 +49,7 @@ export function createTaskStore(db: DatabaseSync, ensureOpen: () => void, settin
   }
   return {
     artifacts,
+    worktrees,
     get,
     list(workspaceId: string) {
       settings.getWorkspace(workspaceId);
@@ -67,7 +73,10 @@ export function createTaskStore(db: DatabaseSync, ensureOpen: () => void, settin
       });
     },
     detail(workspaceId: string, id: string) {
-      return { task: get(workspaceId, id), artifacts: artifacts.list(workspaceId, id), context: artifacts.context(workspaceId, id), limits,
+      get(workspaceId, id);
+      const latest = db.prepare('SELECT id FROM stage_runs WHERE task_id = ? ORDER BY created_at DESC, rowid DESC LIMIT 1').get(id);
+      return { task: get(workspaceId, id), artifacts: artifacts.list(workspaceId, id), context: artifacts.context(workspaceId, id), limits, worktrees: worktrees.list(workspaceId, id),
+        latestRun: latest ? run(workspaceId, id, String(latest.id)) : null,
         imports: db.prepare("SELECT id, original_filename AS originalFilename, state, error_code AS errorCode FROM artifact_imports WHERE task_id = ? AND state != 'ready' ORDER BY created_at, id").all(id) };
     },
     getRun: run,
@@ -85,9 +94,13 @@ export function createTaskStore(db: DatabaseSync, ensureOpen: () => void, settin
           throw new DomainError('CONFLICT', 'Another investigation is active.');
         }
         const task = get(workspaceId, taskId), owner = settings.getWorkspace(workspaceId);
+        const prepared = worktrees.list(workspaceId, taskId);
+        if (input.stage === 'investigation' && prepared.some((r) => r.status !== 'ready' || !r.resolvedCommitSha)) {
+          throw new DomainError('CONFLICT', 'Prepare every selected repository before investigation.');
+        }
         const profile = input.modelProfileId === null ? null : settings.getModelProfile(workspaceId, input.modelProfileId);
         const snapshot = { task, connection: owner.connection, profile, context, constraints: [],
-          repositories: db.prepare('SELECT repository_id AS id, base_ref AS baseRef, resolved_commit_sha AS resolvedCommitSha FROM task_repositories WHERE task_id = ? ORDER BY repository_id').all(taskId),
+          repositories: prepared.map((r) => ({ id: r.repositoryId, baseRef: r.baseRef, resolvedCommitSha: r.resolvedCommitSha, worktreePath: r.worktreePath, managedPinRef: r.managedPinRef })),
           promptVersion: input.promptVersion, schemaVersion: input.schemaVersion };
         const id = randomUUID(), now = new Date().toISOString();
         db.prepare(`INSERT INTO stage_runs (id, task_id, ai_connection_id, model_profile_id, stage, status, input_snapshot, created_at)

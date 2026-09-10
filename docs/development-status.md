@@ -177,7 +177,7 @@ the supported sync policy; interrupted attempts require inspection before retry.
 
 ## Task 006 — Tasks, immutable artifacts and stage run foundation
 
-Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge.
+Status: accepted through the user's merge of PR #7 into main (bf3cef4).
 
 Implemented: schema version 5, task creation with owned repository associations,
 atomic workspace boundary lock, protected API and browser task forms. Streamed
@@ -206,9 +206,44 @@ Production-to-development restart preserves task/artifact/context metadata and
 the boundary lock. The 390px viewport has no horizontal overflow. See the
 [browser result](fixtures/tasks/browser-result.json).
 
-Next task: 007 — detached task worktrees and durable repository pins. Initial
+At acceptance, the next task was 007 — detached task worktrees and durable repository pins. Initial
 repository metadata is not yet a prepared worktree. Task edit/delete, image runtime
 integration and investigation execution remain deferred. AEW-001 is unchanged.
+
+## Task 007 — Isolated task worktrees
+
+Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge.
+
+Implemented: schema version 6, editable unresolved base refs, detached task
+worktrees with immutable resolved SHAs and retained app-owned revision pins,
+persisted preparation/cleanup StageRuns, protected API and readiness UI.
+Only fully prepared tasks expose `CONTEXT_READY`. Investigations require ready
+members and snapshot their worktree paths, pins and commits.
+
+Synchronization and worktree operations share the same common Git directory
+lock. Retries reuse verified completed members after partial failure. Cleanup
+requires a canonical owned, registered, detached and clean worktree with no active
+run. Modified/untracked/ignored files, hidden index flags, redirected paths,
+unknown directories and mismatched pins are refused. Cleanup retains revision
+pins and never force-deletes or globally prunes. Startup reconciles recorded state
+without creating or deleting worktrees. ADR 0010 documents the lifecycle.
+
+Validation: a clean source installation from the frozen lockfile passed strict
+typecheck, all 87 tests (16 Git, 36 storage, 28 HTTP, 7 runtime) and production
+build on Node 22.23.2 / Linux. Tests cover dirty source preservation, tasks sharing
+a branch base, retained pins after cleanup and GC, partial failure/retry, ownership,
+stale operations, version 5 upgrade, completed creation/removal with pending
+metadata, and shutdown during preparation or startup reconciliation.
+
+Chrome acceptance passed two-repository preparation, base-ref failure/correction,
+dirty cleanup refusal, clean cleanup, pin retention, recreation, restart persistence
+and a 390px viewport. See the [browser result](fixtures/worktrees/browser-result.json).
+No normal application data or AI invocation was used.
+
+Next task: 008 — the production Codex CLI runtime adapter, including the Task 000
+compatibility and no-fallback requirements. Automatic submodule initialization,
+custom checkout filters, task revision changes and force repair remain outside
+Task 007. AEW-001 remains unchanged.
 
 ## Git handoff
 
@@ -219,8 +254,9 @@ integration and investigation execution remain deferred. AEW-001 is unchanged.
 - Task 003: `task/003-workspaces`, 4d07a77, merged through PR #4 as 8134f14.
 - Task 004: `task/004-repository-registry`, 3aae7ec, merged through PR #5 as 9dadec4.
 - Task 005: `task/005-repository-sync`, 137c495, merged through PR #6 as be6cc72.
-- Task 006: `task/006-tasks-and-artifacts`, based on merged main (be6cc72).
+- Task 006: `task/006-tasks-and-artifacts`, aec25bd, merged through PR #7 as bf3cef4.
+- Task 007: `task/007-isolated-worktrees`, based on merged main (bf3cef4).
 
-## Tasks 007–011
+## Tasks 008–011
 
 Status: not started. Execute in the order recorded in DEVELOPMENT_PLAN.md.

@@ -175,14 +175,14 @@ test('run snapshots preserve context and profile settings, enforce ownership/bus
   const artifact = await upload(f, task.id);
   storage.tasks.artifacts.selectContext(workspaceId, task.id, [{ artifactId: artifact.id, start: 0, end: artifact.byteSize }]);
   const profile = storage.settings.createModelProfile(workspaceId, { name: 'Model', modelIdentifier: 'fixture-model', reasoningEffort: 'medium' });
-  const input = { stage: 'investigation' as const, modelProfileId: profile.id, promptVersion: 'v1', schemaVersion: 'v1' };
+  const input = { stage: 'context_preparation' as const, modelProfileId: profile.id, promptVersion: 'v1', schemaVersion: 'v1' };
   const run = storage.tasks.createRun(workspaceId, task.id, input);
   assert.equal(run.status, 'queued');
   assert.equal(run.inputSnapshot.context.entries[0]!.sha256, artifact.sha256);
   assert.deepEqual(run.inputSnapshot.constraints, []);
   assert.throws(() => storage.tasks.createRun(workspaceId, task.id, input), { code: 'CONFLICT' });
   const another = storage.tasks.create(workspaceId, f.input);
-  assert.throws(() => storage.tasks.createRun(workspaceId, another.id, input), { code: 'CONFLICT' });
+  assert.throws(() => storage.tasks.createRun(workspaceId, another.id, { ...input, stage: 'investigation' }), { code: 'CONFLICT' });
   await assert.rejects(upload(f, task.id), { code: 'CONFLICT' });
   assert.throws(() => storage.tasks.artifacts.selectContext(workspaceId, task.id, []), { code: 'CONFLICT' });
   storage.settings.updateModelProfile(workspaceId, profile.id, { name: 'Changed' });
@@ -216,7 +216,7 @@ test('upgrade from Task 005 preserves history and exposes task storage', (t) => 
   try {
     const check = new DatabaseSync(storage.paths.database);
     assert.deepEqual(check.prepare('SELECT * FROM schema_migrations WHERE version <= 4').all(), history); check.close();
-    assert.equal(storage.status().schemaVersion, 5);
+    assert.equal(storage.status().schemaVersion, migrations.length);
   } finally { storage.close(); }
 });
 
@@ -257,4 +257,49 @@ test('run input and terminal state cannot be rewritten through SQL and changed a
   const file = path.join(f.storage.paths.tasks, task.id, 'artifacts', artifact.id);
   fs.chmodSync(file, 0o600); fs.writeFileSync(file, 'x'.repeat(artifact.byteSize));
   assert.throws(() => store.createRun(f.workspaceId, task.id, input), /hash no longer matches/);
+});
+
+test('worktree operations require a preparation run, freeze pins and reject stale completion; investigations require all members ready', (t) => {
+  const f = fixture(t), task = f.storage.tasks.create(f.workspaceId, f.input), store = f.storage.tasks;
+  const input = { stage: 'context_preparation' as const, modelProfileId: null, promptVersion: 'v1', schemaVersion: 'v1' };
+  assert.throws(() => store.worktrees.begin(f.workspaceId, task.id, f.repository.id, 'prepare', 'unknown'), { code: 'CONFLICT' });
+  assert.throws(() => store.createRun(f.workspaceId, task.id, { ...input, stage: 'investigation' }), { code: 'CONFLICT' });
+  const prepare = (taskId: string) => {
+    const run = store.createRun(f.workspaceId, taskId, input); store.transitionRun(f.workspaceId, taskId, run.id, 'running');
+    const operation = store.worktrees.begin(f.workspaceId, taskId, f.repository.id, 'prepare', run.id);
+    store.worktrees.pin(operation, 'a'.repeat(40));
+    assert.throws(() => store.worktrees.pin(operation, 'b'.repeat(40)), /worktree_pin_immutable/);
+    store.worktrees.finish(operation, 'ready'); store.transitionRun(f.workspaceId, taskId, run.id, 'succeeded');
+    return operation;
+  };
+  const old = prepare(task.id);
+  assert.equal(store.get(f.workspaceId, task.id).status, 'CONTEXT_READY');
+  prepare(task.id);
+  assert.throws(() => store.worktrees.finish(old, 'removed'), { code: 'CONFLICT' });
+  assert.throws(() => store.worktrees.pin(old, 'b'.repeat(40)), { code: 'CONFLICT' });
+  const another = store.create(f.workspaceId, f.input); prepare(another.id);
+  const investigation = store.createRun(f.workspaceId, task.id, { ...input, stage: 'investigation' });
+  assert.throws(() => store.createRun(f.workspaceId, another.id, { ...input, stage: 'investigation' }), { code: 'CONFLICT' });
+  assert.equal(investigation.inputSnapshot.repositories[0]!.resolvedCommitSha, 'a'.repeat(40));
+  assert.ok(investigation.inputSnapshot.repositories[0]!.managedPinRef);
+});
+
+test('schema version 5 upgrades task context and preserves migration history and existing tasks', async (t) => {
+  const root = fs.mkdtempSync(path.join(tmpdir(), 'aew-worktree-upgrade-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const db = new DatabaseSync(path.join(root, 'workbench.db')); migrate(db, migrations.slice(0, 5));
+  const history = db.prepare('SELECT * FROM schema_migrations').all();
+  const connection = randomUUID(), workspace = randomUUID(), task = randomUUID();
+  db.prepare("INSERT INTO ai_connections (id, name, runtime_type, created_at, updated_at) VALUES (?, 'CLI', 'codex-cli', 'now', 'now')").run(connection);
+  db.prepare("INSERT INTO workspaces (id, name, ai_connection_id, boundary_locked, created_at, updated_at) VALUES (?, 'Workspace', ?, 1, 'now', 'now')").run(workspace, connection);
+  db.prepare("INSERT INTO tasks (id, workspace_id, title, description, created_at, updated_at) VALUES (?, ?, 'Existing task', 'Existing context', 'now', 'now')").run(task, workspace);
+  db.close();
+  const storage = openStorage({ dataRoot: root });
+  try {
+    const check = new DatabaseSync(storage.paths.database);
+    assert.deepEqual(check.prepare('SELECT * FROM schema_migrations WHERE version <= 5').all(), history); check.close();
+    assert.equal(storage.tasks.get(workspace, task).description, 'Existing context');
+    assert.equal(storage.tasks.get(workspace, task).status, 'CREATED');
+    assert.equal(storage.settings.getWorkspace(workspace).workspace.boundaryLocked, true);
+  } finally { storage.close(); }
 });
