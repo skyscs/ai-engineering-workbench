@@ -133,6 +133,9 @@ export function createSettingsRepository(db: DatabaseSync, ensureOpen: () => voi
     },
     deleteModelProfile(id, profileId) {
       const previous = profile(id, profileId);
+      if (db.prepare('SELECT id FROM stage_runs WHERE model_profile_id = ? LIMIT 1').get(profileId)) {
+        throw new DomainError('CONFLICT', 'This profile is referenced by a stage run and cannot be deleted.');
+      }
       db.prepare('DELETE FROM model_profiles WHERE id = ? AND ai_connection_id = ?').run(profileId, previous.aiConnectionId);
     },
     lockWorkspaceBoundary(id) {

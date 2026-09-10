@@ -6,10 +6,13 @@ import { migrate } from './migrations.js';
 import { resolveDataRoot, storagePaths } from './paths.js';
 import { createSettingsRepository, type SettingsRepository } from './settings.js';
 import { createRepositoryStore, interruptRepositoryOperations, type RepositoryStore } from './repositories.js';
+import { defaultArtifactLimits, type ArtifactLimits } from '@aew/core';
+import { createTaskStore, interruptStageRuns, type TaskStore } from './tasks.js';
 
 export { StorageError, resolveDataRoot };
 export type { SettingsRepository };
 export type { RepositoryStore };
+export type { TaskStore };
 export interface StorageStatus {
   status: 'ready';
   schemaVersion: number;
@@ -20,6 +23,7 @@ export interface StorageStatus {
 export interface Storage {
   readonly settings: SettingsRepository;
   readonly repositories: RepositoryStore;
+  readonly tasks: TaskStore;
   readonly paths: ReturnType<typeof storagePaths>;
   status(): StorageStatus;
   close(): void;
@@ -49,9 +53,13 @@ function databaseFile(file: string): void {
 }
 
 /** Acquire ownership before opening or migrating the application database. */
-export function openStorage(options: { dataRoot?: string } = {}): Storage {
+export function openStorage(options: { dataRoot?: string; artifactLimits?: Partial<ArtifactLimits> } = {}): Storage {
   const requested = options.dataRoot ?? resolveDataRoot();
   if (!path.isAbsolute(requested)) throw new StorageError('INVALID_DATA_DIR', 'The data directory must be absolute.');
+  const limits = { ...defaultArtifactLimits, ...options.artifactLimits };
+  if (Object.values(limits).some((value) => !Number.isSafeInteger(value) || value <= 0) || limits.contextBytes > 16 * 1024 ** 2) {
+    throw new StorageError('INVALID_DATA_DIR', 'Artifact limits must be positive safe integers; text context is capped at 16 MiB.');
+  }
   let owner: DatabaseSync | undefined;
   let db: DatabaseSync | undefined;
   try {
@@ -77,6 +85,7 @@ export function openStorage(options: { dataRoot?: string } = {}): Storage {
     db.exec('PRAGMA foreign_keys = ON; PRAGMA busy_timeout = 1000; PRAGMA synchronous = FULL;');
     const schemaVersion = migrate(db);
     interruptRepositoryOperations(db);
+    interruptStageRuns(db);
     const journalMode = db.prepare('PRAGMA journal_mode = WAL').get()!.journal_mode;
     if (journalMode !== 'wal') throw new StorageError('UNSUPPORTED_STORAGE', 'The data directory must support SQLite WAL mode.');
     const connection = db;
@@ -85,9 +94,13 @@ export function openStorage(options: { dataRoot?: string } = {}): Storage {
     const ensureOpen = () => {
       if (closed) throw new StorageError('STORAGE_CLOSED', 'The storage connection is closed.');
     };
+    const settings = createSettingsRepository(connection, ensureOpen);
+    const tasks = createTaskStore(connection, ensureOpen, settings, paths.tasks, limits);
+    tasks.artifacts.recover();
     return {
       paths,
-      settings: createSettingsRepository(connection, ensureOpen),
+      settings,
+      tasks,
       repositories: createRepositoryStore(connection, ensureOpen),
       status() {
         if (closed) throw new StorageError('STORAGE_CLOSED', 'The storage connection is closed.');

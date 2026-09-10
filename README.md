@@ -71,8 +71,9 @@ and model profile settings with persistence and a browser UI. Connections remain
 configured but not verified; no AI execution is available yet. Task 004 adds local
 repository registration and managed cloning with persisted status and diagnostics.
 Task 005 adds explicit fetch/prune with persisted synchronization results and
-protection for local branches, tags, checkout state and task pins. Tasks 006–011
-remain planned.
+protection for local branches, tags, checkout state and task pins. Task 006 adds
+task creation, immutable file imports, explicit text context selection and internal
+StageRun snapshots/recovery. Tasks 007–011 remain planned.
 
 ## Quick start
 
@@ -193,3 +194,12 @@ Expand a ready repository and choose **Fetch updates** to synchronize supported
 remote branch mappings. The UI shows the latest attempt separately from the last
 successful fetch. See the [synchronization guide](docs/repository-synchronization.md)
 for supported configuration, failure handling and browser verification.
+
+## Tasks and artifacts
+
+Choose **Tasks → New task** to describe an investigation and select its repositories.
+Import files through the browser, download preserved originals and explicitly
+select text or byte ranges within the context limit. Task creation locks the
+workspace's AI connection launch settings. Worktree preparation and AI execution
+remain subsequent iterations. See the [task and artifact guide](docs/tasks-and-artifacts.md)
+for limits, recovery, supported context and the browser acceptance command.

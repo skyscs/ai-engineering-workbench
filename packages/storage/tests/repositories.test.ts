@@ -75,7 +75,7 @@ test('schema version 3 upgrades with unchanged migration history and idle sync d
     const check = new DatabaseSync(storage.paths.database);
     try {
       assert.deepEqual(check.prepare('SELECT * FROM schema_migrations WHERE version <= 3').all(), history);
-      assert.equal(storage.status().schemaVersion, 4);
+      assert.equal(storage.status().schemaVersion, migrations.length);
     } finally { check.close(); }
     const workspace = storage.settings.createWorkspace({ name: 'Upgrade', connection: { name: 'Fixture' } }).workspace;
     const row = storage.repositories.register(workspace.id, 'Fixture', { localPath: '/fixture', commonGitDir: '/fixture/.git', remoteUrl: null,
