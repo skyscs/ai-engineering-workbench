@@ -4,6 +4,7 @@ import { devNull } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { DomainError, type GitFailure, type RepositoryMetadata } from '@aew/core';
+export { WorktreeGit, worktreePlan, type WorktreePlan } from './worktrees.js';
 
 export function redact(value: string): string {
   return value.replace(/(https?:\/\/)[^\s/]*@/gi, '$1[redacted]@')
@@ -74,6 +75,9 @@ export class GitClient {
     const env = { ...(this.options.env ?? process.env) };
     // Do not inherit repository selectors, tracing, injected config or alternate object stores.
     for (const key of Object.keys(env)) if (key.startsWith('GIT_')) delete env[key];
+    // Honor an explicit system-config opt-out, including isolated test fixtures.
+    // Arbitrary config paths, injected entries and repository selectors stay cleared.
+    if ((this.options.env ?? process.env).GIT_CONFIG_NOSYSTEM === '1') env.GIT_CONFIG_NOSYSTEM = '1';
     Object.assign(env, { GIT_TERMINAL_PROMPT: '0', GCM_INTERACTIVE: 'Never', GIT_ASKPASS: devNull,
       SSH_ASKPASS_REQUIRE: 'never', GIT_ALLOW_PROTOCOL: 'file:ssh:https', GIT_OPTIONAL_LOCKS: '0', GIT_NO_LAZY_FETCH: '1', LC_ALL: 'C' });
     return new Promise((resolve, reject) => {

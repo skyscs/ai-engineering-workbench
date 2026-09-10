@@ -9,7 +9,8 @@ import { fileURLToPath } from 'node:url';
 // CDP reference: https://chromedevtools.github.io/devtools-protocol/
 const fixture = await mkdtemp(path.join(tmpdir(), 'aew-workspace-smoke-'));
 const withSync = process.env.AEW_SMOKE_SYNC === '1';
-const withTasks = process.env.AEW_SMOKE_TASKS === '1';
+const withWorktrees = process.env.AEW_SMOKE_WORKTREES === '1';
+const withTasks = process.env.AEW_SMOKE_TASKS === '1' || withWorktrees;
 const withRepositories = process.env.AEW_SMOKE_REPOSITORIES === '1' || withSync || withTasks;
 const daemonDir = fileURLToPath(new URL('../apps/daemon/', import.meta.url));
 const children = [];
@@ -210,6 +211,39 @@ try {
     assert.equal(before.workspace.boundaryLocked, true);
     assert.equal(await evaluate("document.querySelector('.workspace-content .danger').disabled"), true);
   }
+  if (withWorktrees) {
+    const taskRoute = `/api/workspaces/${before.workspace.id}/tasks/${taskSnapshot.task.id}`;
+    const snapshot = () => evaluate(`(async () => await (await fetch('${taskRoute}')).json())()`);
+    const firstRef = '.worktree-list li:first-child input[name=baseRef]';
+    const originalRef = taskSnapshot.worktrees[0].baseRef;
+    const refSaved = (value) => waitFor(async () => (await snapshot()).worktrees[0].baseRef === value &&
+      await evaluate("!document.querySelector('section[aria-label=\"Task worktrees\"] > button').disabled"), 'Base ref was not saved.');
+    await fill(firstRef, 'missing-fixture-ref');
+    await click('.worktree-list li:first-child button[type=submit]');
+    await refSaved('missing-fixture-ref');
+    await click('section[aria-label="Task worktrees"] > button');
+    await wait("document.querySelector('section[aria-label=\"Task worktrees\"]').textContent.includes('Latest operation: failed')");
+    await fill(firstRef, originalRef); await click('.worktree-list li:first-child button[type=submit]');
+    await refSaved(originalRef);
+    await click('section[aria-label="Task worktrees"] > button');
+    await wait("document.querySelector('section[aria-label=\"Task worktrees\"]').textContent.includes('Latest operation: succeeded')");
+    taskSnapshot = await snapshot(); assert.equal(taskSnapshot.task.status, 'CONTEXT_READY');
+    assert.equal(taskSnapshot.worktrees.filter(row => row.status === 'ready').length, 2);
+    const row = taskSnapshot.worktrees[0], marker = path.join(row.worktreePath, 'browser-untracked');
+    await writeFile(marker, 'preserve browser fixture');
+    await evaluate('window.confirm = () => true'); await click('.worktree-list li:first-child button.danger');
+    await wait("document.querySelector('section[aria-label=\"Task worktrees\"]').textContent.includes('Latest operation: failed')");
+    assert.equal(await readFile(marker, 'utf8'), 'preserve browser fixture'); await unlink(marker);
+    await click('.worktree-list li:first-child button.danger');
+    await wait("document.querySelector('.worktree-list li:first-child').textContent.includes('Worktree: removed')");
+    const pin = execFileSync('git', ['rev-parse', row.managedPinRef], { cwd: row.sourcePath, encoding: 'utf8', stdio: 'pipe' }).trim();
+    assert.equal(pin, row.resolvedCommitSha);
+    await wait("!document.querySelector('section[aria-label=\"Task worktrees\"] > button').disabled");
+    await click('section[aria-label="Task worktrees"] > button');
+    await wait("document.querySelectorAll('.worktree-list li').length === 2 && Array.from(document.querySelectorAll('.worktree-list li')).every(li => li.textContent.includes('Worktree: ready')) && !document.querySelector('section[aria-label=\"Task worktrees\"] > button').disabled");
+    taskSnapshot = await snapshot();
+    assert.equal(taskSnapshot.worktrees[0].resolvedCommitSha, row.resolvedCommitSha);
+  }
   const screenshot = await page.send('Page.captureScreenshot', { captureBeyondViewport: true });
   await writeFile(path.join(fixture, 'workspace-desktop.png'), Buffer.from(screenshot.data, 'base64'));
   await stop(first);
@@ -253,6 +287,7 @@ try {
     repositoryRestartPersistence: 'passed', dirtyCheckoutPreserved: 'passed', workspaceDeletionBlocked: 'passed' });
   if (withSync) Object.assign(result, { noRemoteRefresh: 'passed', fetchAndPrune: 'passed', syncFailureDiagnostics: 'passed', lastSuccessPreserved: 'passed', syncRestartPersistence: 'passed' });
   if (withTasks) Object.assign(result, { twoRepositoryTask: 'passed', browserFileUpload: 'passed', sourceRemovalDownload: 'passed', explicitTextContext: 'passed', unsupportedFileExclusion: 'passed', taskRestartPersistence: 'passed', boundaryLock: 'passed' });
+  if (withWorktrees) Object.assign(result, { twoRepositoryPreparation: 'passed', baseRefFailureAndRetry: 'passed', dirtyCleanupRejected: 'passed', cleanCleanup: 'passed', retainedPin: 'passed', recreatePinnedRevision: 'passed', worktreeRestartPersistence: 'passed' });
   await writeFile(path.join(fixture, 'result.json'), JSON.stringify(result, null, 2));
   console.log(JSON.stringify({ fixture, ...result }, null, 2));
 } finally {

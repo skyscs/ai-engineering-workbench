@@ -6,6 +6,8 @@ import { serve } from '@hono/node-server';
 import { createApp } from './app.js';
 import { openStorage, StorageError } from '@aew/storage';
 import { RepositoryService } from './repository-service.js';
+import { WorktreeService } from './worktree-service.js';
+import { GitClient } from '@aew/git';
 
 const HOST = '127.0.0.1';
 const PORT = 4242;
@@ -26,11 +28,19 @@ const storage = (() => {
 })();
 // Also releases ownership if startup fails before a server can accept requests.
 process.once('exit', () => storage.close());
-const repositories = new RepositoryService(storage);
+const git = new GitClient();
+const repositories = new RepositoryService(storage, git);
+const worktrees = new WorktreeService(storage, git);
+let server: ReturnType<typeof serve> | undefined;
+let stopping = false;
+process.on('SIGINT', shutdown);
+process.on('SIGTERM', shutdown);
+await worktrees.recover();
+if (!stopping) {
 const app = createApp({ publicDir, development: process.env.NODE_ENV === 'development',
-  storageStatus: () => storage.status(), settings: storage.settings, repositories, tasks: storage.tasks });
+  storageStatus: () => storage.status(), settings: storage.settings, repositories, tasks: storage.tasks, worktrees });
 
-const server = serve(
+server = serve(
   {
     fetch: app.fetch,
     hostname: HOST,
@@ -54,7 +64,7 @@ server.on('error', (error: NodeJS.ErrnoException) => {
   shutdown();
 });
 
-let stopping = false;
+}
 function shutdown(): void {
   if (stopping) return;
   stopping = true;
@@ -63,13 +73,13 @@ function shutdown(): void {
     process.exit(1);
   }, 5000);
   deadline.unref();
-  void Promise.all([repositories.close(), storage.tasks.artifacts.close(), new Promise<void>((resolve) => server.close(() => resolve()))]).then(() => {
+  void Promise.all([repositories.close(), worktrees.close(), storage.tasks.artifacts.close(), new Promise<void>((resolve) => {
+    if (server) server.close(() => resolve()); else resolve();
+  })]).then(() => {
     storage.close();
     clearTimeout(deadline);
   });
 }
-process.on('SIGINT', shutdown);
-process.on('SIGTERM', shutdown);
 
 function openBrowser(url: string): void {
   const platform = process.platform;

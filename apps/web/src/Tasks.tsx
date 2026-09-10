@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { ContextSelection, Repository, RepositoryList, Task, TaskDetail } from '@aew/shared';
 import { api } from './api';
+import { Worktrees } from './Worktrees';
 
 export function Tasks({ workspaceId, csrf, disabled, setBusy, onCreated }: {
   workspaceId: string; csrf: string | null; disabled: boolean; setBusy(value: boolean): void; onCreated(): Promise<void>;
@@ -29,6 +30,7 @@ export function Tasks({ workspaceId, csrf, disabled, setBusy, onCreated }: {
   useEffect(() => { void perform(refresh); }, [workspaceId, csrf]);
   const headers = { 'content-type': 'application/json', 'x-aew-csrf': csrf ?? '' };
   const previewBytes = (detail?.context.descriptionBytes ?? 0) + selections.reduce((sum, s) => sum + s.end - s.start, 0);
+  const contextBusy = disabled || (!!detail?.latestRun && ['queued', 'running'].includes(detail.latestRun.status));
   return <section className="panel" aria-label="Tasks">
     <div className="section-heading"><h2>Tasks</h2><div className="actions">
       <button disabled={disabled} onClick={() => void perform(async () => { await refresh(); setCreating(true); setDetail(null); })}>New task</button>
@@ -54,8 +56,9 @@ export function Tasks({ workspaceId, csrf, disabled, setBusy, onCreated }: {
       <button type="submit" disabled={!repositories.length}>Create task</button>
     </fieldset></form>}
     {detail && <div aria-label="Task detail"><h3>{detail.task.title}</h3><p className="task-description">{detail.task.description}</p>
-      <p className="hint">Created · context revision {detail.task.contextRevision}. Worktree preparation and investigation are coming in later iterations.</p>
+      <p className="hint">{detail.task.status === 'CONTEXT_READY' ? 'Context ready' : 'Created'} · context revision {detail.task.contextRevision}. AI investigation is coming in a later iteration.</p>
       <p>Selected repositories: {detail.task.repositoryIds.map((id) => repositories.find((r) => r.id === id)?.name ?? id).join(', ')}</p>
+      <Worktrees key={detail.task.id} detail={detail} csrf={csrf} disabled={disabled} update={setDetail} />
       {detail.imports.length > 0 && <details><summary>Incomplete imports ({detail.imports.length})</summary><ul>
         {detail.imports.map((item) => <li key={item.id}>{item.originalFilename}: {item.state} · {item.errorCode ?? 'In progress'}.
           {item.state === 'failed' ? ' Import the source again to retry.' : ' If the upload is no longer active, restart the daemon to recover it. RECOVERY_REQUIRED retains files for local repair.'}</li>)}
@@ -75,7 +78,7 @@ export function Tasks({ workspaceId, csrf, disabled, setBusy, onCreated }: {
             form.reset();
           } finally { display(await api<TaskDetail>(`${base}/${detail.task.id}`)); setNotice(`${imported} file(s) imported. Originals are preserved locally.`); }
         });
-      }}><fieldset disabled={disabled}><legend>Import local artifacts</legend>
+      }}><fieldset disabled={contextBusy}><legend>Import local artifacts</legend>
         <label>Files<input type="file" name="files" multiple required /></label>
         <p className="hint">Up to {detail.limits.fileBytes} bytes/file and {detail.limits.taskBytes} bytes/task. Imports are independent; a later failure preserves earlier files.</p>
         <button type="submit">Import files</button>
@@ -85,7 +88,7 @@ export function Tasks({ workspaceId, csrf, disabled, setBusy, onCreated }: {
           await api(`${base}/${detail.task.id}/context`, { method: 'PUT', headers, body: JSON.stringify(selections) });
           display(await api<TaskDetail>(`${base}/${detail.task.id}`)); setNotice('Text context selection saved.');
         });
-      }}><fieldset disabled={disabled}><legend>Text context preview</legend>
+      }}><fieldset disabled={contextBusy}><legend>Text context preview</legend>
         <p>Description: {detail.context.descriptionBytes} bytes. Draft total: {previewBytes} / {detail.limits.contextBytes} bytes.</p>
         <p className="hint">Select UTF-8 text, Markdown or logs explicitly. Byte ranges include start and exclude end; choose complete characters. Oversized context is rejected without truncation. Download originals to inspect ranges. Saving context does not run AI.</p>
         {detail.context.entries.map((entry) => {

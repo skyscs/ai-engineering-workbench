@@ -73,7 +73,9 @@ repository registration and managed cloning with persisted status and diagnostic
 Task 005 adds explicit fetch/prune with persisted synchronization results and
 protection for local branches, tags, checkout state and task pins. Task 006 adds
 task creation, immutable file imports, explicit text context selection and internal
-StageRun snapshots/recovery. Tasks 007–011 remain planned.
+StageRun snapshots/recovery. Task 007 adds detached task worktrees, retained
+revision pins, safe cleanup and Git-aware restart reconciliation. Tasks 008–011
+remain planned.
 
 ## Quick start
 
@@ -200,6 +202,11 @@ for supported configuration, failure handling and browser verification.
 Choose **Tasks → New task** to describe an investigation and select its repositories.
 Import files through the browser, download preserved originals and explicitly
 select text or byte ranges within the context limit. Task creation locks the
-workspace's AI connection launch settings. Worktree preparation and AI execution
-remain subsequent iterations. See the [task and artifact guide](docs/tasks-and-artifacts.md)
+workspace's AI connection launch settings. See the [task and artifact guide](docs/tasks-and-artifacts.md)
 for limits, recovery, supported context and the browser acceptance command.
+
+Use **Task worktrees → Prepare worktrees** to prepare committed content from each
+selected repository in a separate detached checkout. The UI shows readiness,
+source revisions, retry diagnostics and safe cleanup. Revision pins survive cleanup.
+See the [worktree guide](docs/task-worktrees.md). AI execution remains the next
+iteration; worktree preparation does not invoke a model.

@@ -10,6 +10,7 @@ export function taskRoutes(tasks: TaskStore) {
   routes.get('/:workspaceId/tasks', (c) => c.json({ tasks: tasks.list(c.req.param('workspaceId')) }));
   routes.post('/:workspaceId/tasks', async (c) => c.json(tasks.create(c.req.param('workspaceId'), await input(c, 512 * 1024)), 201));
   routes.get('/:workspaceId/tasks/:taskId', (c) => c.json(tasks.detail(c.req.param('workspaceId'), c.req.param('taskId'))));
+  routes.get('/:workspaceId/tasks/:taskId/runs/:runId', (c) => c.json(tasks.getRun(c.req.param('workspaceId'), c.req.param('taskId'), c.req.param('runId'))));
   routes.put('/:workspaceId/tasks/:taskId/context', async (c) => c.json(tasks.artifacts.selectContext(c.req.param('workspaceId'), c.req.param('taskId'), await input(c, 256 * 1024))));
   routes.post('/:workspaceId/tasks/:taskId/artifacts', async (c) => {
     const body = c.req.raw.body;

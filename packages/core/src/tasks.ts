@@ -2,7 +2,7 @@ import { DomainError, type AIConnection, type ModelProfile } from './index.js';
 
 export interface TaskInput { title: string; description: string; repositoryIds: string[] }
 export interface Task extends TaskInput {
-  id: string; workspaceId: string; status: 'CREATED'; contextRevision: number; createdAt: string; updatedAt: string;
+  id: string; workspaceId: string; status: 'CREATED' | 'CONTEXT_READY'; contextRevision: number; createdAt: string; updatedAt: string;
 }
 export interface Artifact {
   id: string; taskId: string; originalFilename: string; mimeType: string; byteSize: number;
@@ -18,7 +18,7 @@ export const defaultArtifactLimits: ArtifactLimits = { fileBytes: 100 * 1024 ** 
 export interface RunFailure { code: string; message: string; exitCode: number | null; signal: string | null; stderr: string }
 export interface RunInputSnapshot {
   task: Task; connection: AIConnection; profile: ModelProfile | null;
-  repositories: { id: string; baseRef: string | null; resolvedCommitSha: string | null }[];
+  repositories: { id: string; baseRef: string | null; resolvedCommitSha: string | null; worktreePath?: string | null; managedPinRef?: string | null }[];
   context: ContextManifest; constraints: readonly string[]; promptVersion: string; schemaVersion: string;
 }
 export interface StageRun {
@@ -27,6 +27,15 @@ export interface StageRun {
   inputSnapshot: RunInputSnapshot; error: RunFailure | null;
   createdAt: string; startedAt: string | null; completedAt: string | null;
 }
+export interface TaskWorktree {
+  taskId: string; repositoryId: string; repositoryName: string; workspaceId: string; baseRef: string | null;
+  resolvedCommitSha: string | null; worktreePath: string | null; managedPinRef: string | null;
+  sourcePath: string | null; commonGitDir: string | null;
+  status: 'pending' | 'preparing' | 'ready' | 'failed' | 'removing' | 'removed';
+  operationId: string | null; operationKind: 'prepare' | 'remove' | null;
+  error: GitWorktreeFailure | null; updatedAt: string | null;
+}
+export interface GitWorktreeFailure extends RunFailure { phase: 'preflight' | 'pin' | 'create' | 'verify' | 'remove' | 'recovery' }
 export function parseTask(value: unknown): TaskInput {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new DomainError('INVALID_INPUT', 'Expected a task object.');
   const input = value as Record<string, unknown>;
