@@ -270,25 +270,42 @@ cancellation and the preliminary result. Task state remains CONTEXT_READY; Task 
 supplies the evidence-backed investigation/root-cause workflow. ADR 0011 records
 this boundary and delivery of selected UTF-8 ranges through stdin.
 
-Validation from a clean frozen-lockfile installation: strict typecheck, 103 tests (17 Git, 9 adapter, 36 storage,
-34 HTTP, 7 spike) and production build passed on Node 22.23.2 / Linux. Tests include
+Review added an explicit canonical `configHome` per connection (schema 8, ADR 0012).
+Every diagnostic/model subprocess receives that directory as `CODEX_HOME`, with
+no inherited/default fallback. Missing or redirected directories and known ambient
+OpenAI credential/routing overrides fail before spawning. Old connections migrate
+as unbound; one-time binding requires no AI history and no active StageRun.
+Snapshots remain immutable. The UI displays the directory before launch and blocks
+AI until it is saved. No additional model request was made for this review change.
+
+The initial implementation passed a clean frozen-lockfile installation and full
+check (103 tests). After the directory review, `pnpm check` passed strict typecheck,
+108 tests (17 Git, 11 adapter, 38 storage, 35 HTTP, 7 spike) and production build on
+Node 22.23.2 / Linux. New coverage verifies selected versus inherited homes in every
+subprocess, pre-spawn rejection, schema 7 upgrade, one-time binding, SQL boundary
+enforcement and preserved historical snapshots. Existing tests include
 chunked UTF-8, malformed/truncated JSONL, schema failures, nonzero exits, recoverable
 errors, output limits, missing/linked/changed profiles, enabled MCP, timeout,
 separate-session descendant cancellation, selected artifact ranges, protected SSE,
 reconnect, duplicate starts, cancellation/publication races, transaction rollback
 and persisted restart interruption.
 
-A real adapter invocation through RuntimeService completed using the previously
-selected current default connection, gpt-5.6-terra and medium. It identified the
+A real adapter invocation before the directory review completed through RuntimeService
+using `codex`, the inherited `.codex-plus` configuration home, gpt-5.6-terra and medium.
+The recorded safe configuration fingerprint matched that home rather than `.codex`;
+this does not establish authentication/account identity. It identified the
 synthetic cross-repository seconds/milliseconds mismatch, cited both histories and
 used the selected log. Source/Git snapshots were unchanged. Local 0.154.0 negative
 probes and read-only write-denial probes also passed. See the
 [reviewed runtime evidence](fixtures/runtime-adapter/real-result.json).
 
-Chrome on the clean build passed the two-repository task path with a synthetic executable through the
+Chrome passed the two-repository task path with a synthetic executable through the
 production adapter: model selection, preview, redacted failure diagnostics,
 cancellation, retry, retained prior output, event replay, production-to-development
 restart and 390px layout. No model request was used by automated/browser tests.
+The browser check was repeated after the directory review and also passed unbound
+run blocking, one-time binding, saved-directory display/locking and run snapshot
+persistence. See the [updated browser result](fixtures/runtime-adapter/browser-result.json).
 
 GitHub CI runs the same checks on the task PR; the browser and real CLI evidence
 are separate opt-in acceptance checks.

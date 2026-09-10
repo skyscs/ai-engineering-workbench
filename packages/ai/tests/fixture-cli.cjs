@@ -1,5 +1,6 @@
 const fs = require('node:fs');
 const { spawn } = require('node:child_process');
+if (process.env.FIXTURE_ENV_CAPTURE) fs.appendFileSync(process.env.FIXTURE_ENV_CAPTURE, JSON.stringify({ args: process.argv.slice(2), configHome: process.env.CODEX_HOME }) + '\n');
 const args = process.argv.slice(2), mode = process.env.FIXTURE_MODE;
 if (args.includes('--version')) { console.log(process.env.FIXTURE_VERSION || 'codex-cli 0.154.0'); process.exit(); }
 if (args.includes('features')) { for (const name of ['apps','plugins','hooks','browser_use','computer_use','image_generation','multi_agent']) console.log(`${name} stable false`); process.exit(); }

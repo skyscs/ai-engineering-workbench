@@ -14,7 +14,7 @@ function fixture(t: TestContext, mode = 'success', timeoutMs = 10000) {
   const capture = path.join(root, 'capture.json'), pid = path.join(root, 'pid');
   const env = { PATH: process.env.PATH!, CODEX_HOME: config, FIXTURE_MODE: mode, FIXTURE_CAPTURE: capture, FIXTURE_PID: pid };
   const controller = new AbortController();
-  const request = { workspaceId:'w',taskId:'t',stageRunId:'r', connection:{executablePath:executable,configProfile:null}, profile:{modelIdentifier:'opaque-model',reasoningEffort:'medium'},
+  const request = { workspaceId:'w',taskId:'t',stageRunId:'r', connection:{executablePath:executable,configProfile:null,configHome:config}, profile:{modelIdentifier:'opaque-model',reasoningEffort:'medium'},
     workingDirectory:cwd,readRoots:[cwd],contextManifest:{},instructions:'Read selected text café.',outputSchemaVersion:'fixture-v1',outputSchema:{type:'object'},
     validateResult:(v: unknown) => !!v && typeof v === 'object' && 'summary' in v, accessMode:'read',signal:controller.signal } as unknown as AIRunRequest;
   t.after(() => rmSync(root, { recursive:true,force:true }));
@@ -90,4 +90,32 @@ test('cancellation owns descendants and takes precedence; concurrent requests ar
 test('timeout and pre-aborted requests stop without a successful result',async(t)=>{
   const f=fixture(t,'sleep',300); await assert.rejects(collect(f.runtime,f.request),failure('TIMEOUT'));
   const second=fixture(t); second.controller.abort(); await assert.rejects(collect(second.runtime,second.request),failure('CANCELLED')); assert.equal(existsSync(second.capture),false);
+});
+
+test('every CLI subprocess uses the saved home despite an inherited corporate home', async(t)=>{
+  const f=fixture(t), other=path.join(f.root,'corporate'), capture=path.join(f.root,'environment.jsonl');
+  mkdirSync(other); writeFileSync(path.join(other,'config.toml'),'');
+  const inherited={...f.env,CODEX_HOME:other,FIXTURE_ENV_CAPTURE:capture};
+  const events=await collect(new CodexCliRuntime({env:inherited}),f.request);
+  const rows=readFileSync(capture,'utf8').trim().split('\n').map(line=>JSON.parse(line) as {args:string[];configHome:string});
+  assert.ok(rows.length>=4); assert.ok(rows.every(row=>row.configHome===f.config));
+  assert.ok(rows.some(row=>row.args.includes('--version'))); assert.ok(rows.some(row=>row.args.includes('exec')));
+  assert.equal((events[0] as {data:{configHome:string}}).data.configHome,f.config);
+  assert.equal(inherited.CODEX_HOME,other);
+});
+
+test('unbound, missing, redirected homes and ambient credentials fail before any subprocess',async(t)=>{
+  const f=fixture(t), capture=path.join(f.root,'environment.jsonl'), env={...f.env,FIXTURE_ENV_CAPTURE:capture};
+  const selected=f.request.connection.configHome;
+  for(const home of [null,'relative',path.join(f.root,'missing')]) {
+    f.request.connection.configHome=home;
+    await assert.rejects(collect(new CodexCliRuntime({env}),f.request),failure(home && path.isAbsolute(home)?'CONFIGURATION_UNAVAILABLE':'CONFIGURATION_REQUIRED'));
+  }
+  const redirected=path.join(f.root,'redirected'); symlinkSync(f.config,redirected); f.request.connection.configHome=redirected;
+  await assert.rejects(collect(new CodexCliRuntime({env}),f.request),failure('CONFIGURATION_UNAVAILABLE'));
+  f.request.connection.configHome=selected;
+  await assert.rejects(collect(new CodexCliRuntime({env:{...env,CODEX_API_KEY:'never-persist-this-fixture'}}),f.request),error=>{
+    assert.doesNotMatch(JSON.stringify(error),/never-persist-this-fixture/); return failure('AMBIENT_AUTH_OVERRIDE')(error);
+  });
+  assert.equal(existsSync(capture),false);
 });

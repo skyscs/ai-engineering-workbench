@@ -3,7 +3,7 @@ import type { AIConnection, ModelProfile, RunFailure, RunInputSnapshot } from '@
 export const diagnosticLimit = 10 * 1024 ** 2;
 export const resultLimit = 2 * 1024 ** 2;
 export interface RuntimeMetadata {
-  version: string; profile: string | null; configurationFingerprint: string;
+  version: string; configHome: string; profile: string | null; configurationFingerprint: string;
   accessMode: 'read'; enabledMcpServers: 0;
 }
 export type AIEvent = { type: 'runtime'; data: RuntimeMetadata } |

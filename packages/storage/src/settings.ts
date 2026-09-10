@@ -1,5 +1,6 @@
 import { randomUUID } from 'node:crypto';
 import path from 'node:path';
+import { accessSync, constants, lstatSync, realpathSync } from 'node:fs';
 import type { DatabaseSync } from 'node:sqlite';
 import { assertBoundaryEditable, DomainError, parseConnection, parseModelProfile,
   parseWorkspaceCreate, parseWorkspaceRename, type AIConnection, type Workspace, type ModelProfile } from '@aew/core';
@@ -23,7 +24,7 @@ export interface SettingsRepository {
 const workspaceColumns = `id, name, ai_connection_id AS aiConnectionId,
   boundary_locked AS boundaryLocked, created_at AS createdAt, updated_at AS updatedAt`;
 const connectionColumns = `id, name, runtime_type AS runtimeType, executable_path AS executablePath,
-  config_profile AS configProfile, created_at AS createdAt, updated_at AS updatedAt`;
+  config_profile AS configProfile, config_home AS configHome, created_at AS createdAt, updated_at AS updatedAt`;
 const profileColumns = `id, ai_connection_id AS aiConnectionId, name, model_identifier AS modelIdentifier,
   reasoning_effort AS reasoningEffort, created_at AS createdAt, updated_at AS updatedAt`;
 
@@ -31,6 +32,17 @@ function executable(value: string | null): void {
   if (value !== null && !path.isAbsolute(value)) {
     throw new DomainError('INVALID_INPUT', 'executablePath must be an absolute path or null for the CLI on PATH.');
   }
+}
+
+function configurationHome(value: string | null): string | null {
+  if (value === null) return null;
+  if (!path.isAbsolute(value)) throw new DomainError('INVALID_INPUT', 'configHome must be an absolute directory path; environment variables and ~ are not expanded.');
+  try {
+    const canonical = realpathSync(value);
+    if (!lstatSync(canonical).isDirectory()) throw new Error('Not a directory');
+    accessSync(canonical, constants.R_OK | constants.X_OK);
+    return canonical;
+  } catch { throw new DomainError('INVALID_INPUT', 'The configuration directory must exist and be readable. No directory or credentials were created.'); }
 }
 
 export function createSettingsRepository(db: DatabaseSync, ensureOpen: () => void): SettingsRepository {
@@ -78,11 +90,12 @@ export function createSettingsRepository(db: DatabaseSync, ensureOpen: () => voi
     createWorkspace(value) {
       const input = parseWorkspaceCreate(value);
       executable(input.connection.executablePath);
+      const home = configurationHome(input.connection.configHome);
       return transaction(() => {
         const id = randomUUID(), connectionId = randomUUID(), now = new Date().toISOString();
-        db.prepare(`INSERT INTO ai_connections (id, name, runtime_type, executable_path, config_profile, created_at, updated_at)
-          VALUES (?, ?, 'codex-cli', ?, ?, ?, ?)`).run(connectionId, input.connection.name,
-          input.connection.executablePath, input.connection.configProfile, now, now);
+        db.prepare(`INSERT INTO ai_connections (id, name, runtime_type, executable_path, config_profile, config_home, created_at, updated_at)
+          VALUES (?, ?, 'codex-cli', ?, ?, ?, ?, ?)`).run(connectionId, input.connection.name,
+          input.connection.executablePath, input.connection.configProfile, home, now, now);
         db.prepare(`INSERT INTO workspaces (id, name, ai_connection_id, created_at, updated_at) VALUES (?, ?, ?, ?, ?)`)
           .run(id, input.name, connectionId, now, now);
         return detail(id);
@@ -113,8 +126,13 @@ export function createSettingsRepository(db: DatabaseSync, ensureOpen: () => voi
       if (input.executablePath !== previous.executablePath || input.configProfile !== previous.configProfile) {
         assertBoundaryEditable(owner.boundaryLocked);
       }
-      db.prepare('UPDATE ai_connections SET name = ?, executable_path = ?, config_profile = ?, updated_at = ? WHERE id = ?')
-        .run(input.name, input.executablePath, input.configProfile, new Date().toISOString(), owner.aiConnectionId);
+      const home = input.configHome === previous.configHome ? previous.configHome : configurationHome(input.configHome);
+      if (home !== previous.configHome && owner.boundaryLocked && (previous.configHome !== null ||
+        db.prepare("SELECT id FROM stage_runs WHERE ai_connection_id = ? AND (stage = 'investigation' OR status IN ('queued', 'running')) LIMIT 1").get(owner.aiConnectionId))) {
+        throw new DomainError('BOUNDARY_LOCKED', 'The configuration directory is locked. A workspace with prior AI runs cannot adopt a new directory; create another workspace.');
+      }
+      db.prepare('UPDATE ai_connections SET name = ?, executable_path = ?, config_profile = ?, config_home = ?, updated_at = ? WHERE id = ?')
+        .run(input.name, input.executablePath, input.configProfile, home, new Date().toISOString(), owner.aiConnectionId);
       return connection(id);
     },
     createModelProfile(id, value) {

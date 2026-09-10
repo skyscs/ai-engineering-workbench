@@ -5,6 +5,9 @@
 Accepted for Task 008 implementation, 2026-09-10. Verification is recorded in
 [development status](../development-status.md).
 
+The connection directory selection and migration rules were tightened during
+review by [ADR 0012](0012-explicit-codex-configuration-home.md).
+
 ## Decision
 
 Implement the provider-neutral `AIRuntime` async event interface, `CodexCliRuntime`

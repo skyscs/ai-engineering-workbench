@@ -1,22 +1,18 @@
 import { useEffect, useState } from 'react';
-import type { ModelProfile, RunEvent, RuntimeDetail, StageRun, TaskDetail, WorkspaceDetail } from '@aew/shared';
+import type { RunEvent, RuntimeDetail, StageRun, TaskDetail, WorkspaceDetail } from '@aew/shared';
 import { api } from './api';
 
-export function Runtime({ detail, csrf, disabled, update }: {
-  detail: TaskDetail; csrf: string | null; disabled: boolean; update(value: TaskDetail): void;
+export function Runtime({ detail, settings, csrf, disabled, update }: {
+  detail: TaskDetail; settings: WorkspaceDetail; csrf: string | null; disabled: boolean; update(value: TaskDetail): void;
 }) {
   const base = `/workspaces/${detail.task.workspaceId}/tasks/${detail.task.id}`;
-  const [profiles, setProfiles] = useState<ModelProfile[]>([]), [profile, setProfile] = useState('');
+  const connection = settings.connection, profiles = settings.modelProfiles;
+  const [profile, setProfile] = useState('');
   const [run, setRun] = useState<RuntimeDetail | null>(null), [events, setEvents] = useState<RunEvent[]>([]);
   const [error, setError] = useState(''), [busy, setBusy] = useState(false);
   const latest = detail.latestRun?.stage === 'investigation' ? detail.latestRun : null;
   const active = !!detail.latestRun && ['queued', 'running'].includes(detail.latestRun.status);
   const headers = { 'content-type': 'application/json', 'x-aew-csrf': csrf ?? '' };
-  useEffect(() => {
-    let disposed = false;
-    void api<WorkspaceDetail>(`/workspaces/${detail.task.workspaceId}`).then((value) => { if (!disposed) setProfiles(value.modelProfiles); }).catch((e: Error) => { if (!disposed) setError(e.message); });
-    return () => { disposed = true; };
-  }, [detail.task.workspaceId, csrf]);
   useEffect(() => {
     let disposed = false;
     setEvents([]); setRun(null);
@@ -50,12 +46,14 @@ export function Runtime({ detail, csrf, disabled, update }: {
   }
   return <section aria-label="AI runtime" className="runtime-section"><h3>AI runtime preview</h3>
     <p className="hint">Run a preliminary read-only investigation using this workspace's Codex connection. Selected text ranges are supplied to the model; excluded files are not supplied. The CLI may send data to its configured provider. Verified evidence reports are planned for the next iteration.</p>
+    <p>Connection: {connection?.name ?? 'Loading'}<br />Configuration directory: <code>{connection?.configHome ?? 'Not selected — save it in AI connection settings first.'}</code><br />CLI profile: {connection?.configProfile ?? 'Base configuration'}</p>
     <label>Model profile<select value={profile} disabled={disabled || busy || active} onChange={(e) => setProfile(e.target.value)}>
       <option value="">Use CLI model defaults</option>{profiles.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
     </select></label>
-    <button disabled={disabled || busy || active || detail.worktrees.some((r) => r.status !== 'ready')} onClick={() => void start()}>Run preview</button>
+    <button disabled={disabled || busy || active || !connection?.configHome || detail.worktrees.some((r) => r.status !== 'ready')} onClick={() => void start()}>Run preview</button>
     {error && <p role="alert" className="error">{error}</p>}
     {latest && <><p>Run {latest.id}: {run?.run.status ?? latest.status}</p>
+      <p>Recorded configuration directory: <code>{latest.inputSnapshot.connection.configHome ?? 'Not recorded by the earlier application version'}</code></p>
       <p>Requested model: {latest.inputSnapshot.profile?.modelIdentifier ?? 'CLI default'} · effort: {latest.inputSnapshot.profile?.reasoningEffort ?? 'CLI default'}</p>
       {['queued', 'running'].includes(run?.run.status ?? latest.status) && <button className="secondary" disabled={busy} onClick={() => {
         setBusy(true); void api(`${base}/runtime-runs/${latest.id}/cancel`, { method: 'POST', headers, body: '{}' }).catch((e: Error) => setError(e.message)).finally(() => setBusy(false));

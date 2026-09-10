@@ -14,6 +14,7 @@ export interface ConnectionInput {
   name: string;
   executablePath: string | null;
   configProfile: string | null;
+  configHome: string | null;
 }
 export interface AIConnection extends ConnectionInput {
   id: string;
@@ -117,13 +118,13 @@ export function parseWorkspaceRename(value: unknown): { name: string } {
   return { name: text(input.name, 'name', 120) };
 }
 export function parseConnection(value: unknown): ConnectionInput {
-  const input = object(value, ['name', 'executablePath', 'configProfile']);
+  const input = object(value, ['name', 'executablePath', 'configProfile', 'configHome']);
   const profile = optionalText(input.configProfile, 'configProfile', 128);
   if (profile !== null && !/^[A-Za-z0-9_-]+$/.test(profile)) {
     throw new DomainError('INVALID_INPUT', 'Use a CLI profile name containing letters, numbers, underscores or hyphens.');
   }
   return { name: text(input.name, 'name', 120),
-    executablePath: optionalText(input.executablePath, 'executablePath', 4096), configProfile: profile };
+    executablePath: optionalText(input.executablePath, 'executablePath', 4096), configProfile: profile, configHome: optionalText(input.configHome, 'configHome', 4096) };
 }
 export function parseWorkspaceCreate(value: unknown): WorkspaceInput {
   const input = object(value, ['name', 'connection']);

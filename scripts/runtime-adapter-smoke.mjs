@@ -10,6 +10,7 @@ import { WorktreeService } from '../apps/daemon/dist/worktree-service.js';
 import { RuntimeService, previewSchema, validatePreview } from '../apps/daemon/dist/runtime-service.js';
 
 // Explicitly opt in: the real scenario can consume the selected account's allowance.
+if (!process.env.AEW_CODEX_HOME) throw new Error('Set AEW_CODEX_HOME explicitly to the intended configuration directory. No inherited default is used.');
 const preflightOnly = process.argv.includes('--preflight');
 if (!preflightOnly && process.env.AEW_REAL_RUNTIME !== '1') throw new Error('Set AEW_REAL_RUNTIME=1 to run the selected real CLI connection.');
 const fixture = await createFixture(), baseline = await snapshot(fixture);
@@ -27,7 +28,7 @@ async function terminal(id) {
 }
 let workspaceId, task;
 try {
-  workspaceId = storage.settings.createWorkspace({ name: 'Runtime acceptance', connection: { name: 'Current CLI', executablePath: process.env.AEW_CODEX_EXECUTABLE || null } }).workspace.id;
+  workspaceId = storage.settings.createWorkspace({ name: 'Runtime acceptance', connection: { name: 'Explicit CLI connection', configHome: process.env.AEW_CODEX_HOME, executablePath: process.env.AEW_CODEX_EXECUTABLE || null } }).workspace.id;
   const profile = storage.settings.createModelProfile(workspaceId, { name: 'Selected Terra', modelIdentifier: 'gpt-5.6-terra', reasoningEffort: 'medium' });
   const repositoryIds = [];
   for (const [name, source] of [['Client', fixture.client], ['Service', fixture.service]]) repositoryIds.push((await repos.register(workspaceId, { name, source })).id);

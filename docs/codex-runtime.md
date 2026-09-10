@@ -7,7 +7,8 @@ root-cause report.
 
 ## Use
 
-1. Configure the workspace's existing Codex connection and optional model profiles.
+1. Configure the workspace's existing Codex connection, explicitly save its
+   configuration directory and optionally add model profiles.
 2. Create a task, import artifacts and save the exact text ranges to include.
 3. Prepare every selected repository worktree.
 4. In **AI runtime preview**, choose a model profile or explicitly use CLI defaults,
@@ -36,12 +37,27 @@ CLI versions fail closed until compatibility evidence is added. The executable i
 the configured path or `codex` from the daemon's PATH. Models remain opaque IDs;
 Workbench does not hardcode a public model list or choose another provider.
 
-Existing authentication stays in Codex. A named selector requires a readable,
-regular `$CODEX_HOME/<name>.config.toml` file, with the CLI home defaulting to
-`~/.codex`. Missing, linked or malformed profiles fail before a model invocation.
-No fallback to the default connection is attempted. A verified launch does not
-certify corporate account identity; connection settings continue to show that
-identity has not been verified.
+Existing authentication stays in Codex. Every connection must explicitly save
+`configHome`, an existing absolute configuration directory. All diagnostic and model
+subprocesses receive that path as `CODEX_HOME`; the daemon's inherited value and
+the CLI's usual default are never used as fallbacks. For example, a personal setup
+may use `/home/developer/.codex-plus` with the ordinary `codex` executable. The
+executable's name alone does not select or identify an account.
+
+A named selector requires a readable, regular `<configHome>/<name>.config.toml`
+file. A missing or redirected directory, or a missing, linked or malformed profile,
+fails before model invocation. The preview UI displays the saved directory and
+records it in new run snapshots and verified launch metadata. Existing settings
+upgrade with no selected directory; binding rules are in the
+[settings guide](workspace-settings.md).
+
+The adapter rejects nonempty inherited `OPENAI_API_KEY`, `CODEX_API_KEY`,
+`OPENAI_BASE_URL`, `OPENAI_ORG_ID`, `OPENAI_ORGANIZATION` and `OPENAI_PROJECT_ID`.
+Remove these from the daemon environment and configure the intended connection
+through Codex. This conservative check prevents known ambient overrides; it does
+not certify account identity or audit every custom provider variable or wrapper.
+Trusted executables and external configuration still determine authentication.
+Workbench never reads authentication files or claims verified account identity.
 
 The adapter disables apps, plugins, hooks, browser/computer/image tools, multi-agent
 execution, web search and external notifications. Enabled configured MCP servers
@@ -95,18 +111,21 @@ AEW_SMOKE_RUNTIME=1 node scripts/workspace-smoke.mjs
 The browser scenario requires Chrome and a free port 4242. It uses a synthetic
 executable through the production adapter, an isolated CLI home/data directory,
 synthetic artifacts and a fresh browser profile. It exercises preview, error,
-cancel, retry, persisted replay, restart and narrow layout.
+cancel, retry, persisted replay, restart and narrow layout. It also verifies that
+an unset directory blocks the run, one-time binding enables it, and the saved
+directory is displayed, frozen and retained in run snapshots.
 
 After building, local CLI diagnostics and the opt-in real acceptance scenario are:
 
 ```bash
 node scripts/runtime-adapter-negative.mjs
-node scripts/runtime-adapter-smoke.mjs --preflight
-AEW_REAL_RUNTIME=1 node scripts/runtime-adapter-smoke.mjs
+AEW_CODEX_HOME=/absolute/selected/config node scripts/runtime-adapter-smoke.mjs --preflight
+AEW_CODEX_HOME=/absolute/selected/config AEW_REAL_RUNTIME=1 node scripts/runtime-adapter-smoke.mjs
 ```
 
-The real smoke uses the user's selected default connection, `gpt-5.6-terra` and
-`medium`, and may consume that account's allowance. `AEW_CODEX_EXECUTABLE` can select
+The real smoke requires an explicitly selected configuration directory, uses its
+base configuration with `gpt-5.6-terra` and `medium`, and may consume that account's
+allowance. `AEW_CODEX_EXECUTABLE` can select
 an executable explicitly. It creates a fresh two-repository timeout regression,
 imports the incident log, prepares worktrees and invokes RuntimeService. Sources
 and Git state must remain unchanged. Temporary output stays in the printed fixture

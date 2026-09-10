@@ -3,7 +3,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { StringDecoder } from 'node:string_decoder';
 import { execute } from './process.js';
-import { configurationState, preflight, restrictionArgs } from './preflight.js';
+import { configurationState, preflight, restrictionArgs, runtimeEnvironment } from './preflight.js';
 import { diagnosticLimit, resultLimit, redact, RuntimeError, type AIEvent, type AIRuntime, type AIRunRequest } from './types.js';
 
 export class CodexCliRuntime implements AIRuntime {
@@ -23,6 +23,7 @@ export class CodexCliRuntime implements AIRuntime {
     let directory: string | undefined, pending: Promise<void> | undefined;
     try {
       if (request.signal.aborted) throw new RuntimeError('CANCELLED', 'The run was cancelled.');
+      Object.assign(env, runtimeEnvironment(input, env));
       const metadata = await preflight(input, env);
       yield { type: 'runtime', data: metadata }; // Consumer persists verified metadata before exec.
       if (await configurationState(input, env) !== metadata.configurationFingerprint) throw new RuntimeError('CONFIGURATION_CHANGED', 'CLI configuration changed before execution.');

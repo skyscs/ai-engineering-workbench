@@ -139,3 +139,53 @@ test('upgrade from Task 002 preserves its migration record and creates usable se
     finally { check.close(); }
   } finally { upgraded.close(); }
 });
+
+test('configuration directory is canonical, explicit and locked after task boundary creation',async(t)=>{
+  const f=fixture(t), fs=await import('node:fs');
+  const home=path.join(f.root,'personal'), alias=path.join(f.root,'alias'), other=path.join(f.root,'corporate');
+  fs.mkdirSync(home); fs.mkdirSync(other); fs.symlinkSync(home,alias);
+  for(const configHome of ['relative','~/personal',path.join(f.root,'missing'),f.storage.paths.database]) {
+    assert.throws(()=>f.settings.createWorkspace({name:'Rejected',connection:{name:'CLI',configHome}}),{code:'INVALID_INPUT'});
+  }
+  const saved=f.settings.createWorkspace({name:'Personal',connection:{name:'CLI',configHome:alias}});
+  assert.equal(saved.connection.configHome,home);
+  f.settings.lockWorkspaceBoundary(saved.workspace.id);
+  const input={name:'Renamed',configHome:home,configProfile:null,executablePath:null};
+  f.settings.updateConnection(saved.workspace.id,input);
+  assert.throws(()=>f.settings.updateConnection(saved.workspace.id,{...input,configHome:other}),{code:'BOUNDARY_LOCKED'});
+  assert.throws(()=>f.settings.updateConnection(saved.workspace.id,{...input,configHome:null}),{code:'BOUNDARY_LOCKED'});
+  const db=new DatabaseSync(f.storage.paths.database);
+  try { assert.throws(()=>db.prepare('UPDATE ai_connections SET config_home = ? WHERE id = ?').run(other,saved.connection.id),/workspace_boundary_locked/); }
+  finally { db.close(); }
+  f.storage.close(); const reopened=openStorage({dataRoot:f.root});
+  try { assert.equal(reopened.settings.getWorkspace(saved.workspace.id).connection.configHome,home); } finally { reopened.close(); }
+});
+
+test('schema 7 migration never infers a home or rewrites history; legacy AI history blocks binding',t=>{
+  const root=mkdtempSync(path.join(tmpdir(),'aew-home-upgrade-'));
+  t.after(()=>rmSync(root,{recursive:true,force:true}));
+  const db=new DatabaseSync(path.join(root,'workbench.db')); migrate(db,migrations.slice(0,7));
+  const history=db.prepare('SELECT * FROM schema_migrations').all();
+  for(const id of ['unused','used']) {
+    db.prepare("INSERT INTO ai_connections (id,name,runtime_type,created_at,updated_at) VALUES (?,?,'codex-cli','now','now')").run(id,id);
+    db.prepare("INSERT INTO workspaces (id,name,ai_connection_id,boundary_locked,created_at,updated_at) VALUES (?,?,?,1,'now','now')").run(id,id,id);
+  }
+  db.exec("INSERT INTO tasks (id,workspace_id,title,description,created_at,updated_at) VALUES ('task','used','Old task','Context','now','now')");
+  const snapshot=JSON.stringify({connection:{configProfile:null}});
+  db.prepare("INSERT INTO stage_runs (id,task_id,ai_connection_id,stage,status,input_snapshot,created_at) VALUES ('run','task','used','investigation','failed',?,'now')").run(snapshot);
+  db.close();
+  const storage=openStorage({dataRoot:root});
+  try {
+    assert.equal(storage.settings.getWorkspace('unused').connection.configHome,null);
+    assert.equal(storage.settings.getWorkspace('used').connection.configHome,null);
+    storage.settings.updateConnection('unused',{name:'Bound explicitly',configHome:root});
+    assert.equal(storage.settings.getWorkspace('unused').connection.configHome,root);
+    assert.throws(()=>storage.settings.updateConnection('used',{name:'Forbidden',configHome:root}),{code:'BOUNDARY_LOCKED'});
+    const check=new DatabaseSync(storage.paths.database);
+    try {
+      assert.deepEqual(check.prepare('SELECT * FROM schema_migrations WHERE version <= 7').all(),history);
+      assert.equal(check.prepare("SELECT input_snapshot FROM stage_runs WHERE id = 'run'").get()!.input_snapshot,snapshot);
+      assert.throws(()=>check.prepare("UPDATE ai_connections SET config_home = ? WHERE id = 'used'").run(root),/workspace_boundary_locked/);
+    } finally { check.close(); }
+  } finally { storage.close(); }
+});

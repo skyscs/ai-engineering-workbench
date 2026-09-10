@@ -36,5 +36,9 @@
   "priorRunPreserved": "passed",
   "runtimeRestartPersistence": "passed",
   "persistedEventReplay": "passed",
-  "fixtureRuntimeInvocations": 4
+  "fixtureRuntimeInvocations": 4,
+  "explicitConfigurationDirectory": "passed",
+  "unboundRuntimeBlocked": "passed",
+  "oneTimeDirectoryBinding": "passed",
+  "savedDirectoryDisplayedAndLocked": "passed"
 }

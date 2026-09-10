@@ -259,11 +259,20 @@ try {
     const section = 'section[aria-label="AI runtime"]';
     const taskRoute = `/api/workspaces/${before.workspace.id}/tasks/${taskSnapshot.task.id}`;
     const snapshot = () => evaluate(`(async () => await (await fetch('${taskRoute}')).json())()`);
+    assert.equal(await evaluate(`document.querySelector('${section} > button').disabled`), true);
+    await fill('form[aria-label="Edit connection"] [name=configHome]', path.join(fixture, 'cli-config'));
+    await click('form[aria-label="Edit connection"] button[type=submit]'); await wait(saved);
+    await wait(`!document.querySelector('${section} > button').disabled`);
+    assert.ok(await evaluate(`document.querySelector('${section}').textContent.includes(${JSON.stringify(path.join(fixture, 'cli-config'))})`));
+    before = await evaluate(`(async () => await (await fetch('/api/workspaces/${before.workspace.id}')).json())()`);
+    assert.equal(before.connection.configHome, path.join(fixture, 'cli-config'));
+    assert.equal(await evaluate(`document.querySelector('form[aria-label="Edit connection"] [name=configHome]').disabled`), true);
     await fill(`${section} select`, before.modelProfiles[0].id);
     await click(`${section} > button`);
     await wait(`document.querySelector('${section}').textContent.includes('Fixture café investigation')`);
     const succeeded = (await snapshot()).latestRun;
     assert.equal(succeeded.modelProfileId, before.modelProfiles[0].id);
+    assert.equal(succeeded.inputSnapshot.connection.configHome, before.connection.configHome);
     await writeFile(runtimeMode, 'failure'); await click(`${section} > button`);
     await wait(`document.querySelector('${section}').textContent.includes('AUTHENTICATION_REQUIRED')`);
     assert.doesNotMatch(await evaluate(`document.querySelector('${section}').textContent`), /sk-secretfixture|user:password/);
@@ -322,7 +331,7 @@ try {
   if (withSync) Object.assign(result, { noRemoteRefresh: 'passed', fetchAndPrune: 'passed', syncFailureDiagnostics: 'passed', lastSuccessPreserved: 'passed', syncRestartPersistence: 'passed' });
   if (withTasks) Object.assign(result, { twoRepositoryTask: 'passed', browserFileUpload: 'passed', sourceRemovalDownload: 'passed', explicitTextContext: 'passed', unsupportedFileExclusion: 'passed', taskRestartPersistence: 'passed', boundaryLock: 'passed' });
   if (withWorktrees) Object.assign(result, { twoRepositoryPreparation: 'passed', baseRefFailureAndRetry: 'passed', dirtyCleanupRejected: 'passed', cleanCleanup: 'passed', retainedPin: 'passed', recreatePinnedRevision: 'passed', worktreeRestartPersistence: 'passed' });
-  if (withRuntime) Object.assign(result, { runtimePreview: 'passed', selectedModelProfile: 'passed', runtimeFailureDiagnostics: 'passed', runtimeCancellation: 'passed', runtimeRetry: 'passed', priorRunPreserved: 'passed', runtimeRestartPersistence: 'passed', persistedEventReplay: 'passed', fixtureRuntimeInvocations: 4 });
+  if (withRuntime) Object.assign(result, { runtimePreview: 'passed', selectedModelProfile: 'passed', runtimeFailureDiagnostics: 'passed', runtimeCancellation: 'passed', runtimeRetry: 'passed', priorRunPreserved: 'passed', runtimeRestartPersistence: 'passed', persistedEventReplay: 'passed', fixtureRuntimeInvocations: 4, explicitConfigurationDirectory: 'passed', unboundRuntimeBlocked: 'passed', oneTimeDirectoryBinding: 'passed', savedDirectoryDisplayedAndLocked: 'passed' });
   await writeFile(path.join(fixture, 'result.json'), JSON.stringify(result, null, 2));
   console.log(JSON.stringify({ fixture, ...result }, null, 2));
 } finally {

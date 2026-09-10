@@ -31,6 +31,11 @@ Do not claim exact provider-payload auditing from the CLI runtime.
 
 ## Review additions
 
+- Save an explicit canonical configuration directory per connection and pass it as
+  `CODEX_HOME` for all diagnostics and model execution. Reject unbound/redirected
+  homes and known ambient authentication overrides without fallback. Migrate old
+  settings as unbound; allow one-time binding only without AI history or active
+  StageRuns. Preserve snapshots and show the directory before launch. See ADR 0012.
 - Consume Task 000 compatibility notes and Task 006 StageRun persistence. Reject
   unsupported CLI/configurations; never silently retry with broader permissions.
 - Preflight explicitly selected profiles before spawning: CLI 0.153.4 accepted a

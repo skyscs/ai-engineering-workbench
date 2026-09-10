@@ -176,6 +176,11 @@ Choose **New workspace** in the UI, enter a name and configure its owned Codex C
 connection. Then add model profiles within that connection. Settings survive a
 daemon restart; use **Refresh** to reconnect. Saving settings does not execute
 Codex or verify authentication, provider identity or model availability.
+Explicitly save the intended personal or corporate configuration directory before
+running AI. The connection pins that directory as `CODEX_HOME` for every CLI
+subprocess; it never falls back to the daemon's environment or the CLI default.
+Old connections remain unbound until explicitly configured under the settings
+guide's migration rules.
 
 See the [settings guide and API](docs/workspace-settings.md) for field semantics,
 ownership rules and the optional `node scripts/workspace-smoke.mjs` browser check.

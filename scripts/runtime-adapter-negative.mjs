@@ -11,7 +11,7 @@ const root = await mkdtemp(path.join(tmpdir(), 'aew-adapter-negative-')), home =
 await mkdir(home); await mkdir(cwd);
 await writeFile(path.join(home, 'config.toml'), 'cli_auth_credentials_store="file"\n');
 const env = { PATH: process.env.PATH, CODEX_HOME: home };
-const request = { connection: { executablePath: process.env.AEW_CODEX_EXECUTABLE || null, configProfile: null }, workingDirectory: cwd, readRoots: [cwd], accessMode: 'read', signal: new AbortController().signal };
+const request = { connection: { executablePath: process.env.AEW_CODEX_EXECUTABLE || null, configProfile: null, configHome: home }, workingDirectory: cwd, readRoots: [cwd], accessMode: 'read', signal: new AbortController().signal };
 const executable = request.connection.executablePath ?? 'codex', exec = promisify(execFile);
 const diagnostic = async args => {
   try { return { ...(await exec(executable, args, { cwd, env, timeout: 10000 })), exitCode: 0 }; }

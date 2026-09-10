@@ -21,7 +21,7 @@ async function fixture(t: TestContext, runtime: AIRuntime = new FakeRuntime(good
   const storage = openStorage({ dataRoot: path.join(root, 'data') }), client = new GitClient({ env });
   const repositories = new RepositoryService(storage, client), service = new WorktreeService(storage, client);
   t.after(async () => { await runtimeService.close(); await service.close(); await repositories.close(); storage.close(); rmSync(root, { recursive: true, force: true }); });
-  const workspaceId = storage.settings.createWorkspace({ name: 'Fixture', connection: { name: 'CLI' } }).workspace.id;
+  const workspaceId = storage.settings.createWorkspace({ name: 'Fixture', connection: { name: 'CLI', configHome: root } }).workspace.id;
   const ids: string[] = [];
   for (let index = 0; index < count; index++) {
     const source = path.join(root, `source ${index}`); mkdirSync(source);
@@ -55,7 +55,7 @@ async function finished(f: { storage: ReturnType<typeof openStorage>; workspaceI
 }
 
 const preview = { summary: 'Synthetic preliminary result.', findings: ['The selected text supports this finding.'], unresolvedQuestions: [] };
-const goodEvents = [{ type: 'runtime' as const, data: { version: 'fake-v1', profile: null, configurationFingerprint: 'fixture', accessMode: 'read' as const, enabledMcpServers: 0 as const } },
+const goodEvents = [{ type: 'runtime' as const, data: { version: 'fake-v1', configHome: '/fixture', profile: null, configurationFingerprint: 'fixture', accessMode: 'read' as const, enabledMcpServers: 0 as const } },
   { type: 'progress' as const, data: { message: 'Reading fixture history.' } }, { type: 'result' as const, data: preview }];
 
 test('runtime API enforces session, CSRF, ownership, selected profiles and immutable context before publishing a preview', async(t)=>{
@@ -145,4 +145,20 @@ test('persisted event limits, immutable metadata and interruption survive restar
     assert.deepEqual(reopened.tasks.journal.events(f.workspaceId,f.task.id,run.id),before);
     assert.equal(reopened.tasks.journal.detail(f.workspaceId,f.task.id,run.id).result,null);
   } finally { reopened.close(); }
+});
+
+test('unbound tasks cannot start AI and explicit home binding is blocked during preparation',async(t)=>{
+  const f=await fixture(t), storage=f.storage;
+  const owner=storage.settings.createWorkspace({name:'Unbound',connection:{name:'Choose a home'}}).workspace.id;
+  const source=path.join(f.root,'source 0');
+  const repo=await f.repositories.register(owner,{name:'Source',source});
+  const task=storage.tasks.create(owner,{title:'Unbound task',description:'Synthetic context.',repositoryIds:[repo.id]});
+  const run=storage.tasks.createRun(owner,task.id,{stage:'context_preparation',modelProfileId:null,promptVersion:'fixture',schemaVersion:'fixture'});
+  assert.throws(()=>storage.settings.updateConnection(owner,{name:'Premature binding',configHome:f.root}),{code:'BOUNDARY_LOCKED'});
+  storage.tasks.transitionRun(owner,task.id,run.id,'cancelled');
+  assert.equal((await f.request(`/api/workspaces/${owner}/tasks/${task.id}/runtime-runs`,'POST',{})).status,409);
+  assert.equal(storage.tasks.detail(owner,task.id).latestRun!.id,run.id);
+  const response=await f.request(`/api/workspaces/${owner}/connection`,'PUT',{name:'Explicit home',configHome:f.root});
+  assert.equal(response.status,200);
+  assert.equal(storage.settings.getWorkspace(owner).connection.configHome,f.root);
 });

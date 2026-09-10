@@ -1,7 +1,6 @@
 import { createHash } from 'node:crypto';
 import { constants } from 'node:fs';
 import { lstat, open, realpath } from 'node:fs/promises';
-import { homedir } from 'node:os';
 import path from 'node:path';
 import { execute } from './process.js';
 import { RuntimeError, redact, type AIRunRequest, type RuntimeMetadata } from './types.js';
@@ -13,9 +12,22 @@ export const restrictionArgs = ['-c', 'web_search="disabled"', '-c', 'notify=[]'
 async function stat(file: string) {
   try { return await lstat(file); } catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT') return null; throw error; }
 }
+/** Construct the child environment without inheriting a CLI home or known account overrides. */
+export function runtimeEnvironment(request: AIRunRequest, inherited: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
+  const home = request.connection.configHome;
+  if (!home || !path.isAbsolute(home)) throw new RuntimeError('CONFIGURATION_REQUIRED', 'Choose an explicit absolute connection configuration directory before running Codex.');
+  const overrides = ['OPENAI_API_KEY', 'CODEX_API_KEY', 'OPENAI_BASE_URL', 'OPENAI_ORG_ID', 'OPENAI_ORGANIZATION', 'OPENAI_PROJECT_ID'];
+  if (overrides.some(key => !!inherited[key])) throw new RuntimeError('AMBIENT_AUTH_OVERRIDE', 'Remove inherited OpenAI credential or routing overrides from the daemon environment before using a saved connection. No credential values were logged or stored.');
+  return { ...inherited, CODEX_HOME: home };
+}
+
 /** Fingerprint metadata only: never parse or copy auth/config contents. */
 export async function configurationState(request: AIRunRequest, env: NodeJS.ProcessEnv) {
-  const home = await realpath(env.CODEX_HOME || path.join(homedir(), '.codex'));
+  const home = request.connection.configHome;
+  if (!home || env.CODEX_HOME !== home) throw new RuntimeError('CONFIGURATION_REQUIRED', 'The selected configuration directory must be explicitly bound to the child environment.');
+  try {
+    if (await realpath(home) !== home || !(await lstat(home)).isDirectory()) throw new Error('Redirected directory');
+  } catch { throw new RuntimeError('CONFIGURATION_UNAVAILABLE', 'The saved configuration directory is missing or redirected. No fallback was attempted.'); }
   const profile = request.connection.configProfile;
   if (profile !== null && !/^[A-Za-z0-9_-]{1,128}$/.test(profile)) throw new RuntimeError('INVALID_PROFILE', 'Invalid CLI profile selector.');
   const records: unknown[] = [];
@@ -44,6 +56,8 @@ export async function configurationState(request: AIRunRequest, env: NodeJS.Proc
 }
 export async function preflight(request: AIRunRequest, env: NodeJS.ProcessEnv): Promise<RuntimeMetadata> {
   if (process.platform !== 'linux' || request.accessMode !== 'read') throw new RuntimeError('UNSUPPORTED_POLICY', 'Only Linux read-only execution is verified.');
+  env = runtimeEnvironment(request, env);
+  await configurationState(request, env); // Reject a missing or redirected home before any CLI subprocess.
   const executable = request.connection.executablePath ?? 'codex';
   if (!executable || executable.startsWith('-') || executable.includes('\0')) throw new RuntimeError('CLI_UNAVAILABLE', 'Invalid Codex executable.');
   const diagnostic = async (args: string[]) => {
@@ -66,5 +80,5 @@ export async function preflight(request: AIRunRequest, env: NodeJS.ProcessEnv): 
   try { entries = JSON.parse(output); } catch { throw new RuntimeError('CONFIGURATION_FAILED', 'Invalid MCP diagnostics.'); }
   if (!Array.isArray(entries) || entries.some((entry: unknown) => !entry || typeof entry !== 'object' || !('enabled' in entry) || entry.enabled !== false)) throw new RuntimeError('UNSUPPORTED_MCP', 'Enabled MCP servers are unsupported for read-only investigation.');
   if (await configurationState(request, env) !== fingerprint) throw new RuntimeError('CONFIGURATION_CHANGED', 'CLI configuration changed during preflight. Start a new run after reviewing it.');
-  return { version, profile: request.connection.configProfile, configurationFingerprint: fingerprint, accessMode: 'read', enabledMcpServers: 0 };
+  return { version, configHome: request.connection.configHome!, profile: request.connection.configProfile, configurationFingerprint: fingerprint, accessMode: 'read', enabledMcpServers: 0 };
 }
