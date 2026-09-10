@@ -82,6 +82,15 @@ export const migrations: readonly Migration[] = [{ version: 1, name: 'storage_fo
   CREATE TRIGGER repository_workspace_immutable BEFORE UPDATE OF workspace_id ON repositories
     WHEN NEW.workspace_id != OLD.workspace_id
     BEGIN SELECT RAISE(ABORT, 'repository_workspace_immutable'); END;
+` }, { version: 4, name: 'repository_synchronization', sql: `
+  ALTER TABLE repositories ADD COLUMN sync_status TEXT NOT NULL DEFAULT 'idle'
+    CHECK(sync_status IN ('idle', 'running', 'succeeded', 'failed', 'no_remote'));
+  ALTER TABLE repositories ADD COLUMN last_sync_attempt_at TEXT;
+  ALTER TABLE repositories ADD COLUMN last_sync_completed_at TEXT;
+  ALTER TABLE repositories ADD COLUMN last_fetched_at TEXT;
+  ALTER TABLE repositories ADD COLUMN sync_error_json TEXT;
+  CREATE UNIQUE INDEX one_sync_per_common_git_dir ON repositories(common_git_dir)
+    WHERE sync_status = 'running';
 ` }];
 
 const checksum = (migration: Migration) => createHash('sha256').update(migration.sql).digest('hex');

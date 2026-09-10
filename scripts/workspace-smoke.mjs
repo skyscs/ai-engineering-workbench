@@ -8,7 +8,8 @@ import { fileURLToPath } from 'node:url';
 // Opt-in Linux browser acceptance. Requires a build, Chrome and a free port 4242.
 // CDP reference: https://chromedevtools.github.io/devtools-protocol/
 const fixture = await mkdtemp(path.join(tmpdir(), 'aew-workspace-smoke-'));
-const withRepositories = process.env.AEW_SMOKE_REPOSITORIES === '1';
+const withSync = process.env.AEW_SMOKE_SYNC === '1';
+const withRepositories = process.env.AEW_SMOKE_REPOSITORIES === '1' || withSync;
 const daemonDir = fileURLToPath(new URL('../apps/daemon/', import.meta.url));
 const children = [];
 function start(command, args, cwd, env = process.env) {
@@ -134,11 +135,13 @@ try {
     await writeFile(path.join(source, 'file'), 'staged'); git(['add', '.']); await writeFile(path.join(source, 'file'), 'dirty');
     const indexBefore = await readFile(path.join(source, '.git/index'));
     const headBefore = await readFile(path.join(source, '.git/HEAD'));
+    const remote = path.join(fixture, 'upstream.git');
+    if (withSync) { git(['clone', '--bare', source, remote]); git(['--git-dir', remote, 'update-ref', 'refs/heads/obsolete', 'HEAD']); }
     await fill('[name=repositoryName]', 'Existing fixture'); await fill('[name=repositorySource]', source);
     await click('form[aria-label="Add repository"] button[type=submit]');
     await wait("document.querySelector('.repository-list').textContent.includes('Existing fixture') && " + usable);
     await fill('[name=repositoryMode]', 'clone');
-    await fill('[name=repositoryName]', 'Managed fixture'); await fill('[name=repositorySource]', source);
+    await fill('[name=repositoryName]', 'Managed fixture'); await fill('[name=repositorySource]', withSync ? remote : source);
     await click('form[aria-label="Add repository"] button[type=submit]');
     await wait("document.querySelectorAll('.repository-list li').length === 2 && !document.querySelector('.repository-list').textContent.includes('cloning') && " + usable);
     await fill('[name=repositoryName]', 'Failed fixture'); await fill('[name=repositorySource]', source); await fill('[name=repositoryBaseRef]', 'missing');
@@ -154,6 +157,28 @@ try {
     assert.deepEqual(await readFile(path.join(source, '.git/HEAD')), headBefore);
     assert.equal(await readFile(path.join(source, 'file'), 'utf8'), 'dirty');
     await evaluate("document.querySelectorAll('.repository-list details').forEach(item => item.open = true)");
+    if (withSync) {
+      await click('.repository-list li:nth-child(1) .sync-controls button');
+      await wait("document.querySelector('.repository-list li:nth-child(1)').textContent.includes('No remote — local metadata refreshed')");
+      const nextSha = git(['commit-tree', 'HEAD^{tree}', '-p', 'HEAD', '-m', 'Upstream fixture change']).toString().trim();
+      git(['push', remote, `${nextSha}:refs/heads/trunk`]);
+      git(['--git-dir', remote, 'update-ref', '-d', 'refs/heads/obsolete']);
+      await click('.repository-list li:nth-child(2) .sync-controls button');
+      await wait("document.querySelector('.repository-list li:nth-child(2) .sync-controls').textContent.includes('succeeded')");
+      repositorySnapshot = await evaluate(`(async () => await (await fetch('/api/workspaces/${before.workspace.id}/repositories')).json())()`);
+      const managed = repositorySnapshot.repositories.find((item) => item.name === 'Managed fixture');
+      assert.equal(managed.resolvedCommitSha, nextSha); assert.ok(managed.lastFetchedAt);
+      assert.throws(() => git(['--git-dir', path.join(managed.localPath, '.git'), 'show-ref', '--verify', 'refs/remotes/origin/obsolete']));
+      git(['--git-dir', path.join(managed.localPath, '.git'), 'remote', 'set-url', 'origin', path.join(fixture, 'missing-remote.git')]);
+      await click('.repository-list li:nth-child(2) .sync-controls button');
+      await wait("document.querySelector('.repository-list li:nth-child(2) .sync-controls').textContent.includes('GIT_FAILED')");
+      repositorySnapshot = await evaluate(`(async () => await (await fetch('/api/workspaces/${before.workspace.id}/repositories')).json())()`);
+      const failedSync = repositorySnapshot.repositories.find((item) => item.id === managed.id);
+      assert.equal(failedSync.lastFetchedAt, managed.lastFetchedAt); assert.equal(failedSync.syncStatus, 'failed');
+      assert.deepEqual(await readFile(path.join(source, '.git/index')), indexBefore);
+      assert.deepEqual(await readFile(path.join(source, '.git/HEAD')), headBefore);
+      assert.equal(await readFile(path.join(source, 'file'), 'utf8'), 'dirty');
+    }
   }
   const screenshot = await page.send('Page.captureScreenshot', { captureBeyondViewport: true });
   await writeFile(path.join(fixture, 'workspace-desktop.png'), Buffer.from(screenshot.data, 'base64'));
@@ -188,6 +213,7 @@ try {
     verifiedConnectionClaim: false, aiInvocations: 0 };
   if (withRepositories) Object.assign(result, { repositoryRegistration: 'passed', managedClone: 'passed', failedCloneDiagnostics: 'passed',
     repositoryRestartPersistence: 'passed', dirtyCheckoutPreserved: 'passed', workspaceDeletionBlocked: 'passed' });
+  if (withSync) Object.assign(result, { noRemoteRefresh: 'passed', fetchAndPrune: 'passed', syncFailureDiagnostics: 'passed', lastSuccessPreserved: 'passed', syncRestartPersistence: 'passed' });
   await writeFile(path.join(fixture, 'result.json'), JSON.stringify(result, null, 2));
   console.log(JSON.stringify({ fixture, ...result }, null, 2));
 } finally {

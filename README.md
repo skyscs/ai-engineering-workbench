@@ -70,7 +70,9 @@ protected storage status endpoint. Task 003 adds workspace, owned AI connection
 and model profile settings with persistence and a browser UI. Connections remain
 configured but not verified; no AI execution is available yet. Task 004 adds local
 repository registration and managed cloning with persisted status and diagnostics.
-Tasks 005–011 remain planned.
+Task 005 adds explicit fetch/prune with persisted synchronization results and
+protection for local branches, tags, checkout state and task pins. Tasks 006–011
+remain planned.
 
 ## Quick start
 
@@ -186,3 +188,8 @@ uses system Git credential helpers and OpenSSH-compatible configuration. See the
 [repository guide](docs/repository-registry.md) for API, authentication requirements,
 failed-clone recovery and the browser acceptance command. Workspaces containing
 repository records cannot be deleted in this iteration.
+
+Expand a ready repository and choose **Fetch updates** to synchronize supported
+remote branch mappings. The UI shows the latest attempt separately from the last
+successful fetch. See the [synchronization guide](docs/repository-synchronization.md)
+for supported configuration, failure handling and browser verification.

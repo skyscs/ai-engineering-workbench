@@ -1,6 +1,6 @@
 # Task 004 — Repository registry
 
-Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge. See
+Status: accepted through the user's merge of PR #5 into main (9dadec4). See
 [repository guide](../docs/repository-registry.md),
 [ADR 0007](../docs/decisions/0007-repository-registry-and-clone-recovery.md) and
 [development status](../docs/development-status.md).

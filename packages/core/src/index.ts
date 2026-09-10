@@ -58,6 +58,11 @@ export interface RepositoryMetadata {
   shallow: boolean;
 }
 export interface Repository extends Omit<RepositoryMetadata, 'commonGitDir'> {
+  syncStatus: 'idle' | 'running' | 'succeeded' | 'failed' | 'no_remote';
+  lastSyncAttemptAt: string | null;
+  lastSyncCompletedAt: string | null;
+  lastFetchedAt: string | null;
+  syncError: SyncFailure | null;
   id: string;
   workspaceId: string;
   name: string;
@@ -68,6 +73,10 @@ export interface Repository extends Omit<RepositoryMetadata, 'commonGitDir'> {
   retainedFiles: boolean;
   createdAt: string;
   updatedAt: string;
+}
+export interface SyncFailure extends GitFailure {
+  phase: 'preflight' | 'fetch' | 'metadata';
+  command: 'git fetch --all --prune';
 }
 export interface RepositoryInput {
   name: string;

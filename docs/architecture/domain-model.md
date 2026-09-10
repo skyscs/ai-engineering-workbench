@@ -45,7 +45,11 @@ Fields:
 - status (`cloning`, `ready`, `failed`)
 - error? (normalized Git failure)
 - retainedFiles: boolean (incomplete/failed clone cleanup state)
-- lastFetchedAt? (introduced in Task 005)
+- syncStatus (`idle`, `running`, `succeeded`, `failed`, `no_remote`)
+- lastSyncAttemptAt (nullable)
+- lastSyncCompletedAt (nullable)
+- lastFetchedAt (nullable, last successful fetch)
+- syncError (nullable, normalized failure with command and phase)
 - createdAt
 - updatedAt
 
@@ -57,6 +61,9 @@ Invariants:
 - unfinished clone records survive restart and are marked failed without automatic retry;
 - synchronization never implies `git pull`;
 - credentials are not stored in this entity.
+- sync attempts are serialized by common git-dir, including across workspaces;
+- failed attempts preserve the previous successful-fetch timestamp;
+- missing selected base refs retain their name with a null resolved commit.
 
 See [ADR 0007](../decisions/0007-repository-registry-and-clone-recovery.md) for
 managed clone staging, cleanup and Git process boundaries.

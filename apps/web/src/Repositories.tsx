@@ -24,7 +24,7 @@ export function Repositories({ detail, csrf, disabled, setBusy }: {
         const result = await api<RepositoryList>(route, { signal: controller.signal });
         if (controller.signal.aborted) return;
         setRepositories(result.repositories);
-        if (result.repositories.some((item) => item.status === 'cloning')) timer = setTimeout(() => void load(), 1000);
+        if (result.repositories.some((item) => item.status === 'cloning' || item.syncStatus === 'running')) timer = setTimeout(() => void load(), 1000);
       } catch (error) { if (!controller.signal.aborted) setError(error instanceof Error ? error.message : 'Cannot load repositories.'); }
     }
     void load();
@@ -44,18 +44,44 @@ export function Repositories({ detail, csrf, disabled, setBusy }: {
     finally { setBusy(false); }
   }
 
+  async function synchronize(repository: Repository) {
+    if (disabled || !csrf) return;
+    setBusy(true); setError(null); setNotice('');
+    try {
+      const result = await api<Repository>(`${route}/${repository.id}/sync`, { method: 'POST',
+        headers: { 'content-type': 'application/json', 'x-aew-csrf': csrf }, body: '{}' });
+      setRepositories((previous) => previous.map((item) => item.id === result.id ? result : item));
+      setRefresh((value) => value + 1);
+      setNotice('Synchronization started. Its result will appear below.');
+    } catch (error) { setError(error instanceof Error ? error.message : 'Cannot start synchronization. Refresh before retrying.'); }
+    finally { setBusy(false); }
+  }
+
   return <section className="panel repositories"><div className="section-heading"><h2>Repositories</h2>
     <button className="secondary" disabled={disabled} onClick={() => { setError(null); setRefresh((value) => value + 1); }}>Refresh repositories</button></div>
     <div aria-live="polite">{error && <p role="alert" className="error">{error}</p>}{notice && <p>{notice}</p>}</div>
     {!repositories.length && <p className="hint">No repositories registered.</p>}
     <ul className="repository-list">{repositories.map((repository) => <li key={repository.id}>
       <details><summary><strong>{repository.name}</strong> · {repository.status}</summary>
+        {repository.status === 'ready' && <div className="sync-controls">
+          <p>Synchronization: <strong>{repository.syncStatus === 'no_remote' ? 'No remote — local metadata refreshed' : repository.syncStatus}</strong></p>
+          <button type="button" disabled={disabled || repositories.some((item) => item.commonGitDir === repository.commonGitDir && item.syncStatus === 'running')}
+            onClick={() => void synchronize(repository)}>Fetch updates</button>
+          <p className="hint">Fetch remote branches and prune stale remote-tracking refs. Local branches, tags and working files stay unchanged.</p>
+          <dl><dt>Last attempt</dt><dd>{repository.lastSyncAttemptAt ?? 'Never'}</dd>
+            <dt>Last completed attempt</dt><dd>{repository.lastSyncCompletedAt ?? 'Never'}</dd>
+            <dt>Last successful fetch</dt><dd>{repository.lastFetchedAt ?? 'Never'}</dd></dl>
+          {repository.syncError && <div role="alert" className="error"><p>{repository.syncError.code}: {repository.syncError.message}</p>
+            <p>{repository.syncError.command} · {repository.syncError.phase} · exit {repository.syncError.exitCode ?? 'unavailable'} · signal {repository.syncError.signal ?? 'none'}</p>
+            {repository.syncError.stderr && <pre>{repository.syncError.stderr}</pre>}
+            <p>Remote refs may have changed before the failure. Check the result before retrying.</p></div>}
+        </div>}
         <dl><dt>Storage</dt><dd>{repository.managedClone ? 'Workbench-managed clone' : 'Existing checkout'}</dd>
           <dt>Local path</dt><dd>{repository.localPath}</dd>
           <dt>Origin</dt><dd>{repository.remoteUrl ?? 'No origin remote'}</dd>
           <dt>Base ref</dt><dd>{repository.baseRef ?? 'Not selected'}</dd>
           <dt>Resolved commit</dt><dd>{repository.resolvedCommitSha ?? 'No commit selected'}</dd></dl>
-        {repository.status === 'ready' && !repository.resolvedCommitSha && <p className="hint">Empty repository. A commit is required before task preparation.</p>}
+        {repository.status === 'ready' && !repository.resolvedCommitSha && <p className="hint">No commit is available at the selected base ref. A valid commit is required before task preparation.</p>}
         {repository.shallow && <p className="hint">Shallow repository: historical evidence is incomplete.</p>}
         {repository.error && <div className="error"><p>{repository.error.code}: {repository.error.message}</p>
           <p>Exit code: {repository.error.exitCode ?? 'unavailable'}; signal: {repository.error.signal ?? 'none'}</p>

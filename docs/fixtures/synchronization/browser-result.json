@@ -1,0 +1,22 @@
+{
+  "workspaceCreate": "passed",
+  "connectionUpdate": "passed",
+  "modelProfileCreateAndUpdate": "passed",
+  "rename": "passed",
+  "restartPersistence": "passed",
+  "narrowViewport": "passed",
+  "deletionConfirmation": "passed",
+  "verifiedConnectionClaim": false,
+  "aiInvocations": 0,
+  "repositoryRegistration": "passed",
+  "managedClone": "passed",
+  "failedCloneDiagnostics": "passed",
+  "repositoryRestartPersistence": "passed",
+  "dirtyCheckoutPreserved": "passed",
+  "workspaceDeletionBlocked": "passed",
+  "noRemoteRefresh": "passed",
+  "fetchAndPrune": "passed",
+  "syncFailureDiagnostics": "passed",
+  "lastSuccessPreserved": "passed",
+  "syncRestartPersistence": "passed"
+}

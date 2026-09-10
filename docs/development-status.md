@@ -116,7 +116,7 @@ fixture outcomes only. No test used the normal application data directory.
 
 ## Task 004 — Repository registry
 
-Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge.
+Status: accepted through the user's merge of PR #5 into main (9dadec4).
 
 Implemented: system Git adapter, schema version 3, protected registration/clone
 APIs, repository list/detail forms, persisted clone lifecycle and restart recovery.
@@ -146,9 +146,35 @@ A separate [real SSH clone](fixtures/repositories/remote-clone-result.json) of
 existing `ssh -F /dev/null` override; no SSH configuration or credentials were
 changed. HTTPS authentication was not exercised against a real remote.
 
-Next task: 005 — explicit repository synchronization. AEW-001 remains open and
+AEW-001 remains open and
 unchanged. Repository removal and non-Linux process/durability support remain
 outside the verified Task 004 scope.
+
+## Task 005 — Repository synchronization
+
+Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge.
+
+Implemented: explicit protected sync endpoint, persisted running/terminal states,
+separate attempt and successful-fetch timestamps, UI action/status/diagnostics,
+no-remote metadata refresh and startup interruption handling. Git validates
+canonical paths, all remote refspecs and supported symbolic refs before fetch;
+common git-dir locks cover linked checkouts and registrations across workspaces.
+ADR 0008 records the conservative supported configuration and partial-failure rules.
+
+Validation: a clean source copy installed from the frozen lockfile and local store
+passed strict typecheck, all 59 tests (11 Git, 22 storage, 19 HTTP, 7 runtime) and
+the production build. Fixtures verify dirty files/index/HEAD/FETCH_HEAD, local
+branches/tags/task pins, upstream advances/prune, dangerous mappings, redirected
+paths, partial remote failure, linked-checkout contention, shutdown and schema
+version 3 upgrade. No normal application data or external credentials were used.
+
+The browser scenario passed no-remote refresh, fetch/prune, a later fetch failure,
+preserved last-success time and restart persistence, with no horizontal overflow
+at 390px. See the [recorded browser result](fixtures/synchronization/browser-result.json).
+
+Next task: 006 — task creation, immutable artifacts and minimal StageRun storage.
+AEW-001 remains unchanged. Tags/custom refspecs and automatic retries are outside
+the supported sync policy; interrupted attempts require inspection before retry.
 
 ## Git handoff
 
@@ -157,8 +183,9 @@ outside the verified Task 004 scope.
 - Task 000: `task/000-runtime-feasibility`, e37635d, merged through PR #2 as 6b9a967.
 - Task 002: `task/002-local-storage`, c8ca418, merged through PR #3 as d8d4bf2.
 - Task 003: `task/003-workspaces`, 4d07a77, merged through PR #4 as 8134f14.
-- Task 004: `task/004-repository-registry`, based on merged main (8134f14).
+- Task 004: `task/004-repository-registry`, 3aae7ec, merged through PR #5 as 9dadec4.
+- Task 005: `task/005-repository-sync`, based on merged main (9dadec4).
 
-## Tasks 005–011
+## Tasks 006–011
 
 Status: not started. Execute in the order recorded in DEVELOPMENT_PLAN.md.

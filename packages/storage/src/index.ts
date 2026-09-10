@@ -5,7 +5,7 @@ import { StorageError } from './errors.js';
 import { migrate } from './migrations.js';
 import { resolveDataRoot, storagePaths } from './paths.js';
 import { createSettingsRepository, type SettingsRepository } from './settings.js';
-import { createRepositoryStore, interruptClones, type RepositoryStore } from './repositories.js';
+import { createRepositoryStore, interruptRepositoryOperations, type RepositoryStore } from './repositories.js';
 
 export { StorageError, resolveDataRoot };
 export type { SettingsRepository };
@@ -76,7 +76,7 @@ export function openStorage(options: { dataRoot?: string } = {}): Storage {
     db = new DatabaseSync(paths.database);
     db.exec('PRAGMA foreign_keys = ON; PRAGMA busy_timeout = 1000; PRAGMA synchronous = FULL;');
     const schemaVersion = migrate(db);
-    interruptClones(db);
+    interruptRepositoryOperations(db);
     const journalMode = db.prepare('PRAGMA journal_mode = WAL').get()!.journal_mode;
     if (journalMode !== 'wal') throw new StorageError('UNSUPPORTED_STORAGE', 'The data directory must support SQLite WAL mode.');
     const connection = db;
