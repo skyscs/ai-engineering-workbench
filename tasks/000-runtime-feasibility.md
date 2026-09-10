@@ -2,9 +2,11 @@
 
 ## Placement and goal
 
-Status: in progress. Resumed investigation/cancel/timeout passed; the missing-profile
-probe exposed a CLI safety limitation. Work is checkpointed at the user's request. See
-[runtime feasibility handoff](../docs/runtime-feasibility.md) before resuming.
+Status: verified on Linux with Codex CLI 0.153.4 and the restricted default
+configuration, 2026-09-10. Missing-profile fallback is blocked by spike preflight.
+See [runtime compatibility and evidence](../docs/runtime-feasibility.md) for the
+supported boundary and the remaining production-adapter obligations. User acceptance
+and merge are separate from this verification.
 
 Run after Task 001 and before Task 002. Retained original task numbers are not
 the execution order for this one additional task. Reduce runtime risk before

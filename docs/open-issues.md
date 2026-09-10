@@ -16,6 +16,8 @@ was reproduced during the first PR review; it has not been fixed.
 
 Priority: P1 before profile-based AI Connection execution in Task 008.
 
+Status: mitigated in the Task 000 spike; production adapter work remains in Task 008.
+
 Observed with CLI 0.153.4: --profile aew-intentionally-missing-runtime-fixture
 did not fail. The synthetic investigation completed with exit code 0. Consequently,
 passing a requested profile name is not evidence that the requested configuration
@@ -26,5 +28,12 @@ using the verified CLI version's configuration format before spawning. Default
 configuration is an explicit separate selection; never use it as fallback for a
 missing named profile. Record requested versus verified configuration accurately.
 Do not read authentication secrets to perform this preflight.
+
+The spike now checks a readable regular `<name>.config.toml` file for the verified
+CLI version, rejects absent/invalid selections before exec, and asks the CLI to
+validate the selected layer through local diagnostics. A synthetic disabled MCP
+entry confirmed that the named file was actually loaded. No fallback or model
+request occurs in the missing-profile probe. File existence does not certify
+provider/account identity or freeze an externally edited configuration.
 
 See docs/fixtures/runtime/resumed-probes.json for the captured probe result.

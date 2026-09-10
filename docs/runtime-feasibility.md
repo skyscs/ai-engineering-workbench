@@ -1,11 +1,12 @@
-# Runtime feasibility checkpoint
+# Runtime feasibility and compatibility
 
 ## Status
 
-Task 000 is incomplete. The first run reached an account usage limit; the resumed
-investigation and process-control probes subsequently passed. Work is checkpointed
-again at the user's request. A missing-profile safety finding and remaining
-negative checks prevent full acceptance. This is not a production runtime adapter.
+Task 000 is verified on Linux with Codex CLI 0.153.4, 2026-09-10. A completed
+investigation, denied filesystem writes, cancellation, timeout and distinguishable
+negative outcomes establish feasibility for the restricted configuration below.
+The original missing-profile CLI behavior is mitigated by preflight. This is not
+a production runtime adapter or verification of arbitrary user configurations.
 
 Selected by the user: existing default Codex CLI configuration, model
 `gpt-5.6-terra`, reasoning effort `medium`. Authentication files were not read or
@@ -62,7 +63,69 @@ the incident artifact were cited. The cancellation check observed no remaining
 owned process group; stronger descendant-process handling remains a production
 adapter concern, not a general sandbox guarantee from this probe.
 
-## Resume
+## Final verification
+
+The [final probes](fixtures/runtime/final-probes.json) record a fresh successful
+investigation after adding preflight and disabling external notification commands.
+It again identified the timeout-unit mismatch, with the exact source revisions and
+incident artifact. The source/Git snapshot was unchanged and no owned group remained.
+Unsupported-option exited 2 with `unsupported_option`. Missing-profile is now
+rejected by preflight, without an exec/model invocation; the earlier unsafe raw
+CLI result remains in the historical fixture for comparison.
+
+The [local negative probes](fixtures/runtime/negative-probes.json) used a fresh
+temporary CLI configuration directory, file-only credential storage and an
+allowlisted child environment. No user credentials were read, copied or changed.
+`codex login status` exited 1 and was classified `authentication_required`.
+This verifies missing-login detection, not expired-token behavior during exec;
+remote authentication failures remain covered by synthetic events until Task 008.
+
+A disabled synthetic MCP entry appeared only when its named profile was selected,
+proving that the CLI loaded the separate profile file. Missing and malformed
+profiles were rejected before exec. An enabled MCP entry was rejected without
+starting its marker command. These diagnostics made no model requests.
+
+Validation: `pnpm check` passed on Node 22.23.2 / pnpm 10.15.0, including strict
+typechecking, seven HTTP tests, seven runtime tests and the production build.
+
+## Supported investigation configuration
+
+- Linux, the exact verified CLI version and the user's explicitly selected default
+  connection; the real model probe used `gpt-5.6-terra` with medium reasoning.
+- Trusted local configuration and synthetic repositories without project config.
+  The probe is not certification of hostile repository/configuration isolation.
+- Read-only sandbox and approval policy never. The three fixture roots are
+  readable; writable-directory flags are not used. This is not an exclusive
+  filesystem read allowlist or an exact outbound-payload audit.
+- Per-invocation disabling of apps, plugins, hooks, browser/computer/image tools,
+  multi-agent execution, web search and external notification commands. Provider
+  routing and authentication are retained for real investigations.
+- CLI diagnostics must confirm the seven disabled feature flags and zero enabled
+  configured MCP servers. Unsupported versions, failed diagnostics, enabled MCP
+  servers and invalid profile files fail before an investigation is started.
+
+`scripts/runtime-preflight.mjs` inspects profile file metadata/readability without
+parsing its contents. Symlinks, special files and invalid selector characters are
+rejected. The CLI owns TOML parsing. A named profile can be validated by the local
+spike diagnostics, but has not been used for a real authenticated investigation.
+The verified default selection is separate and never a missing-profile fallback.
+
+CLI 0.153.4 rejects --profile on `features list`; that command checks the base
+configuration with explicit feature overrides. Profile-aware `mcp list --json`
+validates the selected layer without connecting to its servers. Its raw output
+is not persisted because entries may contain environment/header secrets. These
+checks do not prove every possible remote tool behavior. Task 008 must recheck
+the actual working directory/configuration, enforce the same launch restrictions,
+and reject configurations whose read-only boundary cannot be established.
+
+Profiles and configuration precedence are described in the
+[official configuration documentation](https://learn.chatgpt.com/docs/config-file/config-advanced).
+The installed CLI help and canary probe confirm the separate profile-file format.
+File existence/loading does not verify corporate account identity or prevent
+configuration changes between preflight and launch. Production handling belongs
+to Task 008, together with credential-safe diagnostics and cancellation races.
+
+## Reproduce
 
 Use Node 22.23.2 (repository pin), system Git and the existing Codex executable.
 The temporary Node installation and original fixture may not survive a reboot;
@@ -80,9 +143,13 @@ codex -s read-only -a never sandbox -- node /absolute/path/to/project/scripts/re
 node scripts/runtime-spike.mjs investigate <fixture-root>
 ```
 
-The next step is the missing-profile preflight described in AEW-002 in
-open-issues.md, followed by the remaining negative checks. The successful real
-investigation does not need to be repeated unless launch behavior changes.
+The successful real investigation does not need to be repeated unless launch
+behavior or the selected CLI/configuration changes. Local negative checks require
+the installed CLI but no model request:
+
+```bash
+node scripts/runtime-negative-probes.mjs
+```
 
 The harness also supports the following probes:
 
@@ -93,12 +160,13 @@ node scripts/runtime-spike.mjs missing-profile <fixture-root>
 node scripts/runtime-spike.mjs unsupported-option <fixture-root>
 ```
 
-Cancel and timeout have passed; missing-profile exposed a CLI limitation.
-Unsupported-option has been prepared but not executed. Missing-auth behavior still
-needs a separately designed credential-safe check; never delete or replace user
-credentials. Synthetic classifier tests do not establish live CLI auth behavior.
-Review the effective tool boundary and unsupported flag behavior before marking
-Task 000 verified. Then continue the agreed sequence with Task 002.
+Cancel and timeout passed before the preflight-only changes; cancellation logic
+was not changed. Missing-profile now tests the guard rather than deliberately
+repeating the unsafe raw CLI invocation. Unsupported-option also passed. Never
+delete or replace user credentials to test missing authentication.
+
+The next development task is Task 002. Task 008 consumes these compatibility
+notes and must implement the production checks before executing real user tasks.
 
 ## Script limitations
 
@@ -107,7 +175,7 @@ adapter. They use POSIX process groups and `/dev/null`, a two-minute investigati
 deadline and synthetic inputs. Event framing, cancellation races, profile failure
 classification and process-tree handling need further verification. JSON shape and
 nonempty evidence checks do not prove the semantic correctness of a conclusion.
-No additional AI invocation was made after the resumed failure-classification refactor.
+One successful real investigation was made after the preflight launch changes.
 
 Raw temporary transcripts must be reviewed/redacted before any publication; tracked
 evidence contains only the selected synthetic records. The schema is for this spike

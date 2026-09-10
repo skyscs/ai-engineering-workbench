@@ -33,6 +33,14 @@ Do not claim exact provider-payload auditing from the CLI runtime.
 - Preflight explicitly selected profiles before spawning: CLI 0.153.4 accepted a
   nonexistent profile during Task 000. Do not treat passing --profile or receiving
   exit code 0 as proof of the selected connection. See AEW-002 in docs/open-issues.md.
+- CLI 0.153.4 uses separate <name>.config.toml files, not legacy profiles tables.
+  Reuse the Task 000 negative fixtures for absent/invalid profiles, missing login,
+  unsupported flags and configured MCP rejection. The spike supports only a fixed
+  verified version; add another version only with explicit compatibility evidence.
+- Carry forward the documented tool restrictions and disable external notification
+  commands. `features list` does not accept --profile in the verified CLI; do not
+  describe its base-config output as full inspection of a named profile. Validate
+  selected config through supported diagnostics and fail closed on enabled MCP.
 - Use explicit read-only policy, no privilege escalation, JSONL and schema output
   when supported by the verified CLI. Spawn without shell; send instructions via
   stdin. Keep arbitrary extraRuntimeArgs out of the public model-profile interface.

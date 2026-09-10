@@ -29,7 +29,7 @@ must select the pinned Node version before running project commands.
 
 ## Task 000 — Runtime feasibility
 
-Status: in progress, checkpointed at the user's request as the usage limit approached.
+Status: verified on Linux with CLI 0.153.4, 2026-09-10; not yet accepted/merged.
 
 The user selected the current Codex CLI configuration, `gpt-5.6-terra`, with
 reasoning effort `medium`. Do not ask for this selection again on resumption.
@@ -45,19 +45,24 @@ remaining owned process group. Both returned CLI exit code 0, so the requested
 stop reason must take precedence over the process code. Recoverable connection
 error events were also observed before a successful turn.
 
-The missing-profile probe failed its acceptance condition: the CLI accepted an
-intentionally nonexistent profile and completed a run. Explicit profile preflight
-is required before the adapter can rely on connection selection. Unsupported-option
-live testing, credential-safe missing-auth testing and final effective-tool checks
-remain pending. Failure classification has deterministic tests, including synthetic
-auth errors; these do not count as live missing-auth verification.
+The raw CLI accepted a nonexistent profile. The spike now checks profile-file
+existence/readability and CLI parsing before exec; missing profiles cannot fall
+back to the default connection. A local canary confirmed named file loading.
+Unsupported-option returned the expected error. Isolated `codex login status`
+confirmed missing-login detection without accessing user credentials or calling
+a model; expired-token failures during exec remain synthetic test coverage.
 
-Checkpoint validation: `pnpm check` passed, including strict typechecking, seven
-HTTP tests, five runtime outcome tests and the production build. No new AI call
-was made after the outcome-classifier refactor.
+The selected configuration has no enabled MCP servers, and the restricted feature
+flags were confirmed through CLI diagnostics. Enabled MCP configurations are
+rejected before exec. External notification commands are disabled per invocation.
+A fresh real investigation passed after these launch changes, with unchanged
+sources/Git state and no remaining owned process group.
 
-See [runtime feasibility handoff](runtime-feasibility.md) for commands, captured
-evidence and the exact next step. Task 000 must not be marked verified yet.
+Validation: `pnpm check` passed, including strict typechecking, seven HTTP tests,
+seven runtime tests and the production build. Opt-in local negative probes passed.
+
+See [runtime compatibility and evidence](runtime-feasibility.md) for commands,
+supported restrictions and Task 008 obligations. Next in sequence: Task 002.
 
 ## Git handoff
 

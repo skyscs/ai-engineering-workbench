@@ -4,20 +4,36 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { snapshot } from './runtime-fixture.mjs';
 import { classifyFailure, parseInvestigation } from './runtime-outcome.mjs';
+import { preflight, restrictionArgs } from './runtime-preflight.mjs';
 
 const [mode = 'investigate', root] = process.argv.slice(2);
 if (!['investigate', 'cancel', 'timeout', 'missing-profile', 'unsupported-option'].includes(mode)) throw new Error('Unknown spike mode.');
 if (!root || !path.basename(root).startsWith('aew-runtime-')) throw new Error('Expected a generated fixture root.');
 const manifest = JSON.parse(await readFile(path.join(root, 'manifest.json'), 'utf8'));
 const baseline = await snapshot(manifest);
+let configuration;
+try {
+  configuration = await preflight({ cwd: manifest.client,
+    profile: mode === 'missing-profile' ? 'aew-intentionally-missing-runtime-fixture' : null });
+} catch (error) {
+  const result = { mode, preflightOnly: true, failureKind: error.code ?? 'preflight_failed',
+    diagnosticExitCode: error.diagnostic?.exitCode ?? null,
+    scenarioPassed: mode === 'missing-profile' && error.code === 'missing_profile',
+    unchanged: JSON.stringify(baseline) === JSON.stringify(await snapshot(manifest)) };
+  result.scenarioPassed &&= result.unchanged;
+  // Preserve failed CLI stderr locally; never store the MCP configuration output.
+  if (error.diagnostic) await writeFile(path.join(root, `${mode}.preflight.stderr.log`),
+    error.diagnostic.stderr, { mode: 0o600 });
+  await writeFile(path.join(root, `${mode}.result.json`), JSON.stringify(result, null, 2));
+  console.log(JSON.stringify(result, null, 2));
+  process.exit(result.scenarioPassed ? 0 : 1);
+}
+// Never run an investigation for a negative profile probe, even if its name now exists.
+if (mode === 'missing-profile') throw new Error('Negative profile fixture unexpectedly exists.');
 const schema = fileURLToPath(new URL('./runtime-result.schema.json', import.meta.url));
 const args = ['-a', 'never', 'exec', '--json', '--ephemeral', '--sandbox', 'read-only',
   '-m', 'gpt-5.6-terra', '-c', 'model_reasoning_effort="medium"',
-  '-c', 'web_search="disabled"', '-C', manifest.client];
-for (const feature of ['apps', 'plugins', 'hooks', 'browser_use', 'computer_use', 'image_generation', 'multi_agent']) {
-  args.push('--disable', feature);
-}
-if (mode === 'missing-profile') args.push('--profile', 'aew-intentionally-missing-runtime-fixture');
+  ...restrictionArgs, '-C', manifest.client];
 if (mode === 'unsupported-option') args.push('--aew-intentionally-unsupported-flag');
 if (mode === 'investigate') args.push('--output-schema', schema);
 args.push('-');
@@ -85,9 +101,8 @@ const scenarioPassed = mode === 'investigate'
     && events.some((event) => event.type === 'turn.completed') && !events.some((event) => event.type === 'turn.failed')
   : mode === 'cancel' ? stopped === 'cancelled'
     : mode === 'timeout' ? stopped === 'timeout'
-      : mode === 'missing-profile' ? outcome.exitCode !== 0 && failureKind === 'missing_profile'
-        : outcome.exitCode !== 0 && failureKind === 'unsupported_option';
-const result = { mode, requestedModel: 'gpt-5.6-terra', requestedEffort: 'medium', ...outcome,
+      : outcome.exitCode !== 0 && failureKind === 'unsupported_option';
+const result = { mode, configuration, requestedModel: 'gpt-5.6-terra', requestedEffort: 'medium', ...outcome,
   stopped, unchanged, ownedGroupAlive, outputBytes, stderrBytes: stderr.length, failureKind,
   scenarioPassed: scenarioPassed && unchanged && !ownedGroupAlive,
   eventTypes: [...new Set(events.map((event) => event.type))],
