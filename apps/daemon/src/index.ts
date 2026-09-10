@@ -7,6 +7,8 @@ import { createApp } from './app.js';
 import { openStorage, StorageError } from '@aew/storage';
 import { RepositoryService } from './repository-service.js';
 import { WorktreeService } from './worktree-service.js';
+import { CodexCliRuntime } from '@aew/ai';
+import { RuntimeService } from './runtime-service.js';
 import { GitClient } from '@aew/git';
 
 const HOST = '127.0.0.1';
@@ -31,6 +33,9 @@ process.once('exit', () => storage.close());
 const git = new GitClient();
 const repositories = new RepositoryService(storage, git);
 const worktrees = new WorktreeService(storage, git);
+const runtime = new RuntimeService(storage, new CodexCliRuntime({
+  ...(process.env.AEW_RUNTIME_TIMEOUT_MS ? { timeoutMs: Number(process.env.AEW_RUNTIME_TIMEOUT_MS) } : {})
+}), git);
 let server: ReturnType<typeof serve> | undefined;
 let stopping = false;
 process.on('SIGINT', shutdown);
@@ -38,7 +43,7 @@ process.on('SIGTERM', shutdown);
 await worktrees.recover();
 if (!stopping) {
 const app = createApp({ publicDir, development: process.env.NODE_ENV === 'development',
-  storageStatus: () => storage.status(), settings: storage.settings, repositories, tasks: storage.tasks, worktrees });
+  storageStatus: () => storage.status(), settings: storage.settings, repositories, tasks: storage.tasks, worktrees, runtime });
 
 server = serve(
   {
@@ -73,7 +78,7 @@ function shutdown(): void {
     process.exit(1);
   }, 5000);
   deadline.unref();
-  void Promise.all([repositories.close(), worktrees.close(), storage.tasks.artifacts.close(), new Promise<void>((resolve) => {
+  void Promise.all([runtime.close(), repositories.close(), worktrees.close(), storage.tasks.artifacts.close(), new Promise<void>((resolve) => {
     if (server) server.close(() => resolve()); else resolve();
   })]).then(() => {
     storage.close();

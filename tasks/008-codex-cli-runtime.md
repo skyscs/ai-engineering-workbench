@@ -1,5 +1,8 @@
 # Task 008 — Codex CLI runtime adapter
 
+Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge. See
+[development status](../docs/development-status.md) and [the runtime guide](../docs/codex-runtime.md).
+
 ## Goal
 
 Execute a non-interactive Codex run through the user's existing CLI configuration and stream normalized events to the daemon/UI.

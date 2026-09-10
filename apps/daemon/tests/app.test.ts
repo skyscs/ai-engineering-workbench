@@ -52,7 +52,7 @@ test('storage status uses a real initialized database and requires a local sessi
     assert.equal(response.headers.get('cache-control'), 'no-store');
     const status = await response.json() as Record<string, unknown>;
     assert.equal(status.status, 'ready');
-    assert.equal(status.schemaVersion, 6);
+    assert.equal(status.schemaVersion, 7);
     assert.equal(status.foreignKeys, true);
     assert.equal(status.journalMode, 'wal');
     assert.ok(!JSON.stringify(status).includes(dataRoot));

@@ -1,6 +1,6 @@
 # Task 007 — Isolated task worktrees
 
-Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge. See the
+Status: accepted through the user's merge of PR #8 into main (9e233e1). See the
 [worktree guide](../docs/task-worktrees.md),
 [ADR 0010](../docs/decisions/0010-isolated-worktree-lifecycle.md) and
 [development status](../docs/development-status.md).

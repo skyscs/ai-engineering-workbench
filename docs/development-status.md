@@ -212,7 +212,7 @@ integration and investigation execution remain deferred. AEW-001 is unchanged.
 
 ## Task 007 — Isolated task worktrees
 
-Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge.
+Status: accepted through the user's merge of PR #8 into main (9e233e1).
 
 Implemented: schema version 6, editable unresolved base refs, detached task
 worktrees with immutable resolved SHAs and retained app-owned revision pins,
@@ -246,10 +246,54 @@ dirty cleanup refusal, clean cleanup, pin retention, recreation, restart persist
 and a 390px viewport. See the [browser result](fixtures/worktrees/browser-result.json).
 No normal application data or AI invocation was used.
 
-Next task: 008 — the production Codex CLI runtime adapter, including the Task 000
+At acceptance, the next task was 008 — the production Codex CLI runtime adapter, including the Task 000
 compatibility and no-fallback requirements. Automatic submodule initialization,
 custom checkout filters, task revision changes and force repair remain outside
 Task 007. AEW-001 remains unchanged.
+
+## Task 008 — Codex CLI runtime adapter
+
+Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge.
+
+Implemented: AIRuntime, production Codex CLI adapter, deterministic FakeRuntime,
+verified-version/profile/tool preflight, read-only launch and owned process
+supervision. CLI 0.154.0 was installed when this task resumed; its compatibility
+was checked independently of the earlier 0.153.4 spike. Named profiles fail closed,
+MCP configuration is checked without executing servers, and project configuration
+that could override routing is rejected. Configuration metadata is fingerprinted;
+credentials and raw configuration output are not read or persisted.
+
+Schema 7 stores immutable launch metadata, monotonic bounded events and atomic
+validated preview publication. Protected start/detail/cancel/SSE endpoints support
+reconnect and explicit retry. The browser exposes model selection, diagnostics,
+cancellation and the preliminary result. Task state remains CONTEXT_READY; Task 009
+supplies the evidence-backed investigation/root-cause workflow. ADR 0011 records
+this boundary and delivery of selected UTF-8 ranges through stdin.
+
+Validation from a clean frozen-lockfile installation: strict typecheck, 103 tests (17 Git, 9 adapter, 36 storage,
+34 HTTP, 7 spike) and production build passed on Node 22.23.2 / Linux. Tests include
+chunked UTF-8, malformed/truncated JSONL, schema failures, nonzero exits, recoverable
+errors, output limits, missing/linked/changed profiles, enabled MCP, timeout,
+separate-session descendant cancellation, selected artifact ranges, protected SSE,
+reconnect, duplicate starts, cancellation/publication races, transaction rollback
+and persisted restart interruption.
+
+A real adapter invocation through RuntimeService completed using the previously
+selected current default connection, gpt-5.6-terra and medium. It identified the
+synthetic cross-repository seconds/milliseconds mismatch, cited both histories and
+used the selected log. Source/Git snapshots were unchanged. Local 0.154.0 negative
+probes and read-only write-denial probes also passed. See the
+[reviewed runtime evidence](fixtures/runtime-adapter/real-result.json).
+
+Chrome on the clean build passed the two-repository task path with a synthetic executable through the
+production adapter: model selection, preview, redacted failure diagnostics,
+cancellation, retry, retained prior output, event replay, production-to-development
+restart and 390px layout. No model request was used by automated/browser tests.
+
+GitHub CI runs the same checks on the task PR; the browser and real CLI evidence
+are separate opt-in acceptance checks.
+AEW-002 is mitigated by the production preflight; AEW-001 remains unchanged.
+Next task: 009 — investigation workflow and validated evidence locators.
 
 ## Git handoff
 
@@ -261,8 +305,9 @@ Task 007. AEW-001 remains unchanged.
 - Task 004: `task/004-repository-registry`, 3aae7ec, merged through PR #5 as 9dadec4.
 - Task 005: `task/005-repository-sync`, 137c495, merged through PR #6 as be6cc72.
 - Task 006: `task/006-tasks-and-artifacts`, aec25bd, merged through PR #7 as bf3cef4.
-- Task 007: `task/007-isolated-worktrees`, based on merged main (bf3cef4).
+- Task 007: `task/007-isolated-worktrees`, 7c48eff, merged through PR #8 as 9e233e1.
+- Task 008: `task/008-codex-cli-runtime`, based on merged main (9e233e1).
 
-## Tasks 008–011
+## Tasks 009–011
 
 Status: not started. Execute in the order recorded in DEVELOPMENT_PLAN.md.

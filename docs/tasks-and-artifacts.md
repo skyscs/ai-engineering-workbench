@@ -67,7 +67,8 @@ and task. JSON failures use the established 400/404/409 error responses.
 Task titles allow 120 characters; descriptions allow 65536 characters including
 line breaks, within the text context budget. Select 1–32 distinct ready repositories
 from the same workspace. Task JSON bodies are capped at 512 KiB; context selection
-JSON at 256 KiB. There is no task edit/delete or public AI execution API yet.
+JSON at 256 KiB. Task edit/delete remains deferred. Task 008 adds the separate
+[runtime preview API](codex-runtime.md).
 Deterministic worktree operations expose StageRuns through the worktree API.
 
 Upload headers: `X-AEW-Filename` is `encodeURIComponent(originalFilename)`,

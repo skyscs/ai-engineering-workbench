@@ -16,7 +16,9 @@ was reproduced during the first PR review; it has not been fixed.
 
 Priority: P1 before profile-based AI Connection execution in Task 008.
 
-Status: mitigated in the Task 000 spike; production adapter work remains in Task 008.
+Status: mitigated in the Task 008 production adapter. Missing/linked profiles fail
+before exec; CLI parsing rejects malformed profiles. Local canary tests confirm
+named file loading on CLI 0.154.0. Provider/account identity remains unverified.
 
 Observed with CLI 0.153.4: --profile aew-intentionally-missing-runtime-fixture
 did not fail. The synthetic investigation completed with exit code 0. Consequently,

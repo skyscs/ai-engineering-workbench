@@ -1,2 +1,4 @@
-/** Package boundary placeholder for Task 001. */
-export const packageName = '@aew/ai';
+export * from './types.js';
+export { CodexCliRuntime } from './runtime.js';
+export { FakeRuntime } from './fake.js';
+export { supportedVersions } from './preflight.js';

@@ -21,3 +21,9 @@ export interface TaskDetail {
   worktrees: import('@aew/core').TaskWorktree[];
   latestRun: import('@aew/core').StageRun | null;
 }
+
+export type { RunEvent, RuntimePreview } from '@aew/core';
+export interface RuntimeDetail {
+  run: import('@aew/core').StageRun; metadata: unknown;
+  result: import('@aew/core').RuntimePreview | null; truncated: boolean;
+}

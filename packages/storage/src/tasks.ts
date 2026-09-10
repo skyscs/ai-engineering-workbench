@@ -1,3 +1,4 @@
+import { createRunJournal } from './run-journal.js';
 import { randomUUID } from 'node:crypto';
 import type { DatabaseSync } from 'node:sqlite';
 import { DomainError, parseTask, type ArtifactLimits, type RunFailure, type StageRun, type Task } from '@aew/core';
@@ -49,6 +50,7 @@ export function createTaskStore(db: DatabaseSync, ensureOpen: () => void, settin
   }
   return {
     artifacts,
+    journal: createRunJournal(db, run),
     worktrees,
     get,
     list(workspaceId: string) {

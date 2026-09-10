@@ -67,15 +67,16 @@ JSON API errors, graceful shutdown, a lockfile and automated checks.
 See [Development status](docs/development-status.md) for verification evidence
 and remaining work. Task 002 adds local SQLite initialization, migrations and a
 protected storage status endpoint. Task 003 adds workspace, owned AI connection
-and model profile settings with persistence and a browser UI. Connections remain
-configured but not verified; no AI execution is available yet. Task 004 adds local
+and model profile settings with persistence and a browser UI. Connections describe configured launch settings; provider/account identity
+remains unverified. Task 004 adds local
 repository registration and managed cloning with persisted status and diagnostics.
 Task 005 adds explicit fetch/prune with persisted synchronization results and
 protection for local branches, tags, checkout state and task pins. Task 006 adds
 task creation, immutable file imports, explicit text context selection and internal
 StageRun snapshots/recovery. Task 007 adds detached task worktrees, retained
-revision pins, safe cleanup and Git-aware restart reconciliation. Tasks 008–011
-remain planned.
+revision pins, safe cleanup and Git-aware restart reconciliation. Task 008 adds
+the Codex CLI adapter, persisted events, cancellation and a preliminary structured
+preview. Tasks 009–011 remain planned.
 
 ## Quick start
 
@@ -208,5 +209,7 @@ for limits, recovery, supported context and the browser acceptance command.
 Use **Task worktrees → Prepare worktrees** to prepare committed content from each
 selected repository in a separate detached checkout. The UI shows readiness,
 source revisions, retry diagnostics and safe cleanup. Revision pins survive cleanup.
-See the [worktree guide](docs/task-worktrees.md). AI execution remains the next
-iteration; worktree preparation does not invoke a model.
+See the [worktree guide](docs/task-worktrees.md). Preparation does not invoke a model.
+Choose **AI runtime preview → Run preview** for a separate read-only CLI invocation.
+See the [runtime guide](docs/codex-runtime.md) for supported versions, data boundaries,
+limits, cancellation and verification.

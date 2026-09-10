@@ -64,3 +64,6 @@ export function parseSelections(value: unknown): ContextSelection[] {
     return { artifactId: row.artifactId, start: row.start as number, end: row.end as number };
   });
 }
+
+export interface RunEvent { sequence: number; type: string; data: unknown; createdAt: string }
+export interface RuntimePreview { summary: string; findings: string[]; unresolvedQuestions: string[] }

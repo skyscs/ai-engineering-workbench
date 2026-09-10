@@ -31,7 +31,7 @@ export function Worktrees({ detail, csrf, disabled, update }: { detail: TaskDeta
     <p className="hint">Preparation checks out committed content in separate detached worktrees. Dirty changes in the original checkout are excluded. Revisions stay pinned after cleanup. Submodules are not initialized.</p>
     {error && <p role="alert" className="error">{error}</p>}
     <button disabled={blocked} onClick={() => void change('prepare', 'POST')}>Prepare worktrees</button>
-    {detail.latestRun && <p role="status">Latest operation: {detail.latestRun.status}{detail.latestRun.error ? ` · ${detail.latestRun.error.message}` : ''}</p>}
+    {detail.latestRun?.stage === 'context_preparation' && <p role="status">Latest operation: {detail.latestRun.status}{detail.latestRun.error ? ` · ${detail.latestRun.error.message}` : ''}</p>}
     <ul className="worktree-list">{detail.worktrees.map((row) => <li key={row.repositoryId}>
       <strong>{row.repositoryName}</strong><p>Worktree: {row.status}</p>
       <form aria-label={`Base ref ${row.repositoryId}`} key={`${row.repositoryId}:${row.baseRef}`} onSubmit={(event) => {
