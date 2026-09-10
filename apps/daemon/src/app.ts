@@ -10,6 +10,8 @@ import { settingsRoutes } from './settings-routes.js';
 import { GitError } from '@aew/git';
 import { repositoryRoutes } from './repository-routes.js';
 import type { RepositoryService } from './repository-service.js';
+import type { TaskStore } from '@aew/storage';
+import { taskRoutes } from './task-routes.js';
 
 const SESSION_COOKIE = 'aew_session';
 const SESSION_SECONDS = 8 * 60 * 60;
@@ -22,6 +24,7 @@ export interface AppOptions {
   storageStatus?: () => StorageStatus;
   settings?: SettingsRepository;
   repositories?: RepositoryService;
+  tasks?: TaskStore;
 }
 
 /** Create a local HTTP application without opening sockets or launching a browser. */
@@ -112,6 +115,7 @@ export function createApp(options: AppOptions = {}) {
 
   if (options.settings) app.route('/api/workspaces', settingsRoutes(options.settings));
   if (options.repositories) app.route('/api/workspaces', repositoryRoutes(options.repositories));
+  if (options.tasks) app.route('/api/workspaces', taskRoutes(options.tasks));
 
   app.all('/api', (context) => context.json({ error: { code: 'NOT_FOUND', message: 'Unknown API route.' } }, 404));
   app.all('/api/*', (context) => context.json({ error: { code: 'NOT_FOUND', message: 'Unknown API route.' } }, 404));

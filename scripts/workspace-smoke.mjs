@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { execFileSync, spawn } from 'node:child_process';
-import { mkdtemp, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, writeFile, unlink } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -9,7 +9,8 @@ import { fileURLToPath } from 'node:url';
 // CDP reference: https://chromedevtools.github.io/devtools-protocol/
 const fixture = await mkdtemp(path.join(tmpdir(), 'aew-workspace-smoke-'));
 const withSync = process.env.AEW_SMOKE_SYNC === '1';
-const withRepositories = process.env.AEW_SMOKE_REPOSITORIES === '1' || withSync;
+const withTasks = process.env.AEW_SMOKE_TASKS === '1';
+const withRepositories = process.env.AEW_SMOKE_REPOSITORIES === '1' || withSync || withTasks;
 const daemonDir = fileURLToPath(new URL('../apps/daemon/', import.meta.url));
 const children = [];
 function start(command, args, cwd, env = process.env) {
@@ -90,7 +91,7 @@ try {
   const fill = (selector, value) => evaluate(`(() => {
     const field = document.querySelector(${JSON.stringify(selector)});
     if (!field) throw new Error('Missing fixture field');
-    const prototype = field instanceof HTMLSelectElement ? HTMLSelectElement.prototype : HTMLInputElement.prototype;
+    const prototype = field instanceof HTMLSelectElement ? HTMLSelectElement.prototype : field instanceof HTMLTextAreaElement ? HTMLTextAreaElement.prototype : HTMLInputElement.prototype;
     Object.getOwnPropertyDescriptor(prototype, 'value').set.call(field, ${JSON.stringify(value)});
     field.dispatchEvent(new Event('input', {bubbles:true})); field.dispatchEvent(new Event('change', {bubbles:true}));
   })()`);
@@ -120,7 +121,7 @@ try {
   await fill('form[aria-label="Rename workspace"] [name=name]', 'Renamed workspace');
   await click('form[aria-label="Rename workspace"] button[type=submit]');
   await wait("document.querySelector('.workspace-list').textContent.includes('Renamed workspace') && " + saved);
-  const before = await evaluate("(async () => { const list = await (await fetch('/api/workspaces')).json(); return await (await fetch('/api/workspaces/' + list.workspaces[0].id)).json(); })()");
+  let before = await evaluate("(async () => { const list = await (await fetch('/api/workspaces')).json(); return await (await fetch('/api/workspaces/' + list.workspaces[0].id)).json(); })()");
   assert.equal(before.connection.name, 'Renamed connection');
   assert.equal(before.connection.verificationStatus, 'not_verified');
   assert.equal(before.connection.configProfile, 'corp_fixture');
@@ -180,6 +181,35 @@ try {
       assert.equal(await readFile(path.join(source, 'file'), 'utf8'), 'dirty');
     }
   }
+  let taskSnapshot;
+  if (withTasks) {
+    await click('section[aria-label="Tasks"] .section-heading button');
+    await wait("Boolean(document.querySelector('form[aria-label=\"Create task\"]')) && " + usable);
+    await fill('[name=title]', 'Two-repository regression'); await fill('[name=description]', 'Investigate the fixture regression.\nPreserve both checkouts.');
+    await evaluate("document.querySelectorAll('[name=repositoryIds]').forEach(input => input.click())");
+    await click('form[aria-label="Create task"] button[type=submit]');
+    await wait("Boolean(document.querySelector('form[aria-label=\"Import artifacts\"]')) && " + usable);
+    const log = path.join(fixture, 'trace.log'), pdf = path.join(fixture, 'report.pdf');
+    await writeFile(log, 'fixture log line\n'); await writeFile(pdf, 'synthetic PDF bytes');
+    await page.send('DOM.enable');
+    const doc = await page.send('DOM.getDocument');
+    const node = await page.send('DOM.querySelector', { nodeId: doc.root.nodeId, selector: 'input[name=files]' });
+    await page.send('DOM.setFileInputFiles', { nodeId: node.nodeId, files: [log, pdf] });
+    await click('form[aria-label="Import artifacts"] button[type=submit]');
+    await wait("document.querySelectorAll('.artifact-entry').length === 2 && " + usable);
+    await click('.artifact-entry input[type=checkbox]');
+    await click('form[aria-label="Select text context"] button[type=submit]');
+    await wait("document.querySelector('section[aria-label=Tasks]').textContent.includes('Text context selection saved.') && " + usable);
+    await unlink(log); await unlink(pdf);
+    taskSnapshot = await evaluate(`(async () => { const list = await (await fetch('/api/workspaces/${before.workspace.id}/tasks')).json(); return await (await fetch('/api/workspaces/${before.workspace.id}/tasks/' + list.tasks[0].id)).json(); })()`);
+    assert.equal(taskSnapshot.task.repositoryIds.length, 2); assert.equal(taskSnapshot.artifacts.length, 2);
+    assert.equal(taskSnapshot.context.entries.filter(entry => entry.range).length, 1);
+    const text = taskSnapshot.artifacts.find(artifact => artifact.kind === 'text');
+    assert.equal(await evaluate(`(async () => await (await fetch('/api/workspaces/${before.workspace.id}/tasks/${taskSnapshot.task.id}/artifacts/${text.id}/download')).text())()`), 'fixture log line\n');
+    before = await evaluate(`(async () => await (await fetch('/api/workspaces/${before.workspace.id}')).json())()`);
+    assert.equal(before.workspace.boundaryLocked, true);
+    assert.equal(await evaluate("document.querySelector('.workspace-content .danger').disabled"), true);
+  }
   const screenshot = await page.send('Page.captureScreenshot', { captureBeyondViewport: true });
   await writeFile(path.join(fixture, 'workspace-desktop.png'), Buffer.from(screenshot.data, 'base64'));
   await stop(first);
@@ -189,6 +219,12 @@ try {
   await wait(usable);
   const after = await evaluate(`(async () => await (await fetch('/api/workspaces/${before.workspace.id}')).json())()`);
   assert.deepEqual(after, before);
+  if (withTasks) {
+    const afterTask = await evaluate(`(async () => await (await fetch('/api/workspaces/${before.workspace.id}/tasks/${taskSnapshot.task.id}')).json())()`);
+    assert.deepEqual(afterTask, taskSnapshot);
+    await click('section[aria-label="Tasks"] .workspace-list button');
+    await wait("Boolean(document.querySelector('form[aria-label=\"Select text context\"]')) && " + usable);
+  }
   if (withRepositories) {
     await wait("document.querySelectorAll('.repository-list li').length === 3");
     const afterRepositories = await evaluate(`(async () => await (await fetch('/api/workspaces/${before.workspace.id}/repositories')).json())()`);
@@ -199,6 +235,7 @@ try {
   const mobile = await page.send('Page.captureScreenshot', { captureBeyondViewport: true });
   await writeFile(path.join(fixture, 'workspace-mobile.png'), Buffer.from(mobile.data, 'base64'));
   // Cancel confirmation first, then accept deletion of this isolated fixture.
+  if (!withTasks) {
   await evaluate('window.confirm = () => false');
   await click('.workspace-content .danger');
   assert.equal(await evaluate("document.querySelectorAll('.workspace-list li').length"), 1);
@@ -208,12 +245,14 @@ try {
     await wait("document.querySelector('.feedback').textContent.includes('contains repository records')");
     assert.equal(await evaluate("document.querySelectorAll('.workspace-list li').length"), 1);
   } else await wait("document.querySelectorAll('.workspace-list li').length === 0 && " + saved);
+  }
   const result = { workspaceCreate: 'passed', connectionUpdate: 'passed', modelProfileCreateAndUpdate: 'passed',
-    rename: 'passed', restartPersistence: 'passed', narrowViewport: 'passed', deletionConfirmation: 'passed',
+    rename: 'passed', restartPersistence: 'passed', narrowViewport: 'passed', deletionConfirmation: withTasks ? 'disabled by boundary lock' : 'passed',
     verifiedConnectionClaim: false, aiInvocations: 0 };
   if (withRepositories) Object.assign(result, { repositoryRegistration: 'passed', managedClone: 'passed', failedCloneDiagnostics: 'passed',
     repositoryRestartPersistence: 'passed', dirtyCheckoutPreserved: 'passed', workspaceDeletionBlocked: 'passed' });
   if (withSync) Object.assign(result, { noRemoteRefresh: 'passed', fetchAndPrune: 'passed', syncFailureDiagnostics: 'passed', lastSuccessPreserved: 'passed', syncRestartPersistence: 'passed' });
+  if (withTasks) Object.assign(result, { twoRepositoryTask: 'passed', browserFileUpload: 'passed', sourceRemovalDownload: 'passed', explicitTextContext: 'passed', unsupportedFileExclusion: 'passed', taskRestartPersistence: 'passed', boundaryLock: 'passed' });
   await writeFile(path.join(fixture, 'result.json'), JSON.stringify(result, null, 2));
   console.log(JSON.stringify({ fixture, ...result }, null, 2));
 } finally {

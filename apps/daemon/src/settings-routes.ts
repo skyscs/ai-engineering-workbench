@@ -2,7 +2,7 @@ import { Hono, type Context } from 'hono';
 import { DomainError } from '@aew/core';
 import type { SettingsRepository } from '@aew/storage';
 
-export async function input(context: Context): Promise<unknown> {
+export async function input(context: Context, limit = 16384): Promise<unknown> {
   if (context.req.header('content-type')?.split(';')[0]?.trim() !== 'application/json') {
     throw new DomainError('INVALID_INPUT', 'Use application/json for settings requests.');
   }
@@ -16,9 +16,9 @@ export async function input(context: Context): Promise<unknown> {
       const { done, value } = await reader.read();
       if (done) break;
       size += value.byteLength;
-      if (size > 16384) {
+      if (size > limit) {
         await reader.cancel();
-        throw new DomainError('INVALID_INPUT', 'Settings requests must not exceed 16 KiB.');
+        throw new DomainError('INVALID_INPUT', `JSON requests must not exceed ${limit} bytes.`);
       }
       chunks.push(value);
     }

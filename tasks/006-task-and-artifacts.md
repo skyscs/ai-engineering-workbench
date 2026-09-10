@@ -1,5 +1,10 @@
 # Task 006 — Task creation and local artifacts
 
+Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge. See the
+[task guide](../docs/tasks-and-artifacts.md),
+[ADR 0009](../docs/decisions/0009-task-artifact-and-run-storage.md) and
+[development status](../docs/development-status.md).
+
 ## Goal
 
 Create engineering Tasks and import local artifacts into immutable task storage.

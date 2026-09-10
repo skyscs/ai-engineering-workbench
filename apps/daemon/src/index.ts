@@ -15,7 +15,11 @@ const packageDir = path.resolve(currentDir, '..');
 const publicDir = path.join(packageDir, 'public');
 
 const storage = (() => {
-  try { return openStorage(); } catch (error) {
+  try { return openStorage({ artifactLimits: {
+    ...(process.env.AEW_MAX_ARTIFACT_BYTES ? { fileBytes: Number(process.env.AEW_MAX_ARTIFACT_BYTES) } : {}),
+    ...(process.env.AEW_MAX_TASK_ARTIFACT_BYTES ? { taskBytes: Number(process.env.AEW_MAX_TASK_ARTIFACT_BYTES) } : {}),
+    ...(process.env.AEW_MAX_CONTEXT_BYTES ? { contextBytes: Number(process.env.AEW_MAX_CONTEXT_BYTES) } : {})
+  } }); } catch (error) {
     console.error(error instanceof StorageError ? `${error.code}: ${error.message}` : 'Local storage initialization failed.');
     process.exit(1);
   }
@@ -24,7 +28,7 @@ const storage = (() => {
 process.once('exit', () => storage.close());
 const repositories = new RepositoryService(storage);
 const app = createApp({ publicDir, development: process.env.NODE_ENV === 'development',
-  storageStatus: () => storage.status(), settings: storage.settings, repositories });
+  storageStatus: () => storage.status(), settings: storage.settings, repositories, tasks: storage.tasks });
 
 const server = serve(
   {
@@ -59,7 +63,7 @@ function shutdown(): void {
     process.exit(1);
   }, 5000);
   deadline.unref();
-  void Promise.all([repositories.close(), new Promise<void>((resolve) => server.close(() => resolve()))]).then(() => {
+  void Promise.all([repositories.close(), storage.tasks.artifacts.close(), new Promise<void>((resolve) => server.close(() => resolve()))]).then(() => {
     storage.close();
     clearTimeout(deadline);
   });

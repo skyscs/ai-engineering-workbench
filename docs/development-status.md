@@ -152,7 +152,7 @@ outside the verified Task 004 scope.
 
 ## Task 005 — Repository synchronization
 
-Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge.
+Status: accepted through the user's merge of PR #6 into main (be6cc72).
 
 Implemented: explicit protected sync endpoint, persisted running/terminal states,
 separate attempt and successful-fetch timestamps, UI action/status/diagnostics,
@@ -172,9 +172,43 @@ The browser scenario passed no-remote refresh, fetch/prune, a later fetch failur
 preserved last-success time and restart persistence, with no horizontal overflow
 at 390px. See the [recorded browser result](fixtures/synchronization/browser-result.json).
 
-Next task: 006 — task creation, immutable artifacts and minimal StageRun storage.
 AEW-001 remains unchanged. Tags/custom refspecs and automatic retries are outside
 the supported sync policy; interrupted attempts require inspection before retry.
+
+## Task 006 — Tasks, immutable artifacts and stage run foundation
+
+Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge.
+
+Implemented: schema version 5, task creation with owned repository associations,
+atomic workspace boundary lock, protected API and browser task forms. Streamed
+file imports use generated paths, exact byte counts/SHA-256, configurable quotas,
+durable staging and recorded recovery. Downloads reject redirected paths and use
+attachment disposition/nosniff. Explicit UTF-8 byte ranges preserve originals;
+unsupported files and unverified images remain excluded from analysis.
+
+Minimal internal StageRun storage persists immutable task/context/profile snapshots,
+ownership, busy guards, normalized failures and lifecycle timestamps. Profile edits
+preserve historical inputs; referenced profiles cannot be deleted. Startup interrupts
+unfinished runs. ADR 0009 records implementation decisions and integration duties
+for worktree/runtime/result tasks. There is no public AI execution endpoint yet.
+
+Validation: a clean source copy installed from the frozen lockfile and local store
+passed strict typecheck, all 73 tests (11 Git, 34 storage, 21 HTTP, 7 runtime) and
+the production build. Fixtures cover schema version 4 upgrade, task/lock rollback,
+cross-workspace selection, immutable snapshots, terminal transitions, duplicate
+and traversal filenames, missing sources, quota violations, disconnects, injected
+disk-full writes, SIGKILL during upload, staging/rename recovery and file/link
+integrity. No normal application data or model invocations were used.
+
+Chrome acceptance creates a task with two repositories, imports a log and PDF,
+saves explicit text context, removes source files and downloads preserved bytes.
+Production-to-development restart preserves task/artifact/context metadata and
+the boundary lock. The 390px viewport has no horizontal overflow. See the
+[browser result](fixtures/tasks/browser-result.json).
+
+Next task: 007 — detached task worktrees and durable repository pins. Initial
+repository metadata is not yet a prepared worktree. Task edit/delete, image runtime
+integration and investigation execution remain deferred. AEW-001 is unchanged.
 
 ## Git handoff
 
@@ -184,8 +218,9 @@ the supported sync policy; interrupted attempts require inspection before retry.
 - Task 002: `task/002-local-storage`, c8ca418, merged through PR #3 as d8d4bf2.
 - Task 003: `task/003-workspaces`, 4d07a77, merged through PR #4 as 8134f14.
 - Task 004: `task/004-repository-registry`, 3aae7ec, merged through PR #5 as 9dadec4.
-- Task 005: `task/005-repository-sync`, based on merged main (9dadec4).
+- Task 005: `task/005-repository-sync`, 137c495, merged through PR #6 as be6cc72.
+- Task 006: `task/006-tasks-and-artifacts`, based on merged main (be6cc72).
 
-## Tasks 006–011
+## Tasks 007–011
 
 Status: not started. Execute in the order recorded in DEVELOPMENT_PLAN.md.
