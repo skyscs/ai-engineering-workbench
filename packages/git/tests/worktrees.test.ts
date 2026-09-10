@@ -23,7 +23,7 @@ async function fixture(t: TestContext) {
       resolvedCommitSha: sha, managedPinRef: `refs/aew/tasks/${taskId}/${repositoryId}` };
   }
   async function prepare(p: WorktreePlan) { await lifecycle.pin(p, true); await lifecycle.create(p); await lifecycle.durable(p); }
-  return { root, source, managed, git, client, lifecycle, plan, prepare, sha };
+  return { root, source, managed, env, git, client, lifecycle, plan, prepare, sha };
 }
 
 test('detached task worktrees coexist, preserve dirty source checkout and retain pins after cleanup and GC', async (t) => {
@@ -99,4 +99,19 @@ test('verification refuses initializing or missing registrations and permits tra
   renameSync(plan.worktreePath, `${plan.worktreePath}.moved`);
   await assert.rejects(f.lifecycle.verify(plan), /missing/);
   assert.equal(await f.lifecycle.absent(plan), false);
+});
+
+test('explicit system-config isolation excludes host filters while ordinary configuration still rejects them', async (t) => {
+  const f = await fixture(t), config = path.join(f.root, 'system.gitconfig'), wrapper = path.join(f.root, 'system-git');
+  writeFileSync(config, '[filter "host-fixture"]\nsmudge = unavailable-fixture-command\n');
+  // Emulate a host system config without writing outside the fixture directory.
+  writeFileSync(wrapper, `#!${process.execPath}\nconst { spawnSync } = require('node:child_process');\nconst result = spawnSync('git', process.argv.slice(2), {env: {...process.env, GIT_CONFIG_SYSTEM: ${JSON.stringify(config)}}, stdio: 'inherit'});\nprocess.exit(result.status ?? 1);\n`, { mode: 0o700 });
+  const isolated = new GitClient({ executable: wrapper, env: f.env });
+  const lifecycle = new WorktreeGit(isolated, f.managed), plan = f.plan();
+  await lifecycle.pin(plan, true); await lifecycle.create(plan); await lifecycle.verify(plan);
+  isolated.stop();
+  const ordinaryEnv = { ...f.env, GIT_CONFIG_NOSYSTEM: '0' };
+  const ordinary = new GitClient({ executable: wrapper, env: ordinaryEnv });
+  try { await assert.rejects(new WorktreeGit(ordinary, f.managed).create(f.plan()), /checkout filters/); }
+  finally { ordinary.stop(); }
 });

@@ -229,11 +229,17 @@ pins and never force-deletes or globally prunes. Startup reconciles recorded sta
 without creating or deleting worktrees. ADR 0010 documents the lifecycle.
 
 Validation: a clean source installation from the frozen lockfile passed strict
-typecheck, all 87 tests (16 Git, 36 storage, 28 HTTP, 7 runtime) and production
+typecheck, all 88 tests (17 Git, 36 storage, 28 HTTP, 7 runtime) and production
 build on Node 22.23.2 / Linux. Tests cover dirty source preservation, tasks sharing
 a branch base, retained pins after cleanup and GC, partial failure/retry, ownership,
 stale operations, version 5 upgrade, completed creation/removal with pending
 metadata, and shutdown during preparation or startup reconciliation.
+
+CI exposed inherited system checkout filters in its runner. The adapter now
+honors an explicit `GIT_CONFIG_NOSYSTEM=1` while continuing to reject arbitrary
+config injection. A synthetic system-config regression verifies isolated fixtures
+and confirms that ordinary configured filters still trigger the supported-policy
+error.
 
 Chrome acceptance passed two-repository preparation, base-ref failure/correction,
 dirty cleanup refusal, clean cleanup, pin retention, recreation, restart persistence
