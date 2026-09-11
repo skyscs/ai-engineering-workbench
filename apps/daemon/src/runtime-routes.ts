@@ -7,6 +7,15 @@ import type { RuntimeService } from './runtime-service.js';
 export function runtimeRoutes(service: RuntimeService) {
   const routes = new Hono();
   const base = '/:workspaceId/tasks/:taskId';
+  routes.post(`${base}/interventions`, async (c) => {
+    const result = service.intervene(c.req.param('workspaceId'), c.req.param('taskId'), await input(c));
+    return c.json(result, result.run ? 202 : 201);
+  });
+  routes.get(`${base}/interventions`, (c) => {
+    const w = c.req.param('workspaceId'), t = c.req.param('taskId');
+    return c.json({ interventions: service.storage.tasks.interventions.history(w, t), constraints: service.storage.tasks.interventions.constraints(w, t) });
+  });
+  routes.post(`${base}/constraints/:constraintId/deactivate`, async (c) => c.json(service.storage.tasks.interventions.deactivate(c.req.param('workspaceId'), c.req.param('taskId'), c.req.param('constraintId'), await input(c)), 201));
   routes.post(`${base}/investigations`, async (c) => c.json(service.startInvestigation(c.req.param('workspaceId'), c.req.param('taskId'), await input(c)), 202));
   routes.get(`${base}/investigations`, (c) => c.json({ reports: service.storage.tasks.investigations.list(c.req.param('workspaceId'), c.req.param('taskId')) }));
   routes.get(`${base}/investigations/:reportId`, (c) => c.json(service.storage.tasks.investigations.get(c.req.param('workspaceId'), c.req.param('taskId'), c.req.param('reportId'))));

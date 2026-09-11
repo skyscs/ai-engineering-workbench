@@ -1,5 +1,6 @@
+import { Interventions } from './Interventions';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import type { EvidenceContent, InvestigationReport } from '@aew/core';
+import type { EvidenceContent, Intervention, InvestigationReport } from '@aew/core';
 import { api } from './api';
 
 /** Deliberately small Markdown subset; raw HTML and images are always inert text. */
@@ -27,10 +28,14 @@ export function Markdown({ text }: { text: string }) {
     })}</div>;
   })}</div>;
 }
-export function Report({ base, revision, runId, runStatus }: { base: string; revision: number; runId: string | undefined; runStatus: string | undefined }) {
+export function Report({ base, revision, runId, runStatus, disabled, canChallenge, modelProfileId, submit }: {
+  base: string; revision: number; runId: string | undefined; runStatus: string | undefined;
+  disabled: boolean; canChallenge: boolean; modelProfileId: string | null; submit(route: string, body: unknown): Promise<void>;
+}) {
   const [reports, setReports] = useState<InvestigationReport[]>([]), [selected, setSelected] = useState('');
   const [source, setSource] = useState<EvidenceContent | null>(null), [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [cause, setCause] = useState<Intervention | null>(null);
   const sourceGeneration = useRef(0);
   useEffect(() => {
     let disposed = false;
@@ -41,6 +46,15 @@ export function Report({ base, revision, runId, runStatus }: { base: string; rev
     return () => { disposed = true; sourceGeneration.current++; };
   }, [base, revision, runId, runStatus]);
   const report = reports.find(r => r.id === selected);
+  useEffect(() => {
+    let disposed = false; setCause(null);
+    if (report?.triggeredByInterventionId) {
+      void api<import('@aew/shared').RuntimeDetail>(`${base}/runtime-runs/${report.stageRunId}`).then(value => {
+        if (!disposed) setCause(value.run.inputSnapshot.revision?.intervention ?? null);
+      }).catch((e: Error) => { if (!disposed) setError(e.message); });
+    }
+    return () => { disposed = true; };
+  }, [base, report?.id]);
   async function evidence(id: string) {
     if (!report) return;
     const generation = ++sourceGeneration.current;
@@ -57,6 +71,8 @@ export function Report({ base, revision, runId, runStatus }: { base: string; rev
         {reports.map(r => <option key={r.id} value={r.id}>Version {r.version} · {r.status} · {r.freshness}</option>)}
       </select></label>
       <p>Version {report.version} · {report.status} · {report.freshness} · {report.createdAt}</p>
+      {report.previousVersionId && <p>Revises version {reports.find(r => r.id === report.previousVersionId)?.version ?? 'from earlier history'}.</p>}
+      {cause && <div><h4>Triggered by this challenge</h4><p className="task-description">{cause.text}</p></div>}
       {report.freshness === 'stale' && <p role="status">Context changed since this report. Run another investigation to use the current context.</p>}
       <p className="hint">Locators were checked at publication. Review whether the cited material supports the conclusion. Source availability is checked again when opened.</p>
       <h4>Investigation</h4><Markdown text={report.result.investigation.summary} />
@@ -68,5 +84,8 @@ export function Report({ base, revision, runId, runStatus }: { base: string; rev
       {loading && <p>Reading recorded evidence…</p>}
       {source && <section aria-label="Evidence source"><h4>Recorded source</h4><p><code>{source.locator}</code></p><pre>{source.text}</pre></section>}
     </>}
+    <Interventions key={`${report?.id ?? 'initial'}:${revision}`} base={base} revision={revision} runId={runId} runStatus={runStatus}
+      report={report} reports={reports} disabled={disabled} canChallenge={canChallenge} modelProfileId={modelProfileId} submit={submit}
+      selectReport={id => { sourceGeneration.current++; setSelected(id); setSource(null); setError(''); }} />
   </section>;
 }

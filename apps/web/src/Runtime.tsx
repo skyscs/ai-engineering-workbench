@@ -45,6 +45,13 @@ export function Runtime({ detail, settings, csrf, disabled, update }: {
     } catch (e) { setError(e instanceof Error ? e.message : 'Cannot start runtime.'); }
     finally { setBusy(false); }
   }
+  async function submitIntervention(route: string, body: unknown) {
+    setBusy(true);
+    try {
+      await api(route, { method: 'POST', headers, body: JSON.stringify(body) });
+      update(await api<TaskDetail>(base));
+    } finally { setBusy(false); }
+  }
   return <section aria-label="AI runtime" className="runtime-section"><h3>Historical investigation</h3>
     <p className="hint">Investigate source and history using this workspace's Codex connection. Selected text ranges are supplied to the model; excluded files are not supplied. The CLI may send data to its configured provider. The investigation and root-cause report are published together after evidence locators pass validation.</p>
     <p>Connection: {connection?.name ?? 'Loading'}<br />Configuration directory: <code>{connection?.configHome ?? 'Not selected — save it in AI connection settings first.'}</code><br />CLI profile: {connection?.configProfile ?? 'Base configuration'}</p>
@@ -65,6 +72,8 @@ export function Runtime({ detail, settings, csrf, disabled, update }: {
       {run?.result && 'findings' in run.result && <div><h4>Preliminary result</h4><p className="task-description">{run.result.summary}</p><ul>{run.result.findings.map((text, index) => <li key={index}>{text}</li>)}</ul>
         <h4>Unresolved questions</h4>{run.result.unresolvedQuestions.length ? <ul>{run.result.unresolvedQuestions.map((text, index) => <li key={index}>{text}</li>)}</ul> : <p>None reported.</p>}</div>}
     </>}
-    <Report base={base} revision={detail.task.contextRevision} runId={latest?.id} runStatus={detail.latestRun?.status} />
+    <Report base={base} revision={detail.task.contextRevision} runId={latest?.id} runStatus={detail.latestRun?.status}
+      disabled={disabled || busy || active} canChallenge={!!connection?.configHome && detail.worktrees.every(r => r.status === 'ready')}
+      modelProfileId={profile || null} submit={submitIntervention} />
   </section>;
 }

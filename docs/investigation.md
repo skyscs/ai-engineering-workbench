@@ -16,8 +16,9 @@ A concrete identified cause must cite evidence. **Insufficient evidence** is a
 valid result when more context is needed. Locator checks establish source identity,
 existence and range; the engineer decides whether it supports the conclusion.
 Excluded PDF/video/image inputs are disclosed and cannot become analyzed evidence.
-Current constraints are snapshotted as an empty list; persistent constraint editing
-and challenges are introduced in Task 010.
+Active constraints and the exact previous report for a challenge are snapshotted
+by Task 010. Use [human interventions](interventions.md) to save rules or reconsider
+a conclusion.
 
 Every successful invocation adds one immutable version. **Report version** opens
 older versions. A failed, cancelled or invalid attempt leaves the last successful

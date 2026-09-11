@@ -209,3 +209,32 @@ test('schema 8 preview history survives report migration without being promoted 
     finally { check.close(); }
   } finally { storage.close(); }
 });
+
+test('schema 9 migration preserves report content and snapshots while initializing provenance and dependency freshness', t => {
+  const root=mkdtempSync(path.join(tmpdir(),'aew-interventions-upgrade-'));
+  t.after(()=>rmSync(root,{recursive:true,force:true}));
+  const db=new DatabaseSync(path.join(root,'workbench.db')); migrate(db,migrations.slice(0,9));
+  const history=db.prepare('SELECT * FROM schema_migrations').all();
+  db.exec("INSERT INTO ai_connections (id,name,runtime_type,created_at,updated_at) VALUES ('cli','CLI','codex-cli','now','now'); INSERT INTO workspaces (id,name,ai_connection_id,created_at,updated_at) VALUES ('w','W','cli','now','now'); INSERT INTO tasks (id,workspace_id,title,description,context_revision,created_at,updated_at) VALUES ('t','w','T','Context',2,'now','now');");
+  const snapshot=JSON.stringify({schemaVersion:'investigation-v1',constraints:[]});
+  const result=JSON.stringify({investigation:{summary:'Legacy analysis',timeline:[]},rootCause:{status:'insufficient_evidence',summary:'More context needed.',evidenceIds:[],unresolvedQuestions:['Which commit?']},evidence:[]});
+  for(const [n,revision] of [[1,1],[2,2]] as const) {
+    db.prepare("INSERT INTO stage_runs (id,task_id,ai_connection_id,stage,status,input_snapshot,created_at) VALUES (?,'t','cli','investigation','succeeded',?,'now')").run(`run${n}`,snapshot);
+    db.prepare("INSERT INTO run_execution (run_id,metadata_json,result_json) VALUES (?,'{}',?)").run(`run${n}`,result);
+    db.prepare("INSERT INTO investigation_reports VALUES (?,?,'t',?,?,?,?,'now')").run(`report${n}`,`cause${n}`,`run${n}`,n,revision,result);
+  }
+  db.close(); const storage=openStorage({dataRoot:root});
+  try {
+    const reports=storage.tasks.investigations.list('w','t');
+    assert.equal(reports[0]!.freshness,'fresh'); assert.equal(reports[1]!.freshness,'stale');
+    assert.equal(reports[0]!.previousVersionId,null); assert.equal(reports[0]!.triggeredByInterventionId,null);
+    assert.deepEqual(reports[0]!.result,JSON.parse(result)); assert.deepEqual(storage.tasks.interventions.constraints('w','t'),[]);
+    const check=new DatabaseSync(storage.paths.database);
+    try {
+      assert.deepEqual(check.prepare('SELECT * FROM schema_migrations WHERE version <= 9').all(),history);
+      assert.equal(check.prepare("SELECT input_snapshot FROM stage_runs WHERE id = 'run1'").get()!.input_snapshot,snapshot);
+      assert.equal(check.prepare('SELECT COUNT(*) AS n FROM result_dependencies').get()!.n,4);
+      assert.equal(check.prepare('SELECT COUNT(*) AS n FROM result_invalidations').get()!.n,2);
+    } finally {check.close();}
+  } finally { storage.close(); }
+});

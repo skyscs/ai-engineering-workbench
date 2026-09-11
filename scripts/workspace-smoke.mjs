@@ -9,7 +9,8 @@ import { fileURLToPath } from 'node:url';
 // CDP reference: https://chromedevtools.github.io/devtools-protocol/
 const fixture = await mkdtemp(path.join(tmpdir(), 'aew-workspace-smoke-'));
 const withSync = process.env.AEW_SMOKE_SYNC === '1';
-const withRuntime = process.env.AEW_SMOKE_RUNTIME === '1';
+const withInterventions = process.env.AEW_SMOKE_INTERVENTIONS === '1';
+const withRuntime = process.env.AEW_SMOKE_RUNTIME === '1' || withInterventions;
 const withWorktrees = process.env.AEW_SMOKE_WORKTREES === '1' || withRuntime;
 const withTasks = process.env.AEW_SMOKE_TASKS === '1' || withWorktrees;
 const withRepositories = process.env.AEW_SMOKE_REPOSITORIES === '1' || withSync || withTasks;
@@ -292,7 +293,7 @@ try {
     const old = await evaluate(`(async () => await (await fetch('${taskRoute}/runtime-runs/${succeeded.id}')).json())()`);
     assert.equal(old.run.status, 'succeeded'); assert.ok(old.result);
     await writeFile(runtimeMode, 'sleep'); await click(`${section} > button`);
-    await wait(`Array.from(document.querySelectorAll('${section} button')).some(b => b.textContent === 'Cancel run')`);
+    await wait(`Array.from(document.querySelectorAll('${section} button')).some(b => b.textContent === 'Cancel run' && !b.disabled)`);
     await evaluate(`Array.from(document.querySelectorAll('${section} button')).find(b => b.textContent === 'Cancel run').click()`);
     await wait(`document.querySelector('${section}').textContent.includes('cancelled')`);
     await writeFile(runtimeMode, 'success'); await click(`${section} > button`);
@@ -305,6 +306,57 @@ try {
     await fill('section[aria-label="Investigation reports"] select', history[1].id);
     await click('section[aria-label="Investigation reports"] .evidence-references button');
     await wait(`document.querySelector('section[aria-label="Evidence source"]')?.textContent.includes('1: committed')`);
+    if (withInterventions) {
+      const original = history[0];
+      await fill('section[aria-label="Investigation reports"] select', original.id);
+      const guardRun = (await snapshot()).latestRun.id;
+      const constraintText = 'Preserve both repositories and inspect history before concluding.';
+      await fill('[name=constraintText]', constraintText);
+      await click('form[aria-label="Add constraint"] button[type=submit]');
+      await wait(`document.querySelector('section[aria-label="Human interventions"] li')?.textContent.includes(${JSON.stringify(constraintText)})`);
+      await waitFor(async () => (await reports())[0].freshness === 'stale', 'Constraint did not invalidate reports.');
+      assert.equal((await snapshot()).latestRun.id, guardRun);
+      const challengeText = 'The explanation is incomplete. Reconsider the historical contract.';
+      await fill('[name=challengeText]', challengeText);
+      await writeFile(runtimeMode, 'failure'); await click('form[aria-label="Challenge report"] button[type=submit]');
+      await waitFor(async () => { const r=(await snapshot()).latestRun; return r.id !== guardRun && r.status === 'failed'; }, 'Challenge failure was not recorded.');
+      assert.equal((await reports()).length, 2);
+      await evaluate(`document.querySelector('section[aria-label="Human interventions"] details').open = true`);
+      await wait(`document.querySelector('section[aria-label="Human interventions"] details button') !== null`);
+      await click('section[aria-label="Human interventions"] details button');
+      await wait(`document.querySelector('section[aria-label="Intervention attempt"]')?.textContent.includes('AUTHENTICATION_REQUIRED')`);
+      await wait(`!document.querySelector('form[aria-label="Challenge report"] fieldset').disabled`);
+      const failedChallengeId = (await snapshot()).latestRun.id;
+      await fill('[name=challengeText]', challengeText);
+      await writeFile(runtimeMode, 'sleep'); await click('form[aria-label="Challenge report"] button[type=submit]');
+      await waitFor(async () => { const r = (await snapshot()).latestRun; return r.id !== failedChallengeId && r.status === 'running'; }, 'Challenge retry did not start.');
+      await wait(`Array.from(document.querySelectorAll('${section} button')).some(b => b.textContent === 'Cancel run' && !b.disabled)`);
+      assert.equal(await evaluate(`document.querySelector('form[aria-label="Add constraint"] fieldset').disabled`), true);
+      await evaluate(`Array.from(document.querySelectorAll('${section} button')).find(b => b.textContent === 'Cancel run').click()`);
+      await waitFor(async () => (await snapshot()).latestRun.status === 'cancelled', 'Challenge cancellation did not finish.');
+      await wait(`!document.querySelector('form[aria-label="Challenge report"] fieldset').disabled`);
+      await fill('[name=challengeText]', challengeText);
+      await writeFile(runtimeMode, 'success'); await click('form[aria-label="Challenge report"] button[type=submit]');
+      await waitFor(async () => (await reports()).length === 3 && (await snapshot()).latestRun.status === 'succeeded', 'Challenge did not publish version 3.');
+      const revised = (await reports())[0], attempt = (await snapshot()).latestRun;
+      assert.equal(revised.previousVersionId, original.id); assert.ok(revised.triggeredByInterventionId);
+      assert.equal(attempt.inputSnapshot.revision.intervention.text, challengeText);
+      assert.deepEqual(attempt.inputSnapshot.revision.previousReport.result, original.result);
+      assert.deepEqual(attempt.inputSnapshot.constraints, [constraintText]);
+      assert.ok(revised.result.investigation.summary.includes('Applied constraints: ' + constraintText));
+      assert.ok(revised.result.investigation.summary.includes('Reconsidered after challenge: ' + challengeText));
+      await wait(`document.querySelector('section[aria-label="Investigation reports"]').textContent.includes('Triggered by this challenge')`);
+      const earlier = (await reports()).find(r => r.id === original.id); assert.equal(earlier.status, 'superseded'); assert.deepEqual(earlier.result, original.result);
+      await evaluate(`Array.from(document.querySelectorAll('section[aria-label="Human interventions"] button')).find(b => b.textContent === 'Deactivate constraint').click()`);
+      await wait(`document.querySelector('section[aria-label="Human interventions"]').textContent.includes('No active constraints.')`);
+      assert.equal((await snapshot()).latestRun.id, attempt.id);
+      await wait(`!document.querySelector('${section} > button').disabled`); await click(`${section} > button`);
+      await waitFor(async () => (await reports()).length === 4 && (await snapshot()).latestRun.status === 'succeeded', 'Run after deactivation did not complete.');
+      taskSnapshot = await snapshot(); assert.deepEqual(taskSnapshot.latestRun.inputSnapshot.constraints, []);
+      await wait(`document.querySelectorAll('section[aria-label="Investigation reports"] select option').length === 4`);
+      await fill('section[aria-label="Investigation reports"] select', revised.id);
+      await wait(`document.querySelector('section[aria-label="Investigation reports"]').textContent.includes('Triggered by this challenge')`);
+    }
   }
   const screenshot = await page.send('Page.captureScreenshot', { captureBeyondViewport: true });
   await writeFile(path.join(fixture, 'workspace-desktop.png'), Buffer.from(screenshot.data, 'base64'));
@@ -322,6 +374,11 @@ try {
     await wait("Boolean(document.querySelector('form[aria-label=\"Select text context\"]')) && " + usable);
   }
   if (withRuntime) await wait("document.querySelector('section[aria-label=\"AI runtime\"]').textContent.includes('Fixture café investigation')");
+  if (withInterventions) {
+    await wait(`document.querySelector('section[aria-label="Human interventions"]').textContent.includes('No active constraints.')`);
+    const history = await evaluate(`(async () => await (await fetch('/api/workspaces/${before.workspace.id}/tasks/${taskSnapshot.task.id}/interventions')).json())()`);
+    assert.equal(history.interventions.length, 5); assert.equal(history.constraints[0].active, false);
+  }
   if (withRepositories) {
     await wait("document.querySelectorAll('.repository-list li').length === 3");
     const afterRepositories = await evaluate(`(async () => await (await fetch('/api/workspaces/${before.workspace.id}/repositories')).json())()`);
@@ -352,6 +409,7 @@ try {
   if (withTasks) Object.assign(result, { twoRepositoryTask: 'passed', browserFileUpload: 'passed', sourceRemovalDownload: 'passed', explicitTextContext: 'passed', unsupportedFileExclusion: 'passed', taskRestartPersistence: 'passed', boundaryLock: 'passed' });
   if (withWorktrees) Object.assign(result, { twoRepositoryPreparation: 'passed', baseRefFailureAndRetry: 'passed', dirtyCleanupRejected: 'passed', cleanCleanup: 'passed', retainedPin: 'passed', recreatePinnedRevision: 'passed', worktreeRestartPersistence: 'passed' });
   if (withRuntime) Object.assign(result, { investigationReport: 'passed', validatedEvidenceNavigation: 'passed', immutableVersionHistory: 'passed', invalidEvidencePreservesReport: 'passed', unsafeMarkdownInert: 'passed', selectedModelProfile: 'passed', runtimeFailureDiagnostics: 'passed', runtimeCancellation: 'passed', runtimeRetry: 'passed', priorRunPreserved: 'passed', runtimeRestartPersistence: 'passed', persistedEventReplay: 'passed', fixtureRuntimeInvocations: 5, explicitConfigurationDirectory: 'passed', unboundRuntimeBlocked: 'passed', oneTimeDirectoryBinding: 'passed', savedDirectoryDisplayedAndLocked: 'passed' });
+  if (withInterventions) Object.assign(result, { constraintWithoutRun: 'passed', challengeFailurePreservesReport: 'passed', challengeCancellation: 'passed', challengeRevisionLink: 'passed', exactPreviousReportSnapshot: 'passed', constraintCarryForward: 'passed', constraintDeactivation: 'passed', interventionHistoryRestart: 'passed', immutableEarlierReport: 'passed', fixtureRuntimeInvocations: 9 });
   await writeFile(path.join(fixture, 'result.json'), JSON.stringify(result, null, 2));
   console.log(JSON.stringify({ fixture, ...result }, null, 2));
 } finally {

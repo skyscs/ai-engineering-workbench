@@ -77,8 +77,8 @@ StageRun snapshots/recovery. Task 007 adds detached task worktrees, retained
 revision pins, safe cleanup and Git-aware restart reconciliation. Task 008 adds
 the Codex CLI adapter, persisted events, cancellation and a preliminary structured
 preview. Task 009 adds versioned investigation/root-cause pairs, validated pinned
-evidence, report history and explicit insufficient-evidence conclusions. Tasks 010–011
-remain planned.
+evidence, report history and explicit insufficient-evidence conclusions. Task 010 adds challenges, persistent constraints, revision provenance and transitive
+invalidation. Task 011 remains planned.
 
 ## Quick start
 
@@ -222,3 +222,7 @@ that publishes the investigation and root-cause pair together. Open evidence but
 to inspect pinned sources. See the [investigation guide](docs/investigation.md).
 See the [runtime guide](docs/codex-runtime.md) for supported versions, data boundaries,
 limits, cancellation and verification.
+
+Use **Human interventions** to add task constraints without starting AI, or challenge
+the latest report with a fresh run. Earlier versions and failed attempts remain
+inspectable. See the [intervention guide](docs/interventions.md).

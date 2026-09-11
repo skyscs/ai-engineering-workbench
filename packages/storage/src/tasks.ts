@@ -1,8 +1,9 @@
+import { createInterventionStore } from './interventions.js';
 import { createInvestigationStore } from './investigations.js';
 import { createRunJournal } from './run-journal.js';
 import { randomUUID } from 'node:crypto';
 import type { DatabaseSync } from 'node:sqlite';
-import { DomainError, parseTask, type ArtifactLimits, type RunFailure, type StageRun, type Task } from '@aew/core';
+import { DomainError, parseTask, parseIntervention, type InterventionInput, type ArtifactLimits, type RunFailure, type StageRun, type Task } from '@aew/core';
 import type { SettingsRepository } from './settings.js';
 import { createArtifactStore } from './artifacts.js';
 import { createWorktreeStore } from './worktrees.js';
@@ -47,16 +48,19 @@ export function createTaskStore(db: DatabaseSync, ensureOpen: () => void, settin
     get(workspaceId, taskId);
     const row = db.prepare(`SELECT id, task_id AS taskId, ai_connection_id AS aiConnectionId,
       model_profile_id AS modelProfileId, stage, status, input_snapshot, error_json,
+      previous_version_id AS previousVersionId, triggered_by_intervention_id AS triggeredByInterventionId,
       created_at AS createdAt, started_at AS startedAt, completed_at AS completedAt FROM stage_runs WHERE id = ? AND task_id = ?`).get(id, taskId);
     if (!row) throw new DomainError('NOT_FOUND', 'Stage run not found in this task.');
     const { input_snapshot, error_json, ...fields } = row;
     return { ...fields, inputSnapshot: JSON.parse(String(input_snapshot)), error: error_json ? JSON.parse(String(error_json)) : null } as StageRun;
   }
   const journal = createRunJournal(db, run);
+  const investigations = createInvestigationStore(db, get, run, journal);
+  const interventions = createInterventionStore(db, { get, editable, bump });
   return {
     artifacts,
     journal,
-    investigations: createInvestigationStore(db, get, run, journal),
+    investigations, interventions,
     worktrees,
     get,
     list(workspaceId: string) {
@@ -88,7 +92,7 @@ export function createTaskStore(db: DatabaseSync, ensureOpen: () => void, settin
         imports: db.prepare("SELECT id, original_filename AS originalFilename, state, error_code AS errorCode FROM artifact_imports WHERE task_id = ? AND state != 'ready' ORDER BY created_at, id").all(id) };
     },
     getRun: run,
-    createRun(workspaceId: string, taskId: string, input: { stage: StageRun['stage']; modelProfileId: string | null; promptVersion: string; schemaVersion: string }): StageRun {
+    createRun(workspaceId: string, taskId: string, input: { stage: StageRun['stage']; modelProfileId: string | null; promptVersion: string; schemaVersion: string; challenge?: Extract<InterventionInput, {type: 'challenge'}> }): StageRun {
       editable(workspaceId, taskId);
       const context = artifacts.context(workspaceId, taskId);
       // File verification finishes before the short metadata transaction.
@@ -108,12 +112,20 @@ export function createTaskStore(db: DatabaseSync, ensureOpen: () => void, settin
           throw new DomainError('CONFLICT', 'Prepare every selected repository before investigation.');
         }
         const profile = input.modelProfileId === null ? null : settings.getModelProfile(workspaceId, input.modelProfileId);
-        const snapshot = { task, connection: owner.connection, profile, context, constraints: [],
+        const challenge = input.challenge ? parseIntervention(input.challenge) : null;
+        if (challenge && (challenge.type !== 'challenge' || input.schemaVersion !== 'investigation-v1' || input.stage !== 'investigation')) throw new DomainError('INVALID_INPUT', 'Challenges require the investigation workflow.');
+        const previousId = input.schemaVersion === 'investigation-v1' && input.stage === 'investigation'
+          ? db.prepare('SELECT id FROM investigation_reports WHERE task_id = ? ORDER BY version DESC LIMIT 1').get(taskId)?.id : null;
+        const intervention = challenge?.type === 'challenge' ? interventions.prepareChallenge(workspaceId, taskId, challenge) : null;
+        const previous = intervention ? investigations.get(workspaceId, taskId, intervention.targetReportId!) : null;
+        const activeConstraints = interventions.constraints(workspaceId, taskId).filter(c => c.active);
+        const snapshot = { task, connection: owner.connection, profile, context, constraints: activeConstraints.map(c => c.text), constraintSnapshots: activeConstraints,
+          revision: intervention && previous ? { intervention, previousReport: { id: previous.id, rootCauseId: previous.rootCauseId, version: previous.version, contextRevision: previous.contextRevision, result: previous.result } } : null,
           repositories: prepared.map((r) => ({ id: r.repositoryId, baseRef: r.baseRef, resolvedCommitSha: r.resolvedCommitSha, worktreePath: r.worktreePath, managedPinRef: r.managedPinRef })),
           promptVersion: input.promptVersion, schemaVersion: input.schemaVersion };
         const id = randomUUID(), now = new Date().toISOString();
-        db.prepare(`INSERT INTO stage_runs (id, task_id, ai_connection_id, model_profile_id, stage, status, input_snapshot, created_at)
-          VALUES (?, ?, ?, ?, ?, 'queued', ?, ?)`).run(id, taskId, owner.connection.id, input.modelProfileId, input.stage, JSON.stringify(snapshot), now);
+        db.prepare(`INSERT INTO stage_runs (id, task_id, ai_connection_id, model_profile_id, stage, status, input_snapshot, created_at, previous_version_id, triggered_by_intervention_id)
+          VALUES (?, ?, ?, ?, ?, 'queued', ?, ?, ?, ?)`).run(id, taskId, owner.connection.id, input.modelProfileId, input.stage, JSON.stringify(snapshot), now, previousId ?? null, intervention?.id ?? null);
         return run(workspaceId, taskId, id);
       });
     },

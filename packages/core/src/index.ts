@@ -1,3 +1,4 @@
+export * from './interventions.js';
 export * from './investigation.js';
 export * from './tasks.js';
 export const reasoningEfforts = ['low', 'medium', 'high', 'xhigh'] as const;
@@ -38,7 +39,7 @@ export interface ModelProfile extends ModelProfileInput {
 export interface WorkspaceInput { name: string; connection: ConnectionInput }
 
 export class DomainError extends Error {
-  constructor(public readonly code: 'INVALID_INPUT' | 'NOT_FOUND' | 'BOUNDARY_LOCKED' | 'CONFLICT', message: string) {
+  constructor(public readonly code: 'UNSUPPORTED_ACTION' | 'INVALID_INPUT' | 'NOT_FOUND' | 'BOUNDARY_LOCKED' | 'CONFLICT', message: string) {
     super(message);
     this.name = 'DomainError';
   }

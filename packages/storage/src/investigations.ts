@@ -10,11 +10,14 @@ export function createInvestigationStore(db: DatabaseSync, task: (w: string, t: 
     const current = task(w, t);
     const row = db.prepare(`SELECT id, root_cause_id AS rootCauseId, task_id AS taskId, stage_run_id AS stageRunId,
       version, context_revision AS contextRevision, result_json, created_at AS createdAt,
+      (SELECT previous_version_id FROM stage_runs WHERE id = investigation_reports.stage_run_id) AS previousVersionId,
+      (SELECT triggered_by_intervention_id FROM stage_runs WHERE id = investigation_reports.stage_run_id) AS triggeredByInterventionId,
+      EXISTS(SELECT 1 FROM result_invalidations WHERE task_id = investigation_reports.task_id AND result_id IN (investigation_reports.id, investigation_reports.root_cause_id)) AS invalidated,
       CASE WHEN version = (SELECT MAX(version) FROM investigation_reports WHERE task_id = ?) THEN 'active' ELSE 'superseded' END AS status
       FROM investigation_reports WHERE id = ? AND task_id = ?`).get(t, id, t);
     if (!row) throw new DomainError('NOT_FOUND', 'Investigation report not found in this task.');
-    const { result_json, ...fields } = row;
-    return { ...fields, freshness: row.contextRevision === current.contextRevision ? 'fresh' : 'stale', result: JSON.parse(String(result_json)) } as InvestigationReport;
+    const { result_json, invalidated, ...fields } = row;
+    return { ...fields, freshness: !invalidated && row.contextRevision === current.contextRevision ? 'fresh' : 'stale', result: JSON.parse(String(result_json)) } as InvestigationReport;
   }
   return {
     get,
@@ -29,6 +32,8 @@ export function createInvestigationStore(db: DatabaseSync, task: (w: string, t: 
       // The callback runs inside the same transaction as immutable output and success.
       return journal.succeed(w, t, id, value, () => {
         if (task(w, t).contextRevision !== attempt.inputSnapshot.context.revision) throw new DomainError('CONFLICT', 'Investigation context changed before publication.');
+        const latest = db.prepare('SELECT id FROM investigation_reports WHERE task_id = ? ORDER BY version DESC LIMIT 1').get(t);
+        if ((latest?.id ?? null) !== attempt.previousVersionId) throw new DomainError('CONFLICT', 'The previous report changed before publication.');
         const version = Number(db.prepare('SELECT COALESCE(MAX(version), 0) + 1 AS next FROM investigation_reports WHERE task_id = ?').get(t)!.next);
         db.prepare('INSERT INTO investigation_reports VALUES (?, ?, ?, ?, ?, ?, ?, ?)').run(randomUUID(), randomUUID(), t, id,
           version, attempt.inputSnapshot.context.revision, JSON.stringify(value), new Date().toISOString());
