@@ -7,7 +7,8 @@ import { RuntimeError, redact, type AIRunRequest, type RuntimeMetadata } from '.
 
 export const supportedVersions = ['codex-cli 0.153.4', 'codex-cli 0.154.0'];
 export const disabledFeatures = ['apps', 'plugins', 'hooks', 'browser_use', 'computer_use', 'image_generation', 'multi_agent'];
-export const restrictionArgs = ['-c', 'web_search="disabled"', '-c', 'notify=[]',
+// Pin project discovery to cwd so unrelated ancestor configuration cannot be loaded.
+export const restrictionArgs = ['-c', 'project_root_markers=[]', '-c', 'web_search="disabled"', '-c', 'notify=[]',
   ...disabledFeatures.flatMap((feature) => ['--disable', feature])];
 async function stat(file: string) {
   try { return await lstat(file); } catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT') return null; throw error; }
@@ -44,12 +45,8 @@ export async function configurationState(request: AIRunRequest, env: NodeJS.Proc
   }
   for (const root of request.readRoots) {
     if (!path.isAbsolute(root) || await realpath(root) !== root || !(await lstat(root)).isDirectory()) throw new RuntimeError('INVALID_READ_ROOT', 'Read roots must be canonical directories.');
-    // Project configuration can override connection routing. This iteration rejects it.
-    for (let dir = root; ; dir = path.dirname(dir)) {
-      const config = path.join(dir, '.codex');
-      if (config !== home && await stat(config)) throw new RuntimeError('PROJECT_CONFIGURATION', 'Project or ancestor .codex configuration is unsupported for investigation.');
-      if (path.dirname(dir) === dir) break;
-    }
+    // Ancestors are excluded by restrictionArgs; project-local configuration remains unsupported.
+    if (await stat(path.join(root, '.codex'))) throw new RuntimeError('PROJECT_CONFIGURATION', 'A selected worktree contains a .codex entry. Project-local configuration is unsupported for investigation.');
   }
   if (!request.readRoots.includes(request.workingDirectory)) throw new RuntimeError('INVALID_READ_ROOT', 'The working directory must be a declared read root.');
   return createHash('sha256').update(JSON.stringify([home, records])).digest('hex');

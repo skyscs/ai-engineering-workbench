@@ -1,5 +1,24 @@
 # Development status
 
+## Post-v0.1 correction — configuration discovery boundary
+
+Status: verified locally, merge acceptance pending. Scope: AEW-004; see
+[ADR 0016](decisions/0016-worktree-configuration-boundary.md).
+
+The default Linux data layout exposed a false preflight rejection: an unrelated
+user `.codex` ancestor blocked a saved alternative configuration directory. The
+adapter now pins CLI project discovery to cwd and retains `.codex` rejection at
+every selected worktree root, including secondary roots and symlink entries.
+
+Validation: `pnpm check` passed with 133 tests (17 Git, 14 adapter, 40 storage,
+52 HTTP/service and 10 script tests), strict typechecks and production builds.
+The synthetic boundary probe passed on Codex CLI 0.153.4 and 0.154.0 for base and
+named profiles, custom markers, malformed ancestors and retained project-local
+rejection. A local saved-run preflight also passed with the selected configuration;
+the idle manual daemon was restarted with the build and its failed-run history
+remained unchanged. These checks made zero model requests; a new investigation
+remains an explicit user action. Browser UI code and database schema are unchanged.
+
 ## Current baseline
 
 Tasks 000–011 are accepted. PR #12 merged v0.1.0 into main as `9e39d3c`.

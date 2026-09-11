@@ -40,8 +40,10 @@ fail before exec without fallback. CLI feature diagnostics confirm explicit tool
 restrictions; profile-aware MCP listing must report no enabled servers. Diagnostic
 configuration output is discarded because it can contain credentials.
 
-Reject `.codex` project/ancestor directories other than the selected user CLI home.
-They can affect provider selection, so checking MCP alone would be insufficient.
+The original implementation rejected `.codex` project/ancestor directories other
+than the selected user CLI home. [ADR 0016](0016-worktree-configuration-boundary.md)
+replaces the ancestor scan with explicit cwd-bound discovery and keeps project-local
+configuration unsupported. Checking MCP alone would be insufficient.
 Record a hash of safe configuration file metadata and compare before/after
 preflight and before exec. This detects ordinary edits; it neither certifies account
 identity nor freezes trusted external configuration against concurrent mutation.

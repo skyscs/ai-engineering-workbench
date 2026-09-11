@@ -1,0 +1,14 @@
+{
+  "verifiedOn": "2026-09-11",
+  "command": "node scripts/runtime-config-boundary-probe.mjs",
+  "versions": ["codex-cli 0.153.4", "codex-cli 0.154.0"],
+  "modelRequests": 0,
+  "detachedWorktree": true,
+  "ancestorLoadedInControl": true,
+  "ancestorExcludedWithOverride": true,
+  "selectedBaseAndProfileRetained": true,
+  "customMarkersOverridden": true,
+  "malformedAncestorIgnored": true,
+  "projectLayerStillLoadedByCli": true,
+  "projectLayerRejectedByAdapter": true
+}
