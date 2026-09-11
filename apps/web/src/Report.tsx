@@ -63,6 +63,19 @@ export function Report({ base, revision, runId, runStatus, disabled, canChalleng
     catch (e) { if (generation === sourceGeneration.current) setError(`Evidence unavailable: ${e instanceof Error ? e.message : 'Cannot read the recorded source.'}`); }
     finally { if (generation === sourceGeneration.current) setLoading(false); }
   }
+  async function download() {
+    if (!report) return;
+    setLoading(true); setError('');
+    try {
+      const response = await fetch(`/api${base}/investigations/${report.id}/export`);
+      if (!response.ok) throw new Error(`Cannot export this report (${response.status}). Refresh the task and try again.`);
+      const url = URL.createObjectURL(await response.blob());
+      const link = document.createElement('a'); link.href = url; link.download = `investigation-${report.id}-v${report.version}.md`;
+      document.body.append(link); link.click(); link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    } catch (e) { setError(e instanceof Error ? e.message : 'Cannot export the report.'); }
+    finally { setLoading(false); }
+  }
   const refs = (ids: string[]) => <span className="evidence-references">{ids.map(id => <button className="secondary" key={id} disabled={loading} onClick={() => void evidence(id)}>{id}</button>)}</span>;
   return <section aria-label="Investigation reports"><h3>Investigation reports</h3>
     {error && <p role="alert" className="error">{error}</p>}
@@ -71,6 +84,7 @@ export function Report({ base, revision, runId, runStatus, disabled, canChalleng
         {reports.map(r => <option key={r.id} value={r.id}>Version {r.version} · {r.status} · {r.freshness}</option>)}
       </select></label>
       <p>Version {report.version} · {report.status} · {report.freshness} · {report.createdAt}</p>
+      <button className="secondary" disabled={loading} onClick={() => void download()}>Export Markdown</button>
       {report.previousVersionId && <p>Revises version {reports.find(r => r.id === report.previousVersionId)?.version ?? 'from earlier history'}.</p>}
       {cause && <div><h4>Triggered by this challenge</h4><p className="task-description">{cause.text}</p></div>}
       {report.freshness === 'stale' && <p role="status">Context changed since this report. Run another investigation to use the current context.</p>}

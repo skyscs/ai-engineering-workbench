@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { execFileSync, spawn } from 'node:child_process';
-import { mkdtemp, mkdir, readFile, writeFile, unlink } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, readdir, writeFile, unlink } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -9,7 +9,8 @@ import { fileURLToPath } from 'node:url';
 // CDP reference: https://chromedevtools.github.io/devtools-protocol/
 const fixture = await mkdtemp(path.join(tmpdir(), 'aew-workspace-smoke-'));
 const withSync = process.env.AEW_SMOKE_SYNC === '1';
-const withInterventions = process.env.AEW_SMOKE_INTERVENTIONS === '1';
+const withRelease = process.env.AEW_SMOKE_RELEASE === '1';
+const withInterventions = process.env.AEW_SMOKE_INTERVENTIONS === '1' || withRelease;
 const withRuntime = process.env.AEW_SMOKE_RUNTIME === '1' || withInterventions;
 const withWorktrees = process.env.AEW_SMOKE_WORKTREES === '1' || withRuntime;
 const withTasks = process.env.AEW_SMOKE_TASKS === '1' || withWorktrees;
@@ -358,6 +359,25 @@ try {
       await wait(`document.querySelector('section[aria-label="Investigation reports"]').textContent.includes('Triggered by this challenge')`);
     }
   }
+  if (withRelease) {
+    const downloads = path.join(fixture, 'downloads'); await mkdir(downloads);
+    await page.send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: downloads });
+    const exportSelected = async (version) => {
+      await evaluate(`Array.from(document.querySelectorAll('section[aria-label="Investigation reports"] button')).find(b => b.textContent === 'Export Markdown').click()`);
+      let file;
+      await waitFor(async () => { file = (await readdir(downloads)).find(f => f.endsWith(`-v${version}.md`)); return !!file; }, 'Markdown download did not complete.');
+      const markdown = await readFile(path.join(downloads, file), 'utf8');
+      assert.ok(markdown.includes(`version ${version}`)); assert.ok(markdown.includes('## Evidence locators'));
+      assert.ok(markdown.includes('Available; locator rechecked')); assert.ok(!markdown.includes(fixture));
+      assert.ok(!markdown.includes('<img')); assert.ok(markdown.includes('\\[unsafe\\]\\(javascript:'));
+      return markdown;
+    };
+    assert.ok((await exportSelected(3)).includes('## Triggering challenge'));
+    const select = 'section[aria-label="Investigation reports"] select';
+    const oldest = await evaluate(`document.querySelector('${select}').lastElementChild.value`);
+    await fill(select, oldest);
+    assert.ok((await exportSelected(1)).includes('superseded'));
+  }
   const screenshot = await page.send('Page.captureScreenshot', { captureBeyondViewport: true });
   await writeFile(path.join(fixture, 'workspace-desktop.png'), Buffer.from(screenshot.data, 'base64'));
   await stop(first);
@@ -410,6 +430,7 @@ try {
   if (withWorktrees) Object.assign(result, { twoRepositoryPreparation: 'passed', baseRefFailureAndRetry: 'passed', dirtyCleanupRejected: 'passed', cleanCleanup: 'passed', retainedPin: 'passed', recreatePinnedRevision: 'passed', worktreeRestartPersistence: 'passed' });
   if (withRuntime) Object.assign(result, { investigationReport: 'passed', validatedEvidenceNavigation: 'passed', immutableVersionHistory: 'passed', invalidEvidencePreservesReport: 'passed', unsafeMarkdownInert: 'passed', selectedModelProfile: 'passed', runtimeFailureDiagnostics: 'passed', runtimeCancellation: 'passed', runtimeRetry: 'passed', priorRunPreserved: 'passed', runtimeRestartPersistence: 'passed', persistedEventReplay: 'passed', fixtureRuntimeInvocations: 5, explicitConfigurationDirectory: 'passed', unboundRuntimeBlocked: 'passed', oneTimeDirectoryBinding: 'passed', savedDirectoryDisplayedAndLocked: 'passed' });
   if (withInterventions) Object.assign(result, { constraintWithoutRun: 'passed', challengeFailurePreservesReport: 'passed', challengeCancellation: 'passed', challengeRevisionLink: 'passed', exactPreviousReportSnapshot: 'passed', constraintCarryForward: 'passed', constraintDeactivation: 'passed', interventionHistoryRestart: 'passed', immutableEarlierReport: 'passed', fixtureRuntimeInvocations: 9 });
+  if (withRelease) Object.assign(result, { markdownDownload: 'passed', chosenVersionExport: 'passed', exportProvenanceAndLocators: 'passed', exportPathsOmitted: 'passed' });
   await writeFile(path.join(fixture, 'result.json'), JSON.stringify(result, null, 2));
   console.log(JSON.stringify({ fixture, ...result }, null, 2));
 } finally {

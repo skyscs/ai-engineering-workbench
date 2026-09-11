@@ -1,0 +1,212 @@
+{
+  "verifiedOn": "2026-09-11",
+  "platform": "Linux",
+  "nodeVersion": "22.23.2",
+  "realModelInvocations": 4,
+  "cases": [
+    {
+      "kind": "single",
+      "attempts": [
+        {
+          "id": "1fd1b888-083a-41df-9987-72691d75c198",
+          "status": "succeeded",
+          "errorCode": null
+        }
+      ],
+      "versions": 1,
+      "reportIds": [
+        "cd6799f3-5156-4ee1-816d-5f1cf537a134"
+      ],
+      "sourceStateUnchanged": true,
+      "restartPersistence": true,
+      "allPublishedLocatorsReopened": true,
+      "markdownExports": true,
+      "explicitConfigurationDirectory": true,
+      "verifiedAccountIdentity": false,
+      "cliVersion": "codex-cli 0.154.0",
+      "model": "gpt-5.6-terra",
+      "reasoningEffort": "medium",
+      "qualityReview": {
+        "reviewer": "Implementation agent",
+        "result": "Passed: identifies the rounding refactor, explains 19.99 rounding to 20 before multiplying by 85, compares the earlier final-rounding expression, cites the incident, and distinguishes the later audit-only commit.",
+        "userAcceptance": "Pending PR review and merge"
+      },
+      "expected": "The normalization refactor rounds cents/100 before discount multiplication. Earlier code rounds the final discounted cents. Cite both versions of price.mjs and the incident; the audit-only commit is not causal.",
+      "databaseIntegrity": true,
+      "repositories": [
+        {
+          "name": "checkout",
+          "repositoryId": "ef414202-9ae8-471f-9fde-1ba6c9d40b07",
+          "commits": [
+            {
+              "message": "feat: calculate discounts with final rounding",
+              "sha": "2c0b8ecb6991d4837619dc84539c5c96b0df2251"
+            },
+            {
+              "message": "refactor: normalize the price before applying discounts",
+              "sha": "b8a5515dea164ac92a65fee7337c7e1a9bee4bca"
+            },
+            {
+              "message": "docs: record checkout audit fields",
+              "sha": "e2dae9c8e8e9575063be8354edce3d229e41cac3"
+            }
+          ]
+        }
+      ],
+      "reports": [
+        {
+          "id": "cd6799f3-5156-4ee1-816d-5f1cf537a134",
+          "version": 1,
+          "rootCauseStatus": "identified",
+          "evidenceCount": 6,
+          "previousVersionId": null,
+          "triggeredByInterventionId": null
+        }
+      ]
+    },
+    {
+      "kind": "interaction",
+      "attempts": [
+        {
+          "id": "83dc66f6-bde7-4f28-8cce-1d13092cb33a",
+          "status": "succeeded",
+          "errorCode": null
+        }
+      ],
+      "versions": 1,
+      "reportIds": [
+        "c800387e-9478-481f-9668-34b5419b48d1"
+      ],
+      "sourceStateUnchanged": true,
+      "restartPersistence": true,
+      "databaseIntegrity": true,
+      "allPublishedLocatorsReopened": true,
+      "markdownExports": true,
+      "explicitConfigurationDirectory": true,
+      "verifiedAccountIdentity": false,
+      "cliVersion": "codex-cli 0.154.0",
+      "model": "gpt-5.6-terra",
+      "reasoningEffort": "medium",
+      "qualityReview": {
+        "reviewer": "Implementation agent",
+        "result": "Passed: traces the producer transition from 2000 milliseconds to 2 seconds and the unchanged consumer assignment to delayMs. Cites both repositories and the incident, with no causal attribution to the later retry documentation.",
+        "userAcceptance": "Pending PR review and merge"
+      },
+      "expected": "The settings producer changed milliseconds to seconds while the client still passes the numeric value directly as milliseconds. Cite the producer transition, unchanged consumer and incident; the retry-documentation commit is not causal.",
+      "repositories": [
+        {
+          "name": "client",
+          "repositoryId": "6b963f16-e516-43be-9ec9-536d1f854dc3",
+          "commits": [
+            {
+              "message": "feat: consume retry interval in milliseconds",
+              "sha": "250d2dfd3eb50d09940179706521efffb4e6c8b4"
+            },
+            {
+              "message": "docs: describe exponential retries",
+              "sha": "b610bb9c0834b4f2ffa828e6701fea7a6b4b665a"
+            }
+          ]
+        },
+        {
+          "name": "settings",
+          "repositoryId": "c9ba88c4-b8b3-4216-a9fc-9ac0109b7e89",
+          "commits": [
+            {
+              "message": "feat: publish retry interval in milliseconds",
+              "sha": "1e01d59e9faf85ace9e5faa40ba5f55b27318346"
+            },
+            {
+              "message": "refactor: publish retry intervals in seconds",
+              "sha": "54625eb545dcd2b53f8d85e78e9158e234d7e09c"
+            }
+          ]
+        }
+      ],
+      "reports": [
+        {
+          "id": "c800387e-9478-481f-9668-34b5419b48d1",
+          "version": 1,
+          "rootCauseStatus": "identified",
+          "evidenceCount": 6,
+          "previousVersionId": null,
+          "triggeredByInterventionId": null
+        }
+      ]
+    },
+    {
+      "kind": "revision",
+      "attempts": [
+        {
+          "id": "7172ed71-9451-490a-bc1d-8a6c1e71b861",
+          "status": "succeeded",
+          "errorCode": null
+        },
+        {
+          "id": "947df582-6033-4e57-bd3c-49ca947d57ed",
+          "status": "succeeded",
+          "errorCode": null
+        }
+      ],
+      "versions": 2,
+      "reportIds": [
+        "61ae2ed9-299d-44da-98a2-cd156b4325c2",
+        "e44bd2c7-c088-4dbf-8779-c5d8d4c3a20c"
+      ],
+      "sourceStateUnchanged": true,
+      "restartPersistence": true,
+      "databaseIntegrity": true,
+      "allPublishedLocatorsReopened": true,
+      "markdownExports": true,
+      "explicitConfigurationDirectory": true,
+      "verifiedAccountIdentity": false,
+      "cliVersion": "codex-cli 0.154.0",
+      "model": "gpt-5.6-terra",
+      "reasoningEffort": "medium",
+      "qualityReview": {
+        "reviewer": "Implementation agent",
+        "result": "Passed: v1 identifies the tenant-isolation defect but explicitly leaves incident causation unconfirmed. After the log, constraint and challenge, v2 explains the alpha/42 then beta/42 cache-hit sequence, excludes the disabled display flag, cites the introducing commit and log, and explains how the prior uncertainty was resolved.",
+        "userAcceptance": "Pending PR review and merge"
+      },
+      "expected": "Initially distinguish plausible defects from unverified incident causality. After challenge, the shared SKU-only cache key explains cross-tenant reuse; the display flag was false and the database was correct. Cite the key-changing commit, previous tenant-scoped key and new incident artifact. Explain how new observations resolve the earlier uncertainty.",
+      "repositories": [
+        {
+          "name": "catalog",
+          "repositoryId": "0bde177c-7c55-40a7-b82b-5762a9495a1e",
+          "commits": [
+            {
+              "message": "feat: cache product titles per tenant",
+              "sha": "9e14bda54fbf486dc297d2e54cce4ff7c0c572bc"
+            },
+            {
+              "message": "refactor: share product cache keys across callers",
+              "sha": "1c870bc38de9e1a458a2111a164bc50d06860de4"
+            },
+            {
+              "message": "refactor: make title display flag explicit",
+              "sha": "bbcc3e80f4fce31f9de1c27a09f737a090c369da"
+            }
+          ]
+        }
+      ],
+      "reports": [
+        {
+          "id": "e44bd2c7-c088-4dbf-8779-c5d8d4c3a20c",
+          "version": 1,
+          "rootCauseStatus": "insufficient_evidence",
+          "evidenceCount": 6,
+          "previousVersionId": null,
+          "triggeredByInterventionId": null
+        },
+        {
+          "id": "61ae2ed9-299d-44da-98a2-cd156b4325c2",
+          "version": 2,
+          "rootCauseStatus": "identified",
+          "evidenceCount": 7,
+          "previousVersionId": "e44bd2c7-c088-4dbf-8779-c5d8d4c3a20c",
+          "triggeredByInterventionId": "237b696b-e0f9-4285-867f-09355fb1ee81"
+        }
+      ]
+    }
+  ]
+}

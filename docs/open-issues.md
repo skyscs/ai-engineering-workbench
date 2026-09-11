@@ -2,15 +2,16 @@
 
 ## AEW-001 — Safe navigation to the local UI returns HTTP 403
 
-Priority: P2. Introduced in Task 001, still present after PR #1 was merged.
+Priority: P2. Introduced in Task 001. Fixed in Task 011; awaiting merge.
 
-The global middleware at apps/daemon/src/app.ts rejects Sec-Fetch-Site: cross-site
+Previously, the global middleware at apps/daemon/src/app.ts rejected Sec-Fetch-Site: cross-site
 even for a user following a link to the HTML UI. Direct navigation returns 200,
 but a GET / with navigate/document/?1 fetch metadata returns INVALID_ORIGIN JSON.
 
-Follow-up: permit safe top-level UI navigation while preserving Host validation
-and all API session, Origin and CSRF checks. Add a regression test. This issue
-was reproduced during the first PR review; it has not been fixed.
+Task 011 permits user-initiated top-level GET navigation to non-API UI routes
+without an Origin header, preserving Host validation and all API session, Origin
+and CSRF checks. Regression tests keep cross-site API requests, frames, untrusted
+Origins and mutation requests blocked. See ADR 0015.
 
 ## AEW-002 — Codex silently accepts a nonexistent profile
 

@@ -1,90 +1,41 @@
 # Start Here
 
-Read `DEVELOPMENT_PLAN.md` for the reviewed sequence and `REVIEW.md` for the
-original scaffold review. Task 001 is now verified; see `docs/development-status.md`
-for evidence. The next task is the early runtime feasibility check (Task 000).
+AI Engineering Workbench v0.1 is a local Linux application for versioned,
+evidence-backed investigations and human revision through Codex CLI. Follow the
+[Linux demo](docs/linux-demo.md) for installation, connection setup and the complete
+investigate/challenge/export flow. Current verification and acceptance are recorded
+in [development status](docs/development-status.md).
 
-## 1. Get the project
-
-Use the development remote `git@github.com:skyscs/ai-engineering-workbench.git`.
-The initial artifacts have been published. Clone the existing repository:
+## Get and run the project
 
 ```bash
 git clone git@github.com:skyscs/ai-engineering-workbench.git
 cd ai-engineering-workbench
-```
-
-If you create a public GitHub/GitLab repository, keep all examples synthetic and do not commit corporate artifacts, URLs, tokens, logs, or source code.
-
-## 2. Install prerequisites
-
-- Node.js 22.23.2 (pinned in .node-version and .nvmrc; minimum 22.12)
-- pnpm 10.15.0 as specified in packageManager
-- Git
-
-Then:
-
-```bash
+nvm install
+nvm use
 pnpm install --frozen-lockfile
 pnpm check
-pnpm dev
-```
-
-Open:
-
-```text
-http://127.0.0.1:5173
-```
-
-The UI should report that the local daemon is connected.
-
-## 3. Production-style local run
-
-```bash
-pnpm build
 pnpm start
 ```
 
-The daemon serves the built UI from:
+Prerequisites are Node 22.23.2 (minimum 22.13), pnpm 10.15.0 and system Git. Install
+pnpm for the selected Node environment if needed. Open `http://127.0.0.1:4242`.
+`pnpm check` includes the build. `pnpm dev` instead starts the development UI on
+`http://127.0.0.1:5173`. Set `AEW_OPEN_BROWSER=0` to suppress automatic browser launch.
 
-```text
-http://127.0.0.1:4242
-```
+Generating a fixture, configuring the workspace and preparing worktrees do not
+invoke AI. **Run investigation** and **Challenge and run** do. Explicitly save the
+intended Codex configuration directory before creating the task, and select its
+model profile. No default corporate/personal connection is inferred.
 
-Set `AEW_OPEN_BROWSER=0` to disable automatic browser opening.
+## Verification and development
 
-## 4. Codex development workflow
+Use the [release acceptance guide](docs/release-acceptance.md) for deterministic
+checks and separately opted-in real investigations. The suite and browser fixture
+require no Codex credentials. Read [AGENTS.md](AGENTS.md), the product/architecture/
+security/workflow documents, and [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) before
+implementing changes. Keep task scope bounded and project artifacts in English.
 
-Task 001 has passed local installation, build, test and browser smoke checks.
-Next run:
-
-```text
-tasks/000-runtime-feasibility.md
-```
-
-After Tasks 001 and 000 are verified, continue with Task 002. Read:
-
-```text
-AGENTS.md
-README.md
-PRODUCT.md
-ARCHITECTURE.md
-SECURITY.md
-WORKFLOW.md
-docs/architecture/domain-model.md
-tasks/002-local-storage-foundation.md
-DEVELOPMENT_PLAN.md
-docs/decisions/0004-v01-execution-and-recovery.md
-```
-
-Then instruct it:
-
-```text
-Implement Task 002 only. Do not start Task 003. Follow AGENTS.md and preserve the documented architecture. After implementation, run the relevant checks and summarize any deviations from the specification.
-```
-
-## Verification history
-
-The original archive was generated without registry access and was unverified.
-Task 001 subsequently established a lockfile, protected local API and reproducible
-checks. See `docs/development-status.md` for current evidence and limitations.
+The source packages remain private. This repository does not publish an installer,
+background service or cloud application. Back up the complete stopped data directory
+and external registered repositories before upgrading; see the Linux guide.

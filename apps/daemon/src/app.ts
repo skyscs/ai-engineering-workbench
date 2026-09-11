@@ -49,7 +49,10 @@ export function createApp(options: AppOptions = {}) {
     if (!host || !hosts.has(host)) {
       return context.json({ error: { code: 'INVALID_HOST', message: 'Use the local Workbench URL.' } }, 403);
     }
-    if ((origin !== undefined && !origins.has(origin)) || context.req.header('sec-fetch-site') === 'cross-site') {
+    const uiNavigation = context.req.method === 'GET' && context.req.path !== '/api' && !context.req.path.startsWith('/api/') &&
+      context.req.header('sec-fetch-mode') === 'navigate' && context.req.header('sec-fetch-dest') === 'document' &&
+      context.req.header('sec-fetch-user') === '?1' && origin === undefined;
+    if ((origin !== undefined && !origins.has(origin)) || (context.req.header('sec-fetch-site') === 'cross-site' && !uiNavigation)) {
       return context.json({ error: { code: 'INVALID_ORIGIN', message: 'Cross-origin requests are not allowed.' } }, 403);
     }
     context.header('X-Content-Type-Options', 'nosniff');
@@ -88,7 +91,7 @@ export function createApp(options: AppOptions = {}) {
   });
 
   app.get('/api/health', (context) => context.json({
-    status: 'ok', service: 'ai-engineering-workbench-daemon', version: '0.0.1'
+    status: 'ok', service: 'ai-engineering-workbench-daemon', version: '0.1.0'
   }));
 
   app.get('/api/storage', (context) => {

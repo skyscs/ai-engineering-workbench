@@ -150,3 +150,23 @@ test('production assets and SPA routes work while unknown API routes remain JSON
     await rm(publicDir, { recursive: true, force: true });
   }
 });
+
+test('user-initiated cross-site UI navigation is allowed without relaxing API or frame protection', async () => {
+  const publicDir = await mkdtemp(path.join(os.tmpdir(), 'aew-navigation-test-'));
+  try {
+    await writeFile(path.join(publicDir, 'index.html'), '<html>Workbench</html>');
+    const app = createApp({ publicDir });
+    const navigation = { 'sec-fetch-site': 'cross-site', 'sec-fetch-mode': 'navigate', 'sec-fetch-dest': 'document', 'sec-fetch-user': '?1' };
+    const response = await request(app, '/', { headers: navigation });
+    assert.equal(response.status, 200); assert.equal(response.headers.get('x-frame-options'), 'DENY');
+    for (const route of ['/api', '/api/health', '/api/session', '/api/workspaces']) {
+      assert.equal((await request(app, route, { headers: navigation })).status, 403);
+    }
+    for (const extra of [{ origin: 'https://evil.example' }, { host: 'evil.example:4242' },
+      { 'sec-fetch-dest': 'iframe' }, { 'sec-fetch-user': '' }, { 'sec-fetch-mode': 'cors' }]) {
+      assert.equal((await request(app, '/', { headers: { ...navigation, ...extra } })).status, 403);
+    }
+    assert.equal((await request(app, '/', { method: 'POST', headers: navigation })).status, 403);
+    assert.equal((await request(app, '/api/session', { method: 'POST', headers: { ...navigation, origin, 'x-aew-client': 'web' } })).status, 403);
+  } finally { await rm(publicDir, { recursive: true, force: true }); }
+});

@@ -78,7 +78,8 @@ revision pins, safe cleanup and Git-aware restart reconciliation. Task 008 adds
 the Codex CLI adapter, persisted events, cancellation and a preliminary structured
 preview. Task 009 adds versioned investigation/root-cause pairs, validated pinned
 evidence, report history and explicit insufficient-evidence conclusions. Task 010 adds challenges, persistent constraints, revision provenance and transitive
-invalidation. Task 011 remains planned.
+invalidation. Task 011 adds portable Markdown export, Linux run documentation
+and release acceptance fixtures; verification is recorded in development status.
 
 ## Quick start
 
@@ -226,3 +227,12 @@ limits, cancellation and verification.
 Use **Human interventions** to add task constraints without starting AI, or challenge
 the latest report with a fresh run. Earlier versions and failed attempts remain
 inspectable. See the [intervention guide](docs/interventions.md).
+
+## v0.1 demo and export
+
+Follow the [Linux demo](docs/linux-demo.md) to generate synthetic history, configure
+an explicit CLI connection, investigate a defect, add a constraint, challenge the
+result and inspect both versions after restart. Use **Export Markdown** on the
+chosen report version to download its reasoning, provenance and evidence locators.
+See [export details](docs/report-export.md) and [release acceptance](docs/release-acceptance.md)
+for reproducible checks and verified limitations.
