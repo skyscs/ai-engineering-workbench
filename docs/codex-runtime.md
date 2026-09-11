@@ -1,9 +1,9 @@
 # Codex runtime preview
 
-Task 008 adds **AI runtime preview** to prepared tasks. It performs a preliminary
-read-only investigation and stores its structured output. Evidence validation and
-versioned root-cause reports are planned for Task 009; a preview is not a verified
-root-cause report.
+Task 008 introduced the runtime and preliminary previews. Task 009 now uses that
+runtime for [versioned investigations and evidence](investigation.md). Existing
+previews remain available through the legacy API; new UI runs publish full report
+pairs. The process, connection and event contracts below apply to both.
 
 ## Use
 
@@ -11,10 +11,10 @@ root-cause report.
    configuration directory and optionally add model profiles.
 2. Create a task, import artifacts and save the exact text ranges to include.
 3. Prepare every selected repository worktree.
-4. In **AI runtime preview**, choose a model profile or explicitly use CLI defaults,
-   then choose **Run preview**.
+4. In **Historical investigation**, choose a model profile or explicitly use CLI defaults,
+   then choose **Run investigation**.
 5. Review progress, diagnostics, findings and unresolved questions. **Cancel run**
-   stops the owned invocation. After failure/cancellation, **Run preview** creates
+   stops the owned invocation. After failure/cancellation, **Run investigation** creates
    a new StageRun; it never rewrites the earlier attempt.
 
 Only one AI run may be active per daemon. Context changes and worktree cleanup are

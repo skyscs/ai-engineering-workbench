@@ -164,3 +164,8 @@ textarea { width: 100%; box-sizing: border-box; font: inherit; padding: 0.7rem; 
 
 .runtime-section { border-top: 1px solid #94a3b8; margin-top: 1rem; padding-top: 1rem; overflow-wrap: anywhere; }
 .runtime-section .error { white-space: pre-wrap; }
+
+.report-prose p { white-space: pre-wrap; overflow-wrap: anywhere; }
+.report-prose pre, section[aria-label="Evidence source"] pre { white-space: pre-wrap; overflow-wrap: anywhere; max-height: 32rem; overflow: auto; padding: 0.75rem; background: #f1f5f9; }
+.evidence-references { display: inline-flex; flex-wrap: wrap; gap: 0.3rem; }
+section[aria-label="Investigation reports"] code { overflow-wrap: anywhere; }

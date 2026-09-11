@@ -66,7 +66,7 @@ test('initialization is persistent and idempotent with private directories and v
   }
   const inspect = new DatabaseSync(storage.paths.database);
   const before = inspect.prepare('SELECT * FROM schema_migrations').all();
-  assert.deepEqual(inspect.prepare("SELECT name FROM sqlite_master WHERE type='table'").all().map((row) => row.name), ['schema_migrations', 'ai_connections', 'workspaces', 'model_profiles', 'repositories', 'tasks', 'task_repositories', 'artifact_imports', 'artifacts', 'artifact_context', 'stage_runs', 'task_worktrees', 'run_execution', 'run_events']);
+  assert.deepEqual(inspect.prepare("SELECT name FROM sqlite_master WHERE type='table'").all().map((row) => row.name), ['schema_migrations', 'ai_connections', 'workspaces', 'model_profiles', 'repositories', 'tasks', 'task_repositories', 'artifact_imports', 'artifacts', 'artifact_context', 'stage_runs', 'task_worktrees', 'run_execution', 'run_events', 'investigation_reports']);
   inspect.close();
   storage.close();
   storage.close();

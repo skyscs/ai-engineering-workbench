@@ -1,0 +1,159 @@
+{
+  "date": "2026-09-11",
+  "cliVersion": "codex-cli 0.154.0",
+  "configurationSelection": "Explicit personal CODEX_HOME; no inherited fallback",
+  "accountIdentityVerified": false,
+  "modelRequests": 1,
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "runStatus": "succeeded",
+  "sourceAndGitStateUnchanged": true,
+  "taskStatus": "ROOT_CAUSE_READY",
+  "reportVersion": 1,
+  "evidenceReopened": 5,
+  "manualReview": "Passed: correct cross-repository timeout-unit diagnosis, introducing history and selected incident log.",
+  "result": {
+    "investigation": {
+      "summary": "Observed: the incident log records a change from an expected 5000ms timeout to 5ms after the configuration update. Git history shows the service configuration changed its numeric timeout from 5000 to 5 while changing the declared unit from milliseconds to seconds. The consumer still assigns the raw numeric value to `timeoutMs` and does not use `timeoutUnit`. The supported causal mechanism is therefore a unit-contract mismatch: 5 seconds was published as numeric value 5, but interpreted as 5 milliseconds.",
+      "timeline": [
+        {
+          "description": "The original service configuration published `timeout: 5000` with `timeoutUnit: \"milliseconds\"`.",
+          "evidenceIds": [
+            "e5"
+          ]
+        },
+        {
+          "description": "The service configuration was changed to publish `timeout: 5` with `timeoutUnit: \"seconds\"`.",
+          "evidenceIds": [
+            "e2",
+            "e3"
+          ]
+        },
+        {
+          "description": "The consuming repository's request-options function maps `config.timeout` directly to `timeoutMs`; it does not convert according to `config.timeoutUnit`.",
+          "evidenceIds": [
+            "e4"
+          ]
+        },
+        {
+          "description": "The selected incident log reports the expected 5000ms timeout and the observed 5ms timeout after the configuration update, consistent with the direct raw-value mapping.",
+          "evidenceIds": [
+            "e1",
+            "e3",
+            "e4"
+          ]
+        }
+      ]
+    },
+    "rootCause": {
+      "status": "identified",
+      "summary": "The regression was caused by an incompatible timeout-unit change across repositories. The configuration publisher changed the numeric representation from 5000 milliseconds to 5 seconds, but the consumer retained a millisecond-only interpretation (`timeoutMs: config.timeout`) and ignored the unit metadata. Consequently, the published value 5 became a 5ms request timeout.",
+      "evidenceIds": [
+        "e1",
+        "e2",
+        "e3",
+        "e4"
+      ],
+      "unresolvedQuestions": []
+    },
+    "evidence": [
+      {
+        "id": "e1",
+        "kind": "artifact",
+        "description": "Selected incident log stating the expected 5000ms timeout and observed 5ms timeout after the configuration update.",
+        "repositoryId": null,
+        "revision": null,
+        "path": null,
+        "lineStart": null,
+        "lineEnd": null,
+        "artifactId": "5823b1b6-38ef-448b-9c53-a7c7f8c5e63f",
+        "sha256": "41a73863222428990b229a55d23e114f76f99e7a3dcd8618e9bc24d959f3140e",
+        "byteStart": 0,
+        "byteEnd": 90
+      },
+      {
+        "id": "e2",
+        "kind": "git_commit",
+        "description": "Service-configuration commit titled \"refactor: publish timeout in seconds\".",
+        "repositoryId": "759d1342-bf3e-4e37-87a2-3de254a16632",
+        "revision": "3b1382449af1559544b3647a08ccaba4e7b236bc",
+        "path": null,
+        "lineStart": null,
+        "lineEnd": null,
+        "artifactId": null,
+        "sha256": null,
+        "byteStart": null,
+        "byteEnd": null
+      },
+      {
+        "id": "e3",
+        "kind": "repository_file",
+        "description": "Pinned service configuration defining the timeout as 5 seconds.",
+        "repositoryId": "759d1342-bf3e-4e37-87a2-3de254a16632",
+        "revision": "3b1382449af1559544b3647a08ccaba4e7b236bc",
+        "path": "config.mjs",
+        "lineStart": 1,
+        "lineEnd": 1,
+        "artifactId": null,
+        "sha256": null,
+        "byteStart": null,
+        "byteEnd": null
+      },
+      {
+        "id": "e4",
+        "kind": "repository_file",
+        "description": "Pinned consumer code assigning the raw configuration timeout directly to the millisecond request option.",
+        "repositoryId": "8cfdffb1-ad6e-42c4-bb88-35b32f3d5004",
+        "revision": "0f015e8acc2c02667112891eb472784703924ef5",
+        "path": "request.mjs",
+        "lineStart": 1,
+        "lineEnd": 3,
+        "artifactId": null,
+        "sha256": null,
+        "byteStart": null,
+        "byteEnd": null
+      },
+      {
+        "id": "e5",
+        "kind": "git_commit",
+        "description": "Earlier service-configuration commit that introduced `timeout: 5000` with milliseconds as the unit.",
+        "repositoryId": "759d1342-bf3e-4e37-87a2-3de254a16632",
+        "revision": "8017486c86fbdcdd1cac86a7be82a5eda23fe7f3",
+        "path": null,
+        "lineStart": null,
+        "lineEnd": null,
+        "artifactId": null,
+        "sha256": null,
+        "byteStart": null,
+        "byteEnd": null
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "e1",
+      "locator": "request.log [bytes 0, 90) SHA-256 41a73863222428990b229a55d23e114f76f99e7a3dcd8618e9bc24d959f3140e",
+      "text": "Expected request timeout: 5000ms\nObserved request timeout after configuration update: 5ms\n"
+    },
+    {
+      "id": "e2",
+      "locator": "Service @ 3b1382449af1559544b3647a08ccaba4e7b236bc",
+      "text": "commit 3b1382449af1559544b3647a08ccaba4e7b236bc\nParents: 8017486c86fbdcdd1cac86a7be82a5eda23fe7f3\nDate: 2026-09-11T10:09:14+02:00\n\nrefactor: publish timeout in seconds\n\n"
+    },
+    {
+      "id": "e3",
+      "locator": "Service @ 3b1382449af1559544b3647a08ccaba4e7b236bc:config.mjs:1-1",
+      "text": "1: export const config = { timeout: 5, timeoutUnit: \"seconds\" };"
+    },
+    {
+      "id": "e4",
+      "locator": "Client @ 0f015e8acc2c02667112891eb472784703924ef5:request.mjs:1-3",
+      "text": "1: export function requestOptions(config) {\n2:   return { timeoutMs: config.timeout };\n3: }"
+    },
+    {
+      "id": "e5",
+      "locator": "Service @ 8017486c86fbdcdd1cac86a7be82a5eda23fe7f3",
+      "text": "commit 8017486c86fbdcdd1cac86a7be82a5eda23fe7f3\nParents: \nDate: 2026-09-11T10:09:14+02:00\n\nfeat: publish timeout in milliseconds\n\n"
+    }
+  ]
+}

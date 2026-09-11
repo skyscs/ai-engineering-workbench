@@ -189,3 +189,23 @@ test('schema 7 migration never infers a home or rewrites history; legacy AI hist
     } finally { check.close(); }
   } finally { storage.close(); }
 });
+
+test('schema 8 preview history survives report migration without being promoted to an investigation', t => {
+  const root=mkdtempSync(path.join(tmpdir(),'aew-report-upgrade-'));
+  t.after(()=>rmSync(root,{recursive:true,force:true}));
+  const db=new DatabaseSync(path.join(root,'workbench.db')); migrate(db,migrations.slice(0,8));
+  const history=db.prepare('SELECT * FROM schema_migrations').all();
+  db.exec("INSERT INTO ai_connections (id,name,runtime_type,created_at,updated_at) VALUES ('cli','CLI','codex-cli','now','now'); INSERT INTO workspaces (id,name,ai_connection_id,created_at,updated_at) VALUES ('w','W','cli','now','now'); INSERT INTO tasks (id,workspace_id,title,description,context_ready,created_at,updated_at) VALUES ('t','w','T','Context',1,'now','now');");
+  const snapshot=JSON.stringify({schemaVersion:'runtime-preview-v1'}), preview=JSON.stringify({summary:'Legacy preview',findings:[],unresolvedQuestions:[]});
+  db.prepare("INSERT INTO stage_runs (id,task_id,ai_connection_id,stage,status,input_snapshot,created_at) VALUES ('run','t','cli','investigation','succeeded',?,'now')").run(snapshot);
+  db.prepare("INSERT INTO run_execution (run_id,metadata_json,result_json) VALUES ('run','{}',?)").run(preview); db.close();
+  const storage=openStorage({dataRoot:root});
+  try {
+    assert.equal(storage.tasks.get('w','t').status,'CONTEXT_READY');
+    assert.deepEqual(storage.tasks.investigations.list('w','t'),[]);
+    assert.deepEqual(storage.tasks.journal.detail('w','t','run').result,JSON.parse(preview));
+    const check=new DatabaseSync(storage.paths.database);
+    try { assert.deepEqual(check.prepare('SELECT * FROM schema_migrations WHERE version <= 8').all(),history); }
+    finally { check.close(); }
+  } finally { storage.close(); }
+});

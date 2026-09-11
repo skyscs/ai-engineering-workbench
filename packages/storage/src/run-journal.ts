@@ -30,14 +30,16 @@ export function createRunJournal(db: DatabaseSync, get: (workspaceId: string, ta
         append(id, 'runtime', data);
       });
     },
-    succeed(w: string, t: string, id: string, result: unknown): StageRun {
+    succeed(w: string, t: string, id: string, result: unknown, publish?: () => void): StageRun {
       const encoded = JSON.stringify(result);
       if (typeof encoded !== 'string' || Buffer.byteLength(encoded) > 2 * 1024 ** 2) throw new DomainError('INVALID_INPUT', 'Runtime result exceeds 2 MiB.');
       return transaction(db, () => {
         const run = get(w, t, id);
         if (['succeeded', 'failed', 'cancelled'].includes(run.status)) return run;
         active(w, t, id);
+        if (run.inputSnapshot.schemaVersion === 'investigation-v1' && !publish) throw new DomainError('CONFLICT', 'Investigation success requires atomic report publication.');
         if (!db.prepare('SELECT metadata_json FROM run_execution WHERE run_id = ?').get(id)!.metadata_json) throw new DomainError('CONFLICT', 'Runtime metadata must be recorded before success.');
+        publish?.();
         db.prepare('UPDATE run_execution SET result_json = ? WHERE run_id = ?').run(encoded, id);
         db.prepare("UPDATE stage_runs SET status = 'succeeded', completed_at = ? WHERE id = ? AND status = 'running'").run(new Date().toISOString(), id);
         return get(w, t, id);

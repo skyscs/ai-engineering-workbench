@@ -315,3 +315,8 @@ The dependency mechanism should exist in the v0.1 domain model even before imple
 - revising conclusions after human feedback
 
 If a result can be computed exactly, compute it in code rather than asking a model.
+
+Task 009 implements this lifecycle with one immutable report-pair aggregate and
+state derived from durable runs/publications. Evidence resolves selected Git objects
+at the retained pin or an available ancestor, and immutable selected artifact ranges.
+See [ADR 0013](docs/decisions/0013-investigation-pairs-and-evidence.md).

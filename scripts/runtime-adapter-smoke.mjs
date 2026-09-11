@@ -1,3 +1,4 @@
+import { investigationSchema, validateInvestigation } from '../packages/workflow/dist/index.js';
 import assert from 'node:assert/strict';
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -11,6 +12,7 @@ import { RuntimeService, previewSchema, validatePreview } from '../apps/daemon/d
 
 // Explicitly opt in: the real scenario can consume the selected account's allowance.
 if (!process.env.AEW_CODEX_HOME) throw new Error('Set AEW_CODEX_HOME explicitly to the intended configuration directory. No inherited default is used.');
+const investigation = process.env.AEW_INVESTIGATION === '1';
 const preflightOnly = process.argv.includes('--preflight');
 if (!preflightOnly && process.env.AEW_REAL_RUNTIME !== '1') throw new Error('Set AEW_REAL_RUNTIME=1 to run the selected real CLI connection.');
 const fixture = await createFixture(), baseline = await snapshot(fixture);
@@ -42,15 +44,23 @@ try {
     const connection = storage.settings.getWorkspace(workspaceId).connection;
     const roots = storage.tasks.worktrees.list(workspaceId, task.id).map(row => row.worktreePath);
     const iterator = runtime.run({ workspaceId, taskId: task.id, stageRunId: 'diagnostic', connection, profile, workingDirectory: roots[0], readRoots: roots,
-      contextManifest: {}, instructions: '', outputSchemaVersion: 'runtime-preview-v1', outputSchema: previewSchema, validateResult: validatePreview, accessMode: 'read', signal: new AbortController().signal })[Symbol.asyncIterator]();
+      contextManifest: {}, instructions: '', outputSchemaVersion: investigation ? 'investigation-v1' : 'runtime-preview-v1', outputSchema: investigation ? investigationSchema : previewSchema, validateResult: investigation ? validateInvestigation : validatePreview, accessMode: 'read', signal: new AbortController().signal })[Symbol.asyncIterator]();
     const event = await iterator.next(); assert.equal(event.value.type, 'runtime'); console.log(JSON.stringify(event.value)); await iterator.return();
   } else {
-    const started = service.start(workspaceId, task.id, { modelProfileId: profile.id });
+    const started = investigation ? service.startInvestigation(workspaceId, task.id, { modelProfileId: profile.id }) : service.start(workspaceId, task.id, { modelProfileId: profile.id });
     const run = await terminal(started.id), output = storage.tasks.journal.detail(workspaceId, task.id, run.id);
     const unchanged = JSON.stringify(baseline) === JSON.stringify(await snapshot(fixture));
     const result = { runStatus: run.status, error: run.error, metadata: output.metadata, model: run.inputSnapshot.profile.modelIdentifier,
       reasoningEffort: run.inputSnapshot.profile.reasoningEffort, unchanged, result: output.result, events: storage.tasks.journal.events(workspaceId, task.id, run.id).map(event => event.type) };
     await writeFile(path.join(fixture.root, 'adapter-result.json'), JSON.stringify(result, null, 2));
-    console.log(JSON.stringify(result, null, 2)); assert.equal(run.status, 'succeeded'); assert.ok(unchanged); assert.ok(validatePreview(output.result));
+    console.log(JSON.stringify(result, null, 2)); assert.equal(run.status, 'succeeded'); assert.ok(unchanged); assert.ok((investigation ? validateInvestigation : validatePreview)(output.result));
+    if (investigation) {
+      const report = storage.tasks.investigations.list(workspaceId, task.id)[0];
+      assert.equal(storage.tasks.get(workspaceId, task.id).status, 'ROOT_CAUSE_READY');
+      assert.equal(report.version, 1);
+      const sources = [];
+      for (const evidence of report.result.evidence) sources.push({ id: evidence.id, ...(await service.readEvidence(workspaceId, task.id, report.id, evidence.id)) });
+      await writeFile(path.join(fixture.root, 'investigation-result.json'), JSON.stringify({ ...result, report, sources }, null, 2));
+    }
   }
 } finally { await service.close(); await worktrees.close(); await repos.close(); storage.close(); }

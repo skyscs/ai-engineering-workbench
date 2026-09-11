@@ -2,7 +2,7 @@ import { DomainError, type AIConnection, type ModelProfile } from './index.js';
 
 export interface TaskInput { title: string; description: string; repositoryIds: string[] }
 export interface Task extends TaskInput {
-  id: string; workspaceId: string; status: 'CREATED' | 'CONTEXT_READY'; contextRevision: number; createdAt: string; updatedAt: string;
+  id: string; workspaceId: string; status: 'CREATED' | 'CONTEXT_READY' | 'INVESTIGATING' | 'ROOT_CAUSE_READY'; contextRevision: number; createdAt: string; updatedAt: string;
 }
 export interface Artifact {
   id: string; taskId: string; originalFilename: string; mimeType: string; byteSize: number;
