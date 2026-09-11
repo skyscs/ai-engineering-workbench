@@ -7,7 +7,7 @@ Select a workspace and use **Repositories → Add a repository**.
   the checkout does not modify its working files, index, branch or configuration.
 - **Clone into Workbench:** enter a display name and SSH/HTTPS URL or absolute
   local source path. Git downloads history into application-managed storage.
-  This clone has no checked-out files; Task 007 will create task worktrees.
+  This clone has no checked-out files; [task preparation](task-worktrees.md) creates the worktrees used for investigation.
 
 Leave **Base ref** blank to prefer origin HEAD or the current symbolic branch.
 If neither resolves to an existing commit, provide an explicit branch, tag or
@@ -49,9 +49,11 @@ ownership is uncertain, leave the files in place. A retry uses a new container.
 Failed records remain as history even after manual file cleanup.
 
 Workspace deletion is blocked while repository records exist. Repository removal
-and successful-clone cleanup are not exposed yet. Use Task 005's explicit
+and successful-clone cleanup are not exposed yet. Use the explicit
 [Fetch updates](repository-synchronization.md) action to refresh supported remote
 branch mappings and local metadata.
+
+For a complete walkthrough, see [register repositories](user-guide.md#register-repositories).
 
 ## API
 
@@ -86,7 +88,7 @@ not proof that no operation started: refresh the list before resubmitting.
 
 `ready` means initial registration or clone validation completed. It does not mean
 the repository has remained unchanged or contains sufficient investigation history.
-`commonGitDir` records the canonical identity for future Git-operation locking.
+`commonGitDir` records the canonical identity for Git-operation locking.
 
 ## Verification
 

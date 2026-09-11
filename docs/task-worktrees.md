@@ -9,9 +9,10 @@ changes in your normal checkout are excluded, and that checkout's files, index,
 HEAD and configuration remain unchanged. Multiple tasks can use the same branch
 base. The UI shows each worktree's status, path, commit and retained pin.
 
-The task becomes **Context ready** when every selected repository is prepared.
+Before its first investigation, the task becomes **Context ready** when every
+selected repository is prepared.
 Preparation is deterministic Git work; it does not run an AI investigation.
-Runtime integration is the next iteration.
+Continue with [running an investigation](user-guide.md#run-and-review-an-investigation).
 
 ## Refs and retries
 
@@ -39,8 +40,9 @@ attached branches, redirected paths, mismatched registrations and active runs.
 Preserve your changes before retrying. The main repository, task artifacts,
 historical runs and revision pin remain intact.
 
-Cleanup changes readiness back to **Created**. Preparing again recreates the
-worktree at the same recorded commit. The retained pin protects local history
+Cleanup removes worktree readiness. A task without a published report returns
+to **Created**; an existing report still determines its completed workflow state.
+Preparing again recreates the worktree at the same recorded commit. The retained pin protects local history
 from ordinary pruning, but cannot protect a user-managed repository from external
 deletion or corruption. Keep repositories and the complete Workbench data directory
 in backups.

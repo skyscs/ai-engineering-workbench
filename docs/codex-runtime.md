@@ -1,9 +1,11 @@
-# Codex runtime preview
+# Codex runtime, configuration and recovery
 
-Task 008 introduced the runtime and preliminary previews. Task 009 now uses that
-runtime for [versioned investigations and evidence](investigation.md). Existing
-previews remain available through the legacy API; new UI runs publish full report
-pairs. The process, connection and event contracts below apply to both.
+The current UI uses Codex CLI for [versioned investigations and evidence](investigation.md).
+A legacy preliminary-preview endpoint remains available for earlier integrations;
+it is distinct from the full investigation workflow. Runtime restrictions,
+connection selection, cancellation and recovery apply to both.
+
+For a field-by-field walkthrough, see the [user guide](user-guide.md#configure-your-workspace).
 
 ## Use
 
@@ -46,7 +48,7 @@ executable's name alone does not select or identify an account.
 
 A named selector requires a readable, regular `<configHome>/<name>.config.toml`
 file. A missing or redirected directory, or a missing, linked or malformed profile,
-fails before model invocation. The preview UI displays the saved directory and
+fails before model invocation. The runtime UI displays the saved directory and
 records it in new run snapshots and verified launch metadata. Existing settings
 upgrade with no selected directory; binding rules are in the
 [settings guide](workspace-settings.md).
@@ -81,13 +83,17 @@ A successful exit alone is insufficient to publish output.
 
 ## Protected API
 
-All routes require the local session. POST additionally requires Origin, CSRF and
-`application/json`. Paths are below `/api/workspaces/:workspaceId/tasks/:taskId`.
+For current full reports, use `POST /investigations` and the
+[investigation API](investigation.md#protected-api). The run detail/cancel/events
+endpoints below serve both workflows.
+
+All routes require the [local session](local-api.md). POST additionally requires
+Origin, CSRF and `application/json`. Paths are below `/api/workspaces/:workspaceId/tasks/:taskId`.
 
 | Method and path | Behavior |
 | --- | --- |
-| `POST /runtime-runs` | `{ "modelProfileId": null }` or an owned profile ID; returns 202 with the persisted StageRun. |
-| `GET /runtime-runs/:runId` | Run, verified launch metadata, validated preview or null, and truncation state. |
+| `POST /runtime-runs` | Legacy preliminary preview: `{ "modelProfileId": null }` or an owned profile ID; returns 202 with the persisted StageRun. |
+| `GET /runtime-runs/:runId` | Run, verified launch metadata, validated investigation pair or legacy preview (or null), and truncation state. |
 | `POST /runtime-runs/:runId/cancel` | Empty object; idempotently requests cancellation. Poll/replay for terminal state. |
 | `GET /runtime-runs/:runId/events` | SSE `runtime` events with sequence IDs, then `complete` with terminal status. |
 
@@ -110,8 +116,8 @@ AEW_SMOKE_RUNTIME=1 node scripts/workspace-smoke.mjs
 
 The browser scenario requires Chrome and a free port 4242. It uses a synthetic
 executable through the production adapter, an isolated CLI home/data directory,
-synthetic artifacts and a fresh browser profile. It exercises preview, error,
-cancel, retry, persisted replay, restart and narrow layout. It also verifies that
+synthetic artifacts and a fresh browser profile. It exercises full investigation
+reports, error, cancel, retry, persisted replay, restart and narrow layout. It also verifies that
 an unset directory blocks the run, one-time binding enables it, and the saved
 directory is displayed, frozen and retained in run snapshots.
 

@@ -2,11 +2,11 @@
 
 ## AEW-001 — Safe navigation to the local UI returns HTTP 403
 
-Priority: P2. Introduced in Task 001. Fixed in Task 011; awaiting merge.
+Priority: P2. Introduced in Task 001. Fixed in Task 011, merged through PR #12 (9e39d3c).
 
 Previously, the global middleware at apps/daemon/src/app.ts rejected Sec-Fetch-Site: cross-site
-even for a user following a link to the HTML UI. Direct navigation returns 200,
-but a GET / with navigate/document/?1 fetch metadata returns INVALID_ORIGIN JSON.
+even for a user following a link to the HTML UI. Direct navigation returned 200,
+but a GET / with navigate/document/?1 fetch metadata returned INVALID_ORIGIN JSON.
 
 Task 011 permits user-initiated top-level GET navigation to non-API UI routes
 without an Origin header, preserving Host validation and all API session, Origin
@@ -40,3 +40,25 @@ request occurs in the missing-profile probe. File existence does not certify
 provider/account identity or freeze an externally edited configuration.
 
 See docs/fixtures/runtime/resumed-probes.json for the captured probe result.
+
+## AEW-003 — Task summary displays Created for investigation states
+
+Priority: P2. Open; identified during the v0.1 documentation review.
+
+`apps/web/src/Tasks.tsx` renders **Context ready** only for `CONTEXT_READY` and
+**Created** for every other task state. The storage projection correctly exposes
+`INVESTIGATING` during a full run and `ROOT_CAUSE_READY` when a report exists, so
+the summary can contradict the run/report sections after successful publication.
+
+Reproduce: prepare a task, publish an investigation report, and read the summary
+under the task description. It says **Created** while **Investigation reports**
+shows the published version. During an active investigation the same label is
+misleading. This is a display issue, not evidence of lost reports or reset storage.
+
+Workaround: use the status in **Historical investigation** and the report version
+selector. The [user guide](user-guide.md#run-and-review-an-investigation) documents
+this behavior without promising a UI fix in the documentation change.
+
+Follow-up: explicitly map all supported task states to their UI labels and verify
+initial, prepared, investigating, published and failed/cancelled-revision states.
+Keep task progress separate from report lifecycle/freshness and from run failure.

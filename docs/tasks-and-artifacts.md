@@ -24,6 +24,8 @@ PNG/JPEG are stored but excluded while runtime image support is unverified.
 PDFs, videos and other formats are downloadable and marked not analyzed in v0.1.
 Neither a filename nor a MIME type proves that file content was understood.
 
+For a walkthrough with expected results, see [import and select context](user-guide.md#import-and-select-context).
+
 ## Limits and recovery
 
 Local daemon environment variables accept positive integer byte counts:
@@ -67,8 +69,8 @@ and task. JSON failures use the established 400/404/409 error responses.
 Task titles allow 120 characters; descriptions allow 65536 characters including
 line breaks, within the text context budget. Select 1–32 distinct ready repositories
 from the same workspace. Task JSON bodies are capped at 512 KiB; context selection
-JSON at 256 KiB. Task edit/delete remains deferred. Task 008 adds the separate
-[runtime preview API](codex-runtime.md).
+JSON at 256 KiB. Task edit/delete remains deferred. Use the [investigation API](investigation.md#protected-api) for full reports;
+the [legacy preview API](codex-runtime.md#protected-api) remains available separately.
 Deterministic worktree operations expose StageRuns through the worktree API.
 
 Upload headers: `X-AEW-Filename` is `encodeURIComponent(originalFilename)`,

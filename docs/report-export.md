@@ -1,5 +1,7 @@
 # Export an investigation report
 
+For step-by-step usage, see the [user guide](user-guide.md#export-and-return-later).
+
 Choose a **Report version**, then **Export Markdown**. The browser downloads that
 version as `investigation-<report-id>-v<version>.md`. Exporting starts no AI run,
 changes no stored report and works for active, superseded or stale versions.
