@@ -39,6 +39,11 @@ process.stdin.on('end', async () => {
       timeline:[{description:'Inspect the retained revision.',evidenceIds:['e1']}]},
       rootCause:{status:'identified',summary:'Synthetic source and log support this explanation.',evidenceIds:evidence.map(e=>e.id),unresolvedQuestions:[]}, evidence };
   }
+  if (schemaIndex >= 0 && JSON.parse(fs.readFileSync(args[schemaIndex + 1], 'utf8')).properties?.investigation) {
+    const input = JSON.parse(prompt.slice(prompt.lastIndexOf('\n') + 1));
+    if (input.revision) value.investigation.summary += '\n\nReconsidered after challenge: ' + input.revision.intervention.text;
+    if (input.constraints.length) value.investigation.summary += '\n\nApplied constraints: ' + input.constraints.join('; ');
+  }
   const result = mode === 'invalid-result' ? '{}' : JSON.stringify(value);
   if (mode === 'oversize') emit({type:'item.completed',item:{type:'agent_message',text:'x'.repeat(2*1024*1024+1)}});
   else {

@@ -320,3 +320,8 @@ Task 009 implements this lifecycle with one immutable report-pair aggregate and
 state derived from durable runs/publications. Evidence resolves selected Git objects
 at the retained pin or an available ancestor, and immutable selected artifact ranges.
 See [ADR 0013](docs/decisions/0013-investigation-pairs-and-evidence.md).
+
+Task 010 stores intervention/run provenance and dependency edges. Context changes
+invalidate dependent results transitively in the same SQLite transaction. Previous
+report links are revision provenance, while freshness follows current task inputs.
+See [ADR 0014](docs/decisions/0014-human-interventions-and-invalidation.md).

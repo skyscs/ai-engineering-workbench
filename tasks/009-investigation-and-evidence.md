@@ -1,6 +1,6 @@
 # Task 009 — Historical investigation and evidence-backed root cause
 
-Status: verified on Linux, 2026-09-11; awaiting user acceptance/merge. See [implementation contract](../docs/decisions/0013-investigation-pairs-and-evidence.md) and [user/API guide](../docs/investigation.md).
+Status: accepted through the user's merge of PR #10 into main (af4c820). See [implementation contract](../docs/decisions/0013-investigation-pairs-and-evidence.md) and [user/API guide](../docs/investigation.md).
 
 ## Goal
 

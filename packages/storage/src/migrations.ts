@@ -1,3 +1,4 @@
+import { interventionSchema } from './intervention-schema.js';
 import { investigationSchema } from './investigation-schema.js';
 import { createHash } from 'node:crypto';
 import type { DatabaseSync } from 'node:sqlite';
@@ -96,7 +97,7 @@ export const migrations: readonly Migration[] = [{ version: 1, name: 'storage_fo
   ALTER TABLE repositories ADD COLUMN sync_error_json TEXT;
   CREATE UNIQUE INDEX one_sync_per_common_git_dir ON repositories(common_git_dir)
     WHERE sync_status = 'running';
-` }, { version: 5, name: 'tasks_artifacts_and_runs', sql: taskSchema }, { version: 6, name: 'isolated_task_worktrees', sql: worktreeSchema }, { version: 7, name: 'runtime_execution_and_events', sql: runtimeSchema }, { version: 8, name: 'explicit_connection_home', sql: connectionHomeSchema }, { version: 9, name: 'investigation_report_pairs', sql: investigationSchema }];
+` }, { version: 5, name: 'tasks_artifacts_and_runs', sql: taskSchema }, { version: 6, name: 'isolated_task_worktrees', sql: worktreeSchema }, { version: 7, name: 'runtime_execution_and_events', sql: runtimeSchema }, { version: 8, name: 'explicit_connection_home', sql: connectionHomeSchema }, { version: 9, name: 'investigation_report_pairs', sql: investigationSchema }, { version: 10, name: 'interventions_constraints_and_dependencies', sql: interventionSchema }];
 
 const checksum = (migration: Migration) => createHash('sha256').update(migration.sql).digest('hex');
 

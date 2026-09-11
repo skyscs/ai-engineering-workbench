@@ -1,3 +1,4 @@
+import type { Constraint, RevisionContext } from './interventions.js';
 import { DomainError, type AIConnection, type ModelProfile } from './index.js';
 
 export interface TaskInput { title: string; description: string; repositoryIds: string[] }
@@ -19,11 +20,13 @@ export interface RunFailure { code: string; message: string; exitCode: number | 
 export interface RunInputSnapshot {
   task: Task; connection: AIConnection; profile: ModelProfile | null;
   repositories: { id: string; baseRef: string | null; resolvedCommitSha: string | null; worktreePath?: string | null; managedPinRef?: string | null }[];
+  constraintSnapshots?: readonly Constraint[]; revision?: RevisionContext | null;
   context: ContextManifest; constraints: readonly string[]; promptVersion: string; schemaVersion: string;
 }
 export interface StageRun {
   id: string; taskId: string; aiConnectionId: string; modelProfileId: string | null;
   stage: 'context_preparation' | 'investigation'; status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled';
+  previousVersionId: string | null; triggeredByInterventionId: string | null;
   inputSnapshot: RunInputSnapshot; error: RunFailure | null;
   createdAt: string; startedAt: string | null; completedAt: string | null;
 }

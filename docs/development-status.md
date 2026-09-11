@@ -324,11 +324,12 @@ Next task: 009 — investigation workflow and validated evidence locators.
 - Task 006: `task/006-tasks-and-artifacts`, aec25bd, merged through PR #7 as bf3cef4.
 - Task 007: `task/007-isolated-worktrees`, 7c48eff, merged through PR #8 as 9e233e1.
 - Task 008: `task/008-codex-cli-runtime`, 62abf01, merged through PR #9 as 4936d85.
-- Task 009: `task/009-investigation-and-evidence`, based on merged main (4936d85).
+- Task 009: `task/009-investigation-and-evidence`, 257bb98, merged through PR #10 as af4c820.
+- Task 010: `task/010-human-intervention-and-revision`, based on merged main (af4c820).
 
 ## Task 009 — Investigation and evidence
 
-Status: verified on Linux, 2026-09-11; awaiting user acceptance/merge.
+Status: accepted through the user's merge of PR #10 into main (af4c820).
 
 Implemented: the versioned workflow prompt/schema, paired investigation/root-cause
 output, deterministic evidence validation, schema 9 immutable report aggregates,
@@ -360,13 +361,52 @@ unchanged. Account identity is not certified by selecting a directory. Reviewed
 [evidence](fixtures/investigation/real-result.json) excludes local configuration
 paths, fingerprints, credentials and raw diagnostic payloads.
 
-Persistent constraints/challenges and richer revision history remain Task 010;
-Markdown export and the three release investigations remain Task 011. AEW-001 is
+Persistent constraints/challenges and richer revision history are implemented in
+Task 010 below. Markdown export and the three release investigations remain Task 011. AEW-001 is
 unchanged. Locator validity does not prove the model's causal explanation.
 
 See [ADR 0013](decisions/0013-investigation-pairs-and-evidence.md) for publication,
 state, locator and rendering contracts.
 
-## Tasks 010–011
+## Task 010 — Human intervention and revision
+
+Status: implemented and locally verified, awaiting PR review and merge, 2026-09-11.
+
+Implemented: protected challenge/constraint APIs and UI, schema 10 persistent
+interventions and constraints, exact previous-report snapshots, immutable run
+provenance and atomic revision publication. Constraints apply to every subsequent
+run; saving/deactivation starts no AI and marks dependent results stale. Duplicate
+submission IDs, obsolete context revisions, superseded targets and concurrent runs
+are rejected. Failed/cancelled revisions retain the last successful report. History
+shows the triggering text, attempt diagnostics and resulting versions.
+
+Persisted dependency edges and recursive, task-scoped invalidation cover report and
+root-cause results. Synthetic downstream nodes verify transitive invalidation and
+cycle termination without implementing future workflow stages. Migration preserves
+schema 9 snapshots and reports, with null provenance for earlier runs.
+
+A clean frozen-lockfile installation passed strict typecheck, 125 tests (17 Git,
+11 adapter, 40 storage, 50 HTTP/service, 7 spike) and production build on Node
+22.23.2 / Linux. Coverage includes constraint carry-forward and limits, duplicate
+submissions, ownership, rollback, failed/cancelled publication, restart interruption,
+immutable history, deactivation, transitive invalidation and schema 9 upgrade.
+
+Chrome on the clean build passed constraint saving without a run, failed and
+cancelled challenges, successful revision with exact prior-report/context snapshots,
+constraint deactivation, unchanged earlier versions, restart persistence and 390px
+layout. The browser fixture explicitly waits for the terminal UI refresh and a new
+run ID before testing retry/cancellation. See the reviewed
+[browser result](fixtures/interventions/browser-result.json). Nine synthetic runtime
+attempts were exercised; no real model request was made for Task 010.
+
+ASK, ADD_CONTEXT and OVERRIDE remain reserved domain types and return an explicit
+unsupported-action error. Constraints are model instructions, not filesystem
+permissions. The three real release investigations and Markdown export remain
+Task 011. AEW-001 is unchanged.
+
+See [ADR 0014](decisions/0014-human-interventions-and-invalidation.md) for
+submission, provenance, constraint and dependency contracts.
+
+## Task 011 — Hardening and release acceptance
 
 Status: not started. Execute in the order recorded in DEVELOPMENT_PLAN.md.

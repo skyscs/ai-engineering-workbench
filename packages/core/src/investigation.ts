@@ -21,6 +21,7 @@ export interface InvestigationResult {
 export interface InvestigationReport {
   id: string; rootCauseId: string; taskId: string; stageRunId: string; version: number;
   contextRevision: number; createdAt: string; status: 'active' | 'superseded'; freshness: 'fresh' | 'stale';
+  previousVersionId: string | null; triggeredByInterventionId: string | null;
   result: InvestigationResult;
 }
 export interface EvidenceContent { locator: string; text: string }

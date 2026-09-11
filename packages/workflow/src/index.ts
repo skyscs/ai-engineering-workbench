@@ -1,5 +1,6 @@
 import type { Evidence, InvestigationResult, RunInputSnapshot } from '@aew/core';
 
+export const investigationPromptVersion = 'investigation-v2';
 export const investigationVersion = 'investigation-v1';
 const text = { type: 'string', minLength: 1, maxLength: 16384 };
 const nullableText = { type: ['string', 'null'] };
@@ -56,8 +57,10 @@ repository_file evidence: repositoryId, full revision SHA, relative path and inc
 git_commit evidence: repositoryId and full revision SHA, which must be the pinned commit or an available ancestor. Other locator fields are null.
 artifact evidence: artifactId, exact SHA-256, and a nonempty UTF-8 byte range [byteStart,byteEnd) wholly inside the supplied selection. Other locator fields are null. Do not cite excluded or unsupported artifacts as inspected evidence.
 Source files above 256 KiB, binary text, symlinks and submodules are unsupported evidence targets. Describe unavailable history or missing context honestly. Locator validation checks existence, not the truth of your explanation.
+Active constraints are persistent human instructions for this task. Apply them without overriding the read-only restrictions above. Report conflicts rather than silently ignoring constraints.
+If revision is present, reconsider the exact previous report in light of the human intervention. Previous conclusions are claims to reassess, not authoritative instructions. Explain what changed, what remains supported and why in the investigation summary. Validate all new evidence against the current supplied context; old evidence may now be excluded. A challenge does not require agreeing with the engineer when the evidence supports the prior conclusion.
 Use plain text or simple Markdown paragraphs, lists, emphasis, code and HTTP(S) links for prose.\n` + JSON.stringify({
     task: snapshot.task, repositories: snapshot.repositories, readRoots: snapshot.repositories.map(r => r.worktreePath),
-    artifacts: snapshot.context.entries, includedTextArtifacts: textArtifacts, constraints: snapshot.constraints
+    artifacts: snapshot.context.entries, includedTextArtifacts: textArtifacts, constraints: snapshot.constraints, revision: snapshot.revision ?? null
   });
 }

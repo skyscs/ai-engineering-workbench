@@ -1,5 +1,7 @@
 # Task 010 — Human intervention and revision loop
 
+Status: implemented and locally verified, awaiting PR review and merge, 2026-09-11. See [ADR 0014](../docs/decisions/0014-human-interventions-and-invalidation.md) and [the intervention guide](../docs/interventions.md).
+
 ## Goal
 
 Allow the engineer to correct or challenge AI reasoning with a free-form prompt and create a new result version without losing history.
