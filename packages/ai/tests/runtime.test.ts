@@ -50,6 +50,43 @@ test('unverified versions, MCP and failing diagnostics are rejected without leak
   await assert.rejects(collect(runtime,f.request),failure('UNSUPPORTED_VERSION'));
 });
 
+test('ancestor .codex does not block a separate saved home and every configuration reader pins discovery to cwd', async(t)=>{
+  const f=fixture(t), corporate=path.join(f.root,'.codex'), capture=path.join(f.root,'environment.jsonl');
+  mkdirSync(corporate); writeFileSync(path.join(corporate,'config.toml'),'invalid ancestor TOML [');
+  writeFileSync(path.join(f.config,'personal.config.toml'),'project_root_markers=[".custom-root"]');
+  f.request.connection.configProfile='personal';
+  const events=await collect(new CodexCliRuntime({env:{...f.env,CODEX_HOME:corporate,FIXTURE_ENV_CAPTURE:capture}}),f.request);
+  assert.equal(events.at(-1)!.type,'result');
+  const rows=readFileSync(capture,'utf8').trim().split('\n').map(line=>JSON.parse(line) as {args:string[];configHome:string});
+  assert.ok(rows.every(row=>row.configHome===f.config));
+  for(const command of ['features','mcp','exec']) {
+    const row=rows.find(row=>row.args.includes(command)); assert.ok(row);
+    const index=row.args.indexOf('project_root_markers=[]'); assert.ok(index>0); assert.equal(row.args[index-1],'-c');
+    if(command!=='features') assert.equal(row.args[row.args.indexOf('--profile')+1],'personal');
+  }
+});
+
+test('project .codex entries in secondary roots, including dangling links and the selected home, fail before diagnostics', async(t)=>{
+  for(const kind of ['directory','file','link','selected-home']) {
+    const f=fixture(t), second=path.join(f.root,'second'), capture=path.join(f.root,'environment.jsonl');
+    mkdirSync(second); f.request.readRoots.push(second);
+    const config=path.join(second,'.codex');
+    if(kind==='file') writeFileSync(config,'unsupported');
+    else if(kind==='link') symlinkSync(path.join(f.root,'missing'),config);
+    else mkdirSync(config);
+    if(kind==='selected-home') f.request.connection.configHome=config;
+    await assert.rejects(collect(new CodexCliRuntime({env:{...f.env,FIXTURE_ENV_CAPTURE:capture}}),f.request),failure('PROJECT_CONFIGURATION'));
+    assert.equal(existsSync(capture),false);
+  }
+});
+
+test('project configuration appearing after preflight still blocks execution', async(t)=>{
+  const f=fixture(t), iterator=f.runtime.run(f.request)[Symbol.asyncIterator]();
+  assert.equal((await iterator.next()).value.type,'runtime');
+  mkdirSync(path.join(f.cwd,'.codex'));
+  await assert.rejects(iterator.next(),failure('PROJECT_CONFIGURATION')); assert.equal(existsSync(f.capture),false);
+});
+
 test('configuration changes between recorded preflight and exec fail closed',async(t)=>{
   const f=fixture(t), iterator=f.runtime.run(f.request)[Symbol.asyncIterator]();
   assert.equal((await iterator.next()).value.type,'runtime');
