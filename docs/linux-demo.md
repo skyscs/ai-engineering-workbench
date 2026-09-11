@@ -1,5 +1,9 @@
 # Linux installation and v0.1 demo
 
+Start with the [README quick start](../README.md#quick-start) to clone the project.
+Run the commands below from that checkout, with pnpm 10.15.0 available in the
+selected Node environment.
+
 The verified distribution is a source checkout with a production build, run as the
 current user on Linux. There is no installer, background service or public server.
 macOS and Windows path conventions are covered by tests; their runtimes have not
@@ -16,47 +20,34 @@ restrictions. System Git should already be able to access the selected repositor
 nvm install
 nvm use
 pnpm install --frozen-lockfile
-pnpm check
+pnpm build
 AEW_OPEN_BROWSER=0 pnpm start
 ```
 
-Open `http://127.0.0.1:4242`. `pnpm check` includes the production build; after source
-changes, run it again or use `pnpm build` before `pnpm start`. The SQLite experimental
-warning is expected on the pinned Node release. The daemon binds loopback only;
+Open `http://127.0.0.1:4242`. After source changes, run `pnpm build` before
+`pnpm start`. Contributors can use `pnpm check` for typechecks, tests and the
+build. The SQLite experimental warning is expected on the pinned Node release. The daemon binds loopback only;
 use the exact URL, and stop any other process occupying port 4242. `pnpm dev` uses
 Vite on port 5173 and rebuilds internal packages when started.
 
-## Demo using synthetic history
+## Application walkthrough
 
-Generate a non-proprietary fixture without invoking AI:
+Follow the [user guide](user-guide.md) for the complete workflow: generating a
+practice fixture, configuring a connection/model profile, registering repositories,
+creating a task, saving text context, preparing worktrees, investigating, challenging
+and exporting versions. It also includes expected results and troubleshooting.
+Generating fixtures makes no model requests; running investigations or challenges
+through your configured connection does.
+
+For a temporary data root isolated from everyday application data:
 
 ```bash
-node scripts/release-fixtures.mjs single
+AEW_DATA_DIR=/tmp/aew-demo AEW_OPEN_BROWSER=0 pnpm start
 ```
 
-The printed manifest contains temporary repository paths and an incident log.
-Use `interaction` for the two-repository case or `revision` for the human revision
-case. The generator leaves files for inspection and makes no model requests.
-
-1. Create a workspace. Before creating a task, explicitly save the intended Codex
-   configuration directory and executable in **AI connection**. Use the correct
-   personal/corporate directory; an executable name alone does not select an account.
-2. Create a model profile for the intended model and effort. The acceptance runs use
-   `gpt-5.6-terra` and `medium`.
-3. Register each manifest repository through **Repositories**. Create a task using
-   the manifest description and select all its repositories.
-4. Import the incident log and explicitly select its text range. For the `revision`
-   case, postpone the log until after the initial investigation.
-5. Choose **Prepare worktrees**, then the model profile and **Run investigation**.
-   This step invokes the configured CLI and can consume its account allowance.
-6. Review the report and open its evidence. Cancel an active run if necessary;
-   another **Run investigation** starts a fresh attempt. Failed attempts preserve
-   the last published report.
-7. In the `revision` case, import/select the log now, save the manifest constraint,
-   then challenge the latest report using the manifest challenge. Saving a constraint
-   alone starts no AI. Review the revised explanation and reopen version 1.
-8. Choose **Export Markdown** for either version. Stop and restart the daemon,
-   reconnect with **Refresh**, and verify that reports, constraints and history remain.
+Keep the same absolute directory on restart and use a dedicated local directory.
+Temporary data may be removed by the operating system; use the default persistent
+location or another persistent local directory for work you need to keep.
 
 ## Data, backup and upgrades
 
@@ -84,3 +75,12 @@ retains revision pins needed by report evidence.
 
 See [release acceptance](release-acceptance.md), [export details](report-export.md)
 and [security boundaries](../SECURITY.md) for the verified scope and limitations.
+
+## Optional storage smoke
+
+After building, `node scripts/storage-smoke.mjs` checks startup, ownership,
+production-to-development restart and shutdown with temporary data. It requires a
+free port 4242. With Chrome installed, `AEW_SMOKE_BROWSER=1` also checks rendering.
+The headless fixture uses `--no-sandbox` and opens only the local fixture UI; no
+model request or normal application data is used. For the complete application
+scenario, use [release verification](release-acceptance.md#run-deterministic-checks).

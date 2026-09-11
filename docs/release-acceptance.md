@@ -1,6 +1,6 @@
 # v0.1 release acceptance
 
-Status: locally verified, awaiting PR review and merge, 2026-09-11. Local verification and user acceptance are recorded
+Status: accepted through the user's merge of PR #12 into main (9e39d3c). Local verification and user acceptance are recorded
 separately in [development status](development-status.md).
 
 The clean installation passed typecheck, 130 tests and production build. Chrome

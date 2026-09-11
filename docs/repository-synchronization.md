@@ -1,5 +1,7 @@
 # Repository synchronization
 
+For step-by-step usage, see the [user guide](user-guide.md#register-repositories).
+
 Expand a ready repository and choose **Fetch updates**. Workbench downloads remote
 branch history and prunes remote-tracking refs removed upstream. It preserves
 local branches, working files, index, HEAD, existing FETCH_HEAD, tags and task pins.

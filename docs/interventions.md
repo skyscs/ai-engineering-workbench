@@ -1,5 +1,7 @@
 # Challenges and persistent constraints
 
+For step-by-step usage, see the [user guide](user-guide.md#guide-the-next-version).
+
 Use **Human interventions** below a task's investigation report to guide subsequent
 runs without losing earlier reasoning.
 

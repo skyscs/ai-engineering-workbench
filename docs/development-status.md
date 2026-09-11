@@ -1,5 +1,13 @@
 # Development status
 
+## Current baseline
+
+Tasks 000–011 are accepted. PR #12 merged v0.1.0 into main as `9e39d3c`.
+For current usage, see the [user guide](user-guide.md); for verified scope, see
+[release acceptance](release-acceptance.md). The task sections below preserve
+historical implementation and verification notes; their descriptions of next steps
+refer to the stage at which those notes were recorded.
+
 ## Task 001 — Bootstrap local shell
 
 Status: accepted through the user's merge of PR #1 into main (aa56532).
@@ -326,7 +334,7 @@ Next task: 009 — investigation workflow and validated evidence locators.
 - Task 008: `task/008-codex-cli-runtime`, 62abf01, merged through PR #9 as 4936d85.
 - Task 009: `task/009-investigation-and-evidence`, 257bb98, merged through PR #10 as af4c820.
 - Task 010: `task/010-human-intervention-and-revision`, fc17306, merged through PR #11 as 18e621f.
-- Task 011: `task/011-v01-hardening-and-dogfood`, based on merged main (18e621f).
+- Task 011: `task/011-v01-hardening-and-dogfood`, 6982e84, merged through PR #12 as 9e39d3c.
 
 ## Task 009 — Investigation and evidence
 
@@ -410,7 +418,7 @@ submission, provenance, constraint and dependency contracts.
 
 ## Task 011 — Hardening and release acceptance
 
-Status: locally verified, awaiting PR review and merge, 2026-09-11.
+Status: accepted through the user's merge of PR #12 into main (9e39d3c).
 
 Implemented: chosen-version Markdown export with original run/context provenance,
 evidence locators and source-availability checks, escaped/redacted prose and protected
@@ -456,3 +464,27 @@ reserved ASK/ADD_CONTEXT/OVERRIDE actions. AEW-002 remains mitigated by prefligh
 
 See [release acceptance](release-acceptance.md), [Linux demo](linux-demo.md),
 [report export](report-export.md) and [ADR 0015](decisions/0015-report-export-and-release-acceptance.md).
+
+## v0.1 documentation follow-up
+
+Status: locally verified, awaiting PR review and merge, 2026-09-11.
+Branch: `docs/v01-readme-and-user-guide`, based on `9e39d3c`.
+
+The README now describes implemented capabilities and prioritizes a production
+quick start. A separate user guide covers exact UI controls, expected outcomes,
+synthetic examples, revision, export, recovery and troubleshooting. START_HERE and
+Linux operations link to that guide; current feature references distinguish legacy
+previews from full reports and remove obsolete next-iteration claims. API session
+mechanics moved from the README into a dedicated reference. Historical acceptance
+artifacts remain unchanged. AEW-003 records the task-state display issue separately;
+this documentation update changes no application behavior.
+
+Verification: the documented `pnpm build` passed on Node 22.23.2; all three
+release-fixture behavior tests passed; 178 local links and anchors across 60
+Markdown documents resolved. UI labels and workflow assertions were checked against
+the current forms, runtime and storage code. The production Chrome scenario
+`AEW_SMOKE_RELEASE=1 node scripts/workspace-smoke.mjs` passed setup, context saving,
+worktree preparation, report/evidence review, constraint/challenge, failure/cancel/
+retry, restart, historical Markdown downloads and the 390px layout. It used nine
+synthetic runtime attempts and no real model calls. Historical release evidence
+was not regenerated or rewritten.

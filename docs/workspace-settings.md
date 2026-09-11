@@ -1,5 +1,7 @@
 # Workspace and AI connection settings
 
+For step-by-step usage, see the [user guide](user-guide.md#configure-your-workspace).
+
 Open the local UI and choose **New workspace**. Enter a workspace name and a
 connection label and the absolute path to the intended Codex configuration directory,
 then select its base configuration or a named profile. Optionally enter an absolute

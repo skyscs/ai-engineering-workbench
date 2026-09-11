@@ -1,6 +1,6 @@
 # Task 011 — v0.1 hardening and dogfood
 
-Status: locally verified, awaiting PR review and merge, 2026-09-11. See [release acceptance](../docs/release-acceptance.md).
+Status: accepted through the user's merge of PR #12 into main (9e39d3c). See [release acceptance](../docs/release-acceptance.md).
 
 ## Goal
 

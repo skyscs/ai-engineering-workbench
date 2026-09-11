@@ -1,6 +1,8 @@
 # Historical investigation and root-cause reports
 
-Task 009 turns prepared context into a versioned investigation and root-cause pair.
+An investigation turns prepared context into a versioned investigation/root-cause
+pair. Follow the [user guide](user-guide.md#run-and-review-an-investigation) for
+step-by-step usage.
 
 ## Use
 
@@ -17,7 +19,7 @@ valid result when more context is needed. Locator checks establish source identi
 existence and range; the engineer decides whether it supports the conclusion.
 Excluded PDF/video/image inputs are disclosed and cannot become analyzed evidence.
 Active constraints and the exact previous report for a challenge are snapshotted
-by Task 010. Use [human interventions](interventions.md) to save rules or reconsider
+for each new run. Use [human interventions](interventions.md) to save rules or reconsider
 a conclusion.
 
 Every successful invocation adds one immutable version. **Report version** opens
@@ -28,8 +30,11 @@ interrupts unfinished runs and restores the last completed workflow state.
 
 Task state is **INVESTIGATING** during a full run and **ROOT_CAUSE_READY** after
 atomic publication. The latter includes an honest insufficient-evidence conclusion;
-it means a report is available, not that a cause has been proven. Existing Task 008
+it means a report is available, not that a cause has been proven. Existing legacy
 previews remain readable and are never converted into full reports.
+
+Choose **Export Markdown** for the selected version; see [report export](report-export.md).
+The task-summary display limitation is documented as [AEW-003](open-issues.md#aew-003--task-summary-displays-created-for-investigation-states).
 
 ## Evidence boundaries
 
@@ -65,11 +70,12 @@ All require the local session; POST also requires Origin, CSRF and JSON.
 | `GET /investigations` | `{ "reports": [...] }`, newest successful version first. |
 | `GET /investigations/:reportId` | Immutable pair with version, IDs, context revision, creation time and derived status/freshness. |
 | `GET /investigations/:reportId/evidence/:evidenceId` | Revalidate the owned locator and return `{ "locator": "...", "text": "..." }`; unavailable sources return an error. |
+| `GET /investigations/:reportId/export` | Download the chosen version as a protected Markdown attachment; see the export guide. |
 | `GET /runtime-runs/:runId` | Existing persisted run/metadata/output transport for either schema. |
 | `POST /runtime-runs/:runId/cancel` | Existing cancellation endpoint with `{}`. |
 | `GET /runtime-runs/:runId/events` | Existing sequenced SSE/replay endpoint. |
 
-The legacy `POST /runtime-runs` endpoint still starts a Task 008 preview. New UI
+The legacy `POST /runtime-runs` endpoint still starts a preliminary preview. New UI
 runs use `/investigations`. `INVALID_RESULT` and `INVALID_EVIDENCE` are terminal
 StageRun failures; they do not publish partial reports or trigger automatic retries.
 

@@ -1,238 +1,144 @@
 # AI Engineering Workbench
 
-A local-first engineering workspace for AI-native software development.
+A local application for investigating software defects across Git repositories,
+reviewing evidence and revising AI conclusions with human feedback.
 
-The product formalizes a workflow that many experienced engineers currently manage through ad-hoc prompts: collect task context, select relevant repositories, reconstruct defect history, produce evidence-backed root-cause hypotheses, let the engineer intervene in natural language, and later orchestrate implementation, verification, and reusable knowledge capture.
+## What v0.1 does
 
-## Product principles
+Workbench runs a browser UI and a local daemon. You describe a problem, select
+repositories and optional text artifacts, and prepare isolated worktrees. A Codex
+CLI invocation investigates committed source and history and produces a versioned
+investigation/root-cause report. You can inspect its evidence, save persistent
+constraints, challenge the conclusion and export a chosen version to Markdown.
 
-- **Local-first by default.** Repositories, task artifacts, worktrees, state, and generated reports live on the developer's machine.
-- **Web UI, local runtime.** The browser is only the UI. A local daemon owns filesystem, Git, AI runtime, workflow, and storage access.
-- **Human authority.** AI output is always reviewable, versioned, challengeable, and overridable.
-- **Evidence over prose.** Important conclusions should reference code, Git history, tests, logs, or uploaded artifacts.
-- **Deterministic code for deterministic work.** Filesystem operations, Git operations, state transitions, validation, and policy enforcement are application code, not LLM decisions.
-- **AI connection defines the data boundary.** A workspace is bound to an approved AI connection. A task cannot silently switch from a corporate runtime to a personal one.
-- **Model selection is per run.** The workflow can choose a model profile automatically, while the engineer can override it for an individual run within the workspace's allowed connection.
-- **No fake autonomy.** The first release is intentionally not a multi-agent swarm or an IDE replacement.
+Earlier reports survive revisions, failures and cancellation. The application
+preserves your normal checkout's working files and uses pinned commits for tasks.
+Model selection is manual: choose a workspace model profile or the selected CLI
+connection's defaults for each run.
 
-## v0.1 goal
+The v0.1 implementation was accepted through PR #12. See the [release acceptance](docs/release-acceptance.md)
+and [reviewed example reports](docs/fixtures/release/README.md) for verified behavior.
 
-Given a task description, optional local artifacts, and one or more local Git repositories, the application can:
+## Requirements
 
-1. create an isolated task workspace;
-2. maintain current repository metadata without modifying the developer's working checkout;
-3. run a historical investigation through Codex CLI;
-4. produce a versioned root-cause report with evidence;
-5. allow the engineer to challenge or correct the result with a free-form prompt;
-6. produce a revised version without deleting the previous reasoning artifact.
+- **Linux:** the verified runtime platform. macOS/Windows path conventions are
+  tested, but their complete runtimes are not accepted.
+- **Node.js 22.23.2:** pinned in `.nvmrc` and `.node-version`; minimum 22.13.0.
+- **pnpm 10.15.0** and **system Git**. Git authentication must already work for
+  repositories you intend to clone or fetch.
+- **Codex CLI for AI runs:** the adapter accepts versions 0.153.4 and 0.154.0.
+  Use an existing authenticated configuration and explicitly select its directory
+  in the application. Other CLI versions are rejected until compatibility is verified.
+  See [runtime requirements](docs/codex-runtime.md#supported-configuration).
 
-Implementation, verification automation, knowledge retrieval, Jira/GitLab integrations, local LLMs, and direct OpenAI API support are deliberately deferred.
-
-## Repository layout
-
-```text
-ai-engineering-workbench/
-  apps/
-    daemon/             # local HTTP API and process owner
-    web/                # React/Vite UI
-  packages/
-    core/               # domain types and invariants
-    storage/            # SQLite + filesystem abstraction
-    git/                # system Git integration
-    ai/                 # runtime abstraction, Codex CLI first
-    workflow/           # state machine and stage execution
-    shared/             # transport DTOs and shared utilities
-  docs/
-    architecture/
-    decisions/
-  tasks/                # implementation specs executed one at a time
-  AGENTS.md
-```
-
-## Development strategy
-
-Build the product by dogfooding the workflow manually. Each implementation task is intentionally small and self-contained. Codex should receive an explicit task or bounded sequence and should not silently broaden scope.
-
-Start with `tasks/001-bootstrap-local-shell.md`, then the early runtime check
-`tasks/000-runtime-feasibility.md`, then Tasks 002–011.
-See [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) for milestones and checks and
-[REVIEW.md](REVIEW.md) for the review of the original artifact.
-
-## Current implementation status
-
-The repository includes the Task 001 bootstrap scaffold: pnpm workspace layout, React/Vite web shell, Hono daemon, strict TypeScript configs, a `/api/health` endpoint, dev proxying, and a production-oriented build path where the daemon serves the built web UI.
-
-Task 001 now includes protected local API sessions, CSRF/Host/Origin checks,
-JSON API errors, graceful shutdown, a lockfile and automated checks.
-See [Development status](docs/development-status.md) for verification evidence
-and remaining work. Task 002 adds local SQLite initialization, migrations and a
-protected storage status endpoint. Task 003 adds workspace, owned AI connection
-and model profile settings with persistence and a browser UI. Connections describe configured launch settings; provider/account identity
-remains unverified. Task 004 adds local
-repository registration and managed cloning with persisted status and diagnostics.
-Task 005 adds explicit fetch/prune with persisted synchronization results and
-protection for local branches, tags, checkout state and task pins. Task 006 adds
-task creation, immutable file imports, explicit text context selection and internal
-StageRun snapshots/recovery. Task 007 adds detached task worktrees, retained
-revision pins, safe cleanup and Git-aware restart reconciliation. Task 008 adds
-the Codex CLI adapter, persisted events, cancellation and a preliminary structured
-preview. Task 009 adds versioned investigation/root-cause pairs, validated pinned
-evidence, report history and explicit insufficient-evidence conclusions. Task 010 adds challenges, persistent constraints, revision provenance and transitive
-invalidation. Task 011 adds portable Markdown export, Linux run documentation
-and release acceptance fixtures; verification is recorded in development status.
+Installing, starting the UI, preparing worktrees and running ordinary tests make
+no model requests. **Run investigation** and **Challenge and run** invoke the
+configured CLI and can consume the selected account's allowance.
 
 ## Quick start
 
-Prerequisites: Node.js 22.13+, pnpm 10.15.0, and Git. The tested Node version
-is pinned to 22.23.2 in `.node-version` and `.nvmrc`. With nvm installed,
-run `nvm install` and `nvm use` from the repository root. Install pnpm 10.15.0
-for that Node environment if it is not already available.
+With nvm installed, run:
+
+```bash
+git clone git@github.com:skyscs/ai-engineering-workbench.git
+cd ai-engineering-workbench
+nvm install
+nvm use
+```
+
+Ensure pnpm 10.15.0 is installed for the selected Node environment, then:
 
 ```bash
 pnpm install --frozen-lockfile
-pnpm dev
-```
-
-Development UI: `http://127.0.0.1:5173`
-
-Local daemon: `http://127.0.0.1:4242`
-
-Production-style local run:
-
-```bash
 pnpm build
-pnpm start
+AEW_OPEN_BROWSER=0 pnpm start
 ```
 
-The daemon then serves the built UI at `http://127.0.0.1:4242`.
+Open **http://127.0.0.1:4242**. Keep the terminal running; stop with Ctrl+C.
+Omit `AEW_OPEN_BROWSER=0` to allow automatic browser opening. Use the exact address;
+the daemon binds loopback and reports an error if port 4242 is occupied. The
+experimental SQLite warning on the pinned Node release is expected.
 
-Use the exact `127.0.0.1` URLs above. Dev ports are fixed: Vite exits if 5173
-is occupied; the daemon reports an actionable error if 4242 is occupied.
-Set `AEW_OPEN_BROWSER=0` to disable automatic browser opening. Stop with Ctrl+C;
-the daemon also handles SIGTERM and allows up to five seconds for shutdown.
+This is a source-build distribution. There is no installer, background service,
+npm publication or network-facing mode. See [Linux installation and operations](docs/linux-demo.md)
+for data directories, isolated demos, backup and upgrades.
 
-## Validation
+## Your first investigation
+
+1. Choose **New workspace**. Save the intended **Configuration directory** and
+   optional executable/CLI profile before creating a task. Add a model profile
+   under **Model profiles** if you want explicit model and effort settings.
+2. Under **Repositories**, register an existing local checkout or clone into
+   Workbench. Wait for readiness; fetch updates explicitly if needed.
+3. Choose **Tasks → New task**, describe observed and expected behavior and select
+   the relevant repositories.
+4. If using artifacts, **Import files**, select **Include text** for the relevant
+   UTF-8 ranges, then **Save text context**. Import alone does not supply text to AI.
+5. Under **Task worktrees**, review base refs and choose **Prepare worktrees**.
+   Wait for every selected repository to show `Worktree: ready`.
+6. Under **Historical investigation**, select **Model profile** and choose
+   **Run investigation**. Review the report and open evidence buttons.
+7. Save a **Persistent constraint** or use **Challenge and run** to request a
+   revised explanation. Inspect earlier versions with **Report version** and
+   download any selected version with **Export Markdown**.
+
+The [user guide](docs/user-guide.md) provides a complete synthetic walkthrough,
+field-by-field setup, expected results, revision examples and troubleshooting.
+
+## Limits and data handling
+
+- Workbench stores state, imported files and reports locally. Codex can transmit
+  exposed source and supplied context to its configured provider; Workbench has
+  no exact outbound-payload audit or verified account-identity claim.
+- Explicit configuration-directory selection separates workspace launch settings.
+  Creating the first task locks those settings. An executable name alone does
+  not select a personal or corporate account.
+- Investigations use committed revisions. Uncommitted changes are excluded;
+  fetching or preparing again does not move an existing task's pin.
+- Text/Markdown/log ranges can be supplied explicitly. Images, PDFs and videos
+  can be stored/downloaded but are not analyzed in v0.1.
+- Only one AI invocation runs per daemon. Cancellation and retry are explicit;
+  failures preserve the last successful report. Interrupted runs do not resume
+  paid CLI sessions automatically.
+- CHALLENGE and CONSTRAINT are available. ASK, ADD_CONTEXT and OVERRIDE, automatic
+  model selection, code implementation, automated fix verification, integrations
+  and additional runtime providers are deferred. Task edit/delete and repository
+  removal are not exposed in the current UI.
+- Export omits configuration paths and raw diagnostics and redacts known patterns;
+  it is not a complete secret scanner. Review reports before sharing.
+
+Use trusted repositories and CLI configuration. See [security boundaries](SECURITY.md)
+and [known issues](docs/open-issues.md). Back up the complete stopped data directory
+and external registered repositories; Markdown export is not a backup.
+
+## Documentation and development
+
+| Need | Document |
+| --- | --- |
+| Learn the application and troubleshoot a run | [User guide](docs/user-guide.md) |
+| Install, operate, back up or upgrade | [Linux guide](docs/linux-demo.md) |
+| Configure a connection or model profile | [Workspace settings](docs/workspace-settings.md) |
+| Register, fetch or prepare repositories | [Registry](docs/repository-registry.md), [synchronization](docs/repository-synchronization.md), [worktrees](docs/task-worktrees.md) |
+| Understand artifacts, reports and human revision | [Artifacts](docs/tasks-and-artifacts.md), [investigation](docs/investigation.md), [interventions](docs/interventions.md), [export](docs/report-export.md) |
+| Integrate with the local HTTP API | [Session and transport](docs/local-api.md), then feature API tables |
+| Inspect validation and development history | [Release acceptance](docs/release-acceptance.md), [development status](docs/development-status.md) |
+
+For development, `pnpm dev` rebuilds internal packages and starts the UI on
+`http://127.0.0.1:5173` with the daemon on port 4242. Restart it after internal
+package changes. Vite also requires its exact port to be free.
 
 ```bash
 pnpm check
 ```
 
-This runs strict TypeScript checks, Node's built-in test runner via tsx, and all
-workspace builds. CI performs the same checks from a frozen-lockfile installation.
-Internal package dependencies and exports order recursive builds. The typecheck,
-test and development commands first build internal packages so their consumers
-work from a clean checkout.
+This runs strict typechecks, behavioral tests and production builds. CI runs the
+same checks from a frozen-lockfile installation, without model requests. Optional
+browser and real acceptance procedures are described in the release guide.
 
-## Local API session
-
-The UI bootstraps a session through `POST /api/session` with the exact local
-Origin and `X-AEW-Client: web`. The daemon sets an HttpOnly, SameSite=Strict cookie
-scoped to `/api` and returns a CSRF token. Future mutation clients must send it as
-`X-AEW-CSRF` together with the session cookie and Origin. `DELETE /api/session`
-requires that protection and invalidates the session. Sensitive API reads require
-a session; the minimal health endpoint is public only on the allowed local host.
-
-Sessions expire after eight hours or daemon restart, are bounded to 64 per daemon,
-and are never logged. Development additionally permits the exact Vite origin
-`http://127.0.0.1:5173`; production accepts only `http://127.0.0.1:4242`.
-These controls protect the browser boundary; they do not authenticate other local
-processes running as the user. There is no network-facing or multi-user mode.
-
-## Local storage
-
-Startup creates SQLite storage and managed directories before opening the HTTP
-port. Linux uses `$XDG_DATA_HOME/ai-engineering-workbench`, falling back to
-`~/.local/share/ai-engineering-workbench`. macOS uses `~/Library/Application Support/ai-engineering-workbench`;
-Windows uses `%LOCALAPPDATA%\ai-engineering-workbench` (path conventions are tested;
-full runtime verification is currently Linux-only).
-
-Set `AEW_DATA_DIR` to an absolute path for an isolated data directory:
-
-```bash
-AEW_DATA_DIR=/tmp/aew-demo AEW_OPEN_BROWSER=0 pnpm dev
-```
-
-Use a dedicated directory on a local filesystem. One daemon may own it at a time.
-Stop that daemon before copying the complete directory for backup; never delete
-`.owner.db` to bypass ownership. A crashed process releases the OS lock automatically.
-Startup refuses newer or inconsistent migration histories and reports an error.
-
-`GET /api/storage` requires the browser session and reports schema/SQLite versions,
-foreign-key status and journal mode. It does not expose filesystem paths. The
-public `/api/health` endpoint remains minimal.
-
-The storage package uses the experimental `node:sqlite` module included in the
-pinned Node release; its runtime warning is expected. See
-[ADR 0005](docs/decisions/0005-local-storage-lifecycle.md) for the driver and recovery
-contract. Restart `pnpm dev` after changing internal package sources to rebuild them.
-
-After `pnpm build`, the optional `node scripts/storage-smoke.mjs` checks production
-startup, development restart, ownership conflicts and shutdown using temporary
-data. It requires a free port 4242 and leaves its fixture for inspection.
-With Google Chrome installed, set `AEW_SMOKE_BROWSER=1` to also check the rendered
-UI in a fresh temporary browser profile. This optional headless test uses
-`--no-sandbox`; only the local fixture UI is opened.
-
-## Workspace settings
-
-Choose **New workspace** in the UI, enter a name and configure its owned Codex CLI
-connection. Then add model profiles within that connection. Settings survive a
-daemon restart; use **Refresh** to reconnect. Saving settings does not execute
-Codex or verify authentication, provider identity or model availability.
-Explicitly save the intended personal or corporate configuration directory before
-running AI. The connection pins that directory as `CODEX_HOME` for every CLI
-subprocess; it never falls back to the daemon's environment or the CLI default.
-Old connections remain unbound until explicitly configured under the settings
-guide's migration rules.
-
-See the [settings guide and API](docs/workspace-settings.md) for field semantics,
-ownership rules and the optional `node scripts/workspace-smoke.mjs` browser check.
-
-## Repository registry
-
-Select a workspace and use **Repositories → Add a repository** to register an
-existing checkout or clone from a local path, SSH or HTTPS. Expand an entry for
-its path, base ref, commit, history limitations and clone diagnostics. Clones
-download history without checking out files. Existing checkouts remain unchanged.
-
-The locally verified target is Linux with Git 2.53.0 and Node 22.23.2. Authentication
-uses system Git credential helpers and OpenSSH-compatible configuration. See the
-[repository guide](docs/repository-registry.md) for API, authentication requirements,
-failed-clone recovery and the browser acceptance command. Workspaces containing
-repository records cannot be deleted in this iteration.
-
-Expand a ready repository and choose **Fetch updates** to synchronize supported
-remote branch mappings. The UI shows the latest attempt separately from the last
-successful fetch. See the [synchronization guide](docs/repository-synchronization.md)
-for supported configuration, failure handling and browser verification.
-
-## Tasks and artifacts
-
-Choose **Tasks → New task** to describe an investigation and select its repositories.
-Import files through the browser, download preserved originals and explicitly
-select text or byte ranges within the context limit. Task creation locks the
-workspace's AI connection launch settings. See the [task and artifact guide](docs/tasks-and-artifacts.md)
-for limits, recovery, supported context and the browser acceptance command.
-
-Use **Task worktrees → Prepare worktrees** to prepare committed content from each
-selected repository in a separate detached checkout. The UI shows readiness,
-source revisions, retry diagnostics and safe cleanup. Revision pins survive cleanup.
-See the [worktree guide](docs/task-worktrees.md). Preparation does not invoke a model.
-Choose **Historical investigation → Run investigation** for a read-only CLI invocation
-that publishes the investigation and root-cause pair together. Open evidence buttons
-to inspect pinned sources. See the [investigation guide](docs/investigation.md).
-See the [runtime guide](docs/codex-runtime.md) for supported versions, data boundaries,
-limits, cancellation and verification.
-
-Use **Human interventions** to add task constraints without starting AI, or challenge
-the latest report with a fresh run. Earlier versions and failed attempts remain
-inspectable. See the [intervention guide](docs/interventions.md).
-
-## v0.1 demo and export
-
-Follow the [Linux demo](docs/linux-demo.md) to generate synthetic history, configure
-an explicit CLI connection, investigate a defect, add a constraint, challenge the
-result and inspect both versions after restart. Use **Export Markdown** on the
-chosen report version to download its reasoning, provenance and evidence locators.
-See [export details](docs/report-export.md) and [release acceptance](docs/release-acceptance.md)
-for reproducible checks and verified limitations.
+The monorepo contains `apps/web`, `apps/daemon`, and packages for core types,
+storage, Git, AI runtime, workflow and shared transport. Read [AGENTS.md](AGENTS.md),
+[PRODUCT.md](PRODUCT.md), [ARCHITECTURE.md](ARCHITECTURE.md), [SECURITY.md](SECURITY.md)
+and [WORKFLOW.md](WORKFLOW.md) before changes. Tasks 000–011 in
+[the original development plan](DEVELOPMENT_PLAN.md) document the completed v0.1
+sequence; they are not onboarding steps to execute again. Keep new work bounded
+and all project artifacts in English.
