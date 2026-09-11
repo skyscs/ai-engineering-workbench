@@ -1,5 +1,7 @@
 # Task 011 — v0.1 hardening and dogfood
 
+Status: locally verified, awaiting PR review and merge, 2026-09-11. See [release acceptance](../docs/release-acceptance.md).
+
 ## Goal
 
 Prepare the first usable release and validate it on realistic, non-proprietary engineering defects.

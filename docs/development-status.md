@@ -325,7 +325,8 @@ Next task: 009 — investigation workflow and validated evidence locators.
 - Task 007: `task/007-isolated-worktrees`, 7c48eff, merged through PR #8 as 9e233e1.
 - Task 008: `task/008-codex-cli-runtime`, 62abf01, merged through PR #9 as 4936d85.
 - Task 009: `task/009-investigation-and-evidence`, 257bb98, merged through PR #10 as af4c820.
-- Task 010: `task/010-human-intervention-and-revision`, based on merged main (af4c820).
+- Task 010: `task/010-human-intervention-and-revision`, fc17306, merged through PR #11 as 18e621f.
+- Task 011: `task/011-v01-hardening-and-dogfood`, based on merged main (18e621f).
 
 ## Task 009 — Investigation and evidence
 
@@ -370,7 +371,7 @@ state, locator and rendering contracts.
 
 ## Task 010 — Human intervention and revision
 
-Status: implemented and locally verified, awaiting PR review and merge, 2026-09-11.
+Status: accepted through the user's merge of PR #11 into main (18e621f).
 
 Implemented: protected challenge/constraint APIs and UI, schema 10 persistent
 interventions and constraints, exact previous-report snapshots, immutable run
@@ -409,4 +410,49 @@ submission, provenance, constraint and dependency contracts.
 
 ## Task 011 — Hardening and release acceptance
 
-Status: not started. Execute in the order recorded in DEVELOPMENT_PLAN.md.
+Status: locally verified, awaiting PR review and merge, 2026-09-11.
+
+Implemented: chosen-version Markdown export with original run/context provenance,
+evidence locators and source-availability checks, escaped/redacted prose and protected
+attachment responses. AEW-001 safe top-level navigation is fixed with API/frame/
+mutation regression coverage. Private package and health versions are 0.1.0. The
+Linux source-build demo, backup/restore constraints, release rubric and three generated
+histories are documented; no installer, registry publication or release tag is created.
+
+A clean offline frozen-lockfile installation passed strict typecheck, 130 tests
+(17 Git, 11 adapter, 40 storage, 52 HTTP/service, 10 fixture/spike) and production
+build on Node 22.23.2 / Linux. New tests cover export ownership, headers, chosen
+versions, provenance, redaction/escaping, unavailable sources, protected navigation,
+and executable reproduction of all three known historical defects. Earlier recovery,
+cancellation, rollback and boundary tests remain the release regression gate.
+
+Chrome on the clean build passed the full workspace/task/revision path, actual
+Markdown downloads for v1 and a challenged v3, escaped unsafe prose, retained history,
+restart and 390px layout. Nine synthetic runtime attempts used no real model calls.
+
+Three real acceptance cases completed through production services with CLI 0.154.0,
+the explicitly selected personal configuration directory, gpt-5.6-terra and medium:
+
+- Single repository: correctly identified premature price rounding and excluded a
+  later documentation change.
+- Two repositories: identified the producer's milliseconds-to-seconds change and
+  unchanged consumer's millisecond interpretation.
+- Human revision: v1 separated a real tenant-isolation defect from unverified incident
+  causality; after new log context, a persistent constraint and challenge, v2 explained
+  the observed cross-tenant cache hit and resolved the earlier uncertainty.
+
+These were four successful real model invocations. All 25 published evidence locators
+reopened, source hashes and checkout state stayed unchanged, and report persistence
+and SQLite integrity/foreign-key checks passed. The first launch configuration attempt
+failed at executable validation before a model call; no silent fallback or automatic
+paid retry was used. Quality review was performed by the implementation agent against
+known history; user acceptance remains separate. See the [reviewed reports and results](fixtures/release/README.md).
+
+Limitations: Linux and the two supported CLI versions only; trusted local repositories
+and CLI configuration; no verified account identity or exact outbound audit; export
+redaction is not complete secret detection. Backup/restore requires external sources
+and the same canonical paths. No automatic session resume, implementation stages or
+reserved ASK/ADD_CONTEXT/OVERRIDE actions. AEW-002 remains mitigated by preflight.
+
+See [release acceptance](release-acceptance.md), [Linux demo](linux-demo.md),
+[report export](report-export.md) and [ADR 0015](decisions/0015-report-export-and-release-acceptance.md).

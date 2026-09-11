@@ -1,6 +1,6 @@
 # Task 010 — Human intervention and revision loop
 
-Status: implemented and locally verified, awaiting PR review and merge, 2026-09-11. See [ADR 0014](../docs/decisions/0014-human-interventions-and-invalidation.md) and [the intervention guide](../docs/interventions.md).
+Status: accepted through the user's merge of PR #11 into main (18e621f). See [ADR 0014](../docs/decisions/0014-human-interventions-and-invalidation.md) and [the intervention guide](../docs/interventions.md).
 
 ## Goal
 

@@ -64,7 +64,7 @@ The tool should make it easier to answer:
 
 Imported files remain immutable local inputs. Importing PDF/video does not imply
 automated analysis; unsupported inputs are identified before execution. CHALLENGE
-and CONSTRAINT are the planned executable intervention actions; other intervention types
+and CONSTRAINT are the executable intervention actions; other intervention types
 remain reserved domain concepts. These limits must be visible in the UI.
 
 ## Explicitly out of scope for v0.1

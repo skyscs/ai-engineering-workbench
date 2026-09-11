@@ -3,6 +3,7 @@ import { streamSSE } from 'hono/streaming';
 import { DomainError } from '@aew/core';
 import { input } from './settings-routes.js';
 import type { RuntimeService } from './runtime-service.js';
+import { exportReport } from './report-export.js';
 
 export function runtimeRoutes(service: RuntimeService) {
   const routes = new Hono();
@@ -18,6 +19,13 @@ export function runtimeRoutes(service: RuntimeService) {
   routes.post(`${base}/constraints/:constraintId/deactivate`, async (c) => c.json(service.storage.tasks.interventions.deactivate(c.req.param('workspaceId'), c.req.param('taskId'), c.req.param('constraintId'), await input(c)), 201));
   routes.post(`${base}/investigations`, async (c) => c.json(service.startInvestigation(c.req.param('workspaceId'), c.req.param('taskId'), await input(c)), 202));
   routes.get(`${base}/investigations`, (c) => c.json({ reports: service.storage.tasks.investigations.list(c.req.param('workspaceId'), c.req.param('taskId')) }));
+  routes.get(`${base}/investigations/:reportId/export`, async (c) => {
+    const result = await exportReport(service, c.req.param('workspaceId'), c.req.param('taskId'), c.req.param('reportId'));
+    c.header('Content-Type', 'text/markdown; charset=utf-8');
+    c.header('Content-Disposition', `attachment; filename="${result.filename}"`);
+    c.header('Content-Security-Policy', "sandbox; default-src 'none'");
+    return c.body(result.markdown);
+  });
   routes.get(`${base}/investigations/:reportId`, (c) => c.json(service.storage.tasks.investigations.get(c.req.param('workspaceId'), c.req.param('taskId'), c.req.param('reportId'))));
   routes.get(`${base}/investigations/:reportId/evidence/:evidenceId`, async (c) => c.json(await service.readEvidence(c.req.param('workspaceId'), c.req.param('taskId'), c.req.param('reportId'), c.req.param('evidenceId'))));
   routes.post(`${base}/runtime-runs`, async (c) => c.json(service.start(c.req.param('workspaceId'), c.req.param('taskId'), await input(c)), 202));
