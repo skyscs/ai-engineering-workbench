@@ -76,7 +76,9 @@ task creation, immutable file imports, explicit text context selection and inter
 StageRun snapshots/recovery. Task 007 adds detached task worktrees, retained
 revision pins, safe cleanup and Git-aware restart reconciliation. Task 008 adds
 the Codex CLI adapter, persisted events, cancellation and a preliminary structured
-preview. Tasks 009–011 remain planned.
+preview. Task 009 adds versioned investigation/root-cause pairs, validated pinned
+evidence, report history and explicit insufficient-evidence conclusions. Tasks 010–011
+remain planned.
 
 ## Quick start
 
@@ -215,6 +217,8 @@ Use **Task worktrees → Prepare worktrees** to prepare committed content from e
 selected repository in a separate detached checkout. The UI shows readiness,
 source revisions, retry diagnostics and safe cleanup. Revision pins survive cleanup.
 See the [worktree guide](docs/task-worktrees.md). Preparation does not invoke a model.
-Choose **AI runtime preview → Run preview** for a separate read-only CLI invocation.
+Choose **Historical investigation → Run investigation** for a read-only CLI invocation
+that publishes the investigation and root-cause pair together. Open evidence buttons
+to inspect pinned sources. See the [investigation guide](docs/investigation.md).
 See the [runtime guide](docs/codex-runtime.md) for supported versions, data boundaries,
 limits, cancellation and verification.

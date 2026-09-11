@@ -1,6 +1,6 @@
 # Task 008 — Codex CLI runtime adapter
 
-Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge. See
+Status: accepted through the user's merge of PR #9 into main (4936d85). See
 [development status](../docs/development-status.md) and [the runtime guide](../docs/codex-runtime.md).
 
 ## Goal

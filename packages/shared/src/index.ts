@@ -25,5 +25,5 @@ export interface TaskDetail {
 export type { RunEvent, RuntimePreview } from '@aew/core';
 export interface RuntimeDetail {
   run: import('@aew/core').StageRun; metadata: unknown;
-  result: import('@aew/core').RuntimePreview | null; truncated: boolean;
+  result: import('@aew/core').RuntimePreview | import('@aew/core').InvestigationResult | null; truncated: boolean;
 }

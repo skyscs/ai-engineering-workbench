@@ -1,3 +1,4 @@
+import { createInvestigationStore } from './investigations.js';
 import { createRunJournal } from './run-journal.js';
 import { randomUUID } from 'node:crypto';
 import type { DatabaseSync } from 'node:sqlite';
@@ -15,7 +16,10 @@ export type TaskStore = ReturnType<typeof createTaskStore>;
 export function createTaskStore(db: DatabaseSync, ensureOpen: () => void, settings: SettingsRepository, root: string, limits: ArtifactLimits, worktreeRoot: string) {
   function get(workspaceId: string, id: string): Task {
     ensureOpen(); settings.getWorkspace(workspaceId);
-    const row = db.prepare(`SELECT id, workspace_id AS workspaceId, title, description, CASE WHEN context_ready = 1 THEN 'CONTEXT_READY' ELSE status END AS status,
+    const row = db.prepare(`SELECT id, workspace_id AS workspaceId, title, description, CASE
+      WHEN EXISTS (SELECT 1 FROM stage_runs WHERE task_id = tasks.id AND stage = 'investigation' AND status IN ('queued', 'running') AND json_extract(input_snapshot, '$.schemaVersion') = 'investigation-v1') THEN 'INVESTIGATING'
+      WHEN EXISTS (SELECT 1 FROM investigation_reports WHERE task_id = tasks.id) THEN 'ROOT_CAUSE_READY'
+      WHEN context_ready = 1 THEN 'CONTEXT_READY' ELSE status END AS status,
       context_revision AS contextRevision, created_at AS createdAt, updated_at AS updatedAt
       FROM tasks WHERE id = ? AND workspace_id = ?`).get(id, workspaceId);
     if (!row) throw new DomainError('NOT_FOUND', 'Task not found in this workspace.');
@@ -48,9 +52,11 @@ export function createTaskStore(db: DatabaseSync, ensureOpen: () => void, settin
     const { input_snapshot, error_json, ...fields } = row;
     return { ...fields, inputSnapshot: JSON.parse(String(input_snapshot)), error: error_json ? JSON.parse(String(error_json)) : null } as StageRun;
   }
+  const journal = createRunJournal(db, run);
   return {
     artifacts,
-    journal: createRunJournal(db, run),
+    journal,
+    investigations: createInvestigationStore(db, get, run, journal),
     worktrees,
     get,
     list(workspaceId: string) {
@@ -123,6 +129,7 @@ export function createTaskStore(db: DatabaseSync, ensureOpen: () => void, settin
             (error.signal !== null && !/^SIG[A-Z0-9]{1,32}$/.test(error.signal)))) || (status !== 'failed' && error !== null)) {
           throw new DomainError('INVALID_INPUT', 'Invalid stage run transition or failure.');
         }
+        if (status === 'succeeded' && previous.inputSnapshot.schemaVersion === 'investigation-v1') throw new DomainError('CONFLICT', 'Publish the validated report pair to complete an investigation.');
         const now = new Date().toISOString();
         db.prepare('UPDATE stage_runs SET status = ?, started_at = ?, completed_at = ?, error_json = ? WHERE id = ?')
           .run(status, status === 'running' ? now : previous.startedAt, status === 'running' ? null : now, error ? JSON.stringify(error) : null, id);

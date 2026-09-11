@@ -253,7 +253,7 @@ Task 007. AEW-001 remains unchanged.
 
 ## Task 008 — Codex CLI runtime adapter
 
-Status: verified on Linux, 2026-09-10; awaiting user acceptance/merge.
+Status: accepted through the user's merge of PR #9 into main (4936d85).
 
 Implemented: AIRuntime, production Codex CLI adapter, deterministic FakeRuntime,
 verified-version/profile/tool preflight, read-only launch and owned process
@@ -323,8 +323,50 @@ Next task: 009 — investigation workflow and validated evidence locators.
 - Task 005: `task/005-repository-sync`, 137c495, merged through PR #6 as be6cc72.
 - Task 006: `task/006-tasks-and-artifacts`, aec25bd, merged through PR #7 as bf3cef4.
 - Task 007: `task/007-isolated-worktrees`, 7c48eff, merged through PR #8 as 9e233e1.
-- Task 008: `task/008-codex-cli-runtime`, based on merged main (9e233e1).
+- Task 008: `task/008-codex-cli-runtime`, 62abf01, merged through PR #9 as 4936d85.
+- Task 009: `task/009-investigation-and-evidence`, based on merged main (4936d85).
 
-## Tasks 009–011
+## Task 009 — Investigation and evidence
+
+Status: verified on Linux, 2026-09-11; awaiting user acceptance/merge.
+
+Implemented: the versioned workflow prompt/schema, paired investigation/root-cause
+output, deterministic evidence validation, schema 9 immutable report aggregates,
+atomic output/success publication and durable workflow-state projections. Protected
+investigation/report/evidence APIs reuse the existing runtime cancellation and SSE.
+The UI renders safe prose, timeline, root cause, unresolved questions, evidence
+sources and selectable versions. Context changes mark reports stale; failures and
+restart interruption preserve earlier content. Legacy previews remain unchanged.
+
+A clean frozen-lockfile installation passed strict typecheck, 116 tests (17 Git,
+11 adapter, 39 storage, 42 HTTP/service, 7 spike) and production build on Node
+22.23.2 / Linux. Tests cover malformed pairs, missing references, path traversal,
+foreign repositories/artifacts, unavailable/future commits, ancestor history,
+invalid line/UTF-8 ranges, changed artifact hashes, symlinks/binary files, retained
+pins after cleanup, cancellation, publication rollback, restart and schema 8 upgrade.
+
+Chrome on the clean build passed two versions, prior-report preservation after
+invalid evidence/failure/cancellation, retry, pinned source navigation, unsafe
+HTML/link handling, configuration binding, event replay, restart and 390px layout.
+No model request was used by automated/browser tests. See the
+[browser result](fixtures/investigation/browser-result.json).
+
+One real Codex CLI 0.154.0 invocation explicitly bound the selected personal
+configuration directory and used gpt-5.6-terra with medium effort. It correctly
+identified the seconds/milliseconds contract mismatch across two synthetic
+repositories, published version 1 at ROOT_CAUSE_READY and reopened all five evidence
+locators (files, commits and the selected incident log). Source/Git snapshots stayed
+unchanged. Account identity is not certified by selecting a directory. Reviewed
+[evidence](fixtures/investigation/real-result.json) excludes local configuration
+paths, fingerprints, credentials and raw diagnostic payloads.
+
+Persistent constraints/challenges and richer revision history remain Task 010;
+Markdown export and the three release investigations remain Task 011. AEW-001 is
+unchanged. Locator validity does not prove the model's causal explanation.
+
+See [ADR 0013](decisions/0013-investigation-pairs-and-evidence.md) for publication,
+state, locator and rendering contracts.
+
+## Tasks 010–011
 
 Status: not started. Execute in the order recorded in DEVELOPMENT_PLAN.md.

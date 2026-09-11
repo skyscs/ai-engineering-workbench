@@ -25,7 +25,20 @@ process.stdin.on('end', async () => {
   if (mode === 'flood') for (let i = 0; i < 1400; i++) emit({type:'error',message:'x'.repeat(8192)});
   emit({type:'unknown.future',secret:'DO_NOT_PERSIST'});
   emit({type:'error',message:'Recoverable connection failure'});
-  const value = { summary: 'Fixture café investigation', findings: ['Read both repositories.'], unresolvedQuestions: [] };
+  let value = { summary: 'Fixture café investigation', findings: ['Read both repositories.'], unresolvedQuestions: [] };
+  const schemaIndex = args.indexOf('--output-schema');
+  if (schemaIndex >= 0 && JSON.parse(fs.readFileSync(args[schemaIndex + 1], 'utf8')).properties?.investigation) {
+    const input = JSON.parse(prompt.slice(prompt.lastIndexOf('\n') + 1)), repo = input.repositories[0];
+    const entry = input.artifacts.find(e => e.range);
+    const file = { id:'e1', kind:'repository_file', description:'Pinned repository source.', repositoryId:repo.id, revision:repo.resolvedCommitSha,
+      path:mode === 'invalid-evidence' ? 'missing' : 'file', lineStart:1, lineEnd:1, artifactId:null, sha256:null, byteStart:null, byteEnd:null };
+    const evidence = [file];
+    if (entry) evidence.push({ id:'log', kind:'artifact', description:'Selected log.', repositoryId:null,revision:null,path:null,lineStart:null,lineEnd:null,
+      artifactId:entry.id,sha256:entry.sha256,byteStart:entry.range.start,byteEnd:entry.range.end });
+    value = { investigation:{summary:'Fixture café investigation\n\n**Observed** `source` [unsafe](javascript:alert(1)) <img src=x onerror=alert(1)>\n\n```text\nPreserve incomplete fence',
+      timeline:[{description:'Inspect the retained revision.',evidenceIds:['e1']}]},
+      rootCause:{status:'identified',summary:'Synthetic source and log support this explanation.',evidenceIds:evidence.map(e=>e.id),unresolvedQuestions:[]}, evidence };
+  }
   const result = mode === 'invalid-result' ? '{}' : JSON.stringify(value);
   if (mode === 'oversize') emit({type:'item.completed',item:{type:'agent_message',text:'x'.repeat(2*1024*1024+1)}});
   else {

@@ -22,6 +22,9 @@ importers:
       '@aew/storage':
         specifier: workspace:*
         version: link:../../packages/storage
+      '@aew/workflow':
+        specifier: workspace:*
+        version: link:../../packages/workflow
       '@hono/node-server':
         specifier: ^1.19.1
         version: 1.19.17(hono@4.13.7)
@@ -126,6 +129,9 @@ importers:
       '@aew/shared':
         specifier: workspace:*
         version: link:../shared
+      '@aew/workflow':
+        specifier: workspace:*
+        version: link:../workflow
     devDependencies:
       '@types/node':
         specifier: ^22.17.2
@@ -138,6 +144,10 @@ importers:
         version: 5.9.3
 
   packages/workflow:
+    dependencies:
+      '@aew/core':
+        specifier: workspace:*
+        version: link:../core
     devDependencies:
       typescript:
         specifier: ^5.9.2

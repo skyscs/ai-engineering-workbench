@@ -273,6 +273,19 @@ try {
     const succeeded = (await snapshot()).latestRun;
     assert.equal(succeeded.modelProfileId, before.modelProfiles[0].id);
     assert.equal(succeeded.inputSnapshot.connection.configHome, before.connection.configHome);
+    const reportsRoute = `${taskRoute}/investigations`;
+    const reports = () => evaluate(`(async () => (await (await fetch('${reportsRoute}')).json()).reports)()`);
+    assert.equal((await snapshot()).task.status, 'ROOT_CAUSE_READY');
+    await wait(`document.querySelector('section[aria-label="Investigation reports"] select') !== null`);
+    assert.equal((await reports()).length, 1);
+    assert.ok(await evaluate(`document.querySelector('section[aria-label="Investigation reports"]').textContent.includes('Preserve incomplete fence')`));
+    assert.equal(await evaluate(`document.querySelector('section[aria-label="Investigation reports"] img') !== null`), false);
+    assert.equal(await evaluate(`document.querySelector('section[aria-label="Investigation reports"] a[href^="javascript:"]') !== null`), false);
+    await click('section[aria-label="Investigation reports"] .evidence-references button');
+    await wait(`document.querySelector('section[aria-label="Evidence source"]')?.textContent.includes('1: committed')`);
+    await writeFile(runtimeMode, 'invalid-evidence'); await click(`${section} > button`);
+    await wait(`document.querySelector('${section}').textContent.includes('INVALID_EVIDENCE')`);
+    assert.equal((await reports()).length, 1);
     await writeFile(runtimeMode, 'failure'); await click(`${section} > button`);
     await wait(`document.querySelector('${section}').textContent.includes('AUTHENTICATION_REQUIRED')`);
     assert.doesNotMatch(await evaluate(`document.querySelector('${section}').textContent`), /sk-secretfixture|user:password/);
@@ -284,7 +297,14 @@ try {
     await wait(`document.querySelector('${section}').textContent.includes('cancelled')`);
     await writeFile(runtimeMode, 'success'); await click(`${section} > button`);
     await wait(`document.querySelector('${section}').textContent.includes('Fixture café investigation')`);
+    await waitFor(async () => (await snapshot()).latestRun.status === 'succeeded' && (await reports()).length === 2, 'Investigation retry did not publish version 2.');
     taskSnapshot = await snapshot(); assert.equal(taskSnapshot.latestRun.status, 'succeeded');
+    assert.equal(taskSnapshot.task.status, 'ROOT_CAUSE_READY');
+    const history = await reports(); assert.equal(history[1].status, 'superseded');
+    await wait(`document.querySelectorAll('section[aria-label="Investigation reports"] select option').length === 2`);
+    await fill('section[aria-label="Investigation reports"] select', history[1].id);
+    await click('section[aria-label="Investigation reports"] .evidence-references button');
+    await wait(`document.querySelector('section[aria-label="Evidence source"]')?.textContent.includes('1: committed')`);
   }
   const screenshot = await page.send('Page.captureScreenshot', { captureBeyondViewport: true });
   await writeFile(path.join(fixture, 'workspace-desktop.png'), Buffer.from(screenshot.data, 'base64'));
@@ -331,7 +351,7 @@ try {
   if (withSync) Object.assign(result, { noRemoteRefresh: 'passed', fetchAndPrune: 'passed', syncFailureDiagnostics: 'passed', lastSuccessPreserved: 'passed', syncRestartPersistence: 'passed' });
   if (withTasks) Object.assign(result, { twoRepositoryTask: 'passed', browserFileUpload: 'passed', sourceRemovalDownload: 'passed', explicitTextContext: 'passed', unsupportedFileExclusion: 'passed', taskRestartPersistence: 'passed', boundaryLock: 'passed' });
   if (withWorktrees) Object.assign(result, { twoRepositoryPreparation: 'passed', baseRefFailureAndRetry: 'passed', dirtyCleanupRejected: 'passed', cleanCleanup: 'passed', retainedPin: 'passed', recreatePinnedRevision: 'passed', worktreeRestartPersistence: 'passed' });
-  if (withRuntime) Object.assign(result, { runtimePreview: 'passed', selectedModelProfile: 'passed', runtimeFailureDiagnostics: 'passed', runtimeCancellation: 'passed', runtimeRetry: 'passed', priorRunPreserved: 'passed', runtimeRestartPersistence: 'passed', persistedEventReplay: 'passed', fixtureRuntimeInvocations: 4, explicitConfigurationDirectory: 'passed', unboundRuntimeBlocked: 'passed', oneTimeDirectoryBinding: 'passed', savedDirectoryDisplayedAndLocked: 'passed' });
+  if (withRuntime) Object.assign(result, { investigationReport: 'passed', validatedEvidenceNavigation: 'passed', immutableVersionHistory: 'passed', invalidEvidencePreservesReport: 'passed', unsafeMarkdownInert: 'passed', selectedModelProfile: 'passed', runtimeFailureDiagnostics: 'passed', runtimeCancellation: 'passed', runtimeRetry: 'passed', priorRunPreserved: 'passed', runtimeRestartPersistence: 'passed', persistedEventReplay: 'passed', fixtureRuntimeInvocations: 5, explicitConfigurationDirectory: 'passed', unboundRuntimeBlocked: 'passed', oneTimeDirectoryBinding: 'passed', savedDirectoryDisplayedAndLocked: 'passed' });
   await writeFile(path.join(fixture, 'result.json'), JSON.stringify(result, null, 2));
   console.log(JSON.stringify({ fixture, ...result }, null, 2));
 } finally {

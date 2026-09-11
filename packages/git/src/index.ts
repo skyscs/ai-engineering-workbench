@@ -1,3 +1,4 @@
+export { readPinnedEvidence } from './evidence.js';
 import { spawn } from 'node:child_process';
 import { realpath, stat } from 'node:fs/promises';
 import { devNull } from 'node:os';
