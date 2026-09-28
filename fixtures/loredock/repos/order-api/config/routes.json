@@ -1,0 +1,7 @@
+{
+  "routes": [
+    { "method": "POST", "path": "/api/orders", "handler": "Orders.accept" },
+    { "method": "POST", "path": "/legacy/orders", "handler": "Orders.accept" }
+  ],
+  "headerBindings": { "Orders.accept.tenantId": "X-Tenant" }
+}

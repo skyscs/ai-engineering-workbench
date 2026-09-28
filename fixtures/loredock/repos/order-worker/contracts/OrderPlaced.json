@@ -1,0 +1,8 @@
+{
+  "name": "OrderPlaced",
+  "version": 2,
+  "fields": { "orderId": "string", "tenantId": "string", "createdAtMillis": "epoch milliseconds" },
+  "key": "tenantId:orderId",
+  "transport": "Kafka",
+  "encoding": "unspecified"
+}

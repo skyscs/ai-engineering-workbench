@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "loredock-feasibility/1",
+  "nodeVersion": "v22.23.2",
+  "sqliteVersion": "3.51.3",
+  "cliVersion": "codex-cli 0.158.0",
+  "modelRequests": 0,
+  "modelUsage": null,
+  "modelQuality": "not-measured",
+  "fts5": { "available": true, "indexedFiles": 18, "topicHits": 3 },
+  "structuredEvidence": {
+    "knownAccepted": true,
+    "unknownRejected": true,
+    "malformedRejected": true,
+    "extraActionRejected": true
+  },
+  "checkpointExperiment": {
+    "duplicateIdRejected": true,
+    "completedOutputRetained": true,
+    "runningRecoveredAsInterrupted": true
+  },
+  "processCancellation": "passed-existing-process-helper-with-synthetic-child",
+  "sourceCheckoutStatusUnchanged": true,
+  "sourceInstructions": "stored-as-data-only; model-resistance-not-tested",
+  "filesystemReadIsolation": "unresolved",
+  "filesystemWriteIsolation": "unresolved",
+  "revisionVector": {
+    "portal": "603a69798dc12c3205e88d0498881b0c01079932",
+    "order-api": "237510937b4388fc718b7e9f93869954950df1bb",
+    "order-worker": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37"
+  },
+  "questionCount": 20,
+  "routingCaseCount": 10
+}

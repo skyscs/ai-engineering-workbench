@@ -1,8 +1,11 @@
 # LoreDock first, Workbench second
 
-Status: proposed delivery plan, 2026-09-28. The owner requested the priority change;
-the implementation choices and acceptance targets below are proposals for review.
-This document changes the roadmap, not application behavior.
+Status: delivery direction approved; L0 implemented and locally verified, 2026-09-28.
+L0 checkpoint review is pending. Later implementation choices and acceptance targets
+remain proposals; no production LoreDock application is delivered yet.
+See [L0 measurements and blockers](FEASIBILITY.md), [contracts](CONTRACTS.md),
+[Task 015](../../tasks/015-loredock-source-catalog.md) and
+[Task 016](../../tasks/016-loredock-cited-answer.md) for the next bounded slices.
 
 ## Outcome and delivery boundary
 

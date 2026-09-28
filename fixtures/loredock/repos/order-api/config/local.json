@@ -1,0 +1,5 @@
+{
+  "orderTopic": "orders.placed.v2",
+  "kafkaBootstrap": "localhost:9092",
+  "environment": "local"
+}

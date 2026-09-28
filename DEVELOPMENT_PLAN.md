@@ -10,10 +10,13 @@ Implementation and verification for each iteration are tracked in
 [Development status](docs/development-status.md).
 The owner changed the next development priority on 2026-09-28: preserve the current
 Workbench and build LoreDock's system-wide context before further investigation features.
-Follow the proposed [LoreDock-first roadmap](docs/loredock/PLAN.md), its
-[specification/reuse review](docs/loredock/REVIEW.md), and the first bounded
-[Task 014](tasks/014-loredock-scope-and-fixtures.md). Planning does not authorize
-implementing every milestone automatically.
+Follow the [LoreDock-first roadmap](docs/loredock/PLAN.md) and its
+[specification/reuse review](docs/loredock/REVIEW.md).
+[Task 014](tasks/014-loredock-scope-and-fixtures.md) delivered the synthetic corpus and
+mechanical feasibility checks; checkpoint review is pending. Next are the model-free
+[source catalog](tasks/015-loredock-source-catalog.md) and then
+[cited answers](tasks/016-loredock-cited-answer.md), with runtime qualification before
+real-model execution. Planning does not authorize implementing every milestone automatically.
 
 Tasks 012–013 delivered the [UX simplification](docs/ux-simplification-plan.md).
 The original v0.1 sequence below is retained as delivery history.

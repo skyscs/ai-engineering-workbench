@@ -1,6 +1,6 @@
 # Development status
 
-## LoreDock-first direction — planning
+## LoreDock-first direction — Task 014 foundation verified
 
 The owner requested a shift on 2026-09-28: keep Workbench available and prioritize
 persistent system context for approximately 20 repositories. The confirmed stack is
@@ -10,10 +10,19 @@ system relationships, reliable refresh and scale acceptance before the Workbench
 and automatic investigation scope. The [review](loredock/REVIEW.md) maps the supplied
 draft to actual code and records reuse limitations and unresolved boundaries.
 
-[Task 014](../tasks/014-loredock-scope-and-fixtures.md) is proposed and not started.
-This change is documentation only: no LoreDock implementation, application migration,
-source ingestion or model invocation has occurred. Workbench remains at the previously
-verified implementation baseline; its delivery history below is preserved.
+[Task 014](../tasks/014-loredock-scope-and-fixtures.md) is implemented and locally verified;
+checkpoint review is pending. The [synthetic corpus](../fixtures/loredock/README.md)
+contains three deterministic repositories, 20 questions and ten routing cases.
+[Measured feasibility](loredock/FEASIBILITY.md) covers FTS5, issued evidence validation,
+persisted interruption and cancellation using an existing process helper. `pnpm check`
+passed 145 tests, strict typechecks and production builds. Zero real model calls were made.
+
+The installed CLI 0.158.0 is outside the adapter's verified versions. Read/write isolation
+and real-model source-instruction handling remain unresolved; qualification gates Task 016.
+[Task 015](../tasks/015-loredock-source-catalog.md) can implement the model-free source
+catalog next; [Task 016](../tasks/016-loredock-cited-answer.md) then adds cited answers.
+Both are proposed, not started. No production LoreDock application, Workbench migration
+or user-data change was made; Workbench's delivery history below is preserved.
 
 ## Task 013 — Primary investigation workflow
 

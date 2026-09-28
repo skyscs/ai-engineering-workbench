@@ -126,7 +126,7 @@ and external registered repositories; Markdown export is not a backup.
 | Understand artifacts, reports and human revision | [Artifacts](docs/tasks-and-artifacts.md), [investigation](docs/investigation.md), [interventions](docs/interventions.md), [export](docs/report-export.md) |
 | Integrate with the local HTTP API | [Session and transport](docs/local-api.md), then feature API tables |
 | Inspect validation and development history | [Release acceptance](docs/release-acceptance.md), [development status](docs/development-status.md) |
-| Review the next development direction | [LoreDock-first roadmap](docs/loredock/PLAN.md), [draft review](docs/loredock/REVIEW.md) — planned, not implemented |
+| Review the next development direction | [LoreDock-first roadmap](docs/loredock/PLAN.md), [draft review](docs/loredock/REVIEW.md), [L0 feasibility](docs/loredock/FEASIBILITY.md) — synthetic foundation verified; product implementation planned |
 | Inspect the earlier interaction prototype | [Interaction prototype](prototypes/investigation/README.md), [UX plan](docs/ux-simplification-plan.md) — sample data, no model calls |
 
 For development, `pnpm dev` rebuilds internal packages and starts the UI on

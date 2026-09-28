@@ -1,7 +1,8 @@
 # Task 014 — LoreDock scope, evaluation corpus and feasibility
 
-Status: proposed; not started. The owner requested a LoreDock-first plan, not an
-implementation in this planning turn. See [the roadmap](../docs/loredock/PLAN.md).
+Status: implemented and locally verified on 2026-09-28; checkpoint review pending.
+Runtime read/write isolation is explicitly unresolved and blocks L2 real-model runs,
+not this task's recorded-boundary acceptance. See [the roadmap](../docs/loredock/PLAN.md).
 
 ## Objective
 
@@ -66,3 +67,21 @@ No new public repository, license choice, automatic model fallback or unbounded 
 
 Review the measured fixture/probe outcome, then implement L1–L2. The broader roadmap is
 not an instruction to bypass this checkpoint or treat planned capabilities as delivered.
+
+## Outcome
+
+- [ADR 0018](../docs/decisions/0018-loredock-foundation-and-runtime-gate.md) records separate
+  ownership, narrow reuse and the installed CLI qualification gate.
+- [The corpus](../fixtures/loredock/README.md) provides three reproducible Git repositories,
+  18 admitted files, nine excluded canaries, 20 source-backed questions and ten routing
+  incidents. Expected answers are outside source roots and no model defined the oracle.
+- [Contracts](../docs/loredock/CONTRACTS.md) specify manifests, evidence, coverage, work-unit
+  recovery, provisional budgets and the later Context Pack boundary.
+- [Feasibility](../docs/loredock/FEASIBILITY.md) records FTS5, structured-ID rejection,
+  SQL checkpoint recovery and process cancellation. CLI 0.158.0 is outside the existing
+  supported set. Read/write isolation and real-model instruction resistance are unresolved.
+- `pnpm check` passed 145 tests, strict typechecks and production builds. No application
+  source, migration, user data, selected connection or CLI version was changed. Zero
+  real model requests were made; model quality and provider usage are not measured.
+- [Task 015](015-loredock-source-catalog.md) and [Task 016](016-loredock-cited-answer.md)
+  define the next bounded implementation checkpoints. They have not started.
