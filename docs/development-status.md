@@ -1,5 +1,55 @@
 # Development status
 
+## Task 015 — LoreDock source catalog
+
+Implemented and locally verified on 2026-09-28; checkpoint review pending. Separate
+LoreDock daemon/web apps provide local repository registration, committed-text indexing,
+coverage, FTS5 search and exact persisted source evidence. Schema 1 owns its data and
+single-writer lock; no Workbench database or runtime changes were made.
+
+Durable file units implement explicit pause/cancel/resume, interruption recovery,
+request replay, checkpoint validation and atomic publication. Policy changes and source
+revocation fence access immediately; pending content purge resumes after restart.
+The reader avoids checkout/fetch and source hooks/filters, preserves original bytes,
+and reports unsupported content and limits explicitly. Full source/read failure retains
+the last published index. See [ADR 0019](decisions/0019-loredock-local-catalog.md) and
+the [LoreDock guide](loredock/USER_GUIDE.md).
+
+Verification: `pnpm check` passed 162 tests (the existing 145 plus 17 LoreDock tests),
+strict typechecks and production builds. Chrome passed the three-source flow with
+18 indexed files, nine exclusions, three topic matches, opened evidence, keyboard
+focus, 390px layout, revocation, policy fencing, reindex and persisted restart. Inputs
+were synthetic and zero real model calls were made. See
+[browser evidence](fixtures/loredock-catalog/README.md).
+
+The owner merged PR #16 to main and PR #17 into its former UX base. This iteration
+includes that already-reviewed L0 branch so both L0 and L1 reach main together.
+Task 016 remains proposed and retains the CLI qualification gate.
+
+## LoreDock-first direction — Task 014 foundation verified
+
+The owner requested a shift on 2026-09-28: keep Workbench available and prioritize
+persistent system context for approximately 20 repositories. The confirmed stack is
+Java/JavaScript/TypeScript, Vue/Dojo, Kafka and MongoDB, with README-led documentation.
+The [roadmap](loredock/PLAN.md) sequences knowledge ingestion, a cited-answer slice,
+system relationships, reliable refresh and scale acceptance before the Workbench bridge
+and automatic investigation scope. The [review](loredock/REVIEW.md) maps the supplied
+draft to actual code and records reuse limitations and unresolved boundaries.
+
+[Task 014](../tasks/014-loredock-scope-and-fixtures.md) is accepted through PR #17.
+The [synthetic corpus](../fixtures/loredock/README.md)
+contains three deterministic repositories, 20 questions and ten routing cases.
+[Measured feasibility](loredock/FEASIBILITY.md) covers FTS5, issued evidence validation,
+persisted interruption and cancellation using an existing process helper. `pnpm check`
+passed 145 tests, strict typechecks and production builds. Zero real model calls were made.
+
+The installed CLI 0.158.0 is outside the adapter's verified versions. Read/write isolation
+and real-model source-instruction handling remain unresolved; qualification gates Task 016.
+[Task 015](../tasks/015-loredock-source-catalog.md) subsequently delivered the model-free
+catalog, recorded above; [Task 016](../tasks/016-loredock-cited-answer.md) remains proposed.
+L0 itself made no production application, Workbench migration or user-data change;
+Workbench's delivery history below is preserved.
+
 ## Task 013 — Primary investigation workflow
 
 Implemented and locally verified on 2026-09-28. The accepted composer is now the

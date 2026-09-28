@@ -1,6 +1,7 @@
 node_modules/
 dist/
 apps/daemon/public/
+apps/loredock/public/
 *.tsbuildinfo
 .DS_Store
 .env

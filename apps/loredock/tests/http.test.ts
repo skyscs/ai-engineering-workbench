@@ -1,0 +1,60 @@
+import assert from 'node:assert/strict';
+import { mkdtemp, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
+import { test } from 'node:test';
+import { Catalog } from '../src/catalog.js';
+import { CatalogStore } from '../src/store.js';
+import { createApp } from '../src/app.js';
+// @ts-expect-error The reviewed fixture generator is a plain JavaScript tool.
+import { createLoreDockFixture } from '../../../scripts/loredock-fixture.mjs';
+
+test('local transport requires exact host/origin, protected reads and CSRF with bounded JSON', async t => {
+  const directory = await mkdtemp(path.join(tmpdir(), 'loredock-http-'));
+  const store = new CatalogStore(directory), catalog = new Catalog(store), app = createApp(catalog);
+  t.after(async () => { await catalog.stop(); store.close(); await rm(directory, { recursive: true, force: true }); });
+  const url = 'http://127.0.0.1:4244';
+  const request = (route: string, options: RequestInit = {}) => app.request(url + route, { ...options, headers: { host: '127.0.0.1:4244', ...options.headers } });
+  assert.equal((await request('/api/project')).status, 401);
+  assert.equal((await request('/api/health', { headers: { host: 'evil.invalid' } })).status, 403);
+  assert.equal((await request('/api/health', { headers: { origin: 'https://evil.invalid' } })).status, 403);
+  assert.equal((await request('/api/project', { headers: { 'sec-fetch-site': 'cross-site' } })).status, 403);
+  assert.equal((await request('/api/session', { method: 'POST' })).status, 403);
+  const response = await request('/api/session', { method: 'POST', headers: { origin: url, 'x-loredock-client': 'web' } });
+  const { token } = await response.json() as { token: string };
+  const cookie = response.headers.get('set-cookie')!.split(';')[0]!;
+  assert.match(response.headers.get('set-cookie')!, /HttpOnly/i);
+  assert.match(response.headers.get('set-cookie')!, /SameSite=Strict/i);
+  assert.equal((await request('/api/project', { headers: { cookie } })).status, 200);
+  assert.equal((await request('/api/sources', { method: 'POST', headers: { cookie, origin: url } })).status, 403);
+  const headers = { cookie, origin: url, 'x-loredock-csrf': token, 'content-type': 'application/json' };
+  assert.equal((await request('/api/sources', { method: 'POST', headers, body: '{' })).status, 400);
+  assert.equal((await request('/api/sources', { method: 'POST', headers, body: JSON.stringify({ path: '../escape' }) })).status, 400);
+  assert.equal((await request('/api/policy', { method: 'PUT', headers, body: 'x'.repeat(16385) })).status, 413);
+  assert.equal((await request('/api/unknown', { headers: { cookie } })).status, 404);
+  assert.equal((await request('/api/evidence/unknown', { headers: { cookie } })).status, 404);
+  const health = await request('/api/health');
+  assert.equal(health.headers.get('cache-control'), 'no-store');
+  assert.match(health.headers.get('content-security-policy')!, /frame-ancestors 'none'/);
+});
+
+test('HTTP workflow registers, indexes, searches, opens evidence and fences revoked sources', async t => {
+  const fixture = await createLoreDockFixture() as { root: string };
+  const store = new CatalogStore(path.join(fixture.root, 'data')), catalog = new Catalog(store), app = createApp(catalog);
+  t.after(async () => { await catalog.stop(); store.close(); await rm(fixture.root, { recursive: true, force: true }); });
+  const base = 'http://127.0.0.1:4244', shared = { host: '127.0.0.1:4244', origin: base };
+  const session = await app.request(base + '/api/session', { method: 'POST', headers: { ...shared, 'x-loredock-client': 'web' } });
+  const { token } = await session.json() as { token: string };
+  const headers = { ...shared, cookie: session.headers.get('set-cookie')!.split(';')[0]!, 'x-loredock-csrf': token, 'content-type': 'application/json' };
+  const request = (route: string, method = 'GET', value?: unknown) => app.request(base + '/api' + route, { method, headers, ...value === undefined ? {} : { body: JSON.stringify(value) } });
+  const source = await (await request('/sources', 'POST', { path: path.join(fixture.root, 'sources/order-api') })).json() as { id: string };
+  const state = catalog.state();
+  const started = await request('/builds', 'POST', { requestId: 'http-build', policyVersion: state.policyVersion, sourceSetVersion: state.sourceSetVersion });
+  assert.equal(started.status, 202); await catalog.idle();
+  const result = await (await request('/search?q=orders.placed.v2')).json() as { hits: { id: string }[] };
+  assert.equal(result.hits.length, 1);
+  assert.equal((await request('/evidence/' + result.hits[0]!.id)).status, 200);
+  assert.equal((await request('/sources/' + source.id + '/revoke', 'POST')).status, 200);
+  assert.equal((await request('/evidence/' + result.hits[0]!.id)).status, 404);
+  assert.deepEqual((await (await request('/search?q=orders.placed.v2')).json() as { hits: unknown[] }).hits, []);
+});

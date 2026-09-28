@@ -1,0 +1,297 @@
+{
+  "schemaVersion": "loredock-fixture/1",
+  "projectId": "synthetic-orders",
+  "environment": "local",
+  "deploymentCoherence": "unknown",
+  "sources": [
+    {
+      "id": "portal",
+      "kind": "git",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "objectFormat": "sha1",
+      "refLabel": "main",
+      "excluded": [
+        {
+          "path": ".env",
+          "reason": "policy"
+        },
+        {
+          "path": "opaque.bin",
+          "reason": "binary"
+        },
+        {
+          "path": "outside-link",
+          "reason": "symlink"
+        }
+      ]
+    },
+    {
+      "id": "order-api",
+      "kind": "git",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "objectFormat": "sha1",
+      "refLabel": "main",
+      "excluded": [
+        {
+          "path": ".env",
+          "reason": "policy"
+        },
+        {
+          "path": "opaque.bin",
+          "reason": "binary"
+        },
+        {
+          "path": "outside-link",
+          "reason": "symlink"
+        }
+      ]
+    },
+    {
+      "id": "order-worker",
+      "kind": "git",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "objectFormat": "sha1",
+      "refLabel": "main",
+      "excluded": [
+        {
+          "path": ".env",
+          "reason": "policy"
+        },
+        {
+          "path": "opaque.bin",
+          "reason": "binary"
+        },
+        {
+          "path": "outside-link",
+          "reason": "symlink"
+        }
+      ]
+    }
+  ],
+  "revisionVector": {
+    "portal": "603a69798dc12c3205e88d0498881b0c01079932",
+    "order-api": "237510937b4388fc718b7e9f93869954950df1bb",
+    "order-worker": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37"
+  },
+  "policy": {
+    "version": "fixture-policy/1",
+    "sourceMode": "committed-only",
+    "modelExecution": "disabled",
+    "executeSourceCommands": false,
+    "followSymlinks": false,
+    "allowedPaths": {
+      "portal": [
+        "README.md",
+        "package.json",
+        "src/Checkout.vue",
+        "src/orders.ts",
+        "legacy/orders.js",
+        "config/local.json"
+      ],
+      "order-api": [
+        "README.md",
+        "pom.xml",
+        "config/routes.json",
+        "config/local.json",
+        "src/main/java/Orders.java",
+        "contracts/OrderPlaced.json",
+        "notes/source-instructions.txt"
+      ],
+      "order-worker": [
+        "README.md",
+        "pom.xml",
+        "config/local.json",
+        "src/main/java/OrderConsumer.java",
+        "contracts/OrderPlaced.json"
+      ]
+    }
+  },
+  "coverage": {
+    "eligibleFiles": 18,
+    "excludedFiles": 9,
+    "extractedFiles": 0,
+    "reason": "Fixture generation is not ingestion."
+  },
+  "evidence": [
+    {
+      "id": "portal-readme",
+      "sourceId": "portal",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "path": "README.md",
+      "blobId": "40fe724fea9e731b167f9585630ff51b9ad0a5d2",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "4dfe0f8ac50f0e8b4584e0921c5a89bc684da3f98f9adc3575f0ae17e1c9fd21"
+    },
+    {
+      "id": "portal-manifest",
+      "sourceId": "portal",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "path": "package.json",
+      "blobId": "ddf4dd1f376c5a1f201e4949570908dbffe30854",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "5f63d7d05c7735f4c3622fb837b73a7687fc98568d045ba2a7435d7ea6eb5ff9"
+    },
+    {
+      "id": "checkout",
+      "sourceId": "portal",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "path": "src/Checkout.vue",
+      "blobId": "0165f55fc6330aaed4a783a028f45b64e89c7be3",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "9ad7d244165172b4eb462d0caeb022f0f56a74db743e8ec28be9e8b030e2ba88"
+    },
+    {
+      "id": "submit",
+      "sourceId": "portal",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "path": "src/orders.ts",
+      "blobId": "cddba340127947346a0c0314c4cd3e4468503c21",
+      "startLine": 1,
+      "endLine": 9,
+      "contentHash": "39e7b2a6ae1d45a2fbdc3903cd9f4d8c79419c6ba5f72c40de7aca6b5d0da410"
+    },
+    {
+      "id": "legacy",
+      "sourceId": "portal",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "path": "legacy/orders.js",
+      "blobId": "7cc2d24c9d62e1fe5afaa20d1a7f152e658cfaae",
+      "startLine": 1,
+      "endLine": 9,
+      "contentHash": "6d02218565b2f0d038ea728d6864dbb7d74646ceed19a1d33fb3e131a3a9a293"
+    },
+    {
+      "id": "portal-local",
+      "sourceId": "portal",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "path": "config/local.json",
+      "blobId": "95ebf9e75fa0eb14736bc3f8fa7c8c19be643618",
+      "startLine": 1,
+      "endLine": 4,
+      "contentHash": "37c4ae84a8ccb522960504104dc3e316ec96e96c086bee933642fcdd3fe6b608"
+    },
+    {
+      "id": "api-readme",
+      "sourceId": "order-api",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "path": "README.md",
+      "blobId": "26534363df4b1da7fc8c12dfc1ebb6894485632c",
+      "startLine": 1,
+      "endLine": 8,
+      "contentHash": "0bdd3acf2cde47a3fe1e587e9bcf8bb0d749e2507c5e0633a6aa30073d479e61"
+    },
+    {
+      "id": "api-build",
+      "sourceId": "order-api",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "path": "pom.xml",
+      "blobId": "6cb0850d285e9f774f9e8c554b8c2f22e99697cc",
+      "startLine": 1,
+      "endLine": 8,
+      "contentHash": "b172e59a5d5d42a72e5ea68af530d6ba7ba489d92de52dba4d2a636febdf1781"
+    },
+    {
+      "id": "routes",
+      "sourceId": "order-api",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "path": "config/routes.json",
+      "blobId": "5c76ba7fcef6752e146c2cc8347305d702522367",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "161e949a54ab2ab99648cd5dd07de4c4115d554d411e85dfc919412877e00a5e"
+    },
+    {
+      "id": "api-local",
+      "sourceId": "order-api",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "path": "config/local.json",
+      "blobId": "54b8dfbfeff6dbf1ecef008317378fe1737ad131",
+      "startLine": 1,
+      "endLine": 5,
+      "contentHash": "d407e198084d63c25904025f9420ab898b3660c545e90999124137dbfc7d865f"
+    },
+    {
+      "id": "publish",
+      "sourceId": "order-api",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "path": "src/main/java/Orders.java",
+      "blobId": "975db0047e781fc2390836a2a968d7eb30a914fe",
+      "startLine": 1,
+      "endLine": 18,
+      "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c"
+    },
+    {
+      "id": "producer-contract",
+      "sourceId": "order-api",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "path": "contracts/OrderPlaced.json",
+      "blobId": "708bd5aa0ca8726c432bc39dc09bb83072f662cc",
+      "startLine": 1,
+      "endLine": 8,
+      "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79"
+    },
+    {
+      "id": "injection",
+      "sourceId": "order-api",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "path": "notes/source-instructions.txt",
+      "blobId": "a186e217873ff67bb37853996d8c56e40a5c4b8c",
+      "startLine": 1,
+      "endLine": 3,
+      "contentHash": "06c1a905e0574514e3aed8d0ef9961c502904d7d22f79916e8e5628789536375"
+    },
+    {
+      "id": "worker-readme",
+      "sourceId": "order-worker",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "path": "README.md",
+      "blobId": "96f551727c0f45798fef388669bdeed296a20486",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "1fe2344c9f7d46ff007c9eb29b363b6a5a89be1e5312548ffa27ff982beb1794"
+    },
+    {
+      "id": "worker-build",
+      "sourceId": "order-worker",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "path": "pom.xml",
+      "blobId": "add60317acf50a2695c873a7fab12e9023f6ff08",
+      "startLine": 1,
+      "endLine": 8,
+      "contentHash": "4b2c11e0362e4b34f4f29f36a753437208f56a3f83536ad9664fcb1bd9fe7758"
+    },
+    {
+      "id": "worker-local",
+      "sourceId": "order-worker",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "path": "config/local.json",
+      "blobId": "b03346c9e9054dfc4e1f8c67e97deb2a43ab33d9",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49"
+    },
+    {
+      "id": "consume",
+      "sourceId": "order-worker",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "path": "src/main/java/OrderConsumer.java",
+      "blobId": "540575b28184552ffbb282fdc5adf18186582cad",
+      "startLine": 1,
+      "endLine": 18,
+      "contentHash": "bc2c347b007865acd3044b52dba791f7f37abd235f5c406c06b4cf2f3516dfb0"
+    },
+    {
+      "id": "consumer-contract",
+      "sourceId": "order-worker",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "path": "contracts/OrderPlaced.json",
+      "blobId": "708bd5aa0ca8726c432bc39dc09bb83072f662cc",
+      "startLine": 1,
+      "endLine": 8,
+      "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79"
+    }
+  ]
+}

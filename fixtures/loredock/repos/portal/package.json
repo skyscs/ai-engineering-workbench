@@ -1,0 +1,7 @@
+{
+  "name": "synthetic-order-portal",
+  "private": true,
+  "fixtureTechnologies": ["Vue single-file components", "TypeScript", "Dojo AMD"],
+  "scripts": {},
+  "description": "Static source samples only; dependency versions are intentionally unspecified."
+}

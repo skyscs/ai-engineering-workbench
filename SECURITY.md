@@ -1,5 +1,20 @@
 # Security and Data Boundaries — v0.1
 
+## LoreDock source catalog
+
+LoreDock's first slice is a separate model-free application on loopback port 4244.
+It stores admitted committed source bytes locally, without fetching repositories,
+executing source commands or configuring Codex. It uses its own exact Host/Origin,
+session/CSRF boundary, escaped text UI and data-directory ownership lock. Read
+[ADR 0019](docs/decisions/0019-loredock-local-catalog.md) and the
+[source policy guide](docs/loredock/USER_GUIDE.md#policy-and-removal) before indexing.
+Default exclusions are not a secret scanner; Git metadata/installations remain
+trusted local inputs. Source revocation fences live search/evidence before logical
+purge; backups and prior external copies are outside that purge. Real-model runtime
+qualification remains required for the later LoreDock answer stage.
+
+The sections below describe Workbench's existing AI investigation boundary.
+
 ## Goal
 
 The Workbench must be usable with corporate source code without requiring repositories and artifacts to be uploaded to a Workbench cloud service.
