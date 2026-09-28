@@ -1,5 +1,23 @@
 # Development status
 
+## Task 012 — Investigation UX prototype
+
+Implemented and browser-verified on 2026-09-28; owner walkthrough pending.
+The accepted [simplification direction](ux-simplification-plan.md) starts with an
+isolated [static prototype](../prototypes/investigation/README.md). It covers a
+single composer, one-time sample setup selection, attachments, progress, failure,
+cancellation, evidence, revision/history and sample Markdown export.
+
+The browser smoke passed, including preserved inputs after setup failure, retained
+reports after failed revision, explicit setup choice, keyboard dialog behavior,
+escaped filenames and desktop/mobile layout. It verified zero API/model requests
+and browser-storage writes. See [Task 012](../tasks/012-investigation-ux-prototype.md)
+and [recorded results](fixtures/ux-prototype/browser-result.json).
+
+Production behavior, schema and account configuration are unchanged. The prototype
+uses page memory and fixed sample results; durable drafts and the actual daemon
+launch workflow belong to the next iteration after owner usability feedback.
+
 ## Current baseline
 
 Tasks 000–011 are accepted. PR #12 merged v0.1.0 into main as `9e39d3c`.
