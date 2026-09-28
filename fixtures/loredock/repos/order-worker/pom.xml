@@ -1,0 +1,8 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>invalid.example.fixture</groupId>
+  <artifactId>order-worker</artifactId>
+  <version>0.0.0</version>
+  <properties><maven.compiler.release>17</maven.compiler.release></properties>
+  <description>Static fixture only; no framework or transport implementation supplied.</description>
+</project>
