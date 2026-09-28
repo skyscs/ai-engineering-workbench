@@ -106,6 +106,7 @@ export class RuntimeService {
     if (this.active?.id === id) this.active.controller.abort();
     return this.storage.tasks.getRun(w, t, id);
   }
+  async wait(id: string) { if (this.active?.id === id) await this.active.job; }
   get closing() { return this.stopping; }
   async close() { this.stopping = true; this.active?.controller.abort(); await this.active?.job; }
 }

@@ -1,0 +1,14 @@
+{
+  "durableDraftAndFiles": "passed",
+  "explicitSetup": "passed",
+  "setupFailureRetry": "passed",
+  "automaticPreparationAndContext": "passed",
+  "evidence": "passed",
+  "revisionAndExport": "passed",
+  "cancellationPreservesReports": "passed",
+  "restartWithoutInvocation": "passed",
+  "copyToNewDraft": "passed",
+  "mobileLayout": "passed",
+  "fixtureInvocations": 3,
+  "realModelInvocations": 0
+}

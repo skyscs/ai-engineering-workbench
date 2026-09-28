@@ -1,3 +1,4 @@
+import { LaunchService } from './launch-service.js';
 import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
@@ -36,6 +37,7 @@ const worktrees = new WorktreeService(storage, git);
 const runtime = new RuntimeService(storage, new CodexCliRuntime({
   ...(process.env.AEW_RUNTIME_TIMEOUT_MS ? { timeoutMs: Number(process.env.AEW_RUNTIME_TIMEOUT_MS) } : {})
 }), git);
+const launches = new LaunchService(storage, repositories, worktrees, runtime);
 let server: ReturnType<typeof serve> | undefined;
 let stopping = false;
 process.on('SIGINT', shutdown);
@@ -43,7 +45,7 @@ process.on('SIGTERM', shutdown);
 await worktrees.recover();
 if (!stopping) {
 const app = createApp({ publicDir, development: process.env.NODE_ENV === 'development',
-  storageStatus: () => storage.status(), settings: storage.settings, repositories, tasks: storage.tasks, worktrees, runtime });
+  storageStatus: () => storage.status(), settings: storage.settings, repositories, tasks: storage.tasks, worktrees, runtime, launches });
 
 server = serve(
   {
@@ -78,7 +80,7 @@ function shutdown(): void {
     process.exit(1);
   }, 5000);
   deadline.unref();
-  void Promise.all([runtime.close(), repositories.close(), worktrees.close(), storage.tasks.artifacts.close(), new Promise<void>((resolve) => {
+  void Promise.all([launches.close(), runtime.close(), repositories.close(), worktrees.close(), storage.tasks.artifacts.close(), new Promise<void>((resolve) => {
     if (server) server.close(() => resolve()); else resolve();
   })]).then(() => {
     storage.close();

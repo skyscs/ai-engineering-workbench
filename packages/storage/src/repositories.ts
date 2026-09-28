@@ -5,7 +5,9 @@ import { DomainError, type GitFailure, type Repository, type RepositoryMetadata,
 export interface RepositoryStore {
   list(workspaceId: string): Repository[];
   get(workspaceId: string, id: string): Repository;
+  findClone(workspaceId: string, source: string): Repository | null;
   register(workspaceId: string, name: string, metadata: RepositoryMetadata): Repository;
+  refresh(workspaceId: string, id: string, metadata: RepositoryMetadata): Repository;
   beginClone(workspaceId: string, id: string, name: string, source: string, localPath: string, baseRef: string | null): Repository;
   completeClone(workspaceId: string, id: string, metadata: RepositoryMetadata): Repository;
   failClone(workspaceId: string, id: string, error: GitFailure, retainedFiles: boolean): void;
@@ -49,6 +51,20 @@ export function createRepositoryStore(db: DatabaseSync, ensureOpen: () => void):
       return db.prepare(`SELECT ${columns} FROM repositories WHERE workspace_id = ? ORDER BY created_at, id`).all(workspaceId).map(decode);
     },
     get,
+    findClone(workspaceId, source) {
+      workspace(workspaceId);
+      const row = db.prepare(`SELECT ${columns} FROM repositories WHERE workspace_id=? AND source=? AND managed_clone=1 AND status!='failed'`).get(workspaceId, source);
+      return row ? decode(row) : null;
+    },
+    refresh(workspaceId, id, info) {
+      const previous = get(workspaceId, id);
+      if (previous.status !== 'ready' || previous.syncStatus === 'running' || info.localPath !== previous.localPath || info.commonGitDir !== previous.commonGitDir) {
+        throw new DomainError('CONFLICT', 'Repository identity or availability changed. Review it before retrying.');
+      }
+      db.prepare(`UPDATE repositories SET remote_url=?,default_branch=?,base_ref=?,resolved_commit_sha=?,shallow=?,updated_at=? WHERE workspace_id=? AND id=?`)
+        .run(info.remoteUrl, info.defaultBranch, info.baseRef, info.resolvedCommitSha, Number(info.shallow), new Date().toISOString(), workspaceId, id);
+      return get(workspaceId, id);
+    },
     register(workspaceId, name, info) {
       workspace(workspaceId);
       const id = randomUUID(), now = new Date().toISOString();

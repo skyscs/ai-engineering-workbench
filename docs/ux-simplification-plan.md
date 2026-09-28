@@ -1,9 +1,9 @@
 # UX simplification: from repository to investigation
 
 Status: direction accepted by the project owner, 2026-09-28. Iteration 1 is
-implemented and browser-verified in [Task 012](../tasks/012-investigation-ux-prototype.md). Production
-integration remains pending the prototype walkthrough. The existing user guide
-describes the current application; the behavior below is the target experience.
+implemented and browser-verified in [Task 012](../tasks/012-investigation-ux-prototype.md). The owner accepted the walkthrough direction. [Task 013](../tasks/013-primary-investigation-flow.md)
+implements the primary experience on real application services. The user guide
+describes that implementation; deferred ideas below remain future work.
 
 ## Outcome
 
@@ -230,3 +230,11 @@ investigation establishes that the simplified path reaches an actual report.
 Do not expand this effort into provider replacement, model auto-routing, general
 chat, OCR, repository auto-selection, native packaging or code implementation.
 The priority is a usable route through the capabilities already built.
+
+## Owner acceptance and primary implementation
+
+On 2026-09-28 the owner accepted the prototype direction and requested the new
+experience as the primary application. Task 013 implements the composer, durable
+drafts, bounded text uploads and daemon-owned launch flow on the existing services.
+The original interface remains at `/advanced`. Further UX changes will follow
+feedback from actual use; the static prototype is a historical development artifact.

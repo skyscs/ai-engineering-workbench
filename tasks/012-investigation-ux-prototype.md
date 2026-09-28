@@ -45,5 +45,5 @@ initial viewport and the 390px layout has no horizontal overflow. Evidence and
 results are recorded under [UX prototype fixtures](../docs/fixtures/ux-prototype/).
 There were zero API/model requests and zero browser-storage writes.
 
-The prototype was served locally on port 4243 for the owner walkthrough. Usability
-acceptance and subsequent production integration are not yet claimed.
+The prototype was served locally on port 4243 for the owner walkthrough. The owner accepted the direction on 2026-09-28 and requested that it become the
+primary application. Production integration is tracked in Task 013.

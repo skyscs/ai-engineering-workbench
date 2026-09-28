@@ -1,8 +1,40 @@
 # Development status
 
+## Task 013 — Primary investigation workflow
+
+Implemented and locally verified on 2026-09-28. The accepted composer is now the
+primary UI; `/advanced` retains detailed workspace/task controls and existing data.
+One explicit launch checks the chosen setup, resolves committed source, persists
+context, prepares worktrees and invokes the existing investigation runtime.
+
+Schema 11 adds durable drafts, bounded text uploads and idempotent launch records.
+Cancellation during preparation cannot start a model; restart retains inputs and
+requires an explicit new attempt. Local paths resolve current HEAD for a new task,
+managed remote URLs reuse and refresh their clone, and existing tasks retain pins.
+Retries preserve context edits made through Advanced settings. Reports, evidence,
+revisions and Markdown export use actual existing services.
+
+Verification: `pnpm check` passed 141 tests (17 Git, 14 adapter, 43 storage,
+57 HTTP/service and 10 script tests), strict typechecks and production builds.
+Tests cover optimistic writes, UTF-8/budget validation, upload and launch replay,
+interrupted operations, current HEAD with a dirty checkout, remote reuse, setup
+failure before task locking, cancellation before model claim and preserved legacy
+context. The primary Chrome workflow passed with three synthetic invocations and
+zero real model calls. The full `/advanced` browser regression also passed with
+nine synthetic attempts. Existing manual data upgraded from schema 10 to 11 after
+a complete stopped backup; original workspace/task/run/report rows remained byte-for-byte
+unchanged and SQLite integrity passed. The built daemon is available for manual use.
+See [browser evidence](fixtures/primary-investigation/README.md).
+
+Documentation now starts with the primary workflow and keeps the detailed advanced
+walkthrough. This branch includes the earlier configuration-boundary fix and static
+prototype; it does not require those PRs to be merged separately first. Subsequent
+UX changes should follow actual use. Composer support remains bounded UTF-8 text;
+large originals and explicit ranges remain in Advanced settings.
+
 ## Task 012 — Investigation UX prototype
 
-Implemented and browser-verified on 2026-09-28; owner walkthrough pending.
+Implemented and browser-verified on 2026-09-28; direction accepted by the owner.
 The accepted [simplification direction](ux-simplification-plan.md) starts with an
 isolated [static prototype](../prototypes/investigation/README.md). It covers a
 single composer, one-time sample setup selection, attachments, progress, failure,
@@ -14,9 +46,8 @@ escaped filenames and desktop/mobile layout. It verified zero API/model requests
 and browser-storage writes. See [Task 012](../tasks/012-investigation-ux-prototype.md)
 and [recorded results](fixtures/ux-prototype/browser-result.json).
 
-Production behavior, schema and account configuration are unchanged. The prototype
-uses page memory and fixed sample results; durable drafts and the actual daemon
-launch workflow belong to the next iteration after owner usability feedback.
+The standalone prototype uses page memory and fixed sample results. The owner
+subsequently requested production integration, recorded in Task 013 above.
 
 ## Post-v0.1 correction — configuration discovery boundary
 

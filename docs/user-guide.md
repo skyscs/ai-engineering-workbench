@@ -9,6 +9,88 @@ For operating the daemon, backups and upgrades, use the [Linux guide](linux-demo
 Run terminal commands below from the Workbench source checkout with the pinned
 Node version selected. The application itself opens at `http://127.0.0.1:4242`.
 
+## The primary workflow
+
+The default page is the investigation composer. A **Project** is a saved workspace
+and Codex connection; an **Investigation** is a draft or a task with versioned results.
+You do not need to create repositories, tasks or worktrees individually.
+
+1. Enter an absolute **Repository path or Git URL**. Local paths use current committed
+   `HEAD`, including when that path was registered earlier. Uncommitted files are
+   excluded. A new remote URL is cloned into managed storage; reusing that URL fetches
+   remote refs before creating a new investigation. The normal checkout is never pulled,
+   reset or edited. Existing investigations keep their recorded commits on retry.
+2. Describe the observed and expected behavior in **What is going wrong?**. Wait for
+   **Saved locally** before leaving. Draft changes are saved after a short typing pause.
+   A save failure is visible; **Retry saving** retries it. A stale revision from another
+   tab requires **Reconnect** and review before editing again.
+3. Drop supporting `.txt`, `.log`, `.md` or `.markdown` files, or choose **Add files**.
+   Nonempty UTF-8 text is included in full immediately after upload. **Exclude** retains
+   the file but omits its text from analysis; **Remove** removes it from this draft.
+   The description and every saved file, including excluded files, share the displayed
+   budget (at most 1 MiB). Oversized, binary and unsupported files are rejected without
+   truncation. Use advanced artifact controls for larger originals and selected ranges.
+4. Choose **Codex setup**. Pick a saved project or select the configuration directory
+   for the account intended for this work. Candidates are existing directories from
+   the daemon's `CODEX_HOME` and the default CLI location; nothing is selected by inference.
+   **Use another configuration directory** accepts an absolute path. **Advanced setup**
+   contains project name, executable path and named CLI profile. A directory label does
+   not verify account identity. Workbench does not read authentication secrets.
+5. Click **Investigate**. The daemon checks local CLI compatibility and configuration
+   before locking a new project's connection, resolves repositories, creates the task,
+   saves artifacts, prepares worktrees and invokes the selected CLI. Configuration checks
+   are not a model-availability or account-identity check. **Advanced options** lets you
+   select a saved model profile; otherwise the selected CLI defaults apply.
+
+**Configuration directory** belongs to Codex. It is not the artifact destination.
+Workbench stores its SQLite database, drafts, imported files, reports and managed
+worktrees in the [application data directory](linux-demo.md#data-backup-and-upgrades).
+Draft text files are stored in SQLite; task artifacts use the existing filesystem
+storage. Keep the complete data directory when backing up.
+
+## Follow and refine results
+
+Progress reflects the daemon's actual phase. Closing the tab does not cancel a run.
+**Cancel investigation** aborts diagnostics or analysis; a Git step already in flight
+may finish before cancellation settles, but no subsequent model call will start.
+
+Read **What we found** first. Evidence buttons reopen recorded source, and
+**Investigation and timeline** expands the historical explanation. A successful
+report can explicitly say there is insufficient evidence. Use **Report version** to
+inspect earlier conclusions and **Export Markdown** to download the selected version.
+
+Enter feedback under **What should we reconsider in version …?** and click **Revise
+report**. This starts a new model invocation and retains the previous report.
+**Persistent instructions for future runs** expands the constraint controls; saving
+an instruction changes future context but does not itself invoke a model.
+
+The sidebar contains saved drafts and investigations. Select a project to find its
+older tasks. **Run investigation again** uses the same committed code.
+**Copy to a new investigation** copies composer description and saved supporting files
+into an editable draft and resolves code again on launch. Legacy tasks opened from
+Advanced settings retain their original artifact ranges when run; their advanced
+artifact selections are not copied into a new composer draft.
+
+## Recover from a failed attempt
+
+Failures keep saved inputs, files and previous reports. Review the displayed reason
+and, if needed, **Technical details**. Before a task has been created, you can edit the
+composer and **Review setup**. Once a task exists, its original inputs are frozen:
+copy it to a new investigation to change the source or choose a different setup.
+
+**Retry investigation** is an explicit new attempt. A duplicate submission of the
+same request does not start another invocation. After a daemon restart, an unfinished
+attempt is marked interrupted; it never resumes a paid model call automatically.
+Review any saved report before deciding whether to retry. If a managed clone failed,
+inspect its retained record in Advanced settings before retrying the same URL.
+
+## Advanced walkthrough
+
+**Advanced settings** opens `/advanced`, which retains the original workspace,
+repository, task and artifact forms. The detailed walkthrough below refers to that
+page. It is useful for multiple repositories, custom refs, large artifacts, explicit
+text ranges and diagnosis; these steps are not required for the primary composer.
+
 ## Contents
 
 - [Understand the workspace](#understand-the-workspace)
@@ -39,8 +121,9 @@ Node version selected. The application itself opens at `http://127.0.0.1:4242`.
 | Report version | A successfully published investigation/root-cause pair; failed attempts do not create a version. |
 
 The browser controls the local daemon, which owns files, Git and CLI processes.
-Closing the browser does not cancel work. Only **Run investigation** and
-**Challenge and run** start model invocations in the current UI. Registering or
+Closing the browser does not cancel work. In the advanced page, **Run investigation** and
+**Challenge and run** start model invocations. The primary page also exposes
+**Investigate**, explicit retry and **Revise report**. Registering or
 fetching a remote repository can use network Git, but does not invoke AI.
 
 ## Create a practice case
