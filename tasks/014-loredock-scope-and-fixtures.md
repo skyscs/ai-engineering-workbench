@@ -1,6 +1,6 @@
 # Task 014 — LoreDock scope, evaluation corpus and feasibility
 
-Status: implemented and locally verified on 2026-09-28; checkpoint review pending.
+Status: accepted through the owner's merge of PR #17 on 2026-09-28.
 Runtime read/write isolation is explicitly unresolved and blocks L2 real-model runs,
 not this task's recorded-boundary acceptance. See [the roadmap](../docs/loredock/PLAN.md).
 
@@ -84,4 +84,5 @@ not an instruction to bypass this checkpoint or treat planned capabilities as de
   source, migration, user data, selected connection or CLI version was changed. Zero
   real model requests were made; model quality and provider usage are not measured.
 - [Task 015](015-loredock-source-catalog.md) and [Task 016](016-loredock-cited-answer.md)
-  define the next bounded implementation checkpoints. They have not started.
+  define the next bounded implementation checkpoints. See their task records for
+  current implementation status.

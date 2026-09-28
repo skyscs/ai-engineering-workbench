@@ -1,6 +1,6 @@
 # Task 015 — LoreDock local source catalog and committed-text index
 
-Status: proposed; follows the Task 014 checkpoint. No production implementation yet.
+Status: implemented and locally verified on 2026-09-28; checkpoint review pending.
 
 ## Objective
 
@@ -45,3 +45,27 @@ source evidence in a minimal separate LoreDock application, without any model ca
 No full Java/JS call graph, AI summary, embeddings, external connector, broker/database
 connection, automatic routing or Workbench pack import. Review the useful catalog and
 coverage UX before Task 016. CLI qualification does not block this model-free task.
+
+## Outcome
+
+Delivered separate LoreDock apps, schema 1 ownership and a three-source catalog on
+port 4244. The UI registers local sources, starts indexes, shows coverage and revisions,
+searches FTS5 passages and reopens persisted exact citations. Durable file units support
+pause/cancel/resume, interruption recovery, idempotent submissions and fenced publication.
+Source removal fences reads before resumable purge; changed policy fences old indexes.
+
+[ADR 0019](../docs/decisions/0019-loredock-local-catalog.md) records the byte-preserving
+Git reader, SQLite source snapshots, conservative extraction and partial-budget decisions.
+The [user guide](../docs/loredock/USER_GUIDE.md) covers startup, updates, storage and API.
+
+`pnpm check` passed strict typechecks, 162 tests and production builds. Seventeen new
+LoreDock tests cover the corpus, exact evidence/ranges, malformed and unsupported inputs,
+no filter/hook execution, dirty originals, request replay, interruption/checkpoint reuse,
+late cancellation/revocation, policy changes, source failure, budgets, ownership and HTTP
+security. The [Chrome acceptance](../docs/fixtures/loredock-catalog/README.md) verifies
+three-source indexing, search/evidence, mobile layout, removal, policy fencing, reindex
+and restart. All inputs are synthetic and zero model calls were made.
+
+The branch also carries the already-reviewed L0 commits into main: PR #17 was merged
+into the prior UX branch after PR #16 reached main. Workbench application code and
+user databases remain unchanged. Task 016 is not started.

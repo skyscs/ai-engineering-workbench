@@ -12,9 +12,9 @@ The owner changed the next development priority on 2026-09-28: preserve the curr
 Workbench and build LoreDock's system-wide context before further investigation features.
 Follow the [LoreDock-first roadmap](docs/loredock/PLAN.md) and its
 [specification/reuse review](docs/loredock/REVIEW.md).
-[Task 014](tasks/014-loredock-scope-and-fixtures.md) delivered the synthetic corpus and
-mechanical feasibility checks; checkpoint review is pending. Next are the model-free
-[source catalog](tasks/015-loredock-source-catalog.md) and then
+[Task 014](tasks/014-loredock-scope-and-fixtures.md) delivered the accepted synthetic corpus
+and mechanical feasibility checks. [Task 015](tasks/015-loredock-source-catalog.md)
+implements the model-free source catalog and is ready for review. Next are
 [cited answers](tasks/016-loredock-cited-answer.md), with runtime qualification before
 real-model execution. Planning does not authorize implementing every milestone automatically.
 

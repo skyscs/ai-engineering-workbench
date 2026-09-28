@@ -1,6 +1,9 @@
 # LoreDock first-slice contracts
 
-Status: proposed implementation contracts following Task 014, not an implemented API.
+Status: the L1 catalog subset is implemented in Task 015; claims, relations, model
+attempts and Context Packs remain proposed. See [ADR 0019](../decisions/0019-loredock-local-catalog.md)
+for concrete L1 storage, API, extractor and budget decisions and the
+[user guide](USER_GUIDE.md) for implemented behavior.
 The [executable fixture](../../fixtures/loredock/README.md) uses a smaller, versioned
 fixture manifest. Do not treat its IDs or JSON shape as a public product contract.
 
@@ -73,13 +76,15 @@ deployment revisions are unknown.
   Compare-and-set publication checks build, policy, cancellation and source revocation.
 
 The L0 SQL experiment checks persistence primitives and interruption classification.
-It does not implement these production scheduling semantics; L1/L2 tests must do so.
+L1 now verifies deterministic file checkpoints, pause/cancel/resume, restart, request
+replay and publication fencing. Model-attempt and ambiguous-provider semantics remain L2.
 
 ## Provisional budgets
 
-These are visible engineering defaults to validate in the synthetic pilot, not claims
-about cost or the eventual 20-repository workload. Budget exhaustion produces a resumable
-partial result with reasons; it never silently drops coverage or starts another call.
+These are visible engineering defaults for the synthetic pilot, not claims
+about cost or the eventual 20-repository workload. L1 wall exhaustion pauses resumably;
+file/path/total-byte caps produce explicit partial coverage and require a narrower
+policy/new build. Limits never silently drop coverage or start another model call.
 
 | Boundary | Initial limit |
 | --- | --- |

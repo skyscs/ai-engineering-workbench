@@ -13,6 +13,8 @@
     "typecheck": "pnpm build:packages && pnpm -r typecheck",
     "test": "pnpm build:packages && pnpm -r --if-present test && node --test scripts/tests/*.test.mjs",
     "check": "pnpm typecheck && pnpm test && pnpm build",
-    "start": "pnpm --filter @aew/daemon start"
+    "start": "pnpm --filter @aew/daemon start",
+    "loredock": "pnpm --filter @loredock/daemon start",
+    "loredock:dev": "LOREDOCK_DEVELOPMENT=1 pnpm --parallel --filter '@loredock/*' dev"
   }
 }

@@ -1,8 +1,8 @@
 # LoreDock first, Workbench second
 
-Status: delivery direction approved; L0 implemented and locally verified, 2026-09-28.
-L0 checkpoint review is pending. Later implementation choices and acceptance targets
-remain proposals; no production LoreDock application is delivered yet.
+Status: L0 accepted; L1 implemented and locally verified, 2026-09-28. L1 checkpoint
+review is pending. The separate [source catalog](USER_GUIDE.md) is runnable; later
+AI answers, system relationships and the Workbench bridge remain planned.
 See [L0 measurements and blockers](FEASIBILITY.md), [contracts](CONTRACTS.md),
 [Task 015](../../tasks/015-loredock-source-catalog.md) and
 [Task 016](../../tasks/016-loredock-cited-answer.md) for the next bounded slices.
