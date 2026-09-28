@@ -75,6 +75,9 @@ try {
   await evaluate("document.querySelector('[data-action=setup]').focus()");
   await click('[data-action=setup]'); await click('[name=setup][value=personal]'); await click('#setup-form [type=submit]');
   assert.ok(await evaluate("document.querySelector('.setup-strip').textContent.includes('Personal setup')"));
+  await click('.disclosure summary'); await fill('#model', 'medium');
+  assert.ok(await evaluate("document.querySelector('.disclosure').open"), 'Model selection should preserve the open controls');
+  await click('.disclosure summary');
   await screenshot('composer');
   await fill('#scenario', 'setup-error'); await click('#composer [type=submit]');
   await until("document.querySelector('[role=alert]')?.textContent.includes('setup is unavailable')");
@@ -83,6 +86,9 @@ try {
   await screenshot('setup-error');
   await click('[role=alert] [data-action=setup]'); await click('#setup-form [type=submit]');
   await click('#composer [type=submit]'); await until("!!document.querySelector('[data-action=cancel]')");
+  await evaluate("document.querySelector('[data-action=cancel]').focus()");
+  await until("document.querySelector('.progress-list .done') !== null");
+  assert.equal(await evaluate("document.activeElement.dataset.action"), 'cancel');
   await click('[data-action=cancel]');
   await new Promise(resolve => setTimeout(resolve, 1600));
   assert.ok(await evaluate("!!document.querySelector('#composer') && !document.querySelector('[aria-label=\"Investigation report\"]')"));
@@ -116,6 +122,7 @@ try {
   assert.ok(await evaluate('document.documentElement.scrollWidth <= innerWidth'), 'Mobile report overflows');
   await click('[data-action=new]');
   assert.ok(await evaluate("document.querySelector('.setup-strip').textContent.includes('Personal setup')"));
+  assert.equal(await evaluate("document.querySelector('#model').value"), 'medium');
   await screenshot('mobile-composer');
   assert.ok(await evaluate('document.documentElement.scrollWidth <= innerWidth'), 'Mobile composer overflows');
   assert.equal(await evaluate('localStorage.length + sessionStorage.length'), 0);

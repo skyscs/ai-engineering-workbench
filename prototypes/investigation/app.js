@@ -26,11 +26,13 @@ function fieldSummary() {
   return `<dl class="summary-grid"><dt>Code</dt><dd>${escape(draft.repository)}</dd><dt>Setup</dt><dd>${escape(setups[draft.setup]?.name || 'Not selected')} · ${escape(modelLabel())}</dd><dt>Files</dt><dd>${draft.files.filter(f => f.included).length} included in this preview</dd></dl>`;
 }
 function render(focus = true) {
+  const cancelFocused = document.activeElement?.dataset.action === 'cancel';
   document.querySelector('#breadcrumb').textContent = screen === 'draft' ? 'New investigation' : screen === 'progress' ? 'In progress' : 'Sample report';
   document.querySelector('#history').innerHTML = cases.length ? cases.map(item => `<button class="history-item" data-action="open-case" data-id="${item.id}" ${running ? 'disabled' : ''}>${escape(item.description.slice(0, 43) || 'Untitled draft')}<small>${item.reports.length ? `Sample report · ${item.reports.length} version${item.reports.length === 1 ? '' : 's'}` : 'Draft'}</small></button>`).join('') : '';
   // No inline handlers or user-provided markup are used in this preview.
   content.innerHTML = screen === 'draft' ? composer() : screen === 'progress' ? progress() : report();
   if (focus) content.focus({ preventScroll: false });
+  else if (cancelFocused) content.querySelector('[data-action="cancel"]')?.focus({ preventScroll: true });
 }
 function composer() {
   return `<div class="page-heading"><div><h1>New investigation</h1><p>Describe a problem. Follow the code and its history.</p></div><button class="text-button" data-action="sample">Try a sample ↗</button></div>
@@ -138,7 +140,10 @@ document.addEventListener('input', event => {
   if (event.target.id === 'feedback') draft.feedback = event.target.value;
 });
 document.addEventListener('change', event => {
-  if (event.target.id === 'model') { draft.model = event.target.value; render(false); }
+  if (event.target.id === 'model') {
+    draft.model = event.target.value;
+    if (draft.setup) document.querySelector('.setup-strip p').innerHTML = `<strong>${escape(setups[draft.setup].name)}</strong> · ${escape(modelLabel())}`;
+  }
   if (event.target.id === 'scenario') scenario = event.target.value;
   if (event.target.id === 'files') addFiles(Array.from(event.target.files));
   if (event.target.id === 'version') { selectedVersion = Number(event.target.value); render(false); document.querySelector('#version').focus(); }
@@ -184,7 +189,9 @@ document.addEventListener('click', event => {
   if (action === 'retry') { begin(); return; }
   if (action === 'new') {
     rememberDraft();
-    draft = newDraft(draft.repository, draft.setup); selectedVersion = 0; screen = 'draft'; notice = ''; error = ''; render(); return;
+    const model = draft.model;
+    draft = newDraft(draft.repository, draft.setup); draft.model = model;
+    selectedVersion = 0; screen = 'draft'; notice = ''; error = ''; render(); return;
   }
   if (action === 'copy-draft') {
     const previous = draft; draft = newDraft(previous.repository); draft.description = previous.description;
