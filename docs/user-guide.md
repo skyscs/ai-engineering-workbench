@@ -381,6 +381,7 @@ For automation without model requests, use the release guide's
 | `Run investigation` is disabled | Save the configuration directory, wait for all worktrees to be ready, and let the current operation finish. Check for an active run before retrying. |
 | Configuration directory or named profile is missing | Correct the existing absolute path/profile before task creation. `~` is not expanded. Consult the runtime configuration guide; there is no inherited-home fallback. |
 | `UNSUPPORTED_VERSION` | Use one of the CLI versions accepted by this adapter with an explicit executable path if needed. A newer installed CLI is not automatically compatible. |
+| `PROJECT_CONFIGURATION` | A selected worktree has a `.codex` entry; project-local configuration is unsupported. An unrelated `~/.codex` directory is allowed. If the message still says "Project or ancestor", update/rebuild and restart Workbench, then explicitly retry. Do not delete your user configuration or change accounts to work around it. |
 | Authentication, configured tools or environment preflight fails | Review the normalized error and [runtime restrictions](codex-runtime.md#supported-configuration). Resolve the selected CLI setup outside Workbench; never bypass restrictions or switch accounts implicitly. |
 | Connection fields are locked | The workspace already has a task. Create a new workspace for changed launch settings; only the documented one-time unset-directory binding is an exception. |
 | No repository in the task form | Register a ready repository first, then reopen **New task**. |

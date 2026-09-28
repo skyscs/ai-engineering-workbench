@@ -63,8 +63,11 @@ Workbench never reads authentication files or claims verified account identity.
 
 The adapter disables apps, plugins, hooks, browser/computer/image tools, multi-agent
 execution, web search and external notifications. Enabled configured MCP servers
-are rejected. Project/ancestor `.codex` directories are unsupported because they
-can override connection routing; use a prepared repository without that layer.
+are rejected. Project-local `.codex` entries at any selected worktree root are
+unsupported; use a prepared repository without that layer. The adapter pins CLI
+project discovery to its working directory with `project_root_markers=[]`, so an
+unrelated ancestor such as `~/.codex` does not block a selected `~/.codex-plus`
+connection. See [ADR 0016](decisions/0016-worktree-configuration-boundary.md).
 Do not change CLI configuration while a run is active. Safe file metadata is
 fingerprinted, but Workbench does not freeze or copy external configuration.
 
@@ -125,9 +128,14 @@ After building, local CLI diagnostics and the opt-in real acceptance scenario ar
 
 ```bash
 node scripts/runtime-adapter-negative.mjs
+node scripts/runtime-config-boundary-probe.mjs
 AEW_CODEX_HOME=/absolute/selected/config node scripts/runtime-adapter-smoke.mjs --preflight
 AEW_CODEX_HOME=/absolute/selected/config AEW_REAL_RUNTIME=1 node scripts/runtime-adapter-smoke.mjs
 ```
+
+The boundary probe uses a temporary synthetic home and detached worktree, verifies
+base/named profile isolation from ancestor configuration, and makes no model requests.
+Use `AEW_CODEX_EXECUTABLE` to probe a specific supported CLI binary.
 
 The real smoke requires an explicitly selected configuration directory, uses its
 base configuration with `gpt-5.6-terra` and `medium`, and may consume that account's
