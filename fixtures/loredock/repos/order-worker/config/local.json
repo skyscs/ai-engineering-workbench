@@ -1,0 +1,7 @@
+{
+  "orderTopic": "orders.placed.v2",
+  "consumerGroup": "order-projection",
+  "mongoDatabase": "shop",
+  "mongoCollection": "orders",
+  "environment": "local"
+}
