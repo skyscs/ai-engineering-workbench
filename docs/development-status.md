@@ -1,5 +1,20 @@
 # Development status
 
+## LoreDock-first direction — planning
+
+The owner requested a shift on 2026-09-28: keep Workbench available and prioritize
+persistent system context for approximately 20 repositories. The confirmed stack is
+Java/JavaScript/TypeScript, Vue/Dojo, Kafka and MongoDB, with README-led documentation.
+The [roadmap](loredock/PLAN.md) sequences knowledge ingestion, a cited-answer slice,
+system relationships, reliable refresh and scale acceptance before the Workbench bridge
+and automatic investigation scope. The [review](loredock/REVIEW.md) maps the supplied
+draft to actual code and records reuse limitations and unresolved boundaries.
+
+[Task 014](../tasks/014-loredock-scope-and-fixtures.md) is proposed and not started.
+This change is documentation only: no LoreDock implementation, application migration,
+source ingestion or model invocation has occurred. Workbench remains at the previously
+verified implementation baseline; its delivery history below is preserved.
+
 ## Task 013 — Primary investigation workflow
 
 Implemented and locally verified on 2026-09-28. The accepted composer is now the
