@@ -1,3 +1,4 @@
+import { createDraftStore, type DraftStore } from './drafts.js';
 import { accessSync, closeSync, constants, lstatSync, mkdirSync, openSync, realpathSync } from 'node:fs';
 import path from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
@@ -24,6 +25,7 @@ export interface Storage {
   readonly settings: SettingsRepository;
   readonly repositories: RepositoryStore;
   readonly tasks: TaskStore;
+  readonly drafts: DraftStore;
   readonly paths: ReturnType<typeof storagePaths>;
   status(): StorageStatus;
   close(): void;
@@ -97,10 +99,13 @@ export function openStorage(options: { dataRoot?: string; artifactLimits?: Parti
     const settings = createSettingsRepository(connection, ensureOpen);
     const tasks = createTaskStore(connection, ensureOpen, settings, paths.tasks, limits, paths.worktrees);
     tasks.artifacts.recover();
+    const drafts = createDraftStore(connection, ensureOpen, limits);
+    drafts.interrupt();
     return {
       paths,
       settings,
       tasks,
+      drafts,
       repositories: createRepositoryStore(connection, ensureOpen),
       status() {
         if (closed) throw new StorageError('STORAGE_CLOSED', 'The storage connection is closed.');

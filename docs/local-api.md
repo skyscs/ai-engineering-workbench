@@ -44,3 +44,31 @@ SSE events and terminal state are retained by the daemon; a browser reconnect do
 not create or cancel a run. See [runtime events and cancellation](codex-runtime.md#protected-api).
 For filesystem location, ownership and backup, use the
 [Linux operations guide](linux-demo.md#data-backup-and-upgrades).
+
+## Investigation drafts and launches
+
+The primary page uses the same session, exact-origin and CSRF checks:
+
+- `GET /api/drafts` returns the latest 200 drafts and their byte budget.
+- `POST /api/drafts` takes a client-generated UUID `id`; replay returns that draft.
+- `GET /api/drafts/:id` includes saved inputs, file metadata, task binding and latest launch.
+- `PUT /api/drafts/:id` takes `{ revision, input }`. Stale revisions return conflict.
+- `PUT /api/drafts/:id/files/:fileId` streams bounded UTF-8 bytes with a URI-encoded
+  filename in `X-AEW-Filename`. Replaying the same UUID and content is idempotent.
+  `PATCH` with `{ included }` selects full text; `DELETE` removes a draft file.
+- `POST /api/drafts/:id/launch` takes `{ requestId, revision }`. It returns a durable
+  operation (202); replaying its UUID returns the original attempt without invocation.
+  A deliberately new attempt needs a new UUID. Poll the draft for actual phase/outcome.
+- `POST /api/drafts/:id/cancel` takes the launch `requestId`. Cancellation is explicit
+  and idempotent; completion can win a race with cancellation.
+- `POST /api/drafts/from-task` adopts an existing `{ workspaceId, taskId }` and preserves
+  its advanced artifact selections. `POST /api/drafts/:id/copy` with a new UUID `id`
+  copies composer input/files into an editable draft; legacy artifact ranges are not copied.
+- `DELETE /api/drafts/:id` discards only an editable, unmaterialized draft. Started
+  investigations remain in history. Active/materialized inputs cannot be edited.
+- `GET /api/drafts/setup-options` returns existing canonical directory candidates,
+  without opening authentication files or making a connection claim.
+
+Schema 11 stores bounded draft blobs and launch operations. Stage runs, immutable
+reports and full task artifact storage retain their existing contracts. Local setup
+checks happen before a new task locks its project; model invocation remains explicit.

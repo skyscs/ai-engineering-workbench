@@ -1,3 +1,5 @@
+import { draftRoutes } from './draft-routes.js';
+import type { LaunchService } from './launch-service.js';
 import { randomBytes, timingSafeEqual } from 'node:crypto';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
@@ -32,6 +34,7 @@ export interface AppOptions {
   tasks?: TaskStore;
   worktrees?: WorktreeService;
   runtime?: RuntimeService;
+  launches?: LaunchService;
 }
 
 /** Create a local HTTP application without opening sockets or launching a browser. */
@@ -123,6 +126,7 @@ export function createApp(options: AppOptions = {}) {
     return context.body(null, 204);
   });
 
+  if (options.launches) app.route('/api/drafts', draftRoutes(options.launches));
   if (options.settings) app.route('/api/workspaces', settingsRoutes(options.settings));
   if (options.repositories) app.route('/api/workspaces', repositoryRoutes(options.repositories));
   if (options.tasks) app.route('/api/workspaces', taskRoutes(options.tasks));

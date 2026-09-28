@@ -145,7 +145,7 @@ export function createArtifactStore(db: DatabaseSync, root: string, limits: Arti
       }
     }
   }
-  async function upload(workspaceId: string, taskId: string, metadata: { name: string; mimeType: string; size: number }, body: ReadableStream<Uint8Array>) {
+  async function upload(workspaceId: string, taskId: string, metadata: { name: string; mimeType: string; size: number; id?: string }, body: ReadableStream<Uint8Array>) {
     tasks.editable(workspaceId, taskId);
     if (closing) throw new DomainError('CONFLICT', 'The daemon is shutting down.');
     if (typeof metadata.name !== 'string' || !metadata.name.trim() || metadata.name.length > 255 || /[\u0000-\u001f\u007f]/.test(metadata.name) ||
@@ -153,9 +153,20 @@ export function createArtifactStore(db: DatabaseSync, root: string, limits: Arti
       !Number.isSafeInteger(metadata.size) || metadata.size < 0 || metadata.size > limits.fileBytes) {
       throw new DomainError('INVALID_INPUT', 'Provide a filename, MIME type and file size within the configured limit.');
     }
+    if (metadata.id) {
+      if (!/^[a-f0-9-]{36}$/.test(metadata.id)) throw new DomainError('INVALID_INPUT', 'Invalid artifact identifier.');
+      const previous = db.prepare('SELECT * FROM artifact_imports WHERE id = ?').get(metadata.id) as unknown as ImportRow | undefined;
+      if (previous) {
+        if (previous.task_id !== taskId || previous.original_filename !== metadata.name || previous.expected_size !== metadata.size || previous.mime_type !== metadata.mimeType) throw new DomainError('CONFLICT', 'The artifact identifier is already bound to different input.');
+        if (previous.state === 'ready') return get(workspaceId, taskId, metadata.id);
+        const existing = paths(taskId, metadata.id);
+        if (previous.state !== 'failed' || exists(existing.final) || exists(existing.staging)) throw new DomainError('CONFLICT', 'Restart to recover the previous file import before retrying.');
+        db.prepare('DELETE FROM artifact_imports WHERE id=?').run(metadata.id);
+      }
+    }
     const used = Number(db.prepare("SELECT coalesce(sum(expected_size), 0) AS size FROM artifact_imports WHERE task_id = ? AND state != 'failed'").get(taskId)!.size);
     if (metadata.size > limits.taskBytes - used) throw new DomainError('INVALID_INPUT', 'This import would exceed the task artifact limit.');
-    const row: ImportRow = { id: randomUUID(), task_id: taskId, destination: '', state: 'uploading', original_filename: metadata.name,
+    const row: ImportRow = { id: metadata.id ?? randomUUID(), task_id: taskId, destination: '', state: 'uploading', original_filename: metadata.name,
       mime_type: metadata.mimeType, expected_size: metadata.size, sha256: null, created_at: new Date().toISOString() };
     row.destination = `${taskId}/artifacts/${row.id}`;
     db.prepare(`INSERT INTO artifact_imports (id, task_id, destination, state, original_filename, mime_type, expected_size, created_at)
@@ -201,7 +212,7 @@ export function createArtifactStore(db: DatabaseSync, root: string, limits: Arti
   }
   return {
     list, get, open, context, verifyContext, recover,
-    import(workspaceId: string, taskId: string, metadata: { name: string; mimeType: string; size: number }, body: ReadableStream<Uint8Array>) {
+    import(workspaceId: string, taskId: string, metadata: { name: string; mimeType: string; size: number; id?: string }, body: ReadableStream<Uint8Array>) {
       const job = upload(workspaceId, taskId, metadata, body); active.add(job);
       void job.finally(() => active.delete(job)).catch(() => {});
       return job;

@@ -13,6 +13,16 @@ export class RepositoryService {
 
   list(workspaceId: string) { return this.storage.repositories.list(workspaceId); }
   get(workspaceId: string, id: string) { return this.storage.repositories.get(workspaceId, id); }
+  async findClone(workspaceId: string, source: string) { return this.storage.repositories.findClone(workspaceId, await cloneSource(source)); }
+
+  async refresh(workspaceId: string, id: string, ref?: string): Promise<Repository> {
+    const record = this.get(workspaceId, id);
+    if (this.stopping || record.status !== 'ready' || !record.commonGitDir) throw new DomainError('CONFLICT', 'The repository is not available.');
+    return this.git.exclusive(record.commonGitDir, async () => {
+      const metadata = await this.git.inspect(record.localPath, ref ?? record.baseRef);
+      return this.storage.repositories.refresh(workspaceId, id, metadata);
+    });
+  }
 
   async register(workspaceId: string, value: unknown): Promise<Repository> {
     const input = parseRepositoryInput(value);

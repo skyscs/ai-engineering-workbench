@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Investigation preview · Workbench</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to investigation</a>
+  <div class="demo-banner"><strong>Interactive preview</strong><span>Sample results only. Nothing is uploaded or analyzed. Reload resets this preview.</span></div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="Project navigation">
+      <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">w</span>Workbench</a>
+      <p class="nav-caption">YOUR WORK</p>
+      <button class="nav-item selected" data-action="home"><span aria-hidden="true">▤</span> Investigations</button>
+      <button class="nav-item" data-action="settings"><span aria-hidden="true">⚙</span> Settings</button>
+      <div class="nav-divider"></div>
+      <button class="new-button" data-action="new">＋ New investigation</button>
+      <div id="history"></div>
+      <div class="sidebar-bottom"><span class="local-dot" aria-hidden="true"></span> Local workspace <span class="demo-tag">DEMO</span></div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar"><span>Investigations <span aria-hidden="true">/</span> <strong id="breadcrumb">New investigation</strong></span><span class="read-only">Read-only by design</span></header>
+      <main id="content" tabindex="-1"></main>
+      <footer class="preview-tools">
+        <details><summary>Preview controls</summary>
+          <p>These controls simulate outcomes. Every report uses the same sample pricing issue.</p>
+          <label for="scenario">Next attempt</label>
+          <select id="scenario"><option value="success">Successful sample analysis</option><option value="setup-error">Setup unavailable before analysis</option><option value="run-error">Analysis fails after starting</option></select>
+          <button class="text-button" data-action="reset">Reset preview</button>
+        </details>
+      </footer>
+    </div>
+  </div>
+  <dialog id="modal" aria-labelledby="modal-title"></dialog>
+  <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
+  <noscript>This interactive preview requires JavaScript. It does not call the application or a model.</noscript>
+</body>
+</html>

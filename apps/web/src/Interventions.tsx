@@ -3,10 +3,11 @@ import type { Constraint, InterventionHistory, InvestigationReport } from '@aew/
 import type { RuntimeDetail } from '@aew/shared';
 import { api } from './api';
 
-export function Interventions({ base, revision, runId, runStatus, report, reports, disabled, canChallenge, modelProfileId, submit, selectReport }: {
+export function Interventions({ base, revision, runId, runStatus, report, reports, disabled, canChallenge, modelProfileId, submit, selectReport, simplified = false }: {
   base: string; revision: number; runId: string | undefined; runStatus: string | undefined;
   report: InvestigationReport | undefined; reports: InvestigationReport[]; disabled: boolean; canChallenge: boolean;
   modelProfileId: string | null; submit(route: string, body: unknown): Promise<void>; selectReport(id: string): void;
+  simplified?: boolean;
 }) {
   const [history, setHistory] = useState<InterventionHistory[]>([]), [constraints, setConstraints] = useState<Constraint[]>([]);
   const [constraint, setConstraint] = useState(''), [challenge, setChallenge] = useState(''), [error, setError] = useState('');
@@ -37,10 +38,10 @@ export function Interventions({ base, revision, runId, runStatus, report, report
     finally { setReading(false); }
   }
   const version = (id: string | null) => reports.find(r => r.id === id)?.version;
-  return <section aria-label="Human interventions"><h3>Human interventions</h3>
+  return <section aria-label="Human interventions"><h3>{simplified ? 'Refine the investigation' : 'Human interventions'}</h3>
     <p className="hint">Constraints apply to subsequent runs. A challenge starts a new AI invocation using the selected model, current context and the exact report shown above. Existing reports stay available if the attempt fails.</p>
     {error && <p role="alert" className="error">{error}</p>}
-    <h4>Active constraints</h4>
+    <details open={!simplified}><summary>Persistent instructions for future runs</summary><h4>Active constraints</h4>
     {!constraints.some(c => c.active) && <p>No active constraints.</p>}
     <ul>{constraints.filter(c => c.active).map(c => <li key={c.id}><p className="task-description">{c.text}</p>
       <button className="secondary" disabled={disabled} onClick={() => {
@@ -52,16 +53,16 @@ export function Interventions({ base, revision, runId, runStatus, report, report
         onChange={e => { setConstraint(e.target.value); setConstraintRequest(crypto.randomUUID()); }} /></label>
         <p className="hint">Saving marks existing reports stale. It does not start an AI run.</p><button type="submit">Save constraint</button>
       </fieldset>
-    </form>
+    </form></details>
     {report && <form aria-label="Challenge report" onSubmit={e => { e.preventDefault(); void send('challenge'); }}>
       <fieldset disabled={disabled || !canChallenge || report.status !== 'active'}>
-        <label>Challenge version {report.version}<textarea name="challengeText" required maxLength={8192} value={challenge}
+        <label>{simplified ? `What should we reconsider in version ${report.version}?` : `Challenge version ${report.version}`}<textarea name="challengeText" required maxLength={8192} value={challenge}
           onChange={e => { setChallenge(e.target.value); setChallengeRequest(crypto.randomUUID()); }} /></label>
-        <button type="submit">Challenge and run</button>
+        <button type="submit">{simplified ? 'Revise report' : 'Challenge and run'}</button>
       </fieldset>
       {report.status !== 'active' && <p>Choose the latest published version to challenge it.</p>}
     </form>}
-    <details><summary>Intervention history (latest 100)</summary><ol>{history.map(i => <li key={i.id}>
+    <details aria-label="Intervention history"><summary>Intervention history (latest 100)</summary><ol>{history.map(i => <li key={i.id}>
       <p>{i.operation === 'challenge' ? `Challenge to version ${version(i.targetReportId) ?? '?'}` : i.operation === 'add_constraint' ? 'Constraint added' : 'Constraint deactivated'} · {i.createdAt}</p>
       <p className="task-description">{i.text}</p>
       {i.runId && <><p>Attempt: {i.runStatus}</p><button className="secondary" disabled={reading} onClick={() => void inspect(i.runId!)}>Inspect attempt</button></>}

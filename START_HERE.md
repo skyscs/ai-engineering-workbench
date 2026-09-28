@@ -13,5 +13,6 @@ Codex CLI connection and produces evidence-backed, versioned reports.
   [development section](README.md#documentation-and-development).
 
 Creating fixtures, setting up a workspace and preparing worktrees make no model
-requests. **Run investigation** and **Challenge and run** invoke your configured
-CLI. Explicitly select the intended configuration directory before creating tasks.
+requests. **Investigate**, explicit retries and **Revise report** invoke your configured
+CLI. Choose the intended Codex setup once; the primary composer prepares code
+and includes saved text files automatically. Advanced controls remain at `/advanced`.

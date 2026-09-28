@@ -28,9 +28,10 @@ export function Markdown({ text }: { text: string }) {
     })}</div>;
   })}</div>;
 }
-export function Report({ base, revision, runId, runStatus, disabled, canChallenge, modelProfileId, submit }: {
+export function Report({ base, revision, runId, runStatus, disabled, canChallenge, modelProfileId, submit, simplified = false }: {
   base: string; revision: number; runId: string | undefined; runStatus: string | undefined;
   disabled: boolean; canChallenge: boolean; modelProfileId: string | null; submit(route: string, body: unknown): Promise<void>;
+  simplified?: boolean;
 }) {
   const [reports, setReports] = useState<InvestigationReport[]>([]), [selected, setSelected] = useState('');
   const [source, setSource] = useState<EvidenceContent | null>(null), [error, setError] = useState('');
@@ -77,7 +78,7 @@ export function Report({ base, revision, runId, runStatus, disabled, canChalleng
     finally { setLoading(false); }
   }
   const refs = (ids: string[]) => <span className="evidence-references">{ids.map(id => <button className="secondary" key={id} disabled={loading} onClick={() => void evidence(id)}>{id}</button>)}</span>;
-  return <section aria-label="Investigation reports"><h3>Investigation reports</h3>
+  return <section aria-label="Investigation reports"><h3>{simplified ? 'What we found' : 'Investigation reports'}</h3>
     {error && <p role="alert" className="error">{error}</p>}
     {!report ? <p>No published report yet.</p> : <>
       <label>Report version<select value={selected} disabled={loading} onChange={e => { sourceGeneration.current++; setSelected(e.target.value); setSource(null); setError(''); }}>
@@ -89,17 +90,17 @@ export function Report({ base, revision, runId, runStatus, disabled, canChalleng
       {cause && <div><h4>Triggered by this challenge</h4><p className="task-description">{cause.text}</p></div>}
       {report.freshness === 'stale' && <p role="status">Context changed since this report. Run another investigation to use the current context.</p>}
       <p className="hint">Locators were checked at publication. Review whether the cited material supports the conclusion. Source availability is checked again when opened.</p>
-      <h4>Investigation</h4><Markdown text={report.result.investigation.summary} />
-      <h4>Historical timeline</h4><ol>{report.result.investigation.timeline.map((entry, i) => <li key={i}><Markdown text={entry.description} />{refs(entry.evidenceIds)}</li>)}</ol>
       <h4>Root cause: {report.result.rootCause.status === 'identified' ? 'identified' : 'insufficient evidence'}</h4>
       <Markdown text={report.result.rootCause.summary} />{refs(report.result.rootCause.evidenceIds)}
       <h4>Unresolved questions</h4>{report.result.rootCause.unresolvedQuestions.length ? <ul>{report.result.rootCause.unresolvedQuestions.map((q, i) => <li key={i}><Markdown text={q} /></li>)}</ul> : <p>None reported.</p>}
+      <details open={!simplified}><summary>Investigation and timeline</summary><Markdown text={report.result.investigation.summary} />
+      <ol>{report.result.investigation.timeline.map((entry, i) => <li key={i}><Markdown text={entry.description} />{refs(entry.evidenceIds)}</li>)}</ol></details>
       <h4>Evidence</h4><ul>{report.result.evidence.map(e => <li key={e.id}>{refs([e.id])}<Markdown text={e.description} /><code>{e.kind === 'artifact' ? `${e.artifactId} bytes [${e.byteStart}, ${e.byteEnd})` : `${e.repositoryId} @ ${e.revision}${e.path ? `:${e.path}:${e.lineStart}-${e.lineEnd}` : ''}`}</code></li>)}</ul>
       {loading && <p>Reading recorded evidence…</p>}
       {source && <section aria-label="Evidence source"><h4>Recorded source</h4><p><code>{source.locator}</code></p><pre>{source.text}</pre></section>}
     </>}
     <Interventions key={`${report?.id ?? 'initial'}:${revision}`} base={base} revision={revision} runId={runId} runStatus={runStatus}
-      report={report} reports={reports} disabled={disabled} canChallenge={canChallenge} modelProfileId={modelProfileId} submit={submit}
+      report={report} reports={reports} disabled={disabled} canChallenge={canChallenge} modelProfileId={modelProfileId} submit={submit} simplified={simplified}
       selectReport={id => { sourceGeneration.current++; setSelected(id); setSource(null); setError(''); }} />
   </section>;
 }

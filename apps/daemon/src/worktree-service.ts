@@ -10,6 +10,7 @@ function failure(error: unknown, phase: GitWorktreeFailure['phase']): GitWorktre
 }
 export class WorktreeService {
   private readonly jobs = new Set<Promise<void>>();
+  private readonly runs = new Map<string, Promise<void>>();
   private readonly lifecycle: WorktreeGit;
   private stopping = false;
   constructor(private readonly storage: Storage, private readonly git: GitClient) { this.lifecycle = new WorktreeGit(git, storage.paths.worktrees); }
@@ -27,9 +28,10 @@ export class WorktreeService {
     const job = this.execute(run, records, cleanupRepositoryId ? 'remove' : 'prepare').catch(() => {
       console.error('Worktree finalization failed; recorded state will be reconciled on restart.');
     });
-    this.jobs.add(job); void job.finally(() => this.jobs.delete(job));
+    this.jobs.add(job); this.runs.set(run.id, job); void job.finally(() => { this.jobs.delete(job); this.runs.delete(run.id); });
     return this.storage.tasks.getRun(workspaceId, taskId, run.id);
   }
+  async wait(id: string) { await this.runs.get(id); }
   private async execute(run: StageRun, records: TaskWorktree[], kind: 'prepare' | 'remove') {
     const workspaceId = run.inputSnapshot.task.workspaceId;
     try {

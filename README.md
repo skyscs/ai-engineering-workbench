@@ -6,7 +6,9 @@ reviewing evidence and revising AI conclusions with human feedback.
 ## What v0.1 does
 
 Workbench runs a browser UI and a local daemon. You describe a problem, select
-repositories and optional text artifacts, and prepare isolated worktrees. A Codex
+repositories and optional text files, and start an investigation in one action.
+Workbench saves your draft, checks the selected setup and prepares isolated
+worktrees automatically. A Codex
 CLI invocation investigates committed source and history and produces a versioned
 investigation/root-cause report. You can inspect its evidence, save persistent
 constraints, challenge the conclusion and export a chosen version to Markdown.
@@ -32,7 +34,7 @@ and [reviewed example reports](docs/fixtures/release/README.md) for verified beh
   See [runtime requirements](docs/codex-runtime.md#supported-configuration).
 
 Installing, starting the UI, preparing worktrees and running ordinary tests make
-no model requests. **Run investigation** and **Challenge and run** invoke the
+no model requests. **Investigate**, **Run investigation again** and **Revise report** invoke the
 configured CLI and can consume the selected account's allowance.
 
 ## Quick start
@@ -65,25 +67,25 @@ for data directories, isolated demos, backup and upgrades.
 
 ## Your first investigation
 
-1. Choose **New workspace**. Save the intended **Configuration directory** and
-   optional executable/CLI profile before creating a task. Add a model profile
-   under **Model profiles** if you want explicit model and effort settings.
-2. Under **Repositories**, register an existing local checkout or clone into
-   Workbench. Wait for readiness; fetch updates explicitly if needed.
-3. Choose **Tasks → New task**, describe observed and expected behavior and select
-   the relevant repositories.
-4. If using artifacts, **Import files**, select **Include text** for the relevant
-   UTF-8 ranges, then **Save text context**. Import alone does not supply text to AI.
-5. Under **Task worktrees**, review base refs and choose **Prepare worktrees**.
-   Wait for every selected repository to show `Worktree: ready`.
-6. Under **Historical investigation**, select **Model profile** and choose
-   **Run investigation**. Review the report and open evidence buttons.
-7. Save a **Persistent constraint** or use **Challenge and run** to request a
-   revised explanation. Inspect earlier versions with **Report version** and
-   download any selected version with **Export Markdown**.
+1. Enter a local **Repository path or Git URL** and describe **What is going wrong?**
+2. Optionally **Add files** or drop UTF-8 logs, text or Markdown into the composer.
+   Saved files are included in full automatically; use **Exclude** to keep a file
+   without supplying it to the model.
+3. Choose the intended **Codex setup** once. Select an existing project or its
+   configuration directory; executable/profile overrides are under **Advanced setup**.
+4. Click **Investigate**. Workbench checks the setup, resolves source, saves context,
+   prepares isolated code and starts analysis. You can close the page and return.
+5. Review **What we found**, open evidence and use **Revise report** to reconsider
+   the conclusion. **Report version** and **Export Markdown** preserve access to
+   earlier results.
 
-The [user guide](docs/user-guide.md) provides a complete synthetic walkthrough,
-field-by-field setup, expected results, revision examples and troubleshooting.
+Drafts and files are saved locally before launch. **Copy to a new investigation**
+reuses composer inputs with newly resolved code; running the same investigation
+again retains its pinned commits. **Advanced settings** opens the original detailed
+controls, including multiple repositories, model profiles and explicit text ranges.
+
+The [user guide](docs/user-guide.md) explains the primary workflow, recovery,
+storage locations and the optional advanced walkthrough.
 
 ## Limits and data handling
 
@@ -95,8 +97,10 @@ field-by-field setup, expected results, revision examples and troubleshooting.
   not select a personal or corporate account.
 - Investigations use committed revisions. Uncommitted changes are excluded;
   fetching or preparing again does not move an existing task's pin.
-- Text/Markdown/log ranges can be supplied explicitly. Images, PDFs and videos
-  can be stored/downloaded but are not analyzed in v0.1.
+- The composer accepts up to 32 nonempty UTF-8 text/Markdown/log files. Description
+  and all saved files share a 1 MiB budget, or a lower configured storage limit.
+  Advanced settings supports explicit text ranges and larger original artifacts.
+  Images, PDFs and videos are not analyzed in v0.1.
 - Only one AI invocation runs per daemon. Cancellation and retry are explicit;
   failures preserve the last successful report. Interrupted runs do not resume
   paid CLI sessions automatically.
@@ -122,6 +126,7 @@ and external registered repositories; Markdown export is not a backup.
 | Understand artifacts, reports and human revision | [Artifacts](docs/tasks-and-artifacts.md), [investigation](docs/investigation.md), [interventions](docs/interventions.md), [export](docs/report-export.md) |
 | Integrate with the local HTTP API | [Session and transport](docs/local-api.md), then feature API tables |
 | Inspect validation and development history | [Release acceptance](docs/release-acceptance.md), [development status](docs/development-status.md) |
+| Try the proposed simpler workflow | [Interaction prototype](prototypes/investigation/README.md), [UX plan](docs/ux-simplification-plan.md) — sample data, no model calls |
 
 For development, `pnpm dev` rebuilds internal packages and starts the UI on
 `http://127.0.0.1:5173` with the daemon on port 4242. Restart it after internal

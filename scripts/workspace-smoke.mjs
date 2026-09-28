@@ -111,7 +111,7 @@ try {
   const click = (selector) => evaluate(`document.querySelector(${JSON.stringify(selector)}).click()`);
   const usable = "!document.querySelector('form fieldset')?.disabled && document.querySelector('.status')?.textContent.includes('Local daemon connected.')";
   const saved = "document.querySelector('.feedback').textContent.includes('Changes saved locally.') && !document.querySelector('[role=alert]')";
-  await page.send('Page.navigate', { url: 'http://127.0.0.1:4242' });
+  await page.send('Page.navigate', { url: 'http://127.0.0.1:4242/advanced' });
   await wait(usable);
   await fill('[name=workspaceName]', 'Browser workspace');
   await fill('[name=connectionName]', 'Corporate fixture');
@@ -322,9 +322,9 @@ try {
       await writeFile(runtimeMode, 'failure'); await click('form[aria-label="Challenge report"] button[type=submit]');
       await waitFor(async () => { const r=(await snapshot()).latestRun; return r.id !== guardRun && r.status === 'failed'; }, 'Challenge failure was not recorded.');
       assert.equal((await reports()).length, 2);
-      await evaluate(`document.querySelector('section[aria-label="Human interventions"] details').open = true`);
-      await wait(`document.querySelector('section[aria-label="Human interventions"] details button') !== null`);
-      await click('section[aria-label="Human interventions"] details button');
+      await evaluate(`document.querySelector('section[aria-label="Human interventions"] details[aria-label="Intervention history"]').open = true`);
+      await wait(`document.querySelector('section[aria-label="Human interventions"] details[aria-label="Intervention history"] button') !== null`);
+      await click('section[aria-label="Human interventions"] details[aria-label="Intervention history"] button');
       await wait(`document.querySelector('section[aria-label="Intervention attempt"]')?.textContent.includes('AUTHENTICATION_REQUIRED')`);
       await wait(`!document.querySelector('form[aria-label="Challenge report"] fieldset').disabled`);
       const failedChallengeId = (await snapshot()).latestRun.id;

@@ -67,12 +67,12 @@ export function createTaskStore(db: DatabaseSync, ensureOpen: () => void, settin
       settings.getWorkspace(workspaceId);
       return db.prepare('SELECT id FROM tasks WHERE workspace_id = ? ORDER BY created_at, id').all(workspaceId).map((r) => get(workspaceId, String(r.id)));
     },
-    create(workspaceId: string, value: unknown): Task {
+    create(workspaceId: string, value: unknown, stableId?: string): Task {
       const input = parseTask(value);
       if (Buffer.byteLength(input.description) > limits.contextBytes) throw new DomainError('INVALID_INPUT', 'The description exceeds the text context limit.');
       return transaction(db, () => {
         settings.lockWorkspaceBoundary(workspaceId);
-        const id = randomUUID(), now = new Date().toISOString();
+        const id = stableId ?? randomUUID(), now = new Date().toISOString();
         db.prepare('INSERT INTO tasks (id, workspace_id, title, description, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)')
           .run(id, workspaceId, input.title, input.description, now, now);
         for (const repositoryId of input.repositoryIds) {

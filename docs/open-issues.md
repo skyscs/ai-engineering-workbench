@@ -62,3 +62,19 @@ this behavior without promising a UI fix in the documentation change.
 Follow-up: explicitly map all supported task states to their UI labels and verify
 initial, prepared, investigating, published and failed/cancelled-revision states.
 Keep task progress separate from report lifecycle/freshness and from run failure.
+
+## AEW-004 — Default data directory triggers false project-configuration rejection
+
+Priority: P1. Fixed on the configuration-boundary branch; merge acceptance pending.
+
+With worktrees under `~/.local/share/ai-engineering-workbench`, preflight treated
+an unrelated `~/.codex` as project configuration and blocked a connection explicitly
+using `~/.codex-plus` before any CLI subprocess. Synthetic release fixtures under
+`/tmp` did not cover this ancestor layout.
+
+The adapter now pins project discovery to cwd and rejects `.codex` only at declared
+worktree roots. Local diagnostics verified the boundary on both supported CLI
+versions, including custom markers and named profiles. See
+[ADR 0016](decisions/0016-worktree-configuration-boundary.md) for the retained
+restrictions and reproducible regression probe. Existing failed runs remain in
+history; rebuild/restart the daemon and choose **Run investigation** to retry.

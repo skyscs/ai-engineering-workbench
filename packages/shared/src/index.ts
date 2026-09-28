@@ -27,3 +27,5 @@ export interface RuntimeDetail {
   run: import('@aew/core').StageRun; metadata: unknown;
   result: import('@aew/core').RuntimePreview | import('@aew/core').InvestigationResult | null; truncated: boolean;
 }
+
+export type { DraftInput, DraftFile, InvestigationDraft, LaunchOperation, LaunchState } from '@aew/core';

@@ -1,0 +1,18 @@
+{
+  "verifiedOn": "2026-09-28",
+  "command": "node scripts/prototype-smoke.mjs",
+  "node": "22.23.2",
+  "ownerWalkthrough": "pending",
+  "setupRequiresChoice": true,
+  "setupFailurePreservesInputs": true,
+  "cancellationStopsProgress": true,
+  "attachmentsLabeledAndEscaped": true,
+  "failedRevisionPreservesReport": true,
+  "revisionAndHistory": true,
+  "evidenceDialogRestoresFocus": true,
+  "markdownExport": true,
+  "mobileWithoutOverflow": true,
+  "browserStorageWrites": 0,
+  "apiRequests": 0,
+  "modelRequests": 0
+}

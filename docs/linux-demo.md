@@ -33,9 +33,10 @@ Vite on port 5173 and rebuilds internal packages when started.
 ## Application walkthrough
 
 Follow the [user guide](user-guide.md) for the complete workflow: generating a
-practice fixture, configuring a connection/model profile, registering repositories,
-creating a task, saving text context, preparing worktrees, investigating, challenging
-and exporting versions. It also includes expected results and troubleshooting.
+practice fixture, choosing a Codex setup, describing the problem and adding text
+files. The primary composer saves drafts and prepares code automatically. The
+advanced walkthrough covers repository/task controls and explicit ranges. Both
+paths support report revision, evidence and export.
 Generating fixtures makes no model requests; running investigations or challenges
 through your configured connection does.
 

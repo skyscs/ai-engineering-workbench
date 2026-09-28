@@ -8,6 +8,9 @@ after human intervention. Agent-driven code implementation remains outside v0.1.
 
 Implementation and verification for each iteration are tracked in
 [Development status](docs/development-status.md).
+Post-v0.1 work follows the accepted [UX simplification direction](docs/ux-simplification-plan.md),
+starting with [Task 012: interaction prototype](tasks/012-investigation-ux-prototype.md).
+The original v0.1 sequence below is retained as delivery history.
 This document replaces the initial discussion plan. REVIEW.md explains findings;
 ADR 0004 records architecture decisions. Original task numbers are preserved.
 All project artifacts, documentation, code comments and commit/PR descriptions
