@@ -1,6 +1,9 @@
 # Task 016 — First bounded, source-backed LoreDock answer
 
-Status: proposed; depends on Task 015 acceptance and the runtime gate below.
+Status: in progress, 2026-09-30; Task 015 merged through PR #18. The runtime gate
+is not passed and the complete cited-answer workflow is not delivered.
+See the [foundation checkpoint](../docs/loredock/ANSWER_FOUNDATION.md) for implemented
+internal retrieval/validation, measured gaps and the remaining work below.
 
 ## Objective
 

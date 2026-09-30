@@ -11,6 +11,8 @@ source citations. It makes no model calls and needs no Codex configuration.
 After the shared installation/build steps below, run `pnpm loredock` and open
 **http://127.0.0.1:4244**. Follow the [LoreDock guide](docs/loredock/USER_GUIDE.md)
 for indexing, search, updates, coverage, storage and the synthetic demo.
+The [answer-stage checkpoint](docs/loredock/ANSWER_FOUNDATION.md) records internal
+retrieval experiments and remaining runtime gates; AI answers are not enabled yet.
 
 ## What v0.1 does
 

@@ -1,7 +1,9 @@
 # LoreDock first-slice contracts
 
-Status: the L1 catalog subset is implemented in Task 015; claims, relations, model
-attempts and Context Packs remain proposed. See [ADR 0019](../decisions/0019-loredock-local-catalog.md)
+Status: the L1 catalog subset is implemented in Task 015. Task 016 adds internal
+bounded retrieval and mechanical answer validation; the [foundation checkpoint](ANSWER_FOUNDATION.md)
+records the unresolved runtime gate. Persisted claims, relations, model attempts and
+Context Packs remain proposed. See [ADR 0019](../decisions/0019-loredock-local-catalog.md)
 for concrete L1 storage, API, extractor and budget decisions and the
 [user guide](USER_GUIDE.md) for implemented behavior.
 The [executable fixture](../../fixtures/loredock/README.md) uses a smaller, versioned

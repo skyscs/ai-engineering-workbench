@@ -1,8 +1,32 @@
 # Development status
 
+## Task 016 — Answer foundation; runtime gate remains open
+
+In progress, 2026-09-30. Internal FTS5 question retrieval now bounds issued spans and
+UTF-8 input, retains source identity/coverage/freshness, and reports omitted material.
+Mechanical structured-answer validation checks issued citations, whole-input revocation,
+policy/registry changes, context hashes and persisted evidence integrity. No answer
+endpoint, attempt storage, model execution or answer UI has been enabled.
+
+The installed CLI 0.158.0 passed eight synthetic sandbox-helper checks. Loopback
+protocol fixtures verified structured output and failure events without an account.
+Disabled feature flags still leave delegation advertised; HOME instructions remain
+in the request. Full exec-tool enforcement/discovery is unqualified. Model execution
+stays disabled. The first offline retrieval baseline found all expected evidence for
+10/20 frozen questions; this is not an answer-quality score. See the
+[checkpoint and next steps](loredock/ANSWER_FOUNDATION.md) and
+[recorded results](fixtures/loredock-answer-foundation/README.md).
+
+Verification: full `pnpm check` passed 170 tests, strict typechecks and production
+builds. Eight new tests cover context limits, malformed/cross-build citations, revocation,
+corruption, abstention and runtime-request inspection. No real model calls were made.
+Task 016's durable workflow, browser acceptance and 20-question model evaluation remain
+outstanding; it is not marked complete.
+
 ## Task 015 — LoreDock source catalog
 
-Implemented and locally verified on 2026-09-28; checkpoint review pending. Separate
+Implemented and locally verified on 2026-09-28; merged through PR #18 (`769c652`),
+confirmed on 2026-09-30. Separate
 LoreDock daemon/web apps provide local repository registration, committed-text indexing,
 coverage, FTS5 search and exact persisted source evidence. Schema 1 owns its data and
 single-writer lock; no Workbench database or runtime changes were made.
@@ -24,7 +48,7 @@ were synthetic and zero real model calls were made. See
 
 The owner merged PR #16 to main and PR #17 into its former UX base. This iteration
 includes that already-reviewed L0 branch so both L0 and L1 reach main together.
-Task 016 remains proposed and retains the CLI qualification gate.
+Task 016 is now in progress and retains the CLI qualification gate.
 
 ## LoreDock-first direction — Task 014 foundation verified
 
