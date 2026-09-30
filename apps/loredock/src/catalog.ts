@@ -11,6 +11,9 @@ export class Catalog {
   private readonly workers = new Map<string, { controller: AbortController; done: Promise<void> }>();
   readonly limits: typeof defaults;
   private stopping = false;
+  private readonly boundaryListeners = new Set<() => void>();
+  onBoundaryChange(listener: () => void) { this.boundaryListeners.add(listener); return () => this.boundaryListeners.delete(listener); }
+  private boundaryChanged() { for (const listener of this.boundaryListeners) listener(); }
   constructor(readonly store: CatalogStore, private readonly git = new SourceGit(), limits: Partial<typeof defaults> = {}) {
     this.limits = { ...defaults, ...limits };
     store.purge();
@@ -23,7 +26,7 @@ export class Catalog {
   async addSource(value: string) {
     const identity = await this.git.identity(value, new AbortController().signal);
     if (identity.path === this.store.directory || identity.path.startsWith(this.store.directory + path.sep)) throw new CatalogError('INVALID_PATH', 'Sources must be outside the LoreDock data directory.');
-    return this.store.addSource(identity);
+    const source = this.store.addSource(identity); this.boundaryChanged(); return source;
   }
   start(requestId: string, sourceSetVersion: number, policyVersion: number) {
     const build = this.store.start(requestId, sourceSetVersion, policyVersion);
@@ -58,8 +61,8 @@ export class Catalog {
     } else throw new CatalogError('INVALID_ACTION', 'Unknown index action.');
     return this.store.build(id);
   }
-  updatePolicy(value: unknown) { this.store.updatePolicy(value); this.abortInvalidWorkers(); }
-  revoke(id: string) { this.store.revoke(id); this.abortInvalidWorkers(); this.store.purge(); }
+  updatePolicy(value: unknown) { this.store.updatePolicy(value); this.abortInvalidWorkers(); this.boundaryChanged(); }
+  revoke(id: string) { this.store.revoke(id); this.abortInvalidWorkers(); this.boundaryChanged(); this.store.purge(); }
   private abortInvalidWorkers() { for (const [id, worker] of this.workers) if (!this.store.writable(id)) worker.controller.abort(); }
   private schedule(id: string) {
     if (this.stopping || this.workers.has(id)) return;

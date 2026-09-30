@@ -1,8 +1,33 @@
 # Development status
 
+## Task 016 — Opt-in cited answers implemented; acceptance remains open
+
+In progress, 2026-09-30. The separate text runtime, durable attempts and protected
+question/answer API/UI are implemented. Schema 2/3 add normalized question retrieval,
+connection settings, immutable input/provenance, usage, explicit retry/restart and
+source-dependent answer purge. CLI 0.159.2 capability checks and the selected personal
+connection preflight passed; Workbench's adapter remains unchanged. Production answers
+require `LOREDOCK_ANSWERS=1` while acceptance is pending.
+
+Frozen retrieval recall improved from 10/20 to 19/20 without changing the corpus/oracle.
+Two bounded real-model evaluations used `gpt-5.6-terra` / medium. The second returned
+20 valid structures and 90 resolving claim citations. Conservative agent review scores
+17/20: q06 has an uncited explanation, q13 is under-informative, and q14 misses retrieval.
+The 18/20 usefulness gate is not met; human semantic review is also pending. Neither
+schema validity nor agent review is presented as human acceptance. Routing remains later.
+
+Verification: full `pnpm check` passed 182 tests, typechecks and production builds.
+The answer browser fixture passed conflict/citation/abstention, escaped text,
+failure/cancel retention, restart/history and 390px layout. Existing catalog browser
+regression passed. Both browser runs used zero models. See the
+[checkpoint and next steps](loredock/ANSWER_FOUNDATION.md),
+[ADR 0020](decisions/0020-loredock-bounded-answers.md) and
+[recorded evaluation](fixtures/loredock-answers/README.md).
+
 ## Task 015 — LoreDock source catalog
 
-Implemented and locally verified on 2026-09-28; checkpoint review pending. Separate
+Implemented and locally verified on 2026-09-28; merged through PR #18 (`769c652`),
+confirmed on 2026-09-30. Separate
 LoreDock daemon/web apps provide local repository registration, committed-text indexing,
 coverage, FTS5 search and exact persisted source evidence. Schema 1 owns its data and
 single-writer lock; no Workbench database or runtime changes were made.
@@ -24,7 +49,7 @@ were synthetic and zero real model calls were made. See
 
 The owner merged PR #16 to main and PR #17 into its former UX base. This iteration
 includes that already-reviewed L0 branch so both L0 and L1 reach main together.
-Task 016 remains proposed and retains the CLI qualification gate.
+Task 016 is now in progress and retains the CLI qualification gate.
 
 ## LoreDock-first direction — Task 014 foundation verified
 

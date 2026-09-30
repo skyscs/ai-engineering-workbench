@@ -10,6 +10,6 @@
     "start": "node dist/index.js",
     "dev": "tsx watch src/index.ts"
   },
-  "dependencies": { "@hono/node-server": "^1.19.1", "hono": "^4.9.5" },
+  "dependencies": { "@aew/ai": "workspace:*", "@hono/node-server": "^1.19.1", "hono": "^4.9.5" },
   "devDependencies": { "@types/node": "^22.17.2", "tsx": "^4.20.4", "typescript": "^5.9.2" }
 }
