@@ -5,16 +5,15 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { execute } from '../packages/ai/dist/process.js';
+import { textDisabledFeatures as disabled, textRestrictionArgs } from '../packages/ai/dist/text-policy.js';
 
 // This is a qualification experiment, never a production adapter or an account check.
 // The only provider is a loopback server returning fixed synthetic responses.
-const disabled = ['apps', 'plugins', 'hooks', 'browser_use', 'computer_use', 'image_generation',
-  'multi_agent', 'multi_agent_v2', 'shell_tool', 'view_image', 'skill_search', 'shell_snapshot',
-  'workspace_dependencies', 'unbounded_connection_retries', 'enable_request_compression', 'goals', 'sleep_tool'];
 export const instructionCanaries = {
   ancestor: 'LOREDOCK_ANCESTOR_INSTRUCTIONS_CANARY',
   project: 'LOREDOCK_PROJECT_INSTRUCTIONS_CANARY',
   home: 'LOREDOCK_HOME_INSTRUCTIONS_CANARY',
+  skill: 'LOREDOCK_SKILL_INSTRUCTIONS_CANARY',
 };
 const outputSchema = { type: 'object', properties: { ok: { type: 'boolean' } }, required: ['ok'], additionalProperties: false };
 
@@ -70,7 +69,7 @@ export async function probeRuntime({ executable, sandboxHelper }) {
     const version = await run(['--version']);
     const help = await run(['sandbox', '--help']);
     const execHelp = await run(['exec', '--help']);
-    if (version.exitCode !== 0 || !/^codex-cli \d+\.\d+\.\d+\n?$/.test(version.stdout)) throw new Error('CLI version diagnostic failed.');
+    if (version.exitCode !== 0 || !/^codex-cli \d+\.\d+\.\d+\n?$/.test(version.stdout)) throw new Error(`CLI version diagnostic failed: ${JSON.stringify(version)}`);
     const config = `cli_auth_credentials_store="file"\ndefault_permissions="loredock-probe"\n` +
       `[permissions.loredock-probe.filesystem]\n":minimal"="read"\n${JSON.stringify(input)}="read"\n${JSON.stringify(sandboxHelper)}="read"\n` +
       '[permissions.loredock-probe.network]\nenabled=false\n';
@@ -97,23 +96,31 @@ export async function probeRuntime({ executable, sandboxHelper }) {
       { signal: controller.signal, stdout: text => { if (text.includes('PROBE_READY')) controller.abort(); } }),
       r => r.failure === 'CANCELLED' && r.stdout === 'PROBE_READY');
     const requests = [];
+    const toolChecks = [];
+    let pendingTool;
     let mode = 'success', connections = 0;
     server = createServer(async (request, response) => {
       const chunks = []; let bytes = 0;
       for await (const chunk of request) { bytes += chunk.length; if (bytes > 256 * 1024) { response.writeHead(413).end(); return; } chunks.push(chunk); }
-      if (request.method !== 'POST' || request.url !== '/v1/responses' || requests.length >= 4) { response.writeHead(404).end(); return; }
-      try { requests.push({ mode, inspection: inspectRequest(JSON.parse(Buffer.concat(chunks).toString())) }); }
+      if (request.method !== 'POST' || request.url !== '/v1/responses' || requests.length >= 12) { response.writeHead(404).end(); return; }
+      let body;
+      try { body = JSON.parse(Buffer.concat(chunks).toString()); requests.push({ mode, inspection: inspectRequest(body) }); }
       catch { response.writeHead(400).end(); return; }
       if (mode === 'error') { response.writeHead(400, { 'content-type': 'application/json' }).end('{"error":{"message":"Synthetic provider rejection","type":"invalid_request_error"}}'); return; }
-      const item = { id: 'msg_probe', type: 'message', role: 'assistant', status: 'completed',
+      let item = { id: 'msg_probe', type: 'message', role: 'assistant', status: 'completed',
         content: [{ type: 'output_text', text: '{"ok":true}', annotations: [] }] };
+      if (pendingTool) {
+        item = { id: 'tool_probe', call_id: 'call_probe', type: 'custom_tool_call', name: 'exec', namespace: 'functions', input: pendingTool };
+        pendingTool = null;
+      } else if (mode === 'tools') {
+        toolChecks.push(body.input.filter(entry => entry.type.endsWith('tool_call_output')));
+      }
       const result = { id: 'resp_probe', object: 'response', status: 'completed', model: 'gpt-5.6-terra', output: [item],
         usage: { input_tokens: 10, output_tokens: 5, total_tokens: 15, input_tokens_details: { cached_tokens: 0 }, output_tokens_details: { reasoning_tokens: 0 } } };
       response.writeHead(200, { 'content-type': 'text/event-stream' });
       for (const event of [
         { type: 'response.created', response: { ...result, status: 'in_progress', output: [] } },
         { type: 'response.output_item.added', output_index: 0, item: { ...item, status: 'in_progress', content: [] } },
-        { type: 'response.output_text.delta', item_id: item.id, output_index: 0, content_index: 0, delta: '{"ok":true}' },
         { type: 'response.output_item.done', output_index: 0, item }, { type: 'response.completed', response: result },
       ]) response.write(`event: ${event.type}\ndata: ${JSON.stringify(event)}\n\n`);
       response.end();
@@ -128,32 +135,41 @@ export async function probeRuntime({ executable, sandboxHelper }) {
     const before = connections;
     record('networkDenied', await sandbox(connect), r => r.exitCode !== 0 && r.exitCode !== null && r.stdout === 'PROBE_STARTED\n' && connections === before);
     for (const [location, key] of [[root, 'ancestor'], [input, 'project'], [configHome, 'home']]) await writeFile(path.join(location, 'AGENTS.md'), instructionCanaries[key]);
+    await mkdir(path.join(configHome, 'skills/probe'), { recursive: true });
+    await writeFile(path.join(configHome, 'skills/probe/SKILL.md'), `---\nname: probe\ndescription: ${instructionCanaries.skill}\n---\n${instructionCanaries.skill}`);
     await writeFile(path.join(root, 'schema.json'), JSON.stringify(outputSchema));
     const provider = `model="gpt-5.6-terra"\nmodel_provider="probe"\nproject_doc_max_bytes=0\nproject_root_markers=[]\nweb_search="disabled"\nnotify=[]\n` +
       `[model_providers.probe]\nname="Synthetic loopback probe"\nbase_url="http://127.0.0.1:${port}/v1"\nwire_api="responses"\nrequires_openai_auth=false\nrequest_max_retries=0\nstream_max_retries=0\n` +
       `[features]\n${disabled.map(feature => `${feature}=false`).join('\n')}\n`;
     // Keep top-level keys outside the preceding tables.
     await writeFile(path.join(configHome, 'config.toml'), config.slice(0, config.indexOf('[permissions')) + provider + config.slice(config.indexOf('[permissions')));
-    const featureState = await run(['features', 'list']);
+    const featureState = await run([...textRestrictionArgs, 'features', 'list']);
     const flagsApplied = disabled.every(feature => new RegExp(`^${feature}\\s+.*\\sfalse$`, 'm').test(featureState.stdout));
-    const args = ['--no-daemon', '-a', 'never', 'exec', '--ephemeral', '--ignore-rules', '--skip-git-repo-check', '--json',
+    const args = ['--no-daemon', ...textRestrictionArgs, '-a', 'never', 'exec', '--sandbox', 'read-only', '--ephemeral', '--ignore-rules', '--skip-git-repo-check', '--json',
       '--output-schema', path.join(root, 'schema.json'), '-C', input, '-'];
     const structured = await run(args, { stdin: 'Synthetic protocol test: return {"ok":true}.' });
     mode = 'error';
     const rejected = await run(args, { stdin: 'Synthetic provider-error test.' });
+    mode = 'tools';
+    pendingTool = 'text({ tools: ALL_TOOLS.map(tool => tool.name), process: typeof process, require: typeof require, fetch: typeof fetch, shell: typeof tools.exec_command });';
+    const toolInventory = await run(args, { stdin: 'Synthetic tool inventory test.' });
+    pendingTool = `text(await tools.apply_patch(${JSON.stringify('*** Begin Patch\n*** Update File: ' + allowed + '\n@@\n-LOREDOCK_ALLOWED_CANARY\n+changed\n*** End Patch')}));`;
+    const patchDenied = await run(args, { stdin: 'Synthetic denied source patch test.' });
+    pendingTool = `text(await tools.exec_command({cmd:${JSON.stringify('/bin/cat ' + outside)}}));`;
+    const shellDenied = await run(args, { stdin: 'Synthetic unavailable shell test.' });
     const unchanged = await readFile(allowed, 'utf8') === 'LOREDOCK_ALLOWED_CANARY' && await readFile(outside, 'utf8') === 'LOREDOCK_OUTSIDE_CANARY';
     const installationUnchanged = identity.executableHash === await digest(executable) && identity.sandboxHelperHash === await digest(sandboxHelper);
-    return { schemaVersion: 'loredock-runtime-probe/1', date: new Date().toISOString(), nodeVersion: process.version, platform: process.platform,
+    return { schemaVersion: 'loredock-runtime-probe/2', date: new Date().toISOString(), nodeVersion: process.version, platform: process.platform,
       identity, cliVersion: version.stdout.trim(), modelRequests: 0, modelUsage: null,
       syntheticRequests: requests.length, syntheticUsageIsNotModelUsage: true,
       help: { sandboxProfile: help.stdout.includes('--permission-profile'), sandboxPlatformSubcommand: help.stdout.includes('sandbox linux'),
         ignoreUserConfig: execHelp.stdout.includes('--ignore-user-config'), structuredOutput: execHelp.stdout.includes('--output-schema') },
       checks, sourceBytesUnchanged: unchanged, installationUnchanged, disabledFeatures: disabled, flagsApplied,
-      requests, structured, rejected,
+      requests, structured, rejected, toolChecks, toolInventory, patchDenied, shellDenied,
+      agentsDisabled: requests.every(request => !request.inspection.tools.some(tool => tool.startsWith('collaboration.'))),
       gate: 'not-qualified',
-      unresolved: ['Exec tool-call enforcement is not proven by sandbox-helper results.',
-        'Advertised tools require explicit qualification, including delegation and apply_patch.',
-        'Home instructions and project configuration discovery need a production policy.',
+      unresolved: ['Production configuration preflight and instruction discovery still need qualification.',
+        'Only the synthetic configuration has been exercised through exec tool calls.',
         'No selected-account real-model run or frozen-question evaluation has been performed.'] };
   } finally {
     if (server) { server.closeAllConnections(); await new Promise(resolve => server.close(resolve)); }

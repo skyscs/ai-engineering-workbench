@@ -1,11 +1,11 @@
 # LoreDock first-slice contracts
 
-Status: the L1 catalog subset is implemented in Task 015. Task 016 adds internal
-bounded retrieval and mechanical answer validation; the [foundation checkpoint](ANSWER_FOUNDATION.md)
-records the unresolved runtime gate. Persisted claims, relations, model attempts and
-Context Packs remain proposed. See [ADR 0019](../decisions/0019-loredock-local-catalog.md)
-for concrete L1 storage, API, extractor and budget decisions and the
-[user guide](USER_GUIDE.md) for implemented behavior.
+Status: L1 is implemented in Task 015. Task 016 implements bounded retrieval,
+durable cited-answer attempts and an opt-in UI; human semantic acceptance remains open.
+See [ADR 0020](../decisions/0020-loredock-bounded-answers.md) for schema 2/3, runtime
+qualification and publication decisions, and the [answer checkpoint](ANSWER_FOUNDATION.md)
+for measured results. Relations and Context Packs remain proposed. The
+[user guide](USER_GUIDE.md) describes available behavior.
 The [executable fixture](../../fixtures/loredock/README.md) uses a smaller, versioned
 fixture manifest. Do not treat its IDs or JSON shape as a public product contract.
 
@@ -94,8 +94,9 @@ policy/new build. Limits never silently drop coverage or start another model cal
 | Text files | 1 MiB per file; 50 MiB total admitted text per build. |
 | Extraction units | One file per unit; bounded parser work; 5-minute build wall budget with checkpoint. |
 | Retrieval | At most 30 spans and 64 KiB UTF-8 text after deduplication. |
-| Answer run | One runtime call, 120-second wall timeout, at most 256 KiB captured output and 20 claims. |
-| Retry | No automatic model retries; explicit resume after interruption. |
+| Complete prompt | 96 KiB UTF-8, including metadata and instructions; CLI overhead is separate. |
+| Answer run | One runtime invocation, 120-second wall timeout, at most 256 KiB captured output and 20 claims. |
+| Retry | No automatic application retries; explicit new attempt after interruption. CLI transport requests remain bounded by the wall limit, not an HTTP request count. |
 | Usage | Record reported tokens; use `null` plus a reason if unavailable. No invented monetary total. |
 
 Both character/byte and token limits must be distinguished in the UI and runtime

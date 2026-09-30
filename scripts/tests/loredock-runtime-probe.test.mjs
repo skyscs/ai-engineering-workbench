@@ -8,7 +8,7 @@ test('qualification inspects both direct and additional tool definitions', () =>
     { type: 'message', content: [{ text: instructionCanaries.home }] },
   ] });
   assert.deepEqual(result.tools, ['collaboration.spawn_agent', 'web_search']);
-  assert.deepEqual(result.instructionCanaries, { ancestor: false, project: false, home: true });
+  assert.deepEqual(result.instructionCanaries, { ancestor: false, project: false, home: true, skill: false });
   assert.equal(result.strictSchema, false);
   assert.equal(result.schemaForwarded, false);
 });

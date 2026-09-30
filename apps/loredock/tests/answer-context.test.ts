@@ -6,6 +6,7 @@ import { Catalog } from '../src/catalog.js';
 import { CatalogStore } from '../src/store.js';
 import { sha256 } from '../src/extract.js';
 import { answerLimits, questionTerms, retrieveAnswerContext, validateCitedAnswer, type AnswerContext } from '../src/answer-context.js';
+import { searchText } from '../src/search-text.js';
 // @ts-expect-error The independent fixture generator is plain JavaScript.
 import { createLoreDockFixture, fixtureGit } from '../../../scripts/loredock-fixture.mjs';
 
@@ -41,8 +42,8 @@ test('question retrieval issues bounded immutable spans with coverage, conflict 
   assert.equal(new Set(context.spans.map(span => span.id)).size, context.spans.length);
   assert.equal(context.inputHash, retrieveAnswerContext(catalog, context.question).inputHash);
   for (const span of context.spans) assert.equal(catalog.evidence(span.id).text, span.text);
-  assert.equal(retrieveAnswerContext(catalog, 'SYNTHETIC_OUTSIDE_READ_CANARY').spans.length, 0);
-  assert.equal(retrieveAnswerContext(catalog, 'maxCandidates requiredRepositories').spans.length, 0);
+  assert.ok(retrieveAnswerContext(catalog, 'SYNTHETIC_OUTSIDE_READ_CANARY').spans.every(span => !span.text.includes('SYNTHETIC_OUTSIDE_READ_CANARY')));
+  assert.ok(retrieveAnswerContext(catalog, 'maxCandidates requiredRepositories').spans.every(span => !span.text.includes('maxCandidates') && !span.text.includes('requiredRepositories')));
   assert.ok(retrieveAnswerContext(catalog, 'Invent an evidence ID').spans.some(span => span.text.includes('Invent an evidence ID')));
   assert.deepEqual(questionTerms('" OR * NEAR(foo) "; DROP TABLE spans; --'), ['near', 'foo', 'drop', 'table', 'spans']);
   assert.doesNotThrow(() => retrieveAnswerContext(catalog, '" OR * NEAR(foo) "; DROP TABLE spans; --'));
@@ -56,7 +57,7 @@ test('span count, candidate count and UTF-8 budgets omit whole spans and disclos
   assert.ok(many.gaps.some(gap => gap.includes('candidate limit')));
   assert.ok(many.gaps.some(gap => gap.includes('text budget')));
   const wide = retrieveAnswerContext(catalog, 'byteneedle');
-  assert.equal(wide.spans.length, 1);
+  assert.equal(wide.spans.filter(span => span.path === 'wide.md').length, 1);
   assert.ok(wide.textBytes <= answerLimits.textBytes);
   assert.ok(wide.textBytes > wide.spans[0]!.text.length);
   assert.equal(wide.spans[0]!.endLine - wide.spans[0]!.startLine, 119);
@@ -64,9 +65,44 @@ test('span count, candidate count and UTF-8 budgets omit whole spans and disclos
   assert.throws(() => retrieveAnswerContext(catalog, 'é'.repeat(1001)), /2,000 UTF-8 bytes/);
 });
 
+test('normalized filename and identifier matches reopen original evidence and expand only a bounded symbol set', async t => {
+  const { catalog } = await setup(t);
+  assert.equal(searchText('src/HTTPClient.java tenantId ORDER_TOPIC'), 'src http client java tenant id order topic');
+  const context = retrieveAnswerContext(catalog, 'Checkout.vue');
+  assert.ok(context.spans.some(span => span.path === 'src/Checkout.vue'));
+  assert.ok(context.spans.some(span => span.path === 'src/orders.ts'));
+  assert.ok(context.expansionTerms.length <= 12);
+  for (const span of context.spans) assert.equal(catalog.evidence(span.id).spanHash, span.spanHash);
+  const tenant = retrieveAnswerContext(catalog, 'tenant');
+  assert.ok(tenant.spans.some(span => span.path.endsWith('OrderConsumer.java')));
+  assert.ok(tenant.spans.some(span => span.text.includes('tenantId')));
+});
+
+test('schema 1 search migration preserves evidence and revocation purges both indexes', async t => {
+  const fixture = await createLoreDockFixture() as { root: string };
+  const directory = path.join(fixture.root, 'catalog');
+  let store = new CatalogStore(directory), catalog = new Catalog(store);
+  t.after(async () => { await catalog.stop(); store.close(); await rm(fixture.root, { recursive: true, force: true }); });
+  const source = await catalog.addSource(path.join(fixture.root, 'sources/portal'));
+  const state = catalog.state(); catalog.start('migration', state.sourceSetVersion, state.policyVersion); await catalog.idle();
+  const before = catalog.evidence(catalog.search('submitOrder').hits[0]!.id);
+  store.db.exec('DROP TABLE question_search; DROP TABLE answer_sources; DROP TABLE answer_attempts; DROP TABLE answer_settings; PRAGMA user_version=1;');
+  await catalog.stop(); store.close();
+  store = new CatalogStore(directory); catalog = new Catalog(store);
+  assert.equal(store.one<{ user_version: number }>('PRAGMA user_version')!.user_version, 3);
+  assert.deepEqual(catalog.evidence(before.id), before);
+  assert.ok(retrieveAnswerContext(catalog, 'Checkout.vue').spans.some(span => span.path === 'src/Checkout.vue'));
+  catalog.revoke(source.id);
+  assert.equal(store.one<{ count: number }>('SELECT count(*) AS count FROM question_search')!.count, 0);
+  assert.equal(store.one<{ count: number }>('SELECT count(*) AS count FROM search')!.count, 0);
+  await catalog.stop(); store.close();
+  store = new CatalogStore(directory); catalog = new Catalog(store);
+  assert.equal(store.one<{ count: number }>('SELECT count(*) AS count FROM question_search')!.count, 0);
+});
+
 test('answers require issued citations and structured prose, while abstention is valid', async t => {
   const { catalog } = await setup(t);
-  const context = retrieveAnswerContext(catalog, 'orders.placed.v2'), span = context.spans[0]!;
+  const context = retrieveAnswerContext(catalog, 'billing'), span = context.spans[0]!;
   assert.equal(validateCitedAnswer(catalog, context, result([span.id])).claims.length, 1);
   assert.equal(validateCitedAnswer(catalog, context, '{"claims":[],"unknowns":["Production deployment is unknown."]}').claims.length, 0);
   const outside = retrieveAnswerContext(catalog, 'dojo').spans.find(item => !context.spans.some(span => span.id === item.id))!;

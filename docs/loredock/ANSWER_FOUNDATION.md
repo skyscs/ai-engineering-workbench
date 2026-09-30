@@ -1,120 +1,111 @@
-# LoreDock L2 foundation and remaining gates
+# LoreDock L2 answer workflow and acceptance checkpoint
 
-Date: 2026-09-30. Task 015 reached main through merged PR #18 (`769c652`).
-Task 016 is **in progress, not accepted**. This checkpoint adds an internal retrieval
-and mechanical answer-validation module plus reproducible runtime experiments.
-The application still provides the model-free source catalog. No answer endpoint,
-answer persistence, model execution or question/answer UI is enabled.
+Date: 2026-09-30. Task 015 is merged through PR #18. Task 016 now includes the
+source → index → bounded context → model → cited answer workflow, but is **not accepted**.
+The answer pilot requires `LOREDOCK_ANSWERS=1`; ordinary startup remains model-free.
+See the [usage guide](USER_GUIDE.md#ask-a-question-opt-in-pilot),
+[ADR 0020](../decisions/0020-loredock-bounded-answers.md) and
+[recorded evidence](../fixtures/loredock-answers/README.md).
 
-## Runtime observations
+## Delivered
 
-The [probe](../../scripts/loredock-runtime-probe.mjs) uses disposable synthetic files,
-empty HOME/CODEX_HOME, an allowlisted environment and a loopback HTTP server returning
-fixed responses. It never reads/copies an existing account's credentials, starts a
-real model, or changes the installed CLI/configuration. The selected executable and
-native sandbox helper are recorded by canonical path and SHA-256. Results and precise
-limits are in the [recorded artifacts](../fixtures/loredock-answer-foundation/README.md).
+- Separate text-only runtime for the selected Linux Codex 0.159.2 installation,
+  `gpt-5.6-terra` / medium. Workbench runtime compatibility is unchanged.
+- Question retrieval with filename/identifier normalization, one bounded literal-symbol
+  expansion and source README orientation. Original evidence bytes/locators are preserved.
+- Durable attempt intention, immutable issued context and provenance before dispatch;
+  idempotent request replay, explicit retry, usage receipts and atomic publication.
+- Cancellation, restart, registry/policy changes and revocation fence late results.
+  Failed attempts retain the previous authorized answer; revocation purges derivatives.
+- Local protected API and browser question/answer panel with saved setup, model-free
+  preview, escaped prose, source citations, conflicts, unknowns, freshness and history.
 
-The installed CLI reports `codex-cli 0.158.0`. Its actual syntax is
-`codex sandbox -P <profile> -C <directory> <command>`, without a `linux` subcommand.
-This explains the earlier L0 `execvp linux` failure. The development sandbox itself
-still prevents nested execution, so the probe was explicitly approved to run outside
-it; the tested child commands still ran inside the CLI's sandbox.
+Schema 1 catalogs migrate transactionally through schema 2 (question FTS) and schema 3
+(answer workflow). The browser shows the saved answer's index instead of silently
+presenting an older answer as current. Source search continues to use its original
+literal AND semantics; question retrieval is a separate index/query path.
 
-An explicit read-only profile granted the synthetic input directory, minimal system
-runtime paths and the exact native Codex helper binary. Network access was disabled.
-The helper binary grant is necessary when it is installed outside the minimal system
-paths. No grant to the user's entire home or source directory was used.
+## Runtime qualification and its limits
 
-| Experiment | Observed result | Limit |
-| --- | --- | --- |
-| Read admitted input | Passed | Synthetic helper command only. |
-| Read neighboring file | Denied after command-start sentinel | No claim about every possible tool path. |
-| Follow symlink outside input | Denied | Synthetic symlink case. |
-| Write admitted source | Denied; original bytes unchanged | Helper shell write, not model-generated apply_patch. |
-| Read outside input in nested shell | Denied | One child-shell case. |
-| Connect to loopback listener | Allowed in positive control, denied with network disabled | Command network only; provider transport is separate. |
-| Cancel running sandbox command | Shared process helper reports CANCELLED | Does not establish provider-side cancellation or billing. |
-| Structured response | Exact schema forwarded; fixed response and synthetic usage emitted | Mock protocol result, not model/schema quality. |
-| Provider error | One synthetic HTTP 400 becomes turn.failed and exit 1 | No automatic retry observed for this case. |
-| Feature restrictions | All requested feature flags report false | Advertised tools still include collaboration.spawn_agent and functions.exec. |
-| Instruction discovery | Ancestor/project AGENTS canaries absent; HOME canary present with project_doc_max_bytes=0 | No production discovery policy has been qualified. |
+The original CLI 0.158.0 experiments remain in the
+[foundation record](../fixtures/loredock-answer-foundation/README.md). After the owner
+completed the CLI update, synthetic qualification ran on 0.159.2. Eight sandbox-helper
+checks passed. Actual Code Mode tool calls verified the available tool inventory,
+blocked patching and unavailable shell. `agents.enabled=false` removes delegation;
+feature flags alone were insufficient. No subagent was launched.
 
-These observations **do not pass the mandatory runtime gate**. A sandbox helper is
-not proof that every `exec` tool follows the same policy. Advertised delegation despite
-disabled flags is an unresolved capability, not proof that a subagent was launched.
-No subagent was launched by this probe. Disabling `code_mode_host` in an additional
-exploratory run produced an error item while still advertising the same top-level
-tools; it is not an accepted workaround.
+Ancestor/project instruction canaries and the skill canary were absent from requests.
+The global HOME instruction canary remained present, so production preflight rejects
+selected configuration homes containing global AGENTS files. The selected personal
+`.codex-plus` connection passed preflight, with no model call or authentication-store
+inspection. Exact CLI version, disabled features, enabled MCP absence and canonical
+connection metadata are checked before dispatch. The CLI reads its own authentication.
 
-The [official permissions reference](https://learn.chatgpt.com/docs/permissions)
-describes custom profiles and warns that legacy sandbox configuration can supersede
-them. The [configuration reference](https://learn.chatgpt.com/docs/config-file/config-reference)
-documents feature/configuration controls. Installed help and measured behavior take
-precedence over assuming those controls provide the required boundary. No Workbench
-version allowlist or production runtime code was changed.
+The standalone probe deliberately retains `gate: not-qualified`: by itself, a synthetic
+configuration does not qualify a production connection or answer quality. The separate
+selected-connection preflight, application tests and real runs supply that additional
+evidence. They do not qualify arbitrary CLI versions, accounts, profiles or platforms.
 
-## Internal context and answer boundary
+Production uses an empty owned cwd and disabled model tools with read-only execution.
+It does **not** use the strict filesystem namespace tested separately by the sandbox
+helper. Trusted CLI internals may read their installation/configuration and contact the
+provider. This capability boundary and its trust assumptions are explicit in ADR 0020.
+A configuration directory is not proof of account identity. Launcher/config metadata
+fingerprints are change detection, not hashes of all transitive installation files.
 
-`apps/loredock/src/answer-context.ts` retrieves issued spans from one published,
-authorized build using literal FTS5 terms. It bounds candidates at 120, issued spans
-at 30 and text at 64 KiB measured as UTF-8 bytes. It omits whole spans and records
-budget gaps rather than inventing new citation ranges or silently truncating evidence.
-Source identity is retained even when two repositories contain identical text.
+## Measured retrieval and answer quality
 
-The context records the question, retrieval version, input hash, exact span identities,
-revision vector, build policy/source-set version, current registry version, coverage,
-freshness and unknown deployment coherence. Empty retrieval explicitly says it does
-not prove system-wide absence. Historical source-set versions remain inspectable;
-revoked source text is excluded. Coverage counts describe the historical full build.
+The frozen oracle and repository corpus were not changed or placed in model inputs.
+Generic retrieval improved complete expected-evidence recall from **10/20** to **19/20**.
+Question q14, frontend module conventions, still has no admitted lexical matches.
+Russian tokenization is available, but cross-language semantic retrieval is not.
 
-The validator accepts bounded facts, inferences, conflicts and unknowns. Every claim
-must cite an issued ID; a conflict requires at least two distinct citations. It rejects
-malformed/extra executable fields, unknown or out-of-context/build citations, duplicate
-IDs, modified input, damaged evidence and policy/registry changes. It reopens all
-issued evidence, including uncited input. It does not validate semantic truth: tests
-deliberately demonstrate that false prose can cite a valid locator.
+Two explicitly bounded real-model evaluations ran, each with at most 20 attempts and
+no automatic application retries. The first prompt produced 19 mechanically accepted
+answers and one rejection; its duplicate-delivery inference was too strong. The second
+prompt clarified citation placement, unsupported guarantees and uncertainty handling.
 
-This is an **internal foundation**, not a durable issuance/publication protocol.
-The next implementation must persist the context before dispatch and validate it
-again inside the atomic publication boundary. No HTTP endpoint accepts client-supplied
-context objects. Runtime identity/model/effort, attempt lifecycle, usage and failure
-history still require implementation.
+The second evaluation produced **20 structurally accepted answers and 90/90 resolving
+claim citations**. Conservative agent semantic review scores **17/20 useful and correctly
+presented answers**. This is not human acceptance:
 
-## Retrieval measurement
+| Question | Remaining issue |
+| --- | --- |
+| q06 — production topic | Correct abstention, but the explanatory ORDER_TOPIC fact is in unknowns without a structured citation. |
+| q13 — Java framework | Safe but unhelpfully terse abstention despite available Java 17/no-framework evidence. |
+| q14 — frontend conventions | Retrieval misses all relevant spans; the model correctly abstains. |
 
-The [offline evaluator](../../scripts/loredock-retrieval-evaluation.mjs) indexes the
-real frozen three-repository corpus through the production catalog. Only question
-strings enter retrieval; oracle expectations are used afterward for comparison.
+The second run does not identify unsupported affirmative claims or unsafe assertions
+in the reviewed conflict/unknown cases, but q06 prevents claiming that every material
+assertion has a usable citation. The original **18/20 usefulness threshold is not met**.
+Human review of all assertions, unknowns and their source support remains pending.
+The ten routing cases were not run and no production routing is delivered.
 
-The first lexical baseline retrieves all expected evidence for **10 of 20 questions**.
-This is evidence recall, not a 10/20 answer score. There are no model answers,
-unsupported-claim results or semantic reviews. The recorded per-question misses show
-weaknesses in matching natural language to camelCase identifiers, filenames and related
-implementation files. Russian questions are tokenized, but cross-language semantic
-retrieval is not implemented and must not be advertised as supported.
+Reported usage across both runs is 572,202 input tokens and 12,909 output tokens,
+including 222,208 cached input tokens. These are CLI-reported counts, not money or a
+prediction for large real projects. CLI/system overhead is substantial even with small
+source contexts. The first failed answer still has a usage receipt; raw rejected prose
+was not retained in that evaluator version. The second evaluator records raw output
+for diagnosis outside product publication.
 
-Keep this first measurement as a baseline. Improve retrieval generically and version
-the next experiment; do not add question IDs, oracle answers, repository names or
-fixture-specific expansions to product code. Evaluate filename/symbol tokenization
-and bounded query expansion before introducing embeddings or fetching whole corpora.
+## Verification and continuation
 
-## Next steps within Task 016
+`pnpm check` passes **182 tests**, strict typechecks and production builds. Browser
+acceptance with a test-only injected runtime covers escaped prose, conflict, citation
+opening, abstention, failure/cancel retention, restart/history and 390px layout. The
+existing catalog browser flow also passes. Browser fixtures make no model calls and
+cannot be selected through production API/configuration.
 
-1. Prove restrictions through actual `exec` tool calls against synthetic canaries,
-   including patching and all advertised capabilities, using a bounded local protocol
-   fixture. Establish a verified way to prevent delegation/extra calls and unwanted
-   instruction/config discovery. Keep model execution disabled until that succeeds.
-2. Improve and remeasure generic retrieval, including mixed-language questions and
-   README/code conflicts. Preserve the frozen 20-question oracle and this baseline.
-3. Implement the minimal qualified runtime request and durable attempt/publication
-   state, including request replay, cancellation races and restart ambiguity.
-4. Add the question/answer UI and verify escaped prose, citations, conflicts, abstention
-   and retained history after failure/cancel in a browser.
-5. Only then run the separately bounded real-model corpus evaluation using the explicitly
-   permitted connection/model. Require the original 18/20 useful-answer and safety gates;
-   do not substitute mock responses or lexical recall for acceptance.
+Before default activation or L3 work:
 
-No external setup change or additional account access is requested at this checkpoint.
-The remaining uncertainty concerns runtime enforcement and application work, not GitHub
-authorization. Full graph extraction and Workbench routing remain later tasks.
+1. Improve the generic separation of missing information from source-backed explanation;
+   keep every substantive explanation in a cited claim. Avoid question-specific fixes.
+2. Improve useful summaries when evidence explicitly records an absent implementation,
+   and investigate bounded vocabulary/path-based retrieval for the q14 class of miss.
+3. Run another explicitly bounded, separately recorded evaluation after a justified
+   change. Preserve both earlier runs; do not choose the best answer per question.
+4. Obtain human semantic review against the frozen oracle and original spans. Enable
+   answers by default only after the unchanged quality and safety gates pass.
+
+The pilot implementation and review evidence are ready in draft PR #19. Acceptance is
+left open rather than equating schema success with a complete source-understanding tool.

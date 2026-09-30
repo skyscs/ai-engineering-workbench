@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "loredock-browser/1",
+  "sources": 3,
+  "initialIndexedFiles": 18,
+  "initialExcludedFiles": 9,
+  "topicMatches": 3,
+  "evidenceOpened": true,
+  "keyboardFocus": true,
+  "mobileWidth": 390,
+  "sourceRevocation": true,
+  "policyFencing": true,
+  "reindex": true,
+  "restartPersistence": true,
+  "sourceCheckoutsUnchanged": true,
+  "modelRequests": 0
+}

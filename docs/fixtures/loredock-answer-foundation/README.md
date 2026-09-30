@@ -1,5 +1,9 @@
 # LoreDock answer foundation evidence
 
+Historical checkpoint. The [subsequent answer pilot record](../loredock-answers/README.md)
+adds CLI 0.159.2 qualification, improved retrieval, durable answers, browser acceptance
+and real-model evaluations. The original results below are preserved unchanged.
+
 Date: 2026-09-30. Linux, Node 22.23.2, CLI 0.158.0. This is a partial Task 016
 checkpoint, not answer acceptance. Both experiments made **zero real model calls**.
 

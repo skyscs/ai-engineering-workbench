@@ -7,8 +7,10 @@ import { bodyLimit } from 'hono/body-limit';
 import { serveStatic } from '@hono/node-server/serve-static';
 import { Catalog } from './catalog.js';
 import { CatalogError } from './types.js';
+import type { Answers } from './answers.js';
+import type { TextConnection } from '@aew/ai';
 
-export function createApp(catalog: Catalog, options: { publicDir?: string; development?: boolean } = {}) {
+export function createApp(catalog: Catalog, options: { publicDir?: string; development?: boolean; answers?: Answers } = {}) {
   const app = new Hono();
   const hosts = new Set(['127.0.0.1:4244', ...options.development ? ['127.0.0.1:5174'] : []]);
   const origins = new Set([...hosts].map(host => `http://${host}`));
@@ -41,7 +43,7 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
     }
     await next();
   });
-  app.get('/api/health', c => c.json({ service: 'loredock', version: '0.1.0', modelExecution: false }));
+  app.get('/api/health', c => c.json({ service: 'loredock', version: '0.1.0', modelExecution: Boolean(options.answers) }));
   app.post('/api/session', c => {
     const existing = sessions.get(getCookie(c, 'loredock_session') ?? '');
     if (existing) return c.json({ token: existing.token });
@@ -75,6 +77,23 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
   app.post('/api/builds/:id/:action', c => c.json(catalog.control(c.req.param('id'), c.req.param('action'))));
   app.get('/api/search', c => c.json(catalog.search(c.req.query('q') ?? '', c.req.query('buildId'))));
   app.get('/api/evidence/:id', c => c.json(catalog.evidence(c.req.param('id'))));
+  const answers = options.answers;
+  if (answers) {
+    app.get('/api/answers', c => c.json(answers.state()));
+    app.put('/api/answers/configuration', async c => c.json(await answers.configure(await body(c.req) as unknown as TextConnection)));
+    app.post('/api/answers/preview', async c => {
+      const input = await body(c.req);
+      if (typeof input.question !== 'string' || (input.buildId !== undefined && typeof input.buildId !== 'string')) throw new CatalogError('INVALID_REQUEST', 'A question and optional index version are required.');
+      return c.json(answers.preview(input.question, input.buildId as string | undefined));
+    });
+    app.post('/api/answers', async c => {
+      const input = await body(c.req);
+      if (![input.requestId, input.question, input.buildId, input.inputHash].every(value => typeof value === 'string')) throw new CatalogError('INVALID_REQUEST', 'Request ID and reviewed question context are required.');
+      return c.json(answers.start(input.requestId as string, input.question as string, input.buildId as string, input.inputHash as string), 202);
+    });
+    app.get('/api/answers/:id', c => c.json(answers.get(c.req.param('id'))));
+    app.post('/api/answers/:id/cancel', c => c.json(answers.cancel(c.req.param('id'))));
+  }
   app.all('/api', c => c.json({ error: { message: 'Unknown API route.' } }, 404));
   app.all('/api/*', c => c.json({ error: { message: 'Unknown API route.' } }, 404));
   if (options.publicDir && existsSync(path.join(options.publicDir, 'index.html'))) {

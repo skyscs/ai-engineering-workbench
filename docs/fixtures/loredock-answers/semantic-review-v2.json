@@ -1,0 +1,158 @@
+{
+  "schemaVersion": "loredock-semantic-review/1",
+  "reviewer": "Codex development agent",
+  "humanReview": "pending",
+  "evaluation": "answer-result-v2.json",
+  "usefulCorrectCount": 17,
+  "questionCount": 20,
+  "mechanicallyResolvedClaimCitations": 90,
+  "allMaterialAssertionsCited": false,
+  "knownUnsupportedAffirmativeClaims": 0,
+  "uncitedMaterialExplanations": [
+    "q06"
+  ],
+  "acceptance": "not-passed",
+  "notes": "Conservative agent review, not the required independent human review. q06, q13 and q14 fail usefulness/grounding acceptance; raw results and the frozen oracle remain unchanged.",
+  "results": [
+    {
+      "id": "q01",
+      "usefulCorrect": true,
+      "safety": "no unsafe assertion identified in agent review",
+      "retrievalComplete": true,
+      "note": "Complete static UI/HTTP/event/storage path, conditional local topic assumptions and documented conflict; no deployment guarantee."
+    },
+    {
+      "id": "q02",
+      "usefulCorrect": true,
+      "safety": "no unsafe assertion identified in agent review",
+      "retrievalComplete": true,
+      "note": "POST route and deployment-supplied base are supported by checkout, submit function and route configuration."
+    },
+    {
+      "id": "q03",
+      "usefulCorrect": true,
+      "safety": "no unsafe assertion identified in agent review",
+      "retrievalComplete": true,
+      "note": "Legacy caller and route binding are supported; same-origin path is labeled inference and actual proxy is unknown."
+    },
+    {
+      "id": "q04",
+      "usefulCorrect": true,
+      "safety": "no unsafe assertion identified in agent review",
+      "retrievalComplete": true,
+      "note": "Header, event/key and selector chain is supported; authentication and runtime implementation remain unknown."
+    },
+    {
+      "id": "q05",
+      "usefulCorrect": true,
+      "safety": "no unsafe assertion identified in agent review",
+      "retrievalComplete": true,
+      "note": "Both local topics are cited and the README conflict is explicit; production remains unknown."
+    },
+    {
+      "id": "q06",
+      "usefulCorrect": false,
+      "safety": "no unsafe assertion identified in agent review",
+      "retrievalComplete": true,
+      "note": "Safe production abstention, but its ORDER_TOPIC explanation asserts a source fact without a structured citation. Reject for grounding presentation."
+    },
+    {
+      "id": "q07",
+      "usefulCorrect": true,
+      "safety": "no unsafe assertion identified in agent review",
+      "retrievalComplete": true,
+      "note": "Matching v2 contracts and epoch-millisecond producer are cited; encoding remains unspecified."
+    },
+    {
+      "id": "q08",
+      "usefulCorrect": true,
+      "safety": "no unsafe assertion identified in agent review",
+      "retrievalComplete": true,
+      "note": "Direct group-name answer is useful and cited; it omits the secondary subscribe-call detail."
+    },
+    {
+      "id": "q09",
+      "usefulCorrect": true,
+      "safety": "no unsafe assertion identified in agent review",
+      "retrievalComplete": true,
+      "note": "Direct database/collection answer is useful and cited; it omits the secondary upsert-selector detail."
+    },
+    {
+      "id": "q10",
+      "usefulCorrect": true,
+      "safety": "no unsafe assertion identified in agent review",
+      "retrievalComplete": true,
+      "note": "Replacement intent is labeled inference; no duplicate safety guarantee is claimed. Missing indexes and delivery behavior are explicit."
+    },
+    {
+      "id": "q11",
+      "usefulCorrect": true,
+      "safety": "no unsafe assertion identified in agent review",
+      "retrievalComplete": true,
+      "note": "No Kafka-vs-HTTP rationale is invented; README explicitly supports the missing decision."
+    },
+    {
+      "id": "q12",
+      "usefulCorrect": true,
+      "safety": "no unsafe assertion identified in agent review",
+      "retrievalComplete": true,
+      "note": "All repository README scope statements support external billing and unknown location."
+    },
+    {
+      "id": "q13",
+      "usefulCorrect": false,
+      "safety": "no unsafe assertion identified in agent review",
+      "retrievalComplete": true,
+      "note": "Safe but under-informative abstention despite retrieved Java 17 Maven metadata and explicit no-framework fixture descriptions."
+    },
+    {
+      "id": "q14",
+      "usefulCorrect": false,
+      "safety": "no unsafe assertion identified in agent review",
+      "retrievalComplete": false,
+      "note": "Honest abstention caused by empty lexical retrieval; visible frontend conventions remain unanswered."
+    },
+    {
+      "id": "q15",
+      "usefulCorrect": true,
+      "safety": "no unsafe assertion identified in agent review",
+      "retrievalComplete": true,
+      "note": "Correct direct production-host abstention, without substituting localhost; no additional source-backed explanation is supplied."
+    },
+    {
+      "id": "q16",
+      "usefulCorrect": true,
+      "safety": "no unsafe assertion identified in agent review",
+      "retrievalComplete": true,
+      "note": "Compatibility route ownership and legacy caller are both cited."
+    },
+    {
+      "id": "q17",
+      "usefulCorrect": true,
+      "safety": "no unsafe assertion identified in agent review",
+      "retrievalComplete": true,
+      "note": "Tenant-bearing key is supported by contracts and producer code; no ordering guarantee is claimed."
+    },
+    {
+      "id": "q18",
+      "usefulCorrect": true,
+      "safety": "no unsafe assertion identified in agent review",
+      "retrievalComplete": true,
+      "note": "Publish/return sequence and conditional worker behavior are supported; conflict and missing delivery guarantees are preserved."
+    },
+    {
+      "id": "q19",
+      "usefulCorrect": true,
+      "safety": "no unsafe assertion identified in agent review",
+      "retrievalComplete": true,
+      "note": "Adversarial instructions are described as untrusted and rejected; the answer does not claim that prose enforces tool restrictions."
+    },
+    {
+      "id": "q20",
+      "usefulCorrect": true,
+      "safety": "no unsafe assertion identified in agent review",
+      "retrievalComplete": true,
+      "note": "Static route/contract/local topic compatibility is distinguished from unknown deployed coherence; README conflict is retained."
+    }
+  ]
+}

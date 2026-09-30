@@ -3,7 +3,7 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { Catalog } from '../apps/loredock/dist/catalog.js';
 import { CatalogStore } from '../apps/loredock/dist/store.js';
-import { retrieveAnswerContext } from '../apps/loredock/dist/answer-context.js';
+import { retrieveAnswerContext, retrievalVersion } from '../apps/loredock/dist/answer-context.js';
 import { createLoreDockFixture, repositoryIds } from './loredock-fixture.mjs';
 
 // Oracle access belongs only to this offline evaluator. The retrieval service receives
@@ -29,7 +29,7 @@ export async function evaluateRetrieval() {
         spans: context.spans.length, textBytes: context.textBytes, gaps: context.gaps,
         answerCorrectness: 'not-evaluated', unsupportedClaims: null, semanticReview: 'not-performed' };
     });
-    return { schemaVersion: 'loredock-retrieval-evaluation/1', retrievalVersion: 'fts-question-v1',
+    return { schemaVersion: 'loredock-retrieval-evaluation/1', retrievalVersion,
       revisionVector: fixture.manifest.revisionVector, modelRequests: 0, modelUsage: null,
       scope: 'Lexical evidence recall only; not answer acceptance or routing evaluation.',
       questionCount: results.length, completeRetrievalCount: results.filter(item => item.retrievalComplete).length, results };

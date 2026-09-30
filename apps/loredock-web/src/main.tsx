@@ -2,21 +2,13 @@ import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
 import { createRoot } from 'react-dom/client';
 import type { ProjectState, SearchResult, Evidence } from '../../loredock/src/types';
 import './style.css';
+import { api } from './api';
+import { AnswerPanel } from './AnswerPanel';
 
-let session: Promise<string> | undefined;
-async function api<T>(url: string, method = 'GET', body?: unknown): Promise<T> {
-  session ??= fetch('/api/session', { method: 'POST', headers: { 'x-loredock-client': 'web' } }).then(async response => {
-    if (!response.ok) throw new Error('Cannot connect to LoreDock. Reload to retry.');
-    return (await response.json() as { token: string }).token;
-  });
-  const token = await session;
-  const response = await fetch('/api' + url, { method, headers: { 'Content-Type': 'application/json', 'x-loredock-csrf': token }, ...body === undefined ? {} : { body: JSON.stringify(body) } });
-  const result: unknown = await response.json();
-  if (!response.ok) throw new Error((result as { error?: { message?: string } }).error?.message ?? 'The request failed.');
-  return result as T;
-}
 function App() {
   const [state, setState] = useState<ProjectState>();
+  const [answersEnabled, setAnswersEnabled] = useState(false);
+  useEffect(() => { void api<{ modelExecution: boolean }>('/health').then(value => setAnswersEnabled(value.modelExecution)).catch(cause => setError((cause as Error).message)); }, []);
   const [error, setError] = useState(''); const [busy, setBusy] = useState(false);
   const [sourcePath, setSourcePath] = useState(''); const [query, setQuery] = useState('');
   const [selected, setSelected] = useState(''); const [results, setResults] = useState<SearchResult>();
@@ -63,7 +55,7 @@ function App() {
   }); }
 
   return <main>
-    <header><a className="brand" href="/">LoreDock<span>System sources</span></a><span className="local">Local catalog · No model calls</span></header>
+    <header><a className="brand" href="/">LoreDock<span>System sources</span></a><span className="local">{answersEnabled ? 'Local sources · Codex answers' : 'Local catalog · No model calls'}</span></header>
     <section className="intro"><p className="eyebrow">KNOW YOUR SYSTEM</p><h1>Start with the sources.</h1><p>Add your repositories, index committed files, and explore the evidence in one place.</p></section>
     {error && <div className="error" role="alert">{error}</div>}
     {!state ? <p role="status">Connecting to the local catalog…</p> : <div className="layout">
@@ -117,6 +109,7 @@ function App() {
             </details>
           </>}
         </div>
+        {answersEnabled && <AnswerPanel buildId={searchBuild} boundary={boundary.current} openEvidence={id => void act(async () => { const current = boundary.current; const response = await api<Evidence>(`/evidence/${id}`); if (current === boundary.current) setEvidence(response); })} />}
         <div className="panel">
           <h2>Explore the sources</h2><p className="muted">Search exact terms such as an endpoint, event, collection or class name.</p>
           {state.builds.filter(build => build.published && build.policyVersion === state.policyVersion).length > 0 && <label className="history">Index version<select aria-label="Index version" value={selected} onChange={event => setSelected(event.target.value)}>
@@ -137,7 +130,7 @@ function App() {
         </section>}
       </section>
     </div>}
-    <footer>Source coverage first. AI answers and system relationships are planned for later iterations.</footer>
+    <footer>{answersEnabled ? 'Source-backed answers with visible coverage, conflicts and unknowns.' : 'Source coverage first. AI answers and system relationships are planned for later iterations.'}</footer>
   </main>;
 }
 createRoot(document.getElementById('root')!).render(<App />);

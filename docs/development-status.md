@@ -1,27 +1,28 @@
 # Development status
 
-## Task 016 — Answer foundation; runtime gate remains open
+## Task 016 — Opt-in cited answers implemented; acceptance remains open
 
-In progress, 2026-09-30. Internal FTS5 question retrieval now bounds issued spans and
-UTF-8 input, retains source identity/coverage/freshness, and reports omitted material.
-Mechanical structured-answer validation checks issued citations, whole-input revocation,
-policy/registry changes, context hashes and persisted evidence integrity. No answer
-endpoint, attempt storage, model execution or answer UI has been enabled.
+In progress, 2026-09-30. The separate text runtime, durable attempts and protected
+question/answer API/UI are implemented. Schema 2/3 add normalized question retrieval,
+connection settings, immutable input/provenance, usage, explicit retry/restart and
+source-dependent answer purge. CLI 0.159.2 capability checks and the selected personal
+connection preflight passed; Workbench's adapter remains unchanged. Production answers
+require `LOREDOCK_ANSWERS=1` while acceptance is pending.
 
-The installed CLI 0.158.0 passed eight synthetic sandbox-helper checks. Loopback
-protocol fixtures verified structured output and failure events without an account.
-Disabled feature flags still leave delegation advertised; HOME instructions remain
-in the request. Full exec-tool enforcement/discovery is unqualified. Model execution
-stays disabled. The first offline retrieval baseline found all expected evidence for
-10/20 frozen questions; this is not an answer-quality score. See the
-[checkpoint and next steps](loredock/ANSWER_FOUNDATION.md) and
-[recorded results](fixtures/loredock-answer-foundation/README.md).
+Frozen retrieval recall improved from 10/20 to 19/20 without changing the corpus/oracle.
+Two bounded real-model evaluations used `gpt-5.6-terra` / medium. The second returned
+20 valid structures and 90 resolving claim citations. Conservative agent review scores
+17/20: q06 has an uncited explanation, q13 is under-informative, and q14 misses retrieval.
+The 18/20 usefulness gate is not met; human semantic review is also pending. Neither
+schema validity nor agent review is presented as human acceptance. Routing remains later.
 
-Verification: full `pnpm check` passed 170 tests, strict typechecks and production
-builds. Eight new tests cover context limits, malformed/cross-build citations, revocation,
-corruption, abstention and runtime-request inspection. No real model calls were made.
-Task 016's durable workflow, browser acceptance and 20-question model evaluation remain
-outstanding; it is not marked complete.
+Verification: full `pnpm check` passed 182 tests, typechecks and production builds.
+The answer browser fixture passed conflict/citation/abstention, escaped text,
+failure/cancel retention, restart/history and 390px layout. Existing catalog browser
+regression passed. Both browser runs used zero models. See the
+[checkpoint and next steps](loredock/ANSWER_FOUNDATION.md),
+[ADR 0020](decisions/0020-loredock-bounded-answers.md) and
+[recorded evaluation](fixtures/loredock-answers/README.md).
 
 ## Task 015 — LoreDock source catalog
 

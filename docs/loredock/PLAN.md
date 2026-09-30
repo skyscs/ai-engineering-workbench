@@ -1,9 +1,9 @@
 # LoreDock first, Workbench second
 
 Status: L0 and L1 merged through PR #18; L2 in progress, 2026-09-30.
-The [L2 foundation checkpoint](ANSWER_FOUNDATION.md) records internal retrieval,
-validation and an unresolved runtime gate. The separate [source catalog](USER_GUIDE.md)
-is runnable; AI answers, system relationships and the Workbench bridge remain planned.
+The [L2 answer checkpoint](ANSWER_FOUNDATION.md) records the opt-in answer workflow,
+runtime qualification, browser checks and frozen-question evaluations. Human semantic
+acceptance is still required; relationships and the Workbench bridge remain planned.
 See [L0 measurements and blockers](FEASIBILITY.md), [contracts](CONTRACTS.md),
 [Task 015](../../tasks/015-loredock-source-catalog.md) and
 [Task 016](../../tasks/016-loredock-cited-answer.md) for the next bounded slices.
