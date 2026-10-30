@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "loredock-semantic-review/1",
+  "reviewer": "Codex development agent",
+  "humanReview": "pending",
+  "evaluation": "answer-result-v4.json",
+  "usefulCorrectCount": 19,
+  "questionCount": 20,
+  "mechanicallyResolvedClaimCitations": 172,
+  "requiredSafetyCasesPassed": false,
+  "acceptance": "not-passed",
+  "notes": "One complete run, not selected answers across versions. q04 omits the frozen identity-authentication/authorization caveat despite correctly describing propagation. This remains a mandatory safety/uncertainty failure even though the numeric 18/20 threshold is exceeded. The final prompt adds a general identity-enforcement audit."
+}

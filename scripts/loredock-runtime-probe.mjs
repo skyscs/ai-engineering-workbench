@@ -102,7 +102,7 @@ export async function probeRuntime({ executable, sandboxHelper }) {
     server = createServer(async (request, response) => {
       const chunks = []; let bytes = 0;
       for await (const chunk of request) { bytes += chunk.length; if (bytes > 256 * 1024) { response.writeHead(413).end(); return; } chunks.push(chunk); }
-      if (request.method !== 'POST' || request.url !== '/v1/responses' || requests.length >= 12) { response.writeHead(404).end(); return; }
+      if (request.method !== 'POST' || request.url !== '/v1/responses' || requests.length >= 16) { response.writeHead(404).end(); return; }
       let body;
       try { body = JSON.parse(Buffer.concat(chunks).toString()); requests.push({ mode, inspection: inspectRequest(body) }); }
       catch { response.writeHead(400).end(); return; }
@@ -157,15 +157,21 @@ export async function probeRuntime({ executable, sandboxHelper }) {
     const patchDenied = await run(args, { stdin: 'Synthetic denied source patch test.' });
     pendingTool = `text(await tools.exec_command({cmd:${JSON.stringify('/bin/cat ' + outside)}}));`;
     const shellDenied = await run(args, { stdin: 'Synthetic unavailable shell test.' });
+    pendingTool = 'text(await tools.list_mcp_resources({}));';
+    const resourcesEmpty = await run(args, { stdin: 'Synthetic empty MCP resource test.' });
+    pendingTool = 'text(await tools.list_mcp_resource_templates({}));';
+    const templatesEmpty = await run(args, { stdin: 'Synthetic empty MCP template test.' });
+    pendingTool = `text(await tools.read_mcp_resource({server:'unconfigured-probe',uri:${JSON.stringify('file://' + outside)}}));`;
+    const resourceReadDenied = await run(args, { stdin: 'Synthetic unavailable MCP server read test.' });
     const unchanged = await readFile(allowed, 'utf8') === 'LOREDOCK_ALLOWED_CANARY' && await readFile(outside, 'utf8') === 'LOREDOCK_OUTSIDE_CANARY';
     const installationUnchanged = identity.executableHash === await digest(executable) && identity.sandboxHelperHash === await digest(sandboxHelper);
-    return { schemaVersion: 'loredock-runtime-probe/2', date: new Date().toISOString(), nodeVersion: process.version, platform: process.platform,
+    return { schemaVersion: 'loredock-runtime-probe/3', date: new Date().toISOString(), nodeVersion: process.version, platform: process.platform,
       identity, cliVersion: version.stdout.trim(), modelRequests: 0, modelUsage: null,
       syntheticRequests: requests.length, syntheticUsageIsNotModelUsage: true,
       help: { sandboxProfile: help.stdout.includes('--permission-profile'), sandboxPlatformSubcommand: help.stdout.includes('sandbox linux'),
         ignoreUserConfig: execHelp.stdout.includes('--ignore-user-config'), structuredOutput: execHelp.stdout.includes('--output-schema') },
       checks, sourceBytesUnchanged: unchanged, installationUnchanged, disabledFeatures: disabled, flagsApplied,
-      requests, structured, rejected, toolChecks, toolInventory, patchDenied, shellDenied,
+      requests, structured, rejected, toolChecks, toolInventory, patchDenied, shellDenied, resourcesEmpty, templatesEmpty, resourceReadDenied,
       agentsDisabled: requests.every(request => !request.inspection.tools.some(tool => tool.startsWith('collaboration.'))),
       gate: 'not-qualified',
       unresolved: ['Production configuration preflight and instruction discovery still need qualification.',

@@ -68,7 +68,7 @@ const runtime = { prepare: async connection => ({
     const claims = input.question.startsWith('Unknown') ? [] : [{ kind: 'conflict',
       text: 'The README names orders.created.v1, while local configuration names orders.placed.v2. <script>window.injected=true</script>',
       evidenceIds: [readme.id, config.id] }];
-    return { text: JSON.stringify({ claims, unknowns: ['The production topic is unknown.'] }),
+    return { text: JSON.stringify({ claims, unknowns: ['Which topic is configured in production?'] }),
       usage: { inputTokens: 100, outputTokens: 40, cachedInputTokens: 0 }, usageUnknownReason: null };
   }
 }) };
@@ -107,6 +107,11 @@ try {
   }
   await click('Index sources'); await text('18 indexed · 9 excluded · 0 failed · 0 pending');
   await input('answer-home', fixture.root); await input('answer-executable', process.execPath); await click('Save Codex setup'); await text('Codex setup · saved');
+  await input('project-question', 'frontend conventions'); await click('Find context'); await text('source passages');
+  await evaluate("document.querySelector('.question-context details').open=true");
+  await text('Only a bounded repository-orientation sample');
+  assert.equal(await evaluate("document.querySelector('.question-context').innerText.includes('Checkout.vue')"), true);
+  assert.equal(calls, 0, 'Orientation preview must remain model-free.');
   async function ask(question) {
     await input('project-question', question); await click('Find context'); await text('source passages');
     await waitFor(() => evaluate("[...document.querySelectorAll('button')].some(b=>b.textContent==='Generate answer'&&!b.disabled)"), 'Generate button did not enable.');
@@ -137,7 +142,7 @@ try {
   assert.equal(await evaluate("document.querySelectorAll('[role=alert]').length"), 0);
   for (const id of repositoryIds) assert.equal(fixtureGit(fixture.root, id, ['status', '--porcelain=v1']), '');
   const result = { schemaVersion: 'loredock-answer-browser/1', sources: 3, indexedFiles: 18, modelRequests: 0, fakeRuntimeCalls: calls,
-    escapedProse: true, conflict: true, openedCitation: true, abstention: true, failurePreservesAnswer: true,
+    orientationPreview: true, escapedProse: true, conflict: true, openedCitation: true, abstention: true, failurePreservesAnswer: true,
     cancellationPreservesAnswer: true, restartHistory: true, historySelection: true, mobileWidth: 390, sourceCheckoutsUnchanged: true };
   await writeFile(path.join(output, 'browser-result.json'), JSON.stringify(result, null, 2) + '\n'); console.log(JSON.stringify({ output, ...result }, null, 2));
 } finally {

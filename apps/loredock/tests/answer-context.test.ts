@@ -5,7 +5,7 @@ import { test, type TestContext } from 'node:test';
 import { Catalog } from '../src/catalog.js';
 import { CatalogStore } from '../src/store.js';
 import { sha256 } from '../src/extract.js';
-import { answerLimits, questionTerms, retrieveAnswerContext, validateCitedAnswer, type AnswerContext } from '../src/answer-context.js';
+import { answerLimits, questionTerms, retrieveAnswerContext, validateCitedAnswer, citedAnswerSchema, type AnswerContext } from '../src/answer-context.js';
 import { searchText } from '../src/search-text.js';
 // @ts-expect-error The independent fixture generator is plain JavaScript.
 import { createLoreDockFixture, fixtureGit } from '../../../scripts/loredock-fixture.mjs';
@@ -78,6 +78,23 @@ test('normalized filename and identifier matches reopen original evidence and ex
   assert.ok(tenant.spans.some(span => span.text.includes('tenantId')));
 });
 
+test('zero-hit questions receive a bounded orientation sample without claiming a relevance match', async t => {
+  const { catalog } = await setup(t);
+  const context = retrieveAnswerContext(catalog, 'unmatchedvocabulary');
+  assert.equal(context.retrievalMode, 'orientation');
+  assert.equal(context.expansionTerms.length, 0);
+  assert.ok(context.gaps.some(gap => gap.includes('not a relevance match')));
+  assert.ok(context.spans.length <= 18);
+  for (const source of context.sources) assert.ok(context.spans.filter(span => span.sourceId === source.sourceId).length <= 6);
+  for (const file of ['src/Checkout.vue', 'src/orders.ts', 'legacy/orders.js', 'package.json']) {
+    assert.ok(context.spans.some(span => span.sourceName === 'portal' && span.path === file));
+  }
+  assert.ok(context.spans.every(span => span.startLine === 1));
+  assert.equal(context.inputHash, retrieveAnswerContext(catalog, context.question).inputHash);
+  const removed = context.sources[0]!; catalog.revoke(removed.sourceId);
+  assert.ok(retrieveAnswerContext(catalog, context.question).spans.every(span => span.sourceId !== removed.sourceId));
+});
+
 test('schema 1 search migration preserves evidence and revocation purges both indexes', async t => {
   const fixture = await createLoreDockFixture() as { root: string };
   const directory = path.join(fixture.root, 'catalog');
@@ -104,18 +121,31 @@ test('answers require issued citations and structured prose, while abstention is
   const { catalog } = await setup(t);
   const context = retrieveAnswerContext(catalog, 'billing'), span = context.spans[0]!;
   assert.equal(validateCitedAnswer(catalog, context, result([span.id])).claims.length, 1);
-  assert.equal(validateCitedAnswer(catalog, context, '{"claims":[],"unknowns":["Production deployment is unknown."]}').claims.length, 0);
+  assert.equal(validateCitedAnswer(catalog, context, '{"claims":[],"unknowns":["Which revisions are deployed in production?"]}').claims.length, 0);
   const outside = retrieveAnswerContext(catalog, 'dojo').spans.find(item => !context.spans.some(span => span.id === item.id))!;
   assert.ok(outside);
   for (const value of ['null', '{}', '[]', '{', '{"claims":[],"unknowns":[]}', result(['invented']), result([outside.id]),
     result([span.id, span.id]), result([]), result([span.id], ' '), result([span.id], 'x'.repeat(2001)),
     JSON.stringify({ claims: [{ kind: 'conflict', text: 'Conflicting sources.', evidenceIds: [span.id] }], unknowns: [] }),
     JSON.stringify({ claims: [], unknowns: ['Unknown.'], command: 'read ../outside' }),
+    JSON.stringify({ claims: [], unknowns: ['The deployment is unknown because an environment variable overrides it.'] }),
+    JSON.stringify({ claims: [], unknowns: ['?'] }),
     JSON.stringify({ claims: Array(21).fill({ kind: 'fact', text: 'Too many.', evidenceIds: [span.id] }), unknowns: [] }),
     ' '.repeat(answerLimits.outputBytes + 1)]) assert.throws(() => validateCitedAnswer(catalog, context, value));
   // Deliberately false prose with a valid locator passes mechanical validation.
   // The separate semantic evaluation must reject this claim.
   assert.doesNotThrow(() => validateCitedAnswer(catalog, context, result([span.id], 'Every production deployment is verified.')));
+});
+
+test('the decoder schema restricts citations to the exact issued input and permits no empty-context claims', async t => {
+  const { catalog } = await setup(t);
+  const context = retrieveAnswerContext(catalog, 'local topic'), schema = citedAnswerSchema(context);
+  assert.deepEqual(schema.properties.claims.items.properties.evidenceIds.items, { type: 'string', enum: context.spans.map(span => span.id) });
+  assert.notEqual(context.spans[0]!.spanHash, context.spans[0]!.id, 'Content hashes are not issued locators');
+  for (const source of catalog.state().sources) catalog.revoke(source.id);
+  const empty = citedAnswerSchema(retrieveAnswerContext(catalog, 'missing sources'));
+  assert.equal(empty.properties.claims.maxItems, 0);
+  assert.deepEqual(empty.properties.claims.items.properties.evidenceIds.items, { type: 'string' }, 'Do not send an invalid empty enum to the provider');
 });
 
 test('live policy, revocation and changed source registration fence all issued input', async t => {
@@ -152,9 +182,11 @@ test('evidence corruption, modified context and cross-build locators cannot vali
 
 test('empty retrieval preserves an explicit gap and permits only an abstention', async t => {
   const { catalog } = await setup(t);
+  for (const source of catalog.state().sources) catalog.revoke(source.id);
   const context: AnswerContext = retrieveAnswerContext(catalog, 'nonexistentuniqueterm');
   assert.equal(context.spans.length, 0);
+  assert.equal(context.retrievalMode, 'empty');
   assert.ok(context.gaps.some(gap => gap.includes('does not prove absence')));
-  assert.doesNotThrow(() => validateCitedAnswer(catalog, context, '{"claims":[],"unknowns":["No matching indexed evidence."]}'));
+  assert.doesNotThrow(() => validateCitedAnswer(catalog, context, '{"claims":[],"unknowns":["Where is the supporting indexed evidence?"]}'));
   assert.throws(() => validateCitedAnswer(catalog, context, result(['invented'])));
 });

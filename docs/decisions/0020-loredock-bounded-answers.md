@@ -2,6 +2,10 @@
 
 Date: 2026-09-30. Status: implemented for opt-in evaluation; human acceptance pending.
 
+Updated by [ADR 0021](0021-loredock-answer-quality-and-cli-refresh.md) on 2026-10-30:
+the current pilot qualifies CLI 0.166.0 and adds orientation fallback plus constrained
+citation choices. The original measurements and decisions below remain historical context.
+
 ## Decision
 
 Keep the Workbench investigation adapter and its qualified versions unchanged. Add

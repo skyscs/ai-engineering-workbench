@@ -43,6 +43,20 @@ separately and can resume. A previously exported external copy cannot be recalle
 
 ## Coverage before confidence
 
+Question retrieval records lexical, orientation or empty mode. With no lexical hits,
+the pilot may use at most six existing first spans per repository and 18 overall from
+root README/manifests and representative source languages. This is a visibly labeled
+orientation sample; it is not relevance proof or a complete inventory. All existing
+authorization, whole-span, 30-span and 64 KiB limits still apply.
+
+New answers use schema `cited-answer-v3`. The decoder's citation enum contains only
+the issued input IDs; with no input spans, claims are disallowed. Publication still
+revalidates all input and referenced evidence. Unknowns are unanswered questions ending
+in `?`; factual explanations and relevant contradictions require cited claims. These
+format constraints do not establish semantic grounding. Historical answer prose stays
+unchanged and exposes its original prompt/schema identity. See
+[ADR 0021](../decisions/0021-loredock-answer-quality-and-cli-refresh.md).
+
 Every build reports sources resolved/failed, files considered, eligible, extracted,
 excluded by reason, truncated and failed, bytes indexed and adapter coverage. Report
 coverage per source and language, not just one percentage. A successful file scan does

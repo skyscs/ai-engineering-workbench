@@ -1,28 +1,34 @@
 # Development status
 
-## Task 016 — Opt-in cited answers implemented; acceptance remains open
+## Task 016 — Quality improvements ready for human semantic review
 
-In progress, 2026-09-30. The separate text runtime, durable attempts and protected
-question/answer API/UI are implemented. Schema 2/3 add normalized question retrieval,
-connection settings, immutable input/provenance, usage, explicit retry/restart and
-source-dependent answer purge. CLI 0.159.2 capability checks and the selected personal
-connection preflight passed; Workbench's adapter remains unchanged. Production answers
-require `LOREDOCK_ANSWERS=1` while acceptance is pending.
+Updated 2026-10-30 after the initial pilot merged through PR #19 (`658d61a`).
+The latest complete synthetic evaluation has a provisional 20/20 useful/correct agent
+assessment, 162 resolving citation references across 98 claims, and 20/20 complete
+expected-evidence retrieval sets. Independent human semantic review remains pending;
+Task 016 is not accepted and answers remain opt-in through `LOREDOCK_ANSWERS=1`.
 
-Frozen retrieval recall improved from 10/20 to 19/20 without changing the corpus/oracle.
-Two bounded real-model evaluations used `gpt-5.6-terra` / medium. The second returned
-20 valid structures and 90 resolving claim citations. Conservative agent review scores
-17/20: q06 has an uncited explanation, q13 is under-informative, and q14 misses retrieval.
-The 18/20 usefulness gate is not met; human semantic review is also pending. Neither
-schema validity nor agent review is presented as human acceptance. Routing remains later.
+Generic zero-hit orientation sampling fixes the frontend-conventions retrieval miss.
+Decoder choices are limited to issued citation IDs; known explanations and documented
+absences remain cited, uncertainty is phrased as unanswered questions, and the prompt
+separates source discrepancies, environment gaps and identity enforcement. Historical
+contexts/results remain unchanged, including older contexts without a retrieval mode.
+CLI 0.166.0 was requalified with actual capability/MCP-resource checks and selected
+personal-connection preflight; Workbench's adapter is unchanged. SQLite stays schema 3.
 
-Verification: full `pnpm check` passed 182 tests, typechecks and production builds.
-The answer browser fixture passed conflict/citation/abstention, escaped text,
-failure/cancel retention, restart/history and 390px layout. Existing catalog browser
-regression passed. Both browser runs used zero models. See the
-[checkpoint and next steps](loredock/ANSWER_FOUNDATION.md),
-[ADR 0020](decisions/0020-loredock-bounded-answers.md) and
-[recorded evaluation](fixtures/loredock-answers/README.md).
+Four separately bounded October runs made 78 application attempts with no automatic
+application retry. Preserve v3's rejected locator, v4's omitted identity caveat and v5's
+false environment conflict alongside final v6; do not combine selected answers across
+runs. The earlier 17/20 assessment and original retrieval baseline remain historical.
+
+Verification: full `pnpm check` passed 186 tests, typechecks and production builds;
+all 35 LoreDock tests also passed after final prompt/history changes. Browser acceptance
+passed model-free orientation, conflict/citation/abstention, escaped text, failure/cancel
+retention, restart/history and 390px layout. Final source-span bytes/hashes/lines match
+the unchanged fixture. Read the [checkpoint](loredock/ANSWER_FOUNDATION.md),
+[ADR 0021](decisions/0021-loredock-answer-quality-and-cli-refresh.md) and
+[complete human review sheet](fixtures/loredock-answer-quality/HUMAN_REVIEW.md).
+L3 and routing remain later work pending human acceptance of this slice.
 
 ## Task 015 — LoreDock source catalog
 

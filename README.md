@@ -6,7 +6,8 @@ reviewing evidence and revising AI conclusions with human feedback.
 The repository also contains **LoreDock**, the new local source catalog that will
 provide system context for future Workbench investigations. Its first implementation
 connects up to three local Git repositories, indexes committed text and opens exact
-source citations. It makes no model calls and needs no Codex configuration.
+source citations. Indexing and source search make no model calls and need no Codex
+configuration.
 
 After the shared installation/build steps below, run `pnpm loredock` and open
 **http://127.0.0.1:4244**. Follow the [LoreDock guide](docs/loredock/USER_GUIDE.md)
@@ -42,10 +43,12 @@ and [reviewed example reports](docs/fixtures/release/README.md) for verified beh
 - **Node.js 22.23.2:** pinned in `.nvmrc` and `.node-version`; minimum 22.13.0.
 - **pnpm 10.15.0** and **system Git**. Git authentication must already work for
   repositories you intend to clone or fetch.
-- **Codex CLI for AI runs:** the adapter accepts versions 0.153.4 and 0.154.0.
+- **Codex CLI for Workbench AI runs:** the adapter accepts versions 0.153.4 and 0.154.0.
   Use an existing authenticated configuration and explicitly select its directory
   in the application. Other CLI versions are rejected until compatibility is verified.
   See [runtime requirements](docs/codex-runtime.md#supported-configuration).
+  The separate LoreDock answer pilot qualifies CLI 0.166.0; see its
+  [setup guide](docs/loredock/USER_GUIDE.md#ask-a-question-opt-in-pilot).
 
 Installing, starting the UI, preparing worktrees and running ordinary tests make
 no model requests. **Investigate**, **Run investigation again** and **Revise report** invoke the

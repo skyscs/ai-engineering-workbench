@@ -26,12 +26,12 @@ export async function evaluateRetrieval() {
       const missing = question.evidence.filter(id => !retrieved.includes(id));
       return { id: question.id, question: question.question, requiredEvidence: question.evidence, retrievedEvidence: retrieved,
         missingEvidence: missing, retrievalComplete: missing.length === 0,
-        spans: context.spans.length, textBytes: context.textBytes, gaps: context.gaps,
+        retrievalMode: context.retrievalMode, spans: context.spans.length, textBytes: context.textBytes, gaps: context.gaps,
         answerCorrectness: 'not-evaluated', unsupportedClaims: null, semanticReview: 'not-performed' };
     });
     return { schemaVersion: 'loredock-retrieval-evaluation/1', retrievalVersion,
       revisionVector: fixture.manifest.revisionVector, modelRequests: 0, modelUsage: null,
-      scope: 'Lexical evidence recall only; not answer acceptance or routing evaluation.',
+      scope: 'Bounded lexical/orientation evidence recall only; not answer acceptance or routing evaluation.',
       questionCount: results.length, completeRetrievalCount: results.filter(item => item.retrievalComplete).length, results };
   } finally {
     await catalog?.stop(); store?.close(); await rm(fixture.root, { recursive: true, force: true });

@@ -74,15 +74,21 @@ LOREDOCK_ANSWERS=1 pnpm loredock
 4. Enter a concrete question in English, such as “How does an order reach the database?”
    Click **Find context**. This step makes no model call. Review **Context, coverage
    and gaps** and open source passages if necessary. Questions use lexical retrieval
-   with identifier expansion; cross-language semantic search is not implemented.
+   with identifier expansion. If no lexical matches are found, a clearly labeled sample
+   of root README/manifests and representative source files is shown: at most six spans
+   per repository, 18 overall, still within the 64 KiB text limit. This is orientation,
+   not a complete inventory or proof of relevance. Cross-language semantic search is
+   not implemented.
 5. Click **Generate answer** to send the selected question and evidence through the
-   saved connection. The pilot uses **Codex 0.159.2 / gpt-5.6-terra / medium** on Linux.
+   saved connection. The pilot uses **Codex 0.166.0 / gpt-5.6-terra / medium** on Linux.
    There is one active attempt, at most two minutes, 30 passages / 64 KiB source text,
    and 20 claims. Complete prompt and CLI overhead are additional to source text;
    displayed byte counts are not token or monetary estimates.
-6. Read source-backed statements, explicitly marked inferences/conflicts and **What
-   remains unknown**. Click a citation to open its original saved lines. Check whether
-   the text actually supports the statement: resolving a citation is not proof of truth.
+6. Read source-backed statements, explicitly marked inferences/conflicts and unanswered
+   questions under **What remains unknown**. Known explanations belong in cited statements;
+   choosing a local setting does not resolve a README/configuration disagreement. Click
+   a citation to open its original saved lines. Check whether the text actually supports
+   the statement: resolving a citation is not proof of truth.
 
 **Cancel answer** prevents late publication and stops the owned process. Failed or
 cancelled attempts keep the previous authorized successful answer. **Answer history**
@@ -99,7 +105,7 @@ and answer text, including answers that consumed it but did not cite it.
 
 If setup fails, the history preserves the reason before any answer is published:
 
-- **UNQUALIFIED_CLI**: this pilot verifies exactly 0.159.2; another version requires
+- **UNQUALIFIED_CLI**: this pilot verifies exactly 0.166.0; another version requires
   qualification. It never silently selects another executable or account.
 - **GLOBAL_INSTRUCTIONS** or **MCP_CONFIGURATION**: the selected configuration contains
   global AGENTS instructions or enabled MCP servers. Use an appropriate explicitly
@@ -112,8 +118,10 @@ If setup fails, the history preserves the reason before any answer is published:
   answer retained. Failure does not imply that the provider consumed no usage.
 
 The feature remains a pilot pending human semantic review. See the
-[recorded evaluation](../fixtures/loredock-answers/README.md); the missing frontend
-conventions retrieval case is retained as a known limitation.
+[latest evaluation](../fixtures/loredock-answer-quality/README.md). The original
+[evaluation failures](../fixtures/loredock-answers/README.md) remain available for comparison.
+New attempts constrain citation choices to issued evidence IDs. Older saved answers
+retain their original prose and prompt/schema versions; opening history does not rewrite them.
 
 ## Updates, history and interruptions
 
