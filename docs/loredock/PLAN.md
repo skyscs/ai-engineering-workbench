@@ -2,14 +2,15 @@
 
 Status: the bounded L2 cited-answer slice is owner-accepted following merged PR #20,
 2026-10-30. [Task 017](../../tasks/017-loredock-declaration-map.md) delivered the accepted
-declaration map through PR #21. [Task 018](../../tasks/018-loredock-static-flows.md) adds
-bounded source-code links and two partial static flow outlines. Engineer corrections,
-broader adapters/Overview/Guide Me, scale acceptance and the Workbench bridge remain
-later work. The
+declaration map through PR #21. [Task 018](../../tasks/018-loredock-static-flows.md) delivered
+bounded code links and partial static outlines through merged PR #22.
+[Task 019](../../tasks/019-loredock-engineer-corrections.md) adds durable relationship
+corrections and dependent-flow review invalidation. Broader adapters/Overview/Guide Me,
+reliable refresh, scale acceptance and the Workbench bridge remain later work. The
 [acceptance record](L2_ACCEPTANCE.md) distinguishes owner acknowledgement from agent scores.
 See [L0 measurements and blockers](FEASIBILITY.md), [contracts](CONTRACTS.md),
 [Task 016](../../tasks/016-loredock-cited-answer.md) for the accepted answer slice and
-[Task 018](../../tasks/018-loredock-static-flows.md) for the current bounded delivery.
+[Task 019](../../tasks/019-loredock-engineer-corrections.md) for the current bounded delivery.
 
 ## Outcome and delivery boundary
 

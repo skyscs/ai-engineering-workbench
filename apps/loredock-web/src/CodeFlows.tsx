@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react';
 import type { CodeFlows } from '../../loredock/src/code-flow-types';
 import { api } from './api';
+import type { CorrectionOverlay } from '../../loredock/src/correction-types';
+import { LinkCorrection } from './LinkCorrection';
 
-export function CodeFlowsView({ buildId, boundary, openEvidence }: { buildId: string; boundary: string; openEvidence(id: string): void }) {
+export function CodeFlowsView({ buildId, boundary, openEvidence, overlay, reviewReady, correctionsChanged }: {
+  buildId: string; boundary: string; openEvidence(id: string): void; overlay: CorrectionOverlay | undefined;
+  reviewReady: boolean; correctionsChanged(): void;
+}) {
   const key = `${boundary}:${buildId}`;
   const [result, setResult] = useState<{ key: string; value: CodeFlows }>();
   const [error, setError] = useState<{ key: string; text: string }>();
@@ -24,8 +29,12 @@ export function CodeFlowsView({ buildId, boundary, openEvidence }: { buildId: st
     {error?.key === key ? <p className="error" role="alert">{error.text}</p> : !value ? <p role="status">Reading indexed code…</p> : <>
       <p role="status">{value.flows.length} static flow outline{value.flows.length === 1 ? '' : 's'} · {value.edges.filter(edge => edge.status === 'candidate').length} candidate code links</p>
       {value.stale && <p className="notice">These flows use an older index or source registry. Removed sources are excluded.</p>}
-      {value.flows.map((flow, index) => <details className="flow-card" key={flow.id} open={index === 0}>
-        <summary>{flow.title} <span className="tag">Partial</span></summary>
+      {!reviewReady && <p className="notice">Checking engineer corrections. The review status below may be out of date.</p>}
+      {value.flows.map((flow, index) => {
+        const affected = overlay?.corrections.filter(item => item.action !== 'withdraw' && item.affectedFlowIds.includes(flow.id)) ?? [];
+        return <details className={`flow-card${affected.length ? ' needs-review' : ''}`} key={flow.id} open={index === 0}>
+        <summary>{flow.title} <span className="tag">{affected.length ? 'Needs review' : reviewReady ? 'Partial' : 'Review pending'}</span></summary>
+        {affected.length > 0 && <p className="notice flow-review-message">An engineer corrected a relationship used by this outline or its supporting evidence. Review the corrections before relying on the original path.</p>}
         <ol className="flow-steps">{flow.nodeIds.map((id, position) => {
           const node = value.nodes.find(node => node.id === id)!, incoming = position > 0 ? value.edges.find(edge => edge.id === flow.edgeIds[position - 1]) : undefined;
           return <li key={id}>
@@ -35,10 +44,12 @@ export function CodeFlowsView({ buildId, boundary, openEvidence }: { buildId: st
             {incoming?.status === 'static' && <details className="flow-link"><summary>Source link</summary><p>{incoming.reason}</p></details>}
             {citations(node.evidenceIds)}
             {incoming?.status === 'candidate' && <details className="flow-link"><summary>Compare hop evidence</summary>{citations(incoming.evidenceIds)}</details>}
+            {incoming && <LinkCorrection buildId={buildId} targetKind="code-link" targetId={incoming.id} projectionHash={value.inputHash}
+              overlay={overlay} ready={reviewReady} changed={correctionsChanged} openEvidence={openEvidence} />}
           </li>;
         })}</ol>
         <details className="flow-gaps"><summary>Unresolved wiring ({flow.gaps.length})</summary><ul>{flow.gaps.map(gap => <li key={gap}>{gap}</li>)}</ul></details>
-      </details>)}
+      </details>; })}
       {!value.flows.length && <p>No supported client path could be linked in this bounded index. This does not establish absence of flows. Search source text and inspect coverage.</p>}
       <details className="flow-coverage"><summary>Code coverage and gaps</summary>
         <p>{value.coverage.examinedDocuments} / {value.coverage.candidateDocuments} candidate code files examined · {value.coverage.parsedBytes.toLocaleString()} UTF-8 bytes</p>

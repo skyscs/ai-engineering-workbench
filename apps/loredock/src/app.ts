@@ -11,6 +11,7 @@ import type { Answers } from './answers.js';
 import type { TextConnection } from '@aew/ai';
 import { declarationMap } from './system-map.js';
 import { codeFlows } from './code-flows.js';
+import { Corrections } from './corrections.js';
 
 export function createApp(catalog: Catalog, options: { publicDir?: string; development?: boolean; answers?: Answers } = {}) {
   const app = new Hono();
@@ -81,6 +82,10 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
   app.get('/api/evidence/:id', c => c.json(catalog.evidence(c.req.param('id'))));
   app.get('/api/system-map', c => c.json(declarationMap(catalog, c.req.query('buildId'))));
   app.get('/api/code-flows', c => c.json(codeFlows(catalog, c.req.query('buildId'))));
+  const corrections = new Corrections(catalog);
+  app.get('/api/corrections', c => c.json(corrections.list(c.req.query('buildId'))));
+  app.get('/api/corrections/:id/history', c => c.json(corrections.history(c.req.param('id'))));
+  app.post('/api/corrections', async c => c.json(corrections.save(await body(c.req)), 201));
   const answers = options.answers;
   if (answers) {
     app.get('/api/answers', c => c.json(answers.state()));

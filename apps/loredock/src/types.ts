@@ -13,7 +13,7 @@ export interface Build {
   reason: string | null; published: boolean; sources: BuildSource[]; coverage: Coverage;
 }
 export interface ProjectState {
-  name: string; policy: Policy; policyVersion: number; sourceSetVersion: number;
+  name: string; policy: Policy; policyVersion: number; sourceSetVersion: number; correctionRevision: number;
   publishedBuildId: string | null; sources: Source[]; builds: Build[];
   limits: { sources: number; paths: number; fileBytes: number; totalBytes: number; wallMs: number };
 }

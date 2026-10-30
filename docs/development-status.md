@@ -1,8 +1,44 @@
 # Development status
 
+## Task 019 — Engineer relationship corrections and review invalidation
+
+Implemented and locally verified, 2026-10-30; ready for code/product review.
+Task 018 was accepted through the owner's merge of PR #22 (`25032fd`). A separate
+human/unverified overlay now supports disputing/clarifying declaration comparisons
+and code links, optional engineer environment scope, append-only history and withdrawal.
+Original source facts, map/flow v1 contracts and answer-model input remain unchanged.
+
+Schema 4 preserves earlier catalog/answer bytes and adds correction versions, source
+dependencies, affected flow IDs and a monotonic review revision. Exact normalized
+request replay, optimistic concurrency, immutable-row triggers, atomic dependency
+publication and byte/version/target limits protect history. A corrected shared code
+edge invalidates both original pilot outlines for human review. Declaration corrections
+conservatively invalidate flows sharing their supporting spans. Human scope cannot
+become observed deployment evidence. New indexes require their own review.
+
+All sources in the recorded index conservatively fence list/history/replay. Existing
+resumable source purge removes every dependent note/scope/target snapshot, including
+withdrawn versions. Inline controls retain drafts during review changes, require
+explicit reconciliation of a newer target and reject late responses across source/index
+boundaries. Browser testing also exposed an inherited grid sizing issue when long JSON
+evidence was open at 390px; the workspace column now contains that scrolling content.
+
+Verification: `pnpm check` passes strict typechecks, production builds and 229 tests
+(78 LoreDock). Browser acceptance covers dispute/scoped clarification, two affected
+outlines, concurrent edits/draft retention, history/withdrawal, escaped human text,
+restart, new-index isolation, historical review and delayed-response revocation fencing,
+alongside earlier source/map/flow scenarios. The existing answer-browser regression
+passes with four fake invocations. Synthetic service evaluation records identical
+source projections, original revision vector and source checkout preservation; zero
+real model calls. See [Task 019](../tasks/019-loredock-engineer-corrections.md),
+[ADR 0024](decisions/0024-loredock-engineer-corrections.md) and
+[review evidence](fixtures/loredock-corrections/README.md).
+Broader orientation, real-framework adapters, refresh/reconciliation, scale and the
+Workbench bridge remain separate; full L3 acceptance is not implied by these tests.
+
 ## Task 018 — Code links and partial static flows
 
-Implemented and locally verified, 2026-10-30; ready for code/product review. Task 017
+Accepted through the owner's merge of PR #22 (`25032fd`), 2026-10-30. Task 017
 was accepted through the owner's merge of PR #21 (`a551f3c`). A separate model-free
 projection now links supported TS/Vue and Dojo client syntax to declared routes,
 unique Java handlers and source-declared publisher/subscriber/document-write interface
@@ -32,7 +68,7 @@ passes with four fake invocations and zero real model calls. See
 [Task 018](../tasks/018-loredock-static-flows.md),
 [ADR 0023](decisions/0023-loredock-static-code-flows.md) and
 [recorded flow evidence](fixtures/loredock-static-flows/README.md).
-Engineer-supplied scope corrections and derivative invalidation are the next L3 slice;
+Engineer-supplied scope corrections and derivative invalidation follow in Task 019;
 full L3, 20-repository scale acceptance and the Workbench bridge are not claimed complete.
 
 ## Task 017 — Declaration map, first L3 slice

@@ -9,7 +9,7 @@ import { extractorVersion, sha256, spans } from './extract.js';
 import { spanSearchText } from './search-text.js';
 
 export const defaults = { sources: 3, paths: 10000, fileBytes: 1024 * 1024, totalBytes: 50 * 1024 * 1024, wallMs: 300000 };
-export interface Project { policyVersion: number; sourceSetVersion: number; policy: string; publishedBuildId: string | null }
+export interface Project { policyVersion: number; sourceSetVersion: number; policy: string; publishedBuildId: string | null; correctionRevision: number }
 export interface BuildRow { id: string; requestId: string; payloadHash: string; status: BuildStatus; policyVersion: number; sourceSetVersion: number; policy: string; createdAt: string; reason: string | null; published: number; extractorVersion: string }
 export interface BuildSourceRow { buildId: string; sourceId: string; name: string; path: string; gitDir: string; revision: string | null; tree: string | null; status: 'pending' | 'ready' | 'failed'; dirty: number | null; error: string | null; omitted: number }
 export interface FileRow { id: string; buildId: string; sourceId: string; path: string; mode: string; blob: string; size: number; status: string; reason: string | null; error: string | null; contentHash: string | null; raw: Uint8Array | null; metadata: string }
@@ -37,7 +37,7 @@ export class CatalogStore {
       this.db = opened = new DatabaseSync(path.join(this.directory, 'loredock.db'));
       this.db.exec('PRAGMA foreign_keys=ON; PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL; PRAGMA secure_delete=ON;');
       const version = this.one<{ user_version: number }>('PRAGMA user_version')!.user_version;
-      if (version < 0 || version > 3) throw new Error('Unsupported LoreDock database version.');
+      if (version < 0 || version > 4) throw new Error('Unsupported LoreDock database version.');
       if (!version) this.db.exec(`BEGIN IMMEDIATE;
         CREATE TABLE project (id INTEGER PRIMARY KEY CHECK(id=1), policyVersion INTEGER NOT NULL, sourceSetVersion INTEGER NOT NULL, policy TEXT NOT NULL, publishedBuildId TEXT);
         INSERT INTO project VALUES (1,1,1,'{"excludedPaths":[]}',NULL);
@@ -73,6 +73,29 @@ export class CatalogStore {
           result TEXT, usage TEXT, usageUnknownReason TEXT, reason TEXT, createdAt TEXT NOT NULL, dispatchedAt TEXT, completedAt TEXT);
         CREATE TABLE answer_sources (answerId TEXT NOT NULL REFERENCES answer_attempts(id), sourceId TEXT NOT NULL REFERENCES sources(id), PRIMARY KEY(answerId,sourceId));
         PRAGMA user_version=3; COMMIT;`);
+      if (version < 4) this.db.exec(`BEGIN IMMEDIATE;
+        ALTER TABLE project ADD COLUMN correctionRevision INTEGER NOT NULL DEFAULT 0;
+        CREATE TABLE corrections (
+          id TEXT PRIMARY KEY, requestId TEXT NOT NULL UNIQUE, payloadHash TEXT NOT NULL,
+          buildId TEXT NOT NULL REFERENCES builds(id), policyVersion INTEGER NOT NULL, registryVersion INTEGER NOT NULL,
+          revision INTEGER NOT NULL UNIQUE, targetKind TEXT NOT NULL CHECK(targetKind IN ('declaration-link','code-link')),
+          targetId TEXT NOT NULL, previousId TEXT REFERENCES corrections(id), version INTEGER NOT NULL CHECK(version BETWEEN 1 AND 20),
+          action TEXT NOT NULL CHECK(action IN ('dispute','clarify','withdraw')), statement TEXT, environment TEXT,
+          target TEXT, contentHash TEXT NOT NULL, createdAt TEXT NOT NULL, purged INTEGER NOT NULL DEFAULT 0 CHECK(purged IN (0,1)),
+          UNIQUE(buildId,targetKind,targetId,version));
+        CREATE INDEX correction_targets ON corrections(buildId,targetKind,targetId,version DESC);
+        CREATE TABLE correction_sources (correctionId TEXT NOT NULL REFERENCES corrections(id), sourceId TEXT NOT NULL REFERENCES sources(id), PRIMARY KEY(correctionId,sourceId));
+        CREATE INDEX correction_source_purge ON correction_sources(sourceId);
+        CREATE TABLE correction_flows (correctionId TEXT NOT NULL REFERENCES corrections(id), flowId TEXT NOT NULL, PRIMARY KEY(correctionId,flowId));
+        CREATE TRIGGER correction_identity BEFORE UPDATE OF id,requestId,payloadHash,buildId,policyVersion,registryVersion,revision,targetKind,targetId,previousId,version,action,contentHash,createdAt ON corrections
+          BEGIN SELECT RAISE(ABORT,'Correction versions are immutable.'); END;
+        CREATE TRIGGER correction_content BEFORE UPDATE ON corrections
+          WHEN NOT (OLD.purged=0 AND NEW.purged=1 AND NEW.statement IS NULL AND NEW.environment IS NULL AND NEW.target IS NULL
+            AND EXISTS(SELECT 1 FROM correction_sources dep JOIN sources src ON src.id=dep.sourceId WHERE dep.correctionId=OLD.id AND src.status='revoked'))
+          BEGIN SELECT RAISE(ABORT,'Only authorized content purge may update a correction.'); END;
+        CREATE TRIGGER correction_history BEFORE DELETE ON corrections
+          BEGIN SELECT RAISE(ABORT,'Correction history requires content purge, not deletion.'); END;
+        PRAGMA user_version=4; COMMIT;`);
       this.db.exec("UPDATE answer_attempts SET status='interrupted', reason='The daemon stopped. Start an explicit new attempt; provider completion may be unknown.', usageUnknownReason=CASE WHEN dispatchedAt IS NULL THEN 'Not dispatched before restart.' ELSE 'Provider completion and usage are unknown after restart.' END WHERE status IN ('preparing','running');");
       this.db.exec("UPDATE builds SET status='interrupted', reason='The daemon stopped. Resume explicitly.' WHERE status IN ('preparing','running','pause_requested');");
     } catch (error) { opened?.close(); this.owner.close(); throw error; }
@@ -208,6 +231,7 @@ export class CatalogStore {
   purge() {
     for (const source of this.sources().filter(source => source.purge === 'pending')) this.transaction(() => {
       this.run("UPDATE answer_attempts SET status='fenced',context=NULL,result=NULL,reason='An input source was revoked.' WHERE id IN (SELECT answerId FROM answer_sources WHERE sourceId=?)", source.id);
+      this.run('UPDATE corrections SET statement=NULL,environment=NULL,target=NULL,purged=1 WHERE purged=0 AND id IN (SELECT correctionId FROM correction_sources WHERE sourceId=?)', source.id);
       this.run('DELETE FROM search WHERE spanId IN (SELECT s.id FROM spans s JOIN files f ON f.id=s.fileId WHERE f.sourceId=?)', source.id);
       this.run('DELETE FROM question_search WHERE spanId IN (SELECT s.id FROM spans s JOIN files f ON f.id=s.fileId WHERE f.sourceId=?)', source.id);
       this.run('DELETE FROM spans WHERE fileId IN (SELECT id FROM files WHERE sourceId=?)', source.id);

@@ -38,7 +38,9 @@ The October improvements address measured failure classes without changing the o
   propagation from authentication/authorization evidence.
 - Attempt details expose saved prompt/schema identities. Older answer prose and contexts
   remain byte-for-byte as stored, including contexts without the new retrieval-mode
-  field. SQLite remains schema 3; there is no new data migration.
+  field. That answer-quality checkpoint retained schema 3 without a migration.
+  [Task 019](../../tasks/019-loredock-engineer-corrections.md) subsequently adds schema 4
+  for map/flow corrections, preserving the saved answer bytes and retrieval contract.
 
 The web app now declares its development dependency on the daemon whose transport types
 it imports, ensuring packages/daemon build before frontend type checking. No external

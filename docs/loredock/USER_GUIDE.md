@@ -134,11 +134,55 @@ to check a step, while the projection also records its operation's own line rang
 No compiler plugin, source command, broker or database is executed. See
 [static-flow evidence](../fixtures/loredock-static-flows/README.md).
 
+## Correct a relationship or its scope
+
+Use **Correct this link** beside a map comparison or a step's incoming code link.
+Choose **Dispute this link** when it may be wrong, or **Clarify this link** to add
+missing context. Write the correction in English. **Environment scope (optional)**
+lets you name a scope such as `local`; leaving it blank does not mean all environments.
+Click **Save correction**. Saving makes no model call and does not start another index.
+
+The original source claim stays visible next to an **Engineer correction**. Its
+provenance is human and unverified. A human-supplied environment does not establish
+the active deployment, shared broker or production behavior. Outlines depending on
+the corrected link are marked **Needs review**. Declaration comparisons also mark
+flows sharing their supporting passages, conservatively requesting broader review.
+The original path remains available for inspection.
+
+Use **Edit correction** for another version, **Correction history** for earlier text,
+scope and original evidence, or **Withdraw correction** to remove its active effect.
+Withdrawal is another history version. Any other active correction still keeps its
+dependent outline in review. Restart preserves the notes and history.
+
+If another tab changes the correction, your draft remains open. Review the newer note
+and choose **Use latest review** before saving again. Failed requests can be retried
+without silently creating another copy. Pending/failed review loading is labeled and
+editing is disabled until current review state is available.
+
+Corrections apply to **this index only**. A new index does not inherit them, even if
+its source revisions happen to match. Select the older **Index version** to inspect
+its review. This release does not automatically reconcile human knowledge across
+changed code. **Ask Project** still uses original source evidence; these map notes
+are not silently supplied to the answer model.
+
+Removing any source in the recorded index fences its corrections and all history,
+then logically purges their text, human environment and original relationship snapshot,
+including withdrawn versions. This conservative dependency scope includes sources not
+directly named by the link. Reindex the remaining sources before adding new corrections.
+Policy changes fence earlier notes. Backups and external copies are outside local purge.
+
+Limits are 100 corrected targets per index, 20 versions per target (the final slot is
+reserved for withdrawal), 2,000 UTF-8 bytes per statement and 80 per optional environment.
+History/output budgets are explicit and reject a write atomically instead of omitting
+existing notes. See [correction evidence](../fixtures/loredock-corrections/README.md)
+and [ADR 0024](../decisions/0024-loredock-engineer-corrections.md).
+
 ## Ask a question (opt-in pilot)
 
 Stop the existing LoreDock process and start the answer pilot with the same data
-directory. Back up the stopped directory before upgrading: schema 3 migrates earlier
-catalog data and adds question search, answer attempts and connection settings.
+directory. Back up the stopped directory before upgrading. Current startup migrates
+older LoreDock data to schema 4, retaining evidence and saved answers while adding
+engineer correction history. Schema 3 originally introduced answer attempts and settings.
 
 ```sh
 LOREDOCK_ANSWERS=1 pnpm loredock
@@ -335,6 +379,9 @@ require the session. No tokens belong in URLs or logs.
 | `GET /api/evidence/:id` | Reopen a validated, authorized stored citation. |
 | `GET /api/system-map?buildId=...` | Bounded declaration projection for the current or a selected authorized published index. |
 | `GET /api/code-flows?buildId=...` | Versioned code links, partial flow outlines, candidate hops and original evidence from the same authorized index. |
+| `GET /api/corrections?buildId=...` | Current human correction overlay/revision and flow-review dependencies for the selected index. |
+| `GET /api/corrections/:id/history` | Authorized immutable versions and original relationship/evidence provenance. |
+| `POST /api/corrections` | Save/replay a dispute, clarification or withdrawal with issued target ID, projection hash and expected review versions. |
 | `GET /api/answers` | Saved connection, recent attempt metadata and latest authorized answer ID (pilot only). |
 | `PUT /api/answers/configuration` | Save `{executable, configHome, profile}`; use `null` for no named profile. |
 | `POST /api/answers/preview` | Retrieve `{question, buildId?}` without invoking a model. |
