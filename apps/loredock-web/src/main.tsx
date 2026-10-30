@@ -4,6 +4,7 @@ import type { ProjectState, SearchResult, Evidence } from '../../loredock/src/ty
 import './style.css';
 import { api } from './api';
 import { AnswerPanel } from './AnswerPanel';
+import { SystemMap } from './SystemMap';
 
 function App() {
   const [state, setState] = useState<ProjectState>();
@@ -109,6 +110,7 @@ function App() {
             </details>
           </>}
         </div>
+        <SystemMap buildId={searchBuild} boundary={`${boundary.current}:${published}`} openEvidence={id => void act(async () => { const current = boundary.current; const response = await api<Evidence>(`/evidence/${id}`); if (current === boundary.current) setEvidence(response); })} />
         {answersEnabled && <AnswerPanel buildId={searchBuild} boundary={boundary.current} openEvidence={id => void act(async () => { const current = boundary.current; const response = await api<Evidence>(`/evidence/${id}`); if (current === boundary.current) setEvidence(response); })} />}
         <div className="panel">
           <h2>Explore the sources</h2><p className="muted">Search exact terms such as an endpoint, event, collection or class name.</p>
@@ -130,7 +132,7 @@ function App() {
         </section>}
       </section>
     </div>}
-    <footer>{answersEnabled ? 'Source-backed answers with visible coverage, conflicts and unknowns.' : 'Source coverage first. AI answers and system relationships are planned for later iterations.'}</footer>
+    <footer>{answersEnabled ? 'Source-backed answers with visible coverage, conflicts and unknowns.' : 'Source declarations, coverage and exact evidence. Cited answers are available in the optional AI mode.'}</footer>
   </main>;
 }
 createRoot(document.getElementById('root')!).render(<App />);

@@ -1,5 +1,9 @@
 # LoreDock answer-quality and CLI refresh evidence
 
+Historical review checkpoint. The [subsequent owner acceptance](../../loredock/L2_ACCEPTANCE.md)
+records the completion acknowledgement after merged PR #20. Original agent scores, raw
+results and per-question review boxes below are preserved without inventing a human score.
+
 Date: 2026-10-30. Linux / Node 22.23.2 / Codex 0.166.0 /
 gpt-5.6-terra / medium. Task 016 is **ready for human semantic review**, not accepted.
 Ordinary startup remains model-free; the pilot requires `LOREDOCK_ANSWERS=1`.

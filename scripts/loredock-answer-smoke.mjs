@@ -120,7 +120,7 @@ try {
   await ask('Which local topic is configured?'); await text('Conflicting sources');
   assert.equal(await evaluate('window.injected === undefined'), true);
   assert.equal(await evaluate("document.querySelector('.claim').textContent.includes('<script>')"), true);
-  await evaluate("document.querySelector('.citations button').click()"); await text('Source evidence');
+  await evaluate("document.querySelector('.answer-result .citations button').click()"); await text('Source evidence');
   assert.equal(await evaluate("document.querySelector('.evidence pre').innerText.includes('orders.created.v1')"), true);
   const successful = answers.state().publishedAnswerId;
   await ask('Fail local topic'); await text('Latest attempt: failed.');

@@ -141,6 +141,11 @@ export class Catalog {
     if (build.policyVersion !== this.store.project().policyVersion) throw new CatalogError('POLICY_CHANGED', 'This index uses an old policy. Index sources again.', 409);
     return build;
   }
+  readBuild(buildId?: string) {
+    const id = buildId ?? this.store.project().publishedBuildId;
+    if (!id) throw new CatalogError('NOT_READY', 'Index sources before exploring the system map.', 409);
+    this.authorizeBuild(id); return this.store.build(id);
+  }
   search(query: string, buildId?: string): SearchResult {
     if (!query.trim() || query.length > 500) throw new CatalogError('INVALID_QUERY', 'Enter between 1 and 500 characters.');
     const id = buildId ?? this.store.project().publishedBuildId;

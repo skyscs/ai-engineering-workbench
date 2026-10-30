@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
-import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -48,6 +48,12 @@ async function connect(url) {
 let page;
 try {
   const daemonDir = fileURLToPath(new URL('../apps/loredock/', import.meta.url));
+  const packagePath = path.join(fixture.root, 'sources/portal/package.json');
+  const packageData = JSON.parse(await readFile(packagePath, 'utf8'));
+  packageData.name = '<img src=x onerror="window.mapInjected=true">';
+  await writeFile(packagePath, JSON.stringify(packageData, null, 2) + '\n');
+  fixtureGit(fixture.root, 'portal', ['add', 'package.json']);
+  fixtureGit(fixture.root, 'portal', ['commit', '-qm', 'Add adversarial package-label browser input']);
   const env = { ...process.env, LOREDOCK_DATA_DIR: path.join(fixture.root, 'data') };
   const daemon = start(process.execPath, ['dist/index.js'], daemonDir, env);
   const ready = record => waitFor(() => {
@@ -78,12 +84,33 @@ try {
     await waitFor(() => evaluate(`[...document.querySelectorAll('.sources strong')].some(e=>e.textContent===${JSON.stringify(id)})`), 'Source did not appear.');
   }
   await click('Index sources'); await text('18 indexed · 9 excluded · 0 failed · 0 pending');
+  await text('3 repositories · 16 declarations · 2 cross-repository clues');
+  assert.equal(await evaluate("document.querySelectorAll('.map-clue.candidate').length"), 2);
+  await evaluate("[...document.querySelectorAll('.map-repository')].find(e=>e.querySelector('summary').textContent==='portal').open=true");
+  assert.equal(await evaluate("document.querySelector('.system-map').innerText.includes('<img src=x')"), true);
+  assert.equal(await evaluate("document.querySelectorAll('.system-map img').length"), 0);
+  assert.equal(await evaluate('window.mapInjected === undefined'), true);
+  await evaluate("[...document.querySelectorAll('.map-repository')].find(e=>e.querySelector('summary').textContent==='portal').open=false");
+  await evaluate("[...document.querySelectorAll('.map-repository')].find(e=>e.querySelector('summary').textContent==='order-api').open=true");
+  await evaluate("[...document.querySelectorAll('.map-declarations li')].find(e=>e.querySelector('strong').textContent==='POST /api/orders').querySelector('.citations button').click()");
+  await text('Source evidence');
+  assert.equal(await evaluate("document.querySelector('.evidence pre').innerText.includes('Orders.accept')"), true);
+  await evaluate("[...document.querySelectorAll('.map-clue')].find(e=>e.querySelector('strong').textContent.includes('event contract')).querySelector('.citations button').click()");
+  await waitFor(() => evaluate("document.querySelector('.evidence pre')?.innerText.includes('OrderPlaced')"), 'Contract citation did not open.');
+  const firstIndex = await evaluate("fetch('/api/project').then(r=>r.json()).then(p=>p.publishedBuildId)");
+  await click('Index sources');
+  await waitFor(() => evaluate(`fetch('/api/project').then(r=>r.json()).then(p=>p.publishedBuildId!==${JSON.stringify(firstIndex)})`), 'Second index did not publish.');
+  await waitFor(() => evaluate("document.querySelector('[aria-label=\"Index version\"]').options.length===3"), 'Index history did not refresh.');
+  await evaluate(`(()=>{const e=document.querySelector('[aria-label="Index version"]');e.value=${JSON.stringify(firstIndex)};e.dispatchEvent(new Event('change',{bubbles:true}));})()`);
+  await text('This map uses an older index');
+  await evaluate("(()=>{const e=document.querySelector('[aria-label=\"Index version\"]');e.value='';e.dispatchEvent(new Event('change',{bubbles:true}));})()");
+  await waitFor(() => evaluate("!document.querySelector('.system-map').innerText.includes('This map uses an older index')"), 'Map did not select the current index.');
   await input('source-query', 'orders.placed.v2'); await click('Search'); await text('3 matching passages');
   await evaluate("[...document.querySelectorAll('button.result')].find(b=>b.querySelector('.result-meta').textContent.startsWith('order-api')).click()");
   await text('Source evidence');
   assert.equal(await evaluate("document.querySelector('.evidence pre').innerText.includes('orders.placed.v2')"), true);
   assert.equal(await evaluate("document.activeElement.textContent"), 'Source evidence');
-  await page.send('Runtime.evaluate', { expression: 'window.scrollTo(0,0)' });
+  await evaluate("document.querySelector('.system-map').scrollIntoView()");
   const desktop = await page.send('Page.captureScreenshot', { format: 'png' });
   await writeFile(path.join(output, 'desktop.png'), Buffer.from(desktop.data, 'base64'));
   await page.send('Emulation.setDeviceMetricsOverride', { width: 390, height: 900, deviceScaleFactor: 1, mobile: true });
@@ -94,6 +121,7 @@ try {
   await evaluate("[...document.querySelectorAll('.sources li')].find(li=>li.querySelector('strong').textContent==='order-api').querySelector('button').click()");
   await click('Confirm removal'); await text('2 / 3');
   await waitFor(() => evaluate("!document.querySelector('.evidence')"), 'Revoked evidence remained visible.');
+  await waitFor(() => evaluate("document.querySelectorAll('.map-clue').length===0 && ![...document.querySelectorAll('.map-repository summary')].some(e=>e.textContent==='order-api')"), 'Revoked source remained in the map.');
   await input('source-query', 'publisher.publish'); await click('Search'); await text('No indexed matches.');
   await evaluate("document.querySelector('details.advanced').open=true");
   await input('exclusions', 'legacy'); await click('Save policy'); await text('Index your sources to start exploring.');
@@ -104,7 +132,9 @@ try {
   await input('source-query', 'OrderConsumer'); await click('Search'); await text('matching passages');
   assert.equal(await evaluate("document.querySelectorAll('[role=alert]').length"), 0);
   for (const id of repositoryIds) assert.equal(fixtureGit(fixture.root, id, ['status', '--porcelain=v1']), '');
-  const result = { schemaVersion: 'loredock-browser/1', sources: 3, initialIndexedFiles: 18, initialExcludedFiles: 9,
+  const result = { schemaVersion: 'loredock-browser/2', sources: 3, initialIndexedFiles: 18, initialExcludedFiles: 9,
+    systemMap: { repositories: 3, declarations: 16, crossRepositoryClues: 2, routeCitation: true, contractCitation: true, escapedLabels: true, historicalSelection: true, revocation: true },
+    fixtureVariation: 'Owned temporary package name contains adversarial HTML; frozen corpus files are unchanged.',
     topicMatches: 3, evidenceOpened: true, keyboardFocus: true, mobileWidth: 390, sourceRevocation: true,
     policyFencing: true, reindex: true, restartPersistence: true, sourceCheckoutsUnchanged: true, modelRequests: 0 };
   await writeFile(path.join(output, 'browser-result.json'), JSON.stringify(result, null, 2) + '\n');

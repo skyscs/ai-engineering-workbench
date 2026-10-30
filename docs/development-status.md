@@ -1,34 +1,46 @@
 # Development status
 
-## Task 016 — Quality improvements ready for human semantic review
+## Task 017 — Declaration map, first L3 slice
 
-Updated 2026-10-30 after the initial pilot merged through PR #19 (`658d61a`).
-The latest complete synthetic evaluation has a provisional 20/20 useful/correct agent
-assessment, 162 resolving citation references across 98 claims, and 20/20 complete
-expected-evidence retrieval sets. Independent human semantic review remains pending;
-Task 016 is not accepted and answers remain opt-in through `LOREDOCK_ANSWERS=1`.
+Implemented and locally verified, 2026-10-30. A model-free read projection exposes
+repository/package identities, declared HTTP routes and unresolved handler references,
+flat event contracts and configuration values, with original source citations. The
+frozen corpus produces three repository identities, 16 declarations and two candidate
+cross-repository clues. Equal names/text never merge entities or prove runtime connections;
+different explicit environments are not compared. The map stays partial.
 
-Generic zero-hit orientation sampling fixes the frontend-conventions retrieval miss.
-Decoder choices are limited to issued citation IDs; known explanations and documented
-absences remain cited, uncertainty is phrased as unanswered questions, and the prompt
-separates source discrepancies, environment gaps and identity enforcement. Historical
-contexts/results remain unchanged, including older contexts without a retrieval mode.
-CLI 0.166.0 was requalified with actual capability/MCP-resource checks and selected
-personal-connection preflight; Workbench's adapter is unchanged. SQLite stays schema 3.
+The protected API and browser view use an authorized pinned index, current policy and
+source registry. Unsupported/oversized input and graph limits are explicit. Entire
+documents must have complete original span coverage before any field is mapped. The
+view persists no new derived text, needs no migration or Codex setup, and recomputes
+identically after restart. Old/new index selection, revocation and late-response fencing
+preserve the existing boundary. Code-flow ownership and human corrections remain later L3 tasks.
 
-Four separately bounded October runs made 78 application attempts with no automatic
-application retry. Preserve v3's rejected locator, v4's omitted identity caveat and v5's
-false environment conflict alongside final v6; do not combine selected answers across
-runs. The earlier 17/20 assessment and original retrieval baseline remain historical.
+Verification: `pnpm check` passes 197 tests, strict typechecks and production builds;
+all 46 LoreDock tests also pass after the final missing-span guard. Chrome verifies
+route/contract evidence, candidate labels, hostile metadata as escaped text, historical
+selection, removal/policy/reindex/restart and 390px layout. The existing answer-browser
+regression passes with four fake invocations. Zero real model calls and unchanged
+normal source checkouts. See [Task 017](../tasks/017-loredock-declaration-map.md),
+[ADR 0022](decisions/0022-loredock-declaration-map.md) and
+[recorded map evidence](fixtures/loredock-declaration-map/README.md).
 
-Verification: full `pnpm check` passed 186 tests, typechecks and production builds;
-all 35 LoreDock tests also passed after final prompt/history changes. Browser acceptance
-passed model-free orientation, conflict/citation/abstention, escaped text, failure/cancel
-retention, restart/history and 390px layout. Final source-span bytes/hashes/lines match
-the unchanged fixture. Read the [checkpoint](loredock/ANSWER_FOUNDATION.md),
-[ADR 0021](decisions/0021-loredock-answer-quality-and-cli-refresh.md) and
-[complete human review sheet](fixtures/loredock-answer-quality/HUMAN_REVIEW.md).
-L3 and routing remain later work pending human acceptance of this slice.
+## Task 016 — Bounded cited-answer slice owner-accepted
+
+Owner-accepted on 2026-10-30 after PR #20 merged (`474cec1`) and the owner's completion
+acknowledgement. The original 20/20 agent assessment, 162 resolving citation references
+and 289 checked span occurrences remain agent evidence; no separate human numeric score
+or individually signed per-question checklist was supplied. See the
+[acceptance record](loredock/L2_ACCEPTANCE.md). Historical agent snapshots and failure
+runs remain unchanged rather than being rewritten as human scores.
+
+The accepted scope is the three-repository source-to-cited-answer workflow, with exact
+issued locators, scope/conflicts/unknowns and durable failure/cancellation/restart behavior.
+The first L3 declaration map follows it. Cited answers remain an explicitly selected mode
+through `LOREDOCK_ANSWERS=1`; model-free catalog/map use needs no Codex configuration.
+Scale, broader Overview/Guide Me, code flows, routing and the Workbench bridge retain
+separate milestones. See the [answer checkpoint](loredock/ANSWER_FOUNDATION.md) and
+[original complete evaluation](fixtures/loredock-answer-quality/README.md).
 
 ## Task 015 — LoreDock source catalog
 

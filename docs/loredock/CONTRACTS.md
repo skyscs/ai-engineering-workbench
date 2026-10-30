@@ -1,11 +1,11 @@
 # LoreDock first-slice contracts
 
-Status: L1 is implemented in Task 015. Task 016 implements bounded retrieval,
-durable cited-answer attempts and an opt-in UI; human semantic acceptance remains open.
-See [ADR 0020](../decisions/0020-loredock-bounded-answers.md) for schema 2/3, runtime
-qualification and publication decisions, and the [answer checkpoint](ANSWER_FOUNDATION.md)
-for measured results. Relations and Context Packs remain proposed. The
-[user guide](USER_GUIDE.md) describes available behavior.
+Status: Task 015 delivered the source catalog. Task 016's bounded cited-answer slice
+is owner-accepted through PR #20. Task 017 adds the first model-free declaration-map
+projection; full code flows, durable semantic relations and Context Packs remain proposed.
+See the [owner acceptance](L2_ACCEPTANCE.md),
+[map decision](../decisions/0022-loredock-declaration-map.md),
+[answer checkpoint](ANSWER_FOUNDATION.md) and [user guide](USER_GUIDE.md).
 The [executable fixture](../../fixtures/loredock/README.md) uses a smaller, versioned
 fixture manifest. Do not treat its IDs or JSON shape as a public product contract.
 
@@ -93,7 +93,8 @@ deployment revisions are unknown.
 
 The L0 SQL experiment checks persistence primitives and interruption classification.
 L1 now verifies deterministic file checkpoints, pause/cancel/resume, restart, request
-replay and publication fencing. Model-attempt and ambiguous-provider semantics remain L2.
+replay and publication fencing. L2 additionally verifies persisted model intentions,
+request replay, reported/unknown usage and explicit retry after interruption.
 
 ## Provisional budgets
 

@@ -1,5 +1,9 @@
 # LoreDock final answer review sheet
 
+Owner acceptance was subsequently recorded in [the acceptance note](../../loredock/L2_ACCEPTANCE.md).
+The original per-question boxes and agent snapshot below remain unchanged; they were
+not completed on the owner's behalf.
+
 Date: 2026-10-30. **Human semantic approval: pending.**
 
 This sheet renders the complete final run, not selected answers from prior attempts.

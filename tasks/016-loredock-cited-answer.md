@@ -1,14 +1,12 @@
 # Task 016 — First bounded, source-backed LoreDock answer
 
-Status: implementation and agent evaluation complete, 2026-10-30; human semantic
-acceptance remains pending.
-Task 015 merged through PR #18. The durable answer workflow, restricted CLI runtime,
-question/answer UI and real-model evaluations are implemented. See the
-[answer checkpoint](../docs/loredock/ANSWER_FOUNDATION.md) and
-[quality record and human review sheet](../docs/fixtures/loredock-answer-quality/README.md).
-The final complete run receives a provisional 20/20 agent assessment and 162 resolving
-citation references. Historical failures and pilot limits remain visible. Human semantic
-review is pending; do not mark this accepted from automated or agent checks alone.
+Status: owner-accepted, 2026-10-30, following merged PR #20 and the owner's completion
+acknowledgement. See the [acceptance record](../docs/loredock/L2_ACCEPTANCE.md).
+The provisional agent assessment remains 20/20 with 162 resolving citation references;
+no separate human numeric score or individually signed checklist was supplied.
+Historical evaluations and their original review state remain unchanged in the
+[quality record](../docs/fixtures/loredock-answer-quality/README.md). This acceptance
+covers the bounded cited-answer slice, not scale, routing or the full future system model.
 
 ## Objective
 

@@ -1,9 +1,10 @@
 # LoreDock L2 answer workflow and acceptance checkpoint
 
-Date: 2026-10-30. The source catalog and initial answer pilot reached main through
-PR #19 (`658d61a`). Task 016's quality improvements are implemented and **ready for
-human semantic review**. The task is not accepted and answers remain opt-in through
-`LOREDOCK_ANSWERS=1`; ordinary startup remains model-free.
+Date: 2026-10-30. The initial pilot and quality improvements reached main through
+PR #20 (`474cec1`). The owner subsequently acknowledged completion and requested the
+next iteration; **Task 016's bounded source-to-cited-answer slice is owner-accepted**.
+See the [acceptance record](L2_ACCEPTANCE.md). Cited answers remain an explicitly
+selected mode through `LOREDOCK_ANSWERS=1`; indexing and maps need no Codex setup.
 
 The final complete run has a provisional **20/20 useful/correct agent assessment**,
 **162/162 resolving citation references across 98 claims**, and **20/20 complete
@@ -91,7 +92,7 @@ retries. These are not monetary estimates or predictions for 20 real repositorie
 CLI/provider transport can perform internal requests within the wall limit; interruption
 does not guarantee zero provider usage. No corporate source ingestion occurred.
 
-## Verification and remaining acceptance
+## Verification and continuing review
 
 `pnpm check` passes **186 tests**, strict typechecks and production builds. All 35
 LoreDock tests also pass after final prompt/history-compatibility updates. Frozen offline
@@ -100,15 +101,15 @@ escaped prose, conflict/citation, abstention, failure/cancel retention, restart/
 and 390px layout with four fake runtime calls and zero models. Source fixtures remain
 unchanged. The final run's 289 input-span occurrences match original bytes/hashes/lines.
 
-Before accepting Task 016 or enabling answers by default, a human must review all final
-claims, inferences and unanswered questions against the saved spans and frozen oracle.
-Conditional overwrite/receive language in q10 and q18 deserves particular attention;
-source intent is not observed runtime behavior. Agent scoring and resolving IDs are not
-semantic proof. The review sheet provides an unchecked box for every question.
+Owner acceptance is recorded separately from the agent's judgments and historical
+unchecked review boxes. No separate human numeric score was supplied. Future input
+and feature changes still require source-based review: conditional overwrite/receive
+language in q10 and q18 deserves particular attention, and source intent is not observed
+runtime behavior. Agent scoring and resolving IDs never make new claims authoritative.
 
 The pilot still supports three active repositories and bounded text retrieval. It does
 not provide cross-language semantic search, complete architecture extraction, production
-queries, routing, embeddings or a Workbench bridge. L3 relationships and later scale/
-refresh work wait for this vertical slice's human acceptance. No further model run is
-needed merely to repeat the current result; any future evaluation follows a justified
+queries, routing, embeddings or a Workbench bridge. The first bounded L3 declaration-map
+task follows this accepted slice; broader Overview/Guide Me, code-flow extraction, scale
+and refresh remain separately scoped work. No further model run is needed merely to repeat the current result; any future evaluation follows a justified
 change and a separately bounded, preserved run.

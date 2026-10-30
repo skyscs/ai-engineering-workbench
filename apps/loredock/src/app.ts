@@ -9,6 +9,7 @@ import { Catalog } from './catalog.js';
 import { CatalogError } from './types.js';
 import type { Answers } from './answers.js';
 import type { TextConnection } from '@aew/ai';
+import { declarationMap } from './system-map.js';
 
 export function createApp(catalog: Catalog, options: { publicDir?: string; development?: boolean; answers?: Answers } = {}) {
   const app = new Hono();
@@ -77,6 +78,7 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
   app.post('/api/builds/:id/:action', c => c.json(catalog.control(c.req.param('id'), c.req.param('action'))));
   app.get('/api/search', c => c.json(catalog.search(c.req.query('q') ?? '', c.req.query('buildId'))));
   app.get('/api/evidence/:id', c => c.json(catalog.evidence(c.req.param('id'))));
+  app.get('/api/system-map', c => c.json(declarationMap(catalog, c.req.query('buildId'))));
   const answers = options.answers;
   if (answers) {
     app.get('/api/answers', c => c.json(answers.state()));

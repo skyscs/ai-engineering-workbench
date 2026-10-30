@@ -14,9 +14,11 @@ Follow the [LoreDock-first roadmap](docs/loredock/PLAN.md) and its
 [specification/reuse review](docs/loredock/REVIEW.md).
 [Task 014](tasks/014-loredock-scope-and-fixtures.md) delivered the accepted synthetic corpus
 and mechanical feasibility checks. [Task 015](tasks/015-loredock-source-catalog.md)
-implements the model-free source catalog and is ready for review. Next are
-[cited answers](tasks/016-loredock-cited-answer.md), with runtime qualification before
-real-model execution. Planning does not authorize implementing every milestone automatically.
+delivered the model-free source catalog.
+[Task 016](tasks/016-loredock-cited-answer.md) delivered the owner-accepted cited-answer
+slice with runtime qualification. [Task 017](tasks/017-loredock-declaration-map.md) starts
+L3 with a bounded declaration map; full code flows and corrections follow separately.
+Planning does not authorize implementing every milestone automatically.
 
 Tasks 012–013 delivered the [UX simplification](docs/ux-simplification-plan.md).
 The original v0.1 sequence below is retained as delivery history.
