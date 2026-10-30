@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "loredock-semantic-review/1",
+  "reviewer": "Codex development agent",
+  "humanReview": "pending",
+  "evaluation": "answer-result-v3.json",
+  "usefulCorrectCount": 15,
+  "questionCount": 20,
+  "attemptedQuestions": 18,
+  "mechanicallyResolvedClaimCitations": 100,
+  "requiredSafetyCasesPassed": false,
+  "acceptance": "not-passed",
+  "issues": {
+    "q04": "Known conflict values appear as an unanswered question rather than a cited conflict.",
+    "q05": "The local topic is selected without preserving the README discrepancy.",
+    "q18": "A content hash is emitted as a locator; publication rejects the answer and the evaluator stops.",
+    "q19": "Not run after the operational failure.",
+    "q20": "Not run after the operational failure."
+  }
+}

@@ -1,6 +1,7 @@
 # LoreDock first, Workbench second
 
-Status: L0 and L1 merged through PR #18; L2 in progress, 2026-09-30.
+Status: L0/L1 and the initial L2 pilot merged through PR #19. L2 quality improvements
+are ready for human semantic review, 2026-10-30; acceptance remains pending.
 The [L2 answer checkpoint](ANSWER_FOUNDATION.md) records the opt-in answer workflow,
 runtime qualification, browser checks and frozen-question evaluations. Human semantic
 acceptance is still required; relationships and the Workbench bridge remain planned.

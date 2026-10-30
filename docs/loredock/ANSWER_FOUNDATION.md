@@ -1,111 +1,114 @@
 # LoreDock L2 answer workflow and acceptance checkpoint
 
-Date: 2026-09-30. Task 015 is merged through PR #18. Task 016 now includes the
-source → index → bounded context → model → cited answer workflow, but is **not accepted**.
-The answer pilot requires `LOREDOCK_ANSWERS=1`; ordinary startup remains model-free.
-See the [usage guide](USER_GUIDE.md#ask-a-question-opt-in-pilot),
-[ADR 0020](../decisions/0020-loredock-bounded-answers.md) and
-[recorded evidence](../fixtures/loredock-answers/README.md).
+Date: 2026-10-30. The source catalog and initial answer pilot reached main through
+PR #19 (`658d61a`). Task 016's quality improvements are implemented and **ready for
+human semantic review**. The task is not accepted and answers remain opt-in through
+`LOREDOCK_ANSWERS=1`; ordinary startup remains model-free.
 
-## Delivered
+The final complete run has a provisional **20/20 useful/correct agent assessment**,
+**162/162 resolving citation references across 98 claims**, and **20/20 complete
+expected-evidence retrieval sets**. This is not independent human approval. Read the
+[complete review sheet](../fixtures/loredock-answer-quality/HUMAN_REVIEW.md),
+[quality records](../fixtures/loredock-answer-quality/README.md) and
+[usage guide](USER_GUIDE.md#ask-a-question-opt-in-pilot).
 
-- Separate text-only runtime for the selected Linux Codex 0.159.2 installation,
-  `gpt-5.6-terra` / medium. Workbench runtime compatibility is unchanged.
-- Question retrieval with filename/identifier normalization, one bounded literal-symbol
-  expansion and source README orientation. Original evidence bytes/locators are preserved.
-- Durable attempt intention, immutable issued context and provenance before dispatch;
-  idempotent request replay, explicit retry, usage receipts and atomic publication.
-- Cancellation, restart, registry/policy changes and revocation fence late results.
-  Failed attempts retain the previous authorized answer; revocation purges derivatives.
-- Local protected API and browser question/answer panel with saved setup, model-free
-  preview, escaped prose, source citations, conflicts, unknowns, freshness and history.
+## Implemented workflow and improvements
 
-Schema 1 catalogs migrate transactionally through schema 2 (question FTS) and schema 3
-(answer workflow). The browser shows the saved answer's index instead of silently
-presenting an older answer as current. Source search continues to use its original
-literal AND semantics; question retrieval is a separate index/query path.
+The durable source → index → bounded context → model → cited answer flow retains
+request replay, immutable input/provenance, reported usage, atomic publication,
+cancellation/restart handling and source revocation/policy fencing. Failed attempts
+preserve the prior authorized answer; revocation also purges dependent context/results.
+The browser provides saved setup, model-free preview, escaped prose, opened evidence,
+conflicts, unanswered questions, saved-index freshness and history.
 
-## Runtime qualification and its limits
+The October improvements address measured failure classes without changing the oracle:
 
-The original CLI 0.158.0 experiments remain in the
-[foundation record](../fixtures/loredock-answer-foundation/README.md). After the owner
-completed the CLI update, synthetic qualification ran on 0.159.2. Eight sandbox-helper
-checks passed. Actual Code Mode tool calls verified the available tool inventory,
-blocked patching and unavailable shell. `agents.enabled=false` removes delegation;
-feature flags alone were insufficient. No subagent was launched.
+- `fts-question-v4` keeps existing lexical matching and identifier expansion. With no
+  lexical hits, it provides a clearly labeled repository sample: root README/manifests
+  and first spans from representative source languages, at most six per repository and
+  18 overall. Existing 30-span / 64 KiB source-text limits remain. This is orientation,
+  not relevance proof, complete language coverage or architecture extraction.
+- `cited-answer-v3` constrains decoder citation choices to the issued context IDs.
+  Empty context permits no claims. Live publication checks still validate every input
+  span and current policy/registry; decoder restrictions alone are not authorization.
+- Unknowns are unanswered questions; known explanations and documented absences belong
+  in cited claims. Prompt v6 preserves scoped documentation discrepancies, distinguishes
+  unknown production settings from actual contradictions, and separates identity
+  propagation from authentication/authorization evidence.
+- Attempt details expose saved prompt/schema identities. Older answer prose and contexts
+  remain byte-for-byte as stored, including contexts without the new retrieval-mode
+  field. SQLite remains schema 3; there is no new data migration.
 
-Ancestor/project instruction canaries and the skill canary were absent from requests.
-The global HOME instruction canary remained present, so production preflight rejects
-selected configuration homes containing global AGENTS files. The selected personal
-`.codex-plus` connection passed preflight, with no model call or authentication-store
-inspection. Exact CLI version, disabled features, enabled MCP absence and canonical
-connection metadata are checked before dispatch. The CLI reads its own authentication.
+The web app now declares its development dependency on the daemon whose transport types
+it imports, ensuring packages/daemon build before frontend type checking. No external
+package was added. See [ADR 0021](../decisions/0021-loredock-answer-quality-and-cli-refresh.md).
 
-The standalone probe deliberately retains `gate: not-qualified`: by itself, a synthetic
-configuration does not qualify a production connection or answer quality. The separate
-selected-connection preflight, application tests and real runs supply that additional
-evidence. They do not qualify arbitrary CLI versions, accounts, profiles or platforms.
+## Requalified runtime
 
-Production uses an empty owned cwd and disabled model tools with read-only execution.
-It does **not** use the strict filesystem namespace tested separately by the sandbox
-helper. Trusted CLI internals may read their installation/configuration and contact the
-provider. This capability boundary and its trust assumptions are explicit in ADR 0020.
-A configuration directory is not proof of account identity. Launcher/config metadata
-fingerprints are change detection, not hashes of all transitive installation files.
+The selected installation now reports **Codex CLI 0.166.0**. Text policy `text-only-v2`
+qualifies that exact Linux version with the existing selected personal `.codex-plus`
+connection and **gpt-5.6-terra / medium**. Workbench's adapter and qualified versions
+are unchanged. Another installed CLI version requires qualification rather than an
+account/executable fallback.
 
-## Measured retrieval and answer quality
+Eight sandbox-helper checks passed again, followed by 14 synthetic loopback protocol
+requests with no real model. Actual Code Mode inventory contains blocked `apply_patch`
+and three MCP resource primitives. Resource/template lists are empty and an outside
+file URI through an unconfigured server is rejected. Production preflight requires all
+MCP servers disabled; enabled-server rejection is tested. Shell, process/network JavaScript
+APIs and delegation remain unavailable. The selected connection passed no-model preflight.
+Authentication/session secrets were neither parsed nor copied.
 
-The frozen oracle and repository corpus were not changed or placed in model inputs.
-Generic retrieval improved complete expected-evidence recall from **10/20** to **19/20**.
-Question q14, frontend module conventions, still has no admitted lexical matches.
-Russian tokenization is available, but cross-language semantic retrieval is not.
+The global home instruction canary still appears in the synthetic request, so the
+production global-AGENTS rejection remains necessary. Ancestor/project and skill
+canaries are absent. The standalone probe's `not-qualified` field does not certify a
+selected connection or answer quality by itself; read it with preflight and application
+records. Production uses a disabled-capability/read-only boundary, not the strict
+filesystem namespace tested separately by the helper. Trusted CLI internals can read
+configuration/installation and contact the provider. Metadata fingerprints detect
+configuration changes; they do not hash all transitive native/configuration dependencies
+or prove account identity. See [ADR 0020](../decisions/0020-loredock-bounded-answers.md).
 
-Two explicitly bounded real-model evaluations ran, each with at most 20 attempts and
-no automatic application retries. The first prompt produced 19 mechanically accepted
-answers and one rejection; its duplicate-delivery inference was too strong. The second
-prompt clarified citation placement, unsupported guarantees and uncertainty handling.
+## Preserved evaluation history
 
-The second evaluation produced **20 structurally accepted answers and 90/90 resolving
-claim citations**. Conservative agent semantic review scores **17/20 useful and correctly
-presented answers**. This is not human acceptance:
-
-| Question | Remaining issue |
+| Run | Result |
 | --- | --- |
-| q06 — production topic | Correct abstention, but the explanatory ORDER_TOPIC fact is in unknowns without a structured citation. |
-| q13 — Java framework | Safe but unhelpfully terse abstention despite available Java 17/no-framework evidence. |
-| q14 — frontend conventions | Retrieval misses all relevant spans; the model correctly abstains. |
+| v1, September | 19 published answers; q20 rejected. A duplicate-delivery inference was too strong. |
+| v2, September | 20 valid structures, 90 resolving claim references, 17/20 agent assessment. Uncited explanation, under-informative framework abstention and frontend retrieval miss remained. |
+| v3, October | Stopped at q18 after a content hash was used as a locator. 18 attempts; 15/20 agent assessment, with two not-run questions and known conflict-presentation failures. |
+| v4, October | 20 valid answers, 19/20 agent assessment. The tenant-identity answer omitted the required authentication/authorization caveat. |
+| v5, October | 20 valid answers, 19/20 agent assessment. The rationale answer manufactured a conflict between local and unknown production settings. |
+| v6, October | 20 valid answers, 162 resolving references, provisional 20/20 agent assessment. Independent human semantic review is pending. |
 
-The second run does not identify unsupported affirmative claims or unsafe assertions
-in the reviewed conflict/unknown cases, but q06 prevents claiming that every material
-assertion has a usable citation. The original **18/20 usefulness threshold is not met**.
-Human review of all assertions, unknowns and their source support remains pending.
-The ten routing cases were not run and no production routing is delivered.
+Each record contains its exact context, model/runtime/prompt/schema identity and usage.
+No per-question best answers are assembled across versions. The corpus, revision vector,
+20-question oracle, 18/20 threshold and ten future routing cases are unchanged.
+The original 10/20 retrieval baseline and September CLI measurements remain available.
 
-Reported usage across both runs is 572,202 input tokens and 12,909 output tokens,
-including 222,208 cached input tokens. These are CLI-reported counts, not money or a
-prediction for large real projects. CLI/system overhead is substantial even with small
-source contexts. The first failed answer still has a usage receipt; raw rejected prose
-was not retained in that evaluator version. The second evaluator records raw output
-for diagnosis outside product publication.
+Four October runs consumed 78 application attempts and reported 895,489 input / 35,634
+output tokens, including 24,320 cached input tokens. There were no automatic application
+retries. These are not monetary estimates or predictions for 20 real repositories.
+CLI/provider transport can perform internal requests within the wall limit; interruption
+does not guarantee zero provider usage. No corporate source ingestion occurred.
 
-## Verification and continuation
+## Verification and remaining acceptance
 
-`pnpm check` passes **182 tests**, strict typechecks and production builds. Browser
-acceptance with a test-only injected runtime covers escaped prose, conflict, citation
-opening, abstention, failure/cancel retention, restart/history and 390px layout. The
-existing catalog browser flow also passes. Browser fixtures make no model calls and
-cannot be selected through production API/configuration.
+`pnpm check` passes **186 tests**, strict typechecks and production builds. All 35
+LoreDock tests also pass after final prompt/history-compatibility updates. Frozen offline
+installation succeeds. Browser acceptance verifies model-free orientation preview,
+escaped prose, conflict/citation, abstention, failure/cancel retention, restart/history
+and 390px layout with four fake runtime calls and zero models. Source fixtures remain
+unchanged. The final run's 289 input-span occurrences match original bytes/hashes/lines.
 
-Before default activation or L3 work:
+Before accepting Task 016 or enabling answers by default, a human must review all final
+claims, inferences and unanswered questions against the saved spans and frozen oracle.
+Conditional overwrite/receive language in q10 and q18 deserves particular attention;
+source intent is not observed runtime behavior. Agent scoring and resolving IDs are not
+semantic proof. The review sheet provides an unchecked box for every question.
 
-1. Improve the generic separation of missing information from source-backed explanation;
-   keep every substantive explanation in a cited claim. Avoid question-specific fixes.
-2. Improve useful summaries when evidence explicitly records an absent implementation,
-   and investigate bounded vocabulary/path-based retrieval for the q14 class of miss.
-3. Run another explicitly bounded, separately recorded evaluation after a justified
-   change. Preserve both earlier runs; do not choose the best answer per question.
-4. Obtain human semantic review against the frozen oracle and original spans. Enable
-   answers by default only after the unchanged quality and safety gates pass.
-
-The pilot implementation and review evidence are ready in draft PR #19. Acceptance is
-left open rather than equating schema success with a complete source-understanding tool.
+The pilot still supports three active repositories and bounded text retrieval. It does
+not provide cross-language semantic search, complete architecture extraction, production
+queries, routing, embeddings or a Workbench bridge. L3 relationships and later scale/
+refresh work wait for this vertical slice's human acceptance. No further model run is
+needed merely to repeat the current result; any future evaluation follows a justified
+change and a separately bounded, preserved run.

@@ -59,7 +59,7 @@ export function AnswerPanel({ buildId, boundary, openEvidence }: { buildId: stri
         <label htmlFor="answer-home">Configuration directory</label><input id="answer-home" value={configHome ?? state?.connection?.configHome ?? ''} onChange={event => setConfigHome(event.target.value)} placeholder="/home/you/.codex-personal" required />
         <label htmlFor="answer-executable">Codex executable</label><input id="answer-executable" value={executable ?? state?.connection?.executable ?? ''} onChange={event => setExecutable(event.target.value)} placeholder="/absolute/path/to/codex" required />
         <label htmlFor="answer-profile">Named CLI profile (optional)</label><input id="answer-profile" value={profile ?? state?.connection?.profile ?? ''} onChange={event => setProfile(event.target.value)} />
-        <p className="muted">Pilot runtime: Codex 0.159.2 · gpt-5.6-terra · medium. No shell, network tools or delegation.</p>
+        <p className="muted">Pilot runtime: {state?.cliVersion ?? 'Checking version…'} · gpt-5.6-terra · medium. No shell, network tools or delegation.</p>
         <button disabled={busy || Boolean(active)}>Save Codex setup</button>
       </form>
     </details>
@@ -94,6 +94,7 @@ export function AnswerPanel({ buildId, boundary, openEvidence }: { buildId: stri
       {!!displayed.answer?.unknowns.length && <div className="notice"><h4>What remains unknown</h4><ul>{displayed.answer.unknowns.map((unknown, index) => <li key={index}>{unknown}</li>)}</ul></div>}
       <details><summary>Attempt details</summary><p>{displayed.model} · {displayed.effort} · {displayed.runtime?.version ?? 'Runtime not dispatched'}</p>
         <p>{displayed.usage ? `${displayed.usage.inputTokens} input tokens · ${displayed.usage.outputTokens} output tokens` : displayed.usageUnknownReason ?? 'Usage unknown'}</p>
+        <p>{displayed.promptVersion} · {displayed.schemaVersion}</p>
         <p>Claims are model-generated and have not been human-approved. Citations resolve mechanically; verify their semantic support.</p>
       </details>
     </article>}

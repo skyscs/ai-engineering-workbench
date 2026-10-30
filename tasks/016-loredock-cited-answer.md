@@ -1,12 +1,14 @@
 # Task 016 — First bounded, source-backed LoreDock answer
 
-Status: implemented for opt-in review, 2026-09-30; acceptance remains in progress.
+Status: implementation and agent evaluation complete, 2026-10-30; human semantic
+acceptance remains pending.
 Task 015 merged through PR #18. The durable answer workflow, restricted CLI runtime,
 question/answer UI and real-model evaluations are implemented. See the
 [answer checkpoint](../docs/loredock/ANSWER_FOUNDATION.md) and
-[acceptance record](../docs/fixtures/loredock-answers/README.md). Human semantic review
-and known retrieval/usefulness gaps must remain explicit; do not mark this accepted
-from automated citation checks alone.
+[quality record and human review sheet](../docs/fixtures/loredock-answer-quality/README.md).
+The final complete run receives a provisional 20/20 agent assessment and 162 resolving
+citation references. Historical failures and pilot limits remain visible. Human semantic
+review is pending; do not mark this accepted from automated or agent checks alone.
 
 ## Objective
 
@@ -17,8 +19,9 @@ and answer; show model/configuration and limits when they require a user decisio
 ## Mandatory runtime qualification
 
 Qualify the explicitly selected executable and configuration directory with synthetic
-files before any real-model run. The originally observed CLI 0.158.0 and updated CLI 0.159.2 are outside the
-Workbench adapter allowlist; LoreDock qualifies its own 0.159.2 text-only policy. Verify actual help/config behavior, structured output,
+files before any real-model run. The observed CLI versions 0.158.0, 0.159.2 and 0.166.0 are outside the
+Workbench adapter allowlist. LoreDock now qualifies its own 0.166.0 text-only policy;
+the 0.159.2 measurements remain historical evidence. Verify actual help/config behavior, structured output,
 supported restrictions, configuration discovery, enabled tools, cancellation and errors.
 Do not merely add its version string or fall back to another executable/account.
 

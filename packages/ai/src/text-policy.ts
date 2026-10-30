@@ -1,6 +1,6 @@
 // Candidate text-only policy. Qualification is separate from the Workbench adapter.
-export const textPolicyVersion = 'text-only-v1';
-export const textCliVersion = 'codex-cli 0.159.2';
+export const textPolicyVersion = 'text-only-v2';
+export const textCliVersion = 'codex-cli 0.166.0';
 export const textDisabledFeatures = ['apps', 'plugins', 'hooks', 'browser_use', 'computer_use', 'image_generation',
   'multi_agent', 'multi_agent_v2', 'shell_tool', 'view_image', 'skill_search', 'shell_snapshot',
   'workspace_dependencies', 'unbounded_connection_retries', 'enable_request_compression', 'goals', 'sleep_tool', 'in_app_updates'];

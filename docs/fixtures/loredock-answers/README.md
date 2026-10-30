@@ -1,5 +1,9 @@
 # LoreDock cited-answer pilot evidence
 
+Historical September checkpoint. The [October quality record](../loredock-answer-quality/README.md)
+preserves subsequent failed evaluations and the final run awaiting human semantic review.
+The original results below remain unchanged.
+
 Date: 2026-09-30. Linux / Node 22.23.2 / Codex 0.159.2 / gpt-5.6-terra / medium.
 Task 016 is **not accepted**. The implementation is available as an opt-in pilot;
 quality remediation and human semantic review are still required.

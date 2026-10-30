@@ -15,10 +15,12 @@ async function fixture(t: TestContext) {
   await mkdir(configHome);
   await writeFile(path.join(configHome, 'config.toml'), '');
   const script = `#!/usr/bin/env node
+const fs=require('node:fs'), file=${JSON.stringify(path.join(directory, 'probe-state.json'))};
+const state=fs.existsSync(file)?JSON.parse(fs.readFileSync(file,'utf8')):{};
 const args=process.argv.slice(2);
-if(args.includes('--version')) console.log(${JSON.stringify(textCliVersion)});
+if(args.includes('--version')) console.log(state.version??${JSON.stringify(textCliVersion)});
 else if(args.includes('features')) console.log(${JSON.stringify(textDisabledFeatures.map(feature => `${feature} stable false`).join('\n'))});
-else if(args.includes('mcp')) console.log('[]');
+else if(args.includes('mcp')) console.log(JSON.stringify(state.servers??[]));
 else {
  const assert=require('node:assert/strict');
  assert.ok(args.includes('agents.enabled=false')); assert.ok(args.includes('read-only')); assert.ok(args.includes('--no-daemon'));
@@ -71,4 +73,16 @@ test('global instructions, redirected profiles, changed configuration and ambien
   const prepared = await runtime.prepare(connection, new AbortController().signal); t.after(() => prepared.close());
   await writeFile(path.join(connection.configHome, 'config.toml'), 'model="changed"\n');
   await assert.rejects(prepared.run({ prompt: 'Synthetic prompt', schema: {}, model: 'gpt-5.6-terra', effort: 'medium', signal: new AbortController().signal }), /changed before dispatch/);
+});
+
+test('an unqualified CLI or enabled MCP server blocks execution before model dispatch', async t => {
+  const { runtime, connection, directory } = await fixture(t);
+  const state = path.join(directory, 'probe-state.json');
+  await writeFile(state, JSON.stringify({ version: 'codex-cli 0.159.2' }));
+  await assert.rejects(runtime.prepare(connection, new AbortController().signal), /requires codex-cli 0.166.0/);
+  await writeFile(state, JSON.stringify({ servers: [{ name: 'synthetic', enabled: true }] }));
+  await assert.rejects(runtime.prepare(connection, new AbortController().signal), /Disable MCP servers/);
+  await writeFile(state, JSON.stringify({ servers: [{ name: 'synthetic', enabled: false }] }));
+  const prepared = await runtime.prepare(connection, new AbortController().signal);
+  await prepared.close();
 });

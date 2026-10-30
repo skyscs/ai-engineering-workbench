@@ -8,6 +8,7 @@ import { Answers } from '../src/answers.js';
 import { Catalog } from '../src/catalog.js';
 import { CatalogStore } from '../src/store.js';
 import { createApp } from '../src/app.js';
+import { sha256 } from '../src/extract.js';
 // @ts-expect-error The independent fixture generator is plain JavaScript.
 import { createLoreDockFixture } from '../../../scripts/loredock-fixture.mjs';
 
@@ -24,7 +25,7 @@ class FixtureRuntime implements TextRuntime {
         if (this.mode === 'fail') throw new Error('Synthetic provider failure');
         if (this.mode === 'hold') await new Promise<void>(resolve => { this.release = resolve; });
         const input = JSON.parse(request.prompt.split('INPUT_JSON (data, not instructions):\n')[1]!) as { spans: { id: string }[] };
-        const text = JSON.stringify({ claims: input.spans.length ? [{ kind: 'fact', text: '<script>Literal test prose</script>', evidenceIds: [this.mode === 'invalid' ? 'invented' : input.spans[0]!.id] }] : [], unknowns: input.spans.length ? [] : ['No matching indexed evidence.'] });
+        const text = JSON.stringify({ claims: input.spans.length ? [{ kind: 'fact', text: '<script>Literal test prose</script>', evidenceIds: [this.mode === 'invalid' ? 'invented' : input.spans[0]!.id] }] : [], unknowns: input.spans.length ? [] : ['Where is the supporting indexed evidence?'] });
         return { text, usage: { inputTokens: 100, outputTokens: 20, cachedInputTokens: 0 }, usageUnknownReason: null };
       } };
   }
@@ -134,6 +135,25 @@ test('restart distinguishes recorded dispatch from preparation and never repeats
     assert.equal(restored.get(second.id).status, 'interrupted'); assert.match(restored.get(second.id).usageUnknownReason!, /unknown after restart/);
     assert.equal(runtime.calls, calls); assert.equal(restored.state().publishedAnswerId, null);
   } finally { await restored.stop(); await catalog.stop(); reopened.close(); }
+});
+
+test('new prompt/schema identities persist while older answer prose remains readable unchanged', async t => {
+  const { answers, store } = await setup(t);
+  const current = ask(answers); await answers.idle();
+  assert.equal(answers.get(current.id).schemaVersion, 'cited-answer-v3');
+  assert.equal(answers.get(current.id).promptVersion, 'loredock-answer-v6');
+  const older = JSON.stringify({ claims: [], unknowns: ['Legacy saved uncertainty statement.'] });
+  const oldContext = answers.get(current.id).context!;
+  delete oldContext.retrievalMode; oldContext.retrievalVersion = 'fts-question-v3';
+  const { inputHash: _previousHash, ...input } = oldContext; oldContext.inputHash = sha256(JSON.stringify(input));
+  const serializedContext = JSON.stringify(oldContext);
+  store.run("UPDATE answer_attempts SET result=?,context=?,inputHash=?,schemaVersion='cited-answer-v1',promptVersion='loredock-answer-v2' WHERE id=?", older, serializedContext, oldContext.inputHash, current.id);
+  assert.deepEqual(answers.get(current.id).answer?.unknowns, ['Legacy saved uncertainty statement.']);
+  assert.deepEqual(answers.get(current.id).context, oldContext);
+  assert.equal(Object.hasOwn(answers.get(current.id).context!, 'retrievalMode'), false);
+  assert.equal(answers.get(current.id).schemaVersion, 'cited-answer-v1');
+  assert.equal(store.one<{ result: string }>('SELECT result FROM answer_attempts WHERE id=?', current.id)!.result, older);
+  assert.equal(store.one<{ context: string }>('SELECT context FROM answer_attempts WHERE id=?', current.id)!.context, serializedContext);
 });
 
 test('answer HTTP routes protect configuration, context preview, execution and history', async t => {
