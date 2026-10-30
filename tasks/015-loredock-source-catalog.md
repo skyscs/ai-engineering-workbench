@@ -1,6 +1,7 @@
 # Task 015 — LoreDock local source catalog and committed-text index
 
-Status: implemented and locally verified on 2026-09-28; checkpoint review pending.
+Status: implemented and locally verified on 2026-09-28; merged through PR #18
+at `769c652`, confirmed on 2026-09-30.
 
 ## Objective
 

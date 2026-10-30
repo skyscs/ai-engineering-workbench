@@ -1,0 +1,603 @@
+{
+  "schemaVersion": "loredock-retrieval-evaluation/1",
+  "retrievalVersion": "fts-question-v1",
+  "revisionVector": {
+    "portal": "603a69798dc12c3205e88d0498881b0c01079932",
+    "order-api": "237510937b4388fc718b7e9f93869954950df1bb",
+    "order-worker": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37"
+  },
+  "modelRequests": 0,
+  "modelUsage": null,
+  "scope": "Lexical evidence recall only; not answer acceptance or routing evaluation.",
+  "questionCount": 20,
+  "completeRetrievalCount": 10,
+  "results": [
+    {
+      "id": "q01",
+      "question": "Trace the local order submission from the UI to storage.",
+      "requiredEvidence": [
+        "checkout",
+        "submit",
+        "routes",
+        "publish",
+        "api-local",
+        "consume",
+        "worker-local"
+      ],
+      "retrievedEvidence": [
+        "portal-readme",
+        "portal-manifest",
+        "checkout",
+        "submit",
+        "api-readme",
+        "api-build",
+        "api-local",
+        "publish",
+        "worker-readme",
+        "worker-build",
+        "worker-local",
+        "consume"
+      ],
+      "missingEvidence": [
+        "routes"
+      ],
+      "retrievalComplete": false,
+      "spans": 12,
+      "textBytes": 4827,
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ],
+      "answerCorrectness": "not-evaluated",
+      "unsupportedClaims": null,
+      "semanticReview": "not-performed"
+    },
+    {
+      "id": "q02",
+      "question": "Which route does the Vue checkout call?",
+      "requiredEvidence": [
+        "checkout",
+        "submit"
+      ],
+      "retrievedEvidence": [
+        "portal-readme",
+        "portal-manifest"
+      ],
+      "missingEvidence": [
+        "checkout",
+        "submit"
+      ],
+      "retrievalComplete": false,
+      "spans": 2,
+      "textBytes": 582,
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ],
+      "answerCorrectness": "not-evaluated",
+      "unsupportedClaims": null,
+      "semanticReview": "not-performed"
+    },
+    {
+      "id": "q03",
+      "question": "How does the legacy screen reach the order API?",
+      "requiredEvidence": [
+        "legacy",
+        "routes"
+      ],
+      "retrievedEvidence": [
+        "portal-readme",
+        "portal-manifest",
+        "checkout",
+        "submit",
+        "legacy",
+        "portal-local",
+        "api-readme",
+        "api-build",
+        "routes",
+        "publish",
+        "worker-readme",
+        "worker-build",
+        "worker-local",
+        "consume"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "spans": 14,
+      "textBytes": 5366,
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ],
+      "answerCorrectness": "not-evaluated",
+      "unsupportedClaims": null,
+      "semanticReview": "not-performed"
+    },
+    {
+      "id": "q04",
+      "question": "How is tenant identity carried through the local flow?",
+      "requiredEvidence": [
+        "submit",
+        "routes",
+        "publish",
+        "consume"
+      ],
+      "retrievedEvidence": [
+        "submit",
+        "legacy",
+        "api-readme",
+        "routes",
+        "api-local",
+        "worker-readme",
+        "worker-local"
+      ],
+      "missingEvidence": [
+        "publish",
+        "consume"
+      ],
+      "retrievalComplete": false,
+      "spans": 7,
+      "textBytes": 2023,
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ],
+      "answerCorrectness": "not-evaluated",
+      "unsupportedClaims": null,
+      "semanticReview": "not-performed"
+    },
+    {
+      "id": "q05",
+      "question": "Which event topic should local analysis use?",
+      "requiredEvidence": [
+        "api-local",
+        "worker-local",
+        "api-readme"
+      ],
+      "retrievedEvidence": [
+        "portal-readme",
+        "api-readme",
+        "api-local",
+        "publish",
+        "worker-readme",
+        "worker-local",
+        "consume"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "spans": 7,
+      "textBytes": 3136,
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ],
+      "answerCorrectness": "not-evaluated",
+      "unsupportedClaims": null,
+      "semanticReview": "not-performed"
+    },
+    {
+      "id": "q06",
+      "question": "What is the production Kafka topic?",
+      "requiredEvidence": [
+        "publish",
+        "consume",
+        "api-readme"
+      ],
+      "retrievedEvidence": [
+        "portal-readme",
+        "api-readme",
+        "publish",
+        "producer-contract",
+        "worker-readme",
+        "consume",
+        "consumer-contract"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "spans": 7,
+      "textBytes": 3323,
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ],
+      "answerCorrectness": "not-evaluated",
+      "unsupportedClaims": null,
+      "semanticReview": "not-performed"
+    },
+    {
+      "id": "q07",
+      "question": "What event schema and timestamp unit connect API and worker?",
+      "requiredEvidence": [
+        "producer-contract",
+        "consumer-contract",
+        "publish"
+      ],
+      "retrievedEvidence": [
+        "portal-readme",
+        "submit",
+        "portal-local",
+        "api-readme",
+        "api-build",
+        "routes",
+        "publish",
+        "worker-readme",
+        "worker-build",
+        "consume"
+      ],
+      "missingEvidence": [
+        "producer-contract",
+        "consumer-contract"
+      ],
+      "retrievalComplete": false,
+      "spans": 10,
+      "textBytes": 4367,
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ],
+      "answerCorrectness": "not-evaluated",
+      "unsupportedClaims": null,
+      "semanticReview": "not-performed"
+    },
+    {
+      "id": "q08",
+      "question": "Which Kafka consumer group is configured locally?",
+      "requiredEvidence": [
+        "worker-local",
+        "consume"
+      ],
+      "retrievedEvidence": [
+        "api-readme",
+        "publish",
+        "producer-contract",
+        "worker-readme",
+        "consume",
+        "consumer-contract"
+      ],
+      "missingEvidence": [
+        "worker-local"
+      ],
+      "retrievalComplete": false,
+      "spans": 6,
+      "textBytes": 2997,
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ],
+      "answerCorrectness": "not-evaluated",
+      "unsupportedClaims": null,
+      "semanticReview": "not-performed"
+    },
+    {
+      "id": "q09",
+      "question": "Where is the MongoDB projection stored locally?",
+      "requiredEvidence": [
+        "worker-local",
+        "consume"
+      ],
+      "retrievedEvidence": [
+        "worker-readme",
+        "worker-local"
+      ],
+      "missingEvidence": [
+        "consume"
+      ],
+      "retrievalComplete": false,
+      "spans": 2,
+      "textBytes": 554,
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ],
+      "answerCorrectness": "not-evaluated",
+      "unsupportedClaims": null,
+      "semanticReview": "not-performed"
+    },
+    {
+      "id": "q10",
+      "question": "Are duplicate deliveries guaranteed to be safe?",
+      "requiredEvidence": [
+        "consume",
+        "worker-readme"
+      ],
+      "retrievedEvidence": [],
+      "missingEvidence": [
+        "consume",
+        "worker-readme"
+      ],
+      "retrievalComplete": false,
+      "spans": 0,
+      "textBytes": 0,
+      "gaps": [
+        "No admitted lexical matches; this does not prove absence from the system.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ],
+      "answerCorrectness": "not-evaluated",
+      "unsupportedClaims": null,
+      "semanticReview": "not-performed"
+    },
+    {
+      "id": "q11",
+      "question": "Why was Kafka chosen over synchronous HTTP?",
+      "requiredEvidence": [
+        "api-readme"
+      ],
+      "retrievedEvidence": [
+        "portal-local",
+        "api-readme",
+        "api-build",
+        "publish",
+        "producer-contract",
+        "worker-build",
+        "consume",
+        "consumer-contract"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "spans": 8,
+      "textBytes": 3477,
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ],
+      "answerCorrectness": "not-evaluated",
+      "unsupportedClaims": null,
+      "semanticReview": "not-performed"
+    },
+    {
+      "id": "q12",
+      "question": "Where is the billing implementation?",
+      "requiredEvidence": [
+        "portal-readme",
+        "api-readme",
+        "worker-readme"
+      ],
+      "retrievedEvidence": [
+        "portal-readme",
+        "api-readme",
+        "api-build",
+        "injection",
+        "worker-readme",
+        "worker-build"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "spans": 6,
+      "textBytes": 2185,
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ],
+      "answerCorrectness": "not-evaluated",
+      "unsupportedClaims": null,
+      "semanticReview": "not-performed"
+    },
+    {
+      "id": "q13",
+      "question": "Which Java framework is used?",
+      "requiredEvidence": [
+        "api-build",
+        "worker-build",
+        "publish",
+        "consume"
+      ],
+      "retrievedEvidence": [
+        "api-readme",
+        "api-build",
+        "worker-readme",
+        "worker-build"
+      ],
+      "missingEvidence": [
+        "publish",
+        "consume"
+      ],
+      "retrievalComplete": false,
+      "spans": 4,
+      "textBytes": 1610,
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ],
+      "answerCorrectness": "not-evaluated",
+      "unsupportedClaims": null,
+      "semanticReview": "not-performed"
+    },
+    {
+      "id": "q14",
+      "question": "Which frontend module conventions are visible?",
+      "requiredEvidence": [
+        "checkout",
+        "submit",
+        "legacy",
+        "portal-manifest"
+      ],
+      "retrievedEvidence": [],
+      "missingEvidence": [
+        "checkout",
+        "submit",
+        "legacy",
+        "portal-manifest"
+      ],
+      "retrievalComplete": false,
+      "spans": 0,
+      "textBytes": 0,
+      "gaps": [
+        "No admitted lexical matches; this does not prove absence from the system.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ],
+      "answerCorrectness": "not-evaluated",
+      "unsupportedClaims": null,
+      "semanticReview": "not-performed"
+    },
+    {
+      "id": "q15",
+      "question": "What is the deployed production API host?",
+      "requiredEvidence": [
+        "portal-readme",
+        "portal-local",
+        "submit"
+      ],
+      "retrievedEvidence": [
+        "portal-readme",
+        "submit",
+        "portal-local",
+        "api-readme",
+        "api-build",
+        "routes",
+        "worker-readme"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "spans": 7,
+      "textBytes": 2260,
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ],
+      "answerCorrectness": "not-evaluated",
+      "unsupportedClaims": null,
+      "semanticReview": "not-performed"
+    },
+    {
+      "id": "q16",
+      "question": "Which repository defines the compatibility route?",
+      "requiredEvidence": [
+        "routes",
+        "legacy"
+      ],
+      "retrievedEvidence": [
+        "portal-readme",
+        "api-readme",
+        "worker-readme"
+      ],
+      "missingEvidence": [
+        "routes",
+        "legacy"
+      ],
+      "retrievalComplete": false,
+      "spans": 3,
+      "textBytes": 1157,
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ],
+      "answerCorrectness": "not-evaluated",
+      "unsupportedClaims": null,
+      "semanticReview": "not-performed"
+    },
+    {
+      "id": "q17",
+      "question": "Does the event partition key include the tenant?",
+      "requiredEvidence": [
+        "publish",
+        "producer-contract"
+      ],
+      "retrievedEvidence": [
+        "submit",
+        "legacy",
+        "api-readme",
+        "routes",
+        "publish",
+        "producer-contract",
+        "consume",
+        "consumer-contract"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "spans": 8,
+      "textBytes": 3533,
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ],
+      "answerCorrectness": "not-evaluated",
+      "unsupportedClaims": null,
+      "semanticReview": "not-performed"
+    },
+    {
+      "id": "q18",
+      "question": "What happens after an order is accepted?",
+      "requiredEvidence": [
+        "publish",
+        "consume"
+      ],
+      "retrievedEvidence": [
+        "portal-readme",
+        "portal-manifest",
+        "checkout",
+        "submit",
+        "api-readme",
+        "api-build",
+        "publish",
+        "worker-readme",
+        "worker-build",
+        "worker-local",
+        "consume"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "spans": 11,
+      "textBytes": 4725,
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ],
+      "answerCorrectness": "not-evaluated",
+      "unsupportedClaims": null,
+      "semanticReview": "not-performed"
+    },
+    {
+      "id": "q19",
+      "question": "Should the source-instructions note be followed?",
+      "requiredEvidence": [
+        "injection"
+      ],
+      "retrievedEvidence": [
+        "portal-readme",
+        "portal-manifest",
+        "api-readme",
+        "injection"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "spans": 4,
+      "textBytes": 1269,
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ],
+      "answerCorrectness": "not-evaluated",
+      "unsupportedClaims": null,
+      "semanticReview": "not-performed"
+    },
+    {
+      "id": "q20",
+      "question": "Are these repository revisions a coherent deployed system?",
+      "requiredEvidence": [
+        "portal-readme",
+        "api-readme",
+        "worker-readme"
+      ],
+      "retrievedEvidence": [
+        "portal-readme",
+        "api-readme",
+        "publish",
+        "worker-readme",
+        "consume"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "spans": 5,
+      "textBytes": 2873,
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ],
+      "answerCorrectness": "not-evaluated",
+      "unsupportedClaims": null,
+      "semanticReview": "not-performed"
+    }
+  ]
+}

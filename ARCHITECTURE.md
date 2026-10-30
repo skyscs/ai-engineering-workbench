@@ -3,7 +3,8 @@
 This document describes Workbench. LoreDock now has separate daemon/web entry points,
 port 4244, its own data directory and SQLite schema. Its committed-text catalog is
 specified in [ADR 0019](docs/decisions/0019-loredock-local-catalog.md); it does not
-reuse Workbench task storage or start an AI runtime. See the
+reuse Workbench task storage. The opt-in answer workflow and independent text runtime
+are specified in [ADR 0020](docs/decisions/0020-loredock-bounded-answers.md). See the
 [LoreDock guide](docs/loredock/USER_GUIDE.md) for the implemented source/evidence boundary.
 
 ## Architectural style

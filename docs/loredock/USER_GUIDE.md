@@ -1,9 +1,9 @@
-# LoreDock source catalog guide
+# LoreDock source catalog and answer guide
 
 LoreDock currently connects local Git repositories, indexes committed text and lets
-you open exact source citations. AI answers, system relationships and automatic
-Workbench repository selection belong to later iterations. No Codex setup is needed
-and no model is called by this version.
+you open exact source citations. The default catalog needs no Codex setup and makes
+no model calls. An opt-in pilot adds cited answers; system relationships and automatic
+Workbench repository selection belong to later iterations.
 
 ## Start LoreDock
 
@@ -52,6 +52,68 @@ staged and untracked differences; they do not run clean filters or include those
 changes. Every index records independent revisions, not proof of a coherent deployment.
 Production environment values and external systems remain unknown unless included in
 explicitly registered sources.
+
+## Ask a question (opt-in pilot)
+
+Stop the existing LoreDock process and start the answer pilot with the same data
+directory. Back up the stopped directory before upgrading: schema 3 migrates earlier
+catalog data and adds question search, answer attempts and connection settings.
+
+```sh
+LOREDOCK_ANSWERS=1 pnpm loredock
+```
+
+1. Add and index sources as above. Under **Ask about your system**, open **Codex setup**.
+2. Set **Configuration directory** to the existing Codex configuration signed into
+   the account allowed to process these sources, for example `/home/you/.codex-personal`.
+   This is **not** the artifact directory. LoreDock data stays in `LOREDOCK_DATA_DIR`.
+   LoreDock does not log in, copy credentials or determine whether an account is personal
+   or corporate. `codex` versus `codex-plus` naming alone does not establish identity.
+3. Set **Codex executable** to an absolute existing launcher path. A named CLI profile
+   is optional. Click **Save Codex setup** once; the connection is saved locally.
+4. Enter a concrete question in English, such as “How does an order reach the database?”
+   Click **Find context**. This step makes no model call. Review **Context, coverage
+   and gaps** and open source passages if necessary. Questions use lexical retrieval
+   with identifier expansion; cross-language semantic search is not implemented.
+5. Click **Generate answer** to send the selected question and evidence through the
+   saved connection. The pilot uses **Codex 0.159.2 / gpt-5.6-terra / medium** on Linux.
+   There is one active attempt, at most two minutes, 30 passages / 64 KiB source text,
+   and 20 claims. Complete prompt and CLI overhead are additional to source text;
+   displayed byte counts are not token or monetary estimates.
+6. Read source-backed statements, explicitly marked inferences/conflicts and **What
+   remains unknown**. Click a citation to open its original saved lines. Check whether
+   the text actually supports the statement: resolving a citation is not proof of truth.
+
+**Cancel answer** prevents late publication and stops the owned process. Failed or
+cancelled attempts keep the previous authorized successful answer. **Answer history**
+shows the latest 20 attempts and their saved inputs; **Attempt details** shows runtime
+and reported tokens or an explicit unknown. Closing the browser does not cancel work.
+After a daemon restart, incomplete attempts become **interrupted**. To retry, review
+context and click **Generate answer** again; this is a new attempt and may consume usage.
+There is no automatic application retry. Provider completion may remain unknown after
+interruption, and the CLI can perform internal transport requests within the time limit.
+
+Answers identify their saved index; newer indexes/registry changes are marked. Changing
+source policy fences old answers. Removing a source fences and purges dependent context
+and answer text, including answers that consumed it but did not cite it.
+
+If setup fails, the history preserves the reason before any answer is published:
+
+- **UNQUALIFIED_CLI**: this pilot verifies exactly 0.159.2; another version requires
+  qualification. It never silently selects another executable or account.
+- **GLOBAL_INSTRUCTIONS** or **MCP_CONFIGURATION**: the selected configuration contains
+  global AGENTS instructions or enabled MCP servers. Use an appropriate explicitly
+  configured connection; do not delete corporate configuration merely to bypass a check.
+- **PROJECT_CONFIGURATION**: the owned temporary working directory has an ancestor
+  `.codex`. Use a clean temporary-directory location before restarting the daemon.
+- **AMBIENT_AUTH_OVERRIDE**: inherited provider credentials/routing overrides conflict
+  with explicit connection selection. Start LoreDock without those overrides.
+- **Invalid answer/citation**: the generated result was rejected and the previous
+  answer retained. Failure does not imply that the provider consumed no usage.
+
+The feature remains a pilot pending human semantic review. See the
+[recorded evaluation](../fixtures/loredock-answers/README.md); the missing frontend
+conventions retrieval case is retained as a known limitation.
 
 ## Updates, history and interruptions
 
@@ -181,3 +243,13 @@ require the session. No tokens belong in URLs or logs.
 | `GET /api/builds/:id/files` | First 100 excluded/failed authorized file records. |
 | `GET /api/search?q=...&buildId=...` | Search the current or a selected published index. |
 | `GET /api/evidence/:id` | Reopen a validated, authorized stored citation. |
+| `GET /api/answers` | Saved connection, recent attempt metadata and latest authorized answer ID (pilot only). |
+| `PUT /api/answers/configuration` | Save `{executable, configHome, profile}`; use `null` for no named profile. |
+| `POST /api/answers/preview` | Retrieve `{question, buildId?}` without invoking a model. |
+| `POST /api/answers` | Start/replay `{requestId, question, buildId, inputHash}` from a reviewed preview. |
+| `GET /api/answers/:id` | Authorized saved context, result, identity and usage. |
+| `POST /api/answers/:id/cancel` | Cancel one attempt and fence late completion. |
+
+Answer routes exist only when the pilot is enabled. The server reconstructs and verifies
+context; clients cannot submit their own evidence set. Reusing a request ID with changed
+inputs or a changed connection is a conflict, not a retry.

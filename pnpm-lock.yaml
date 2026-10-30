@@ -44,6 +44,9 @@ importers:
 
   apps/loredock:
     dependencies:
+      '@aew/ai':
+        specifier: workspace:*
+        version: link:../../packages/ai
       '@hono/node-server':
         specifier: ^1.19.1
         version: 1.19.17(hono@4.13.7)

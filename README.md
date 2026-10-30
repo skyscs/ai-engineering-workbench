@@ -11,6 +11,11 @@ source citations. It makes no model calls and needs no Codex configuration.
 After the shared installation/build steps below, run `pnpm loredock` and open
 **http://127.0.0.1:4244**. Follow the [LoreDock guide](docs/loredock/USER_GUIDE.md)
 for indexing, search, updates, coverage, storage and the synthetic demo.
+The [answer-stage checkpoint](docs/loredock/ANSWER_FOUNDATION.md) records internal
+retrieval and real-model evaluation results. An **opt-in cited-answer pilot** is now
+available with `LOREDOCK_ANSWERS=1 pnpm loredock`; follow the guide's
+[answer setup](docs/loredock/USER_GUIDE.md#ask-a-question-opt-in-pilot). Default startup
+remains model-free while answer acceptance and human review are pending.
 
 ## What v0.1 does
 
@@ -136,7 +141,7 @@ and external registered repositories; Markdown export is not a backup.
 | Integrate with the local HTTP API | [Session and transport](docs/local-api.md), then feature API tables |
 | Inspect validation and development history | [Release acceptance](docs/release-acceptance.md), [development status](docs/development-status.md) |
 | Use the LoreDock source catalog | [LoreDock guide](docs/loredock/USER_GUIDE.md), [browser acceptance](docs/fixtures/loredock-catalog/README.md) — local indexing and cited source search implemented |
-| Review the next development direction | [LoreDock-first roadmap](docs/loredock/PLAN.md), [draft review](docs/loredock/REVIEW.md), [L0 feasibility](docs/loredock/FEASIBILITY.md) — AI answers and system relationships remain planned |
+| Review the next development direction | [LoreDock-first roadmap](docs/loredock/PLAN.md), [answer pilot](docs/loredock/ANSWER_FOUNDATION.md), [draft review](docs/loredock/REVIEW.md) — relationships and Workbench integration remain planned |
 | Inspect the earlier interaction prototype | [Interaction prototype](prototypes/investigation/README.md), [UX plan](docs/ux-simplification-plan.md) — sample data, no model calls |
 
 For development, `pnpm dev` rebuilds internal packages and starts the UI on

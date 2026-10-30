@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "loredock-answer-browser/1",
+  "sources": 3,
+  "indexedFiles": 18,
+  "modelRequests": 0,
+  "fakeRuntimeCalls": 4,
+  "escapedProse": true,
+  "conflict": true,
+  "openedCitation": true,
+  "abstention": true,
+  "failurePreservesAnswer": true,
+  "cancellationPreservesAnswer": true,
+  "restartHistory": true,
+  "historySelection": true,
+  "mobileWidth": 390,
+  "sourceCheckoutsUnchanged": true
+}

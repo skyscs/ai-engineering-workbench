@@ -10,8 +10,18 @@ session/CSRF boundary, escaped text UI and data-directory ownership lock. Read
 [source policy guide](docs/loredock/USER_GUIDE.md#policy-and-removal) before indexing.
 Default exclusions are not a secret scanner; Git metadata/installations remain
 trusted local inputs. Source revocation fences live search/evidence before logical
-purge; backups and prior external copies are outside that purge. Real-model runtime
-qualification remains required for the later LoreDock answer stage.
+purge; backups and prior external copies are outside that purge.
+
+The opt-in answer pilot sends a reviewed bounded context to the selected Codex
+connection. Its capability restrictions, trusted-CLI assumptions and qualification
+limits are recorded in [ADR 0020](docs/decisions/0020-loredock-bounded-answers.md).
+Production execution disables model filesystem/network tools; it does not claim the
+strict filesystem namespace demonstrated separately by the sandbox-helper probe.
+Global agent instructions and enabled MCP servers block preflight. Configuration
+selection is not proof of account identity. Source revocation also fences and purges
+dependent saved answer/context text. Cancellation cannot guarantee provider-side
+cancellation or zero usage. Generated claims require semantic review even when every
+citation mechanically resolves.
 
 The sections below describe Workbench's existing AI investigation boundary.
 
