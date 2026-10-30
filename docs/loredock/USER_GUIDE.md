@@ -86,9 +86,53 @@ removal hides that repository and dependent comparisons immediately on refreshed
 policy changes fence old maps. Restart recomputes the projection from saved original
 bytes, without resuming AI work or storing a second graph database.
 
-This first map does not trace full Java/Vue/Dojo/Kafka/MongoDB flows or resolve handler
-implementations. Code-to-declaration adapters and human scope corrections are the next
-L3 slices. See [map evidence](../fixtures/loredock-declaration-map/README.md).
+The declaration projection remains separate from the bounded code links below.
+See [map evidence](../fixtures/loredock-declaration-map/README.md).
+
+## Follow a static flow outline
+
+After indexing, **Static flow outlines** appears inside **System map**, without any
+additional setup or model calls. On the synthetic demo it offers **Vue action ·
+Checkout.vue** and **Dojo action · orders.js**. The first outline opens automatically;
+open the other card to follow the alternate client through the shared Java handler.
+
+1. Read the numbered steps from the client action to the document write. A step's
+   source button opens its original committed file. **Source link** explains a
+   supported local syntax relationship.
+2. Review each **Candidate hop**. HTTP method/path matching does not bind the client
+   URL/proxy to a deployed server. Matching record/contract shapes and scoped topic
+   settings are delivery clues; they do not prove shared broker or serialization.
+3. Open **Compare hop evidence** to inspect both sides, including configuration and
+   contract files. Open **Unresolved wiring** for missing runtime topic binding,
+   subscriber-to-onMessage dispatch and concrete MongoDB collection selection.
+   A comparison scoped to `local` leaves the active environment unknown.
+4. Use **Index version** to inspect an older pinned outline, or index again after
+   source changes. Removal hides dependent steps and hops on refreshed reads;
+   policy changes fence old projections. Switching citations quickly opens the last
+   selected citation; old responses cannot replace it.
+
+These outlines are always **Partial**. They describe supported source syntax, not
+observed execution or execution order. A shorter outline or no outline means the
+adapter lacks a supported path; search raw source and inspect **Code coverage and
+gaps** before concluding that behavior is absent.
+
+Current support is deliberately limited to top-level named TS/JS functions, relative
+named imports, literal fetch method/path forms (including one `import.meta.env` base),
+the demo's simple Vue script-setup/button envelope, one Dojo AMD `dojo/request`
+dependency and Java records/classes calling the synthetic EventPublisher,
+KafkaSubscriber and MongoCollection interfaces. This is not general Spring/Kafka/MongoDB
+driver analysis. Computed values, custom wrappers, inheritance/generics, unsupported
+Vue templates and ambiguous references remain gaps. Matching names alone never
+establishes a connection; distinct declared environments or differing contract/record
+shapes suppress delivery candidates.
+
+The code budget adds at most 100 files, 32 KiB per file, 256 KiB total and eight
+original spans per file to the declaration budget. Output is bounded at 160 nodes,
+240 links, 2,000 comparisons, two outlines of 20 steps, 1,000 traversal expansions and
+512 KiB. Original file spans include distant interface/import/type declarations needed
+to check a step, while the projection also records its operation's own line range.
+No compiler plugin, source command, broker or database is executed. See
+[static-flow evidence](../fixtures/loredock-static-flows/README.md).
 
 ## Ask a question (opt-in pilot)
 
@@ -290,6 +334,7 @@ require the session. No tokens belong in URLs or logs.
 | `GET /api/search?q=...&buildId=...` | Search the current or a selected published index. |
 | `GET /api/evidence/:id` | Reopen a validated, authorized stored citation. |
 | `GET /api/system-map?buildId=...` | Bounded declaration projection for the current or a selected authorized published index. |
+| `GET /api/code-flows?buildId=...` | Versioned code links, partial flow outlines, candidate hops and original evidence from the same authorized index. |
 | `GET /api/answers` | Saved connection, recent attempt metadata and latest authorized answer ID (pilot only). |
 | `PUT /api/answers/configuration` | Save `{executable, configHome, profile}`; use `null` for no named profile. |
 | `POST /api/answers/preview` | Retrieve `{question, buildId?}` without invoking a model. |

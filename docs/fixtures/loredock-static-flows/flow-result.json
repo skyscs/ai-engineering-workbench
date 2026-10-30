@@ -1,0 +1,980 @@
+{
+  "schemaVersion": "loredock-flow-evaluation/1",
+  "checkedAt": "2026-10-30T20:22:20.564Z",
+  "modelRequests": 0,
+  "modelUsage": null,
+  "revisionVector": {
+    "portal": "603a69798dc12c3205e88d0498881b0c01079932",
+    "order-api": "237510937b4388fc718b7e9f93869954950df1bb",
+    "order-worker": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37"
+  },
+  "sourceCheckoutsUnchanged": true,
+  "repeatableProjection": true,
+  "resolvedEvidenceCount": 10,
+  "nodesByKind": {
+    "symbol": 6,
+    "http-request": 2,
+    "event-subscribe": 1,
+    "document-write": 1,
+    "event-publish": 1,
+    "route": 2,
+    "handler-reference": 1
+  },
+  "linksByKind": {
+    "performs": 5,
+    "calls": 1,
+    "routes-to": 2,
+    "implements": 1,
+    "http-target": 2,
+    "event-delivery": 1,
+    "dispatch-candidate": 1
+  },
+  "scope": "Two bounded static pilot outlines with explicit candidate hops and unresolved wiring; not full L3 or runtime acceptance.",
+  "outlines": [
+    {
+      "title": "Vue action · Checkout.vue",
+      "status": "partial",
+      "environment": null,
+      "steps": [
+        {
+          "source": "portal",
+          "path": "src/Checkout.vue",
+          "label": "submit",
+          "kind": "symbol"
+        },
+        {
+          "source": "portal",
+          "path": "src/orders.ts",
+          "label": "submitOrder",
+          "kind": "symbol"
+        },
+        {
+          "source": "portal",
+          "path": "src/orders.ts",
+          "label": "POST /api/orders",
+          "kind": "http-request"
+        },
+        {
+          "source": "order-api",
+          "path": "config/routes.json",
+          "label": "POST /api/orders",
+          "kind": "route"
+        },
+        {
+          "source": "order-api",
+          "path": "config/routes.json",
+          "label": "Orders.accept",
+          "kind": "handler-reference"
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "label": "Orders.accept",
+          "kind": "symbol"
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "label": "Publish OrderPlaced",
+          "kind": "event-publish"
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "label": "Subscribe via KafkaSubscriber",
+          "kind": "event-subscribe"
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "label": "OrderConsumer.onMessage",
+          "kind": "symbol"
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "label": "MongoCollection.replaceOne",
+          "kind": "document-write"
+        }
+      ],
+      "candidateHops": [
+        {
+          "kind": "http-target",
+          "scope": null,
+          "reason": "HTTP method/path match a route declaration; authority/proxy and deployment binding are unresolved."
+        },
+        {
+          "kind": "event-delivery",
+          "scope": "local",
+          "reason": "Equal supported Java record shapes, matching JSON contract declarations and one scoped orderTopic setting are candidate delivery clues."
+        },
+        {
+          "kind": "dispatch-candidate",
+          "scope": null,
+          "reason": "The subscriber receives this class, whose onMessage method accepts the matching record and contains a document write. Dispatch is unresolved."
+        }
+      ],
+      "gaps": [
+        "A shared broker, serialization and co-deployment are unverified; JSON contracts are not linked to the record by code.",
+        "KafkaSubscriber has no implementation proving that subscription dispatches to onMessage.",
+        "Runtime topic parameters are not bound to the JSON orderTopic settings by supported code.",
+        "The MongoCollection receiver is not bound to a concrete database or collection by supported code.",
+        "The client base URL or proxy is not bound to this route by supported source.",
+        "This is a static outline, not an observed execution or coherent deployment."
+      ]
+    },
+    {
+      "title": "Dojo action · orders.js",
+      "status": "partial",
+      "environment": null,
+      "steps": [
+        {
+          "source": "portal",
+          "path": "legacy/orders.js",
+          "label": "submitLegacy",
+          "kind": "symbol"
+        },
+        {
+          "source": "portal",
+          "path": "legacy/orders.js",
+          "label": "POST /legacy/orders",
+          "kind": "http-request"
+        },
+        {
+          "source": "order-api",
+          "path": "config/routes.json",
+          "label": "POST /legacy/orders",
+          "kind": "route"
+        },
+        {
+          "source": "order-api",
+          "path": "config/routes.json",
+          "label": "Orders.accept",
+          "kind": "handler-reference"
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "label": "Orders.accept",
+          "kind": "symbol"
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "label": "Publish OrderPlaced",
+          "kind": "event-publish"
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "label": "Subscribe via KafkaSubscriber",
+          "kind": "event-subscribe"
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "label": "OrderConsumer.onMessage",
+          "kind": "symbol"
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "label": "MongoCollection.replaceOne",
+          "kind": "document-write"
+        }
+      ],
+      "candidateHops": [
+        {
+          "kind": "http-target",
+          "scope": null,
+          "reason": "HTTP method/path match a route declaration; authority/proxy and deployment binding are unresolved."
+        },
+        {
+          "kind": "event-delivery",
+          "scope": "local",
+          "reason": "Equal supported Java record shapes, matching JSON contract declarations and one scoped orderTopic setting are candidate delivery clues."
+        },
+        {
+          "kind": "dispatch-candidate",
+          "scope": null,
+          "reason": "The subscriber receives this class, whose onMessage method accepts the matching record and contains a document write. Dispatch is unresolved."
+        }
+      ],
+      "gaps": [
+        "A shared broker, serialization and co-deployment are unverified; JSON contracts are not linked to the record by code.",
+        "KafkaSubscriber has no implementation proving that subscription dispatches to onMessage.",
+        "Runtime topic parameters are not bound to the JSON orderTopic settings by supported code.",
+        "The MongoCollection receiver is not bound to a concrete database or collection by supported code.",
+        "The client base URL or proxy is not bound to this route by supported source.",
+        "This is a static outline, not an observed execution or coherent deployment."
+      ]
+    }
+  ],
+  "projection": {
+    "schemaVersion": "loredock-code-flows-v1",
+    "adapterVersion": "pilot-code-v1",
+    "buildId": "010d35af-123a-4c67-ac53-8196d56c39f0",
+    "policyVersion": 1,
+    "sourceSetVersion": 4,
+    "registryVersion": 4,
+    "stale": false,
+    "partial": true,
+    "deploymentCoherence": "unknown",
+    "nodes": [
+      {
+        "id": "488480aa675f7875519f850bb8289f2e0db7c66248ca6a4ca431f72d9d5695fa",
+        "kind": "symbol",
+        "label": "submitOrder",
+        "sourceId": "6c33a0bf-3021-46c4-99df-ea15671ede00",
+        "sourceName": "portal",
+        "path": "src/orders.ts",
+        "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+        "startLine": 1,
+        "endLine": 9,
+        "properties": {
+          "role": "function"
+        },
+        "evidenceIds": [
+          "d6a09f02-a100-45d8-887c-2502915e4dfe"
+        ]
+      },
+      {
+        "id": "2195943bc030d9a362743786d6c284382d939994a7a0b26eb06df696bac8bb7f",
+        "kind": "http-request",
+        "label": "POST /api/orders",
+        "sourceId": "6c33a0bf-3021-46c4-99df-ea15671ede00",
+        "sourceName": "portal",
+        "path": "src/orders.ts",
+        "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+        "startLine": 2,
+        "endLine": 6,
+        "properties": {
+          "method": "POST",
+          "path": "/api/orders",
+          "baseExpression": "import.meta.env.VITE_API_BASE",
+          "adapter": "fetch"
+        },
+        "evidenceIds": [
+          "d6a09f02-a100-45d8-887c-2502915e4dfe"
+        ]
+      },
+      {
+        "id": "4466420cd5671d337a43b24d7662c3b972f97c83392e87b5a456cf1d816d0436",
+        "kind": "symbol",
+        "label": "OrderConsumer.start",
+        "sourceId": "6df361e6-5ca7-4398-8e72-1d47cf3de39a",
+        "sourceName": "order-worker",
+        "path": "src/main/java/OrderConsumer.java",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "startLine": 10,
+        "endLine": 13,
+        "properties": {
+          "role": "java-method",
+          "parameterTypes": "KafkaSubscriber, String, String"
+        },
+        "evidenceIds": [
+          "1bfc6ba7-cf8e-476c-b804-3f93a7be471f"
+        ]
+      },
+      {
+        "id": "0fa20ab9510d4545881623eecf18acc6ed707bdfce1b61bab8257d90db3e36b6",
+        "kind": "symbol",
+        "label": "OrderConsumer.onMessage",
+        "sourceId": "6df361e6-5ca7-4398-8e72-1d47cf3de39a",
+        "sourceName": "order-worker",
+        "path": "src/main/java/OrderConsumer.java",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "startLine": 14,
+        "endLine": 17,
+        "properties": {
+          "role": "java-method",
+          "parameterTypes": "OrderPlaced"
+        },
+        "evidenceIds": [
+          "1bfc6ba7-cf8e-476c-b804-3f93a7be471f"
+        ]
+      },
+      {
+        "id": "1ec9c2d9d592dfbc917299979d7dc937b6c23a61f1bf6d7e72a0bc834d695c66",
+        "kind": "event-subscribe",
+        "label": "Subscribe via KafkaSubscriber",
+        "sourceId": "6df361e6-5ca7-4398-8e72-1d47cf3de39a",
+        "sourceName": "order-worker",
+        "path": "src/main/java/OrderConsumer.java",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "startLine": 12,
+        "endLine": 12,
+        "properties": {
+          "receiverType": "KafkaSubscriber",
+          "handlerClass": "OrderConsumer",
+          "topicExpression": "topic",
+          "dispatch": "unresolved"
+        },
+        "evidenceIds": [
+          "1bfc6ba7-cf8e-476c-b804-3f93a7be471f"
+        ]
+      },
+      {
+        "id": "6857fc0bd352255b06003c81c78aa9f926439ef8d68d1b5a53842a7eae36104f",
+        "kind": "document-write",
+        "label": "MongoCollection.replaceOne",
+        "sourceId": "6df361e6-5ca7-4398-8e72-1d47cf3de39a",
+        "sourceName": "order-worker",
+        "path": "src/main/java/OrderConsumer.java",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "startLine": 16,
+        "endLine": 16,
+        "properties": {
+          "receiverType": "MongoCollection",
+          "operation": "replaceOne",
+          "payloadType": "OrderPlaced",
+          "collection": "unresolved",
+          "upsertExpression": "true"
+        },
+        "evidenceIds": [
+          "1bfc6ba7-cf8e-476c-b804-3f93a7be471f"
+        ]
+      },
+      {
+        "id": "7a5eaf01bcdeab199b12449ea5659083cbff0e334f447de5a6247a17c91a2110",
+        "kind": "symbol",
+        "label": "Orders.accept",
+        "sourceId": "9d21ebfa-8268-4d12-af05-2b371efc6dd4",
+        "sourceName": "order-api",
+        "path": "src/main/java/Orders.java",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "startLine": 13,
+        "endLine": 17,
+        "properties": {
+          "role": "java-method",
+          "parameterTypes": "String, String"
+        },
+        "evidenceIds": [
+          "d55795ce-a472-4be3-9948-02ada6b32360"
+        ]
+      },
+      {
+        "id": "80abd55d2a376a1fd90156d232b0a9750b4584326a1bd41ab105f407d6b9b964",
+        "kind": "event-publish",
+        "label": "Publish OrderPlaced",
+        "sourceId": "9d21ebfa-8268-4d12-af05-2b371efc6dd4",
+        "sourceName": "order-api",
+        "path": "src/main/java/Orders.java",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "startLine": 15,
+        "endLine": 15,
+        "properties": {
+          "receiverType": "EventPublisher",
+          "payloadType": "OrderPlaced",
+          "topicExpression": "topic"
+        },
+        "evidenceIds": [
+          "d55795ce-a472-4be3-9948-02ada6b32360"
+        ]
+      },
+      {
+        "id": "d79b678aafb3e95c7cab900143f5ce28eeafcf615f5bb3bd36c631c0b650af89",
+        "kind": "symbol",
+        "label": "submitLegacy",
+        "sourceId": "6c33a0bf-3021-46c4-99df-ea15671ede00",
+        "sourceName": "portal",
+        "path": "legacy/orders.js",
+        "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+        "startLine": 1,
+        "endLine": 9,
+        "properties": {
+          "role": "amd-function"
+        },
+        "evidenceIds": [
+          "973eb30b-1b19-45df-bec4-26681257b6c1"
+        ]
+      },
+      {
+        "id": "e34bcb6e1b4f9bc09843412feefd8980921e21f4dc77468c15aa6c0566b0ec58",
+        "kind": "http-request",
+        "label": "POST /legacy/orders",
+        "sourceId": "6c33a0bf-3021-46c4-99df-ea15671ede00",
+        "sourceName": "portal",
+        "path": "legacy/orders.js",
+        "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+        "startLine": 3,
+        "endLine": 7,
+        "properties": {
+          "method": "POST",
+          "path": "/legacy/orders",
+          "baseExpression": "same-origin",
+          "adapter": "dojo/request AMD"
+        },
+        "evidenceIds": [
+          "973eb30b-1b19-45df-bec4-26681257b6c1"
+        ]
+      },
+      {
+        "id": "a29745756aae0059ed15066566dd8717e5e25589d2224fca7cf0a5e8bf6a0d9e",
+        "kind": "symbol",
+        "label": "submit",
+        "sourceId": "6c33a0bf-3021-46c4-99df-ea15671ede00",
+        "sourceName": "portal",
+        "path": "src/Checkout.vue",
+        "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+        "startLine": 1,
+        "endLine": 7,
+        "properties": {
+          "role": "vue-action"
+        },
+        "evidenceIds": [
+          "954596ea-f5ed-407e-8044-e313d915592a"
+        ]
+      },
+      {
+        "id": "3f6785cf1aea950567e5784e8b8647ef807ac74ca8356c1af68213b1861dd65b",
+        "kind": "route",
+        "label": "POST /api/orders",
+        "sourceId": "9d21ebfa-8268-4d12-af05-2b371efc6dd4",
+        "sourceName": "order-api",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "path": "config/routes.json",
+        "startLine": 1,
+        "endLine": 7,
+        "properties": {
+          "method": "POST",
+          "path": "/api/orders"
+        },
+        "evidenceIds": [
+          "1e9871bf-5239-4ea8-a754-59b92a029776"
+        ]
+      },
+      {
+        "id": "5293bc8028337a4463a17bcd1fc8601a9dbc814eb71867dee2bebad8498c1f5d",
+        "kind": "handler-reference",
+        "label": "Orders.accept",
+        "sourceId": "9d21ebfa-8268-4d12-af05-2b371efc6dd4",
+        "sourceName": "order-api",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "path": "config/routes.json",
+        "startLine": 1,
+        "endLine": 7,
+        "properties": {
+          "handler": "Orders.accept",
+          "implementation": "unresolved"
+        },
+        "evidenceIds": [
+          "1e9871bf-5239-4ea8-a754-59b92a029776"
+        ]
+      },
+      {
+        "id": "0fa9c5d99bbbc89957b5f58f396f774f72e3fa82ade3bf36432450480f8b7f13",
+        "kind": "route",
+        "label": "POST /legacy/orders",
+        "sourceId": "9d21ebfa-8268-4d12-af05-2b371efc6dd4",
+        "sourceName": "order-api",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "path": "config/routes.json",
+        "startLine": 1,
+        "endLine": 7,
+        "properties": {
+          "method": "POST",
+          "path": "/legacy/orders"
+        },
+        "evidenceIds": [
+          "1e9871bf-5239-4ea8-a754-59b92a029776"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "e28e4c1dcc826a6244cd6afc6080ad95c1ac9761826ecf755583dd095b59cdb1",
+        "kind": "performs",
+        "from": "488480aa675f7875519f850bb8289f2e0db7c66248ca6a4ca431f72d9d5695fa",
+        "to": "2195943bc030d9a362743786d6c284382d939994a7a0b26eb06df696bac8bb7f",
+        "status": "static",
+        "reason": "This method/function contains the supported call in the indexed syntax; execution and ordering are unverified.",
+        "environment": null,
+        "gaps": [],
+        "evidenceIds": [
+          "d6a09f02-a100-45d8-887c-2502915e4dfe"
+        ]
+      },
+      {
+        "id": "6549f5e222df73cc223788907a07b80e945e385d378726ec3b5916df32329a12",
+        "kind": "performs",
+        "from": "4466420cd5671d337a43b24d7662c3b972f97c83392e87b5a456cf1d816d0436",
+        "to": "1ec9c2d9d592dfbc917299979d7dc937b6c23a61f1bf6d7e72a0bc834d695c66",
+        "status": "static",
+        "reason": "This method/function contains the supported call in the indexed syntax; execution and ordering are unverified.",
+        "environment": null,
+        "gaps": [],
+        "evidenceIds": [
+          "1bfc6ba7-cf8e-476c-b804-3f93a7be471f"
+        ]
+      },
+      {
+        "id": "8bab0f2b9b1d8646a89ca94d3900e0ef3807f6bfb60f761e531abd5199ed2391",
+        "kind": "performs",
+        "from": "0fa20ab9510d4545881623eecf18acc6ed707bdfce1b61bab8257d90db3e36b6",
+        "to": "6857fc0bd352255b06003c81c78aa9f926439ef8d68d1b5a53842a7eae36104f",
+        "status": "static",
+        "reason": "This method/function contains the supported call in the indexed syntax; execution and ordering are unverified.",
+        "environment": null,
+        "gaps": [],
+        "evidenceIds": [
+          "1bfc6ba7-cf8e-476c-b804-3f93a7be471f"
+        ]
+      },
+      {
+        "id": "6ee443828098b9ea6696a43a29b1c8e4ea38c0b6aa51a3575ecde699388d9892",
+        "kind": "performs",
+        "from": "7a5eaf01bcdeab199b12449ea5659083cbff0e334f447de5a6247a17c91a2110",
+        "to": "80abd55d2a376a1fd90156d232b0a9750b4584326a1bd41ab105f407d6b9b964",
+        "status": "static",
+        "reason": "This method/function contains the supported call in the indexed syntax; execution and ordering are unverified.",
+        "environment": null,
+        "gaps": [],
+        "evidenceIds": [
+          "d55795ce-a472-4be3-9948-02ada6b32360"
+        ]
+      },
+      {
+        "id": "932a5d673b8503840c4fa409305685fc97d9190a0125ede3c37ba82975d63721",
+        "kind": "performs",
+        "from": "d79b678aafb3e95c7cab900143f5ce28eeafcf615f5bb3bd36c631c0b650af89",
+        "to": "e34bcb6e1b4f9bc09843412feefd8980921e21f4dc77468c15aa6c0566b0ec58",
+        "status": "static",
+        "reason": "This method/function contains the supported call in the indexed syntax; execution and ordering are unverified.",
+        "environment": null,
+        "gaps": [],
+        "evidenceIds": [
+          "973eb30b-1b19-45df-bec4-26681257b6c1"
+        ]
+      },
+      {
+        "id": "1488bf27e32b59427da392463a8438a5843aaed6ebcb77d2974aa0d8ae07a7b5",
+        "kind": "calls",
+        "from": "a29745756aae0059ed15066566dd8717e5e25589d2224fca7cf0a5e8bf6a0d9e",
+        "to": "488480aa675f7875519f850bb8289f2e0db7c66248ca6a4ca431f72d9d5695fa",
+        "status": "static",
+        "reason": "A supported relative named import is called by this function/action.",
+        "environment": null,
+        "gaps": [],
+        "evidenceIds": [
+          "954596ea-f5ed-407e-8044-e313d915592a",
+          "d6a09f02-a100-45d8-887c-2502915e4dfe"
+        ]
+      },
+      {
+        "id": "c719ce4f07c3301b2ee38faf62889ceac44db438899b48180fc3d334a1bdbcba",
+        "kind": "routes-to",
+        "from": "3f6785cf1aea950567e5784e8b8647ef807ac74ca8356c1af68213b1861dd65b",
+        "to": "5293bc8028337a4463a17bcd1fc8601a9dbc814eb71867dee2bebad8498c1f5d",
+        "status": "static",
+        "reason": "The JSON route names this handler reference. No HTTP server execution is established.",
+        "environment": null,
+        "gaps": [],
+        "evidenceIds": [
+          "1e9871bf-5239-4ea8-a754-59b92a029776"
+        ]
+      },
+      {
+        "id": "bb5e7057d8f7893551fa823829a5a129b906d4ec77254d0c125cef920eedcf2e",
+        "kind": "routes-to",
+        "from": "0fa9c5d99bbbc89957b5f58f396f774f72e3fa82ade3bf36432450480f8b7f13",
+        "to": "5293bc8028337a4463a17bcd1fc8601a9dbc814eb71867dee2bebad8498c1f5d",
+        "status": "static",
+        "reason": "The JSON route names this handler reference. No HTTP server execution is established.",
+        "environment": null,
+        "gaps": [],
+        "evidenceIds": [
+          "1e9871bf-5239-4ea8-a754-59b92a029776"
+        ]
+      },
+      {
+        "id": "78f99ad1b1ca42bad37882c937df927e467c4e629ab99fae071d4f22907294f1",
+        "kind": "implements",
+        "from": "5293bc8028337a4463a17bcd1fc8601a9dbc814eb71867dee2bebad8498c1f5d",
+        "to": "7a5eaf01bcdeab199b12449ea5659083cbff0e334f447de5a6247a17c91a2110",
+        "status": "static",
+        "reason": "This same-source unique class/method matches the supported handler reference.",
+        "environment": null,
+        "gaps": [],
+        "evidenceIds": [
+          "1e9871bf-5239-4ea8-a754-59b92a029776",
+          "d55795ce-a472-4be3-9948-02ada6b32360"
+        ]
+      },
+      {
+        "id": "0efd327295c4ca6ce7cb8089d39ab08922d20b724488319032688a063daa4bb0",
+        "kind": "http-target",
+        "from": "2195943bc030d9a362743786d6c284382d939994a7a0b26eb06df696bac8bb7f",
+        "to": "3f6785cf1aea950567e5784e8b8647ef807ac74ca8356c1af68213b1861dd65b",
+        "status": "candidate",
+        "reason": "HTTP method/path match a route declaration; authority/proxy and deployment binding are unresolved.",
+        "environment": null,
+        "gaps": [
+          "The client base URL or proxy is not bound to this route by supported source."
+        ],
+        "evidenceIds": [
+          "1e9871bf-5239-4ea8-a754-59b92a029776",
+          "d6a09f02-a100-45d8-887c-2502915e4dfe"
+        ]
+      },
+      {
+        "id": "d4e2c75e59ef758835fc0a754711182ab77bcb8c5595471556d72577290a0ad4",
+        "kind": "http-target",
+        "from": "e34bcb6e1b4f9bc09843412feefd8980921e21f4dc77468c15aa6c0566b0ec58",
+        "to": "0fa9c5d99bbbc89957b5f58f396f774f72e3fa82ade3bf36432450480f8b7f13",
+        "status": "candidate",
+        "reason": "HTTP method/path match a route declaration; authority/proxy and deployment binding are unresolved.",
+        "environment": null,
+        "gaps": [
+          "The client base URL or proxy is not bound to this route by supported source."
+        ],
+        "evidenceIds": [
+          "1e9871bf-5239-4ea8-a754-59b92a029776",
+          "973eb30b-1b19-45df-bec4-26681257b6c1"
+        ]
+      },
+      {
+        "id": "d0b600a09891a24b50f8658292e1393aa3553d24a9591d9ad323b9555535a93e",
+        "kind": "event-delivery",
+        "from": "80abd55d2a376a1fd90156d232b0a9750b4584326a1bd41ab105f407d6b9b964",
+        "to": "1ec9c2d9d592dfbc917299979d7dc937b6c23a61f1bf6d7e72a0bc834d695c66",
+        "status": "candidate",
+        "reason": "Equal supported Java record shapes, matching JSON contract declarations and one scoped orderTopic setting are candidate delivery clues.",
+        "environment": "local",
+        "gaps": [
+          "Runtime topic parameters are not bound to the JSON orderTopic settings by supported code.",
+          "A shared broker, serialization and co-deployment are unverified; JSON contracts are not linked to the record by code."
+        ],
+        "evidenceIds": [
+          "1bfc6ba7-cf8e-476c-b804-3f93a7be471f",
+          "7606668b-25e9-4227-8e29-4ffe8d1381fb",
+          "980e7945-4ce4-4d5f-ac68-63fc73689037",
+          "9d6a3f89-9a77-47c4-9bbe-b3f75116ba27",
+          "bed069be-10db-42e8-aa45-e0319206e472",
+          "d55795ce-a472-4be3-9948-02ada6b32360"
+        ]
+      },
+      {
+        "id": "eeab9934eb3101b4512e93e2845abcc9af3b9485b379b3974ca427aa049f0a87",
+        "kind": "dispatch-candidate",
+        "from": "1ec9c2d9d592dfbc917299979d7dc937b6c23a61f1bf6d7e72a0bc834d695c66",
+        "to": "0fa20ab9510d4545881623eecf18acc6ed707bdfce1b61bab8257d90db3e36b6",
+        "status": "candidate",
+        "reason": "The subscriber receives this class, whose onMessage method accepts the matching record and contains a document write. Dispatch is unresolved.",
+        "environment": null,
+        "gaps": [
+          "KafkaSubscriber has no implementation proving that subscription dispatches to onMessage."
+        ],
+        "evidenceIds": [
+          "1bfc6ba7-cf8e-476c-b804-3f93a7be471f"
+        ]
+      }
+    ],
+    "flows": [
+      {
+        "id": "7ee76fe753d6ed901418556bcae1d68707d982aa9be2139cf9bd051cedde42f9",
+        "title": "Vue action · Checkout.vue",
+        "status": "partial",
+        "environment": null,
+        "nodeIds": [
+          "a29745756aae0059ed15066566dd8717e5e25589d2224fca7cf0a5e8bf6a0d9e",
+          "488480aa675f7875519f850bb8289f2e0db7c66248ca6a4ca431f72d9d5695fa",
+          "2195943bc030d9a362743786d6c284382d939994a7a0b26eb06df696bac8bb7f",
+          "3f6785cf1aea950567e5784e8b8647ef807ac74ca8356c1af68213b1861dd65b",
+          "5293bc8028337a4463a17bcd1fc8601a9dbc814eb71867dee2bebad8498c1f5d",
+          "7a5eaf01bcdeab199b12449ea5659083cbff0e334f447de5a6247a17c91a2110",
+          "80abd55d2a376a1fd90156d232b0a9750b4584326a1bd41ab105f407d6b9b964",
+          "1ec9c2d9d592dfbc917299979d7dc937b6c23a61f1bf6d7e72a0bc834d695c66",
+          "0fa20ab9510d4545881623eecf18acc6ed707bdfce1b61bab8257d90db3e36b6",
+          "6857fc0bd352255b06003c81c78aa9f926439ef8d68d1b5a53842a7eae36104f"
+        ],
+        "edgeIds": [
+          "1488bf27e32b59427da392463a8438a5843aaed6ebcb77d2974aa0d8ae07a7b5",
+          "e28e4c1dcc826a6244cd6afc6080ad95c1ac9761826ecf755583dd095b59cdb1",
+          "0efd327295c4ca6ce7cb8089d39ab08922d20b724488319032688a063daa4bb0",
+          "c719ce4f07c3301b2ee38faf62889ceac44db438899b48180fc3d334a1bdbcba",
+          "78f99ad1b1ca42bad37882c937df927e467c4e629ab99fae071d4f22907294f1",
+          "6ee443828098b9ea6696a43a29b1c8e4ea38c0b6aa51a3575ecde699388d9892",
+          "d0b600a09891a24b50f8658292e1393aa3553d24a9591d9ad323b9555535a93e",
+          "eeab9934eb3101b4512e93e2845abcc9af3b9485b379b3974ca427aa049f0a87",
+          "8bab0f2b9b1d8646a89ca94d3900e0ef3807f6bfb60f761e531abd5199ed2391"
+        ],
+        "gaps": [
+          "A shared broker, serialization and co-deployment are unverified; JSON contracts are not linked to the record by code.",
+          "KafkaSubscriber has no implementation proving that subscription dispatches to onMessage.",
+          "Runtime topic parameters are not bound to the JSON orderTopic settings by supported code.",
+          "The MongoCollection receiver is not bound to a concrete database or collection by supported code.",
+          "The client base URL or proxy is not bound to this route by supported source.",
+          "This is a static outline, not an observed execution or coherent deployment."
+        ],
+        "evidenceIds": [
+          "1bfc6ba7-cf8e-476c-b804-3f93a7be471f",
+          "1e9871bf-5239-4ea8-a754-59b92a029776",
+          "7606668b-25e9-4227-8e29-4ffe8d1381fb",
+          "954596ea-f5ed-407e-8044-e313d915592a",
+          "980e7945-4ce4-4d5f-ac68-63fc73689037",
+          "9d6a3f89-9a77-47c4-9bbe-b3f75116ba27",
+          "bed069be-10db-42e8-aa45-e0319206e472",
+          "d55795ce-a472-4be3-9948-02ada6b32360",
+          "d6a09f02-a100-45d8-887c-2502915e4dfe"
+        ]
+      },
+      {
+        "id": "a3cd1c7c1165f7d407419c496f3d33037700f199d85d14407850e4f625db3e17",
+        "title": "Dojo action · orders.js",
+        "status": "partial",
+        "environment": null,
+        "nodeIds": [
+          "d79b678aafb3e95c7cab900143f5ce28eeafcf615f5bb3bd36c631c0b650af89",
+          "e34bcb6e1b4f9bc09843412feefd8980921e21f4dc77468c15aa6c0566b0ec58",
+          "0fa9c5d99bbbc89957b5f58f396f774f72e3fa82ade3bf36432450480f8b7f13",
+          "5293bc8028337a4463a17bcd1fc8601a9dbc814eb71867dee2bebad8498c1f5d",
+          "7a5eaf01bcdeab199b12449ea5659083cbff0e334f447de5a6247a17c91a2110",
+          "80abd55d2a376a1fd90156d232b0a9750b4584326a1bd41ab105f407d6b9b964",
+          "1ec9c2d9d592dfbc917299979d7dc937b6c23a61f1bf6d7e72a0bc834d695c66",
+          "0fa20ab9510d4545881623eecf18acc6ed707bdfce1b61bab8257d90db3e36b6",
+          "6857fc0bd352255b06003c81c78aa9f926439ef8d68d1b5a53842a7eae36104f"
+        ],
+        "edgeIds": [
+          "932a5d673b8503840c4fa409305685fc97d9190a0125ede3c37ba82975d63721",
+          "d4e2c75e59ef758835fc0a754711182ab77bcb8c5595471556d72577290a0ad4",
+          "bb5e7057d8f7893551fa823829a5a129b906d4ec77254d0c125cef920eedcf2e",
+          "78f99ad1b1ca42bad37882c937df927e467c4e629ab99fae071d4f22907294f1",
+          "6ee443828098b9ea6696a43a29b1c8e4ea38c0b6aa51a3575ecde699388d9892",
+          "d0b600a09891a24b50f8658292e1393aa3553d24a9591d9ad323b9555535a93e",
+          "eeab9934eb3101b4512e93e2845abcc9af3b9485b379b3974ca427aa049f0a87",
+          "8bab0f2b9b1d8646a89ca94d3900e0ef3807f6bfb60f761e531abd5199ed2391"
+        ],
+        "gaps": [
+          "A shared broker, serialization and co-deployment are unverified; JSON contracts are not linked to the record by code.",
+          "KafkaSubscriber has no implementation proving that subscription dispatches to onMessage.",
+          "Runtime topic parameters are not bound to the JSON orderTopic settings by supported code.",
+          "The MongoCollection receiver is not bound to a concrete database or collection by supported code.",
+          "The client base URL or proxy is not bound to this route by supported source.",
+          "This is a static outline, not an observed execution or coherent deployment."
+        ],
+        "evidenceIds": [
+          "1bfc6ba7-cf8e-476c-b804-3f93a7be471f",
+          "1e9871bf-5239-4ea8-a754-59b92a029776",
+          "7606668b-25e9-4227-8e29-4ffe8d1381fb",
+          "973eb30b-1b19-45df-bec4-26681257b6c1",
+          "980e7945-4ce4-4d5f-ac68-63fc73689037",
+          "9d6a3f89-9a77-47c4-9bbe-b3f75116ba27",
+          "bed069be-10db-42e8-aa45-e0319206e472",
+          "d55795ce-a472-4be3-9948-02ada6b32360"
+        ]
+      }
+    ],
+    "evidence": {
+      "d6a09f02-a100-45d8-887c-2502915e4dfe": {
+        "id": "d6a09f02-a100-45d8-887c-2502915e4dfe",
+        "sourceName": "portal",
+        "path": "src/orders.ts",
+        "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+        "startLine": 1,
+        "endLine": 9
+      },
+      "1bfc6ba7-cf8e-476c-b804-3f93a7be471f": {
+        "id": "1bfc6ba7-cf8e-476c-b804-3f93a7be471f",
+        "sourceName": "order-worker",
+        "path": "src/main/java/OrderConsumer.java",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "startLine": 1,
+        "endLine": 18
+      },
+      "d55795ce-a472-4be3-9948-02ada6b32360": {
+        "id": "d55795ce-a472-4be3-9948-02ada6b32360",
+        "sourceName": "order-api",
+        "path": "src/main/java/Orders.java",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "startLine": 1,
+        "endLine": 18
+      },
+      "973eb30b-1b19-45df-bec4-26681257b6c1": {
+        "id": "973eb30b-1b19-45df-bec4-26681257b6c1",
+        "sourceName": "portal",
+        "path": "legacy/orders.js",
+        "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+        "startLine": 1,
+        "endLine": 9
+      },
+      "954596ea-f5ed-407e-8044-e313d915592a": {
+        "id": "954596ea-f5ed-407e-8044-e313d915592a",
+        "sourceName": "portal",
+        "path": "src/Checkout.vue",
+        "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+        "startLine": 1,
+        "endLine": 7
+      },
+      "1e9871bf-5239-4ea8-a754-59b92a029776": {
+        "id": "1e9871bf-5239-4ea8-a754-59b92a029776",
+        "sourceName": "order-api",
+        "path": "config/routes.json",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "startLine": 1,
+        "endLine": 7
+      },
+      "7606668b-25e9-4227-8e29-4ffe8d1381fb": {
+        "id": "7606668b-25e9-4227-8e29-4ffe8d1381fb",
+        "sourceName": "order-worker",
+        "path": "contracts/OrderPlaced.json",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "startLine": 1,
+        "endLine": 8
+      },
+      "980e7945-4ce4-4d5f-ac68-63fc73689037": {
+        "id": "980e7945-4ce4-4d5f-ac68-63fc73689037",
+        "sourceName": "order-worker",
+        "path": "config/local.json",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "startLine": 1,
+        "endLine": 7
+      },
+      "9d6a3f89-9a77-47c4-9bbe-b3f75116ba27": {
+        "id": "9d6a3f89-9a77-47c4-9bbe-b3f75116ba27",
+        "sourceName": "order-api",
+        "path": "config/local.json",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "startLine": 1,
+        "endLine": 5
+      },
+      "bed069be-10db-42e8-aa45-e0319206e472": {
+        "id": "bed069be-10db-42e8-aa45-e0319206e472",
+        "sourceName": "order-api",
+        "path": "contracts/OrderPlaced.json",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "startLine": 1,
+        "endLine": 8
+      }
+    },
+    "gaps": [
+      "Only the versioned pilot syntax profiles are analyzed; framework-wide call graphs and dynamic behavior remain unsupported.",
+      "Static calls describe source syntax, not execution order. Candidate hops require review of their original sources.",
+      "Repository identity does not establish service ownership. Deployment coherence and the active environment are unknown.",
+      "The source index is partial; excluded and failed material is unavailable."
+    ],
+    "omissions": {},
+    "declarationOmissions": {},
+    "coverage": {
+      "candidateDocuments": 5,
+      "examinedDocuments": 5,
+      "parsedBytes": 2685
+    },
+    "limits": {
+      "documents": 100,
+      "fileBytes": 32768,
+      "textBytes": 262144,
+      "fileSpans": 8,
+      "nodes": 160,
+      "edges": 240,
+      "comparisons": 2000,
+      "flows": 2,
+      "flowSteps": 20,
+      "traversals": 1000,
+      "outputBytes": 524288
+    },
+    "inputHash": "51175e04d8440ac08bcfd73d85cbffabbd56fd3838ed654521fed554691529d6"
+  },
+  "evidence": [
+    {
+      "id": "d6a09f02-a100-45d8-887c-2502915e4dfe",
+      "sourceName": "portal",
+      "path": "src/orders.ts",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "startLine": 1,
+      "endLine": 9,
+      "contentHash": "39e7b2a6ae1d45a2fbdc3903cd9f4d8c79419c6ba5f72c40de7aca6b5d0da410",
+      "spanHash": "994d43c6d111270cceaed9b5db6474c1442057b3973c9fb8facf2927317e58b8"
+    },
+    {
+      "id": "1bfc6ba7-cf8e-476c-b804-3f93a7be471f",
+      "sourceName": "order-worker",
+      "path": "src/main/java/OrderConsumer.java",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "startLine": 1,
+      "endLine": 18,
+      "contentHash": "bc2c347b007865acd3044b52dba791f7f37abd235f5c406c06b4cf2f3516dfb0",
+      "spanHash": "0857fab150aee7933a73591e087863fbe1c349649f5d10c8ab0a7a0205c870f8"
+    },
+    {
+      "id": "d55795ce-a472-4be3-9948-02ada6b32360",
+      "sourceName": "order-api",
+      "path": "src/main/java/Orders.java",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 18,
+      "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+      "spanHash": "fb97e2aa5ace7f6292dd5007aa417217edc8d0b828793f822b3d0666df87cf52"
+    },
+    {
+      "id": "973eb30b-1b19-45df-bec4-26681257b6c1",
+      "sourceName": "portal",
+      "path": "legacy/orders.js",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "startLine": 1,
+      "endLine": 9,
+      "contentHash": "6d02218565b2f0d038ea728d6864dbb7d74646ceed19a1d33fb3e131a3a9a293",
+      "spanHash": "0ae6936df7c26fb7dbd3687767d6a715072efe11fd99984ea787babad5803660"
+    },
+    {
+      "id": "954596ea-f5ed-407e-8044-e313d915592a",
+      "sourceName": "portal",
+      "path": "src/Checkout.vue",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "9ad7d244165172b4eb462d0caeb022f0f56a74db743e8ec28be9e8b030e2ba88",
+      "spanHash": "c1278bb00a3fff9da6bc38632730566dced1a99d666d2cf715c69c67d3db6892"
+    },
+    {
+      "id": "1e9871bf-5239-4ea8-a754-59b92a029776",
+      "sourceName": "order-api",
+      "path": "config/routes.json",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "161e949a54ab2ab99648cd5dd07de4c4115d554d411e85dfc919412877e00a5e",
+      "spanHash": "bf02b9ad422fda91b66ace23870e9d0b142f550071231acbd668eb3c439b833d"
+    },
+    {
+      "id": "7606668b-25e9-4227-8e29-4ffe8d1381fb",
+      "sourceName": "order-worker",
+      "path": "contracts/OrderPlaced.json",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "startLine": 1,
+      "endLine": 8,
+      "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+      "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+    },
+    {
+      "id": "980e7945-4ce4-4d5f-ac68-63fc73689037",
+      "sourceName": "order-worker",
+      "path": "config/local.json",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+    },
+    {
+      "id": "9d6a3f89-9a77-47c4-9bbe-b3f75116ba27",
+      "sourceName": "order-api",
+      "path": "config/local.json",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 5,
+      "contentHash": "d407e198084d63c25904025f9420ab898b3660c545e90999124137dbfc7d865f",
+      "spanHash": "d8813b8db303e2a761a757727b3cbceba5cdb81d5955106448c8797bec35c391"
+    },
+    {
+      "id": "bed069be-10db-42e8-aa45-e0319206e472",
+      "sourceName": "order-api",
+      "path": "contracts/OrderPlaced.json",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 8,
+      "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+      "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+    }
+  ]
+}

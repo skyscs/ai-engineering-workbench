@@ -85,6 +85,17 @@ try {
   }
   await click('Index sources'); await text('18 indexed · 9 excluded · 0 failed · 0 pending');
   await text('3 repositories · 16 declarations · 2 cross-repository clues');
+  await text('2 static flow outlines · 4 candidate code links');
+  assert.equal(await evaluate("document.querySelectorAll('.flow-card').length"), 2);
+  assert.equal(await evaluate("document.querySelector('.flow-card').innerText.includes('Candidate hop')"), true);
+  await evaluate("[...document.querySelectorAll('.flow-steps li')].find(e=>e.querySelector(':scope > strong')?.textContent==='MongoCollection.replaceOne').querySelector('.flow-citations button').click()");
+  await text('Source evidence');
+  assert.equal(await evaluate("document.querySelector('.evidence pre').innerText.includes('collection.replaceOne')"), true);
+  assert.equal(await evaluate("document.activeElement.textContent"), 'Source evidence');
+  await evaluate("document.querySelector('.flow-gaps').open=true");
+  await text('Runtime topic parameters are not bound');
+  await text('KafkaSubscriber has no implementation');
+  await evaluate("document.querySelector('.flow-gaps').open=false");
   assert.equal(await evaluate("document.querySelectorAll('.map-clue.candidate').length"), 2);
   await evaluate("[...document.querySelectorAll('.map-repository')].find(e=>e.querySelector('summary').textContent==='portal').open=true");
   assert.equal(await evaluate("document.querySelector('.system-map').innerText.includes('<img src=x')"), true);
@@ -95,22 +106,44 @@ try {
   await evaluate("[...document.querySelectorAll('.map-declarations li')].find(e=>e.querySelector('strong').textContent==='POST /api/orders').querySelector('.citations button').click()");
   await text('Source evidence');
   assert.equal(await evaluate("document.querySelector('.evidence pre').innerText.includes('Orders.accept')"), true);
-  await evaluate("[...document.querySelectorAll('.map-clue')].find(e=>e.querySelector('strong').textContent.includes('event contract')).querySelector('.citations button').click()");
+  await evaluate(`(()=>{
+    const nativeFetch=window.fetch;
+    let first=true, release;
+    const gate=new Promise(resolve=>{release=resolve;});
+    window.releaseFlowEvidence=release;
+    window.restoreFlowFetch=()=>{window.fetch=nativeFetch;};
+    window.fetch=async(...args)=>{
+      const delayed=first&&String(args[0]).includes('/api/evidence/');
+      if(delayed)first=false;
+      const response=await nativeFetch(...args);
+      if(delayed){await gate;window.delayedFlowEvidenceFinished=true;}
+      return response;
+    };
+    document.querySelector('.flow-citations button').click();
+    [...document.querySelectorAll('.map-clue')].find(e=>e.querySelector('strong').textContent.includes('event contract')).querySelector('.citations button').click();
+  })()`);
   await waitFor(() => evaluate("document.querySelector('.evidence pre')?.innerText.includes('OrderPlaced')"), 'Contract citation did not open.');
+  await evaluate('window.releaseFlowEvidence()');
+  await waitFor(() => evaluate('window.delayedFlowEvidenceFinished===true'), 'The delayed older citation did not settle.');
+  await evaluate('new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))');
+  assert.equal(await evaluate("document.querySelector('.evidence pre').innerText.includes('OrderPlaced')"), true, 'An older response replaced the latest citation.');
+  await evaluate('window.restoreFlowFetch()');
   const firstIndex = await evaluate("fetch('/api/project').then(r=>r.json()).then(p=>p.publishedBuildId)");
   await click('Index sources');
   await waitFor(() => evaluate(`fetch('/api/project').then(r=>r.json()).then(p=>p.publishedBuildId!==${JSON.stringify(firstIndex)})`), 'Second index did not publish.');
   await waitFor(() => evaluate("document.querySelector('[aria-label=\"Index version\"]').options.length===3"), 'Index history did not refresh.');
   await evaluate(`(()=>{const e=document.querySelector('[aria-label="Index version"]');e.value=${JSON.stringify(firstIndex)};e.dispatchEvent(new Event('change',{bubbles:true}));})()`);
   await text('This map uses an older index');
+  await text('These flows use an older index');
   await evaluate("(()=>{const e=document.querySelector('[aria-label=\"Index version\"]');e.value='';e.dispatchEvent(new Event('change',{bubbles:true}));})()");
   await waitFor(() => evaluate("!document.querySelector('.system-map').innerText.includes('This map uses an older index')"), 'Map did not select the current index.');
+  await waitFor(() => evaluate("document.querySelector('.code-flows')?.innerText.includes('2 static flow outlines') && !document.querySelector('.code-flows').innerText.includes('These flows use an older index')"), 'Flows did not select the current index.');
   await input('source-query', 'orders.placed.v2'); await click('Search'); await text('3 matching passages');
   await evaluate("[...document.querySelectorAll('button.result')].find(b=>b.querySelector('.result-meta').textContent.startsWith('order-api')).click()");
   await text('Source evidence');
   assert.equal(await evaluate("document.querySelector('.evidence pre').innerText.includes('orders.placed.v2')"), true);
   assert.equal(await evaluate("document.activeElement.textContent"), 'Source evidence');
-  await evaluate("document.querySelector('.system-map').scrollIntoView()");
+  await evaluate("document.querySelector('.code-flows').scrollIntoView()");
   const desktop = await page.send('Page.captureScreenshot', { format: 'png' });
   await writeFile(path.join(output, 'desktop.png'), Buffer.from(desktop.data, 'base64'));
   await page.send('Emulation.setDeviceMetricsOverride', { width: 390, height: 900, deviceScaleFactor: 1, mobile: true });
@@ -122,6 +155,7 @@ try {
   await click('Confirm removal'); await text('2 / 3');
   await waitFor(() => evaluate("!document.querySelector('.evidence')"), 'Revoked evidence remained visible.');
   await waitFor(() => evaluate("document.querySelectorAll('.map-clue').length===0 && ![...document.querySelectorAll('.map-repository summary')].some(e=>e.textContent==='order-api')"), 'Revoked source remained in the map.');
+  await waitFor(() => evaluate("document.querySelector('.code-flows')?.innerText.includes('0 candidate code links') && !document.querySelector('.code-flows').innerText.includes('order-api /') && !document.querySelector('.code-flows').innerText.includes('MongoCollection.replaceOne')"), 'Revoked source or dependent flow steps remained visible.');
   await input('source-query', 'publisher.publish'); await click('Search'); await text('No indexed matches.');
   await evaluate("document.querySelector('details.advanced').open=true");
   await input('exclusions', 'legacy'); await click('Save policy'); await text('Index your sources to start exploring.');
@@ -129,11 +163,13 @@ try {
   await stop(daemon);
   const restarted = start(process.execPath, ['dist/index.js'], daemonDir, env); await ready(restarted);
   await page.send('Page.reload'); await text('10 indexed · 7 excluded · 0 failed · 0 pending');
+  await waitFor(() => evaluate("document.querySelectorAll('.flow-card').length===1"), 'Supported flow did not survive policy reindex and restart.');
   await input('source-query', 'OrderConsumer'); await click('Search'); await text('matching passages');
   assert.equal(await evaluate("document.querySelectorAll('[role=alert]').length"), 0);
   for (const id of repositoryIds) assert.equal(fixtureGit(fixture.root, id, ['status', '--porcelain=v1']), '');
-  const result = { schemaVersion: 'loredock-browser/2', sources: 3, initialIndexedFiles: 18, initialExcludedFiles: 9,
+  const result = { schemaVersion: 'loredock-browser/3', sources: 3, initialIndexedFiles: 18, initialExcludedFiles: 9,
     systemMap: { repositories: 3, declarations: 16, crossRepositoryClues: 2, routeCitation: true, contractCitation: true, escapedLabels: true, historicalSelection: true, revocation: true },
+    codeFlows: { outlines: 2, candidateCodeLinks: 4, writeCitation: true, latestCitationWins: true, unresolvedWiringVisible: true, historicalSelection: true, revocation: true, restart: true },
     fixtureVariation: 'Owned temporary package name contains adversarial HTML; frozen corpus files are unchanged.',
     topicMatches: 3, evidenceOpened: true, keyboardFocus: true, mobileWidth: 390, sourceRevocation: true,
     policyFencing: true, reindex: true, restartPersistence: true, sourceCheckoutsUnchanged: true, modelRequests: 0 };

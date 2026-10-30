@@ -8,6 +8,8 @@ are specified in [ADR 0020](docs/decisions/0020-loredock-bounded-answers.md). Se
 [LoreDock guide](docs/loredock/USER_GUIDE.md) for the implemented source/evidence boundary.
 The model-free declaration projection and its bounds are described in
 [ADR 0022](docs/decisions/0022-loredock-declaration-map.md).
+The separate bounded code/flow projection, parser profiles and candidate-hop semantics
+are described in [ADR 0023](docs/decisions/0023-loredock-static-code-flows.md).
 
 ## Architectural style
 

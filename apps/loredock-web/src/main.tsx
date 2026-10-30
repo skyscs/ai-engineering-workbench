@@ -18,6 +18,7 @@ function App() {
   const [gaps, setGaps] = useState<{ path: string; status: string; reason: string | null; error: string | null }[]>();
   const pendingStart = useRef<{ requestId: string; sourceSetVersion: number; policyVersion: number } | undefined>(undefined);
   const evidenceHeading = useRef<HTMLHeadingElement>(null);
+  const evidenceRequest = useRef(0);
   const boundary = useRef('');
   const refresh = useCallback(async () => { const next = await api<ProjectState>('/project'); setState(next); }, []);
   useEffect(() => {
@@ -32,7 +33,7 @@ function App() {
   const policyVersion = state?.policyVersion;
   const sourceSetVersion = state?.sourceSetVersion;
   const published = state?.publishedBuildId;
-  useEffect(() => { setResults(undefined); setEvidence(undefined); setGaps(undefined); }, [policyVersion, sourceSetVersion, selected, published]);
+  useEffect(() => { evidenceRequest.current++; setResults(undefined); setEvidence(undefined); setGaps(undefined); }, [policyVersion, sourceSetVersion, selected, published]);
   useEffect(() => {
     if (selected && state && !state.builds.some(build => build.id === selected && build.published && build.policyVersion === state.policyVersion)) setSelected('');
   }, [selected, state]);
@@ -48,9 +49,18 @@ function App() {
   const searchBuild = selected || published || '';
   boundary.current = `${state?.policyVersion}:${state?.sourceSetVersion}:${searchBuild}`;
   const currentBuild = state?.builds.find(build => build.id === searchBuild);
+  async function openEvidence(id: string) {
+    const current = boundary.current, request = ++evidenceRequest.current; setError('');
+    try {
+      const response = await api<Evidence>(`/evidence/${encodeURIComponent(id)}`);
+      if (current === boundary.current && request === evidenceRequest.current) setEvidence(response);
+    } catch (cause) {
+      if (current === boundary.current && request === evidenceRequest.current) setError((cause as Error).message);
+    }
+  }
   function submitSource(event: FormEvent) { event.preventDefault(); void act(async () => { await api('/sources', 'POST', { path: sourcePath }); setSourcePath(''); }); }
   function search(event: FormEvent) { event.preventDefault(); void act(async () => {
-    const current = boundary.current; setEvidence(undefined);
+    const current = boundary.current; evidenceRequest.current++; setEvidence(undefined);
     const response = await api<SearchResult>(`/search?q=${encodeURIComponent(query)}&buildId=${encodeURIComponent(searchBuild)}`);
     if (current === boundary.current) setResults(response);
   }); }
@@ -110,8 +120,8 @@ function App() {
             </details>
           </>}
         </div>
-        <SystemMap buildId={searchBuild} boundary={`${boundary.current}:${published}`} openEvidence={id => void act(async () => { const current = boundary.current; const response = await api<Evidence>(`/evidence/${id}`); if (current === boundary.current) setEvidence(response); })} />
-        {answersEnabled && <AnswerPanel buildId={searchBuild} boundary={boundary.current} openEvidence={id => void act(async () => { const current = boundary.current; const response = await api<Evidence>(`/evidence/${id}`); if (current === boundary.current) setEvidence(response); })} />}
+        <SystemMap buildId={searchBuild} boundary={`${boundary.current}:${published}`} openEvidence={id => void openEvidence(id)} />
+        {answersEnabled && <AnswerPanel buildId={searchBuild} boundary={boundary.current} openEvidence={id => void openEvidence(id)} />}
         <div className="panel">
           <h2>Explore the sources</h2><p className="muted">Search exact terms such as an endpoint, event, collection or class name.</p>
           {state.builds.filter(build => build.published && build.policyVersion === state.policyVersion).length > 0 && <label className="history">Index version<select aria-label="Index version" value={selected} onChange={event => setSelected(event.target.value)}>
@@ -122,7 +132,7 @@ function App() {
           {!searchBuild && <p className="empty">Index your sources to start exploring.</p>}
           {results && <><p role="status">{results.hits.length ? `${results.hits.length} matching passages (up to 30 shown).` : 'No indexed matches. This does not prove the behavior is absent; check coverage and excluded sources.'}</p>
             {results.partial && <p className="muted">This index has coverage gaps.</p>}
-            <ul className="results">{results.hits.map(hit => <li key={hit.id}><button className="result" disabled={busy} onClick={() => void act(async () => { const current = boundary.current; const response = await api<Evidence>(`/evidence/${hit.id}`); if (current === boundary.current) setEvidence(response); })}>
+            <ul className="results">{results.hits.map(hit => <li key={hit.id}><button className="result" disabled={busy} onClick={() => void openEvidence(hit.id)}>
               <span className="result-meta">{hit.sourceName} · lines {hit.startLine}–{hit.endLine} · {hit.revision.slice(0, 8)}</span><strong>{hit.path}</strong><span className="snippet">{hit.snippet}</span></button></li>)}</ul></>}
         </div>
         {evidence && <section className="panel evidence"><h2 ref={evidenceHeading} tabIndex={-1}>Source evidence</h2><p><strong>{evidence.sourceName}</strong> / {evidence.path}</p><code>{evidence.revision}</code>

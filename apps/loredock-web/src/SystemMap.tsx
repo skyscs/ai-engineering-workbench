@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { DeclarationMap, MapNode } from '../../loredock/src/system-map-types';
 import { api } from './api';
+import { CodeFlowsView } from './CodeFlows';
 
 const kinds: Record<MapNode['kind'], string> = { repository: 'Repository', package: 'Package declaration',
   'http-route': 'HTTP route', 'handler-reference': 'Handler reference', 'event-contract': 'Event contract', setting: 'Configuration value' };
@@ -28,6 +29,7 @@ export function SystemMap({ buildId, boundary, openEvidence }: { buildId: string
       <p role="status">{map.nodes.filter(node => node.kind === 'repository').length} repositories · {map.nodes.filter(node => node.kind !== 'repository').length} declarations · {map.edges.filter(edge => edge.status !== 'declared').length} cross-repository clues</p>
       <p className="notice">Partial map · deployment coherence unknown. Repository identity and matching declarations do not establish service ownership or runtime connections.</p>
       {map.stale && <p className="notice">This map uses an older index or source registry. Removed sources are excluded.</p>}
+      <CodeFlowsView buildId={buildId} boundary={boundary} openEvidence={openEvidence} />
       <div className="map-repositories">{map.nodes.filter(node => node.kind === 'repository').map(repository => <details className="map-repository" key={repository.id}>
         <summary>{repository.label}</summary><p className="muted">Repository · {repository.properties.status} · revision {repository.revision?.slice(0, 8) ?? 'unavailable'}</p>
         <ul className="map-declarations">{map.nodes.filter(node => node.sourceId === repository.sourceId && node.kind !== 'repository').map(node => <li key={node.id}>
