@@ -23,6 +23,11 @@ dependent saved answer/context text. Cancellation cannot guarantee provider-side
 cancellation or zero usage. Generated claims require semantic review even when every
 citation mechanically resolves.
 
+The declaration map is a bounded read projection over authorized stored source bytes.
+It adds no execution privileges or external calls. Labels and properties render as escaped
+text; candidate comparisons are not runtime evidence. Source/policy changes fence map
+reads and late UI responses. See [ADR 0022](docs/decisions/0022-loredock-declaration-map.md).
+
 The sections below describe Workbench's existing AI investigation boundary.
 
 ## Goal

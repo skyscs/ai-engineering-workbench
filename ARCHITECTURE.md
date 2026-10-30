@@ -6,6 +6,8 @@ specified in [ADR 0019](docs/decisions/0019-loredock-local-catalog.md); it does 
 reuse Workbench task storage. The opt-in answer workflow and independent text runtime
 are specified in [ADR 0020](docs/decisions/0020-loredock-bounded-answers.md). See the
 [LoreDock guide](docs/loredock/USER_GUIDE.md) for the implemented source/evidence boundary.
+The model-free declaration projection and its bounds are described in
+[ADR 0022](docs/decisions/0022-loredock-declaration-map.md).
 
 ## Architectural style
 

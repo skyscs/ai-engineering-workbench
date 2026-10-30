@@ -1,13 +1,13 @@
 # LoreDock first, Workbench second
 
-Status: L0/L1 and the initial L2 pilot merged through PR #19. L2 quality improvements
-are ready for human semantic review, 2026-10-30; acceptance remains pending.
-The [L2 answer checkpoint](ANSWER_FOUNDATION.md) records the opt-in answer workflow,
-runtime qualification, browser checks and frozen-question evaluations. Human semantic
-acceptance is still required; relationships and the Workbench bridge remain planned.
+Status: the bounded L2 cited-answer slice is owner-accepted following merged PR #20,
+2026-10-30. [Task 017](../../tasks/017-loredock-declaration-map.md) begins L3 with a
+source-backed declaration map. Code-flow extraction/corrections, broader Overview/Guide Me,
+scale acceptance and the Workbench bridge remain later work. The
+[acceptance record](L2_ACCEPTANCE.md) distinguishes owner acknowledgement from agent scores.
 See [L0 measurements and blockers](FEASIBILITY.md), [contracts](CONTRACTS.md),
-[Task 015](../../tasks/015-loredock-source-catalog.md) and
-[Task 016](../../tasks/016-loredock-cited-answer.md) for the next bounded slices.
+[Task 016](../../tasks/016-loredock-cited-answer.md) for the accepted answer slice and
+[Task 017](../../tasks/017-loredock-declaration-map.md) for the current bounded delivery.
 
 ## Outcome and delivery boundary
 

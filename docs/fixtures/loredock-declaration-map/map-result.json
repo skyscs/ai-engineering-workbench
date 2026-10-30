@@ -1,0 +1,802 @@
+{
+  "schemaVersion": "loredock-map-evaluation/1",
+  "checkedAt": "2026-10-30T18:16:39.250Z",
+  "modelRequests": 0,
+  "modelUsage": null,
+  "revisionVector": {
+    "portal": "603a69798dc12c3205e88d0498881b0c01079932",
+    "order-api": "237510937b4388fc718b7e9f93869954950df1bb",
+    "order-worker": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37"
+  },
+  "sourceCheckoutsUnchanged": true,
+  "repeatableProjection": true,
+  "resolvedEvidenceCount": 9,
+  "nodesByKind": {
+    "repository": 3,
+    "package": 3,
+    "setting": 8,
+    "event-contract": 2,
+    "http-route": 2,
+    "handler-reference": 1
+  },
+  "linksByKind": {
+    "declares": 16,
+    "routes-to": 2,
+    "setting-match": 1,
+    "contract-match": 1
+  },
+  "scope": "Supported declaration projection only; not complete L3 flow/routing acceptance.",
+  "map": {
+    "schemaVersion": "loredock-map-v1",
+    "adapterVersion": "json-declarations-v1",
+    "buildId": "88e5990d-7f2d-43d7-b7a2-cf34caef1d13",
+    "policyVersion": 1,
+    "sourceSetVersion": 4,
+    "registryVersion": 4,
+    "stale": false,
+    "partial": true,
+    "deploymentCoherence": "unknown",
+    "nodes": [
+      {
+        "id": "948607c493410c7d0014ade354ad92b5ca3a6701fd85bfab5bb6d463b255d835",
+        "kind": "repository",
+        "label": "portal",
+        "sourceId": "90cd5042-7ac0-44eb-aa19-100fafebb465",
+        "sourceName": "portal",
+        "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+        "environment": null,
+        "provenance": "catalog",
+        "properties": {
+          "status": "ready"
+        },
+        "evidenceIds": []
+      },
+      {
+        "id": "9b547ca7de5952b7ef68b04a20b961606d2fd85bb8027889885bdab5bfd14567",
+        "kind": "repository",
+        "label": "order-api",
+        "sourceId": "f15cb2e6-4980-42a6-8fc7-54fb5c6b8924",
+        "sourceName": "order-api",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "environment": null,
+        "provenance": "catalog",
+        "properties": {
+          "status": "ready"
+        },
+        "evidenceIds": []
+      },
+      {
+        "id": "6293de1f2d4c611ca5f0ed3e64395f08d2ba738138a30567b806679d755c078c",
+        "kind": "repository",
+        "label": "order-worker",
+        "sourceId": "82a8340f-c901-40a5-bdf4-487f61ee75c0",
+        "sourceName": "order-worker",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "environment": null,
+        "provenance": "catalog",
+        "properties": {
+          "status": "ready"
+        },
+        "evidenceIds": []
+      },
+      {
+        "id": "6b975092379caf789ad5100722ed5da1c9573fd746da3047c934251dfc3acfd9",
+        "kind": "package",
+        "label": "order-worker",
+        "sourceId": "82a8340f-c901-40a5-bdf4-487f61ee75c0",
+        "sourceName": "order-worker",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "environment": null,
+        "provenance": "declaration",
+        "properties": {
+          "groupId": "invalid.example.fixture",
+          "artifactId": "order-worker",
+          "version": "0.0.0",
+          "maven.compiler.release": "17"
+        },
+        "evidenceIds": [
+          "dfb1e1b9-e96b-414e-893d-ac0afe8c4e6f"
+        ]
+      },
+      {
+        "id": "43c7cfaea3564a93346334af35a65bcab134a8c3c0244fd8470a7352046c3fb6",
+        "kind": "package",
+        "label": "synthetic-order-portal",
+        "sourceId": "90cd5042-7ac0-44eb-aa19-100fafebb465",
+        "sourceName": "portal",
+        "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+        "environment": null,
+        "provenance": "declaration",
+        "properties": {
+          "name": "synthetic-order-portal"
+        },
+        "evidenceIds": [
+          "a39f6d40-a28d-43b3-b64c-6f7f26be70c8"
+        ]
+      },
+      {
+        "id": "63de38afc0be3989f19da58d3826b0c401024ba65e1e98379947c212361b7e1e",
+        "kind": "package",
+        "label": "order-api",
+        "sourceId": "f15cb2e6-4980-42a6-8fc7-54fb5c6b8924",
+        "sourceName": "order-api",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "environment": null,
+        "provenance": "declaration",
+        "properties": {
+          "groupId": "invalid.example.fixture",
+          "artifactId": "order-api",
+          "version": "0.0.0",
+          "maven.compiler.release": "17"
+        },
+        "evidenceIds": [
+          "28a5baf8-eaf1-41f3-a01d-6ac5d2a4bc28"
+        ]
+      },
+      {
+        "id": "c573abcb475d379840a9e171c618804a8247016cd5489e3e75e6c3b452858b1c",
+        "kind": "setting",
+        "label": "orderTopic",
+        "sourceId": "82a8340f-c901-40a5-bdf4-487f61ee75c0",
+        "sourceName": "order-worker",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "environment": "local",
+        "provenance": "declaration",
+        "properties": {
+          "value": "orders.placed.v2",
+          "valueType": "string"
+        },
+        "evidenceIds": [
+          "196c7740-cc17-4f8b-9b8e-5b2c0f9c7378"
+        ]
+      },
+      {
+        "id": "4926736132f412185280234ce95542bee2109f4367879e56ccb3230096f1c24e",
+        "kind": "setting",
+        "label": "consumerGroup",
+        "sourceId": "82a8340f-c901-40a5-bdf4-487f61ee75c0",
+        "sourceName": "order-worker",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "environment": "local",
+        "provenance": "declaration",
+        "properties": {
+          "value": "order-projection",
+          "valueType": "string"
+        },
+        "evidenceIds": [
+          "196c7740-cc17-4f8b-9b8e-5b2c0f9c7378"
+        ]
+      },
+      {
+        "id": "824b4b05bdefb5b817fe6f2f05ee6d4b572ab0334c832253d632c5758490502d",
+        "kind": "setting",
+        "label": "mongoDatabase",
+        "sourceId": "82a8340f-c901-40a5-bdf4-487f61ee75c0",
+        "sourceName": "order-worker",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "environment": "local",
+        "provenance": "declaration",
+        "properties": {
+          "value": "shop",
+          "valueType": "string"
+        },
+        "evidenceIds": [
+          "196c7740-cc17-4f8b-9b8e-5b2c0f9c7378"
+        ]
+      },
+      {
+        "id": "8b9d3b476b7d5d7144ae73d66374f11533e29bcbbb8ecbd6c939873903605c66",
+        "kind": "setting",
+        "label": "mongoCollection",
+        "sourceId": "82a8340f-c901-40a5-bdf4-487f61ee75c0",
+        "sourceName": "order-worker",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "environment": "local",
+        "provenance": "declaration",
+        "properties": {
+          "value": "orders",
+          "valueType": "string"
+        },
+        "evidenceIds": [
+          "196c7740-cc17-4f8b-9b8e-5b2c0f9c7378"
+        ]
+      },
+      {
+        "id": "3c59efbd89cc08e5c70da3e097e478b72570c17d64e45c5614e417d701cd4b73",
+        "kind": "setting",
+        "label": "VITE_API_BASE",
+        "sourceId": "90cd5042-7ac0-44eb-aa19-100fafebb465",
+        "sourceName": "portal",
+        "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+        "environment": null,
+        "provenance": "declaration",
+        "properties": {
+          "value": "http://localhost:8080",
+          "valueType": "string"
+        },
+        "evidenceIds": [
+          "1260a69e-8016-49a9-af8d-eb156c58556f"
+        ]
+      },
+      {
+        "id": "c825365bc9bd4027cf7e9e99752af5b09b06c7688a7833dbe3a5d5647aa7f0bd",
+        "kind": "setting",
+        "label": "legacyProxyTarget",
+        "sourceId": "90cd5042-7ac0-44eb-aa19-100fafebb465",
+        "sourceName": "portal",
+        "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+        "environment": null,
+        "provenance": "declaration",
+        "properties": {
+          "value": "http://localhost:8080",
+          "valueType": "string"
+        },
+        "evidenceIds": [
+          "1260a69e-8016-49a9-af8d-eb156c58556f"
+        ]
+      },
+      {
+        "id": "f141debebd01583c83f18f165f3598d8010ead208f770c018c71410f6891b110",
+        "kind": "setting",
+        "label": "orderTopic",
+        "sourceId": "f15cb2e6-4980-42a6-8fc7-54fb5c6b8924",
+        "sourceName": "order-api",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "environment": "local",
+        "provenance": "declaration",
+        "properties": {
+          "value": "orders.placed.v2",
+          "valueType": "string"
+        },
+        "evidenceIds": [
+          "7a7abd32-3db3-4679-82ce-fea38412d7f4"
+        ]
+      },
+      {
+        "id": "cef48f831610215cacf1a20eb22beb76abbb0a7b330f56ea771d93db55dcf3a3",
+        "kind": "setting",
+        "label": "kafkaBootstrap",
+        "sourceId": "f15cb2e6-4980-42a6-8fc7-54fb5c6b8924",
+        "sourceName": "order-api",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "environment": "local",
+        "provenance": "declaration",
+        "properties": {
+          "value": "localhost:9092",
+          "valueType": "string"
+        },
+        "evidenceIds": [
+          "7a7abd32-3db3-4679-82ce-fea38412d7f4"
+        ]
+      },
+      {
+        "id": "78c009de299030508c6fc2fd88ce94b0f6ff02c5ff72d3db2eddf636f988b24c",
+        "kind": "event-contract",
+        "label": "OrderPlaced v2",
+        "sourceId": "82a8340f-c901-40a5-bdf4-487f61ee75c0",
+        "sourceName": "order-worker",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "environment": null,
+        "provenance": "declaration",
+        "properties": {
+          "name": "OrderPlaced",
+          "version": "2",
+          "transport": "Kafka",
+          "fields": "{\"createdAtMillis\":\"epoch milliseconds\",\"orderId\":\"string\",\"tenantId\":\"string\"}",
+          "key": "tenantId:orderId",
+          "encoding": "unspecified"
+        },
+        "evidenceIds": [
+          "9154c8c7-a45d-4093-af6e-a51646079665"
+        ]
+      },
+      {
+        "id": "e62b4f169a2128315e6d379ffa30af71129f9ba7e39355612200ce3f6d08fe6e",
+        "kind": "http-route",
+        "label": "POST /api/orders",
+        "sourceId": "f15cb2e6-4980-42a6-8fc7-54fb5c6b8924",
+        "sourceName": "order-api",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "environment": null,
+        "provenance": "declaration",
+        "properties": {
+          "method": "POST",
+          "path": "/api/orders"
+        },
+        "evidenceIds": [
+          "7ffff736-50e6-4691-82dc-4dff6027ca5d"
+        ]
+      },
+      {
+        "id": "9a0d3827afd34de8fbf71a657cda48a95a1430a3410aa03fbd1cafc8097280a5",
+        "kind": "handler-reference",
+        "label": "Orders.accept",
+        "sourceId": "f15cb2e6-4980-42a6-8fc7-54fb5c6b8924",
+        "sourceName": "order-api",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "environment": null,
+        "provenance": "declaration",
+        "properties": {
+          "handler": "Orders.accept",
+          "implementation": "unresolved"
+        },
+        "evidenceIds": [
+          "7ffff736-50e6-4691-82dc-4dff6027ca5d"
+        ]
+      },
+      {
+        "id": "0194be499b3f2f2141be7147ad67bfeb29f9f99f4778df9f6a54a2d32861f2f9",
+        "kind": "http-route",
+        "label": "POST /legacy/orders",
+        "sourceId": "f15cb2e6-4980-42a6-8fc7-54fb5c6b8924",
+        "sourceName": "order-api",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "environment": null,
+        "provenance": "declaration",
+        "properties": {
+          "method": "POST",
+          "path": "/legacy/orders"
+        },
+        "evidenceIds": [
+          "7ffff736-50e6-4691-82dc-4dff6027ca5d"
+        ]
+      },
+      {
+        "id": "cc377ba7a83c3858df60677ba50ba03a3871e1e4e8660beb9d20a94148c9c367",
+        "kind": "event-contract",
+        "label": "OrderPlaced v2",
+        "sourceId": "f15cb2e6-4980-42a6-8fc7-54fb5c6b8924",
+        "sourceName": "order-api",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "environment": null,
+        "provenance": "declaration",
+        "properties": {
+          "name": "OrderPlaced",
+          "version": "2",
+          "transport": "Kafka",
+          "fields": "{\"createdAtMillis\":\"epoch milliseconds\",\"orderId\":\"string\",\"tenantId\":\"string\"}",
+          "key": "tenantId:orderId",
+          "encoding": "unspecified"
+        },
+        "evidenceIds": [
+          "7332a3f0-cafe-4220-a6c0-e3e0c0478a35"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "c9b611e5cebaef16f350a06e3754f1e58c0217253053413609eabce4677a4ed2",
+        "kind": "declares",
+        "from": "6293de1f2d4c611ca5f0ed3e64395f08d2ba738138a30567b806679d755c078c",
+        "to": "6b975092379caf789ad5100722ed5da1c9573fd746da3047c934251dfc3acfd9",
+        "status": "declared",
+        "environment": null,
+        "reason": "The indexed repository contains this declaration; service/runtime ownership is not inferred.",
+        "evidenceIds": [
+          "dfb1e1b9-e96b-414e-893d-ac0afe8c4e6f"
+        ]
+      },
+      {
+        "id": "2620edc16da51c41d270644f2fbac21e7ca0687b531b2f98eb158b9bffd8ea7b",
+        "kind": "declares",
+        "from": "948607c493410c7d0014ade354ad92b5ca3a6701fd85bfab5bb6d463b255d835",
+        "to": "43c7cfaea3564a93346334af35a65bcab134a8c3c0244fd8470a7352046c3fb6",
+        "status": "declared",
+        "environment": null,
+        "reason": "The indexed repository contains this declaration; service/runtime ownership is not inferred.",
+        "evidenceIds": [
+          "a39f6d40-a28d-43b3-b64c-6f7f26be70c8"
+        ]
+      },
+      {
+        "id": "616fecfd274417829edcd148b4631a52a0958c688c4538702b30ebf6fed944c8",
+        "kind": "declares",
+        "from": "9b547ca7de5952b7ef68b04a20b961606d2fd85bb8027889885bdab5bfd14567",
+        "to": "63de38afc0be3989f19da58d3826b0c401024ba65e1e98379947c212361b7e1e",
+        "status": "declared",
+        "environment": null,
+        "reason": "The indexed repository contains this declaration; service/runtime ownership is not inferred.",
+        "evidenceIds": [
+          "28a5baf8-eaf1-41f3-a01d-6ac5d2a4bc28"
+        ]
+      },
+      {
+        "id": "405b0df12faabec99182437ced049243e40fecc377e0ea6cc8da5f42ede829af",
+        "kind": "declares",
+        "from": "6293de1f2d4c611ca5f0ed3e64395f08d2ba738138a30567b806679d755c078c",
+        "to": "c573abcb475d379840a9e171c618804a8247016cd5489e3e75e6c3b452858b1c",
+        "status": "declared",
+        "environment": null,
+        "reason": "The indexed repository contains this declaration; service/runtime ownership is not inferred.",
+        "evidenceIds": [
+          "196c7740-cc17-4f8b-9b8e-5b2c0f9c7378"
+        ]
+      },
+      {
+        "id": "ab7aabc6cfd598e8f12ea837d02bffb6f8c22d539f1c6d738466cfb53d46402c",
+        "kind": "declares",
+        "from": "6293de1f2d4c611ca5f0ed3e64395f08d2ba738138a30567b806679d755c078c",
+        "to": "4926736132f412185280234ce95542bee2109f4367879e56ccb3230096f1c24e",
+        "status": "declared",
+        "environment": null,
+        "reason": "The indexed repository contains this declaration; service/runtime ownership is not inferred.",
+        "evidenceIds": [
+          "196c7740-cc17-4f8b-9b8e-5b2c0f9c7378"
+        ]
+      },
+      {
+        "id": "1c91e87df8bae34d9814b38b4e98908f0b9b8c8126e6b0d9ae6affaaa70b1cd3",
+        "kind": "declares",
+        "from": "6293de1f2d4c611ca5f0ed3e64395f08d2ba738138a30567b806679d755c078c",
+        "to": "824b4b05bdefb5b817fe6f2f05ee6d4b572ab0334c832253d632c5758490502d",
+        "status": "declared",
+        "environment": null,
+        "reason": "The indexed repository contains this declaration; service/runtime ownership is not inferred.",
+        "evidenceIds": [
+          "196c7740-cc17-4f8b-9b8e-5b2c0f9c7378"
+        ]
+      },
+      {
+        "id": "ca392fee94ba0af9f95c025a213ca452ed2bc8f1a2eb14987a553283e2ccf52c",
+        "kind": "declares",
+        "from": "6293de1f2d4c611ca5f0ed3e64395f08d2ba738138a30567b806679d755c078c",
+        "to": "8b9d3b476b7d5d7144ae73d66374f11533e29bcbbb8ecbd6c939873903605c66",
+        "status": "declared",
+        "environment": null,
+        "reason": "The indexed repository contains this declaration; service/runtime ownership is not inferred.",
+        "evidenceIds": [
+          "196c7740-cc17-4f8b-9b8e-5b2c0f9c7378"
+        ]
+      },
+      {
+        "id": "e2dd1d3ff5731907a460fca373daae6b1bdc259b83104f3022a2dbc362aeacff",
+        "kind": "declares",
+        "from": "948607c493410c7d0014ade354ad92b5ca3a6701fd85bfab5bb6d463b255d835",
+        "to": "3c59efbd89cc08e5c70da3e097e478b72570c17d64e45c5614e417d701cd4b73",
+        "status": "declared",
+        "environment": null,
+        "reason": "The indexed repository contains this declaration; service/runtime ownership is not inferred.",
+        "evidenceIds": [
+          "1260a69e-8016-49a9-af8d-eb156c58556f"
+        ]
+      },
+      {
+        "id": "ec16917232e7162d34bb1b03d3a1ace42cd7a0d6e0a5a75f0772d15082f93f51",
+        "kind": "declares",
+        "from": "948607c493410c7d0014ade354ad92b5ca3a6701fd85bfab5bb6d463b255d835",
+        "to": "c825365bc9bd4027cf7e9e99752af5b09b06c7688a7833dbe3a5d5647aa7f0bd",
+        "status": "declared",
+        "environment": null,
+        "reason": "The indexed repository contains this declaration; service/runtime ownership is not inferred.",
+        "evidenceIds": [
+          "1260a69e-8016-49a9-af8d-eb156c58556f"
+        ]
+      },
+      {
+        "id": "265d2142279a5f2a0bc3e08dac480d28ea6438650e351677c151674c60199c4b",
+        "kind": "declares",
+        "from": "9b547ca7de5952b7ef68b04a20b961606d2fd85bb8027889885bdab5bfd14567",
+        "to": "f141debebd01583c83f18f165f3598d8010ead208f770c018c71410f6891b110",
+        "status": "declared",
+        "environment": null,
+        "reason": "The indexed repository contains this declaration; service/runtime ownership is not inferred.",
+        "evidenceIds": [
+          "7a7abd32-3db3-4679-82ce-fea38412d7f4"
+        ]
+      },
+      {
+        "id": "e70e89c44fbc11c69589dbba96d44ab2f1e36554574281235428ae97065aef39",
+        "kind": "declares",
+        "from": "9b547ca7de5952b7ef68b04a20b961606d2fd85bb8027889885bdab5bfd14567",
+        "to": "cef48f831610215cacf1a20eb22beb76abbb0a7b330f56ea771d93db55dcf3a3",
+        "status": "declared",
+        "environment": null,
+        "reason": "The indexed repository contains this declaration; service/runtime ownership is not inferred.",
+        "evidenceIds": [
+          "7a7abd32-3db3-4679-82ce-fea38412d7f4"
+        ]
+      },
+      {
+        "id": "4faa258147cbb5a91f720994a47e352d1205c0ad5a77d3bf4646a54ca3bc4997",
+        "kind": "declares",
+        "from": "6293de1f2d4c611ca5f0ed3e64395f08d2ba738138a30567b806679d755c078c",
+        "to": "78c009de299030508c6fc2fd88ce94b0f6ff02c5ff72d3db2eddf636f988b24c",
+        "status": "declared",
+        "environment": null,
+        "reason": "The indexed repository contains this declaration; service/runtime ownership is not inferred.",
+        "evidenceIds": [
+          "9154c8c7-a45d-4093-af6e-a51646079665"
+        ]
+      },
+      {
+        "id": "112f34430a61ffb27701f34e8e36bbdcc18b7266b2cdc62aece7066feb7ff17e",
+        "kind": "declares",
+        "from": "9b547ca7de5952b7ef68b04a20b961606d2fd85bb8027889885bdab5bfd14567",
+        "to": "e62b4f169a2128315e6d379ffa30af71129f9ba7e39355612200ce3f6d08fe6e",
+        "status": "declared",
+        "environment": null,
+        "reason": "The indexed repository contains this declaration; service/runtime ownership is not inferred.",
+        "evidenceIds": [
+          "7ffff736-50e6-4691-82dc-4dff6027ca5d"
+        ]
+      },
+      {
+        "id": "989d401d17504a0ff1fb5c1313cf5372d5eb93911fd82cab0f571b0cbc53986f",
+        "kind": "declares",
+        "from": "9b547ca7de5952b7ef68b04a20b961606d2fd85bb8027889885bdab5bfd14567",
+        "to": "9a0d3827afd34de8fbf71a657cda48a95a1430a3410aa03fbd1cafc8097280a5",
+        "status": "declared",
+        "environment": null,
+        "reason": "The indexed repository contains this declaration; service/runtime ownership is not inferred.",
+        "evidenceIds": [
+          "7ffff736-50e6-4691-82dc-4dff6027ca5d"
+        ]
+      },
+      {
+        "id": "776ac1d0d3c910d2f03d49d9475cd7fde34a867500bc72b2f7d05e94f5509c14",
+        "kind": "routes-to",
+        "from": "e62b4f169a2128315e6d379ffa30af71129f9ba7e39355612200ce3f6d08fe6e",
+        "to": "9a0d3827afd34de8fbf71a657cda48a95a1430a3410aa03fbd1cafc8097280a5",
+        "status": "declared",
+        "environment": null,
+        "reason": "The route declaration names this handler; its code implementation has not been resolved.",
+        "evidenceIds": [
+          "7ffff736-50e6-4691-82dc-4dff6027ca5d"
+        ]
+      },
+      {
+        "id": "0ae9b10fa21efaf4cb81ff21118b1af405f52012e038888104489c03321a608f",
+        "kind": "declares",
+        "from": "9b547ca7de5952b7ef68b04a20b961606d2fd85bb8027889885bdab5bfd14567",
+        "to": "0194be499b3f2f2141be7147ad67bfeb29f9f99f4778df9f6a54a2d32861f2f9",
+        "status": "declared",
+        "environment": null,
+        "reason": "The indexed repository contains this declaration; service/runtime ownership is not inferred.",
+        "evidenceIds": [
+          "7ffff736-50e6-4691-82dc-4dff6027ca5d"
+        ]
+      },
+      {
+        "id": "7e437550f635a2042b88742bcdc08a1e646142010b84a6d8a3b22c4e0b0f62f4",
+        "kind": "routes-to",
+        "from": "0194be499b3f2f2141be7147ad67bfeb29f9f99f4778df9f6a54a2d32861f2f9",
+        "to": "9a0d3827afd34de8fbf71a657cda48a95a1430a3410aa03fbd1cafc8097280a5",
+        "status": "declared",
+        "environment": null,
+        "reason": "The route declaration names this handler; its code implementation has not been resolved.",
+        "evidenceIds": [
+          "7ffff736-50e6-4691-82dc-4dff6027ca5d"
+        ]
+      },
+      {
+        "id": "bad8c16a150dc7ac8645f4476956d4fb22729cb82f5210281ada3d4b5c286d4b",
+        "kind": "declares",
+        "from": "9b547ca7de5952b7ef68b04a20b961606d2fd85bb8027889885bdab5bfd14567",
+        "to": "cc377ba7a83c3858df60677ba50ba03a3871e1e4e8660beb9d20a94148c9c367",
+        "status": "declared",
+        "environment": null,
+        "reason": "The indexed repository contains this declaration; service/runtime ownership is not inferred.",
+        "evidenceIds": [
+          "7332a3f0-cafe-4220-a6c0-e3e0c0478a35"
+        ]
+      },
+      {
+        "id": "fea29af435cf0d058b0a0c194c3d03c22c100be98163b2c8872ac7e4ed626d61",
+        "kind": "setting-match",
+        "from": "c573abcb475d379840a9e171c618804a8247016cd5489e3e75e6c3b452858b1c",
+        "to": "f141debebd01583c83f18f165f3598d8010ead208f770c018c71410f6891b110",
+        "status": "candidate",
+        "environment": "local",
+        "reason": "Equal scoped keys and values are a search clue; repository-owned keys do not prove a shared service, broker or runtime connection.",
+        "evidenceIds": [
+          "196c7740-cc17-4f8b-9b8e-5b2c0f9c7378",
+          "7a7abd32-3db3-4679-82ce-fea38412d7f4"
+        ]
+      },
+      {
+        "id": "6318b35d7973001b20a107405c3dbb8f5f251b96023f50ba503da19ba784333c",
+        "kind": "contract-match",
+        "from": "78c009de299030508c6fc2fd88ce94b0f6ff02c5ff72d3db2eddf636f988b24c",
+        "to": "cc377ba7a83c3858df60677ba50ba03a3871e1e4e8660beb9d20a94148c9c367",
+        "status": "candidate",
+        "environment": null,
+        "reason": "Matching static contract shapes; producer/consumer roles, encoding implementation and deployment compatibility are unverified.",
+        "evidenceIds": [
+          "7332a3f0-cafe-4220-a6c0-e3e0c0478a35",
+          "9154c8c7-a45d-4093-af6e-a51646079665"
+        ]
+      }
+    ],
+    "evidence": {
+      "dfb1e1b9-e96b-414e-893d-ac0afe8c4e6f": {
+        "id": "dfb1e1b9-e96b-414e-893d-ac0afe8c4e6f",
+        "sourceName": "order-worker",
+        "path": "pom.xml",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "startLine": 1,
+        "endLine": 8
+      },
+      "a39f6d40-a28d-43b3-b64c-6f7f26be70c8": {
+        "id": "a39f6d40-a28d-43b3-b64c-6f7f26be70c8",
+        "sourceName": "portal",
+        "path": "package.json",
+        "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+        "startLine": 1,
+        "endLine": 7
+      },
+      "28a5baf8-eaf1-41f3-a01d-6ac5d2a4bc28": {
+        "id": "28a5baf8-eaf1-41f3-a01d-6ac5d2a4bc28",
+        "sourceName": "order-api",
+        "path": "pom.xml",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "startLine": 1,
+        "endLine": 8
+      },
+      "196c7740-cc17-4f8b-9b8e-5b2c0f9c7378": {
+        "id": "196c7740-cc17-4f8b-9b8e-5b2c0f9c7378",
+        "sourceName": "order-worker",
+        "path": "config/local.json",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "startLine": 1,
+        "endLine": 7
+      },
+      "1260a69e-8016-49a9-af8d-eb156c58556f": {
+        "id": "1260a69e-8016-49a9-af8d-eb156c58556f",
+        "sourceName": "portal",
+        "path": "config/local.json",
+        "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+        "startLine": 1,
+        "endLine": 4
+      },
+      "7a7abd32-3db3-4679-82ce-fea38412d7f4": {
+        "id": "7a7abd32-3db3-4679-82ce-fea38412d7f4",
+        "sourceName": "order-api",
+        "path": "config/local.json",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "startLine": 1,
+        "endLine": 5
+      },
+      "9154c8c7-a45d-4093-af6e-a51646079665": {
+        "id": "9154c8c7-a45d-4093-af6e-a51646079665",
+        "sourceName": "order-worker",
+        "path": "contracts/OrderPlaced.json",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "startLine": 1,
+        "endLine": 8
+      },
+      "7ffff736-50e6-4691-82dc-4dff6027ca5d": {
+        "id": "7ffff736-50e6-4691-82dc-4dff6027ca5d",
+        "sourceName": "order-api",
+        "path": "config/routes.json",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "startLine": 1,
+        "endLine": 7
+      },
+      "7332a3f0-cafe-4220-a6c0-e3e0c0478a35": {
+        "id": "7332a3f0-cafe-4220-a6c0-e3e0c0478a35",
+        "sourceName": "order-api",
+        "path": "contracts/OrderPlaced.json",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "startLine": 1,
+        "endLine": 8
+      }
+    },
+    "gaps": [
+      "Only supported declarations are mapped; source-code calls, service identities and complete business flows remain unresolved.",
+      "README prose and runtime/deployment behavior are not analyzed by this projection.",
+      "Candidate matches do not merge entities or establish deployment coherence.",
+      "The source index is partial; excluded and failed material is unavailable."
+    ],
+    "omissions": {},
+    "coverage": {
+      "indexedFiles": 18,
+      "candidateDocuments": 9,
+      "examinedDocuments": 9,
+      "parsedBytes": 2090
+    },
+    "limits": {
+      "documents": 100,
+      "fileBytes": 32768,
+      "textBytes": 262144,
+      "fileSpans": 8,
+      "members": 100,
+      "nodes": 150,
+      "edges": 250,
+      "comparisons": 2000,
+      "outputBytes": 524288
+    },
+    "inputHash": "d49175348409c6d8623b6c14c65c206a674a6d4cb62997822a4825879bb66efd"
+  },
+  "evidence": [
+    {
+      "id": "dfb1e1b9-e96b-414e-893d-ac0afe8c4e6f",
+      "sourceName": "order-worker",
+      "path": "pom.xml",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "startLine": 1,
+      "endLine": 8,
+      "contentHash": "4b2c11e0362e4b34f4f29f36a753437208f56a3f83536ad9664fcb1bd9fe7758",
+      "spanHash": "0202d9dc6c3ad381d3128d70dac6d4f2d48c34d2fdf4e7c3bb546415c9297e1f"
+    },
+    {
+      "id": "a39f6d40-a28d-43b3-b64c-6f7f26be70c8",
+      "sourceName": "portal",
+      "path": "package.json",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "5f63d7d05c7735f4c3622fb837b73a7687fc98568d045ba2a7435d7ea6eb5ff9",
+      "spanHash": "def4bb90c7800c739a3a0feee0a88bf4fc9ad30b6b1e65cf8c7d5eb9b11c44e5"
+    },
+    {
+      "id": "28a5baf8-eaf1-41f3-a01d-6ac5d2a4bc28",
+      "sourceName": "order-api",
+      "path": "pom.xml",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 8,
+      "contentHash": "b172e59a5d5d42a72e5ea68af530d6ba7ba489d92de52dba4d2a636febdf1781",
+      "spanHash": "25fd73a9ec439d548e2c0620860fad2bcfc7f3232fffc356edd05dff015c7265"
+    },
+    {
+      "id": "196c7740-cc17-4f8b-9b8e-5b2c0f9c7378",
+      "sourceName": "order-worker",
+      "path": "config/local.json",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+    },
+    {
+      "id": "1260a69e-8016-49a9-af8d-eb156c58556f",
+      "sourceName": "portal",
+      "path": "config/local.json",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "startLine": 1,
+      "endLine": 4,
+      "contentHash": "37c4ae84a8ccb522960504104dc3e316ec96e96c086bee933642fcdd3fe6b608",
+      "spanHash": "67a825e39e7134139a3ce2ac0c1f29d8d0d0492996dbccd38a920ff61d6dc2e6"
+    },
+    {
+      "id": "7a7abd32-3db3-4679-82ce-fea38412d7f4",
+      "sourceName": "order-api",
+      "path": "config/local.json",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 5,
+      "contentHash": "d407e198084d63c25904025f9420ab898b3660c545e90999124137dbfc7d865f",
+      "spanHash": "d8813b8db303e2a761a757727b3cbceba5cdb81d5955106448c8797bec35c391"
+    },
+    {
+      "id": "9154c8c7-a45d-4093-af6e-a51646079665",
+      "sourceName": "order-worker",
+      "path": "contracts/OrderPlaced.json",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "startLine": 1,
+      "endLine": 8,
+      "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+      "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+    },
+    {
+      "id": "7ffff736-50e6-4691-82dc-4dff6027ca5d",
+      "sourceName": "order-api",
+      "path": "config/routes.json",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "161e949a54ab2ab99648cd5dd07de4c4115d554d411e85dfc919412877e00a5e",
+      "spanHash": "bf02b9ad422fda91b66ace23870e9d0b142f550071231acbd668eb3c439b833d"
+    },
+    {
+      "id": "7332a3f0-cafe-4220-a6c0-e3e0c0478a35",
+      "sourceName": "order-api",
+      "path": "contracts/OrderPlaced.json",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 8,
+      "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+      "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+    }
+  ]
+}

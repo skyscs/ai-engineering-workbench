@@ -14,7 +14,7 @@ function defaultDirectory() {
 }
 const store = new CatalogStore(process.env.LOREDOCK_DATA_DIR ?? defaultDirectory());
 const catalog = new Catalog(store);
-// Execution remains opt-in while the Task 016 qualification/evaluation gate is open.
+// Cited answers are optional; indexing and map browsing need no Codex connection.
 const answers = process.env.LOREDOCK_ANSWERS === '1' ? new Answers(catalog) : undefined;
 const app = createApp(catalog, { publicDir: fileURLToPath(new URL('../public/', import.meta.url)), development: process.env.LOREDOCK_DEVELOPMENT === '1', ...answers ? { answers } : {} });
 const server = serve({ fetch: app.fetch, hostname: '127.0.0.1', port: 4244 });

@@ -53,6 +53,43 @@ changes. Every index records independent revisions, not proof of a coherent depl
 Production environment values and external systems remain unknown unless included in
 explicitly registered sources.
 
+## Explore the declaration map
+
+After indexing, **System map** appears automatically and makes no model calls. Open a
+repository card to inspect its package identities, HTTP route declarations, unresolved
+handler references, event contracts and configuration values. Click a source button to
+open the original committed lines. Repository and package identities are not services.
+
+**Cross-repository clues** compares declared contracts and scoped configuration values.
+A **Candidate match** keeps the declarations separate; matching names/shapes/values do
+not prove producer/consumer roles, a shared broker or a runtime connection. **Different
+declarations** invites comparison of both sources; it is not an automatic incompatibility
+or production-conflict verdict. Different explicit environments are not compared.
+
+The first adapter supports JSON route arrays with literal `method`, `path`, `handler`,
+flat event-contract objects (`name`, `version`, `fields`, `transport`, optional `key` and
+`encoding`), direct package/Maven identities, and scalar values in JSON files under
+`config/`. Environment comes from an explicit `environment` string; a `local.json`
+filename alone does not assign local scope. Contract extensions, dynamic/nested values,
+code implementations and README prose stay outside this map's adapter coverage.
+Unsupported material remains available through source search.
+
+Open **Map coverage and gaps** for document/byte counts and omission reasons. The map is
+always partial. Limits are 100 documents, 32 KiB per document, 256 KiB total source text,
+eight original spans per document, 100 collection members, 150 entities, 250 links,
+2,000 eligible comparisons and 512 KiB output. Oversized/unsupported declarations are
+omitted whole, with explicit counts. No source command, broker or database is queried.
+
+The existing **Index version** selector also selects the map's pinned index. Older
+indexes/registry versions are labeled; new registrations require another index. Source
+removal hides that repository and dependent comparisons immediately on refreshed reads;
+policy changes fence old maps. Restart recomputes the projection from saved original
+bytes, without resuming AI work or storing a second graph database.
+
+This first map does not trace full Java/Vue/Dojo/Kafka/MongoDB flows or resolve handler
+implementations. Code-to-declaration adapters and human scope corrections are the next
+L3 slices. See [map evidence](../fixtures/loredock-declaration-map/README.md).
+
 ## Ask a question (opt-in pilot)
 
 Stop the existing LoreDock process and start the answer pilot with the same data
@@ -117,7 +154,8 @@ If setup fails, the history preserves the reason before any answer is published:
 - **Invalid answer/citation**: the generated result was rejected and the previous
   answer retained. Failure does not imply that the provider consumed no usage.
 
-The feature remains a pilot pending human semantic review. See the
+The bounded answer slice was owner-accepted after PR #20; see the
+[acceptance record](L2_ACCEPTANCE.md). Future answers still require source review. See the
 [latest evaluation](../fixtures/loredock-answer-quality/README.md). The original
 [evaluation failures](../fixtures/loredock-answers/README.md) remain available for comparison.
 New attempts constrain citation choices to issued evidence IDs. Older saved answers
@@ -251,6 +289,7 @@ require the session. No tokens belong in URLs or logs.
 | `GET /api/builds/:id/files` | First 100 excluded/failed authorized file records. |
 | `GET /api/search?q=...&buildId=...` | Search the current or a selected published index. |
 | `GET /api/evidence/:id` | Reopen a validated, authorized stored citation. |
+| `GET /api/system-map?buildId=...` | Bounded declaration projection for the current or a selected authorized published index. |
 | `GET /api/answers` | Saved connection, recent attempt metadata and latest authorized answer ID (pilot only). |
 | `PUT /api/answers/configuration` | Save `{executable, configHome, profile}`; use `null` for no named profile. |
 | `POST /api/answers/preview` | Retrieve `{question, buildId?}` without invoking a model. |
