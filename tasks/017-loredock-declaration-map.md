@@ -1,6 +1,7 @@
 # Task 017 — Source-backed declaration map (L3, first slice)
 
-Status: implemented and locally verified, 2026-10-30; ready for code/product review. The owner merged PR #20 and confirmed the preceding
+Status: accepted through the owner's merge of PR #21 (`a551f3c`), 2026-10-30.
+The owner merged PR #20 and confirmed the preceding
 review complete before requesting continuation. Task 016 is owner-accepted; its agent
 assessment and historical failures remain unchanged rather than becoming a new human score.
 
@@ -44,6 +45,7 @@ verified runtime connections. This is the first bounded L3 delivery, not full L3
 
 ## Follow-up within L3
 
-Code-to-declaration adapters, actual producer/consumer and caller ownership, two evidenced
-static flows, and durable human claim/scope corrections follow in separately scoped tasks.
+Code-to-declaration adapters and two partial evidenced outlines follow in
+[Task 018](018-loredock-static-flows.md). Durable human claim/scope corrections and
+broader runtime/framework ownership remain separately scoped work.
 Do not advertise a complete system graph, automatic routing or a Workbench bridge here.

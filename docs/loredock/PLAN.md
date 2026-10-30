@@ -1,13 +1,15 @@
 # LoreDock first, Workbench second
 
 Status: the bounded L2 cited-answer slice is owner-accepted following merged PR #20,
-2026-10-30. [Task 017](../../tasks/017-loredock-declaration-map.md) begins L3 with a
-source-backed declaration map. Code-flow extraction/corrections, broader Overview/Guide Me,
-scale acceptance and the Workbench bridge remain later work. The
+2026-10-30. [Task 017](../../tasks/017-loredock-declaration-map.md) delivered the accepted
+declaration map through PR #21. [Task 018](../../tasks/018-loredock-static-flows.md) adds
+bounded source-code links and two partial static flow outlines. Engineer corrections,
+broader adapters/Overview/Guide Me, scale acceptance and the Workbench bridge remain
+later work. The
 [acceptance record](L2_ACCEPTANCE.md) distinguishes owner acknowledgement from agent scores.
 See [L0 measurements and blockers](FEASIBILITY.md), [contracts](CONTRACTS.md),
 [Task 016](../../tasks/016-loredock-cited-answer.md) for the accepted answer slice and
-[Task 017](../../tasks/017-loredock-declaration-map.md) for the current bounded delivery.
+[Task 018](../../tasks/018-loredock-static-flows.md) for the current bounded delivery.
 
 ## Outcome and delivery boundary
 

@@ -1,10 +1,12 @@
 # LoreDock first-slice contracts
 
 Status: Task 015 delivered the source catalog. Task 016's bounded cited-answer slice
-is owner-accepted through PR #20. Task 017 adds the first model-free declaration-map
-projection; full code flows, durable semantic relations and Context Packs remain proposed.
+is owner-accepted through PR #20. Task 017's declaration map was accepted through PR #21.
+Task 018 adds model-free code links and two partial static outlines; durable engineer
+corrections, broader semantic relations and Context Packs remain proposed.
 See the [owner acceptance](L2_ACCEPTANCE.md),
 [map decision](../decisions/0022-loredock-declaration-map.md),
+[code-flow decision](../decisions/0023-loredock-static-code-flows.md),
 [answer checkpoint](ANSWER_FOUNDATION.md) and [user guide](USER_GUIDE.md).
 The [executable fixture](../../fixtures/loredock/README.md) uses a smaller, versioned
 fixture manifest. Do not treat its IDs or JSON shape as a public product contract.
@@ -125,7 +127,10 @@ L1 provides Git metadata, bounded README/text extraction, JSON manifests/config 
 Maven XML metadata without external entity resolution. It never runs Maven or npm.
 L2 first uses text retrieval and source inspection; it does not need full language
 parsers to answer one question. L3 adds Java call/config mapping, TS/Vue imports and
-HTTP literals, Dojo AMD, Kafka producer/consumer and Mongo access relations.
+HTTP literals, Dojo AMD, Kafka producer/consumer and Mongo access relations. Task 018
+implements only the versioned synthetic interface profiles and client syntax described
+in ADR 0023; it does not qualify production framework adapters or infer config/dispatch
+wiring. Static syntax and candidate cross-source hops have separate statuses and citations.
 
 Only patterns supported by actual inputs receive structured adapters. Framework-specific
 extensions wait for explicit, permitted sample manifests. Dynamic environment values,

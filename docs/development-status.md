@@ -1,8 +1,44 @@
 # Development status
 
+## Task 018 — Code links and partial static flows
+
+Implemented and locally verified, 2026-10-30; ready for code/product review. Task 017
+was accepted through the owner's merge of PR #21 (`a551f3c`). A separate model-free
+projection now links supported TS/Vue and Dojo client syntax to declared routes,
+unique Java handlers and source-declared publisher/subscriber/document-write interface
+calls. The original three-repository corpus produces two partial outlines (10 and nine
+steps), four candidate code links and ten resolving original evidence records.
+
+Local syntax links and candidate HTTP/delivery/dispatch hops have separate statuses.
+Matching complete supported record/contract shapes and one scoped topic clue never
+establish shared broker, runtime config binding, encoding, dispatch or concrete database
+selection. Those gaps remain visible; active environment/deployment coherence remain
+unknown. Different records/contracts/environments, contradictory literal topics and
+ambiguous names suppress links. Real production framework adapters remain unqualified.
+
+The new protected endpoint and view retain complete-file original evidence, bounded
+parsing/output, revocation/policy fencing, historical selection and deterministic restart.
+The already locked compiler is now a runtime dependency; no new package, schema migration,
+model call, source command or source-checkout mutation was added. Declaration-map v1,
+answer retrieval and Workbench behavior remain unchanged. Citation reads now use a
+separate latest-selection guard after Chrome exposed clicks dropped by the old shared
+busy mutation handler; delayed older responses cannot replace a newer selection.
+
+Verification: full `pnpm check` passes 216 tests (65 LoreDock), strict typechecks and
+production builds. Browser acceptance covers both outlines, write evidence, candidate/gap
+labels, deliberately reordered citation responses, historical/current indexes, source
+removal, policy/reindex/restart and 390px layout. Existing answer-browser acceptance
+passes with four fake invocations and zero real model calls. See
+[Task 018](../tasks/018-loredock-static-flows.md),
+[ADR 0023](decisions/0023-loredock-static-code-flows.md) and
+[recorded flow evidence](fixtures/loredock-static-flows/README.md).
+Engineer-supplied scope corrections and derivative invalidation are the next L3 slice;
+full L3, 20-repository scale acceptance and the Workbench bridge are not claimed complete.
+
 ## Task 017 — Declaration map, first L3 slice
 
-Implemented and locally verified, 2026-10-30. A model-free read projection exposes
+Accepted through the owner's merge of PR #21 (`a551f3c`), 2026-10-30.
+A model-free read projection exposes
 repository/package identities, declared HTTP routes and unresolved handler references,
 flat event contracts and configuration values, with original source citations. The
 frozen corpus produces three repository identities, 16 declarations and two candidate

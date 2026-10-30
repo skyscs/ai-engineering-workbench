@@ -1,6 +1,7 @@
 import path from 'node:path';
 import type { Catalog } from './catalog.js';
-import { extract, sha256, spans } from './extract.js';
+import { extract, sha256 } from './extract.js';
+import { readMapDocument, type MapDocument } from './map-document.js';
 import { CatalogError } from './types.js';
 import type { DeclarationMap, MapEdge, MapEvidence, MapNode, MapNodeKind } from './system-map-types.js';
 
@@ -9,7 +10,7 @@ export const mapLimits = { documents: 100, fileBytes: 32 * 1024, textBytes: 256 
 const object = (value: unknown): value is Record<string, unknown> => value !== null && typeof value === 'object' && !Array.isArray(value);
 const text = (value: unknown, max = 512): value is string => typeof value === 'string' && value.trim().length > 0 && value.length <= max && !/[\x00-\x1f\x7f]/.test(value);
 const scalar = (value: unknown): value is string | number | boolean => text(value) || (typeof value === 'number' && Number.isFinite(value)) || typeof value === 'boolean';
-type Document = { id: string; sourceId: string; path: string; size: number; storedBytes: number };
+type Document = MapDocument;
 type Comparison = { node: MapNode; group: string; signature: string; family: 'contract' | 'setting' };
 
 /** A disposable read projection over original authorized evidence, never a model claim store. */
@@ -57,18 +58,10 @@ export function declarationMap(catalog: Catalog, buildId?: string): DeclarationM
     if (file.size > mapLimits.fileBytes || file.storedBytes > mapLimits.fileBytes) { omit('file-byte-limit'); continue; }
     if (parsedBytes + file.size > mapLimits.textBytes) { omit('input-byte-limit'); continue; }
     const issued = catalog.store.all<{ id: string }>('SELECT id FROM spans WHERE fileId=? ORDER BY startLine LIMIT ?', file.id, mapLimits.fileSpans + 1);
-    if (!issued.length) throw new CatalogError('CORRUPT_EVIDENCE', 'Map document has no issued evidence spans.', 409);
     if (issued.length > mapLimits.fileSpans) { omit('file-span-limit'); continue; }
-    const checked = issued.map(span => catalog.evidence(span.id));
-    if (checked.some(span => span.buildId !== build.id || span.sourceId !== file.sourceId || span.path !== file.path)) throw new CatalogError('CORRUPT_EVIDENCE', 'Map evidence does not match its indexed file.', 409);
-    const raw = catalog.store.one<{ raw: Uint8Array }>('SELECT raw FROM files WHERE id=?', file.id)!.raw;
-    if (raw.length !== file.size || sha256(Buffer.from(raw)) !== checked[0]!.contentHash) throw new CatalogError('CORRUPT_EVIDENCE', 'Map source bytes failed validation.', 409);
-    const content = new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(raw).replaceAll('\r\n', '\n');
-    const expected = spans(content);
-    if (expected.length !== checked.length || expected.some((span, index) => span.startLine !== checked[index]!.startLine || span.endLine !== checked[index]!.endLine || span.text !== checked[index]!.text)) throw new CatalogError('CORRUPT_EVIDENCE', 'Map evidence does not cover the complete declaration document.', 409);
+    const { raw, content, refs } = readMapDocument(catalog, build.id, file, issued);
     parsedBytes += raw.length; examinedDocuments++;
     const source = sources.find(source => source.sourceId === file.sourceId)!, repository = repositories.get(file.sourceId)!;
-    const refs: MapEvidence[] = checked.map(({ id, sourceName, path, revision, startLine, endLine }) => ({ id, sourceName, path, revision, startLine, endLine }));
     let environment: string | null = null;
     function node(kind: MapNodeKind, pointer: string, label: string, properties: Record<string, string>): MapNode | undefined {
       const nodeId = id('node', file.sourceId, file.path, kind, pointer), existing = nodes.find(item => item.id === nodeId);

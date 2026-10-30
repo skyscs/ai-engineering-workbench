@@ -7,11 +7,14 @@ The repository also contains **LoreDock**, the new local source catalog that wil
 provide system context for future Workbench investigations. Its first implementation
 connects up to three local Git repositories, indexes committed text and opens exact
 source citations. A declaration map shows scoped routes, contracts and configuration
-comparisons. Indexing, source search and the map need no Codex configuration or model calls.
+comparisons. Two bounded static flow outlines connect supported Vue/TypeScript and
+Dojo client code to Java interface calls, with candidate hops and unresolved wiring.
+Indexing, source search and the map need no Codex configuration or model calls.
 
 After the shared installation/build steps below, run `pnpm loredock` and open
 **http://127.0.0.1:4244**. Follow the [LoreDock guide](docs/loredock/USER_GUIDE.md)
-for indexing, the declaration map, search, updates, coverage, storage and the synthetic demo.
+for indexing, the declaration map, static flow outlines, search, updates, coverage,
+storage and the synthetic demo.
 The [answer-stage checkpoint](docs/loredock/ANSWER_FOUNDATION.md) records internal
 retrieval and real-model evaluation results. An **opt-in cited-answer pilot** is now
 available with `LOREDOCK_ANSWERS=1 pnpm loredock`; follow the guide's
@@ -145,7 +148,7 @@ and external registered repositories; Markdown export is not a backup.
 | Integrate with the local HTTP API | [Session and transport](docs/local-api.md), then feature API tables |
 | Inspect validation and development history | [Release acceptance](docs/release-acceptance.md), [development status](docs/development-status.md) |
 | Use the LoreDock source catalog | [LoreDock guide](docs/loredock/USER_GUIDE.md), [browser acceptance](docs/fixtures/loredock-catalog/README.md) — local indexing and cited source search implemented |
-| Review the next development direction | [LoreDock-first roadmap](docs/loredock/PLAN.md), [answer pilot](docs/loredock/ANSWER_FOUNDATION.md), [draft review](docs/loredock/REVIEW.md) — declaration-map clues are available; code flows and Workbench integration remain planned |
+| Review the next development direction | [LoreDock-first roadmap](docs/loredock/PLAN.md), [answer pilot](docs/loredock/ANSWER_FOUNDATION.md), [draft review](docs/loredock/REVIEW.md) — declaration clues and partial static flows are available; engineer corrections, scale and Workbench integration remain planned |
 | Inspect the earlier interaction prototype | [Interaction prototype](prototypes/investigation/README.md), [UX plan](docs/ux-simplification-plan.md) — sample data, no model calls |
 
 For development, `pnpm dev` rebuilds internal packages and starts the UI on

@@ -27,6 +27,10 @@ The declaration map is a bounded read projection over authorized stored source b
 It adds no execution privileges or external calls. Labels and properties render as escaped
 text; candidate comparisons are not runtime evidence. Source/policy changes fence map
 reads and late UI responses. See [ADR 0022](docs/decisions/0022-loredock-declaration-map.md).
+The code-flow projection parses stored text in memory, without compiler plugins, project
+configuration, filesystem/package resolution or source execution. It retains original
+evidence and the same fencing. Static/candidate links do not establish runtime behavior;
+see [ADR 0023](docs/decisions/0023-loredock-static-code-flows.md).
 
 The sections below describe Workbench's existing AI investigation boundary.
 

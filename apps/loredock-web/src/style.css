@@ -413,3 +413,13 @@ footer{
 .map-declarations dd { margin-left: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
 .map-clue { background: #eef5f1; border: 1px solid #dce4df; padding: 1rem; margin: 1rem 0; border-radius: 8px; overflow-wrap: anywhere; }
 .map-clue.difference { background: #fff4dc; }
+.code-flows { margin-block: 1.5rem; }
+.flow-card { border: 1px solid var(--border, #cbd5e1); border-radius: 10px; padding: 1rem; margin-block: 1rem; }
+.flow-card > summary { font-weight: 600; overflow-wrap: anywhere; }
+.flow-steps { padding-inline-start: 1.5rem; }
+.flow-steps > li { padding-block: .65rem; border-bottom: 1px solid #dbe2ea; overflow-wrap: anywhere; }
+.flow-citations { display: flex; flex-wrap: wrap; gap: .35rem; margin-block: .4rem; }
+.flow-citations button { max-width: 100%; text-align: left; overflow-wrap: anywhere; }
+.flow-link { font-size: .9rem; margin-block: .3rem; }
+.flow-candidate { font-size: .9rem; }
+.flow-gaps, .flow-coverage { margin-block: .8rem; overflow-wrap: anywhere; }
