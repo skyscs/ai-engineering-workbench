@@ -75,8 +75,12 @@ object exports under code adapter v3, with binding/module-boundary guards and hi
 review preservation. Current union recall is 22/22, with five combined scope conditions met.
 [Task 040](../../tasks/040-loredock-compact-related-sources.md) makes related-source cards
 compact and expandable, retaining every selected original and uncertainty.
-Next: freeze and measure a larger synthetic workload under current indexing, retrieval,
-projection and refresh bounds. No tuning on the observed model answers is included.
+[Task 041](../../tasks/041-loredock-synthetic-capacity.md) measures 3,679 files under current
+bounds: full original-context recall and refresh reuse, 21/22 candidate recall and only
+100/3,621 code documents examined. Stored generations approximately double catalog size.
+Next: freeze an offline qualification of related-source ordering by strongest admitted
+relationship kind, retaining configuration clues and existing caps. No tuning on the
+observed model answers is included.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale
 and the Workbench bridge remain open. The

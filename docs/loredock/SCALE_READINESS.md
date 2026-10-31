@@ -1,5 +1,16 @@
 # Twenty-repository capacity readiness
 
+The latest [Task 041 measurement](../fixtures/loredock-capacity/README.md) covers 3,679
+files / 7.39 MB across twenty owned sources at current defaults. Both initial indexes
+publish every eligible file in 67–84 seconds; unchanged refresh takes about 16 seconds
+and reuses all text. All twenty README contexts and required question references remain
+available. Candidate recall is 21/22, and the code graph examines only 100/3,621 candidate
+files. Saved generations grow SQLite from about 66 to 131 MB after one refresh.
+This is a generated volume probe, not representative framework or semantic acceptance.
+The retained raw report includes a disclosed aggregate-status defect; its separate pure
+audit supplies corrected summaries without an indexing rerun. Earlier measurements below
+remain historical evidence.
+
 Date: 2026-10-31. Task 024 follows merged PR #27. This is a code audit and a
 reproducible synthetic boundary probe, not twenty-source ingestion or L5 acceptance.
 

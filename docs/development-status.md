@@ -1,5 +1,36 @@
 # Development status
 
+## Task 041 — Larger synthetic capacity baseline
+
+Implemented and locally verified, 2026-10-31. PR #44 reached main as `1978b20` after
+push `41247268526` and pull-request `41247271282` passed for exact head
+`6a6846b24e767a204cb2e749e220ac6651b6cbac`. Work continues without corporate inputs.
+Design `0a9bce8`, workload/manifest `46aa78f` and harness `fcfac40` precede measurement.
+
+Two fresh generations each publish all 3,679 eligible files / 7,389,669 bytes, with
+sixty intentional exclusions and no read failures. Initial indexes take 67.15/84.41 s;
+unchanged refreshes take 16.41/16.47 s and reuse every text file. Retained SQLite grows
+from about 66 to 131 MB. Process-only RSS and all current bounds are recorded explicitly.
+No product limit, API, schema, runtime or source policy changed.
+
+All twenty README contexts and required original incident/probe references remain
+available. Candidate recall is 21/22 critical incident occurrences; the contract-library
+miss motivates a separate ordering qualification. All three exact-symbol previews name
+their required single source. Code analysis examines only 100/3,621 candidate documents.
+Five incident passage orders change on refresh, but their sets and all candidate selections
+remain unchanged. Both fresh generations reproduce the corresponding stages.
+
+The premeasurement full check passed 359 tests, strict types and builds. Five final capacity
+tests include the raw-report audit and a reporting-status regression. The raw harness
+mistakenly used candidate status as availability; corrected aggregates are computed from
+the retained results with no indexing rerun. All 3,716 checked original occurrences and
+the raw timings/selections remain intact. See [Task 041](../tasks/041-loredock-synthetic-capacity.md)
+and [evidence](fixtures/loredock-capacity/README.md).
+
+Next: freeze an offline qualification of strongest-link-first related-source ordering,
+preserving all clue kinds, exact anchors, evidence and existing caps. Private/independent
+acceptance, full semantic completeness and the Workbench bridge remain open.
+
 ## Task 040 — Compact related-source reading cards
 
 Implemented and locally verified, 2026-10-31. PR #43 reached main as `ad6a0e4` after

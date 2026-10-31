@@ -1,0 +1,441 @@
+{
+  "schemaVersion": "loredock-capacity-audit/1",
+  "rawResultHash": "7cc800a8467e303ea75fdd1fcf0d0b2ace6260a565448538e21da45cfa324baa",
+  "checkedAt": "2026-10-31T22:34:08.225Z",
+  "stages": [
+    {
+      "generation": 1,
+      "stage": "initial",
+      "status": "available",
+      "summary": {
+        "incident": {
+          "context": {
+            "cases": 10,
+            "available": 10,
+            "allCriticalRepositories": 10,
+            "completeEvidence": 10,
+            "withinCandidateBound": 0,
+            "scopeNecessaryConditionsMet": 0,
+            "criticalRecall": {
+              "found": 22,
+              "total": 22
+            },
+            "candidateCounts": [
+              13,
+              12,
+              13,
+              17,
+              15,
+              17,
+              14,
+              13,
+              14,
+              12
+            ]
+          },
+          "preview": {
+            "cases": 10,
+            "available": 10,
+            "allCriticalRepositories": 9,
+            "completeEvidence": 6,
+            "withinCandidateBound": 6,
+            "scopeNecessaryConditionsMet": 5,
+            "criticalRecall": {
+              "found": 21,
+              "total": 22
+            },
+            "candidateCounts": [
+              6,
+              6,
+              1,
+              2,
+              2,
+              4,
+              7,
+              7,
+              1,
+              7
+            ]
+          }
+        },
+        "exact-symbol": {
+          "context": {
+            "cases": 3,
+            "available": 3,
+            "allCriticalRepositories": 3,
+            "completeEvidence": 3,
+            "withinCandidateBound": 0,
+            "scopeNecessaryConditionsMet": 0,
+            "criticalRecall": {
+              "found": 3,
+              "total": 3
+            },
+            "candidateCounts": [
+              9,
+              9,
+              10
+            ]
+          },
+          "preview": {
+            "cases": 3,
+            "available": 3,
+            "allCriticalRepositories": 3,
+            "completeEvidence": 3,
+            "withinCandidateBound": 3,
+            "scopeNecessaryConditionsMet": 3,
+            "criticalRecall": {
+              "found": 3,
+              "total": 3
+            },
+            "candidateCounts": [
+              1,
+              1,
+              1
+            ]
+          }
+        }
+      },
+      "unavailableQueries": []
+    },
+    {
+      "generation": 1,
+      "stage": "refresh",
+      "status": "available",
+      "summary": {
+        "incident": {
+          "context": {
+            "cases": 10,
+            "available": 10,
+            "allCriticalRepositories": 10,
+            "completeEvidence": 10,
+            "withinCandidateBound": 0,
+            "scopeNecessaryConditionsMet": 0,
+            "criticalRecall": {
+              "found": 22,
+              "total": 22
+            },
+            "candidateCounts": [
+              13,
+              12,
+              13,
+              17,
+              15,
+              17,
+              14,
+              13,
+              14,
+              12
+            ]
+          },
+          "preview": {
+            "cases": 10,
+            "available": 10,
+            "allCriticalRepositories": 9,
+            "completeEvidence": 6,
+            "withinCandidateBound": 6,
+            "scopeNecessaryConditionsMet": 5,
+            "criticalRecall": {
+              "found": 21,
+              "total": 22
+            },
+            "candidateCounts": [
+              6,
+              6,
+              1,
+              2,
+              2,
+              4,
+              7,
+              7,
+              1,
+              7
+            ]
+          }
+        },
+        "exact-symbol": {
+          "context": {
+            "cases": 3,
+            "available": 3,
+            "allCriticalRepositories": 3,
+            "completeEvidence": 3,
+            "withinCandidateBound": 0,
+            "scopeNecessaryConditionsMet": 0,
+            "criticalRecall": {
+              "found": 3,
+              "total": 3
+            },
+            "candidateCounts": [
+              9,
+              9,
+              10
+            ]
+          },
+          "preview": {
+            "cases": 3,
+            "available": 3,
+            "allCriticalRepositories": 3,
+            "completeEvidence": 3,
+            "withinCandidateBound": 3,
+            "scopeNecessaryConditionsMet": 3,
+            "criticalRecall": {
+              "found": 3,
+              "total": 3
+            },
+            "candidateCounts": [
+              1,
+              1,
+              1
+            ]
+          }
+        }
+      },
+      "unavailableQueries": []
+    },
+    {
+      "generation": 2,
+      "stage": "initial",
+      "status": "available",
+      "summary": {
+        "incident": {
+          "context": {
+            "cases": 10,
+            "available": 10,
+            "allCriticalRepositories": 10,
+            "completeEvidence": 10,
+            "withinCandidateBound": 0,
+            "scopeNecessaryConditionsMet": 0,
+            "criticalRecall": {
+              "found": 22,
+              "total": 22
+            },
+            "candidateCounts": [
+              13,
+              12,
+              13,
+              17,
+              15,
+              17,
+              14,
+              13,
+              14,
+              12
+            ]
+          },
+          "preview": {
+            "cases": 10,
+            "available": 10,
+            "allCriticalRepositories": 9,
+            "completeEvidence": 6,
+            "withinCandidateBound": 6,
+            "scopeNecessaryConditionsMet": 5,
+            "criticalRecall": {
+              "found": 21,
+              "total": 22
+            },
+            "candidateCounts": [
+              6,
+              6,
+              1,
+              2,
+              2,
+              4,
+              7,
+              7,
+              1,
+              7
+            ]
+          }
+        },
+        "exact-symbol": {
+          "context": {
+            "cases": 3,
+            "available": 3,
+            "allCriticalRepositories": 3,
+            "completeEvidence": 3,
+            "withinCandidateBound": 0,
+            "scopeNecessaryConditionsMet": 0,
+            "criticalRecall": {
+              "found": 3,
+              "total": 3
+            },
+            "candidateCounts": [
+              9,
+              9,
+              10
+            ]
+          },
+          "preview": {
+            "cases": 3,
+            "available": 3,
+            "allCriticalRepositories": 3,
+            "completeEvidence": 3,
+            "withinCandidateBound": 3,
+            "scopeNecessaryConditionsMet": 3,
+            "criticalRecall": {
+              "found": 3,
+              "total": 3
+            },
+            "candidateCounts": [
+              1,
+              1,
+              1
+            ]
+          }
+        }
+      },
+      "unavailableQueries": []
+    },
+    {
+      "generation": 2,
+      "stage": "refresh",
+      "status": "available",
+      "summary": {
+        "incident": {
+          "context": {
+            "cases": 10,
+            "available": 10,
+            "allCriticalRepositories": 10,
+            "completeEvidence": 10,
+            "withinCandidateBound": 0,
+            "scopeNecessaryConditionsMet": 0,
+            "criticalRecall": {
+              "found": 22,
+              "total": 22
+            },
+            "candidateCounts": [
+              13,
+              12,
+              13,
+              17,
+              15,
+              17,
+              14,
+              13,
+              14,
+              12
+            ]
+          },
+          "preview": {
+            "cases": 10,
+            "available": 10,
+            "allCriticalRepositories": 9,
+            "completeEvidence": 6,
+            "withinCandidateBound": 6,
+            "scopeNecessaryConditionsMet": 5,
+            "criticalRecall": {
+              "found": 21,
+              "total": 22
+            },
+            "candidateCounts": [
+              6,
+              6,
+              1,
+              2,
+              2,
+              4,
+              7,
+              7,
+              1,
+              7
+            ]
+          }
+        },
+        "exact-symbol": {
+          "context": {
+            "cases": 3,
+            "available": 3,
+            "allCriticalRepositories": 3,
+            "completeEvidence": 3,
+            "withinCandidateBound": 0,
+            "scopeNecessaryConditionsMet": 0,
+            "criticalRecall": {
+              "found": 3,
+              "total": 3
+            },
+            "candidateCounts": [
+              9,
+              9,
+              10
+            ]
+          },
+          "preview": {
+            "cases": 3,
+            "available": 3,
+            "allCriticalRepositories": 3,
+            "completeEvidence": 3,
+            "withinCandidateBound": 3,
+            "scopeNecessaryConditionsMet": 3,
+            "criticalRecall": {
+              "found": 3,
+              "total": 3
+            },
+            "candidateCounts": [
+              1,
+              1,
+              1
+            ]
+          }
+        }
+      },
+      "unavailableQueries": []
+    }
+  ],
+  "refreshComparisons": [
+    {
+      "generation": 1,
+      "status": "available",
+      "changedContextOrderOrSelection": [
+        "ir03",
+        "ir04",
+        "ir06",
+        "ir07",
+        "ir10"
+      ],
+      "changedContextSets": [],
+      "changedCandidateSelections": [],
+      "unavailableQueries": [],
+      "orientationChanged": false,
+      "changedProjectionOriginals": []
+    },
+    {
+      "generation": 2,
+      "status": "available",
+      "changedContextOrderOrSelection": [
+        "ir03",
+        "ir04",
+        "ir06",
+        "ir07",
+        "ir10"
+      ],
+      "changedContextSets": [],
+      "changedCandidateSelections": [],
+      "unavailableQueries": [],
+      "orientationChanged": false,
+      "changedProjectionOriginals": []
+    }
+  ],
+  "regeneration": {
+    "initial": {
+      "status": "available",
+      "changedContextOrderOrSelection": [],
+      "changedContextSets": [],
+      "changedCandidateSelections": [],
+      "unavailableQueries": [],
+      "orientationChanged": false,
+      "changedProjectionOriginals": []
+    },
+    "refresh": {
+      "status": "available",
+      "changedContextOrderOrSelection": [],
+      "changedContextSets": [],
+      "changedCandidateSelections": [],
+      "unavailableQueries": [],
+      "orientationChanged": false,
+      "changedProjectionOriginals": []
+    }
+  },
+  "selectionHashesVerified": true,
+  "modelRequests": 0,
+  "newIndexingAttempts": 0,
+  "correction": "The raw preview status contains suggestions/unresolved instead of available. Its preview summary and unavailableQueries aggregate are incorrect. This audit recounts the retained per-case candidate lists; raw selections, timings and hashes are unchanged."
+}
