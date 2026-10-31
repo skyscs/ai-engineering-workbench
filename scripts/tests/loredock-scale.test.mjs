@@ -50,4 +50,3 @@ test('scale oracle references resolving originals while preserving ambiguity and
   assert.match(read('shipping-api/docs/rename.md'), /fulfillment-api to shipping-api/);
   assert.deepEqual(JSON.parse(await readFile(path.join(fixture.root, 'pilot-oracle.json'), 'utf8')), fixture.pilotOracle);
 });
-
