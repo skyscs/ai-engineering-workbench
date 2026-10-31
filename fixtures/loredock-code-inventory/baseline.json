@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "loredock-code-inventory-design/1",
+  "frozenAt": "2026-10-31T23:09:23.515659+00:00",
+  "sourceHashes": {
+    "fixtures/loredock-code-inventory/DESIGN.md": "47d454db892a6ca98bc92e61c13ec88aa04066f538dbce550a0dda8bfdbfcb1f",
+    "fixtures/loredock-capacity/baseline.json": "4e73179f235565c5d42d842df9bfa3f4e6073e1743fdcf931c53bfb483152807",
+    "apps/loredock/src/code-typescript.ts": "773a8ced3b8e304c7d306fa9a91e060ce7da7194ebcde5a4ccb5aa12f9c1a5ad",
+    "apps/loredock/src/code-java.ts": "d51ff800a32a513f1e3a8eed7015d9be96817fef00c9eb1f70ff2f06b5d92389",
+    "apps/loredock/src/code-facts.ts": "38227b1619f13457b45883dcba6dd9316c62a2fa72ef858b51a77779287a2151",
+    "apps/loredock/src/http-headers.ts": "967bddace78b2c472401e4a490b08ca7cfc44eae725a537d52c7b102ebbdb1a9",
+    "apps/loredock/src/code-flows.ts": "c94ed41d6cbc86e26f7997b852eb92df32e2fb3e443a044559a52c4d80274a7f",
+    "apps/loredock/src/map-document.ts": "741ddd865b8c7ac63082f67200d3e5b55d74fa1cc9ce156b84aaa328165aede7",
+    "apps/loredock/src/extract.ts": "0909a4884ff9a82bd9eaaa6b625c7044f69eba3f3c53771b16668c2cdd3e6c2b",
+    "pnpm-lock.yaml": "7518f6697e3a529114fd835acbe23df2251e1ed25d6077f94d541409876d9312"
+  },
+  "parserFingerprint": "4a5c0ec967148f4f92c83c391c591475ad8db76d582dde7500ffe1e92f250cf7",
+  "adapterVersion": "pilot-code-v3",
+  "initialIndexAttempts": 1,
+  "passes": 2,
+  "modelRequests": 0,
+  "limits": {
+    "documents": 10000,
+    "fileBytes": 32768,
+    "fileSpans": 8,
+    "textBytes": 52428800,
+    "fileFactBytes": 131072,
+    "factBytes": 16777216,
+    "wallMs": 300000
+  },
+  "offsetEncoding": "UTF-16 code units"
+}
