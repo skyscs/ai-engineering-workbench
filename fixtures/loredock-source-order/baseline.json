@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "loredock-source-order-design/1",
+  "frozenAt": "2026-10-31T22:41:18.173353+00:00",
+  "sourceHashes": {
+    "fixtures/loredock-source-order/DESIGN.md": "0ae4ca00c8bed86592a530d8d2652a94670a92019ecefd1265c46cafc0b244ee",
+    "fixtures/loredock-source-order/cases.mjs": "86298a9532269173ab3b4eded76caed31addc15f7de8c7fbfb51886303adb6dd",
+    "apps/loredock/src/candidate-links.ts": "3fb8d205f4568aee7ee28ed50bdca83a5b2acbd0509f0808a2d063b669926272",
+    "apps/loredock/src/source-candidates.ts": "5fc9e4ab6adf27e60bfa8d11f14d587865837d8fda7feb75a5c797b7d5044562",
+    "fixtures/loredock-routing/baseline.json": "958bfc1f1fd7a81119d810fdc75d2c18e250a11c5636fe37dac560e1836ed28e",
+    "fixtures/loredock-capacity/baseline.json": "4e73179f235565c5d42d842df9bfa3f4e6073e1743fdcf931c53bfb483152807"
+  },
+  "smallGenerations": 2,
+  "volumeInitialAttempts": 1,
+  "modelRequests": 0,
+  "productionPolicyChanged": false
+}
