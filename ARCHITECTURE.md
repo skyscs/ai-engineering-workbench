@@ -25,6 +25,10 @@ human review and saved-answer freshness remain separate.
 Schema 7 adds atomic bulk-registration receipts and persisted source shares for new
 indexes; twenty-source baseline orientation is described in
 [ADR 0029](docs/decisions/0029-loredock-bulk-source-baseline.md).
+LoreDock schema 8 adds a bounded disposable per-file code inventory with original
+validation, parser fingerprints, interruption/resume and two-generation retention.
+Task 045 provides the internal service; automatic indexing, HTTP/UI and query integration
+follow separately. See [ADR 0040](docs/decisions/0040-loredock-durable-code-inventory.md).
 Bounded question-context sampling across twenty sources, stable selection and explicit
 source representation are described in [ADR 0030](docs/decisions/0030-loredock-scale-retrieval.md).
 Answer inputs can also retain bounded, separately versioned static interface comparisons

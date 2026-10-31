@@ -31,6 +31,13 @@ The code-flow projection parses stored text in memory, without compiler plugins,
 configuration, filesystem/package resolution or source execution. It retains original
 evidence and the same fencing. Static/candidate links do not establish runtime behavior;
 see [ADR 0023](docs/decisions/0023-loredock-static-code-flows.md).
+The internal durable code-inventory service validates stored originals, Git blob hashes,
+parser fingerprints and bounded file checkpoints before reuse within an interrupted run.
+It adds no Git/model/source execution. Registry/policy changes atomically fence inventories
+and clear file derivatives; existing revocation purge also covers every dependent generation.
+Two bounded inventories are retained, independently of raw index history. Task 045 exposes
+no HTTP endpoint or automatically enabled worker; see
+[ADR 0040](docs/decisions/0040-loredock-durable-code-inventory.md).
 Engineer corrections retain explicit human/unverified provenance. Bounded notes matching
 retrieved passages are previewed and sent separately to the answer model as untrusted
 assertions, never instructions or source citation IDs. Answers inherit their complete

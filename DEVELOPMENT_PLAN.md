@@ -105,9 +105,11 @@ and original evidence. Context and scope changes fence pending page/evidence res
 [Task 044](tasks/044-loredock-code-inventory-feasibility.md) examines all 3,621 code files
 once and repeats on the same index: identical facts, 741,496 fact bytes, no failures,
 and seven unsupported-syntax gap occurrences. All 98 sampled symbol ranges agree.
-Next: bounded durable per-file inventory with parser fingerprints, interruption/resume,
-original-evidence validation and source purge. Keep graph/answer integration separate;
-small parser cost does not justify cross-revision reuse in the first implementation.
+[Task 045](tasks/045-loredock-durable-code-inventory.md) implements the bounded durable
+service with actual parser fingerprints, validated restart/resume, atomic file checkpoints,
+source/policy fencing and two-inventory retention under schema 8. It reparses new indexes
+and leaves existing projections/answers unchanged. Next: protected API and simple coverage
+UI in the indexing workflow, then separately bounded query use of the wider inventory.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

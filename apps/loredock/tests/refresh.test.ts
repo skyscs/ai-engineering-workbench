@@ -188,7 +188,7 @@ test('schema 4 upgrade validates legacy extraction before reuse and preserves en
     projectionHash: code.inputHash, expectedRevision: 0, expectedPreviousId: null, action: 'clarify', statement: 'This is a local candidate.', environment: 'local' });
   const history = corrections.history(saved.id), evidence = state.catalog.evidence(state.catalog.search('OrderConsumer').hits[0]!.id);
   removeRefreshSchema(state.store); state.store.db.exec('PRAGMA user_version=4'); await state.restart();
-  assert.equal(state.store.one<{ user_version: number }>('PRAGMA user_version')!.user_version, 7);
+  assert.equal(state.store.one<{ user_version: number }>('PRAGMA user_version')!.user_version, 8);
   assert.deepEqual(new Corrections(state.catalog).history(saved.id), history); assert.deepEqual(state.catalog.evidence(evidence.id), evidence);
   assert.equal(indexChanges(state.catalog, first.id).comparison, 'legacy');
   const next = await state.index('after-upgrade'); assert.equal(next.refresh.reusedFiles, 18); assert.equal(next.refresh.gitReadAttempts, 3);

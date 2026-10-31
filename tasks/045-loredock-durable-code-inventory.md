@@ -1,6 +1,7 @@
 # Task 045 — Durable bounded per-file code inventory
 
-Status: scoped before implementation, 2026-11-01.
+Status: implemented and locally verified, 2026-11-01.
+Scope was committed in `f04b283` after merged PR #48 (`a35c7e5`).
 
 Task 044 found complete bounded extraction feasible on the synthetic volume: 3,621
 files, 741,496 fact bytes, identical repeat records and explicit unsupported syntax.
@@ -56,3 +57,26 @@ benchmark is needed for this foundation. Document the architecture and availabil
 After exact-head push and pull-request CI pass, merge and continue immediately with
 simple coverage UI/protected API integration, then bounded query use of the full inventory.
 Do not silently enlarge the graph or answer prompt or infer semantic acceptance.
+
+## Implementation
+
+`CodeAnalysis` and its bounded fact validator add durable run/file/source-dependency
+records under schema 8. Actual installed module/dependency and Node fingerprints reject
+stale reads/resume. Original content, Git blob hashes, complete spans and UTF-16 ranges
+are checked without Git execution. File payloads and counters commit atomically.
+
+Pause/cancel, restart interruption, explicit validated resume, failed-run preservation
+and at most two retained inventories are implemented. A policy/registry trigger fences
+and clears derivatives atomically, including registration changes; revocation purge adds
+a recovery path for all dependent inventories. Legacy source/answer/correction history
+remains separate. The service has no daemon startup hook, HTTP endpoint or UI in this task.
+See [ADR 0040](../docs/decisions/0040-loredock-durable-code-inventory.md).
+
+Nine focused tests cover the lifecycle and integrity contract, including a 121-file
+owned shape beyond the graph's 100-document sample. Seven unsupported-syntax messages
+belong to six files; both remain distinct from complete language coverage. No new model
+or full-volume acceptance run was performed. Follow with API/coverage integration, then
+bounded query use; no cross-revision reuse is introduced.
+
+Strict types, all 375 tests, production builds and the compiled-service smoke pass. See
+[verification](../docs/fixtures/loredock-durable-code-inventory/README.md).
