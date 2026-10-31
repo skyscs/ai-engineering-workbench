@@ -15,11 +15,20 @@ export function CandidatePanel({ buildId, boundary, correctionRevision, openEvid
   const value = result?.key === key && result.question === question ? result.value : undefined;
   function edit(text: string) { request.current++; setQuestion(text); setResult(undefined); setError(undefined); setBusy(false); clearEvidence(); }
   async function preview(event: FormEvent) {
-    event.preventDefault(); if (busy || !buildId || !question.trim()) return;
-    const sequence = ++request.current; setBusy(true); setError(undefined); setResult(undefined); clearEvidence();
+    event.preventDefault(); await load();
+  }
+  async function load(offset = 0, previous?: CandidatePreview) {
+    if (busy || !buildId || !question.trim()) return;
+    const sequence = ++request.current; setBusy(true); setError(undefined); if (!previous) setResult(undefined); clearEvidence();
     try {
-      const response = await api<CandidatePreview>('/candidates/preview', 'POST', { question, buildId });
-      if (sequence === request.current && key === currentKey.current) setResult({ key, question, value: response });
+      const response = await api<CandidatePreview>('/candidates/preview', 'POST', { question, buildId, relatedOffset: offset });
+      if (sequence === request.current && key === currentKey.current) {
+        clearEvidence();
+        if (previous && response.inputHash !== previous.inputHash) {
+          setResult(undefined); throw new Error('Source context changed. Find candidate repositories again.');
+        }
+        setResult({ key, question, value: response });
+      }
     } catch (cause) {
       if (sequence === request.current && key === currentKey.current) setError({ key, text: (cause as Error).message });
     } finally { if (sequence === request.current && key === currentKey.current) setBusy(false); }
@@ -52,7 +61,7 @@ export function CandidatePanel({ buildId, boundary, correctionRevision, openEvid
       {(value.stale || value.historical) && <p className="notice">These suggestions use an older index or source registry. Evidence stays pinned to that snapshot; update knowledge to include newer sources.</p>}
       {value.tiedAtLimit && <p className="notice">Equally matched sources extend beyond the suggestion limit. Inspect other matches before narrowing the scope.</p>}
       <div className="candidate-suggestions">{value.suggested.map(card)}</div>
-      <CandidateLinks value={value.related} openEvidence={openEvidence} />
+      <CandidateLinks value={value.related} busy={busy} openEvidence={openEvidence} changePage={offset => void load(offset, value)} />
       {value.otherMatches.length > 0 && <details className="candidate-other"><summary>Other matches · {value.otherMatches.length} repositories</summary>
         <p>These sources fall below the selection threshold or outside the six-suggestion limit. They may still be relevant.</p>
         {value.otherMatches.map(card)}

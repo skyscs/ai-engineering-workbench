@@ -99,8 +99,11 @@ growth and passage-order changes are recorded separately from stable passage set
 [Task 042](tasks/042-loredock-source-order-qualification.md) qualifies strongest-link-first
 ordering offline. It recovers the observed volume omission but loses a critical configuration
 source in a frozen counterexample. Unconditional promotion is rejected; production stays v1.
-Next: explicit four-source pages to inspect remaining eligible related repositories,
-preserving default ordering, primary/answer context and original evidence.
+[Task 043](tasks/043-loredock-related-source-pages.md) adds explicit four-source pages for
+remaining eligible related repositories, preserving default order, primary/answer context
+and original evidence. Context and scope changes fence pending page/evidence responses.
+Next: measure complete file-by-file code-fact extraction with current bounded parsers on
+the frozen synthetic volume before designing persistent analysis or changing graph limits.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

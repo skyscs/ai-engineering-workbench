@@ -6,8 +6,8 @@ import { verifySourceOrderContract, evaluateSourceOrderExamples, strongestLinkOr
 // @ts-expect-error Frozen qualification cases are plain JavaScript.
 import { sourceOrderCases } from '../../../fixtures/loredock-source-order/cases.mjs';
 
-test('frozen source ordering mechanics retain bounds and expose the critical configuration counterexample', async () => {
-  await verifySourceOrderContract();
+test('ordering mechanics retain the counterexample while the frozen qualifier refuses the paged selector', async () => {
+  await assert.rejects(verifySourceOrderContract(), /Frozen ordering input changed: apps\/loredock\/src\/candidate-links.ts/);
   const results = evaluateSourceOrderExamples(selectCandidateLinks) as { id: string; criticalLoss: string[] }[];
   assert.equal(results.length, 12);
   assert.deepEqual(results.filter(row => row.criticalLoss.length).map(row => [row.id, row.criticalLoss]), [['o12', ['b']]]);

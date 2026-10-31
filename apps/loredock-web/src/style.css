@@ -548,3 +548,4 @@ footer{
 .related-source-count, .related-source-subject { display: block; margin-top: .25rem; font-weight: 400; }
 .related-source-count { font-size: .85rem; }
 .related-source-subject { font-size: .9rem; }
+.related-pages { display: flex; flex-wrap: wrap; gap: .5rem; margin-block: 1rem; }

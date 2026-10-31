@@ -6,8 +6,15 @@ import { declarationMap } from './system-map.js';
 import type { MapEvidence } from './system-map-types.js';
 import { searchText } from './search-text.js';
 import { CatalogError } from './types.js';
+import { defaults } from './store.js';
 
 export const candidateLinkLimits = { sources: 4, linksPerSource: 2 } as const;
+export function relatedPageOffset(value: unknown): number {
+  if (typeof value !== 'number' || !Number.isSafeInteger(value) || value < 0 || value >= defaults.sources || value % candidateLinkLimits.sources !== 0) {
+    throw new CatalogError('INVALID_PAGE', 'Choose an available related-repository page.');
+  }
+  return value;
+}
 const kinds = ['http-target', 'event-delivery', 'contract-match', 'contract-difference', 'setting-match', 'setting-difference'] as const;
 type LinkKind = typeof kinds[number];
 export interface LinkEndpoint {
@@ -22,8 +29,9 @@ export interface LinkedSource {
   sourceId: string; sourceName: string; revision: string; links: CandidateLink[]; omittedLinks: number;
 }
 export interface CandidateLinks {
-  schemaVersion: 'source-candidate-links-v1'; provenance: 'static-analysis'; verification: 'unverified';
+  schemaVersion: 'source-candidate-links-v2'; provenance: 'static-analysis'; verification: 'unverified';
   sources: LinkedSource[]; eligibleSources: number; eligibleLinks: number; omittedSources: number; omittedLinks: number;
+  page: { offset: number; limit: number; total: number; previousOffset: number | null; nextOffset: number | null };
   limits: typeof candidateLinkLimits;
 }
 export interface CandidateLinkContext extends CandidateLinks {
@@ -37,7 +45,8 @@ const locator = (ref: LinkEvidence) => JSON.stringify([ref.sourceName, ref.revis
 
 /** One-hop reading context; never promote graph reachability to implementation ownership. */
 export function selectCandidateLinks(context: Pick<AnswerContext, 'sources' | 'spans'>,
-  selection: Pick<CandidateSelection, 'suggested' | 'distinctiveTerms'>, links: CandidateLink[]): CandidateLinks {
+  selection: Pick<CandidateSelection, 'suggested' | 'distinctiveTerms'>, links: CandidateLink[], pageOffset: unknown = 0): CandidateLinks {
+  const offset = relatedPageOffset(pageOffset);
   const owners = new Map(context.sources.map(source => [source.sourceId, source]));
   const seeds = new Set(selection.suggested.map(source => source.sourceId));
   const anchors = new Map(context.spans.filter(span => seeds.has(span.sourceId) && selection.distinctiveTerms.some(term =>
@@ -79,17 +88,22 @@ export function selectCandidateLinks(context: Pick<AnswerContext, 'sources' | 's
     return JSON.stringify([endpoints, link.evidence.map(locator).sort()]);
   };
   const eligibleSources = bySource.size, eligibleLinks = [...bySource.values()].reduce((sum, rows) => sum + rows.length, 0);
-  const sources = context.sources.filter(source => bySource.has(source.sourceId)).slice(0, candidateLinkLimits.sources).map(source => {
+  if (offset > 0 && offset >= eligibleSources) throw new CatalogError('INVALID_PAGE', 'Choose an available related-repository page.');
+  const sources = context.sources.filter(source => bySource.has(source.sourceId)).slice(offset, offset + candidateLinkLimits.sources).map(source => {
     const rows = bySource.get(source.sourceId)!.sort((a, b) => kinds.indexOf(a.kind) - kinds.indexOf(b.kind) || compare(key(a), key(b)));
     return { sourceId: source.sourceId, sourceName: source.name, revision: source.revision!,
       links: rows.slice(0, candidateLinkLimits.linksPerSource), omittedLinks: Math.max(0, rows.length - candidateLinkLimits.linksPerSource) };
   });
-  return { schemaVersion: 'source-candidate-links-v1', provenance: 'static-analysis', verification: 'unverified', sources,
+  return { schemaVersion: 'source-candidate-links-v2', provenance: 'static-analysis', verification: 'unverified', sources,
     eligibleSources, eligibleLinks, omittedSources: eligibleSources - sources.length,
+    page: { offset, limit: candidateLinkLimits.sources, total: eligibleSources,
+      previousOffset: offset ? offset - candidateLinkLimits.sources : null,
+      nextOffset: offset + sources.length < eligibleSources ? offset + candidateLinkLimits.sources : null },
     omittedLinks: eligibleLinks - sources.reduce((sum, row) => sum + row.links.length, 0), limits: candidateLinkLimits };
 }
 
-export function candidateLinkContext(catalog: Catalog, context: AnswerContext, selection: CandidateSelection): CandidateLinkContext {
+export function candidateLinkContext(catalog: Catalog, context: AnswerContext, selection: CandidateSelection, pageOffset: unknown = 0): CandidateLinkContext {
+  const offset = relatedPageOffset(pageOffset);
   const declarations = declarationMap(catalog, context.buildId), code = codeFlows(catalog, context.buildId);
   const links: CandidateLink[] = [], originals = new Map<string, LinkEvidence>();
   for (const projection of [declarations, code]) {
@@ -121,7 +135,7 @@ export function candidateLinkContext(catalog: Catalog, context: AnswerContext, s
         gaps: 'gaps' in edge ? edge.gaps : [], evidence });
     }
   }
-  return { ...selectCandidateLinks(context, selection, links), projections: {
+  return { ...selectCandidateLinks(context, selection, links, offset), projections: {
     code: { version: code.adapterVersion, inputHash: code.inputHash, coverage: code.coverage, omissions: code.omissions },
     declarations: { version: declarations.adapterVersion, inputHash: declarations.inputHash, coverage: declarations.coverage, omissions: declarations.omissions } },
     gaps: [...new Set([...code.gaps, ...declarations.gaps,

@@ -1,6 +1,7 @@
 # Task 043 — Bounded browsing of remaining related sources
 
-Status: scoped before implementation.
+Status: implemented and locally verified, 2026-11-01.
+Follows PR #46, merged as `b9cc358` after exact-head CI succeeded.
 
 Task 042 rejects unconditional strongest-link-first ranking because it can displace a
 critical configuration source. Keep the current saved-order selection and make the
@@ -47,3 +48,14 @@ revocation scenarios remain mandatory. No new full capacity benchmark or real-mo
 Document API/UX behavior and the bounded-page decision, run appropriate checks, review,
 create the PR and merge only after push/pull-request CI succeed for its exact head.
 Continue to the next bounded roadmap task without waiting for another command.
+
+Outcome: related projection v2 pages eligible sources in groups of four without changing
+default order or original context. Strict types, 364 tests, builds and the extended browser
+scenario pass. The default small-corpus diagnostic reproduces all earlier first-page
+selections; two fresh generations retain 22/22 critical occurrences. See
+[verification](../docs/fixtures/loredock-related-pages/README.md) and
+[ADR 0039](../docs/decisions/0039-loredock-related-source-pages.md).
+
+Next: measure complete file-by-file code-fact extraction on the frozen volume corpus with
+the existing bounded parsers, keeping production graph limits/schema unchanged. Record
+cost, provenance and unsupported coverage before designing persistent code analysis.

@@ -92,11 +92,11 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
   app.get('/api/orientation', c => c.json(projectOrientation(catalog, c.req.query('buildId'))));
   app.post('/api/candidates/preview', async c => {
     const input = await body(c.req);
-    if (Object.keys(input).some(key => key !== 'question' && key !== 'buildId') || typeof input.question !== 'string'
+    if (Object.keys(input).some(key => key !== 'question' && key !== 'buildId' && key !== 'relatedOffset') || typeof input.question !== 'string'
       || (input.buildId !== undefined && typeof input.buildId !== 'string')) {
       throw new CatalogError('INVALID_REQUEST', 'A question and optional index version are required.');
     }
-    return c.json(sourceCandidatePreview(catalog, input.question, input.buildId as string | undefined));
+    return c.json(sourceCandidatePreview(catalog, input.question, input.buildId as string | undefined, input.relatedOffset));
   });
   const corrections = new Corrections(catalog);
   app.get('/api/corrections', c => c.json(corrections.list(c.req.query('buildId'))));

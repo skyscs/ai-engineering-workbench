@@ -134,6 +134,39 @@ try {
   await hold('/api/evidence/');await evaluate(`${linkedButton}.click()`);await held();
   await question('zzcandidatebrowserunknown');await release();assert.equal(await evaluate("document.querySelector('.evidence')===null"),true);
   await question(routingCases[0].description);await find();await waitFor(()=>evaluate("document.querySelector('.candidate-links')!==null"),'Related repositories did not load.');
+  await evaluate("document.querySelector('.candidate-links').open=true");
+  const firstPage=await apiCall('/candidates/preview','POST',{question:routingCases[0].description});
+  assert.ok(firstPage.related.page.nextOffset!==null);
+  const nextPage=await apiCall('/candidates/preview','POST',{question:routingCases[0].description,buildId:firstPage.buildId,relatedOffset:firstPage.related.page.nextOffset});
+  assert.deepEqual(nextPage.suggested,firstPage.suggested);assert.equal(nextPage.inputHash,firstPage.inputHash);
+  await click('Next repositories');await waitFor(()=>evaluate("document.querySelector('.candidate-links')?.dataset.relatedOffset==='4'"),'The next related page did not load.');
+  assert.deepEqual(await evaluate("[...document.querySelectorAll('.related-source')].map(node=>node.dataset.sourceId)"),nextPage.related.sources.map(source=>source.sourceId));
+  assert.equal(await evaluate("document.querySelectorAll('.related-source[open]').length"),0);
+  await noOverflow();await evaluate("document.querySelector('.candidate-links').scrollIntoView()");await screenshot('related-page-two-mobile.png');
+  const later=nextPage.related.sources[0],laterCard=`document.querySelector('.related-source[data-source-id="${later.sourceId}"]')`;
+  await evaluate(`${laterCard}.querySelector('summary').focus()`);
+  await page.send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,text:'\r',unmodifiedText:'\r'});
+  await page.send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+  const laterButton=`[...${laterCard}.querySelectorAll('.candidate-support')].find(node=>node.querySelector('p').textContent.includes(${JSON.stringify(later.sourceName)})).querySelector('button')`;
+  await evaluate(`${laterButton}.focus()`);
+  await page.send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,text:'\r',unmodifiedText:'\r'});
+  await page.send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+  await text('Source evidence');assert.equal(await evaluate("document.querySelector('.evidence strong').textContent"),later.sourceName);
+  assert.equal(await evaluate("document.activeElement===document.querySelector('.evidence h2')"),true);
+  await hold('/api/evidence/');await evaluate(`${laterButton}.click()`);await held();
+  await click('Previous repositories');await waitFor(()=>evaluate("document.querySelector('.candidate-links')?.dataset.relatedOffset==='0'"),'The first related page did not return.');
+  await release();assert.equal(await evaluate("document.querySelector('.evidence')===null"),true);
+  assert.deepEqual(await evaluate("[...document.querySelectorAll('.related-source')].map(node=>node.dataset.sourceId)"),firstPage.related.sources.map(source=>source.sourceId));
+  assert.equal(await evaluate("document.querySelectorAll('.related-source[open]').length"),0);
+  await hold('/api/candidates/preview');await click('Next repositories');await held();
+  await question('zzcandidatebrowserunknown');await release();assert.equal(await evaluate("document.querySelector('.candidate-preview')===null"),true);
+  await question(routingCases[0].description);await find();await waitFor(()=>evaluate("document.querySelector('.candidate-links')!==null"),'Related pages did not reload.');
+  await evaluate("document.querySelector('.candidate-links').open=true");
+  // Simulate a changed context arriving before the ordinary project poll notices it.
+  await evaluate(`(()=>{const native=window.fetch;window.fetch=async(...args)=>{const response=await native(...args);if(String(args[0]).includes('/api/candidates/preview')){window.fetch=native;const value=await response.json();return new Response(JSON.stringify({...value,inputHash:'changed-context'}),{status:200,headers:{'content-type':'application/json'}});}return response;};})()`);
+  await click('Next repositories');await text('Source context changed. Find candidate repositories again.');
+  assert.equal(await evaluate("document.querySelector('.candidate-preview')===null && document.querySelector('.evidence')===null"),true);
+  await find();await waitFor(()=>evaluate("document.querySelector('.candidate-links')!==null"),'Related repositories did not recover.');
   await page.send('Emulation.setDeviceMetricsOverride',{width:1280,height:1000,deviceScaleFactor:1,mobile:false});
   await evaluate("document.querySelector('.candidate-panel').scrollIntoView()");await screenshot('other-candidates-desktop.png');
   await page.send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});await noOverflow();
@@ -178,7 +211,9 @@ try {
   await release();assert.equal(await evaluate("document.querySelector('.candidate-preview')===null"),true);
   await find();await waitFor(()=>evaluate("document.querySelector('.candidate-preview')!==null"),'Revoked-source preview did not finish.');
   assert.equal(await evaluate(`document.querySelector('.candidate-preview').textContent.includes(${JSON.stringify(hostileLabel)})`),false);
-  await question(routingCases[0].description);await hold('/api/candidates/preview');await find();await held();
+  await question(routingCases[0].description);await find();await waitFor(()=>evaluate("document.querySelector('.candidate-links')!==null"),'Related repositories did not load before revocation.');
+  await evaluate("document.querySelector('.candidate-links').open=true");
+  await hold('/api/candidates/preview');await click('Next repositories');await held();
   const linkedSource=project.sources.find(source=>source.name===linkedLabel);assert.ok(linkedSource);
   await apiCall(`/sources/${linkedSource.id}/revoke`,'POST');
   await waitFor(()=>evaluate("document.querySelectorAll('.sources > li').length===18"),'Linked source revocation was not polled.');
@@ -192,7 +227,7 @@ try {
   await noOverflow();
   await page.send('Emulation.setDeviceMetricsOverride',{width:1280,height:1000,deviceScaleFactor:1,mobile:false});
   await evaluate("document.querySelector('.candidate-panel').scrollIntoView()");await screenshot('candidate-policy-fence.png');
-  const result={schemaVersion:'loredock-candidate-browser/3',sources:20,modelRequests:0,answerModeDisabled:true,
+  const result={schemaVersion:'loredock-candidate-browser/4',sources:20,modelRequests:0,answerModeDisabled:true,
     sourceSuggestions:true,otherCandidatesInspectable:true,escapedSourceLabel:true,keyboardOriginalEvidence:true,noMatchUnresolved:true,
     lateQuestionPreviewFenced:true,lateQuestionEvidenceFenced:true,refreshFenced:true,historicalScope:true,
     lateReviewPreviewFenced:true,reviewNotesUnverified:true,lateRevocationPreviewFenced:true,latePolicyPreviewFenced:true,
@@ -200,6 +235,8 @@ try {
     lateLinkedEvidenceFenced:true,lateLinkedRevocationFenced:true,
     dojoObjectCallerAndRouteEvidence:true,dojoDynamicPluginUnresolved:true,codeAdapter:'pilot-code-v3',
     relatedSourceCardsCollapsed:true,relationshipSubjectsVisible:true,keyboardSourceDisclosure:true,
+    relatedPageNavigation:true,laterPageOriginalKeyboard:true,latePageQuestionFenced:true,latePageEvidenceFenced:true,
+    changedPageContextRejected:true,latePageRevocationFenced:true,
     mobileWidth:390,horizontalOverflow:false};
   await writeFile(path.join(output,'browser-result.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({output,...result},null,2));
 } catch(error) {

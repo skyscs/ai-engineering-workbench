@@ -82,6 +82,10 @@ test('candidate preview is available without AI and fences HTTP input, source re
     assert.equal((await preview(input)).status, 400);
   }
   const initial = await preview({ question: 'ZincBadge label' }); assert.equal(initial.status, 200);
+  for (const relatedOffset of [-1, 1, 4.5, 20, '4', null, [], {}, 4]) {
+    assert.equal((await preview({ question: 'ZincBadge', relatedOffset })).status, 400);
+  }
+  assert.equal((await preview({ question: 'ZincBadge', relatedOffset: 0 })).status, 200);
   const result = await initial.json() as CandidatePreview;
   assert.equal(result.status, 'suggestions'); assert.equal(result.suggested.length, 1);
   const chosen = result.suggested[0]!; assert.equal(chosen.sourceName, 'portal');
