@@ -24,6 +24,11 @@ semantic gate** because s04/s14 omit required context or limitations. Both compl
 runs and every claim assessment are retained. No independent expanded-scope approval
 or default activation follows from this result.
 
+Task 028 adds a [completeness diagnosis and prospective rubric](ANSWER_COMPLETENESS.md).
+It preserves the earlier failed scores, distinguishes direct/extended questions and
+finds two repeatable chosen-reference misses across twenty-four new wordings. No new
+model answers exist for those cases; retrieval robustness is the next prerequisite.
+
 The final complete run has a provisional **20/20 useful/correct agent assessment**,
 **162/162 resolving citation references across 98 claims**, and **20/20 complete
 expected-evidence retrieval sets**. This is not independent human approval. Read the

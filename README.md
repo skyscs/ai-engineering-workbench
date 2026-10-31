@@ -40,6 +40,9 @@ indexing and bounded retrieval are verified on that small synthetic corpus.
 [Expanded real-model evaluation](docs/fixtures/loredock-scale-answer-quality/README.md)
 scores 18/20 under agent review but still fails the required-completeness gate;
 private-project and full-system semantic readiness remain unverified.
+The [completeness investigation](docs/loredock/ANSWER_COMPLETENESS.md) separates direct
+answers from wider context and identifies two repeatable retrieval misses among twenty-four
+new question wordings, providing the next bounded improvement without new model calls.
 
 ## What v0.1 does
 

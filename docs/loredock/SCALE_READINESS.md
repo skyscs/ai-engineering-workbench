@@ -116,3 +116,16 @@ review history and source-revocation boundaries pass for both runs.
 Answer completeness is the next bounded investigation. Keep independent review,
 framework coverage, retention and the eligible private pilot ahead of the bridge;
 neither the numeric score nor a successful engineering merge establishes readiness.
+
+## Task 028 completeness diagnosis
+
+[Question/rubric alignment](ANSWER_COMPLETENESS.md) separates direct answers, necessary
+qualifications and optional background without rescoring Task 027. Twenty-four prospective
+wordings are frozen before retrieval measurement; twelve development and ten of twelve
+reserved wordings obtain their complete recorded evidence basis on two fresh indexes.
+The shared stock JSON contract and reservation method body are omitted in h02/h04 as
+identifier expansion competes with remaining lexical candidates. The h02 code record
+supplies equivalent message fields; chosen-reference recall is not semantic correctness.
+All selections are stable and existing context caps hold. No new model calls or product
+changes. Next: bounded literal-reference expansion/admission, then a separately budgeted
+answer evaluation; the reserved set is inspected for retrieval and is not blind.

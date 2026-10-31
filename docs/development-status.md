@@ -1,5 +1,49 @@
 # Development status
 
+## Task 028 — Question-aligned completeness diagnosis
+
+Implemented and locally verified, 2026-10-31. Task 027 reached main through PR #31
+(`7258f5d`) after both exact-head CI runs passed. This phase preserves all raw runs,
+scores and the failed expanded semantic gate. A review of all twenty original questions
+separates direct obligations, necessary qualifications and optional wider context;
+unsupported claims remain failures regardless of answer length.
+
+The evaluator-only benchmark freezes twelve intents with development/reserved wordings
+before measurement: twenty-four questions total. It includes narrow/contextual pairs for
+topic, route, projection and cursor behavior, plus production, identity, schema/publisher
+and migration controls. Original corpus/oracle and historical result/review hashes are
+pinned. Only question strings enter the unchanged production retriever and prompt.
+
+Two fresh twenty-source generations retrieve the complete recorded evidence basis for
+**12/12 development and 10/12 reserved cases**, with no changed selection/requirement
+results. h02 omits the shared StockReserved JSON contract at lexical rank 36; h04 omits
+the Reservations method body at lexical rank 23. Common identifier expansion competes
+with direct matches for the thirty-span allowance. The h02 handler record already supplies
+the message fields, so a missing chosen reference does not establish answer impossibility.
+Maximum observed input: 30 spans / 8,429 text bytes / 31,993 prompt bytes; caps are unchanged.
+
+Historical diagnosis confirms that s04's contract/README were supplied, s07/s19 cited
+passages without preserving every old-rubric limitation, and r04's speculative v7
+convergence claim lacked implementation prerequisites. This investigation does not
+retroactively reclassify their original gate results as passing.
+
+Verification: full `pnpm check` passes **310 tests** (153 LoreDock, 22 script checks),
+strict typechecks and builds. New checks pin the benchmark and historical files,
+resolve original evidence, distinguish alternative/all-required reference groups,
+reject wrong ownership/revision/blob/hash/ranges and test production query/oracle
+separation across regeneration. No runtime preparation or model calls; no UI/product,
+prompt, schema, retrieval, connection or budget changes. Owned sources are unchanged
+and removed. All prospective semantic-review boxes remain unchecked.
+
+See [Task 028](../tasks/028-loredock-answer-completeness.md),
+[full question alignment and next implementation](loredock/ANSWER_COMPLETENESS.md),
+[prospective rubric](../fixtures/loredock-completeness/RUBRIC.md) and
+[measurement](fixtures/loredock-completeness/README.md). Reserved wordings were authored
+after earlier failures by the same agent and inspected for retrieval; they are not a
+blind independent corpus. Next: bounded literal-reference expansion/candidate admission,
+then a separately budgeted answer experiment. Task 027's failed semantic gate, independent
+review, framework coverage, retention and private-pilot requirements remain open.
+
 ## Task 027 — Expanded answer and engineer-review qualification
 
 Evaluation completed, 2026-10-31; **expanded semantic qualification is blocked**.
