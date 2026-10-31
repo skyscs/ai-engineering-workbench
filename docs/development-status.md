@@ -1,8 +1,49 @@
 # Development status
 
+## Task 021 — Explicit review of earlier engineer corrections
+
+Implemented and locally verified, 2026-10-31; ready for code/product review. Task 020
+was accepted through the owner's merge of PR #24 (`ff1cb6f`). An update now offers a
+separate comparison of earlier engineer corrections with the selected index. It never
+changes active review state by loading. A unique relationship with identical semantics,
+properties and complete supporting file/span hashes/ranges can receive a new correction
+only after explicit review and application. Changed, missing, ambiguous, unsupported and
+already-reviewed targets are blocked; a current withdrawal is protected too.
+
+The panel defaults to the fixed previous index. An optional older recorded ancestor
+recovers a skipped review without silently resurrecting older decisions. Discovery is
+bounded at 20 ancestors; one chosen index contributes at most 20 latest active notes and
+512 KiB of details, with explicit omissions. Original/current evidence and wider source
+revisions remain visible. Matching support does not prove that a human statement is
+still correct in the new scope. Human scope remains unverified.
+
+Schema 6 preserves earlier evidence/answer/correction bytes and atomically publishes a
+new index-local version, exact original-version lineage, source-dependency union, fresh
+affected flows and global review revision. Exact replay survives supersession without
+reactivating a note. Source/target review edits, new publication and authorization changes
+invalidate pending comparisons. Later source-note withdrawal does not delete an independent
+new decision. Revocation fences/purges dependent text/snapshots; opaque provenance remains
+authorized. Damage to an older index's evidence does not prevent withdrawing a valid new
+note. Source projections and answer-model input remain unchanged.
+
+Verification: full `pnpm check` passes **265 tests** (114 LoreDock), strict typechecks
+and production builds. Chrome passes explicit application, both dependent flows, exact
+origin/history, current-target protection, restart, skipped/older selection, changed
+support, historical isolation, delayed-preview revocation fencing and 390px rendering,
+alongside previous source/flow/correction/refresh acceptance. The existing answer-browser
+regression uses four fake invocations. Production evaluation records original/changed
+revision vectors, immutable histories and resolving original/new evidence. Zero real
+model calls; normal checkouts and Workbench data remain unchanged. See
+[Task 021](../tasks/021-loredock-correction-reconciliation.md),
+[ADR 0026](decisions/0026-loredock-correction-reconciliation.md) and
+[review evidence](fixtures/loredock-reconciliation/README.md).
+Full L3/L4, broader orientation, semantic/AI refresh, answer-review integration,
+production-framework qualification, 20-repository scale/retention and the Workbench bridge
+remain open. Implementation-agent verification is separate from owner acceptance.
+
 ## Task 020 — Validated refresh and committed-inventory changes
 
-Implemented and locally verified, 2026-10-31; ready for code/product review. Task 019
+Accepted through the owner's merge of PR #24 (`ff1cb6f`), 2026-10-31. Task 019
 was accepted through the owner's merge of PR #23 (`5491545`). The first bounded L4
 slice adds a fixed prior-index baseline, validated same-source extraction reuse and a
 protected inventory comparison. Every current repository is still freshly snapshotted
@@ -38,7 +79,7 @@ records 21/3/5 read attempts, original/changed revision vectors and source check
 preservation. Zero real model calls. See [Task 020](../tasks/020-loredock-incremental-refresh.md),
 [ADR 0025](decisions/0025-loredock-incremental-refresh.md) and
 [recorded refresh evidence](fixtures/loredock-refresh/README.md).
-Full L3/L4 acceptance, broader orientation, semantic/AI refresh, correction reconciliation,
+At this checkpoint, full L3/L4 acceptance, broader orientation, semantic/AI refresh, correction reconciliation,
 production-framework qualification, 20-repository scale and the Workbench bridge remain open.
 
 ## Task 019 — Engineer relationship corrections and review invalidation

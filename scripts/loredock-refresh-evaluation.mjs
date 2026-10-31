@@ -35,7 +35,7 @@ try {
   assert.equal(changed.refresh.reusedFiles, 16); assert.equal(changed.refresh.gitReadAttempts, 5);
   assert.ok(codeFlows(catalog).nodes.some(node => node.label === 'audit.AuditConsumer.onMessage'));
   for (const repo of repositoryIds) assert.equal(fixtureGit(fixture.root, repo, ['status', '--porcelain=v1']), '');
-  console.log(JSON.stringify({ schemaVersion: 'loredock-refresh-evaluation/1', checkedAt: new Date().toISOString(), databaseVersion: 5,
+  console.log(JSON.stringify({ schemaVersion: 'loredock-refresh-evaluation/1', checkedAt: new Date().toISOString(), databaseVersion: store.one('PRAGMA user_version').user_version,
     modelRequests: 0, modelUsage: null, originalRevisionVector: fixture.manifest.revisionVector, changedRevisionVector: expected,
     sourceCheckoutsPreservedDuringIndexing: true, controlledFixtureChanges: 'Change API README, add a packaged worker consumer, remove the legacy client; frozen templates are unchanged.',
     totalGitBlobReadAttempts: git.reads, initial: { buildId: initial.id, metrics: initial.refresh }, unchanged: unchangedComparison, changed: changes,

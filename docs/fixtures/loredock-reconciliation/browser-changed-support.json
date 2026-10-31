@@ -1,0 +1,263 @@
+{
+  "schemaVersion": "loredock-reconciliation-v1",
+  "buildId": "28f53a4b-72f5-4994-b366-0ded927eabed",
+  "fromBuildId": "9be04dfe-de3c-446f-b6b8-5a559b6b9e24",
+  "policyVersion": 1,
+  "registryVersion": 4,
+  "revision": 6,
+  "stale": false,
+  "editable": true,
+  "ancestors": [
+    {
+      "id": "d71eb728-bfa4-4ad4-bb8b-4e980443d380",
+      "createdAt": "2026-10-31T08:38:42.949Z",
+      "activeCorrections": 0
+    },
+    {
+      "id": "9be04dfe-de3c-446f-b6b8-5a559b6b9e24",
+      "createdAt": "2026-10-31T08:38:41.110Z",
+      "activeCorrections": 1
+    },
+    {
+      "id": "85a0041f-7e00-4791-8972-af4eeb507617",
+      "createdAt": "2026-10-31T08:38:37.632Z",
+      "activeCorrections": 1
+    }
+  ],
+  "scope": {
+    "previous": [
+      {
+        "sourceId": "8dfc1356-5b26-4ed8-863d-36a3dcef4e6a",
+        "name": "portal",
+        "revision": "cf9ce645343e8ab42cd6b509ac7672661a49849b"
+      },
+      {
+        "sourceId": "5e52660c-8e7d-4b13-bad3-2466a439d2bc",
+        "name": "order-api",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb"
+      },
+      {
+        "sourceId": "76a3c9f6-08f1-4d89-a45b-8f867a0fc8fa",
+        "name": "order-worker",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37"
+      }
+    ],
+    "current": [
+      {
+        "sourceId": "8dfc1356-5b26-4ed8-863d-36a3dcef4e6a",
+        "name": "portal",
+        "revision": "cf9ce645343e8ab42cd6b509ac7672661a49849b"
+      },
+      {
+        "sourceId": "5e52660c-8e7d-4b13-bad3-2466a439d2bc",
+        "name": "order-api",
+        "revision": "184a79e1d6a6edfcdb188bdd0aae173f2ecc5123"
+      },
+      {
+        "sourceId": "76a3c9f6-08f1-4d89-a45b-8f867a0fc8fa",
+        "name": "order-worker",
+        "revision": "c6147071d152a1af1dc2598032aec8919a3354ec"
+      }
+    ]
+  },
+  "entries": [
+    {
+      "source": {
+        "id": "34595b1d-dc8f-4890-9092-b1b54bcaf862",
+        "buildId": "9be04dfe-de3c-446f-b6b8-5a559b6b9e24",
+        "targetKind": "code-link",
+        "targetId": "852138cc3b51bea74fa694cb3c3e7482912df2f52227e0e310963a79ad132903",
+        "version": 1,
+        "revision": 6,
+        "previousId": null,
+        "createdAt": "2026-10-31T08:38:42.362Z",
+        "action": "dispute",
+        "statement": "Historical correction: local delivery is still an engineer-supplied claim.",
+        "environment": null,
+        "provenance": "human",
+        "verification": "unverified",
+        "affectedFlowIds": [
+          "00256937ab0b1d53e4d87d576d7ccdf21e0f48e73c9f214fa32d287b7ec42096",
+          "ef3f2cabf706064c0f7da41e5892bcbdc975b44c805e5c489e955063ffb4e906"
+        ],
+        "reappliedFrom": {
+          "id": "87acb4ef-242a-47c2-ba13-0e22b3aed0e3",
+          "buildId": "85a0041f-7e00-4791-8972-af4eeb507617",
+          "version": 5
+        }
+      },
+      "original": {
+        "schemaVersion": "loredock-code-flows-v1",
+        "adapterVersion": "pilot-code-v1",
+        "projectionHash": "4fbdd0c5047dd171c18a4148505a1adda2b984ab0a8f2c5d5a69f2a961252c6b",
+        "id": "852138cc3b51bea74fa694cb3c3e7482912df2f52227e0e310963a79ad132903",
+        "kind": "event-delivery",
+        "status": "candidate",
+        "reason": "Equal supported Java record shapes, matching JSON contract declarations and one scoped orderTopic setting are candidate delivery clues.",
+        "environment": "local",
+        "from": {
+          "id": "d6552c5bf8170334de128b8ae8b251e600f970f071744f3eef2e5cf96082e777",
+          "label": "Publish OrderPlaced",
+          "sourceId": "5e52660c-8e7d-4b13-bad3-2466a439d2bc",
+          "sourceName": "order-api"
+        },
+        "to": {
+          "id": "4f27931b3aef52382ad88f898bef90766a80288d0c54f62b9b773d6e7c1b2b59",
+          "label": "Subscribe via KafkaSubscriber",
+          "sourceId": "76a3c9f6-08f1-4d89-a45b-8f867a0fc8fa",
+          "sourceName": "order-worker"
+        },
+        "evidenceIds": [
+          "43298974-89f0-4ba8-bc44-3dc548dce232",
+          "5d029482-d751-4b5d-9641-546e6854ac77",
+          "e0bd2375-2c6e-4c79-80f7-b877c3705327",
+          "ed8a3c77-87fc-48f5-9412-c3ef7ff72ad7",
+          "fcbff6df-0da1-49d3-a30b-292afef700fa",
+          "ffaa7690-0754-4274-a59b-cedb76cf53f8"
+        ]
+      },
+      "status": "support-changed",
+      "reason": "The link semantics or supporting source content changed. Review the current evidence and write a new correction.",
+      "current": {
+        "schemaVersion": "loredock-code-flows-v1",
+        "adapterVersion": "pilot-code-v1",
+        "projectionHash": "8b6fe1cec441a2e876694a34ff632aa6d16688f56d1b6d7e6b5af9e37a1c6378",
+        "id": "40ab5ca6bccbad509de5f95f2f659783a339510cbcd6a92d9096043c90283f9a",
+        "kind": "event-delivery",
+        "status": "candidate",
+        "reason": "Equal supported Java record shapes, matching JSON contract declarations and one scoped orderTopic setting are candidate delivery clues.",
+        "environment": "local",
+        "from": {
+          "id": "35970851521ba454f9c2c7f1f9ed0af548e4c83e402dd3ce6bb903fa084a1242",
+          "label": "Publish OrderPlaced",
+          "sourceId": "5e52660c-8e7d-4b13-bad3-2466a439d2bc",
+          "sourceName": "order-api"
+        },
+        "to": {
+          "id": "3245683c7e0a508f0e30ec80c6c9264943778fc9f0f34fdd0eff645822024508",
+          "label": "Subscribe via KafkaSubscriber",
+          "sourceId": "76a3c9f6-08f1-4d89-a45b-8f867a0fc8fa",
+          "sourceName": "order-worker"
+        },
+        "evidenceIds": [
+          "1bfe7a53-b12a-4015-80ee-eb495e8d3689",
+          "54139d8f-824e-4cfc-90be-cba6f11807b8",
+          "93775562-75c8-4884-98a9-7cbe6b6f0b1c",
+          "d3b83480-900c-4fcb-ac11-8196bb67f366",
+          "f81a43d5-a02e-4f05-9966-1ce21d68f294",
+          "fbe8e502-2203-44ea-b5d6-0642418784e8"
+        ]
+      }
+    }
+  ],
+  "evidence": {
+    "43298974-89f0-4ba8-bc44-3dc548dce232": {
+      "id": "43298974-89f0-4ba8-bc44-3dc548dce232",
+      "sourceName": "order-worker",
+      "path": "contracts/OrderPlaced.json",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "startLine": 1,
+      "endLine": 8
+    },
+    "5d029482-d751-4b5d-9641-546e6854ac77": {
+      "id": "5d029482-d751-4b5d-9641-546e6854ac77",
+      "sourceName": "order-api",
+      "path": "src/main/java/Orders.java",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 18
+    },
+    "e0bd2375-2c6e-4c79-80f7-b877c3705327": {
+      "id": "e0bd2375-2c6e-4c79-80f7-b877c3705327",
+      "sourceName": "order-worker",
+      "path": "src/main/java/OrderConsumer.java",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "startLine": 1,
+      "endLine": 18
+    },
+    "ed8a3c77-87fc-48f5-9412-c3ef7ff72ad7": {
+      "id": "ed8a3c77-87fc-48f5-9412-c3ef7ff72ad7",
+      "sourceName": "order-worker",
+      "path": "config/local.json",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "startLine": 1,
+      "endLine": 7
+    },
+    "fcbff6df-0da1-49d3-a30b-292afef700fa": {
+      "id": "fcbff6df-0da1-49d3-a30b-292afef700fa",
+      "sourceName": "order-api",
+      "path": "config/local.json",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 5
+    },
+    "ffaa7690-0754-4274-a59b-cedb76cf53f8": {
+      "id": "ffaa7690-0754-4274-a59b-cedb76cf53f8",
+      "sourceName": "order-api",
+      "path": "contracts/OrderPlaced.json",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 8
+    },
+    "1bfe7a53-b12a-4015-80ee-eb495e8d3689": {
+      "id": "1bfe7a53-b12a-4015-80ee-eb495e8d3689",
+      "sourceName": "order-api",
+      "path": "src/main/java/Orders.java",
+      "revision": "184a79e1d6a6edfcdb188bdd0aae173f2ecc5123",
+      "startLine": 1,
+      "endLine": 18
+    },
+    "54139d8f-824e-4cfc-90be-cba6f11807b8": {
+      "id": "54139d8f-824e-4cfc-90be-cba6f11807b8",
+      "sourceName": "order-api",
+      "path": "config/local.json",
+      "revision": "184a79e1d6a6edfcdb188bdd0aae173f2ecc5123",
+      "startLine": 1,
+      "endLine": 5
+    },
+    "93775562-75c8-4884-98a9-7cbe6b6f0b1c": {
+      "id": "93775562-75c8-4884-98a9-7cbe6b6f0b1c",
+      "sourceName": "order-worker",
+      "path": "config/local.json",
+      "revision": "c6147071d152a1af1dc2598032aec8919a3354ec",
+      "startLine": 1,
+      "endLine": 7
+    },
+    "d3b83480-900c-4fcb-ac11-8196bb67f366": {
+      "id": "d3b83480-900c-4fcb-ac11-8196bb67f366",
+      "sourceName": "order-worker",
+      "path": "src/main/java/OrderConsumer.java",
+      "revision": "c6147071d152a1af1dc2598032aec8919a3354ec",
+      "startLine": 1,
+      "endLine": 20
+    },
+    "f81a43d5-a02e-4f05-9966-1ce21d68f294": {
+      "id": "f81a43d5-a02e-4f05-9966-1ce21d68f294",
+      "sourceName": "order-api",
+      "path": "contracts/OrderPlaced.json",
+      "revision": "184a79e1d6a6edfcdb188bdd0aae173f2ecc5123",
+      "startLine": 1,
+      "endLine": 8
+    },
+    "fbe8e502-2203-44ea-b5d6-0642418784e8": {
+      "id": "fbe8e502-2203-44ea-b5d6-0642418784e8",
+      "sourceName": "order-worker",
+      "path": "contracts/OrderPlaced.json",
+      "revision": "c6147071d152a1af1dc2598032aec8919a3354ec",
+      "startLine": 1,
+      "endLine": 8
+    }
+  },
+  "activeCorrections": 1,
+  "omittedCorrections": 0,
+  "gaps": [
+    "Matching support does not verify the engineer statement in the wider current scope. Review both indexes before applying.",
+    "Only links present in the bounded supported projections can be compared. Renames and runtime/deployment changes are not inferred."
+  ],
+  "limits": {
+    "ancestors": 20,
+    "corrections": 20,
+    "outputBytes": 524288
+  },
+  "previewHash": "03e974892aceaaad129228139980d1e1f88a9c223370ae56d8352302f4f4e0ff"
+}

@@ -16,6 +16,12 @@ interface CorrectionRow {
 }
 const checksum = (row: Pick<CorrectionRow, 'buildId' | 'targetKind' | 'targetId' | 'version' | 'previousId' | 'action' | 'statement' | 'environment' | 'target'>) =>
   sha256(JSON.stringify([row.buildId, row.targetKind, row.targetId, row.version, row.previousId, row.action, row.statement, row.environment, row.target]));
+interface ReapplicationRow {
+  correctionId: string; sourceCorrectionId: string; sourceContentHash: string; targetContentHash: string; previewHash: string; lineageHash: string;
+}
+const lineageHash = (row: Omit<ReapplicationRow, 'lineageHash'>) => sha256(JSON.stringify([
+  row.correctionId, row.sourceCorrectionId, row.sourceContentHash, row.targetContentHash, row.previewHash,
+]));
 const bounded = <T>(value: T, bytes: number): T => {
   if (Buffer.byteLength(JSON.stringify(value)) > bytes) throw new CatalogError('CORRECTION_LIMIT', 'Correction output exceeds its byte budget.', 409);
   return value;
@@ -65,7 +71,8 @@ export class Corrections {
   }
   private authorized(row: CorrectionRow) {
     this.catalog.readBuild(row.buildId);
-    if (row.purged || row.policyVersion !== this.catalog.store.project().policyVersion || this.revoked(row.buildId)) {
+    if (row.purged || row.policyVersion !== this.catalog.store.project().policyVersion || this.revoked(row.buildId)
+      || this.catalog.store.one("SELECT 1 FROM correction_sources d JOIN sources s ON s.id=d.sourceId WHERE d.correctionId=? AND s.status!='active'", row.id)) {
       throw new CatalogError('NOT_FOUND', 'This correction is unavailable after a source authorization change.', 404);
     }
   }
@@ -81,14 +88,35 @@ export class Corrections {
   }
   private summary(row: CorrectionRow): CorrectionSummary {
     this.original(row);
+    const lineage = this.catalog.store.one<ReapplicationRow>('SELECT * FROM correction_reapplications WHERE correctionId=?', row.id);
+    let reappliedFrom: CorrectionSummary['reappliedFrom'];
+    if (lineage) {
+      const source = this.row(lineage.sourceCorrectionId); this.authorized(source);
+      if (lineage.lineageHash !== lineageHash(lineage) || lineage.sourceContentHash !== source.contentHash || lineage.targetContentHash !== row.contentHash
+        || checksum(source) !== source.contentHash
+        || source.buildId === row.buildId || source.targetKind !== row.targetKind || source.action === 'withdraw') {
+        throw new CatalogError('CORRUPT_CORRECTION', 'Stored reapplication failed its provenance check.', 409);
+      }
+      reappliedFrom = { id: source.id, buildId: source.buildId, version: source.version };
+    }
     return { id: row.id, buildId: row.buildId, targetKind: row.targetKind, targetId: row.targetId,
       version: row.version, revision: row.revision, previousId: row.previousId, createdAt: row.createdAt,
       action: row.action, statement: row.statement, environment: row.environment, provenance: 'human', verification: 'unverified',
-      affectedFlowIds: this.catalog.store.all<{ flowId: string }>('SELECT flowId FROM correction_flows WHERE correctionId=? ORDER BY flowId', row.id).map(item => item.flowId) };
+      affectedFlowIds: this.catalog.store.all<{ flowId: string }>('SELECT flowId FROM correction_flows WHERE correctionId=? ORDER BY flowId', row.id).map(item => item.flowId),
+      ...(reappliedFrom ? { reappliedFrom } : {}) };
+  }
+  inspect(id: string) { const row = this.row(id); return { ...this.summary(row), original: this.original(row) }; }
+  replay(requestId: string, payloadHash: string): CorrectionSummary | undefined {
+    const row = this.catalog.store.one<CorrectionRow>('SELECT * FROM corrections WHERE requestId=?', requestId);
+    if (!row) return;
+    this.authorized(row);
+    if (row.payloadHash !== payloadHash) throw new CatalogError('CONFLICT', 'This request ID was already used with different correction inputs.', 409);
+    return this.summary(row);
   }
   list(buildId?: string): CorrectionOverlay {
     const build = this.catalog.readBuild(buildId), project = this.catalog.store.project();
     const rows = this.revoked(build.id) ? [] : this.catalog.store.all<CorrectionRow>(`SELECT c.* FROM corrections c WHERE c.buildId=? AND c.purged=0
+      AND NOT EXISTS(SELECT 1 FROM correction_sources d JOIN sources s ON s.id=d.sourceId WHERE d.correctionId=c.id AND s.status!='active')
       AND c.version=(SELECT max(other.version) FROM corrections other WHERE other.buildId=c.buildId AND other.targetKind=c.targetKind AND other.targetId=c.targetId)
       ORDER BY c.revision LIMIT ?`, build.id, correctionLimits.targets + 1);
     if (rows.length > correctionLimits.targets) throw new CatalogError('CORRECTION_LIMIT', 'This index exceeds its correction target limit.', 409);
@@ -104,13 +132,16 @@ export class Corrections {
     return bounded({ buildId: row.buildId, revision: this.catalog.store.project().correctionRevision, versions }, correctionLimits.historyBytes);
   }
   save(value: unknown): CorrectionSummary {
-    const input = validate(value), store = this.catalog.store, payloadHash = sha256(JSON.stringify(input));
-    const replay = store.one<CorrectionRow>('SELECT * FROM corrections WHERE requestId=?', input.requestId);
-    if (replay) {
-      this.authorized(replay);
-      if (replay.payloadHash !== payloadHash) throw new CatalogError('CONFLICT', 'This request ID was already used with different correction inputs.', 409);
-      return this.summary(replay);
-    }
+    const input = validate(value);
+    return this.write(input, sha256(JSON.stringify(input)));
+  }
+  /** Called only after the server has compared the exact preview and both source projections. */
+  reapply(value: CorrectionInput, payloadHash: string, sourceCorrectionId: string, previewHash: string): CorrectionSummary {
+    return this.write(validate(value), payloadHash, { sourceCorrectionId, previewHash });
+  }
+  private write(input: CorrectionInput, payloadHash: string, origin?: { sourceCorrectionId: string; previewHash: string }): CorrectionSummary {
+    const store = this.catalog.store, replay = this.replay(input.requestId, payloadHash);
+    if (replay) return replay;
     const build = this.catalog.readBuild(input.buildId);
     if (this.revoked(build.id)) throw new CatalogError('SOURCE_CHANGED', 'Index the remaining sources before adding corrections.', 409);
     const projection = input.targetKind === 'code-link' ? codeFlows(this.catalog, build.id) : declarationMap(this.catalog, build.id);
@@ -140,6 +171,15 @@ export class Corrections {
       if (project.correctionRevision !== input.expectedRevision || (current?.id ?? null) !== input.expectedPreviousId) {
         throw new CatalogError('CONFLICT', 'A correction changed. Refresh and review the latest version before saving.', 409);
       }
+      const source = origin ? this.row(origin.sourceCorrectionId) : undefined;
+      if (source) {
+        this.original(source);
+        if (current || source.buildId === build.id || this.latest(source.buildId, source.targetKind, source.targetId)?.id !== source.id
+          || source.action === 'withdraw' || source.targetKind !== input.targetKind || source.action !== input.action
+          || source.statement !== input.statement || source.environment !== input.environment) {
+          throw new CatalogError('CONFLICT', 'The original or current correction changed. Review a new comparison before applying.', 409);
+        }
+      }
       const version = (current?.version ?? 0) + 1;
       if (version > correctionLimits.versions || version === correctionLimits.versions && input.action !== 'withdraw') {
         throw new CatalogError('CORRECTION_LIMIT', 'This link reached its version limit; the final version is reserved for withdrawal.', 409);
@@ -156,6 +196,12 @@ export class Corrections {
         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`, row.id, row.requestId, row.payloadHash, row.buildId, row.policyVersion, row.registryVersion,
       row.revision, row.targetKind, row.targetId, row.previousId, row.version, row.action, row.statement, row.environment, row.target, row.contentHash, row.createdAt);
       for (const source of build.sources) store.run('INSERT INTO correction_sources VALUES (?,?)', row.id, source.sourceId);
+      if (current) store.run('INSERT OR IGNORE INTO correction_sources SELECT ?,sourceId FROM correction_sources WHERE correctionId=?', row.id, current.id);
+      if (source && origin) {
+        store.run('INSERT OR IGNORE INTO correction_sources SELECT ?,sourceId FROM correction_sources WHERE correctionId=?', row.id, source.id);
+        const lineage = { correctionId: row.id, sourceCorrectionId: source.id, sourceContentHash: source.contentHash, targetContentHash: row.contentHash, previewHash: origin.previewHash };
+        store.run('INSERT INTO correction_reapplications VALUES (?,?,?,?,?,?)', row.id, source.id, source.contentHash, row.contentHash, origin.previewHash, lineageHash(lineage));
+      }
       for (const flowId of affectedFlowIds) store.run('INSERT INTO correction_flows VALUES (?,?)', row.id, flowId);
       store.run('UPDATE project SET correctionRevision=? WHERE id=1', row.revision);
       // Include validation in the transaction so publication failure leaves no half-written version.

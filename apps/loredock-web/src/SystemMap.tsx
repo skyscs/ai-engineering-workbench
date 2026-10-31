@@ -4,6 +4,7 @@ import { api } from './api';
 import { CodeFlowsView } from './CodeFlows';
 import type { CorrectionOverlay } from '../../loredock/src/correction-types';
 import { LinkCorrection } from './LinkCorrection';
+import { EarlierCorrections } from './EarlierCorrections';
 
 const kinds: Record<MapNode['kind'], string> = { repository: 'Repository', package: 'Package declaration',
   'http-route': 'HTTP route', 'handler-reference': 'Handler reference', 'event-contract': 'Event contract', setting: 'Configuration value' };
@@ -51,6 +52,8 @@ export function SystemMap({ buildId, boundary, correctionRevision, refreshProjec
       {reviewError?.key === reviewKey && <div className="error" role="alert"><p>Engineer corrections are unavailable: {reviewError.text}</p>
         <button className="quiet" onClick={() => setReviewReload(value => value + 1)}>Retry review loading</button></div>}
       {overlay && !overlay.editable && <p className="notice">Index the remaining sources before adding corrections. Notes from the revoked source scope are unavailable.</p>}
+      <EarlierCorrections key={key} buildId={buildId} boundary={boundary} revision={correctionRevision}
+        changed={correctionsChanged} openEvidence={openEvidence} />
       <CodeFlowsView buildId={buildId} boundary={boundary} openEvidence={openEvidence}
         overlay={overlay} reviewReady={reviewReady} correctionsChanged={correctionsChanged} />
       <div className="map-repositories">{map.nodes.filter(node => node.kind === 'repository').map(repository => <details className="map-repository" key={repository.id}>

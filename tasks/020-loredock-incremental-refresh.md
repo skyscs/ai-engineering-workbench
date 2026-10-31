@@ -1,6 +1,6 @@
 # Task 020 — Validated file reuse and visible index changes
 
-Status: implemented and locally verified, 2026-10-31; ready for code/product review.
+Status: accepted through the owner's merge of PR #24 (`ff1cb6f`), 2026-10-31.
 Task 019 was accepted through the owner's merge
 of PR #23 (`5491545`); the owner requested continuation.
 

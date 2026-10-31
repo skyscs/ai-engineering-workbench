@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react';
 import type { CorrectionHistory, CorrectionInput, CorrectionOverlay, CorrectionSummary, CorrectionTarget } from '../../loredock/src/correction-types';
 import { api } from './api';
+import { CorrectionOrigin } from './EarlierCorrections';
 
 export function LinkCorrection({ buildId, targetKind, targetId, projectionHash, overlay, ready, changed, openEvidence }: {
   buildId: string; targetKind: CorrectionTarget; targetId: string; projectionHash: string;
@@ -46,6 +47,7 @@ export function LinkCorrection({ buildId, targetKind, targetId, projectionHash, 
       <p className="correction-statement">{current.statement}</p>
       <p>Engineer scope: {current.environment ?? 'not specified'} · applies to this index only · unverified</p>
       <p className="muted">The original source claim stays visible. This note does not verify a runtime connection.</p>
+      {current.reappliedFrom && <CorrectionOrigin origin={current.reappliedFrom} openEvidence={openEvidence} />}
     </aside>}
     {!ready && <p className="muted">Checking current engineer corrections…</p>}
     {ready && overlay?.editable && !draft && <button className="quiet" onClick={() => {
@@ -86,6 +88,7 @@ export function LinkCorrection({ buildId, targetKind, targetId, projectionHash, 
         <p>{version.statement ?? 'The engineer withdrew this correction.'}</p>
         {version.action !== 'withdraw' && <p>Engineer scope: {version.environment ?? 'not specified'} · unverified</p>}
         <p className="muted">{new Date(version.createdAt).toLocaleString()} · recorded for this index</p>
+        {version.reappliedFrom && <CorrectionOrigin origin={version.reappliedFrom} openEvidence={openEvidence} />}
         <details><summary>Original relationship claim</summary><p>{version.original.from.sourceName} / {version.original.from.label} → {version.original.to.sourceName} / {version.original.to.label}</p>
           <p>{version.original.reason}</p><p>Original status: {version.original.status} · original scope: {version.original.environment ?? 'unspecified'}</p>
           <div className="correction-evidence">{version.original.evidenceIds.map((id, index) => <button className="quiet" key={id} onClick={() => openEvidence(id)}>Original evidence {index + 1}</button>)}</div>

@@ -6,13 +6,15 @@ declaration map through PR #21. [Task 018](../../tasks/018-loredock-static-flows
 bounded code links and partial static outlines through merged PR #22.
 [Task 019](../../tasks/019-loredock-engineer-corrections.md) delivered relationship
 corrections through merged PR #23. [Task 020](../../tasks/020-loredock-incremental-refresh.md)
-begins bounded L4 work with validated text reuse and visible inventory changes. Full L3
-acceptance, broader adapters/Overview/Guide Me, semantic refresh/reconciliation, scale
+was accepted through merged PR #24, delivering validated text reuse and visible inventory
+changes. [Task 021](../../tasks/021-loredock-correction-reconciliation.md) adds explicit
+review/reapplication of earlier corrections with unchanged supporting evidence. Full L3
+acceptance, broader adapters/Overview/Guide Me, semantic/AI refresh, scale
 and the Workbench bridge remain open. The
 [acceptance record](L2_ACCEPTANCE.md) distinguishes owner acknowledgement from agent scores.
 See [L0 measurements and blockers](FEASIBILITY.md), [contracts](CONTRACTS.md),
 [Task 016](../../tasks/016-loredock-cited-answer.md) for the accepted answer slice and
-[Task 020](../../tasks/020-loredock-incremental-refresh.md) for the current bounded delivery.
+[Task 021](../../tasks/021-loredock-correction-reconciliation.md) for the current bounded delivery.
 
 ## Outcome and delivery boundary
 
