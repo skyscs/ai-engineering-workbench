@@ -2,8 +2,9 @@
 
 LoreDock currently connects local Git repositories, indexes committed text and lets
 you open exact source citations. The default catalog needs no Codex setup and makes
-no model calls. An opt-in pilot adds cited answers; system relationships and automatic
-Workbench repository selection belong to later iterations.
+no model calls. Source suggestions, a declaration map and partial static flows help you
+explore the system. An opt-in pilot adds cited answers; automatic Workbench repository
+selection belongs to later iterations.
 
 ## Start LoreDock
 
@@ -52,9 +53,11 @@ directory. Linux is the verified platform.
    exact commits, unavailable sources, dirty-worktree notices, omitted path counts and
    reasons for exclusions. **Show excluded and failed files** lists up to 100 examples
    with file errors; aggregate counts cover the entire considered inventory.
-4. Enter a concrete term under **Explore the sources**, such as `orders.placed.v2`,
+4. To find a starting repository, describe the problem under **Where should I look?**
+   and click **Find candidate repositories**. Review original evidence and **Other matches**.
+5. Enter a concrete term under **Explore the sources**, such as `orders.placed.v2`,
    `/api/orders`, `OrderConsumer` or a MongoDB collection name. Click **Search**.
-5. Click a matching passage to open **Source evidence**. It shows the source, file,
+6. Click a matching passage to open **Source evidence**. It shows the source, file,
    immutable revision and numbered line range. **Integrity and extracted metadata**
    exposes content hashes and bounded JSON/Maven metadata when useful.
 
@@ -68,6 +71,33 @@ staged and untracked differences; they do not run clean filters or include those
 changes. Every index records independent revisions, not proof of a coherent deployment.
 Production environment values and external systems remain unknown unless included in
 explicitly registered sources.
+
+## Find candidate repositories
+
+**Where should I look?** is available after indexing, without Codex setup. Enter a problem
+description or a concrete symbol, endpoint, event or source phrase, then click **Find
+candidate repositories**. The view suggests up to six repositories and shows matching
+terms beside original file/line links. Open those links to check the actual source.
+
+Expand **Other matches** before narrowing an investigation. Relevant repositories can
+fall below the lexical threshold or beyond the suggestion limit. Equal matches crossing
+the cap have a separate notice. A negative statement such as “no implementation is
+supplied” can match your question; the match does not establish that implementation.
+The broader context used by Ask Project remains unchanged.
+
+**No distinctive source match** asks for a more specific clue. It does not establish
+absence from the system. This local preview uses words from the indexed sources;
+it does not translate questions or verify runtime connections. Missing implementations,
+external repositories and deployment evidence can still change the investigation scope.
+
+**Scope and missing context** shows coverage and retrieval omissions. Historical index
+selection keeps evidence pinned to that snapshot; update knowledge for newer sources.
+Matching engineer notes, when present, appear separately as unverified human statements.
+Editing the question or changing sources, policy, index or review invalidates the
+preview and pending citation responses. Generate a fresh preview when ready.
+
+Suggestions are a reading aid requiring review. Workbench integration remains planned;
+this action does not run an investigation or modify source repositories.
 
 ## Update knowledge and review changes
 
@@ -624,6 +654,7 @@ require the session. No tokens belong in URLs or logs.
 | `GET /api/system-map?buildId=...` | Bounded declaration projection for the current or a selected authorized published index. |
 | `GET /api/code-flows?buildId=...` | Versioned code links, partial flow outlines, candidate hops and original evidence from the same authorized index. |
 | `GET /api/orientation?buildId=...` | Original README context/gaps, optional manifest reading, selected revisions/coverage and separate unindexed-source gaps; no model calls. |
+| `POST /api/candidates/preview` | Model-free source suggestions from `{question, buildId?}`, original support, other matches and scope/uncertainty. Requires session/CSRF; no saved investigation scope. |
 | `GET /api/corrections?buildId=...` | Current human correction overlay/revision and flow-review dependencies for the selected index. |
 | `GET /api/corrections/:id/history` | Authorized immutable versions and original relationship/evidence provenance. |
 | `POST /api/corrections` | Save/replay a dispute, clarification or withdrawal with issued target ID, projection hash and expected review versions. |

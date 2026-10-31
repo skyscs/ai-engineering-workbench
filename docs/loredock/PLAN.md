@@ -59,9 +59,13 @@ scope overstatements and incomplete local citations. All raw evidence and judgme
 retained. [Task 035](../../tasks/035-loredock-incident-context-baseline.md) freezes ten
 incident cases and measures source-owner unions without model calls. Both keyword and
 answer-context retrieval recover all critical repositories but exceed every useful
-candidate bound; neither implements routing/abstention decisions. Next: a separate
-bounded candidate-selection preview with original support, uncertainty and fresh
-adversarial examples. No tuning on the observed model answers is included.
+candidate bound; neither implements routing/abstention decisions.
+[Task 036](../../tasks/036-loredock-source-candidate-preview.md) adds a separate model-free
+candidate preview with original support and fresh adversarial cases. Its primary lists
+contain 1–4 sources and recover 18/22 critical occurrences; all four misses remain in
+Other matches. The broader answer context remains unchanged. Next: separately freeze
+bounded relationship-supported candidate context, preserving original evidence and
+unverified link scope. No tuning on the observed model answers is included.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale
 and the Workbench bridge remain open. The

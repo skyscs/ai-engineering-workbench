@@ -1,5 +1,51 @@
 # Development status
 
+## Task 036 — Model-free source candidate preview
+
+Implemented and locally verified, 2026-10-31. Task 035 reached main through PR #39
+(`73e5c18`) after push `41241538194` and pull-request `41241543812` succeeded for
+exact head `18f6382df9ff6e069859255250d2ffdd0192c94d`. Work continued immediately
+in the owner's selected synthetic-only scope.
+
+The default UI now provides **Where should I look?** with one question field, original
+file/line links, inspectable Other matches and explicit unresolved/snapshot coverage.
+The authenticated `POST /api/candidates/preview` endpoint needs no answer mode or AI
+configuration and accepts only a question plus optional build ID. It reuses the existing
+bounded answer context unchanged; it persists no approved investigation scope.
+
+Rules and eight adversarial examples were frozen before implementation (`9d27d17`;
+`4105abd` separates the immutable design from mutable task status). Distinct terms
+are weighted per source, with a fixed 60% threshold, six suggestions and three original
+supporting passages per source. Repeated terms do not multiply a source score; display
+names are not ranking evidence and duplicate labels retain separate ownership. Negative
+mentions remain reading clues rather than implementation/causal claims.
+
+On the observed ten-case incident corpus, primary lists contain 1–4 sources (mean 2.4),
+meet every useful candidate-count bound and retain 18/22 critical repository occurrences.
+Six cases meet both necessary scope conditions. Missing primary candidates are ir01
+contract-library, ir02 order-worker, ir06 inventory-api and ir07 order-api; all four remain
+in Other matches. No case-specific tuning follows. Two fresh generations agree, and all
+Task 035 broad answer-context selections and baseline summaries remain unchanged.
+
+Full check: 345 tests, strict types and builds. The initial compiler caught a widened
+version-string type, fixed with explicit result typing. Final frontend rebuild and the
+candidate browser smoke verify keyboard original evidence, escaped source labels, 390 px
+layout, other matches, no-match uncertainty, refresh/history and late question/evidence,
+review, revocation and policy fences. The existing twenty-source bulk/orientation
+browser regression passes too. Browser harness fixes waited for completed registration
+and supplied the native CDP Enter character; they do not mask product failures.
+
+No model calls, corporate inputs, database migration or source execution. Earlier answer
+failures, independent review and private-pilot acceptance remain unresolved. See
+[Task 036](../tasks/036-loredock-source-candidate-preview.md),
+[ADR 0036](decisions/0036-loredock-source-candidate-preview.md),
+[usage](loredock/USER_GUIDE.md#find-candidate-repositories) and
+[retained evidence](fixtures/loredock-source-candidates/README.md).
+
+Next: separately freeze bounded relationship-supported candidate context, preserving
+original evidence and unverified link scope. Keep the lexical policy and historical
+results intact; do not convert candidate clues into automatic investigation or edits.
+
 ## Task 035 — Incident-context qualification baseline
 
 Implemented and locally verified, 2026-10-31. Task 034 reached main through PR #38

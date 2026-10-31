@@ -32,6 +32,11 @@ whose complete support is already retrieved. Prompt construction and full-prompt
 share one pure renderer; publication rechecks the derivation. See
 [ADR 0035](docs/decisions/0035-loredock-answer-interface-context.md).
 
+The model-free candidate preview ranks original passages from the existing answer context
+without narrowing that context or storing an approved investigation scope. The default UI
+exposes original support, other matches and uncertainty; see
+[ADR 0036](docs/decisions/0036-loredock-source-candidate-preview.md).
+
 ## Architectural style
 
 Review baseline: ADR 0004 and DEVELOPMENT_PLAN.md refine execution, recovery and

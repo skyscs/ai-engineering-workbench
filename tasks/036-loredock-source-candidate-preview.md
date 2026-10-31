@@ -1,6 +1,7 @@
 # Task 036 — Model-free source candidate preview
 
-Status: planned. Follows Task 035's broad-context baseline.
+Status: implemented and locally verified. Follows Task 035 / merged PR #39 (`73e5c18`).
+The original design is preserved separately in `fixtures/loredock-candidates/DESIGN.md`.
 
 ## Scope
 
@@ -59,3 +60,21 @@ never send a model request or inspect unregistered source content.
 
 Synthetic-only scope remains selected. No corporate inputs, new model calls, automatic
 investigation, code-edit permission or L5/bridge acceptance follow from this preview.
+
+## Outcome
+
+- Rules and eight adversarial cases frozen before implementation in `9d27d17` /
+  `4105abd`. The policy is implemented unchanged as `source-candidates-v1`.
+- A protected model-free preview endpoint and one-field UI show original support,
+  other matches, unresolved input, historical coverage and separate engineer notes.
+- Full check: 345 tests, strict types and builds. Final frontend rebuild, candidate
+  browser acceptance and existing bulk/orientation browser regression pass. No model calls.
+- Ten observed development incidents yield 1–4 primary suggestions, with 18/22 critical
+  repository occurrences and six cases meeting both required-scope and useful-bound
+  conditions. All four omitted critical sources remain in Other matches. Two fresh
+  generations agree; broad answer-context selections and prior baseline metrics are unchanged.
+- No automatic routing/abstention or L5 acceptance is claimed. Next: separately freeze
+  bounded relationship-supported candidate context; retain lexical ranking, original
+  evidence and unverified link scope rather than tuning repository-specific lists.
+- See [ADR 0036](../docs/decisions/0036-loredock-source-candidate-preview.md) and
+  [verification and limits](../docs/fixtures/loredock-source-candidates/README.md).
