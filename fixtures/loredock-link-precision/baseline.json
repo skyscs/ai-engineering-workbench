@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "loredock-link-precision-design/1",
+  "frozenAt": "2026-10-31T21:45:22.021361+00:00",
+  "sourceHashes": {
+    "fixtures/loredock-link-precision/DESIGN.md": "aee72e686fa72341a375bb00ac913ba882f9d33bd5067f453cffa2eaafe5220a",
+    "fixtures/loredock-link-precision/cases.mjs": "ee70099c462b49f5ca9b66102fd367b0eb497fb973f48c3e294e0f8eeba0e3d7"
+  }
+}
