@@ -36,8 +36,13 @@ active sources and fixed equal index shares with baseline README orientation.
 Task 025 reached main through PR #29 (`c5e8082`).
 [Task 026](tasks/026-loredock-scale-retrieval.md) improves bounded twenty-source question
 retrieval: 20/20 required-evidence recall, stable selections and visible source scope
-without larger text/prompt limits. Next: semantic qualification of actual expanded-scope
-answers and engineer-review handling; source recall alone does not establish L5 readiness.
+without larger text/prompt limits, through merged PR #30 (`7fc97bb`).
+[Task 027](tasks/027-loredock-scale-answer-quality.md) completes two real-model runs:
+the final agent assessment is 18/20 expanded answers and 4/4 review cases, but required
+limitations are still omitted in two answers. The semantic gate remains failed.
+Next: bounded answer-completeness investigation with frozen held-out paraphrases,
+preserved negative results and explicit question/rubric review before further paid tuning.
+Source recall, agent scoring and merging do not establish L5 readiness.
 Broader synthesis, adapters, semantic/AI refresh and scale acceptance remain separate.
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation

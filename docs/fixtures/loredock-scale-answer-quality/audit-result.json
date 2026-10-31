@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "loredock-scale-answer-audit/1",
+  "modelRequests": 0,
+  "results": [
+    {
+      "version": "v7",
+      "completeAttempts": 24,
+      "inputSpanOccurrencesChecked": 676,
+      "claimsReviewed": 97,
+      "citationReferences": 151,
+      "distinctCitedSpans": 52,
+      "originalFilesRead": 78,
+      "sourceBytesAndHashesMatch": true,
+      "reviewCoversEveryClaim": true,
+      "hardGatePassed": false,
+      "usage": {
+        "inputTokens": 408873,
+        "outputTokens": 8712,
+        "cachedInputTokens": 0
+      },
+      "unknownUsageAttempts": 0
+    },
+    {
+      "version": "v8",
+      "completeAttempts": 24,
+      "inputSpanOccurrencesChecked": 676,
+      "claimsReviewed": 107,
+      "citationReferences": 182,
+      "distinctCitedSpans": 56,
+      "originalFilesRead": 78,
+      "sourceBytesAndHashesMatch": true,
+      "reviewCoversEveryClaim": true,
+      "hardGatePassed": false,
+      "usage": {
+        "inputTokens": 412685,
+        "outputTokens": 11472,
+        "cachedInputTokens": 0
+      },
+      "unknownUsageAttempts": 0
+    }
+  ],
+  "semanticReviewScope": "Verifies original bytes and completeness/integrity of separately recorded agent judgments, not independent semantic acceptance."
+}

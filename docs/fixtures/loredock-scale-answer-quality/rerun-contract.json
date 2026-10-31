@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "loredock-scale-answer-rerun/1",
+  "frozenAt": "2026-10-31T15:15:21.909Z",
+  "previousRun": "answer-result-v7.json",
+  "previousReview": "semantic-review-v7.json",
+  "reason": "Three completeness/uncertainty omissions and one unsupported conditional convergence inference.",
+  "change": "Prompt v8 clarifies configuration/contract/port boundaries, complete documented limitations and unsupported tentative reliability claims.",
+  "model": "gpt-5.6-terra",
+  "effort": "medium",
+  "promptVersion": "loredock-answer-v8",
+  "promptFunctionHash": "47f2e4ae9ba4e6cd9acc9efe7ad94a9036644d8ab761aaf961d481be57ba261b",
+  "changedInputs": "Only prompt instructions; same corpus, oracle, review cases, model, effort, retrieval and limits.",
+  "attemptBudget": 24,
+  "automaticRetries": 0,
+  "remainingCompleteRunsAfterThis": 0
+}
