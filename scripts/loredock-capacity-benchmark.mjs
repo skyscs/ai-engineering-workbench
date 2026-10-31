@@ -4,12 +4,12 @@ import {mkdir,readFile,writeFile,rm,stat,readdir} from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
 import {fileURLToPath,pathToFileURL} from 'node:url';
-import {isDeepStrictEqual} from 'node:util';
 import {capacityBaseline,createCapacityFixture} from './loredock-capacity-fixture.mjs';
 import {verifyIncidentContract} from './loredock-incident-context.mjs';
 import {routingCases} from '../fixtures/loredock-routing/cases.mjs';
 import {digest} from './loredock-fixture.mjs';
 import {scaleGit} from './loredock-scale-fixture.mjs';
+import {capacityQuerySummary,compareCapacityQueries} from './loredock-capacity-audit.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
 const errorRecord=error=>({name:error.name??'Error',code:error.code??null,message:String(error.message??error)});
@@ -104,20 +104,13 @@ function inspectQueries(services,fixture,catalog,build) {
           endpoints:link.origin==='declaration'?sort(endpoints):endpoints,evidence:sort(link.evidence.map(ref=>verify(ref.id)))};
       })}));
       const selected=[...primary.flatMap(row=>row.support),...related.flatMap(row=>row.links.flatMap(link=>link.evidence))];
-      const canonical={primary,otherMatches,related,status:value.status,distinctiveTerms:value.distinctiveTerms,tiedAtLimit:value.tiedAtLimit};
+      const canonical={primary,otherMatches,related,selectionStatus:value.status,distinctiveTerms:value.distinctiveTerms,tiedAtLimit:value.tiedAtLimit};
       return {ms,...canonical,selectionHash:digest(JSON.stringify(canonical)),limits:value.limits,relatedLimits:value.related.limits,
         omissions:{matches:value.omittedMatches,sources:value.related.omittedSources,links:value.related.omittedLinks},
         gaps:value.gaps,relatedGaps:value.related.gaps,
         ...assess(item,selected,[...primary,...related].map(row=>row.source),fixture.manifest)};
     })}));
-  const summary=Object.fromEntries(['incident','exact-symbol'].map(group=>[group,Object.fromEntries(['context','preview'].map(method=>{
-    const all=results.filter(row=>row.group===group),available=all.map(row=>row[method]).filter(row=>row.status==='available');
-    return [method,{cases:all.length,available:available.length,allCriticalRepositories:available.filter(row=>!row.missingRepositories.length).length,
-      completeEvidence:available.filter(row=>row.completeEvidence).length,withinCandidateBound:available.filter(row=>row.withinCandidateBound).length,
-      scopeNecessaryConditionsMet:available.filter(row=>row.scopeNecessaryConditionsMet).length,
-      criticalRecall:{found:available.reduce((sum,row)=>sum+row.criticalRecall.found,0),total:all.reduce((sum,row)=>sum+questions.find(q=>q.id===row.id).requiredRepositories.length,0)},
-      candidateCounts:all.map(row=>row[method].candidateCount??null)}];
-  }))]));
+  const summary=capacityQuerySummary(results,fixture.probes);
   return {status:'available',orientation,projections,results,summary,...stats()};
 }
 
@@ -132,18 +125,12 @@ async function retained(store,buildId) {
 }
 
 export function compareCapacityStages(first,second) {
-  if(first?.queries?.status!=='available'||second?.queries?.status!=='available')return {status:'unavailable'};
-  const a=first.queries,b=second.queries;
-  return {status:'available',changedContextSelections:a.results.filter((row,i)=>row.context.selectionHash!==b.results[i]?.context.selectionHash).map(row=>row.id),
-    changedCandidateSelections:a.results.filter((row,i)=>row.preview.selectionHash!==b.results[i]?.preview.selectionHash).map(row=>row.id),
-    unavailableQueries:a.results.filter((row,i)=>['context','preview'].some(key=>row[key].status!=='available'||b.results[i]?.[key].status!=='available')).map(row=>row.id),
-    orientationChanged:!isDeepStrictEqual(a.orientation.sources,b.orientation.sources),
-    changedProjectionOriginals:['code','declarations'].filter(key=>!isDeepStrictEqual(a.projections[key].originals,b.projections[key].originals))};
+  return compareCapacityQueries(first,second);
 }
 
 async function implementationProvenance() {
   const git=args=>execFileSync('git',args,{cwd:root,encoding:'utf8'}).trimEnd();
-  const files=git(['ls-files','apps/loredock/src','packages','package.json','pnpm-lock.yaml','scripts/loredock-capacity-benchmark.mjs']).split('\n').filter(Boolean);
+  const files=git(['ls-files','apps/loredock/src','packages','package.json','pnpm-lock.yaml','scripts/loredock-capacity-benchmark.mjs','scripts/loredock-capacity-audit.mjs']).split('\n').filter(Boolean);
   const sourceHashes=Object.fromEntries(await Promise.all(files.map(async file=>[file,digest(await readFile(path.join(root,file)))])));
   const builtFiles=(await readdir(path.join(root,'apps/loredock/dist'))).filter(file=>file.endsWith('.js')).sort();
   const builtHashes=Object.fromEntries(await Promise.all(builtFiles.map(async file=>[file,digest(await readFile(path.join(root,'apps/loredock/dist',file)))])));
@@ -199,7 +186,7 @@ export async function runCapacityBenchmark(services,outputDirectory) {
       await checkpoint(`generation-${generation}`,report);generations.push(report);
     } finally {await catalog?.stop();store?.close();await rm(fixture.root,{recursive:true,force:true});}
   }
-  const result={schemaVersion:'loredock-capacity-result/1',checkedAt:new Date().toISOString(),frozen,implementation,
+  const result={schemaVersion:'loredock-capacity-result/2',checkedAt:new Date().toISOString(),frozen,implementation,
     versions:{retrieval:services.retrievalVersion,candidates:services.candidateVersion},generations,
     regeneration:Object.fromEntries(['initial','refresh'].map(stage=>[stage,compareCapacityStages(generations[0].stages[stage],generations[1].stages[stage])])),
     modelRequests:0,routingAccepted:false,semanticReview:'not-performed',independentReview:'pending',

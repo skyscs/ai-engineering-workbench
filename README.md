@@ -44,8 +44,10 @@ evidence. Saved answers retain those exact notes and show when engineer review c
 whose complete original support is already among the retrieved passages. The reviewed
 comparisons are included in new answer inputs and preserved in answer history.
 Development now has a [heterogeneous twenty-repository fixture](fixtures/loredock-scale/README.md)
-and a [capacity baseline](docs/loredock/SCALE_READINESS.md). Twenty-source onboarding,
-indexing and bounded retrieval are verified on that small synthetic corpus.
+and a [capacity baseline](docs/loredock/SCALE_READINESS.md). A separate
+[larger synthetic measurement](docs/fixtures/loredock-capacity/README.md) indexes 3,679
+files across twenty sources and reuses all text files on refresh. Required original
+context is retained, but candidate scope and the 100-file code projection remain limited.
 [Expanded real-model evaluation](docs/fixtures/loredock-scale-answer-quality/README.md)
 scores 18/20 under agent review but still fails the required-completeness gate;
 private-project and full-system semantic readiness remain unverified.

@@ -92,8 +92,12 @@ historical review. The current diagnostic recovers 22/22 critical occurrences; o
 cases meet both useful scope conditions. Original span/lexical selection remains unchanged.
 [Task 040](tasks/040-loredock-compact-related-sources.md) adds compact expandable reading
 cards with clue subjects visible before opening, preserving selection and evidence.
-Next: freeze and measure a larger synthetic capacity workload under existing index,
-retrieval and projection limits, including unchanged refresh and retained bytes.
+[Task 041](tasks/041-loredock-synthetic-capacity.md) measures 3,679 files across twenty
+sources at existing limits: complete original-context recall, all-text refresh reuse,
+21/22 candidate recall and only 100/3,621 code documents examined. Retained database
+growth and passage-order changes are recorded separately from stable passage sets.
+Next: freeze an offline qualification of related-source ordering by strongest admitted
+relationship kind, preserving configuration clues, anchors, evidence and existing caps.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
