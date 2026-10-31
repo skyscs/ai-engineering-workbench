@@ -99,5 +99,20 @@ Zero-hit context represents twenty sources rather than eighteen on this small co
 Stable saved-source ordering removes fresh-UUID selection variation. Explicit repository
 names add bounded first-span samples, while lexical cross-source evidence remains eligible.
 Final text/prompt limits are unchanged; [ADR 0030](../decisions/0030-loredock-scale-retrieval.md)
-records the sampling bounds and unresolved limitations. Real-model answer support,
-uncertainty and review behavior have not been evaluated on the expanded corpus.
+records the sampling bounds and unresolved limitations. This retrieval-only slice
+did not evaluate actual answer support, uncertainty or engineer-review behavior.
+
+## Task 027 semantic outcome
+
+[Expanded answer evaluation](../fixtures/loredock-scale-answer-quality/README.md)
+preserves two complete 24-attempt runs through the qualified personal connection.
+Prompt v8 improves the agent assessment from 17/20 to 18/20 and review cases from
+3/4 to 4/4. The final run has no material unsupported claim found by the agent,
+but s04 and s14 omit required context/limitations, so the overall gate remains failed.
+All 1,352 issued span occurrences match freshly regenerated original source bytes;
+this provenance audit does not resolve the semantic omissions. Restart, immutable
+review history and source-revocation boundaries pass for both runs.
+
+Answer completeness is the next bounded investigation. Keep independent review,
+framework coverage, retention and the eligible private pilot ahead of the bridge;
+neither the numeric score nor a successful engineering merge establishes readiness.

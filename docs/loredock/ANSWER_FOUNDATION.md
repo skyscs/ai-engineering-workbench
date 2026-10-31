@@ -10,12 +10,19 @@ Task 023 subsequently adds retrieval v5 / prompt v7: bounded engineer notes sepa
 from source spans, immutable note snapshots and review freshness. Its fake-runtime/browser
 verification does not extend the real-model quality scores below to disputed-link behavior.
 See [the review-context decision](../decisions/0028-loredock-answer-review-context.md).
-Task 026 now uses retrieval v6 with the same prompt v7: bounded literal-name samples,
+Task 026 introduced retrieval v6 with prompt v7: bounded literal-name samples,
 stable saved source order and twenty-source fallback opportunity within the existing
 30-span / 64 KiB text budget. [Expanded retrieval qualification](../fixtures/loredock-scale-retrieval/README.md)
 records 20/20 required-evidence recall and unchanged original-pilot recall, without
 real-model answer or uncertainty evaluation. The real-model scores below remain the
 historical three-source checkpoint; they do not certify the new twenty-source scope.
+
+Task 027 now uses prompt v8 with the same retrieval/schema/model limits. Its
+[expanded real-model evaluation](../fixtures/loredock-scale-answer-quality/README.md)
+scores 18/20 under agent review and passes 4/4 engineer-review cases, but **fails the
+semantic gate** because s04/s14 omit required context or limitations. Both complete
+runs and every claim assessment are retained. No independent expanded-scope approval
+or default activation follows from this result.
 
 The final complete run has a provisional **20/20 useful/correct agent assessment**,
 **162/162 resolving citation references across 98 claims**, and **20/20 complete

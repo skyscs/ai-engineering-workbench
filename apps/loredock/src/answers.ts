@@ -7,7 +7,7 @@ import { sha256 } from './extract.js';
 import { CatalogError } from './types.js';
 import { assertAnswerReviewCurrent } from './answer-review.js';
 
-export const answerPromptVersion = 'loredock-answer-v7';
+export const answerPromptVersion = 'loredock-answer-v8';
 export type AnswerStatus = 'preparing' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'interrupted' | 'fenced';
 interface AttemptRow {
   id: string; requestId: string; payloadHash: string; question: string; buildId: string; policyVersion: number; registryVersion: number;
@@ -44,6 +44,14 @@ explaining an identity flow without supporting enforcement code, include an unan
 about those controls. Do not claim that they are absent from the whole system.
 Code shape and interface method names do not establish implementation guarantees. Do not infer safety,
 reliability, concurrency, delivery or security properties without evidence for their prerequisites.
+Tentative words such as "could" do not supply missing prerequisites: an unimplemented storage port
+does not establish convergence or idempotency. Leave unsupported behavioral properties as questions.
+For a topic, projection or integration, explain the relevant supplied configuration, message contract
+and handler/port together. Distinguish each declaration from a verified live connection. State whether
+the supplied code provides an implementation or only an interface, including the storage boundary.
+When relevant documentation lists missing implementation pieces, preserve the complete limitation,
+including execution/scheduling, persistence and recovery where applicable. Keep this scoped to the
+supplied sources; do not turn a missing implementation into global absence.
 Before finalizing, compare the relevant README/documentation statements with configuration/code.
 Preserve every relevant disagreement as a conflict claim with citations to both sides, even when a
 scoped configuration supplies the value requested by the question. Choosing that value does not

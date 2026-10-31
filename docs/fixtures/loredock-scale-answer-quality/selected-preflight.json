@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-10-31T15:04:29.152Z",
+  "modelRequests": 0,
+  "identity": {
+    "executable": "/home/toshiba/node-v18.20.2-linux-x64/lib/node_modules/@openai/codex/bin/codex.js",
+    "configHome": "/home/toshiba/.codex-plus",
+    "profile": null,
+    "version": "codex-cli 0.166.0",
+    "policyVersion": "text-only-v2",
+    "configurationFingerprint": "73459414b476b6c10da329145f4a63e7f679863661c44aab74f0de920f4897f4"
+  }
+}

@@ -1,5 +1,45 @@
 # Development status
 
+## Task 027 — Expanded answer and engineer-review qualification
+
+Evaluation completed, 2026-10-31; **expanded semantic qualification is blocked**.
+Task 026 reached main through PR #30 (`7fc97bb`) after both exact-head checks passed.
+Two complete runs use the explicit personal CLI 0.166.0 connection, text-only-v2,
+gpt-5.6-terra / medium, unchanged twenty-source corpus/oracle and four review cases
+frozen before model dispatch. The runner preserves complete prompts, originals,
+raw responses, immutable attempts and usage; expectations never enter model input.
+
+Agent assessment: v7 scores 17/20 expanded questions plus 3/4 review cases; v8 scores
+18/20 plus 4/4. Prompt v8 clarifies declaration/contract/port boundaries and documented
+limitations and rejects tentative reliability claims without prerequisites. v8 removes
+the unsupported convergence inference found in v7 r04, but s04 still omits the message
+contract/live-subscription distinction and s14 omits unresolved plugin/build wiring.
+The zero-missing-required-uncertainty gate fails despite meeting the numeric threshold.
+No cross-run answer selection, rubric weakening or independent approval is recorded.
+
+Verification: full `pnpm check` passes **307 tests** (152 LoreDock, 20 script checks),
+strict typechecks and production builds. Fake-runtime tests cover the complete case
+sequence, source/oracle separation, durable dispatch checkpoints, raw failure retention,
+output-directory refusal and no retries. Offline reconstruction checks all **1,352 input
+span occurrences**, 204 claim assessments and 333 citation references against original
+revision/blob/range/SHA-256 data. Both runs verify restart, exact replay with no new
+call, immutable historical notes after withdrawal and revocation/purge of 24 answers.
+Chrome regression passes with four fake calls, zero models and a 390px layout.
+
+The budget is exhausted at **48 application attempts**, with 821,558 reported input
+tokens, 20,184 output tokens and no reported cached input. All attempts report usage;
+CLI-internal request counts remain unobserved. No private/corporate sources, authentication
+store reads, model/account fallback or direct API. Source checkouts are unchanged and
+removed; SQLite ledgers remain local. Exported synthetic review files retain evidence
+independently of application revocation.
+
+See [Task 027](../tasks/027-loredock-scale-answer-quality.md),
+[ADR 0031](decisions/0031-loredock-expanded-answer-evaluation.md) and
+[complete outputs, review sheets and remaining blockers](fixtures/loredock-scale-answer-quality/README.md).
+Next: bounded completeness investigation with predeclared held-out paraphrases and
+question/rubric alignment review before any further paid evaluation. Framework coverage,
+retention, independent review and an eligible private pilot still precede the bridge.
+
 ## Task 026 — Twenty-source bounded question retrieval
 
 Implemented and locally verified, 2026-10-31. Task 025 was agent-reviewed and merged
