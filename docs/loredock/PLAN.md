@@ -56,8 +56,12 @@ available. [Task 034](../../tasks/034-loredock-interface-answer-qualification.md
 the frozen run once after committing implementation/runtime identity. Fourteen attempts
 complete; agent review passes 8/14 and fails the gate because of missing qualifications,
 scope overstatements and incomplete local citations. All raw evidence and judgments are
-retained. Next: freeze ten incident-routing cases and measure current candidate evidence
-without model calls or production routing. No tuning on these observed answers is included.
+retained. [Task 035](../../tasks/035-loredock-incident-context-baseline.md) freezes ten
+incident cases and measures source-owner unions without model calls. Both keyword and
+answer-context retrieval recover all critical repositories but exceed every useful
+candidate bound; neither implements routing/abstention decisions. Next: a separate
+bounded candidate-selection preview with original support, uncertainty and fresh
+adversarial examples. No tuning on the observed model answers is included.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale
 and the Workbench bridge remain open. The

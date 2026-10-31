@@ -1,5 +1,46 @@
 # Development status
 
+## Task 035 — Incident-context qualification baseline
+
+Implemented and locally verified, 2026-10-31. Task 034 reached main through PR #38
+(`53f3f68`) after push `41240799652` and pull-request `41240805949` succeeded for
+exact head `a8c93c3318c9f1ea34ca1f3933b85149dddc8051`. Work continued immediately.
+The owner explicitly selected continued synthetic-only development, with no corporate
+source access or account change.
+
+Commit `32b0926` freezes ten incident descriptions, 22 required repository occurrences,
+useful per-case candidate bounds of 2–6, original evidence and four missing-input
+expectations before measurement. The existing twenty-source corpus, original three-source
+routing cases and all historical answer evaluations remain unchanged.
+
+Both plain keyword OR and unchanged production answer-context retrieval recover every
+critical repository in all ten cases. Complete recorded reference recall is 9/10 for
+keyword and 10/10 for answer context; the keyword miss is ir02's projection implementation.
+Owners of retrieved spans form 13–17 keyword candidates and 11–17 answer-context candidates,
+both averaging 14.7. Neither meets any useful candidate bound: 0/10 necessary scope
+conditions pass. Neither measured path implements explicit routing/abstention decisions;
+expected offline gaps are not substituted for product decisions.
+
+Two fresh generations preserve all selections and summary metrics. Verified 583 span
+occurrences against 77 original Git files. The unchanged source index has 79 eligible
+files; retained raw/span bytes are 16,869 / 16,790 and the checkpointed catalog occupies
+483,328 bytes. Initial indexing takes approximately 1.44 seconds; ten query calls total
+38 ms keyword / 223 ms answer context on this small local corpus. These are diagnostics,
+not realistic production latency/storage acceptance. Zero model calls and answer attempts.
+
+An initial evaluator API-name error stopped before retrieval; switching to the existing
+authorized `readBuild` method fixes the harness without changing inputs/product behavior.
+Full check: 342 tests, typechecks and builds. No UI/runtime change; existing browser
+evidence remains applicable. See [Task 035](../tasks/035-loredock-incident-context-baseline.md),
+[frozen method](../fixtures/loredock-routing/README.md) and
+[measurement](fixtures/loredock-incident-context/README.md).
+
+Next: a separate bounded, model-free candidate-selection preview with original support,
+explicit uncertainty and fresh adversarial examples frozen before evaluation. Keep broad
+answer context separate from suggested investigation scope. No case-specific allowlists,
+root-cause claims, code-edit authorization or automatic Workbench investigation. Independent
+quality/private-pilot acceptance and earlier answer failures remain unresolved.
+
 ## Task 034 — Frozen interface answer qualification
 
 Implemented and locally verified, 2026-10-31. Task 033 reached main through PR #37

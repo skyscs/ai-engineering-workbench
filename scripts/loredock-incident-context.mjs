@@ -22,7 +22,7 @@ export async function verifyIncidentContract() {
 // A deliberately plain FTS baseline with the same tokenizer and span/byte caps.
 // Its only input is the incident text and the same authorized published index.
 export function keywordIncidentContext(catalog,question,questionTerms) {
-  const build=catalog.build(catalog.state().publishedBuildId),terms=questionTerms(question);
+  const build=catalog.readBuild(),terms=questionTerms(question);
   const expression=terms.map(term=>`"${term}"`).join(' OR ');
   const candidates=expression?catalog.store.all(`SELECT s.id,length(CAST(s.text AS BLOB)) AS bytes FROM question_search
     JOIN spans s ON s.id=question_search.spanId JOIN files f ON f.id=s.fileId JOIN sources src ON src.id=f.sourceId
@@ -52,7 +52,7 @@ export async function evaluateIncidentContext(services) {
       const paths=fixture.manifest.sources.map(source=>path.join(fixture.root,'sources',source.id));
       const preview=await catalog.previewSources(paths);await catalog.registerSources({paths,previewHash:preview.previewHash,requestId:'incident-context'});
       const started=performance.now(),state=catalog.state();catalog.start('incident-context',state.sourceSetVersion,state.policyVersion);await catalog.idle();
-      const indexMs=performance.now()-started,build=catalog.build(catalog.state().publishedBuildId);
+      const indexMs=performance.now()-started,build=catalog.readBuild();
       assert.equal(build.coverage.indexed,frozen.sourceBaseline.eligibleFiles);
       function inspect(originals,item) {
         const selected=[];

@@ -59,8 +59,10 @@ repository-scope overstatements and incomplete per-claim citations remain record
 The [new prospective qualification design](fixtures/loredock-interfaces/README.md)
 freezes fourteen fresh freight-system questions before model outputs; all required
 original references are available, with the derived-comparison limit disclosed.
-Next is model-free incident-context qualification; autonomous repository routing and
-the Workbench bridge remain planned, with independent/private-pilot acceptance pending.
+The [incident-context baseline](docs/fixtures/loredock-incident-context/README.md) finds
+all required source owners but returns 11–17 repositories per incident. A bounded
+candidate-selection preview is next; autonomous routing and the Workbench bridge remain
+planned, with independent/private-pilot acceptance pending.
 
 ## What v0.1 does
 

@@ -70,9 +70,13 @@ once after committing implementation/runtime identity. All fourteen attempts com
 agent review passes 8/14 and the gate fails. Two required qualifications are omitted,
 three claims overstate repository scope and two have incomplete local citations.
 All original evidence and judgments remain available; old failed gates stand.
-Next: freeze the roadmap's ten incident-routing cases and measure current candidate
-evidence without model calls or production routing. No further prompt tuning or paid
-rerun is included; independent/private-pilot acceptance still precedes the bridge.
+[Task 035](tasks/035-loredock-incident-context-baseline.md) freezes ten incident cases
+and measures current candidate evidence without models. Both keyword and answer-context
+owner unions recover all 22 critical repository occurrences, but average 14.7 candidates
+and exceed every useful case bound. Routing/abstention decisions are not implemented.
+Next: a bounded model-free candidate-selection preview with original support, explicit
+uncertainty and fresh adversarial examples. Preserve the broader answer context and
+all failed evaluations; independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
 Broader synthesis, adapters, semantic/AI refresh and scale acceptance remain separate.
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,

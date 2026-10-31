@@ -1,6 +1,6 @@
 # Task 035 — Incident-context qualification baseline
 
-Status: in progress. Follows Task 034 / PR #38.
+Status: implemented and locally verified. Follows Task 034 / merged PR #38 (`53f3f68`).
 
 ## Scope and acceptance
 
@@ -29,3 +29,19 @@ Status: in progress. Follows Task 034 / PR #38.
 These are new scenarios on previously inspected synthetic sources, authored by the
 development agent. They are not blind, independently accepted or representative of
 large private repositories. Task 034's failed answer gate remains failed.
+
+## Outcome
+
+- Frozen in `32b0926` before measurement: ten scenarios, 22 required repository
+  occurrences, four explicit missing-evidence cases, useful candidate bounds of 2–6.
+- Both methods recover 22/22 critical repository occurrences; production context
+  supplies 10/10 complete recorded reference sets versus keyword search's 9/10.
+- Owner unions contain 11–17 production-context repositories and 13–17 keyword
+  repositories; both average 14.7 and meet the useful bound in 0/10 cases.
+- Neither path implements a routing/abstention decision. No semantic/routing pass is
+  claimed. All selections and summary metrics are stable on two fresh generations.
+- Verified 583 span occurrences against 77 original files. No model/answer attempt,
+  product tuning, UI change or checkout mutation. Full check: 342 tests and builds.
+- Next: separately bounded source-candidate selection with original support and
+  uncertainty, frozen general rules and fresh adversarial examples. Keep all answer
+  failures and this baseline unchanged. See [evidence](../docs/fixtures/loredock-incident-context/README.md).
