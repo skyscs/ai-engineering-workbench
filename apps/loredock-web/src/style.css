@@ -544,3 +544,7 @@ footer{
 .candidate-other, .candidate-coverage, .candidate-links { margin-block: 1rem; }
 .candidate-link { border-top: 1px solid #dce5df; padding-block: .5rem; }
 .candidate-link button { max-width: 100%; white-space: normal; text-align: left; overflow-wrap: anywhere; }
+.related-source > summary { cursor: pointer; padding-block: .35rem; }
+.related-source-count, .related-source-subject { display: block; margin-top: .25rem; font-weight: 400; }
+.related-source-count { font-size: .85rem; }
+.related-source-subject { font-size: .9rem; }

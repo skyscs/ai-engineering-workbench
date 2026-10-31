@@ -88,7 +88,11 @@ The broader context used by Ask Project remains unchanged.
 Expand **Related repositories to inspect** when the primary suggestions are not enough.
 This optional section adds up to four repositories connected by a supported direct code
 or declaration clue, with at most two relationships each. Open the original evidence on
-both sides. A declaration comparison uses **↔**; a directed code clue uses **→**. Matching
+both sides. Each source starts as a compact expandable card: scan the clue kind and
+subject, then open the source name to read its relationships and citations. Repeated
+subjects are combined only in the closed summary. Keyboard users can focus the source
+summary and press Enter or Space, then open an evidence button. A declaration comparison
+uses **↔**; a directed code clue uses **→**. Matching
 contracts/settings do not prove a live connection, and differences do not prove a runtime
 conflict. No second-hop search is performed. **Relationship coverage and limits** reports
 unexamined syntax/documents and sources or relationships omitted by the reading budget.

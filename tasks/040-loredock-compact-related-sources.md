@@ -1,6 +1,6 @@
 # Task 040 — Compact related-source reading cards
 
-Status: scoped before implementation. Follows Task 039 / merged PR #43 (`ad6a0e4`) and its code-adapter v3 evidence.
+Status: implemented and locally verified. Follows Task 039 / merged PR #43 (`ad6a0e4`) and its code-adapter v3 evidence.
 The owner authorized continuing the sequence with synthetic inputs only.
 
 ## Problem
@@ -35,3 +35,15 @@ fences remain in the parent. Labels and subjects use escaped text, and long valu
   merge after both exact-head CI checks pass, then continue the authorized sequence.
 
 No ranking, parser, API, storage, model, corporate-source or acceptance-gate change.
+
+## Outcome
+
+Scope recorded in `f140e87`. Native source disclosures show clue kinds and distinct
+subjects before opening the complete original evidence. Frontend strict types/build
+and final browser acceptance pass, including keyboard source/evidence navigation,
+escaped labels, 390 px summaries/details and all previous response fences.
+
+Next: freeze a larger synthetic capacity workload and measure initial indexing,
+unchanged refresh, retained bytes, retrieval and projection omissions under existing
+limits. The current 79-file topology is not evidence of large-project readiness.
+See [verification](../docs/fixtures/loredock-compact-related-sources/README.md).

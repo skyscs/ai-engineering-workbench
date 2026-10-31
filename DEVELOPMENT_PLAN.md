@@ -90,7 +90,10 @@ a useful configuration clue: recall is 20/22. Production v1 remains unchanged.
 exports under code adapter v3, including binding/module-boundary guards and preserved
 historical review. The current diagnostic recovers 22/22 critical occurrences; only five
 cases meet both useful scope conditions. Original span/lexical selection remains unchanged.
-Next: compact the related-source reading UI without changing selection or evidence.
+[Task 040](tasks/040-loredock-compact-related-sources.md) adds compact expandable reading
+cards with clue subjects visible before opening, preserving selection and evidence.
+Next: freeze and measure a larger synthetic capacity workload under existing index,
+retrieval and projection limits, including unchanged refresh and retained bytes.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
