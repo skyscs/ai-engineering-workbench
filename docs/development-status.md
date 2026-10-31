@@ -1,5 +1,42 @@
 # Development status
 
+## Task 026 — Twenty-source bounded question retrieval
+
+Implemented and locally verified, 2026-10-31. Task 025 was agent-reviewed and merged
+through PR #29 (`c5e8082`) after both exact-head CI runs passed under the owner's
+standing authorization. Retrieval v6 adds bounded first-span samples for complete
+normalized repository names, stable saved-source ordering for ties and a round-robin
+zero-hit sample covering twenty-source opportunities. Longer identifiers do not match
+name prefixes; duplicate display names preserve every identity. Cross-source lexical
+and identifier-expanded evidence remains eligible.
+
+The source limit stays thirty whole spans / 64 KiB; the complete prompt cap stays
+96 KiB. Byte metadata is checked before original-file reads. Preview shows actual
+represented-source counts, and gaps identify sources without passages without declaring
+absence or irrelevance. Existing source/policy/review fences, immutable saved answers,
+prompt v7, output schema v3, database schema 7 and runtime privileges are unchanged.
+
+Verification: full `pnpm check` passes **303 tests** (150 LoreDock, 18 script checks),
+strict typechecks and production builds. The expanded frozen oracle improves from
+19/20 complete required-evidence sets to 20/20, repeated with fresh source IDs; the
+original pilot remains 20/20. All twenty expanded selections and zero-hit locator
+orders are stable across regeneration. The no-hit sample represents twenty repositories
+instead of eighteen. Maximum expanded prompt size observed is 30,812 bytes.
+
+Chrome verifies the twenty-source preview, named-source route citation, focus, mobile
+layout, revocation and reload with zero runtime preparations/answer attempts. The
+existing answer/review browser regression also passes with four fake calls and zero
+real models. Tests separately cover ambiguous/prefix names, oversized/missing documents,
+sample/candidate/byte bounds, refresh/history, restart and authorization.
+See [Task 026](../tasks/026-loredock-scale-retrieval.md),
+[ADR 0030](decisions/0030-loredock-scale-retrieval.md) and
+[measurements and browser artifacts](fixtures/loredock-scale-retrieval/README.md).
+
+No private source access or real model calls. These are recall and boundary checks,
+not semantic answer, uncertainty-compliance, routing or L5 acceptance. Next: expanded
+actual-answer and engineer-dispute qualification through an eligible explicit connection;
+independent review, framework coverage and private-pilot gates remain separate.
+
 ## Task 025 — Bulk local sources and fair baseline orientation
 
 Implemented and locally verified, 2026-10-31. Task 024 was agent-reviewed and merged

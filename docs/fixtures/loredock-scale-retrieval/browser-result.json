@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "loredock-scale-retrieval-browser/1",
+  "sources": 20,
+  "initialRepresentedSources": 20,
+  "namedSourceRouteEvidence": true,
+  "originalCitation": true,
+  "keyboardFocus": true,
+  "mobileWidth": 390,
+  "horizontalOverflow": false,
+  "revocationClearsContext": true,
+  "representedAfterRevocation": 19,
+  "reloadPreservesScope": true,
+  "modelRequests": 0,
+  "runtimePreparations": 0,
+  "answerAttempts": 0,
+  "sourceCheckoutsUnchanged": true
+}

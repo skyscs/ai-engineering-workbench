@@ -8,7 +8,8 @@ validated text-file reuse and bounded inventory comparisons were accepted throug
 Task 021's explicit review/reapplication across recorded refresh ancestors was accepted
 through PR #25. Task 022 adds source-backed README orientation and reading navigation
 through merged PR #26. Task 023 connects bounded matching engineer notes to answers.
-Semantic/AI refresh and Context Packs remain separate work.
+Task 026 adds retrieval v6 across twenty sources with explicit name samples and stable
+source ordering. Semantic/AI refresh and Context Packs remain separate work.
 See the [owner acceptance](L2_ACCEPTANCE.md),
 [map decision](../decisions/0022-loredock-declaration-map.md),
 [code-flow decision](../decisions/0023-loredock-static-code-flows.md),
@@ -124,11 +125,22 @@ separately and can resume. A previously exported external copy cannot be recalle
 
 ## Coverage before confidence
 
-Question retrieval records lexical, orientation or empty mode. With no lexical hits,
-the pilot may use at most six existing first spans per repository and 18 overall from
-root README/manifests and representative source languages. This is a visibly labeled
-orientation sample; it is not relevance proof or a complete inventory. All existing
-authorization, whole-span, 30-span and 64 KiB limits still apply.
+Question retrieval v6 records lexical, orientation or empty mode. Complete normalized
+repository names may add up to six first spans per named source and twelve total;
+colliding names retain every identity, and longer identifiers do not match a prefix.
+This is an orientation hint, not inferred ownership or verified relevance. The six
+strongest lexical candidates still come first; cross-source expansion remains eligible.
+
+With no lexical hits, consider up to six metadata representatives per source within
+120 candidates, round-robin across saved source order. Root README/manifests and
+representative source languages remain the baseline. Final admission stays at thirty
+whole spans / 64 KiB of UTF-8 text. Check byte metadata before reopening originals;
+missing or oversized passages remain gaps. Lexical ties also use saved source order.
+
+Preview reports represented sources over authorized indexed sources; gaps identify
+sources supplying no passage without declaring absence or irrelevance. This is not a
+confidence or system-understanding score. Older saved contexts retain their original
+bytes and hashes. See [ADR 0030](../decisions/0030-loredock-scale-retrieval.md).
 
 New answers use schema `cited-answer-v3`. The decoder's citation enum contains only
 the issued input IDs; with no input spans, claims are disallowed. Publication still
