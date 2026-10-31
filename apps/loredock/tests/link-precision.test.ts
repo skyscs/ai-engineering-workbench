@@ -17,14 +17,7 @@ test('frozen relationship subjects reject incidental prose, settings, types and 
   for (const row of report.results) assert.equal(row.actual, row.expected, row.id);
 });
 
-test('offline precision comparison preserves production reconstruction and original synthetic baselines', async () => {
-  const report = await qualifyLinkPrecision({ Catalog, CatalogStore, retrieveAnswerContext, questionTerms, retrievalVersion,
-    selectSourceCandidates, candidateLinkContext, selectCandidateLinks, declarationMap, codeFlows, searchText }) as {
-      productionReconstructionEqual: boolean; originalContextUnchanged: boolean; lexicalSelectionUnchanged: boolean; modelRequests: number;
-      productionPolicyChanged: boolean; summary: Record<string, { changedAcrossFreshGenerations: string[] }>; verifiedOriginalOccurrences: number;
-    };
-  assert.equal(report.productionReconstructionEqual, true); assert.equal(report.originalContextUnchanged, true);
-  assert.equal(report.lexicalSelectionUnchanged, true); assert.equal(report.modelRequests, 0); assert.equal(report.productionPolicyChanged, false);
-  assert.ok(report.verifiedOriginalOccurrences > 0);
-  for (const result of Object.values(report.summary)) assert.deepEqual(result.changedAcrossFreshGenerations, []);
+test('historical v2 qualification refuses a changed code adapter instead of rewriting its baseline', async () => {
+  await assert.rejects(qualifyLinkPrecision({ Catalog, CatalogStore, retrieveAnswerContext, questionTerms, retrievalVersion,
+    selectSourceCandidates, candidateLinkContext, selectCandidateLinks, declarationMap, codeFlows, searchText }), /requires pilot-code-v2/);
 });

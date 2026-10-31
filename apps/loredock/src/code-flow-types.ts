@@ -18,7 +18,7 @@ export interface StaticFlow {
   nodeIds: string[]; edgeIds: string[]; evidenceIds: string[]; gaps: string[];
 }
 export interface CodeFlows {
-  schemaVersion: 'loredock-code-flows-v1'; adapterVersion: 'pilot-code-v2'; buildId: string;
+  schemaVersion: 'loredock-code-flows-v1'; adapterVersion: 'pilot-code-v3'; buildId: string;
   policyVersion: number; sourceSetVersion: number; registryVersion: number; stale: boolean;
   partial: true; deploymentCoherence: 'unknown'; nodes: FlowNode[]; edges: FlowEdge[]; flows: StaticFlow[];
   evidence: Record<string, MapEvidence>; gaps: string[]; omissions: Record<string, number>;

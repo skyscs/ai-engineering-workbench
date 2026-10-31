@@ -40,6 +40,10 @@ The separate related-source projection adds bounded one-hop code/declaration clu
 both original endpoints, full support and coverage. It does not change the lexical
 shortlist or answer input; symmetric comparisons retain their original sides while
 sorting independently of them. See [ADR 0037](docs/decisions/0037-loredock-candidate-links.md).
+Code adapter v3 adds bounded literal Dojo AMD object exports with distinct operation
+ownership and conservative binding guards. Old v2 answer inputs remain readable; earlier
+code corrections cannot implicitly cross adapter versions. ES named-import resolution
+excludes AMD exports. See [ADR 0038](docs/decisions/0038-loredock-dojo-object-exports.md).
 
 ## Architectural style
 

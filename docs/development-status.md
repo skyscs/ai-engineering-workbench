@@ -1,5 +1,37 @@
 # Development status
 
+## Task 039 — Dojo object exports and code-adapter v3
+
+Implemented and locally verified, 2026-10-31. PR #42 reached main as `1af275f` after
+push `41245335966` and pull-request `41245340768` passed for exact head
+`4d1fbdc8b91ae9923d38a268db0c7be04dfe5bd0`. Design and 24 parser cases were frozen
+in `4cfe08a` before implementation. Work remains synthetic-only and model-free.
+
+The single-dependency dojo/request profile now accepts a bounded returned object of
+literal function-valued properties. Distinct exports own their exact symbol ranges and
+operations. Ambiguous shapes, bindings, eval/with, computed plugins and dynamic requests
+remain gaps. AMD properties cannot become ES module named-import targets. Adapter v3
+changes graph identities and new derived context; source selection and prompt budgets
+are unchanged. Saved v2 answers/replays and old correction histories remain byte-identical;
+old code notes cannot implicitly reapply to v3. The v2 offline qualifier refuses v3 inputs.
+
+The observed ir06 case now includes inventory-api through the original Dojo request and
+route declaration. Both fresh generations recover 22/22 critical occurrences, but union
+sizes remain 1–8 and only five cases meet both necessary scope conditions. The diagnostic
+verifies 176 original support occurrences. Original span and lexical selections stay
+unchanged; derived context/hashes can change with the intentionally new adapter.
+
+Full checks: 356 tests, strict types and builds. Final browser acceptance opens both new
+caller/route originals, keeps dynamic-plugin/runtime gaps visible and preserves escaping,
+keyboard/mobile access and late response fences. See
+[Task 039](../tasks/039-loredock-dojo-object-exports.md),
+[ADR 0038](decisions/0038-loredock-dojo-object-exports.md) and
+[verification](fixtures/loredock-dojo-exports/README.md).
+
+Next: compact expandable related-source cards with subjects visible before opening,
+preserving every selected relationship and original citation. No ranking/filter change,
+automatic routing or independent/private-pilot acceptance follows from this UI step.
+
 ## Task 038 — Offline candidate-link precision qualification
 
 Implemented and locally verified, 2026-10-31. PR #41 reached main as `f3f10c5` after

@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "loredock-dojo-exports-design/1",
+  "frozenAt": "2026-10-31T21:54:04.124589+00:00",
+  "sourceHashes": {
+    "fixtures/loredock-dojo-exports/DESIGN.md": "c4768a4731b09ddc6c9c7c9a7fb7330d033f492ddef0ed79137b240778b4b83c",
+    "fixtures/loredock-dojo-exports/cases.mjs": "514dd45e7279ffcda9285741ef6c20f2ef0d3341c1b16f459689079aaac8d6c7"
+  }
+}

@@ -15,7 +15,8 @@ export interface AnswerInterfaceComparison {
 }
 export interface AnswerInterfaces {
   schemaVersion: 'answer-interfaces-v1'; provenance: 'static-analysis'; verification: 'unverified';
-  codeAdapter: CodeFlows['adapterVersion']; declarationAdapter: DeclarationMap['adapterVersion'];
+  // Saved v2 inputs remain readable; only newly derived comparisons use the current adapter.
+  codeAdapter: 'pilot-code-v2' | CodeFlows['adapterVersion']; declarationAdapter: DeclarationMap['adapterVersion'];
   comparisons: AnswerInterfaceComparison[]; matching: number; incomplete: number; unrelated: number;
   omitted: number; comparisonBytes: number; limits: typeof answerInterfaceLimits;
   graphOmissions: Record<string, number>; declarationOmissions: Record<string, number>; gaps: string[];

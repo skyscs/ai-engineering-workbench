@@ -54,7 +54,7 @@ test('derived context retains all three candidate states and requires complete i
   const s = await setup(t), context = retrieveAnswerContext(s.catalog, 'How does dispatch send the site header?');
   const block = context.interfaces!;
   assert.equal(block.provenance, 'static-analysis'); assert.equal(block.verification, 'unverified');
-  assert.equal(block.codeAdapter, 'pilot-code-v2'); assert.equal(block.declarationAdapter, 'json-declarations-v2');
+  assert.equal(block.codeAdapter, 'pilot-code-v3'); assert.equal(block.declarationAdapter, 'json-declarations-v2');
   for (const [label, status] of [['POST /dispatch','gap'],['GET /dispatch/matching','match'],['GET /dispatch/dynamic','unknown']]) {
     assert.equal(block.comparisons.find(item => item.from.label === label)!.headerCheck.status, status);
   }
@@ -143,4 +143,27 @@ test('issued comparisons survive restart and replay; revocation purges their sav
   assert.equal(answers.get(attempt.id).context, null); assert.equal(answers.get(attempt.id).answer, null);
   assert.equal(s.store.one<{context:string|null}>('SELECT context FROM answer_attempts WHERE id=?',attempt.id)!.context, null);
   assert.equal(start().status, 'fenced'); assert.equal(start().context, null); assert.equal(requests.length, 1);
+});
+
+test('owned historical v2 answer inputs remain byte-identical and replay without rederivation', async t => {
+  const s = await setup(t); let calls = 0;
+  const runtime: TextRuntime = { prepare: async connection => ({ identity: {...connection,version:'fixture',policyVersion:'fixture',configurationFingerprint:'fixture'},
+    close: async () => {}, run: async () => { calls++; return { text: JSON.stringify({claims:[],unknowns:['Which runtime binding applies?']}),
+      usage:null,usageUnknownReason:'Fixture runtime.' }; } }) };
+  let answers = new Answers(s.catalog, runtime); t.after(() => answers.stop());
+  await answers.configure({executable:process.execPath,configHome:s.fixture.root,profile:null});
+  const current = answers.preview('dispatch'), attempt = answers.start('historical-v2', current.question, current.buildId, current.inputHash);
+  await answers.idle(); assert.equal(answers.get(attempt.id).status, 'succeeded');
+  // Seed an internally hashed historical record only in this owned synthetic store.
+  const historical = structuredClone(current); historical.interfaces!.codeAdapter = 'pilot-code-v2';
+  const saved = rehash(historical), row = s.store.one<{connection:string}>('SELECT connection FROM answer_attempts WHERE id=?',attempt.id)!;
+  const payloadHash = sha256(JSON.stringify({question:saved.question,buildId:saved.buildId,inputHash:saved.inputHash,connection:JSON.parse(row.connection)}));
+  s.store.run('UPDATE answer_attempts SET context=?,inputHash=?,payloadHash=? WHERE id=?',JSON.stringify(saved),saved.inputHash,payloadHash,attempt.id);
+  const before = s.store.one('SELECT context,result,inputHash,payloadHash FROM answer_attempts WHERE id=?',attempt.id);
+  await answers.stop(); await s.restart(); answers = new Answers(s.catalog,runtime);
+  assert.equal(answers.get(attempt.id).context!.interfaces!.codeAdapter,'pilot-code-v2');
+  assert.equal(answers.start('historical-v2',saved.question,saved.buildId,saved.inputHash).id,attempt.id); assert.equal(calls,1);
+  assert.deepEqual(s.store.one('SELECT context,result,inputHash,payloadHash FROM answer_attempts WHERE id=?',attempt.id),before);
+  assert.equal(answers.preview(saved.question).interfaces!.codeAdapter,'pilot-code-v3');
+  assert.throws(()=>answers.start('new-v2',saved.question,saved.buildId,saved.inputHash),/current context/);
 });

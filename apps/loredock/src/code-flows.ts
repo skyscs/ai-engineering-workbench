@@ -27,7 +27,7 @@ export function codeFlows(catalog: Catalog, buildId?: string): CodeFlows {
   const symbols: SymbolEntry[] = [], operations: OperationEntry[] = [];
   let outputBytes = 0, parsedBytes = 0, examinedDocuments = 0, comparisons = 0;
   const omit = (reason: string, count = 1) => { omissions[reason] = (omissions[reason] ?? 0) + count; };
-  const id = (...parts: unknown[]) => sha256(JSON.stringify([build.id, 'pilot-code-v2', ...parts]));
+  const id = (...parts: unknown[]) => sha256(JSON.stringify([build.id, 'pilot-code-v3', ...parts]));
   function reserve(item: FlowNode | FlowEdge | StaticFlow) {
     const refs = item.evidenceIds.filter(ref => !evidence.has(ref)).map(ref => available.get(ref)!);
     const cost = Buffer.byteLength(JSON.stringify(item)) + 1 + refs.reduce((sum, ref) => sum + Buffer.byteLength(JSON.stringify(ref)) + ref.id.length + 4, 0);
@@ -102,7 +102,7 @@ export function codeFlows(catalog: Catalog, buildId?: string): CodeFlows {
     if (stem.startsWith('../')) { omit('unresolved-import'); continue; }
     const paths = /\.(ts|js)$/.test(stem) ? [stem] : [stem + '.ts', stem + '.js', stem + '/index.ts', stem + '/index.js'];
     const targets = symbols.filter(target => target.node.sourceId === owner.node.sourceId && paths.includes(target.node.path)
-      && target.fact.exported && target.fact.name === call.imported);
+      && target.fact.exported && target.fact.role !== 'amd-function' && target.fact.name === call.imported);
     if (targets.length === 1) link('calls', owner.node, targets[0]!.node, 'static', 'A supported relative named import is called by this function/action.');
     else omit(targets.length ? 'ambiguous-import' : 'unresolved-import');
   }
@@ -218,7 +218,7 @@ export function codeFlows(catalog: Catalog, buildId?: string): CodeFlows {
   if (Object.keys(omissions).length || Object.keys(declaration.omissions).length) gaps.push('Unsupported or bounded work was omitted; inspect code and declaration coverage.');
   if (declaration.stale) gaps.push('This projection uses an older index or source registry; revoked sources are excluded.');
   if (build.status === 'partial') gaps.push('The source index is partial; excluded and failed material is unavailable.');
-  const result = { schemaVersion: 'loredock-code-flows-v1' as const, adapterVersion: 'pilot-code-v2' as const, buildId: build.id,
+  const result = { schemaVersion: 'loredock-code-flows-v1' as const, adapterVersion: 'pilot-code-v3' as const, buildId: build.id,
     policyVersion: declaration.policyVersion, sourceSetVersion: declaration.sourceSetVersion, registryVersion: declaration.registryVersion,
     stale: declaration.stale, partial: true as const, deploymentCoherence: 'unknown' as const, nodes, edges, flows,
     evidence: Object.fromEntries(evidence), gaps, omissions, declarationOmissions: declaration.omissions,

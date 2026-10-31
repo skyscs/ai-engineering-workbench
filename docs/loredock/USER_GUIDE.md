@@ -288,8 +288,8 @@ The comparison allows at most 16 entries, 128 ASCII characters per name and 512 
 per serialized names/bindings property, within the existing graph and output limits.
 Partial coverage remains visible in **Code coverage and gaps**.
 
-The header-aware adapters are `pilot-code-v2` and `json-declarations-v2`. Saved version-1
-corrections retain their original history and citations but do not attach to new link
+The current adapters are `pilot-code-v3` and `json-declarations-v2`. Saved code-adapter
+v1/v2 and declaration-adapter v1 corrections retain their history and citations but do not attach to new link
 identities. After **Update knowledge**, use **Earlier corrections** to read their
 original support; incompatible adapter records cannot be reapplied. Review the current
 link and save a new correction when appropriate. Saved answer inputs/results remain
@@ -305,6 +305,22 @@ driver analysis. Computed values, custom wrappers, inheritance/generics, unsuppo
 Vue templates and ambiguous references remain gaps. Matching names alone never
 establishes a connection; distinct declared environments or differing contract/record
 shapes suppress delivery candidates.
+
+The Dojo factory may return a named function or an object of up to 100 statically named
+function-valued properties, for example:
+
+```js
+define(['dojo/request'], function(request) {
+  return { reserve: function(data) { return request.post('/stock/reservations', { data: data }); } };
+});
+```
+
+Each recognized export has its own source range and request links. The factory must have
+one plain parameter and a single return statement. Mixed objects, duplicate/computed
+names, spread, accessors, shorthand methods, async/generator exports, changed/shadowed
+request bindings, eval/with and computed plugins remain unsupported. A module with more
+than 100 object exports is omitted as a whole. AMD properties are not ES module named
+exports. Supported syntax still does not prove that an action runs or a route is deployed.
 
 The code budget adds at most 100 files, 32 KiB per file, 256 KiB total and eight
 original spans per file to the declaration budget. Output is bounded at 160 nodes,

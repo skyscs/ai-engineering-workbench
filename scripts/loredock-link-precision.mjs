@@ -82,6 +82,7 @@ export async function qualifyLinkPrecision(services) {
   const baseline=await evaluateIncidentContext({...services,retrieveAnswerContext:(catalog,question)=>{
     const context=retrieveAnswerContext(catalog,question),before=JSON.stringify(context),selection=selectSourceCandidates(context);
     const declarations=declarationMap(catalog,context.buildId),code=codeFlows(catalog,context.buildId);
+    assert.equal(code.adapterVersion,'pilot-code-v2','Task 038 qualification requires pilot-code-v2. Use its retained report or frozen implementation; current adapter measurements need a separate report.');
     const rows=relationshipInputs(catalog,context,declarations,code),v1=selectCandidateLinks(context,selection,rows.map(row=>row.link));
     const {projections,gaps,...actual}=candidateLinkContext(catalog,context,selection);assert.deepEqual(v1,actual);
     const admitted=rows.filter(row=>structuralSubject(row.link.kind,selection.distinctiveTerms,row.fromProperties,row.toProperties,searchText));

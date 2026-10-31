@@ -73,6 +73,9 @@ They stay in a separate collapsed reading section. Autonomous routing and the Wo
 with independent/private-pilot acceptance pending.
 An [offline precision comparison](docs/fixtures/loredock-link-precision/README.md) reduces
 those lists but loses one useful configuration clue; it has not replaced production behavior.
+[Dojo object-export support](docs/fixtures/loredock-dojo-exports/README.md) subsequently
+adds the missing stock caller/route clue under code adapter v3. Current combined recall
+is 22/22, while five candidate scopes remain too broad. This remains a reading aid.
 
 ## What v0.1 does
 

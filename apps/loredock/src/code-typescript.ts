@@ -71,7 +71,7 @@ export function typescriptFacts(content: string, filePath: string): CodeFacts {
         }
       }
     }
-    // One explicitly supported AMD profile; a same-named object is not a Dojo import.
+    // Explicit AMD export profiles; a same-named object is not a Dojo import.
     if (source.statements.length === 1 && ts.isExpressionStatement(source.statements[0]!)) {
       const call = source.statements[0].expression;
       if (ts.isCallExpression(call) && ts.isIdentifier(call.expression) && call.expression.text === 'define'
@@ -79,12 +79,36 @@ export function typescriptFacts(content: string, filePath: string): CodeFacts {
         const deps = call.arguments[0]!, factory = call.arguments[1]!;
         if (ts.isArrayLiteralExpression(deps) && deps.elements.length === 1 && literal(deps.elements[0]) === 'dojo/request'
           && ts.isFunctionExpression(factory) && factory.parameters.length === 1 && ts.isIdentifier(factory.parameters[0]!.name)
+          && !factory.asteriskToken && !factory.modifiers?.some(modifier => modifier.kind === ts.SyntaxKind.AsyncKeyword)
+          && !factory.parameters[0]!.dotDotDotToken && !factory.parameters[0]!.initializer
           && factory.body.statements.length === 1 && ts.isReturnStatement(factory.body.statements[0]!)) {
           const returned = factory.body.statements[0].expression, alias = factory.parameters[0]!.name.text;
-          if (returned && ts.isFunctionExpression(returned) && returned.name && bindings.get(alias) === 1 && !assigned.has(alias)) {
-            const name = returned.name.text, symbol: SymbolFact = { key: `${name}:${returned.getStart(source)}`, name,
-              qualifiedName: name, role: 'amd-function', exported: true, start: 0, end: content.length };
-            functions.push({ symbol, body: returned.body, dojo: alias });
+          const dynamicBindings = all.some(node => ts.isWithStatement(node) || ts.isCallExpression(node)
+            && ts.isIdentifier(node.expression) && node.expression.text === 'eval');
+          if (returned && bindings.get(alias) === 1 && !assigned.has(alias) && !dynamicBindings) {
+            if (ts.isFunctionExpression(returned) && returned.name) {
+              const name = returned.name.text, symbol: SymbolFact = { key: `${name}:${returned.getStart(source)}`, name,
+                qualifiedName: name, role: 'amd-function', exported: true, start: 0, end: content.length };
+              functions.push({ symbol, body: returned.body, dojo: alias });
+            } else if (ts.isObjectLiteralExpression(returned)) {
+              if (returned.properties.length > 100) result.gaps.push('typescript-symbol-limit');
+              else {
+                const names = new Set<string>();
+                const entries = returned.properties.map(property => {
+                  if (!ts.isPropertyAssignment(property)) return;
+                  const name = propertyName(property.name), value = property.initializer;
+                  if (!name || !identifier.test(name) || name === '__proto__' || names.has(name)
+                    || !ts.isFunctionExpression(value) || value.asteriskToken
+                    || value.modifiers?.some(modifier => modifier.kind === ts.SyntaxKind.AsyncKeyword)) return;
+                  names.add(name); return { name, value, property };
+                });
+                if (entries.every(entry => entry !== undefined)) for (const { name, value, property } of entries) {
+                  const symbol: SymbolFact = { key: `${name}:${property.getStart(source)}`, name, qualifiedName: name,
+                    role: 'amd-function', exported: true, start: offset + property.getStart(source), end: offset + property.end };
+                  functions.push({ symbol, body: value.body, dojo: alias });
+                }
+              }
+            }
           }
         }
         if (!functions.length) result.gaps.push('unsupported-amd-shape');
