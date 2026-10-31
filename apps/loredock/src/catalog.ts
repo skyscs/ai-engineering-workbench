@@ -1,8 +1,8 @@
-import { createHash } from 'node:crypto';
 import { setImmediate as yieldTurn } from 'node:timers/promises';
 import path from 'node:path';
 import { SourceGit } from './git.js';
-import { exclusion, extract, extractorVersion, sha256, spans } from './extract.js';
+import { exclusion, extract, extractorVersion, gitBlobHash, sha256 } from './extract.js';
+import { readCheckpoint } from './checkpoint.js';
 import { CatalogStore, defaults, type FileRow } from './store.js';
 import { CatalogError, type Evidence, type Policy, type ProjectState, type SearchHit, type SearchResult } from './types.js';
 
@@ -45,15 +45,9 @@ export class Catalog {
       if (!['paused', 'interrupted'].includes(build.status)) throw new CatalogError('CONFLICT', 'Only a paused or interrupted index can be resumed.', 409);
       if (build.extractorVersion !== extractorVersion) throw new CatalogError('EXTRACTOR_CHANGED', 'The extractor changed. Cancel and start a new index.', 409);
       if (build.policyVersion !== this.store.project().policyVersion || this.store.buildSources(id).some(source => this.store.source(source.sourceId).status !== 'active')) throw new CatalogError('CONFLICT', 'Inputs are no longer authorized. Start a new index.', 409);
-      // Check all completed checkpoints before reusing them. No cross-build cache in L1.
-      for (const file of this.store.all<FileRow>("SELECT * FROM files WHERE buildId=? AND status='indexed'", id)) {
-        if (!file.raw || sha256(Buffer.from(file.raw)) !== file.contentHash) throw new CatalogError('CORRUPT_CHECKPOINT', 'A stored checkpoint failed validation. Cancel and index again.', 409);
-        const extracted = extract(Buffer.from(file.raw), file.path);
-        if ('reason' in extracted) throw new CatalogError('CORRUPT_CHECKPOINT', 'A stored checkpoint is no longer supported.', 409);
-        const expected = spans(extracted.text);
-        const actual = this.store.all<{ text: string; hash: string; startLine: number; endLine: number }>('SELECT text,hash,startLine,endLine FROM spans WHERE fileId=? ORDER BY startLine', file.id);
-        if (expected.length !== actual.length || actual.some((span, index) => span.text !== expected[index]!.text || span.startLine !== expected[index]!.startLine || span.endLine !== expected[index]!.endLine || sha256(span.text) !== span.hash)) throw new CatalogError('CORRUPT_CHECKPOINT', 'Stored spans failed validation.', 409);
-      }
+      const inventoried = this.store.one<{ count: number }>('SELECT count(*) AS count FROM files WHERE buildId=?', id)!.count;
+      if (inventoried > this.limits.paths || this.store.coverage(id).bytes > this.limits.totalBytes) throw new CatalogError('LIMIT_CHANGED', 'Current limits do not cover this checkpoint. Cancel and index again.', 409);
+      for (const file of this.store.all<{ id: string }>("SELECT id FROM files WHERE buildId=? AND status='indexed'", id)) readCheckpoint(this.store, file.id, this.limits.fileBytes);
       this.store.run("UPDATE builds SET status='preparing',reason=NULL WHERE id=?", id);
       // A paused worker may still be unwinding its finally block.
       const previous = this.workers.get(id);
@@ -123,17 +117,37 @@ export class Catalog {
       const reason = exclusion(file, policy, this.limits.fileBytes);
       if (reason) this.store.finishFile(file, { reason });
       else if (this.store.coverage(id).bytes + file.size > this.limits.totalBytes) this.store.finishFile(file, { reason: 'total-byte-limit' });
-      else try {
-        const bytes = await this.git.blob(source, file.blob, signal, this.limits.fileBytes);
-        const objectHash = createHash(file.blob.length === 64 ? 'sha256' : 'sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex');
-        if (bytes.length !== file.size || objectHash !== file.blob) throw new Error('Git blob size or hash changed.');
-        const result = extract(bytes, file.path);
-        this.store.finishFile(file, 'reason' in result ? result : { ...result, raw: bytes });
-      } catch (error) {
-        this.store.finishFile(file, { reason: 'read-failed', status: 'failed', error: error instanceof Error ? error.message.slice(0, 2048) : 'File read failed.' });
+      else {
+        if (this.reuse(file)) { await yieldTurn(); continue; }
+        this.store.run("UPDATE files SET gitReadAttempts=gitReadAttempts+1 WHERE id=? AND status='pending'", file.id);
+        try {
+          const bytes = await this.git.blob(source, file.blob, signal, this.limits.fileBytes);
+          if (bytes.length !== file.size || gitBlobHash(bytes, file.blob) !== file.blob) throw new Error('Git blob size or hash changed.');
+          const result = extract(bytes, file.path);
+          this.store.finishFile(file, 'reason' in result ? result : { ...result, raw: bytes });
+        } catch (error) {
+          this.store.finishFile(file, { reason: 'read-failed', status: 'failed', error: error instanceof Error ? error.message.slice(0, 2048) : 'File read failed.' });
+        }
       }
       await yieldTurn();
     }
+  }
+  private reuse(file: FileRow): boolean {
+    const build = this.store.buildRow(file.buildId);
+    if (!build.baselineBuildId) return false;
+    const previous = this.store.one<{ id: string }>(`SELECT f.id FROM files f JOIN builds b ON b.id=f.buildId JOIN sources s ON s.id=f.sourceId
+      WHERE f.buildId=? AND f.sourceId=? AND f.path=? AND f.mode=? AND f.blob=? AND f.size=? AND f.status='indexed'
+      AND s.status='active' AND b.published=1 AND b.policyVersion=? AND b.policy=? AND b.extractorVersion=?`,
+      build.baselineBuildId, file.sourceId, file.path, file.mode, file.blob, file.size, build.policyVersion, build.policy, build.extractorVersion);
+    if (!previous) return false;
+    let cached: ReturnType<typeof readCheckpoint>;
+    try { cached = readCheckpoint(this.store, previous.id, this.limits.fileBytes); }
+    catch (error) {
+      if (!(error instanceof CatalogError) || error.code !== 'CORRUPT_CHECKPOINT') throw error;
+      this.store.run("UPDATE files SET cacheRejected=1 WHERE id=? AND status='pending'", file.id); return false;
+    }
+    // Keep publication outside the cache-validation catch: DB failures must not become cache misses.
+    this.store.finishFile(file, cached, previous.id); return true;
   }
   private authorizeBuild(id: string) {
     const build = this.store.buildRow(id);

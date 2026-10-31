@@ -436,3 +436,9 @@ footer{
 .correction-history ol { padding-left: 1.3rem; }
 .correction-history li { margin-block: .8rem; overflow-wrap: anywhere; }
 .flow-card.needs-review { border-color: #c5a66a; }
+.index-changes { margin-block: 1rem; }
+.index-changes h3 { font-size: 14px; }
+.changed-files { list-style: none; padding-left: 0; }
+.changed-files li { padding-block: .6rem; border-bottom: 1px solid #dce4df; overflow-wrap: anywhere; }
+.changed-files strong { display: block; }
+.change-citations { display: flex; flex-wrap: wrap; gap: .75rem; }

@@ -3,12 +3,14 @@
 Status: Task 015 delivered the source catalog. Task 016's bounded cited-answer slice
 is owner-accepted through PR #20. Task 017's declaration map was accepted through PR #21.
 Task 018's model-free code links and partial static outlines were accepted through
-PR #22. Task 019 adds durable human relationship corrections and affected-flow review
-state; broader semantic relations, refresh/reconciliation and Context Packs remain proposed.
+PR #22. Task 019's human correction overlay was accepted through PR #23. Task 020
+adds validated text-file reuse and bounded inventory comparisons. Semantic/AI refresh,
+correction reconciliation and Context Packs remain separate work.
 See the [owner acceptance](L2_ACCEPTANCE.md),
 [map decision](../decisions/0022-loredock-declaration-map.md),
 [code-flow decision](../decisions/0023-loredock-static-code-flows.md),
 [correction decision](../decisions/0024-loredock-engineer-corrections.md),
+[refresh decision](../decisions/0025-loredock-incremental-refresh.md),
 [answer checkpoint](ANSWER_FOUNDATION.md) and [user guide](USER_GUIDE.md).
 The [executable fixture](../../fixtures/loredock/README.md) uses a smaller, versioned
 fixture manifest. Do not treat its IDs or JSON shape as a public product contract.

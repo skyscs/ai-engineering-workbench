@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { removeRefreshSchema } from './legacy-schema.js';
 import { rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { test, type TestContext } from 'node:test';
@@ -173,9 +174,10 @@ test('schema 3 migration preserves pinned evidence and existing answer bytes', a
   state.store.run(`INSERT INTO answer_attempts (id,requestId,payloadHash,question,buildId,policyVersion,registryVersion,status,inputHash,connection,model,effort,promptVersion,schemaVersion,result,createdAt)
     VALUES ('legacy','legacy','hash','Legacy question',?,1,?,'succeeded','hash','{}','fake','medium','old-prompt','old-schema',?,'2026-01-01')`, evidence.buildId, state.catalog.state().sourceSetVersion, '{"claims":[],"unknowns":["Legacy unknown?"]}');
   const before = state.store.one('SELECT * FROM answer_attempts WHERE id=\'legacy\'');
+  removeRefreshSchema(state.store);
   state.store.db.exec('DROP TABLE correction_flows; DROP TABLE correction_sources; DROP TABLE corrections; ALTER TABLE project DROP COLUMN correctionRevision; PRAGMA user_version=3;');
   await state.restart();
-  assert.equal(state.store.one<{ user_version: number }>('PRAGMA user_version')!.user_version, 4);
+  assert.equal(state.store.one<{ user_version: number }>('PRAGMA user_version')!.user_version, 5);
   assert.equal(state.catalog.state().correctionRevision, 0); assert.deepEqual(state.catalog.evidence(ref.id), evidence);
   assert.deepEqual(state.store.one('SELECT * FROM answer_attempts WHERE id=\'legacy\''), before);
   assert.equal(state.corrections.save(input(state.catalog, state.corrections)).version, 1);

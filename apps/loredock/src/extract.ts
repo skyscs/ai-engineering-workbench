@@ -4,6 +4,8 @@ import { safePath, type TreeEntry } from './git.js';
 import type { Policy } from './types.js';
 
 export const sha256 = (value: string | Buffer) => createHash('sha256').update(value).digest('hex');
+export const gitBlobHash = (bytes: Buffer, objectId: string) => createHash(objectId.length === 64 ? 'sha256' : 'sha1')
+  .update(`blob ${bytes.length}\0`).update(bytes).digest('hex');
 export const extractorVersion = 'text-v1';
 export function exclusion(entry: TreeEntry, policy: Policy, fileBytes: number): string | null {
   if (!safePath(entry.path)) return 'unsafe-path';

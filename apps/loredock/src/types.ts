@@ -11,6 +11,7 @@ export interface Build {
   id: string; status: BuildStatus; policyVersion: number; sourceSetVersion: number; createdAt: string;
   extractorVersion: string;
   reason: string | null; published: boolean; sources: BuildSource[]; coverage: Coverage;
+  refresh: { baselineBuildId: string | null; version: string | null; reusedFiles: number; gitReadAttempts: number; cacheRejections: number };
 }
 export interface ProjectState {
   name: string; policy: Policy; policyVersion: number; sourceSetVersion: number; correctionRevision: number;

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
-import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -185,9 +185,12 @@ try {
   const reviewedDaemon = start(process.execPath, ['dist/index.js'], daemonDir, env); await ready(reviewedDaemon);
   await page.send('Page.reload'); await text('Historical correction: local delivery');
   assert.equal(await evaluate("document.querySelectorAll('.flow-card.needs-review').length"), 2);
-  await click('Index sources');
+  await click('Update knowledge');
   await waitFor(() => evaluate(`fetch('/api/project').then(r=>r.json()).then(p=>p.publishedBuildId!==${JSON.stringify(firstIndex)})`), 'Second index did not publish.');
   await waitFor(() => evaluate("document.querySelector('[aria-label=\"Index version\"]').options.length===3"), 'Index history did not refresh.');
+  await text('No committed file changes since the previous index.');
+  await evaluate("document.querySelector('.change-details').open=true");
+  await text('18 text files reused · 3 Git file read attempts · 0 cache validation failures');
   await waitFor(() => evaluate("document.querySelectorAll('.human-correction').length===0 && document.querySelectorAll('.flow-card.needs-review').length===0"), 'A new index inherited an old correction.');
   await evaluate(`(()=>{const e=document.querySelector('[aria-label="Index version"]');e.value=${JSON.stringify(firstIndex)};e.dispatchEvent(new Event('change',{bubbles:true}));})()`);
   await text('This map uses an older index');
@@ -198,6 +201,27 @@ try {
   await waitFor(() => evaluate("!document.querySelector('.system-map').innerText.includes('This map uses an older index')"), 'Map did not select the current index.');
   await waitFor(() => evaluate("document.querySelector('.code-flows')?.innerText.includes('2 static flow outlines') && !document.querySelector('.code-flows').innerText.includes('These flows use an older index')"), 'Flows did not select the current index.');
   await waitFor(() => evaluate("document.querySelectorAll('.human-correction').length===0"), 'Historical corrections remained on the current index.');
+  const secondIndex = await evaluate("fetch('/api/project').then(r=>r.json()).then(p=>p.publishedBuildId)");
+  const apiReadme = path.join(fixture.root, 'sources/order-api/README.md');
+  await writeFile(apiReadme, await readFile(apiReadme, 'utf8') + '\nRefreshBrowserMarker: committed refresh demonstration.\n');
+  fixtureGit(fixture.root, 'order-api', ['add', 'README.md']); fixtureGit(fixture.root, 'order-api', ['commit', '-qm', 'Change the owned refresh README']);
+  await rename(path.join(fixture.root, 'sources/order-worker/README.md'), path.join(fixture.root, 'sources/order-worker/REFRESH.md'));
+  fixtureGit(fixture.root, 'order-worker', ['add', '--all']); fixtureGit(fixture.root, 'order-worker', ['commit', '-qm', 'Move an owned document to test added and removed paths']);
+  await click('Update knowledge');
+  await waitFor(() => evaluate(`fetch('/api/project').then(r=>r.json()).then(p=>p.publishedBuildId!==${JSON.stringify(secondIndex)})`), 'Changed refresh did not publish.');
+  await text('1 added · 1 changed · 1 removed · 0 coverage changes · 0 not comparable');
+  await evaluate("document.querySelector('.change-details').open=true");
+  await text('16 text files reused · 5 Git file read attempts · 0 cache validation failures');
+  await evaluate("[...document.querySelectorAll('.changed-files li')].find(e=>e.innerText.includes('order-api / README.md')).querySelectorAll('button')[1].click()");
+  await waitFor(() => evaluate("document.querySelector('.evidence pre')?.innerText.includes('RefreshBrowserMarker')"), 'Selected-index change citation did not open.');
+  await evaluate("[...document.querySelectorAll('.changed-files li')].find(e=>e.innerText.includes('order-api / README.md')).querySelectorAll('button')[0].click()");
+  await waitFor(() => evaluate("document.querySelector('.evidence pre') && !document.querySelector('.evidence pre').innerText.includes('RefreshBrowserMarker')"), 'Previous change citation did not stay pinned.');
+  await evaluate("document.querySelector('.index-changes').scrollIntoView()");
+  await writeFile(path.join(output, 'refresh-desktop.png'), Buffer.from((await page.send('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
+  await page.send('Emulation.setDeviceMetricsOverride', { width: 390, height: 900, deviceScaleFactor: 1, mobile: true });
+  assert.equal(await evaluate('document.documentElement.scrollWidth<=390'), true);
+  await writeFile(path.join(output, 'refresh-mobile.png'), Buffer.from((await page.send('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
+  await page.send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 1200, deviceScaleFactor: 1, mobile: false });
   await input('source-query', 'orders.placed.v2'); await click('Search'); await text('3 matching passages');
   await evaluate("[...document.querySelectorAll('button.result')].find(b=>b.querySelector('.result-meta').textContent.startsWith('order-api')).click()");
   await text('Source evidence');
@@ -249,12 +273,14 @@ try {
   await input('source-query', 'OrderConsumer'); await click('Search'); await text('matching passages');
   assert.equal(await evaluate("document.querySelectorAll('[role=alert]').length"), 0);
   for (const id of repositoryIds) assert.equal(fixtureGit(fixture.root, id, ['status', '--porcelain=v1']), '');
-  const result = { schemaVersion: 'loredock-browser/4', sources: 3, initialIndexedFiles: 18, initialExcludedFiles: 9,
+  const result = { schemaVersion: 'loredock-browser/5', sources: 3, initialIndexedFiles: 18, initialExcludedFiles: 9,
     systemMap: { repositories: 3, declarations: 16, crossRepositoryClues: 2, routeCitation: true, contractCitation: true, escapedLabels: true, historicalSelection: true, revocation: true },
     codeFlows: { outlines: 2, candidateCodeLinks: 4, writeCitation: true, latestCitationWins: true, unresolvedWiringVisible: true, historicalSelection: true, revocation: true, restart: true },
     engineerCorrections: { dispute: true, scopedClarification: true, originalClaimPreserved: true, twoFlowsInvalidated: true, concurrentDraftPreserved: true, history: true, withdrawal: true,
       escapedText: true, restart: true, newIndexIsolation: true, historicalSelection: true, lateResponseFencing: true, revokedHistoryUnavailable: true },
-    fixtureVariation: 'Owned temporary package name contains adversarial HTML; frozen corpus files are unchanged.',
+    knowledgeRefresh: { unchangedReusedFiles: 18, unchangedGitReadAttempts: 3, changedReusedFiles: 16, changedGitReadAttempts: 5,
+      added: 1, changed: 1, removed: 1, previousCitation: true, selectedCitation: true, mobileWidth: 390 },
+    fixtureVariation: 'Owned temporary package name contains adversarial HTML; an API README changes and a worker README moves during refresh. Frozen templates are unchanged.',
     topicMatches: 3, evidenceOpened: true, keyboardFocus: true, mobileWidth: 390, sourceRevocation: true,
     policyFencing: true, reindex: true, restartPersistence: true, sourceCheckoutsUnchanged: true, modelRequests: 0 };
   await writeFile(path.join(output, 'browser-result.json'), JSON.stringify(result, null, 2) + '\n');

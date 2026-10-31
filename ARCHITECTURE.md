@@ -13,6 +13,8 @@ are described in [ADR 0023](docs/decisions/0023-loredock-static-code-flows.md).
 Schema 4 adds a separate human correction overlay and affected-flow review state;
 see [ADR 0024](docs/decisions/0024-loredock-engineer-corrections.md). Source projection
 contracts and Workbench storage remain unchanged.
+Schema 5 adds a fixed update baseline, validated extraction reuse and bounded inventory
+comparison; see [ADR 0025](docs/decisions/0025-loredock-incremental-refresh.md).
 
 ## Architectural style
 

@@ -1,0 +1,422 @@
+{
+  "schemaVersion": "loredock-refresh-evaluation/1",
+  "checkedAt": "2026-10-31T07:50:33.643Z",
+  "databaseVersion": 5,
+  "modelRequests": 0,
+  "modelUsage": null,
+  "originalRevisionVector": {
+    "portal": "603a69798dc12c3205e88d0498881b0c01079932",
+    "order-api": "237510937b4388fc718b7e9f93869954950df1bb",
+    "order-worker": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37"
+  },
+  "changedRevisionVector": {
+    "portal": "24de6072f339addce6f54e5649c2b885d4ffb6b0",
+    "order-api": "7322d3257b321a0529a5a8359eee6c2b3c8d1f36",
+    "order-worker": "38a546dcd621beabb523b70d2fc6f15c928006f7"
+  },
+  "sourceCheckoutsPreservedDuringIndexing": true,
+  "controlledFixtureChanges": "Change API README, add a packaged worker consumer, remove the legacy client; frozen templates are unchanged.",
+  "totalGitBlobReadAttempts": 29,
+  "initial": {
+    "buildId": "9af66bc0-7f4a-41c1-9680-da197d670572",
+    "metrics": {
+      "baselineBuildId": null,
+      "version": "git-reuse-v1",
+      "reusedFiles": 0,
+      "gitReadAttempts": 21,
+      "cacheRejections": 0
+    }
+  },
+  "unchanged": {
+    "schemaVersion": "loredock-index-changes-v1",
+    "buildId": "3c5450ee-e13d-4168-b838-030eb4151409",
+    "baselineBuildId": "9af66bc0-7f4a-41c1-9680-da197d670572",
+    "policyVersion": 1,
+    "registryVersion": 4,
+    "stale": false,
+    "comparison": "update",
+    "complete": true,
+    "counts": {
+      "initial": 0,
+      "added": 0,
+      "changed": 0,
+      "removed": 0,
+      "unchanged": 27,
+      "coverageChanged": 0,
+      "uncompared": 0
+    },
+    "sources": [
+      {
+        "sourceId": "21ccaa7c-a8ae-4a0f-a3a6-95530418e0c0",
+        "name": "portal",
+        "previousRevision": "603a69798dc12c3205e88d0498881b0c01079932",
+        "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+        "isNew": false,
+        "inventoryComplete": true,
+        "counts": {
+          "initial": 0,
+          "added": 0,
+          "changed": 0,
+          "removed": 0,
+          "unchanged": 9,
+          "coverageChanged": 0,
+          "uncompared": 0
+        }
+      },
+      {
+        "sourceId": "b183b661-17fa-4e4e-91c2-7d9030ab1588",
+        "name": "order-api",
+        "previousRevision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "isNew": false,
+        "inventoryComplete": true,
+        "counts": {
+          "initial": 0,
+          "added": 0,
+          "changed": 0,
+          "removed": 0,
+          "unchanged": 10,
+          "coverageChanged": 0,
+          "uncompared": 0
+        }
+      },
+      {
+        "sourceId": "48f025e8-c192-456e-81cb-8b621b5300f7",
+        "name": "order-worker",
+        "previousRevision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "isNew": false,
+        "inventoryComplete": true,
+        "counts": {
+          "initial": 0,
+          "added": 0,
+          "changed": 0,
+          "removed": 0,
+          "unchanged": 8,
+          "coverageChanged": 0,
+          "uncompared": 0
+        }
+      }
+    ],
+    "files": [],
+    "omittedDetails": 0,
+    "gaps": [
+      "Source analysis has coverage gaps. File-inventory comparison does not establish complete understanding or deployment."
+    ],
+    "metrics": {
+      "reusedFiles": 18,
+      "gitReadAttempts": 3,
+      "cacheRejections": 0
+    },
+    "limits": {
+      "filesPerIndex": 10000,
+      "details": 100,
+      "outputBytes": 524288
+    }
+  },
+  "changed": {
+    "schemaVersion": "loredock-index-changes-v1",
+    "buildId": "55dcea61-433c-4dce-b267-3307352a9f36",
+    "baselineBuildId": "3c5450ee-e13d-4168-b838-030eb4151409",
+    "policyVersion": 1,
+    "registryVersion": 4,
+    "stale": false,
+    "comparison": "update",
+    "complete": true,
+    "counts": {
+      "initial": 0,
+      "added": 1,
+      "changed": 1,
+      "removed": 1,
+      "unchanged": 25,
+      "coverageChanged": 0,
+      "uncompared": 0
+    },
+    "sources": [
+      {
+        "sourceId": "21ccaa7c-a8ae-4a0f-a3a6-95530418e0c0",
+        "name": "portal",
+        "previousRevision": "603a69798dc12c3205e88d0498881b0c01079932",
+        "revision": "24de6072f339addce6f54e5649c2b885d4ffb6b0",
+        "isNew": false,
+        "inventoryComplete": true,
+        "counts": {
+          "initial": 0,
+          "added": 0,
+          "changed": 0,
+          "removed": 1,
+          "unchanged": 8,
+          "coverageChanged": 0,
+          "uncompared": 0
+        }
+      },
+      {
+        "sourceId": "b183b661-17fa-4e4e-91c2-7d9030ab1588",
+        "name": "order-api",
+        "previousRevision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "revision": "7322d3257b321a0529a5a8359eee6c2b3c8d1f36",
+        "isNew": false,
+        "inventoryComplete": true,
+        "counts": {
+          "initial": 0,
+          "added": 0,
+          "changed": 1,
+          "removed": 0,
+          "unchanged": 9,
+          "coverageChanged": 0,
+          "uncompared": 0
+        }
+      },
+      {
+        "sourceId": "48f025e8-c192-456e-81cb-8b621b5300f7",
+        "name": "order-worker",
+        "previousRevision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "revision": "38a546dcd621beabb523b70d2fc6f15c928006f7",
+        "isNew": false,
+        "inventoryComplete": true,
+        "counts": {
+          "initial": 0,
+          "added": 1,
+          "changed": 0,
+          "removed": 0,
+          "unchanged": 8,
+          "coverageChanged": 0,
+          "uncompared": 0
+        }
+      }
+    ],
+    "files": [
+      {
+        "sourceId": "21ccaa7c-a8ae-4a0f-a3a6-95530418e0c0",
+        "sourceName": "portal",
+        "path": "legacy/orders.js",
+        "change": "removed",
+        "previousStatus": "indexed",
+        "status": null,
+        "previousEvidenceId": "9b347816-643f-4692-818d-12c6eec08a88",
+        "evidenceId": null
+      },
+      {
+        "sourceId": "b183b661-17fa-4e4e-91c2-7d9030ab1588",
+        "sourceName": "order-api",
+        "path": "README.md",
+        "change": "changed",
+        "previousStatus": "indexed",
+        "status": "indexed",
+        "previousEvidenceId": "43072080-1690-4516-923c-280a0964aa26",
+        "evidenceId": "543ac534-d357-4c08-8d5b-4ea475be48ed"
+      },
+      {
+        "sourceId": "48f025e8-c192-456e-81cb-8b621b5300f7",
+        "sourceName": "order-worker",
+        "path": "src/main/java/AuditConsumer.java",
+        "change": "added",
+        "previousStatus": null,
+        "status": "indexed",
+        "previousEvidenceId": null,
+        "evidenceId": "c3a073e9-ef76-4da6-8eb8-4dc6cbae419b"
+      }
+    ],
+    "omittedDetails": 0,
+    "gaps": [
+      "Source analysis has coverage gaps. File-inventory comparison does not establish complete understanding or deployment."
+    ],
+    "metrics": {
+      "reusedFiles": 16,
+      "gitReadAttempts": 5,
+      "cacheRejections": 0
+    },
+    "limits": {
+      "filesPerIndex": 10000,
+      "details": 100,
+      "outputBytes": 524288
+    }
+  },
+  "newEvidenceIdsIndependent": true,
+  "resolvingNewEvidenceCount": 18,
+  "evidence": [
+    {
+      "id": "0f4de7f0-ac48-4e23-a4f6-cd5ba7001e2d",
+      "path": "README.md",
+      "sourceName": "portal",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "4dfe0f8ac50f0e8b4584e0921c5a89bc684da3f98f9adc3575f0ae17e1c9fd21",
+      "spanHash": "f1a427a5ffb83d875e5886c6cc93b726398eaa20dd24814547877e473d6e7ff0"
+    },
+    {
+      "id": "8810dbce-dc7a-49fc-9edf-e6779df2f79a",
+      "path": "config/local.json",
+      "sourceName": "portal",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "startLine": 1,
+      "endLine": 4,
+      "contentHash": "37c4ae84a8ccb522960504104dc3e316ec96e96c086bee933642fcdd3fe6b608",
+      "spanHash": "67a825e39e7134139a3ce2ac0c1f29d8d0d0492996dbccd38a920ff61d6dc2e6"
+    },
+    {
+      "id": "9b347816-643f-4692-818d-12c6eec08a88",
+      "path": "legacy/orders.js",
+      "sourceName": "portal",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "startLine": 1,
+      "endLine": 9,
+      "contentHash": "6d02218565b2f0d038ea728d6864dbb7d74646ceed19a1d33fb3e131a3a9a293",
+      "spanHash": "0ae6936df7c26fb7dbd3687767d6a715072efe11fd99984ea787babad5803660"
+    },
+    {
+      "id": "7347e738-7216-4cdf-992e-f4cadf4f029f",
+      "path": "package.json",
+      "sourceName": "portal",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "5f63d7d05c7735f4c3622fb837b73a7687fc98568d045ba2a7435d7ea6eb5ff9",
+      "spanHash": "def4bb90c7800c739a3a0feee0a88bf4fc9ad30b6b1e65cf8c7d5eb9b11c44e5"
+    },
+    {
+      "id": "0eb0095f-5799-4fcc-8be8-ba166d2c777b",
+      "path": "src/Checkout.vue",
+      "sourceName": "portal",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "9ad7d244165172b4eb462d0caeb022f0f56a74db743e8ec28be9e8b030e2ba88",
+      "spanHash": "c1278bb00a3fff9da6bc38632730566dced1a99d666d2cf715c69c67d3db6892"
+    },
+    {
+      "id": "93b76cb4-ce7a-4e37-9e19-c286fe1ca7e7",
+      "path": "src/orders.ts",
+      "sourceName": "portal",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "startLine": 1,
+      "endLine": 9,
+      "contentHash": "39e7b2a6ae1d45a2fbdc3903cd9f4d8c79419c6ba5f72c40de7aca6b5d0da410",
+      "spanHash": "994d43c6d111270cceaed9b5db6474c1442057b3973c9fb8facf2927317e58b8"
+    },
+    {
+      "id": "43072080-1690-4516-923c-280a0964aa26",
+      "path": "README.md",
+      "sourceName": "order-api",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 8,
+      "contentHash": "0bdd3acf2cde47a3fe1e587e9bcf8bb0d749e2507c5e0633a6aa30073d479e61",
+      "spanHash": "d3dd0008002d24d265b4b45c5f69035416b6fd28c95d840db483c233bb6a228f"
+    },
+    {
+      "id": "b4adc02d-e685-44e9-a294-addb9a27d523",
+      "path": "config/local.json",
+      "sourceName": "order-api",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 5,
+      "contentHash": "d407e198084d63c25904025f9420ab898b3660c545e90999124137dbfc7d865f",
+      "spanHash": "d8813b8db303e2a761a757727b3cbceba5cdb81d5955106448c8797bec35c391"
+    },
+    {
+      "id": "f6f0d66c-0a57-4231-b331-97612d8433dc",
+      "path": "config/routes.json",
+      "sourceName": "order-api",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "161e949a54ab2ab99648cd5dd07de4c4115d554d411e85dfc919412877e00a5e",
+      "spanHash": "bf02b9ad422fda91b66ace23870e9d0b142f550071231acbd668eb3c439b833d"
+    },
+    {
+      "id": "13786a7f-c685-4de2-9fb9-dbc42a230410",
+      "path": "contracts/OrderPlaced.json",
+      "sourceName": "order-api",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 8,
+      "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+      "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+    },
+    {
+      "id": "7cc4b978-7361-4881-a2a1-b1522592ac7e",
+      "path": "notes/source-instructions.txt",
+      "sourceName": "order-api",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 3,
+      "contentHash": "06c1a905e0574514e3aed8d0ef9961c502904d7d22f79916e8e5628789536375",
+      "spanHash": "5e9076ad5790f8713900c5277f6ddc98424f80d38405ba93be91d9d7dde31354"
+    },
+    {
+      "id": "05bea7ee-ea08-4ec5-909f-1ffd868455e5",
+      "path": "pom.xml",
+      "sourceName": "order-api",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 8,
+      "contentHash": "b172e59a5d5d42a72e5ea68af530d6ba7ba489d92de52dba4d2a636febdf1781",
+      "spanHash": "25fd73a9ec439d548e2c0620860fad2bcfc7f3232fffc356edd05dff015c7265"
+    },
+    {
+      "id": "8b27b69f-7d2f-43c5-93a9-7281b75100ce",
+      "path": "src/main/java/Orders.java",
+      "sourceName": "order-api",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 18,
+      "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+      "spanHash": "fb97e2aa5ace7f6292dd5007aa417217edc8d0b828793f822b3d0666df87cf52"
+    },
+    {
+      "id": "be6f81b0-d0af-4861-b3b7-4dfa079bd5d8",
+      "path": "README.md",
+      "sourceName": "order-worker",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "1fe2344c9f7d46ff007c9eb29b363b6a5a89be1e5312548ffa27ff982beb1794",
+      "spanHash": "17ab0aa5c6f8906333765b15f8640ee2836b97e50284a2a4455d614d6d4a5a62"
+    },
+    {
+      "id": "e87da2f5-7d22-41bb-bdd9-8eb7b4beeec5",
+      "path": "config/local.json",
+      "sourceName": "order-worker",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+    },
+    {
+      "id": "78266858-3e80-4732-858c-260a37710749",
+      "path": "contracts/OrderPlaced.json",
+      "sourceName": "order-worker",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "startLine": 1,
+      "endLine": 8,
+      "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+      "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+    },
+    {
+      "id": "c34b0a38-9e5f-4905-a2a6-80f96cc40fe1",
+      "path": "pom.xml",
+      "sourceName": "order-worker",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "startLine": 1,
+      "endLine": 8,
+      "contentHash": "4b2c11e0362e4b34f4f29f36a753437208f56a3f83536ad9664fcb1bd9fe7758",
+      "spanHash": "0202d9dc6c3ad381d3128d70dac6d4f2d48c34d2fdf4e7c3bb546415c9297e1f"
+    },
+    {
+      "id": "4021ced7-cb70-4f36-b4f6-39943523b91f",
+      "path": "src/main/java/OrderConsumer.java",
+      "sourceName": "order-worker",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "startLine": 1,
+      "endLine": 18,
+      "contentHash": "bc2c347b007865acd3044b52dba791f7f37abd235f5c406c06b4cf2f3516dfb0",
+      "spanHash": "0857fab150aee7933a73591e087863fbe1c349649f5d10c8ab0a7a0205c870f8"
+    }
+  ],
+  "addedConsumerDiscovered": true,
+  "historicalLegacyClientAvailable": true,
+  "scope": "Validated deterministic file reuse and inventory changes only; no AI-unit cache, correction reconciliation or full L4 acceptance."
+}

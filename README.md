@@ -10,7 +10,9 @@ source citations. A declaration map shows scoped routes, contracts and configura
 comparisons. Two bounded static flow outlines connect supported Vue/TypeScript and
 Dojo client code to Java interface calls, with candidate hops and unresolved wiring.
 Engineers can dispute/clarify those links, record environment scope and retain review
-history; affected outlines are marked for review. Indexing, source search and map review
+history; affected outlines are marked for review. **Update knowledge** reuses validated
+unchanged text and shows committed file changes while retaining earlier indexes.
+Indexing, source search and map review
 need no Codex configuration or model calls.
 
 After the shared installation/build steps below, run `pnpm loredock` and open
@@ -150,7 +152,7 @@ and external registered repositories; Markdown export is not a backup.
 | Integrate with the local HTTP API | [Session and transport](docs/local-api.md), then feature API tables |
 | Inspect validation and development history | [Release acceptance](docs/release-acceptance.md), [development status](docs/development-status.md) |
 | Use the LoreDock source catalog | [LoreDock guide](docs/loredock/USER_GUIDE.md), [browser acceptance](docs/fixtures/loredock-catalog/README.md) — local indexing and cited source search implemented |
-| Review the next development direction | [LoreDock-first roadmap](docs/loredock/PLAN.md), [answer pilot](docs/loredock/ANSWER_FOUNDATION.md), [draft review](docs/loredock/REVIEW.md) — declaration clues, partial static flows and engineer corrections are available; broader orientation, refresh, scale and Workbench integration remain planned |
+| Review the next development direction | [LoreDock-first roadmap](docs/loredock/PLAN.md), [answer pilot](docs/loredock/ANSWER_FOUNDATION.md), [draft review](docs/loredock/REVIEW.md) — declaration clues, partial flows, engineer corrections and validated file refresh are available; broader orientation, reconciliation, scale and Workbench integration remain planned |
 | Inspect the earlier interaction prototype | [Interaction prototype](prototypes/investigation/README.md), [UX plan](docs/ux-simplification-plan.md) — sample data, no model calls |
 
 For development, `pnpm dev` rebuilds internal packages and starts the UI on

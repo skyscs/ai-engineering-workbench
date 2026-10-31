@@ -5,6 +5,7 @@ import './style.css';
 import { api } from './api';
 import { AnswerPanel } from './AnswerPanel';
 import { SystemMap } from './SystemMap';
+import { IndexChangeView } from './IndexChanges';
 
 function App() {
   const [state, setState] = useState<ProjectState>();
@@ -98,11 +99,12 @@ function App() {
             <button className="primary" disabled={busy || !activeSources.length || Boolean(unfinished)} onClick={() => void act(async () => {
               pendingStart.current ??= { requestId: crypto.randomUUID(), sourceSetVersion: state.sourceSetVersion, policyVersion: state.policyVersion };
               await api('/builds', 'POST', pendingStart.current); pendingStart.current = undefined; setSelected('');
-            })}>Index sources</button></div>
+            })}>{published ? 'Update knowledge' : 'Index sources'}</button></div>
           {!latest ? <div className="empty"><strong>{activeSources.length ? 'Ready when you are.' : 'Add your first repository.'}</strong><p>The index will make committed text searchable and show what was excluded.</p></div> : <>
             <div role="status" className="progress"><strong>{latest.status === 'partial' ? 'Indexed with coverage gaps' : latest.status[0]!.toUpperCase() + latest.status.slice(1).replaceAll('_', ' ')}</strong>
               <span>{latest.coverage.indexed} indexed · {latest.coverage.excluded} excluded · {latest.coverage.failed} failed · {latest.coverage.pending} pending</span></div>
             {latest.reason && <p className="muted">{latest.reason}</p>}
+            {unfinished && published && <p className="notice">Updating knowledge. The previous published index remains available.</p>}
             {unfinished && <div className="actions">
               {['preparing', 'running'].includes(latest.status) && <button disabled={busy} onClick={() => void act(async () => { await api(`/builds/${latest.id}/pause`, 'POST'); })}>Pause</button>}
               {['paused', 'interrupted'].includes(latest.status) && <button disabled={busy} onClick={() => void act(async () => { await api(`/builds/${latest.id}/resume`, 'POST'); })}>Resume</button>}
@@ -118,6 +120,7 @@ function App() {
               <button disabled={busy || latest.policyVersion !== state.policyVersion} onClick={() => void act(async () => { setGaps((await api<{ files: NonNullable<typeof gaps> }>(`/builds/${latest.id}/files`)).files); })}>Show excluded and failed files</button>
               {gaps && <div className="gaps"><p>Up to 100 file records are shown. Counts above cover the full inventory.</p>{gaps.map((file, index) => <p key={index}><code>{file.path}</code> — {file.reason}{file.error ? `: ${file.error}` : ''}</p>)}</div>}
             </details>
+            <IndexChangeView buildId={searchBuild} boundary={`${boundary.current}:${published}`} openEvidence={id => void openEvidence(id)} />
           </>}
         </div>
         <SystemMap buildId={searchBuild} boundary={`${boundary.current}:${published}`} correctionRevision={state.correctionRevision}
