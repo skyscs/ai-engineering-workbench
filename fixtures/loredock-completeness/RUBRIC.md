@@ -440,4 +440,3 @@ Forbidden assertions:
 - [ ] Review every additional claim and preserve source disagreements.
 - [ ] Record semantic judgments separately from evidence availability.
 - [ ] Obtain independent human review before claiming acceptance.
-

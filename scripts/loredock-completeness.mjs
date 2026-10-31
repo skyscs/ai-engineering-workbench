@@ -167,7 +167,7 @@ export function renderCompletenessRubric() {
 if (process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url) {
   assert.ok(process.argv.length === 2 || process.argv.length === 3 && process.argv[2] === '--rubric',
     'Usage: node scripts/loredock-completeness.mjs [--rubric]');
-  if (process.argv[2] === '--rubric') { await verifyCompletenessBaseline(); console.log(renderCompletenessRubric()); }
+  if (process.argv[2] === '--rubric') { await verifyCompletenessBaseline(); process.stdout.write(renderCompletenessRubric()); }
   else {
     const modules = await Promise.all(['catalog', 'store', 'answer-context', 'answers'].map(name => import(`../apps/loredock/dist/${name}.js`)));
     console.log(JSON.stringify(await evaluateCompleteness(Object.assign({}, ...modules)), null, 2));
