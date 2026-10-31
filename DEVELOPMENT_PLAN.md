@@ -83,8 +83,11 @@ context is unchanged and automatic routing remains unavailable.
 context with original evidence on both sides. Union recall reaches 21/22, but list sizes
 grow to 1–8 and only four cases meet both useful scope conditions. The primary policy
 and answer context stay unchanged; extra links remain collapsed reading clues.
-Next: qualify more precise relationship anchoring on fresh frozen adversarial examples
-before replacing the v1 rule. Preserve all failed evaluations;
+[Task 038](tasks/038-loredock-link-precision-qualification.md) evaluates a frozen structural
+subject filter offline. It meets all size bounds and eight combined conditions, but loses
+a useful configuration clue: recall is 20/22. Production v1 remains unchanged.
+Next: freeze and implement literal AMD object exports in the bounded dojo/request profile,
+with binding guards and versioned original-evidence semantics. Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
 Broader synthesis, adapters, semantic/AI refresh and scale acceptance remain separate.

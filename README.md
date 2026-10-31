@@ -71,6 +71,8 @@ remain in Other matches. Optional [related-source clues](docs/fixtures/loredock-
 recover 21/22 when combined with the primary list, but widen scope to 1–8 repositories.
 They stay in a separate collapsed reading section. Autonomous routing and the Workbench bridge remain planned,
 with independent/private-pilot acceptance pending.
+An [offline precision comparison](docs/fixtures/loredock-link-precision/README.md) reduces
+those lists but loses one useful configuration clue; it has not replaced production behavior.
 
 ## What v0.1 does
 
