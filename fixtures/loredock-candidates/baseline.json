@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "loredock-candidate-design/1",
+  "frozenAt": "2026-10-31T21:05:24.141Z",
+  "sourceHashes": {
+    "fixtures/loredock-candidates/cases.mjs": "de6b44459767059a1486e3109b3dd19c12bc2b56cb98d642b13bc1cb81ea4cc6",
+    "tasks/036-loredock-source-candidate-preview.md": "e9fa52dc38d37d0981eb37d8ba83ab7d5d6a3c1745663d7fca9d75146fa2445a"
+  }
+}
