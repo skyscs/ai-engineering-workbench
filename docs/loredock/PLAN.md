@@ -67,8 +67,11 @@ Other matches. The broader answer context remains unchanged.
 [Task 037](../../tasks/037-loredock-related-candidates.md) adds optional direct related-source
 clues with original evidence, recovering 21/22 critical occurrences but meeting both
 useful scope conditions in only four cases because the union grows to 1–8 sources.
-Next: qualify more precise relationship anchoring on fresh frozen adversarial examples,
-preserving original evidence and
+[Task 038](../../tasks/038-loredock-link-precision-qualification.md) evaluates a structural
+subject filter offline: sizes fit every bound and eight combined conditions pass, but
+recall falls to 20/22. Production v1 remains unchanged.
+Next: freeze and implement literal AMD object exports in the bounded dojo/request profile,
+preserving binding guards, versioned original evidence and
 unverified link scope. No tuning on the observed model answers is included.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale

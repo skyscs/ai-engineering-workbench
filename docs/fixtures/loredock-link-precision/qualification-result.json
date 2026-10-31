@@ -1,0 +1,3929 @@
+{
+  "schemaVersion": "loredock-link-precision-qualification/1",
+  "checkedAt": "2026-10-31T21:46:44.934Z",
+  "examples": {
+    "frozen": {
+      "schemaVersion": "loredock-link-precision-design/1",
+      "frozenAt": "2026-10-31T21:45:22.021361+00:00",
+      "sourceHashes": {
+        "fixtures/loredock-link-precision/DESIGN.md": "aee72e686fa72341a375bb00ac913ba882f9d33bd5067f453cffa2eaafe5220a",
+        "fixtures/loredock-link-precision/cases.mjs": "ee70099c462b49f5ca9b66102fd367b0eb497fb973f48c3e294e0f8eeba0e3d7"
+      }
+    },
+    "results": [
+      {
+        "id": "p01",
+        "expected": true,
+        "actual": true,
+        "reason": "A literal route subject matches."
+      },
+      {
+        "id": "p02",
+        "expected": false,
+        "actual": false,
+        "reason": "Unrelated prose cannot anchor another route."
+      },
+      {
+        "id": "p03",
+        "expected": false,
+        "actual": false,
+        "reason": "Header carriers alone are not the route subject."
+      },
+      {
+        "id": "p04",
+        "expected": true,
+        "actual": true,
+        "reason": "A contract name is a subject."
+      },
+      {
+        "id": "p05",
+        "expected": true,
+        "actual": true,
+        "reason": "A field name is a subject."
+      },
+      {
+        "id": "p06",
+        "expected": false,
+        "actual": false,
+        "reason": "A generic field type is not a subject."
+      },
+      {
+        "id": "p07",
+        "expected": true,
+        "actual": true,
+        "reason": "A removed field can identify a comparison without proving a runtime conflict."
+      },
+      {
+        "id": "p08",
+        "expected": false,
+        "actual": false,
+        "reason": "Equal configuration does not establish a component relationship."
+      },
+      {
+        "id": "p09",
+        "expected": false,
+        "actual": false,
+        "reason": "Different configuration does not establish a component relationship."
+      },
+      {
+        "id": "p10",
+        "expected": true,
+        "actual": true,
+        "reason": "A publisher payload type identifies an event subject."
+      },
+      {
+        "id": "p11",
+        "expected": false,
+        "actual": false,
+        "reason": "A topic expression alone is excluded by this deliberately narrow proposal."
+      },
+      {
+        "id": "p12",
+        "expected": false,
+        "actual": false,
+        "reason": "No distinctive terms means no subject affinity."
+      },
+      {
+        "id": "p13",
+        "expected": false,
+        "actual": false,
+        "reason": "Unsupported edge kinds are not admitted."
+      },
+      {
+        "id": "p14",
+        "expected": false,
+        "actual": false,
+        "reason": "Display names are not subject evidence."
+      },
+      {
+        "id": "p15",
+        "expected": true,
+        "actual": true,
+        "reason": "Production normalization retains whole-token case-insensitive matches."
+      },
+      {
+        "id": "p16",
+        "expected": false,
+        "actual": false,
+        "reason": "Substring overlap is insufficient."
+      }
+    ],
+    "passed": 16
+  },
+  "results": [
+    {
+      "id": "ir01",
+      "incident": "An OrderPlaced tenantId field change breaks projection and notification processing. Locate the shared declaration, publisher and both supplied consumer implementations before choosing an investigation scope.",
+      "primary": [
+        "notification-worker",
+        "order-worker",
+        "order-api"
+      ],
+      "v1": {
+        "related": [
+          {
+            "source": "inventory-worker",
+            "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+            "omittedLinks": 0,
+            "links": [
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "order-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "inventory-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "inventory-worker",
+                      "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 6,
+                      "contentHash": "8b7fe3bb5a3227daaf68a1091915fe546c8f8fc6503e429d4b8025894ad364bb",
+                      "spanHash": "6349aa25543db045212c297d44d165d6c1e5271826d81ea98ca3950c3355c8fc"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "inventory-worker",
+                    "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 6,
+                    "contentHash": "8b7fe3bb5a3227daaf68a1091915fe546c8f8fc6503e429d4b8025894ad364bb",
+                    "spanHash": "6349aa25543db045212c297d44d165d6c1e5271826d81ea98ca3950c3355c8fc"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  }
+                ]
+              },
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "order-worker",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "inventory-worker",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "inventory-worker",
+                      "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 6,
+                      "contentHash": "8b7fe3bb5a3227daaf68a1091915fe546c8f8fc6503e429d4b8025894ad364bb",
+                      "spanHash": "6349aa25543db045212c297d44d165d6c1e5271826d81ea98ca3950c3355c8fc"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "inventory-worker",
+                    "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 6,
+                    "contentHash": "8b7fe3bb5a3227daaf68a1091915fe546c8f8fc6503e429d4b8025894ad364bb",
+                    "spanHash": "6349aa25543db045212c297d44d165d6c1e5271826d81ea98ca3950c3355c8fc"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "source": "shipping-worker",
+            "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+            "omittedLinks": 0,
+            "links": [
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "shipping-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "shipping-worker",
+                      "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 6,
+                      "contentHash": "9e4498b6e4432e5c7225801828695cecf99d70f04d781fa1042eed4492e38712",
+                      "spanHash": "31816b6e68f04e9c66f999b8b2e516228f4c689820ed2d2f152cbd371f17252a"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  },
+                  {
+                    "sourceName": "shipping-worker",
+                    "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 6,
+                    "contentHash": "9e4498b6e4432e5c7225801828695cecf99d70f04d781fa1042eed4492e38712",
+                    "spanHash": "31816b6e68f04e9c66f999b8b2e516228f4c689820ed2d2f152cbd371f17252a"
+                  }
+                ]
+              },
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "shipping-worker",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "shipping-worker",
+                      "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 6,
+                      "contentHash": "9e4498b6e4432e5c7225801828695cecf99d70f04d781fa1042eed4492e38712",
+                      "spanHash": "31816b6e68f04e9c66f999b8b2e516228f4c689820ed2d2f152cbd371f17252a"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-worker",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  },
+                  {
+                    "sourceName": "shipping-worker",
+                    "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 6,
+                    "contentHash": "9e4498b6e4432e5c7225801828695cecf99d70f04d781fa1042eed4492e38712",
+                    "spanHash": "31816b6e68f04e9c66f999b8b2e516228f4c689820ed2d2f152cbd371f17252a"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "source": "reporting-api",
+            "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+            "omittedLinks": 0,
+            "links": [
+              {
+                "kind": "setting-match",
+                "origin": "declaration",
+                "status": "candidate",
+                "environment": "local",
+                "reason": "Equal scoped keys and values are a search clue; repository-owned keys do not prove a shared service, broker or runtime connection.",
+                "gaps": [],
+                "from": {
+                  "source": "order-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "reporting-api",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "reporting-api",
+                      "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 5,
+                      "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                      "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  },
+                  {
+                    "sourceName": "reporting-api",
+                    "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 5,
+                    "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                    "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                  }
+                ]
+              },
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "order-worker",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "reporting-api",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "reporting-api",
+                      "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 5,
+                      "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                      "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  },
+                  {
+                    "sourceName": "reporting-api",
+                    "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 5,
+                    "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                    "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "source": "contract-library",
+            "revision": "6fc0b2f8bbd4b88a35b6c04e6dc974b762cc3cbe",
+            "omittedLinks": 0,
+            "links": [
+              {
+                "kind": "contract-match",
+                "origin": "declaration",
+                "status": "candidate",
+                "environment": null,
+                "reason": "Matching static contract shapes; producer/consumer roles, encoding implementation and deployment compatibility are unverified.",
+                "gaps": [],
+                "from": {
+                  "source": "contract-library",
+                  "label": "OrderPlaced v2",
+                  "evidence": [
+                    {
+                      "sourceName": "contract-library",
+                      "revision": "6fc0b2f8bbd4b88a35b6c04e6dc974b762cc3cbe",
+                      "path": "contracts/OrderPlaced.json",
+                      "startLine": 1,
+                      "endLine": 12,
+                      "contentHash": "d256f67e8251cd7e590379d5c855e79d2939ecf4a12f97704833c5709f572fb8",
+                      "spanHash": "7e5f33e97efe145969d3bddc5b3c584530d809ffeb2270e7cd7ef25321e09476"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-api",
+                  "label": "OrderPlaced v2",
+                  "evidence": [
+                    {
+                      "sourceName": "order-api",
+                      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                      "path": "contracts/OrderPlaced.json",
+                      "startLine": 1,
+                      "endLine": 8,
+                      "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+                      "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "contract-library",
+                    "revision": "6fc0b2f8bbd4b88a35b6c04e6dc974b762cc3cbe",
+                    "path": "contracts/OrderPlaced.json",
+                    "startLine": 1,
+                    "endLine": 12,
+                    "contentHash": "d256f67e8251cd7e590379d5c855e79d2939ecf4a12f97704833c5709f572fb8",
+                    "spanHash": "7e5f33e97efe145969d3bddc5b3c584530d809ffeb2270e7cd7ef25321e09476"
+                  },
+                  {
+                    "sourceName": "order-api",
+                    "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                    "path": "contracts/OrderPlaced.json",
+                    "startLine": 1,
+                    "endLine": 8,
+                    "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+                    "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+                  }
+                ]
+              },
+              {
+                "kind": "contract-match",
+                "origin": "declaration",
+                "status": "candidate",
+                "environment": null,
+                "reason": "Matching static contract shapes; producer/consumer roles, encoding implementation and deployment compatibility are unverified.",
+                "gaps": [],
+                "from": {
+                  "source": "contract-library",
+                  "label": "OrderPlaced v2",
+                  "evidence": [
+                    {
+                      "sourceName": "contract-library",
+                      "revision": "6fc0b2f8bbd4b88a35b6c04e6dc974b762cc3cbe",
+                      "path": "contracts/OrderPlaced.json",
+                      "startLine": 1,
+                      "endLine": 12,
+                      "contentHash": "d256f67e8251cd7e590379d5c855e79d2939ecf4a12f97704833c5709f572fb8",
+                      "spanHash": "7e5f33e97efe145969d3bddc5b3c584530d809ffeb2270e7cd7ef25321e09476"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-worker",
+                  "label": "OrderPlaced v2",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "contracts/OrderPlaced.json",
+                      "startLine": 1,
+                      "endLine": 8,
+                      "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+                      "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "contract-library",
+                    "revision": "6fc0b2f8bbd4b88a35b6c04e6dc974b762cc3cbe",
+                    "path": "contracts/OrderPlaced.json",
+                    "startLine": 1,
+                    "endLine": 12,
+                    "contentHash": "d256f67e8251cd7e590379d5c855e79d2939ecf4a12f97704833c5709f572fb8",
+                    "spanHash": "7e5f33e97efe145969d3bddc5b3c584530d809ffeb2270e7cd7ef25321e09476"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "contracts/OrderPlaced.json",
+                    "startLine": 1,
+                    "endLine": 8,
+                    "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+                    "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "eligibleSources": 5,
+        "eligibleLinks": 10,
+        "omittedSources": 1,
+        "omittedLinks": 2,
+        "union": [
+          "notification-worker",
+          "order-worker",
+          "order-api",
+          "inventory-worker",
+          "shipping-worker",
+          "reporting-api",
+          "contract-library"
+        ],
+        "candidateCount": 7,
+        "maxCandidates": 6,
+        "missingRequiredRepositories": [],
+        "criticalRecall": {
+          "found": 4,
+          "total": 4
+        },
+        "withinCandidateBound": false,
+        "scopeNecessaryConditionsMet": false
+      },
+      "proposal": {
+        "related": [
+          {
+            "source": "contract-library",
+            "revision": "6fc0b2f8bbd4b88a35b6c04e6dc974b762cc3cbe",
+            "omittedLinks": 0,
+            "links": [
+              {
+                "kind": "contract-match",
+                "origin": "declaration",
+                "status": "candidate",
+                "environment": null,
+                "reason": "Matching static contract shapes; producer/consumer roles, encoding implementation and deployment compatibility are unverified.",
+                "gaps": [],
+                "from": {
+                  "source": "contract-library",
+                  "label": "OrderPlaced v2",
+                  "evidence": [
+                    {
+                      "sourceName": "contract-library",
+                      "revision": "6fc0b2f8bbd4b88a35b6c04e6dc974b762cc3cbe",
+                      "path": "contracts/OrderPlaced.json",
+                      "startLine": 1,
+                      "endLine": 12,
+                      "contentHash": "d256f67e8251cd7e590379d5c855e79d2939ecf4a12f97704833c5709f572fb8",
+                      "spanHash": "7e5f33e97efe145969d3bddc5b3c584530d809ffeb2270e7cd7ef25321e09476"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-api",
+                  "label": "OrderPlaced v2",
+                  "evidence": [
+                    {
+                      "sourceName": "order-api",
+                      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                      "path": "contracts/OrderPlaced.json",
+                      "startLine": 1,
+                      "endLine": 8,
+                      "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+                      "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "contract-library",
+                    "revision": "6fc0b2f8bbd4b88a35b6c04e6dc974b762cc3cbe",
+                    "path": "contracts/OrderPlaced.json",
+                    "startLine": 1,
+                    "endLine": 12,
+                    "contentHash": "d256f67e8251cd7e590379d5c855e79d2939ecf4a12f97704833c5709f572fb8",
+                    "spanHash": "7e5f33e97efe145969d3bddc5b3c584530d809ffeb2270e7cd7ef25321e09476"
+                  },
+                  {
+                    "sourceName": "order-api",
+                    "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                    "path": "contracts/OrderPlaced.json",
+                    "startLine": 1,
+                    "endLine": 8,
+                    "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+                    "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+                  }
+                ]
+              },
+              {
+                "kind": "contract-match",
+                "origin": "declaration",
+                "status": "candidate",
+                "environment": null,
+                "reason": "Matching static contract shapes; producer/consumer roles, encoding implementation and deployment compatibility are unverified.",
+                "gaps": [],
+                "from": {
+                  "source": "contract-library",
+                  "label": "OrderPlaced v2",
+                  "evidence": [
+                    {
+                      "sourceName": "contract-library",
+                      "revision": "6fc0b2f8bbd4b88a35b6c04e6dc974b762cc3cbe",
+                      "path": "contracts/OrderPlaced.json",
+                      "startLine": 1,
+                      "endLine": 12,
+                      "contentHash": "d256f67e8251cd7e590379d5c855e79d2939ecf4a12f97704833c5709f572fb8",
+                      "spanHash": "7e5f33e97efe145969d3bddc5b3c584530d809ffeb2270e7cd7ef25321e09476"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-worker",
+                  "label": "OrderPlaced v2",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "contracts/OrderPlaced.json",
+                      "startLine": 1,
+                      "endLine": 8,
+                      "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+                      "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "contract-library",
+                    "revision": "6fc0b2f8bbd4b88a35b6c04e6dc974b762cc3cbe",
+                    "path": "contracts/OrderPlaced.json",
+                    "startLine": 1,
+                    "endLine": 12,
+                    "contentHash": "d256f67e8251cd7e590379d5c855e79d2939ecf4a12f97704833c5709f572fb8",
+                    "spanHash": "7e5f33e97efe145969d3bddc5b3c584530d809ffeb2270e7cd7ef25321e09476"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "contracts/OrderPlaced.json",
+                    "startLine": 1,
+                    "endLine": 8,
+                    "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+                    "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "eligibleSources": 1,
+        "eligibleLinks": 2,
+        "omittedSources": 0,
+        "omittedLinks": 0,
+        "union": [
+          "notification-worker",
+          "order-worker",
+          "order-api",
+          "contract-library"
+        ],
+        "candidateCount": 4,
+        "maxCandidates": 6,
+        "missingRequiredRepositories": [],
+        "criticalRecall": {
+          "found": 4,
+          "total": 4
+        },
+        "withinCandidateBound": true,
+        "scopeNecessaryConditionsMet": true
+      },
+      "removedSources": [
+        "inventory-worker",
+        "shipping-worker",
+        "reporting-api"
+      ],
+      "addedSources": [],
+      "changedAcrossFreshGenerations": {
+        "v1": false,
+        "proposal": false
+      },
+      "coverage": {
+        "code": {
+          "version": "pilot-code-v2",
+          "coverage": {
+            "candidateDocuments": 21,
+            "examinedDocuments": 21,
+            "parsedBytes": 5335
+          },
+          "omissions": {
+            "adapter:unsupported-typescript-profile": 3,
+            "adapter:unsupported-vue-envelope": 1,
+            "adapter:unsupported-java-profile": 1,
+            "adapter:unsupported-amd-shape": 2,
+            "adapter:unsupported-java-syntax": 2,
+            "unresolved-handler": 2,
+            "flow-limit": 2
+          }
+        },
+        "declarations": {
+          "version": "json-declarations-v2",
+          "coverage": {
+            "indexedFiles": 79,
+            "candidateDocuments": 30,
+            "examinedDocuments": 30,
+            "parsedBytes": 4775
+          },
+          "omissions": {}
+        }
+      },
+      "automaticRoutingDecision": "not-implemented",
+      "expectedGap": null
+    },
+    {
+      "id": "ir02",
+      "incident": "Duplicate tenantId and orderId entries are reported in shop.orders. Locate the projection write and declared unique index, while keeping analytics.orders separate.",
+      "primary": [
+        "database-migrations",
+        "reporting-api",
+        "architecture-docs"
+      ],
+      "v1": {
+        "related": [
+          {
+            "source": "order-worker",
+            "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+            "omittedLinks": 0,
+            "links": [
+              {
+                "kind": "setting-match",
+                "origin": "declaration",
+                "status": "candidate",
+                "environment": "local",
+                "reason": "Equal scoped keys and values are a search clue; repository-owned keys do not prove a shared service, broker or runtime connection.",
+                "gaps": [],
+                "from": {
+                  "source": "order-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "reporting-api",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "reporting-api",
+                      "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 5,
+                      "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                      "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  },
+                  {
+                    "sourceName": "reporting-api",
+                    "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 5,
+                    "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                    "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                  }
+                ]
+              },
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "order-worker",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "reporting-api",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "reporting-api",
+                      "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 5,
+                      "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                      "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  },
+                  {
+                    "sourceName": "reporting-api",
+                    "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 5,
+                    "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                    "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "source": "inventory-worker",
+            "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+            "omittedLinks": 0,
+            "links": [
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "reporting-api",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "reporting-api",
+                      "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 5,
+                      "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                      "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "inventory-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "inventory-worker",
+                      "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 6,
+                      "contentHash": "8b7fe3bb5a3227daaf68a1091915fe546c8f8fc6503e429d4b8025894ad364bb",
+                      "spanHash": "6349aa25543db045212c297d44d165d6c1e5271826d81ea98ca3950c3355c8fc"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "inventory-worker",
+                    "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 6,
+                    "contentHash": "8b7fe3bb5a3227daaf68a1091915fe546c8f8fc6503e429d4b8025894ad364bb",
+                    "spanHash": "6349aa25543db045212c297d44d165d6c1e5271826d81ea98ca3950c3355c8fc"
+                  },
+                  {
+                    "sourceName": "reporting-api",
+                    "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 5,
+                    "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                    "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                  }
+                ]
+              },
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "reporting-api",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "reporting-api",
+                      "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 5,
+                      "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                      "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "inventory-worker",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "inventory-worker",
+                      "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 6,
+                      "contentHash": "8b7fe3bb5a3227daaf68a1091915fe546c8f8fc6503e429d4b8025894ad364bb",
+                      "spanHash": "6349aa25543db045212c297d44d165d6c1e5271826d81ea98ca3950c3355c8fc"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "inventory-worker",
+                    "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 6,
+                    "contentHash": "8b7fe3bb5a3227daaf68a1091915fe546c8f8fc6503e429d4b8025894ad364bb",
+                    "spanHash": "6349aa25543db045212c297d44d165d6c1e5271826d81ea98ca3950c3355c8fc"
+                  },
+                  {
+                    "sourceName": "reporting-api",
+                    "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 5,
+                    "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                    "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "source": "shipping-worker",
+            "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+            "omittedLinks": 0,
+            "links": [
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "shipping-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "shipping-worker",
+                      "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 6,
+                      "contentHash": "9e4498b6e4432e5c7225801828695cecf99d70f04d781fa1042eed4492e38712",
+                      "spanHash": "31816b6e68f04e9c66f999b8b2e516228f4c689820ed2d2f152cbd371f17252a"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "reporting-api",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "reporting-api",
+                      "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 5,
+                      "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                      "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "reporting-api",
+                    "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 5,
+                    "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                    "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                  },
+                  {
+                    "sourceName": "shipping-worker",
+                    "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 6,
+                    "contentHash": "9e4498b6e4432e5c7225801828695cecf99d70f04d781fa1042eed4492e38712",
+                    "spanHash": "31816b6e68f04e9c66f999b8b2e516228f4c689820ed2d2f152cbd371f17252a"
+                  }
+                ]
+              },
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "shipping-worker",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "shipping-worker",
+                      "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 6,
+                      "contentHash": "9e4498b6e4432e5c7225801828695cecf99d70f04d781fa1042eed4492e38712",
+                      "spanHash": "31816b6e68f04e9c66f999b8b2e516228f4c689820ed2d2f152cbd371f17252a"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "reporting-api",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "reporting-api",
+                      "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 5,
+                      "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                      "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "reporting-api",
+                    "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 5,
+                    "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                    "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                  },
+                  {
+                    "sourceName": "shipping-worker",
+                    "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 6,
+                    "contentHash": "9e4498b6e4432e5c7225801828695cecf99d70f04d781fa1042eed4492e38712",
+                    "spanHash": "31816b6e68f04e9c66f999b8b2e516228f4c689820ed2d2f152cbd371f17252a"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "eligibleSources": 3,
+        "eligibleLinks": 6,
+        "omittedSources": 0,
+        "omittedLinks": 0,
+        "union": [
+          "database-migrations",
+          "reporting-api",
+          "architecture-docs",
+          "order-worker",
+          "inventory-worker",
+          "shipping-worker"
+        ],
+        "candidateCount": 6,
+        "maxCandidates": 4,
+        "missingRequiredRepositories": [],
+        "criticalRecall": {
+          "found": 2,
+          "total": 2
+        },
+        "withinCandidateBound": false,
+        "scopeNecessaryConditionsMet": false
+      },
+      "proposal": {
+        "related": [],
+        "eligibleSources": 0,
+        "eligibleLinks": 0,
+        "omittedSources": 0,
+        "omittedLinks": 0,
+        "union": [
+          "database-migrations",
+          "reporting-api",
+          "architecture-docs"
+        ],
+        "candidateCount": 3,
+        "maxCandidates": 4,
+        "missingRequiredRepositories": [
+          "order-worker"
+        ],
+        "criticalRecall": {
+          "found": 1,
+          "total": 2
+        },
+        "withinCandidateBound": true,
+        "scopeNecessaryConditionsMet": false
+      },
+      "removedSources": [
+        "order-worker",
+        "inventory-worker",
+        "shipping-worker"
+      ],
+      "addedSources": [],
+      "changedAcrossFreshGenerations": {
+        "v1": false,
+        "proposal": false
+      },
+      "coverage": {
+        "code": {
+          "version": "pilot-code-v2",
+          "coverage": {
+            "candidateDocuments": 21,
+            "examinedDocuments": 21,
+            "parsedBytes": 5335
+          },
+          "omissions": {
+            "adapter:unsupported-typescript-profile": 3,
+            "adapter:unsupported-vue-envelope": 1,
+            "adapter:unsupported-java-profile": 1,
+            "adapter:unsupported-amd-shape": 2,
+            "adapter:unsupported-java-syntax": 2,
+            "unresolved-handler": 2,
+            "flow-limit": 2
+          }
+        },
+        "declarations": {
+          "version": "json-declarations-v2",
+          "coverage": {
+            "indexedFiles": 79,
+            "candidateDocuments": 30,
+            "examinedDocuments": 30,
+            "parsedBytes": 4775
+          },
+          "omissions": {}
+        }
+      },
+      "automaticRoutingDecision": "not-implemented",
+      "expectedGap": null
+    },
+    {
+      "id": "ir03",
+      "incident": "OrderBadge displays the wrong label. Locate its actual component behavior before treating the word Order as an API dependency.",
+      "primary": [
+        "ui-components"
+      ],
+      "v1": {
+        "related": [],
+        "eligibleSources": 0,
+        "eligibleLinks": 0,
+        "omittedSources": 0,
+        "omittedLinks": 0,
+        "union": [
+          "ui-components"
+        ],
+        "candidateCount": 1,
+        "maxCandidates": 2,
+        "missingRequiredRepositories": [],
+        "criticalRecall": {
+          "found": 1,
+          "total": 1
+        },
+        "withinCandidateBound": true,
+        "scopeNecessaryConditionsMet": true
+      },
+      "proposal": {
+        "related": [],
+        "eligibleSources": 0,
+        "eligibleLinks": 0,
+        "omittedSources": 0,
+        "omittedLinks": 0,
+        "union": [
+          "ui-components"
+        ],
+        "candidateCount": 1,
+        "maxCandidates": 2,
+        "missingRequiredRepositories": [],
+        "criticalRecall": {
+          "found": 1,
+          "total": 1
+        },
+        "withinCandidateBound": true,
+        "scopeNecessaryConditionsMet": true
+      },
+      "removedSources": [],
+      "addedSources": [],
+      "changedAcrossFreshGenerations": {
+        "v1": false,
+        "proposal": false
+      },
+      "coverage": {
+        "code": {
+          "version": "pilot-code-v2",
+          "coverage": {
+            "candidateDocuments": 21,
+            "examinedDocuments": 21,
+            "parsedBytes": 5335
+          },
+          "omissions": {
+            "adapter:unsupported-typescript-profile": 3,
+            "adapter:unsupported-vue-envelope": 1,
+            "adapter:unsupported-java-profile": 1,
+            "adapter:unsupported-amd-shape": 2,
+            "adapter:unsupported-java-syntax": 2,
+            "unresolved-handler": 2,
+            "flow-limit": 2
+          }
+        },
+        "declarations": {
+          "version": "json-declarations-v2",
+          "coverage": {
+            "indexedFiles": 79,
+            "candidateDocuments": 30,
+            "examinedDocuments": 30,
+            "parsedBytes": 4775
+          },
+          "omissions": {}
+        }
+      },
+      "automaticRoutingDecision": "not-implemented",
+      "expectedGap": null
+    },
+    {
+      "id": "ir04",
+      "incident": "A shipment request formerly attributed to fulfillment-api times out at the external carrier. Locate the current request owner and determine whether carrier internals are available for investigation.",
+      "primary": [
+        "shipping-api",
+        "architecture-docs"
+      ],
+      "v1": {
+        "related": [],
+        "eligibleSources": 0,
+        "eligibleLinks": 0,
+        "omittedSources": 0,
+        "omittedLinks": 0,
+        "union": [
+          "shipping-api",
+          "architecture-docs"
+        ],
+        "candidateCount": 2,
+        "maxCandidates": 3,
+        "missingRequiredRepositories": [],
+        "criticalRecall": {
+          "found": 1,
+          "total": 1
+        },
+        "withinCandidateBound": true,
+        "scopeNecessaryConditionsMet": true
+      },
+      "proposal": {
+        "related": [],
+        "eligibleSources": 0,
+        "eligibleLinks": 0,
+        "omittedSources": 0,
+        "omittedLinks": 0,
+        "union": [
+          "shipping-api",
+          "architecture-docs"
+        ],
+        "candidateCount": 2,
+        "maxCandidates": 3,
+        "missingRequiredRepositories": [],
+        "criticalRecall": {
+          "found": 1,
+          "total": 1
+        },
+        "withinCandidateBound": true,
+        "scopeNecessaryConditionsMet": true
+      },
+      "removedSources": [],
+      "addedSources": [],
+      "changedAcrossFreshGenerations": {
+        "v1": false,
+        "proposal": false
+      },
+      "coverage": {
+        "code": {
+          "version": "pilot-code-v2",
+          "coverage": {
+            "candidateDocuments": 21,
+            "examinedDocuments": 21,
+            "parsedBytes": 5335
+          },
+          "omissions": {
+            "adapter:unsupported-typescript-profile": 3,
+            "adapter:unsupported-vue-envelope": 1,
+            "adapter:unsupported-java-profile": 1,
+            "adapter:unsupported-amd-shape": 2,
+            "adapter:unsupported-java-syntax": 2,
+            "unresolved-handler": 2,
+            "flow-limit": 2
+          }
+        },
+        "declarations": {
+          "version": "json-declarations-v2",
+          "coverage": {
+            "indexedFiles": 79,
+            "candidateDocuments": 30,
+            "examinedDocuments": 30,
+            "parsedBytes": 4775
+          },
+          "omissions": {}
+        }
+      },
+      "automaticRoutingDecision": "not-implemented",
+      "expectedGap": "The carrier implementation and runtime traces are unavailable; retain the supplied request owner as context and request external evidence instead of claiming an internal carrier cause."
+    },
+    {
+      "id": "ir05",
+      "incident": "Billing settlement charges are duplicated after payment authorization. Locate the available payment boundary and determine whether the settlement implementation can actually be selected.",
+      "primary": [
+        "architecture-docs",
+        "payment-adapter"
+      ],
+      "v1": {
+        "related": [],
+        "eligibleSources": 0,
+        "eligibleLinks": 0,
+        "omittedSources": 0,
+        "omittedLinks": 0,
+        "union": [
+          "architecture-docs",
+          "payment-adapter"
+        ],
+        "candidateCount": 2,
+        "maxCandidates": 3,
+        "missingRequiredRepositories": [],
+        "criticalRecall": {
+          "found": 2,
+          "total": 2
+        },
+        "withinCandidateBound": true,
+        "scopeNecessaryConditionsMet": true
+      },
+      "proposal": {
+        "related": [],
+        "eligibleSources": 0,
+        "eligibleLinks": 0,
+        "omittedSources": 0,
+        "omittedLinks": 0,
+        "union": [
+          "architecture-docs",
+          "payment-adapter"
+        ],
+        "candidateCount": 2,
+        "maxCandidates": 3,
+        "missingRequiredRepositories": [],
+        "criticalRecall": {
+          "found": 2,
+          "total": 2
+        },
+        "withinCandidateBound": true,
+        "scopeNecessaryConditionsMet": true
+      },
+      "removedSources": [],
+      "addedSources": [],
+      "changedAcrossFreshGenerations": {
+        "v1": false,
+        "proposal": false
+      },
+      "coverage": {
+        "code": {
+          "version": "pilot-code-v2",
+          "coverage": {
+            "candidateDocuments": 21,
+            "examinedDocuments": 21,
+            "parsedBytes": 5335
+          },
+          "omissions": {
+            "adapter:unsupported-typescript-profile": 3,
+            "adapter:unsupported-vue-envelope": 1,
+            "adapter:unsupported-java-profile": 1,
+            "adapter:unsupported-amd-shape": 2,
+            "adapter:unsupported-java-syntax": 2,
+            "unresolved-handler": 2,
+            "flow-limit": 2
+          }
+        },
+        "declarations": {
+          "version": "json-declarations-v2",
+          "coverage": {
+            "indexedFiles": 79,
+            "candidateDocuments": 30,
+            "examinedDocuments": 30,
+            "parsedBytes": 4775
+          },
+          "omissions": {}
+        }
+      },
+      "automaticRoutingDecision": "not-implemented",
+      "expectedGap": "The payment authorization port is not a settlement implementation. Request billing settlement sources and traces; do not invent or select an unavailable implementation repository."
+    },
+    {
+      "id": "ir06",
+      "incident": "The legacy Dojo stock administration reserve action stopped reaching /stock/reservations. Locate its literal caller, declared route and reservation handler without treating the computed plugin as a resolved dependency.",
+      "primary": [
+        "legacy-admin",
+        "portal"
+      ],
+      "v1": {
+        "related": [
+          {
+            "source": "order-api",
+            "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+            "omittedLinks": 0,
+            "links": [
+              {
+                "kind": "http-target",
+                "origin": "code",
+                "status": "candidate",
+                "environment": null,
+                "reason": "HTTP method/path match a route declaration; authority/proxy and deployment binding are unresolved. Literal header names match the declared bindings (tenantId ← X-Tenant), ignoring ASCII case.",
+                "gaps": [
+                  "The client base URL or proxy is not bound to this route by supported source.",
+                  "Literal header names do not prove runtime values, middleware/proxy rewrites, parameter conversion or identity enforcement."
+                ],
+                "from": {
+                  "source": "portal",
+                  "label": "POST /legacy/orders",
+                  "evidence": [
+                    {
+                      "sourceName": "portal",
+                      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+                      "path": "legacy/orders.js",
+                      "startLine": 1,
+                      "endLine": 9,
+                      "contentHash": "6d02218565b2f0d038ea728d6864dbb7d74646ceed19a1d33fb3e131a3a9a293",
+                      "spanHash": "0ae6936df7c26fb7dbd3687767d6a715072efe11fd99984ea787babad5803660"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-api",
+                  "label": "POST /legacy/orders",
+                  "evidence": [
+                    {
+                      "sourceName": "order-api",
+                      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                      "path": "config/routes.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "161e949a54ab2ab99648cd5dd07de4c4115d554d411e85dfc919412877e00a5e",
+                      "spanHash": "bf02b9ad422fda91b66ace23870e9d0b142f550071231acbd668eb3c439b833d"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-api",
+                    "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                    "path": "config/routes.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "161e949a54ab2ab99648cd5dd07de4c4115d554d411e85dfc919412877e00a5e",
+                    "spanHash": "bf02b9ad422fda91b66ace23870e9d0b142f550071231acbd668eb3c439b833d"
+                  },
+                  {
+                    "sourceName": "portal",
+                    "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+                    "path": "legacy/orders.js",
+                    "startLine": 1,
+                    "endLine": 9,
+                    "contentHash": "6d02218565b2f0d038ea728d6864dbb7d74646ceed19a1d33fb3e131a3a9a293",
+                    "spanHash": "0ae6936df7c26fb7dbd3687767d6a715072efe11fd99984ea787babad5803660"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "eligibleSources": 1,
+        "eligibleLinks": 1,
+        "omittedSources": 0,
+        "omittedLinks": 0,
+        "union": [
+          "legacy-admin",
+          "portal",
+          "order-api"
+        ],
+        "candidateCount": 3,
+        "maxCandidates": 4,
+        "missingRequiredRepositories": [
+          "inventory-api"
+        ],
+        "criticalRecall": {
+          "found": 1,
+          "total": 2
+        },
+        "withinCandidateBound": true,
+        "scopeNecessaryConditionsMet": false
+      },
+      "proposal": {
+        "related": [
+          {
+            "source": "order-api",
+            "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+            "omittedLinks": 0,
+            "links": [
+              {
+                "kind": "http-target",
+                "origin": "code",
+                "status": "candidate",
+                "environment": null,
+                "reason": "HTTP method/path match a route declaration; authority/proxy and deployment binding are unresolved. Literal header names match the declared bindings (tenantId ← X-Tenant), ignoring ASCII case.",
+                "gaps": [
+                  "The client base URL or proxy is not bound to this route by supported source.",
+                  "Literal header names do not prove runtime values, middleware/proxy rewrites, parameter conversion or identity enforcement."
+                ],
+                "from": {
+                  "source": "portal",
+                  "label": "POST /legacy/orders",
+                  "evidence": [
+                    {
+                      "sourceName": "portal",
+                      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+                      "path": "legacy/orders.js",
+                      "startLine": 1,
+                      "endLine": 9,
+                      "contentHash": "6d02218565b2f0d038ea728d6864dbb7d74646ceed19a1d33fb3e131a3a9a293",
+                      "spanHash": "0ae6936df7c26fb7dbd3687767d6a715072efe11fd99984ea787babad5803660"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-api",
+                  "label": "POST /legacy/orders",
+                  "evidence": [
+                    {
+                      "sourceName": "order-api",
+                      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                      "path": "config/routes.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "161e949a54ab2ab99648cd5dd07de4c4115d554d411e85dfc919412877e00a5e",
+                      "spanHash": "bf02b9ad422fda91b66ace23870e9d0b142f550071231acbd668eb3c439b833d"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-api",
+                    "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                    "path": "config/routes.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "161e949a54ab2ab99648cd5dd07de4c4115d554d411e85dfc919412877e00a5e",
+                    "spanHash": "bf02b9ad422fda91b66ace23870e9d0b142f550071231acbd668eb3c439b833d"
+                  },
+                  {
+                    "sourceName": "portal",
+                    "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+                    "path": "legacy/orders.js",
+                    "startLine": 1,
+                    "endLine": 9,
+                    "contentHash": "6d02218565b2f0d038ea728d6864dbb7d74646ceed19a1d33fb3e131a3a9a293",
+                    "spanHash": "0ae6936df7c26fb7dbd3687767d6a715072efe11fd99984ea787babad5803660"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "eligibleSources": 1,
+        "eligibleLinks": 1,
+        "omittedSources": 0,
+        "omittedLinks": 0,
+        "union": [
+          "legacy-admin",
+          "portal",
+          "order-api"
+        ],
+        "candidateCount": 3,
+        "maxCandidates": 4,
+        "missingRequiredRepositories": [
+          "inventory-api"
+        ],
+        "criticalRecall": {
+          "found": 1,
+          "total": 2
+        },
+        "withinCandidateBound": true,
+        "scopeNecessaryConditionsMet": false
+      },
+      "removedSources": [],
+      "addedSources": [],
+      "changedAcrossFreshGenerations": {
+        "v1": false,
+        "proposal": false
+      },
+      "coverage": {
+        "code": {
+          "version": "pilot-code-v2",
+          "coverage": {
+            "candidateDocuments": 21,
+            "examinedDocuments": 21,
+            "parsedBytes": 5335
+          },
+          "omissions": {
+            "adapter:unsupported-typescript-profile": 3,
+            "adapter:unsupported-vue-envelope": 1,
+            "adapter:unsupported-java-profile": 1,
+            "adapter:unsupported-amd-shape": 2,
+            "adapter:unsupported-java-syntax": 2,
+            "unresolved-handler": 2,
+            "flow-limit": 2
+          }
+        },
+        "declarations": {
+          "version": "json-declarations-v2",
+          "coverage": {
+            "indexedFiles": 79,
+            "candidateDocuments": 30,
+            "examinedDocuments": 30,
+            "parsedBytes": 4775
+          },
+          "omissions": {}
+        }
+      },
+      "automaticRoutingDecision": "not-implemented",
+      "expectedGap": null
+    },
+    {
+      "id": "ir07",
+      "incident": "OrderPlaced notifications address the wrong tenant. Locate the mail consumer, shared message declaration and publisher field construction; do not assume the projection worker is the only order consumer.",
+      "primary": [
+        "order-worker",
+        "notification-worker",
+        "contract-library"
+      ],
+      "v1": {
+        "related": [
+          {
+            "source": "order-api",
+            "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+            "omittedLinks": 3,
+            "links": [
+              {
+                "kind": "event-delivery",
+                "origin": "code",
+                "status": "candidate",
+                "environment": "local",
+                "reason": "Equal supported Java record shapes, matching JSON contract declarations and one scoped orderTopic setting are candidate delivery clues.",
+                "gaps": [
+                  "Runtime topic parameters are not bound to the JSON orderTopic settings by supported code.",
+                  "A shared broker, serialization and co-deployment are unverified; JSON contracts are not linked to the record by code."
+                ],
+                "from": {
+                  "source": "order-api",
+                  "label": "Publish OrderPlaced",
+                  "evidence": [
+                    {
+                      "sourceName": "order-api",
+                      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                      "path": "src/main/java/Orders.java",
+                      "startLine": 1,
+                      "endLine": 18,
+                      "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+                      "spanHash": "fb97e2aa5ace7f6292dd5007aa417217edc8d0b828793f822b3d0666df87cf52"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-worker",
+                  "label": "Subscribe via KafkaSubscriber",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "src/main/java/OrderConsumer.java",
+                      "startLine": 1,
+                      "endLine": 18,
+                      "contentHash": "bc2c347b007865acd3044b52dba791f7f37abd235f5c406c06b4cf2f3516dfb0",
+                      "spanHash": "0857fab150aee7933a73591e087863fbe1c349649f5d10c8ab0a7a0205c870f8"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-api",
+                    "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 5,
+                    "contentHash": "d407e198084d63c25904025f9420ab898b3660c545e90999124137dbfc7d865f",
+                    "spanHash": "d8813b8db303e2a761a757727b3cbceba5cdb81d5955106448c8797bec35c391"
+                  },
+                  {
+                    "sourceName": "order-api",
+                    "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                    "path": "contracts/OrderPlaced.json",
+                    "startLine": 1,
+                    "endLine": 8,
+                    "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+                    "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+                  },
+                  {
+                    "sourceName": "order-api",
+                    "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                    "path": "src/main/java/Orders.java",
+                    "startLine": 1,
+                    "endLine": 18,
+                    "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+                    "spanHash": "fb97e2aa5ace7f6292dd5007aa417217edc8d0b828793f822b3d0666df87cf52"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "contracts/OrderPlaced.json",
+                    "startLine": 1,
+                    "endLine": 8,
+                    "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+                    "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "src/main/java/OrderConsumer.java",
+                    "startLine": 1,
+                    "endLine": 18,
+                    "contentHash": "bc2c347b007865acd3044b52dba791f7f37abd235f5c406c06b4cf2f3516dfb0",
+                    "spanHash": "0857fab150aee7933a73591e087863fbe1c349649f5d10c8ab0a7a0205c870f8"
+                  }
+                ]
+              },
+              {
+                "kind": "contract-match",
+                "origin": "declaration",
+                "status": "candidate",
+                "environment": null,
+                "reason": "Matching static contract shapes; producer/consumer roles, encoding implementation and deployment compatibility are unverified.",
+                "gaps": [],
+                "from": {
+                  "source": "contract-library",
+                  "label": "OrderPlaced v2",
+                  "evidence": [
+                    {
+                      "sourceName": "contract-library",
+                      "revision": "6fc0b2f8bbd4b88a35b6c04e6dc974b762cc3cbe",
+                      "path": "contracts/OrderPlaced.json",
+                      "startLine": 1,
+                      "endLine": 12,
+                      "contentHash": "d256f67e8251cd7e590379d5c855e79d2939ecf4a12f97704833c5709f572fb8",
+                      "spanHash": "7e5f33e97efe145969d3bddc5b3c584530d809ffeb2270e7cd7ef25321e09476"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-api",
+                  "label": "OrderPlaced v2",
+                  "evidence": [
+                    {
+                      "sourceName": "order-api",
+                      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                      "path": "contracts/OrderPlaced.json",
+                      "startLine": 1,
+                      "endLine": 8,
+                      "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+                      "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "contract-library",
+                    "revision": "6fc0b2f8bbd4b88a35b6c04e6dc974b762cc3cbe",
+                    "path": "contracts/OrderPlaced.json",
+                    "startLine": 1,
+                    "endLine": 12,
+                    "contentHash": "d256f67e8251cd7e590379d5c855e79d2939ecf4a12f97704833c5709f572fb8",
+                    "spanHash": "7e5f33e97efe145969d3bddc5b3c584530d809ffeb2270e7cd7ef25321e09476"
+                  },
+                  {
+                    "sourceName": "order-api",
+                    "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                    "path": "contracts/OrderPlaced.json",
+                    "startLine": 1,
+                    "endLine": 8,
+                    "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+                    "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "source": "inventory-worker",
+            "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+            "omittedLinks": 0,
+            "links": [
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "order-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "inventory-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "inventory-worker",
+                      "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 6,
+                      "contentHash": "8b7fe3bb5a3227daaf68a1091915fe546c8f8fc6503e429d4b8025894ad364bb",
+                      "spanHash": "6349aa25543db045212c297d44d165d6c1e5271826d81ea98ca3950c3355c8fc"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "inventory-worker",
+                    "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 6,
+                    "contentHash": "8b7fe3bb5a3227daaf68a1091915fe546c8f8fc6503e429d4b8025894ad364bb",
+                    "spanHash": "6349aa25543db045212c297d44d165d6c1e5271826d81ea98ca3950c3355c8fc"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  }
+                ]
+              },
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "order-worker",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "inventory-worker",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "inventory-worker",
+                      "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 6,
+                      "contentHash": "8b7fe3bb5a3227daaf68a1091915fe546c8f8fc6503e429d4b8025894ad364bb",
+                      "spanHash": "6349aa25543db045212c297d44d165d6c1e5271826d81ea98ca3950c3355c8fc"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "inventory-worker",
+                    "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 6,
+                    "contentHash": "8b7fe3bb5a3227daaf68a1091915fe546c8f8fc6503e429d4b8025894ad364bb",
+                    "spanHash": "6349aa25543db045212c297d44d165d6c1e5271826d81ea98ca3950c3355c8fc"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "source": "shipping-worker",
+            "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+            "omittedLinks": 0,
+            "links": [
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "shipping-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "shipping-worker",
+                      "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 6,
+                      "contentHash": "9e4498b6e4432e5c7225801828695cecf99d70f04d781fa1042eed4492e38712",
+                      "spanHash": "31816b6e68f04e9c66f999b8b2e516228f4c689820ed2d2f152cbd371f17252a"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  },
+                  {
+                    "sourceName": "shipping-worker",
+                    "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 6,
+                    "contentHash": "9e4498b6e4432e5c7225801828695cecf99d70f04d781fa1042eed4492e38712",
+                    "spanHash": "31816b6e68f04e9c66f999b8b2e516228f4c689820ed2d2f152cbd371f17252a"
+                  }
+                ]
+              },
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "shipping-worker",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "shipping-worker",
+                      "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 6,
+                      "contentHash": "9e4498b6e4432e5c7225801828695cecf99d70f04d781fa1042eed4492e38712",
+                      "spanHash": "31816b6e68f04e9c66f999b8b2e516228f4c689820ed2d2f152cbd371f17252a"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-worker",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  },
+                  {
+                    "sourceName": "shipping-worker",
+                    "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 6,
+                    "contentHash": "9e4498b6e4432e5c7225801828695cecf99d70f04d781fa1042eed4492e38712",
+                    "spanHash": "31816b6e68f04e9c66f999b8b2e516228f4c689820ed2d2f152cbd371f17252a"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "source": "reporting-api",
+            "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+            "omittedLinks": 0,
+            "links": [
+              {
+                "kind": "setting-match",
+                "origin": "declaration",
+                "status": "candidate",
+                "environment": "local",
+                "reason": "Equal scoped keys and values are a search clue; repository-owned keys do not prove a shared service, broker or runtime connection.",
+                "gaps": [],
+                "from": {
+                  "source": "order-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "reporting-api",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "reporting-api",
+                      "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 5,
+                      "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                      "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  },
+                  {
+                    "sourceName": "reporting-api",
+                    "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 5,
+                    "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                    "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                  }
+                ]
+              },
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "order-worker",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "reporting-api",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "reporting-api",
+                      "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 5,
+                      "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                      "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  },
+                  {
+                    "sourceName": "reporting-api",
+                    "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 5,
+                    "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                    "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "eligibleSources": 5,
+        "eligibleLinks": 13,
+        "omittedSources": 1,
+        "omittedLinks": 5,
+        "union": [
+          "order-worker",
+          "notification-worker",
+          "contract-library",
+          "order-api",
+          "inventory-worker",
+          "shipping-worker",
+          "reporting-api"
+        ],
+        "candidateCount": 7,
+        "maxCandidates": 5,
+        "missingRequiredRepositories": [],
+        "criticalRecall": {
+          "found": 3,
+          "total": 3
+        },
+        "withinCandidateBound": false,
+        "scopeNecessaryConditionsMet": false
+      },
+      "proposal": {
+        "related": [
+          {
+            "source": "order-api",
+            "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+            "omittedLinks": 1,
+            "links": [
+              {
+                "kind": "event-delivery",
+                "origin": "code",
+                "status": "candidate",
+                "environment": "local",
+                "reason": "Equal supported Java record shapes, matching JSON contract declarations and one scoped orderTopic setting are candidate delivery clues.",
+                "gaps": [
+                  "Runtime topic parameters are not bound to the JSON orderTopic settings by supported code.",
+                  "A shared broker, serialization and co-deployment are unverified; JSON contracts are not linked to the record by code."
+                ],
+                "from": {
+                  "source": "order-api",
+                  "label": "Publish OrderPlaced",
+                  "evidence": [
+                    {
+                      "sourceName": "order-api",
+                      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                      "path": "src/main/java/Orders.java",
+                      "startLine": 1,
+                      "endLine": 18,
+                      "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+                      "spanHash": "fb97e2aa5ace7f6292dd5007aa417217edc8d0b828793f822b3d0666df87cf52"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-worker",
+                  "label": "Subscribe via KafkaSubscriber",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "src/main/java/OrderConsumer.java",
+                      "startLine": 1,
+                      "endLine": 18,
+                      "contentHash": "bc2c347b007865acd3044b52dba791f7f37abd235f5c406c06b4cf2f3516dfb0",
+                      "spanHash": "0857fab150aee7933a73591e087863fbe1c349649f5d10c8ab0a7a0205c870f8"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-api",
+                    "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 5,
+                    "contentHash": "d407e198084d63c25904025f9420ab898b3660c545e90999124137dbfc7d865f",
+                    "spanHash": "d8813b8db303e2a761a757727b3cbceba5cdb81d5955106448c8797bec35c391"
+                  },
+                  {
+                    "sourceName": "order-api",
+                    "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                    "path": "contracts/OrderPlaced.json",
+                    "startLine": 1,
+                    "endLine": 8,
+                    "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+                    "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+                  },
+                  {
+                    "sourceName": "order-api",
+                    "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                    "path": "src/main/java/Orders.java",
+                    "startLine": 1,
+                    "endLine": 18,
+                    "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+                    "spanHash": "fb97e2aa5ace7f6292dd5007aa417217edc8d0b828793f822b3d0666df87cf52"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "contracts/OrderPlaced.json",
+                    "startLine": 1,
+                    "endLine": 8,
+                    "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+                    "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "src/main/java/OrderConsumer.java",
+                    "startLine": 1,
+                    "endLine": 18,
+                    "contentHash": "bc2c347b007865acd3044b52dba791f7f37abd235f5c406c06b4cf2f3516dfb0",
+                    "spanHash": "0857fab150aee7933a73591e087863fbe1c349649f5d10c8ab0a7a0205c870f8"
+                  }
+                ]
+              },
+              {
+                "kind": "contract-match",
+                "origin": "declaration",
+                "status": "candidate",
+                "environment": null,
+                "reason": "Matching static contract shapes; producer/consumer roles, encoding implementation and deployment compatibility are unverified.",
+                "gaps": [],
+                "from": {
+                  "source": "contract-library",
+                  "label": "OrderPlaced v2",
+                  "evidence": [
+                    {
+                      "sourceName": "contract-library",
+                      "revision": "6fc0b2f8bbd4b88a35b6c04e6dc974b762cc3cbe",
+                      "path": "contracts/OrderPlaced.json",
+                      "startLine": 1,
+                      "endLine": 12,
+                      "contentHash": "d256f67e8251cd7e590379d5c855e79d2939ecf4a12f97704833c5709f572fb8",
+                      "spanHash": "7e5f33e97efe145969d3bddc5b3c584530d809ffeb2270e7cd7ef25321e09476"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-api",
+                  "label": "OrderPlaced v2",
+                  "evidence": [
+                    {
+                      "sourceName": "order-api",
+                      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                      "path": "contracts/OrderPlaced.json",
+                      "startLine": 1,
+                      "endLine": 8,
+                      "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+                      "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "contract-library",
+                    "revision": "6fc0b2f8bbd4b88a35b6c04e6dc974b762cc3cbe",
+                    "path": "contracts/OrderPlaced.json",
+                    "startLine": 1,
+                    "endLine": 12,
+                    "contentHash": "d256f67e8251cd7e590379d5c855e79d2939ecf4a12f97704833c5709f572fb8",
+                    "spanHash": "7e5f33e97efe145969d3bddc5b3c584530d809ffeb2270e7cd7ef25321e09476"
+                  },
+                  {
+                    "sourceName": "order-api",
+                    "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                    "path": "contracts/OrderPlaced.json",
+                    "startLine": 1,
+                    "endLine": 8,
+                    "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+                    "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "eligibleSources": 1,
+        "eligibleLinks": 3,
+        "omittedSources": 0,
+        "omittedLinks": 1,
+        "union": [
+          "order-worker",
+          "notification-worker",
+          "contract-library",
+          "order-api"
+        ],
+        "candidateCount": 4,
+        "maxCandidates": 5,
+        "missingRequiredRepositories": [],
+        "criticalRecall": {
+          "found": 3,
+          "total": 3
+        },
+        "withinCandidateBound": true,
+        "scopeNecessaryConditionsMet": true
+      },
+      "removedSources": [
+        "inventory-worker",
+        "shipping-worker",
+        "reporting-api"
+      ],
+      "addedSources": [],
+      "changedAcrossFreshGenerations": {
+        "v1": false,
+        "proposal": false
+      },
+      "coverage": {
+        "code": {
+          "version": "pilot-code-v2",
+          "coverage": {
+            "candidateDocuments": 21,
+            "examinedDocuments": 21,
+            "parsedBytes": 5335
+          },
+          "omissions": {
+            "adapter:unsupported-typescript-profile": 3,
+            "adapter:unsupported-vue-envelope": 1,
+            "adapter:unsupported-java-profile": 1,
+            "adapter:unsupported-amd-shape": 2,
+            "adapter:unsupported-java-syntax": 2,
+            "unresolved-handler": 2,
+            "flow-limit": 2
+          }
+        },
+        "declarations": {
+          "version": "json-declarations-v2",
+          "coverage": {
+            "indexedFiles": 79,
+            "candidateDocuments": 30,
+            "examinedDocuments": 30,
+            "parsedBytes": 4775
+          },
+          "omissions": {}
+        }
+      },
+      "automaticRoutingDecision": "not-implemented",
+      "expectedGap": null
+    },
+    {
+      "id": "ir08",
+      "incident": "An analytics.orders count is wrong after a change to the shop.orders projection. Locate the read and write database scopes and relevant migration declarations before treating the two orders collections as one store.",
+      "primary": [
+        "reporting-api",
+        "database-migrations",
+        "order-worker"
+      ],
+      "v1": {
+        "related": [
+          {
+            "source": "order-api",
+            "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+            "omittedLinks": 0,
+            "links": [
+              {
+                "kind": "event-delivery",
+                "origin": "code",
+                "status": "candidate",
+                "environment": "local",
+                "reason": "Equal supported Java record shapes, matching JSON contract declarations and one scoped orderTopic setting are candidate delivery clues.",
+                "gaps": [
+                  "Runtime topic parameters are not bound to the JSON orderTopic settings by supported code.",
+                  "A shared broker, serialization and co-deployment are unverified; JSON contracts are not linked to the record by code."
+                ],
+                "from": {
+                  "source": "order-api",
+                  "label": "Publish OrderPlaced",
+                  "evidence": [
+                    {
+                      "sourceName": "order-api",
+                      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                      "path": "src/main/java/Orders.java",
+                      "startLine": 1,
+                      "endLine": 18,
+                      "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+                      "spanHash": "fb97e2aa5ace7f6292dd5007aa417217edc8d0b828793f822b3d0666df87cf52"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-worker",
+                  "label": "Subscribe via KafkaSubscriber",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "src/main/java/OrderConsumer.java",
+                      "startLine": 1,
+                      "endLine": 18,
+                      "contentHash": "bc2c347b007865acd3044b52dba791f7f37abd235f5c406c06b4cf2f3516dfb0",
+                      "spanHash": "0857fab150aee7933a73591e087863fbe1c349649f5d10c8ab0a7a0205c870f8"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-api",
+                    "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 5,
+                    "contentHash": "d407e198084d63c25904025f9420ab898b3660c545e90999124137dbfc7d865f",
+                    "spanHash": "d8813b8db303e2a761a757727b3cbceba5cdb81d5955106448c8797bec35c391"
+                  },
+                  {
+                    "sourceName": "order-api",
+                    "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                    "path": "contracts/OrderPlaced.json",
+                    "startLine": 1,
+                    "endLine": 8,
+                    "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+                    "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+                  },
+                  {
+                    "sourceName": "order-api",
+                    "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                    "path": "src/main/java/Orders.java",
+                    "startLine": 1,
+                    "endLine": 18,
+                    "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+                    "spanHash": "fb97e2aa5ace7f6292dd5007aa417217edc8d0b828793f822b3d0666df87cf52"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "contracts/OrderPlaced.json",
+                    "startLine": 1,
+                    "endLine": 8,
+                    "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+                    "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "src/main/java/OrderConsumer.java",
+                    "startLine": 1,
+                    "endLine": 18,
+                    "contentHash": "bc2c347b007865acd3044b52dba791f7f37abd235f5c406c06b4cf2f3516dfb0",
+                    "spanHash": "0857fab150aee7933a73591e087863fbe1c349649f5d10c8ab0a7a0205c870f8"
+                  }
+                ]
+              },
+              {
+                "kind": "setting-match",
+                "origin": "declaration",
+                "status": "candidate",
+                "environment": "local",
+                "reason": "Equal scoped keys and values are a search clue; repository-owned keys do not prove a shared service, broker or runtime connection.",
+                "gaps": [],
+                "from": {
+                  "source": "order-api",
+                  "label": "orderTopic",
+                  "evidence": [
+                    {
+                      "sourceName": "order-api",
+                      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 5,
+                      "contentHash": "d407e198084d63c25904025f9420ab898b3660c545e90999124137dbfc7d865f",
+                      "spanHash": "d8813b8db303e2a761a757727b3cbceba5cdb81d5955106448c8797bec35c391"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-worker",
+                  "label": "orderTopic",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-api",
+                    "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 5,
+                    "contentHash": "d407e198084d63c25904025f9420ab898b3660c545e90999124137dbfc7d865f",
+                    "spanHash": "d8813b8db303e2a761a757727b3cbceba5cdb81d5955106448c8797bec35c391"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "source": "inventory-worker",
+            "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+            "omittedLinks": 2,
+            "links": [
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "order-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "inventory-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "inventory-worker",
+                      "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 6,
+                      "contentHash": "8b7fe3bb5a3227daaf68a1091915fe546c8f8fc6503e429d4b8025894ad364bb",
+                      "spanHash": "6349aa25543db045212c297d44d165d6c1e5271826d81ea98ca3950c3355c8fc"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "inventory-worker",
+                    "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 6,
+                    "contentHash": "8b7fe3bb5a3227daaf68a1091915fe546c8f8fc6503e429d4b8025894ad364bb",
+                    "spanHash": "6349aa25543db045212c297d44d165d6c1e5271826d81ea98ca3950c3355c8fc"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  }
+                ]
+              },
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "reporting-api",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "reporting-api",
+                      "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 5,
+                      "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                      "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "inventory-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "inventory-worker",
+                      "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 6,
+                      "contentHash": "8b7fe3bb5a3227daaf68a1091915fe546c8f8fc6503e429d4b8025894ad364bb",
+                      "spanHash": "6349aa25543db045212c297d44d165d6c1e5271826d81ea98ca3950c3355c8fc"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "inventory-worker",
+                    "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 6,
+                    "contentHash": "8b7fe3bb5a3227daaf68a1091915fe546c8f8fc6503e429d4b8025894ad364bb",
+                    "spanHash": "6349aa25543db045212c297d44d165d6c1e5271826d81ea98ca3950c3355c8fc"
+                  },
+                  {
+                    "sourceName": "reporting-api",
+                    "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 5,
+                    "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                    "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "source": "shipping-worker",
+            "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+            "omittedLinks": 2,
+            "links": [
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "shipping-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "shipping-worker",
+                      "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 6,
+                      "contentHash": "9e4498b6e4432e5c7225801828695cecf99d70f04d781fa1042eed4492e38712",
+                      "spanHash": "31816b6e68f04e9c66f999b8b2e516228f4c689820ed2d2f152cbd371f17252a"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  },
+                  {
+                    "sourceName": "shipping-worker",
+                    "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 6,
+                    "contentHash": "9e4498b6e4432e5c7225801828695cecf99d70f04d781fa1042eed4492e38712",
+                    "spanHash": "31816b6e68f04e9c66f999b8b2e516228f4c689820ed2d2f152cbd371f17252a"
+                  }
+                ]
+              },
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "shipping-worker",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "shipping-worker",
+                      "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 6,
+                      "contentHash": "9e4498b6e4432e5c7225801828695cecf99d70f04d781fa1042eed4492e38712",
+                      "spanHash": "31816b6e68f04e9c66f999b8b2e516228f4c689820ed2d2f152cbd371f17252a"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-worker",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  },
+                  {
+                    "sourceName": "shipping-worker",
+                    "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 6,
+                    "contentHash": "9e4498b6e4432e5c7225801828695cecf99d70f04d781fa1042eed4492e38712",
+                    "spanHash": "31816b6e68f04e9c66f999b8b2e516228f4c689820ed2d2f152cbd371f17252a"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "source": "notification-worker",
+            "revision": "9e8b82475fd5d3317923d7f4e7c399ed99f5356a",
+            "omittedLinks": 0,
+            "links": [
+              {
+                "kind": "setting-match",
+                "origin": "declaration",
+                "status": "candidate",
+                "environment": "local",
+                "reason": "Equal scoped keys and values are a search clue; repository-owned keys do not prove a shared service, broker or runtime connection.",
+                "gaps": [],
+                "from": {
+                  "source": "notification-worker",
+                  "label": "orderTopic",
+                  "evidence": [
+                    {
+                      "sourceName": "notification-worker",
+                      "revision": "9e8b82475fd5d3317923d7f4e7c399ed99f5356a",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 5,
+                      "contentHash": "d67ad6761873de2b715187a649daaf77f4410d020e7fc7a19faaab92771e2dd4",
+                      "spanHash": "ca526e8639ff65a891ed687bd9d61345048b89b20228bbe6e996e3e7bf144bea"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-worker",
+                  "label": "orderTopic",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "notification-worker",
+                    "revision": "9e8b82475fd5d3317923d7f4e7c399ed99f5356a",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 5,
+                    "contentHash": "d67ad6761873de2b715187a649daaf77f4410d020e7fc7a19faaab92771e2dd4",
+                    "spanHash": "ca526e8639ff65a891ed687bd9d61345048b89b20228bbe6e996e3e7bf144bea"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  }
+                ]
+              },
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "notification-worker",
+                  "label": "consumerGroup",
+                  "evidence": [
+                    {
+                      "sourceName": "notification-worker",
+                      "revision": "9e8b82475fd5d3317923d7f4e7c399ed99f5356a",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 5,
+                      "contentHash": "d67ad6761873de2b715187a649daaf77f4410d020e7fc7a19faaab92771e2dd4",
+                      "spanHash": "ca526e8639ff65a891ed687bd9d61345048b89b20228bbe6e996e3e7bf144bea"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-worker",
+                  "label": "consumerGroup",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "notification-worker",
+                    "revision": "9e8b82475fd5d3317923d7f4e7c399ed99f5356a",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 5,
+                    "contentHash": "d67ad6761873de2b715187a649daaf77f4410d020e7fc7a19faaab92771e2dd4",
+                    "spanHash": "ca526e8639ff65a891ed687bd9d61345048b89b20228bbe6e996e3e7bf144bea"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "eligibleSources": 5,
+        "eligibleLinks": 13,
+        "omittedSources": 1,
+        "omittedLinks": 5,
+        "union": [
+          "reporting-api",
+          "database-migrations",
+          "order-worker",
+          "order-api",
+          "inventory-worker",
+          "shipping-worker",
+          "notification-worker"
+        ],
+        "candidateCount": 7,
+        "maxCandidates": 5,
+        "missingRequiredRepositories": [],
+        "criticalRecall": {
+          "found": 3,
+          "total": 3
+        },
+        "withinCandidateBound": false,
+        "scopeNecessaryConditionsMet": false
+      },
+      "proposal": {
+        "related": [],
+        "eligibleSources": 0,
+        "eligibleLinks": 0,
+        "omittedSources": 0,
+        "omittedLinks": 0,
+        "union": [
+          "reporting-api",
+          "database-migrations",
+          "order-worker"
+        ],
+        "candidateCount": 3,
+        "maxCandidates": 5,
+        "missingRequiredRepositories": [],
+        "criticalRecall": {
+          "found": 3,
+          "total": 3
+        },
+        "withinCandidateBound": true,
+        "scopeNecessaryConditionsMet": true
+      },
+      "removedSources": [
+        "order-api",
+        "inventory-worker",
+        "shipping-worker",
+        "notification-worker"
+      ],
+      "addedSources": [],
+      "changedAcrossFreshGenerations": {
+        "v1": false,
+        "proposal": false
+      },
+      "coverage": {
+        "code": {
+          "version": "pilot-code-v2",
+          "coverage": {
+            "candidateDocuments": 21,
+            "examinedDocuments": 21,
+            "parsedBytes": 5335
+          },
+          "omissions": {
+            "adapter:unsupported-typescript-profile": 3,
+            "adapter:unsupported-vue-envelope": 1,
+            "adapter:unsupported-java-profile": 1,
+            "adapter:unsupported-amd-shape": 2,
+            "adapter:unsupported-java-syntax": 2,
+            "unresolved-handler": 2,
+            "flow-limit": 2
+          }
+        },
+        "declarations": {
+          "version": "json-declarations-v2",
+          "coverage": {
+            "indexedFiles": 79,
+            "candidateDocuments": 30,
+            "examinedDocuments": 30,
+            "parsedBytes": 4775
+          },
+          "omissions": {}
+        }
+      },
+      "automaticRoutingDecision": "not-implemented",
+      "expectedGap": null
+    },
+    {
+      "id": "ir09",
+      "incident": "Supplier synchronization restarts from the wrong cursor. Locate the supplied fetchSince call and check whether cursor persistence, scheduling and failure recovery implementations are available.",
+      "primary": [
+        "supplier-sync"
+      ],
+      "v1": {
+        "related": [],
+        "eligibleSources": 0,
+        "eligibleLinks": 0,
+        "omittedSources": 0,
+        "omittedLinks": 0,
+        "union": [
+          "supplier-sync"
+        ],
+        "candidateCount": 1,
+        "maxCandidates": 2,
+        "missingRequiredRepositories": [],
+        "criticalRecall": {
+          "found": 1,
+          "total": 1
+        },
+        "withinCandidateBound": true,
+        "scopeNecessaryConditionsMet": true
+      },
+      "proposal": {
+        "related": [],
+        "eligibleSources": 0,
+        "eligibleLinks": 0,
+        "omittedSources": 0,
+        "omittedLinks": 0,
+        "union": [
+          "supplier-sync"
+        ],
+        "candidateCount": 1,
+        "maxCandidates": 2,
+        "missingRequiredRepositories": [],
+        "criticalRecall": {
+          "found": 1,
+          "total": 1
+        },
+        "withinCandidateBound": true,
+        "scopeNecessaryConditionsMet": true
+      },
+      "removedSources": [],
+      "addedSources": [],
+      "changedAcrossFreshGenerations": {
+        "v1": false,
+        "proposal": false
+      },
+      "coverage": {
+        "code": {
+          "version": "pilot-code-v2",
+          "coverage": {
+            "candidateDocuments": 21,
+            "examinedDocuments": 21,
+            "parsedBytes": 5335
+          },
+          "omissions": {
+            "adapter:unsupported-typescript-profile": 3,
+            "adapter:unsupported-vue-envelope": 1,
+            "adapter:unsupported-java-profile": 1,
+            "adapter:unsupported-amd-shape": 2,
+            "adapter:unsupported-java-syntax": 2,
+            "unresolved-handler": 2,
+            "flow-limit": 2
+          }
+        },
+        "declarations": {
+          "version": "json-declarations-v2",
+          "coverage": {
+            "indexedFiles": 79,
+            "candidateDocuments": 30,
+            "examinedDocuments": 30,
+            "parsedBytes": 4775
+          },
+          "omissions": {}
+        }
+      },
+      "automaticRoutingDecision": "not-implemented",
+      "expectedGap": "Only a batch application port/call is supplied. Request scheduler, cursor persistence and recovery implementation or runtime evidence before attributing a recovery defect."
+    },
+    {
+      "id": "ir10",
+      "incident": "Production order projection stopped receiving events after an ORDER_TOPIC override. Locate publisher and subscriber override handling and production configuration; do not substitute the local topic for an operator placeholder.",
+      "primary": [
+        "deployment-production",
+        "order-worker",
+        "order-api",
+        "architecture-docs"
+      ],
+      "v1": {
+        "related": [
+          {
+            "source": "inventory-worker",
+            "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+            "omittedLinks": 0,
+            "links": [
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "order-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "inventory-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "inventory-worker",
+                      "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 6,
+                      "contentHash": "8b7fe3bb5a3227daaf68a1091915fe546c8f8fc6503e429d4b8025894ad364bb",
+                      "spanHash": "6349aa25543db045212c297d44d165d6c1e5271826d81ea98ca3950c3355c8fc"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "inventory-worker",
+                    "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 6,
+                    "contentHash": "8b7fe3bb5a3227daaf68a1091915fe546c8f8fc6503e429d4b8025894ad364bb",
+                    "spanHash": "6349aa25543db045212c297d44d165d6c1e5271826d81ea98ca3950c3355c8fc"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  }
+                ]
+              },
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "order-worker",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "inventory-worker",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "inventory-worker",
+                      "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 6,
+                      "contentHash": "8b7fe3bb5a3227daaf68a1091915fe546c8f8fc6503e429d4b8025894ad364bb",
+                      "spanHash": "6349aa25543db045212c297d44d165d6c1e5271826d81ea98ca3950c3355c8fc"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "inventory-worker",
+                    "revision": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 6,
+                    "contentHash": "8b7fe3bb5a3227daaf68a1091915fe546c8f8fc6503e429d4b8025894ad364bb",
+                    "spanHash": "6349aa25543db045212c297d44d165d6c1e5271826d81ea98ca3950c3355c8fc"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "source": "shipping-worker",
+            "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+            "omittedLinks": 0,
+            "links": [
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "shipping-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "shipping-worker",
+                      "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 6,
+                      "contentHash": "9e4498b6e4432e5c7225801828695cecf99d70f04d781fa1042eed4492e38712",
+                      "spanHash": "31816b6e68f04e9c66f999b8b2e516228f4c689820ed2d2f152cbd371f17252a"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  },
+                  {
+                    "sourceName": "shipping-worker",
+                    "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 6,
+                    "contentHash": "9e4498b6e4432e5c7225801828695cecf99d70f04d781fa1042eed4492e38712",
+                    "spanHash": "31816b6e68f04e9c66f999b8b2e516228f4c689820ed2d2f152cbd371f17252a"
+                  }
+                ]
+              },
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "shipping-worker",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "shipping-worker",
+                      "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 6,
+                      "contentHash": "9e4498b6e4432e5c7225801828695cecf99d70f04d781fa1042eed4492e38712",
+                      "spanHash": "31816b6e68f04e9c66f999b8b2e516228f4c689820ed2d2f152cbd371f17252a"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-worker",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  },
+                  {
+                    "sourceName": "shipping-worker",
+                    "revision": "e71a493dede8f64a0785550cf4968b3050c86019",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 6,
+                    "contentHash": "9e4498b6e4432e5c7225801828695cecf99d70f04d781fa1042eed4492e38712",
+                    "spanHash": "31816b6e68f04e9c66f999b8b2e516228f4c689820ed2d2f152cbd371f17252a"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "source": "notification-worker",
+            "revision": "9e8b82475fd5d3317923d7f4e7c399ed99f5356a",
+            "omittedLinks": 0,
+            "links": [
+              {
+                "kind": "setting-match",
+                "origin": "declaration",
+                "status": "candidate",
+                "environment": "local",
+                "reason": "Equal scoped keys and values are a search clue; repository-owned keys do not prove a shared service, broker or runtime connection.",
+                "gaps": [],
+                "from": {
+                  "source": "notification-worker",
+                  "label": "orderTopic",
+                  "evidence": [
+                    {
+                      "sourceName": "notification-worker",
+                      "revision": "9e8b82475fd5d3317923d7f4e7c399ed99f5356a",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 5,
+                      "contentHash": "d67ad6761873de2b715187a649daaf77f4410d020e7fc7a19faaab92771e2dd4",
+                      "spanHash": "ca526e8639ff65a891ed687bd9d61345048b89b20228bbe6e996e3e7bf144bea"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-worker",
+                  "label": "orderTopic",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "notification-worker",
+                    "revision": "9e8b82475fd5d3317923d7f4e7c399ed99f5356a",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 5,
+                    "contentHash": "d67ad6761873de2b715187a649daaf77f4410d020e7fc7a19faaab92771e2dd4",
+                    "spanHash": "ca526e8639ff65a891ed687bd9d61345048b89b20228bbe6e996e3e7bf144bea"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  }
+                ]
+              },
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "notification-worker",
+                  "label": "consumerGroup",
+                  "evidence": [
+                    {
+                      "sourceName": "notification-worker",
+                      "revision": "9e8b82475fd5d3317923d7f4e7c399ed99f5356a",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 5,
+                      "contentHash": "d67ad6761873de2b715187a649daaf77f4410d020e7fc7a19faaab92771e2dd4",
+                      "spanHash": "ca526e8639ff65a891ed687bd9d61345048b89b20228bbe6e996e3e7bf144bea"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "order-worker",
+                  "label": "consumerGroup",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "notification-worker",
+                    "revision": "9e8b82475fd5d3317923d7f4e7c399ed99f5356a",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 5,
+                    "contentHash": "d67ad6761873de2b715187a649daaf77f4410d020e7fc7a19faaab92771e2dd4",
+                    "spanHash": "ca526e8639ff65a891ed687bd9d61345048b89b20228bbe6e996e3e7bf144bea"
+                  },
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "source": "reporting-api",
+            "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+            "omittedLinks": 0,
+            "links": [
+              {
+                "kind": "setting-match",
+                "origin": "declaration",
+                "status": "candidate",
+                "environment": "local",
+                "reason": "Equal scoped keys and values are a search clue; repository-owned keys do not prove a shared service, broker or runtime connection.",
+                "gaps": [],
+                "from": {
+                  "source": "order-worker",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "reporting-api",
+                  "label": "mongoCollection",
+                  "evidence": [
+                    {
+                      "sourceName": "reporting-api",
+                      "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 5,
+                      "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                      "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  },
+                  {
+                    "sourceName": "reporting-api",
+                    "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 5,
+                    "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                    "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                  }
+                ]
+              },
+              {
+                "kind": "setting-difference",
+                "origin": "declaration",
+                "status": "difference",
+                "environment": "local",
+                "reason": "Repository-owned configuration values differ in the same declared scope; this alone is not a runtime conflict.",
+                "gaps": [],
+                "from": {
+                  "source": "order-worker",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "order-worker",
+                      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 7,
+                      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                    }
+                  ]
+                },
+                "to": {
+                  "source": "reporting-api",
+                  "label": "mongoDatabase",
+                  "evidence": [
+                    {
+                      "sourceName": "reporting-api",
+                      "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                      "path": "config/local.json",
+                      "startLine": 1,
+                      "endLine": 5,
+                      "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                      "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                    }
+                  ]
+                },
+                "evidence": [
+                  {
+                    "sourceName": "order-worker",
+                    "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 7,
+                    "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+                    "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+                  },
+                  {
+                    "sourceName": "reporting-api",
+                    "revision": "23fc2d8f162f93758f47221207e842f4ae55da39",
+                    "path": "config/local.json",
+                    "startLine": 1,
+                    "endLine": 5,
+                    "contentHash": "fe38d42df171824c6f97cd1e5cc006c35b91f3d7ebef077f3b6b04f979e73b92",
+                    "spanHash": "d31b4b9be3704e4b8a2ba5fa253aa5cf56d544b0036dd5b55e3648c014af5b8d"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "eligibleSources": 5,
+        "eligibleLinks": 9,
+        "omittedSources": 1,
+        "omittedLinks": 1,
+        "union": [
+          "deployment-production",
+          "order-worker",
+          "order-api",
+          "architecture-docs",
+          "inventory-worker",
+          "shipping-worker",
+          "notification-worker",
+          "reporting-api"
+        ],
+        "candidateCount": 8,
+        "maxCandidates": 5,
+        "missingRequiredRepositories": [],
+        "criticalRecall": {
+          "found": 3,
+          "total": 3
+        },
+        "withinCandidateBound": false,
+        "scopeNecessaryConditionsMet": false
+      },
+      "proposal": {
+        "related": [],
+        "eligibleSources": 0,
+        "eligibleLinks": 0,
+        "omittedSources": 0,
+        "omittedLinks": 0,
+        "union": [
+          "deployment-production",
+          "order-worker",
+          "order-api",
+          "architecture-docs"
+        ],
+        "candidateCount": 4,
+        "maxCandidates": 5,
+        "missingRequiredRepositories": [],
+        "criticalRecall": {
+          "found": 3,
+          "total": 3
+        },
+        "withinCandidateBound": true,
+        "scopeNecessaryConditionsMet": true
+      },
+      "removedSources": [
+        "inventory-worker",
+        "shipping-worker",
+        "notification-worker",
+        "reporting-api"
+      ],
+      "addedSources": [],
+      "changedAcrossFreshGenerations": {
+        "v1": false,
+        "proposal": false
+      },
+      "coverage": {
+        "code": {
+          "version": "pilot-code-v2",
+          "coverage": {
+            "candidateDocuments": 21,
+            "examinedDocuments": 21,
+            "parsedBytes": 5335
+          },
+          "omissions": {
+            "adapter:unsupported-typescript-profile": 3,
+            "adapter:unsupported-vue-envelope": 1,
+            "adapter:unsupported-java-profile": 1,
+            "adapter:unsupported-amd-shape": 2,
+            "adapter:unsupported-java-syntax": 2,
+            "unresolved-handler": 2,
+            "flow-limit": 2
+          }
+        },
+        "declarations": {
+          "version": "json-declarations-v2",
+          "coverage": {
+            "indexedFiles": 79,
+            "candidateDocuments": 30,
+            "examinedDocuments": 30,
+            "parsedBytes": 4775
+          },
+          "omissions": {}
+        }
+      },
+      "automaticRoutingDecision": "not-implemented",
+      "expectedGap": "Actual production overrides and co-deployed revisions are missing. Request that deployment evidence before asserting a topic mismatch or a change target."
+    }
+  ],
+  "summary": {
+    "v1": {
+      "allCriticalRepositories": 9,
+      "criticalRecall": {
+        "found": 21,
+        "total": 22
+      },
+      "withinCandidateBound": 5,
+      "scopeNecessaryConditionsMet": 4,
+      "candidateCounts": [
+        7,
+        6,
+        1,
+        2,
+        2,
+        3,
+        7,
+        7,
+        1,
+        8
+      ],
+      "changedAcrossFreshGenerations": []
+    },
+    "proposal": {
+      "allCriticalRepositories": 8,
+      "criticalRecall": {
+        "found": 20,
+        "total": 22
+      },
+      "withinCandidateBound": 10,
+      "scopeNecessaryConditionsMet": 8,
+      "candidateCounts": [
+        4,
+        3,
+        1,
+        2,
+        2,
+        3,
+        4,
+        3,
+        1,
+        4
+      ],
+      "changedAcrossFreshGenerations": []
+    }
+  },
+  "verifiedOriginalOccurrences": 200,
+  "productionReconstructionEqual": true,
+  "originalContextUnchanged": true,
+  "lexicalSelectionUnchanged": true,
+  "modelRequests": 0,
+  "answerAttempts": 0,
+  "productionPolicyChanged": false,
+  "independentReview": "pending",
+  "routingAccepted": false,
+  "scope": "Frozen normalized subject examples and observed synthetic incidents. This offline proposal trades contextual links for narrower reading scope; it is not automatic routing or independent semantic acceptance."
+}

@@ -1,5 +1,31 @@
 # Development status
 
+## Task 038 — Offline candidate-link precision qualification
+
+Implemented and locally verified, 2026-10-31. PR #41 reached main as `f3f10c5` after
+push `41244704231` and pull-request `41244709027` passed for exact head
+`f966269bb9431528adf2f609be4075d03cc9a287`. The next design and sixteen normalized
+subject examples were frozen in `6e1f177`, before implementation or measurement.
+
+The offline proposal excludes setting comparisons and requires question affinity in
+HTTP paths, payload types or contract names/fields. All sixteen mechanics examples pass.
+On the observed incidents, union sizes fall from 1–8 to 1–4; every size bound and eight
+combined scope conditions pass. Critical recall falls from 21/22 to 20/22 because ir02's
+order-worker configuration clue is lost. The ir06 inventory-api omission and an incidental
+legacy-path match remain. No automatic production replacement or routing acceptance.
+
+Independent reconstruction equals the real v1 selector. Both fresh generations preserve
+all selected support, lexical selection and broad context; 200 original occurrences
+are verified against Git. Full checks pass with 351 tests, strict types and builds.
+Product behavior and every historical report remain unchanged. No model or corporate input.
+See [Task 038](../tasks/038-loredock-link-precision-qualification.md) and
+[retained evidence](fixtures/loredock-link-precision/README.md).
+
+Next: freeze and implement a bounded literal AMD object-export profile for dojo/request.
+The current method-helper support already handles request.post; the unrecognized module
+export shape prevents the inventory route clue. Preserve dynamic-plugin uncertainty,
+binding guards, original evidence and versioned review semantics.
+
 ## Task 037 — Related sources with original evidence
 
 Implemented and locally verified, 2026-10-31. PR #40 reached main as `9a9aeb9` after
