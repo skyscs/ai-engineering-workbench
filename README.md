@@ -12,6 +12,8 @@ each repository; **Guide me** provides a short route through source context, int
 one partial flow and coverage. A declaration map shows scoped routes, contracts and
 configuration comparisons. Two bounded static flow outlines connect supported Vue/TypeScript and
 Dojo client code to Java interface calls, with candidate hops and unresolved wiring.
+**HTTP header bindings** compares literal client names with declared handler bindings,
+including candidate links outside those outlines, and opens the original evidence.
 Engineers can dispute/clarify those links, record environment scope and retain review
 history; affected outlines are marked for review. **Update knowledge** reuses validated
 unchanged text and shows committed file changes while retaining earlier indexes.
@@ -46,8 +48,8 @@ now supplies the recorded reference basis for all twenty-four new wordings, pres
 both earlier 20/20 retrieval baselines within the same limits. The separate
 [prospective answer run](docs/fixtures/loredock-prospective-answers/README.md) passes 23/24
 cases under agent review, but one extra claim invents tenant-header propagation between
-incompatible declarations. The next improvement targets literal interface compatibility;
-broader semantic readiness remains unverified.
+incompatible declarations. The map now exposes literal header comparisons as review clues;
+this does not change saved model answers or establish broader semantic readiness.
 
 ## What v0.1 does
 

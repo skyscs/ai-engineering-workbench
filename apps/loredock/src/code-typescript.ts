@@ -1,5 +1,6 @@
 import ts from 'typescript';
 import { emptyFacts, type CodeFacts, type SymbolFact } from './code-facts.js';
+import { headerLimits, requestHeaderProperties } from './http-headers.js';
 
 const identifier = /^[A-Za-z_$][\w$]*$/;
 const literal = (node: ts.Node | undefined): string | undefined => node && ts.isStringLiteralLike(node) ? node.text : undefined;
@@ -101,6 +102,29 @@ export function typescriptFacts(content: string, filePath: string): CodeFacts {
       if (!value.startsWith('/') || value.startsWith('//')) return;
       return { path: value, baseExpression };
     }
+    function requestHeaders(options: ts.Expression | undefined): Record<string, string> {
+      if (!options) return requestHeaderProperties([]);
+      if (!ts.isObjectLiteralExpression(options)) return requestHeaderProperties();
+      let headers: ts.Expression | undefined;
+      for (const prop of options.properties) {
+        if (!ts.isPropertyAssignment(prop) || !propertyName(prop.name) || propertyName(prop.name) === '__proto__') return requestHeaderProperties();
+        if (propertyName(prop.name) === 'headers') {
+          if (headers) return requestHeaderProperties();
+          headers = prop.initializer;
+        }
+      }
+      if (!headers) return requestHeaderProperties([]);
+      if (!ts.isObjectLiteralExpression(headers) || headers.properties.length > headerLimits.names) return requestHeaderProperties();
+      const names: string[] = [];
+      for (const prop of headers.properties) {
+        if (!ts.isPropertyAssignment(prop)) return requestHeaderProperties();
+        const name = propertyName(prop.name);
+        // A non-computed __proto__ assignment is not an ordinary own field in JS.
+        if (!name || name === '__proto__') return requestHeaderProperties();
+        names.push(name);
+      }
+      return requestHeaderProperties(names);
+    }
     for (const entry of functions.slice(0, 100)) {
       result.symbols.push(entry.symbol);
       const work: ts.Node[] = [entry.body];
@@ -139,8 +163,10 @@ export function typescriptFacts(content: string, filePath: string): CodeFacts {
         if (!url || !['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'].includes(method)) {
           result.gaps.push('dynamic-or-unsupported-http-request'); continue;
         }
+        const headers = requestHeaders(node.arguments[1]);
+        if (headers.requestHeaderStatus === 'unknown') result.gaps.push('unresolved-http-headers');
         result.operations.push({ owner: entry.symbol.key, kind: 'http-request', start: offset + node.getStart(source), end: offset + node.end,
-          properties: { method, ...url, adapter: entry.dojo ? 'dojo/request AMD' : 'fetch' } });
+          properties: { method, ...url, adapter: entry.dojo ? 'dojo/request AMD' : 'fetch', ...headers } });
       }
     }
     if (functions.length > 100) result.gaps.push('typescript-symbol-limit');

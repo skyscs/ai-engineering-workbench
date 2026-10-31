@@ -1,5 +1,47 @@
 # Development status
 
+## Task 031 — Literal HTTP header and binding comparison
+
+Implemented and locally verified, 2026-10-31. Task 030 reached main through PR #34
+(`d11887b`) after both exact-head CI runs passed. Its prospective gate remains failed.
+
+Supported fetch/Dojo headers and same-document JSON handler bindings now produce
+bounded literal-name metadata. HTTP method/path candidates compare names ignoring
+ASCII case and distinguish matches, missing literal mappings and unknown input. Values,
+runtime rewriting, live connections, parameter conversion and identity enforcement
+remain unverified. The existing UI exposes every admitted HTTP comparison, including
+links outside the two outlines, with both originals and engineer corrections.
+
+An independent receipt/ledger mismatch test failed against v1 before implementation.
+The new tests cover literal/empty/dynamic inputs, case/punctuation, spreads/getters/
+computed keys, prototype setters, collisions, exact handler ownership and bounds.
+Adapters become `pilot-code-v2` / `json-declarations-v2`; old correction records remain
+readable and byte-stable across restart but cannot be reapplied across that boundary.
+Database/projection schemas and saved answer inputs/results are unchanged.
+
+Full `pnpm check` passes **327 tests** (168 LoreDock, 24 script tests), typechecks and
+builds on Node 22.23.2. The final message-text adjustment also passes the five focused
+header tests. The twenty-source browser scenario adds two independent fixture files
+and checks five candidates: three matches, one unknown and one gap outside the outlines.
+It verifies original caller/route citations by keyboard, correction save/reload, escaped
+text, 390-pixel layout, held late responses, source revocation and policy fencing.
+The broader three-source UI regression also passes, including correction/reapplication,
+refresh, original citations and restart persistence. Model calls: **zero**.
+
+Review found no remaining blocking defect within this bounded slice. Initial local
+failures exposed a test helper assuming an eligible reapplication target and a browser
+harness missing the Enter character event; both harnesses were corrected and rerun.
+No production failure was hidden. Frozen corpora, prompts, answers, semantic reviews
+and audit baselines are unchanged. See [Task 031](../tasks/031-loredock-http-header-bindings.md),
+[ADR 0034](decisions/0034-loredock-http-header-bindings.md) and
+[browser evidence and limits](fixtures/loredock-http-headers/README.md).
+
+Next: separately scope derived interface comparisons in answer previews/inputs with
+original evidence, independent examples, bounded selection, versioning and history/
+revocation checks. This map-only improvement does not repair failed model evaluations;
+a new prospective answer run needs its own design and budget. Broader framework support,
+independent review and an eligible private pilot still precede the Workbench bridge.
+
 ## Task 030 — One-shot prospective answer qualification
 
 Evaluated and locally verified, 2026-10-31; **prospective semantic gate failed**.

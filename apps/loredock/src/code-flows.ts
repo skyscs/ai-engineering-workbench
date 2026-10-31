@@ -9,6 +9,7 @@ import { declarationMap } from './system-map.js';
 import type { MapEvidence, MapNode } from './system-map-types.js';
 import { CatalogError } from './types.js';
 import type { CodeFlows, FlowEdge, FlowNode, StaticFlow } from './code-flow-types.js';
+import { compareHeaders, type HeaderCheck } from './http-headers.js';
 
 export const flowLimits = { documents: 100, fileBytes: 32 * 1024, textBytes: 256 * 1024, fileSpans: 8,
   nodes: 160, edges: 240, comparisons: 2000, flows: 2, flowSteps: 20, traversals: 1000, outputBytes: 512 * 1024 } as const;
@@ -26,7 +27,7 @@ export function codeFlows(catalog: Catalog, buildId?: string): CodeFlows {
   const symbols: SymbolEntry[] = [], operations: OperationEntry[] = [];
   let outputBytes = 0, parsedBytes = 0, examinedDocuments = 0, comparisons = 0;
   const omit = (reason: string, count = 1) => { omissions[reason] = (omissions[reason] ?? 0) + count; };
-  const id = (...parts: unknown[]) => sha256(JSON.stringify([build.id, 'pilot-code-v1', ...parts]));
+  const id = (...parts: unknown[]) => sha256(JSON.stringify([build.id, 'pilot-code-v2', ...parts]));
   function reserve(item: FlowNode | FlowEdge | StaticFlow) {
     const refs = item.evidenceIds.filter(ref => !evidence.has(ref)).map(ref => available.get(ref)!);
     const cost = Buffer.byteLength(JSON.stringify(item)) + 1 + refs.reduce((sum, ref) => sum + Buffer.byteLength(JSON.stringify(ref)) + ref.id.length + 4, 0);
@@ -40,12 +41,12 @@ export function codeFlows(catalog: Catalog, buildId?: string): CodeFlows {
     if (reserve(item)) { nodes.push(item); return item; } return;
   }
   function link(kind: FlowEdge['kind'], from: FlowNode, to: FlowNode, status: FlowEdge['status'], reason: string,
-    gaps: string[] = [], extra: string[] = [], environment: string | null = null) {
+    gaps: string[] = [], extra: string[] = [], environment: string | null = null, headerCheck?: HeaderCheck) {
     const edgeId = id('edge', kind, from.id, to.id, environment);
     if (edges.some(edge => edge.id === edgeId)) return;
     if (edges.length >= flowLimits.edges) { omit('edge-limit'); return; }
     const item: FlowEdge = { id: edgeId, kind, from: from.id, to: to.id, status, reason, environment, gaps,
-      evidenceIds: unique([...from.evidenceIds, ...to.evidenceIds, ...extra]) };
+      evidenceIds: unique([...from.evidenceIds, ...to.evidenceIds, ...extra]), ...(headerCheck ? { headerCheck } : {}) };
     if (reserve(item)) edges.push(item);
   }
   function compare() {
@@ -130,8 +131,12 @@ export function codeFlows(catalog: Catalog, buildId?: string): CodeFlows {
     for (const route of nodes.filter(node => node.kind === 'route')) {
       if (!compare()) break;
       if (route.properties.method === request.fact.properties.method && route.properties.path === request.fact.properties.path) {
-        link('http-target', request.node, route, 'candidate', 'HTTP method/path match a route declaration; authority/proxy and deployment binding are unresolved.',
-          ['The client base URL or proxy is not bound to this route by supported source.']);
+        const headers = compareHeaders(request.node.properties, route.properties);
+        link('http-target', request.node, route, 'candidate',
+          `HTTP method/path match a route declaration; authority/proxy and deployment binding are unresolved. ${headers.detail}`,
+          ['The client base URL or proxy is not bound to this route by supported source.',
+            'Literal header names do not prove runtime values, middleware/proxy rewrites, parameter conversion or identity enforcement.',
+            ...headers.status === 'match' ? [] : [headers.detail]], [], null, headers);
       }
     }
   }
@@ -213,7 +218,7 @@ export function codeFlows(catalog: Catalog, buildId?: string): CodeFlows {
   if (Object.keys(omissions).length || Object.keys(declaration.omissions).length) gaps.push('Unsupported or bounded work was omitted; inspect code and declaration coverage.');
   if (declaration.stale) gaps.push('This projection uses an older index or source registry; revoked sources are excluded.');
   if (build.status === 'partial') gaps.push('The source index is partial; excluded and failed material is unavailable.');
-  const result = { schemaVersion: 'loredock-code-flows-v1' as const, adapterVersion: 'pilot-code-v1' as const, buildId: build.id,
+  const result = { schemaVersion: 'loredock-code-flows-v1' as const, adapterVersion: 'pilot-code-v2' as const, buildId: build.id,
     policyVersion: declaration.policyVersion, sourceSetVersion: declaration.sourceSetVersion, registryVersion: declaration.registryVersion,
     stale: declaration.stale, partial: true as const, deploymentCoherence: 'unknown' as const, nodes, edges, flows,
     evidence: Object.fromEntries(evidence), gaps, omissions, declarationOmissions: declaration.omissions,

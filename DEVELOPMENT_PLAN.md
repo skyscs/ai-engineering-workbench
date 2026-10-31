@@ -54,8 +54,12 @@ All historical results remain unchanged.
 run: 11/12 development and 12/12 reserved cases pass agent review. Required propositions
 are covered, but an extra unsupported header-propagation claim fails the semantic gate.
 The 24-attempt budget is exhausted; no repeated tuning on these answers is included.
-Next: bounded model-free comparison of literal request headers and route bindings,
-with exact evidence and explicit unresolved mapping rather than runtime-defect claims.
+[Task 031](tasks/031-loredock-http-header-bindings.md) adds bounded model-free comparison
+of literal request headers and same-document route bindings, with original evidence
+and explicit unresolved mappings. Candidate links outside the two outlines are visible.
+Next: separately scope source-backed interface comparisons in answer previews/inputs,
+with independent examples and provenance/budget/history checks before any new model run.
+This map-only change does not repair or rescore the failed answer evaluations.
 Source recall, agent scoring and merging do not establish L5 readiness.
 Broader synthesis, adapters, semantic/AI refresh and scale acceptance remain separate.
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,

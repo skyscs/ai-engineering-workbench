@@ -498,6 +498,9 @@ footer{
 .code-flows { margin-block: 1.5rem; }
 .flow-card { border: 1px solid var(--border, #cbd5e1); border-radius: 10px; padding: 1rem; margin-block: 1rem; }
 .flow-card > summary { font-weight: 600; overflow-wrap: anywhere; }
+.flow-header-checks { margin-block: 1rem; overflow-wrap: anywhere; }
+.flow-header-check { border-inline-start: 3px solid var(--border, #cbd5e1); padding-inline-start: .8rem; margin-block: 1rem; min-width: 0; }
+.flow-header-check h4 { margin-block: .5rem; }
 .flow-steps { padding-inline-start: 1.5rem; }
 .flow-steps > li { padding-block: .65rem; border-bottom: 1px solid #dbe2ea; overflow-wrap: anywhere; }
 .flow-citations { display: flex; flex-wrap: wrap; gap: .35rem; margin-block: .4rem; }

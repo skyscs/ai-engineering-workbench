@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "loredock-http-headers-browser/1",
+  "sources": 20,
+  "independentAddedFiles": 2,
+  "comparisons": 5,
+  "statuses": [
+    "match",
+    "unknown",
+    "match",
+    "gap",
+    "match"
+  ],
+  "gapOutsideOutlines": true,
+  "candidateGap": {
+    "status": "gap",
+    "detail": "Route bindings tenantId ← X-Tenant have no matching literal client header among x-tenant-id."
+  },
+  "candidateEvidence": [
+    "checkout-bff / src/checkout.ts",
+    "order-api / config/routes.json"
+  ],
+  "caseInsensitiveMatch": true,
+  "dynamicUnknown": true,
+  "escapedRouteLabel": true,
+  "originalCallerAndRouteCitations": true,
+  "keyboardFocus": true,
+  "mobileWidth": 390,
+  "horizontalOverflow": false,
+  "correctionSavedAndReloaded": true,
+  "lateResponseFenced": true,
+  "sourceRevocationFenced": true,
+  "policyChangeFenced": true,
+  "modelRequests": 0,
+  "runtimePreparations": 0,
+  "answerAttempts": 0,
+  "sourceCheckoutsUnchanged": true
+}
