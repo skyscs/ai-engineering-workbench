@@ -2,14 +2,22 @@ import { useEffect, useState } from 'react';
 import type { DeclarationMap, MapNode } from '../../loredock/src/system-map-types';
 import { api } from './api';
 import { CodeFlowsView } from './CodeFlows';
+import type { CorrectionOverlay } from '../../loredock/src/correction-types';
+import { LinkCorrection } from './LinkCorrection';
 
 const kinds: Record<MapNode['kind'], string> = { repository: 'Repository', package: 'Package declaration',
   'http-route': 'HTTP route', 'handler-reference': 'Handler reference', 'event-contract': 'Event contract', setting: 'Configuration value' };
 
-export function SystemMap({ buildId, boundary, openEvidence }: { buildId: string; boundary: string; openEvidence(id: string): void }) {
+export function SystemMap({ buildId, boundary, correctionRevision, refreshProject, openEvidence }: {
+  buildId: string; boundary: string; correctionRevision: number; refreshProject(): void; openEvidence(id: string): void;
+}) {
   const key = `${boundary}:${buildId}`;
   const [result, setResult] = useState<{ key: string; map: DeclarationMap }>();
   const [error, setError] = useState<{ key: string; text: string }>();
+  const [reviewReload, setReviewReload] = useState(0);
+  const reviewKey = `${key}:${correctionRevision}:${reviewReload}`;
+  const [review, setReview] = useState<{ sourceKey: string; key: string; value: CorrectionOverlay }>();
+  const [reviewError, setReviewError] = useState<{ key: string; text: string }>();
   useEffect(() => {
     let stopped = false;
     if (!buildId) return;
@@ -18,6 +26,17 @@ export function SystemMap({ buildId, boundary, openEvidence }: { buildId: string
     }).catch(cause => { if (!stopped) { setResult(undefined); setError({ key, text: (cause as Error).message }); } });
     return () => { stopped = true; };
   }, [buildId, key]);
+  useEffect(() => {
+    let stopped = false;
+    if (!buildId) return;
+    void api<CorrectionOverlay>(`/corrections?buildId=${encodeURIComponent(buildId)}`).then(value => {
+      if (!stopped) { setReview({ sourceKey: key, key: reviewKey, value }); setReviewError(undefined); }
+    }).catch(cause => { if (!stopped) setReviewError({ key: reviewKey, text: (cause as Error).message }); });
+    return () => { stopped = true; };
+  }, [buildId, key, reviewKey]);
+  const overlay = review?.sourceKey === key ? review.value : undefined;
+  const reviewReady = review?.key === reviewKey && Boolean(overlay && overlay.revision >= correctionRevision) && reviewError?.key !== reviewKey;
+  function correctionsChanged() { setReviewReload(value => value + 1); refreshProject(); }
   const map = result?.key === key ? result.map : undefined;
   function citations(ids: string[]) {
     return <div className="citations">{ids.map(id => { const span = map?.evidence[id]; return span && <button className="quiet" key={id} onClick={() => openEvidence(id)}>{span.sourceName} / {span.path}:{span.startLine}–{span.endLine}</button>; })}</div>;
@@ -29,7 +48,11 @@ export function SystemMap({ buildId, boundary, openEvidence }: { buildId: string
       <p role="status">{map.nodes.filter(node => node.kind === 'repository').length} repositories · {map.nodes.filter(node => node.kind !== 'repository').length} declarations · {map.edges.filter(edge => edge.status !== 'declared').length} cross-repository clues</p>
       <p className="notice">Partial map · deployment coherence unknown. Repository identity and matching declarations do not establish service ownership or runtime connections.</p>
       {map.stale && <p className="notice">This map uses an older index or source registry. Removed sources are excluded.</p>}
-      <CodeFlowsView buildId={buildId} boundary={boundary} openEvidence={openEvidence} />
+      {reviewError?.key === reviewKey && <div className="error" role="alert"><p>Engineer corrections are unavailable: {reviewError.text}</p>
+        <button className="quiet" onClick={() => setReviewReload(value => value + 1)}>Retry review loading</button></div>}
+      {overlay && !overlay.editable && <p className="notice">Index the remaining sources before adding corrections. Notes from the revoked source scope are unavailable.</p>}
+      <CodeFlowsView buildId={buildId} boundary={boundary} openEvidence={openEvidence}
+        overlay={overlay} reviewReady={reviewReady} correctionsChanged={correctionsChanged} />
       <div className="map-repositories">{map.nodes.filter(node => node.kind === 'repository').map(repository => <details className="map-repository" key={repository.id}>
         <summary>{repository.label}</summary><p className="muted">Repository · {repository.properties.status} · revision {repository.revision?.slice(0, 8) ?? 'unavailable'}</p>
         <ul className="map-declarations">{map.nodes.filter(node => node.sourceId === repository.sourceId && node.kind !== 'repository').map(node => <li key={node.id}>
@@ -51,6 +74,8 @@ export function SystemMap({ buildId, boundary, openEvidence }: { buildId: string
           <p>{from.sourceName} / {from.label} ↔ {to.sourceName} / {to.label}</p>
           {edge.kind.startsWith('setting-') && <p>{from.properties.value} ↔ {to.properties.value} · environment {edge.environment ?? 'unspecified'}</p>}
           <p>{edge.reason}</p>{citations(edge.evidenceIds)}
+          <LinkCorrection buildId={buildId} targetKind="declaration-link" targetId={edge.id} projectionHash={map.inputHash}
+            overlay={overlay} ready={reviewReady} changed={correctionsChanged} openEvidence={openEvidence} />
         </article>;
       })}
       {!map.edges.some(edge => edge.status !== 'declared') && <p>No comparable cross-repository declarations in this projection. This does not establish absence of connections.</p>}

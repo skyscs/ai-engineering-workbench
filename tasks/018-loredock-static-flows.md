@@ -1,6 +1,6 @@
 # Task 018 — Source-backed code links and static flow outlines
 
-Status: implemented and locally verified, 2026-10-30; ready for code/product review.
+Status: accepted through the owner's merge of PR #22 (`25032fd`), 2026-10-30.
 Task 017 was accepted through merged PR #21
 (`a551f3c`); the owner explicitly requested continuation.
 
@@ -63,6 +63,7 @@ deliberately delayed older response. See [review evidence](../docs/fixtures/lore
 
 ## Follow-up
 
-Durable engineer-supplied claim/scope corrections and derivative invalidation remain
-the next L3 task. Real-framework adapters, broader Overview/Guide Me, scale acceptance,
+Durable relationship corrections and derivative invalidation follow in
+[Task 019](019-loredock-engineer-corrections.md). Real-framework adapters,
+broader Overview/Guide Me, scale acceptance,
 automatic repository routing and the Workbench bridge retain separate milestones.

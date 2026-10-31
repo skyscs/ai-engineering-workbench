@@ -103,10 +103,10 @@ test('schema 1 search migration preserves evidence and revocation purges both in
   const source = await catalog.addSource(path.join(fixture.root, 'sources/portal'));
   const state = catalog.state(); catalog.start('migration', state.sourceSetVersion, state.policyVersion); await catalog.idle();
   const before = catalog.evidence(catalog.search('submitOrder').hits[0]!.id);
-  store.db.exec('DROP TABLE question_search; DROP TABLE answer_sources; DROP TABLE answer_attempts; DROP TABLE answer_settings; PRAGMA user_version=1;');
+  store.db.exec('DROP TABLE correction_flows; DROP TABLE correction_sources; DROP TABLE corrections; ALTER TABLE project DROP COLUMN correctionRevision; DROP TABLE question_search; DROP TABLE answer_sources; DROP TABLE answer_attempts; DROP TABLE answer_settings; PRAGMA user_version=1;');
   await catalog.stop(); store.close();
   store = new CatalogStore(directory); catalog = new Catalog(store);
-  assert.equal(store.one<{ user_version: number }>('PRAGMA user_version')!.user_version, 3);
+  assert.equal(store.one<{ user_version: number }>('PRAGMA user_version')!.user_version, 4);
   assert.deepEqual(catalog.evidence(before.id), before);
   assert.ok(retrieveAnswerContext(catalog, 'Checkout.vue').spans.some(span => span.path === 'src/Checkout.vue'));
   catalog.revoke(source.id);

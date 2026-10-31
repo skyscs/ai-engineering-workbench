@@ -1,0 +1,248 @@
+{
+  "schemaVersion": "loredock-correction-evaluation/1",
+  "checkedAt": "2026-10-30T21:14:25.897Z",
+  "modelRequests": 0,
+  "modelUsage": null,
+  "databaseVersion": 4,
+  "revisionVector": {
+    "portal": "603a69798dc12c3205e88d0498881b0c01079932",
+    "order-api": "237510937b4388fc718b7e9f93869954950df1bb",
+    "order-worker": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37"
+  },
+  "sourceCheckoutsUnchanged": true,
+  "originalProjectionsUnchanged": true,
+  "idempotentReplay": true,
+  "restartHistoryIdentical": true,
+  "invalidatedFlowIds": [
+    "3d72603041013c6759b4bb80946312c4b44bc2ca03d80ad6783e76e1ab69023f",
+    "8c84d85f21ba66740b36a7080612e9690c3f8c60081a570609501bf4e5ce3132"
+  ],
+  "resolvingEvidenceCount": 6,
+  "history": {
+    "buildId": "7a193c3a-a7da-46e7-b3b3-3bdfc2a08e8b",
+    "revision": 3,
+    "versions": [
+      {
+        "id": "5c27bc4f-6260-492d-969e-26bd15764b96",
+        "buildId": "7a193c3a-a7da-46e7-b3b3-3bdfc2a08e8b",
+        "targetKind": "code-link",
+        "targetId": "299f78ff3a11867de185ea72ae647cfb33144d68a500a0dfbdb9457c49f3b4be",
+        "version": 3,
+        "revision": 3,
+        "previousId": "0ac771b3-5810-464e-bf32-73b0fea9dfea",
+        "createdAt": "2026-10-30T21:14:25.611Z",
+        "action": "withdraw",
+        "statement": null,
+        "environment": null,
+        "provenance": "human",
+        "verification": "unverified",
+        "affectedFlowIds": [
+          "3d72603041013c6759b4bb80946312c4b44bc2ca03d80ad6783e76e1ab69023f",
+          "8c84d85f21ba66740b36a7080612e9690c3f8c60081a570609501bf4e5ce3132"
+        ],
+        "original": {
+          "schemaVersion": "loredock-code-flows-v1",
+          "adapterVersion": "pilot-code-v1",
+          "projectionHash": "4b9eb320d9ebb566a9d3cbe61e3d27f78c8ab44402fdfb5ffb0cdeb37b817146",
+          "id": "299f78ff3a11867de185ea72ae647cfb33144d68a500a0dfbdb9457c49f3b4be",
+          "kind": "event-delivery",
+          "status": "candidate",
+          "reason": "Equal supported Java record shapes, matching JSON contract declarations and one scoped orderTopic setting are candidate delivery clues.",
+          "environment": "local",
+          "from": {
+            "id": "c45772e0712f960aad9c59c8825e77d48925d15b1212ce773c419f6eb1bf7dfb",
+            "label": "Publish OrderPlaced",
+            "sourceId": "44ad1a41-b264-4ab8-97ff-0a05a976342b",
+            "sourceName": "order-api"
+          },
+          "to": {
+            "id": "5eb6ea32f760e6c0d3d2ab596f596aaa5523414a9783f86be2eaf5dec7db8d75",
+            "label": "Subscribe via KafkaSubscriber",
+            "sourceId": "a94e9da1-0fc5-4090-8c5e-082466144984",
+            "sourceName": "order-worker"
+          },
+          "evidenceIds": [
+            "65ee4c1a-0148-415a-bc12-01afde60b715",
+            "9a787a83-fcee-47ff-aa22-8dbc3feaee99",
+            "9d263939-1d86-4a76-9a7d-635f49ad5cf6",
+            "b3897858-83fc-47d3-978c-2fb14d6e683b",
+            "e3e44a0f-7e0a-4a14-9de7-bda275817a51",
+            "edcae643-747c-42de-ada2-498a848a0d15"
+          ]
+        }
+      },
+      {
+        "id": "0ac771b3-5810-464e-bf32-73b0fea9dfea",
+        "buildId": "7a193c3a-a7da-46e7-b3b3-3bdfc2a08e8b",
+        "targetKind": "code-link",
+        "targetId": "299f78ff3a11867de185ea72ae647cfb33144d68a500a0dfbdb9457c49f3b4be",
+        "version": 2,
+        "revision": 2,
+        "previousId": "79133615-92df-4a5f-946d-605390d4a1c3",
+        "createdAt": "2026-10-30T21:14:25.583Z",
+        "action": "clarify",
+        "statement": "Review this delivery relationship only as a local candidate; production wiring remains unknown.",
+        "environment": "local",
+        "provenance": "human",
+        "verification": "unverified",
+        "affectedFlowIds": [
+          "3d72603041013c6759b4bb80946312c4b44bc2ca03d80ad6783e76e1ab69023f",
+          "8c84d85f21ba66740b36a7080612e9690c3f8c60081a570609501bf4e5ce3132"
+        ],
+        "original": {
+          "schemaVersion": "loredock-code-flows-v1",
+          "adapterVersion": "pilot-code-v1",
+          "projectionHash": "4b9eb320d9ebb566a9d3cbe61e3d27f78c8ab44402fdfb5ffb0cdeb37b817146",
+          "id": "299f78ff3a11867de185ea72ae647cfb33144d68a500a0dfbdb9457c49f3b4be",
+          "kind": "event-delivery",
+          "status": "candidate",
+          "reason": "Equal supported Java record shapes, matching JSON contract declarations and one scoped orderTopic setting are candidate delivery clues.",
+          "environment": "local",
+          "from": {
+            "id": "c45772e0712f960aad9c59c8825e77d48925d15b1212ce773c419f6eb1bf7dfb",
+            "label": "Publish OrderPlaced",
+            "sourceId": "44ad1a41-b264-4ab8-97ff-0a05a976342b",
+            "sourceName": "order-api"
+          },
+          "to": {
+            "id": "5eb6ea32f760e6c0d3d2ab596f596aaa5523414a9783f86be2eaf5dec7db8d75",
+            "label": "Subscribe via KafkaSubscriber",
+            "sourceId": "a94e9da1-0fc5-4090-8c5e-082466144984",
+            "sourceName": "order-worker"
+          },
+          "evidenceIds": [
+            "65ee4c1a-0148-415a-bc12-01afde60b715",
+            "9a787a83-fcee-47ff-aa22-8dbc3feaee99",
+            "9d263939-1d86-4a76-9a7d-635f49ad5cf6",
+            "b3897858-83fc-47d3-978c-2fb14d6e683b",
+            "e3e44a0f-7e0a-4a14-9de7-bda275817a51",
+            "edcae643-747c-42de-ada2-498a848a0d15"
+          ]
+        }
+      },
+      {
+        "id": "79133615-92df-4a5f-946d-605390d4a1c3",
+        "buildId": "7a193c3a-a7da-46e7-b3b3-3bdfc2a08e8b",
+        "targetKind": "code-link",
+        "targetId": "299f78ff3a11867de185ea72ae647cfb33144d68a500a0dfbdb9457c49f3b4be",
+        "version": 1,
+        "revision": 1,
+        "previousId": null,
+        "createdAt": "2026-10-30T21:14:25.573Z",
+        "action": "dispute",
+        "statement": "The declared local topic does not establish a shared broker or runtime parameter binding.",
+        "environment": "local",
+        "provenance": "human",
+        "verification": "unverified",
+        "affectedFlowIds": [
+          "3d72603041013c6759b4bb80946312c4b44bc2ca03d80ad6783e76e1ab69023f",
+          "8c84d85f21ba66740b36a7080612e9690c3f8c60081a570609501bf4e5ce3132"
+        ],
+        "original": {
+          "schemaVersion": "loredock-code-flows-v1",
+          "adapterVersion": "pilot-code-v1",
+          "projectionHash": "4b9eb320d9ebb566a9d3cbe61e3d27f78c8ab44402fdfb5ffb0cdeb37b817146",
+          "id": "299f78ff3a11867de185ea72ae647cfb33144d68a500a0dfbdb9457c49f3b4be",
+          "kind": "event-delivery",
+          "status": "candidate",
+          "reason": "Equal supported Java record shapes, matching JSON contract declarations and one scoped orderTopic setting are candidate delivery clues.",
+          "environment": "local",
+          "from": {
+            "id": "c45772e0712f960aad9c59c8825e77d48925d15b1212ce773c419f6eb1bf7dfb",
+            "label": "Publish OrderPlaced",
+            "sourceId": "44ad1a41-b264-4ab8-97ff-0a05a976342b",
+            "sourceName": "order-api"
+          },
+          "to": {
+            "id": "5eb6ea32f760e6c0d3d2ab596f596aaa5523414a9783f86be2eaf5dec7db8d75",
+            "label": "Subscribe via KafkaSubscriber",
+            "sourceId": "a94e9da1-0fc5-4090-8c5e-082466144984",
+            "sourceName": "order-worker"
+          },
+          "evidenceIds": [
+            "65ee4c1a-0148-415a-bc12-01afde60b715",
+            "9a787a83-fcee-47ff-aa22-8dbc3feaee99",
+            "9d263939-1d86-4a76-9a7d-635f49ad5cf6",
+            "b3897858-83fc-47d3-978c-2fb14d6e683b",
+            "e3e44a0f-7e0a-4a14-9de7-bda275817a51",
+            "edcae643-747c-42de-ada2-498a848a0d15"
+          ]
+        }
+      }
+    ]
+  },
+  "evidence": [
+    {
+      "id": "65ee4c1a-0148-415a-bc12-01afde60b715",
+      "sourceId": "a94e9da1-0fc5-4090-8c5e-082466144984",
+      "sourceName": "order-worker",
+      "path": "contracts/OrderPlaced.json",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "startLine": 1,
+      "endLine": 8,
+      "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+      "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+    },
+    {
+      "id": "9a787a83-fcee-47ff-aa22-8dbc3feaee99",
+      "sourceId": "44ad1a41-b264-4ab8-97ff-0a05a976342b",
+      "sourceName": "order-api",
+      "path": "config/local.json",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 5,
+      "contentHash": "d407e198084d63c25904025f9420ab898b3660c545e90999124137dbfc7d865f",
+      "spanHash": "d8813b8db303e2a761a757727b3cbceba5cdb81d5955106448c8797bec35c391"
+    },
+    {
+      "id": "9d263939-1d86-4a76-9a7d-635f49ad5cf6",
+      "sourceId": "a94e9da1-0fc5-4090-8c5e-082466144984",
+      "sourceName": "order-worker",
+      "path": "config/local.json",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06"
+    },
+    {
+      "id": "b3897858-83fc-47d3-978c-2fb14d6e683b",
+      "sourceId": "44ad1a41-b264-4ab8-97ff-0a05a976342b",
+      "sourceName": "order-api",
+      "path": "src/main/java/Orders.java",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 18,
+      "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+      "spanHash": "fb97e2aa5ace7f6292dd5007aa417217edc8d0b828793f822b3d0666df87cf52"
+    },
+    {
+      "id": "e3e44a0f-7e0a-4a14-9de7-bda275817a51",
+      "sourceId": "a94e9da1-0fc5-4090-8c5e-082466144984",
+      "sourceName": "order-worker",
+      "path": "src/main/java/OrderConsumer.java",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "startLine": 1,
+      "endLine": 18,
+      "contentHash": "bc2c347b007865acd3044b52dba791f7f37abd235f5c406c06b4cf2f3516dfb0",
+      "spanHash": "0857fab150aee7933a73591e087863fbe1c349649f5d10c8ab0a7a0205c870f8"
+    },
+    {
+      "id": "edcae643-747c-42de-ada2-498a848a0d15",
+      "sourceId": "44ad1a41-b264-4ab8-97ff-0a05a976342b",
+      "sourceName": "order-api",
+      "path": "contracts/OrderPlaced.json",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 8,
+      "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+      "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e"
+    }
+  ],
+  "newIndexDoesNotInheritCorrections": true,
+  "oldIndexHistoryRetained": true,
+  "conservativeSourceDependencies": "All sources in the recorded index; portal removal fences/purges the delivery correction too.",
+  "revokedHistoryFenced": true,
+  "retainedContentAfterPurge": 0,
+  "scope": "Map/flow relationship review only. Human claims do not become deployment evidence or answer-model input."
+}

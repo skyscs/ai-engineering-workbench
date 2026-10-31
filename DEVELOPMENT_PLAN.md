@@ -17,8 +17,10 @@ and mechanical feasibility checks. [Task 015](tasks/015-loredock-source-catalog.
 delivered the model-free source catalog.
 [Task 016](tasks/016-loredock-cited-answer.md) delivered the owner-accepted cited-answer
 slice with runtime qualification. [Task 017](tasks/017-loredock-declaration-map.md) delivered
-the accepted declaration map. [Task 018](tasks/018-loredock-static-flows.md) adds bounded
-code links and two partial static outlines; corrections and broader adapters follow separately.
+the accepted declaration map. [Task 018](tasks/018-loredock-static-flows.md) delivered bounded
+code links and two partial static outlines. [Task 019](tasks/019-loredock-engineer-corrections.md)
+adds durable relationship corrections, optional human scope and dependent-flow review
+invalidation. Broader orientation, adapters, reliable refresh and scale remain separate.
 Planning does not authorize implementing every milestone automatically.
 
 Tasks 012–013 delivered the [UX simplification](docs/ux-simplification-plan.md).

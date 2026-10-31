@@ -87,6 +87,7 @@ p{
 }
 .workspace{
   display:grid;
+  grid-template-columns:minmax(0,1fr);
   gap:22px;
   min-width:0
 }
@@ -423,3 +424,15 @@ footer{
 .flow-link { font-size: .9rem; margin-block: .3rem; }
 .flow-candidate { font-size: .9rem; }
 .flow-gaps, .flow-coverage { margin-block: .8rem; overflow-wrap: anywhere; }
+.link-correction { margin-block: .5rem; }
+.link-correction > .quiet { margin-right: .75rem; font-size: 11px; }
+.human-correction { border-left: 3px solid #ad8836; padding: .6rem .8rem; background: #fcf7e8; border-radius: 4px; }
+.human-correction p { margin-block: .4rem; }
+.correction-statement { white-space: pre-wrap; overflow-wrap: anywhere; }
+.correction-form { padding: .8rem; border: 1px solid #dce4df; border-radius: 8px; margin-block: .6rem; }
+.correction-actions, .correction-evidence { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+.correction-actions { margin-top: .75rem; }
+.correction-history { padding: .6rem; border: 1px solid #dce4df; border-radius: 8px; margin-block: .6rem; }
+.correction-history ol { padding-left: 1.3rem; }
+.correction-history li { margin-block: .8rem; overflow-wrap: anywhere; }
+.flow-card.needs-review { border-color: #c5a66a; }

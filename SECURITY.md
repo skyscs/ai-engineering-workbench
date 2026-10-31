@@ -31,6 +31,11 @@ The code-flow projection parses stored text in memory, without compiler plugins,
 configuration, filesystem/package resolution or source execution. It retains original
 evidence and the same fencing. Static/candidate links do not establish runtime behavior;
 see [ADR 0023](docs/decisions/0023-loredock-static-code-flows.md).
+Engineer corrections retain explicit human/unverified provenance and are not sent to the
+answer model in this slice. All sources in the recorded index conservatively fence their
+history/replay; revocation purges dependent note text, environment and target snapshots,
+including withdrawn versions. SQL/HTTP and late-response boundaries are described in
+[ADR 0024](docs/decisions/0024-loredock-engineer-corrections.md).
 
 The sections below describe Workbench's existing AI investigation boundary.
 

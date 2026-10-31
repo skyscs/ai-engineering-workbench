@@ -2,14 +2,22 @@
 
 Status: Task 015 delivered the source catalog. Task 016's bounded cited-answer slice
 is owner-accepted through PR #20. Task 017's declaration map was accepted through PR #21.
-Task 018 adds model-free code links and two partial static outlines; durable engineer
-corrections, broader semantic relations and Context Packs remain proposed.
+Task 018's model-free code links and partial static outlines were accepted through
+PR #22. Task 019 adds durable human relationship corrections and affected-flow review
+state; broader semantic relations, refresh/reconciliation and Context Packs remain proposed.
 See the [owner acceptance](L2_ACCEPTANCE.md),
 [map decision](../decisions/0022-loredock-declaration-map.md),
 [code-flow decision](../decisions/0023-loredock-static-code-flows.md),
+[correction decision](../decisions/0024-loredock-engineer-corrections.md),
 [answer checkpoint](ANSWER_FOUNDATION.md) and [user guide](USER_GUIDE.md).
 The [executable fixture](../../fixtures/loredock/README.md) uses a smaller, versioned
 fixture manifest. Do not treat its IDs or JSON shape as a public product contract.
+
+Declaration-map/code-flow v1 expose source projections, not current human review state.
+Consumers must read the correction overlay and its project revision before presenting
+a flow as current with respect to engineer review. Human text/scope remain unverified;
+active affected-flow dependencies require review even when the original source hash
+has not changed. Another index requires its own review; no note is carried by name alone.
 
 ## First source manifest and data ownership
 

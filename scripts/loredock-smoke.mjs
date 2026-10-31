@@ -72,7 +72,7 @@ try {
     if (value.exceptionDetails) throw new Error(value.exceptionDetails.exception?.description ?? 'Browser evaluation failed.');
     return value.result.value;
   };
-  const text = value => waitFor(() => evaluate(`document.body.innerText.includes(${JSON.stringify(value)})`), `Missing UI text: ${value}`);
+  const text = value => waitFor(() => evaluate(`document.body?.innerText.includes(${JSON.stringify(value)})`), `Missing UI text: ${value}`);
   const click = label => evaluate(`(()=>{const b=[...document.querySelectorAll('button')].find(b=>b.textContent.trim()===${JSON.stringify(label)});if(!b||b.disabled)throw Error('Button unavailable');b.click();})()`);
   const input = (id, value) => evaluate(`(()=>{const e=document.getElementById(${JSON.stringify(id)});const p=e.tagName==='TEXTAREA'?HTMLTextAreaElement.prototype:HTMLInputElement.prototype;Object.getOwnPropertyDescriptor(p,'value').set.call(e,${JSON.stringify(value)});e.dispatchEvent(new Event('input',{bubbles:true}));})()`);
   await page.send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 1200, deviceScaleFactor: 1, mobile: false });
@@ -129,15 +129,75 @@ try {
   assert.equal(await evaluate("document.querySelector('.evidence pre').innerText.includes('OrderPlaced')"), true, 'An older response replaced the latest citation.');
   await evaluate('window.restoreFlowFetch()');
   const firstIndex = await evaluate("fetch('/api/project').then(r=>r.json()).then(p=>p.publishedBuildId)");
+  const deliveryTarget = await evaluate("[...document.querySelector('.flow-card').querySelectorAll('.flow-steps li')].find(e=>e.querySelector('.flow-candidate')?.textContent.includes('Equal supported Java record shapes')).querySelector('.link-correction').dataset.targetId");
+  const correctionSelector = `.link-correction[data-target-id="${deliveryTarget}"]`;
+  const correctionClick = label => evaluate(`(()=>{const e=document.querySelector(${JSON.stringify(correctionSelector)});const b=[...e.querySelectorAll('button')].find(b=>b.textContent.trim()===${JSON.stringify(label)});if(!b||b.disabled)throw Error('Correction button unavailable');b.click();})()`);
+  await waitFor(() => evaluate(`!!document.querySelector(${JSON.stringify(correctionSelector)})?.querySelector('button')`), 'Correction controls did not load.');
+  await correctionClick('Correct this link');
+  const correctionTextId = await evaluate(`document.querySelector(${JSON.stringify(correctionSelector)}).querySelector('textarea').id`);
+  await input(correctionTextId, '<img src=x onerror="window.correctionInjected=true"> The subscriber broker has not been verified.');
+  await evaluate(`document.querySelector(${JSON.stringify(correctionSelector)}).querySelector('.correction-scope').open=true`);
+  await input(await evaluate(`document.querySelector(${JSON.stringify(correctionSelector)}).querySelector('input').id`), 'local');
+  await correctionClick('Save correction');
+  await waitFor(() => evaluate("document.querySelectorAll('.flow-card.needs-review').length===2"), 'The shared correction did not invalidate both outlines.');
+  await text('Engineer scope: local');
+  assert.equal(await evaluate("document.querySelectorAll('.human-correction img').length"), 0);
+  assert.equal(await evaluate('window.correctionInjected===undefined'), true);
+  assert.equal(await evaluate("document.querySelector('.human-correction').innerText.includes('<img src=x')"), true);
+  await evaluate(`document.querySelector(${JSON.stringify(correctionSelector)}).scrollIntoView()`);
+  await writeFile(path.join(output, 'correction-desktop.png'), Buffer.from((await page.send('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
+  await page.send('Emulation.setDeviceMetricsOverride', { width: 390, height: 900, deviceScaleFactor: 1, mobile: true });
+  await writeFile(path.join(output, 'correction-mobile.png'), Buffer.from((await page.send('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
+  const correctionOverflow = await evaluate("[...document.querySelectorAll('body *')].filter(e=>e.getBoundingClientRect().right>391).slice(0,8).map(e=>({tag:e.tagName,className:e.className,width:e.getBoundingClientRect().width,right:e.getBoundingClientRect().right}))");
+  assert.equal(await evaluate('document.documentElement.scrollWidth<=390'), true, JSON.stringify(correctionOverflow));
+  await page.send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 1200, deviceScaleFactor: 1, mobile: false });
+  await correctionClick('Edit correction');
+  const preservedDraft = 'This link is limited to the local fixture; production broker binding is unknown.';
+  await input(await evaluate(`document.querySelector(${JSON.stringify(correctionSelector)}).querySelector('textarea').id`), preservedDraft);
+  await evaluate(`(async()=>{
+    const token=await fetch('/api/session',{method:'POST',headers:{'x-loredock-client':'web'}}).then(r=>r.json()).then(r=>r.token);
+    const project=await fetch('/api/project').then(r=>r.json());
+    const code=await fetch('/api/code-flows').then(r=>r.json());
+    const overlay=await fetch('/api/corrections').then(r=>r.json());
+    const previous=overlay.corrections.find(c=>c.targetId===${JSON.stringify(deliveryTarget)});
+    const response=await fetch('/api/corrections',{method:'POST',headers:{'Content-Type':'application/json','x-loredock-csrf':token},body:JSON.stringify({
+      requestId:crypto.randomUUID(),buildId:project.publishedBuildId,targetKind:'code-link',targetId:previous.targetId,
+      projectionHash:code.inputHash,expectedRevision:overlay.revision,expectedPreviousId:previous.id,
+      action:'clarify',statement:'Concurrent review: deployment binding remains unresolved.',environment:'local'})});
+    if(!response.ok)throw Error('The concurrent review did not publish.');
+  })()`);
+  await text('This link has a newer correction.');
+  assert.equal(await evaluate(`document.querySelector(${JSON.stringify(correctionSelector)}).querySelector('textarea').value`), preservedDraft);
+  assert.equal(await evaluate(`([...document.querySelector(${JSON.stringify(correctionSelector)}).querySelectorAll('button')].find(b=>b.textContent==='Save correction')).disabled`), true);
+  await correctionClick('Use latest review');
+  await evaluate(`(()=>{const s=document.querySelector(${JSON.stringify(correctionSelector)}).querySelector('select');s.value='clarify';s.dispatchEvent(new Event('change',{bubbles:true}));})()`);
+  await correctionClick('Save correction');
+  await waitFor(() => evaluate(`document.querySelector(${JSON.stringify(correctionSelector)}).innerText.includes('Correction history (3)')`), 'Correction revision did not publish.');
+  await correctionClick('Correction history (3)'); await text('Version 3 · Clarification'); await text('Version 1 · Disputed link');
+  await correctionClick('Withdraw correction');
+  await waitFor(() => evaluate("document.querySelectorAll('.flow-card.needs-review').length===0 && document.querySelectorAll('.human-correction').length===0"), 'Withdrawal did not clear review invalidation.');
+  await correctionClick('Correct this link');
+  await input(await evaluate(`document.querySelector(${JSON.stringify(correctionSelector)}).querySelector('textarea').id`), 'Historical correction: local delivery is still an engineer-supplied claim.');
+  await correctionClick('Save correction');
+  await waitFor(() => evaluate(`document.querySelector(${JSON.stringify(correctionSelector)}).innerText.includes('Correction history (5)')`), 'Replacement correction did not publish.');
+  const correctionId = await evaluate("fetch('/api/corrections').then(r=>r.json()).then(r=>r.corrections[0].id)");
+  await stop(daemon);
+  const reviewedDaemon = start(process.execPath, ['dist/index.js'], daemonDir, env); await ready(reviewedDaemon);
+  await page.send('Page.reload'); await text('Historical correction: local delivery');
+  assert.equal(await evaluate("document.querySelectorAll('.flow-card.needs-review').length"), 2);
   await click('Index sources');
   await waitFor(() => evaluate(`fetch('/api/project').then(r=>r.json()).then(p=>p.publishedBuildId!==${JSON.stringify(firstIndex)})`), 'Second index did not publish.');
   await waitFor(() => evaluate("document.querySelector('[aria-label=\"Index version\"]').options.length===3"), 'Index history did not refresh.');
+  await waitFor(() => evaluate("document.querySelectorAll('.human-correction').length===0 && document.querySelectorAll('.flow-card.needs-review').length===0"), 'A new index inherited an old correction.');
   await evaluate(`(()=>{const e=document.querySelector('[aria-label="Index version"]');e.value=${JSON.stringify(firstIndex)};e.dispatchEvent(new Event('change',{bubbles:true}));})()`);
   await text('This map uses an older index');
   await text('These flows use an older index');
+  await text('Historical correction: local delivery');
+  assert.equal(await evaluate("document.querySelectorAll('.flow-card.needs-review').length"), 2);
   await evaluate("(()=>{const e=document.querySelector('[aria-label=\"Index version\"]');e.value='';e.dispatchEvent(new Event('change',{bubbles:true}));})()");
   await waitFor(() => evaluate("!document.querySelector('.system-map').innerText.includes('This map uses an older index')"), 'Map did not select the current index.');
   await waitFor(() => evaluate("document.querySelector('.code-flows')?.innerText.includes('2 static flow outlines') && !document.querySelector('.code-flows').innerText.includes('These flows use an older index')"), 'Flows did not select the current index.');
+  await waitFor(() => evaluate("document.querySelectorAll('.human-correction').length===0"), 'Historical corrections remained on the current index.');
   await input('source-query', 'orders.placed.v2'); await click('Search'); await text('3 matching passages');
   await evaluate("[...document.querySelectorAll('button.result')].find(b=>b.querySelector('.result-meta').textContent.startsWith('order-api')).click()");
   await text('Source evidence');
@@ -151,25 +211,49 @@ try {
   const mobile = await page.send('Page.captureScreenshot', { format: 'png' });
   await writeFile(path.join(output, 'mobile.png'), Buffer.from(mobile.data, 'base64'));
   await page.send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 1200, deviceScaleFactor: 1, mobile: false });
+  await evaluate(`(()=>{
+    const nativeFetch=window.fetch;
+    let first=true, release;
+    const gate=new Promise(resolve=>{release=resolve;});
+    window.releaseCorrectionResponse=release;
+    window.restoreCorrectionFetch=()=>{window.fetch=nativeFetch;};
+    window.fetch=async(...args)=>{
+      const delayed=first&&String(args[0]).includes('/api/corrections?buildId=');
+      if(delayed)first=false;
+      const response=await nativeFetch(...args);
+      if(delayed){window.delayedCorrectionPayload=await response.clone().json();await gate;window.delayedCorrectionFinished=true;}
+      return response;
+    };
+    const e=document.querySelector('[aria-label="Index version"]');e.value=${JSON.stringify(firstIndex)};e.dispatchEvent(new Event('change',{bubbles:true}));
+  })()`);
+  await waitFor(() => evaluate("window.delayedCorrectionPayload?.corrections[0]?.statement.includes('Historical correction')"), 'The delayed response did not contain the original correction.');
   await evaluate("[...document.querySelectorAll('.sources li')].find(li=>li.querySelector('strong').textContent==='order-api').querySelector('button').click()");
   await click('Confirm removal'); await text('2 / 3');
   await waitFor(() => evaluate("!document.querySelector('.evidence')"), 'Revoked evidence remained visible.');
   await waitFor(() => evaluate("document.querySelectorAll('.map-clue').length===0 && ![...document.querySelectorAll('.map-repository summary')].some(e=>e.textContent==='order-api')"), 'Revoked source remained in the map.');
   await waitFor(() => evaluate("document.querySelector('.code-flows')?.innerText.includes('0 candidate code links') && !document.querySelector('.code-flows').innerText.includes('order-api /') && !document.querySelector('.code-flows').innerText.includes('MongoCollection.replaceOne')"), 'Revoked source or dependent flow steps remained visible.');
+  await evaluate('window.releaseCorrectionResponse()');
+  await waitFor(() => evaluate('window.delayedCorrectionFinished===true'), 'The older correction response did not settle.');
+  await evaluate('new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))');
+  assert.equal(await evaluate("document.querySelectorAll('.human-correction').length"), 0, 'A late response restored revoked correction content.');
+  assert.equal(await evaluate(`fetch('/api/corrections/${correctionId}/history').then(r=>r.status)`), 404);
+  await evaluate('window.restoreCorrectionFetch()');
   await input('source-query', 'publisher.publish'); await click('Search'); await text('No indexed matches.');
   await evaluate("document.querySelector('details.advanced').open=true");
   await input('exclusions', 'legacy'); await click('Save policy'); await text('Index your sources to start exploring.');
   await click('Index sources'); await text('10 indexed · 7 excluded · 0 failed · 0 pending');
-  await stop(daemon);
+  await stop(reviewedDaemon);
   const restarted = start(process.execPath, ['dist/index.js'], daemonDir, env); await ready(restarted);
   await page.send('Page.reload'); await text('10 indexed · 7 excluded · 0 failed · 0 pending');
   await waitFor(() => evaluate("document.querySelectorAll('.flow-card').length===1"), 'Supported flow did not survive policy reindex and restart.');
   await input('source-query', 'OrderConsumer'); await click('Search'); await text('matching passages');
   assert.equal(await evaluate("document.querySelectorAll('[role=alert]').length"), 0);
   for (const id of repositoryIds) assert.equal(fixtureGit(fixture.root, id, ['status', '--porcelain=v1']), '');
-  const result = { schemaVersion: 'loredock-browser/3', sources: 3, initialIndexedFiles: 18, initialExcludedFiles: 9,
+  const result = { schemaVersion: 'loredock-browser/4', sources: 3, initialIndexedFiles: 18, initialExcludedFiles: 9,
     systemMap: { repositories: 3, declarations: 16, crossRepositoryClues: 2, routeCitation: true, contractCitation: true, escapedLabels: true, historicalSelection: true, revocation: true },
     codeFlows: { outlines: 2, candidateCodeLinks: 4, writeCitation: true, latestCitationWins: true, unresolvedWiringVisible: true, historicalSelection: true, revocation: true, restart: true },
+    engineerCorrections: { dispute: true, scopedClarification: true, originalClaimPreserved: true, twoFlowsInvalidated: true, concurrentDraftPreserved: true, history: true, withdrawal: true,
+      escapedText: true, restart: true, newIndexIsolation: true, historicalSelection: true, lateResponseFencing: true, revokedHistoryUnavailable: true },
     fixtureVariation: 'Owned temporary package name contains adversarial HTML; frozen corpus files are unchanged.',
     topicMatches: 3, evidenceOpened: true, keyboardFocus: true, mobileWidth: 390, sourceRevocation: true,
     policyFencing: true, reindex: true, restartPersistence: true, sourceCheckoutsUnchanged: true, modelRequests: 0 };

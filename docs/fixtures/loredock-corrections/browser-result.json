@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "loredock-browser/4",
+  "sources": 3,
+  "initialIndexedFiles": 18,
+  "initialExcludedFiles": 9,
+  "systemMap": {
+    "repositories": 3,
+    "declarations": 16,
+    "crossRepositoryClues": 2,
+    "routeCitation": true,
+    "contractCitation": true,
+    "escapedLabels": true,
+    "historicalSelection": true,
+    "revocation": true
+  },
+  "codeFlows": {
+    "outlines": 2,
+    "candidateCodeLinks": 4,
+    "writeCitation": true,
+    "latestCitationWins": true,
+    "unresolvedWiringVisible": true,
+    "historicalSelection": true,
+    "revocation": true,
+    "restart": true
+  },
+  "engineerCorrections": {
+    "dispute": true,
+    "scopedClarification": true,
+    "originalClaimPreserved": true,
+    "twoFlowsInvalidated": true,
+    "concurrentDraftPreserved": true,
+    "history": true,
+    "withdrawal": true,
+    "escapedText": true,
+    "restart": true,
+    "newIndexIsolation": true,
+    "historicalSelection": true,
+    "lateResponseFencing": true,
+    "revokedHistoryUnavailable": true
+  },
+  "fixtureVariation": "Owned temporary package name contains adversarial HTML; frozen corpus files are unchanged.",
+  "topicMatches": 3,
+  "evidenceOpened": true,
+  "keyboardFocus": true,
+  "mobileWidth": 390,
+  "sourceRevocation": true,
+  "policyFencing": true,
+  "reindex": true,
+  "restartPersistence": true,
+  "sourceCheckoutsUnchanged": true,
+  "modelRequests": 0
+}
