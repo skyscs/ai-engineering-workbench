@@ -36,6 +36,9 @@ Answer previews show how many indexed repositories supply passages and can use e
 repository names as bounded context hints. Matching engineer disputes/clarifications are
 included separately from source
 evidence. Saved answers retain those exact notes and show when engineer review changes.
+**Interface comparisons in this context** separately shows bounded static header checks
+whose complete original support is already among the retrieved passages. The reviewed
+comparisons are included in new answer inputs and preserved in answer history.
 Development now has a [heterogeneous twenty-repository fixture](fixtures/loredock-scale/README.md)
 and a [capacity baseline](docs/loredock/SCALE_READINESS.md). Twenty-source onboarding,
 indexing and bounded retrieval are verified on that small synthetic corpus.
@@ -49,7 +52,8 @@ both earlier 20/20 retrieval baselines within the same limits. The separate
 [prospective answer run](docs/fixtures/loredock-prospective-answers/README.md) passes 23/24
 cases under agent review, but one extra claim invents tenant-header propagation between
 incompatible declarations. The map now exposes literal header comparisons as review clues;
-this does not change saved model answers or establish broader semantic readiness.
+new prompt v9 also supplies fully supported comparisons as derived clues. Saved answers
+remain unchanged, and prompt v9 has not yet received real-model quality qualification.
 
 ## What v0.1 does
 

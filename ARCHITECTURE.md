@@ -27,6 +27,10 @@ indexes; twenty-source baseline orientation is described in
 [ADR 0029](docs/decisions/0029-loredock-bulk-source-baseline.md).
 Bounded question-context sampling across twenty sources, stable selection and explicit
 source representation are described in [ADR 0030](docs/decisions/0030-loredock-scale-retrieval.md).
+Answer inputs can also retain bounded, separately versioned static interface comparisons
+whose complete support is already retrieved. Prompt construction and full-prompt fitting
+share one pure renderer; publication rechecks the derivation. See
+[ADR 0035](docs/decisions/0035-loredock-answer-interface-context.md).
 
 ## Architectural style
 

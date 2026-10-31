@@ -3,6 +3,7 @@ import type { Answers, AnswerAttempt } from '../../loredock/src/answers';
 import type { AnswerContext } from '../../loredock/src/answer-context';
 import { api } from './api';
 import { AnswerReview } from './AnswerReview';
+import { AnswerInterfaces } from './AnswerInterfaces';
 
 type State = ReturnType<Answers['state']>;
 export function AnswerPanel({ buildId, boundary: sourceBoundary, correctionRevision, openEvidence }: {
@@ -80,6 +81,7 @@ export function AnswerPanel({ buildId, boundary: sourceBoundary, correctionRevis
         <ul>{context.spans.map(span => <li key={span.id}><button className="quiet" onClick={() => openEvidence(span.id)}>{span.sourceName} / {span.path}:{span.startLine}–{span.endLine}</button></li>)}</ul>
       </details>
       {context.review && <AnswerReview review={context.review} spans={context.spans} openEvidence={openEvidence} />}
+      {context.interfaces && <AnswerInterfaces value={context.interfaces} spans={context.spans} openEvidence={openEvidence} />}
       <p className="muted">One attempt, up to two minutes. Failed or cancelled attempts keep the last successful answer. A retry is a new request and can consume more usage.</p>
       <button className="primary" disabled={busy || Boolean(active) || !state?.connection} onClick={generate}>Generate answer</button>
     </div>}
@@ -96,6 +98,8 @@ export function AnswerPanel({ buildId, boundary: sourceBoundary, correctionRevis
       {displayed.reviewState === 'changed' && <p className="notice review-changed">Engineer review changed after this answer's context was prepared. The saved notes below are historical. Find context and generate again to use current review.</p>}
       {displayed.reviewState === 'not-recorded' && <p className="notice">This older answer did not record engineer review. Generate a new answer to include current notes.</p>}
       {displayed.context?.review && <AnswerReview review={displayed.context.review} spans={displayed.context.spans} openEvidence={openEvidence} />}
+      {displayed.context?.interfaces && <AnswerInterfaces value={displayed.context.interfaces} spans={displayed.context.spans} openEvidence={openEvidence} />}
+      {displayed.context && !displayed.context.interfaces && <p className="muted">This older answer did not record interface comparisons. Its original context is unchanged.</p>}
       {displayed.reason && <p className="notice">{displayed.reason}</p>}
       {displayed.answer?.claims.map((claim, index) => <div className={`claim ${claim.kind}`} key={index}>
         <strong>{claim.kind === 'conflict' ? 'Conflicting sources' : claim.kind === 'inference' ? 'Inference' : 'Source-backed statement'}</strong><p>{claim.text}</p>

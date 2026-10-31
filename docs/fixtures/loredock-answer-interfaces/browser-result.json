@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "loredock-answer-interfaces-browser/1",
+  "sources": 20,
+  "independentAddedFiles": 2,
+  "comparisons": 5,
+  "statuses": [
+    "match",
+    "unknown",
+    "match",
+    "gap",
+    "match"
+  ],
+  "previewModelFree": true,
+  "issuedPromptMatchesPreview": true,
+  "originalCallerAndRouteCitations": true,
+  "keyboardFocus": true,
+  "escapedText": true,
+  "mobileWidth": 390,
+  "horizontalOverflow": false,
+  "savedComparisonsAfterReload": true,
+  "historyUnchangedAfterRefresh": true,
+  "legacyFieldAbsencePreserved": true,
+  "historicalSelection": true,
+  "latePreviewFenced": true,
+  "sourceRevocationFenced": true,
+  "policyChangeFenced": true,
+  "fakeRuntimeCalls": 2,
+  "modelRequests": 0,
+  "sourceCheckoutsUnchanged": true
+}

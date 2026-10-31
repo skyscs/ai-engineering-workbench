@@ -42,9 +42,14 @@ remain reviewable; both the prospective and historical gates stay failed.
 [Task 031](../../tasks/031-loredock-http-header-bindings.md) adds model-free literal
 header/binding comparison to map candidates, including those outside the two outlines.
 Original citations and unsupported mappings remain explicit; runtime connections and
-header values remain unverified. Next: separately scope source-backed interface
-comparisons in answer previews/inputs, using independent cases and explicit provenance,
-budget and history boundaries before considering a new prospective model evaluation.
+header values remain unverified.
+[Task 032](../../tasks/032-loredock-answer-interface-context.md) adds separately labeled
+comparisons to answer previews, saved contexts and prompt v9. Complete supporting spans
+must already be retrieved; source selection and earlier answers remain unchanged.
+Count/byte/prompt bounds, derivation validation and historical/source fences are tested
+without real models. Next: freeze an independent prospective qualification design for
+the new prompt, including interface mapping and earlier limitation/conflict regressions,
+before considering any separately budgeted real-model run.
 No further tuning on the observed reserved answers is included.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale

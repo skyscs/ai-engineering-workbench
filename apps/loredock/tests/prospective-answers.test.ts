@@ -13,9 +13,24 @@ import { evaluateProspectiveAnswers, freezeProspectiveAnswers } from '../../../s
 // @ts-expect-error Reviewer-only definitions never enter the product input.
 import { completenessCases } from '../../../fixtures/loredock-completeness/cases.mjs';
 
-const services = { Catalog, CatalogStore, Answers, answerPrompt, answerPromptVersion, answerSchemaVersion, retrievalVersion };
+const productionServices = { Catalog, CatalogStore, Answers, answerPrompt, answerPromptVersion, answerSchemaVersion, retrievalVersion };
+// Runner orchestration fixtures advertise the frozen protocol solely to exercise its
+// checkpoint/failure lifecycle with a fake runtime. This is not v8 product qualification.
+// Unmodified production services must reject that protocol, verified below.
+const services = { ...productionServices, answerPromptVersion: 'loredock-answer-v8' };
 const identity = (directory: string): TextRuntimeIdentity => ({ executable: process.execPath, configHome: directory, profile: null,
   version: 'fixture', policyVersion: 'fixture', configurationFingerprint: 'fixture' });
+
+test('the exhausted v8 evaluation protocol rejects current production services before runtime preparation', async t => {
+  const directory = await mkdtemp(path.join(os.tmpdir(), 'loredock-obsolete-protocol-'));
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  const contract = await freezeProspectiveAnswers(identity(directory)); let prepared = 0;
+  const runtime = { prepare: async () => { prepared++; throw new Error('Obsolete protocol must not prepare a runtime.'); } };
+  await assert.rejects(evaluateProspectiveAnswers({ output:path.join(directory,'result'), contract, runtime }, productionServices), /loredock-answer-v9/);
+  const original = JSON.parse(await readFile(new URL('../../../docs/fixtures/loredock-prospective-answers/evaluation-contract.json', import.meta.url), 'utf8'));
+  await assert.rejects(evaluateProspectiveAnswers({ output:path.join(directory,'original'), contract:original, runtime }, productionServices), /Frozen answer contract changed/);
+  assert.equal(prepared, 0);
+});
 
 test('prospective evaluation fixes all 24 questions, checkpoints dispatch and preserves history without oracle input', async t => {
   const directory = await mkdtemp(path.join(os.tmpdir(), 'loredock-prospective-test-'));

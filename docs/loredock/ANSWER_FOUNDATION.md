@@ -41,8 +41,15 @@ with fixed v8/v7 inputs: 11/12 development and 12/12 reserved cases pass agent r
 All required propositions are covered, but d10 adds an unsupported tenant-header path
 between incompatible literal names. The prospective gate fails. All 122 claims and 62
 required propositions are reviewed and original source bytes are verified; independent
-review remains pending. No rerun/prompt tuning is included; next address literal interface
-compatibility as a bounded source-backed product capability.
+review remains pending. No rerun/prompt tuning is included in that evaluation.
+
+Tasks 031–032 add literal header/binding comparisons to the map and to new answer
+contexts. Prompt **v9** includes only comparisons whose complete original support is
+already retrieved, separately labeled as unverified static analysis. Retrieval v7,
+answer schema v3 and old immutable answers remain unchanged. Fake-runtime/browser
+checks verify transport, provenance, budgets and history; **v9 has no real-model semantic
+qualification yet**. Its next evaluation needs an independent prospective design and
+separate budget. Prior scores and failed gates are not transferred to the new prompt.
 
 The original three-source pilot's final run has a provisional **20/20 useful/correct agent assessment**,
 **162/162 resolving citation references across 98 claims**, and **20/20 complete

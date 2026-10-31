@@ -253,7 +253,8 @@ corrections retain their original history and citations but do not attach to new
 identities. After **Update knowledge**, use **Earlier corrections** to read their
 original support; incompatible adapter records cannot be reapplied. Review the current
 link and save a new correction when appropriate. Saved answer inputs/results remain
-unchanged. Header comparisons currently appear in the map, not as new answer evidence.
+unchanged. New answer contexts may include fully supported comparisons as separately
+labeled derived clues; the originals remain the only valid source citations.
 
 Current support is deliberately limited to top-level named TS/JS functions, relative
 named imports, literal fetch method/path forms (including one `import.meta.env` base),
@@ -404,12 +405,18 @@ LOREDOCK_ANSWERS=1 pnpm loredock
    engineer scope stays separate from the original relationship scope. Up to ten notes
    and 16 KiB of note JSON are included. Omitted and unmatched notes are disclosed;
    overlap does not guarantee relevance or complete review coverage.
-6. Click **Generate answer** to send the selected question, evidence and previewed notes through the
+6. Open **Interface comparisons in this context** to review static HTTP header checks.
+   A comparison is included only when all original supporting passages are already in
+   the context. Matching names, missing mappings and unresolved inputs retain the same
+   limitations as the map. They are derived clues, not source facts or proof of a live
+   connection. Use both citation buttons before relying on a relationship. The block
+   opens automatically for a missing mapping and reports omitted/incomplete comparisons.
+7. Click **Generate answer** to send the selected question, evidence, notes and comparisons through the
    saved connection. The pilot uses **Codex 0.166.0 / gpt-5.6-terra / medium** on Linux.
    There is one active attempt, at most two minutes, 30 passages / 64 KiB source text,
    and 20 claims. Complete prompt and CLI overhead are additional to source text;
    displayed byte counts are not token or monetary estimates.
-7. Read source-backed statements, explicitly marked inferences/conflicts and unanswered
+8. Read source-backed statements, explicitly marked inferences/conflicts and unanswered
    questions under **What remains unknown**. Known explanations belong in cited statements;
    choosing a local setting does not resolve a README/configuration disagreement. Click
    a citation to open its original saved lines. Check whether the text actually supports
@@ -424,6 +431,16 @@ explicitly **Generate answer** to include current review. A note edit during pre
 or generation prevents stale publication and keeps the previous successful answer;
 model usage may already have occurred. No automatic regeneration is performed.
 Older answers without review snapshots say so and remain unchanged.
+
+Saved **Interface comparisons in this context** also retains the exact supplied block;
+refreshing the index does not recompute it. Older answers without comparisons say so.
+The block uses stable graph order, at most six comparisons and 8 KiB of comparison JSON.
+If the complete prompt would exceed 96 KiB, whole comparisons are omitted until it fits;
+source passages and engineer notes are never removed to make room. If the base context
+is still too large, **Find context** asks you to narrow the question or source scope
+before any runtime preparation. Missing comparisons do not establish absent interfaces.
+New answers use prompt v9, with unchanged retrieval v7 and answer schema v3. Real-model
+quality qualification for v9 is pending; the prior failed evaluations remain failures.
 
 **Cancel answer** prevents late publication and stops the owned process. Failed or
 cancelled attempts keep the previous authorized successful answer. **Answer history**
