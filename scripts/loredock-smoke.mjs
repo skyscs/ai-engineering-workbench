@@ -82,7 +82,7 @@ try {
   for (const id of repositoryIds) {
     await input('repository-path', path.join(fixture.root, 'sources', id));
     await waitFor(() => evaluate("!document.querySelector('form button').disabled"), 'Add button did not enable.');
-    await click('Add repository');
+    await click('Preview repositories'); await text('Review repositories'); await click('Add 1 repository');
     await waitFor(() => evaluate(`[...document.querySelectorAll('.sources strong')].some(e=>e.textContent===${JSON.stringify(id)})`), 'Source did not appear.');
   }
   await evaluate(`(()=>{
@@ -359,7 +359,7 @@ try {
   await waitFor(() => evaluate("window.delayedReviewPayload?.entries[0]?.source.statement.includes('Historical correction')"), 'The delayed review response did not contain the original correction.');
   await waitFor(() => evaluate("window.delayedOrientationPayload?.sources.some(s=>s.context?.text.includes('orders.created.v1'))"), 'The delayed overview did not contain original README context.');
   await evaluate("[...document.querySelectorAll('.sources li')].find(li=>li.querySelector('strong').textContent==='order-api').querySelector('button').click()");
-  await click('Confirm removal'); await text('2 / 3');
+  await click('Confirm removal'); await text('2 / 20');
   await waitFor(() => evaluate("!document.querySelector('.evidence')"), 'Revoked evidence remained visible.');
   await waitFor(() => evaluate("document.querySelectorAll('.map-clue').length===0 && ![...document.querySelectorAll('.map-repository summary')].some(e=>e.textContent==='order-api')"), 'Revoked source remained in the map.');
   await waitFor(() => evaluate("document.querySelector('.code-flows')?.innerText.includes('0 candidate code links') && !document.querySelector('.code-flows').innerText.includes('order-api /') && !document.querySelector('.code-flows').innerText.includes('MongoCollection.replaceOne')"), 'Revoked source or dependent flow steps remained visible.');

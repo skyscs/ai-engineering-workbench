@@ -3,7 +3,7 @@
 Date: 2026-10-31. Task 024 follows merged PR #27. This is a code audit and a
 reproducible synthetic boundary probe, not twenty-source ingestion or L5 acceptance.
 
-## Current constraints
+## Task 024 constraints (historical)
 
 | Area | Observed implementation | Consequence for the next slice |
 | --- | --- | --- |
@@ -41,7 +41,7 @@ one local machine; twenty-source latency/storage and semantic quality are `null`
 explicitly not evaluated. A capacity rejection is an observed blocker, not a passing
 twenty-source product demonstration.
 
-## Next bounded implementation
+## Task 025 implementation contract
 
 Implement **bulk local-source onboarding and fair baseline orientation** before widening
 semantic retrieval or returning to Workbench:
@@ -67,3 +67,26 @@ Following slices can then measure wider retrieval, unsupported framework convent
 real-model review behavior and retention. The original knowledge-ready gate, independent
 quality review and eligible private pilot still precede the Workbench bridge. This order
 advances system-wide source coverage without declaring the existing parser/model complete.
+
+## Task 025 outcome
+
+[Task 025](../../tasks/025-loredock-bulk-onboarding.md) implements this contract with
+reviewed bulk paths, atomic replayable registration, twenty active sources and fixed
+source shares. [ADR 0029](../decisions/0029-loredock-bulk-source-baseline.md) records the
+bounds and tradeoffs. The [version 2 measurement](../../fixtures/loredock-scale/onboarding-result.json)
+registers all twenty sources and indexes 79 text files / 16,869 bytes, excluding sixty
+canaries. All twenty README contexts resolve original citations. One local measurement
+records approximately 1.54 seconds initial indexing and 0.77 seconds unchanged refresh;
+these tiny-corpus timings are diagnostic, not production performance targets.
+
+Initial indexing makes 437 Git commands / 99 blob-read attempts; unchanged refresh makes
+200 commands / twenty blob reads and reuses 79 files. Two generations retain 33,738 raw
+bytes and 33,580 span-text bytes; the checkpointed SQLite file is 712,704 bytes including
+indexes/metadata. Source files and Git repositories are separate. There is no retention
+quota or garbage collection implied by these measurements. The version 1 blocker result
+is retained unchanged as historical evidence.
+
+The next bounded slice should measure retrieval recall and uncertainty on all twenty
+frozen questions, including zero-hit broad orientation and cross-repository ownership.
+Current thirty-span/64 KiB answer limits remain. More registered sources and original
+README excerpts do not establish semantic completeness or authorize the Workbench bridge.

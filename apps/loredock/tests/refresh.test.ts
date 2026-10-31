@@ -159,7 +159,7 @@ test('pause/restart/resume keeps the fixed baseline, pinned revision and complet
   state.catalog.control(next.id, 'pause'); reader.release(); await state.catalog.idle();
   assert.equal(state.store.build(next.id).status, 'paused'); assert.ok(state.store.build(next.id).refresh.reusedFiles);
   await state.restart(new CountingGit(), { paths: 2 });
-  assert.throws(() => state.catalog.control(next.id, 'resume'), /Current limits do not cover/);
+  assert.throws(() => state.catalog.control(next.id, 'resume'), { code: 'LIMIT_CHANGED' });
   await writeFile(file(state.fixture.root, 'portal', 'README.md'), '# Later HEAD\nNotInPausedIndex\n'); commit(state.fixture.root, 'portal');
   await state.restart(); state.catalog.control(next.id, 'resume'); await state.catalog.idle();
   const completed = state.store.build(next.id); assert.equal(completed.refresh.baselineBuildId, first.id); assert.equal(completed.refresh.reusedFiles, 6);
@@ -188,7 +188,7 @@ test('schema 4 upgrade validates legacy extraction before reuse and preserves en
     projectionHash: code.inputHash, expectedRevision: 0, expectedPreviousId: null, action: 'clarify', statement: 'This is a local candidate.', environment: 'local' });
   const history = corrections.history(saved.id), evidence = state.catalog.evidence(state.catalog.search('OrderConsumer').hits[0]!.id);
   removeRefreshSchema(state.store); state.store.db.exec('PRAGMA user_version=4'); await state.restart();
-  assert.equal(state.store.one<{ user_version: number }>('PRAGMA user_version')!.user_version, 6);
+  assert.equal(state.store.one<{ user_version: number }>('PRAGMA user_version')!.user_version, 7);
   assert.deepEqual(new Corrections(state.catalog).history(saved.id), history); assert.deepEqual(state.catalog.evidence(evidence.id), evidence);
   assert.equal(indexChanges(state.catalog, first.id).comparison, 'legacy');
   const next = await state.index('after-upgrade'); assert.equal(next.refresh.reusedFiles, 18); assert.equal(next.refresh.gitReadAttempts, 3);

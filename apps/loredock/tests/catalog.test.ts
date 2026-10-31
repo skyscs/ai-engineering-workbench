@@ -258,11 +258,12 @@ test('CRLF and Unicode source ranges reopen exactly and inconsistent spans are r
   assert.throws(() => catalog.evidence(hit.id), /source range/);
 });
 
-test('registration deduplicates canonical identities and rejects an additional active source beyond the pilot limit', async t => {
+test('registration deduplicates canonical identities and rejects an additional active source beyond the twenty-source limit', async t => {
   const { catalog, fixture } = await setup(t); await addAll(catalog, fixture);
   const portal = catalog.state().sources.find(source => source.name === 'portal')!;
   assert.equal((await catalog.addSource(path.join(fixture.root, 'sources/portal/src'))).id, portal.id);
   const extra = path.join(fixture.root, 'fourth'); await mkdir(extra); git(extra, ['init', '--quiet']);
-  await assert.rejects(catalog.addSource(extra), /three active/);
+  for (let i = 3; i < 20; i++) { const repo = path.join(fixture.root, `extra-${i}`); await mkdir(repo); git(repo, ['init', '--quiet']); await catalog.addSource(repo); }
+  await assert.rejects(catalog.addSource(extra), /twenty active/);
   catalog.revoke(portal.id); assert.ok(await catalog.addSource(extra));
 });

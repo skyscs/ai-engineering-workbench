@@ -22,6 +22,9 @@ without another schema; see [ADR 0027](docs/decisions/0027-loredock-project-orie
 Answer contexts now freeze bounded matching engineer notes and their source dependencies;
 see [ADR 0028](docs/decisions/0028-loredock-answer-review-context.md). Source citations,
 human review and saved-answer freshness remain separate.
+Schema 7 adds atomic bulk-registration receipts and persisted source shares for new
+indexes; twenty-source baseline orientation is described in
+[ADR 0029](docs/decisions/0029-loredock-bulk-source-baseline.md).
 
 ## Architectural style
 

@@ -14,15 +14,17 @@ was accepted through PR #26, adding basic README orientation and first reading n
 [Task 023](../../tasks/023-loredock-answer-review-context.md) supplies matching engineer
 notes to cited-answer inputs and tracks review freshness through merged PR #27.
 [Task 024](../../tasks/024-loredock-scale-corpus.md) adds a heterogeneous twenty-repository
-fixture and [capacity audit](SCALE_READINESS.md); the product still admits three sources.
-Bulk local-source onboarding and fair baseline orientation are the next implementation.
+fixture and [capacity audit](SCALE_READINESS.md) through merged PR #28.
+[Task 025](../../tasks/025-loredock-bulk-onboarding.md) adds reviewed bulk paths, twenty
+active sources and fixed equal source shares for baseline orientation. The next
+bounded slice measures wider question retrieval against the expanded oracle.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale
 and the Workbench bridge remain open. The
 [acceptance record](L2_ACCEPTANCE.md) distinguishes owner acknowledgement from agent scores.
 See [L0 measurements and blockers](FEASIBILITY.md), [contracts](CONTRACTS.md),
 [Task 016](../../tasks/016-loredock-cited-answer.md) for the accepted answer slice and
-[Task 024](../../tasks/024-loredock-scale-corpus.md) for the current bounded delivery.
+[Task 025](../../tasks/025-loredock-bulk-onboarding.md) for the current bounded delivery.
 
 ## Outcome and delivery boundary
 

@@ -54,7 +54,7 @@ fences/purges every dependent version; old-policy history/replay remains unavail
 
 ## Project orientation and reading navigation
 
-`loredock-orientation-v1` / `readme-orientation-v1` is a separate disposable read
+`loredock-orientation-v1` / `readme-orientation-v2` is a separate disposable read
 projection. Each authorized recorded repository has an original README excerpt or a
 gap, selected revision and coverage. New registrations outside that index remain
 separate unindexed gaps. Read only a single unambiguous supported root README and
@@ -64,12 +64,31 @@ documentation with nested text. Failed/truncated inventories cannot establish ab
 Excerpts retain exact original text, inclusive subranges and all overlapping issued
 span IDs. Their provenance is documented/unverified. Older/contradictory prose is not
 rewritten to match code/configuration. Check metadata budgets before reading and validate
-complete original file/span coverage. Limits are nine documents, 32 KiB/file, 96 KiB
-input, eight spans/file, 16 lines / 2,000 UTF-8 bytes/excerpt and 128 KiB output. Gaps
+complete original file/span coverage. Limits are twenty repositories, sixty documents, 32 KiB/file, 640 KiB
+input, eight spans/file, 16 lines / 2,000 UTF-8 bytes/excerpt and 512 KiB output. Gaps
 and omissions are explicit. The projection adds no DB schema, command execution or
 model work. Guide me navigates existing source/map/flow/coverage views; it is not a
 semantic course or a new architecture claim store. Current policy/revocation and late
-response fences cover all context and citations. See ADR 0027 for selection details.
+response fences cover all context and citations. See ADRs 0027 and 0029 for selection details.
+
+## Bulk local-source registration
+
+`POST /api/sources/preview` accepts `{paths}`: 1–40 explicit local paths within 8 KiB
+of serialized input. It returns canonical roots/common Git identities, per-path
+ready/existing/duplicate/invalid states, registry revision, capacity and `previewHash`.
+No source is registered by preview. `POST /api/sources/register` accepts
+`{requestId, paths, previewHash}` and revalidates before atomically adding the complete
+ready unique set. The shared source limit is twenty; overflow and stale previews
+fail without partial insertion. Schema 7 stores an exact request receipt containing
+only source IDs and resulting registry revision. Identical retries return that receipt
+without reactivating revoked sources; changed payloads conflict. Both endpoints use
+existing session/Origin/CSRF and 16 KiB request limits.
+
+New indexes persist `source-shares-v1`: equal shares of 10,000 paths and 50 MiB, with
+root README/manifest priority, deterministic integer remainders and no redistribution.
+Current file limits and exclusions apply before reuse/read. Shares and checkpoints
+survive resume; legacy null allocations preserve legacy behavior. See
+[ADR 0029](../decisions/0029-loredock-bulk-source-baseline.md).
 
 ## First source manifest and data ownership
 

@@ -1,5 +1,41 @@
 # Development status
 
+## Task 025 — Bulk local sources and fair baseline orientation
+
+Implemented and locally verified, 2026-10-31. Task 024 was agent-reviewed and merged
+through PR #28 (`be29bca`) after both exact-head CI runs passed under the owner's
+standing authorization. Task 025 adds one reviewed list of explicit local paths,
+canonical duplicate/error previews, atomic registration, twenty active sources and
+schema-7 retry receipts. Changed identities/registry revisions conflict; replay after
+restart or revocation cannot create duplicates or restore removed sources.
+
+New indexes persist equal path/byte shares with README/manifest priority, retaining
+legacy admission on older builds. At twenty sources the default share is 500 paths /
+2.5 MiB; unused shares stay reserved and omissions remain explicit. Overview v2 gives
+all twenty sources original context or a gap, with 640 KiB input / 512 KiB output.
+Maps, flows, answer/review/model budgets remain unchanged. Large connected-source lists
+collapse so indexing stays reachable on mobile.
+
+Verification: full `pnpm check` passes **299 tests** (146 LoreDock, 18 script checks),
+strict typechecks and production builds; the final source-list UI adjustment also
+passes its typecheck/build. Tests cover batch rollback, concurrent/changed identities,
+replay/revocation, schema-6 upgrade and legacy resume, fixed allocation recovery,
+10,010 extra first-source paths/large files and twenty 32 KiB README documents.
+All three Chrome suites pass: twenty-source mobile onboarding, the existing source/
+review workflow and the optional-answer fake runtime (four fake calls, zero real calls).
+The production twenty-source measurement indexes 79 files / 16,869 bytes, excludes
+sixty canaries and exposes twenty README contexts. Unchanged refresh reuses all 79
+files. Two generations retain 33,738 raw bytes; these are small synthetic measurements,
+not production performance or retention guarantees.
+
+See [Task 025](../tasks/025-loredock-bulk-onboarding.md),
+[ADR 0029](decisions/0029-loredock-bulk-source-baseline.md),
+[capacity result](../fixtures/loredock-scale/onboarding-result.json) and
+[browser scenarios](fixtures/loredock-bulk-onboarding/README.md).
+No model calls or private-source access. Semantic answer quality and L5 readiness
+remain unevaluated by this slice. Next: measure wider retrieval against the independent
+twenty-question oracle before changing model payloads or returning to Workbench.
+
 ## Task 024 — Heterogeneous system corpus and capacity baseline
 
 Implemented and locally verified, 2026-10-31. Task 023 was agent-reviewed and merged

@@ -9,9 +9,9 @@ import { extractorVersion, sha256, spans } from './extract.js';
 import { spanSearchText } from './search-text.js';
 import { checkpointHash, refreshVersion } from './checkpoint.js';
 
-export const defaults = { sources: 3, paths: 10000, fileBytes: 1024 * 1024, totalBytes: 50 * 1024 * 1024, wallMs: 300000 };
+export const defaults = { sources: 20, paths: 10000, fileBytes: 1024 * 1024, totalBytes: 50 * 1024 * 1024, wallMs: 300000 };
 export interface Project { policyVersion: number; sourceSetVersion: number; policy: string; publishedBuildId: string | null; correctionRevision: number }
-export interface BuildRow { id: string; requestId: string; payloadHash: string; status: BuildStatus; policyVersion: number; sourceSetVersion: number; policy: string; createdAt: string; reason: string | null; published: number; extractorVersion: string; baselineBuildId: string | null; refreshVersion: string | null }
+export interface BuildRow { id: string; requestId: string; payloadHash: string; status: BuildStatus; policyVersion: number; sourceSetVersion: number; policy: string; createdAt: string; reason: string | null; published: number; extractorVersion: string; baselineBuildId: string | null; refreshVersion: string | null; allocation: string | null }
 export interface BuildSourceRow { buildId: string; sourceId: string; name: string; path: string; gitDir: string; revision: string | null; tree: string | null; status: 'pending' | 'ready' | 'failed'; dirty: number | null; error: string | null; omitted: number }
 export interface FileRow { id: string; buildId: string; sourceId: string; path: string; mode: string; blob: string; size: number; status: string; reason: string | null; error: string | null; contentHash: string | null; raw: Uint8Array | null; metadata: string; extractionHash: string | null; reusedFromFileId: string | null; gitReadAttempts: number; cacheRejected: number }
 const unfinished = ['preparing', 'running', 'pause_requested', 'paused', 'interrupted'];
@@ -38,7 +38,7 @@ export class CatalogStore {
       this.db = opened = new DatabaseSync(path.join(this.directory, 'loredock.db'));
       this.db.exec('PRAGMA foreign_keys=ON; PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL; PRAGMA secure_delete=ON;');
       const version = this.one<{ user_version: number }>('PRAGMA user_version')!.user_version;
-      if (version < 0 || version > 6) throw new Error('Unsupported LoreDock database version.');
+      if (version < 0 || version > 7) throw new Error('Unsupported LoreDock database version.');
       if (!version) this.db.exec(`BEGIN IMMEDIATE;
         CREATE TABLE project (id INTEGER PRIMARY KEY CHECK(id=1), policyVersion INTEGER NOT NULL, sourceSetVersion INTEGER NOT NULL, policy TEXT NOT NULL, publishedBuildId TEXT);
         INSERT INTO project VALUES (1,1,1,'{"excludedPaths":[]}',NULL);
@@ -114,6 +114,10 @@ export class CatalogStore {
         CREATE TRIGGER reapplication_history BEFORE DELETE ON correction_reapplications
           BEGIN SELECT RAISE(ABORT,'Reapplication provenance is immutable.'); END;
         PRAGMA user_version=6; COMMIT;`);
+      if (version < 7) this.db.exec(`BEGIN IMMEDIATE;
+        CREATE TABLE source_registrations (requestId TEXT PRIMARY KEY, payloadHash TEXT NOT NULL, receipt TEXT NOT NULL);
+        ALTER TABLE builds ADD COLUMN allocation TEXT;
+        PRAGMA user_version=7; COMMIT;`);
       this.db.exec("UPDATE answer_attempts SET status='interrupted', reason='The daemon stopped. Start an explicit new attempt; provider completion may be unknown.', usageUnknownReason=CASE WHEN dispatchedAt IS NULL THEN 'Not dispatched before restart.' ELSE 'Provider completion and usage are unknown after restart.' END WHERE status IN ('preparing','running');");
       this.db.exec("UPDATE builds SET status='interrupted', reason='The daemon stopped. Resume explicitly.' WHERE status IN ('preparing','running','pause_requested');");
     } catch (error) { opened?.close(); this.owner.close(); throw error; }
@@ -139,7 +143,7 @@ export class CatalogStore {
       const active = this.sources().filter(source => source.status === 'active');
       const existing = active.find(source => source.gitDir === identity.gitDir);
       if (existing) return existing;
-      if (active.length >= defaults.sources) throw new CatalogError('SOURCE_LIMIT', 'This pilot supports three active repositories. Revoke a source before adding another.');
+      if (active.length >= defaults.sources) throw new CatalogError('SOURCE_LIMIT', 'LoreDock supports twenty active repositories. Revoke a source before adding another.');
       const id = randomUUID();
       this.run("INSERT INTO sources VALUES (?,?,?,?, 'active','none')", id, path.basename(identity.path), identity.path, identity.gitDir);
       this.run('UPDATE project SET sourceSetVersion=sourceSetVersion+1 WHERE id=1');
@@ -155,7 +159,7 @@ export class CatalogStore {
       this.run("UPDATE builds SET status='cancelled', reason='Source policy changed. Start a new index.' WHERE status IN ('preparing','running','pause_requested','paused','interrupted')");
     });
   }
-  start(requestId: string, sourceSetVersion: number, policyVersion: number): BuildRow {
+  start(requestId: string, sourceSetVersion: number, policyVersion: number, limits = defaults): BuildRow {
     if (!/^[A-Za-z0-9_-]{1,100}$/.test(requestId)) throw new CatalogError('INVALID_REQUEST', 'A valid request ID is required.');
     const payloadHash = sha256(JSON.stringify({ sourceSetVersion, policyVersion }));
     return this.transaction(() => {
@@ -167,8 +171,8 @@ export class CatalogStore {
       const sources = this.sources().filter(source => source.status === 'active');
       if (!sources.length) throw new CatalogError('NO_SOURCES', 'Add a local repository first.');
       const id = randomUUID();
-      this.run("INSERT INTO builds (id,requestId,payloadHash,status,policyVersion,sourceSetVersion,policy,createdAt,extractorVersion,baselineBuildId,refreshVersion) VALUES (?,?,?,'preparing',?,?,?,?,?,?,?)",
-        id, requestId, payloadHash, policyVersion, sourceSetVersion, project.policy, new Date().toISOString(), extractorVersion, project.publishedBuildId, refreshVersion);
+      this.run("INSERT INTO builds (id,requestId,payloadHash,status,policyVersion,sourceSetVersion,policy,createdAt,extractorVersion,baselineBuildId,refreshVersion,allocation) VALUES (?,?,?,'preparing',?,?,?,?,?,?,?,?)",
+        id, requestId, payloadHash, policyVersion, sourceSetVersion, project.policy, new Date().toISOString(), extractorVersion, project.publishedBuildId, refreshVersion, JSON.stringify({ version: 'source-shares-v1', paths: limits.paths, bytes: limits.totalBytes }));
       for (const source of sources) this.run('INSERT INTO build_sources (buildId,sourceId,name,path,gitDir) VALUES (?,?,?,?,?)', id, source.id, source.name, source.path, source.gitDir);
       return this.buildRow(id);
     });

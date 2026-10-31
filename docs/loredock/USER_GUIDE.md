@@ -26,10 +26,26 @@ directory. Linux is the verified platform.
 
 ## Index and explore your repositories
 
-1. Enter an absolute **Repository path**, for example `/home/you/projects/order-api`,
-   and click **Add repository**. Add up to three repositories for this first pilot.
-   The application shows canonical paths; selecting a subdirectory registers its Git
-   repository root. Linked checkouts of the same repository share one registration.
+1. Paste absolute **Repository paths**, one per line, for example:
+
+   ```text
+   /home/you/projects/order-api
+   /home/you/projects/portal
+   /home/you/projects/order-worker
+   ```
+
+   Click **Preview repositories**, inspect canonical roots and the ready/existing/
+   duplicate/invalid entries, then **Add N repositories** once. Only ready entries
+   are added; invalid paths and aliases are skipped visibly. Preview accepts up to
+   40 entries / 8 KiB, with up to twenty active repositories in the catalog. If the
+   valid set exceeds available slots, edit and preview again; nothing is added.
+   A subdirectory resolves to its Git root; linked worktrees share one Git identity.
+   No parent-directory scan, remote clone or model setup is involved. Registration
+   does not read source content or start indexing. **Connected repositories** expands
+   the saved source list; large lists start collapsed to keep indexing within reach.
+   Changed paths or another tab's registration require a fresh preview. Retrying a
+   lost confirmation response uses the same persisted receipt and never restores
+   revoked sources.
 2. Click **Index sources**. LoreDock pins each source's current committed HEAD and
    inventories its tree. It neither fetches remote branches nor changes your checkout.
 3. Read the indexed/excluded/failed/pending counts. **Coverage and revisions** shows
@@ -132,9 +148,9 @@ Code-only or oversized introductions remain gaps, with original reading links wh
 available. Failed/truncated inventories cannot establish that documentation is absent.
 
 Overview coverage is not a percentage of system understanding. Diagnostics under
-**Overview coverage and gaps** disclose the bounds: nine root documents, 32 KiB/file,
-96 KiB source input, eight spans/file, 16 complete lines / 2,000 UTF-8 bytes per excerpt
-and 128 KiB output. Every saved authorized repository gets context or a visible gap.
+**Overview coverage and gaps** disclose the bounds: sixty root documents, 32 KiB/file,
+640 KiB source input, eight spans/file, 16 complete lines / 2,000 UTF-8 bytes per excerpt
+and 512 KiB output. Every saved authorized repository gets context or a visible gap.
 The text selector skips headings/code blocks; it is not a full Markdown or semantic
 analyzer. Other markup stays literal.
 
@@ -320,7 +336,7 @@ See [reapplication evidence](../fixtures/loredock-reconciliation/README.md) and
 
 Stop the existing LoreDock process and start the answer pilot with the same data
 directory. Back up the stopped directory before upgrading. Current startup migrates
-older LoreDock data to schema 6, retaining evidence, answers and engineer correction
+older LoreDock data to schema 7, retaining evidence, answers and engineer correction
 history while adding immutable review-reapplication provenance. Schema 3 introduced
 answer attempts/settings, schema 4 correction history and schema 5 refresh lineage/counters.
 
@@ -458,8 +474,21 @@ coverage records remain for audit; external copies/backups are not recalled or e
 
 ## Supported content and limits
 
-The pilot supports three active repositories, 10,000 candidate paths per build,
-1 MiB per file and 50 MiB of admitted text. Each Git command has a 15-second deadline
+The catalog supports twenty active repositories, 10,000 candidate paths per build,
+1 MiB per file and 50 MiB of admitted text. New indexes reserve equal path and byte
+shares for each source (500 paths and 2.5 MiB per source at twenty repositories).
+Root README candidates, then root `package.json` / `pom.xml`, precede other paths.
+Unused shares are not borrowed: total indexed bytes may be below 50 MiB while a
+large source reports `source-byte-limit`. Omitted inventory remains a visible gap,
+not proof that files are absent. These fixed shares survive pause/restart/resume;
+older saved builds keep their legacy admission behavior. The UI shows total limits;
+source coverage records the actual exclusions and omissions.
+
+The overview attempts all twenty root READMEs before optional manifests. A README
+over 32 KiB or eight spans has an explicit overview gap even when source search can
+open its text. A full set of twenty cards is not a complete system analysis: deeper
+maps, flows and question context retain their separate, smaller budgets. Model input
+is not expanded by adding repositories. Each Git command has a 15-second deadline
 and bounded output; exceptionally large trees can fail inventory explicitly before
 the path cap is applied. Search excerpts are capped at 400 characters per result;
 evidence reopens a stored span of up to 120 lines.

@@ -71,6 +71,8 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
     if (typeof input.path !== 'string' || input.path.length > 4096) throw new CatalogError('INVALID_PATH', 'Enter an absolute local repository path.');
     return c.json(await catalog.addSource(input.path), 201);
   });
+  app.post('/api/sources/preview', async c => c.json(await catalog.previewSources((await body(c.req)).paths)));
+  app.post('/api/sources/register', async c => c.json(await catalog.registerSources(await body(c.req)), 201));
   app.post('/api/sources/:id/revoke', c => { catalog.revoke(c.req.param('id')); return c.json(catalog.state()); });
   app.put('/api/policy', async c => { const input = await body(c.req); catalog.updatePolicy(input.excludedPaths); return c.json(catalog.state()); });
   app.post('/api/builds', async c => {

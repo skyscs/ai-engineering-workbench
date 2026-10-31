@@ -5,7 +5,8 @@ reviewing evidence and revising AI conclusions with human feedback.
 
 The repository also contains **LoreDock**, the new local source catalog that will
 provide system context for future Workbench investigations. Its first implementation
-connects up to three local Git repositories, indexes committed text and opens exact
+connects up to twenty local Git repositories through one reviewed path list, indexes
+committed text with equal source budgets and opens exact
 source citations. **Project overview** shows original README context or an explicit gap for
 each repository; **Guide me** provides a short route through source context, interfaces,
 one partial flow and coverage. A declaration map shows scoped routes, contracts and
