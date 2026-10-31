@@ -7,3 +7,4 @@ apps/loredock/public/
 .env
 .env.*
 !.env.example
+.loredock-evaluations/

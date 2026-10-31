@@ -1,5 +1,53 @@
 # Development status
 
+## Task 034 — Frozen interface answer qualification
+
+Implemented and locally verified, 2026-10-31. Task 033 reached main through PR #37
+(`582d438`) after push `41239731363` and pull-request `41239737412` succeeded for
+exact head `56a8c42c76a023ee99a6161fff07322366e119e0`. Work continued immediately
+under the owner's standing instruction.
+
+The new runner commits a fourteen-attempt, one-run contract before dispatch (`e2205be`),
+pinning 68 implementation/package files, the unchanged Task 033 corpus/rubric and the
+qualified selected personal CLI identity. A persistent exclusive local claim prevents
+an accidental second run with another output path. Fake-runtime tests cover dispatch
+checkpoints, raw failure/usage retention, identity drift, contract tampering and replay.
+
+One real run at 20:43:42–20:45:40 UTC completes all fourteen attempts with Terra / medium,
+text-only-v2, prompt v9 / retrieval v7 / schema v3. No retry or input/product tuning.
+Agent review passes **8/14: 5/10 interface, 3/4 regression; the gate fails**. Of 38
+requirements, 36 are met; every recorded original reference was available. Failures:
+
+- i01 omits the explicit case-only equivalence explanation; i06 omits the missing
+  `resolveDepot` implementation qualification.
+- i02/i05/i06 overgeneralize a README's missing HTTP infrastructure into a declaration-only
+  repository claim, despite the same repository supplying `Helium.java`.
+- i08/i14 repeat correct facts/comparisons without complete citations in those particular
+  claims. These are local citation defects, not fabricated field values.
+
+All 63 claims, 49 unknowns and forbidden assertions have development-agent judgments.
+The reproducible audit verifies 388 input-span occurrences against 47 original Git files,
+85 citation references and all judgment coverage. The human worksheet remains unchecked;
+audit success is not semantic approval. Same-agent synthetic results are not a blind
+benchmark, a controlled comparison to earlier scores or private-project acceptance.
+
+Maximum context: 30 spans / 5,157 source bytes / 34,124 prompt bytes. Reported usage:
+252,097 input / 6,002 output / 0 cached tokens; CLI-internal requests are unknown.
+All fourteen histories survive reopening byte-identically; replay adds no call;
+revocation fences all fourteen and purges controlled context/results. Exported synthetic
+artifacts retain their own copies. The single real-model budget is exhausted.
+
+Full check: 341 tests, strict typechecks and builds. No product/UI changes; Task 032
+browser evidence remains applicable. See [Task 034](../tasks/034-loredock-interface-answer-qualification.md),
+[run and limitations](fixtures/loredock-interface-answers/README.md),
+[agent judgments](fixtures/loredock-interface-answers/semantic-review.json) and
+[independent worksheet](fixtures/loredock-interface-answers/HUMAN_REVIEW.md).
+
+Next: freeze the roadmap's ten incident-routing cases and measure current candidate
+evidence without model calls or production routing. Keep answer failures explicit;
+independent/private-pilot acceptance still precedes the Workbench bridge. Continue
+immediately after both exact-head CI runs and merge, without another owner command.
+
 ## Task 033 — Prospective interface qualification design
 
 Implemented and locally verified, 2026-10-31. Task 032 reached main through PR #36

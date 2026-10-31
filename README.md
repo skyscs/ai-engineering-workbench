@@ -53,10 +53,14 @@ both earlier 20/20 retrieval baselines within the same limits. The separate
 cases under agent review, but one extra claim invents tenant-header propagation between
 incompatible declarations. The map now exposes literal header comparisons as review clues;
 new prompt v9 also supplies fully supported comparisons as derived clues. Saved answers
-remain unchanged, and prompt v9 has not yet received real-model quality qualification.
+remain unchanged. The [single v9 qualification run](docs/fixtures/loredock-interface-answers/README.md)
+passes 8/14 under agent review and fails its gate: missing specific qualifications,
+repository-scope overstatements and incomplete per-claim citations remain recorded.
 The [new prospective qualification design](fixtures/loredock-interfaces/README.md)
 freezes fourteen fresh freight-system questions before model outputs; all required
 original references are available, with the derived-comparison limit disclosed.
+Next is model-free incident-context qualification; autonomous repository routing and
+the Workbench bridge remain planned, with independent/private-pilot acceptance pending.
 
 ## What v0.1 does
 
