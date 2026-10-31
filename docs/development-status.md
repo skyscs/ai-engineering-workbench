@@ -1,5 +1,32 @@
 # Development status
 
+## Task 042 — Offline related-source order qualification
+
+Implemented and locally verified, 2026-10-31. PR #45 reached main as `a09cd58` after
+push `41248963176` and pull-request `41248976432` passed for exact head
+`723adf635ff7a62c717aa3f2b9759d86de9ebef4`. Design and twelve normalized cases were
+frozen in `ac7454d` before implementation `5e9890a` and the declared evaluation.
+
+The offline proposal orders sources by the strongest admitted link kind, retaining all
+clue kinds, original anchors, four-source/two-link caps and saved-order ties. The small
+corpus retains 22/22 critical occurrences and five combined scope conditions. The single
+volume index improves 21/22 to 22/22 and five to six combined conditions, with unchanged
+candidate counts. Three exact-symbol probes remain single-source matches. All current v1
+and original-context baselines reproduce; both small generations have stable selections.
+
+The explicit configuration-critical counterexample loses required support under this
+ordering. All twelve mechanical expectations pass, but unconditional promotion is rejected.
+Production v1 remains unchanged. The evaluation verifies 1,484 original occurrences over
+249 files counted per generation, makes no model calls and leaves owned checkouts clean.
+Full checks pass 363 tests, strict types and builds. The volume stage has one initial index
+and no refresh/resume/retry; it is not a replacement performance measurement. See
+[Task 042](../tasks/042-loredock-source-order-qualification.md) and
+[evidence](fixtures/loredock-source-order/README.md).
+
+Next: explicit bounded pages for omitted eligible related repositories, preserving the
+default first page, original citations and question/source/index/policy/review fences.
+No automatic ordering promotion, independent semantic acceptance or bridge readiness.
+
 ## Task 041 — Larger synthetic capacity baseline
 
 Implemented and locally verified, 2026-10-31. PR #44 reached main as `1978b20` after

@@ -78,9 +78,12 @@ compact and expandable, retaining every selected original and uncertainty.
 [Task 041](../../tasks/041-loredock-synthetic-capacity.md) measures 3,679 files under current
 bounds: full original-context recall and refresh reuse, 21/22 candidate recall and only
 100/3,621 code documents examined. Stored generations approximately double catalog size.
-Next: freeze an offline qualification of related-source ordering by strongest admitted
-relationship kind, retaining configuration clues and existing caps. No tuning on the
-observed model answers is included.
+[Task 042](../../tasks/042-loredock-source-order-qualification.md) qualifies strongest-link-first
+ordering offline: observed volume recall returns to 22/22, but a frozen configuration-critical
+counterexample loses support. Unconditional promotion is rejected; production remains v1.
+Next: explicit four-source pages for remaining eligible related repositories, preserving
+default ordering, original evidence and primary/answer context. No tuning on observed
+model answers is included.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale
 and the Workbench bridge remain open. The
