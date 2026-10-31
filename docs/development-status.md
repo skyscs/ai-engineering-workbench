@@ -25,6 +25,12 @@ private source access or modification of normal checkouts. See
 [fixture and measured baseline](../fixtures/loredock-scale/README.md) and the
 [capacity audit](loredock/SCALE_READINESS.md).
 
+A CI failure also exposed an existing ownership-test lifetime bug. The held child used
+an empty timer and could lose its unreferenced SQLite handle to GC before SIGKILL.
+Explicit collection reproduced the failure; retaining storage in the callback fixes it.
+The existing recovery test now requests collection before asserting ownership exclusion.
+No product locking code changed. Full checks include this deterministic regression.
+
 Next: bulk local-path onboarding and fair baseline orientation, including store/UI/source
 limits, source-balanced budgets, integrity/recovery and twenty-source browser scenarios.
 This small topology is not a production load benchmark, private-pilot acceptance or L5.

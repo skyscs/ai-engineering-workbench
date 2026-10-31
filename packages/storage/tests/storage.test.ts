@@ -19,7 +19,7 @@ function fixture(t: TestContext) {
 
 async function worker(t: TestContext, mode: string, root: string) {
   const child = fork(new URL('./worker.ts', import.meta.url), [mode, root], {
-    execArgv: ['--import', 'tsx'], stdio: ['ignore', 'ignore', 'pipe', 'ipc']
+    execArgv: ['--expose-gc', '--import', 'tsx'], stdio: ['ignore', 'ignore', 'pipe', 'ipc']
   });
   t.after(async () => { if (child.exitCode === null && child.signalCode === null) await kill(child); });
   const result = await new Promise<{ ready?: boolean; code?: string }>((resolve, reject) => {
@@ -163,6 +163,9 @@ test('a killed owner releases ownership automatically for the next startup', asy
   const root = fixture(t);
   const owner = await worker(t, 'hold', root);
   assert.equal(owner.result.ready, true);
+  const collected = once(owner.child, 'message', { signal: AbortSignal.timeout(10000) });
+  owner.child.send('collect');
+  assert.deepEqual((await collected)[0], { collected: true });
   assert.throws(() => openStorage({ dataRoot: root }), { code: 'DATA_DIR_IN_USE' });
   await kill(owner.child);
   const recovered = openStorage({ dataRoot: root });

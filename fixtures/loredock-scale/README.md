@@ -62,3 +62,10 @@ profiles must include an imbalanced large repository, long README files, many sp
 changed/deleted/new sources and repeated refreshes. A permitted private pilot remains
 necessary after synthetic qualification. See the
 [capacity audit](../../docs/loredock/SCALE_READINESS.md) for the next bounded work.
+
+Task verification also fixed a pre-existing CI fixture lifetime problem: a child kept
+alive by an empty timer could lose its unreachable SQLite ownership handle to garbage
+collection. The storage helper now retains that handle, and the existing killed-owner
+test explicitly requests collection before checking exclusion/recovery. Forced collection
+reproduced the original failure; the strengthened check passes with the retention fix.
+Production locking code is unchanged.

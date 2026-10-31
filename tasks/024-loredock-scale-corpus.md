@@ -41,3 +41,10 @@ The production probe observes the expected fourth-source rejection and indexes o
 the supported three-source subset. No real model calls or product behavior changes.
 See [fixture/baseline](../fixtures/loredock-scale/README.md) and
 [capacity audit/next acceptance](../docs/loredock/SCALE_READINESS.md).
+
+CI exposed an existing storage-test lifetime bug: the held child kept an empty timer,
+allowing its unreachable SQLite ownership handle to be collected before SIGKILL. An
+explicit IPC-triggered collection reproduced the failure. The helper now retains storage
+in its live callback, and the existing ownership/recovery test forces GC before asserting
+exclusion. Product locking/storage code is unchanged; this strengthens the verification
+gate rather than retrying the failure away.
