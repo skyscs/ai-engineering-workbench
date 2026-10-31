@@ -1,8 +1,43 @@
 # Development status
 
+## Task 023 — Engineer review in answer context
+
+Implemented and locally verified, 2026-10-31. The owner authorized agent review,
+merging after successful checks, and continuation to the next bounded phase. This
+authorization does not substitute agent scores for independent product acceptance.
+
+Ask Project now freezes latest matching disputes/clarifications alongside original
+source spans, preserving exact versions and distinct human/source scope. Selection uses
+evidence overlap with explicit unmatched/omitted counts; at most ten whole notes and
+16 KiB of note JSON enter the separately labeled prompt context. Notes remain untrusted,
+human and unverified. Source-only citation validation and runtime permissions are unchanged.
+
+Review revision participates in context hashing and pre-dispatch/publication checks.
+Changed review rejects pending work without replacing the last successful answer or
+automatically regenerating it. Saved answers show independent current/changed/legacy
+review state and retain their original bytes across edits, withdrawal and restart.
+Every admitted note's dependency scope joins answer dependencies for revocation/purge.
+Browser source/index/publication/review guards fence obsolete previews and detail responses.
+
+Full `pnpm check`: **290 tests** (139 LoreDock), strict typechecks and production builds.
+Chrome verifies prompt notes, escaped hostile text, saved history/scope, review-change
+notice, withdrawal, original citations, restart, late-response boundaries and 390px
+layout, retaining conflict/abstention/failure/cancel checks. Existing source/map/flow/
+correction/reapplication/refresh browser regression passes. Production retrieval v5
+retains **20/20** complete expected evidence sets. Four fake invocations, zero real
+model calls; no schema change or modification of normal source checkouts/Workbench.
+See [Task 023](../tasks/023-loredock-answer-review-context.md),
+[ADR 0028](decisions/0028-loredock-answer-review-context.md) and
+[recorded checks](fixtures/loredock-answer-review/README.md).
+
+Prompt v7's semantic treatment of disputes has not been evaluated with a real model.
+Evidence overlap is incomplete relevance matching; global review invalidation may
+require a new preview after unrelated edits. Broader adapters, system synthesis,
+20-repository scale and Workbench integration remain separate milestones.
+
 ## Task 022 — Project orientation and a first reading guide
 
-Implemented and locally verified, 2026-10-31; ready for code/product review. Task 021
+Accepted through the owner's merge of PR #26 (`76fdde3`), 2026-10-31. Task 021
 was accepted through the owner's merge of PR #25 (`b4cd66e`). A new Project overview
 shows each authorized saved repository's original README context or an explicit gap,
 selected revision and coverage. A collapsed Guide me route opens source context, the

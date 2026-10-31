@@ -2,8 +2,9 @@ import type { Catalog } from './catalog.js';
 import { sha256 } from './extract.js';
 import { CatalogError, type BuildSource, type Coverage } from './types.js';
 import { searchText } from './search-text.js';
+import { answerReviewContext, assertAnswerReviewCurrent, type AnswerReviewContext } from './answer-review.js';
 
-export const retrievalVersion = 'fts-question-v4';
+export const retrievalVersion = 'fts-question-v5';
 export const answerSchemaVersion = 'cited-answer-v3';
 export const answerLimits = { spans: 30, textBytes: 64 * 1024, candidates: 120, claims: 20, outputBytes: 256 * 1024 } as const;
 export interface InputSpan {
@@ -17,6 +18,8 @@ export interface AnswerContext {
   terms: string[]; expansionTerms: string[];
   // Absent in saved contexts issued before fts-question-v4; keep their hashed bytes unchanged.
   retrievalMode?: 'lexical' | 'orientation' | 'empty'; spans: InputSpan[]; textBytes: number;
+  // Missing on older immutable answer inputs; do not backfill their saved JSON.
+  review?: AnswerReviewContext;
   limits: typeof answerLimits; gaps: string[]; inputHash: string;
 }
 export interface CitedAnswer {
@@ -111,7 +114,7 @@ export function retrieveAnswerContext(catalog: Catalog, question: string, buildI
     deploymentCoherence: 'unknown' as const, partial: build.status === 'partial',
     stale: build.sourceSetVersion !== project.sourceSetVersion, coverage: build.coverage, sources,
     terms, expansionTerms, retrievalMode: initial.length ? 'lexical' as const : spans.length ? 'orientation' as const : 'empty' as const,
-    spans, textBytes, limits: answerLimits, gaps };
+    spans, textBytes, limits: answerLimits, gaps, review: answerReviewContext(catalog, id, spans.map(span => span.id)) };
   return { ...context, inputHash: sha256(JSON.stringify(context)) };
 }
 
@@ -146,6 +149,7 @@ export function validateCitedAnswer(catalog: Catalog, context: AnswerContext, se
   // Fence the whole issued input, including spans the model did not cite.
   const { inputHash, ...input } = context;
   if (sha256(JSON.stringify(input)) !== inputHash) throw invalid();
+  assertAnswerReviewCurrent(catalog, context.review);
   const project = catalog.store.project();
   if (project.policyVersion !== context.policyVersion || project.sourceSetVersion !== context.registryVersion) throw new CatalogError('INPUT_CHANGED', 'The answer inputs are no longer current.', 409);
   const build = catalog.store.build(context.buildId);

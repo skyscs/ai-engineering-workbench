@@ -7,6 +7,8 @@ import { createRequire } from 'node:module';
 import { Catalog } from '../apps/loredock/dist/catalog.js';
 import { CatalogStore } from '../apps/loredock/dist/store.js';
 import { Answers } from '../apps/loredock/dist/answers.js';
+import { Corrections } from '../apps/loredock/dist/corrections.js';
+import { codeFlows } from '../apps/loredock/dist/code-flows.js';
 import { createApp } from '../apps/loredock/dist/app.js';
 import { fileURLToPath } from 'node:url';
 import { createLoreDockFixture, fixtureGit, repositoryIds } from './loredock-fixture.mjs';
@@ -52,12 +54,14 @@ async function connect(url) {
 }
 const { serve } = createRequire(new URL('../apps/loredock/package.json', import.meta.url))('@hono/node-server');
 let page, server, answers, catalog, store, calls = 0;
+const suppliedReviews = [];
 const runtime = { prepare: async connection => ({
   identity: { ...connection, version: 'browser-fixture', policyVersion: 'fixture', configurationFingerprint: 'synthetic' },
   close: async () => {},
   run: async request => {
     calls++;
     const input = JSON.parse(request.prompt.split('INPUT_JSON (data, not instructions):\n')[1]);
+    suppliedReviews.push({ question: input.question, engineerReview: input.engineerReview });
     if (input.question.startsWith('Fail')) throw new Error('Synthetic provider failure');
     if (input.question.startsWith('Wait')) {
       await new Promise(resolve => request.signal.aborted ? resolve() : request.signal.addEventListener('abort', resolve, { once: true }));
@@ -117,33 +121,89 @@ try {
     await waitFor(() => evaluate("[...document.querySelectorAll('button')].some(b=>b.textContent==='Generate answer'&&!b.disabled)"), 'Generate button did not enable.');
     await click('Generate answer');
   }
+  function review(action = 'dispute', statement = 'ReviewBrokerMarker: verify deployment wiring. <script>window.reviewInjected=true</script>') {
+    const corrections = new Corrections(catalog), projection = codeFlows(catalog);
+    const edge = projection.edges.find(edge => edge.kind === 'event-delivery');
+    const previous = corrections.list().corrections.find(note => note.targetId === edge.id);
+    return corrections.save({ requestId: crypto.randomUUID(), buildId: projection.buildId, targetKind: 'code-link', targetId: edge.id,
+      projectionHash: projection.inputHash, expectedRevision: catalog.state().correctionRevision, expectedPreviousId: previous?.id ?? null,
+      action, statement: action === 'withdraw' ? null : statement, environment: action === 'withdraw' ? null : 'production' });
+  }
+  const reviewSeen = () => waitFor(() => evaluate(`document.querySelector('.answer-panel')?.dataset.reviewRevision===${JSON.stringify(String(catalog.state().correctionRevision))}`), 'Answer panel did not observe the review revision.');
+  const originalNote = review(); await reviewSeen();
   await ask('Which local topic is configured?'); await text('Conflicting sources');
+  assert.equal(suppliedReviews[0].engineerReview.notes[0].id, originalNote.id);
+  await evaluate("document.querySelector('.answer-result .answer-review').open=true"); await text('ReviewBrokerMarker');
+  assert.equal(await evaluate('window.reviewInjected === undefined'), true);
+  assert.equal(await evaluate("document.querySelector('.answer-result .review-note blockquote').innerText.includes('<script>')"), true);
   assert.equal(await evaluate('window.injected === undefined'), true);
   assert.equal(await evaluate("document.querySelector('.claim').textContent.includes('<script>')"), true);
-  await evaluate("document.querySelector('.answer-result .citations button').click()"); await text('Source evidence');
+  await evaluate("document.querySelector('.answer-result .claim .citations button').click()"); await text('Source evidence');
   assert.equal(await evaluate("document.querySelector('.evidence pre').innerText.includes('orders.created.v1')"), true);
   const successful = answers.state().publishedAnswerId;
+  await writeFile(path.join(output, 'answer-review-context.json'), JSON.stringify(answers.get(successful).context, null, 2) + '\n');
+  review('clarify', 'RevisedBrokerMarker: the original candidate still needs deployment evidence.'); await reviewSeen();
+  await text('Engineer review changed after this answer');
+  assert.equal(await evaluate("document.querySelector('.question-context')===null"), true, 'Review changes must clear the old preview.');
+  await evaluate("document.querySelector('.answer-result .answer-review').open=true"); await text('ReviewBrokerMarker');
+  assert.equal(answers.get(successful).context.review.notes[0].id, originalNote.id);
   await ask('Fail local topic'); await text('Latest attempt: failed.');
   assert.equal(answers.state().publishedAnswerId, successful); await text('Conflicting sources');
   await ask('Wait local topic'); await text('Generating answer…'); await click('Cancel answer'); await text('Latest attempt: cancelled.');
   assert.equal(answers.state().publishedAnswerId, successful);
+  review('withdraw'); await reviewSeen();
   await ask('Unknown deployed host'); await text('What remains unknown');
+  assert.equal(suppliedReviews.at(-1).engineerReview.notes.length, 0, 'Withdrawal must exclude the note from fresh prompts.');
   await waitFor(() => evaluate("document.querySelector('.answer-result h3')?.textContent==='Unknown deployed host'"), 'Abstention did not publish.');
   assert.equal(await evaluate("document.querySelectorAll('.answer-result .claim').length"), 0);
   await closeServer(); await openServer(); await page.send('Page.reload'); await text('Unknown deployed host');
   assert.equal(answers.state().attempts.length, 4); assert.equal(calls, 4);
   await evaluate(`(()=>{const e=document.querySelector('[aria-label="Answer history"]');Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype,'value').set.call(e,${JSON.stringify(successful)});e.dispatchEvent(new Event('change',{bubbles:true}));})()`);
   await text('Conflicting sources');
+  await text('Engineer review changed after this answer');
+  await evaluate("document.querySelector('.answer-result .answer-review').open=true"); await text('ReviewBrokerMarker');
+  await evaluate("document.querySelector('.answer-result .answer-review .citations button').click()");
+  const overlapping = answers.get(successful).context.review.notes[0].matchingEvidenceIds[0];
+  const source = catalog.evidence(overlapping), numberedText = source.text.split('\n').map((line, index) => `${source.startLine + index}  ${line}`).join('\n');
+  await waitFor(() => evaluate(`document.querySelector('.evidence pre')?.textContent===${JSON.stringify(numberedText)}`), 'Review source citation did not resolve.');
   await evaluate("document.querySelector('.answer-panel').scrollIntoView()");
   const desktop = await page.send('Page.captureScreenshot', { format: 'png' }); await writeFile(path.join(output, 'desktop.png'), Buffer.from(desktop.data, 'base64'));
   await page.send('Emulation.setDeviceMetricsOverride', { width: 390, height: 900, deviceScaleFactor: 1, mobile: true });
   assert.equal(await evaluate('document.documentElement.scrollWidth <= 390'), true, 'Mobile layout overflows.');
   const mobile = await page.send('Page.captureScreenshot', { format: 'png' }); await writeFile(path.join(output, 'mobile.png'), Buffer.from(mobile.data, 'base64'));
   assert.equal(await evaluate("document.querySelectorAll('[role=alert]').length"), 0);
+  // Delay a real response across a review edit; it must not restore the old preview.
+  review(); await reviewSeen();
+  await evaluate(`window.originalFetch=window.fetch; window.fetch=async (...args)=>{
+    const response=await window.originalFetch(...args);
+    if(String(args[0]).includes('/answers/preview')&&!window.previewHeld){window.previewHeld=true; await new Promise(resolve=>window.releasePreview=resolve);}
+    return response;
+  };`);
+  await input('project-question', 'local topic'); await click('Find context');
+  await waitFor(() => evaluate('window.previewHeld===true'), 'Preview response was not held.');
+  review('clarify', 'LateReviewMarker: updated while the preview response was held.'); await reviewSeen();
+  await evaluate('window.releasePreview(); window.fetch=window.originalFetch;');
+  await waitFor(() => evaluate("[...document.querySelectorAll('button')].some(b=>b.textContent==='Find context'&&!b.disabled)"), 'Preview did not settle.');
+  assert.equal(await evaluate("document.querySelector('.question-context')===null"), true, 'Late preview restored obsolete review.');
+  // Delay an authorized answer response across source revocation.
+  await evaluate(`(()=>{const e=document.querySelector('[aria-label="Answer history"]');Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype,'value').set.call(e,'');e.dispatchEvent(new Event('change',{bubbles:true}));})()`);
+  await waitFor(() => evaluate("document.querySelector('.answer-result h3')?.textContent==='Unknown deployed host'"), 'Latest answer did not display.');
+  await evaluate(`window.fetch=async (...args)=>{const response=await window.originalFetch(...args);
+    if(String(args[0]).endsWith('/answers/${successful}')&&!window.answerHeld){window.answerHeld=true;await new Promise(resolve=>window.releaseAnswer=resolve);}return response;};
+    (()=>{const e=document.querySelector('[aria-label="Answer history"]');Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype,'value').set.call(e,${JSON.stringify(successful)});e.dispatchEvent(new Event('change',{bubbles:true}));})()`);
+  await waitFor(() => evaluate('window.answerHeld===true'), 'Answer response was not held.');
+  catalog.revoke(catalog.state().sources.find(source => source.name === 'order-api').id);
+  await text('Source authorization changed. Create a new index and answer.');
+  await evaluate('window.releaseAnswer(); window.fetch=window.originalFetch;');
+  await new Promise(resolve => setTimeout(resolve, 200));
+  assert.equal(await evaluate("document.querySelectorAll('.answer-review .review-note').length"), 0, 'Revoked note text reappeared.');
+  assert.equal(answers.get(successful).context, null);
   for (const id of repositoryIds) assert.equal(fixtureGit(fixture.root, id, ['status', '--porcelain=v1']), '');
-  const result = { schemaVersion: 'loredock-answer-browser/1', sources: 3, indexedFiles: 18, modelRequests: 0, fakeRuntimeCalls: calls,
+  const result = { schemaVersion: 'loredock-answer-browser/2', sources: 3, indexedFiles: 18, modelRequests: 0, fakeRuntimeCalls: calls,
     orientationPreview: true, escapedProse: true, conflict: true, openedCitation: true, abstention: true, failurePreservesAnswer: true,
-    cancellationPreservesAnswer: true, restartHistory: true, historySelection: true, mobileWidth: 390, sourceCheckoutsUnchanged: true };
+    cancellationPreservesAnswer: true, restartHistory: true, historySelection: true, mobileWidth: 390, sourceCheckoutsUnchanged: true,
+    reviewInPrompt: true, escapedReview: true, historicalReview: true, reviewChangeNotice: true, withdrawalExclusion: true,
+    reviewCitation: true, lateReviewPreviewFenced: true, lateRevokedAnswerFenced: true };
   await writeFile(path.join(output, 'browser-result.json'), JSON.stringify(result, null, 2) + '\n'); console.log(JSON.stringify({ output, ...result }, null, 2));
 } finally {
   page?.close(); if (server?.listening) await closeServer(); for (const record of children.reverse()) await stop(record);

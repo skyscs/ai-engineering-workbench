@@ -31,8 +31,13 @@ The code-flow projection parses stored text in memory, without compiler plugins,
 configuration, filesystem/package resolution or source execution. It retains original
 evidence and the same fencing. Static/candidate links do not establish runtime behavior;
 see [ADR 0023](docs/decisions/0023-loredock-static-code-flows.md).
-Engineer corrections retain explicit human/unverified provenance and are not sent to the
-answer model in this slice. All sources in the recorded index conservatively fence their
+Engineer corrections retain explicit human/unverified provenance. Bounded notes matching
+retrieved passages are previewed and sent separately to the answer model as untrusted
+assertions, never instructions or source citation IDs. Answers inherit their complete
+source dependency scopes; revocation fences and purges saved note text too. Review edits
+invalidate pending publication, without automatically starting another model call. See
+[ADR 0028](docs/decisions/0028-loredock-answer-review-context.md).
+All sources in the recorded index conservatively fence correction
 history/replay; revocation purges dependent note text, environment and target snapshots,
 including withdrawn versions. SQL/HTTP and late-response boundaries are described in
 [ADR 0024](docs/decisions/0024-loredock-engineer-corrections.md).

@@ -6,6 +6,11 @@ next iteration; **Task 016's bounded source-to-cited-answer slice is owner-accep
 See the [acceptance record](L2_ACCEPTANCE.md). Cited answers remain an explicitly
 selected mode through `LOREDOCK_ANSWERS=1`; indexing and maps need no Codex setup.
 
+Task 023 subsequently adds retrieval v5 / prompt v7: bounded engineer notes separate
+from source spans, immutable note snapshots and review freshness. Its fake-runtime/browser
+verification does not extend the real-model quality scores below to disputed-link behavior.
+See [the review-context decision](../decisions/0028-loredock-answer-review-context.md).
+
 The final complete run has a provisional **20/20 useful/correct agent assessment**,
 **162/162 resolving citation references across 98 claims**, and **20/20 complete
 expected-evidence retrieval sets**. This is not independent human approval. Read the

@@ -2,9 +2,13 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import type { Answers, AnswerAttempt } from '../../loredock/src/answers';
 import type { AnswerContext } from '../../loredock/src/answer-context';
 import { api } from './api';
+import { AnswerReview } from './AnswerReview';
 
 type State = ReturnType<Answers['state']>;
-export function AnswerPanel({ buildId, boundary, openEvidence }: { buildId: string; boundary: string; openEvidence(id: string): void }) {
+export function AnswerPanel({ buildId, boundary: sourceBoundary, correctionRevision, openEvidence }: {
+  buildId: string; boundary: string; correctionRevision: number; openEvidence(id: string): void;
+}) {
+  const boundary = `${sourceBoundary}:${correctionRevision}`;
   const [state, setState] = useState<State>();
   const [question, setQuestion] = useState('');
   const [preview, setPreview] = useState<{ boundary: string; context: AnswerContext }>();
@@ -23,14 +27,15 @@ export function AnswerPanel({ buildId, boundary, openEvidence }: { buildId: stri
   useEffect(() => { request.current = undefined; setPreview(undefined); }, [boundary]);
   const answerId = selected || state?.publishedAnswerId || '';
   const answerStatus = state?.attempts.find(attempt => attempt.id === answerId)?.status;
+  const reviewState = state?.attempts.find(attempt => attempt.id === answerId)?.reviewState;
   useEffect(() => {
     let stopped = false;
     if (!answerId) { setAnswer(undefined); return; }
     void api<AnswerAttempt>(`/answers/${answerId}`).then(attempt => { if (!stopped) setAnswer({ boundary, attempt }); }).catch(cause => { if (!stopped) setError((cause as Error).message); });
     return () => { stopped = true; };
-  }, [answerId, answerStatus, boundary]);
+  }, [answerId, answerStatus, reviewState, boundary]);
   const context = preview?.boundary === boundary ? preview.context : undefined;
-  const displayed = answer?.boundary === boundary ? answer.attempt : undefined;
+  const displayed = answer?.boundary === boundary && answer.attempt.id === answerId ? answer.attempt : undefined;
   const active = state?.attempts.find(attempt => ['preparing', 'running'].includes(attempt.status));
   const last = state?.attempts[0];
   async function action(fn: () => Promise<void>) {
@@ -49,7 +54,7 @@ export function AnswerPanel({ buildId, boundary, openEvidence }: { buildId: stri
     request.current ??= { requestId: crypto.randomUUID(), question: context.question, buildId: context.buildId, inputHash: context.inputHash };
     await api('/answers', 'POST', request.current); request.current = undefined; setSelected('');
   }); }
-  return <section className="panel answer-panel">
+  return <section className="panel answer-panel" data-review-revision={correctionRevision}>
     <h2>Ask about your system</h2>
     <p className="muted">First review the context found for your question. Generating an answer sends that text through your selected Codex connection.</p>
     {error && <p className="error" role="alert">{error}</p>}
@@ -73,6 +78,7 @@ export function AnswerPanel({ buildId, boundary, openEvidence }: { buildId: stri
         <ul>{context.gaps.map(gap => <li key={gap}>{gap}</li>)}</ul>
         <ul>{context.spans.map(span => <li key={span.id}><button className="quiet" onClick={() => openEvidence(span.id)}>{span.sourceName} / {span.path}:{span.startLine}–{span.endLine}</button></li>)}</ul>
       </details>
+      {context.review && <AnswerReview review={context.review} spans={context.spans} openEvidence={openEvidence} />}
       <p className="muted">One attempt, up to two minutes. Failed or cancelled attempts keep the last successful answer. A retry is a new request and can consume more usage.</p>
       <button className="primary" disabled={busy || Boolean(active) || !state?.connection} onClick={generate}>Generate answer</button>
     </div>}
@@ -86,6 +92,9 @@ export function AnswerPanel({ buildId, boundary, openEvidence }: { buildId: stri
       <h3>{displayed.question}</h3>
       <p className="muted">Saved answer · index {displayed.buildId.slice(0, 8)}{displayed.buildId !== buildId ? ' · different from the selected index' : ''}</p>
       {displayed.stale && <p className="notice">A newer index or source registry is available. Review this answer's saved sources before relying on it.</p>}
+      {displayed.reviewState === 'changed' && <p className="notice review-changed">Engineer review changed after this answer's context was prepared. The saved notes below are historical. Find context and generate again to use current review.</p>}
+      {displayed.reviewState === 'not-recorded' && <p className="notice">This older answer did not record engineer review. Generate a new answer to include current notes.</p>}
+      {displayed.context?.review && <AnswerReview review={displayed.context.review} spans={displayed.context.spans} openEvidence={openEvidence} />}
       {displayed.reason && <p className="notice">{displayed.reason}</p>}
       {displayed.answer?.claims.map((claim, index) => <div className={`claim ${claim.kind}`} key={index}>
         <strong>{claim.kind === 'conflict' ? 'Conflicting sources' : claim.kind === 'inference' ? 'Inference' : 'Source-backed statement'}</strong><p>{claim.text}</p>
