@@ -74,6 +74,10 @@ clues do not establish automatic routing or answer-quality acceptance.
 Task 037 adds optional [related-source context](../fixtures/loredock-candidate-links/README.md)
 outside answer inputs. Union recall reaches 21/22 with broader lists; this does not
 change any historical semantic assessment or authorize another model run.
+Task 039's code adapter v3 recognizes bounded Dojo object exports. Newly derived interface
+context records v3 and may include those comparisons; saved v2 inputs remain unchanged.
+Original source selection and prompt/schema versions are preserved. This adapter change
+does not repeat or improve a historical model score.
 
 The original three-source pilot's final run has a provisional **20/20 useful/correct agent assessment**,
 **162/162 resolving citation references across 98 claims**, and **20/20 complete

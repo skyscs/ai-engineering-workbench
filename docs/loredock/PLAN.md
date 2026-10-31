@@ -70,9 +70,11 @@ useful scope conditions in only four cases because the union grows to 1–8 sour
 [Task 038](../../tasks/038-loredock-link-precision-qualification.md) evaluates a structural
 subject filter offline: sizes fit every bound and eight combined conditions pass, but
 recall falls to 20/22. Production v1 remains unchanged.
-Next: freeze and implement literal AMD object exports in the bounded dojo/request profile,
-preserving binding guards, versioned original evidence and
-unverified link scope. No tuning on the observed model answers is included.
+[Task 039](../../tasks/039-loredock-dojo-object-exports.md) adds bounded literal Dojo AMD
+object exports under code adapter v3, with binding/module-boundary guards and historical
+review preservation. Current union recall is 22/22, with five combined scope conditions met.
+Next: compact expandable related-source cards without changing selection, original evidence
+or unverified link scope. No tuning on the observed model answers is included.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale
 and the Workbench bridge remain open. The

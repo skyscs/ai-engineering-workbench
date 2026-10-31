@@ -129,6 +129,19 @@ try {
   await page.send('Emulation.setDeviceMetricsOverride',{width:1280,height:1000,deviceScaleFactor:1,mobile:false});
   await evaluate("document.querySelector('.candidate-panel').scrollIntoView()");await screenshot('other-candidates-desktop.png');
   await page.send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});await noOverflow();
+  await question(routingCases[5].description);await find();await waitFor(()=>evaluate("document.querySelector('.candidate-links')!==null"),'Dojo candidate links did not load.');
+  await evaluate("document.querySelector('.candidate-links').open=true");
+  assert.equal(await evaluate("[...document.querySelectorAll('.candidate-links h4')].some(node=>node.textContent==='inventory-api')"),true);
+  const dojoButton="[...document.querySelectorAll('.candidate-links .candidate-support')].find(node=>node.querySelector('p').textContent.includes('legacy-admin')).querySelector('button')";
+  await evaluate(`${dojoButton}.click()`);await text('Source evidence');
+  assert.equal(await evaluate("document.querySelector('.evidence strong').textContent"),'legacy-admin');
+  assert.equal(await evaluate("document.querySelector('.evidence').textContent.includes('src/stock.js')"),true);
+  const inventoryButton="[...document.querySelectorAll('.candidate-links .candidate-support')].find(node=>node.querySelector('p').textContent.includes('inventory-api')).querySelector('button')";
+  await evaluate(`${inventoryButton}.click()`);await waitFor(()=>evaluate("document.querySelector('.evidence strong')?.textContent==='inventory-api'"),'Inventory route evidence did not open.');
+  const dojoGraph=await apiCall('/code-flows');assert.equal(dojoGraph.adapterVersion,'pilot-code-v3');
+  assert.ok(dojoGraph.omissions['adapter:unsupported-amd-shape']>0);assert.equal(dojoGraph.nodes.some(node=>node.path==='src/plugin.js'),false);
+  assert.equal(await evaluate("document.querySelector('.candidate-links').textContent.includes('deployment binding are unresolved')"),true);
+  await evaluate("document.querySelector('.candidate-links').scrollIntoView()");await noOverflow();await screenshot('dojo-object-route-mobile.png');
   await question('OrderBadge');await find();await text('1 source suggestion to review');
   const firstBuild=await evaluate("document.querySelector('.candidate-panel').dataset.buildId");
   await click('Update knowledge');await waitFor(()=>evaluate(`document.querySelector('.project-overview')?.dataset.buildId!==${JSON.stringify(firstBuild)} && document.querySelectorAll('.orientation-card').length===20`),'Refresh did not publish.');
@@ -172,6 +185,7 @@ try {
     lateReviewPreviewFenced:true,reviewNotesUnverified:true,lateRevocationPreviewFenced:true,latePolicyPreviewFenced:true,
     relatedSourcesCollapsed:true,relatedSourceLabelEscaped:true,relatedOriginalEvidenceKeyboard:true,
     lateLinkedEvidenceFenced:true,lateLinkedRevocationFenced:true,
+    dojoObjectCallerAndRouteEvidence:true,dojoDynamicPluginUnresolved:true,codeAdapter:'pilot-code-v3',
     mobileWidth:390,horizontalOverflow:false};
   await writeFile(path.join(output,'browser-result.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({output,...result},null,2));
 } catch(error) {

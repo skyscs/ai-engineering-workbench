@@ -86,8 +86,12 @@ and answer context stay unchanged; extra links remain collapsed reading clues.
 [Task 038](tasks/038-loredock-link-precision-qualification.md) evaluates a frozen structural
 subject filter offline. It meets all size bounds and eight combined conditions, but loses
 a useful configuration clue: recall is 20/22. Production v1 remains unchanged.
-Next: freeze and implement literal AMD object exports in the bounded dojo/request profile,
-with binding guards and versioned original-evidence semantics. Preserve all failed evaluations;
+[Task 039](tasks/039-loredock-dojo-object-exports.md) adds bounded literal Dojo AMD object
+exports under code adapter v3, including binding/module-boundary guards and preserved
+historical review. The current diagnostic recovers 22/22 critical occurrences; only five
+cases meet both useful scope conditions. Original span/lexical selection remains unchanged.
+Next: compact the related-source reading UI without changing selection or evidence.
+Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
 Broader synthesis, adapters, semantic/AI refresh and scale acceptance remain separate.

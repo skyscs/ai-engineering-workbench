@@ -67,6 +67,10 @@ from the same authorized build. They retain projection provenance, omissions and
 unverified status; extra references never become answer-input evidence implicitly.
 Overlapping engineer notes remain human assertions. Existing response and citation fences
 cover the entire preview. See [ADR 0037](docs/decisions/0037-loredock-candidate-links.md).
+Code adapter v3 inspects at most 100 literal Dojo object exports without execution or
+module resolution. Unsupported shapes and uncertain bindings remain gaps; AMD properties
+cannot be treated as ES named exports. Adapter upgrades do not rewrite saved answer/review
+bytes or implicitly reapply old notes. See [ADR 0038](docs/decisions/0038-loredock-dojo-object-exports.md).
 
 Bulk path previews and confirmations use the same session/CSRF boundary. Registration
 revalidates canonical identities and the registry before atomic insertion; persisted

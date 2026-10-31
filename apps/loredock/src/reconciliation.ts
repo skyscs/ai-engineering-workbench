@@ -115,7 +115,7 @@ export class Reconciliation {
       for (const source of sourceNotes.slice(0, reconciliationLimits.corrections)) {
         const original = this.corrections.inspect(source.id).original;
         const entry: ReconciliationEntry = { source, original, status: 'unsupported', reason: 'The original adapter provenance is not supported for comparison.', current: null };
-        const expected = source.targetKind === 'code-link' ? ['loredock-code-flows-v1', 'pilot-code-v2'] : ['loredock-map-v1', 'json-declarations-v2'];
+        const expected = source.targetKind === 'code-link' ? ['loredock-code-flows-v1', 'pilot-code-v3'] : ['loredock-map-v1', 'json-declarations-v2'];
         if (original.schemaVersion === expected[0] && original.adapterVersion === expected[1]) {
           const oldGraph = graph(selected, source.targetKind), newGraph = graph(target.id, source.targetKind);
           const oldEdge = oldGraph.edges.find(edge => edge.id === source.targetId);

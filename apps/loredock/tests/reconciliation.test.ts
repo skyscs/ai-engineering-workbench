@@ -234,12 +234,12 @@ test('unsupported adapter provenance and corrupt original evidence cannot produc
   assert.throws(() => state.review.preview(), /integrity/);
 });
 
-test('pre-header adapter corrections stay readable across restart but cannot be reapplied', async t => {
-  for (const kind of ['code-link', 'declaration-link'] as const) await t.test(kind, async sub => {
+test('earlier adapter corrections stay readable across restart but cannot be reapplied', async t => {
+  for (const [kind, version] of [['code-link', 'pilot-code-v1'], ['code-link', 'pilot-code-v2'], ['declaration-link', 'json-declarations-v1']] as const) await t.test(`${kind}-${version}`, async sub => {
     const state = await setup(sub), source = state.corrections.save(note(state.catalog, kind));
     const row = state.store.one<{ target: string; buildId: string; targetKind: string; targetId: string; version: number; previousId: string | null; action: string; statement: string; environment: string }>('SELECT * FROM corrections WHERE id=?', source.id)!;
     // Seed an internally hashed historical adapter record in this owned test store.
-    const target = JSON.stringify({ ...JSON.parse(row.target), adapterVersion: kind === 'code-link' ? 'pilot-code-v1' : 'json-declarations-v1' });
+    const target = JSON.stringify({ ...JSON.parse(row.target), adapterVersion: version });
     state.store.db.exec('DROP TRIGGER correction_identity; DROP TRIGGER correction_content');
     state.store.run('UPDATE corrections SET target=?,contentHash=? WHERE id=?', target,
       sha256(JSON.stringify([row.buildId, row.targetKind, row.targetId, row.version, row.previousId, row.action, row.statement, row.environment, target])), source.id);

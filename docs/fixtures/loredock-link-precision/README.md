@@ -48,7 +48,9 @@ already observed during development. No blind acceptance claim follows from eith
   development score constitutes acceptance.
 - No application, API, UI, database, parser, runtime or historical report changed.
 
-After building, reproduce with:
+The current code adapter is now v3 (Task 039). This v2 qualifier refuses that provenance
+explicitly; the retained report remains unchanged. To repeat the original qualification,
+use the Task 038 implementation at commit `1af275f` in a separate checkout, build it, then run:
 
 ```sh
 node scripts/loredock-link-precision.mjs
