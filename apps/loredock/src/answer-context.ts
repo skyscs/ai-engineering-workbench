@@ -3,8 +3,9 @@ import { sha256 } from './extract.js';
 import { CatalogError, type BuildSource, type Coverage } from './types.js';
 import { searchText } from './search-text.js';
 import { answerReviewContext, assertAnswerReviewCurrent, type AnswerReviewContext } from './answer-review.js';
+import { expansionLimits, expansionTerms as selectExpansionTerms, interleaveCandidates } from './answer-expansion.js';
 
-export const retrievalVersion = 'fts-question-v6';
+export const retrievalVersion = 'fts-question-v7';
 export const answerSchemaVersion = 'cited-answer-v3';
 export const answerLimits = { spans: 30, textBytes: 64 * 1024, candidates: 120, claims: 20, outputBytes: 256 * 1024 } as const;
 export interface InputSpan {
@@ -73,17 +74,15 @@ export function retrieveAnswerContext(catalog: Catalog, question: string, buildI
   const initial = expression ? lookup(expression, answerLimits.candidates + 1) : [];
   // One bounded expansion from literal identifiers in the strongest admitted matches.
   // This is a retrieval hint, never an inferred call graph or a relation claim.
-  const symbols = new Map<string, number>();
+  const seeds: { sourceId: string; text: string }[] = [];
   let inspectedBytes = 0;
-  for (const candidate of initial.slice(0, 6)) {
+  for (const candidate of initial.slice(0, expansionLimits.seeds)) {
     if (inspectedBytes + candidate.bytes > answerLimits.textBytes) continue;
     const evidence = catalog.evidence(candidate.id), bytes = Buffer.byteLength(evidence.text, 'utf8');
     inspectedBytes += bytes;
-    for (const token of new Set(evidence.text.match(/\b(?:[A-Z][a-z]+(?:[A-Z][a-z]+)+|[a-z]+(?:[A-Z][a-z]+)+|[A-Z]+(?:_[A-Z]+)+)\b/g) ?? [])) {
-      if (token.length <= 80) symbols.set(token, (symbols.get(token) ?? 0) + 1);
-    }
+    seeds.push({ sourceId: evidence.sourceId, text: evidence.text });
   }
-  const expansionTerms = [...symbols].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 12).map(([symbol]) => symbol);
+  const expansionTerms = selectExpansionTerms(seeds, terms);
   const expanded = expansionTerms.length ? lookup(expansionTerms.map(term => `"${term}"`).join(' OR '), answerLimits.candidates + 1) : [];
   // A full normalized source name is only an orientation hint, never an ownership claim.
   // Keep every matching identity, including duplicate display names, and balance samples.
@@ -126,7 +125,8 @@ export function retrieveAnswerContext(catalog: Catalog, question: string, buildI
     SELECT *,row_number() OVER (PARTITION BY sourceId ORDER BY category,path) AS position
     FROM representatives WHERE representative=1
   ) SELECT id,bytes FROM balanced WHERE position<=? ORDER BY position,sourceOrder,path LIMIT ?`, id, samplingLimits.perSource, answerLimits.candidates + 1);
-  const candidates = [...new Map([...initial.slice(0, 6), ...namedSample.slice(0, samplingLimits.namedSpans), ...orientation, ...expanded, ...initial, ...fallback].map(candidate => [candidate.id, candidate])).values()];
+  const preferred = interleaveCandidates([...initial.slice(0, 6), ...namedSample.slice(0, samplingLimits.namedSpans), ...orientation], initial.slice(6), expanded);
+  const candidates = [...new Map([...preferred, ...fallback].map(candidate => [candidate.id, candidate])).values()];
   let budgetOmitted = false;
   for (const candidate of candidates.slice(0, answerLimits.candidates)) {
     // Consult stored span byte metadata before reopening a potentially large file.

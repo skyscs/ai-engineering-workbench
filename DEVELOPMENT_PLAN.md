@@ -45,8 +45,12 @@ and freezes twenty-four prospective wordings without model calls. Recorded evide
 is complete for 22/24, with two repeatable reserved-wording misses under retrieval v6.
 These are reference-recall measurements, not new semantic scores; equivalent issued
 evidence must also be assessed. Reserved wordings are inspected for retrieval and are
-not an independent blind corpus. Next: bounded literal-reference expansion and candidate
-admission, preserving current caps and all historical results before further paid tuning.
+not an independent blind corpus.
+[Task 029](tasks/029-loredock-reference-retrieval.md) adds source-balanced, query-affine
+literal-reference expansion and direct-query priority within existing caps. Recorded
+reference recall reaches 24/24 prospective cases, preserving both earlier 20/20 baselines.
+All historical results remain unchanged. Next: a separately budgeted prospective answer
+evaluation with the fixed prompt, reporting development/reserved semantics separately.
 Source recall, agent scoring and merging do not establish L5 readiness.
 Broader synthesis, adapters, semantic/AI refresh and scale acceptance remain separate.
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,

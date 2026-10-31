@@ -28,16 +28,21 @@ remain reviewable; no L5 claim follows from recall or agent scoring.
 and freezes twenty-four prospective wordings. Offline retrieval supplies the complete
 recorded reference basis for 22/24; h02/h04 miss a shared contract/handler implementation.
 The h02 code record already supplies message fields, illustrating why a missing reference
-does not automatically imply an unanswerable question. Next: improve bounded literal-reference
-expansion/admission before paid evaluation. [Diagnosis and rubric](ANSWER_COMPLETENESS.md)
+does not automatically imply an unanswerable question. [Diagnosis and rubric](ANSWER_COMPLETENESS.md)
 preserve the old failed gate and disclose the reserved set's inspection/authoring limits.
+[Task 029](../../tasks/029-loredock-reference-retrieval.md) improves literal-reference hints
+and prioritizes direct query matches within the same caps. All 24 prospective cases now
+have their recorded reference basis, with both earlier 20/20 retrieval baselines retained.
+See [measurements and tradeoffs](../fixtures/loredock-reference-retrieval/README.md).
+Next: separately budgeted prospective answer evaluation with the fixed prompt and separate
+development/reserved semantic judgments. Retrieval alone cannot pass the earlier gate.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale
 and the Workbench bridge remain open. The
 [acceptance record](L2_ACCEPTANCE.md) distinguishes owner acknowledgement from agent scores.
 See [L0 measurements and blockers](FEASIBILITY.md), [contracts](CONTRACTS.md),
 [Task 016](../../tasks/016-loredock-cited-answer.md) for the accepted answer slice and
-[Task 028](../../tasks/028-loredock-answer-completeness.md) for the current bounded investigation.
+[Task 029](../../tasks/029-loredock-reference-retrieval.md) for the latest bounded implementation.
 
 ## Outcome and delivery boundary
 

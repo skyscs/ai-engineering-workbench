@@ -9,7 +9,7 @@ import { evaluateCompleteness } from '../../../scripts/loredock-completeness.mjs
 // @ts-expect-error Reviewer-only fixture definitions are plain JavaScript.
 import { completenessCases } from '../../../fixtures/loredock-completeness/cases.mjs';
 
-test('prospective retrieval admits only question strings and records repeatable missing support without model calls', async () => {
+test('prospective retrieval admits only question strings and retains repeatable required support without model calls', async () => {
   const received: string[] = [];
   const report = await evaluateCompleteness({ Catalog, CatalogStore, answerLimits, answerPromptVersion, retrievalVersion,
     retrieveAnswerContext: (catalog: Catalog, question: string) => {
@@ -29,7 +29,9 @@ test('prospective retrieval admits only question strings and records repeatable 
   assert.deepEqual(received, [...questions, ...questions]);
   assert.equal(report.modelRequests, 0); assert.equal(report.modelUsage, null);
   assert.equal(report.summary.development.completeRequiredEvidence, 12);
-  assert.deepEqual(report.summary.reserved.missingEvidenceCases, ['h02', 'h04']);
+  assert.equal(report.summary.reserved.completeRequiredEvidence, 12);
+  assert.deepEqual(report.summary.development.missingEvidenceCases, []);
+  assert.deepEqual(report.summary.reserved.missingEvidenceCases, []);
   assert.deepEqual(report.regeneration.summary, report.summary);
   assert.deepEqual(report.regeneration.changedSelections, []); assert.deepEqual(report.regeneration.changedRequirements, []);
   assert.equal(report.sourceCheckoutsUnchanged, true); assert.match(report.historicalGate, /remains failed/);
