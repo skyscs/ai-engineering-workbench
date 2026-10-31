@@ -16,15 +16,18 @@ notes to cited-answer inputs and tracks review freshness through merged PR #27.
 [Task 024](../../tasks/024-loredock-scale-corpus.md) adds a heterogeneous twenty-repository
 fixture and [capacity audit](SCALE_READINESS.md) through merged PR #28.
 [Task 025](../../tasks/025-loredock-bulk-onboarding.md) adds reviewed bulk paths, twenty
-active sources and fixed equal source shares for baseline orientation. The next
-bounded slice measures wider question retrieval against the expanded oracle.
+active sources and fixed equal source shares for baseline orientation through PR #29.
+[Task 026](../../tasks/026-loredock-scale-retrieval.md) adds stable twenty-source retrieval
+and bounded name hints, with 20/20 required-evidence recall and unchanged prompt limits.
+Actual answer semantics and engineer-review handling at expanded scope are the next
+qualification, with no L5 claim based on recall alone.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale
 and the Workbench bridge remain open. The
 [acceptance record](L2_ACCEPTANCE.md) distinguishes owner acknowledgement from agent scores.
 See [L0 measurements and blockers](FEASIBILITY.md), [contracts](CONTRACTS.md),
 [Task 016](../../tasks/016-loredock-cited-answer.md) for the accepted answer slice and
-[Task 025](../../tasks/025-loredock-bulk-onboarding.md) for the current bounded delivery.
+[Task 026](../../tasks/026-loredock-scale-retrieval.md) for the current bounded delivery.
 
 ## Outcome and delivery boundary
 

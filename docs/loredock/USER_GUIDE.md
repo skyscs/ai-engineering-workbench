@@ -337,8 +337,9 @@ See [reapplication evidence](../fixtures/loredock-reconciliation/README.md) and
 Stop the existing LoreDock process and start the answer pilot with the same data
 directory. Back up the stopped directory before upgrading. Current startup migrates
 older LoreDock data to schema 7, retaining evidence, answers and engineer correction
-history while adding immutable review-reapplication provenance. Schema 3 introduced
-answer attempts/settings, schema 4 correction history and schema 5 refresh lineage/counters.
+history. Schema 3 introduced answer attempts/settings, schema 4 correction history,
+schema 5 refresh lineage/counters, schema 6 immutable review-reapplication provenance
+and schema 7 bulk-registration receipts with saved source allocations.
 
 ```sh
 LOREDOCK_ANSWERS=1 pnpm loredock
@@ -355,11 +356,19 @@ LOREDOCK_ANSWERS=1 pnpm loredock
 4. Enter a concrete question in English, such as “How does an order reach the database?”
    Click **Find context**. This step makes no model call. Review **Context, coverage
    and gaps** and open source passages if necessary. Questions use lexical retrieval
-   with identifier expansion. If no lexical matches are found, a clearly labeled sample
-   of root README/manifests and representative source files is shown: at most six spans
-   per repository, 18 overall, still within the 64 KiB text limit. This is orientation,
-   not a complete inventory or proof of relevance. Cross-language semantic search is
-   not implemented.
+   with identifier expansion. A full repository name in your question can also select
+   a small source sample: up to six first passages per named repository and twelve
+   overall. Matching a name does not establish ownership or relevance; other sources
+   remain eligible. If several repositories have the same name, none is chosen silently.
+   Longer identifiers such as `inventory-api-extra` do not match `inventory-api`.
+   If no lexical matches are found, LoreDock samples root README/manifests and source
+   languages in rounds across all indexed repositories, with up to six candidates per
+   source. Final context still has at most thirty passages / 64 KiB text. Missing or
+   oversized files can leave sources unrepresented; no partial passage is sent.
+   **Passages from X of Y authorized indexed repositories** shows the actual scope.
+   Gaps name sources supplying no passage; this does not prove absence or irrelevance.
+   A sample is orientation, not a complete inventory or a measure of understanding.
+   Cross-language semantic search is not implemented.
 5. Open **Engineer review in this context** to see any disputes or clarifications
    whose original evidence overlaps the found passages. Notes are human and unverified;
    engineer scope stays separate from the original relationship scope. Up to ten notes

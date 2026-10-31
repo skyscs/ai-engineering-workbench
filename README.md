@@ -30,7 +30,9 @@ available with `LOREDOCK_ANSWERS=1 pnpm loredock`; follow the guide's
 [answer setup](docs/loredock/USER_GUIDE.md#ask-a-question-opt-in-pilot). The bounded answer
 slice is [owner-accepted](docs/loredock/L2_ACCEPTANCE.md). Default startup remains
 model-free; cited answers use an explicitly selected connection.
-Answer previews include matching engineer disputes/clarifications separately from source
+Answer previews show how many indexed repositories supply passages and can use explicit
+repository names as bounded context hints. Matching engineer disputes/clarifications are
+included separately from source
 evidence. Saved answers retain those exact notes and show when engineer review changes.
 Development now has a [heterogeneous twenty-repository fixture](fixtures/loredock-scale/README.md)
 and a [capacity baseline](docs/loredock/SCALE_READINESS.md). The application still supports

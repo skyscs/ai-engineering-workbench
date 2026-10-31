@@ -90,3 +90,14 @@ The next bounded slice should measure retrieval recall and uncertainty on all tw
 frozen questions, including zero-hit broad orientation and cross-repository ownership.
 Current thirty-span/64 KiB answer limits remain. More registered sources and original
 README excerpts do not establish semantic completeness or authorize the Workbench bridge.
+
+## Task 026 retrieval outcome
+
+[Expanded retrieval qualification](../fixtures/loredock-scale-retrieval/README.md)
+records 19/20 complete required-evidence sets before the change and 20/20 afterward.
+Zero-hit context represents twenty sources rather than eighteen on this small corpus.
+Stable saved-source ordering removes fresh-UUID selection variation. Explicit repository
+names add bounded first-span samples, while lexical cross-source evidence remains eligible.
+Final text/prompt limits are unchanged; [ADR 0030](../decisions/0030-loredock-scale-retrieval.md)
+records the sampling bounds and unresolved limitations. Real-model answer support,
+uncertainty and review behavior have not been evaluated on the expanded corpus.

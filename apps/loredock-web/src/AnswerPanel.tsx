@@ -73,6 +73,7 @@ export function AnswerPanel({ buildId, boundary: sourceBoundary, correctionRevis
       <button disabled={busy || Boolean(active) || !buildId || !question.trim()}>Find context</button>
     </form>
     {context && <div className="question-context">
+      <p className="muted">Passages from {new Set(context.spans.map(span => span.sourceId)).size} of {context.sources.length} authorized indexed repositories. This is evidence coverage, not a measure of system understanding.</p>
       <p role="status">{context.spans.length} source passages · {context.textBytes.toLocaleString()} UTF-8 bytes · deployment environment unknown</p>
       <details><summary>Context, coverage and gaps</summary><p>{context.coverage.indexed} files indexed · {context.coverage.excluded} excluded · {context.coverage.failed} failed</p>
         <ul>{context.gaps.map(gap => <li key={gap}>{gap}</li>)}</ul>

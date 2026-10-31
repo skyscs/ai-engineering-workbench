@@ -1,0 +1,531 @@
+{
+  "schemaVersion": "loredock-scale-retrieval/1",
+  "checkedAt": "2026-10-31T14:18:30.744Z",
+  "retrievalVersion": "fts-question-v5",
+  "answerPromptVersion": "loredock-answer-v7",
+  "limits": {
+    "spans": 30,
+    "textBytes": 65536,
+    "candidates": 120,
+    "claims": 20,
+    "outputBytes": 262144
+  },
+  "baseline": {
+    "schemaVersion": "loredock-scale-baseline/1",
+    "sourceCount": 20,
+    "eligibleFiles": 79,
+    "revisionVector": {
+      "portal": "603a69798dc12c3205e88d0498881b0c01079932",
+      "order-api": "237510937b4388fc718b7e9f93869954950df1bb",
+      "order-worker": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "checkout-bff": "07d87b7d8a7a93ee8f93f6cdf3ae03ef8253869f",
+      "inventory-api": "0e7f2a7f4776d224736bf10b8e64fd226f2d1d86",
+      "inventory-worker": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+      "shipping-api": "1d89443e2914afb8de2b02389aabfe862b2a3e22",
+      "shipping-worker": "e71a493dede8f64a0785550cf4968b3050c86019",
+      "payment-adapter": "6d85bd3ba393ec880ce95ad1af29311b066bd2f4",
+      "notification-worker": "9e8b82475fd5d3317923d7f4e7c399ed99f5356a",
+      "reporting-api": "23fc2d8f162f93758f47221207e842f4ae55da39",
+      "contract-library": "6fc0b2f8bbd4b88a35b6c04e6dc974b762cc3cbe",
+      "tenant-library": "f7e01099f81a705281b6c50f2571c1a2cc116617",
+      "ui-components": "3ef8f414dff741b0140cc9f23d91a47d740fe1b9",
+      "legacy-admin": "831849791b519da2c71f3ee4c918fbc7a6479b52",
+      "deployment-local": "266b8b73fbf744f2df4395e223df13b7e7504ffe",
+      "deployment-production": "20e07d89a00cc5ad20af50a49550b10f82b4f9f4",
+      "database-migrations": "d75867701ea1a0a3b103a9eecc9d7532c11c9058",
+      "architecture-docs": "53dcb38eeb689da1418d6ef8dd9555a357d85dba",
+      "supplier-sync": "ea9faab3d1e0a2bdcfcb93b3791cbade992129b6"
+    },
+    "manifestHash": "0bea0ff2e26acc13b4f4766cb154ded7cd2b366b064e6c84fb56c1c632532b74",
+    "oracleHash": "6d2ed2e8051e37721fedcb5b031034c1dc6bb4f3ef35beb4aa53596bb26fcc16"
+  },
+  "questionCount": 20,
+  "completeRetrievalCount": 19,
+  "results": [
+    {
+      "id": "s01",
+      "question": "Which areas does this system cover?",
+      "requiredEvidence": [
+        "architecture-docs/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "09842e5eb2340595dfd4fcda32357d9391b40a01685f09c57ac04eb79d6fccdf",
+      "spans": 30,
+      "representedSources": 15,
+      "textBytes": 7762,
+      "promptBytes": 30234,
+      "requiredUncertainty": "External internals and actual deployment are unknown.",
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s02",
+      "question": "Does inventory-api represent one application?",
+      "requiredEvidence": [
+        "inventory-api/README.md",
+        "inventory-api/config/routes.json"
+      ],
+      "missingEvidence": [
+        "inventory-api/config/routes.json"
+      ],
+      "retrievalComplete": false,
+      "selectedLocatorHash": "5684cb26082b8e1d83a7b0ae2aa919c5e0b87320342b000102fd7b981fcceffb",
+      "spans": 30,
+      "representedSources": 13,
+      "textBytes": 8269,
+      "promptBytes": 30604,
+      "requiredUncertainty": "Repository boundaries do not prove deployment boundaries.",
+      "gaps": [
+        "The span or UTF-8 text budget omitted matching evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s03",
+      "question": "Where does checkout-bff forward orders?",
+      "requiredEvidence": [
+        "checkout-bff/src/checkout.ts",
+        "checkout-bff/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "de8952ad6572e81d3b384293b6559547cf00f819504ae5028f284de717a70736",
+      "spans": 30,
+      "representedSources": 15,
+      "textBytes": 7592,
+      "promptBytes": 30058,
+      "requiredUncertainty": "No authentication or retry implementation is shown.",
+      "gaps": [
+        "The span or UTF-8 text budget omitted matching evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s04",
+      "question": "Which source declares the stock event topic?",
+      "requiredEvidence": [
+        "inventory-worker/config/local.json",
+        "contract-library/contracts/StockReserved.json"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "b229fff7d2d93a38964a87b54089ded51f6ae63edbd3c4f4eabca8ea70e2a9f9",
+      "spans": 30,
+      "representedSources": 14,
+      "textBytes": 7524,
+      "promptBytes": 30118,
+      "requiredUncertainty": "A matching name is not a verified live subscription.",
+      "gaps": [
+        "The span or UTF-8 text budget omitted matching evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s05",
+      "question": "What happened to fulfillment-api?",
+      "requiredEvidence": [
+        "shipping-api/docs/rename.md",
+        "shipping-api/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "851956839f2bbb35eda703fd0f04b697a6a5d3e1a55c06a78f188ecc31693bbf",
+      "spans": 24,
+      "representedSources": 10,
+      "textBytes": 6172,
+      "promptBytes": 25995,
+      "requiredUncertainty": "The record does not identify deployed instances.",
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s06",
+      "question": "How does the external carrier guarantee delivery?",
+      "requiredEvidence": [
+        "shipping-api/src/carrier.ts",
+        "shipping-api/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "f96e2ee57418d1cbc25c00e5f0f0d7e1805bcc353b0148c3731cfdc519ac774e",
+      "spans": 30,
+      "representedSources": 14,
+      "textBytes": 8176,
+      "promptBytes": 30563,
+      "requiredUncertainty": "Carrier guarantees and internals cannot be established.",
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s07",
+      "question": "Where are shipment projections declared?",
+      "requiredEvidence": [
+        "shipping-worker/config/local.json",
+        "shipping-worker/src/Shipments.java"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "c072f89a65512c039907a153ea9921af09a5286e5cc6fd330b8b5b90b9269e35",
+      "spans": 30,
+      "representedSources": 13,
+      "textBytes": 7867,
+      "promptBytes": 30247,
+      "requiredUncertainty": "No live carrier subscription or database implementation is present.",
+      "gaps": [
+        "The span or UTF-8 text budget omitted matching evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s08",
+      "question": "Does payment-adapter implement settlement retries?",
+      "requiredEvidence": [
+        "payment-adapter/src/gateway.ts",
+        "payment-adapter/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "1f6c57f2885e727561671c456bd5b26348f34c38fbd4d464420c390d7e63f864",
+      "spans": 15,
+      "representedSources": 11,
+      "textBytes": 3834,
+      "promptBytes": 19851,
+      "requiredUncertainty": "Settlement and retry behavior are explicitly outside these sources.",
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s09",
+      "question": "Is order-worker the only documented order consumer?",
+      "requiredEvidence": [
+        "worker-local",
+        "notification-worker/config/local.json",
+        "notification-worker/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "e8c225443a708aa5ab149e9761930021ac523ae966678ad29c73df97cc5df738",
+      "spans": 30,
+      "representedSources": 13,
+      "textBytes": 7843,
+      "promptBytes": 30289,
+      "requiredUncertainty": "The full deployed subscriber inventory is unknown.",
+      "gaps": [
+        "The span or UTF-8 text budget omitted matching evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s10",
+      "question": "Are the two orders collections the same database?",
+      "requiredEvidence": [
+        "worker-local",
+        "reporting-api/config/local.json",
+        "reporting-api/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "27843557b69825ce0474455a7f02b62fba1690aede41daaae06fcf6060baaa90",
+      "spans": 30,
+      "representedSources": 13,
+      "textBytes": 7660,
+      "promptBytes": 30212,
+      "requiredUncertainty": "No replication or physical database identity is proven.",
+      "gaps": [
+        "The span or UTF-8 text budget omitted matching evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s11",
+      "question": "Does the contract library publish OrderPlaced?",
+      "requiredEvidence": [
+        "contract-library/README.md",
+        "contract-library/contracts/OrderPlaced.json"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "29a0331e095678989f7a3174aceb8e5b2ec9eb60767d3843145b7015345c7294",
+      "spans": 30,
+      "representedSources": 13,
+      "textBytes": 7853,
+      "promptBytes": 30388,
+      "requiredUncertainty": "Schema ownership alone is not a publishing implementation.",
+      "gaps": [
+        "The span or UTF-8 text budget omitted matching evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s12",
+      "question": "Does carrying TenantContext validate tenant membership?",
+      "requiredEvidence": [
+        "tenant-library/README.md",
+        "tenant-library/src/TenantContext.java"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "623ac00bd0838e728429f802470fddc32e30b767168a5058894cbc21d99db09b",
+      "spans": 30,
+      "representedSources": 14,
+      "textBytes": 8425,
+      "promptBytes": 30687,
+      "requiredUncertainty": "Do not infer global absence of security controls.",
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s13",
+      "question": "Does OrderBadge call the order API?",
+      "requiredEvidence": [
+        "ui-components/src/OrderBadge.vue",
+        "ui-components/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "dff397e6d9f21c69cba05eec607e46674f8ef87c265d3287806d0212e79caf52",
+      "spans": 30,
+      "representedSources": 12,
+      "textBytes": 7304,
+      "promptBytes": 29623,
+      "requiredUncertainty": "This does not enumerate all UI integrations.",
+      "gaps": [
+        "The span or UTF-8 text budget omitted matching evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s14",
+      "question": "Where does legacy administration reserve stock?",
+      "requiredEvidence": [
+        "legacy-admin/src/stock.js",
+        "inventory-api/config/routes.json"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "3ddf8ed5aba3074ed0c9b970344b572740cfd6165a2bfb03a7095ecad852471f",
+      "spans": 23,
+      "representedSources": 12,
+      "textBytes": 5308,
+      "promptBytes": 24831,
+      "requiredUncertainty": "Host, deployment and dynamic plugin wiring are unresolved.",
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s15",
+      "question": "Which plugin does legacy administration load?",
+      "requiredEvidence": [
+        "legacy-admin/src/plugin.js",
+        "legacy-admin/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "cd31d7e246474a4a0c9d28dd51a4d46f9082b72fff72173bb52ba4d6678a6c90",
+      "spans": 24,
+      "representedSources": 12,
+      "textBytes": 6564,
+      "promptBytes": 26457,
+      "requiredUncertainty": "A concrete plugin target cannot be reconstructed from this source.",
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s16",
+      "question": "Which order topic is configured in production?",
+      "requiredEvidence": [
+        "deployment-production/config/production.json",
+        "deployment-production/README.md",
+        "deployment-local/config/local.json"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "e81251dc59b72b0ed74b1690b5997120b4c3dcfbc650e1438e57311b97eacd65",
+      "spans": 30,
+      "representedSources": 15,
+      "textBytes": 7708,
+      "promptBytes": 30264,
+      "requiredUncertainty": "Do not substitute local configuration or claim production equality.",
+      "gaps": [
+        "The span or UTF-8 text budget omitted matching evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s17",
+      "question": "Has the unique shop.orders index been applied?",
+      "requiredEvidence": [
+        "database-migrations/migrations/001-orders.js",
+        "database-migrations/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "b251ef7128361f285eba5ef882dad430ed33a22adf973c987451fcbf7cb7d962",
+      "spans": 30,
+      "representedSources": 14,
+      "textBytes": 7489,
+      "promptBytes": 30058,
+      "requiredUncertainty": "Application/execution and live indexes are unknown.",
+      "gaps": [
+        "The span or UTF-8 text budget omitted matching evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s18",
+      "question": "Why separate analytics from operational reads?",
+      "requiredEvidence": [
+        "architecture-docs/docs/adr-001.md",
+        "reporting-api/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "bc68cdd608cb2e938b03151f7f695123af1d3aa0f789db225be2a8a515863a2e",
+      "spans": 24,
+      "representedSources": 11,
+      "textBytes": 6684,
+      "promptBytes": 26716,
+      "requiredUncertainty": "This is documented rationale, not performance evidence.",
+      "gaps": [
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s19",
+      "question": "How does supplier synchronization recover its cursor?",
+      "requiredEvidence": [
+        "supplier-sync/src/SupplierSync.java",
+        "supplier-sync/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "40c07003c7fd23c71166d8821dac19ca7b467002e294f36538a6bc54acb2f512",
+      "spans": 30,
+      "representedSources": 17,
+      "textBytes": 7890,
+      "promptBytes": 30345,
+      "requiredUncertainty": "Persistence, scheduling and recovery are explicitly not implemented.",
+      "gaps": [
+        "The span or UTF-8 text budget omitted matching evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s20",
+      "question": "Which topic should I infer from the historical runbook?",
+      "requiredEvidence": [
+        "architecture-docs/docs/old-runbook.md",
+        "api-readme",
+        "api-local"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "fb8270e5b4ddabaf1dc2650734e1033dff7ccc9363de8cf711a865e668dd1c87",
+      "spans": 30,
+      "representedSources": 14,
+      "textBytes": 7764,
+      "promptBytes": 30315,
+      "requiredUncertainty": "The disagreement does not determine deployed production configuration.",
+      "gaps": [
+        "The span or UTF-8 text budget omitted matching evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    }
+  ],
+  "noHits": {
+    "mode": "orientation",
+    "selectedLocatorHash": "3c982c67e0c2e2727e38f16572868d9f1f767e1dd941705d9a2073b3378d3e15",
+    "spans": 18,
+    "textBytes": 4888,
+    "representedSources": [
+      "portal",
+      "order-api",
+      "checkout-bff",
+      "inventory-api",
+      "inventory-worker",
+      "shipping-api",
+      "shipping-worker",
+      "payment-adapter",
+      "notification-worker",
+      "reporting-api",
+      "contract-library",
+      "ui-components",
+      "legacy-admin",
+      "deployment-local",
+      "deployment-production",
+      "database-migrations",
+      "architecture-docs",
+      "supplier-sync"
+    ],
+    "unrepresentedSources": [
+      "order-worker",
+      "tenant-library"
+    ],
+    "gaps": [
+      "No admitted lexical matches; this does not prove absence from the system.",
+      "Only a bounded repository-orientation sample is available; it is not a relevance match or complete language inventory.",
+      "Index coverage is partial; excluded or failed material is not available.",
+      "Deployment environment and whether these revisions are deployed together are unknown."
+    ]
+  },
+  "retrievalMs": 219.08155299999999,
+  "regeneration": {
+    "completeRetrievalCount": 19,
+    "changedSelections": [
+      "s01",
+      "s02",
+      "s03",
+      "s04",
+      "s06",
+      "s07",
+      "s08",
+      "s09",
+      "s10",
+      "s11",
+      "s12",
+      "s14",
+      "s15",
+      "s16",
+      "s17",
+      "s18",
+      "s19",
+      "s20"
+    ],
+    "noHitSelectionStable": false,
+    "retrievalMs": 216.19330399999944
+  },
+  "modelRequests": 0,
+  "modelUsage": null,
+  "answerCorrectness": "not-evaluated",
+  "semanticReview": "not-performed",
+  "sourceCheckoutsUnchanged": true,
+  "scope": "Exact original evidence recall and selection stability across fresh source IDs; not semantic answer, uncertainty compliance or routing acceptance."
+}

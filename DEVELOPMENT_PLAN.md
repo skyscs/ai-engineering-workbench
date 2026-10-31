@@ -33,8 +33,11 @@ to answer previews, immutable inputs and review freshness through merged PR #27.
 fixture and [capacity baseline](docs/loredock/SCALE_READINESS.md) through merged PR #28.
 [Task 025](tasks/025-loredock-bulk-onboarding.md) adds reviewed bulk local paths, twenty
 active sources and fixed equal index shares with baseline README orientation.
-Next: measure and improve bounded question retrieval against the expanded corpus,
-without widening model payloads or claiming L5 readiness from source coverage.
+Task 025 reached main through PR #29 (`c5e8082`).
+[Task 026](tasks/026-loredock-scale-retrieval.md) improves bounded twenty-source question
+retrieval: 20/20 required-evidence recall, stable selections and visible source scope
+without larger text/prompt limits. Next: semantic qualification of actual expanded-scope
+answers and engineer-review handling; source recall alone does not establish L5 readiness.
 Broader synthesis, adapters, semantic/AI refresh and scale acceptance remain separate.
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation

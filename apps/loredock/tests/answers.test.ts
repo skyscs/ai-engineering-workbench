@@ -142,6 +142,7 @@ test('new prompt/schema identities persist while older answer prose remains read
   const current = ask(answers); await answers.idle();
   assert.equal(answers.get(current.id).schemaVersion, 'cited-answer-v3');
   assert.equal(answers.get(current.id).promptVersion, 'loredock-answer-v7');
+  assert.equal(answers.get(current.id).context!.retrievalVersion, 'fts-question-v6');
   const older = JSON.stringify({ claims: [], unknowns: ['Legacy saved uncertainty statement.'] });
   const oldContext = answers.get(current.id).context!;
   delete oldContext.retrievalMode; delete oldContext.review; oldContext.retrievalVersion = 'fts-question-v3';
