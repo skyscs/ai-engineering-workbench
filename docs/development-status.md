@@ -1,5 +1,32 @@
 # Development status
 
+## Task 045 — Durable bounded code inventory
+
+Implemented and locally verified, 2026-11-01. PR #48 reached main as
+`a35c7e5` after push `41252413599` and pull-request `41252423054` passed for exact head
+`089552d3f99135c997723c2cfea19b22abffa3de`. Scope was committed in `f04b283`.
+
+Schema 8 adds a disposable per-file inventory service over authorized published originals.
+Actual parser/dependency fingerprints, complete original/Git-blob/range validation and
+atomic unit/counter checkpoints cover explicit restart/resume. Every excluded, failed or
+unattempted file remains visible. New indexes reparse; old graphs, answer inputs and
+correction histories remain unchanged. At most two inventories retain derived payloads.
+Source registry/policy changes atomically fence and clear derivatives, with revocation
+purge covering all dependent generations and restart recovery.
+
+Strict types, all 375 tests, production builds and a compiled-service smoke pass.
+Nine focused tests cover replay/concurrency, interruption, corruption, all budget classes,
+atomic write failure, retention, source/policy purge and migration. A 121-file small owned
+shape retains all files beyond the graph sample and all seven gaps in six unsupported
+files. No full-volume rerun or model request is added. The service is not yet connected
+to daemon startup, HTTP or UI. See [Task 045](../tasks/045-loredock-durable-code-inventory.md)
+and [ADR 0040](decisions/0040-loredock-durable-code-inventory.md).
+[Verification](fixtures/loredock-durable-code-inventory/README.md) retains the compiled smoke.
+
+Next: simple coverage/progress and protected controls in the indexing workflow, then
+bounded query use of the full inventory. Independent/private review, framework limits
+and failed semantic acceptance remain open.
+
 ## Task 044 — Complete synthetic code-fact inventory feasibility
 
 Implemented and locally verified, 2026-11-01. PR #47 reached main as `803ba3c` after

@@ -87,9 +87,12 @@ and primary/answer context. Pending page/evidence responses respect context/scop
 [Task 044](../../tasks/044-loredock-code-inventory-feasibility.md) examines all 3,621 code
 files with identical results in two fixed passes, 741,496 fact bytes and seven unsupported
 syntax gaps. All 98 sampled symbol ranges agree; one extra handler method becomes visible.
-Next: bounded durable per-file inventory with parser fingerprints, interruption/resume,
-original validation, authorization/purge and generation retention. Defer cross-revision
-reuse and keep graph/answer integration separate. No tuning on observed model answers is included.
+[Task 045](../../tasks/045-loredock-durable-code-inventory.md) adds the internal durable
+service with parser fingerprints, validated restart/resume, atomic per-file checkpoints,
+source/policy fencing and two-inventory retention under schema 8. New indexes reparse;
+existing graph and answer selection remain unchanged. Next: protected API and simple
+coverage UI in the indexing workflow, then bounded query use of the wider inventory.
+No tuning on observed model answers is included.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale
 and the Workbench bridge remain open. The

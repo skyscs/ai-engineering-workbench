@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "loredock-compiled-inventory-smoke/1",
+  "node": "v22.23.2",
+  "id": "72657281-3e9d-479c-918f-f9248727e3a0",
+  "buildId": "97c5394c-3ce5-4ac8-a516-0f7cc45e3db7",
+  "status": "partial",
+  "published": true,
+  "createdAt": "2026-10-31T23:40:15.569Z",
+  "reason": "Source or code coverage gaps remain.",
+  "candidates": 5,
+  "counts": {
+    "parsed": 5
+  },
+  "gaps": 0,
+  "textBytes": 2685,
+  "payloadBytes": 9015,
+  "elapsedMs": 16.304788999999914,
+  "limits": {
+    "documents": 10000,
+    "fileBytes": 32768,
+    "fileSpans": 8,
+    "textBytes": 52428800,
+    "filePayloadBytes": 131072,
+    "payloadBytes": 16777216,
+    "wallMs": 300000
+  },
+  "fingerprint": "f291d084bbb84f9df25f7196f35ce4803be895b8ced612f262341713d2ad62b0",
+  "currentParser": true,
+  "staleIndex": false,
+  "sourceCheckoutsUnchanged": true,
+  "modelRequests": 0
+}

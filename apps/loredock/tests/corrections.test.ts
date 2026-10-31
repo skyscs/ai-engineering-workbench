@@ -177,7 +177,7 @@ test('schema 3 migration preserves pinned evidence and existing answer bytes', a
   removeRefreshSchema(state.store);
   state.store.db.exec('DROP TABLE correction_flows; DROP TABLE correction_sources; DROP TABLE corrections; ALTER TABLE project DROP COLUMN correctionRevision; PRAGMA user_version=3;');
   await state.restart();
-  assert.equal(state.store.one<{ user_version: number }>('PRAGMA user_version')!.user_version, 7);
+  assert.equal(state.store.one<{ user_version: number }>('PRAGMA user_version')!.user_version, 8);
   assert.equal(state.catalog.state().correctionRevision, 0); assert.deepEqual(state.catalog.evidence(ref.id), evidence);
   assert.deepEqual(state.store.one('SELECT * FROM answer_attempts WHERE id=\'legacy\''), before);
   assert.equal(state.corrections.save(input(state.catalog, state.corrections)).version, 1);

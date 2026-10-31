@@ -18,6 +18,11 @@ See the [owner acceptance](L2_ACCEPTANCE.md),
 [review reapplication decision](../decisions/0026-loredock-correction-reconciliation.md),
 [orientation decision](../decisions/0027-loredock-project-orientation.md),
 [answer checkpoint](ANSWER_FOUNDATION.md) and [user guide](USER_GUIDE.md).
+Task 045 adds an internal schema-8 code inventory service with bounded durable file
+checkpoints, explicit resume, original validation and source purge. It is not an HTTP
+contract or a replacement for the sampled map/answer context; see
+[ADR 0040](../decisions/0040-loredock-durable-code-inventory.md).
+
 The [executable fixture](../../fixtures/loredock/README.md) uses a smaller, versioned
 fixture manifest. Do not treat its IDs or JSON shape as a public product contract.
 

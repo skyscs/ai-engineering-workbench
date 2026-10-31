@@ -38,7 +38,7 @@ export class CatalogStore {
       this.db = opened = new DatabaseSync(path.join(this.directory, 'loredock.db'));
       this.db.exec('PRAGMA foreign_keys=ON; PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL; PRAGMA secure_delete=ON;');
       const version = this.one<{ user_version: number }>('PRAGMA user_version')!.user_version;
-      if (version < 0 || version > 7) throw new Error('Unsupported LoreDock database version.');
+      if (version < 0 || version > 8) throw new Error('Unsupported LoreDock database version.');
       if (!version) this.db.exec(`BEGIN IMMEDIATE;
         CREATE TABLE project (id INTEGER PRIMARY KEY CHECK(id=1), policyVersion INTEGER NOT NULL, sourceSetVersion INTEGER NOT NULL, policy TEXT NOT NULL, publishedBuildId TEXT);
         INSERT INTO project VALUES (1,1,1,'{"excludedPaths":[]}',NULL);
@@ -118,8 +118,33 @@ export class CatalogStore {
         CREATE TABLE source_registrations (requestId TEXT PRIMARY KEY, payloadHash TEXT NOT NULL, receipt TEXT NOT NULL);
         ALTER TABLE builds ADD COLUMN allocation TEXT;
         PRAGMA user_version=7; COMMIT;`);
+      if (version < 8) this.db.exec(`BEGIN IMMEDIATE;
+        CREATE TABLE code_analyses (
+          id TEXT PRIMARY KEY, requestId TEXT NOT NULL UNIQUE, payloadHash TEXT NOT NULL,
+          buildId TEXT NOT NULL REFERENCES builds(id), policyVersion INTEGER NOT NULL, registryVersion INTEGER NOT NULL,
+          fingerprint TEXT NOT NULL, limits TEXT NOT NULL, manifestHash TEXT NOT NULL, candidates INTEGER NOT NULL,
+          status TEXT NOT NULL CHECK(status IN ('running','paused','interrupted','cancelled','failed','completed','partial','fenced')),
+          published INTEGER NOT NULL DEFAULT 0, elapsedMs REAL NOT NULL DEFAULT 0,
+          textBytes INTEGER NOT NULL DEFAULT 0, payloadBytes INTEGER NOT NULL DEFAULT 0, createdAt TEXT NOT NULL, reason TEXT);
+        CREATE UNIQUE INDEX active_code_analysis ON code_analyses((1)) WHERE status='running';
+        CREATE TABLE code_analysis_sources (
+          runId TEXT NOT NULL REFERENCES code_analyses(id) ON DELETE CASCADE, sourceId TEXT NOT NULL REFERENCES sources(id), PRIMARY KEY(runId,sourceId));
+        CREATE TABLE code_analysis_files (
+          runId TEXT NOT NULL REFERENCES code_analyses(id) ON DELETE CASCADE, fileId TEXT NOT NULL REFERENCES files(id),
+          ordinal INTEGER NOT NULL, inputHash TEXT NOT NULL,
+          status TEXT NOT NULL DEFAULT 'pending' CHECK(status IN ('pending','parsed','excluded','failed','unattempted','omitted')),
+          reason TEXT, inputBytes INTEGER NOT NULL DEFAULT 0, payloadBytes INTEGER NOT NULL DEFAULT 0, gapCount INTEGER NOT NULL DEFAULT 0,
+          payload TEXT, payloadHash TEXT, checkpointHash TEXT, PRIMARY KEY(runId,fileId), UNIQUE(runId,ordinal));
+        CREATE TRIGGER code_analysis_boundary AFTER UPDATE OF policyVersion,sourceSetVersion ON project
+          WHEN NEW.policyVersion<>OLD.policyVersion OR NEW.sourceSetVersion<>OLD.sourceSetVersion
+          BEGIN
+            UPDATE code_analyses SET status='fenced',published=0,textBytes=0,payloadBytes=0,reason='Sources or policy changed. Start a new code inventory.';
+            DELETE FROM code_analysis_files;
+          END;
+        PRAGMA user_version=8; COMMIT;`);
       this.db.exec("UPDATE answer_attempts SET status='interrupted', reason='The daemon stopped. Start an explicit new attempt; provider completion may be unknown.', usageUnknownReason=CASE WHEN dispatchedAt IS NULL THEN 'Not dispatched before restart.' ELSE 'Provider completion and usage are unknown after restart.' END WHERE status IN ('preparing','running');");
       this.db.exec("UPDATE builds SET status='interrupted', reason='The daemon stopped. Resume explicitly.' WHERE status IN ('preparing','running','pause_requested');");
+      this.db.exec("UPDATE code_analyses SET status='interrupted', reason='The daemon stopped. Resume code analysis explicitly.' WHERE status='running';");
     } catch (error) { opened?.close(); this.owner.close(); throw error; }
   }
   one<T>(sql: string, ...args: SQLInputValue[]): T | undefined { return this.db.prepare(sql).get(...args) as T | undefined; }
@@ -257,6 +282,8 @@ export class CatalogStore {
   }
   purge() {
     for (const source of this.sources().filter(source => source.purge === 'pending')) this.transaction(() => {
+      this.run('DELETE FROM code_analysis_files WHERE runId IN (SELECT runId FROM code_analysis_sources WHERE sourceId=?)', source.id);
+      this.run("UPDATE code_analyses SET status='fenced',published=0,textBytes=0,payloadBytes=0,reason='An input source was revoked.' WHERE id IN (SELECT runId FROM code_analysis_sources WHERE sourceId=?)", source.id);
       this.run("UPDATE answer_attempts SET status='fenced',context=NULL,result=NULL,reason='An input source was revoked.' WHERE id IN (SELECT answerId FROM answer_sources WHERE sourceId=?)", source.id);
       this.run('UPDATE corrections SET statement=NULL,environment=NULL,target=NULL,purged=1 WHERE purged=0 AND id IN (SELECT correctionId FROM correction_sources WHERE sourceId=?)', source.id);
       this.run('DELETE FROM search WHERE spanId IN (SELECT s.id FROM spans s JOIN files f ON f.id=s.fileId WHERE f.sourceId=?)', source.id);

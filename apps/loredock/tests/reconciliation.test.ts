@@ -215,7 +215,7 @@ test('revocation fences previews, provenance/history and exact replay before pur
 test('schema 5 migration preserves existing correction bytes; lineage is immutable and integrity checked', async t => {
   const state = await setup(t), source = state.corrections.save(note(state.catalog)), before = state.store.one('SELECT * FROM corrections WHERE id=?', source.id);
   removeReconciliationSchema(state.store); state.store.db.exec('PRAGMA user_version=5'); await state.restart();
-  assert.equal(state.store.one<{ user_version: number }>('PRAGMA user_version')!.user_version, 7); assert.deepEqual(state.store.one('SELECT * FROM corrections WHERE id=?', source.id), before);
+  assert.equal(state.store.one<{ user_version: number }>('PRAGMA user_version')!.user_version, 8); assert.deepEqual(state.store.one('SELECT * FROM corrections WHERE id=?', source.id), before);
   await state.index('second'); const current = state.review.reapply(applyInput(state.review.preview()));
   assert.throws(() => state.store.run('UPDATE correction_reapplications SET previewHash=? WHERE correctionId=?', '0'.repeat(64), current.id), /immutable/);
   assert.throws(() => state.store.run('DELETE FROM correction_reapplications WHERE correctionId=?', current.id), /immutable/);

@@ -85,7 +85,9 @@ Use **Next repositories** and **Previous repositories** to inspect remaining eli
 sources in pages of four, retaining the original default order and citations.
 The separate [full code-inventory experiment](docs/fixtures/loredock-code-inventory/README.md)
 examines all 3,621 synthetic code files with reproducible facts and explicit syntax gaps.
-Persistent analysis and its use in broader queries remain the next implementation steps.
+The [durable inventory foundation](docs/decisions/0040-loredock-durable-code-inventory.md)
+now persists bounded per-file facts with validated restart/resume and source purge. It is
+an internal service; automatic indexing, UI and broader query integration follow next.
 
 ## What v0.1 does
 
