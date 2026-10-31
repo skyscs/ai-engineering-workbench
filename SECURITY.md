@@ -40,6 +40,11 @@ Refresh cache reuse is restricted to the same source/path/Git object and policy/
 with raw/span/metadata integrity checks and fresh repository inventory. Comparison APIs
 omit revoked scopes and fence old policies. Purge clears all copied byte/span generations
 and extraction fingerprints. See [ADR 0025](docs/decisions/0025-loredock-incremental-refresh.md).
+Project orientation quotes authorized original README lines and links saved manifests.
+It executes no setup instructions, HTML, Git command or model call. Current-policy,
+source revocation and late-response fences cover cards, reading links and citations;
+new registrations remain separate from historical content. See
+[ADR 0027](docs/decisions/0027-loredock-project-orientation.md).
 
 The sections below describe Workbench's existing AI investigation boundary.
 

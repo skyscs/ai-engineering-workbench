@@ -6,6 +6,7 @@ import { api } from './api';
 import { AnswerPanel } from './AnswerPanel';
 import { SystemMap } from './SystemMap';
 import { IndexChangeView } from './IndexChanges';
+import { ProjectOverview } from './ProjectOverview';
 
 function App() {
   const [state, setState] = useState<ProjectState>();
@@ -123,6 +124,7 @@ function App() {
             <IndexChangeView buildId={searchBuild} boundary={`${boundary.current}:${published}`} openEvidence={id => void openEvidence(id)} />
           </>}
         </div>
+        <ProjectOverview key={`${boundary.current}:${published}`} buildId={searchBuild} boundary={`${boundary.current}:${published}`} openEvidence={id => void openEvidence(id)} />
         <SystemMap buildId={searchBuild} boundary={`${boundary.current}:${published}`} correctionRevision={state.correctionRevision}
           refreshProject={() => void refresh().catch(cause => setError((cause as Error).message))} openEvidence={id => void openEvidence(id)} />
         {answersEnabled && <AnswerPanel buildId={searchBuild} boundary={boundary.current} openEvidence={id => void openEvidence(id)} />}

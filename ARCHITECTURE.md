@@ -15,6 +15,10 @@ see [ADR 0024](docs/decisions/0024-loredock-engineer-corrections.md). Source pro
 contracts and Workbench storage remain unchanged.
 Schema 5 adds a fixed update baseline, validated extraction reuse and bounded inventory
 comparison; see [ADR 0025](docs/decisions/0025-loredock-incremental-refresh.md).
+Schema 6 records explicit correction reapplication with immutable original-version
+lineage; see [ADR 0026](docs/decisions/0026-loredock-correction-reconciliation.md).
+The model-free README orientation and reading guide reuse saved original evidence
+without another schema; see [ADR 0027](docs/decisions/0027-loredock-project-orientation.md).
 
 ## Architectural style
 

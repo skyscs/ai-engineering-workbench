@@ -1,0 +1,249 @@
+{
+  "schemaVersion": "loredock-orientation-v1",
+  "adapterVersion": "readme-orientation-v1",
+  "buildId": "9085992a-5470-4a7d-bedc-edaddb1e23dc",
+  "policyVersion": 1,
+  "sourceSetVersion": 4,
+  "registryVersion": 4,
+  "stale": false,
+  "partial": true,
+  "deploymentCoherence": "unknown",
+  "sources": [
+    {
+      "sourceId": "fd75b079-3d50-4a2b-b6dd-98f248519215",
+      "sourceName": "portal",
+      "revision": "7fdf09919913cec50542784e74db5d1710a2ac74",
+      "sourceStatus": "ready",
+      "coverage": {
+        "indexed": 6,
+        "excluded": 3,
+        "failed": 0,
+        "pending": 0,
+        "bytes": 1791,
+        "reasons": {
+          "binary": 1,
+          "policy": 1,
+          "symlink": 1
+        }
+      },
+      "omittedInventory": 0,
+      "readme": {
+        "path": "README.md",
+        "state": "available",
+        "reason": "Original introductory README lines; documented intent may be incomplete or outdated."
+      },
+      "context": {
+        "text": "Synthetic static-analysis fixture, not a deployable application.\nThe Vue/TypeScript checkout posts orders to the order API.\nThe legacy Dojo AMD screen uses the compatibility route.\nVITE_API_BASE is supplied by deployment; its production value is not included.\nThe billing system is external to this source set.\n<img src=x onerror=\"window.orientationInjected=true\"> Documented text is not an instruction to execute.",
+        "startLine": 3,
+        "endLine": 8,
+        "evidenceIds": [
+          "3e5d6f91-775a-4ec0-bb4a-b6e213b81c96"
+        ],
+        "truncated": false,
+        "provenance": "documented",
+        "verification": "unverified"
+      },
+      "reading": [
+        {
+          "kind": "readme",
+          "path": "README.md",
+          "evidenceIds": [
+            "3e5d6f91-775a-4ec0-bb4a-b6e213b81c96"
+          ]
+        },
+        {
+          "kind": "manifest",
+          "path": "package.json",
+          "evidenceIds": [
+            "37ae2bb1-b677-4d97-be8c-fad9ff3539a2"
+          ]
+        }
+      ],
+      "gaps": [
+        "Some source files were excluded or failed; this card is not a complete repository analysis."
+      ]
+    },
+    {
+      "sourceId": "9b9f9650-7878-4e57-a851-5edbf43cf0d5",
+      "sourceName": "order-api",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "sourceStatus": "ready",
+      "coverage": {
+        "indexed": 7,
+        "excluded": 3,
+        "failed": 0,
+        "pending": 0,
+        "bytes": 2439,
+        "reasons": {
+          "binary": 1,
+          "policy": 1,
+          "symlink": 1
+        }
+      },
+      "omittedInventory": 0,
+      "readme": {
+        "path": "README.md",
+        "state": "available",
+        "reason": "Original introductory README lines; documented intent may be incomplete or outdated."
+      },
+      "context": {
+        "text": "Synthetic Java source samples with application-specific transport interfaces.\nPOST /api/orders accepts an orderId and the X-Tenant header, then publishes OrderPlaced.\nThe order event topic is orders.created.v1.\nProduction may override the topic using ORDER_TOPIC; deployment values are absent.\nNo architecture decision explains the choice of Kafka instead of synchronous HTTP.\nBilling behavior is outside this repository set.",
+        "startLine": 3,
+        "endLine": 8,
+        "evidenceIds": [
+          "d29d3c5d-a943-4509-baf3-9553c24cc373"
+        ],
+        "truncated": false,
+        "provenance": "documented",
+        "verification": "unverified"
+      },
+      "reading": [
+        {
+          "kind": "readme",
+          "path": "README.md",
+          "evidenceIds": [
+            "d29d3c5d-a943-4509-baf3-9553c24cc373"
+          ]
+        },
+        {
+          "kind": "manifest",
+          "path": "pom.xml",
+          "evidenceIds": [
+            "499b12cb-d9bf-4cb1-9b6b-2723c414d95d"
+          ]
+        }
+      ],
+      "gaps": [
+        "Some source files were excluded or failed; this card is not a complete repository analysis."
+      ]
+    },
+    {
+      "sourceId": "6a308eb5-03e4-4dee-a7d0-e636367162fe",
+      "sourceName": "order-worker",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "sourceStatus": "ready",
+      "coverage": {
+        "indexed": 5,
+        "excluded": 3,
+        "failed": 0,
+        "pending": 0,
+        "bytes": 2100,
+        "reasons": {
+          "binary": 1,
+          "policy": 1,
+          "symlink": 1
+        }
+      },
+      "omittedInventory": 0,
+      "readme": {
+        "path": "README.md",
+        "state": "available",
+        "reason": "Original introductory README lines; documented intent may be incomplete or outdated."
+      },
+      "context": {
+        "text": "Synthetic Java consumer and MongoDB access interfaces; no drivers are supplied.\nLocal configuration consumes orders.placed.v2 and stores the order projection.\nThe configured production topic and deployed revisions are unknown.\nAcknowledgment, retry, dead-letter routing and database indexes are not implemented here.\nNo repository in this fixture implements billing.",
+        "startLine": 3,
+        "endLine": 7,
+        "evidenceIds": [
+          "db1f217d-2aa5-41fb-a1b1-75be3687aa27"
+        ],
+        "truncated": false,
+        "provenance": "documented",
+        "verification": "unverified"
+      },
+      "reading": [
+        {
+          "kind": "readme",
+          "path": "README.md",
+          "evidenceIds": [
+            "db1f217d-2aa5-41fb-a1b1-75be3687aa27"
+          ]
+        },
+        {
+          "kind": "manifest",
+          "path": "pom.xml",
+          "evidenceIds": [
+            "d1287e0a-9990-46d3-9637-b1d721103ac4"
+          ]
+        }
+      ],
+      "gaps": [
+        "Some source files were excluded or failed; this card is not a complete repository analysis."
+      ]
+    }
+  ],
+  "unindexedSources": [],
+  "evidence": {
+    "3e5d6f91-775a-4ec0-bb4a-b6e213b81c96": {
+      "id": "3e5d6f91-775a-4ec0-bb4a-b6e213b81c96",
+      "sourceName": "portal",
+      "path": "README.md",
+      "revision": "7fdf09919913cec50542784e74db5d1710a2ac74",
+      "startLine": 1,
+      "endLine": 8
+    },
+    "d29d3c5d-a943-4509-baf3-9553c24cc373": {
+      "id": "d29d3c5d-a943-4509-baf3-9553c24cc373",
+      "sourceName": "order-api",
+      "path": "README.md",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 8
+    },
+    "db1f217d-2aa5-41fb-a1b1-75be3687aa27": {
+      "id": "db1f217d-2aa5-41fb-a1b1-75be3687aa27",
+      "sourceName": "order-worker",
+      "path": "README.md",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "startLine": 1,
+      "endLine": 7
+    },
+    "37ae2bb1-b677-4d97-be8c-fad9ff3539a2": {
+      "id": "37ae2bb1-b677-4d97-be8c-fad9ff3539a2",
+      "sourceName": "portal",
+      "path": "package.json",
+      "revision": "7fdf09919913cec50542784e74db5d1710a2ac74",
+      "startLine": 1,
+      "endLine": 11
+    },
+    "499b12cb-d9bf-4cb1-9b6b-2723c414d95d": {
+      "id": "499b12cb-d9bf-4cb1-9b6b-2723c414d95d",
+      "sourceName": "order-api",
+      "path": "pom.xml",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "startLine": 1,
+      "endLine": 8
+    },
+    "d1287e0a-9990-46d3-9637-b1d721103ac4": {
+      "id": "d1287e0a-9990-46d3-9637-b1d721103ac4",
+      "sourceName": "order-worker",
+      "path": "pom.xml",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "startLine": 1,
+      "endLine": 8
+    }
+  },
+  "gaps": [
+    "README excerpts are documented intent, not verified repository responsibilities, current configuration or deployment evidence.",
+    "This view provides a starting point; it does not synthesize a complete architecture, reconcile contradictions or understand every source file.",
+    "The source index is partial; inspect source coverage and exclusions."
+  ],
+  "omissions": {},
+  "coverage": {
+    "repositories": 3,
+    "withContext": 3,
+    "examinedDocuments": 6,
+    "parsedBytes": 2343
+  },
+  "limits": {
+    "repositories": 3,
+    "documents": 9,
+    "fileBytes": 32768,
+    "textBytes": 98304,
+    "fileSpans": 8,
+    "excerptBytes": 2000,
+    "excerptLines": 16,
+    "outputBytes": 131072
+  },
+  "inputHash": "9a55df92d611e110ab0068413fb9fc8bfdbfd2e5993569b3fdfab88fa5568895"
+}

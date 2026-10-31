@@ -5,7 +5,8 @@ is owner-accepted through PR #20. Task 017's declaration map was accepted throug
 Task 018's model-free code links and partial static outlines were accepted through
 PR #22. Task 019's human correction overlay was accepted through PR #23. Task 020's
 validated text-file reuse and bounded inventory comparisons were accepted through PR #24.
-Task 021 adds explicit review/reapplication across recorded refresh ancestors.
+Task 021's explicit review/reapplication across recorded refresh ancestors was accepted
+through PR #25. Task 022 adds source-backed README orientation and reading navigation.
 Semantic/AI refresh and Context Packs remain separate work.
 See the [owner acceptance](L2_ACCEPTANCE.md),
 [map decision](../decisions/0022-loredock-declaration-map.md),
@@ -13,6 +14,7 @@ See the [owner acceptance](L2_ACCEPTANCE.md),
 [correction decision](../decisions/0024-loredock-engineer-corrections.md),
 [refresh decision](../decisions/0025-loredock-incremental-refresh.md),
 [review reapplication decision](../decisions/0026-loredock-correction-reconciliation.md),
+[orientation decision](../decisions/0027-loredock-project-orientation.md),
 [answer checkpoint](ANSWER_FOUNDATION.md) and [user guide](USER_GUIDE.md).
 The [executable fixture](../../fixtures/loredock/README.md) uses a smaller, versioned
 fixture manifest. Do not treat its IDs or JSON shape as a public product contract.
@@ -48,6 +50,25 @@ summary field identifies the exact earlier correction ID/build/version; existing
 summary fields and source projections retain their meaning. Subsequent edits/withdrawals
 are independent; replay returns the original result without reactivating it. Revocation
 fences/purges every dependent version; old-policy history/replay remains unavailable.
+
+## Project orientation and reading navigation
+
+`loredock-orientation-v1` / `readme-orientation-v1` is a separate disposable read
+projection. Each authorized recorded repository has an original README excerpt or a
+gap, selected revision and coverage. New registrations outside that index remain
+separate unindexed gaps. Read only a single unambiguous supported root README and
+optional root package/Maven manifests; do not infer roles from names or replace absent
+documentation with nested text. Failed/truncated inventories cannot establish absence.
+
+Excerpts retain exact original text, inclusive subranges and all overlapping issued
+span IDs. Their provenance is documented/unverified. Older/contradictory prose is not
+rewritten to match code/configuration. Check metadata budgets before reading and validate
+complete original file/span coverage. Limits are nine documents, 32 KiB/file, 96 KiB
+input, eight spans/file, 16 lines / 2,000 UTF-8 bytes/excerpt and 128 KiB output. Gaps
+and omissions are explicit. The projection adds no DB schema, command execution or
+model work. Guide me navigates existing source/map/flow/coverage views; it is not a
+semantic course or a new architecture claim store. Current policy/revocation and late
+response fences cover all context and citations. See ADR 0027 for selection details.
 
 ## First source manifest and data ownership
 
