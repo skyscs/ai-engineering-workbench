@@ -62,6 +62,7 @@
     "olderAncestorSelection": true,
     "historicalIsolation": true,
     "lateResponseFencing": true,
+    "revokedRevisionScopeExcluded": true,
     "mobileWidth": 390
   },
   "fixtureVariation": "Owned temporary package name contains adversarial HTML; an API README changes, a worker README moves and a supporting Java file gains a comment during refresh. Frozen templates are unchanged.",

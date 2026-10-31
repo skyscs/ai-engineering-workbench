@@ -41,6 +41,7 @@ index, restart, older-index selection and changed-support blocking. An older pre
 containing actual note text is held across source removal and then released; it cannot
 restore revoked proposals. The prior source/map/flow/correction/concurrent-draft,
 refresh, policy and historical-selection scenarios remain covered.
+Revoked sources are also excluded from the comparison's revision metadata list.
 
 See [desktop review](desktop.png), [390px mobile review](mobile.png) and
 [changed-support review](changed-support.png). Browser snapshots preserve the exact

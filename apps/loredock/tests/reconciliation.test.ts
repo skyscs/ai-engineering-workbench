@@ -202,7 +202,9 @@ test('revocation fences previews, provenance/history and exact replay before pur
   const state = await setup(t), source = state.corrections.save(note(state.catalog)); await state.index('second');
   const input = applyInput(state.review.preview()), current = state.review.reapply(input);
   const dependency = state.catalog.state().sources.find(item => item.name === 'portal')!; state.store.revoke(dependency.id);
-  assert.equal(state.review.preview().entries.length, 0); assert.equal(state.corrections.list().corrections.length, 0);
+  const fenced = state.review.preview(); assert.equal(fenced.entries.length, 0);
+  assert.ok(fenced.scope.current.every(source => source.sourceId !== dependency.id));
+  assert.equal(state.corrections.list().corrections.length, 0);
   assert.throws(() => state.review.preview(undefined, source.buildId), /unavailable/);
   assert.throws(() => state.review.reapply(input), /authorization change/); assert.throws(() => state.corrections.history(current.id), /authorization change/);
   await state.restart(); assert.equal(state.store.one<{ count: number }>('SELECT count(*) AS count FROM corrections WHERE statement IS NOT NULL OR target IS NOT NULL')!.count, 0);

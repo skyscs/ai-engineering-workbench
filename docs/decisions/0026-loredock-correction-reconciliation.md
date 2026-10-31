@@ -78,7 +78,8 @@ Origin history remains inspectable at its exact version.
 
 ## Source lifecycle and UI
 
-Store the union of source/target correction dependencies, retaining it in subsequent
+Exclude revoked sources from the preview revision scope, including a fenced target's
+metadata list. Store the union of source/target correction dependencies, retaining it in subsequent
 edits/withdrawals. Revocation fences list/history/preview/replay immediately; existing
 resumable logical purge clears every dependent statement/environment/target snapshot.
 Opaque lineage remains subject to authorization. Policy changes fence older history.

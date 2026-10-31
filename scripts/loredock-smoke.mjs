@@ -317,6 +317,7 @@ try {
   await evaluate('new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))');
   assert.equal(await evaluate("document.querySelectorAll('.human-correction').length"), 0, 'A late response restored revoked correction content.');
   assert.equal(await evaluate("document.querySelectorAll('.earlier-correction').length"), 0, 'A late response restored revoked review proposals.');
+  assert.equal(await evaluate(`fetch('/api/correction-reconciliation?buildId=${secondIndex}').then(r=>r.json()).then(p=>p.scope.current.every(s=>s.name!=='order-api'))`), true, 'A revoked source remained in the review revision scope.');
   assert.equal(await evaluate(`fetch('/api/corrections/${correctionId}/history').then(r=>r.status)`), 404);
   await evaluate('window.restoreCorrectionFetch()');
   await input('source-query', 'publisher.publish'); await click('Search'); await text('No indexed matches.');
@@ -339,7 +340,7 @@ try {
       added: 1, changed: 1, removed: 1, previousCitation: true, selectedCitation: true, mobileWidth: 390 },
     correctionReconciliation: { noAutomaticTransfer: true, explicitApply: true, originalAndCurrentEvidence: true, exactOrigin: true,
       bothFlowsInvalidated: true, currentDecisionProtected: true, restart: true, changedSupportBlocked: true, olderAncestorSelection: true,
-      historicalIsolation: true, lateResponseFencing: true, mobileWidth: 390 },
+      historicalIsolation: true, lateResponseFencing: true, revokedRevisionScopeExcluded: true, mobileWidth: 390 },
     fixtureVariation: 'Owned temporary package name contains adversarial HTML; an API README changes, a worker README moves and a supporting Java file gains a comment during refresh. Frozen templates are unchanged.',
     topicMatches: 3, evidenceOpened: true, keyboardFocus: true, mobileWidth: 390, sourceRevocation: true,
     policyFencing: true, reindex: true, restartPersistence: true, sourceCheckoutsUnchanged: true, modelRequests: 0 };

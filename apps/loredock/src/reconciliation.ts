@@ -74,7 +74,8 @@ export class Reconciliation {
     // Never silently search backwards for an older note after a nearer withdrawal or skipped review.
     const selected = fromBuildId ?? ancestors[0]?.id ?? null;
     const previous = selected ? this.catalog.readBuild(selected) : undefined;
-    const scope = (build: Build | undefined) => (build?.sources ?? []).map(({ sourceId, name, revision }) => ({ sourceId, name, revision }));
+    const scope = (build: Build | undefined) => (build?.sources ?? []).filter(source => store.source(source.sourceId).status === 'active')
+      .map(({ sourceId, name, revision }) => ({ sourceId, name, revision }));
     const result: Omit<ReconciliationPreview, 'previewHash'> = { schemaVersion: 'loredock-reconciliation-v1', buildId: target.id, fromBuildId: selected,
       policyVersion: project.policyVersion, registryVersion: project.sourceSetVersion, revision: project.correctionRevision,
       stale: target.id !== project.publishedBuildId || target.sourceSetVersion !== project.sourceSetVersion,
