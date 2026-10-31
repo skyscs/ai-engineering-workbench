@@ -1,0 +1,21 @@
+// Frozen graph/context mechanics, independent of the observed incident answers.
+export const linkCases = [
+  { id: 'l01', description: 'A direct HTTP clue adds its opposite endpoint.', seeds: ['a'], anchors: ['a'],
+    links: [['a', 'b', 'http-target']], expected: ['b'] },
+  { id: 'l02', description: 'A neighbor does not become a second-hop seed.', seeds: ['a'], anchors: ['a', 'b'],
+    links: [['a', 'b', 'contract-match'], ['b', 'c', 'contract-match']], expected: ['b'] },
+  { id: 'l03', description: 'An unrelated passage in the seed cannot anchor a link.', seeds: ['a'], anchors: [],
+    links: [['a', 'b', 'setting-match']], expected: [] },
+  { id: 'l04', description: 'Differences and reverse navigation retain edge direction.', seeds: ['b'], anchors: ['b'],
+    links: [['a', 'b', 'contract-difference']], expected: ['a'], difference: true },
+  { id: 'l05', description: 'Primary sources are not duplicated as additional neighbors.', seeds: ['a', 'b'], anchors: ['a', 'b'],
+    links: [['a', 'b', 'event-delivery']], expected: [] },
+  { id: 'l06', description: 'No lexical seeds means no graph-only selection.', seeds: [], anchors: ['a'],
+    links: [['a', 'b', 'http-target']], expected: [] },
+  { id: 'l07', description: 'Neighbors and relationships have independent visible caps.', seeds: ['a'], anchors: ['a'],
+    links: [['a', 'f', 'setting-match'], ['a', 'e', 'setting-match'], ['a', 'd', 'setting-match'],
+      ['a', 'c', 'setting-match'], ['a', 'b', 'setting-match'], ['a', 'b', 'contract-match'], ['a', 'b', 'http-target']],
+    expected: ['b', 'c', 'd', 'e'], omittedSources: 1, omittedLinks: 2 },
+  { id: 'l08', description: 'Equal display names do not merge distinct registered sources.', seeds: ['a'], anchors: ['a'],
+    links: [['a', 'b', 'http-target'], ['a', 'c', 'http-target']], expected: ['b', 'c'], duplicateNames: true },
+];
