@@ -91,8 +91,9 @@ measurements. Unsupported byte-dependent input may be checked again.
 
 Maps/flows are reconstructed from the new inventory, including added consumers. Older
 answers keep their original input/build and staleness labels; they are not regenerated.
-Engineer corrections remain on their original index and require separate reconciliation
-for a newer index. Reusing a file does not transfer an old conclusion or human review.
+Engineer corrections remain on their original index. Use **Earlier engineer corrections**
+in the system map to review eligible notes for the newer index explicitly. Reusing a
+file does not transfer an old conclusion or human review.
 See [refresh evidence](../fixtures/loredock-refresh/README.md).
 
 ## Explore the declaration map
@@ -203,8 +204,7 @@ editing is disabled until current review state is available.
 
 Corrections apply to **this index only**. A new index does not inherit them, even if
 its source revisions happen to match. Select the older **Index version** to inspect
-its review. This release does not automatically reconcile human knowledge across
-changed code. **Ask Project** still uses original source evidence; these map notes
+its review, or follow the reapplication steps below. **Ask Project** still uses original source evidence; these map notes
 are not silently supplied to the answer model.
 
 Removing any source in the recorded index fences its corrections and all history,
@@ -219,13 +219,59 @@ History/output budgets are explicit and reject a write atomically instead of omi
 existing notes. See [correction evidence](../fixtures/loredock-corrections/README.md)
 and [ADR 0024](../decisions/0024-loredock-engineer-corrections.md).
 
+## Review earlier corrections after an update
+
+After **Update knowledge**, open **Earlier engineer corrections** in the system map.
+The panel compares active notes from the previous index with the selected index. It
+does not apply them, change flow review status or call a model just by loading.
+
+1. Open a proposed relationship. Read the earlier note, its engineer scope and the
+   relationship claims on both sides. Source buttons open the original committed
+   evidence for their respective indexes.
+2. **Supporting evidence unchanged** means the same unique source/file relationship,
+   semantics, properties and complete supporting file/span hashes/ranges match. This
+   includes supporting contract/configuration clues. Review the wider current scope
+   under **Review scope and limits**; matching files cannot establish that the human
+   statement still applies to a changed system or deployment.
+3. If you still agree with the note, click **Apply to this index**. This creates a new
+   human/unverified correction for this index, marks its dependent flows for review
+   and records the exact original version. **Read earlier correction** opens that
+   version and its evidence. The earlier history remains unchanged.
+4. **Supporting evidence changed**, **Link not found**, **Several possible links** or
+   **Comparison unavailable** requires a new review. No apply control is offered.
+   When a unique current link exists, **Open current link** navigates to its normal
+   correction controls. A link outside the displayed bounded outlines is explained;
+   its source evidence can still be opened.
+5. **Already reviewed in this index** protects every current decision, including a
+   withdrawal. Edit that index's correction directly when appropriate. The earlier
+   note will not replace it.
+
+If you skipped a review, open **Choose an older review index** and select an ancestor
+with active notes. The default never searches backwards to resurrect an older note
+after a nearer withdrawal. Discovery is limited to 20 recorded authorized refresh
+ancestors; each preview includes at most 20 latest active corrections from one chosen
+index and 512 KiB of details. Omitted corrections and missing history are visible gaps.
+No rename inference or matching by a name alone is attempted.
+
+Another review, source/policy change or new publication can invalidate a pending
+comparison. Use **Refresh comparison** and review it again. A failed request can be
+retried with its existing request ID; replay never reactivates a subsequently withdrawn
+note. A successful reapplication is an independent decision even if the original note
+is later edited/withdrawn. Source revocation still fences and purges both dependency
+scopes, including all later versions. Selecting a historical **Index version** applies
+only to that explicitly labeled historical index. Nothing is carried to a later index
+automatically, and these notes still do not enter answer prompts.
+
+See [reapplication evidence](../fixtures/loredock-reconciliation/README.md) and
+[ADR 0026](../decisions/0026-loredock-correction-reconciliation.md).
+
 ## Ask a question (opt-in pilot)
 
 Stop the existing LoreDock process and start the answer pilot with the same data
 directory. Back up the stopped directory before upgrading. Current startup migrates
-older LoreDock data to schema 5, retaining evidence, answers and engineer correction
-history while adding refresh lineage and counters. Schema 3 originally introduced
-answer attempts/settings and schema 4 added correction history.
+older LoreDock data to schema 6, retaining evidence, answers and engineer correction
+history while adding immutable review-reapplication provenance. Schema 3 introduced
+answer attempts/settings, schema 4 correction history and schema 5 refresh lineage/counters.
 
 ```sh
 LOREDOCK_ANSWERS=1 pnpm loredock
@@ -426,6 +472,8 @@ require the session. No tokens belong in URLs or logs.
 | `GET /api/corrections?buildId=...` | Current human correction overlay/revision and flow-review dependencies for the selected index. |
 | `GET /api/corrections/:id/history` | Authorized immutable versions and original relationship/evidence provenance. |
 | `POST /api/corrections` | Save/replay a dispute, clarification or withdrawal with issued target ID, projection hash and expected review versions. |
+| `GET /api/correction-reconciliation?buildId=...&fromBuildId=...` | Bounded earlier-review preview; default previous index, optional authorized recorded ancestor. |
+| `POST /api/corrections/reapply` | Explicitly apply an eligible original version with preview hash and current review revision; exact replay preserves provenance. |
 | `GET /api/answers` | Saved connection, recent attempt metadata and latest authorized answer ID (pilot only). |
 | `PUT /api/answers/configuration` | Save `{executable, configHome, profile}`; use `null` for no named profile. |
 | `POST /api/answers/preview` | Retrieve `{question, buildId?}` without invoking a model. |

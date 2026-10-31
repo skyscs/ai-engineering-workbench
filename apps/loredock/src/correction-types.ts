@@ -10,6 +10,7 @@ export interface CorrectionSummary {
   version: number; revision: number; previousId: string | null; createdAt: string;
   action: CorrectionAction; statement: string | null; environment: string | null;
   provenance: 'human'; verification: 'unverified'; affectedFlowIds: string[];
+  reappliedFrom?: { id: string; buildId: string; version: number };
 }
 export interface CorrectionSnapshot {
   schemaVersion: string; adapterVersion: string; projectionHash: string;

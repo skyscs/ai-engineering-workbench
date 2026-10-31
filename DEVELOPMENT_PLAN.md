@@ -20,9 +20,11 @@ slice with runtime qualification. [Task 017](tasks/017-loredock-declaration-map.
 the accepted declaration map. [Task 018](tasks/018-loredock-static-flows.md) delivered bounded
 code links and two partial static outlines. [Task 019](tasks/019-loredock-engineer-corrections.md)
 delivered accepted relationship corrections and dependent-flow review invalidation.
-[Task 020](tasks/020-loredock-incremental-refresh.md) begins L4 with validated text-file
-reuse and visible committed-inventory changes. Broader orientation, adapters, semantic/AI
-refresh, correction reconciliation and scale remain separate.
+[Task 020](tasks/020-loredock-incremental-refresh.md), accepted through merged PR #24,
+began L4 with validated text-file reuse and visible committed-inventory changes.
+[Task 021](tasks/021-loredock-correction-reconciliation.md) adds explicit review/reapplication
+of earlier corrections when relationship semantics and all supporting evidence match.
+Broader orientation, adapters, semantic/AI refresh and scale remain separate.
 Planning does not authorize implementing every milestone automatically.
 
 Tasks 012–013 delivered the [UX simplification](docs/ux-simplification-plan.md).

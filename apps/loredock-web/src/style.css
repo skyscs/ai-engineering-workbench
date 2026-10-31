@@ -5,6 +5,44 @@
   font-synthesis:none;
   line-height:1.55
 }
+.earlier-corrections{
+  margin:22px 0;
+  padding:18px;
+  border:1px solid #cbdacc;
+  border-radius:10px;
+  background:#f8faf6;
+  overflow-wrap:anywhere
+}
+.earlier-correction{
+  margin:12px 0;
+  padding:12px;
+  border:1px solid #d8e1d9;
+  border-radius:8px;
+  background:#fff
+}
+.earlier-correction summary{
+  cursor:pointer;
+  font-weight:650
+}
+.earlier-statement{
+  margin:12px 0;
+  padding:10px 14px;
+  border-left:3px solid #91aa93;
+  white-space:pre-wrap
+}
+.review-comparison{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+  margin:16px 0
+}
+.correction-origin{
+  padding-top:6px
+}
+@media(max-width:700px){
+  .review-comparison{grid-template-columns:minmax(0,1fr)}
+  .earlier-corrections{padding:12px}
+}
 *{
   box-sizing:border-box
 }

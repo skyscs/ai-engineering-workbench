@@ -3,14 +3,16 @@
 Status: Task 015 delivered the source catalog. Task 016's bounded cited-answer slice
 is owner-accepted through PR #20. Task 017's declaration map was accepted through PR #21.
 Task 018's model-free code links and partial static outlines were accepted through
-PR #22. Task 019's human correction overlay was accepted through PR #23. Task 020
-adds validated text-file reuse and bounded inventory comparisons. Semantic/AI refresh,
-correction reconciliation and Context Packs remain separate work.
+PR #22. Task 019's human correction overlay was accepted through PR #23. Task 020's
+validated text-file reuse and bounded inventory comparisons were accepted through PR #24.
+Task 021 adds explicit review/reapplication across recorded refresh ancestors.
+Semantic/AI refresh and Context Packs remain separate work.
 See the [owner acceptance](L2_ACCEPTANCE.md),
 [map decision](../decisions/0022-loredock-declaration-map.md),
 [code-flow decision](../decisions/0023-loredock-static-code-flows.md),
 [correction decision](../decisions/0024-loredock-engineer-corrections.md),
 [refresh decision](../decisions/0025-loredock-incremental-refresh.md),
+[review reapplication decision](../decisions/0026-loredock-correction-reconciliation.md),
 [answer checkpoint](ANSWER_FOUNDATION.md) and [user guide](USER_GUIDE.md).
 The [executable fixture](../../fixtures/loredock/README.md) uses a smaller, versioned
 fixture manifest. Do not treat its IDs or JSON shape as a public product contract.
@@ -20,6 +22,32 @@ Consumers must read the correction overlay and its project revision before prese
 a flow as current with respect to engineer review. Human text/scope remain unverified;
 active affected-flow dependencies require review even when the original source hash
 has not changed. Another index requires its own review; no note is carried by name alone.
+
+`loredock-reconciliation-v1` is a separate bounded review preview, not a source graph or
+an active correction overlay. It defaults to the selected index's fixed baseline;
+an explicitly chosen earlier source must be within 20 recorded authorized ancestors.
+Only the latest active version per source target is proposed. No implicit search past
+a skipped review/withdrawal occurs. Up to 20 corrections and 512 KiB are returned with
+explicit omissions. Older-history discovery limits are disclosed.
+
+Identity includes link kind, endpoint kinds/labels, source IDs and file paths, with
+unique matches on both sides; declaration comparisons use symmetric endpoints and
+code links remain directional. Eligibility also requires exact supported schema/adapter,
+relationship semantics, endpoint properties and complete supporting file/span hashes and
+ranges. Reissued IDs or an unrelated commit alone do not change content. Changed, missing,
+ambiguous, unsupported and already-reviewed targets cannot be reapplied, including targets
+whose current decision is withdrawal. Matching support never verifies the human statement.
+
+`POST /api/corrections/reapply` accepts exactly `{requestId, buildId, sourceCorrectionId,
+targetId, previewHash, expectedRevision}`. The server reconstructs the preview, checks
+current source/target authorization and the active original version, and copies its human
+action/text/scope into a new index-local correction. Global review CAS, exact replay and
+all existing limits still apply. Schema 6 atomically records immutable opaque lineage
+and the union of original/current source dependencies. An optional `reappliedFrom`
+summary field identifies the exact earlier correction ID/build/version; existing v1
+summary fields and source projections retain their meaning. Subsequent edits/withdrawals
+are independent; replay returns the original result without reactivating it. Revocation
+fences/purges every dependent version; old-policy history/replay remains unavailable.
 
 ## First source manifest and data ownership
 

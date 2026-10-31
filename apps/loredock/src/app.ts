@@ -13,6 +13,7 @@ import { declarationMap } from './system-map.js';
 import { codeFlows } from './code-flows.js';
 import { Corrections } from './corrections.js';
 import { indexChanges } from './index-changes.js';
+import { Reconciliation } from './reconciliation.js';
 
 export function createApp(catalog: Catalog, options: { publicDir?: string; development?: boolean; answers?: Answers } = {}) {
   const app = new Hono();
@@ -88,6 +89,9 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
   app.get('/api/corrections', c => c.json(corrections.list(c.req.query('buildId'))));
   app.get('/api/corrections/:id/history', c => c.json(corrections.history(c.req.param('id'))));
   app.post('/api/corrections', async c => c.json(corrections.save(await body(c.req)), 201));
+  const reconciliation = new Reconciliation(catalog);
+  app.get('/api/correction-reconciliation', c => c.json(reconciliation.preview(c.req.query('buildId'), c.req.query('fromBuildId'))));
+  app.post('/api/corrections/reapply', async c => c.json(reconciliation.reapply(await body(c.req)), 201));
   const answers = options.answers;
   if (answers) {
     app.get('/api/answers', c => c.json(answers.state()));

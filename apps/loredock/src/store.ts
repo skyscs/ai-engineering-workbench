@@ -38,7 +38,7 @@ export class CatalogStore {
       this.db = opened = new DatabaseSync(path.join(this.directory, 'loredock.db'));
       this.db.exec('PRAGMA foreign_keys=ON; PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL; PRAGMA secure_delete=ON;');
       const version = this.one<{ user_version: number }>('PRAGMA user_version')!.user_version;
-      if (version < 0 || version > 5) throw new Error('Unsupported LoreDock database version.');
+      if (version < 0 || version > 6) throw new Error('Unsupported LoreDock database version.');
       if (!version) this.db.exec(`BEGIN IMMEDIATE;
         CREATE TABLE project (id INTEGER PRIMARY KEY CHECK(id=1), policyVersion INTEGER NOT NULL, sourceSetVersion INTEGER NOT NULL, policy TEXT NOT NULL, publishedBuildId TEXT);
         INSERT INTO project VALUES (1,1,1,'{"excludedPaths":[]}',NULL);
@@ -105,6 +105,15 @@ export class CatalogStore {
         ALTER TABLE files ADD COLUMN gitReadAttempts INTEGER NOT NULL DEFAULT 0;
         ALTER TABLE files ADD COLUMN cacheRejected INTEGER NOT NULL DEFAULT 0;
         PRAGMA user_version=5; COMMIT;`);
+      if (version < 6) this.db.exec(`BEGIN IMMEDIATE;
+        CREATE TABLE correction_reapplications (
+          correctionId TEXT PRIMARY KEY REFERENCES corrections(id), sourceCorrectionId TEXT NOT NULL REFERENCES corrections(id),
+          sourceContentHash TEXT NOT NULL, targetContentHash TEXT NOT NULL, previewHash TEXT NOT NULL, lineageHash TEXT NOT NULL);
+        CREATE TRIGGER reapplication_identity BEFORE UPDATE ON correction_reapplications
+          BEGIN SELECT RAISE(ABORT,'Reapplication provenance is immutable.'); END;
+        CREATE TRIGGER reapplication_history BEFORE DELETE ON correction_reapplications
+          BEGIN SELECT RAISE(ABORT,'Reapplication provenance is immutable.'); END;
+        PRAGMA user_version=6; COMMIT;`);
       this.db.exec("UPDATE answer_attempts SET status='interrupted', reason='The daemon stopped. Start an explicit new attempt; provider completion may be unknown.', usageUnknownReason=CASE WHEN dispatchedAt IS NULL THEN 'Not dispatched before restart.' ELSE 'Provider completion and usage are unknown after restart.' END WHERE status IN ('preparing','running');");
       this.db.exec("UPDATE builds SET status='interrupted', reason='The daemon stopped. Resume explicitly.' WHERE status IN ('preparing','running','pause_requested');");
     } catch (error) { opened?.close(); this.owner.close(); throw error; }

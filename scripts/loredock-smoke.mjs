@@ -202,6 +202,36 @@ try {
   await waitFor(() => evaluate("document.querySelector('.code-flows')?.innerText.includes('2 static flow outlines') && !document.querySelector('.code-flows').innerText.includes('These flows use an older index')"), 'Flows did not select the current index.');
   await waitFor(() => evaluate("document.querySelectorAll('.human-correction').length===0"), 'Historical corrections remained on the current index.');
   const secondIndex = await evaluate("fetch('/api/project').then(r=>r.json()).then(p=>p.publishedBuildId)");
+  await text('Supporting evidence unchanged');
+  const beforeApply = await evaluate("fetch('/api/correction-reconciliation').then(r=>r.json())");
+  assert.equal(beforeApply.entries[0].status, 'support-unchanged'); assert.equal(beforeApply.entries[0].source.id, correctionId);
+  assert.equal(await evaluate("document.querySelectorAll('.flow-card.needs-review').length"), 0, 'A proposal changed the active review state.');
+  await writeFile(path.join(output, 'reconciliation-before-apply.json'), JSON.stringify(beforeApply, null, 2) + '\n');
+  await evaluate("document.querySelector('.earlier-correction').open=true");
+  await evaluate("document.querySelector('.earlier-correction .review-comparison > div:first-child button').click()"); await text('Source evidence');
+  await evaluate("document.querySelector('.earlier-correction .review-comparison > div:nth-child(2) button').click()"); await text('Source evidence');
+  await evaluate("document.querySelector('.earlier-corrections').scrollIntoView()");
+  await writeFile(path.join(output, 'reconciliation-desktop.png'), Buffer.from((await page.send('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
+  await page.send('Emulation.setDeviceMetricsOverride', { width: 390, height: 900, deviceScaleFactor: 1, mobile: true });
+  assert.equal(await evaluate('document.documentElement.scrollWidth<=390'), true);
+  await writeFile(path.join(output, 'reconciliation-mobile.png'), Buffer.from((await page.send('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
+  await page.send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 1200, deviceScaleFactor: 1, mobile: false });
+  await click('Apply to this index'); await text('Reapplied from index');
+  await waitFor(() => evaluate("document.querySelectorAll('.flow-card.needs-review').length===2"), 'Explicit reapplication did not mark both flows.');
+  await text('Already reviewed in this index');
+  assert.equal(await evaluate("document.querySelector('.earlier-correction').open"), false, 'The refreshed proposal should require a new review.');
+  await evaluate("document.querySelector('.earlier-correction').open=true");
+  assert.equal(await evaluate("[...document.querySelectorAll('.earlier-corrections button')].some(b=>b.textContent==='Apply to this index')"), false);
+  await evaluate("[...document.querySelectorAll('.correction-origin button')].find(b=>b.textContent==='Read earlier correction').click()");
+  await text('Earlier correction and original evidence');
+  await evaluate("document.querySelector('.correction-origin details button').click()"); await text('Source evidence');
+  const reapplied = await evaluate("fetch('/api/corrections').then(r=>r.json()).then(r=>r.corrections[0])");
+  assert.equal(reapplied.reappliedFrom.id, correctionId); assert.equal(reapplied.buildId, secondIndex);
+  await writeFile(path.join(output, 'reapplied-correction.json'), JSON.stringify(reapplied, null, 2) + '\n');
+  await stop(reviewedDaemon);
+  const reconciliationDaemon = start(process.execPath, ['dist/index.js'], daemonDir, env); await ready(reconciliationDaemon);
+  await page.send('Page.reload'); await text('Reapplied from index');
+  assert.equal(await evaluate("document.querySelectorAll('.flow-card.needs-review').length"), 2);
   const apiReadme = path.join(fixture.root, 'sources/order-api/README.md');
   await writeFile(apiReadme, await readFile(apiReadme, 'utf8') + '\nRefreshBrowserMarker: committed refresh demonstration.\n');
   fixtureGit(fixture.root, 'order-api', ['add', 'README.md']); fixtureGit(fixture.root, 'order-api', ['commit', '-qm', 'Change the owned refresh README']);
@@ -209,6 +239,8 @@ try {
   fixtureGit(fixture.root, 'order-worker', ['add', '--all']); fixtureGit(fixture.root, 'order-worker', ['commit', '-qm', 'Move an owned document to test added and removed paths']);
   await click('Update knowledge');
   await waitFor(() => evaluate(`fetch('/api/project').then(r=>r.json()).then(p=>p.publishedBuildId!==${JSON.stringify(secondIndex)})`), 'Changed refresh did not publish.');
+  await text('Supporting evidence unchanged');
+  assert.equal(await evaluate("document.querySelectorAll('.human-correction').length"), 0, 'Reapplication was automatically repeated on the next refresh.');
   await text('1 added · 1 changed · 1 removed · 0 coverage changes · 0 not comparable');
   await evaluate("document.querySelector('.change-details').open=true");
   await text('16 text files reused · 5 Git file read attempts · 0 cache validation failures');
@@ -235,22 +267,45 @@ try {
   const mobile = await page.send('Page.captureScreenshot', { format: 'png' });
   await writeFile(path.join(output, 'mobile.png'), Buffer.from(mobile.data, 'base64'));
   await page.send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 1200, deviceScaleFactor: 1, mobile: false });
+  const thirdIndex = await evaluate("fetch('/api/project').then(r=>r.json()).then(p=>p.publishedBuildId)");
+  const workerFile = path.join(fixture.root, 'sources/order-worker/src/main/java/OrderConsumer.java');
+  await writeFile(workerFile, await readFile(workerFile, 'utf8') + '\n// Additional broker review context.\n');
+  fixtureGit(fixture.root, 'order-worker', ['add', '--all']); fixtureGit(fixture.root, 'order-worker', ['commit', '-qm', 'Change owned supporting source context']);
+  await click('Update knowledge');
+  await waitFor(() => evaluate(`fetch('/api/project').then(r=>r.json()).then(p=>p.publishedBuildId!==${JSON.stringify(thirdIndex)})`), 'Support-change refresh did not publish.');
+  const fourthIndex = await evaluate("fetch('/api/project').then(r=>r.json()).then(p=>p.publishedBuildId)");
+  await waitFor(() => evaluate(`document.querySelector('.earlier-corrections')?.dataset.buildId===${JSON.stringify(fourthIndex)}`), 'The review comparison did not select the support-change index.');
+  await text('Choose an older review index');
+  await evaluate(`(()=>{const s=document.querySelector('.earlier-index-selection select');s.value=${JSON.stringify(secondIndex)};s.dispatchEvent(new Event('change',{bubbles:true}));})()`);
+  await text('Supporting evidence changed');
+  const changedSupport = await evaluate(`fetch('/api/correction-reconciliation?fromBuildId=${secondIndex}').then(r=>r.json())`);
+  assert.equal(changedSupport.entries[0].status, 'support-changed');
+  await writeFile(path.join(output, 'reconciliation-changed-support.json'), JSON.stringify(changedSupport, null, 2) + '\n');
+  await evaluate("document.querySelector('.earlier-correction').open=true");
+  assert.equal(await evaluate("[...document.querySelectorAll('.earlier-corrections button')].some(b=>b.textContent==='Apply to this index')"), false);
+  await click('Open current link');
+  await evaluate("document.querySelector('.earlier-corrections').scrollIntoView()");
+  await writeFile(path.join(output, 'reconciliation-changed-support.png'), Buffer.from((await page.send('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
   await evaluate(`(()=>{
     const nativeFetch=window.fetch;
-    let first=true, release;
+    let first=true, reviewFirst=true, release;
     const gate=new Promise(resolve=>{release=resolve;});
     window.releaseCorrectionResponse=release;
     window.restoreCorrectionFetch=()=>{window.fetch=nativeFetch;};
     window.fetch=async(...args)=>{
       const delayed=first&&String(args[0]).includes('/api/corrections?buildId=');
+      const reviewDelayed=reviewFirst&&String(args[0]).includes('/api/correction-reconciliation?');
       if(delayed)first=false;
+      if(reviewDelayed)reviewFirst=false;
       const response=await nativeFetch(...args);
       if(delayed){window.delayedCorrectionPayload=await response.clone().json();await gate;window.delayedCorrectionFinished=true;}
+      if(reviewDelayed){window.delayedReviewPayload=await response.clone().json();await gate;window.delayedReviewFinished=true;}
       return response;
     };
-    const e=document.querySelector('[aria-label="Index version"]');e.value=${JSON.stringify(firstIndex)};e.dispatchEvent(new Event('change',{bubbles:true}));
+    const e=document.querySelector('[aria-label="Index version"]');e.value=${JSON.stringify(secondIndex)};e.dispatchEvent(new Event('change',{bubbles:true}));
   })()`);
   await waitFor(() => evaluate("window.delayedCorrectionPayload?.corrections[0]?.statement.includes('Historical correction')"), 'The delayed response did not contain the original correction.');
+  await waitFor(() => evaluate("window.delayedReviewPayload?.entries[0]?.source.statement.includes('Historical correction')"), 'The delayed review response did not contain the original correction.');
   await evaluate("[...document.querySelectorAll('.sources li')].find(li=>li.querySelector('strong').textContent==='order-api').querySelector('button').click()");
   await click('Confirm removal'); await text('2 / 3');
   await waitFor(() => evaluate("!document.querySelector('.evidence')"), 'Revoked evidence remained visible.');
@@ -258,33 +313,45 @@ try {
   await waitFor(() => evaluate("document.querySelector('.code-flows')?.innerText.includes('0 candidate code links') && !document.querySelector('.code-flows').innerText.includes('order-api /') && !document.querySelector('.code-flows').innerText.includes('MongoCollection.replaceOne')"), 'Revoked source or dependent flow steps remained visible.');
   await evaluate('window.releaseCorrectionResponse()');
   await waitFor(() => evaluate('window.delayedCorrectionFinished===true'), 'The older correction response did not settle.');
+  await waitFor(() => evaluate('window.delayedReviewFinished===true'), 'The older reconciliation response did not settle.');
   await evaluate('new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))');
   assert.equal(await evaluate("document.querySelectorAll('.human-correction').length"), 0, 'A late response restored revoked correction content.');
+  assert.equal(await evaluate("document.querySelectorAll('.earlier-correction').length"), 0, 'A late response restored revoked review proposals.');
   assert.equal(await evaluate(`fetch('/api/corrections/${correctionId}/history').then(r=>r.status)`), 404);
   await evaluate('window.restoreCorrectionFetch()');
   await input('source-query', 'publisher.publish'); await click('Search'); await text('No indexed matches.');
   await evaluate("document.querySelector('details.advanced').open=true");
   await input('exclusions', 'legacy'); await click('Save policy'); await text('Index your sources to start exploring.');
   await click('Index sources'); await text('10 indexed · 7 excluded · 0 failed · 0 pending');
-  await stop(reviewedDaemon);
+  await stop(reconciliationDaemon);
   const restarted = start(process.execPath, ['dist/index.js'], daemonDir, env); await ready(restarted);
   await page.send('Page.reload'); await text('10 indexed · 7 excluded · 0 failed · 0 pending');
   await waitFor(() => evaluate("document.querySelectorAll('.flow-card').length===1"), 'Supported flow did not survive policy reindex and restart.');
   await input('source-query', 'OrderConsumer'); await click('Search'); await text('matching passages');
   assert.equal(await evaluate("document.querySelectorAll('[role=alert]').length"), 0);
   for (const id of repositoryIds) assert.equal(fixtureGit(fixture.root, id, ['status', '--porcelain=v1']), '');
-  const result = { schemaVersion: 'loredock-browser/5', sources: 3, initialIndexedFiles: 18, initialExcludedFiles: 9,
+  const result = { schemaVersion: 'loredock-browser/6', sources: 3, initialIndexedFiles: 18, initialExcludedFiles: 9,
     systemMap: { repositories: 3, declarations: 16, crossRepositoryClues: 2, routeCitation: true, contractCitation: true, escapedLabels: true, historicalSelection: true, revocation: true },
     codeFlows: { outlines: 2, candidateCodeLinks: 4, writeCitation: true, latestCitationWins: true, unresolvedWiringVisible: true, historicalSelection: true, revocation: true, restart: true },
     engineerCorrections: { dispute: true, scopedClarification: true, originalClaimPreserved: true, twoFlowsInvalidated: true, concurrentDraftPreserved: true, history: true, withdrawal: true,
       escapedText: true, restart: true, newIndexIsolation: true, historicalSelection: true, lateResponseFencing: true, revokedHistoryUnavailable: true },
     knowledgeRefresh: { unchangedReusedFiles: 18, unchangedGitReadAttempts: 3, changedReusedFiles: 16, changedGitReadAttempts: 5,
       added: 1, changed: 1, removed: 1, previousCitation: true, selectedCitation: true, mobileWidth: 390 },
-    fixtureVariation: 'Owned temporary package name contains adversarial HTML; an API README changes and a worker README moves during refresh. Frozen templates are unchanged.',
+    correctionReconciliation: { noAutomaticTransfer: true, explicitApply: true, originalAndCurrentEvidence: true, exactOrigin: true,
+      bothFlowsInvalidated: true, currentDecisionProtected: true, restart: true, changedSupportBlocked: true, olderAncestorSelection: true,
+      historicalIsolation: true, lateResponseFencing: true, mobileWidth: 390 },
+    fixtureVariation: 'Owned temporary package name contains adversarial HTML; an API README changes, a worker README moves and a supporting Java file gains a comment during refresh. Frozen templates are unchanged.',
     topicMatches: 3, evidenceOpened: true, keyboardFocus: true, mobileWidth: 390, sourceRevocation: true,
     policyFencing: true, reindex: true, restartPersistence: true, sourceCheckoutsUnchanged: true, modelRequests: 0 };
   await writeFile(path.join(output, 'browser-result.json'), JSON.stringify(result, null, 2) + '\n');
   console.log(JSON.stringify({ output, ...result }, null, 2));
+} catch (error) {
+  if (page) {
+    await writeFile(path.join(output, 'failure.png'), Buffer.from((await page.send('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
+    const result = await page.send('Runtime.evaluate', { expression: 'document.body?.innerText.slice(0,16384)', returnByValue: true });
+    await writeFile(path.join(output, 'failure.txt'), String(result.result.value));
+  }
+  throw error;
 } finally {
   page?.close(); for (const record of children.reverse()) await stop(record);
   await rm(fixture.root, { recursive: true, force: true });
