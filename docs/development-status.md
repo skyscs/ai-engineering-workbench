@@ -1,5 +1,46 @@
 # Development status
 
+## Task 033 — Prospective interface qualification design
+
+Implemented and locally verified, 2026-10-31. Task 032 reached main through PR #36
+(`22f29bf`) after both exact-head CI runs passed. The owner explicitly reconfirmed
+automatic continuation to the next phase after merge, without waiting for another command.
+
+A new freight corpus contains **20 repositories / 47 eligible files**, fourteen
+prospective questions and **38** required propositions/qualifications. Source bytes,
+deterministic revisions, generator and reviewer contract were frozen in `8ced7ae` before
+retrieval measurements or model outputs. Expected answers remain outside source roots;
+only question strings enter production retrieval. Fourteen README-only repositories
+provide orientation context, so this is not a twenty-large-service or private-project
+benchmark. Same-agent authorship and the lack of independent/blind review are explicit.
+
+Unchanged retrieval v7 / prompt v9 supplies all recorded originals for **14/14** cases.
+The evaluator verifies **388 span occurrences / 47 files** against original Git bytes,
+ownership, revisions, blobs, line ranges and hashes. Two fresh generations preserve
+source selection, logical comparison selection and requirements. Maximum context is
+30 spans / **5,157 source bytes / 34,124 prompt bytes**. Source checkouts remain clean.
+
+Six of ten interface questions receive their specific derived comparison. `i04`, `i07`,
+`i08` and `i10` retain all required originals without that clue under the existing
+comparison cap. The next run must retain this condition; no product or question tuning
+was performed. The initial metric conflated citation-array order with support changes.
+Canonicalizing only each original support set fixes that diagnostic, while preserving
+raw order changes separately and detecting endpoint/status/ownership differences.
+
+Full `pnpm check` passes **336 tests** (177 LoreDock, 24 script tests), typechecks and
+builds. Focused coverage verifies oracle separation, deterministic original support,
+bounded comparison omissions and normalization that retains semantic/ownership changes.
+No product/UI/prompt/schema/runtime changes; Task 032 browser results remain applicable.
+Real model calls: **zero**. All historical scores and failed gates are unchanged.
+
+See [Task 033](../tasks/033-loredock-interface-qualification-design.md),
+[corpus and rubric](../fixtures/loredock-interfaces/README.md) and
+[measurement evidence](fixtures/loredock-interface-qualification/README.md).
+Next: freeze the current implementation and qualified selected runtime for one run of
+at most fourteen attempts, retain raw outputs/usage, and manually review every claim,
+unknown and required proposition. A pass would be narrow synthetic conformance only;
+independent review and an eligible private pilot remain necessary.
+
 ## Task 032 — Source-backed interface comparisons in answer context
 
 Implemented and locally verified, 2026-10-31. Task 031 reached main through PR #35
