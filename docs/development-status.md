@@ -1,5 +1,29 @@
 # Development status
 
+## Task 040 — Compact related-source reading cards
+
+Implemented and locally verified, 2026-10-31. PR #43 reached main as `ad6a0e4` after
+push `41246528029` and pull-request `41246533154` passed for exact head
+`011228af9ea67597f45631ed93f228f73e4806b9`. Scope was recorded in `f140e87` before
+the presentation change; development continued with synthetic inputs only.
+
+Related-source cards now start collapsed, showing source names, clue kinds, distinct
+subjects and unverified status. Opening a native disclosure retains complete original
+evidence, scope, gaps and omissions. The interface can distinguish /legacy/orders from
+/stock/reservations before opening either source. Selection/order and backend behavior
+remain unchanged; no historical report is rewritten.
+
+Frontend strict types/build and final browser acceptance pass. Checks cover keyboard
+source disclosure followed by original evidence, escaped labels, 390 px summaries and
+details, the new Dojo originals and all existing delayed-response/history/source/policy
+fences. No new implementation-mirroring unit tests were added for this reversible view
+change. See [Task 040](../tasks/040-loredock-compact-related-sources.md) and
+[verification](fixtures/loredock-compact-related-sources/README.md).
+
+Next: freeze and measure a larger synthetic capacity workload under current limits,
+including initial indexing, unchanged refresh, retained bytes, retrieval and projection
+omissions. Twenty repositories with 79 text files do not qualify large-project readiness.
+
 ## Task 039 — Dojo object exports and code-adapter v3
 
 Implemented and locally verified, 2026-10-31. PR #42 reached main as `1af275f` after

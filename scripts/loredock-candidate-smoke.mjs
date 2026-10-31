@@ -114,8 +114,16 @@ try {
   assert.equal(await evaluate(`[...document.querySelectorAll('.candidate-other h4')].some(node=>node.textContent===${JSON.stringify(linkedLabel)})`),true);
   assert.equal(await evaluate("document.querySelector('.candidate-links').open"),false);
   await evaluate("document.querySelector('.candidate-links').open=true");
-  assert.equal(await evaluate(`[...document.querySelectorAll('.candidate-links h4')].some(node=>node.textContent===${JSON.stringify(linkedLabel)})`),true);
+  assert.equal(await evaluate(`[...document.querySelectorAll('.related-source-name')].some(node=>node.textContent===${JSON.stringify(linkedLabel)})`),true);
+  assert.equal(await evaluate("document.querySelectorAll('.related-source').length===4 && document.querySelectorAll('.related-source[open]').length===0"),true);
+  assert.equal(await evaluate("[...document.querySelectorAll('.related-source > summary')].every(node=>node.innerText.includes('unverified') && node.querySelector('.related-source-subject'))"),true);
+  await evaluate("document.querySelector('.candidate-links').scrollIntoView()");await noOverflow();await screenshot('related-summaries-mobile.png');
   assert.equal(await evaluate("document.querySelectorAll('.candidate-links svg').length"),0);
+  const linkedCard=`[...document.querySelectorAll('.related-source')].find(node=>node.querySelector('.related-source-name').textContent===${JSON.stringify(linkedLabel)})`;
+  await evaluate(`${linkedCard}.querySelector('summary').focus()`);
+  await page.send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,text:'\r',unmodifiedText:'\r'});
+  await page.send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+  assert.equal(await evaluate(`${linkedCard}.open`),true);
   const linkedButton=`[...document.querySelectorAll('.candidate-links .candidate-support')].find(node=>node.querySelector('p').textContent.includes(${JSON.stringify(linkedLabel)})).querySelector('button')`;
   await evaluate(`${linkedButton}.focus()`);
   await page.send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,text:'\r',unmodifiedText:'\r'});
@@ -131,7 +139,12 @@ try {
   await page.send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});await noOverflow();
   await question(routingCases[5].description);await find();await waitFor(()=>evaluate("document.querySelector('.candidate-links')!==null"),'Dojo candidate links did not load.');
   await evaluate("document.querySelector('.candidate-links').open=true");
-  assert.equal(await evaluate("[...document.querySelectorAll('.candidate-links h4')].some(node=>node.textContent==='inventory-api')"),true);
+  assert.equal(await evaluate("[...document.querySelectorAll('.related-source-name')].some(node=>node.textContent==='inventory-api')"),true);
+  assert.equal(await evaluate("document.querySelectorAll('.related-source[open]').length"),0);
+  const inventoryCard="[...document.querySelectorAll('.related-source')].find(node=>node.querySelector('.related-source-name').textContent==='inventory-api')";
+  assert.equal(await evaluate(`${inventoryCard}.querySelector('summary').innerText.includes('/stock/reservations')`),true);
+  await evaluate("document.querySelector('.candidate-links').scrollIntoView()");await noOverflow();await screenshot('dojo-source-summaries-mobile.png');
+  await evaluate(`${inventoryCard}.querySelector('summary').click()`);
   const dojoButton="[...document.querySelectorAll('.candidate-links .candidate-support')].find(node=>node.querySelector('p').textContent.includes('legacy-admin')).querySelector('button')";
   await evaluate(`${dojoButton}.click()`);await text('Source evidence');
   assert.equal(await evaluate("document.querySelector('.evidence strong').textContent"),'legacy-admin');
@@ -140,7 +153,7 @@ try {
   await evaluate(`${inventoryButton}.click()`);await waitFor(()=>evaluate("document.querySelector('.evidence strong')?.textContent==='inventory-api'"),'Inventory route evidence did not open.');
   const dojoGraph=await apiCall('/code-flows');assert.equal(dojoGraph.adapterVersion,'pilot-code-v3');
   assert.ok(dojoGraph.omissions['adapter:unsupported-amd-shape']>0);assert.equal(dojoGraph.nodes.some(node=>node.path==='src/plugin.js'),false);
-  assert.equal(await evaluate("document.querySelector('.candidate-links').textContent.includes('deployment binding are unresolved')"),true);
+  assert.equal(await evaluate(`${inventoryCard}.innerText.includes('deployment binding are unresolved')`),true);
   await evaluate("document.querySelector('.candidate-links').scrollIntoView()");await noOverflow();await screenshot('dojo-object-route-mobile.png');
   await question('OrderBadge');await find();await text('1 source suggestion to review');
   const firstBuild=await evaluate("document.querySelector('.candidate-panel').dataset.buildId");
@@ -179,13 +192,14 @@ try {
   await noOverflow();
   await page.send('Emulation.setDeviceMetricsOverride',{width:1280,height:1000,deviceScaleFactor:1,mobile:false});
   await evaluate("document.querySelector('.candidate-panel').scrollIntoView()");await screenshot('candidate-policy-fence.png');
-  const result={schemaVersion:'loredock-candidate-browser/2',sources:20,modelRequests:0,answerModeDisabled:true,
+  const result={schemaVersion:'loredock-candidate-browser/3',sources:20,modelRequests:0,answerModeDisabled:true,
     sourceSuggestions:true,otherCandidatesInspectable:true,escapedSourceLabel:true,keyboardOriginalEvidence:true,noMatchUnresolved:true,
     lateQuestionPreviewFenced:true,lateQuestionEvidenceFenced:true,refreshFenced:true,historicalScope:true,
     lateReviewPreviewFenced:true,reviewNotesUnverified:true,lateRevocationPreviewFenced:true,latePolicyPreviewFenced:true,
     relatedSourcesCollapsed:true,relatedSourceLabelEscaped:true,relatedOriginalEvidenceKeyboard:true,
     lateLinkedEvidenceFenced:true,lateLinkedRevocationFenced:true,
     dojoObjectCallerAndRouteEvidence:true,dojoDynamicPluginUnresolved:true,codeAdapter:'pilot-code-v3',
+    relatedSourceCardsCollapsed:true,relationshipSubjectsVisible:true,keyboardSourceDisclosure:true,
     mobileWidth:390,horizontalOverflow:false};
   await writeFile(path.join(output,'browser-result.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({output,...result},null,2));
 } catch(error) {

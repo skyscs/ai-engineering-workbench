@@ -76,6 +76,8 @@ those lists but loses one useful configuration clue; it has not replaced product
 [Dojo object-export support](docs/fixtures/loredock-dojo-exports/README.md) subsequently
 adds the missing stock caller/route clue under code adapter v3. Current combined recall
 is 22/22, while five candidate scopes remain too broad. This remains a reading aid.
+Related sources use [compact expandable cards](docs/fixtures/loredock-compact-related-sources/README.md):
+scan the relationship subject first, then open its complete original evidence and limits.
 
 ## What v0.1 does
 

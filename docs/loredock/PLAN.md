@@ -73,8 +73,10 @@ recall falls to 20/22. Production v1 remains unchanged.
 [Task 039](../../tasks/039-loredock-dojo-object-exports.md) adds bounded literal Dojo AMD
 object exports under code adapter v3, with binding/module-boundary guards and historical
 review preservation. Current union recall is 22/22, with five combined scope conditions met.
-Next: compact expandable related-source cards without changing selection, original evidence
-or unverified link scope. No tuning on the observed model answers is included.
+[Task 040](../../tasks/040-loredock-compact-related-sources.md) makes related-source cards
+compact and expandable, retaining every selected original and uncertainty.
+Next: freeze and measure a larger synthetic workload under current indexing, retrieval,
+projection and refresh bounds. No tuning on the observed model answers is included.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale
 and the Workbench bridge remain open. The
