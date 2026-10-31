@@ -22,16 +22,22 @@ and bounded name hints, with 20/20 required-evidence recall and unchanged prompt
 [Task 027](../../tasks/027-loredock-scale-answer-quality.md) evaluates expanded answers
 and engineer-review handling on two complete real-model runs. The final agent score
 is 18/20 plus 4/4 review cases; missing required limitations in two answers still fail
-the semantic gate. Next: investigate answer completeness with held-out paraphrases
-before further paid tuning. [All outputs and negative results](../fixtures/loredock-scale-answer-quality/README.md)
+the semantic gate. [All outputs and negative results](../fixtures/loredock-scale-answer-quality/README.md)
 remain reviewable; no L5 claim follows from recall or agent scoring.
+[Task 028](../../tasks/028-loredock-answer-completeness.md) reviews question/rubric alignment
+and freezes twenty-four prospective wordings. Offline retrieval supplies the complete
+recorded reference basis for 22/24; h02/h04 miss a shared contract/handler implementation.
+The h02 code record already supplies message fields, illustrating why a missing reference
+does not automatically imply an unanswerable question. Next: improve bounded literal-reference
+expansion/admission before paid evaluation. [Diagnosis and rubric](ANSWER_COMPLETENESS.md)
+preserve the old failed gate and disclose the reserved set's inspection/authoring limits.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale
 and the Workbench bridge remain open. The
 [acceptance record](L2_ACCEPTANCE.md) distinguishes owner acknowledgement from agent scores.
 See [L0 measurements and blockers](FEASIBILITY.md), [contracts](CONTRACTS.md),
 [Task 016](../../tasks/016-loredock-cited-answer.md) for the accepted answer slice and
-[Task 027](../../tasks/027-loredock-scale-answer-quality.md) for the current bounded evaluation.
+[Task 028](../../tasks/028-loredock-answer-completeness.md) for the current bounded investigation.
 
 ## Outcome and delivery boundary
 

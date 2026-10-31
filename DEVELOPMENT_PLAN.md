@@ -40,8 +40,13 @@ without larger text/prompt limits, through merged PR #30 (`7fc97bb`).
 [Task 027](tasks/027-loredock-scale-answer-quality.md) completes two real-model runs:
 the final agent assessment is 18/20 expanded answers and 4/4 review cases, but required
 limitations are still omitted in two answers. The semantic gate remains failed.
-Next: bounded answer-completeness investigation with frozen held-out paraphrases,
-preserved negative results and explicit question/rubric review before further paid tuning.
+[Task 028](tasks/028-loredock-answer-completeness.md) diagnoses question/rubric alignment
+and freezes twenty-four prospective wordings without model calls. Recorded evidence
+is complete for 22/24, with two repeatable reserved-wording misses under retrieval v6.
+These are reference-recall measurements, not new semantic scores; equivalent issued
+evidence must also be assessed. Reserved wordings are inspected for retrieval and are
+not an independent blind corpus. Next: bounded literal-reference expansion and candidate
+admission, preserving current caps and all historical results before further paid tuning.
 Source recall, agent scoring and merging do not establish L5 readiness.
 Broader synthesis, adapters, semantic/AI refresh and scale acceptance remain separate.
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
