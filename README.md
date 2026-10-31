@@ -43,8 +43,11 @@ private-project and full-system semantic readiness remain unverified.
 The [completeness investigation](docs/loredock/ANSWER_COMPLETENESS.md) separates direct
 answers from wider context. [Improved literal-reference retrieval](docs/fixtures/loredock-reference-retrieval/README.md)
 now supplies the recorded reference basis for all twenty-four new wordings, preserving
-both earlier 20/20 retrieval baselines within the same limits. New model answers and
-semantic acceptance remain a separate step.
+both earlier 20/20 retrieval baselines within the same limits. The separate
+[prospective answer run](docs/fixtures/loredock-prospective-answers/README.md) passes 23/24
+cases under agent review, but one extra claim invents tenant-header propagation between
+incompatible declarations. The next improvement targets literal interface compatibility;
+broader semantic readiness remains unverified.
 
 ## What v0.1 does
 

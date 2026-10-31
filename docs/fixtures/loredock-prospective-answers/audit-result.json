@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "loredock-prospective-audit/1",
+  "modelRequests": 0,
+  "applicationAttempts": 24,
+  "inputSpanOccurrencesChecked": 699,
+  "claimsReviewed": 122,
+  "requirementsReviewed": 62,
+  "citationReferences": 185,
+  "distinctCitedSpans": 41,
+  "originalFilesRead": 74,
+  "originalBytesVerified": true,
+  "summary": {
+    "development": {
+      "evaluated": 12,
+      "passed": 11,
+      "failed": [
+        "d10"
+      ]
+    },
+    "reserved": {
+      "evaluated": 12,
+      "passed": 12,
+      "failed": []
+    }
+  },
+  "hardGatePassed": false,
+  "usage": {
+    "inputTokens": 415474,
+    "outputTokens": 11540,
+    "cachedInputTokens": 0
+  },
+  "unknownUsageAttempts": 0,
+  "scope": "Provenance and judgment coverage verification only; development-agent semantics are not independent acceptance."
+}

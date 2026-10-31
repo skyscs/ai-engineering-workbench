@@ -49,8 +49,13 @@ not an independent blind corpus.
 [Task 029](tasks/029-loredock-reference-retrieval.md) adds source-balanced, query-affine
 literal-reference expansion and direct-query priority within existing caps. Recorded
 reference recall reaches 24/24 prospective cases, preserving both earlier 20/20 baselines.
-All historical results remain unchanged. Next: a separately budgeted prospective answer
-evaluation with the fixed prompt, reporting development/reserved semantics separately.
+All historical results remain unchanged.
+[Task 030](tasks/030-loredock-prospective-answers.md) completes one fixed-prompt prospective
+run: 11/12 development and 12/12 reserved cases pass agent review. Required propositions
+are covered, but an extra unsupported header-propagation claim fails the semantic gate.
+The 24-attempt budget is exhausted; no repeated tuning on these answers is included.
+Next: bounded model-free comparison of literal request headers and route bindings,
+with exact evidence and explicit unresolved mapping rather than runtime-defect claims.
 Source recall, agent scoring and merging do not establish L5 readiness.
 Broader synthesis, adapters, semantic/AI refresh and scale acceptance remain separate.
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,

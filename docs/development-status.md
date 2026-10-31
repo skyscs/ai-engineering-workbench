@@ -1,5 +1,50 @@
 # Development status
 
+## Task 030 — One-shot prospective answer qualification
+
+Evaluated and locally verified, 2026-10-31; **prospective semantic gate failed**.
+Task 029 reached main through PR #33 (`b4f29f9`) after both exact-head CI runs passed.
+One frozen 24-question run uses unchanged prompt v8 / retrieval v7 / schema v3 and the
+selected personal CLI 0.166.0 / text-only-v2 / gpt-5.6-terra / medium. No prompt, corpus,
+question or ranking changes; no rerun. The selected metadata fingerprint is unchanged.
+
+Agent review passes **11/12 development and 12/12 reserved cases**. All 62 required
+propositions/qualifications are covered, but d10 claim 2 asserts a checkout-to-handler
+tenant-header path without a supplied mapping between `x-tenant-id` and `X-Tenant`.
+Optional claims still need grounding, so the prospective gate fails despite 24/24
+required-reference recall. h10 separately names the headers and leaves live connectivity
+unverified; its broad synthesis is explicitly flagged for independent review. Task 027's
+failed gate and every historical score/output remain unchanged.
+
+The audit reconstructs **699 input-span occurrences**, validates all **122 claim** and
+**62 requirement** judgments, and resolves **185 citation references** against original
+Git objects/hashes/ranges. All 85 unanswered questions and forbidden assertions are
+reviewed separately. Independent human-review boxes remain unchecked; audit code checks
+provenance and coverage, not semantic truth. Maximum context remains 30 spans / 8,775
+source bytes / 32,338 prompt bytes within existing caps.
+
+All 24 attempts survive restart with exact bytes, request replay adds zero calls and
+source revocation fences/purges application-stored context/results. Exported synthetic
+evidence remains independently retained. Owned source checkouts are unchanged and removed.
+The budget is exhausted at **24 application attempts**, with **415,474 input / 11,540
+output / 0 cached-input tokens** reported and no missing usage receipts. CLI-internal
+request counts are unobserved. No authentication-store reads, private/corporate sources,
+account fallback or direct API.
+
+Full `pnpm check` passes **319 tests** (160 LoreDock, 24 script tests), strict typechecks
+and builds. Fake-runtime coverage verifies frozen input/oracle separation, durable dispatch
+checkpoints, changed contract/runtime rejection, output refusal, failure retention and
+no retry. Offline audit tests reject missing requirement judgments and rehashed ownership
+tampering. Product/UI/schema/prompt/runtime remain unchanged; Task 029 browser results
+remain applicable. See [Task 030](../tasks/030-loredock-prospective-answers.md),
+[ADR 0033](decisions/0033-loredock-prospective-answer-qualification.md) and
+[complete evidence and review](fixtures/loredock-prospective-answers/README.md).
+
+Next: a bounded model-free literal request-header/route-binding comparison, retaining
+exact evidence and unresolved mappings. No repeated tuning against these observed
+reserved answers. Independent review, framework coverage, retention and an eligible
+private pilot still precede the Workbench bridge.
+
 ## Task 029 — Bounded literal-reference retrieval
 
 Implemented and locally verified, 2026-10-31. Task 028 reached main through PR #32

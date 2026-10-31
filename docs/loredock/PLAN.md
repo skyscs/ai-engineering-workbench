@@ -34,15 +34,20 @@ preserve the old failed gate and disclose the reserved set's inspection/authorin
 and prioritizes direct query matches within the same caps. All 24 prospective cases now
 have their recorded reference basis, with both earlier 20/20 retrieval baselines retained.
 See [measurements and tradeoffs](../fixtures/loredock-reference-retrieval/README.md).
-Next: separately budgeted prospective answer evaluation with the fixed prompt and separate
-development/reserved semantic judgments. Retrieval alone cannot pass the earlier gate.
+[Task 030](../../tasks/030-loredock-prospective-answers.md) completes that single prospective
+answer run: 11/12 development and 12/12 reserved cases pass agent review. All required
+propositions are covered, but an extra cross-component tenant-header assertion fails
+grounding. [All answers and judgments](../fixtures/loredock-prospective-answers/README.md)
+remain reviewable; both the prospective and historical gates stay failed. Next: bounded
+model-free literal header/binding compatibility, with evidence and unresolved mappings.
+No further tuning on the observed reserved answers is included.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale
 and the Workbench bridge remain open. The
 [acceptance record](L2_ACCEPTANCE.md) distinguishes owner acknowledgement from agent scores.
 See [L0 measurements and blockers](FEASIBILITY.md), [contracts](CONTRACTS.md),
 [Task 016](../../tasks/016-loredock-cited-answer.md) for the accepted answer slice and
-[Task 029](../../tasks/029-loredock-reference-retrieval.md) for the latest bounded implementation.
+[Task 030](../../tasks/030-loredock-prospective-answers.md) for the latest bounded evaluation.
 
 ## Outcome and delivery boundary
 

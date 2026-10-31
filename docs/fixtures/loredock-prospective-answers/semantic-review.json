@@ -1,0 +1,3071 @@
+{
+  "schemaVersion": "loredock-prospective-semantic-review/1",
+  "reviewer": "development-agent",
+  "independentReview": "pending",
+  "reviewedAt": "2026-10-31T18:02:09.358563+00:00",
+  "rawResultSha256": "f1d567f98d7b25aafb6593648652f76a9d1509c8d892b267133c18e0f4fefb38",
+  "contractHash": "e6491b508af12d4a42abfab75eaf6bbfa67db17dabef368579f6cf08aab0c52f",
+  "summary": {
+    "development": {
+      "evaluated": 12,
+      "passed": 11,
+      "failed": [
+        "d10"
+      ]
+    },
+    "reserved": {
+      "evaluated": 12,
+      "passed": 12,
+      "failed": []
+    }
+  },
+  "hardGatePassed": false,
+  "historicalGate": "This prospective rubric does not replace or rescore Task 027; its failed gate remains unchanged.",
+  "results": [
+    {
+      "questionId": "d01",
+      "split": "development",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "14b03a83a3294d6a7ddb60492b63fdedbfe377045a7e59040810d5c6a499928b",
+          "evidenceIds": [
+            "0e5dac24-2d52-4a88-8712-f5d899f76d20"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The cited local deployment JSON declares stockTopic=stock.reserved.v1."
+        },
+        {
+          "index": 2,
+          "textSha256": "a3cdcb1ffc03f30058c0d962a8c7314c564e42f10042a313939f00419d892856",
+          "evidenceIds": [
+            "22e1836e-8f33-4d28-89f6-f9817aad9583"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The separately cited worker JSON repeats that value under local scope."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "9efa15245ec395301eb6de9b8435b31b15cbf3e503afb63d9af3536aa3fd04b2",
+          "appropriate": true,
+          "assessment": "Authority for an actual deployment remains open; the question does not invent a discrepancy."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "topic-location",
+          "claimIndices": [
+            1,
+            2
+          ],
+          "unknownIndices": [],
+          "assessment": "Both source paths and the declared topic value are supplied.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "local-declaration",
+          "claimIndices": [
+            1,
+            2
+          ],
+          "unknownIndices": [],
+          "assessment": "Both claims explicitly restrict the declarations to local configuration.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "A known production stock topic.",
+          "absent": true,
+          "assessment": "Both claims remain local declarations; neither a production value nor an active subscriber is asserted."
+        },
+        {
+          "assertion": "A verified live subscription inferred from a declared value.",
+          "absent": true,
+          "assessment": "Both claims remain local declarations; neither a production value nor an active subscriber is asserted."
+        }
+      ]
+    },
+    {
+      "questionId": "d02",
+      "split": "development",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "cf22a45a460c1cfa50e38064fb555d3f9595ee35927d4a7761f21124d779d972",
+          "evidenceIds": [
+            "0e5dac24-2d52-4a88-8712-f5d899f76d20",
+            "22e1836e-8f33-4d28-89f6-f9817aad9583"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "Both local JSON files declare the named stock topic."
+        },
+        {
+          "index": 2,
+          "textSha256": "1716a06cdb580cf9279d6ca57519ca2da3bfbb1a7953a4bfc2f42be65176088a",
+          "evidenceIds": [
+            "d8a2e2a9-3ca4-4ebb-a609-ead869e554f9"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The shared contract explicitly supplies version, sku/units types and Kafka transport."
+        },
+        {
+          "index": 3,
+          "textSha256": "cad4812f5193ee75625f7859646ddf7dad58e02e514c8ada488fc5edadb6bf99",
+          "evidenceIds": [
+            "56cf16fe-f4ba-4219-9961-fafde80026e4"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The Java record and accept method show the stated fields and delegation to project."
+        },
+        {
+          "index": 4,
+          "textSha256": "5355555ea212bb4b7c297f19ac53277ce577537b30ce3055ef72979288a6f21a",
+          "evidenceIds": [
+            "56cf16fe-f4ba-4219-9961-fafde80026e4"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The issued source declares an interface without a concrete store implementation."
+        },
+        {
+          "index": 5,
+          "textSha256": "830fad37e03c6ee10f2e885f07ab7bd0455207e2f3ee7db689278a679b405b3d",
+          "evidenceIds": [
+            "63bd541a-fa55-47fb-b6a2-ef6bbd38c409"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README states the application-port scope and missing subscriber/database implementations."
+        },
+        {
+          "index": 6,
+          "textSha256": "fcc6e6c94379d3ce8a5406b317ef9cc6329fc9749f72bb7b9e918155fceeab23",
+          "evidenceIds": [
+            "63bd541a-fa55-47fb-b6a2-ef6bbd38c409"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README explicitly marks deployment and runtime behavior unverified."
+        },
+        {
+          "index": 7,
+          "textSha256": "4a89a5f00e8e394643eeafd9ed08cc0698c3d401d88f33fb4661528051f5a0ae",
+          "evidenceIds": [
+            "22e1836e-8f33-4d28-89f6-f9817aad9583",
+            "d8a2e2a9-3ca4-4ebb-a609-ead869e554f9",
+            "56cf16fe-f4ba-4219-9961-fafde80026e4",
+            "63bd541a-fa55-47fb-b6a2-ef6bbd38c409"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "This is a scoped synthesis of configuration, contract and port, expressly declining to verify a live connection."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "5989ade4979eaeb9933e63edccfe4b55ac11f8c21521fad214a3a75ad7a5defd",
+          "appropriate": true,
+          "assessment": "No concrete subscriber is supplied."
+        },
+        {
+          "index": 2,
+          "textSha256": "33290b89aed31e53a7edb0ecc3e24f7a928bda9b2bfb02ba25bac66617e4b8bc",
+          "appropriate": true,
+          "assessment": "No concrete database/store adapter is supplied."
+        },
+        {
+          "index": 3,
+          "textSha256": "44101acd2ad484da3159a5620d13b7057c6a2f05049f3659a0a05f08d43b6dda",
+          "appropriate": true,
+          "assessment": "Deployed topic and revisions are unknown."
+        },
+        {
+          "index": 4,
+          "textSha256": "07410000e86e9647da7b7b1b4dd039d36d006adc9fd1c3356315407e15a5ec8a",
+          "appropriate": true,
+          "assessment": "Delivery and persistence semantics require missing implementations."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "topic-location",
+          "claimIndices": [
+            1
+          ],
+          "unknownIndices": [],
+          "assessment": "The local topic is named.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "message-contract",
+          "claimIndices": [
+            2,
+            3
+          ],
+          "unknownIndices": [],
+          "assessment": "Both contract fields are described.",
+          "equivalentSupport": "The selected Java record also supplies sku/units; the cited shared JSON independently gives the requested message declaration.",
+          "satisfied": true
+        },
+        {
+          "id": "projection-port",
+          "claimIndices": [
+            3,
+            4
+          ],
+          "unknownIndices": [],
+          "assessment": "Handler delegation and the storage interface boundary are explicit.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "unimplemented-boundaries",
+          "claimIndices": [
+            5,
+            6,
+            7
+          ],
+          "unknownIndices": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "assessment": "Both missing implementations and unverified live behavior are preserved.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "A verified live stock subscription.",
+          "absent": true,
+          "assessment": "No live subscription, delivery guarantee or implemented storage is asserted."
+        },
+        {
+          "assertion": "Delivery or persistence guarantees from a port signature.",
+          "absent": true,
+          "assessment": "No live subscription, delivery guarantee or implemented storage is asserted."
+        }
+      ]
+    },
+    {
+      "questionId": "d03",
+      "split": "development",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "cae42298348fe69c63ed97745dea6e39fa5b43e73919b8cbd5a12f64db23b0b5",
+          "evidenceIds": [
+            "9a735871-1980-415d-9a8b-2cb95c568284"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The Dojo function calls request.post on the stated path."
+        },
+        {
+          "index": 2,
+          "textSha256": "d8d682ec368e1597027b0be6bdde6347804831a8b6d36a20c065e8d1e4d78db6",
+          "evidenceIds": [
+            "fe46e7ed-a4d6-403b-9568-6cb2aaad0178"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The local routes JSON names that POST path and Reservations.reserve."
+        },
+        {
+          "index": 3,
+          "textSha256": "d4500969673cf13252f898027102d5b57e817d24e2c0c7aea68dd2afefa7c149",
+          "evidenceIds": [
+            "1e640835-3741-4488-8305-a9802c085b99"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "Reservations.java delegates through its nested Stock interface without implementing storage."
+        },
+        {
+          "index": 4,
+          "textSha256": "558dbc32fe7d25e38a07bd3a426a2253a4c2994d951d549d27d18e4b218cb7bb",
+          "evidenceIds": [
+            "2b706848-d3e3-42bf-a85f-53c9f736bf10"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The cited legacy README explicitly marks runtime behavior unverified."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "10fa5b2f20dff36df37466fbf3212da05cf5d03a7dd69a1fa10d9ba96b121423",
+          "appropriate": true,
+          "assessment": "The authoritative deployed routing configuration is not supplied."
+        },
+        {
+          "index": 2,
+          "textSha256": "9d2b9be424aa73df44210b5f601b6ddb7ccc292b3bf5971c7c90713c2c671d17",
+          "appropriate": true,
+          "assessment": "The client-to-handler deployment connection is not established."
+        },
+        {
+          "index": 3,
+          "textSha256": "cc73756f295f767175db8373ab32503745bb64a33491cedf31aa25088b2ff105",
+          "appropriate": true,
+          "assessment": "The concrete Stock implementation and persistence remain absent."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "request-and-route",
+          "claimIndices": [
+            1,
+            2
+          ],
+          "unknownIndices": [],
+          "assessment": "The literal request and matching local route are identified.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "candidate-route",
+          "claimIndices": [
+            2,
+            4
+          ],
+          "unknownIndices": [
+            1,
+            2
+          ],
+          "assessment": "The route stays local and the deployed connection is explicitly left open.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "A verified deployed connection or host.",
+          "absent": true,
+          "assessment": "No verified host/connection or plugin-to-reservation chain is asserted."
+        },
+        {
+          "assertion": "The plugin necessarily executes the reservation function without a supporting call link.",
+          "absent": true,
+          "assessment": "No verified host/connection or plugin-to-reservation chain is asserted."
+        }
+      ]
+    },
+    {
+      "questionId": "d04",
+      "split": "development",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "29e3cbde24e10dd4811fb5482ccfa6b55c98bfede92ff2f0e9b7049d89746d6e",
+          "evidenceIds": [
+            "9a735871-1980-415d-9a8b-2cb95c568284"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The Dojo source uses a relative POST and forwards the data argument as request data."
+        },
+        {
+          "index": 2,
+          "textSha256": "7ec558f0c38def230a6340d6703969d4537bcf484433aa706c7dba705831909e",
+          "evidenceIds": [
+            "fe46e7ed-a4d6-403b-9568-6cb2aaad0178"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The local routes JSON maps this POST path to Reservations.reserve."
+        },
+        {
+          "index": 3,
+          "textSha256": "6485938999ca321ad6a002d179b7d2b7f44c4cb23d0beaadaf640349a1d6ef53",
+          "evidenceIds": [
+            "9a735871-1980-415d-9a8b-2cb95c568284",
+            "fe46e7ed-a4d6-403b-9568-6cb2aaad0178"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "This is explicitly conditional on a deployment using the route, and expressly says that connection is unverified; it is a static route candidate, not a runtime fact."
+        },
+        {
+          "index": 4,
+          "textSha256": "82083f3199dce1a79e10e73751590e17febe0eb205f4a8ffaef6403fd87237a3",
+          "evidenceIds": [
+            "1e640835-3741-4488-8305-a9802c085b99"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The Java method arguments and invocation match; Stock is a nested interface."
+        },
+        {
+          "index": 5,
+          "textSha256": "9f30d1bf63bfe7fb04d265298512df826f897948ce8bebad3b5065b033307635",
+          "evidenceIds": [
+            "18fa33af-dd02-44b6-9528-5ff766a00c73"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README describes Reservations and disclaims repository/deployment equivalence and runtime verification."
+        },
+        {
+          "index": 6,
+          "textSha256": "b7c73dbc7c96e0779712f261fb847112fc22fe6dc2394f1f3bfd3c8b32a3e77c",
+          "evidenceIds": [
+            "2b706848-d3e3-42bf-a85f-53c9f736bf10"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The legacy README explicitly names the unresolved computed plugin and unavailable build/runtime configuration."
+        },
+        {
+          "index": 7,
+          "textSha256": "c3f0da847d9a820cf0c293504bb95a02c2ee1b086120f4fbbf89f9d66889adc0",
+          "evidenceIds": [
+            "fa4a1bb5-93c8-44ae-8b2d-51fee373a26d"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The AMD loader concatenates plugins/ with name, then invokes open on the loaded module."
+        },
+        {
+          "index": 8,
+          "textSha256": "361c0d6ee6d86b1449a6001a35dc6ab18f90c85dbefe5625273cbb86ac72886c",
+          "evidenceIds": [
+            "fa4a1bb5-93c8-44ae-8b2d-51fee373a26d",
+            "2b706848-d3e3-42bf-a85f-53c9f736bf10"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The inference stays within the unresolved loader and does not invent its participation in reservation."
+        },
+        {
+          "index": 9,
+          "textSha256": "c646dc4f7f7db9b59f406ec5397f2793a296d78e8cf2feb65c4dbed30c80863d",
+          "evidenceIds": [
+            "fe46e7ed-a4d6-403b-9568-6cb2aaad0178",
+            "0e5dac24-2d52-4a88-8712-f5d899f76d20"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The two cited local declarations contain the local environment and stock topic but no legacy HTTP base/host wiring. They are separate route/deployment files."
+        },
+        {
+          "index": 10,
+          "textSha256": "f4208c646f1810b3eed0b237b42636bd8b06256f8ce1a61a480b12ca5bf2a953",
+          "evidenceIds": [
+            "d8a2e2a9-3ca4-4ebb-a609-ead869e554f9"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The shared StockReserved JSON declares version 1, sku/units and Kafka."
+        },
+        {
+          "index": 11,
+          "textSha256": "88dd4633fa16a2ad008cba8d5b46ad769ac169efe2324517a7887fd6468e59ae",
+          "evidenceIds": [
+            "22e1836e-8f33-4d28-89f6-f9817aad9583",
+            "56cf16fe-f4ba-4219-9961-fafde80026e4"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The cited local worker JSON declares warehouse.stock; the Java port and handler delegate the event without implementing storage."
+        },
+        {
+          "index": 12,
+          "textSha256": "6973f8f7983443edc7ddecb3f0d1573a41c565ac57ab85b0733ad64d712fe2e9",
+          "evidenceIds": [
+            "63bd541a-fa55-47fb-b6a2-ef6bbd38c409"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The worker README explicitly states the port-only consumer and absent subscriber/database implementations."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "452368a0d18708ff09900912ba85628eb1479df8b5f5ac0a879e99d68a0b8983",
+          "appropriate": true,
+          "assessment": "Relative URL host/proxy resolution is unknown."
+        },
+        {
+          "index": 2,
+          "textSha256": "fe6592cbd72a3a68bc1745757ec8e6e5ca7ab27675ede211b4cd240425986c3c",
+          "appropriate": true,
+          "assessment": "The deployed environment/revision using these routes is unknown."
+        },
+        {
+          "index": 3,
+          "textSha256": "cb937a0969d955a03407252f6e35ca9f738df3a932df9d6db1bb7701170d0fbf",
+          "appropriate": true,
+          "assessment": "The runtime plugin value/module is unresolved."
+        },
+        {
+          "index": 4,
+          "textSha256": "658679b91b4baabc8730052fbc9251abb251989278b5532123a464ecc92b0ae2",
+          "appropriate": true,
+          "assessment": "Concrete Stock persistence is not supplied."
+        },
+        {
+          "index": 5,
+          "textSha256": "916a327bf6b8c3935d1de0d0ea83e333e3945664e4f92488ddc37285319a8fac",
+          "appropriate": true,
+          "assessment": "No reservation-event publishing link is supplied; the question leaves it open."
+        },
+        {
+          "index": 6,
+          "textSha256": "80d888a50c548418e79eaa97ff88e54b0cd8eef93fb9ab0eec6ee80bf0c4fe32",
+          "appropriate": true,
+          "assessment": "No subscriber/database implementation for the stock projection is supplied."
+        },
+        {
+          "index": 7,
+          "textSha256": "4dbfa6e182795e315cb75fb43d1e7a12175cf73e75afa7f033eeb196f3a92f8c",
+          "appropriate": true,
+          "assessment": "Optional security controls are left open rather than asserted absent."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "request-and-route",
+          "claimIndices": [
+            1,
+            2,
+            3
+          ],
+          "unknownIndices": [],
+          "assessment": "Request and local handler are joined only as a conditional candidate.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "stock-port",
+          "claimIndices": [
+            4
+          ],
+          "unknownIndices": [
+            4
+          ],
+          "assessment": "The Stock delegation is explicit and concrete persistence remains unresolved.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "unresolved-host",
+          "claimIndices": [
+            1,
+            2,
+            3,
+            9
+          ],
+          "unknownIndices": [
+            1,
+            2
+          ],
+          "assessment": "Relative request and local declarations do not establish deployed host wiring.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "unresolved-plugin",
+          "claimIndices": [
+            6,
+            7,
+            8
+          ],
+          "unknownIndices": [
+            3
+          ],
+          "assessment": "Computed target, missing build/runtime configuration and missing reservation linkage are all preserved.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "A concrete resolved plugin target.",
+          "absent": true,
+          "assessment": "No resolved plugin, proven plugin/reservation chain, deployed route or concrete persistence is asserted."
+        },
+        {
+          "assertion": "A proven plugin-to-reservation call chain.",
+          "absent": true,
+          "assessment": "No resolved plugin, proven plugin/reservation chain, deployed route or concrete persistence is asserted."
+        },
+        {
+          "assertion": "Verified deployed routing or stock persistence.",
+          "absent": true,
+          "assessment": "No resolved plugin, proven plugin/reservation chain, deployed route or concrete persistence is asserted."
+        }
+      ]
+    },
+    {
+      "questionId": "d05",
+      "split": "development",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "25bed8b4b2dca9bc4cddf55be56bc25a59e2aab0e79c439b9412a9fd5a459056",
+          "evidenceIds": [
+            "ce353c64-8e99-4cf6-86b2-b42a40848abf"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The worker JSON directly declares the local logistics.shipments target."
+        },
+        {
+          "index": 2,
+          "textSha256": "78554355ac26169b003253cac430a35b83cba7b864b0657e3f8062f060e15bcc",
+          "evidenceIds": [
+            "b96e6021-445d-440c-b211-4e48e6f9ce66"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The Java source declares ShipmentStore and calls save without implementing it."
+        },
+        {
+          "index": 3,
+          "textSha256": "7592e34b9adcc9b6e4959dda47adf2c272cb039436af24b6912bd7d12f819ff9",
+          "evidenceIds": [
+            "ad8e2f9d-3c2c-4967-8e22-290ab5265eb7"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README describes the projection and explicitly says no live subscription link is implemented."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "c583fbaff2597ea9a4c41b6d1b4fba3ae627df3f066298eaaadb1df14009591b",
+          "appropriate": true,
+          "assessment": "Nonlocal configuration is not supplied."
+        },
+        {
+          "index": 2,
+          "textSha256": "b102a706ced13eb27dae0a83ac3ebf11d8510ef732d09440f779d36506906d88",
+          "appropriate": true,
+          "assessment": "Implementation and deployment of the local declaration remain unknown."
+        },
+        {
+          "index": 3,
+          "textSha256": "11c6cbfbae17e5ca4efeb3e378879bc434f8403d9f2e01a4f2f47882ef90bd06",
+          "appropriate": true,
+          "assessment": "This optional security question does not assert a control exists or is absent."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "projection-target",
+          "claimIndices": [
+            1
+          ],
+          "unknownIndices": [],
+          "assessment": "Both database and collection are given.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "local-target",
+          "claimIndices": [
+            1,
+            2,
+            3
+          ],
+          "unknownIndices": [
+            1,
+            2
+          ],
+          "assessment": "Local declaration is separated from implemented/deployed storage.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "A known live database or deployed projection.",
+          "absent": true,
+          "assessment": "No live target or storage semantics are inferred from the declaration."
+        },
+        {
+          "assertion": "Proven storage semantics from a declared target.",
+          "absent": true,
+          "assessment": "No live target or storage semantics are inferred from the declaration."
+        }
+      ]
+    },
+    {
+      "questionId": "d06",
+      "split": "development",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "b81d01d1afea8d2b57a778fa2f35b6cceaa65c4d39b797a450f582070c76c5b6",
+          "evidenceIds": [
+            "ce353c64-8e99-4cf6-86b2-b42a40848abf"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The local JSON contains the stated database, collection and topic."
+        },
+        {
+          "index": 2,
+          "textSha256": "41c571ee063c6551ab5b390a904840e626c695312b1ee685deb5b1478e6e5327",
+          "evidenceIds": [
+            "b96e6021-445d-440c-b211-4e48e6f9ce66"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The Java record, accept method and interface support each part of the claim."
+        },
+        {
+          "index": 3,
+          "textSha256": "54d8eb8715a672fd67375ab43268413a9a6a237aafd4dd8d96503298fba9b2f4",
+          "evidenceIds": [
+            "ad8e2f9d-3c2c-4967-8e22-290ab5265eb7"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README explicitly records the missing live subscription link."
+        },
+        {
+          "index": 4,
+          "textSha256": "1a20808302f9f909c1ced993fb5af40f40f0e8b3c92281e5a00570172e41bd8c",
+          "evidenceIds": [
+            "b96e6021-445d-440c-b211-4e48e6f9ce66",
+            "ad8e2f9d-3c2c-4967-8e22-290ab5265eb7"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The issued code contains only the store interface; the README disclaims runtime verification."
+        },
+        {
+          "index": 5,
+          "textSha256": "e53f1fd9a4ee7bfc2c5532a8da298721a29c6ad8dc46a93fbb4bcfc2287e92a8",
+          "evidenceIds": [
+            "a29dca57-6391-4b80-b829-4dd7a14acce9",
+            "9cdc5a46-813b-4eec-9fda-2daa077fb4da"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The carrier function and README supply the request and missing internals/guarantees/retries."
+        },
+        {
+          "index": 6,
+          "textSha256": "b9ae8aea4c8d3a7ba1501c9e14f36d1586d01351c781f5a5a3b6e01c3b77089b",
+          "evidenceIds": [
+            "a29dca57-6391-4b80-b829-4dd7a14acce9",
+            "ad8e2f9d-3c2c-4967-8e22-290ab5265eb7"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The cited outbound request is not a subscription; the worker README directly disclaims the live link."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "e086799a237f237bdbc615d104a5c675aed03506273c7560dd1bd937b3846528",
+          "appropriate": true,
+          "assessment": "Environment-specific authority is unknown."
+        },
+        {
+          "index": 2,
+          "textSha256": "172ebda9df8ff97601585947e00ce4c02843a22b5df29fcc94b5a0d253bba26d",
+          "appropriate": true,
+          "assessment": "A deployed subscriber is not established."
+        },
+        {
+          "index": 3,
+          "textSha256": "cb5e66fdb5fbea23f4b76afe20887bfd08dc39525d4bd8b471e2059fa145e210",
+          "appropriate": true,
+          "assessment": "A concrete store implementation is absent."
+        },
+        {
+          "index": 4,
+          "textSha256": "8c2edb973423166b4a2a4577bb93465f600f1c7f84cd5daab6df4421c6ce5c59",
+          "appropriate": true,
+          "assessment": "The live carrier event source/contract is unknown."
+        },
+        {
+          "index": 5,
+          "textSha256": "8f515b66bfdd7f08227e75f87887eb6eaa326140986a4dd3843611865951133f",
+          "appropriate": true,
+          "assessment": "Active deployment revisions are unknown."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "projection-target",
+          "claimIndices": [
+            1
+          ],
+          "unknownIndices": [],
+          "assessment": "The scoped target is named.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "handler-and-port",
+          "claimIndices": [
+            2
+          ],
+          "unknownIndices": [],
+          "assessment": "Message fields, handler and interface are described.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "missing-subscription",
+          "claimIndices": [
+            3,
+            6
+          ],
+          "unknownIndices": [
+            2,
+            4,
+            5
+          ],
+          "assessment": "Missing live subscription and unknown deployment remain explicit.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "missing-store",
+          "claimIndices": [
+            2,
+            4
+          ],
+          "unknownIndices": [
+            3
+          ],
+          "assessment": "The missing concrete database implementation is stated.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "A verified carrier subscription.",
+          "absent": true,
+          "assessment": "No live subscription, working database or delivery guarantee is claimed."
+        },
+        {
+          "assertion": "A working database implementation or delivery guarantee from interface declarations.",
+          "absent": true,
+          "assessment": "No live subscription, working database or delivery guarantee is claimed."
+        }
+      ]
+    },
+    {
+      "questionId": "d07",
+      "split": "development",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "e48febb5817e3ec6f3e450f1ddd657c57b9129dfd009058aa4941af09e00ca78",
+          "evidenceIds": [
+            "f4ed0a12-6194-4b67-9dd3-155b81b8761b"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The method forwards cursor unchanged and returns the String result."
+        },
+        {
+          "index": 2,
+          "textSha256": "cc9c4e5234595686c125ed059b8c64191df73f06cce7fca6d6f5d759e6d8b8dd",
+          "evidenceIds": [
+            "f4ed0a12-6194-4b67-9dd3-155b81b8761b",
+            "d725beb4-3514-40b3-851c-f15c32a2d80a"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The source only defines a port and delegation; all four missing pieces are listed in the README."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "3d88cf9217d5f1ed30c80c3f0d250b45349f200072b72e32ad139f979d29a7d0",
+          "appropriate": true,
+          "assessment": "Supplier cursor semantics are not implemented by the port."
+        },
+        {
+          "index": 2,
+          "textSha256": "a861e3bdf9df270166331881c87655f2e2b9b70413873d41ded4f43b116cd55c",
+          "appropriate": true,
+          "assessment": "Deployment is not established."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "cursor-pass-through",
+          "claimIndices": [
+            1
+          ],
+          "unknownIndices": [],
+          "assessment": "Argument forwarding and return value are explicit.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "code-scope",
+          "claimIndices": [
+            1,
+            2
+          ],
+          "unknownIndices": [
+            1,
+            2
+          ],
+          "assessment": "Visible delegation is distinguished from implementation and deployment.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "Cursor persistence or automatic recovery inferred from fetchSince.",
+          "absent": true,
+          "assessment": "No persistent cursor or automatic recovery is inferred."
+        },
+        {
+          "assertion": "A verified deployed synchronization job.",
+          "absent": true,
+          "assessment": "No persistent cursor or automatic recovery is inferred."
+        }
+      ]
+    },
+    {
+      "questionId": "d08",
+      "split": "development",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "3b628c814ea343b3aa384d05e05923260b6f49ef3d64394afb9742b78229d73a",
+          "evidenceIds": [
+            "d725beb4-3514-40b3-851c-f15c32a2d80a"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README lists the client, scheduling, cursor persistence and failure recovery as unimplemented."
+        },
+        {
+          "index": 2,
+          "textSha256": "b5a4a2cdab2d44813012307baad88c96237f232a94cf01f33f1a3cbca31608ce",
+          "evidenceIds": [
+            "f4ed0a12-6194-4b67-9dd3-155b81b8761b"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The Java signature and return expression exactly match this description."
+        },
+        {
+          "index": 3,
+          "textSha256": "6a5c323916000b2b73ef005224d346d5da63f15668274530c3c13909f7e0e745",
+          "evidenceIds": [
+            "f4ed0a12-6194-4b67-9dd3-155b81b8761b",
+            "d725beb4-3514-40b3-851c-f15c32a2d80a"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "Injected port delegation and the missing concrete connection are supported by code and README."
+        },
+        {
+          "index": 4,
+          "textSha256": "e15c077a17c1e64e5ccc5b4702dd710d42e8567dbaa1fcabfbec5f73d5a0966b",
+          "evidenceIds": [
+            "d725beb4-3514-40b3-851c-f15c32a2d80a",
+            "f4ed0a12-6194-4b67-9dd3-155b81b8761b"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The missing execution/persistence/recovery components are explicitly documented; scope stays with supplied sources."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "ceb8718d9fe86d2ce317901ce12bb42eb6c4025486dfd1eba69e5f7d06edabcb",
+          "appropriate": true,
+          "assessment": "Concrete external client is absent."
+        },
+        {
+          "index": 2,
+          "textSha256": "4fdde4fe8680fbae53a396a735a535ac56ea420caa92d8a48ed97ef7f8afeea2",
+          "appropriate": true,
+          "assessment": "Scheduling mechanism/cadence is absent."
+        },
+        {
+          "index": 3,
+          "textSha256": "577d8c5abfad85ea681e1a49b0e4aaa24754953da846f360bea34b5c1f0eaf47",
+          "appropriate": true,
+          "assessment": "Cursor persistence is absent."
+        },
+        {
+          "index": 4,
+          "textSha256": "97298e3f7ee8c05e51beca45392d647943f59f564b6121a35898d2a0b023c8c6",
+          "appropriate": true,
+          "assessment": "Recovery and repeated/partial response handling are absent."
+        },
+        {
+          "index": 5,
+          "textSha256": "84d1cfefe626f8e85fe434c300c067f1c1d312db19fc1df1566acbb0235ee95f",
+          "appropriate": true,
+          "assessment": "Runtime deployment verification remains unavailable."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "cursor-pass-through",
+          "claimIndices": [
+            2,
+            3
+          ],
+          "unknownIndices": [],
+          "assessment": "The cursor argument and fetchSince call are explained.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "missing-execution",
+          "claimIndices": [
+            1,
+            3,
+            4
+          ],
+          "unknownIndices": [
+            1,
+            2
+          ],
+          "assessment": "Both concrete client and scheduling are explicitly missing.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "missing-recovery",
+          "claimIndices": [
+            1,
+            4
+          ],
+          "unknownIndices": [
+            3,
+            4
+          ],
+          "assessment": "Persistence, recovery and unresolved restart behavior are all retained.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "Automatic cursor persistence or restart recovery.",
+          "absent": true,
+          "assessment": "No automatic recovery or system-wide absence is asserted."
+        },
+        {
+          "assertion": "Global absence of an external scheduler or client outside the supplied sources.",
+          "absent": true,
+          "assessment": "No automatic recovery or system-wide absence is asserted."
+        }
+      ]
+    },
+    {
+      "questionId": "d09",
+      "split": "development",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "beec132c6c178ec77a101ede50d6efcacc5b3396eca7edaef3dd2e632101aca3",
+          "evidenceIds": [
+            "057d5f18-b727-4841-b04b-08871b566e2e",
+            "0e5dac24-2d52-4a88-8712-f5d899f76d20"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The local README and JSON explicitly separate local declarations from production."
+        },
+        {
+          "index": 2,
+          "textSha256": "e5b57de80a8baa63dd51a8eba458361ae6ae0bedf7b8ccb0bfa71b0819044030",
+          "evidenceIds": [
+            "b474c9e6-1800-409e-a0e7-2af2e64ede73",
+            "c055d4bb-320a-4aa1-924e-8495d03e2c2a"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The production JSON has the literal placeholder and its README says the value is operator-supplied and unknown."
+        },
+        {
+          "index": 3,
+          "textSha256": "0b6abc6f1c126680714ec0c0ccf18b17348c7a3e8c944823af0d4acc76d00a29",
+          "evidenceIds": [
+            "26e5b2de-1154-4f30-adce-a9a719102706"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "Orders.java reads ORDER_TOPIC with configuredTopic fallback and only declares an EventPublisher; its comment excludes a real Kafka driver."
+        },
+        {
+          "index": 4,
+          "textSha256": "9d47bc49d6e9ef93c1acee21c6f7056c48774f850b53d7cdced5cc810cb7b9f7",
+          "evidenceIds": [
+            "6d5491dc-28f8-429b-bec1-fccde7d07f25",
+            "f58d9f58-5c08-4e3c-baa3-1bad27a9abd4"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The API README and JSON contain the stated differing values and environment override."
+        },
+        {
+          "index": 5,
+          "textSha256": "a1d0e84c427f776b4d76eaf82908c600f23f5fcc2afd3a5ed15d68a9d2b38908",
+          "evidenceIds": [
+            "f58d9f58-5c08-4e3c-baa3-1bad27a9abd4",
+            "6d5491dc-28f8-429b-bec1-fccde7d07f25",
+            "368ac089-8d91-41bd-90fa-7d402bc76f48"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "This is the documented unqualified README versus local configuration discrepancy, also explicitly named by the historical runbook; it is not a local/unknown-production conflict."
+        },
+        {
+          "index": 6,
+          "textSha256": "5e42c243cc20bebc52a524574fa8c960804d7f5ab8d6757772614c9118388c84",
+          "evidenceIds": [
+            "25044091-7966-48b5-ad83-d081c0d53e30",
+            "b3b4c9af-a910-4963-a696-dd643266e1d1",
+            "9a739851-8c10-462b-8060-c985d9f97d3b"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The worker JSON declares the local topic; start reads the override and invokes a subscriber interface; its README leaves production and deployment unknown."
+        },
+        {
+          "index": 7,
+          "textSha256": "ef3c50dccd34795f0aeba3372d6f92e0723c7f2eb37cf7f9c524b89b7eb1c028",
+          "evidenceIds": [
+            "057d5f18-b727-4841-b04b-08871b566e2e",
+            "0e5dac24-2d52-4a88-8712-f5d899f76d20",
+            "b474c9e6-1800-409e-a0e7-2af2e64ede73",
+            "c055d4bb-320a-4aa1-924e-8495d03e2c2a",
+            "26e5b2de-1154-4f30-adce-a9a719102706"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The local value cannot resolve an operator-supplied production placeholder; the inference preserves that boundary."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "f315b50cd2564d1149d93c54f6f13523ebe2b73e2ab89014e1ebf155c45ce999",
+          "appropriate": true,
+          "assessment": "The actual operator value is unknown."
+        },
+        {
+          "index": 2,
+          "textSha256": "1b4badce6fa54f29c395e17de08d4dbb12647a874e2d49eebfaa29d435e8f883",
+          "appropriate": true,
+          "assessment": "After the cited conflict, authority is a legitimate unanswered question; the discrepancy itself is already stated in claims."
+        },
+        {
+          "index": 3,
+          "textSha256": "b7ba4ce3a60732fcf624528c912d3540ee3c9b9b8b82f13f136e3a7cdd964cfb",
+          "appropriate": true,
+          "assessment": "Co-deployed revisions and actual production topic need external evidence."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "production-placeholder",
+          "claimIndices": [
+            2,
+            7
+          ],
+          "unknownIndices": [
+            1,
+            3
+          ],
+          "assessment": "The production placeholder and missing actual value are explicit.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "no-local-substitution",
+          "claimIndices": [
+            1,
+            2,
+            7
+          ],
+          "unknownIndices": [],
+          "assessment": "Local configuration is explicitly rejected as proof of production.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "A known production topic inferred from local config.",
+          "absent": true,
+          "assessment": "No production value is substituted; the only conflict is the separately supported README/local disagreement."
+        },
+        {
+          "assertion": "A conflict between a known local value and an unknown production value.",
+          "absent": true,
+          "assessment": "No production value is substituted; the only conflict is the separately supported README/local disagreement."
+        }
+      ]
+    },
+    {
+      "questionId": "d10",
+      "split": "development",
+      "passed": false,
+      "assessment": "Required membership/scoping propositions pass, but optional claim 2 invents a verified header path despite incompatible literal header names. The case fails grounding.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "8e976a0a0b912ce4c28e18618047ae1955a44d07bda9d6e0b4f6261a77d4889e",
+          "evidenceIds": [
+            "375282ab-ddeb-45a6-b655-750ba62cbae2",
+            "290803fe-730f-4547-bfe1-2c6bd068475a"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The record contains only tenantId and the README explicitly disclaims authentication, membership validation and authorization."
+        },
+        {
+          "index": 2,
+          "textSha256": "28e6e9d36111922830f8a06e3ddb4c1a6958f51a28758cb6882cfd2e5a727434",
+          "evidenceIds": [
+            "9270a4cd-6432-437e-82ed-37b1ba350624",
+            "7d30fbad-fd9f-484f-8db3-d9f1b5477e51",
+            "26e5b2de-1154-4f30-adce-a9a719102706"
+          ],
+          "supportedAsWritten": false,
+          "assessment": "Unsupported end-to-end propagation: checkout sends x-tenant-id, whereas the route binds Orders.accept.tenantId to X-Tenant. The headers are not equal even case-insensitively, and no adapter/rewrite or HTTP implementation bridges them. Orders.java alone supports argument-to-event propagation, not this combined factual path."
+        },
+        {
+          "index": 3,
+          "textSha256": "900322e85414484334d0483a9c101f2d7619e573f4d11c682e63b4f1fdbce166",
+          "evidenceIds": [
+            "1595642c-3493-48c5-9e39-fd6d82771849"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The facade README states header propagation and absent authentication within that facade."
+        },
+        {
+          "index": 4,
+          "textSha256": "cbd283e4eb74c689eeabe46be4e377753105038cd6ce32504902c4a2ab33b51d",
+          "evidenceIds": [
+            "375282ab-ddeb-45a6-b655-750ba62cbae2"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The tenant-library README explicitly marks deployment/runtime unverified."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "121a9198a3e6b4ebf9f376e24a4acc52173dd180ddbc908a0579be8f6532695b",
+          "appropriate": true,
+          "assessment": "Deployed identity controls are not established."
+        },
+        {
+          "index": 2,
+          "textSha256": "f21212ef11dedd5663b1a7bb5518d1cdf397c29caa2f874f4c4539bbf197e0e4",
+          "appropriate": true,
+          "assessment": "The question preserves uncertainty about enforcement outside supplied spans."
+        },
+        {
+          "index": 3,
+          "textSha256": "665ec31adc8a5b2fe79232ef54bfd3c5d625c4f0b75ca85a67b08eb31ca4cdb2",
+          "appropriate": true,
+          "assessment": "Co-deployment remains unknown."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "identifier-only",
+          "claimIndices": [
+            1
+          ],
+          "unknownIndices": [],
+          "assessment": "The core membership question is correctly answered with the library record and limitations.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "controls-elsewhere",
+          "claimIndices": [
+            1,
+            4
+          ],
+          "unknownIndices": [
+            1,
+            2,
+            3
+          ],
+          "assessment": "Controls outside the library and deployment remain open.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "TenantContext proves tenant membership.",
+          "absent": true,
+          "assessment": "Neither membership proof nor system-wide absence is asserted; the separate cross-component header-flow claim is nevertheless unsupported."
+        },
+        {
+          "assertion": "No authentication or authorization exists anywhere in the system.",
+          "absent": true,
+          "assessment": "Neither membership proof nor system-wide absence is asserted; the separate cross-component header-flow claim is nevertheless unsupported."
+        }
+      ]
+    },
+    {
+      "questionId": "d11",
+      "split": "development",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "7e6ddfce82e8d616b192547c903ab9399574d45b91393cacd006de548053d40e",
+          "evidenceIds": [
+            "10fb2260-794c-4507-a813-b71092aaef31"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README explicitly distinguishes definition ownership from a running producer."
+        },
+        {
+          "index": 2,
+          "textSha256": "512d7471a648805ed6b84bbb3b37907fd0cd47737d0ac1bf26aad2f84fda12c0",
+          "evidenceIds": [
+            "2ab39d28-8818-4d88-accf-810d01962169"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The shared JSON contains the named fields, version, key and transport."
+        },
+        {
+          "index": 3,
+          "textSha256": "3e303bc2b918d735f6ac2dda88aeba1faabda9e2e296511f812c1aa2d91cdf61",
+          "evidenceIds": [
+            "26e5b2de-1154-4f30-adce-a9a719102706"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "Orders.java constructs the record and invokes an EventPublisher interface; its comment excludes a real HTTP server/Kafka driver."
+        },
+        {
+          "index": 4,
+          "textSha256": "286b338a61c664a1522bdb1e6e0331fe2e6b90cc3a117badb4596a34daf78094",
+          "evidenceIds": [
+            "10fb2260-794c-4507-a813-b71092aaef31",
+            "26e5b2de-1154-4f30-adce-a9a719102706"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The distinction and candidate publisher-shaped call are supported; no actual broker publication is claimed."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "66858f2479755a1b28e4a96a9e262fb1763c6722b375efee34abd4d2212a0e93",
+          "appropriate": true,
+          "assessment": "The concrete publisher and Kafka connection are absent."
+        },
+        {
+          "index": 2,
+          "textSha256": "65f22992d7c0ebd4bd9fca398365a41a3fe1f5d9861a9ee739487d48e9d19b55",
+          "appropriate": true,
+          "assessment": "A deployed publisher implementation is unverified."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "schema-declaration",
+          "claimIndices": [
+            1,
+            2
+          ],
+          "unknownIndices": [],
+          "assessment": "The contract declaration is described.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "not-running-producer",
+          "claimIndices": [
+            1,
+            3,
+            4
+          ],
+          "unknownIndices": [
+            1,
+            2
+          ],
+          "assessment": "Definition ownership is separated from live publication.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "The library runs a publisher because it owns the schema.",
+          "absent": true,
+          "assessment": "The library is not labelled a running publisher, and no complete publisher inventory is claimed."
+        },
+        {
+          "assertion": "All publishers are enumerated by the contract library.",
+          "absent": true,
+          "assessment": "The library is not labelled a running publisher, and no complete publisher inventory is claimed."
+        }
+      ]
+    },
+    {
+      "questionId": "d12",
+      "split": "development",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "3d70891a7258b6d217ab826faeeaf3b0bcfdd59fa07ef08af6e02c4d4407362d",
+          "evidenceIds": [
+            "581dbbc8-2bca-4ef7-b2fb-378bcc5c3354"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The migration calls createIndex on shop.orders with tenantId/orderId and unique:true."
+        },
+        {
+          "index": 2,
+          "textSha256": "140098469d9ad163368ad2bc34497fa98dab6b00f6ec1295326cf2d75e22d70d",
+          "evidenceIds": [
+            "a2065ca2-c9cc-42c8-8b9e-13f8c8322a69"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The migration README explicitly states non-proof of application and absent runner/database."
+        },
+        {
+          "index": 3,
+          "textSha256": "b5b94670f352c39b9b71fb4e122e276de724fceefc5a2d584d52d1f8f85729ae",
+          "evidenceIds": [
+            "a2065ca2-c9cc-42c8-8b9e-13f8c8322a69",
+            "581dbbc8-2bca-4ef7-b2fb-378bcc5c3354"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The inference correctly separates source declaration from live database state."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "b40378c17b970b23461cf8c5377830d0887fcd4247011bf9ac83bf21c9365a77",
+          "appropriate": true,
+          "assessment": "Actual migration application is unknown."
+        },
+        {
+          "index": 2,
+          "textSha256": "8b9a293faa7c3c5fb271b5e2177b5cdacd994b7aa7d6c9338dcab2af7db7c118",
+          "appropriate": true,
+          "assessment": "Relevant deployment/database identity is unknown."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "declared-index",
+          "claimIndices": [
+            1
+          ],
+          "unknownIndices": [],
+          "assessment": "Both indexed fields, uniqueness and target are named.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "unproven-application",
+          "claimIndices": [
+            2,
+            3
+          ],
+          "unknownIndices": [
+            1,
+            2
+          ],
+          "assessment": "Application and runtime database state remain unproven.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "The index is installed because its migration exists.",
+          "absent": true,
+          "assessment": "No installed index or operational uniqueness/idempotency guarantee is inferred."
+        },
+        {
+          "assertion": "Uniqueness, concurrency or idempotency guarantees from an unapplied migration.",
+          "absent": true,
+          "assessment": "No installed index or operational uniqueness/idempotency guarantee is inferred."
+        }
+      ]
+    },
+    {
+      "questionId": "h01",
+      "split": "reserved",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "13482812172ff4c52b19f900cacd05973ec72ab72a15e05735cd06e0541c14fe",
+          "evidenceIds": [
+            "0e5dac24-2d52-4a88-8712-f5d899f76d20"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The cited deployment-local JSON directly names the topic value."
+        },
+        {
+          "index": 2,
+          "textSha256": "da75c198473ee6409a66cb2fe723fd3b18b9ed2c16fe262b956a2fe0cb57d6f4",
+          "evidenceIds": [
+            "22e1836e-8f33-4d28-89f6-f9817aad9583"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The separately cited worker local JSON names the same topic value."
+        }
+      ],
+      "unknownReview": [],
+      "requirements": [
+        {
+          "id": "topic-location",
+          "claimIndices": [
+            1,
+            2
+          ],
+          "unknownIndices": [],
+          "assessment": "The requested files and value are given.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "local-declaration",
+          "claimIndices": [
+            1,
+            2
+          ],
+          "unknownIndices": [],
+          "assessment": "Both source paths explicitly identify local configuration; no additional deployment claim is made.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "A known production stock topic.",
+          "absent": true,
+          "assessment": "Only local file declarations are asserted; no production topic or live subscription claim occurs."
+        },
+        {
+          "assertion": "A verified live subscription inferred from a declared value.",
+          "absent": true,
+          "assessment": "Only local file declarations are asserted; no production topic or live subscription claim occurs."
+        }
+      ]
+    },
+    {
+      "questionId": "h02",
+      "split": "reserved",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "21d6eb70b90f5838a38068ebcf593aabdbef658cc670e6bea0c9eff7574b9825",
+          "evidenceIds": [
+            "22e1836e-8f33-4d28-89f6-f9817aad9583"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The worker JSON declares all three local values."
+        },
+        {
+          "index": 2,
+          "textSha256": "8084d6ca49936674ec128ae0567fd4081f28ad3573858d61396fe910b831b377",
+          "evidenceIds": [
+            "d8a2e2a9-3ca4-4ebb-a609-ead869e554f9"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The shared contract defines version 1, sku/units types and Kafka."
+        },
+        {
+          "index": 3,
+          "textSha256": "4a4d3b858b1fbbbbaf24b489d8bf4a1fd24090a9d34d22ebc9a984573521bd44",
+          "evidenceIds": [
+            "56cf16fe-f4ba-4219-9961-fafde80026e4"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The Java record and method show the stated shape and project delegation."
+        },
+        {
+          "index": 4,
+          "textSha256": "09e6afc8b682c397c1f12cc9ab2b70ce7d2302c89bbf4a9d0f4d3d10f4a0da51",
+          "evidenceIds": [
+            "22e1836e-8f33-4d28-89f6-f9817aad9583",
+            "d8a2e2a9-3ca4-4ebb-a609-ead869e554f9",
+            "56cf16fe-f4ba-4219-9961-fafde80026e4",
+            "63bd541a-fa55-47fb-b6a2-ef6bbd38c409"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The integration is labelled intended and declaration-level, expressly without a verified subscriber; the component README supports this bounded synthesis."
+        },
+        {
+          "index": 5,
+          "textSha256": "35cbb4b4abf8af5174ff96818ba90c1a6e08dd6ebb414303bf4d4d3196c93d89",
+          "evidenceIds": [
+            "63bd541a-fa55-47fb-b6a2-ef6bbd38c409"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README explicitly records the separate event, application port and missing subscriber/database implementations."
+        },
+        {
+          "index": 6,
+          "textSha256": "aa5149325bf802cb71bab824023ac49f8e183841b62a17a25510c8d0e19f8f35",
+          "evidenceIds": [
+            "56cf16fe-f4ba-4219-9961-fafde80026e4",
+            "63bd541a-fa55-47fb-b6a2-ef6bbd38c409"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The Java interface and README directly establish the absent concrete store."
+        },
+        {
+          "index": 7,
+          "textSha256": "10eda3c5df3f0c8df300fe06e23617e8ed790778cf6d6e99a7a3e6f71c436238",
+          "evidenceIds": [
+            "63bd541a-fa55-47fb-b6a2-ef6bbd38c409"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README explicitly marks deployment and runtime behavior unverified."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "5760830c8913e020084b10d198c138d174c5b17efd803779f5959b385a6a174d",
+          "appropriate": true,
+          "assessment": "The actual subscriber binding is absent."
+        },
+        {
+          "index": 2,
+          "textSha256": "46706ed531098224f216c313f6c9adf5a9117ffba8e2b5de61150af7b711144a",
+          "appropriate": true,
+          "assessment": "The concrete store adapter is absent."
+        },
+        {
+          "index": 3,
+          "textSha256": "45dd02147df406f6b81cf0db4dbe374a7169b3bbc11126ff97622ec031451a7c",
+          "appropriate": true,
+          "assessment": "Nonlocal/deployed configuration is unknown."
+        },
+        {
+          "index": 4,
+          "textSha256": "c9745c8f7f29f31acff804e9748de2679d0d8d927370cc65f97700d3dadd9a3c",
+          "appropriate": true,
+          "assessment": "Runtime delivery and storage semantics require missing implementations."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "topic-location",
+          "claimIndices": [
+            1
+          ],
+          "unknownIndices": [],
+          "assessment": "The local topic is supplied.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "message-contract",
+          "claimIndices": [
+            2,
+            3
+          ],
+          "unknownIndices": [],
+          "assessment": "The message fields and shared contract are described.",
+          "equivalentSupport": "The code record independently contains sku/units, but the shared JSON is also selected and cited.",
+          "satisfied": true
+        },
+        {
+          "id": "projection-port",
+          "claimIndices": [
+            3,
+            6
+          ],
+          "unknownIndices": [],
+          "assessment": "The handler delegates to the named store interface.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "unimplemented-boundaries",
+          "claimIndices": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "unknownIndices": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "assessment": "Missing subscriber/database and unverified live behavior are explicit.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "A verified live stock subscription.",
+          "absent": true,
+          "assessment": "No active subscription, delivery guarantee or working store is asserted."
+        },
+        {
+          "assertion": "Delivery or persistence guarantees from a port signature.",
+          "absent": true,
+          "assessment": "No active subscription, delivery guarantee or working store is asserted."
+        }
+      ]
+    },
+    {
+      "questionId": "h03",
+      "split": "reserved",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "97e53df688a088fe90365c23cfb8d601fdd7a5a5c8d698a6e7a98e662cef9524",
+          "evidenceIds": [
+            "9a735871-1980-415d-9a8b-2cb95c568284"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The source contains reserve(data) and the stated POST path."
+        },
+        {
+          "index": 2,
+          "textSha256": "0c710131b2e8b2d6f8db325d5994446bf42452b423c7b998d4490c402f685566",
+          "evidenceIds": [
+            "fe46e7ed-a4d6-403b-9568-6cb2aaad0178"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The local route explicitly maps this path to Reservations.reserve."
+        },
+        {
+          "index": 3,
+          "textSha256": "b568e0982c4c2a8724cb829fe7de2c8ecac15080b7ec5684d062291e563bab83",
+          "evidenceIds": [
+            "9a735871-1980-415d-9a8b-2cb95c568284",
+            "fe46e7ed-a4d6-403b-9568-6cb2aaad0178"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "This is explicitly a candidate inferred from matching literal method/path, not deployed routing proof."
+        },
+        {
+          "index": 4,
+          "textSha256": "159e960809b1736783ed25a36b2f2c28f9c200f70ee624cc17149b733c424b2e",
+          "evidenceIds": [
+            "1e640835-3741-4488-8305-a9802c085b99"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The method delegates through Stock with the stated arguments; no concrete store appears."
+        },
+        {
+          "index": 5,
+          "textSha256": "6e343e4adc7bbb849b106d459301258cb984a333c9af10ecb62092788d137e41",
+          "evidenceIds": [
+            "2b706848-d3e3-42bf-a85f-53c9f736bf10"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The legacy README explicitly marks deployment/runtime unverified."
+        },
+        {
+          "index": 6,
+          "textSha256": "d6f99d762683ad82dde9fcce5f1a37b859b41d0a52ec66f8a7bfa75ccab9762e",
+          "evidenceIds": [
+            "18fa33af-dd02-44b6-9528-5ff766a00c73"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The inventory README explicitly identifies two logical applications and rejects inferring one deployed service."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "28866c963e4551c2b9ed9e9190e5f17fe04646d40eb29b1e17215d84641a2d00",
+          "appropriate": true,
+          "assessment": "The relative client-to-route connection is not established."
+        },
+        {
+          "index": 2,
+          "textSha256": "0ad4a948fd72f19f2952b0a2dc0895dc70905085041a49a9bd4ab5431ae97736",
+          "appropriate": true,
+          "assessment": "Deployed environment/revisions remain unknown."
+        },
+        {
+          "index": 3,
+          "textSha256": "0fe505e64f910aee867280cbacb2d229bc8e18334fa3db6942cd3b7a3b89d94e",
+          "appropriate": true,
+          "assessment": "The concrete Stock adapter is absent."
+        },
+        {
+          "index": 4,
+          "textSha256": "c82143967c13e87e9686db8eadef8e384854350d90679da595597833ee433877",
+          "appropriate": true,
+          "assessment": "This optional security question does not invent a control."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "request-and-route",
+          "claimIndices": [
+            1,
+            2,
+            3
+          ],
+          "unknownIndices": [],
+          "assessment": "The request and candidate route are located.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "candidate-route",
+          "claimIndices": [
+            3,
+            5,
+            6
+          ],
+          "unknownIndices": [
+            1,
+            2
+          ],
+          "assessment": "Candidate status and unresolved deployed connectivity are explicit.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "A verified deployed connection or host.",
+          "absent": true,
+          "assessment": "No deployed connection, host or plugin dependency is asserted."
+        },
+        {
+          "assertion": "The plugin necessarily executes the reservation function without a supporting call link.",
+          "absent": true,
+          "assessment": "No deployed connection, host or plugin dependency is asserted."
+        }
+      ]
+    },
+    {
+      "questionId": "h04",
+      "split": "reserved",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "d9025cd51a98cf94560cd0d1c1b45b0e9528e9f84084284767be916b0eb01416",
+          "evidenceIds": [
+            "9a735871-1980-415d-9a8b-2cb95c568284"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The Dojo source makes the stated request with the provided data."
+        },
+        {
+          "index": 2,
+          "textSha256": "9830824357da8c41d9511cab6176352ef59554712aad93e0eb77e156650c4f6d",
+          "evidenceIds": [
+            "fe46e7ed-a4d6-403b-9568-6cb2aaad0178",
+            "1e640835-3741-4488-8305-a9802c085b99"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The local route and Java code give the named handler and interface delegation without storage implementation."
+        },
+        {
+          "index": 3,
+          "textSha256": "eba996d4aa03f24f67966753cba65d41ddbc80ef85af6489ab57d2c6f31c685b",
+          "evidenceIds": [
+            "9a735871-1980-415d-9a8b-2cb95c568284",
+            "fe46e7ed-a4d6-403b-9568-6cb2aaad0178",
+            "18fa33af-dd02-44b6-9528-5ff766a00c73"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The integration is labelled intended and explicitly not verified in deployment."
+        },
+        {
+          "index": 4,
+          "textSha256": "5162b32997b6f7a522232e7ed5fb1d0f367d21fe84055ef0b2afb4b1f78f52ff",
+          "evidenceIds": [
+            "22e1836e-8f33-4d28-89f6-f9817aad9583",
+            "56cf16fe-f4ba-4219-9961-fafde80026e4"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The worker JSON and Java source support the topic/target and port-only delegation."
+        },
+        {
+          "index": 5,
+          "textSha256": "4e962dd4c56f60576f580bd802e0e2bf463597fe191a56267a8b1640c7d9d34f",
+          "evidenceIds": [
+            "d8a2e2a9-3ca4-4ebb-a609-ead869e554f9"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The shared JSON supports every stated field, version and transport."
+        },
+        {
+          "index": 6,
+          "textSha256": "00d49c600f31479f606269b6e36a0722be4e456a1437539bafaed9caa1cf88db",
+          "evidenceIds": [
+            "63bd541a-fa55-47fb-b6a2-ef6bbd38c409",
+            "56cf16fe-f4ba-4219-9961-fafde80026e4",
+            "22e1836e-8f33-4d28-89f6-f9817aad9583"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README explicitly says subscriber/database implementations are absent; code/configuration do not fill that gap."
+        },
+        {
+          "index": 7,
+          "textSha256": "90a045c70234d6f2ef477b89dd8b60e847eb8065f8a3f423d9ac500f4d361603",
+          "evidenceIds": [
+            "2b706848-d3e3-42bf-a85f-53c9f736bf10",
+            "fa4a1bb5-93c8-44ae-8b2d-51fee373a26d"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README names unavailable build/runtime plugin data, and plugin.js constructs the stated path dynamically."
+        },
+        {
+          "index": 8,
+          "textSha256": "036d466bc99269c99a82c2f58437c44f6cbc0a50b1f141aade5ed7308e6c7fda",
+          "evidenceIds": [
+            "ecc177a8-ce3d-4cd8-8667-e25569fd8381"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The issued package JSON has exactly name/version/private and no plugin/build settings."
+        },
+        {
+          "index": 9,
+          "textSha256": "8659554fc25ace49d4dd010d66e1bac1c0ecb40fecad67b998a0221713152759",
+          "evidenceIds": [
+            "2b706848-d3e3-42bf-a85f-53c9f736bf10"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The legacy README explicitly marks deployment/runtime behavior unverified."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "18623891669efa48f738a93474b7a949e20d8d765c8140387c4bba72595d67e0",
+          "appropriate": true,
+          "assessment": "Deployed client-to-route wiring is unknown."
+        },
+        {
+          "index": 2,
+          "textSha256": "24d587fbd013b8552335a1ab56eec41859c10b2deaf2a43ac231996878fef77b",
+          "appropriate": true,
+          "assessment": "Runtime plugin value/artifact and build configuration are unavailable."
+        },
+        {
+          "index": 3,
+          "textSha256": "fdb8023c38b361742b0cdd9e876c8162cabe042e21be3822aab448256a24a08d",
+          "appropriate": true,
+          "assessment": "The concrete reservation store is absent."
+        },
+        {
+          "index": 4,
+          "textSha256": "74df5cb25987013d8a73cd24d7eae155c7bf01bd54d2658da73ff3a15b632707",
+          "appropriate": true,
+          "assessment": "The projection subscriber/database are absent."
+        },
+        {
+          "index": 5,
+          "textSha256": "dadbb279d391f0c948fe8f6bbc4eed05204d24db1f1c714105a0a0bc8eaa33a4",
+          "appropriate": true,
+          "assessment": "Deployed environment/revisions are unknown."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "request-and-route",
+          "claimIndices": [
+            1,
+            2,
+            3
+          ],
+          "unknownIndices": [],
+          "assessment": "Request and local handler are explained without claiming deployed connectivity.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "stock-port",
+          "claimIndices": [
+            2
+          ],
+          "unknownIndices": [
+            3
+          ],
+          "assessment": "Stock delegation and unresolved persistence are preserved.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "unresolved-host",
+          "claimIndices": [
+            3,
+            9
+          ],
+          "unknownIndices": [
+            1,
+            5
+          ],
+          "assessment": "Deployment wiring and environment remain unknown.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "unresolved-plugin",
+          "claimIndices": [
+            7,
+            8
+          ],
+          "unknownIndices": [
+            2
+          ],
+          "assessment": "Computed module name and missing plugin/build configuration are explicit; no link to reservation execution is invented.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "A concrete resolved plugin target.",
+          "absent": true,
+          "assessment": "No concrete plugin target, plugin-to-reservation chain or verified persistence is asserted."
+        },
+        {
+          "assertion": "A proven plugin-to-reservation call chain.",
+          "absent": true,
+          "assessment": "No concrete plugin target, plugin-to-reservation chain or verified persistence is asserted."
+        },
+        {
+          "assertion": "Verified deployed routing or stock persistence.",
+          "absent": true,
+          "assessment": "No concrete plugin target, plugin-to-reservation chain or verified persistence is asserted."
+        }
+      ]
+    },
+    {
+      "questionId": "h05",
+      "split": "reserved",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "ba2fb99d2c868764fd856b3d29f7475ef021ce05f58caea832fd55e7c517acd2",
+          "evidenceIds": [
+            "ce353c64-8e99-4cf6-86b2-b42a40848abf"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The local JSON names logistics and shipments."
+        },
+        {
+          "index": 2,
+          "textSha256": "f103ea78b71bb597e1733fc246e686737f8529220875029d06600b8fc732040c",
+          "evidenceIds": [
+            "b96e6021-445d-440c-b211-4e48e6f9ce66"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The Java source declares only the store interface and save invocation."
+        },
+        {
+          "index": 3,
+          "textSha256": "539100edffb63b4eb9aebb7b896839156352f47c93d924abe8e2ef9e279f93d4",
+          "evidenceIds": [
+            "ad8e2f9d-3c2c-4967-8e22-290ab5265eb7"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README expressly disclaims deployment/runtime verification."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "63a0ec02a1d1acd8bb5501218d0c413e44653074542601fc026bca371861f485",
+          "appropriate": true,
+          "assessment": "Runtime store binding/settings remain unavailable; the question does not supply credentials or assert that they exist."
+        },
+        {
+          "index": 2,
+          "textSha256": "9143a32eeddde8592e188df45dbe95b38729da4f8acbd20fe5a54aa0ba60fbad",
+          "appropriate": true,
+          "assessment": "Deployment of the local configuration is unknown."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "projection-target",
+          "claimIndices": [
+            1
+          ],
+          "unknownIndices": [],
+          "assessment": "The complete local target is given.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "local-target",
+          "claimIndices": [
+            1,
+            2,
+            3
+          ],
+          "unknownIndices": [
+            1,
+            2
+          ],
+          "assessment": "Declared local configuration is not promoted to a live target.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "A known live database or deployed projection.",
+          "absent": true,
+          "assessment": "No live database target or implementation semantics are inferred."
+        },
+        {
+          "assertion": "Proven storage semantics from a declared target.",
+          "absent": true,
+          "assessment": "No live database target or implementation semantics are inferred."
+        }
+      ]
+    },
+    {
+      "questionId": "h06",
+      "split": "reserved",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "1183836c36cdfa5138f22ca8c8626ad0c930aa37c0588e729a562add129e2c02",
+          "evidenceIds": [
+            "ce353c64-8e99-4cf6-86b2-b42a40848abf"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The local JSON contains the topic and logistics.shipments target."
+        },
+        {
+          "index": 2,
+          "textSha256": "3107bed2e775ab111a6897d4b6d5fe359cff8bc837bb7d11e2ba72416e8d19ec",
+          "evidenceIds": [
+            "b96e6021-445d-440c-b211-4e48e6f9ce66"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The record, accept method and interface support the claim directly."
+        },
+        {
+          "index": 3,
+          "textSha256": "339bc972ae3e618a216846c4fc191ec118ae37e1b47f972b404392401c3ced24",
+          "evidenceIds": [
+            "ad8e2f9d-3c2c-4967-8e22-290ab5265eb7"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README explicitly states the missing live subscription link."
+        },
+        {
+          "index": 4,
+          "textSha256": "262715891be2afc039c43ca39302b488d8e3289f4f3b0f44aecf0d518c742d07",
+          "evidenceIds": [
+            "ce353c64-8e99-4cf6-86b2-b42a40848abf",
+            "b96e6021-445d-440c-b211-4e48e6f9ce66",
+            "ad8e2f9d-3c2c-4967-8e22-290ab5265eb7"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "This is explicitly an intended design with unverified subscription, wiring and persistence; no working runtime is claimed."
+        },
+        {
+          "index": 5,
+          "textSha256": "9e8da39d0bef793732a1d5ad8288069d095c57acfaf794a1b1f051f01476cfdc",
+          "evidenceIds": [
+            "ad8e2f9d-3c2c-4967-8e22-290ab5265eb7"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README marks deployment/runtime behavior unverified."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "6933d825b702383c4edf2345f166f240d8a996a77c1120fed9628641530ecdd2",
+          "appropriate": true,
+          "assessment": "Live carrier subscription evidence is absent."
+        },
+        {
+          "index": 2,
+          "textSha256": "404d450282e248718a5508c050670bb90d8b69abb04da6e89dbd6969c05f0d6a",
+          "appropriate": true,
+          "assessment": "Concrete storage implementation/connection is absent."
+        },
+        {
+          "index": 3,
+          "textSha256": "f9b0c5b356b7f85727fee82dffecece885659e04761c32b0c4b84c16cf818e5d",
+          "appropriate": true,
+          "assessment": "Handler registration is not supplied."
+        },
+        {
+          "index": 4,
+          "textSha256": "18d0c9524cd0bc4c0852f1287a688a7c4534799853097218201825b4c4b667fe",
+          "appropriate": true,
+          "assessment": "Runtime execution/recovery semantics are unknown."
+        },
+        {
+          "index": 5,
+          "textSha256": "0bb112decae159e647e1b8ffdbe5df0ee12dfe6b9b998bfb4107e0d0e4c2b4b4",
+          "appropriate": true,
+          "assessment": "Deployment authority is unknown."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "projection-target",
+          "claimIndices": [
+            1
+          ],
+          "unknownIndices": [],
+          "assessment": "The local target is named.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "handler-and-port",
+          "claimIndices": [
+            2
+          ],
+          "unknownIndices": [],
+          "assessment": "Message handler and store boundary are explicit.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "missing-subscription",
+          "claimIndices": [
+            3,
+            4,
+            5
+          ],
+          "unknownIndices": [
+            1,
+            3,
+            5
+          ],
+          "assessment": "Missing subscription and unverified wiring/deployment are preserved.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "missing-store",
+          "claimIndices": [
+            2,
+            4
+          ],
+          "unknownIndices": [
+            2,
+            4
+          ],
+          "assessment": "Only an interface is supplied; concrete storage and actual persistence remain unresolved.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "A verified carrier subscription.",
+          "absent": true,
+          "assessment": "No working subscriber, database implementation or delivery guarantee is asserted."
+        },
+        {
+          "assertion": "A working database implementation or delivery guarantee from interface declarations.",
+          "absent": true,
+          "assessment": "No working subscriber, database implementation or delivery guarantee is asserted."
+        }
+      ]
+    },
+    {
+      "questionId": "h07",
+      "split": "reserved",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "8c6e33647da768940f39578457bc4fd85a25d4fed4895bd3efcdcd44435b21ba",
+          "evidenceIds": [
+            "f4ed0a12-6194-4b67-9dd3-155b81b8761b"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The method passes cursor unchanged and returns the String result."
+        },
+        {
+          "index": 2,
+          "textSha256": "ac7c8ed27269a7b05a44c716812abe4ec06f3be0347074beb6cb232162d485d5",
+          "evidenceIds": [
+            "f4ed0a12-6194-4b67-9dd3-155b81b8761b",
+            "d725beb4-3514-40b3-851c-f15c32a2d80a"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The interface and README explicitly leave the external client unimplemented."
+        },
+        {
+          "index": 3,
+          "textSha256": "752a2e1dc5fb55370eb801fb4cd39e6792cf4b5274a0f499f4f65dcc9a4ac0ce",
+          "evidenceIds": [
+            "d725beb4-3514-40b3-851c-f15c32a2d80a"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README lists all three missing execution/recovery pieces."
+        },
+        {
+          "index": 4,
+          "textSha256": "c2bf95d8abd8cb3b11bd079dee4949611bbc322c0d504e0b134fdf4d346b22ce",
+          "evidenceIds": [
+            "d725beb4-3514-40b3-851c-f15c32a2d80a"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README explicitly marks deployment/runtime unverified."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "5a5fb7ca88aed777f276b0c010981c2b2c38634e06fecbc81d341064e83c0f92",
+          "appropriate": true,
+          "assessment": "Cursor origin is not supplied."
+        },
+        {
+          "index": 2,
+          "textSha256": "9a9ed2dc1895036aa73b5a7d696aed067e3d39485596ccd8522ebcf6c1e518d3",
+          "appropriate": true,
+          "assessment": "Post-return processing is not supplied."
+        },
+        {
+          "index": 3,
+          "textSha256": "bc3cdfbdfe4aed27e08e2eb1a63a755fb022564c1c15f95f2b9351b17d61aef4",
+          "appropriate": true,
+          "assessment": "A persistence mechanism is not implemented here."
+        },
+        {
+          "index": 4,
+          "textSha256": "5cdb2b4531c55c0b2814a88bc6dfda9e4eb0ec257526f71fe203ef23ca95e3a1",
+          "appropriate": true,
+          "assessment": "Scheduling is not implemented here."
+        },
+        {
+          "index": 5,
+          "textSha256": "7b43f67b2743806efc9cadd11171e1281bceaa8794a8e97eb70b36bf9832461a",
+          "appropriate": true,
+          "assessment": "Recovery is not implemented here."
+        },
+        {
+          "index": 6,
+          "textSha256": "a4cc832cd1b7364e2ce11f44ae913436eb450b8f4330412061634f6b43f173a5",
+          "appropriate": true,
+          "assessment": "Optional supplier security is left open without asserting any enforcement."
+        },
+        {
+          "index": 7,
+          "textSha256": "2b1eb20e62ae0f0f706feeb6a21b21609ee41adc11df29bfc49848d633eb0327",
+          "appropriate": true,
+          "assessment": "Deployment configuration/revision remains unknown."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "cursor-pass-through",
+          "claimIndices": [
+            1
+          ],
+          "unknownIndices": [],
+          "assessment": "The cursor argument and return flow are described.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "code-scope",
+          "claimIndices": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "unknownIndices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            7
+          ],
+          "assessment": "The answer preserves the distinction between visible delegation and missing runtime/recovery pieces.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "Cursor persistence or automatic recovery inferred from fetchSince.",
+          "absent": true,
+          "assessment": "No automatic cursor persistence, recovery or deployed synchronization guarantee is inferred."
+        },
+        {
+          "assertion": "A verified deployed synchronization job.",
+          "absent": true,
+          "assessment": "No automatic cursor persistence, recovery or deployed synchronization guarantee is inferred."
+        }
+      ]
+    },
+    {
+      "questionId": "h08",
+      "split": "reserved",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "c3ee8c95aafdd4c2b31be85bc6f0ecffd992236c25c0c6f46011a779c29aa051",
+          "evidenceIds": [
+            "f4ed0a12-6194-4b67-9dd3-155b81b8761b"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The Java method passes cursor to fetchSince and returns its String result."
+        },
+        {
+          "index": 2,
+          "textSha256": "424dbd8051db0e1c905c60461e6cd2bf68a6dfce31ae53e9114e460dbd8c1fde",
+          "evidenceIds": [
+            "f4ed0a12-6194-4b67-9dd3-155b81b8761b",
+            "d725beb4-3514-40b3-851c-f15c32a2d80a"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The inference correctly says recovery cannot be verified, grounded in the missing persistence/recovery implementations."
+        },
+        {
+          "index": 3,
+          "textSha256": "20525a31b708d9293d2a98baf59ea5750f3e0ea077c720e6a2f5a118f4bbeef3",
+          "evidenceIds": [
+            "d725beb4-3514-40b3-851c-f15c32a2d80a"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README explicitly lists scheduling and failure recovery as absent."
+        },
+        {
+          "index": 4,
+          "textSha256": "d64218a38b5443ed5e5cb1e646d8cfed2a832c4e850356dbd2167e923d775293",
+          "evidenceIds": [
+            "d725beb4-3514-40b3-851c-f15c32a2d80a",
+            "f4ed0a12-6194-4b67-9dd3-155b81b8761b"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README and interface show the missing external client."
+        },
+        {
+          "index": 5,
+          "textSha256": "4a799fd106185ebe0b54c4a18b9f9bd878c0ad95a5d741201c442123dccb1362",
+          "evidenceIds": [
+            "d725beb4-3514-40b3-851c-f15c32a2d80a",
+            "f4ed0a12-6194-4b67-9dd3-155b81b8761b"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README explicitly lists cursor persistence as absent; the short source has no store or recovery operation."
+        },
+        {
+          "index": 6,
+          "textSha256": "8ae4bbf40d57f580ff79652b724c568a7ad162634110f826ef9bd81123d86d63",
+          "evidenceIds": [
+            "d725beb4-3514-40b3-851c-f15c32a2d80a"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README marks deployment/runtime unverified."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "f8ddae8e36d02c424c73ca8caa9e79152ea86959fbc16fd5944121f16ecf641d",
+          "appropriate": true,
+          "assessment": "Scheduling/execution machinery is absent."
+        },
+        {
+          "index": 2,
+          "textSha256": "48a145ae8fe241e774fb24f980df35f0e1902ab82280f467b3b2dcde16451fa2",
+          "appropriate": true,
+          "assessment": "Concrete supplier client is absent."
+        },
+        {
+          "index": 3,
+          "textSha256": "a21dd8077ad8cc5780bf04c09ba98056962db36964c7f884d04880383eb5f4cb",
+          "appropriate": true,
+          "assessment": "Durable cursor/recovery procedure is absent."
+        },
+        {
+          "index": 4,
+          "textSha256": "8a5ee4fcbb1b3b3c13816334425a69541211db9deceb32221bd75ad6517ba801",
+          "appropriate": true,
+          "assessment": "Failure handling is not established."
+        },
+        {
+          "index": 5,
+          "textSha256": "68bb7d53516110614bc50727f3af9be451a2da011d2aa8b7f3fc6412a144858c",
+          "appropriate": true,
+          "assessment": "Optional security controls are left open."
+        },
+        {
+          "index": 6,
+          "textSha256": "a48470227e3836a93f40a745033c82f28808950863f03f5e00bd4a67622747bc",
+          "appropriate": true,
+          "assessment": "Deployment environment/revision is unknown."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "cursor-pass-through",
+          "claimIndices": [
+            1
+          ],
+          "unknownIndices": [],
+          "assessment": "Cursor delegation is described.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "missing-execution",
+          "claimIndices": [
+            3,
+            4
+          ],
+          "unknownIndices": [
+            1,
+            2
+          ],
+          "assessment": "Missing scheduling and concrete client are both stated.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "missing-recovery",
+          "claimIndices": [
+            2,
+            3,
+            5,
+            6
+          ],
+          "unknownIndices": [
+            3,
+            4,
+            6
+          ],
+          "assessment": "Crash recovery is unverified and the missing persistence/recovery pieces are explicit.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "Automatic cursor persistence or restart recovery.",
+          "absent": true,
+          "assessment": "No recovery mechanism is invented and absence stays scoped to supplied sources."
+        },
+        {
+          "assertion": "Global absence of an external scheduler or client outside the supplied sources.",
+          "absent": true,
+          "assessment": "No recovery mechanism is invented and absence stays scoped to supplied sources."
+        }
+      ]
+    },
+    {
+      "questionId": "h09",
+      "split": "reserved",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "1c6f9d0d32c0b82573c2e857d23d72ab1f92782b7849e6268dd7840d94eabcd2",
+          "evidenceIds": [
+            "c055d4bb-320a-4aa1-924e-8495d03e2c2a",
+            "b474c9e6-1800-409e-a0e7-2af2e64ede73"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The production JSON and README explicitly supply the placeholder and unknown operator value."
+        },
+        {
+          "index": 2,
+          "textSha256": "ab7eb0ba6afdd22ed602b941f624524d2f41dda556c77fd8220076beedb94fca",
+          "evidenceIds": [
+            "0e5dac24-2d52-4a88-8712-f5d899f76d20",
+            "057d5f18-b727-4841-b04b-08871b566e2e"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The local JSON and README give the local value while disallowing production substitution."
+        },
+        {
+          "index": 3,
+          "textSha256": "f57e2badaebea69d580ff0db1b1b42ade986ecb068f22494cb4c55989d964923",
+          "evidenceIds": [
+            "26e5b2de-1154-4f30-adce-a9a719102706",
+            "b3b4c9af-a910-4963-a696-dd643266e1d1"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "Both code paths read ORDER_TOPIC with a configured fallback; the API comment excludes the Kafka driver and the worker defines interfaces."
+        },
+        {
+          "index": 4,
+          "textSha256": "c9184a032d4dd064292f7198b61234067b9e138532e7e6e7647200a704b13e15",
+          "evidenceIds": [
+            "b474c9e6-1800-409e-a0e7-2af2e64ede73",
+            "057d5f18-b727-4841-b04b-08871b566e2e",
+            "c055d4bb-320a-4aa1-924e-8495d03e2c2a"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The inference correctly leaves the actual production value unresolved."
+        },
+        {
+          "index": 5,
+          "textSha256": "0fc71197a3ee17df2e372ffaea6c5f3a5f2ee89b6ca3aa92fe0e41675a204e46",
+          "evidenceIds": [
+            "368ac089-8d91-41bd-90fa-7d402bc76f48",
+            "0e5dac24-2d52-4a88-8712-f5d899f76d20"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The historical runbook itself records the discrepancy with current local configuration; this is not a conflict with an unknown production value."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "cd8c5047b9d5508cd38998e3b87c2e5eec46296fcdf782b5ebc073f782659522",
+          "appropriate": true,
+          "assessment": "The operator-supplied production topic remains unknown."
+        },
+        {
+          "index": 2,
+          "textSha256": "e391a6ed554afd3702663b2a8713c5e477620d7001b200be5a9cc766d5c8abc5",
+          "appropriate": true,
+          "assessment": "Authority for the documented discrepancy remains unknown after the conflict is stated."
+        },
+        {
+          "index": 3,
+          "textSha256": "0e26c61285a5f964536cb3238279d272445afdac00c45633e4a3752722e64b89",
+          "appropriate": true,
+          "assessment": "Actual production configuration/runtime remains unknown."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "production-placeholder",
+          "claimIndices": [
+            1,
+            4
+          ],
+          "unknownIndices": [
+            1,
+            3
+          ],
+          "assessment": "The placeholder and unresolved production value are explicit.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "no-local-substitution",
+          "claimIndices": [
+            2,
+            4
+          ],
+          "unknownIndices": [],
+          "assessment": "The local value is expressly not substituted for production.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "A known production topic inferred from local config.",
+          "absent": true,
+          "assessment": "No production topic is invented and no false local-versus-production conflict is introduced."
+        },
+        {
+          "assertion": "A conflict between a known local value and an unknown production value.",
+          "absent": true,
+          "assessment": "No production topic is invented and no false local-versus-production conflict is introduced."
+        }
+      ]
+    },
+    {
+      "questionId": "h10",
+      "split": "reserved",
+      "passed": true,
+      "assessment": "Required propositions and control scope pass. Unlike d10, literal header names are stated separately and connectivity is expressly unverified; the broad propagation wording still merits independent review.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "c4d7f37b5d49d28e1cd7a8268e501e99d962c3fea0c830836dd2ed2a7dab81c5",
+          "evidenceIds": [
+            "375282ab-ddeb-45a6-b655-750ba62cbae2"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The tenant-library README explicitly excludes authentication, membership checks and authorization."
+        },
+        {
+          "index": 2,
+          "textSha256": "74b5e53830f0c5acdb56a8f0b82965ce6efa924c465d76332fa204cf21888ff9",
+          "evidenceIds": [
+            "290803fe-730f-4547-bfe1-2c6bd068475a",
+            "375282ab-ddeb-45a6-b655-750ba62cbae2"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The Java record contains only tenantId; the README disclaims runtime verification."
+        },
+        {
+          "index": 3,
+          "textSha256": "e851ff5e874a209b4c6445b049629238a2ff3339a7c753e30e8ee6875dc840cd",
+          "evidenceIds": [
+            "9270a4cd-6432-437e-82ed-37b1ba350624",
+            "1595642c-3493-48c5-9e39-fd6d82771849"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The facade source explicitly sends x-tenant-id; its README excludes authentication in this facade."
+        },
+        {
+          "index": 4,
+          "textSha256": "829c84ce6fd3597b5f6d9f1b5c9de7946d15bfa87a86ee0266d93626cccb265a",
+          "evidenceIds": [
+            "8ad507c4-4971-4494-81f3-78857679ca7d"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The supplied portal function sends tenantId as X-Tenant."
+        },
+        {
+          "index": 5,
+          "textSha256": "f216eb6fe9f62fd0bc6ceb41df73646e9f29eeae65228cc3e93afca8f44f9785",
+          "evidenceIds": [
+            "7d30fbad-fd9f-484f-8db3-d9f1b5477e51",
+            "26e5b2de-1154-4f30-adce-a9a719102706"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The route binds the literal X-Tenant header to the named parameter; the method constructs an event and invokes its publisher port. Claim 8 expressly restricts this to declarations rather than live sending."
+        },
+        {
+          "index": 6,
+          "textSha256": "25506cc01fde1e9ea1e2de7ceca306fd95090264e1c92fbbf6f26a9a7e97d699",
+          "evidenceIds": [
+            "13fffe6e-e0e4-46ea-a88c-be05b455b194"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The API contract explicitly contains tenantId and the tenantId:orderId key."
+        },
+        {
+          "index": 7,
+          "textSha256": "6b6d7750a32054bf6e296f13e649fc746074ca4e8ad8a0f1409138d078260175",
+          "evidenceIds": [
+            "375282ab-ddeb-45a6-b655-750ba62cbae2",
+            "9270a4cd-6432-437e-82ed-37b1ba350624",
+            "7d30fbad-fd9f-484f-8db3-d9f1b5477e51",
+            "26e5b2de-1154-4f30-adce-a9a719102706"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "Read narrowly as identity carriage in separately declared interfaces, this inference is supported: claims 3 and 5 give the different header names separately, and claim 8/unknown 3 leave connection unverified. It does not demonstrate that x-tenant-id reaches X-Tenant; that compatibility remains an explicit review caveat."
+        },
+        {
+          "index": 8,
+          "textSha256": "bc912e5e923c84dfaaad57bb4af681c3462eba26fb2f600a906e1824301b39e6",
+          "evidenceIds": [
+            "26e5b2de-1154-4f30-adce-a9a719102706",
+            "4fa6af99-3214-4a04-8f5f-8633553c1d92"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The Orders.java comment explicitly excludes an HTTP server and Kafka driver. The claim preserves the unverified live-connection boundary."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "720edbf9679693eb16bf7d066acdd7a7c2dcb6861e254b635717ce90bfd7d00d",
+          "appropriate": true,
+          "assessment": "No membership-enforcing deployed component is established."
+        },
+        {
+          "index": 2,
+          "textSha256": "39f121953103f79a35f66309974ef59b6b4db839e0ea85aaab652fdb28bebb9a",
+          "appropriate": true,
+          "assessment": "No authentication/authorization implementation is established."
+        },
+        {
+          "index": 3,
+          "textSha256": "dddc3bf8f29ee72ef9ec05d7d0d1b97d89714f82d9ff56c9362f184d728ca681",
+          "appropriate": true,
+          "assessment": "Co-deployment and connections among the separately named components remain unknown."
+        },
+        {
+          "index": 4,
+          "textSha256": "be32c7ebdc574337a4c78adb296ff808443cd804eb64cb87d5f88fc68e25f91f",
+          "appropriate": true,
+          "assessment": "Controls outside the supplied coverage remain unknown."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "identifier-only",
+          "claimIndices": [
+            1,
+            2
+          ],
+          "unknownIndices": [],
+          "assessment": "The library-only membership question and all three missing control types are answered.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "controls-elsewhere",
+          "claimIndices": [
+            7,
+            8
+          ],
+          "unknownIndices": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "assessment": "Enforcement outside the library and runtime connectivity remain unknown.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "TenantContext proves tenant membership.",
+          "absent": true,
+          "assessment": "No membership proof or system-wide absence is asserted. The interface synthesis must not be read as a demonstrated checkout header mapping."
+        },
+        {
+          "assertion": "No authentication or authorization exists anywhere in the system.",
+          "absent": true,
+          "assessment": "No membership proof or system-wide absence is asserted. The interface synthesis must not be read as a demonstrated checkout header mapping."
+        }
+      ]
+    },
+    {
+      "questionId": "h11",
+      "split": "reserved",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "93527c05a87917dabff1e0f44c41511c31aa0394237974a3b7b54ebcc9fd4c8c",
+          "evidenceIds": [
+            "2ab39d28-8818-4d88-accf-810d01962169"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The shared JSON supplies version, fields, key, transport and unspecified encoding."
+        },
+        {
+          "index": 2,
+          "textSha256": "6f0c005dbc46bdbabc51c7df747867517a892395234a31b24ddd3ac6db4bede8",
+          "evidenceIds": [
+            "10fb2260-794c-4507-a813-b71092aaef31"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README explicitly distinguishes shapes from a running producer/service."
+        },
+        {
+          "index": 3,
+          "textSha256": "e7e69765fff7f383a8fad3087d96098f682d23b53db8727d63754b8b612e1edc",
+          "evidenceIds": [
+            "10fb2260-794c-4507-a813-b71092aaef31",
+            "2ab39d28-8818-4d88-accf-810d01962169"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The inference correctly limits a schema to its declaration and intended transport."
+        },
+        {
+          "index": 4,
+          "textSha256": "dab3d3bb23079e5a54f04255e21a853afdf4f405e8e3ca510dc732a2a19d2f5c",
+          "evidenceIds": [
+            "26e5b2de-1154-4f30-adce-a9a719102706"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The Java source constructs an event and invokes an interface, with an explicit no-driver comment; no live send is inferred."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "21d523265ce51a61428733373a536c738305a3345ae59c8f1da9496545d4a79c",
+          "appropriate": true,
+          "assessment": "The concrete publisher implementation is missing."
+        },
+        {
+          "index": 2,
+          "textSha256": "b61c7b7dd95995960c673d187993678f8346970d098dc336a77b55059a249a26",
+          "appropriate": true,
+          "assessment": "A deployed publisher/Kafka connection is unverified."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "schema-declaration",
+          "claimIndices": [
+            1,
+            2
+          ],
+          "unknownIndices": [],
+          "assessment": "The shared message definition is described.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "not-running-producer",
+          "claimIndices": [
+            2,
+            3,
+            4
+          ],
+          "unknownIndices": [
+            1,
+            2
+          ],
+          "assessment": "The schema is expressly insufficient to establish runtime publication.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "The library runs a publisher because it owns the schema.",
+          "absent": true,
+          "assessment": "The library is not promoted to a running producer and the sources are not called an exhaustive publisher inventory."
+        },
+        {
+          "assertion": "All publishers are enumerated by the contract library.",
+          "absent": true,
+          "assessment": "The library is not promoted to a running producer and the sources are not called an exhaustive publisher inventory."
+        }
+      ]
+    },
+    {
+      "questionId": "h12",
+      "split": "reserved",
+      "passed": true,
+      "assessment": "All required propositions and scope limits are supported by the issued originals.",
+      "claimReview": [
+        {
+          "index": 1,
+          "textSha256": "2e0587cab26bcd7ea6eae060aaa9ca14efb583164ca7a487744ae5a8f3b8114d",
+          "evidenceIds": [
+            "581dbbc8-2bca-4ef7-b2fb-378bcc5c3354"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The migration declares unique:true with both fields on shop.orders."
+        },
+        {
+          "index": 2,
+          "textSha256": "cb09b84ef733954b3c88952adb1dee52667b5208420f2ec0d6b94a266be68857",
+          "evidenceIds": [
+            "a2065ca2-c9cc-42c8-8b9e-13f8c8322a69"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The README explicitly states that source does not prove application and includes no runner/database."
+        },
+        {
+          "index": 3,
+          "textSha256": "6684868055e5a2f35a51735ea55c2b0d644bb6b6adda29fee008f88a58bc8471",
+          "evidenceIds": [
+            "581dbbc8-2bca-4ef7-b2fb-378bcc5c3354",
+            "a2065ca2-c9cc-42c8-8b9e-13f8c8322a69"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The inference correctly leaves actual database execution unverified."
+        },
+        {
+          "index": 4,
+          "textSha256": "26f1cef56d53627c7c128090db353bb1171472a61890ea9e959a1b9f25e2b67e",
+          "evidenceIds": [
+            "25044091-7966-48b5-ad83-d081c0d53e30"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The worker JSON independently names the same local target without proving deployment or index state."
+        },
+        {
+          "index": 5,
+          "textSha256": "74b0bfd95af91c6495f6db4468e65598bc75bbd3330f4af5dc4a85beef7d8f63",
+          "evidenceIds": [
+            "b3b4c9af-a910-4963-a696-dd643266e1d1"
+          ],
+          "supportedAsWritten": true,
+          "assessment": "The worker source defines Mongo/Kafka interfaces and explicitly disclaims broker/database guarantees."
+        }
+      ],
+      "unknownReview": [
+        {
+          "index": 1,
+          "textSha256": "7543b551d85ec70f8db55f243d7da3fdc3621c42605eaef0ee2559e1e9a73e4c",
+          "appropriate": true,
+          "assessment": "Execution history or actual database inspection is needed; the question does not assert it is available."
+        },
+        {
+          "index": 2,
+          "textSha256": "6f334e793b311ffbebf8c4ab9f5fd8d589e3354168f2afe040dc52104b0e2e3c",
+          "appropriate": true,
+          "assessment": "The deployment/database scope is unknown."
+        },
+        {
+          "index": 3,
+          "textSha256": "3b7293fa025d72cdc3c6256b85b599d84b34d2c0471334ad30f09661f4b18e58",
+          "appropriate": true,
+          "assessment": "Co-deployed migration/worker revisions are unknown."
+        }
+      ],
+      "requirements": [
+        {
+          "id": "declared-index",
+          "claimIndices": [
+            1
+          ],
+          "unknownIndices": [],
+          "assessment": "The intended index and target are stated.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        },
+        {
+          "id": "unproven-application",
+          "claimIndices": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "unknownIndices": [
+            1,
+            2,
+            3
+          ],
+          "assessment": "Application, live database state and deployment remain unverified.",
+          "equivalentSupport": "No alternative reference is needed; the cited originals directly support this requirement.",
+          "satisfied": true
+        }
+      ],
+      "forbiddenAssertions": [
+        {
+          "assertion": "The index is installed because its migration exists.",
+          "absent": true,
+          "assessment": "No installed index, uniqueness enforcement or idempotency guarantee is inferred from source."
+        },
+        {
+          "assertion": "Uniqueness, concurrency or idempotency guarantees from an unapplied migration.",
+          "absent": true,
+          "assessment": "No installed index, uniqueness enforcement or idempotency guarantee is inferred from source."
+        }
+      ]
+    }
+  ]
+}
