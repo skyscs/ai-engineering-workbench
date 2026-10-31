@@ -1,5 +1,36 @@
 # Development status
 
+## Task 043 — Bounded related-repository pages
+
+Implemented and locally verified, 2026-11-01. PR #46 reached main as `b9cc358` after
+push `41249841176` and pull-request `41249917361` passed for exact head
+`f317afe829aaa308e9b165511863bda49c21d1e1`. Scope was recorded in `f3735ed` before
+implementation. Development remains synthetic-only and model-free.
+
+The existing candidate endpoint accepts a bounded related-source offset. Projection v2
+returns four-source pages in saved order with two original-evidence links per source;
+invalid/unavailable offsets are rejected. The first page, lexical ranking, broader answer
+context, graph identities, saved histories and database schema remain unchanged. Every
+page has the same output cap and authorization/evidence checks. The UI keeps the old page
+while loading, clears originals at request/publication, and rejects changed-context or
+late scope responses. New cards start collapsed.
+
+Strict types, 364 tests and builds pass. Browser acceptance covers next/back, later-page
+keyboard citations, narrow layout, delayed page/evidence results, changed context and
+page revocation, preserving all existing escaping/review/history/policy scenarios. The
+small diagnostic reproduces Task 039's first-page originals and lexical hashes across
+two fresh generations; 22/22 critical occurrences and five useful scope conditions remain.
+No new full-volume or model evaluation was run. The Task 042 frozen qualifier refuses the
+changed selector while its normalized mechanics and historical report remain intact.
+See [Task 043](../tasks/043-loredock-related-source-pages.md),
+[ADR 0039](decisions/0039-loredock-related-source-pages.md) and
+[verification](fixtures/loredock-related-pages/README.md).
+
+Next: measure complete file-by-file code-fact extraction on the frozen volume using the
+existing bounded parsers, recording cost, provenance and unsupported coverage before
+designing persistent analysis. Interactive graph limits, schemas and failed semantic gates
+remain unchanged during that feasibility step.
+
 ## Task 042 — Offline related-source order qualification
 
 Implemented and locally verified, 2026-10-31. PR #45 reached main as `a09cd58` after

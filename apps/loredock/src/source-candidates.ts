@@ -3,7 +3,7 @@ import { retrieveAnswerContext, type AnswerContext } from './answer-context.js';
 import { searchText } from './search-text.js';
 import { sha256 } from './extract.js';
 import { CatalogError } from './types.js';
-import { candidateLinkContext, type CandidateLinkContext } from './candidate-links.js';
+import { candidateLinkContext, relatedPageOffset, type CandidateLinkContext } from './candidate-links.js';
 import { answerReviewContext } from './answer-review.js';
 
 export const candidateVersion = 'source-candidates-v1';
@@ -69,9 +69,10 @@ export function selectSourceCandidates(context: Pick<AnswerContext, 'sources' | 
     tiedAtLimit: eligible.length > suggested.length && eligible[suggested.length]!.score === suggested.at(-1)!.score };
 }
 
-export function sourceCandidatePreview(catalog: Catalog, question: string, buildId?: string): CandidatePreview {
+export function sourceCandidatePreview(catalog: Catalog, question: string, buildId?: string, pageOffset: unknown = 0): CandidatePreview {
+  const offset = relatedPageOffset(pageOffset);
   const context = retrieveAnswerContext(catalog, question, buildId), selection = selectSourceCandidates(context);
-  const related = candidateLinkContext(catalog, context, selection);
+  const related = candidateLinkContext(catalog, context, selection, offset);
   const review = answerReviewContext(catalog, context.buildId, [...context.spans.map(span => span.id),
     ...related.sources.flatMap(source => source.links.flatMap(link => link.evidence.map(ref => ref.id)))]);
   const result: Omit<CandidatePreview, 'previewHash'> = { schemaVersion: 'source-candidate-preview-v1', adapterVersion: candidateVersion,

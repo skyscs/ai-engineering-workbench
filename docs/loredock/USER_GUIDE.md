@@ -86,8 +86,11 @@ supplied” can match your question; the match does not establish that implement
 The broader context used by Ask Project remains unchanged.
 
 Expand **Related repositories to inspect** when the primary suggestions are not enough.
-This optional section adds up to four repositories connected by a supported direct code
-or declaration clue, with at most two relationships each. Open the original evidence on
+This optional section shows four repositories per page, connected by a supported direct
+code or declaration clue, with at most two relationships each. Use **Next repositories**
+and **Previous repositories** to inspect the remaining eligible sources. Pages preserve
+the saved source order; the first page and primary suggestions retain their existing
+selection. Open the original evidence on
 both sides. Each source starts as a compact expandable card: scan the clue kind and
 subject, then open the source name to read its relationships and citations. Repeated
 subjects are combined only in the closed summary. Keyboard users can focus the source
@@ -95,7 +98,9 @@ summary and press Enter or Space, then open an evidence button. A declaration co
 uses **↔**; a directed code clue uses **→**. Matching
 contracts/settings do not prove a live connection, and differences do not prove a runtime
 conflict. No second-hop search is performed. **Relationship coverage and limits** reports
-unexamined syntax/documents and sources or relationships omitted by the reading budget.
+unexamined syntax/documents, sources outside the current page and relationships outside
+the page or per-source reading budget. Changing pages clears the open original. If the
+underlying context changes while loading a page, find candidates again before continuing.
 An empty section does not prove that other repositories are unrelated. Broad configuration
 passages can yield incidental links, so review their relevance to the actual problem.
 
@@ -684,7 +689,7 @@ require the session. No tokens belong in URLs or logs.
 | `GET /api/system-map?buildId=...` | Bounded declaration projection for the current or a selected authorized published index. |
 | `GET /api/code-flows?buildId=...` | Versioned code links, partial flow outlines, candidate hops and original evidence from the same authorized index. |
 | `GET /api/orientation?buildId=...` | Original README context/gaps, optional manifest reading, selected revisions/coverage and separate unindexed-source gaps; no model calls. |
-| `POST /api/candidates/preview` | Model-free source suggestions from `{question, buildId?}`, original support, separate related repositories, other matches and scope/uncertainty. Requires session/CSRF; no saved investigation scope. |
+| `POST /api/candidates/preview` | Model-free source suggestions from `{question, buildId?, relatedOffset?}`, original support, related-repository pages, other matches and uncertainty. `relatedOffset` defaults to 0; use an available multiple of 4 below 20. Related projection v2 returns offset/limit/total and nullable previous/next offsets. Invalid/unavailable offsets return `INVALID_PAGE`. Requires session/CSRF; no saved investigation scope. |
 | `GET /api/corrections?buildId=...` | Current human correction overlay/revision and flow-review dependencies for the selected index. |
 | `GET /api/corrections/:id/history` | Authorized immutable versions and original relationship/evidence provenance. |
 | `POST /api/corrections` | Save/replay a dispute, clarification or withdrawal with issued target ID, projection hash and expected review versions. |

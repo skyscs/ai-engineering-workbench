@@ -76,10 +76,13 @@ with independent/private-pilot acceptance pending.
 An [offline precision comparison](docs/fixtures/loredock-link-precision/README.md) reduces
 those lists but loses one useful configuration clue; it has not replaced production behavior.
 [Dojo object-export support](docs/fixtures/loredock-dojo-exports/README.md) subsequently
-adds the missing stock caller/route clue under code adapter v3. Current combined recall
-is 22/22, while five candidate scopes remain too broad. This remains a reading aid.
+adds the missing stock caller/route clue under code adapter v3. The small-corpus default
+page retains 22/22 critical occurrences, while five candidate scopes remain too broad.
+This remains a reading aid.
 Related sources use [compact expandable cards](docs/fixtures/loredock-compact-related-sources/README.md):
 scan the relationship subject first, then open its complete original evidence and limits.
+Use **Next repositories** and **Previous repositories** to inspect remaining eligible
+sources in pages of four, retaining the original default order and citations.
 
 ## What v0.1 does
 

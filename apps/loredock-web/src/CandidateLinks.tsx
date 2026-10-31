@@ -15,11 +15,18 @@ function linkSummaries(links: CandidateLink[]) {
   return [...groups].map(([label, subjects]) => `${label} · ${[...subjects].join(', ')}`);
 }
 
-export function CandidateLinks({ value, openEvidence }: { value: CandidateLinkContext; openEvidence(id: string): void }) {
-  return <details className="candidate-links" aria-label="Related repositories">
-    <summary>Related repositories to inspect · {value.sources.length}</summary>
+export function CandidateLinks({ value, busy, openEvidence, changePage }: {
+  value: CandidateLinkContext; busy: boolean; openEvidence(id: string): void; changePage(offset: number): void;
+}) {
+  return <details className="candidate-links" aria-label="Related repositories" data-related-offset={value.page.offset}>
+    <summary>Related repositories to inspect · {value.eligibleSources}</summary>
     <p className="muted">Direct code or declaration clues from the primary suggestions · unverified. These may broaden your reading scope.</p>
     {!value.sources.length && <p>No supported direct link was found in this bounded analysis. Other repositories may still be relevant.</p>}
+    {value.sources.length > 0 && <p role="status">{busy ? 'Loading repositories…' : `Showing ${value.page.offset + 1}–${value.page.offset + value.sources.length} of ${value.page.total} related repositories.`}</p>}
+    {value.page.total > value.page.limit && <nav className="related-pages" aria-label="Related repository pages">
+      <button className="quiet" disabled={busy || value.page.previousOffset === null} onClick={() => changePage(value.page.previousOffset!)}>Previous repositories</button>
+      <button className="quiet" disabled={busy || value.page.nextOffset === null} onClick={() => changePage(value.page.nextOffset!)}>Next repositories</button>
+    </nav>}
     {value.sources.map(source => <details className="source-candidate related-source" key={source.sourceId} data-source-id={source.sourceId}>
       <summary>
         <strong className="related-source-name">{source.sourceName}</strong>
@@ -43,8 +50,8 @@ export function CandidateLinks({ value, openEvidence }: { value: CandidateLinkCo
       {source.omittedLinks > 0 && <p className="muted">{source.omittedLinks} additional relationships are outside this reading sample.</p>}
     </details>)}
     <details><summary>Relationship coverage and limits</summary>
-      <p>{value.eligibleSources} additional sources and {value.eligibleLinks} relationships met the anchoring rules. {value.omittedSources} sources and {value.omittedLinks} relationships were omitted by the reading limits.</p>
-      <p>At most {value.limits.sources} repositories and {value.limits.linksPerSource} relationships per repository. No second-hop expansion.</p>
+      <p>{value.eligibleSources} additional sources and {value.eligibleLinks} relationships met the anchoring rules. {value.omittedSources} sources are outside this page; {value.omittedLinks} relationships are outside this page or its per-source reading sample.</p>
+      <p>At most {value.limits.sources} repositories per page and {value.limits.linksPerSource} relationships per repository. Pages preserve saved source order. No second-hop expansion.</p>
       {Object.entries(value.projections).map(([name, projection]) => <div key={name}>
         <p>{name}: {projection.coverage.examinedDocuments}/{projection.coverage.candidateDocuments} candidate documents examined · {projection.version}</p>
         {Object.entries(projection.omissions).map(([reason, count]) => <p key={reason}>{reason}: {count}</p>)}

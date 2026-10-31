@@ -81,9 +81,12 @@ bounds: full original-context recall and refresh reuse, 21/22 candidate recall a
 [Task 042](../../tasks/042-loredock-source-order-qualification.md) qualifies strongest-link-first
 ordering offline: observed volume recall returns to 22/22, but a frozen configuration-critical
 counterexample loses support. Unconditional promotion is rejected; production remains v1.
-Next: explicit four-source pages for remaining eligible related repositories, preserving
-default ordering, original evidence and primary/answer context. No tuning on observed
-model answers is included.
+[Task 043](../../tasks/043-loredock-related-source-pages.md) adds explicit four-source pages
+for remaining eligible related repositories, preserving default order, original evidence
+and primary/answer context. Pending page/evidence responses respect context/scope changes.
+Next: measure complete file-by-file code-fact extraction with current bounded parsers on
+the frozen volume before designing persistent analysis. Interactive limits/schema remain
+unchanged for that feasibility step. No tuning on observed model answers is included.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale
 and the Workbench bridge remain open. The

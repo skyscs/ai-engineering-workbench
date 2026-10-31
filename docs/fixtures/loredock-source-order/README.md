@@ -53,6 +53,11 @@ selector/corpus hashes, preserves stage results and removes only owned temporary
 The output directory must be new. Do not overwrite this report when comparing later code;
 changed selector hashes require a separately scoped contract or the frozen implementation.
 
+Task 043 adds explicit paging to the production selector. The frozen qualifier now refuses
+those changed hashes before measurement. Use merged commit `b9cc358` to reproduce this
+historical contract; the twelve normalized mechanics remain tested on the current default
+page. Neither the frozen design nor this raw report is rewritten for the new interface.
+
 Next: expose omitted eligible related repositories through explicit four-source pages,
 preserving the current first-page order, original citations and primary/answer context.
 This lets a user inspect remaining evidence without promoting the rejected ordering
