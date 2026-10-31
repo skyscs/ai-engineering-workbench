@@ -1,0 +1,192 @@
+{
+  "schemaVersion": "loredock-scale-readiness/1",
+  "checkedAt": "2026-10-31T12:13:20.090Z",
+  "baseline": {
+    "schemaVersion": "loredock-scale-baseline/1",
+    "sourceCount": 20,
+    "eligibleFiles": 79,
+    "revisionVector": {
+      "portal": "603a69798dc12c3205e88d0498881b0c01079932",
+      "order-api": "237510937b4388fc718b7e9f93869954950df1bb",
+      "order-worker": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "checkout-bff": "07d87b7d8a7a93ee8f93f6cdf3ae03ef8253869f",
+      "inventory-api": "0e7f2a7f4776d224736bf10b8e64fd226f2d1d86",
+      "inventory-worker": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+      "shipping-api": "1d89443e2914afb8de2b02389aabfe862b2a3e22",
+      "shipping-worker": "e71a493dede8f64a0785550cf4968b3050c86019",
+      "payment-adapter": "6d85bd3ba393ec880ce95ad1af29311b066bd2f4",
+      "notification-worker": "9e8b82475fd5d3317923d7f4e7c399ed99f5356a",
+      "reporting-api": "23fc2d8f162f93758f47221207e842f4ae55da39",
+      "contract-library": "6fc0b2f8bbd4b88a35b6c04e6dc974b762cc3cbe",
+      "tenant-library": "f7e01099f81a705281b6c50f2571c1a2cc116617",
+      "ui-components": "3ef8f414dff741b0140cc9f23d91a47d740fe1b9",
+      "legacy-admin": "831849791b519da2c71f3ee4c918fbc7a6479b52",
+      "deployment-local": "266b8b73fbf744f2df4395e223df13b7e7504ffe",
+      "deployment-production": "20e07d89a00cc5ad20af50a49550b10f82b4f9f4",
+      "database-migrations": "d75867701ea1a0a3b103a9eecc9d7532c11c9058",
+      "architecture-docs": "53dcb38eeb689da1418d6ef8dd9555a357d85dba",
+      "supplier-sync": "ea9faab3d1e0a2bdcfcb93b3791cbade992129b6"
+    },
+    "manifestHash": "0bea0ff2e26acc13b4f4766cb154ded7cd2b366b064e6c84fb56c1c632532b74",
+    "oracleHash": "6d2ed2e8051e37721fedcb5b031034c1dc6bb4f3ef35beb4aa53596bb26fcc16"
+  },
+  "fixture": {
+    "sourceCount": 20,
+    "textFiles": 79,
+    "excludedCanaries": 60,
+    "textBytes": 16869,
+    "repositories": [
+      {
+        "id": "portal",
+        "role": "Order user interfaces",
+        "files": 6,
+        "textBytes": 1646
+      },
+      {
+        "id": "order-api",
+        "role": "Order acceptance and publication",
+        "files": 7,
+        "textBytes": 2439
+      },
+      {
+        "id": "order-worker",
+        "role": "Order projection consumer",
+        "files": 5,
+        "textBytes": 2100
+      },
+      {
+        "id": "checkout-bff",
+        "role": "Checkout request facade",
+        "files": 3,
+        "textBytes": 537
+      },
+      {
+        "id": "inventory-api",
+        "role": "Stock reservation and availability applications",
+        "files": 5,
+        "textBytes": 1082
+      },
+      {
+        "id": "inventory-worker",
+        "role": "Stock event projection",
+        "files": 4,
+        "textBytes": 762
+      },
+      {
+        "id": "shipping-api",
+        "role": "Shipment request adapter",
+        "files": 4,
+        "textBytes": 655
+      },
+      {
+        "id": "shipping-worker",
+        "role": "Shipment event projection",
+        "files": 4,
+        "textBytes": 765
+      },
+      {
+        "id": "payment-adapter",
+        "role": "External payment gateway port",
+        "files": 3,
+        "textBytes": 442
+      },
+      {
+        "id": "notification-worker",
+        "role": "Order notification consumer",
+        "files": 4,
+        "textBytes": 816
+      },
+      {
+        "id": "reporting-api",
+        "role": "Analytics order reader",
+        "files": 4,
+        "textBytes": 564
+      },
+      {
+        "id": "contract-library",
+        "role": "Shared message declarations",
+        "files": 4,
+        "textBytes": 695
+      },
+      {
+        "id": "tenant-library",
+        "role": "Tenant context propagation library",
+        "files": 3,
+        "textBytes": 458
+      },
+      {
+        "id": "ui-components",
+        "role": "Presentation components",
+        "files": 3,
+        "textBytes": 423
+      },
+      {
+        "id": "legacy-admin",
+        "role": "Legacy administration client",
+        "files": 4,
+        "textBytes": 610
+      },
+      {
+        "id": "deployment-local",
+        "role": "Local deployment declarations",
+        "files": 3,
+        "textBytes": 488
+      },
+      {
+        "id": "deployment-production",
+        "role": "Production configuration placeholders",
+        "files": 3,
+        "textBytes": 451
+      },
+      {
+        "id": "database-migrations",
+        "role": "Mongo index migration source",
+        "files": 3,
+        "textBytes": 535
+      },
+      {
+        "id": "architecture-docs",
+        "role": "System documentation and decisions",
+        "files": 4,
+        "textBytes": 884
+      },
+      {
+        "id": "supplier-sync",
+        "role": "Supplier inventory import job",
+        "files": 3,
+        "textBytes": 517
+      }
+    ]
+  },
+  "measurements": {
+    "generationMs": 477.588653,
+    "registrationMs": 26.783927999999946,
+    "pilotIndexMs": 237.53875700000003,
+    "nodeVersion": "v22.23.2",
+    "platform": "linux"
+  },
+  "production": {
+    "requestedSources": 20,
+    "registeredSources": 3,
+    "rejectedSources": 1,
+    "unattemptedSources": 16,
+    "blocker": {
+      "source": "checkout-bff",
+      "code": "SOURCE_LIMIT",
+      "message": "This pilot supports three active repositories. Revoke a source before adding another."
+    },
+    "indexedSources": 3,
+    "indexedFiles": 18,
+    "status": "blocked-at-registration",
+    "twentySourceIngestion": "not-run",
+    "twentySourceLatency": null,
+    "twentySourceRetainedBytes": null
+  },
+  "modelRequests": 0,
+  "modelUsage": null,
+  "questionCount": 20,
+  "answerQuality": "not-evaluated",
+  "routingQuality": "not-evaluated",
+  "sourceCheckoutsUnchanged": true,
+  "scope": "Small heterogeneous topology and current three-source boundary; not production load or L5 acceptance."
+}

@@ -12,7 +12,7 @@ if (mode === 'interrupt-upload') {
   void storage.tasks.artifacts.import(workspaceId, taskId, { name: 'interrupted.log', mimeType: 'text/plain', size: 100 }, body);
   await new Promise<void>((resolve) => setImmediate(resolve));
   process.send?.({ ready: true });
-  setInterval(() => {}, 1000);
+  setInterval(() => { storage.status(); }, 1000);
 } else if (mode === 'interrupt-migration') {
   const db = new DatabaseSync(root);
   db.function('pause_migration', () => {
@@ -27,10 +27,19 @@ if (mode === 'interrupt-upload') {
     const storage = openStorage({ dataRoot: root });
     process.send?.({ ready: true });
     if (mode === 'try') { storage.close(); process.disconnect(); }
-    else setInterval(() => {}, 1000);
+    // Retain the ownership handle while the process is deliberately held alive.
+    // An empty timer lets GC close otherwise unreachable SQLite handles before SIGKILL.
+    else setInterval(() => { storage.status(); }, 1000);
   } catch (error) {
     process.send?.({ code: (error as { code?: string }).code });
     process.exitCode = 1;
     process.disconnect();
   }
 }
+
+process.on('message', message => {
+  if (message !== 'collect') return;
+  if (!globalThis.gc) throw new Error('This fixture requires --expose-gc for collection checks.');
+  globalThis.gc();
+  setImmediate(() => process.send?.({ collected: true }));
+});

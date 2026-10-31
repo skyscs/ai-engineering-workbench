@@ -12,13 +12,17 @@ through merged PR #25, delivering explicit review/reapplication of earlier corre
 with unchanged supporting evidence. [Task 022](../../tasks/022-loredock-project-orientation.md)
 was accepted through PR #26, adding basic README orientation and first reading navigation.
 [Task 023](../../tasks/023-loredock-answer-review-context.md) supplies matching engineer
-notes to cited-answer inputs and tracks review freshness. Full L3
+notes to cited-answer inputs and tracks review freshness through merged PR #27.
+[Task 024](../../tasks/024-loredock-scale-corpus.md) adds a heterogeneous twenty-repository
+fixture and [capacity audit](SCALE_READINESS.md); the product still admits three sources.
+Bulk local-source onboarding and fair baseline orientation are the next implementation.
+Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale
 and the Workbench bridge remain open. The
 [acceptance record](L2_ACCEPTANCE.md) distinguishes owner acknowledgement from agent scores.
 See [L0 measurements and blockers](FEASIBILITY.md), [contracts](CONTRACTS.md),
 [Task 016](../../tasks/016-loredock-cited-answer.md) for the accepted answer slice and
-[Task 023](../../tasks/023-loredock-answer-review-context.md) for the current bounded delivery.
+[Task 024](../../tasks/024-loredock-scale-corpus.md) for the current bounded delivery.
 
 ## Outcome and delivery boundary
 

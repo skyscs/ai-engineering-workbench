@@ -1,6 +1,7 @@
 # Task 023 — Engineer review context for cited answers
 
-Status: implemented and locally verified, 2026-10-31. Task 022 was accepted through the owner's merge
+Status: agent-reviewed and merged through PR #27 (`586bff3`), 2026-10-31,
+after both CI runs passed. Task 022 was accepted through the owner's merge
 of PR #26 (`76fdde3`). The owner authorized agent review, merge after successful
 checks, and continuation to the next bounded development phase.
 
