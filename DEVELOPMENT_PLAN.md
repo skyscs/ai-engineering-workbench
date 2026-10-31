@@ -96,8 +96,11 @@ cards with clue subjects visible before opening, preserving selection and eviden
 sources at existing limits: complete original-context recall, all-text refresh reuse,
 21/22 candidate recall and only 100/3,621 code documents examined. Retained database
 growth and passage-order changes are recorded separately from stable passage sets.
-Next: freeze an offline qualification of related-source ordering by strongest admitted
-relationship kind, preserving configuration clues, anchors, evidence and existing caps.
+[Task 042](tasks/042-loredock-source-order-qualification.md) qualifies strongest-link-first
+ordering offline. It recovers the observed volume omission but loses a critical configuration
+source in a frozen counterexample. Unconditional promotion is rejected; production stays v1.
+Next: explicit four-source pages to inspect remaining eligible related repositories,
+preserving default ordering, primary/answer context and original evidence.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
