@@ -51,4 +51,49 @@ pending review labels are superseded only by separate review artifacts.
 
 ## Result
 
-Pending the frozen run. No new quality score or acceptance is claimed yet.
+Frozen in commit `e2205be` before dispatch. The only run started at
+2026-10-31T20:43:42.373Z and finished at 20:45:40.153Z. All fourteen attempts completed
+operationally. Agent semantic review passes **8/14: 5/10 interface and 3/4 regression
+cases**. The all-case gate **fails**. This is a different corpus/rubric from earlier
+runs, not a controlled score comparison or evidence of a causal prompt improvement.
+
+| Cases | Recorded problem |
+| --- | --- |
+| i01 | Both header names are stated, but their case-only equivalence is left implicit rather than explained. |
+| i02, i05, i06 | A README listing missing HTTP infrastructure is expanded into a claim that the entire API repository supplies declarations only. The same frozen repository contains `src/Helium.java`. |
+| i06 | The missing `resolveDepot` implementation qualification is omitted; an eventual transmission question does not explain that implementation gap. |
+| i08 | A compound conclusion repeats the client assignment without citing the client original in that claim. Claim 3 cites it correctly elsewhere. |
+| i14 | A claim calls the Java record matching while citing only Java, without the JSON contract it compares against. The contract is cited correctly elsewhere. |
+
+The two last cases are claim-local citation defects, **not fabricated field values**.
+All material parts of each claim are reviewed against that claim's own citations.
+Independent reviewers can assess these judgments in the unchecked worksheet; a passing
+schema or a true statement elsewhere in the answer does not automatically approve a
+compound claim's citations. The i01/i06 omission judgments require the frozen specific
+qualification, rather than inferring it from a generic intended-flow/runtime question.
+
+- 36/38 required propositions/qualifications are met under agent review. The recorded
+  original reference basis is available for all 38; neither omission is a retrieval miss.
+- All 63 claims and 49 unanswered questions are reviewed. Five claims have insufficient
+  support as written: three scope overstatements and two local citation defects. All
+  forbidden assertions were reviewed as absent; independent review remains pending.
+- The audit verifies 388 input-span occurrences against 47 original Git files, including
+  owner/revision/blob/range/content hashes; 85 citation references resolve to 33 spans.
+- Maximum input: 30 spans, 5,157 source bytes and 34,124 prompt bytes. No caps or product
+  behavior changed. Four cases still lack the specific comparison clue measured in Task 033.
+- Reported usage: 252,097 input / 6,002 output / 0 cached tokens; all attempts report usage.
+  These counts exclude unknown CLI-internal request/retry details.
+- All fourteen stored contexts/results are byte-identical after reopening the store;
+  exact request replay adds zero calls. Source revocation fences all fourteen and purges
+  their stored context/result. This exported synthetic evidence retains its own copy.
+- Full verification: 341 tests, strict typechecks and builds. No product/UI change;
+  Task 032 browser evidence remains applicable. The real-model budget is exhausted.
+
+[Raw run](answer-result.json) · [Agent judgments](semantic-review.json) ·
+[Independent review worksheet](HUMAN_REVIEW.md) · [Provenance audit](audit-result.json)
+
+Reproduce the model-free audit with `node scripts/loredock-interface-audit.mjs`.
+The next phase freezes the roadmap's ten incident-routing cases and measures the
+current candidate evidence without model calls or production routing. This addresses
+an unmeasured readiness condition while retaining the answer failures. Independent
+quality acceptance and an eligible private pilot still precede the Workbench bridge.

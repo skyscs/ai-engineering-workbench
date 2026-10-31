@@ -47,9 +47,8 @@ Tasks 031–032 add literal header/binding comparisons to the map and to new ans
 contexts. Prompt **v9** includes only comparisons whose complete original support is
 already retrieved, separately labeled as unverified static analysis. Retrieval v7,
 answer schema v3 and old immutable answers remain unchanged. Fake-runtime/browser
-checks verify transport, provenance, budgets and history; **v9 has no real-model semantic
-qualification yet**. Its next evaluation needs an independent prospective design and
-separate budget. Prior scores and failed gates are not transferred to the new prompt.
+checks verify transport, provenance, budgets and history. Task 034 below supplies the
+first fixed v9 model run. Prior scores and failed gates are not transferred to the new prompt.
 
 Task 033 freezes that [prospective freight corpus and rubric](../../fixtures/loredock-interfaces/README.md):
 twenty sources, fourteen questions and 38 required propositions/qualifications. Original
@@ -57,6 +56,15 @@ reference recall is 14/14 across two generations; source and logical comparison 
 are stable after normalizing citation-set order. Four of ten interface questions lack
 their specific derived clue under the existing cap, despite complete originals. Preserve
 this limitation in the next fixed run; no product tuning or model calls occur in Task 033.
+
+Task 034 completes the [one-run interface qualification](../fixtures/loredock-interface-answers/README.md)
+under a contract committed before dispatch. All fourteen attempts complete operationally;
+agent review passes 8/14 (5/10 interface, 3/4 regression). Two required qualifications
+are omitted, three claims overstate repository-wide scope and two lack complete local
+citations despite correctly cited facts elsewhere. The gate fails; 36/38 requirements
+are met with all recorded originals available. All 63 claims and 49 unknowns are reviewed,
+with independent review pending. No retry or product/prompt tuning follows from the run.
+Next: the roadmap's fixed ten-case incident-context baseline, using no model calls.
 
 The original three-source pilot's final run has a provisional **20/20 useful/correct agent assessment**,
 **162/162 resolving citation references across 98 claims**, and **20/20 complete

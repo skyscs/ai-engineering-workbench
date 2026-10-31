@@ -67,7 +67,7 @@ test('a failed interface attempt retains raw output and usage and never retries'
   assert.equal(report.semanticReview, 'pending'); assert.ok(!report.history && !report.revocation);
 });
 
-test('changed contracts and runtime identities cannot dispatch a interface model call', async t => {
+test('changed contracts and runtime identities cannot dispatch an interface model call', async t => {
   const directory = await mkdtemp(path.join(os.tmpdir(), 'loredock-interface-contract-'));
   t.after(() => rm(directory, { recursive: true, force: true }));
   const selected = identity(directory), contract = await freezeInterfaceAnswers(selected); let prepared = 0, closed = 0;

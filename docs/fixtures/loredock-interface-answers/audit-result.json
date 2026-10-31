@@ -1,0 +1,41 @@
+{
+  "unknownsReviewed": 49,
+  "schemaVersion": "loredock-interface-audit/1",
+  "modelRequests": 0,
+  "applicationAttempts": 14,
+  "inputSpanOccurrencesChecked": 388,
+  "claimsReviewed": 63,
+  "requirementsReviewed": 38,
+  "citationReferences": 85,
+  "distinctCitedSpans": 33,
+  "originalFilesRead": 47,
+  "originalBytesVerified": true,
+  "summary": {
+    "interface": {
+      "evaluated": 10,
+      "passed": 5,
+      "failed": [
+        "i01",
+        "i02",
+        "i05",
+        "i06",
+        "i08"
+      ]
+    },
+    "regression": {
+      "evaluated": 4,
+      "passed": 3,
+      "failed": [
+        "i14"
+      ]
+    }
+  },
+  "hardGatePassed": false,
+  "usage": {
+    "inputTokens": 252097,
+    "outputTokens": 6002,
+    "cachedInputTokens": 0
+  },
+  "unknownUsageAttempts": 0,
+  "scope": "Provenance and judgment coverage verification only; development-agent semantics are not independent acceptance."
+}

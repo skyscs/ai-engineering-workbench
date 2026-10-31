@@ -65,9 +65,14 @@ unchanged. New context/provenance/budget/history checks use fake runtimes only.
 freight corpus with fourteen prospective questions and 38 required propositions. All
 recorded original references are available; six of ten interface questions also receive
 their specific derived clue under the existing comparison cap. Product behavior is unchanged.
-Next: one separately frozen execution of this contract, at most fourteen attempts,
-with qualified runtime identity, raw-output retention and claim-by-claim semantic review.
-No quality improvement is claimed without new semantic review; old failed gates stand.
+[Task 034](tasks/034-loredock-interface-answer-qualification.md) executes that contract
+once after committing implementation/runtime identity. All fourteen attempts complete;
+agent review passes 8/14 and the gate fails. Two required qualifications are omitted,
+three claims overstate repository scope and two have incomplete local citations.
+All original evidence and judgments remain available; old failed gates stand.
+Next: freeze the roadmap's ten incident-routing cases and measure current candidate
+evidence without model calls or production routing. No further prompt tuning or paid
+rerun is included; independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
 Broader synthesis, adapters, semantic/AI refresh and scale acceptance remain separate.
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,

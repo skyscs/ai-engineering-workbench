@@ -52,16 +52,19 @@ without real models.
 twenty-source freight corpus, fourteen questions and their reviewer contract. All
 required original references are available in two fresh generations; the comparison cap
 omits the question-specific clue in four of ten interface cases, while originals remain
-available. Next: one fixed, separately recorded run of at most fourteen attempts,
-after runtime qualification and implementation freezing, followed by semantic review.
-No further tuning on the observed reserved answers is included.
+available. [Task 034](../../tasks/034-loredock-interface-answer-qualification.md) executes
+the frozen run once after committing implementation/runtime identity. Fourteen attempts
+complete; agent review passes 8/14 and fails the gate because of missing qualifications,
+scope overstatements and incomplete local citations. All raw evidence and judgments are
+retained. Next: freeze ten incident-routing cases and measure current candidate evidence
+without model calls or production routing. No tuning on these observed answers is included.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale
 and the Workbench bridge remain open. The
 [acceptance record](L2_ACCEPTANCE.md) distinguishes owner acknowledgement from agent scores.
 See [L0 measurements and blockers](FEASIBILITY.md), [contracts](CONTRACTS.md),
 [Task 016](../../tasks/016-loredock-cited-answer.md) for the accepted answer slice and
-[Task 030](../../tasks/030-loredock-prospective-answers.md) for the latest bounded evaluation.
+[Task 034](../../tasks/034-loredock-interface-answer-qualification.md) for the latest bounded evaluation.
 See [header comparison evidence](../fixtures/loredock-http-headers/README.md) for the
 subsequent map-only improvement; it does not change any historical semantic score.
 
