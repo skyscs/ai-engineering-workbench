@@ -51,6 +51,13 @@ checks verify transport, provenance, budgets and history; **v9 has no real-model
 qualification yet**. Its next evaluation needs an independent prospective design and
 separate budget. Prior scores and failed gates are not transferred to the new prompt.
 
+Task 033 freezes that [prospective freight corpus and rubric](../../fixtures/loredock-interfaces/README.md):
+twenty sources, fourteen questions and 38 required propositions/qualifications. Original
+reference recall is 14/14 across two generations; source and logical comparison selections
+are stable after normalizing citation-set order. Four of ten interface questions lack
+their specific derived clue under the existing cap, despite complete originals. Preserve
+this limitation in the next fixed run; no product tuning or model calls occur in Task 033.
+
 The original three-source pilot's final run has a provisional **20/20 useful/correct agent assessment**,
 **162/162 resolving citation references across 98 claims**, and **20/20 complete
 expected-evidence retrieval sets**. This is not independent human approval. Read the

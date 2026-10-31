@@ -61,8 +61,12 @@ and explicit unresolved mappings. Candidate links outside the two outlines are v
 comparisons in answer previews, saved inputs and prompt v9 only when every original
 supporting passage is already supplied. Retrieval v7 and all historical answers remain
 unchanged. New context/provenance/budget/history checks use fake runtimes only.
-Next: freeze an independent prospective qualification design for prompt v9, covering
-interface mapping, runtime uncertainty and regression cases before any new model run.
+[Task 033](tasks/033-loredock-interface-qualification-design.md) freezes a new twenty-source
+freight corpus with fourteen prospective questions and 38 required propositions. All
+recorded original references are available; six of ten interface questions also receive
+their specific derived clue under the existing comparison cap. Product behavior is unchanged.
+Next: one separately frozen execution of this contract, at most fourteen attempts,
+with qualified runtime identity, raw-output retention and claim-by-claim semantic review.
 No quality improvement is claimed without new semantic review; old failed gates stand.
 Source recall, agent scoring and merging do not establish L5 readiness.
 Broader synthesis, adapters, semantic/AI refresh and scale acceptance remain separate.

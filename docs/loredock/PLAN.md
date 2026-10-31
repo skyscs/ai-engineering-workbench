@@ -47,9 +47,13 @@ header values remain unverified.
 comparisons to answer previews, saved contexts and prompt v9. Complete supporting spans
 must already be retrieved; source selection and earlier answers remain unchanged.
 Count/byte/prompt bounds, derivation validation and historical/source fences are tested
-without real models. Next: freeze an independent prospective qualification design for
-the new prompt, including interface mapping and earlier limitation/conflict regressions,
-before considering any separately budgeted real-model run.
+without real models.
+[Task 033](../../tasks/033-loredock-interface-qualification-design.md) freezes a fresh
+twenty-source freight corpus, fourteen questions and their reviewer contract. All
+required original references are available in two fresh generations; the comparison cap
+omits the question-specific clue in four of ten interface cases, while originals remain
+available. Next: one fixed, separately recorded run of at most fourteen attempts,
+after runtime qualification and implementation freezing, followed by semantic review.
 No further tuning on the observed reserved answers is included.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale

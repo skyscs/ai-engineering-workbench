@@ -54,6 +54,9 @@ cases under agent review, but one extra claim invents tenant-header propagation 
 incompatible declarations. The map now exposes literal header comparisons as review clues;
 new prompt v9 also supplies fully supported comparisons as derived clues. Saved answers
 remain unchanged, and prompt v9 has not yet received real-model quality qualification.
+The [new prospective qualification design](fixtures/loredock-interfaces/README.md)
+freezes fourteen fresh freight-system questions before model outputs; all required
+original references are available, with the derived-comparison limit disclosed.
 
 ## What v0.1 does
 
