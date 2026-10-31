@@ -77,7 +77,7 @@ export class SourceGit {
     const output = decode(await this.run(identity.path, ['ls-tree', '-r', '-l', '-z', '--full-tree', revision], signal));
     return output.split('\0').filter(Boolean).map(line => {
       const match = /^(\d{6}) (blob|commit) ([a-f0-9]+) +([0-9]+|-)\t([\s\S]+)$/.exec(line);
-      if (!match || !oid.test(match[3]!)) throw new CatalogError('INVALID_TREE', 'Unsupported Git tree entry.', 422);
+      if (!match || !oid.test(match[3]!) || match[2] === 'blob' && match[4] === '-') throw new CatalogError('INVALID_TREE', 'Unsupported or unavailable Git tree entry.', 422);
       return { mode: match[1]!, blob: match[3]!, size: match[4] === '-' ? 0 : Number(match[4]), path: match[5]! };
     });
   }

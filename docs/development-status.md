@@ -1,8 +1,49 @@
 # Development status
 
+## Task 020 — Validated refresh and committed-inventory changes
+
+Implemented and locally verified, 2026-10-31; ready for code/product review. Task 019
+was accepted through the owner's merge of PR #23 (`5491545`). The first bounded L4
+slice adds a fixed prior-index baseline, validated same-source extraction reuse and a
+protected inventory comparison. Every current repository is still freshly snapshotted
+and inventoried, including newly registered sources and added consumers.
+
+On the unchanged frozen corpus, 18 text files are reused and Git file reads fall from
+21 to three (the binary canaries). Changing one file, adding a packaged consumer and
+removing a client reuses 16 files with five reads; the new consumer is visible in the
+code projection and historical evidence stays pinned. Each new index owns fresh file,
+span and search identities. No model or semantic-result cache was introduced.
+
+Schema 5 preserves source evidence, saved answers and human correction history. Cache
+eligibility includes policy/extractor/source/path/mode/blob/size; integrity checks cover
+raw/Git hashes, complete spans and metadata fingerprints. Legacy checkpoints require
+full extraction validation. Damaged cache falls back to pinned Git reads with explicit
+rejection counters. Current limits run before reuse; cancellation, rollback and restart
+retain publication/authorization fencing. A wholly failed update retains the previous
+published index; partial/failed inventory cannot establish file absence.
+
+The primary button becomes Update knowledge after publication. A selected-index summary
+shows content/coverage changes and bounded source-balanced file details, with original/
+selected citations. Diagnostics stay in details. Revoked scopes are excluded from both
+sides; policy and late-response fences cover the new view. Old answers and engineer
+corrections remain attached to their original index; no implicit review transfer occurs.
+
+Verification: full `pnpm check` passes 245 tests (94 LoreDock), strict typechecks and
+production builds. Tests cover corruption, key/policy/identity isolation, new consumers,
+limits/preview bounds, partial failure, pause/cancel/restart, rollback, legacy migration
+and protected transport. Chrome passes unchanged/changed updates, previous/current
+citations, history/correction isolation, source/policy/restart and 390px layout. Existing
+answer-browser acceptance passes with four fake invocations. Production evaluation
+records 21/3/5 read attempts, original/changed revision vectors and source checkout
+preservation. Zero real model calls. See [Task 020](../tasks/020-loredock-incremental-refresh.md),
+[ADR 0025](decisions/0025-loredock-incremental-refresh.md) and
+[recorded refresh evidence](fixtures/loredock-refresh/README.md).
+Full L3/L4 acceptance, broader orientation, semantic/AI refresh, correction reconciliation,
+production-framework qualification, 20-repository scale and the Workbench bridge remain open.
+
 ## Task 019 — Engineer relationship corrections and review invalidation
 
-Implemented and locally verified, 2026-10-30; ready for code/product review.
+Accepted through the owner's merge of PR #23 (`5491545`), 2026-10-31.
 Task 018 was accepted through the owner's merge of PR #22 (`25032fd`). A separate
 human/unverified overlay now supports disputing/clarifying declaration comparisons
 and code links, optional engineer environment scope, append-only history and withdrawal.

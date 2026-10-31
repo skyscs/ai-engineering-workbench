@@ -36,6 +36,10 @@ answer model in this slice. All sources in the recorded index conservatively fen
 history/replay; revocation purges dependent note text, environment and target snapshots,
 including withdrawn versions. SQL/HTTP and late-response boundaries are described in
 [ADR 0024](docs/decisions/0024-loredock-engineer-corrections.md).
+Refresh cache reuse is restricted to the same source/path/Git object and policy/extractor,
+with raw/span/metadata integrity checks and fresh repository inventory. Comparison APIs
+omit revoked scopes and fence old policies. Purge clears all copied byte/span generations
+and extraction fingerprints. See [ADR 0025](docs/decisions/0025-loredock-incremental-refresh.md).
 
 The sections below describe Workbench's existing AI investigation boundary.
 

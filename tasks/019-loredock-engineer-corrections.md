@@ -1,6 +1,6 @@
 # Task 019 — Durable engineer corrections for relationships and flows
 
-Status: implemented and locally verified, 2026-10-30; ready for code/product review.
+Status: accepted through the owner's merge of PR #23 (`5491545`), 2026-10-31.
 Task 018 was accepted through the owner's merge
 of PR #22 (`25032fd`); the owner requested continuation.
 

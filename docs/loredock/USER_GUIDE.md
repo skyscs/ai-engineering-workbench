@@ -53,6 +53,48 @@ changes. Every index records independent revisions, not proof of a coherent depl
 Production environment values and external systems remain unknown unless included in
 explicitly registered sources.
 
+## Update knowledge and review changes
+
+After the first published index, the main action becomes **Update knowledge**. Commit
+the changes you want included, then click it. LoreDock snapshots and inventories every
+current repository, including new sources and paths. Working files remain untouched;
+uncommitted changes are still excluded. No repository is fetched and no model is called.
+
+The previous published index stays available while the update runs. Use the existing
+**Pause**, **Resume** and **Cancel index** controls as needed. Resume retains the original
+revision vector and update baseline, even if repository HEAD moves while paused. A wholly
+failed update keeps the previous published index; partial results display their gaps.
+
+**Changes in the selected index** shows added, changed and removed committed paths,
+coverage changes, or entries that cannot be compared. A rename appears as an added and
+removed path. If an inventory failed or was truncated, missing entries in that scope
+are not reported as confirmed additions/removals. **Index version** selects the pinned
+comparison as well as the map/search views. Earlier indexes that predate refresh tracking
+show comparison/metrics as unavailable.
+
+Open **Update details** for source revision changes, a bounded file list and original
+or selected-index evidence buttons. Counts describe the bounded inventories; the preview
+shows at most 100 safe paths, balanced across sources, with a 512 KiB output limit.
+Omissions are explicit. This is a file-inventory comparison, not proof of complete
+analysis or a coherent deployment. Revoked source scopes are excluded from both sides;
+old-policy comparisons are fenced.
+
+Unchanged admitted text is reused only after checking its source/path/Git object,
+policy/extractor, bytes, complete spans and metadata fingerprint. New citations have
+new IDs and retain the new index's revision, while older citations stay unchanged.
+The current file/project budgets apply before reuse. Cache validation failures fall
+back to reading the pinned Git object and are counted in details. They do not themselves
+prove a successful repair. The frozen demo reuses 18 text files on an unchanged update;
+its three binary canaries still need byte reads, reducing Git file reads from 21 to 3.
+Read-attempt counters include interrupted retries and are not elapsed-time or billing
+measurements. Unsupported byte-dependent input may be checked again.
+
+Maps/flows are reconstructed from the new inventory, including added consumers. Older
+answers keep their original input/build and staleness labels; they are not regenerated.
+Engineer corrections remain on their original index and require separate reconciliation
+for a newer index. Reusing a file does not transfer an old conclusion or human review.
+See [refresh evidence](../fixtures/loredock-refresh/README.md).
+
 ## Explore the declaration map
 
 After indexing, **System map** appears automatically and makes no model calls. Open a
@@ -181,8 +223,9 @@ and [ADR 0024](../decisions/0024-loredock-engineer-corrections.md).
 
 Stop the existing LoreDock process and start the answer pilot with the same data
 directory. Back up the stopped directory before upgrading. Current startup migrates
-older LoreDock data to schema 4, retaining evidence and saved answers while adding
-engineer correction history. Schema 3 originally introduced answer attempts and settings.
+older LoreDock data to schema 5, retaining evidence, answers and engineer correction
+history while adding refresh lineage and counters. Schema 3 originally introduced
+answer attempts/settings and schema 4 added correction history.
 
 ```sh
 LOREDOCK_ANSWERS=1 pnpm loredock
@@ -375,6 +418,7 @@ require the session. No tokens belong in URLs or logs.
 | `GET /api/builds/:id` | Exact build status, revisions and coverage. |
 | `POST /api/builds/:id/:action` | `pause`, `resume` or `cancel`. |
 | `GET /api/builds/:id/files` | First 100 excluded/failed authorized file records. |
+| `GET /api/builds/:id/changes` | Bounded authorized inventory comparison, source revisions, reuse/read diagnostics and original/selected evidence IDs. |
 | `GET /api/search?q=...&buildId=...` | Search the current or a selected published index. |
 | `GET /api/evidence/:id` | Reopen a validated, authorized stored citation. |
 | `GET /api/system-map?buildId=...` | Bounded declaration projection for the current or a selected authorized published index. |

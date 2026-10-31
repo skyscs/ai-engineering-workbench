@@ -7,12 +7,13 @@ import type { RepositoryIdentity, TreeEntry } from './git.js';
 import { safePath } from './git.js';
 import { extractorVersion, sha256, spans } from './extract.js';
 import { spanSearchText } from './search-text.js';
+import { checkpointHash, refreshVersion } from './checkpoint.js';
 
 export const defaults = { sources: 3, paths: 10000, fileBytes: 1024 * 1024, totalBytes: 50 * 1024 * 1024, wallMs: 300000 };
 export interface Project { policyVersion: number; sourceSetVersion: number; policy: string; publishedBuildId: string | null; correctionRevision: number }
-export interface BuildRow { id: string; requestId: string; payloadHash: string; status: BuildStatus; policyVersion: number; sourceSetVersion: number; policy: string; createdAt: string; reason: string | null; published: number; extractorVersion: string }
+export interface BuildRow { id: string; requestId: string; payloadHash: string; status: BuildStatus; policyVersion: number; sourceSetVersion: number; policy: string; createdAt: string; reason: string | null; published: number; extractorVersion: string; baselineBuildId: string | null; refreshVersion: string | null }
 export interface BuildSourceRow { buildId: string; sourceId: string; name: string; path: string; gitDir: string; revision: string | null; tree: string | null; status: 'pending' | 'ready' | 'failed'; dirty: number | null; error: string | null; omitted: number }
-export interface FileRow { id: string; buildId: string; sourceId: string; path: string; mode: string; blob: string; size: number; status: string; reason: string | null; error: string | null; contentHash: string | null; raw: Uint8Array | null; metadata: string }
+export interface FileRow { id: string; buildId: string; sourceId: string; path: string; mode: string; blob: string; size: number; status: string; reason: string | null; error: string | null; contentHash: string | null; raw: Uint8Array | null; metadata: string; extractionHash: string | null; reusedFromFileId: string | null; gitReadAttempts: number; cacheRejected: number }
 const unfinished = ['preparing', 'running', 'pause_requested', 'paused', 'interrupted'];
 
 export class CatalogStore {
@@ -37,7 +38,7 @@ export class CatalogStore {
       this.db = opened = new DatabaseSync(path.join(this.directory, 'loredock.db'));
       this.db.exec('PRAGMA foreign_keys=ON; PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL; PRAGMA secure_delete=ON;');
       const version = this.one<{ user_version: number }>('PRAGMA user_version')!.user_version;
-      if (version < 0 || version > 4) throw new Error('Unsupported LoreDock database version.');
+      if (version < 0 || version > 5) throw new Error('Unsupported LoreDock database version.');
       if (!version) this.db.exec(`BEGIN IMMEDIATE;
         CREATE TABLE project (id INTEGER PRIMARY KEY CHECK(id=1), policyVersion INTEGER NOT NULL, sourceSetVersion INTEGER NOT NULL, policy TEXT NOT NULL, publishedBuildId TEXT);
         INSERT INTO project VALUES (1,1,1,'{"excludedPaths":[]}',NULL);
@@ -96,6 +97,14 @@ export class CatalogStore {
         CREATE TRIGGER correction_history BEFORE DELETE ON corrections
           BEGIN SELECT RAISE(ABORT,'Correction history requires content purge, not deletion.'); END;
         PRAGMA user_version=4; COMMIT;`);
+      if (version < 5) this.db.exec(`BEGIN IMMEDIATE;
+        ALTER TABLE builds ADD COLUMN baselineBuildId TEXT REFERENCES builds(id);
+        ALTER TABLE builds ADD COLUMN refreshVersion TEXT;
+        ALTER TABLE files ADD COLUMN extractionHash TEXT;
+        ALTER TABLE files ADD COLUMN reusedFromFileId TEXT REFERENCES files(id);
+        ALTER TABLE files ADD COLUMN gitReadAttempts INTEGER NOT NULL DEFAULT 0;
+        ALTER TABLE files ADD COLUMN cacheRejected INTEGER NOT NULL DEFAULT 0;
+        PRAGMA user_version=5; COMMIT;`);
       this.db.exec("UPDATE answer_attempts SET status='interrupted', reason='The daemon stopped. Start an explicit new attempt; provider completion may be unknown.', usageUnknownReason=CASE WHEN dispatchedAt IS NULL THEN 'Not dispatched before restart.' ELSE 'Provider completion and usage are unknown after restart.' END WHERE status IN ('preparing','running');");
       this.db.exec("UPDATE builds SET status='interrupted', reason='The daemon stopped. Resume explicitly.' WHERE status IN ('preparing','running','pause_requested');");
     } catch (error) { opened?.close(); this.owner.close(); throw error; }
@@ -149,8 +158,8 @@ export class CatalogStore {
       const sources = this.sources().filter(source => source.status === 'active');
       if (!sources.length) throw new CatalogError('NO_SOURCES', 'Add a local repository first.');
       const id = randomUUID();
-      this.run("INSERT INTO builds (id,requestId,payloadHash,status,policyVersion,sourceSetVersion,policy,createdAt,extractorVersion) VALUES (?,?,?,'preparing',?,?,?,?,?)",
-        id, requestId, payloadHash, policyVersion, sourceSetVersion, project.policy, new Date().toISOString(), extractorVersion);
+      this.run("INSERT INTO builds (id,requestId,payloadHash,status,policyVersion,sourceSetVersion,policy,createdAt,extractorVersion,baselineBuildId,refreshVersion) VALUES (?,?,?,'preparing',?,?,?,?,?,?,?)",
+        id, requestId, payloadHash, policyVersion, sourceSetVersion, project.policy, new Date().toISOString(), extractorVersion, project.publishedBuildId, refreshVersion);
       for (const source of sources) this.run('INSERT INTO build_sources (buildId,sourceId,name,path,gitDir) VALUES (?,?,?,?,?)', id, source.id, source.name, source.path, source.gitDir);
       return this.buildRow(id);
     });
@@ -173,15 +182,17 @@ export class CatalogStore {
       this.run("UPDATE build_sources SET status='ready', omitted=? WHERE buildId=? AND sourceId=?", omitted, buildId, sourceId);
     });
   }
-  finishFile(file: FileRow, result: { reason: string; status?: string; error?: string } | { raw: Buffer; text: string; metadata: Record<string, unknown> }) {
+  finishFile(file: FileRow, result: { reason: string; status?: string; error?: string } | { raw: Buffer; text: string; metadata: Record<string, unknown> }, reusedFromFileId: string | null = null) {
     this.transaction(() => {
       if (!this.writable(file.buildId) || this.one<FileRow>('SELECT * FROM files WHERE id=?', file.id)?.status !== 'pending') return;
       if ('reason' in result) { this.run('UPDATE files SET status=?, reason=?, error=? WHERE id=?', result.status ?? 'excluded', result.reason, result.error ?? null, file.id); return; }
-      const hash = sha256(result.raw);
-      this.run("UPDATE files SET status='indexed', contentHash=?, raw=?, metadata=? WHERE id=?", hash, result.raw, JSON.stringify(result.metadata), file.id);
-      for (const span of spans(result.text)) {
+      const hash = sha256(result.raw), metadata = JSON.stringify(result.metadata);
+      const chunks = spans(result.text).map(span => ({ ...span, hash: sha256(span.text) }));
+      const extractionHash = checkpointHash(this.buildRow(file.buildId), file, hash, metadata, chunks);
+      this.run("UPDATE files SET status='indexed', contentHash=?, raw=?, metadata=?,extractionHash=?,reusedFromFileId=? WHERE id=?", hash, result.raw, metadata, extractionHash, reusedFromFileId, file.id);
+      for (const span of chunks) {
         const id = randomUUID();
-        this.run('INSERT INTO spans VALUES (?,?,?,?,?,?)', id, file.id, span.startLine, span.endLine, span.text, sha256(span.text));
+        this.run('INSERT INTO spans VALUES (?,?,?,?,?,?)', id, file.id, span.startLine, span.endLine, span.text, span.hash);
         this.run('INSERT INTO search (spanId,text) VALUES (?,?)', id, span.text);
         this.run('INSERT INTO question_search (spanId,text) VALUES (?,?)', id, spanSearchText(file.path, span.text));
       }
@@ -204,7 +215,10 @@ export class CatalogStore {
     const sources: BuildSource[] = this.buildSources(id).map(source => ({ sourceId: source.sourceId, name: source.name, revision: source.revision,
       tree: source.tree, status: source.status, dirty: source.dirty === null ? null : Boolean(source.dirty), error: source.error, omitted: source.omitted, coverage: this.coverage(id, source.sourceId) }));
     return { id, status: row.status, policyVersion: row.policyVersion, sourceSetVersion: row.sourceSetVersion, createdAt: row.createdAt,
-      reason: row.reason, published: Boolean(row.published), sources, coverage: this.coverage(id), extractorVersion: row.extractorVersion };
+      reason: row.reason, published: Boolean(row.published), sources, coverage: this.coverage(id), extractorVersion: row.extractorVersion,
+      refresh: { baselineBuildId: row.baselineBuildId, version: row.refreshVersion,
+        ...this.one<{ reusedFiles: number; gitReadAttempts: number; cacheRejections: number }>(`SELECT count(CASE WHEN reusedFromFileId IS NOT NULL AND status='indexed' THEN 1 END) AS reusedFiles,
+          coalesce(sum(gitReadAttempts),0) AS gitReadAttempts,coalesce(sum(cacheRejected),0) AS cacheRejections FROM files WHERE buildId=?`, id)! } };
   }
   publish(id: string) {
     this.transaction(() => {
@@ -235,7 +249,7 @@ export class CatalogStore {
       this.run('DELETE FROM search WHERE spanId IN (SELECT s.id FROM spans s JOIN files f ON f.id=s.fileId WHERE f.sourceId=?)', source.id);
       this.run('DELETE FROM question_search WHERE spanId IN (SELECT s.id FROM spans s JOIN files f ON f.id=s.fileId WHERE f.sourceId=?)', source.id);
       this.run('DELETE FROM spans WHERE fileId IN (SELECT id FROM files WHERE sourceId=?)', source.id);
-      this.run("UPDATE files SET raw=NULL, metadata='{}',status='purged',reason='revoked' WHERE sourceId=?", source.id);
+      this.run("UPDATE files SET raw=NULL, metadata='{}',extractionHash=NULL,status='purged',reason='revoked' WHERE sourceId=?", source.id);
       this.run("UPDATE sources SET purge='completed' WHERE id=?", source.id);
     });
   }

@@ -12,6 +12,7 @@ import type { TextConnection } from '@aew/ai';
 import { declarationMap } from './system-map.js';
 import { codeFlows } from './code-flows.js';
 import { Corrections } from './corrections.js';
+import { indexChanges } from './index-changes.js';
 
 export function createApp(catalog: Catalog, options: { publicDir?: string; development?: boolean; answers?: Answers } = {}) {
   const app = new Hono();
@@ -77,6 +78,7 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
   });
   app.get('/api/builds/:id', c => c.json(catalog.store.build(c.req.param('id'))));
   app.get('/api/builds/:id/files', c => c.json({ files: catalog.files(c.req.param('id')), limit: 100 }));
+  app.get('/api/builds/:id/changes', c => c.json(indexChanges(catalog, c.req.param('id'))));
   app.post('/api/builds/:id/:action', c => c.json(catalog.control(c.req.param('id'), c.req.param('action'))));
   app.get('/api/search', c => c.json(catalog.search(c.req.query('q') ?? '', c.req.query('buildId'))));
   app.get('/api/evidence/:id', c => c.json(catalog.evidence(c.req.param('id'))));
