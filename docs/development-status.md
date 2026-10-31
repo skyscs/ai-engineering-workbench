@@ -1,5 +1,48 @@
 # Development status
 
+## Task 032 — Source-backed interface comparisons in answer context
+
+Implemented and locally verified, 2026-10-31. Task 031 reached main through PR #35
+(`ab54021`) after both exact-head CI runs passed. New answer previews/inputs and prompt
+v9 contain a separately labeled `answer-interfaces-v1` block. Only HTTP candidates whose
+complete original support is already retrieved qualify. Matching names, missing mappings
+and unknown inputs remain unverified static clues, with both original citations.
+
+Admission keeps stable graph order, at most six complete comparisons and 8 KiB of their
+UTF-8 JSON. The shared prompt renderer omits whole comparisons until the complete input
+fits 96 KiB; source spans and engineer notes stay intact. An oversized base context fails
+before runtime preparation. Publication recomputes the supported derivation and rejects
+rehashed invented comparisons, endpoint/evidence changes and incompatible provenance.
+Saved inputs retain exact comparison bytes; legacy inputs are not backfilled. Retrieval
+v7, answer schema v3 and database v7 are unchanged. Source/policy/review fencing persists.
+
+The independent dispatch/site example failed against the prior prompt before implementation.
+Full `pnpm check` passes **334 tests** (175 LoreDock, 24 script tests), strict typechecks
+and builds on Node 22.23.2. Final focused validation also covers publication after prompt
+trimming. The frozen v8 evaluation protocol rejects unmodified v9 services before runtime
+preparation; its checkpoint tests use explicit fixture protocol metadata only. All frozen
+contracts, corpora, real answers and semantic judgments remain unchanged.
+
+Both browser scenarios pass: a twenty-source preview/answer test with two independent
+files and two fake calls, plus the existing three-source answer regression. They cover
+original keyboard citations, escaped text, 390-pixel layout, issued-prompt/preview
+identity, reload/refresh/history, legacy field absence and late-response/revocation/
+policy fences. Real model requests: **zero**. An initial browser selector chose the
+portal row sharing a route path; the harness now selects the intended caller explicitly.
+
+Offline regression preserves **24/24 prospective, 20/20 expanded and 20/20 pilot**
+reference recall. The prospective/expanded original selection fingerprints and pilot
+reference sets exactly match Task 029; fresh regenerations remain stable. Maximum
+observed prospective/expanded prompt size is **35,958 bytes** and source text **8,775
+bytes**, within existing caps. These are source/transport checks, not semantic scores.
+
+Reviewed the complete change and recorded limitations; no remaining blocking finding in
+this bounded scope. See [Task 032](../tasks/032-loredock-answer-interface-context.md),
+[ADR 0035](decisions/0035-loredock-answer-interface-context.md) and
+[evidence](fixtures/loredock-answer-interfaces/README.md). Next: freeze an independent
+prospective qualification design for v9 before a separately budgeted model run. The old
+failed gates stand; no readiness or answer-quality improvement is inferred from this merge.
+
 ## Task 031 — Literal HTTP header and binding comparison
 
 Implemented and locally verified, 2026-10-31. Task 030 reached main through PR #34

@@ -1,0 +1,773 @@
+{
+  "schemaVersion": "loredock-interface-retrieval-regression/1",
+  "retrievalVersion": "fts-question-v7",
+  "answerPromptVersion": "loredock-answer-v9",
+  "modelRequests": 0,
+  "semanticReview": "not-performed",
+  "results": [
+    {
+      "set": "completeness",
+      "baselineFile": "docs/fixtures/loredock-reference-retrieval/prospective-result.json",
+      "baselineSha256": "4041f4f788f9d071e20075a1483803cba8211bcf1bf841b6d6b8cf1f928c51c2",
+      "cases": 24,
+      "completeRequiredEvidence": 24,
+      "changedSelections": [],
+      "maximumSourceBytes": 8775,
+      "maximumPromptBytes": 35958,
+      "freshRegeneration": {
+        "summary": {
+          "development": {
+            "cases": 12,
+            "completeRequiredEvidence": 12,
+            "missingEvidenceCases": []
+          },
+          "reserved": {
+            "cases": 12,
+            "completeRequiredEvidence": 12,
+            "missingEvidenceCases": []
+          }
+        },
+        "changedSelections": [],
+        "changedRequirements": []
+      },
+      "results": [
+        {
+          "id": "d01",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "af11ca985372a96ca5f2705a5f2a14e20bd929dd1c46c6c883d014f53880c247"
+        },
+        {
+          "id": "d02",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "975b78875c3c6279bb8da13b42e1532afc016894f451cde197f76b97b27d8c4b"
+        },
+        {
+          "id": "d03",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "f6d272135ce2fda805c53ab0231f72456b778e6d592f484a6460f079ba233f94"
+        },
+        {
+          "id": "d04",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "98ee44a9eb9971fb856845d615edeb115a0bec00f7ac33adc23f71c91a57786d"
+        },
+        {
+          "id": "d05",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "603006889e792bd027eab04fc9d3ac7624ce5ebc760ecae035574342448edbbb"
+        },
+        {
+          "id": "d06",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "8cf49150a6680a027236ff20bf4a3c02714fdf78f60584236730ecd183dc08bd"
+        },
+        {
+          "id": "d07",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "b5f8df5de9fa03a39c69781b920754eb8c77d62037a6abb5d4f047efe3f617f2"
+        },
+        {
+          "id": "d08",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "86cdb24f1e1a7c428943b86061221f7535a0f1b5df8ce824d311947d1b99c901"
+        },
+        {
+          "id": "d09",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "420d41963f8c75d0957f58e269e022dd3dba2112971af888da182792cf03ee0c"
+        },
+        {
+          "id": "d10",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "6669ce75485a90e401042247cf24e86500b307d9ba67696be4ad2ac640c13002"
+        },
+        {
+          "id": "d11",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "dac9ec63b9b8cdd524d198b4441cb15d8eb3501df1cd294ef4df603e72de9248"
+        },
+        {
+          "id": "d12",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "36aae403d2725aaa234515b91e3b598a16fe8a08ce1b984b61c82eb912e63e8f"
+        },
+        {
+          "id": "h01",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "2ae3987b9fee46ed348a69b72a3bbfd3212bfc10201bfbd45b7702b41541e48c"
+        },
+        {
+          "id": "h02",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "c0258628b25dacd6b642687e46d2256bfa8482340749801e095d778fad2bdc80"
+        },
+        {
+          "id": "h03",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "fd5fb54e56ff02c2772110ad59217905534d8a27016d1beef2168f8fa4740a77"
+        },
+        {
+          "id": "h04",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "14999fcd1f19a93337db9582b9c37fdd07f6be643a734999fdd1320ea2df3932"
+        },
+        {
+          "id": "h05",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "b50782af5861aa267255dd2169dd5a699f404987c6b4aeb530433e71db5a8c2e"
+        },
+        {
+          "id": "h06",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "b0784f572ae73deffd864a0a3cd782ef410191f3ef937ccfa8061e86eb5a9d89"
+        },
+        {
+          "id": "h07",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "0f217e78da4e7b8cc480672580e0b79eeb2c31ac6f12235aed7d5f8e82c152d1"
+        },
+        {
+          "id": "h08",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "bab0777ec312cd34ba073e37c227e330ac9df65ecd6ee8b360a12c3f2f769ea9"
+        },
+        {
+          "id": "h09",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "a8b9b6252c8f522490966b5fe3162033cc870e2ca53c0fee03ce701ab9c1dcbf"
+        },
+        {
+          "id": "h10",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "a7fd2934b6a22b8eff3d07b95f3f360fb8ab391461db511a4787f3971139adc7"
+        },
+        {
+          "id": "h11",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "d3e984c43260a5aa3889f2be72bc07bd9fba297efbaf375f08e862514a51431a"
+        },
+        {
+          "id": "h12",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "6144008ce874e2d8cd196001011cee6187f4848e925f0455369ac09efaf949aa"
+        }
+      ]
+    },
+    {
+      "set": "scale",
+      "baselineFile": "docs/fixtures/loredock-reference-retrieval/scale-result.json",
+      "baselineSha256": "fa34b875cbc375c34647fdf9c9eb88a5b9d8e4369bb2220deec37f85196ee646",
+      "cases": 20,
+      "completeRequiredEvidence": 20,
+      "changedSelections": [],
+      "maximumSourceBytes": 8367,
+      "maximumPromptBytes": 34883,
+      "freshRegeneration": {
+        "completeRetrievalCount": 20,
+        "changedSelections": [],
+        "noHitSelectionStable": true,
+        "retrievalMs": 497.2885559999995
+      },
+      "results": [
+        {
+          "id": "s01",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "a33cb41482f5a541f0bbf494a5820ad743ed52d31340987d6cf3ed68bf8ab2c8"
+        },
+        {
+          "id": "s02",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "11e33e371c49e19418a673d092e63b899c686646fd6547abe4fd9430e86af8c8"
+        },
+        {
+          "id": "s03",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "19e1b710116e00dcec34c0226a21f9edaed5cfd40869f56a1c6424bad6bf3c11"
+        },
+        {
+          "id": "s04",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "b155324a3e9e65c30a4d4dba73e76f0edf10c72be0dd46990022fe4483b7bcc1"
+        },
+        {
+          "id": "s05",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "91999d3bc90da642e8df55886b24a96e9fcbdc97093e4060faa5ec625ecabf10"
+        },
+        {
+          "id": "s06",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "4e832bb2bc9f1f7479ed3fbfb3a5a78fd0f89b22cfd76e3ac71e72536d8a6d28"
+        },
+        {
+          "id": "s07",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "818eadf032b1f81da95815bfcb4574347dc7a14f44271476a4d46fd15b122e16"
+        },
+        {
+          "id": "s08",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "93c56669f1224b407cfcc17bf6eb565400a6a43b22071e58fc682e60abed180f"
+        },
+        {
+          "id": "s09",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "a93a05c5d5116898bc51dad8b206c1099142c599858b1c3217cb96913d63f9f3"
+        },
+        {
+          "id": "s10",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "ed2502729e7f28f8055890564e952f63a042077f04241ad65a7f4ce84c9bda64"
+        },
+        {
+          "id": "s11",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "f504cefa004f3e3fb40a6d54951ada070373c148f2bc86ba928fe9a6e0380663"
+        },
+        {
+          "id": "s12",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "d752eeff15c7aeb3f9f9db5e7d6e94297f44769982372d016802a21711a880e0"
+        },
+        {
+          "id": "s13",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "a0a9115566ca1e37294581906915ebd699bc1c5e60befb8feb4e4692b1314ecd"
+        },
+        {
+          "id": "s14",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "98b46cc2b6915d4348403154b0a11553b5e10cbadab0df2d6033ba0871c43697"
+        },
+        {
+          "id": "s15",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "0f691f12e9602bbf1814c951396971bc106453625d6b084d2d6cc8a192ab6d48"
+        },
+        {
+          "id": "s16",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "61f445fc74008f242ce23f7e64403148fcad95226bff4e532c4f58f011ad64c8"
+        },
+        {
+          "id": "s17",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "c3cfed64407e76c0e64601a6c2d060fd29374dc3e8699a5d3481fc0cebf49723"
+        },
+        {
+          "id": "s18",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "f2559706158c3ff0ae3adef19f87280c26d78303f9353d31747aaddacd1213fd"
+        },
+        {
+          "id": "s19",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "a2a81aaf8728afb99fd0a75b665e09dcf55f90ed14908c284a215bca8729e9ae"
+        },
+        {
+          "id": "s20",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "selectedLocatorHash": "b46ce92a9ac3ca93afc7beeabcd46e5f7558c05787446024819bde2955c80f03"
+        }
+      ]
+    },
+    {
+      "set": "pilot",
+      "baselineFile": "docs/fixtures/loredock-reference-retrieval/pilot-regression.json",
+      "baselineSha256": "e1c13e673a78b752e8d31aea18e188f4502bcc0f14a78ebc21c537ac0c7e1593",
+      "cases": 20,
+      "completeRequiredEvidence": 20,
+      "changedSelections": [],
+      "maximumSourceBytes": 5928,
+      "maximumPromptBytes": null,
+      "freshRegeneration": null,
+      "results": [
+        {
+          "id": "q01",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "retrievedEvidence": [
+            "portal-readme",
+            "portal-manifest",
+            "checkout",
+            "submit",
+            "legacy",
+            "portal-local",
+            "api-readme",
+            "api-build",
+            "routes",
+            "api-local",
+            "publish",
+            "producer-contract",
+            "worker-readme",
+            "worker-build",
+            "worker-local",
+            "consume",
+            "consumer-contract"
+          ]
+        },
+        {
+          "id": "q02",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "retrievedEvidence": [
+            "portal-readme",
+            "portal-manifest",
+            "checkout",
+            "submit",
+            "legacy",
+            "portal-local",
+            "api-readme",
+            "api-build",
+            "routes",
+            "api-local",
+            "publish",
+            "producer-contract",
+            "worker-readme",
+            "worker-build",
+            "worker-local",
+            "consume",
+            "consumer-contract"
+          ]
+        },
+        {
+          "id": "q03",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "retrievedEvidence": [
+            "portal-readme",
+            "portal-manifest",
+            "checkout",
+            "submit",
+            "legacy",
+            "portal-local",
+            "api-readme",
+            "api-build",
+            "routes",
+            "api-local",
+            "publish",
+            "producer-contract",
+            "worker-readme",
+            "worker-build",
+            "worker-local",
+            "consume",
+            "consumer-contract"
+          ]
+        },
+        {
+          "id": "q04",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "retrievedEvidence": [
+            "portal-readme",
+            "portal-manifest",
+            "checkout",
+            "submit",
+            "legacy",
+            "portal-local",
+            "api-readme",
+            "api-build",
+            "routes",
+            "api-local",
+            "publish",
+            "producer-contract",
+            "worker-readme",
+            "worker-build",
+            "worker-local",
+            "consume",
+            "consumer-contract"
+          ]
+        },
+        {
+          "id": "q05",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "retrievedEvidence": [
+            "portal-readme",
+            "portal-manifest",
+            "checkout",
+            "submit",
+            "legacy",
+            "portal-local",
+            "api-readme",
+            "api-local",
+            "publish",
+            "producer-contract",
+            "worker-readme",
+            "worker-local",
+            "consume",
+            "consumer-contract"
+          ]
+        },
+        {
+          "id": "q06",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "retrievedEvidence": [
+            "portal-readme",
+            "portal-manifest",
+            "checkout",
+            "submit",
+            "legacy",
+            "portal-local",
+            "api-readme",
+            "api-local",
+            "publish",
+            "producer-contract",
+            "worker-readme",
+            "worker-local",
+            "consume",
+            "consumer-contract"
+          ]
+        },
+        {
+          "id": "q07",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "retrievedEvidence": [
+            "portal-readme",
+            "checkout",
+            "submit",
+            "legacy",
+            "portal-local",
+            "api-readme",
+            "api-build",
+            "routes",
+            "api-local",
+            "publish",
+            "producer-contract",
+            "worker-readme",
+            "worker-build",
+            "worker-local",
+            "consume",
+            "consumer-contract"
+          ]
+        },
+        {
+          "id": "q08",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "retrievedEvidence": [
+            "portal-readme",
+            "submit",
+            "portal-local",
+            "api-readme",
+            "api-build",
+            "api-local",
+            "publish",
+            "producer-contract",
+            "worker-readme",
+            "worker-build",
+            "worker-local",
+            "consume",
+            "consumer-contract"
+          ]
+        },
+        {
+          "id": "q09",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "retrievedEvidence": [
+            "portal-readme",
+            "submit",
+            "portal-local",
+            "api-readme",
+            "api-build",
+            "api-local",
+            "worker-readme",
+            "worker-build",
+            "worker-local",
+            "consume"
+          ]
+        },
+        {
+          "id": "q10",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "retrievedEvidence": [
+            "checkout",
+            "submit",
+            "legacy",
+            "api-readme",
+            "routes",
+            "api-local",
+            "publish",
+            "producer-contract",
+            "worker-readme",
+            "worker-local",
+            "consume",
+            "consumer-contract"
+          ]
+        },
+        {
+          "id": "q11",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "retrievedEvidence": [
+            "portal-readme",
+            "checkout",
+            "submit",
+            "legacy",
+            "portal-local",
+            "api-readme",
+            "api-build",
+            "routes",
+            "api-local",
+            "publish",
+            "producer-contract",
+            "injection",
+            "worker-readme",
+            "worker-build",
+            "worker-local",
+            "consume",
+            "consumer-contract"
+          ]
+        },
+        {
+          "id": "q12",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "retrievedEvidence": [
+            "portal-readme",
+            "portal-manifest",
+            "checkout",
+            "submit",
+            "legacy",
+            "portal-local",
+            "api-readme",
+            "api-build",
+            "api-local",
+            "publish",
+            "producer-contract",
+            "injection",
+            "worker-readme",
+            "worker-build",
+            "worker-local",
+            "consume",
+            "consumer-contract"
+          ]
+        },
+        {
+          "id": "q13",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "retrievedEvidence": [
+            "portal-readme",
+            "portal-manifest",
+            "checkout",
+            "submit",
+            "legacy",
+            "portal-local",
+            "api-readme",
+            "api-build",
+            "api-local",
+            "publish",
+            "producer-contract",
+            "worker-readme",
+            "worker-build",
+            "worker-local",
+            "consume",
+            "consumer-contract"
+          ]
+        },
+        {
+          "id": "q14",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "retrievedEvidence": [
+            "portal-readme",
+            "portal-manifest",
+            "checkout",
+            "submit",
+            "legacy",
+            "api-readme",
+            "api-build",
+            "publish",
+            "worker-readme",
+            "worker-build",
+            "consume"
+          ]
+        },
+        {
+          "id": "q15",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "retrievedEvidence": [
+            "portal-readme",
+            "portal-manifest",
+            "checkout",
+            "submit",
+            "legacy",
+            "portal-local",
+            "api-readme",
+            "api-build",
+            "routes",
+            "api-local",
+            "publish",
+            "producer-contract",
+            "worker-readme",
+            "worker-build",
+            "worker-local",
+            "consume",
+            "consumer-contract"
+          ]
+        },
+        {
+          "id": "q16",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "retrievedEvidence": [
+            "portal-readme",
+            "portal-manifest",
+            "checkout",
+            "submit",
+            "legacy",
+            "portal-local",
+            "api-readme",
+            "api-build",
+            "routes",
+            "api-local",
+            "publish",
+            "producer-contract",
+            "worker-readme",
+            "worker-build",
+            "worker-local",
+            "consume",
+            "consumer-contract"
+          ]
+        },
+        {
+          "id": "q17",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "retrievedEvidence": [
+            "portal-readme",
+            "portal-manifest",
+            "checkout",
+            "submit",
+            "legacy",
+            "portal-local",
+            "api-readme",
+            "routes",
+            "api-local",
+            "publish",
+            "producer-contract",
+            "worker-readme",
+            "worker-local",
+            "consume",
+            "consumer-contract"
+          ]
+        },
+        {
+          "id": "q18",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "retrievedEvidence": [
+            "portal-readme",
+            "portal-manifest",
+            "checkout",
+            "submit",
+            "legacy",
+            "api-readme",
+            "api-build",
+            "routes",
+            "api-local",
+            "publish",
+            "producer-contract",
+            "worker-readme",
+            "worker-build",
+            "worker-local",
+            "consume",
+            "consumer-contract"
+          ]
+        },
+        {
+          "id": "q19",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "retrievedEvidence": [
+            "portal-readme",
+            "portal-manifest",
+            "checkout",
+            "submit",
+            "legacy",
+            "portal-local",
+            "api-readme",
+            "api-local",
+            "publish",
+            "producer-contract",
+            "injection",
+            "worker-local",
+            "consume",
+            "consumer-contract"
+          ]
+        },
+        {
+          "id": "q20",
+          "completeRequiredEvidence": true,
+          "selectionUnchanged": true,
+          "retrievedEvidence": [
+            "portal-readme",
+            "portal-manifest",
+            "checkout",
+            "submit",
+            "legacy",
+            "portal-local",
+            "api-readme",
+            "api-local",
+            "publish",
+            "producer-contract",
+            "worker-readme",
+            "worker-local",
+            "consume",
+            "consumer-contract"
+          ]
+        }
+      ]
+    }
+  ]
+}

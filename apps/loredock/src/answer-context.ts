@@ -4,6 +4,7 @@ import { CatalogError, type BuildSource, type Coverage } from './types.js';
 import { searchText } from './search-text.js';
 import { answerReviewContext, assertAnswerReviewCurrent, type AnswerReviewContext } from './answer-review.js';
 import { expansionLimits, expansionTerms as selectExpansionTerms, interleaveCandidates } from './answer-expansion.js';
+import { answerInterfaces, assertAnswerInterfaces, fitAnswerInterfaces, type AnswerInterfaces } from './answer-interfaces.js';
 
 export const retrievalVersion = 'fts-question-v7';
 export const answerSchemaVersion = 'cited-answer-v3';
@@ -21,6 +22,8 @@ export interface AnswerContext {
   retrievalMode?: 'lexical' | 'orientation' | 'empty'; spans: InputSpan[]; textBytes: number;
   // Missing on older immutable answer inputs; do not backfill their saved JSON.
   review?: AnswerReviewContext;
+  // Optional for immutable inputs created before prompt v9; never backfill history.
+  interfaces?: AnswerInterfaces;
   limits: typeof answerLimits; gaps: string[]; inputHash: string;
 }
 export interface CitedAnswer {
@@ -155,7 +158,9 @@ export function retrieveAnswerContext(catalog: Catalog, question: string, buildI
     deploymentCoherence: 'unknown' as const, partial: build.status === 'partial',
     stale: build.sourceSetVersion !== project.sourceSetVersion, coverage: build.coverage, sources,
     terms, expansionTerms, retrievalMode: spans.length ? initial.length ? 'lexical' as const : 'orientation' as const : 'empty' as const,
-    spans, textBytes, limits: answerLimits, gaps, review: answerReviewContext(catalog, id, spans.map(span => span.id)) };
+    spans, textBytes, limits: answerLimits, gaps, review: answerReviewContext(catalog, id, spans.map(span => span.id)),
+    interfaces: answerInterfaces(catalog, id, spans.map(span => span.id)) };
+  fitAnswerInterfaces(context);
   return { ...context, inputHash: sha256(JSON.stringify(context)) };
 }
 
@@ -203,6 +208,7 @@ export function validateCitedAnswer(catalog: Catalog, context: AnswerContext, se
       || live.startLine !== span.startLine || live.endLine !== span.endLine || live.revision !== span.revision) throw invalid();
     issued.add(span.id);
   }
+  assertAnswerInterfaces(catalog, context);
   for (const claim of value.claims) {
     if (!record(claim) || !keys(claim, ['kind', 'text', 'evidenceIds']) || !['fact', 'inference', 'conflict'].includes(String(claim.kind))
       || !prose(claim.text) || !Array.isArray(claim.evidenceIds) || claim.evidenceIds.length < 1 || claim.evidenceIds.length > 10) throw invalid('Invalid claim fields or citation count.');

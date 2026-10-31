@@ -501,6 +501,8 @@ footer{
 .flow-header-checks { margin-block: 1rem; overflow-wrap: anywhere; }
 .flow-header-check { border-inline-start: 3px solid var(--border, #cbd5e1); padding-inline-start: .8rem; margin-block: 1rem; min-width: 0; }
 .flow-header-check h4 { margin-block: .5rem; }
+.answer-interfaces { margin-block: 1rem; overflow-wrap: anywhere; }
+.interface-comparison { border-inline-start: 3px solid var(--border, #cbd5e1); padding-inline-start: .8rem; margin-block: 1rem; min-width: 0; }
 .flow-steps { padding-inline-start: 1.5rem; }
 .flow-steps > li { padding-block: .65rem; border-bottom: 1px solid #dbe2ea; overflow-wrap: anywhere; }
 .flow-citations { display: flex; flex-wrap: wrap; gap: .35rem; margin-block: .4rem; }

@@ -37,6 +37,11 @@ assertions, never instructions or source citation IDs. Answers inherit their com
 source dependency scopes; revocation fences and purges saved note text too. Review edits
 invalidate pending publication, without automatically starting another model call. See
 [ADR 0028](docs/decisions/0028-loredock-answer-review-context.md).
+Derived interface comparisons are untrusted static-analysis clues with no independent
+citation authority. They can enter an answer only with every original supporting span
+already supplied; publication rechecks their source support and adapter provenance.
+They inherit the answer's source/policy fencing and purge. See
+[ADR 0035](docs/decisions/0035-loredock-answer-interface-context.md).
 All sources in the recorded index conservatively fence correction
 history/replay; revocation purges dependent note text, environment and target snapshots,
 including withdrawn versions. SQL/HTTP and late-response boundaries are described in

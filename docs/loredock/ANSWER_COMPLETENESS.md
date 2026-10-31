@@ -112,7 +112,13 @@ three-source oracle together. Preserve collision, source/policy/review fences, b
 fresh-identity stability and zero-hit orientation behavior. Include an unrelated source
 with frequent identifier distractors and a qualified-reference example before tuning.
 Report both chosen-reference recall and any equivalent supplied evidence without equating
-either to answer correctness. Keep prompt v8 and model settings fixed during retrieval work.
+either to answer correctness. Prompt v8 and model settings stayed fixed during that retrieval work.
+
+Task 032 later introduces prompt v9 for separately labeled static interface comparisons;
+it leaves retrieval v7 and this frozen question contract unchanged. All 24 selection
+fingerprints still match the Task 029 baseline. No semantic evaluation is repeated on
+these observed answers. A new prospective qualification design is required before a
+separately budgeted v9 model run; see [context evidence](../fixtures/loredock-answer-interfaces/README.md).
 
 After this offline prerequisite is understood, a separate bounded real-model task can
 evaluate the prospective rubric once, with the development and reserved scores reported

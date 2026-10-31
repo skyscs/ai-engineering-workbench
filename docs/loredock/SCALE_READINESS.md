@@ -151,6 +151,19 @@ propositions pass, but an extra d10 claim incorrectly connects different tenant-
 names without a mapping. The prospective gate fails. All 122 claims and 185 citation
 references are reviewed; 699 input-span occurrences match regenerated original bytes.
 History/replay/revocation pass; the 24-attempt budget is exhausted without a rerun.
-Next, expose bounded literal header/binding compatibility with evidence, preserving
-unknown runtime wiring and security enforcement. This does not establish L5; independent
+Tasks 031–032 subsequently expose bounded literal header/binding compatibility in the
+map and answer contexts, preserving unknown runtime wiring and security enforcement.
+This does not establish L5; independent
 review, broader framework coverage, retention and the eligible private pilot remain open.
+
+## Task 032 context integration outcome
+
+Prompt v9 receives at most six derived comparisons / 8 KiB JSON, with every supporting
+span already retrieved. Source selection fingerprints remain unchanged for all 24
+prospective and 20 expanded questions; the pilot preserves all 20 reference sets.
+Reference recall stays 24/24, 20/20 and 20/20. Maximum observed prospective/expanded
+prompt size is 35,958 bytes, below the unchanged 96 KiB cap; maximum source text remains
+8,775 bytes. Context transport/provenance/history and browser acceptance use fake
+runtimes only. These are engineering checks, not new model correctness measurements.
+See [evidence](../fixtures/loredock-answer-interfaces/README.md). Freeze a new prospective
+qualification design before considering a separately budgeted real-model run.

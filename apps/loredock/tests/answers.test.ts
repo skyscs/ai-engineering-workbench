@@ -141,11 +141,11 @@ test('new prompt/schema identities persist while older answer prose remains read
   const { answers, store } = await setup(t);
   const current = ask(answers); await answers.idle();
   assert.equal(answers.get(current.id).schemaVersion, 'cited-answer-v3');
-  assert.equal(answers.get(current.id).promptVersion, 'loredock-answer-v8');
+  assert.equal(answers.get(current.id).promptVersion, 'loredock-answer-v9');
   assert.equal(answers.get(current.id).context!.retrievalVersion, 'fts-question-v7');
   const older = JSON.stringify({ claims: [], unknowns: ['Legacy saved uncertainty statement.'] });
   const oldContext = answers.get(current.id).context!;
-  delete oldContext.retrievalMode; delete oldContext.review; oldContext.retrievalVersion = 'fts-question-v3';
+  delete oldContext.retrievalMode; delete oldContext.review; delete oldContext.interfaces; oldContext.retrievalVersion = 'fts-question-v3';
   const { inputHash: _previousHash, ...input } = oldContext; oldContext.inputHash = sha256(JSON.stringify(input));
   const serializedContext = JSON.stringify(oldContext);
   store.run("UPDATE answer_attempts SET result=?,context=?,inputHash=?,schemaVersion='cited-answer-v1',promptVersion='loredock-answer-v2' WHERE id=?", older, serializedContext, oldContext.inputHash, current.id);

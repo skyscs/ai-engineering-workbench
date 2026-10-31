@@ -57,9 +57,13 @@ The 24-attempt budget is exhausted; no repeated tuning on these answers is inclu
 [Task 031](tasks/031-loredock-http-header-bindings.md) adds bounded model-free comparison
 of literal request headers and same-document route bindings, with original evidence
 and explicit unresolved mappings. Candidate links outside the two outlines are visible.
-Next: separately scope source-backed interface comparisons in answer previews/inputs,
-with independent examples and provenance/budget/history checks before any new model run.
-This map-only change does not repair or rescore the failed answer evaluations.
+[Task 032](tasks/032-loredock-answer-interface-context.md) includes bounded derived HTTP
+comparisons in answer previews, saved inputs and prompt v9 only when every original
+supporting passage is already supplied. Retrieval v7 and all historical answers remain
+unchanged. New context/provenance/budget/history checks use fake runtimes only.
+Next: freeze an independent prospective qualification design for prompt v9, covering
+interface mapping, runtime uncertainty and regression cases before any new model run.
+No quality improvement is claimed without new semantic review; old failed gates stand.
 Source recall, agent scoring and merging do not establish L5 readiness.
 Broader synthesis, adapters, semantic/AI refresh and scale acceptance remain separate.
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
