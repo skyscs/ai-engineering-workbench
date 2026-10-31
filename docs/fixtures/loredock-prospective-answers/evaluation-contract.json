@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "loredock-prospective-answer-contract/1",
+  "frozenAt": "2026-10-31T17:55:56.046Z",
+  "questionContractHash": "11def9847ee122c2438e39752b86563b02ff19ccb0651c38ac758e113d1e6b15",
+  "baseline": {
+    "schemaVersion": "loredock-scale-baseline/1",
+    "sourceCount": 20,
+    "eligibleFiles": 79,
+    "revisionVector": {
+      "portal": "603a69798dc12c3205e88d0498881b0c01079932",
+      "order-api": "237510937b4388fc718b7e9f93869954950df1bb",
+      "order-worker": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "checkout-bff": "07d87b7d8a7a93ee8f93f6cdf3ae03ef8253869f",
+      "inventory-api": "0e7f2a7f4776d224736bf10b8e64fd226f2d1d86",
+      "inventory-worker": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+      "shipping-api": "1d89443e2914afb8de2b02389aabfe862b2a3e22",
+      "shipping-worker": "e71a493dede8f64a0785550cf4968b3050c86019",
+      "payment-adapter": "6d85bd3ba393ec880ce95ad1af29311b066bd2f4",
+      "notification-worker": "9e8b82475fd5d3317923d7f4e7c399ed99f5356a",
+      "reporting-api": "23fc2d8f162f93758f47221207e842f4ae55da39",
+      "contract-library": "6fc0b2f8bbd4b88a35b6c04e6dc974b762cc3cbe",
+      "tenant-library": "f7e01099f81a705281b6c50f2571c1a2cc116617",
+      "ui-components": "3ef8f414dff741b0140cc9f23d91a47d740fe1b9",
+      "legacy-admin": "831849791b519da2c71f3ee4c918fbc7a6479b52",
+      "deployment-local": "266b8b73fbf744f2df4395e223df13b7e7504ffe",
+      "deployment-production": "20e07d89a00cc5ad20af50a49550b10f82b4f9f4",
+      "database-migrations": "d75867701ea1a0a3b103a9eecc9d7532c11c9058",
+      "architecture-docs": "53dcb38eeb689da1418d6ef8dd9555a357d85dba",
+      "supplier-sync": "ea9faab3d1e0a2bdcfcb93b3791cbade992129b6"
+    },
+    "manifestHash": "0bea0ff2e26acc13b4f4766cb154ded7cd2b366b064e6c84fb56c1c632532b74",
+    "oracleHash": "6d2ed2e8051e37721fedcb5b031034c1dc6bb4f3ef35beb4aa53596bb26fcc16"
+  },
+  "sourceHashes": {
+    "apps/loredock/src/answers.ts": "58ff3e121e054283bcf96b8d03097b0f3d6f67578998b450bc6fc638d4d3caaf",
+    "apps/loredock/src/answer-context.ts": "4e9841b7e7bdbcd06787d4314c1488c8b0041f92081a6f86968fcfb1873add47",
+    "apps/loredock/src/answer-expansion.ts": "2af1fa98e42101108182f44c62d1608aff8af889503408c14dde9a595bc7eb2d",
+    "apps/loredock/src/answer-review.ts": "60adef0485a2ec4c329ab8a055f1136032a905ab85de349e121bd3a0a8d7a7b6",
+    "packages/ai/src/text-runtime.ts": "0caa9223e783160138dfc16c2f2f397224a507a7325a452a5ae3c235b1e0c720",
+    "packages/ai/src/text-policy.ts": "f0ca087823db2cd8dc2c1191afaa52c911bd12f91c943a2be4393e74fcc02fa4",
+    "scripts/loredock-prospective-answers.mjs": "640773d89137b26804456301c1d2fbc207381553a40199d08e1b76dedb62a7cd"
+  },
+  "identity": {
+    "executable": "/home/toshiba/node-v18.20.2-linux-x64/lib/node_modules/@openai/codex/bin/codex.js",
+    "configHome": "/home/toshiba/.codex-plus",
+    "profile": null,
+    "version": "codex-cli 0.166.0",
+    "policyVersion": "text-only-v2",
+    "configurationFingerprint": "73459414b476b6c10da329145f4a63e7f679863661c44aab74f0de920f4897f4"
+  },
+  "model": "gpt-5.6-terra",
+  "effort": "medium",
+  "promptVersion": "loredock-answer-v8",
+  "retrievalVersion": "fts-question-v7",
+  "answerSchemaVersion": "cited-answer-v3",
+  "budget": {
+    "maximumAttempts": 24,
+    "maximumRuns": 1,
+    "wallMsPerAttempt": 120000,
+    "automaticRetries": 0
+  },
+  "scoring": {
+    "semanticMethod": "An explicit per-proposition reviewer judgment; never keyword matches, citation counts or evidence recall alone.",
+    "pass": "Every required answer and qualification is supported; no unsupported material claim or forbidden assertion. Optional context is not an omission failure.",
+    "qualificationForm": "A scoped claim or an appropriate unanswered question can establish a limitation; no mandatory magic phrase.",
+    "additionalClaims": "Every volunteered assertion remains subject to grounding, scope, conflict and uncertainty rules.",
+    "attribution": "Development-agent judgments and independent human acceptance remain separate.",
+    "historicalGate": "This prospective rubric does not replace or rescore Task 027; its failed gate remains unchanged."
+  },
+  "gate": "All 24 cases pass; report development and reserved separately.",
+  "reservation": "Already inspected for retrieval; same-agent authorship; no prompt tuning or second model run."
+}
