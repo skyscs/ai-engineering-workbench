@@ -74,9 +74,14 @@ All original evidence and judgments remain available; old failed gates stand.
 and measures current candidate evidence without models. Both keyword and answer-context
 owner unions recover all 22 critical repository occurrences, but average 14.7 candidates
 and exceed every useful case bound. Routing/abstention decisions are not implemented.
-Next: a bounded model-free candidate-selection preview with original support, explicit
-uncertainty and fresh adversarial examples. Preserve the broader answer context and
-all failed evaluations; independent/private-pilot acceptance still precedes the bridge.
+[Task 036](tasks/036-loredock-source-candidate-preview.md) adds a model-free candidate
+preview with original support and explicit uncertainty, using rules and fresh adversarial
+cases frozen before implementation. Primary lists contain 1–4 sources and retain 18/22
+critical repository occurrences; all four misses remain in Other matches. Broad answer
+context is unchanged and automatic routing remains unavailable.
+Next: separately freeze bounded relationship-supported candidate context, keeping
+originals and unverified link scope explicit. Preserve all failed evaluations;
+independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
 Broader synthesis, adapters, semantic/AI refresh and scale acceptance remain separate.
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,

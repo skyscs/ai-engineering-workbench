@@ -56,6 +56,13 @@ source revocation and late-response fences cover cards, reading links and citati
 new registrations remain separate from historical content. See
 [ADR 0027](docs/decisions/0027-loredock-project-orientation.md).
 
+Source candidate previews use the same protected API and authorized original context.
+They accept only a question and optional published build ID; no model, arbitrary source
+input or investigation is executed. Lexical suggestions and negative mentions remain
+unverified reading clues. Question/source/policy/index/review changes fence cached UI
+previews and pending original-evidence responses. See
+[ADR 0036](docs/decisions/0036-loredock-source-candidate-preview.md).
+
 Bulk path previews and confirmations use the same session/CSRF boundary. Registration
 revalidates canonical identities and the registry before atomic insertion; persisted
 receipts cannot reauthorize revoked sources. No directory scan or source execution is

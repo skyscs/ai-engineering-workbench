@@ -66,6 +66,12 @@ are met with all recorded originals available. All 63 claims and 49 unknowns are
 with independent review pending. No retry or product/prompt tuning follows from the run.
 Next: the roadmap's fixed ten-case incident-context baseline, using no model calls.
 
+Tasks 035–036 subsequently measure broad incident context and add a separate model-free
+[candidate preview](../fixtures/loredock-source-candidates/README.md). It changes neither
+the answer context nor this historical quality assessment. Primary shortlists retain
+18/22 critical repository occurrences, with four more in Other matches; these reading
+clues do not establish automatic routing or answer-quality acceptance.
+
 The original three-source pilot's final run has a provisional **20/20 useful/correct agent assessment**,
 **162/162 resolving citation references across 98 claims**, and **20/20 complete
 expected-evidence retrieval sets**. This is not independent human approval. Read the

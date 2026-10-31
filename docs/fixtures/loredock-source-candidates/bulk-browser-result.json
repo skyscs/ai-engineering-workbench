@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "loredock-bulk-browser/1",
+  "sources": 20,
+  "indexedFiles": 79,
+  "excludedFiles": 60,
+  "modelRequests": 0,
+  "previewBeforeMutation": true,
+  "duplicatesAndInvalidPaths": true,
+  "existingSources": true,
+  "delayedPreviewFenced": true,
+  "oneConfirmation": true,
+  "readmeContexts": 20,
+  "lastSourceOriginalCitation": true,
+  "guideNavigation": true,
+  "refresh": true,
+  "restartPersistence": true,
+  "revocation": true,
+  "mobileWidth": 390,
+  "horizontalOverflow": false
+}

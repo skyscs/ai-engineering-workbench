@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "loredock-candidate-browser/1",
+  "sources": 20,
+  "modelRequests": 0,
+  "answerModeDisabled": true,
+  "sourceSuggestions": true,
+  "otherCandidatesInspectable": true,
+  "escapedSourceLabel": true,
+  "keyboardOriginalEvidence": true,
+  "noMatchUnresolved": true,
+  "lateQuestionPreviewFenced": true,
+  "lateQuestionEvidenceFenced": true,
+  "refreshFenced": true,
+  "historicalScope": true,
+  "lateReviewPreviewFenced": true,
+  "reviewNotesUnverified": true,
+  "lateRevocationPreviewFenced": true,
+  "latePolicyPreviewFenced": true,
+  "mobileWidth": 390,
+  "horizontalOverflow": false
+}

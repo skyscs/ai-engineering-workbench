@@ -8,6 +8,7 @@ import { SystemMap } from './SystemMap';
 import { IndexChangeView } from './IndexChanges';
 import { SourceOnboarding } from './SourceOnboarding';
 import { ProjectOverview } from './ProjectOverview';
+import { CandidatePanel } from './CandidatePanel';
 
 function App() {
   const [state, setState] = useState<ProjectState>();
@@ -22,6 +23,7 @@ function App() {
   const pendingStart = useRef<{ requestId: string; sourceSetVersion: number; policyVersion: number } | undefined>(undefined);
   const evidenceHeading = useRef<HTMLHeadingElement>(null);
   const evidenceRequest = useRef(0);
+  const clearEvidence = useCallback(() => { evidenceRequest.current++; setEvidence(undefined); }, []);
   const boundary = useRef('');
   const refresh = useCallback(async () => { const next = await api<ProjectState>('/project'); setState(next); }, []);
   useEffect(() => {
@@ -122,6 +124,7 @@ function App() {
             <IndexChangeView buildId={searchBuild} boundary={`${boundary.current}:${published}`} openEvidence={id => void openEvidence(id)} />
           </>}
         </div>
+        <CandidatePanel buildId={searchBuild} boundary={`${boundary.current}:${published}`} correctionRevision={state.correctionRevision} openEvidence={id => void openEvidence(id)} clearEvidence={clearEvidence} />
         <ProjectOverview key={`${boundary.current}:${published}`} buildId={searchBuild} boundary={`${boundary.current}:${published}`} openEvidence={id => void openEvidence(id)} />
         <SystemMap buildId={searchBuild} boundary={`${boundary.current}:${published}`} correctionRevision={state.correctionRevision}
           refreshProject={() => void refresh().catch(cause => setError((cause as Error).message))} openEvidence={id => void openEvidence(id)} />

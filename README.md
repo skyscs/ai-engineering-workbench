@@ -22,6 +22,10 @@ reapply eligible notes; each new review retains its exact origin and separate hi
 Indexing, source search and map review
 need no Codex configuration or model calls.
 
+**Where should I look?** suggests a small set of repositories for a problem or source
+clue, with original evidence and inspectable **Other matches**. It works in the default
+model-free mode. The shortlist needs review and leaves the broader answer context intact.
+
 After the shared installation/build steps below, run `pnpm loredock` and open
 **http://127.0.0.1:4244**. Follow the [LoreDock guide](docs/loredock/USER_GUIDE.md)
 for indexing, project orientation/Guide me, the declaration map, static flow outlines, engineer corrections, search, updates, coverage,
@@ -60,9 +64,11 @@ The [new prospective qualification design](fixtures/loredock-interfaces/README.m
 freezes fourteen fresh freight-system questions before model outputs; all required
 original references are available, with the derived-comparison limit disclosed.
 The [incident-context baseline](docs/fixtures/loredock-incident-context/README.md) finds
-all required source owners but returns 11–17 repositories per incident. A bounded
-candidate-selection preview is next; autonomous routing and the Workbench bridge remain
-planned, with independent/private-pilot acceptance pending.
+all required source owners but returns 11–17 repositories per incident. The separate
+[candidate preview](docs/fixtures/loredock-source-candidates/README.md) narrows the primary
+list to 1–4 in that diagnostic, retaining 18/22 required repository occurrences; four
+remain in Other matches. Autonomous routing and the Workbench bridge remain planned,
+with independent/private-pilot acceptance pending.
 
 ## What v0.1 does
 
