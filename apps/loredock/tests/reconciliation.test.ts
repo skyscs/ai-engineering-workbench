@@ -234,6 +234,26 @@ test('unsupported adapter provenance and corrupt original evidence cannot produc
   assert.throws(() => state.review.preview(), /integrity/);
 });
 
+test('pre-header adapter corrections stay readable across restart but cannot be reapplied', async t => {
+  for (const kind of ['code-link', 'declaration-link'] as const) await t.test(kind, async sub => {
+    const state = await setup(sub), source = state.corrections.save(note(state.catalog, kind));
+    const row = state.store.one<{ target: string; buildId: string; targetKind: string; targetId: string; version: number; previousId: string | null; action: string; statement: string; environment: string }>('SELECT * FROM corrections WHERE id=?', source.id)!;
+    // Seed an internally hashed historical adapter record in this owned test store.
+    const target = JSON.stringify({ ...JSON.parse(row.target), adapterVersion: kind === 'code-link' ? 'pilot-code-v1' : 'json-declarations-v1' });
+    state.store.db.exec('DROP TRIGGER correction_identity; DROP TRIGGER correction_content');
+    state.store.run('UPDATE corrections SET target=?,contentHash=? WHERE id=?', target,
+      sha256(JSON.stringify([row.buildId, row.targetKind, row.targetId, row.version, row.previousId, row.action, row.statement, row.environment, target])), source.id);
+    const history = JSON.stringify(state.corrections.history(source.id));
+    await state.index('header-adapters'); await state.restart();
+    assert.equal(JSON.stringify(state.corrections.history(source.id)), history);
+    const preview = state.review.preview(); assert.equal(preview.entries[0]!.status, 'unsupported');
+    assert.throws(() => state.review.reapply({ requestId: `blocked-${kind}`, buildId: preview.buildId,
+      sourceCorrectionId: source.id, targetId: row.targetId, previewHash: preview.previewHash,
+      expectedRevision: preview.revision }), /Only an unchanged/);
+    assert.equal(state.catalog.state().correctionRevision, 1);
+  });
+});
+
 test('new corrections remain withdrawable when old index evidence later becomes damaged', async t => {
   const state = await setup(t), source = state.corrections.save(note(state.catalog)); await state.index('second');
   const current = state.review.reapply(applyInput(state.review.preview()));

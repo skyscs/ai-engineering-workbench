@@ -9,7 +9,7 @@ const fixture = (file: string) => readFile(new URL('../../../fixtures/loredock/r
 test('the code adapters recover the supported pilot syntax without running it', async () => {
   const client = typescriptFacts(await fixture('portal/src/orders.ts'), 'src/orders.ts');
   assert.equal(client.symbols[0]!.name, 'submitOrder');
-  assert.deepEqual(client.operations.map(operation => operation.properties), [{ method: 'POST', path: '/api/orders', baseExpression: 'import.meta.env.VITE_API_BASE', adapter: 'fetch' }]);
+  assert.deepEqual(client.operations.map(operation => operation.properties), [{ method: 'POST', path: '/api/orders', baseExpression: 'import.meta.env.VITE_API_BASE', adapter: 'fetch', requestHeaderStatus: 'literal', requestHeaderNames: '["Content-Type","X-Tenant"]' }]);
   const vue = typescriptFacts(await fixture('portal/src/Checkout.vue'), 'src/Checkout.vue');
   assert.equal(vue.symbols[0]!.role, 'vue-action');
   assert.equal(vue.calls[0]!.module, './orders'); assert.equal(vue.calls[0]!.imported, 'submitOrder');

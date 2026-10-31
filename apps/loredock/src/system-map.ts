@@ -4,6 +4,7 @@ import { extract, sha256 } from './extract.js';
 import { readMapDocument, type MapDocument } from './map-document.js';
 import { CatalogError } from './types.js';
 import type { DeclarationMap, MapEdge, MapEvidence, MapNode, MapNodeKind } from './system-map-types.js';
+import { routeHeaderProperties } from './http-headers.js';
 
 export const mapLimits = { documents: 100, fileBytes: 32 * 1024, textBytes: 256 * 1024,
   fileSpans: 8, members: 100, nodes: 150, edges: 250, comparisons: 2000, outputBytes: 512 * 1024 } as const;
@@ -21,7 +22,7 @@ export function declarationMap(catalog: Catalog, buildId?: string): DeclarationM
   const omissions: Record<string, number> = {}, comparisons: Comparison[] = [];
   let bytes = 0, parsedBytes = 0, examinedDocuments = 0;
   const omit = (reason: string, count = 1) => { omissions[reason] = (omissions[reason] ?? 0) + count; };
-  const id = (...parts: unknown[]) => sha256(JSON.stringify([build.id, 'json-declarations-v1', ...parts]));
+  const id = (...parts: unknown[]) => sha256(JSON.stringify([build.id, 'json-declarations-v2', ...parts]));
   function reserve(item: MapNode | MapEdge, refs: MapEvidence[]) {
     const fresh = refs.filter(ref => !evidence.has(ref.id));
     const cost = Buffer.byteLength(JSON.stringify(item)) + 1 + fresh.reduce((sum, ref) => sum + Buffer.byteLength(JSON.stringify(ref)) + ref.id.length + 4, 0);
@@ -91,7 +92,9 @@ export function declarationMap(catalog: Catalog, buildId?: string): DeclarationM
       if (value.routes.length > mapLimits.members) omit('member-limit', value.routes.length - mapLimits.members);
       for (const [index, route] of value.routes.slice(0, mapLimits.members).entries()) {
         if (!object(route) || !text(route.method, 16) || !/^[A-Z]+$/.test(route.method) || !text(route.path, 512) || !route.path.startsWith('/') || !text(route.handler, 256)) { omit('unsupported-route'); continue; }
-        const declared = node('http-route', `routes/${index}`, `${route.method} ${route.path}`, { method: route.method, path: route.path });
+        const headers = routeHeaderProperties(value.headerBindings, route.handler);
+        if (headers.headerBindingStatus === 'unknown') omit('unsupported-header-bindings');
+        const declared = node('http-route', `routes/${index}`, `${route.method} ${route.path}`, { method: route.method, path: route.path, ...headers });
         const handler = node('handler-reference', route.handler, route.handler, { handler: route.handler, implementation: 'unresolved' });
         if (declared && handler) edge('routes-to', declared, handler, 'declared', 'The route declaration names this handler; its code implementation has not been resolved.');
       }
@@ -131,7 +134,7 @@ export function declarationMap(catalog: Catalog, buildId?: string): DeclarationM
   if (sources.length !== build.sources.length) gaps.push('Revoked sources and their comparisons are excluded.');
   if (build.sourceSetVersion !== project.sourceSetVersion) gaps.push('The source registry changed after this index; newly registered sources are not part of this map.');
   if (Object.keys(omissions).length) gaps.push('Some declarations were omitted or unsupported; inspect the coverage details.');
-  const result = { schemaVersion: 'loredock-map-v1' as const, adapterVersion: 'json-declarations-v1' as const, buildId: build.id,
+  const result = { schemaVersion: 'loredock-map-v1' as const, adapterVersion: 'json-declarations-v2' as const, buildId: build.id,
     policyVersion: build.policyVersion, sourceSetVersion: build.sourceSetVersion, registryVersion: project.sourceSetVersion,
     stale: build.sourceSetVersion !== project.sourceSetVersion || build.id !== project.publishedBuildId,
     partial: true as const, deploymentCoherence: 'unknown' as const, nodes, edges, evidence: Object.fromEntries(evidence), gaps, omissions,

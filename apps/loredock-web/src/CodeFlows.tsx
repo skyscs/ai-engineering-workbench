@@ -30,6 +30,22 @@ export function CodeFlowsView({ buildId, boundary, openEvidence, overlay, review
       <p role="status">{value.flows.length} static flow outline{value.flows.length === 1 ? '' : 's'} · {value.edges.filter(edge => edge.status === 'candidate').length} candidate code links</p>
       {value.stale && <p className="notice">These flows use an older index or source registry. Removed sources are excluded.</p>}
       {!reviewReady && <p className="notice">Checking engineer corrections. The review status below may be out of date.</p>}
+      <details className="flow-header-checks" open={value.edges.some(edge => edge.headerCheck?.status === 'gap')}>
+        <summary>HTTP header bindings ({value.edges.filter(edge => edge.headerCheck).length} candidate links)</summary>
+        <p className="muted">Compare literal client header names with route declarations, including links outside the two outlines.
+          A missing declaration is not a confirmed runtime defect. Header values, middleware, deployment and identity enforcement remain unverified.</p>
+        {value.edges.filter(edge => edge.headerCheck).map(edge => {
+          const from = value.nodes.find(node => node.id === edge.from)!, to = value.nodes.find(node => node.id === edge.to)!;
+          return <section className="flow-header-check" key={edge.id}>
+            <h4>{from.sourceName} → {to.sourceName} · {from.label}</h4>
+            <p><strong>{edge.headerCheck!.status === 'match' ? 'Names match' : edge.headerCheck!.status === 'gap' ? 'Mapping not shown' : 'Not resolved'}</strong> · {edge.headerCheck!.detail}</p>
+            {citations(edge.evidenceIds)}
+            <LinkCorrection buildId={buildId} targetKind="code-link" targetId={edge.id} projectionHash={value.inputHash}
+              overlay={overlay} ready={reviewReady} changed={correctionsChanged} openEvidence={openEvidence} />
+          </section>;
+        })}
+        {!value.edges.some(edge => edge.headerCheck) && <p>No supported request/route candidate was available for this comparison.</p>}
+      </details>
       {value.flows.map((flow, index) => {
         const affected = overlay?.corrections.filter(item => item.action !== 'withdraw' && item.affectedFlowIds.includes(flow.id)) ?? [];
         return <details className={`flow-card${affected.length ? ' needs-review' : ''}`} key={flow.id} open={index === 0}>

@@ -15,7 +15,7 @@ export interface MapEvidence {
   id: string; sourceName: string; path: string; revision: string; startLine: number; endLine: number;
 }
 export interface DeclarationMap {
-  schemaVersion: 'loredock-map-v1'; adapterVersion: 'json-declarations-v1'; buildId: string;
+  schemaVersion: 'loredock-map-v1'; adapterVersion: 'json-declarations-v2'; buildId: string;
   policyVersion: number; sourceSetVersion: number; registryVersion: number; stale: boolean;
   partial: true; deploymentCoherence: 'unknown'; nodes: MapNode[]; edges: MapEdge[];
   evidence: Record<string, MapEvidence>; gaps: string[]; omissions: Record<string, number>;

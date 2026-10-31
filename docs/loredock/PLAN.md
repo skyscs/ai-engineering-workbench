@@ -38,8 +38,13 @@ See [measurements and tradeoffs](../fixtures/loredock-reference-retrieval/README
 answer run: 11/12 development and 12/12 reserved cases pass agent review. All required
 propositions are covered, but an extra cross-component tenant-header assertion fails
 grounding. [All answers and judgments](../fixtures/loredock-prospective-answers/README.md)
-remain reviewable; both the prospective and historical gates stay failed. Next: bounded
-model-free literal header/binding compatibility, with evidence and unresolved mappings.
+remain reviewable; both the prospective and historical gates stay failed.
+[Task 031](../../tasks/031-loredock-http-header-bindings.md) adds model-free literal
+header/binding comparison to map candidates, including those outside the two outlines.
+Original citations and unsupported mappings remain explicit; runtime connections and
+header values remain unverified. Next: separately scope source-backed interface
+comparisons in answer previews/inputs, using independent cases and explicit provenance,
+budget and history boundaries before considering a new prospective model evaluation.
 No further tuning on the observed reserved answers is included.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale
@@ -48,6 +53,8 @@ and the Workbench bridge remain open. The
 See [L0 measurements and blockers](FEASIBILITY.md), [contracts](CONTRACTS.md),
 [Task 016](../../tasks/016-loredock-cited-answer.md) for the accepted answer slice and
 [Task 030](../../tasks/030-loredock-prospective-answers.md) for the latest bounded evaluation.
+See [header comparison evidence](../fixtures/loredock-http-headers/README.md) for the
+subsequent map-only improvement; it does not change any historical semantic score.
 
 ## Outcome and delivery boundary
 

@@ -225,6 +225,36 @@ observed execution or execution order. A shorter outline or no outline means the
 adapter lacks a supported path; search raw source and inspect **Code coverage and
 gaps** before concluding that behavior is absent.
 
+Open **HTTP header bindings** to compare the literal names on each supported HTTP
+candidate, including candidates outside the two outlines. It opens automatically when
+a mapping is missing from the declarations. Each row includes both source citations and
+**Correct this link**, so you can inspect or dispute the comparison directly.
+
+- **Names match**: the client declares the names used by this handler's bindings,
+  ignoring ASCII case. For example, `x-receipt` matches `X-Receipt`.
+- **Mapping not shown**: a declared binding has no matching literal client name.
+  `X-Receipt-Key` does not match `X-Receipt`. Check both source files and look for
+  middleware or proxy rewriting before treating this as a defect.
+- **Not resolved**: a supported complete comparison is unavailable. Headers may be
+  dynamic, computed, spread, malformed or too large; the route may lack supported bindings.
+
+This comparison reads object-literal `headers` in the supported fetch/Dojo syntax and
+same-document JSON `headerBindings` such as `{"Ledger.accept.key":"X-Receipt"}` for a
+route whose `handler` is `Ledger.accept`. It does not resolve real framework configuration,
+aliases, wrappers or `Headers` objects. An omitted/empty literal header object records no
+literal names; it does not prove that runtime headers are absent. Names do not prove
+values, parameter conversion, live delivery, authentication or tenant membership.
+The comparison allows at most 16 entries, 128 ASCII characters per name and 512 characters
+per serialized names/bindings property, within the existing graph and output limits.
+Partial coverage remains visible in **Code coverage and gaps**.
+
+The header-aware adapters are `pilot-code-v2` and `json-declarations-v2`. Saved version-1
+corrections retain their original history and citations but do not attach to new link
+identities. After **Update knowledge**, use **Earlier corrections** to read their
+original support; incompatible adapter records cannot be reapplied. Review the current
+link and save a new correction when appropriate. Saved answer inputs/results remain
+unchanged. Header comparisons currently appear in the map, not as new answer evidence.
+
 Current support is deliberately limited to top-level named TS/JS functions, relative
 named imports, literal fetch method/path forms (including one `import.meta.env` base),
 the demo's simple Vue script-setup/button envelope, one Dojo AMD `dojo/request`
