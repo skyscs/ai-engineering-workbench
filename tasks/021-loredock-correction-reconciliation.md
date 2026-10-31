@@ -1,6 +1,6 @@
 # Task 021 — Review and reapply earlier engineer corrections
 
-Status: implemented and locally verified, 2026-10-31; ready for code/product review.
+Status: accepted through the owner's merge of PR #25 (`b4cd66e`), 2026-10-31.
 Task 020 was accepted through merged PR #24
 (`ff1cb6f`); the owner requested continuation.
 
@@ -72,4 +72,4 @@ changed-support blocking, delayed-preview revocation fencing and 390px rendering
 the prior source/correction/refresh scenarios. Existing answer acceptance uses four fake
 invocations. Zero real model calls; no normal checkout or Workbench data changed. See
 [recorded review evidence](../docs/fixtures/loredock-reconciliation/README.md).
-Owner/product acceptance is pending review of this bounded delivery.
+Owner acceptance applies to this bounded delivery; broader milestone acceptance remains separate.

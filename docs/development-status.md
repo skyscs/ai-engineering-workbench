@@ -1,8 +1,49 @@
 # Development status
 
+## Task 022 — Project orientation and a first reading guide
+
+Implemented and locally verified, 2026-10-31; ready for code/product review. Task 021
+was accepted through the owner's merge of PR #25 (`b4cd66e`). A new Project overview
+shows each authorized saved repository's original README context or an explicit gap,
+selected revision and coverage. A collapsed Guide me route opens source context, the
+declaration map, first partial flow and selected-index coverage with keyboard focus.
+Unavailable/loading steps are explained. No additional setup or model call is required.
+
+The versioned read projection preserves exact original lines and every overlapping
+issued evidence span, using complete-file integrity checks after byte/span admission.
+It recognizes one unambiguous supported root README and optional root package/Maven
+reading links. Missing, ambiguous, excluded, code-only and limited material remains a
+gap; failed/truncated inventories cannot establish absence. README attempts across all
+sources precede optional manifests. Input/output and whole-line UTF-8 excerpt budgets
+are explicit. The original outdated API topic description remains visible instead of
+being rewritten to agree with configuration. Documented context remains unverified.
+
+Historical context reconstructs from saved source after updates/restart. New registrations
+outside the selected index appear separately; revoked sources/citations disappear and
+old-policy content is fenced. Source/index/publication guards prevent late responses
+from restoring old text. No new schema, durable derivative, Git command, source execution
+or model invocation is introduced by orientation; LoreDock remains schema 6. Workbench
+storage/runtime and normal source checkouts remain unchanged.
+
+Verification: full `pnpm check` passes **282 tests** (131 LoreDock), strict typechecks
+and production builds. Production-service evaluation records resolving original hashes/
+locators, original/changed revision vectors, changed/missing documentation, pinned
+historical context, restart and revoked-scope exclusion. Chrome verifies original
+citations/focus, all guide navigation, an unavailable flow step, literal hostile text,
+history/refresh/restart, late-response revocation fences and 390px rendering alongside
+all previous source/map/flow/correction/reapplication scenarios. Existing answer-browser
+acceptance uses four fake invocations; zero real model calls. See
+[Task 022](../tasks/022-loredock-project-orientation.md),
+[ADR 0027](decisions/0027-loredock-project-orientation.md) and
+[recorded orientation evidence](fixtures/loredock-orientation/README.md).
+This is basic source orientation, not semantic architecture synthesis or complete
+L2/L3/L4/L5 acceptance. Broader terms/rationale/Guide me, production adapters,
+answer-review integration, semantic/AI refresh, 20-repository scale/retention and the
+Workbench bridge remain open. Owner acceptance remains separate from agent verification.
+
 ## Task 021 — Explicit review of earlier engineer corrections
 
-Implemented and locally verified, 2026-10-31; ready for code/product review. Task 020
+Accepted through the owner's merge of PR #25 (`b4cd66e`), 2026-10-31. Task 020
 was accepted through the owner's merge of PR #24 (`ff1cb6f`). An update now offers a
 separate comparison of earlier engineer corrections with the selected index. It never
 changes active review state by loading. A unique relationship with identical semantics,

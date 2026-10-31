@@ -96,6 +96,56 @@ in the system map to review eligible notes for the newer index explicitly. Reusi
 file does not transfer an old conclusion or human review.
 See [refresh evidence](../fixtures/loredock-refresh/README.md).
 
+## Read the project overview
+
+After indexing, **Project overview** appears before the system map. Each repository
+has its saved revision and either a short original root README excerpt or a clear
+**README context unavailable** explanation. **Open README evidence** opens the exact
+committed lines, including their original revision and integrity metadata. Under
+**More source reading**, open the original README spans and available root package/Maven
+manifests. All reading is local and makes no model calls.
+
+These excerpts are documented intent, not verified roles or a generated architecture
+summary. They can be outdated or contradict code/configuration: the demo API README's
+`orders.created.v1` remains visible even though its local configuration says
+`orders.placed.v2`. Compare the evidence before drawing a conclusion. HTML, links,
+commands and source instructions are displayed literally; no setup snippet is executed.
+
+Open **Guide me** for a short reading route:
+
+1. **Read repository context** focuses the first repository card. Read its quote and
+   open the original evidence, then continue through the other repository cards.
+2. **Explore system map** focuses the declared interface/contract/configuration view.
+   Candidate matches retain their uncertainty; matching names do not prove ownership.
+3. **Follow first flow** opens/focuses the first available partial source outline.
+   Read original citations, unresolved wiring and engineer review labels. If it is
+   loading or unsupported, the guide explains that state; try again after loading or
+   inspect the sources instead.
+4. **Review sources and gaps** opens the overview's selected-index coverage: missing
+   documentation, exclusions, failed files and omitted inventory. This follows the
+   index you selected, including a historical index.
+
+One unambiguous root `README`, `README.md` or `README.txt` is supported, ignoring case.
+Several recorded root READMEs produce a gap; the application does not choose one by
+content. Nested documentation is not substituted for a missing root introduction.
+Code-only or oversized introductions remain gaps, with original reading links when
+available. Failed/truncated inventories cannot establish that documentation is absent.
+
+Overview coverage is not a percentage of system understanding. Diagnostics under
+**Overview coverage and gaps** disclose the bounds: nine root documents, 32 KiB/file,
+96 KiB source input, eight spans/file, 16 complete lines / 2,000 UTF-8 bytes per excerpt
+and 128 KiB output. Every saved authorized repository gets context or a visible gap.
+The text selector skips headings/code blocks; it is not a full Markdown or semantic
+analyzer. Other markup stays literal.
+
+**Index version** changes the overview with the other source views. Historical text
+stays pinned after updates/restart. New active repositories outside that snapshot are
+listed separately until **Update knowledge** includes them. Source removal hides its
+context and fences citations, including late responses; a policy change requires a new
+index. No separate model configuration, learning state or extra source form is needed.
+See [orientation evidence](../fixtures/loredock-orientation/README.md) and
+[ADR 0027](../decisions/0027-loredock-project-orientation.md).
+
 ## Explore the declaration map
 
 After indexing, **System map** appears automatically and makes no model calls. Open a
@@ -469,6 +519,7 @@ require the session. No tokens belong in URLs or logs.
 | `GET /api/evidence/:id` | Reopen a validated, authorized stored citation. |
 | `GET /api/system-map?buildId=...` | Bounded declaration projection for the current or a selected authorized published index. |
 | `GET /api/code-flows?buildId=...` | Versioned code links, partial flow outlines, candidate hops and original evidence from the same authorized index. |
+| `GET /api/orientation?buildId=...` | Original README context/gaps, optional manifest reading, selected revisions/coverage and separate unindexed-source gaps; no model calls. |
 | `GET /api/corrections?buildId=...` | Current human correction overlay/revision and flow-review dependencies for the selected index. |
 | `GET /api/corrections/:id/history` | Authorized immutable versions and original relationship/evidence provenance. |
 | `POST /api/corrections` | Save/replay a dispute, clarification or withdrawal with issued target ID, projection hash and expected review versions. |

@@ -5,6 +5,49 @@
   font-synthesis:none;
   line-height:1.55
 }
+.project-overview{
+  overflow-wrap:anywhere
+}
+.orientation-cards{
+  display:grid;
+  gap:14px;
+  margin:20px 0
+}
+.orientation-card{
+  border:1px solid #d8e1d9;
+  border-radius:10px;
+  padding:16px
+}
+.orientation-card h3{
+  margin:0
+}
+.readme-context{
+  margin:10px 0;
+  border-left:3px solid #91aa93;
+  padding:5px 14px;
+  white-space:pre-wrap;
+  font-size:14px
+}
+.reading-guide{
+  border:1px solid #cbdacc;
+  border-radius:10px;
+  background:#f8faf6;
+  padding:14px
+}
+.reading-guide summary{
+  font-weight:650;
+  cursor:pointer
+}
+.reading-guide li{
+  margin:12px 0
+}
+.orientation-reading,
+.orientation-coverage{
+  margin-top:16px
+}
+.orientation-reading strong{
+  display:block
+}
 .earlier-corrections{
   margin:22px 0;
   padding:18px;

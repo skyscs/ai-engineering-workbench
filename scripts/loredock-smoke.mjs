@@ -52,8 +52,10 @@ try {
   const packageData = JSON.parse(await readFile(packagePath, 'utf8'));
   packageData.name = '<img src=x onerror="window.mapInjected=true">';
   await writeFile(packagePath, JSON.stringify(packageData, null, 2) + '\n');
-  fixtureGit(fixture.root, 'portal', ['add', 'package.json']);
-  fixtureGit(fixture.root, 'portal', ['commit', '-qm', 'Add adversarial package-label browser input']);
+  const portalReadme = path.join(fixture.root, 'sources/portal/README.md');
+  await writeFile(portalReadme, await readFile(portalReadme, 'utf8') + '<img src=x onerror="window.orientationInjected=true"> Documented text is not an instruction to execute.\n');
+  fixtureGit(fixture.root, 'portal', ['add', 'package.json', 'README.md']);
+  fixtureGit(fixture.root, 'portal', ['commit', '-qm', 'Add adversarial browser source text']);
   const env = { ...process.env, LOREDOCK_DATA_DIR: path.join(fixture.root, 'data') };
   const daemon = start(process.execPath, ['dist/index.js'], daemonDir, env);
   const ready = record => waitFor(() => {
@@ -83,13 +85,47 @@ try {
     await click('Add repository');
     await waitFor(() => evaluate(`[...document.querySelectorAll('.sources strong')].some(e=>e.textContent===${JSON.stringify(id)})`), 'Source did not appear.');
   }
+  await evaluate(`(()=>{
+    const nativeFetch=window.fetch;let first=true,release;const gate=new Promise(resolve=>{release=resolve;});
+    window.releaseOrientationFlow=release;window.restoreOrientationFetch=()=>{window.fetch=nativeFetch;};
+    window.fetch=async(...args)=>{const held=first&&String(args[0]).includes('/api/code-flows?');if(held)first=false;
+      const response=await nativeFetch(...args);if(held){window.orientationFlowHeld=true;await gate;}return response;};
+  })()`);
   await click('Index sources'); await text('18 indexed · 9 excluded · 0 failed · 0 pending');
+  await text('README context for 3 of 3 repositories');
+  assert.equal(await evaluate("document.querySelectorAll('.orientation-card').length"), 3);
+  assert.equal(await evaluate("document.querySelector('.project-overview').innerText.includes('orders.created.v1')"), true);
+  assert.equal(await evaluate("document.querySelector('.project-overview').innerText.includes('<img src=x')"), true);
+  assert.equal(await evaluate("document.querySelectorAll('.project-overview img').length"), 0);
+  assert.equal(await evaluate('window.orientationInjected===undefined'), true);
+  await evaluate("[...document.querySelectorAll('.orientation-card')].find(e=>e.querySelector('h3').textContent==='order-api').querySelector('.orientation-citations button').click()");
+  await waitFor(() => evaluate("document.querySelector('.evidence pre')?.innerText.includes('orders.created.v1')"), 'README evidence did not open.');
+  assert.equal(await evaluate('document.activeElement.textContent'), 'Source evidence');
+  await evaluate("document.querySelector('.reading-guide').open=true");
+  await waitFor(() => evaluate('window.orientationFlowHeld===true'), 'The initial flow response was not held.');
+  await click('Follow first flow'); await text('No flow outline is available yet.');
+  await evaluate('window.releaseOrientationFlow()');
   await text('3 repositories · 16 declarations · 2 cross-repository clues');
   await text('2 static flow outlines · 4 candidate code links');
+  await evaluate('window.restoreOrientationFetch()');
+  await click('Read repository context'); assert.equal(await evaluate('document.activeElement.textContent'), 'portal');
+  await click('Explore system map'); assert.equal(await evaluate('document.activeElement.textContent'), 'System map');
+  await click('Follow first flow'); assert.equal(await evaluate("document.activeElement===document.querySelector('.flow-card > summary')"), true);
+  await click('Review sources and gaps'); assert.equal(await evaluate('document.activeElement.textContent'), 'Overview coverage and gaps');
+  await evaluate("document.querySelector('.orientation-coverage').open=false;document.querySelector('.reading-guide').scrollIntoView()");
+  await writeFile(path.join(output, 'guide-desktop.png'), Buffer.from((await page.send('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
+  await evaluate("document.querySelector('.orientation-coverage').open=false;document.querySelector('.reading-guide').open=false;document.querySelector('.project-overview').scrollIntoView()");
+  await writeFile(path.join(output, 'overview-desktop.png'), Buffer.from((await page.send('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
+  await page.send('Emulation.setDeviceMetricsOverride', { width: 390, height: 900, deviceScaleFactor: 1, mobile: true });
+  assert.equal(await evaluate('document.documentElement.scrollWidth<=390'), true);
+  await writeFile(path.join(output, 'overview-mobile.png'), Buffer.from((await page.send('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
+  await page.send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 1200, deviceScaleFactor: 1, mobile: false });
+  const initialOrientation = await evaluate("fetch('/api/orientation').then(r=>r.json())");
+  await writeFile(path.join(output, 'orientation-initial.json'), JSON.stringify(initialOrientation, null, 2) + '\n');
   assert.equal(await evaluate("document.querySelectorAll('.flow-card').length"), 2);
   assert.equal(await evaluate("document.querySelector('.flow-card').innerText.includes('Candidate hop')"), true);
   await evaluate("[...document.querySelectorAll('.flow-steps li')].find(e=>e.querySelector(':scope > strong')?.textContent==='MongoCollection.replaceOne').querySelector('.flow-citations button').click()");
-  await text('Source evidence');
+  await waitFor(() => evaluate("document.querySelector('.evidence pre')?.innerText.includes('collection.replaceOne')"), 'Write evidence did not replace the README citation.');
   assert.equal(await evaluate("document.querySelector('.evidence pre').innerText.includes('collection.replaceOne')"), true);
   assert.equal(await evaluate("document.activeElement.textContent"), 'Source evidence');
   await evaluate("document.querySelector('.flow-gaps').open=true");
@@ -104,7 +140,7 @@ try {
   await evaluate("[...document.querySelectorAll('.map-repository')].find(e=>e.querySelector('summary').textContent==='portal').open=false");
   await evaluate("[...document.querySelectorAll('.map-repository')].find(e=>e.querySelector('summary').textContent==='order-api').open=true");
   await evaluate("[...document.querySelectorAll('.map-declarations li')].find(e=>e.querySelector('strong').textContent==='POST /api/orders').querySelector('.citations button').click()");
-  await text('Source evidence');
+  await waitFor(() => evaluate("document.querySelector('.evidence pre')?.innerText.includes('Orders.accept')"), 'Route evidence did not replace the prior citation.');
   assert.equal(await evaluate("document.querySelector('.evidence pre').innerText.includes('Orders.accept')"), true);
   await evaluate(`(()=>{
     const nativeFetch=window.fetch;
@@ -184,6 +220,7 @@ try {
   await stop(daemon);
   const reviewedDaemon = start(process.execPath, ['dist/index.js'], daemonDir, env); await ready(reviewedDaemon);
   await page.send('Page.reload'); await text('Historical correction: local delivery');
+  await text('README context for 3 of 3 repositories');
   assert.equal(await evaluate("document.querySelectorAll('.flow-card.needs-review').length"), 2);
   await click('Update knowledge');
   await waitFor(() => evaluate(`fetch('/api/project').then(r=>r.json()).then(p=>p.publishedBuildId!==${JSON.stringify(firstIndex)})`), 'Second index did not publish.');
@@ -233,7 +270,7 @@ try {
   await page.send('Page.reload'); await text('Reapplied from index');
   assert.equal(await evaluate("document.querySelectorAll('.flow-card.needs-review').length"), 2);
   const apiReadme = path.join(fixture.root, 'sources/order-api/README.md');
-  await writeFile(apiReadme, await readFile(apiReadme, 'utf8') + '\nRefreshBrowserMarker: committed refresh demonstration.\n');
+  await writeFile(apiReadme, (await readFile(apiReadme, 'utf8')).replace('POST /api/orders accepts', 'RefreshBrowserMarker: committed refresh demonstration.\nPOST /api/orders accepts'));
   fixtureGit(fixture.root, 'order-api', ['add', 'README.md']); fixtureGit(fixture.root, 'order-api', ['commit', '-qm', 'Change the owned refresh README']);
   await rename(path.join(fixture.root, 'sources/order-worker/README.md'), path.join(fixture.root, 'sources/order-worker/REFRESH.md'));
   fixtureGit(fixture.root, 'order-worker', ['add', '--all']); fixtureGit(fixture.root, 'order-worker', ['commit', '-qm', 'Move an owned document to test added and removed paths']);
@@ -242,6 +279,17 @@ try {
   await text('Supporting evidence unchanged');
   assert.equal(await evaluate("document.querySelectorAll('.human-correction').length"), 0, 'Reapplication was automatically repeated on the next refresh.');
   await text('1 added · 1 changed · 1 removed · 0 coverage changes · 0 not comparable');
+  await text('README context for 2 of 3 repositories'); await text('README context unavailable');
+  assert.equal(await evaluate("document.querySelector('.project-overview').innerText.includes('RefreshBrowserMarker')"), true);
+  const updatedOrientation = await evaluate("fetch('/api/orientation').then(r=>r.json())");
+  await writeFile(path.join(output, 'orientation-updated.json'), JSON.stringify(updatedOrientation, null, 2) + '\n');
+  await evaluate(`(()=>{const s=document.querySelector('[aria-label="Index version"]');s.value=${JSON.stringify(secondIndex)};s.dispatchEvent(new Event('change',{bubbles:true}));})()`);
+  await waitFor(() => evaluate(`document.querySelector('.project-overview')?.dataset.buildId===${JSON.stringify(secondIndex)}`), 'Historical overview did not load.');
+  await text('README context for 3 of 3 repositories');
+  assert.equal(await evaluate("document.querySelector('.project-overview').innerText.includes('RefreshBrowserMarker')"), false);
+  await text('This overview uses an older index');
+  await evaluate("(()=>{const s=document.querySelector('[aria-label=\"Index version\"]');s.value='';s.dispatchEvent(new Event('change',{bubbles:true}));})()");
+  await text('README context for 2 of 3 repositories');
   await evaluate("document.querySelector('.change-details').open=true");
   await text('16 text files reused · 5 Git file read attempts · 0 cache validation failures');
   await evaluate("[...document.querySelectorAll('.changed-files li')].find(e=>e.innerText.includes('order-api / README.md')).querySelectorAll('button')[1].click()");
@@ -256,7 +304,7 @@ try {
   await page.send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 1200, deviceScaleFactor: 1, mobile: false });
   await input('source-query', 'orders.placed.v2'); await click('Search'); await text('3 matching passages');
   await evaluate("[...document.querySelectorAll('button.result')].find(b=>b.querySelector('.result-meta').textContent.startsWith('order-api')).click()");
-  await text('Source evidence');
+  await waitFor(() => evaluate("document.querySelector('.evidence pre')?.innerText.includes('orders.placed.v2')"), 'Search evidence did not replace the previous citation.');
   assert.equal(await evaluate("document.querySelector('.evidence pre').innerText.includes('orders.placed.v2')"), true);
   assert.equal(await evaluate("document.activeElement.textContent"), 'Source evidence');
   await evaluate("document.querySelector('.code-flows').scrollIntoView()");
@@ -288,24 +336,28 @@ try {
   await writeFile(path.join(output, 'reconciliation-changed-support.png'), Buffer.from((await page.send('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
   await evaluate(`(()=>{
     const nativeFetch=window.fetch;
-    let first=true, reviewFirst=true, release;
+    let first=true, reviewFirst=true, orientationFirst=true, release;
     const gate=new Promise(resolve=>{release=resolve;});
     window.releaseCorrectionResponse=release;
     window.restoreCorrectionFetch=()=>{window.fetch=nativeFetch;};
     window.fetch=async(...args)=>{
       const delayed=first&&String(args[0]).includes('/api/corrections?buildId=');
       const reviewDelayed=reviewFirst&&String(args[0]).includes('/api/correction-reconciliation?');
+      const orientationDelayed=orientationFirst&&String(args[0]).includes('/api/orientation?');
       if(delayed)first=false;
       if(reviewDelayed)reviewFirst=false;
+      if(orientationDelayed)orientationFirst=false;
       const response=await nativeFetch(...args);
       if(delayed){window.delayedCorrectionPayload=await response.clone().json();await gate;window.delayedCorrectionFinished=true;}
       if(reviewDelayed){window.delayedReviewPayload=await response.clone().json();await gate;window.delayedReviewFinished=true;}
+      if(orientationDelayed){window.delayedOrientationPayload=await response.clone().json();await gate;window.delayedOrientationFinished=true;}
       return response;
     };
     const e=document.querySelector('[aria-label="Index version"]');e.value=${JSON.stringify(secondIndex)};e.dispatchEvent(new Event('change',{bubbles:true}));
   })()`);
   await waitFor(() => evaluate("window.delayedCorrectionPayload?.corrections[0]?.statement.includes('Historical correction')"), 'The delayed response did not contain the original correction.');
   await waitFor(() => evaluate("window.delayedReviewPayload?.entries[0]?.source.statement.includes('Historical correction')"), 'The delayed review response did not contain the original correction.');
+  await waitFor(() => evaluate("window.delayedOrientationPayload?.sources.some(s=>s.context?.text.includes('orders.created.v1'))"), 'The delayed overview did not contain original README context.');
   await evaluate("[...document.querySelectorAll('.sources li')].find(li=>li.querySelector('strong').textContent==='order-api').querySelector('button').click()");
   await click('Confirm removal'); await text('2 / 3');
   await waitFor(() => evaluate("!document.querySelector('.evidence')"), 'Revoked evidence remained visible.');
@@ -314,9 +366,12 @@ try {
   await evaluate('window.releaseCorrectionResponse()');
   await waitFor(() => evaluate('window.delayedCorrectionFinished===true'), 'The older correction response did not settle.');
   await waitFor(() => evaluate('window.delayedReviewFinished===true'), 'The older reconciliation response did not settle.');
+  await waitFor(() => evaluate('window.delayedOrientationFinished===true'), 'The older orientation response did not settle.');
   await evaluate('new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))');
   assert.equal(await evaluate("document.querySelectorAll('.human-correction').length"), 0, 'A late response restored revoked correction content.');
   assert.equal(await evaluate("document.querySelectorAll('.earlier-correction').length"), 0, 'A late response restored revoked review proposals.');
+  await waitFor(() => evaluate("document.querySelectorAll('.orientation-card').length===2"), 'Revoked repository context remained visible.');
+  assert.equal(await evaluate("document.querySelector('.project-overview').innerText.includes('orders.created.v1')"), false, 'A late response restored revoked README context.');
   assert.equal(await evaluate(`fetch('/api/correction-reconciliation?buildId=${secondIndex}').then(r=>r.json()).then(p=>p.scope.current.every(s=>s.name!=='order-api'))`), true, 'A revoked source remained in the review revision scope.');
   assert.equal(await evaluate(`fetch('/api/corrections/${correctionId}/history').then(r=>r.status)`), 404);
   await evaluate('window.restoreCorrectionFetch()');
@@ -331,7 +386,10 @@ try {
   await input('source-query', 'OrderConsumer'); await click('Search'); await text('matching passages');
   assert.equal(await evaluate("document.querySelectorAll('[role=alert]').length"), 0);
   for (const id of repositoryIds) assert.equal(fixtureGit(fixture.root, id, ['status', '--porcelain=v1']), '');
-  const result = { schemaVersion: 'loredock-browser/6', sources: 3, initialIndexedFiles: 18, initialExcludedFiles: 9,
+  const result = { schemaVersion: 'loredock-browser/7', sources: 3, initialIndexedFiles: 18, initialExcludedFiles: 9,
+    projectOrientation: { initialContexts: 3, outdatedREADMEPreserved: true, originalCitation: true, escapedText: true, guideNavigationAndFocus: true,
+      unavailableStepExplained: true, historicalIsolation: true, updatedREADME: true, missingREADMEGap: true, restart: true,
+      lateResponseRevocationFence: true, mobileWidth: 390 },
     systemMap: { repositories: 3, declarations: 16, crossRepositoryClues: 2, routeCitation: true, contractCitation: true, escapedLabels: true, historicalSelection: true, revocation: true },
     codeFlows: { outlines: 2, candidateCodeLinks: 4, writeCitation: true, latestCitationWins: true, unresolvedWiringVisible: true, historicalSelection: true, revocation: true, restart: true },
     engineerCorrections: { dispute: true, scopedClarification: true, originalClaimPreserved: true, twoFlowsInvalidated: true, concurrentDraftPreserved: true, history: true, withdrawal: true,
@@ -341,7 +399,7 @@ try {
     correctionReconciliation: { noAutomaticTransfer: true, explicitApply: true, originalAndCurrentEvidence: true, exactOrigin: true,
       bothFlowsInvalidated: true, currentDecisionProtected: true, restart: true, changedSupportBlocked: true, olderAncestorSelection: true,
       historicalIsolation: true, lateResponseFencing: true, revokedRevisionScopeExcluded: true, mobileWidth: 390 },
-    fixtureVariation: 'Owned temporary package name contains adversarial HTML; an API README changes, a worker README moves and a supporting Java file gains a comment during refresh. Frozen templates are unchanged.',
+    fixtureVariation: 'Owned temporary package name and portal README contain adversarial HTML; an API README introduction changes, a worker README moves and a supporting Java file gains a comment during refresh. Frozen templates are unchanged.',
     topicMatches: 3, evidenceOpened: true, keyboardFocus: true, mobileWidth: 390, sourceRevocation: true,
     policyFencing: true, reindex: true, restartPersistence: true, sourceCheckoutsUnchanged: true, modelRequests: 0 };
   await writeFile(path.join(output, 'browser-result.json'), JSON.stringify(result, null, 2) + '\n');
