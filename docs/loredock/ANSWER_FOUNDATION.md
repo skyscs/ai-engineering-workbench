@@ -34,10 +34,17 @@ quoted handler hints, per-source identifier turns and direct-query candidate pri
 reach 24/24 prospective reference sets while preserving both earlier 20/20 baselines.
 [Offline qualification](../fixtures/loredock-reference-retrieval/README.md) includes
 rejected admission variants and scope limits. Saved contexts retain their recorded
-versions/bytes. A new prospective answer evaluation remains outstanding; historical
-model scores do not transfer to the changed retrieval inputs.
+versions/bytes. Historical model scores do not transfer to changed retrieval inputs.
 
-The final complete run has a provisional **20/20 useful/correct agent assessment**,
+Task 030 performs a [single prospective answer run](../fixtures/loredock-prospective-answers/README.md)
+with fixed v8/v7 inputs: 11/12 development and 12/12 reserved cases pass agent review.
+All required propositions are covered, but d10 adds an unsupported tenant-header path
+between incompatible literal names. The prospective gate fails. All 122 claims and 62
+required propositions are reviewed and original source bytes are verified; independent
+review remains pending. No rerun/prompt tuning is included; next address literal interface
+compatibility as a bounded source-backed product capability.
+
+The original three-source pilot's final run has a provisional **20/20 useful/correct agent assessment**,
 **162/162 resolving citation references across 98 claims**, and **20/20 complete
 expected-evidence retrieval sets**. This is not independent human approval. Read the
 [complete review sheet](../fixtures/loredock-answer-quality/HUMAN_REVIEW.md),

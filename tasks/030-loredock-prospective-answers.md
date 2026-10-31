@@ -1,6 +1,7 @@
 # Task 030 — One-shot prospective answer qualification
 
-Status: in progress. Follows Task 029 / merged PR #33 (`b4f29f9`).
+Status: evaluated and locally verified, 2026-10-31; prospective semantic gate failed.
+Follows Task 029 / merged PR #33 (`b4f29f9`).
 
 ## Scope and acceptance
 
@@ -38,3 +39,22 @@ agent after earlier failures; they are not an independent blind benchmark. Succe
 engineering checks or agent scoring do not establish L5/private-project acceptance.
 After this single assessment, prioritize the evidenced product gap or the next bounded
 framework/retention capability rather than repeatedly tuning against these answers.
+
+## Outcome
+
+One complete 24-attempt run: agent assessment 11/12 development and 12/12 reserved.
+All 62 required propositions pass, but d10 claim 2 asserts a checkout-to-handler tenant
+header path despite `x-tenant-id` versus `X-Tenant` and no supplied mapping. Criterion 5's
+24/24 semantic gate is not met. No second run is included; Task 027 remains unchanged.
+
+The audit verifies 699 input-span occurrences, all 122 claim judgments, 85 unanswered
+questions and 185 citation references against original source bytes. Restart, exact
+replay and revocation pass for all 24 saved attempts. Usage: 415,474 input and 11,540
+output tokens, zero cached input; no unknown usage receipts. The one-run budget is spent.
+
+Full `pnpm check`: 319 tests, strict typechecks and builds pass. Product/UI, prompt,
+schema and runtime remain unchanged; existing browser qualification still applies.
+See [ADR 0033](../docs/decisions/0033-loredock-prospective-answer-qualification.md) and
+[all results and judgments](../docs/fixtures/loredock-prospective-answers/README.md).
+Next: bounded model-free literal header/binding compatibility with source evidence,
+not another tuning cycle against these now-observed answers.

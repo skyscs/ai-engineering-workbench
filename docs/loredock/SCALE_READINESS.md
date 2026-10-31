@@ -142,3 +142,15 @@ prompt v8, schema and runtime are unchanged. Maximum observed expanded/prospecti
 30 spans / 8,775 text bytes / 32,338 prompt bytes. This is a zero-model engineering
 qualification on inspected synthetic questions. Prospective model evaluation, independent
 review, framework coverage, retention and an eligible private pilot remain ahead of L5.
+
+## Task 030 prospective answer outcome
+
+[One fixed-input run](../fixtures/loredock-prospective-answers/README.md) completes all 24
+attempts. Agent review passes 11/12 development and 12/12 reserved cases; all 62 required
+propositions pass, but an extra d10 claim incorrectly connects different tenant-header
+names without a mapping. The prospective gate fails. All 122 claims and 185 citation
+references are reviewed; 699 input-span occurrences match regenerated original bytes.
+History/replay/revocation pass; the 24-attempt budget is exhausted without a rerun.
+Next, expose bounded literal header/binding compatibility with evidence, preserving
+unknown runtime wiring and security enforcement. This does not establish L5; independent
+review, broader framework coverage, retention and the eligible private pilot remain open.

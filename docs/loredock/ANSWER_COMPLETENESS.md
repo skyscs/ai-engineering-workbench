@@ -124,5 +124,12 @@ private pilot remain ahead of the Workbench bridge.
 Task 029 implements this bounded experiment as retrieval v7. It reaches 24/24 recorded
 reference sets with unchanged original expanded/pilot recall and unchanged limits.
 [Final measurements and rejected variants](../fixtures/loredock-reference-retrieval/README.md)
-retain the v6 evidence above as history. Prompt v8 remains fixed; prospective semantic
-evaluation is still outstanding and Task 027's failed gate is not reclassified.
+retain the v6 evidence above as history. Prompt v8 remains fixed and Task 027's failed
+gate is not reclassified.
+
+Task 030's [single prospective evaluation](../fixtures/loredock-prospective-answers/README.md)
+passes all required propositions under agent review, but d10 adds an unsupported
+checkout-to-handler header path. Scores are 11/12 development and 12/12 reserved; the
+prospective gate fails despite complete reference recall and required content. Every
+claim, including optional background, remains subject to grounding. The reserved answers
+are now observed and will not be reused for repeated tuning under this task.

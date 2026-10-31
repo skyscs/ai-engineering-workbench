@@ -23,11 +23,17 @@ reviewer may find semantically equivalent evidence in another issued passage and
 record that judgment; for example, the h02 handler record already supplies message
 fields even though the chosen shared JSON contract is absent.
 
-Reserved wordings have no answering-model output. Their retrieval has been inspected,
-and the same agent authored them after earlier failures. They are **not** a blind or
-independent corpus, and are no longer held out for retrieval changes. Reserve their
-model outputs for a single subsequent evaluation after any prompt changes are frozen;
-do not repeatedly tune against those outputs. This task permits zero model attempts.
+At the Task 028 freeze, reserved wordings had no answering-model output. Their retrieval
+was inspected, and the same agent authored them after earlier failures. They are **not**
+a blind or independent corpus. The contract reserved their model outputs for one later
+evaluation after prompt changes were frozen, without repeated tuning against those
+outputs. Task 028 permits zero model attempts.
+
+Task 030 subsequently completes that [single separately budgeted model evaluation](../../docs/fixtures/loredock-prospective-answers/README.md)
+with fixed prompt v8/retrieval v7. Agent review passes 11/12 development and 12/12 reserved
+cases; an unsupported extra header-propagation claim fails the prospective gate despite
+complete required content. These outputs are now observed, not reserved for future tuning.
+The original contract/baseline above remain unchanged historical records.
 
 After a normal build, reproduce the offline report or regenerate this worksheet:
 
