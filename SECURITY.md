@@ -62,6 +62,11 @@ input or investigation is executed. Lexical suggestions and negative mentions re
 unverified reading clues. Question/source/policy/index/review changes fence cached UI
 previews and pending original-evidence responses. See
 [ADR 0036](docs/decisions/0036-loredock-source-candidate-preview.md).
+Related-source previews additionally validate both endpoints and auxiliary originals
+from the same authorized build. They retain projection provenance, omissions and
+unverified status; extra references never become answer-input evidence implicitly.
+Overlapping engineer notes remain human assertions. Existing response and citation fences
+cover the entire preview. See [ADR 0037](docs/decisions/0037-loredock-candidate-links.md).
 
 Bulk path previews and confirmations use the same session/CSRF boundary. Registration
 revalidates canonical identities and the registry before atomic insertion; persisted

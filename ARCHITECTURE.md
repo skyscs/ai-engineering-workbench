@@ -36,6 +36,10 @@ The model-free candidate preview ranks original passages from the existing answe
 without narrowing that context or storing an approved investigation scope. The default UI
 exposes original support, other matches and uncertainty; see
 [ADR 0036](docs/decisions/0036-loredock-source-candidate-preview.md).
+The separate related-source projection adds bounded one-hop code/declaration clues with
+both original endpoints, full support and coverage. It does not change the lexical
+shortlist or answer input; symmetric comparisons retain their original sides while
+sorting independently of them. See [ADR 0037](docs/decisions/0037-loredock-candidate-links.md).
 
 ## Architectural style
 

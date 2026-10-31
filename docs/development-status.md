@@ -1,5 +1,38 @@
 # Development status
 
+## Task 037 — Related sources with original evidence
+
+Implemented and locally verified, 2026-10-31. PR #40 reached main as `9a9aeb9` after
+push `41243705407` and pull-request `41243709856` both passed for exact head
+`523ec52c88b2b224eee7c9e860d5aefe61ddc824`. Development continued immediately using
+only synthetic inputs. Design and eight adversarial examples were frozen in `4b8f987`.
+
+Candidate previews now include a separate, initially collapsed **Related repositories
+to inspect** section. It follows only direct supported code/declaration comparisons
+anchored to a primary source's own question-matching original passage. Four additional
+sources and two links per source are retained, with both endpoint citations, auxiliary
+originals, projection coverage, omissions and overlapping unverified engineer notes.
+Lexical ranking, answer context, model prompts and historical evaluations stay unchanged.
+
+The observed incident diagnostic recovers 21/22 critical repository occurrences, but
+combined lists grow to 1–8 sources. Five cases meet the size bound and four meet both
+necessary conditions. Whole-passage anchors admit incidental setting comparisons; ir06
+still misses inventory-api. These results do not establish automatic routing. Both fresh
+generations preserve source/link selection and all retained context/lexical baselines;
+172 additional support occurrences are checked against original Git content. Symmetric
+declaration side representation changes in five cases and remains explicitly reported.
+
+Full checks: 349 tests, strict types and builds. Browser verification covers escaped
+primary/linked source labels, keyboard original evidence, mobile layout, collapsed
+related sources and late question/evidence/review/source/policy fences. No model calls.
+See [Task 037](../tasks/037-loredock-related-candidates.md),
+[ADR 0037](decisions/0037-loredock-candidate-links.md) and
+[verification and limitations](fixtures/loredock-candidate-links/README.md).
+
+Next: freeze fresh adversarial evidence for more precise relationship anchoring before
+changing the v1 rule. Independent review and private-pilot acceptance still precede
+the Workbench bridge; old failed answer gates remain failed.
+
 ## Task 036 — Model-free source candidate preview
 
 Implemented and locally verified, 2026-10-31. Task 035 reached main through PR #39

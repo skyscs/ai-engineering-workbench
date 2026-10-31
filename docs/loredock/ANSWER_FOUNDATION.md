@@ -71,6 +71,9 @@ Tasks 035–036 subsequently measure broad incident context and add a separate m
 the answer context nor this historical quality assessment. Primary shortlists retain
 18/22 critical repository occurrences, with four more in Other matches; these reading
 clues do not establish automatic routing or answer-quality acceptance.
+Task 037 adds optional [related-source context](../fixtures/loredock-candidate-links/README.md)
+outside answer inputs. Union recall reaches 21/22 with broader lists; this does not
+change any historical semantic assessment or authorize another model run.
 
 The original three-source pilot's final run has a provisional **20/20 useful/correct agent assessment**,
 **162/162 resolving citation references across 98 claims**, and **20/20 complete

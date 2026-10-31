@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import type { CandidatePreview, SourceCandidate } from '../../loredock/src/source-candidates';
 import { api } from './api';
 import { AnswerReview } from './AnswerReview';
+import { CandidateLinks } from './CandidateLinks';
 
 export function CandidatePanel({ buildId, boundary, correctionRevision, openEvidence, clearEvidence }: {
   buildId: string; boundary: string; correctionRevision: number; openEvidence(id: string): void; clearEvidence(): void;
@@ -51,6 +52,7 @@ export function CandidatePanel({ buildId, boundary, correctionRevision, openEvid
       {(value.stale || value.historical) && <p className="notice">These suggestions use an older index or source registry. Evidence stays pinned to that snapshot; update knowledge to include newer sources.</p>}
       {value.tiedAtLimit && <p className="notice">Equally matched sources extend beyond the suggestion limit. Inspect other matches before narrowing the scope.</p>}
       <div className="candidate-suggestions">{value.suggested.map(card)}</div>
+      <CandidateLinks value={value.related} openEvidence={openEvidence} />
       {value.otherMatches.length > 0 && <details className="candidate-other"><summary>Other matches · {value.otherMatches.length} repositories</summary>
         <p>These sources fall below the selection threshold or outside the six-suggestion limit. They may still be relevant.</p>
         {value.otherMatches.map(card)}

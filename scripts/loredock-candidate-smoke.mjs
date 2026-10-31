@@ -10,7 +10,9 @@ import { routingCases } from '../fixtures/loredock-routing/cases.mjs';
 // Opt-in Linux browser acceptance. Uses synthetic sources, port 4244 and no models.
 const fixture = await createScaleFixture();
 const hostileLabel = '<img src=x onerror=alert(1)>';
+const linkedLabel = '<svg onload=alert(2)>';
 await rename(path.join(fixture.root, 'sources/ui-components'), path.join(fixture.root, 'sources', hostileLabel));
+await rename(path.join(fixture.root, 'sources/contract-library'), path.join(fixture.root, 'sources', linkedLabel));
 const output = process.env.LOREDOCK_SMOKE_OUTPUT ?? await mkdtemp(path.join(tmpdir(), 'loredock-browser-result-'));
 await mkdir(output, { recursive: true });
 const children = [];
@@ -86,7 +88,7 @@ try {
   await page.send('Emulation.setDeviceMetricsOverride', { width:390,height:844,deviceScaleFactor:1,mobile:true });
   await page.send('Page.navigate', { url:'http://127.0.0.1:4244' });await text('Where should I look?');
   assert.equal((await apiCall('/health')).modelExecution,false);
-  const paths=fixture.manifest.sources.map(source=>path.join(fixture.root,'sources',source.id==='ui-components'?hostileLabel:source.id));
+  const paths=fixture.manifest.sources.map(source=>path.join(fixture.root,'sources',source.id==='ui-components'?hostileLabel:source.id==='contract-library'?linkedLabel:source.id));
   await input(paths.join('\n'));await click('Preview repositories');await text('20 new repositories');await click('Add 20 repositories');
   await waitFor(()=>evaluate("document.querySelectorAll('.sources > li').length===20 && [...document.querySelectorAll('button')].some(button=>button.textContent.trim()==='Index sources' && !button.disabled)"),'Bulk registration did not finish.');
   await click('Index sources');await text('79 indexed · 60 excluded · 0 failed · 0 pending');await text('README context for 20 of 20 repositories');
@@ -109,7 +111,21 @@ try {
   await question('OrderBadge');await find();await text('1 source suggestion to review');
   await question(routingCases[0].description);await find();await waitFor(()=>evaluate("document.querySelector('.candidate-other')!==null"),'Other candidates were not available.');
   await evaluate("document.querySelector('.candidate-other').open=true");
-  assert.equal(await evaluate("[...document.querySelectorAll('.candidate-other h4')].some(node=>node.textContent==='contract-library')"),true);
+  assert.equal(await evaluate(`[...document.querySelectorAll('.candidate-other h4')].some(node=>node.textContent===${JSON.stringify(linkedLabel)})`),true);
+  assert.equal(await evaluate("document.querySelector('.candidate-links').open"),false);
+  await evaluate("document.querySelector('.candidate-links').open=true");
+  assert.equal(await evaluate(`[...document.querySelectorAll('.candidate-links h4')].some(node=>node.textContent===${JSON.stringify(linkedLabel)})`),true);
+  assert.equal(await evaluate("document.querySelectorAll('.candidate-links svg').length"),0);
+  const linkedButton=`[...document.querySelectorAll('.candidate-links .candidate-support')].find(node=>node.querySelector('p').textContent.includes(${JSON.stringify(linkedLabel)})).querySelector('button')`;
+  await evaluate(`${linkedButton}.focus()`);
+  await page.send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,text:'\r',unmodifiedText:'\r'});
+  await page.send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+  await text('Source evidence');assert.equal(await evaluate("document.querySelector('.evidence strong').textContent"),linkedLabel);
+  assert.equal(await evaluate("document.activeElement===document.querySelector('.evidence h2')"),true);
+  await evaluate("document.querySelector('.candidate-links').scrollIntoView()");await noOverflow();await screenshot('candidate-links-mobile.png');
+  await hold('/api/evidence/');await evaluate(`${linkedButton}.click()`);await held();
+  await question('zzcandidatebrowserunknown');await release();assert.equal(await evaluate("document.querySelector('.evidence')===null"),true);
+  await question(routingCases[0].description);await find();await waitFor(()=>evaluate("document.querySelector('.candidate-links')!==null"),'Related repositories did not load.');
   await page.send('Emulation.setDeviceMetricsOverride',{width:1280,height:1000,deviceScaleFactor:1,mobile:false});
   await evaluate("document.querySelector('.candidate-panel').scrollIntoView()");await screenshot('other-candidates-desktop.png');
   await page.send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});await noOverflow();
@@ -136,6 +152,13 @@ try {
   await release();assert.equal(await evaluate("document.querySelector('.candidate-preview')===null"),true);
   await find();await waitFor(()=>evaluate("document.querySelector('.candidate-preview')!==null"),'Revoked-source preview did not finish.');
   assert.equal(await evaluate(`document.querySelector('.candidate-preview').textContent.includes(${JSON.stringify(hostileLabel)})`),false);
+  await question(routingCases[0].description);await hold('/api/candidates/preview');await find();await held();
+  const linkedSource=project.sources.find(source=>source.name===linkedLabel);assert.ok(linkedSource);
+  await apiCall(`/sources/${linkedSource.id}/revoke`,'POST');
+  await waitFor(()=>evaluate("document.querySelectorAll('.sources > li').length===18"),'Linked source revocation was not polled.');
+  await release();assert.equal(await evaluate("document.querySelector('.candidate-preview')===null"),true);
+  await find();await waitFor(()=>evaluate("document.querySelector('.candidate-preview')!==null"),'Linked revocation preview did not finish.');
+  assert.equal(await evaluate(`document.querySelector('.candidate-preview').textContent.includes(${JSON.stringify(linkedLabel)})`),false);
   await question('StockReserved');await hold('/api/candidates/preview');await find();await held();
   await apiCall('/policy','PUT',{excludedPaths:['notes']});
   await waitFor(()=>evaluate("document.getElementById('exclusions').value==='notes'"),'Policy change was not polled.');
@@ -143,10 +166,12 @@ try {
   await noOverflow();
   await page.send('Emulation.setDeviceMetricsOverride',{width:1280,height:1000,deviceScaleFactor:1,mobile:false});
   await evaluate("document.querySelector('.candidate-panel').scrollIntoView()");await screenshot('candidate-policy-fence.png');
-  const result={schemaVersion:'loredock-candidate-browser/1',sources:20,modelRequests:0,answerModeDisabled:true,
+  const result={schemaVersion:'loredock-candidate-browser/2',sources:20,modelRequests:0,answerModeDisabled:true,
     sourceSuggestions:true,otherCandidatesInspectable:true,escapedSourceLabel:true,keyboardOriginalEvidence:true,noMatchUnresolved:true,
     lateQuestionPreviewFenced:true,lateQuestionEvidenceFenced:true,refreshFenced:true,historicalScope:true,
     lateReviewPreviewFenced:true,reviewNotesUnverified:true,lateRevocationPreviewFenced:true,latePolicyPreviewFenced:true,
+    relatedSourcesCollapsed:true,relatedSourceLabelEscaped:true,relatedOriginalEvidenceKeyboard:true,
+    lateLinkedEvidenceFenced:true,lateLinkedRevocationFenced:true,
     mobileWidth:390,horizontalOverflow:false};
   await writeFile(path.join(output,'browser-result.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({output,...result},null,2));
 } catch(error) {

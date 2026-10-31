@@ -79,8 +79,12 @@ preview with original support and explicit uncertainty, using rules and fresh ad
 cases frozen before implementation. Primary lists contain 1–4 sources and retain 18/22
 critical repository occurrences; all four misses remain in Other matches. Broad answer
 context is unchanged and automatic routing remains unavailable.
-Next: separately freeze bounded relationship-supported candidate context, keeping
-originals and unverified link scope explicit. Preserve all failed evaluations;
+[Task 037](tasks/037-loredock-related-candidates.md) adds optional bounded related-source
+context with original evidence on both sides. Union recall reaches 21/22, but list sizes
+grow to 1–8 and only four cases meet both useful scope conditions. The primary policy
+and answer context stay unchanged; extra links remain collapsed reading clues.
+Next: qualify more precise relationship anchoring on fresh frozen adversarial examples
+before replacing the v1 rule. Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
 Broader synthesis, adapters, semantic/AI refresh and scale acceptance remain separate.
