@@ -63,8 +63,12 @@ candidate bound; neither implements routing/abstention decisions.
 [Task 036](../../tasks/036-loredock-source-candidate-preview.md) adds a separate model-free
 candidate preview with original support and fresh adversarial cases. Its primary lists
 contain 1–4 sources and recover 18/22 critical occurrences; all four misses remain in
-Other matches. The broader answer context remains unchanged. Next: separately freeze
-bounded relationship-supported candidate context, preserving original evidence and
+Other matches. The broader answer context remains unchanged.
+[Task 037](../../tasks/037-loredock-related-candidates.md) adds optional direct related-source
+clues with original evidence, recovering 21/22 critical occurrences but meeting both
+useful scope conditions in only four cases because the union grows to 1–8 sources.
+Next: qualify more precise relationship anchoring on fresh frozen adversarial examples,
+preserving original evidence and
 unverified link scope. No tuning on the observed model answers is included.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale

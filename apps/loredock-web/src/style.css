@@ -541,4 +541,6 @@ footer{
 .source-candidate h4 { margin-block: .5rem; }
 .candidate-support p { margin-block: .4rem; }
 .candidate-support button { max-width: 100%; white-space: normal; text-align: left; overflow-wrap: anywhere; }
-.candidate-other, .candidate-coverage { margin-block: 1rem; }
+.candidate-other, .candidate-coverage, .candidate-links { margin-block: 1rem; }
+.candidate-link { border-top: 1px solid #dce5df; padding-block: .5rem; }
+.candidate-link button { max-width: 100%; white-space: normal; text-align: left; overflow-wrap: anywhere; }

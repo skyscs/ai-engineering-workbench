@@ -3,6 +3,8 @@ import { retrieveAnswerContext, type AnswerContext } from './answer-context.js';
 import { searchText } from './search-text.js';
 import { sha256 } from './extract.js';
 import { CatalogError } from './types.js';
+import { candidateLinkContext, type CandidateLinkContext } from './candidate-links.js';
+import { answerReviewContext } from './answer-review.js';
 
 export const candidateVersion = 'source-candidates-v1';
 export const candidateLimits = { suggestions: 6, supportPerSource: 3, outputBytes: 128 * 1024 } as const;
@@ -25,6 +27,7 @@ export interface CandidatePreview extends CandidateSelection {
   policyVersion: number; sourceSetVersion: number; registryVersion: number;
   partial: boolean; stale: boolean; historical: boolean; sourceCount: number;
   coverage: AnswerContext['coverage']; review: AnswerContext['review'];
+  related: CandidateLinkContext;
   gaps: string[]; limits: typeof candidateLimits;
 }
 
@@ -68,11 +71,14 @@ export function selectSourceCandidates(context: Pick<AnswerContext, 'sources' | 
 
 export function sourceCandidatePreview(catalog: Catalog, question: string, buildId?: string): CandidatePreview {
   const context = retrieveAnswerContext(catalog, question, buildId), selection = selectSourceCandidates(context);
+  const related = candidateLinkContext(catalog, context, selection);
+  const review = answerReviewContext(catalog, context.buildId, [...context.spans.map(span => span.id),
+    ...related.sources.flatMap(source => source.links.flatMap(link => link.evidence.map(ref => ref.id)))]);
   const result: Omit<CandidatePreview, 'previewHash'> = { schemaVersion: 'source-candidate-preview-v1', adapterVersion: candidateVersion,
     ...selection, question: context.question, buildId: context.buildId, inputHash: context.inputHash,
     policyVersion: context.policyVersion, sourceSetVersion: context.sourceSetVersion, registryVersion: context.registryVersion,
     partial: context.partial, stale: context.stale, historical: context.buildId !== catalog.state().publishedBuildId,
-    sourceCount: context.sources.length, coverage: context.coverage, review: context.review, limits: candidateLimits,
+    sourceCount: context.sources.length, coverage: context.coverage, review, related, limits: candidateLimits,
     gaps: [...context.gaps,
       'Lexical matches are reading clues, including negative mentions. They do not establish implementation ownership, root cause or a repository to modify.',
       'Missing implementations, external systems and runtime evidence can change the investigation scope. These suggestions require source review.',

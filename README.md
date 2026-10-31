@@ -67,7 +67,9 @@ The [incident-context baseline](docs/fixtures/loredock-incident-context/README.m
 all required source owners but returns 11–17 repositories per incident. The separate
 [candidate preview](docs/fixtures/loredock-source-candidates/README.md) narrows the primary
 list to 1–4 in that diagnostic, retaining 18/22 required repository occurrences; four
-remain in Other matches. Autonomous routing and the Workbench bridge remain planned,
+remain in Other matches. Optional [related-source clues](docs/fixtures/loredock-candidate-links/README.md)
+recover 21/22 when combined with the primary list, but widen scope to 1–8 repositories.
+They stay in a separate collapsed reading section. Autonomous routing and the Workbench bridge remain planned,
 with independent/private-pilot acceptance pending.
 
 ## What v0.1 does

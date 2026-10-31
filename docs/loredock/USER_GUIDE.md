@@ -85,6 +85,16 @@ the cap have a separate notice. A negative statement such as “no implementatio
 supplied” can match your question; the match does not establish that implementation.
 The broader context used by Ask Project remains unchanged.
 
+Expand **Related repositories to inspect** when the primary suggestions are not enough.
+This optional section adds up to four repositories connected by a supported direct code
+or declaration clue, with at most two relationships each. Open the original evidence on
+both sides. A declaration comparison uses **↔**; a directed code clue uses **→**. Matching
+contracts/settings do not prove a live connection, and differences do not prove a runtime
+conflict. No second-hop search is performed. **Relationship coverage and limits** reports
+unexamined syntax/documents and sources or relationships omitted by the reading budget.
+An empty section does not prove that other repositories are unrelated. Broad configuration
+passages can yield incidental links, so review their relevance to the actual problem.
+
 **No distinctive source match** asks for a more specific clue. It does not establish
 absence from the system. This local preview uses words from the indexed sources;
 it does not translate questions or verify runtime connections. Missing implementations,
@@ -654,7 +664,7 @@ require the session. No tokens belong in URLs or logs.
 | `GET /api/system-map?buildId=...` | Bounded declaration projection for the current or a selected authorized published index. |
 | `GET /api/code-flows?buildId=...` | Versioned code links, partial flow outlines, candidate hops and original evidence from the same authorized index. |
 | `GET /api/orientation?buildId=...` | Original README context/gaps, optional manifest reading, selected revisions/coverage and separate unindexed-source gaps; no model calls. |
-| `POST /api/candidates/preview` | Model-free source suggestions from `{question, buildId?}`, original support, other matches and scope/uncertainty. Requires session/CSRF; no saved investigation scope. |
+| `POST /api/candidates/preview` | Model-free source suggestions from `{question, buildId?}`, original support, separate related repositories, other matches and scope/uncertainty. Requires session/CSRF; no saved investigation scope. |
 | `GET /api/corrections?buildId=...` | Current human correction overlay/revision and flow-review dependencies for the selected index. |
 | `GET /api/corrections/:id/history` | Authorized immutable versions and original relationship/evidence provenance. |
 | `POST /api/corrections` | Save/replay a dispute, clarification or withdrawal with issued target ID, projection hash and expected review versions. |
