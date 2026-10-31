@@ -1,8 +1,38 @@
 # Development status
 
+## Task 024 — Heterogeneous system corpus and capacity baseline
+
+Implemented and locally verified, 2026-10-31. Task 023 was agent-reviewed and merged
+through PR #27 (`586bff3`) after both CI runs passed under the owner's authorization.
+An independent scale corpus now contains twenty distinct repository roles, 79 text files,
+sixty excluded canaries and twenty frozen question/evidence/uncertainty cases. The original
+pilot commits and oracle are unchanged. New sources include application/library/deployment/
+data/documentation distinctions, multiple applications in one repository, an additional
+consumer, same-name database collections, rename evidence and unresolved external behavior.
+
+The generator creates only owned static Git fixtures. A compact baseline freezes the
+revision vector and complete manifest/oracle hashes; tests reopen every evidence locator,
+regenerate identical inputs and exclude all evaluator material from source trees. The
+production probe records `SOURCE_LIMIT` for the fourth source without bypassing it; three
+sources index eighteen text files, with sixteen more sources unattempted. Fixture creation
+timing is distinct from indexing. Twenty-source latency/storage/quality remain unmeasured.
+
+Verification: full `pnpm check` passes **293 tests** (140 LoreDock, 18 script checks),
+strict typechecks and production builds. No product source/UI/runtime changed; prior
+Task 023 browser artifacts remain the current UI verification. Zero model calls, no
+private source access or modification of normal checkouts. See
+[Task 024](../tasks/024-loredock-scale-corpus.md),
+[fixture and measured baseline](../fixtures/loredock-scale/README.md) and the
+[capacity audit](loredock/SCALE_READINESS.md).
+
+Next: bulk local-path onboarding and fair baseline orientation, including store/UI/source
+limits, source-balanced budgets, integrity/recovery and twenty-source browser scenarios.
+This small topology is not a production load benchmark, private-pilot acceptance or L5.
+
 ## Task 023 — Engineer review in answer context
 
-Implemented and locally verified, 2026-10-31. The owner authorized agent review,
+Agent-reviewed and merged through PR #27 (`586bff3`) after both CI runs passed,
+2026-10-31. The owner authorized agent review,
 merging after successful checks, and continuation to the next bounded phase. This
 authorization does not substitute agent scores for independent product acceptance.
 

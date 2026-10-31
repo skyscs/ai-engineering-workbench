@@ -28,8 +28,11 @@ of earlier corrections when relationship semantics and all supporting evidence m
 [Task 022](tasks/022-loredock-project-orientation.md), accepted through PR #26,
 adds basic original README context and a first reading guide.
 [Task 023](tasks/023-loredock-answer-review-context.md) connects bounded engineer notes
-to answer previews, immutable inputs and review freshness. Broader synthesis, adapters, semantic/AI refresh and scale
-remain separate.
+to answer previews, immutable inputs and review freshness through merged PR #27.
+[Task 024](tasks/024-loredock-scale-corpus.md) establishes a heterogeneous twenty-source
+fixture and [capacity baseline](docs/loredock/SCALE_READINESS.md). Product registration
+still supports three sources; bulk onboarding and fair baseline orientation come next.
+Broader synthesis, adapters, semantic/AI refresh and scale acceptance remain separate.
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation
 bounded, review the complete diff and verify CI for the exact PR head before merging.
