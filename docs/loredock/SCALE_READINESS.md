@@ -1,5 +1,12 @@
 # Twenty-repository capacity readiness
 
+[Task 044](../fixtures/loredock-code-inventory/README.md) subsequently measures complete
+file-by-file extraction on the same frozen volume: 3,621/3,621 files, identical repeated
+facts, 741,496 raw fact bytes and seven unsupported-syntax gaps. Parsing costs 0.852 s
+on the first pass; independent Git validation dominates its 19.783 s elapsed time.
+This supports a bounded durable inventory as the next slice, while interactive graph
+coverage, semantic acceptance and representative framework costs remain unchanged.
+
 The latest [Task 041 measurement](../fixtures/loredock-capacity/README.md) covers 3,679
 files / 7.39 MB across twenty owned sources at current defaults. Both initial indexes
 publish every eligible file in 67–84 seconds; unchanged refresh takes about 16 seconds

@@ -1,0 +1,1680 @@
+{
+  "schemaVersion": "loredock-code-inventory-result/1",
+  "checkedAt": "2026-10-31T23:22:44.003Z",
+  "frozen": {
+    "schemaVersion": "loredock-code-inventory-design/1",
+    "frozenAt": "2026-10-31T23:09:23.515659+00:00",
+    "sourceHashes": {
+      "fixtures/loredock-code-inventory/DESIGN.md": "47d454db892a6ca98bc92e61c13ec88aa04066f538dbce550a0dda8bfdbfcb1f",
+      "fixtures/loredock-capacity/baseline.json": "4e73179f235565c5d42d842df9bfa3f4e6073e1743fdcf931c53bfb483152807",
+      "apps/loredock/src/code-typescript.ts": "773a8ced3b8e304c7d306fa9a91e060ce7da7194ebcde5a4ccb5aa12f9c1a5ad",
+      "apps/loredock/src/code-java.ts": "d51ff800a32a513f1e3a8eed7015d9be96817fef00c9eb1f70ff2f06b5d92389",
+      "apps/loredock/src/code-facts.ts": "38227b1619f13457b45883dcba6dd9316c62a2fa72ef858b51a77779287a2151",
+      "apps/loredock/src/http-headers.ts": "967bddace78b2c472401e4a490b08ca7cfc44eae725a537d52c7b102ebbdb1a9",
+      "apps/loredock/src/code-flows.ts": "c94ed41d6cbc86e26f7997b852eb92df32e2fb3e443a044559a52c4d80274a7f",
+      "apps/loredock/src/map-document.ts": "741ddd865b8c7ac63082f67200d3e5b55d74fa1cc9ce156b84aaa328165aede7",
+      "apps/loredock/src/extract.ts": "0909a4884ff9a82bd9eaaa6b625c7044f69eba3f3c53771b16668c2cdd3e6c2b",
+      "pnpm-lock.yaml": "7518f6697e3a529114fd835acbe23df2251e1ed25d6077f94d541409876d9312"
+    },
+    "parserFingerprint": "4a5c0ec967148f4f92c83c391c591475ad8db76d582dde7500ffe1e92f250cf7",
+    "adapterVersion": "pilot-code-v3",
+    "initialIndexAttempts": 1,
+    "passes": 2,
+    "modelRequests": 0,
+    "limits": {
+      "documents": 10000,
+      "fileBytes": 32768,
+      "fileSpans": 8,
+      "textBytes": 52428800,
+      "fileFactBytes": 131072,
+      "factBytes": 16777216,
+      "wallMs": 300000
+    },
+    "offsetEncoding": "UTF-16 code units"
+  },
+  "implementation": {
+    "commit": "b33e6c5f021d7b5cf63d83ca88d39f54d03a23e1",
+    "node": "v22.23.2",
+    "typescriptVersion": "5.9.3",
+    "hashes": {
+      "scripts/loredock-code-inventory.mjs": "949ecb4bd01490a2d1caa51c628029301e1bebb333d32d70db1e573c36b72302",
+      "scripts/loredock-code-inventory-probe.mjs": "70424b5298400c312f08670af7f41cc315833c78f75327d51b81eea26694fdb0",
+      "apps/loredock/dist/code-typescript.js": "bed4a32a30f629aec58f02ae4e0284cde053d318b39046fcde54d6640a6772b9",
+      "apps/loredock/dist/code-java.js": "3761da0b7f651a35083dfca56be2c9b267b84adeec7d6128b88dcf6be806a8b7",
+      "apps/loredock/dist/code-facts.js": "a5d8f8c7ad85ffb1751cde309e3f79235b2ef7315dbbe79d05dc1517aec3e6e4",
+      "apps/loredock/dist/http-headers.js": "402d2035827c44c2087d31c5c5767e598f9c7121f94747f82e81efed5a421e53",
+      "apps/loredock/node_modules/typescript/lib/typescript.js": "3ae902c92cc44dace175c0e69e13a4b0899f6983c6121d76b9ab8dd5795e7675"
+    }
+  },
+  "sourceBaseline": {
+    "schemaVersion": "loredock-capacity-baseline/1",
+    "sourceCount": 20,
+    "filesPerSource": 180,
+    "fileBytes": 2048,
+    "eligibleFiles": 3679,
+    "eligibleBytes": 7389669,
+    "excludedFiles": 60,
+    "revisionVector": {
+      "portal": "35d5157178848c3a2d68ca5705aaa120739160b1",
+      "order-api": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+      "order-worker": "3c6bb0c4bbe06e47b093dd479f4e38f6a5c98d29",
+      "checkout-bff": "6e5d3d0183b95e1aa8457e4242269bae45bb1366",
+      "inventory-api": "a3dffed060948dd7079221066f0c6bf95b3a6096",
+      "inventory-worker": "874a84a9a8beb27afb0e5779fb9a8a9c2e9dff2b",
+      "shipping-api": "21149277675b21cf0b6f194fa4f97a6ef96c634d",
+      "shipping-worker": "6a644025f2343a590b2cc758a71b9289ab5e9912",
+      "payment-adapter": "e76da77bbe00ff2b898800f1d6152ba41196d096",
+      "notification-worker": "7c2d0446c3e67a09c65c175e7ca87da944deb4af",
+      "reporting-api": "d9531e2a34f81db9a40c40d92df034ffffb93ca3",
+      "contract-library": "b25de47dbaab47fe2463614e855abf0a9e1f949a",
+      "tenant-library": "c220ecb290a120676462f8886bf79cf29f763def",
+      "ui-components": "d95754097de51ef782251398acf3989bd6c6a87f",
+      "legacy-admin": "2f14667888cabf0e4c62e6be395ceb4c7fdfe6fd",
+      "deployment-local": "4d205e39099c1f81f28715b50364dcec9317153c",
+      "deployment-production": "573f90ec9ed976662e8408b3c642ca3fbaa80510",
+      "database-migrations": "82a5c7fd812ebeca170f65a2199bcbfc52320383",
+      "architecture-docs": "d41ed438ea86cc0409c4c3348b5d38dc26290e74",
+      "supplier-sync": "3f3b93cd9942a5b0e016d9fb0053358b0149408b"
+    },
+    "manifestHash": "cf428a88c4067850b808950e045d4c9ea88051130cf085662b028bae7d40a938",
+    "probesHash": "c308a2c09ac9304bfae1219f9a211efa2dbbfba3597b1bf073e66931d30ac7e9",
+    "parentBaseline": {
+      "schemaVersion": "loredock-scale-baseline/1",
+      "sourceCount": 20,
+      "eligibleFiles": 79,
+      "revisionVector": {
+        "portal": "603a69798dc12c3205e88d0498881b0c01079932",
+        "order-api": "237510937b4388fc718b7e9f93869954950df1bb",
+        "order-worker": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "checkout-bff": "07d87b7d8a7a93ee8f93f6cdf3ae03ef8253869f",
+        "inventory-api": "0e7f2a7f4776d224736bf10b8e64fd226f2d1d86",
+        "inventory-worker": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+        "shipping-api": "1d89443e2914afb8de2b02389aabfe862b2a3e22",
+        "shipping-worker": "e71a493dede8f64a0785550cf4968b3050c86019",
+        "payment-adapter": "6d85bd3ba393ec880ce95ad1af29311b066bd2f4",
+        "notification-worker": "9e8b82475fd5d3317923d7f4e7c399ed99f5356a",
+        "reporting-api": "23fc2d8f162f93758f47221207e842f4ae55da39",
+        "contract-library": "6fc0b2f8bbd4b88a35b6c04e6dc974b762cc3cbe",
+        "tenant-library": "f7e01099f81a705281b6c50f2571c1a2cc116617",
+        "ui-components": "3ef8f414dff741b0140cc9f23d91a47d740fe1b9",
+        "legacy-admin": "831849791b519da2c71f3ee4c918fbc7a6479b52",
+        "deployment-local": "266b8b73fbf744f2df4395e223df13b7e7504ffe",
+        "deployment-production": "20e07d89a00cc5ad20af50a49550b10f82b4f9f4",
+        "database-migrations": "d75867701ea1a0a3b103a9eecc9d7532c11c9058",
+        "architecture-docs": "53dcb38eeb689da1418d6ef8dd9555a357d85dba",
+        "supplier-sync": "ea9faab3d1e0a2bdcfcb93b3791cbade992129b6"
+      },
+      "manifestHash": "0bea0ff2e26acc13b4f4766cb154ded7cd2b366b064e6c84fb56c1c632532b74",
+      "oracleHash": "6d2ed2e8051e37721fedcb5b031034c1dc6bb4f3ef35beb4aa53596bb26fcc16"
+    },
+    "frozenAt": "2026-10-31T22:22:16.826Z",
+    "sourceHashes": {
+      "fixtures/loredock-capacity/DESIGN.md": "456f79c8c6a7a1446d788ee6be85c4ed2d3fb883b9222e4f6dc70ae9238268aa",
+      "fixtures/loredock-capacity/workload.mjs": "b18a747bc47efd44dac009f79ca9ecfc9382e01f70649c3311497e5fba860c82",
+      "scripts/loredock-capacity-fixture.mjs": "c032f642848e349bef71cea3e36c80e061c9854720174b2b54f97ba2605db596",
+      "fixtures/loredock-routing/baseline.json": "958bfc1f1fd7a81119d810fdc75d2c18e250a11c5636fe37dac560e1836ed28e"
+    },
+    "incidentContractHash": "dbfc114e34c2a29be6d2fddb1df371f42d87aeaeb6c3f60f62c0f21c5727e950",
+    "probes": [
+      {
+        "id": "capacity-0",
+        "question": "Where is loadProbe000179 declared?",
+        "requiredRepositories": [
+          "portal"
+        ],
+        "evidence": [
+          "portal/load/probe-0179.ts"
+        ],
+        "maxCandidates": 2
+      },
+      {
+        "id": "capacity-10",
+        "question": "Where is loadProbe100179 declared?",
+        "requiredRepositories": [
+          "reporting-api"
+        ],
+        "evidence": [
+          "reporting-api/load/probe-0179.ts"
+        ],
+        "maxCandidates": 2
+      },
+      {
+        "id": "capacity-19",
+        "question": "Where is loadProbe190179 declared?",
+        "requiredRepositories": [
+          "supplier-sync"
+        ],
+        "evidence": [
+          "supplier-sync/load/probe-0179.ts"
+        ],
+        "maxCandidates": 2
+      }
+    ]
+  },
+  "initialIndexAttempts": 1,
+  "refreshAttempts": 0,
+  "build": {
+    "id": "2fbda8e8-7715-4143-b872-c54683c8bc5e",
+    "status": "partial",
+    "policyVersion": 1,
+    "sourceSetVersion": 2,
+    "createdAt": "2026-10-31T23:21:16.118Z",
+    "reason": "Coverage gaps are listed below.",
+    "published": true,
+    "sources": [
+      {
+        "sourceId": "5ae5255f-cdf1-464b-932f-19c8b52b10e8",
+        "name": "portal",
+        "revision": "35d5157178848c3a2d68ca5705aaa120739160b1",
+        "tree": "7226a6e595284eb2bc781cf150386b4626198897",
+        "status": "ready",
+        "dirty": false,
+        "error": null,
+        "omitted": 0,
+        "coverage": {
+          "indexed": 186,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 370286,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        }
+      },
+      {
+        "sourceId": "18989148-1ed9-425a-8a51-de7a9055315d",
+        "name": "order-api",
+        "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+        "tree": "4a29a04c70f3d04280b5771499365d9ba0bbe481",
+        "status": "ready",
+        "dirty": false,
+        "error": null,
+        "omitted": 0,
+        "coverage": {
+          "indexed": 187,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 371079,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        }
+      },
+      {
+        "sourceId": "c363816c-25bb-4fdc-b407-8c4143d80d4d",
+        "name": "order-worker",
+        "revision": "3c6bb0c4bbe06e47b093dd479f4e38f6a5c98d29",
+        "tree": "0c580f047796d8f0bb885826545e1d301afc02e5",
+        "status": "ready",
+        "dirty": false,
+        "error": null,
+        "omitted": 0,
+        "coverage": {
+          "indexed": 185,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 370740,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        }
+      },
+      {
+        "sourceId": "6bd00798-17b7-4434-b149-4c6397860878",
+        "name": "checkout-bff",
+        "revision": "6e5d3d0183b95e1aa8457e4242269bae45bb1366",
+        "tree": "8f8f599e6d2f7213d38b6c146749068ed974e637",
+        "status": "ready",
+        "dirty": false,
+        "error": null,
+        "omitted": 0,
+        "coverage": {
+          "indexed": 183,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 369177,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        }
+      },
+      {
+        "sourceId": "31b6d4a0-6e2a-484f-9096-726494b5da47",
+        "name": "inventory-api",
+        "revision": "a3dffed060948dd7079221066f0c6bf95b3a6096",
+        "tree": "61ef5223f1cd3aa6f064927aea17da55fc10ae2f",
+        "status": "ready",
+        "dirty": false,
+        "error": null,
+        "omitted": 0,
+        "coverage": {
+          "indexed": 185,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 369722,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        }
+      },
+      {
+        "sourceId": "c906eedd-7ab0-439b-912d-19bb159382b5",
+        "name": "inventory-worker",
+        "revision": "874a84a9a8beb27afb0e5779fb9a8a9c2e9dff2b",
+        "tree": "0db23e65175ab3e6d5c3bb6fee539e98e005c205",
+        "status": "ready",
+        "dirty": false,
+        "error": null,
+        "omitted": 0,
+        "coverage": {
+          "indexed": 184,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 369402,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        }
+      },
+      {
+        "sourceId": "e47c8fdc-04c1-4d57-99a6-4144a9b8a43b",
+        "name": "shipping-api",
+        "revision": "21149277675b21cf0b6f194fa4f97a6ef96c634d",
+        "tree": "be1d3dfecb9d84b3449c525892d5a88476a74bbf",
+        "status": "ready",
+        "dirty": false,
+        "error": null,
+        "omitted": 0,
+        "coverage": {
+          "indexed": 184,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 369295,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        }
+      },
+      {
+        "sourceId": "1321a779-b21f-4d44-a5d7-9d1e8b1009f1",
+        "name": "shipping-worker",
+        "revision": "6a644025f2343a590b2cc758a71b9289ab5e9912",
+        "tree": "b8bfcda2fa9d59b0e75232a99c9153255b064441",
+        "status": "ready",
+        "dirty": false,
+        "error": null,
+        "omitted": 0,
+        "coverage": {
+          "indexed": 184,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 369405,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        }
+      },
+      {
+        "sourceId": "95cf218e-2f06-4925-bb54-0727ff4bef89",
+        "name": "payment-adapter",
+        "revision": "e76da77bbe00ff2b898800f1d6152ba41196d096",
+        "tree": "50c455f3cfd6246a2f97eb93c61b7dce28b7b8fb",
+        "status": "ready",
+        "dirty": false,
+        "error": null,
+        "omitted": 0,
+        "coverage": {
+          "indexed": 183,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 369082,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        }
+      },
+      {
+        "sourceId": "ba6e595e-5ad0-4bee-8d44-302276fbf0f3",
+        "name": "notification-worker",
+        "revision": "7c2d0446c3e67a09c65c175e7ca87da944deb4af",
+        "tree": "73aa512320c521c05cc21d0009c18b8fdb1cc19e",
+        "status": "ready",
+        "dirty": false,
+        "error": null,
+        "omitted": 0,
+        "coverage": {
+          "indexed": 184,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 369456,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        }
+      },
+      {
+        "sourceId": "75b58df2-dc7c-4d59-b9be-cef630fc0b6c",
+        "name": "reporting-api",
+        "revision": "d9531e2a34f81db9a40c40d92df034ffffb93ca3",
+        "tree": "01a1fcfa5c30c289c44f3df09d444f5ccba9bb6c",
+        "status": "ready",
+        "dirty": false,
+        "error": null,
+        "omitted": 0,
+        "coverage": {
+          "indexed": 184,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 369204,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        }
+      },
+      {
+        "sourceId": "cb10eda1-9013-4922-9402-5b60c9f2b4df",
+        "name": "contract-library",
+        "revision": "b25de47dbaab47fe2463614e855abf0a9e1f949a",
+        "tree": "a499d0e02597b7369bfcffed85278e169d39649e",
+        "status": "ready",
+        "dirty": false,
+        "error": null,
+        "omitted": 0,
+        "coverage": {
+          "indexed": 184,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 369335,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        }
+      },
+      {
+        "sourceId": "f4bebbf4-35f4-40ff-936d-404fcec8c1e5",
+        "name": "tenant-library",
+        "revision": "c220ecb290a120676462f8886bf79cf29f763def",
+        "tree": "135f19e8298ec90d6313492009f3d3301bc97315",
+        "status": "ready",
+        "dirty": false,
+        "error": null,
+        "omitted": 0,
+        "coverage": {
+          "indexed": 183,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 369098,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        }
+      },
+      {
+        "sourceId": "67ae7f0d-fc23-4432-8843-98fddf836296",
+        "name": "ui-components",
+        "revision": "d95754097de51ef782251398acf3989bd6c6a87f",
+        "tree": "32035804873f129b1f10c5802a723476f9a61c5f",
+        "status": "ready",
+        "dirty": false,
+        "error": null,
+        "omitted": 0,
+        "coverage": {
+          "indexed": 183,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 369063,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        }
+      },
+      {
+        "sourceId": "59a8c8fe-4402-4604-ba6d-ed1de5d8e570",
+        "name": "legacy-admin",
+        "revision": "2f14667888cabf0e4c62e6be395ceb4c7fdfe6fd",
+        "tree": "e92cfdbcd19493eedfac8298086987217e5b2bd9",
+        "status": "ready",
+        "dirty": false,
+        "error": null,
+        "omitted": 0,
+        "coverage": {
+          "indexed": 184,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 369250,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        }
+      },
+      {
+        "sourceId": "12191871-61a5-490e-9b20-ddf3fb0c5817",
+        "name": "deployment-local",
+        "revision": "4d205e39099c1f81f28715b50364dcec9317153c",
+        "tree": "8ffbea0c47d1c82d6ba1cf9ec9ea2ddaef88ea47",
+        "status": "ready",
+        "dirty": false,
+        "error": null,
+        "omitted": 0,
+        "coverage": {
+          "indexed": 183,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 369128,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        }
+      },
+      {
+        "sourceId": "39f9e3a5-5d74-410a-abcc-cf7a09381f05",
+        "name": "deployment-production",
+        "revision": "573f90ec9ed976662e8408b3c642ca3fbaa80510",
+        "tree": "ce6b675a8593f1a5e0d431bf3cd9c1c343a9831b",
+        "status": "ready",
+        "dirty": false,
+        "error": null,
+        "omitted": 0,
+        "coverage": {
+          "indexed": 183,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 369091,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        }
+      },
+      {
+        "sourceId": "798fd9ae-5a4d-4242-b63e-35e380944634",
+        "name": "database-migrations",
+        "revision": "82a5c7fd812ebeca170f65a2199bcbfc52320383",
+        "tree": "cfbae9e269048c64b5da249fd48f996f4c71750a",
+        "status": "ready",
+        "dirty": false,
+        "error": null,
+        "omitted": 0,
+        "coverage": {
+          "indexed": 183,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 369175,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        }
+      },
+      {
+        "sourceId": "f9402112-8efa-460e-9130-b2a92a680d27",
+        "name": "architecture-docs",
+        "revision": "d41ed438ea86cc0409c4c3348b5d38dc26290e74",
+        "tree": "c85a75235d66d7dee0c0ce19ee56d40250052bb6",
+        "status": "ready",
+        "dirty": false,
+        "error": null,
+        "omitted": 0,
+        "coverage": {
+          "indexed": 184,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 369524,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        }
+      },
+      {
+        "sourceId": "8ef0eb86-b13f-483b-9233-d155b1e3bdd6",
+        "name": "supplier-sync",
+        "revision": "3f3b93cd9942a5b0e016d9fb0053358b0149408b",
+        "tree": "eae5e3c8e6cf85209b8d1f1d57ee89dd9a843276",
+        "status": "ready",
+        "dirty": false,
+        "error": null,
+        "omitted": 0,
+        "coverage": {
+          "indexed": 183,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 369157,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        }
+      }
+    ],
+    "coverage": {
+      "indexed": 3679,
+      "excluded": 60,
+      "failed": 0,
+      "pending": 0,
+      "bytes": 7389669,
+      "reasons": {
+        "binary": 20,
+        "policy": 20,
+        "symlink": 20
+      }
+    },
+    "extractorVersion": "text-v1",
+    "refresh": {
+      "baselineBuildId": null,
+      "version": "git-reuse-v1",
+      "reusedFiles": 0,
+      "gitReadAttempts": 3699,
+      "cacheRejections": 0
+    }
+  },
+  "indexLimits": {
+    "sources": 20,
+    "paths": 10000,
+    "fileBytes": 1048576,
+    "totalBytes": 52428800,
+    "wallMs": 300000
+  },
+  "sourceCheckoutsUnchanged": true,
+  "modelRequests": 0,
+  "answerAttempts": 0,
+  "productionChanged": false,
+  "semanticAcceptance": false,
+  "independentReview": "pending",
+  "limitation": "Simple synthetic source volume, not representative framework complexity. Full file examination does not prove complete parser understanding, runtime behavior or a working persistent analysis cache.",
+  "retainedArtifact": {
+    "file": "raw-result.json.gz",
+    "decodedSha256": "3f09ad309f97a10116db356c0ba988f05cee8f7ff1efd0258a45bdef9a9bf1d8",
+    "decodedBytes": 16586495,
+    "compressedSha256": "1197461e66d3308c3f595aaa1453a0a34f277068a7fce0f4419cf20cf5ddcfd3",
+    "compressedBytes": 1965060
+  },
+  "measurement": {
+    "status": "available",
+    "defaultProjections": {
+      "code": {
+        "version": "pilot-code-v3",
+        "coverage": {
+          "candidateDocuments": 3621,
+          "examinedDocuments": 100,
+          "parsedBytes": 186453
+        },
+        "limits": {
+          "documents": 100,
+          "fileBytes": 32768,
+          "textBytes": 262144,
+          "fileSpans": 8,
+          "nodes": 160,
+          "edges": 240,
+          "comparisons": 2000,
+          "flows": 2,
+          "flowSteps": 20,
+          "traversals": 1000,
+          "outputBytes": 524288
+        },
+        "omissions": {
+          "document-limit": 3521,
+          "adapter:unsupported-typescript-profile": 2,
+          "adapter:unsupported-amd-shape": 1,
+          "unresolved-handler": 3,
+          "flow-limit": 3
+        },
+        "declarationOmissions": {},
+        "nodes": 110,
+        "edges": 14,
+        "gaps": [
+          "Only the versioned pilot syntax profiles are analyzed; framework-wide call graphs and dynamic behavior remain unsupported.",
+          "Static calls describe source syntax, not execution order. Candidate hops require review of their original sources.",
+          "Repository identity does not establish service ownership. Deployment coherence and the active environment are unknown.",
+          "Unsupported or bounded work was omitted; inspect code and declaration coverage.",
+          "The source index is partial; excluded and failed material is unavailable."
+        ]
+      },
+      "declarations": {
+        "version": "json-declarations-v2",
+        "coverage": {
+          "indexedFiles": 3679,
+          "candidateDocuments": 30,
+          "examinedDocuments": 30,
+          "parsedBytes": 4775
+        },
+        "limits": {
+          "documents": 100,
+          "fileBytes": 32768,
+          "textBytes": 262144,
+          "fileSpans": 8,
+          "members": 100,
+          "nodes": 150,
+          "edges": 250,
+          "comparisons": 2000,
+          "outputBytes": 524288
+        },
+        "omissions": {},
+        "declarationOmissions": null,
+        "nodes": 69,
+        "edges": 76,
+        "gaps": [
+          "Only supported declarations are mapped; source-code calls, service identities and complete business flows remain unresolved.",
+          "README prose and runtime/deployment behavior are not analyzed by this projection.",
+          "Candidate matches do not merge entities or establish deployment coherence.",
+          "The source index is partial; excluded and failed material is unavailable."
+        ]
+      }
+    },
+    "passes": [
+      {
+        "schemaVersion": "loredock-code-inventory-pass/1",
+        "buildId": "2fbda8e8-7715-4143-b872-c54683c8bc5e",
+        "policyVersion": 1,
+        "registryVersion": 2,
+        "limits": {
+          "documents": 10000,
+          "fileBytes": 32768,
+          "fileSpans": 8,
+          "textBytes": 52428800,
+          "fileFactBytes": 131072,
+          "factBytes": 16777216,
+          "wallMs": 300000
+        },
+        "parserFingerprint": "4a5c0ec967148f4f92c83c391c591475ad8db76d582dde7500ffe1e92f250cf7",
+        "summary": {
+          "candidates": 3621,
+          "examined": 3621,
+          "retained": 3621,
+          "failed": 0,
+          "excluded": 0,
+          "unattempted": 0,
+          "factsOmitted": 0,
+          "symbols": 3616,
+          "operations": 8,
+          "calls": 1,
+          "records": 8,
+          "gaps": {
+            "unsupported-java-syntax": 2,
+            "unsupported-typescript-profile": 2,
+            "unsupported-java-profile": 1,
+            "unsupported-vue-envelope": 1,
+            "unsupported-amd-shape": 1
+          }
+        },
+        "textBytes": 7378135,
+        "factBytes": 741496,
+        "bySource": {
+          "portal": {
+            "candidates": 183,
+            "examined": 183,
+            "retained": 183,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 183,
+            "operations": 2,
+            "calls": 1,
+            "records": 0,
+            "gaps": {}
+          },
+          "order-api": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 181,
+            "operations": 1,
+            "calls": 0,
+            "records": 2,
+            "gaps": {}
+          },
+          "order-worker": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 182,
+            "operations": 2,
+            "calls": 0,
+            "records": 2,
+            "gaps": {}
+          },
+          "checkout-bff": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 181,
+            "operations": 1,
+            "calls": 0,
+            "records": 0,
+            "gaps": {}
+          },
+          "inventory-api": {
+            "candidates": 182,
+            "examined": 182,
+            "retained": 182,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 180,
+            "operations": 0,
+            "calls": 0,
+            "records": 0,
+            "gaps": {
+              "unsupported-java-syntax": 2
+            }
+          },
+          "inventory-worker": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 181,
+            "operations": 0,
+            "calls": 0,
+            "records": 1,
+            "gaps": {}
+          },
+          "shipping-api": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 181,
+            "operations": 1,
+            "calls": 0,
+            "records": 0,
+            "gaps": {}
+          },
+          "shipping-worker": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 181,
+            "operations": 0,
+            "calls": 0,
+            "records": 1,
+            "gaps": {}
+          },
+          "payment-adapter": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 180,
+            "operations": 0,
+            "calls": 0,
+            "records": 0,
+            "gaps": {
+              "unsupported-typescript-profile": 1
+            }
+          },
+          "notification-worker": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 181,
+            "operations": 0,
+            "calls": 0,
+            "records": 1,
+            "gaps": {}
+          },
+          "reporting-api": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 181,
+            "operations": 0,
+            "calls": 0,
+            "records": 0,
+            "gaps": {}
+          },
+          "contract-library": {
+            "candidates": 180,
+            "examined": 180,
+            "retained": 180,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 180,
+            "operations": 0,
+            "calls": 0,
+            "records": 0,
+            "gaps": {}
+          },
+          "tenant-library": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 180,
+            "operations": 0,
+            "calls": 0,
+            "records": 1,
+            "gaps": {
+              "unsupported-java-profile": 1
+            }
+          },
+          "ui-components": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 180,
+            "operations": 0,
+            "calls": 0,
+            "records": 0,
+            "gaps": {
+              "unsupported-vue-envelope": 1
+            }
+          },
+          "legacy-admin": {
+            "candidates": 182,
+            "examined": 182,
+            "retained": 182,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 181,
+            "operations": 1,
+            "calls": 0,
+            "records": 0,
+            "gaps": {
+              "unsupported-amd-shape": 1,
+              "unsupported-typescript-profile": 1
+            }
+          },
+          "deployment-local": {
+            "candidates": 180,
+            "examined": 180,
+            "retained": 180,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 180,
+            "operations": 0,
+            "calls": 0,
+            "records": 0,
+            "gaps": {}
+          },
+          "deployment-production": {
+            "candidates": 180,
+            "examined": 180,
+            "retained": 180,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 180,
+            "operations": 0,
+            "calls": 0,
+            "records": 0,
+            "gaps": {}
+          },
+          "database-migrations": {
+            "candidates": 182,
+            "examined": 182,
+            "retained": 182,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 182,
+            "operations": 0,
+            "calls": 0,
+            "records": 0,
+            "gaps": {}
+          },
+          "architecture-docs": {
+            "candidates": 180,
+            "examined": 180,
+            "retained": 180,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 180,
+            "operations": 0,
+            "calls": 0,
+            "records": 0,
+            "gaps": {}
+          },
+          "supplier-sync": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 181,
+            "operations": 0,
+            "calls": 0,
+            "records": 0,
+            "gaps": {}
+          }
+        },
+        "byParser": {
+          "java": {
+            "candidates": 9,
+            "examined": 9,
+            "retained": 9,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 7,
+            "operations": 3,
+            "calls": 0,
+            "records": 8,
+            "gaps": {
+              "unsupported-java-syntax": 2,
+              "unsupported-java-profile": 1
+            }
+          },
+          "typescript": {
+            "candidates": 3612,
+            "examined": 3612,
+            "retained": 3612,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 3609,
+            "operations": 5,
+            "calls": 1,
+            "records": 0,
+            "gaps": {
+              "unsupported-typescript-profile": 2,
+              "unsupported-vue-envelope": 1,
+              "unsupported-amd-shape": 1
+            }
+          }
+        },
+        "verifiedSpans": 3621,
+        "wallMs": 19783.387994999997,
+        "timings": {
+          "metadataMs": 7.4615230000054,
+          "validatedReadMs": 1175.1060390003695,
+          "gitReadMs": 15775.385044999523,
+          "provenanceMs": 1446.7501450002164,
+          "parserMs": 851.9768900000927,
+          "factValidationMs": 60.4464530001278
+        },
+        "processRss": {
+          "before": 239882240,
+          "peakSampled": 267419648,
+          "after": 267112448,
+          "samples": 194,
+          "intervalMs": 100,
+          "scope": "Evaluator process only; excludes child Git memory. No forced GC or OS cache isolation."
+        },
+        "coverageCheck": {
+          "defaultSymbols": 98,
+          "missingDefaultSymbols": [],
+          "exactSymbols": [
+            {
+              "id": "capacity-0",
+              "expected": "loadProbe000179",
+              "source": "portal",
+              "path": "load/probe-0179.ts",
+              "found": true
+            },
+            {
+              "id": "capacity-10",
+              "expected": "loadProbe100179",
+              "source": "reporting-api",
+              "path": "load/probe-0179.ts",
+              "found": true
+            },
+            {
+              "id": "capacity-19",
+              "expected": "loadProbe190179",
+              "source": "supplier-sync",
+              "path": "load/probe-0179.ts",
+              "found": true
+            }
+          ],
+          "handlers": [
+            {
+              "source": "inventory-api",
+              "handler": "Reservations.reserve",
+              "syntaxMatches": [],
+              "defaultSymbolPresent": false,
+              "interpretation": "Exact method-name syntax in this source only; route binding and runtime execution are unverified."
+            },
+            {
+              "source": "inventory-api",
+              "handler": "Availability.check",
+              "syntaxMatches": [],
+              "defaultSymbolPresent": false,
+              "interpretation": "Exact method-name syntax in this source only; route binding and runtime execution are unverified."
+            },
+            {
+              "source": "order-api",
+              "handler": "Orders.accept",
+              "syntaxMatches": [
+                {
+                  "source": "order-api",
+                  "path": "src/main/java/Orders.java",
+                  "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                  "symbol": "Orders.accept",
+                  "role": "java-method",
+                  "range": {
+                    "key": "Orders.accept:558",
+                    "startLine": 13,
+                    "endLine": 17,
+                    "textHash": "758e57438bdf9e6a2453f9ef9fb06acccb77e1bf44eae74695ac0a555ed990bb"
+                  },
+                  "factsHash": "cba69bf5bd90597c93f3d8cc87421584830254333df2f2d7fae6b8986139f88d"
+                }
+              ],
+              "defaultSymbolPresent": false,
+              "interpretation": "Exact method-name syntax in this source only; route binding and runtime execution are unverified."
+            }
+          ],
+          "additionalUniqueHandlerSyntax": [
+            {
+              "source": "order-api",
+              "handler": "Orders.accept",
+              "syntaxMatches": [
+                {
+                  "source": "order-api",
+                  "path": "src/main/java/Orders.java",
+                  "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                  "symbol": "Orders.accept",
+                  "role": "java-method",
+                  "range": {
+                    "key": "Orders.accept:558",
+                    "startLine": 13,
+                    "endLine": 17,
+                    "textHash": "758e57438bdf9e6a2453f9ef9fb06acccb77e1bf44eae74695ac0a555ed990bb"
+                  },
+                  "factsHash": "cba69bf5bd90597c93f3d8cc87421584830254333df2f2d7fae6b8986139f88d"
+                }
+              ],
+              "defaultSymbolPresent": false,
+              "interpretation": "Exact method-name syntax in this source only; route binding and runtime execution are unverified."
+            }
+          ]
+        }
+      },
+      {
+        "schemaVersion": "loredock-code-inventory-pass/1",
+        "buildId": "2fbda8e8-7715-4143-b872-c54683c8bc5e",
+        "policyVersion": 1,
+        "registryVersion": 2,
+        "limits": {
+          "documents": 10000,
+          "fileBytes": 32768,
+          "fileSpans": 8,
+          "textBytes": 52428800,
+          "fileFactBytes": 131072,
+          "factBytes": 16777216,
+          "wallMs": 300000
+        },
+        "parserFingerprint": "4a5c0ec967148f4f92c83c391c591475ad8db76d582dde7500ffe1e92f250cf7",
+        "summary": {
+          "candidates": 3621,
+          "examined": 3621,
+          "retained": 3621,
+          "failed": 0,
+          "excluded": 0,
+          "unattempted": 0,
+          "factsOmitted": 0,
+          "symbols": 3616,
+          "operations": 8,
+          "calls": 1,
+          "records": 8,
+          "gaps": {
+            "unsupported-java-syntax": 2,
+            "unsupported-typescript-profile": 2,
+            "unsupported-java-profile": 1,
+            "unsupported-vue-envelope": 1,
+            "unsupported-amd-shape": 1
+          }
+        },
+        "textBytes": 7378135,
+        "factBytes": 741496,
+        "bySource": {
+          "portal": {
+            "candidates": 183,
+            "examined": 183,
+            "retained": 183,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 183,
+            "operations": 2,
+            "calls": 1,
+            "records": 0,
+            "gaps": {}
+          },
+          "order-api": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 181,
+            "operations": 1,
+            "calls": 0,
+            "records": 2,
+            "gaps": {}
+          },
+          "order-worker": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 182,
+            "operations": 2,
+            "calls": 0,
+            "records": 2,
+            "gaps": {}
+          },
+          "checkout-bff": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 181,
+            "operations": 1,
+            "calls": 0,
+            "records": 0,
+            "gaps": {}
+          },
+          "inventory-api": {
+            "candidates": 182,
+            "examined": 182,
+            "retained": 182,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 180,
+            "operations": 0,
+            "calls": 0,
+            "records": 0,
+            "gaps": {
+              "unsupported-java-syntax": 2
+            }
+          },
+          "inventory-worker": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 181,
+            "operations": 0,
+            "calls": 0,
+            "records": 1,
+            "gaps": {}
+          },
+          "shipping-api": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 181,
+            "operations": 1,
+            "calls": 0,
+            "records": 0,
+            "gaps": {}
+          },
+          "shipping-worker": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 181,
+            "operations": 0,
+            "calls": 0,
+            "records": 1,
+            "gaps": {}
+          },
+          "payment-adapter": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 180,
+            "operations": 0,
+            "calls": 0,
+            "records": 0,
+            "gaps": {
+              "unsupported-typescript-profile": 1
+            }
+          },
+          "notification-worker": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 181,
+            "operations": 0,
+            "calls": 0,
+            "records": 1,
+            "gaps": {}
+          },
+          "reporting-api": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 181,
+            "operations": 0,
+            "calls": 0,
+            "records": 0,
+            "gaps": {}
+          },
+          "contract-library": {
+            "candidates": 180,
+            "examined": 180,
+            "retained": 180,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 180,
+            "operations": 0,
+            "calls": 0,
+            "records": 0,
+            "gaps": {}
+          },
+          "tenant-library": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 180,
+            "operations": 0,
+            "calls": 0,
+            "records": 1,
+            "gaps": {
+              "unsupported-java-profile": 1
+            }
+          },
+          "ui-components": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 180,
+            "operations": 0,
+            "calls": 0,
+            "records": 0,
+            "gaps": {
+              "unsupported-vue-envelope": 1
+            }
+          },
+          "legacy-admin": {
+            "candidates": 182,
+            "examined": 182,
+            "retained": 182,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 181,
+            "operations": 1,
+            "calls": 0,
+            "records": 0,
+            "gaps": {
+              "unsupported-amd-shape": 1,
+              "unsupported-typescript-profile": 1
+            }
+          },
+          "deployment-local": {
+            "candidates": 180,
+            "examined": 180,
+            "retained": 180,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 180,
+            "operations": 0,
+            "calls": 0,
+            "records": 0,
+            "gaps": {}
+          },
+          "deployment-production": {
+            "candidates": 180,
+            "examined": 180,
+            "retained": 180,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 180,
+            "operations": 0,
+            "calls": 0,
+            "records": 0,
+            "gaps": {}
+          },
+          "database-migrations": {
+            "candidates": 182,
+            "examined": 182,
+            "retained": 182,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 182,
+            "operations": 0,
+            "calls": 0,
+            "records": 0,
+            "gaps": {}
+          },
+          "architecture-docs": {
+            "candidates": 180,
+            "examined": 180,
+            "retained": 180,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 180,
+            "operations": 0,
+            "calls": 0,
+            "records": 0,
+            "gaps": {}
+          },
+          "supplier-sync": {
+            "candidates": 181,
+            "examined": 181,
+            "retained": 181,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 181,
+            "operations": 0,
+            "calls": 0,
+            "records": 0,
+            "gaps": {}
+          }
+        },
+        "byParser": {
+          "java": {
+            "candidates": 9,
+            "examined": 9,
+            "retained": 9,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 7,
+            "operations": 3,
+            "calls": 0,
+            "records": 8,
+            "gaps": {
+              "unsupported-java-syntax": 2,
+              "unsupported-java-profile": 1
+            }
+          },
+          "typescript": {
+            "candidates": 3612,
+            "examined": 3612,
+            "retained": 3612,
+            "failed": 0,
+            "excluded": 0,
+            "unattempted": 0,
+            "factsOmitted": 0,
+            "symbols": 3609,
+            "operations": 5,
+            "calls": 1,
+            "records": 0,
+            "gaps": {
+              "unsupported-typescript-profile": 2,
+              "unsupported-vue-envelope": 1,
+              "unsupported-amd-shape": 1
+            }
+          }
+        },
+        "verifiedSpans": 3621,
+        "wallMs": 1096.5214059999998,
+        "timings": {
+          "metadataMs": 7.40151200001128,
+          "validatedReadMs": 381.2629669995513,
+          "gitReadMs": 0,
+          "provenanceMs": 257.5893439999927,
+          "parserMs": 276.2956739999645,
+          "factValidationMs": 12.205618000632967
+        },
+        "processRss": {
+          "before": 295161856,
+          "peakSampled": 295161856,
+          "after": 283136000,
+          "samples": 12,
+          "intervalMs": 100,
+          "scope": "Evaluator process only; excludes child Git memory. No forced GC or OS cache isolation."
+        },
+        "coverageCheck": {
+          "defaultSymbols": 98,
+          "missingDefaultSymbols": [],
+          "exactSymbols": [
+            {
+              "id": "capacity-0",
+              "expected": "loadProbe000179",
+              "source": "portal",
+              "path": "load/probe-0179.ts",
+              "found": true
+            },
+            {
+              "id": "capacity-10",
+              "expected": "loadProbe100179",
+              "source": "reporting-api",
+              "path": "load/probe-0179.ts",
+              "found": true
+            },
+            {
+              "id": "capacity-19",
+              "expected": "loadProbe190179",
+              "source": "supplier-sync",
+              "path": "load/probe-0179.ts",
+              "found": true
+            }
+          ],
+          "handlers": [
+            {
+              "source": "inventory-api",
+              "handler": "Reservations.reserve",
+              "syntaxMatches": [],
+              "defaultSymbolPresent": false,
+              "interpretation": "Exact method-name syntax in this source only; route binding and runtime execution are unverified."
+            },
+            {
+              "source": "inventory-api",
+              "handler": "Availability.check",
+              "syntaxMatches": [],
+              "defaultSymbolPresent": false,
+              "interpretation": "Exact method-name syntax in this source only; route binding and runtime execution are unverified."
+            },
+            {
+              "source": "order-api",
+              "handler": "Orders.accept",
+              "syntaxMatches": [
+                {
+                  "source": "order-api",
+                  "path": "src/main/java/Orders.java",
+                  "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                  "symbol": "Orders.accept",
+                  "role": "java-method",
+                  "range": {
+                    "key": "Orders.accept:558",
+                    "startLine": 13,
+                    "endLine": 17,
+                    "textHash": "758e57438bdf9e6a2453f9ef9fb06acccb77e1bf44eae74695ac0a555ed990bb"
+                  },
+                  "factsHash": "cba69bf5bd90597c93f3d8cc87421584830254333df2f2d7fae6b8986139f88d"
+                }
+              ],
+              "defaultSymbolPresent": false,
+              "interpretation": "Exact method-name syntax in this source only; route binding and runtime execution are unverified."
+            }
+          ],
+          "additionalUniqueHandlerSyntax": [
+            {
+              "source": "order-api",
+              "handler": "Orders.accept",
+              "syntaxMatches": [
+                {
+                  "source": "order-api",
+                  "path": "src/main/java/Orders.java",
+                  "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                  "symbol": "Orders.accept",
+                  "role": "java-method",
+                  "range": {
+                    "key": "Orders.accept:558",
+                    "startLine": 13,
+                    "endLine": 17,
+                    "textHash": "758e57438bdf9e6a2453f9ef9fb06acccb77e1bf44eae74695ac0a555ed990bb"
+                  },
+                  "factsHash": "cba69bf5bd90597c93f3d8cc87421584830254333df2f2d7fae6b8986139f88d"
+                }
+              ],
+              "defaultSymbolPresent": false,
+              "interpretation": "Exact method-name syntax in this source only; route binding and runtime execution are unverified."
+            }
+          ]
+        }
+      }
+    ],
+    "repeatPass": {
+      "samePinnedIndex": true,
+      "cacheImplementation": false,
+      "changedRecords": [],
+      "summaryUnchanged": true
+    }
+  },
+  "summaryNote": "Per-file records are omitted only from this reading summary; the compressed raw result retains every original record unchanged."
+}
