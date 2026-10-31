@@ -1,5 +1,29 @@
 # Development status
 
+## Task 044 — Complete synthetic code-fact inventory feasibility
+
+Implemented and locally verified, 2026-11-01. PR #47 reached main as `803ba3c` after
+push `41250880472` and pull-request `41250892228` passed for exact head
+`1c97e73019b51c2010f63d09ea52a1c6a782300d`. Protocol/parser inputs were frozen in
+`5fbfd0d`; implementation `b33e6c5` precedes the declared experiment.
+
+One fresh full-volume index publishes all 3,679 eligible files. Two fixed passes examine
+all 3,621 code candidates and preserve identical records, with no failures or budget
+omissions and seven unsupported-syntax gap occurrences. Raw facts occupy 741,496 bytes;
+first-pass parsing costs 0.852 s and independent Git reads dominate 19.783 s elapsed.
+All three probes and 98 default graph symbol ranges agree. One additional same-source
+handler method is available; route binding and execution remain unverified.
+
+Strict types, 366 tests and builds pass. The compressed raw report retains every original
+record; no product schema/parser/limit/prompt changed and no model request occurred.
+See [Task 044](../tasks/044-loredock-code-inventory-feasibility.md) and the
+[measurement and limitations](fixtures/loredock-code-inventory/README.md).
+
+Next: bounded durable per-file inventory with parser/dependency fingerprints, validated
+interruption/resume, original source support, source fencing/purge and explicit retained
+generation limits. Defer cross-revision reuse and graph/answer integration to separate
+contracts; prior failed semantic gates remain open.
+
 ## Task 043 — Bounded related-repository pages
 
 Implemented and locally verified, 2026-11-01. PR #46 reached main as `b9cc358` after

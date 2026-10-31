@@ -102,8 +102,12 @@ source in a frozen counterexample. Unconditional promotion is rejected; producti
 [Task 043](tasks/043-loredock-related-source-pages.md) adds explicit four-source pages for
 remaining eligible related repositories, preserving default order, primary/answer context
 and original evidence. Context and scope changes fence pending page/evidence responses.
-Next: measure complete file-by-file code-fact extraction with current bounded parsers on
-the frozen synthetic volume before designing persistent analysis or changing graph limits.
+[Task 044](tasks/044-loredock-code-inventory-feasibility.md) examines all 3,621 code files
+once and repeats on the same index: identical facts, 741,496 fact bytes, no failures,
+and seven unsupported-syntax gap occurrences. All 98 sampled symbol ranges agree.
+Next: bounded durable per-file inventory with parser fingerprints, interruption/resume,
+original-evidence validation and source purge. Keep graph/answer integration separate;
+small parser cost does not justify cross-revision reuse in the first implementation.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

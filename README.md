@@ -83,6 +83,9 @@ Related sources use [compact expandable cards](docs/fixtures/loredock-compact-re
 scan the relationship subject first, then open its complete original evidence and limits.
 Use **Next repositories** and **Previous repositories** to inspect remaining eligible
 sources in pages of four, retaining the original default order and citations.
+The separate [full code-inventory experiment](docs/fixtures/loredock-code-inventory/README.md)
+examines all 3,621 synthetic code files with reproducible facts and explicit syntax gaps.
+Persistent analysis and its use in broader queries remain the next implementation steps.
 
 ## What v0.1 does
 
