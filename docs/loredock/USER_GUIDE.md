@@ -254,8 +254,8 @@ editing is disabled until current review state is available.
 
 Corrections apply to **this index only**. A new index does not inherit them, even if
 its source revisions happen to match. Select the older **Index version** to inspect
-its review, or follow the reapplication steps below. **Ask Project** still uses original source evidence; these map notes
-are not silently supplied to the answer model.
+its review, or follow the reapplication steps below. **Ask Project** previews matching
+notes separately from original source evidence; see the answer review steps below.
 
 Removing any source in the recorded index fences its corrections and all history,
 then logically purges their text, human environment and original relationship snapshot,
@@ -310,7 +310,8 @@ note. A successful reapplication is an independent decision even if the original
 is later edited/withdrawn. Source revocation still fences and purges both dependency
 scopes, including all later versions. Selecting a historical **Index version** applies
 only to that explicitly labeled historical index. Nothing is carried to a later index
-automatically, and these notes still do not enter answer prompts.
+automatically. Reapplied notes can enter that index's answer context when their evidence
+overlaps the retrieved passages, retaining their exact reapplication origin.
 
 See [reapplication evidence](../fixtures/loredock-reconciliation/README.md) and
 [ADR 0026](../decisions/0026-loredock-correction-reconciliation.md).
@@ -343,16 +344,31 @@ LOREDOCK_ANSWERS=1 pnpm loredock
    per repository, 18 overall, still within the 64 KiB text limit. This is orientation,
    not a complete inventory or proof of relevance. Cross-language semantic search is
    not implemented.
-5. Click **Generate answer** to send the selected question and evidence through the
+5. Open **Engineer review in this context** to see any disputes or clarifications
+   whose original evidence overlaps the found passages. Notes are human and unverified;
+   engineer scope stays separate from the original relationship scope. Up to ten notes
+   and 16 KiB of note JSON are included. Omitted and unmatched notes are disclosed;
+   overlap does not guarantee relevance or complete review coverage.
+6. Click **Generate answer** to send the selected question, evidence and previewed notes through the
    saved connection. The pilot uses **Codex 0.166.0 / gpt-5.6-terra / medium** on Linux.
    There is one active attempt, at most two minutes, 30 passages / 64 KiB source text,
    and 20 claims. Complete prompt and CLI overhead are additional to source text;
    displayed byte counts are not token or monetary estimates.
-6. Read source-backed statements, explicitly marked inferences/conflicts and unanswered
+7. Read source-backed statements, explicitly marked inferences/conflicts and unanswered
    questions under **What remains unknown**. Known explanations belong in cited statements;
    choosing a local setting does not resolve a README/configuration disagreement. Click
    a citation to open its original saved lines. Check whether the text actually supports
    the statement: resolving a citation is not proof of truth.
+
+The saved answer's **Engineer review in this context** preserves the exact supplied
+versions, even after later edits or withdrawal. Its source buttons open the overlapping
+original passages; those passages need not substantiate the engineer's statement.
+**Engineer review changed** means review has advanced since the input was prepared.
+This is conservative: an unrelated note can trigger it too. Use **Find context**, then
+explicitly **Generate answer** to include current review. A note edit during preparation
+or generation prevents stale publication and keeps the previous successful answer;
+model usage may already have occurred. No automatic regeneration is performed.
+Older answers without review snapshots say so and remain unchanged.
 
 **Cancel answer** prevents late publication and stops the owned process. Failed or
 cancelled attempts keep the previous authorized successful answer. **Answer history**
@@ -387,6 +403,9 @@ The bounded answer slice was owner-accepted after PR #20; see the
 [evaluation failures](../fixtures/loredock-answers/README.md) remain available for comparison.
 New attempts constrain citation choices to issued evidence IDs. Older saved answers
 retain their original prose and prompt/schema versions; opening history does not rewrite them.
+The newer engineer-review prompt is verified with fake-runtime and browser checks in
+[Task 023](../../tasks/023-loredock-answer-review-context.md); its real-model handling of
+disputes has not yet received a new semantic acceptance run.
 
 ## Updates, history and interruptions
 

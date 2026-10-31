@@ -10,13 +10,15 @@ was accepted through merged PR #24, delivering validated text reuse and visible 
 changes. [Task 021](../../tasks/021-loredock-correction-reconciliation.md) was accepted
 through merged PR #25, delivering explicit review/reapplication of earlier corrections
 with unchanged supporting evidence. [Task 022](../../tasks/022-loredock-project-orientation.md)
-adds basic README orientation and first reading navigation. Full L3
+was accepted through PR #26, adding basic README orientation and first reading navigation.
+[Task 023](../../tasks/023-loredock-answer-review-context.md) supplies matching engineer
+notes to cited-answer inputs and tracks review freshness. Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale
 and the Workbench bridge remain open. The
 [acceptance record](L2_ACCEPTANCE.md) distinguishes owner acknowledgement from agent scores.
 See [L0 measurements and blockers](FEASIBILITY.md), [contracts](CONTRACTS.md),
 [Task 016](../../tasks/016-loredock-cited-answer.md) for the accepted answer slice and
-[Task 022](../../tasks/022-loredock-project-orientation.md) for the current bounded delivery.
+[Task 023](../../tasks/023-loredock-answer-review-context.md) for the current bounded delivery.
 
 ## Outcome and delivery boundary
 

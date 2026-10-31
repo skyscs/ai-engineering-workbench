@@ -1,0 +1,341 @@
+{
+  "question": "Which local topic is configured?",
+  "buildId": "fc23ee2b-7662-4fe1-80e2-6ed95c119234",
+  "policyVersion": 1,
+  "sourceSetVersion": 4,
+  "registryVersion": 4,
+  "retrievalVersion": "fts-question-v5",
+  "environment": "unspecified",
+  "deploymentCoherence": "unknown",
+  "partial": true,
+  "stale": false,
+  "coverage": {
+    "indexed": 18,
+    "excluded": 9,
+    "failed": 0,
+    "pending": 0,
+    "bytes": 6185,
+    "reasons": {
+      "binary": 3,
+      "policy": 3,
+      "symlink": 3
+    }
+  },
+  "sources": [
+    {
+      "sourceId": "780e7e09-234c-4db1-91b9-3df94482ffb6",
+      "name": "portal",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "tree": "91ac74093dc056b16f862b39e262ad2d0eace5d7",
+      "status": "ready",
+      "dirty": false,
+      "error": null,
+      "omitted": 0,
+      "coverage": {
+        "indexed": 6,
+        "excluded": 3,
+        "failed": 0,
+        "pending": 0,
+        "bytes": 1646,
+        "reasons": {
+          "binary": 1,
+          "policy": 1,
+          "symlink": 1
+        }
+      }
+    },
+    {
+      "sourceId": "98cb9ec5-abf5-4ec2-9757-4b04d1959ba4",
+      "name": "order-api",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "tree": "e4f296c3a8b04c55e0a6740f9e3a910e04ca283e",
+      "status": "ready",
+      "dirty": false,
+      "error": null,
+      "omitted": 0,
+      "coverage": {
+        "indexed": 7,
+        "excluded": 3,
+        "failed": 0,
+        "pending": 0,
+        "bytes": 2439,
+        "reasons": {
+          "binary": 1,
+          "policy": 1,
+          "symlink": 1
+        }
+      }
+    },
+    {
+      "sourceId": "680c3590-2b9d-42ac-9ce5-3b290e32f2d6",
+      "name": "order-worker",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "tree": "6f4df85afd08221e3c0cd3b87b03cb4d69a2645b",
+      "status": "ready",
+      "dirty": false,
+      "error": null,
+      "omitted": 0,
+      "coverage": {
+        "indexed": 5,
+        "excluded": 3,
+        "failed": 0,
+        "pending": 0,
+        "bytes": 2100,
+        "reasons": {
+          "binary": 1,
+          "policy": 1,
+          "symlink": 1
+        }
+      }
+    }
+  ],
+  "terms": [
+    "local",
+    "topic",
+    "configured"
+  ],
+  "expansionTerms": [
+    "configuredTopic",
+    "createdAtMillis",
+    "getOrDefault",
+    "ORDER_TOPIC",
+    "orderId",
+    "OrderPlaced",
+    "orderTopic",
+    "tenantId",
+    "consumerGroup",
+    "currentTimeMillis",
+    "EventPublisher",
+    "kafkaBootstrap"
+  ],
+  "retrievalMode": "lexical",
+  "spans": [
+    {
+      "id": "16faad85-0673-4a2b-85f4-eebcf383ced7",
+      "sourceId": "680c3590-2b9d-42ac-9ce5-3b290e32f2d6",
+      "sourceName": "order-worker",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "path": "README.md",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "1fe2344c9f7d46ff007c9eb29b363b6a5a89be1e5312548ffa27ff982beb1794",
+      "spanHash": "17ab0aa5c6f8906333765b15f8640ee2836b97e50284a2a4455d614d6d4a5a62",
+      "text": "# Order projection worker\n\nSynthetic Java consumer and MongoDB access interfaces; no drivers are supplied.\nLocal configuration consumes orders.placed.v2 and stores the order projection.\nThe configured production topic and deployed revisions are unknown.\nAcknowledgment, retry, dead-letter routing and database indexes are not implemented here.\nNo repository in this fixture implements billing."
+    },
+    {
+      "id": "5a40d71c-014c-4b81-a1f7-dee8251be59a",
+      "sourceId": "98cb9ec5-abf5-4ec2-9757-4b04d1959ba4",
+      "sourceName": "order-api",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "path": "config/local.json",
+      "startLine": 1,
+      "endLine": 5,
+      "contentHash": "d407e198084d63c25904025f9420ab898b3660c545e90999124137dbfc7d865f",
+      "spanHash": "d8813b8db303e2a761a757727b3cbceba5cdb81d5955106448c8797bec35c391",
+      "text": "{\n  \"orderTopic\": \"orders.placed.v2\",\n  \"kafkaBootstrap\": \"localhost:9092\",\n  \"environment\": \"local\"\n}"
+    },
+    {
+      "id": "81850fb7-a893-41e6-9318-b72992673ebd",
+      "sourceId": "680c3590-2b9d-42ac-9ce5-3b290e32f2d6",
+      "sourceName": "order-worker",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "path": "config/local.json",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+      "spanHash": "90c318d1813803f0c89459125f3189fe3dc0f6b0c8923e33b706d39a98ebbe06",
+      "text": "{\n  \"orderTopic\": \"orders.placed.v2\",\n  \"consumerGroup\": \"order-projection\",\n  \"mongoDatabase\": \"shop\",\n  \"mongoCollection\": \"orders\",\n  \"environment\": \"local\"\n}"
+    },
+    {
+      "id": "5500197c-2409-4a63-91a8-23883751f654",
+      "sourceId": "98cb9ec5-abf5-4ec2-9757-4b04d1959ba4",
+      "sourceName": "order-api",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "path": "src/main/java/Orders.java",
+      "startLine": 1,
+      "endLine": 18,
+      "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+      "spanHash": "fb97e2aa5ace7f6292dd5007aa417217edc8d0b828793f822b3d0666df87cf52",
+      "text": "// Synthetic transport interfaces; no actual HTTP server or Kafka driver is included.\nrecord OrderPlaced(String orderId, String tenantId, long createdAtMillis) {}\ninterface EventPublisher { void publish(String topic, String key, OrderPlaced event); }\nrecord Accepted(String orderId) {}\n\nfinal class Orders {\n  private final EventPublisher publisher;\n  private final String topic;\n  Orders(EventPublisher publisher, String configuredTopic) {\n    this.publisher = publisher;\n    this.topic = System.getenv().getOrDefault(\"ORDER_TOPIC\", configuredTopic);\n  }\n  Accepted accept(String orderId, String tenantId) {\n    var event = new OrderPlaced(orderId, tenantId, System.currentTimeMillis());\n    publisher.publish(topic, tenantId + \":\" + orderId, event);\n    return new Accepted(orderId);\n  }\n}"
+    },
+    {
+      "id": "462ef552-1f2e-446d-85d6-dbb18ab3b4a7",
+      "sourceId": "680c3590-2b9d-42ac-9ce5-3b290e32f2d6",
+      "sourceName": "order-worker",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "path": "src/main/java/OrderConsumer.java",
+      "startLine": 1,
+      "endLine": 18,
+      "contentHash": "bc2c347b007865acd3044b52dba791f7f37abd235f5c406c06b4cf2f3516dfb0",
+      "spanHash": "0857fab150aee7933a73591e087863fbe1c349649f5d10c8ab0a7a0205c870f8",
+      "text": "// Synthetic interfaces describe intent, not broker or database runtime guarantees.\nrecord OrderPlaced(String orderId, String tenantId, long createdAtMillis) {}\nrecord Selector(String tenantId, String orderId) {}\ninterface MongoCollection { void replaceOne(Selector selector, OrderPlaced document, boolean upsert); }\ninterface KafkaSubscriber { void subscribe(String topic, String group, OrderConsumer handler); }\n\nfinal class OrderConsumer {\n  private final MongoCollection collection;\n  OrderConsumer(MongoCollection collection) { this.collection = collection; }\n  void start(KafkaSubscriber kafka, String configuredTopic, String group) {\n    var topic = System.getenv().getOrDefault(\"ORDER_TOPIC\", configuredTopic);\n    kafka.subscribe(topic, group, this);\n  }\n  void onMessage(OrderPlaced event) {\n    var selector = new Selector(event.tenantId(), event.orderId());\n    collection.replaceOne(selector, event, true);\n  }\n}"
+    },
+    {
+      "id": "21c6c660-e58c-49de-9a73-0101af08e05f",
+      "sourceId": "780e7e09-234c-4db1-91b9-3df94482ffb6",
+      "sourceName": "portal",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "path": "config/local.json",
+      "startLine": 1,
+      "endLine": 4,
+      "contentHash": "37c4ae84a8ccb522960504104dc3e316ec96e96c086bee933642fcdd3fe6b608",
+      "spanHash": "67a825e39e7134139a3ce2ac0c1f29d8d0d0492996dbccd38a920ff61d6dc2e6",
+      "text": "{\n  \"VITE_API_BASE\": \"http://localhost:8080\",\n  \"legacyProxyTarget\": \"http://localhost:8080\"\n}"
+    },
+    {
+      "id": "65436bb5-3e2f-45cd-885d-3510404468af",
+      "sourceId": "780e7e09-234c-4db1-91b9-3df94482ffb6",
+      "sourceName": "portal",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "path": "README.md",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "4dfe0f8ac50f0e8b4584e0921c5a89bc684da3f98f9adc3575f0ae17e1c9fd21",
+      "spanHash": "f1a427a5ffb83d875e5886c6cc93b726398eaa20dd24814547877e473d6e7ff0",
+      "text": "# Order portal\n\nSynthetic static-analysis fixture, not a deployable application.\nThe Vue/TypeScript checkout posts orders to the order API.\nThe legacy Dojo AMD screen uses the compatibility route.\nVITE_API_BASE is supplied by deployment; its production value is not included.\nThe billing system is external to this source set."
+    },
+    {
+      "id": "5e6d9f2f-a610-483b-8101-643f6f5c1b3c",
+      "sourceId": "98cb9ec5-abf5-4ec2-9757-4b04d1959ba4",
+      "sourceName": "order-api",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "path": "README.md",
+      "startLine": 1,
+      "endLine": 8,
+      "contentHash": "0bdd3acf2cde47a3fe1e587e9bcf8bb0d749e2507c5e0633a6aa30073d479e61",
+      "spanHash": "d3dd0008002d24d265b4b45c5f69035416b6fd28c95d840db483c233bb6a228f",
+      "text": "# Order API\n\nSynthetic Java source samples with application-specific transport interfaces.\nPOST /api/orders accepts an orderId and the X-Tenant header, then publishes OrderPlaced.\nThe order event topic is orders.created.v1.\nProduction may override the topic using ORDER_TOPIC; deployment values are absent.\nNo architecture decision explains the choice of Kafka instead of synchronous HTTP.\nBilling behavior is outside this repository set."
+    },
+    {
+      "id": "9ad65cc2-ef21-4651-9ebb-c54e984394ba",
+      "sourceId": "680c3590-2b9d-42ac-9ce5-3b290e32f2d6",
+      "sourceName": "order-worker",
+      "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "path": "contracts/OrderPlaced.json",
+      "startLine": 1,
+      "endLine": 8,
+      "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+      "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e",
+      "text": "{\n  \"name\": \"OrderPlaced\",\n  \"version\": 2,\n  \"fields\": { \"orderId\": \"string\", \"tenantId\": \"string\", \"createdAtMillis\": \"epoch milliseconds\" },\n  \"key\": \"tenantId:orderId\",\n  \"transport\": \"Kafka\",\n  \"encoding\": \"unspecified\"\n}"
+    },
+    {
+      "id": "6e646a93-e171-4241-bd9b-c6937c067f36",
+      "sourceId": "98cb9ec5-abf5-4ec2-9757-4b04d1959ba4",
+      "sourceName": "order-api",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "path": "contracts/OrderPlaced.json",
+      "startLine": 1,
+      "endLine": 8,
+      "contentHash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+      "spanHash": "f99a95788043b0b83a79db786345a41095f5e9db561ada837102f83635ff387e",
+      "text": "{\n  \"name\": \"OrderPlaced\",\n  \"version\": 2,\n  \"fields\": { \"orderId\": \"string\", \"tenantId\": \"string\", \"createdAtMillis\": \"epoch milliseconds\" },\n  \"key\": \"tenantId:orderId\",\n  \"transport\": \"Kafka\",\n  \"encoding\": \"unspecified\"\n}"
+    },
+    {
+      "id": "78702bd2-f229-4813-a20b-8c297275fea4",
+      "sourceId": "780e7e09-234c-4db1-91b9-3df94482ffb6",
+      "sourceName": "portal",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "path": "legacy/orders.js",
+      "startLine": 1,
+      "endLine": 9,
+      "contentHash": "6d02218565b2f0d038ea728d6864dbb7d74646ceed19a1d33fb3e131a3a9a293",
+      "spanHash": "0ae6936df7c26fb7dbd3687767d6a715072efe11fd99984ea787babad5803660",
+      "text": "define(['dojo/request'], function (request) {\n  return function submitLegacy(orderId, tenantId) {\n    return request.post('/legacy/orders', {\n      headers: { 'Content-Type': 'application/json', 'X-Tenant': tenantId },\n      data: JSON.stringify({ orderId: orderId }),\n      handleAs: 'json'\n    });\n  };\n});"
+    },
+    {
+      "id": "d17353da-f76d-40ff-888c-2d6217c81e8d",
+      "sourceId": "780e7e09-234c-4db1-91b9-3df94482ffb6",
+      "sourceName": "portal",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "path": "src/Checkout.vue",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "9ad7d244165172b4eb462d0caeb022f0f56a74db743e8ec28be9e8b030e2ba88",
+      "spanHash": "c1278bb00a3fff9da6bc38632730566dced1a99d666d2cf715c69c67d3db6892",
+      "text": "<script setup lang=\"ts\">\nimport { submitOrder } from './orders';\nconst props = defineProps<{ orderId: string; tenantId: string }>();\nconst submit = () => submitOrder(props.orderId, props.tenantId);\n</script>\n\n<template><button @click=\"submit\">Place order</button></template>"
+    },
+    {
+      "id": "a8d068a3-ad68-4f5c-b6aa-63ba130b974a",
+      "sourceId": "780e7e09-234c-4db1-91b9-3df94482ffb6",
+      "sourceName": "portal",
+      "revision": "603a69798dc12c3205e88d0498881b0c01079932",
+      "path": "src/orders.ts",
+      "startLine": 1,
+      "endLine": 9,
+      "contentHash": "39e7b2a6ae1d45a2fbdc3903cd9f4d8c79419c6ba5f72c40de7aca6b5d0da410",
+      "spanHash": "994d43c6d111270cceaed9b5db6474c1442057b3973c9fb8facf2927317e58b8",
+      "text": "export async function submitOrder(orderId: string, tenantId: string) {\n  const response = await fetch(`${import.meta.env.VITE_API_BASE}/api/orders`, {\n    method: 'POST',\n    headers: { 'Content-Type': 'application/json', 'X-Tenant': tenantId },\n    body: JSON.stringify({ orderId }),\n  });\n  if (!response.ok) throw new Error('Order submission failed');\n  return response.json();\n}"
+    },
+    {
+      "id": "a3ee37b9-b237-4e3c-bc65-5b908bf4c5c1",
+      "sourceId": "98cb9ec5-abf5-4ec2-9757-4b04d1959ba4",
+      "sourceName": "order-api",
+      "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+      "path": "config/routes.json",
+      "startLine": 1,
+      "endLine": 7,
+      "contentHash": "161e949a54ab2ab99648cd5dd07de4c4115d554d411e85dfc919412877e00a5e",
+      "spanHash": "bf02b9ad422fda91b66ace23870e9d0b142f550071231acbd668eb3c439b833d",
+      "text": "{\n  \"routes\": [\n    { \"method\": \"POST\", \"path\": \"/api/orders\", \"handler\": \"Orders.accept\" },\n    { \"method\": \"POST\", \"path\": \"/legacy/orders\", \"handler\": \"Orders.accept\" }\n  ],\n  \"headerBindings\": { \"Orders.accept.tenantId\": \"X-Tenant\" }\n}"
+    }
+  ],
+  "textBytes": 4883,
+  "limits": {
+    "spans": 30,
+    "textBytes": 65536,
+    "candidates": 120,
+    "claims": 20,
+    "outputBytes": 262144
+  },
+  "gaps": [
+    "Index coverage is partial; excluded or failed material is not available.",
+    "Deployment environment and whether these revisions are deployed together are unknown."
+  ],
+  "review": {
+    "schemaVersion": "answer-review-v1",
+    "revision": 1,
+    "notes": [
+      {
+        "id": "8e89fd29-666e-4147-80bc-57eb8309b9cc",
+        "version": 1,
+        "action": "dispute",
+        "statement": "ReviewBrokerMarker: verify deployment wiring. <script>window.reviewInjected=true</script>",
+        "environment": "production",
+        "provenance": "human",
+        "verification": "unverified",
+        "relationship": {
+          "kind": "event-delivery",
+          "status": "candidate",
+          "from": "Publish OrderPlaced",
+          "to": "Subscribe via KafkaSubscriber",
+          "environment": "local"
+        },
+        "matchingEvidenceIds": [
+          "462ef552-1f2e-446d-85d6-dbb18ab3b4a7",
+          "5500197c-2409-4a63-91a8-23883751f654",
+          "5a40d71c-014c-4b81-a1f7-dee8251be59a",
+          "6e646a93-e171-4241-bd9b-c6937c067f36",
+          "81850fb7-a893-41e6-9318-b72992673ebd",
+          "9ad65cc2-ef21-4651-9ebb-c54e984394ba"
+        ]
+      }
+    ],
+    "sourceIds": [
+      "680c3590-2b9d-42ac-9ce5-3b290e32f2d6",
+      "780e7e09-234c-4db1-91b9-3df94482ffb6",
+      "98cb9ec5-abf5-4ec2-9757-4b04d1959ba4"
+    ],
+    "matching": 1,
+    "omitted": 0,
+    "unmatched": 0,
+    "noteBytes": 666,
+    "limits": {
+      "notes": 10,
+      "noteBytes": 16384
+    },
+    "gaps": [
+      "Engineer notes are unverified assertions selected by overlap with retrieved source passages; this is not a complete semantic review."
+    ]
+  },
+  "inputHash": "6693b412b462fb3d0519883d164e0e5314972e0fa7128ad62062c7f7735e9fe8"
+}

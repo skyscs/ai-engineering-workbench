@@ -29,6 +29,8 @@ available with `LOREDOCK_ANSWERS=1 pnpm loredock`; follow the guide's
 [answer setup](docs/loredock/USER_GUIDE.md#ask-a-question-opt-in-pilot). The bounded answer
 slice is [owner-accepted](docs/loredock/L2_ACCEPTANCE.md). Default startup remains
 model-free; cited answers use an explicitly selected connection.
+Answer previews include matching engineer disputes/clarifications separately from source
+evidence. Saved answers retain those exact notes and show when engineer review changes.
 
 ## What v0.1 does
 

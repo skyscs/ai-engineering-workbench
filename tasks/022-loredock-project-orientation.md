@@ -1,6 +1,6 @@
 # Task 022 — Source-backed project orientation and a first reading guide
 
-Status: implemented and locally verified, 2026-10-31; ready for code/product review.
+Status: accepted through the owner's merge of PR #26 (`76fdde3`), 2026-10-31.
 Task 021 was accepted through the owner's merge of
 PR #25 (`b4cd66e`); the owner requested continuation.
 
@@ -73,4 +73,4 @@ existing source/map/flow/correction/reapplication/refresh acceptance. The existi
 regression uses four fake invocations. Zero real model calls; frozen templates, normal
 source checkouts and Workbench data remain unchanged. See
 [recorded orientation evidence](../docs/fixtures/loredock-orientation/README.md).
-Owner/product acceptance of this bounded delivery remains pending review.
+The owner's merge accepts this bounded delivery; broader milestone gates remain open.

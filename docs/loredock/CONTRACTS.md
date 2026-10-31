@@ -6,7 +6,8 @@ Task 018's model-free code links and partial static outlines were accepted throu
 PR #22. Task 019's human correction overlay was accepted through PR #23. Task 020's
 validated text-file reuse and bounded inventory comparisons were accepted through PR #24.
 Task 021's explicit review/reapplication across recorded refresh ancestors was accepted
-through PR #25. Task 022 adds source-backed README orientation and reading navigation.
+through PR #25. Task 022 adds source-backed README orientation and reading navigation
+through merged PR #26. Task 023 connects bounded matching engineer notes to answers.
 Semantic/AI refresh and Context Packs remain separate work.
 See the [owner acceptance](L2_ACCEPTANCE.md),
 [map decision](../decisions/0022-loredock-declaration-map.md),
@@ -117,6 +118,18 @@ in `?`; factual explanations and relevant contradictions require cited claims. T
 format constraints do not establish semantic grounding. Historical answer prose stays
 unchanged and exposes its original prompt/schema identity. See
 [ADR 0021](../decisions/0021-loredock-answer-quality-and-cli-refresh.md).
+
+Retrieval `fts-question-v5` additionally freezes `answer-review-v1`: latest authorized,
+non-withdrawn selected-index notes whose original evidence overlaps issued passages.
+At most ten notes / 16 KiB of serialized UTF-8 note JSON are admitted, with whole-note
+omissions and unmatched counts disclosed. Original note/version, human scope and original
+relationship scope stay distinct. Prompt v7 treats notes as untrusted assertions; citation
+IDs still come exclusively from source spans. These notes do not prove a claim or expand
+source retrieval. Context hashes include the global review revision, checked at start,
+before dispatch and at publication. Saved answers expose independent review freshness;
+older contexts stay unchanged and report `not-recorded`. Source dependencies include
+the union of admitted note scopes, including reapplication lineage. See
+[ADR 0028](../decisions/0028-loredock-answer-review-context.md).
 
 Every build reports sources resolved/failed, files considered, eligible, extracted,
 excluded by reason, truncated and failed, bytes indexed and adapter coverage. Report

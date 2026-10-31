@@ -523,3 +523,6 @@ footer{
 .changed-files li { padding-block: .6rem; border-bottom: 1px solid #dce4df; overflow-wrap: anywhere; }
 .changed-files strong { display: block; }
 .change-citations { display: flex; flex-wrap: wrap; gap: .75rem; }
+.answer-review { margin-block: 1rem; overflow-wrap: anywhere; }
+.review-note { border-top: 1px solid var(--line, #dce5e0); padding-block: .75rem; }
+.review-note blockquote { margin-inline: 0; padding-left: 1rem; border-left: 3px solid #8a9d96; white-space: pre-wrap; }

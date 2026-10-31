@@ -127,7 +127,7 @@ function App() {
         <ProjectOverview key={`${boundary.current}:${published}`} buildId={searchBuild} boundary={`${boundary.current}:${published}`} openEvidence={id => void openEvidence(id)} />
         <SystemMap buildId={searchBuild} boundary={`${boundary.current}:${published}`} correctionRevision={state.correctionRevision}
           refreshProject={() => void refresh().catch(cause => setError((cause as Error).message))} openEvidence={id => void openEvidence(id)} />
-        {answersEnabled && <AnswerPanel buildId={searchBuild} boundary={boundary.current} openEvidence={id => void openEvidence(id)} />}
+        {answersEnabled && <AnswerPanel buildId={searchBuild} boundary={`${boundary.current}:${published}`} correctionRevision={state.correctionRevision} openEvidence={id => void openEvidence(id)} />}
         <div className="panel">
           <h2>Explore the sources</h2><p className="muted">Search exact terms such as an endpoint, event, collection or class name.</p>
           {state.builds.filter(build => build.published && build.policyVersion === state.policyVersion).length > 0 && <label className="history">Index version<select aria-label="Index version" value={selected} onChange={event => setSelected(event.target.value)}>

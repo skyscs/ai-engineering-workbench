@@ -25,10 +25,15 @@ began L4 with validated text-file reuse and visible committed-inventory changes.
 [Task 021](tasks/021-loredock-correction-reconciliation.md), accepted through merged PR #25,
 adds explicit review/reapplication
 of earlier corrections when relationship semantics and all supporting evidence match.
-[Task 022](tasks/022-loredock-project-orientation.md) adds basic original README context
-and a first reading guide. Broader synthesis, adapters, semantic/AI refresh and scale
+[Task 022](tasks/022-loredock-project-orientation.md), accepted through PR #26,
+adds basic original README context and a first reading guide.
+[Task 023](tasks/023-loredock-answer-review-context.md) connects bounded engineer notes
+to answer previews, immutable inputs and review freshness. Broader synthesis, adapters, semantic/AI refresh and scale
 remain separate.
-Planning does not authorize implementing every milestone automatically.
+On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
+and continuation through the planned development sequence. Keep each implementation
+bounded, review the complete diff and verify CI for the exact PR head before merging.
+Agent verification/merge does not constitute independent product or knowledge-quality acceptance.
 
 Tasks 012–013 delivered the [UX simplification](docs/ux-simplification-plan.md).
 The original v0.1 sequence below is retained as delivery history.
