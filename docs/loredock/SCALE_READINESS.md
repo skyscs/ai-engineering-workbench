@@ -129,3 +129,16 @@ supplies equivalent message fields; chosen-reference recall is not semantic corr
 All selections are stable and existing context caps hold. No new model calls or product
 changes. Next: bounded literal-reference expansion/admission, then a separately budgeted
 answer evaluation; the reserved set is inspected for retrieval and is not blind.
+
+## Task 029 retrieval outcome
+
+[Literal-reference retrieval v7](../fixtures/loredock-reference-retrieval/README.md)
+supplies the recorded evidence basis for all 24 prospective questions and preserves
+20/20 original expanded and 20/20 three-source pilot recall. Two fresh twenty-source
+generations select identical original locators; zero-hit orientation still represents
+twenty sources. Query/source-aware expansion includes bounded quoted member owners;
+two direct candidate turns per expansion reduce displacement by derived hints. Limits,
+prompt v8, schema and runtime are unchanged. Maximum observed expanded/prospective input:
+30 spans / 8,775 text bytes / 32,338 prompt bytes. This is a zero-model engineering
+qualification on inspected synthetic questions. Prospective model evaluation, independent
+review, framework coverage, retention and an eligible private pilot remain ahead of L5.

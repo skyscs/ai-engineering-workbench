@@ -98,7 +98,7 @@ remain unseen by the answering model, but were authored by the same agent after 
 failures. Do not advertise them as an independent blind corpus or use their model outputs
 for repeated tuning. Model budget for Task 028 is zero.
 
-## Next bounded implementation
+## Implementation contract and outcome
 
 Task 029 should improve literal-reference expansion and candidate admission before any
 new paid answer experiment. Preserve original source/answer history, the frozen questions,
@@ -120,3 +120,9 @@ separately and the earlier failed gate still visible. Task 028 has a zero-model 
 later attempts belong to the explicit budget of a subsequent task under the owner's
 standing authorization. Framework coverage, retention, independent review and an eligible
 private pilot remain ahead of the Workbench bridge.
+
+Task 029 implements this bounded experiment as retrieval v7. It reaches 24/24 recorded
+reference sets with unchanged original expanded/pilot recall and unchanged limits.
+[Final measurements and rejected variants](../fixtures/loredock-reference-retrieval/README.md)
+retain the v6 evidence above as history. Prompt v8 remains fixed; prospective semantic
+evaluation is still outstanding and Task 027's failed gate is not reclassified.

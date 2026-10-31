@@ -41,8 +41,10 @@ indexing and bounded retrieval are verified on that small synthetic corpus.
 scores 18/20 under agent review but still fails the required-completeness gate;
 private-project and full-system semantic readiness remain unverified.
 The [completeness investigation](docs/loredock/ANSWER_COMPLETENESS.md) separates direct
-answers from wider context and identifies two repeatable retrieval misses among twenty-four
-new question wordings, providing the next bounded improvement without new model calls.
+answers from wider context. [Improved literal-reference retrieval](docs/fixtures/loredock-reference-retrieval/README.md)
+now supplies the recorded reference basis for all twenty-four new wordings, preserving
+both earlier 20/20 retrieval baselines within the same limits. New model answers and
+semantic acceptance remain a separate step.
 
 ## What v0.1 does
 

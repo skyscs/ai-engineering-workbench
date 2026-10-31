@@ -27,7 +27,15 @@ or default activation follows from this result.
 Task 028 adds a [completeness diagnosis and prospective rubric](ANSWER_COMPLETENESS.md).
 It preserves the earlier failed scores, distinguishes direct/extended questions and
 finds two repeatable chosen-reference misses across twenty-four new wordings. No new
-model answers exist for those cases; retrieval robustness is the next prerequisite.
+model answers exist for those cases.
+
+Task 029 introduces retrieval v7 with the same prompt/schema/runtime limits. Literal
+quoted handler hints, per-source identifier turns and direct-query candidate priority
+reach 24/24 prospective reference sets while preserving both earlier 20/20 baselines.
+[Offline qualification](../fixtures/loredock-reference-retrieval/README.md) includes
+rejected admission variants and scope limits. Saved contexts retain their recorded
+versions/bytes. A new prospective answer evaluation remains outstanding; historical
+model scores do not transfer to the changed retrieval inputs.
 
 The final complete run has a provisional **20/20 useful/correct agent assessment**,
 **162/162 resolving citation references across 98 claims**, and **20/20 complete

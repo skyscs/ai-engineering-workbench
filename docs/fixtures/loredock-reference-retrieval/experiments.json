@@ -1,0 +1,103 @@
+{
+  "schemaVersion": "loredock-reference-retrieval-experiments/1",
+  "modelRequests": 0,
+  "scope": "Development comparisons on already inspected questions; not independent or semantic qualification. Intermediate raw runs are local scratch diagnostics; this file preserves their complete pass/miss summaries. Only the final algorithm is published as fts-question-v7.",
+  "trials": [
+    {
+      "candidateAdmission": "One direct candidate per expanded candidate",
+      "expansion": "Query-affine per-source identifier turns and quoted qualified owners",
+      "prospectiveSummary": {
+        "development": {
+          "cases": 12,
+          "completeRequiredEvidence": 11,
+          "missingEvidenceCases": [
+            "d04"
+          ]
+        },
+        "reserved": {
+          "cases": 12,
+          "completeRequiredEvidence": 12,
+          "missingEvidenceCases": []
+        }
+      },
+      "prospectiveMisses": [
+        {
+          "id": "d04",
+          "missingRequirements": [
+            "unresolved-plugin"
+          ]
+        }
+      ],
+      "originalExpandedComplete": 19,
+      "originalExpandedMisses": [
+        {
+          "id": "s09",
+          "missingEvidence": [
+            "notification-worker/config/local.json"
+          ]
+        }
+      ],
+      "stableAcrossFreshIdentities": true,
+      "accepted": false
+    },
+    {
+      "candidateAdmission": "Expanded candidates before remaining direct candidates",
+      "expansion": "Query-affine per-source identifier turns and quoted qualified owners",
+      "prospectiveSummary": {
+        "development": {
+          "cases": 12,
+          "completeRequiredEvidence": 11,
+          "missingEvidenceCases": [
+            "d04"
+          ]
+        },
+        "reserved": {
+          "cases": 12,
+          "completeRequiredEvidence": 11,
+          "missingEvidenceCases": [
+            "h04"
+          ]
+        }
+      },
+      "prospectiveMisses": [
+        {
+          "id": "d04",
+          "missingRequirements": [
+            "unresolved-plugin"
+          ]
+        },
+        {
+          "id": "h04",
+          "missingRequirements": [
+            "unresolved-plugin"
+          ]
+        }
+      ],
+      "originalExpandedComplete": 20,
+      "originalExpandedMisses": [],
+      "stableAcrossFreshIdentities": true,
+      "accepted": false
+    },
+    {
+      "candidateAdmission": "Two direct candidates per expanded candidate",
+      "expansion": "Query-affine per-source identifier turns and quoted qualified owners",
+      "prospectiveSummary": {
+        "development": {
+          "cases": 12,
+          "completeRequiredEvidence": 12,
+          "missingEvidenceCases": []
+        },
+        "reserved": {
+          "cases": 12,
+          "completeRequiredEvidence": 12,
+          "missingEvidenceCases": []
+        }
+      },
+      "prospectiveMisses": [],
+      "originalExpandedComplete": 20,
+      "originalExpandedMisses": [],
+      "stableAcrossFreshIdentities": true,
+      "accepted": true
+    }
+  ]
+}

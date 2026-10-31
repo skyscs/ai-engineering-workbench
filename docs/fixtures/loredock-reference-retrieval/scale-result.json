@@ -1,0 +1,536 @@
+{
+  "schemaVersion": "loredock-scale-retrieval/1",
+  "checkedAt": "2026-10-31T16:10:22.766Z",
+  "retrievalVersion": "fts-question-v7",
+  "answerPromptVersion": "loredock-answer-v8",
+  "limits": {
+    "spans": 30,
+    "textBytes": 65536,
+    "candidates": 120,
+    "claims": 20,
+    "outputBytes": 262144
+  },
+  "baseline": {
+    "schemaVersion": "loredock-scale-baseline/1",
+    "sourceCount": 20,
+    "eligibleFiles": 79,
+    "revisionVector": {
+      "portal": "603a69798dc12c3205e88d0498881b0c01079932",
+      "order-api": "237510937b4388fc718b7e9f93869954950df1bb",
+      "order-worker": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "checkout-bff": "07d87b7d8a7a93ee8f93f6cdf3ae03ef8253869f",
+      "inventory-api": "0e7f2a7f4776d224736bf10b8e64fd226f2d1d86",
+      "inventory-worker": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+      "shipping-api": "1d89443e2914afb8de2b02389aabfe862b2a3e22",
+      "shipping-worker": "e71a493dede8f64a0785550cf4968b3050c86019",
+      "payment-adapter": "6d85bd3ba393ec880ce95ad1af29311b066bd2f4",
+      "notification-worker": "9e8b82475fd5d3317923d7f4e7c399ed99f5356a",
+      "reporting-api": "23fc2d8f162f93758f47221207e842f4ae55da39",
+      "contract-library": "6fc0b2f8bbd4b88a35b6c04e6dc974b762cc3cbe",
+      "tenant-library": "f7e01099f81a705281b6c50f2571c1a2cc116617",
+      "ui-components": "3ef8f414dff741b0140cc9f23d91a47d740fe1b9",
+      "legacy-admin": "831849791b519da2c71f3ee4c918fbc7a6479b52",
+      "deployment-local": "266b8b73fbf744f2df4395e223df13b7e7504ffe",
+      "deployment-production": "20e07d89a00cc5ad20af50a49550b10f82b4f9f4",
+      "database-migrations": "d75867701ea1a0a3b103a9eecc9d7532c11c9058",
+      "architecture-docs": "53dcb38eeb689da1418d6ef8dd9555a357d85dba",
+      "supplier-sync": "ea9faab3d1e0a2bdcfcb93b3791cbade992129b6"
+    },
+    "manifestHash": "0bea0ff2e26acc13b4f4766cb154ded7cd2b366b064e6c84fb56c1c632532b74",
+    "oracleHash": "6d2ed2e8051e37721fedcb5b031034c1dc6bb4f3ef35beb4aa53596bb26fcc16"
+  },
+  "questionCount": 20,
+  "completeRetrievalCount": 20,
+  "results": [
+    {
+      "id": "s01",
+      "question": "Which areas does this system cover?",
+      "requiredEvidence": [
+        "architecture-docs/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "a33cb41482f5a541f0bbf494a5820ad743ed52d31340987d6cf3ed68bf8ab2c8",
+      "spans": 29,
+      "representedSources": 14,
+      "textBytes": 7664,
+      "promptBytes": 30702,
+      "requiredUncertainty": "External internals and actual deployment are unknown.",
+      "gaps": [
+        "No source passages are supplied from 6 of 20 authorized indexed repositories: checkout-bff, inventory-api, tenant-library, ui-components, legacy-admin, supplier-sync. This does not establish absence or irrelevance.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s02",
+      "question": "Does inventory-api represent one application?",
+      "requiredEvidence": [
+        "inventory-api/README.md",
+        "inventory-api/config/routes.json"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "11e33e371c49e19418a673d092e63b899c686646fd6547abe4fd9430e86af8c8",
+      "spans": 30,
+      "representedSources": 16,
+      "textBytes": 7307,
+      "promptBytes": 30678,
+      "requiredUncertainty": "Repository boundaries do not prove deployment boundaries.",
+      "gaps": [
+        "Full repository names in the question select at most 6 first spans per matching source and 12 total. This is an orientation hint, not proof of relevance, ownership or complete coverage.",
+        "No source passages are supplied from 4 of 20 authorized indexed repositories: payment-adapter, contract-library, legacy-admin, database-migrations. This does not establish absence or irrelevance.",
+        "The span or UTF-8 text budget omitted candidate evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s03",
+      "question": "Where does checkout-bff forward orders?",
+      "requiredEvidence": [
+        "checkout-bff/src/checkout.ts",
+        "checkout-bff/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "19e1b710116e00dcec34c0226a21f9edaed5cfd40869f56a1c6424bad6bf3c11",
+      "spans": 30,
+      "representedSources": 12,
+      "textBytes": 7561,
+      "promptBytes": 31263,
+      "requiredUncertainty": "No authentication or retry implementation is shown.",
+      "gaps": [
+        "Full repository names in the question select at most 6 first spans per matching source and 12 total. This is an orientation hint, not proof of relevance, ownership or complete coverage.",
+        "No source passages are supplied from 8 of 20 authorized indexed repositories: inventory-api, inventory-worker, shipping-api, shipping-worker, payment-adapter, tenant-library, legacy-admin, supplier-sync. This does not establish absence or irrelevance.",
+        "The span or UTF-8 text budget omitted candidate evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s04",
+      "question": "Which source declares the stock event topic?",
+      "requiredEvidence": [
+        "inventory-worker/config/local.json",
+        "contract-library/contracts/StockReserved.json"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "b155324a3e9e65c30a4d4dba73e76f0edf10c72be0dd46990022fe4483b7bcc1",
+      "spans": 30,
+      "representedSources": 15,
+      "textBytes": 8367,
+      "promptBytes": 31794,
+      "requiredUncertainty": "A matching name is not a verified live subscription.",
+      "gaps": [
+        "No source passages are supplied from 5 of 20 authorized indexed repositories: portal, checkout-bff, shipping-api, tenant-library, ui-components. This does not establish absence or irrelevance.",
+        "The span or UTF-8 text budget omitted candidate evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s05",
+      "question": "What happened to fulfillment-api?",
+      "requiredEvidence": [
+        "shipping-api/docs/rename.md",
+        "shipping-api/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "91999d3bc90da642e8df55886b24a96e9fcbdc97093e4060faa5ec625ecabf10",
+      "spans": 24,
+      "representedSources": 10,
+      "textBytes": 6172,
+      "promptBytes": 27072,
+      "requiredUncertainty": "The record does not identify deployed instances.",
+      "gaps": [
+        "No source passages are supplied from 10 of 20 authorized indexed repositories: inventory-api, inventory-worker, shipping-worker, payment-adapter, contract-library, tenant-library, legacy-admin, database-migrations, architecture-docs, supplier-sync. This does not establish absence or irrelevance.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s06",
+      "question": "How does the external carrier guarantee delivery?",
+      "requiredEvidence": [
+        "shipping-api/src/carrier.ts",
+        "shipping-api/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "4e832bb2bc9f1f7479ed3fbfb3a5a78fd0f89b22cfd76e3ac71e72536d8a6d28",
+      "spans": 29,
+      "representedSources": 14,
+      "textBytes": 7944,
+      "promptBytes": 30926,
+      "requiredUncertainty": "Carrier guarantees and internals cannot be established.",
+      "gaps": [
+        "No source passages are supplied from 6 of 20 authorized indexed repositories: checkout-bff, inventory-api, reporting-api, tenant-library, ui-components, legacy-admin. This does not establish absence or irrelevance.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s07",
+      "question": "Where are shipment projections declared?",
+      "requiredEvidence": [
+        "shipping-worker/config/local.json",
+        "shipping-worker/src/Shipments.java"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "818eadf032b1f81da95815bfcb4574347dc7a14f44271476a4d46fd15b122e16",
+      "spans": 30,
+      "representedSources": 15,
+      "textBytes": 7435,
+      "promptBytes": 30701,
+      "requiredUncertainty": "No live carrier subscription or database implementation is present.",
+      "gaps": [
+        "No source passages are supplied from 5 of 20 authorized indexed repositories: checkout-bff, ui-components, legacy-admin, deployment-production, supplier-sync. This does not establish absence or irrelevance.",
+        "The span or UTF-8 text budget omitted candidate evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s08",
+      "question": "Does payment-adapter implement settlement retries?",
+      "requiredEvidence": [
+        "payment-adapter/src/gateway.ts",
+        "payment-adapter/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "93c56669f1224b407cfcc17bf6eb565400a6a43b22071e58fc682e60abed180f",
+      "spans": 15,
+      "representedSources": 11,
+      "textBytes": 3834,
+      "promptBytes": 21092,
+      "requiredUncertainty": "Settlement and retry behavior are explicitly outside these sources.",
+      "gaps": [
+        "Full repository names in the question select at most 6 first spans per matching source and 12 total. This is an orientation hint, not proof of relevance, ownership or complete coverage.",
+        "No source passages are supplied from 9 of 20 authorized indexed repositories: portal, inventory-api, reporting-api, contract-library, ui-components, legacy-admin, deployment-local, deployment-production, database-migrations. This does not establish absence or irrelevance.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s09",
+      "question": "Is order-worker the only documented order consumer?",
+      "requiredEvidence": [
+        "worker-local",
+        "notification-worker/config/local.json",
+        "notification-worker/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "a93a05c5d5116898bc51dad8b206c1099142c599858b1c3217cb96913d63f9f3",
+      "spans": 30,
+      "representedSources": 14,
+      "textBytes": 8075,
+      "promptBytes": 31654,
+      "requiredUncertainty": "The full deployed subscriber inventory is unknown.",
+      "gaps": [
+        "Full repository names in the question select at most 6 first spans per matching source and 12 total. This is an orientation hint, not proof of relevance, ownership or complete coverage.",
+        "No source passages are supplied from 6 of 20 authorized indexed repositories: checkout-bff, shipping-api, ui-components, legacy-admin, database-migrations, supplier-sync. This does not establish absence or irrelevance.",
+        "The span or UTF-8 text budget omitted candidate evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s10",
+      "question": "Are the two orders collections the same database?",
+      "requiredEvidence": [
+        "worker-local",
+        "reporting-api/config/local.json",
+        "reporting-api/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "ed2502729e7f28f8055890564e952f63a042077f04241ad65a7f4ce84c9bda64",
+      "spans": 30,
+      "representedSources": 13,
+      "textBytes": 7660,
+      "promptBytes": 31224,
+      "requiredUncertainty": "No replication or physical database identity is proven.",
+      "gaps": [
+        "No source passages are supplied from 7 of 20 authorized indexed repositories: checkout-bff, shipping-api, payment-adapter, tenant-library, ui-components, legacy-admin, supplier-sync. This does not establish absence or irrelevance.",
+        "The span or UTF-8 text budget omitted candidate evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s11",
+      "question": "Does the contract library publish OrderPlaced?",
+      "requiredEvidence": [
+        "contract-library/README.md",
+        "contract-library/contracts/OrderPlaced.json"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "f504cefa004f3e3fb40a6d54951ada070373c148f2bc86ba928fe9a6e0380663",
+      "spans": 30,
+      "representedSources": 12,
+      "textBytes": 7950,
+      "promptBytes": 31691,
+      "requiredUncertainty": "Schema ownership alone is not a publishing implementation.",
+      "gaps": [
+        "Full repository names in the question select at most 6 first spans per matching source and 12 total. This is an orientation hint, not proof of relevance, ownership or complete coverage.",
+        "No source passages are supplied from 8 of 20 authorized indexed repositories: checkout-bff, inventory-api, shipping-api, shipping-worker, payment-adapter, ui-components, legacy-admin, supplier-sync. This does not establish absence or irrelevance.",
+        "The span or UTF-8 text budget omitted candidate evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s12",
+      "question": "Does carrying TenantContext validate tenant membership?",
+      "requiredEvidence": [
+        "tenant-library/README.md",
+        "tenant-library/src/TenantContext.java"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "d752eeff15c7aeb3f9f9db5e7d6e94297f44769982372d016802a21711a880e0",
+      "spans": 29,
+      "representedSources": 14,
+      "textBytes": 8117,
+      "promptBytes": 30984,
+      "requiredUncertainty": "Do not infer global absence of security controls.",
+      "gaps": [
+        "No source passages are supplied from 6 of 20 authorized indexed repositories: reporting-api, ui-components, legacy-admin, deployment-local, deployment-production, supplier-sync. This does not establish absence or irrelevance.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s13",
+      "question": "Does OrderBadge call the order API?",
+      "requiredEvidence": [
+        "ui-components/src/OrderBadge.vue",
+        "ui-components/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "a0a9115566ca1e37294581906915ebd699bc1c5e60befb8feb4e4692b1314ecd",
+      "spans": 30,
+      "representedSources": 12,
+      "textBytes": 7247,
+      "promptBytes": 30839,
+      "requiredUncertainty": "This does not enumerate all UI integrations.",
+      "gaps": [
+        "Full repository names in the question select at most 6 first spans per matching source and 12 total. This is an orientation hint, not proof of relevance, ownership or complete coverage.",
+        "No source passages are supplied from 8 of 20 authorized indexed repositories: inventory-api, inventory-worker, shipping-worker, payment-adapter, contract-library, tenant-library, legacy-admin, supplier-sync. This does not establish absence or irrelevance.",
+        "The span or UTF-8 text budget omitted candidate evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s14",
+      "question": "Where does legacy administration reserve stock?",
+      "requiredEvidence": [
+        "legacy-admin/src/stock.js",
+        "inventory-api/config/routes.json"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "98b46cc2b6915d4348403154b0a11553b5e10cbadab0df2d6033ba0871c43697",
+      "spans": 23,
+      "representedSources": 12,
+      "textBytes": 5308,
+      "promptBytes": 25878,
+      "requiredUncertainty": "Host, deployment and dynamic plugin wiring are unresolved.",
+      "gaps": [
+        "No source passages are supplied from 8 of 20 authorized indexed repositories: checkout-bff, shipping-api, payment-adapter, notification-worker, tenant-library, ui-components, deployment-production, database-migrations. This does not establish absence or irrelevance.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s15",
+      "question": "Which plugin does legacy administration load?",
+      "requiredEvidence": [
+        "legacy-admin/src/plugin.js",
+        "legacy-admin/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "0f691f12e9602bbf1814c951396971bc106453625d6b084d2d6cc8a192ab6d48",
+      "spans": 30,
+      "representedSources": 16,
+      "textBytes": 7186,
+      "promptBytes": 30613,
+      "requiredUncertainty": "A concrete plugin target cannot be reconstructed from this source.",
+      "gaps": [
+        "No source passages are supplied from 4 of 20 authorized indexed repositories: checkout-bff, inventory-api, inventory-worker, ui-components. This does not establish absence or irrelevance.",
+        "The span or UTF-8 text budget omitted candidate evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s16",
+      "question": "Which order topic is configured in production?",
+      "requiredEvidence": [
+        "deployment-production/config/production.json",
+        "deployment-production/README.md",
+        "deployment-local/config/local.json"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "61f445fc74008f242ce23f7e64403148fcad95226bff4e532c4f58f011ad64c8",
+      "spans": 30,
+      "representedSources": 14,
+      "textBytes": 7868,
+      "promptBytes": 31378,
+      "requiredUncertainty": "Do not substitute local configuration or claim production equality.",
+      "gaps": [
+        "No source passages are supplied from 6 of 20 authorized indexed repositories: checkout-bff, inventory-api, payment-adapter, tenant-library, ui-components, supplier-sync. This does not establish absence or irrelevance.",
+        "The span or UTF-8 text budget omitted candidate evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s17",
+      "question": "Has the unique shop.orders index been applied?",
+      "requiredEvidence": [
+        "database-migrations/migrations/001-orders.js",
+        "database-migrations/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "c3cfed64407e76c0e64601a6c2d060fd29374dc3e8699a5d3481fc0cebf49723",
+      "spans": 30,
+      "representedSources": 14,
+      "textBytes": 7447,
+      "promptBytes": 31013,
+      "requiredUncertainty": "Application/execution and live indexes are unknown.",
+      "gaps": [
+        "No source passages are supplied from 6 of 20 authorized indexed repositories: inventory-api, shipping-api, payment-adapter, ui-components, legacy-admin, supplier-sync. This does not establish absence or irrelevance.",
+        "The span or UTF-8 text budget omitted candidate evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s18",
+      "question": "Why separate analytics from operational reads?",
+      "requiredEvidence": [
+        "architecture-docs/docs/adr-001.md",
+        "reporting-api/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "f2559706158c3ff0ae3adef19f87280c26d78303f9353d31747aaddacd1213fd",
+      "spans": 23,
+      "representedSources": 11,
+      "textBytes": 6408,
+      "promptBytes": 27074,
+      "requiredUncertainty": "This is documented rationale, not performance evidence.",
+      "gaps": [
+        "No source passages are supplied from 9 of 20 authorized indexed repositories: portal, checkout-bff, shipping-api, payment-adapter, tenant-library, ui-components, legacy-admin, deployment-local, supplier-sync. This does not establish absence or irrelevance.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s19",
+      "question": "How does supplier synchronization recover its cursor?",
+      "requiredEvidence": [
+        "supplier-sync/src/SupplierSync.java",
+        "supplier-sync/README.md"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "a2a81aaf8728afb99fd0a75b665e09dcf55f90ed14908c284a215bca8729e9ae",
+      "spans": 30,
+      "representedSources": 16,
+      "textBytes": 8070,
+      "promptBytes": 31473,
+      "requiredUncertainty": "Persistence, scheduling and recovery are explicitly not implemented.",
+      "gaps": [
+        "No source passages are supplied from 4 of 20 authorized indexed repositories: inventory-api, shipping-worker, reporting-api, legacy-admin. This does not establish absence or irrelevance.",
+        "The span or UTF-8 text budget omitted candidate evidence.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    },
+    {
+      "id": "s20",
+      "question": "Which topic should I infer from the historical runbook?",
+      "requiredEvidence": [
+        "architecture-docs/docs/old-runbook.md",
+        "api-readme",
+        "api-local"
+      ],
+      "missingEvidence": [],
+      "retrievalComplete": true,
+      "selectedLocatorHash": "b46ce92a9ac3ca93afc7beeabcd46e5f7558c05787446024819bde2955c80f03",
+      "spans": 28,
+      "representedSources": 13,
+      "textBytes": 7535,
+      "promptBytes": 30190,
+      "requiredUncertainty": "The disagreement does not determine deployed production configuration.",
+      "gaps": [
+        "No source passages are supplied from 7 of 20 authorized indexed repositories: checkout-bff, inventory-api, reporting-api, tenant-library, ui-components, legacy-admin, supplier-sync. This does not establish absence or irrelevance.",
+        "Index coverage is partial; excluded or failed material is not available.",
+        "Deployment environment and whether these revisions are deployed together are unknown."
+      ]
+    }
+  ],
+  "noHits": {
+    "mode": "orientation",
+    "selectedLocatorHash": "a64b8bfab3e7a65f205b283e9d3a44bbf170ddf0e7e5ed9124eb4c91ad0a92a2",
+    "spans": 30,
+    "textBytes": 7387,
+    "representedSources": [
+      "portal",
+      "order-api",
+      "order-worker",
+      "checkout-bff",
+      "inventory-api",
+      "inventory-worker",
+      "shipping-api",
+      "shipping-worker",
+      "payment-adapter",
+      "notification-worker",
+      "reporting-api",
+      "contract-library",
+      "tenant-library",
+      "ui-components",
+      "legacy-admin",
+      "deployment-local",
+      "deployment-production",
+      "database-migrations",
+      "architecture-docs",
+      "supplier-sync"
+    ],
+    "unrepresentedSources": [],
+    "gaps": [
+      "No admitted lexical matches; this does not prove absence from the system.",
+      "Only a bounded repository-orientation sample is available; it is not a relevance match or complete language inventory.",
+      "The span or UTF-8 text budget omitted candidate evidence.",
+      "Index coverage is partial; excluded or failed material is not available.",
+      "Deployment environment and whether these revisions are deployed together are unknown."
+    ]
+  },
+  "retrievalMs": 235.27799700000014,
+  "regeneration": {
+    "completeRetrievalCount": 20,
+    "changedSelections": [],
+    "noHitSelectionStable": true,
+    "retrievalMs": 248.01780899999994
+  },
+  "modelRequests": 0,
+  "modelUsage": null,
+  "answerCorrectness": "not-evaluated",
+  "semanticReview": "not-performed",
+  "sourceCheckoutsUnchanged": true,
+  "scope": "Exact original evidence recall and selection stability across fresh source IDs; not semantic answer, uncertainty compliance or routing acceptance."
+}

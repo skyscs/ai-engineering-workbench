@@ -1,5 +1,41 @@
 # Development status
 
+## Task 029 — Bounded literal-reference retrieval
+
+Implemented and locally verified, 2026-10-31. Task 028 reached main through PR #32
+(`1869bf7`) after both exact-head CI runs passed. Retrieval `fts-question-v7` extracts
+bounded quoted member owners, selects query-affine identifiers in source turns and
+admits two direct matches per expanded hint after the existing fixed prefix. It keeps
+six seeds / 64 KiB inspection / twelve terms, 120 final candidates, thirty whole spans /
+64 KiB source text and the separate 96 KiB prompt limit. No new user configuration.
+
+Recorded-reference recall reaches **24/24 prospective cases** (12/12 development and
+12/12 reserved), preserving **20/20 expanded original and 20/20 three-source pilot**.
+Both twenty-source suites regenerate with unchanged original locators/requirements;
+zero-hit orientation still represents twenty sources. The maximum expanded/prospective
+input is 30 spans / 8,775 text bytes / 32,338 prompt bytes. Rejected equal-turn and
+expansion-first variants are disclosed, including their regressions. The independent
+single-word handler test failed on v6 before tuning and passes without repository hints.
+
+Full `pnpm check` passes **314 tests** (157 LoreDock, 22 script checks), strict typechecks
+and builds. Coverage includes qualified references, query/source opportunities, repeated
+text, seed/name limits, duplicate queues, bounded admission, original evidence, saved
+history and source/policy/review fences. Browser regressions verify answer history,
+citations, review changes and twenty-source preview with fake runtimes only.
+
+Zero model calls or runtime preparation. Prompt v8, answer schema, database schema,
+runtime settings and existing stored contexts/results remain unchanged. Frozen fixtures,
+questions and historical outputs/scores are preserved. This is inspected synthetic
+reference recall, not semantic qualification; equivalent evidence remains relevant.
+Task 027's expanded semantic gate is still failed and prospective semantic review has
+not run. Next: a separately budgeted fixed-prompt prospective answer evaluation, with
+development/reserved judgments reported separately. Independent review, framework
+coverage, retention and an eligible private pilot remain ahead of the Workbench bridge.
+
+See [Task 029](../tasks/029-loredock-reference-retrieval.md),
+[ADR 0032](decisions/0032-loredock-literal-reference-retrieval.md) and
+[measurements, comparisons and reproduction](fixtures/loredock-reference-retrieval/README.md).
+
 ## Task 028 — Question-aligned completeness diagnosis
 
 Implemented and locally verified, 2026-10-31. Task 027 reached main through PR #31
