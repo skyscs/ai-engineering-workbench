@@ -13,7 +13,7 @@ export interface OrientationSource {
   gaps: string[];
 }
 export interface ProjectOrientation {
-  schemaVersion: 'loredock-orientation-v1'; adapterVersion: 'readme-orientation-v1'; buildId: string;
+  schemaVersion: 'loredock-orientation-v1'; adapterVersion: 'readme-orientation-v2'; buildId: string;
   policyVersion: number; sourceSetVersion: number; registryVersion: number; stale: boolean;
   partial: true; deploymentCoherence: 'unknown'; sources: OrientationSource[];
   unindexedSources: { sourceId: string; sourceName: string }[];

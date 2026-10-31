@@ -526,3 +526,7 @@ footer{
 .answer-review { margin-block: 1rem; overflow-wrap: anywhere; }
 .review-note { border-top: 1px solid var(--line, #dce5e0); padding-block: .75rem; }
 .review-note blockquote { margin-inline: 0; padding-left: 1rem; border-left: 3px solid #8a9d96; white-space: pre-wrap; }
+
+.source-preview { overflow-wrap: anywhere; margin-block: 1rem; }
+.source-preview ol { padding-left: 1.3rem; }
+.source-preview li { border-bottom: 1px solid #dce4df; padding-block: .5rem; }

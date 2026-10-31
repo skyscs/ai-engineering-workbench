@@ -4,7 +4,7 @@ Task 024 expands the evaluation topology to **20 distinct repositories** while r
 the original three-repository source commits unchanged. It supplies **79 text files**,
 60 policy/binary/symlink canaries and a separate 20-question scale oracle. It is a small
 static source corpus, not twenty runnable services, a production-sized load test or an
-accepted twenty-source application. No dependencies, applications or source commands run.
+production-qualified application. No dependencies, applications or source commands run.
 
 [corpus.mjs](corpus.mjs) defines seventeen additional source sets. Their documentation
 and implementation clues cover stock, shipping, notification, reporting, shared contracts,
@@ -50,11 +50,20 @@ implied by these Java application ports and plain JS examples.
 
 ## Current result and next gate
 
-[readiness-result.json](readiness-result.json) records the current production rejection
+[readiness-result.json](readiness-result.json) preserves the Task 024 production rejection
 of the fourth repository. Three sources are admitted and indexed; sixteen further sources
 are deliberately unattempted. No registration limit is bypassed. Twenty-source ingestion,
-latency, retained storage and answer quality remain unmeasured. Fixture creation timing
+latency, retained storage and answer quality were unmeasured at that checkpoint. Fixture creation timing
 is reported separately and must not be presented as ingestion or answer performance.
+
+Task 025's [onboarding-result.json](onboarding-result.json) records production bulk
+registration and indexing of all twenty sources, original README context for all
+sources, unchanged refresh reuse, separate Git-command/blob counts and retained bytes.
+The script now emits version 2; run the Task 024 commit to reproduce version 1.
+Automated tests separately cover a first source with 10,010 extra paths, byte imbalance,
+twenty 32 KiB READMEs, an oversized README gap and pause/restart/resume. Browser evidence
+is in [bulk onboarding](../../docs/fixtures/loredock-bulk-onboarding/README.md).
+Question quality, routing and L5 readiness are still not evaluated by these checks.
 
 This corpus can reveal topology, evidence identity and scope mistakes. It is too small
 to establish throughput, retained-data budgets or production usefulness. Later load

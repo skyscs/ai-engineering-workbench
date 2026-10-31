@@ -1,5 +1,7 @@
 import { setImmediate as yieldTurn } from 'node:timers/promises';
 import path from 'node:path';
+import { SourceRegistration } from './source-registration.js';
+import { baselineOrder, share, type Allocation } from './allocation.js';
 import { SourceGit } from './git.js';
 import { exclusion, extract, extractorVersion, gitBlobHash, sha256 } from './extract.js';
 import { readCheckpoint } from './checkpoint.js';
@@ -15,7 +17,7 @@ export class Catalog {
   onBoundaryChange(listener: () => void) { this.boundaryListeners.add(listener); return () => this.boundaryListeners.delete(listener); }
   private boundaryChanged() { for (const listener of this.boundaryListeners) listener(); }
   constructor(readonly store: CatalogStore, private readonly git = new SourceGit(), limits: Partial<typeof defaults> = {}) {
-    this.limits = { ...defaults, ...limits };
+    this.limits = { ...defaults, ...limits, sources: defaults.sources };
     store.purge();
   }
   state(): ProjectState {
@@ -28,8 +30,12 @@ export class Catalog {
     if (identity.path === this.store.directory || identity.path.startsWith(this.store.directory + path.sep)) throw new CatalogError('INVALID_PATH', 'Sources must be outside the LoreDock data directory.');
     const source = this.store.addSource(identity); this.boundaryChanged(); return source;
   }
+  previewSources(paths: unknown) { return new SourceRegistration(this.store, this.git).preview(paths); }
+  async registerSources(input: Record<string, unknown>) {
+    const receipt = await new SourceRegistration(this.store, this.git).register(input); this.boundaryChanged(); return receipt;
+  }
   start(requestId: string, sourceSetVersion: number, policyVersion: number) {
-    const build = this.store.start(requestId, sourceSetVersion, policyVersion);
+    const build = this.store.start(requestId, sourceSetVersion, policyVersion, this.limits);
     if (['preparing', 'running'].includes(build.status)) this.schedule(build.id);
     return this.store.build(build.id);
   }
@@ -45,6 +51,8 @@ export class Catalog {
       if (!['paused', 'interrupted'].includes(build.status)) throw new CatalogError('CONFLICT', 'Only a paused or interrupted index can be resumed.', 409);
       if (build.extractorVersion !== extractorVersion) throw new CatalogError('EXTRACTOR_CHANGED', 'The extractor changed. Cancel and start a new index.', 409);
       if (build.policyVersion !== this.store.project().policyVersion || this.store.buildSources(id).some(source => this.store.source(source.sourceId).status !== 'active')) throw new CatalogError('CONFLICT', 'Inputs are no longer authorized. Start a new index.', 409);
+      const allocation = build.allocation ? JSON.parse(build.allocation) as Allocation : null;
+      if (allocation && (allocation.paths > this.limits.paths || allocation.bytes > this.limits.totalBytes)) throw new CatalogError('LIMIT_CHANGED', 'Current limits are below this index allocation. Cancel and index again.', 409);
       const inventoried = this.store.one<{ count: number }>('SELECT count(*) AS count FROM files WHERE buildId=?', id)!.count;
       if (inventoried > this.limits.paths || this.store.coverage(id).bytes > this.limits.totalBytes) throw new CatalogError('LIMIT_CHANGED', 'Current limits do not cover this checkpoint. Cancel and index again.', 409);
       for (const file of this.store.all<{ id: string }>("SELECT id FROM files WHERE buildId=? AND status='indexed'", id)) readCheckpoint(this.store, file.id, this.limits.fileBytes);
@@ -87,7 +95,10 @@ export class Catalog {
   private async run(id: string, signal: AbortSignal) {
     await yieldTurn();
     const deadline = Date.now() + this.limits.wallMs;
-    for (const source of this.store.buildSources(id)) {
+    const sources = this.store.buildSources(id);
+    const recorded = this.store.buildRow(id).allocation;
+    const allocation = recorded ? JSON.parse(recorded) as Allocation : null;
+    for (const [index, source] of sources.entries()) {
       if (!this.checkpoint(id, deadline)) return;
       if (source.status !== 'pending') continue;
       try {
@@ -100,7 +111,9 @@ export class Catalog {
         const entries = await this.git.inventory(source, source.revision, signal);
         if (!this.store.writable(id)) return;
         const used = this.store.one<{ count: number }>('SELECT count(*) AS count FROM files WHERE buildId=?', id)!.count;
-        const admitted = entries.slice(0, Math.max(0, this.limits.paths - used));
+        const quota = allocation ? share(allocation.paths, sources.length, index) : this.limits.paths;
+        if (allocation) entries.sort(baselineOrder);
+        const admitted = entries.slice(0, Math.max(0, Math.min(quota, this.limits.paths - used)));
         this.store.inventory(id, source.sourceId, admitted, entries.length - admitted.length);
       } catch (error) {
         if (!this.store.writable(id)) return;
@@ -117,6 +130,7 @@ export class Catalog {
       const reason = exclusion(file, policy, this.limits.fileBytes);
       if (reason) this.store.finishFile(file, { reason });
       else if (this.store.coverage(id).bytes + file.size > this.limits.totalBytes) this.store.finishFile(file, { reason: 'total-byte-limit' });
+      else if (allocation && this.store.coverage(id, file.sourceId).bytes + file.size > share(allocation.bytes, sources.length, sources.findIndex(item => item.sourceId === file.sourceId))) this.store.finishFile(file, { reason: 'source-byte-limit' });
       else {
         if (this.reuse(file)) { await yieldTurn(); continue; }
         this.store.run("UPDATE files SET gitReadAttempts=gitReadAttempts+1 WHERE id=? AND status='pending'", file.id);

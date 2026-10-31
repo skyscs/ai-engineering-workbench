@@ -2,6 +2,9 @@
 export type BuildStatus = 'preparing' | 'running' | 'pause_requested' | 'paused' | 'interrupted' | 'cancelled' | 'completed' | 'partial' | 'failed';
 export interface Policy { excludedPaths: string[] }
 export interface Source { id: string; name: string; path: string; gitDir: string; status: 'active' | 'revoked'; purge: 'none' | 'pending' | 'completed' }
+export interface SourcePreviewRow { input: string; path?: string; gitDir?: string; status: 'ready' | 'existing' | 'duplicate' | 'invalid'; reason: string }
+export interface SourcePreview { sourceSetVersion: number; rows: SourcePreviewRow[]; ready: number; available: number; canRegister: boolean; previewHash: string }
+export interface SourceReceipt { sourceIds: string[]; sourceSetVersion: number }
 export interface Coverage { indexed: number; excluded: number; failed: number; pending: number; bytes: number; reasons: Record<string, number> }
 export interface BuildSource {
   sourceId: string; name: string; revision: string | null; tree: string | null;

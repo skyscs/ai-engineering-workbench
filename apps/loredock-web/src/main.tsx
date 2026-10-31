@@ -6,6 +6,7 @@ import { api } from './api';
 import { AnswerPanel } from './AnswerPanel';
 import { SystemMap } from './SystemMap';
 import { IndexChangeView } from './IndexChanges';
+import { SourceOnboarding } from './SourceOnboarding';
 import { ProjectOverview } from './ProjectOverview';
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
   const [answersEnabled, setAnswersEnabled] = useState(false);
   useEffect(() => { void api<{ modelExecution: boolean }>('/health').then(value => setAnswersEnabled(value.modelExecution)).catch(cause => setError((cause as Error).message)); }, []);
   const [error, setError] = useState(''); const [busy, setBusy] = useState(false);
-  const [sourcePath, setSourcePath] = useState(''); const [query, setQuery] = useState('');
+  const [query, setQuery] = useState('');
   const [selected, setSelected] = useState(''); const [results, setResults] = useState<SearchResult>();
   const [evidence, setEvidence] = useState<Evidence>(); const [excludes, setExcludes] = useState<string | null>(null);
   const [removal, setRemoval] = useState<string>();
@@ -60,7 +61,6 @@ function App() {
       if (current === boundary.current && request === evidenceRequest.current) setError((cause as Error).message);
     }
   }
-  function submitSource(event: FormEvent) { event.preventDefault(); void act(async () => { await api('/sources', 'POST', { path: sourcePath }); setSourcePath(''); }); }
   function search(event: FormEvent) { event.preventDefault(); void act(async () => {
     const current = boundary.current; evidenceRequest.current++; setEvidence(undefined);
     const response = await api<SearchResult>(`/search?q=${encodeURIComponent(query)}&buildId=${encodeURIComponent(searchBuild)}`);
@@ -75,20 +75,18 @@ function App() {
       <aside className="panel">
         <h2>Repositories <span className="count">{activeSources.length} / {state.limits.sources}</span></h2>
         <p className="muted">Use absolute paths to local Git repositories. Your working files stay untouched.</p>
+        {activeSources.length > 0 && <details className="connected-sources" open={activeSources.length <= 3}><summary>Connected repositories</summary>
         <ul className="sources">{activeSources.map(source => <li key={source.id}>
           <strong>{source.name}</strong><code>{source.path}</code>
           {removal === source.id ? <div className="confirm"><p>Remove this source and purge its indexed text? Saved citations will become unavailable.</p>
             <button disabled={busy} onClick={() => void act(async () => { await api(`/sources/${source.id}/revoke`, 'POST'); setRemoval(undefined); })}>Confirm removal</button>
             <button className="quiet" onClick={() => setRemoval(undefined)}>Keep source</button></div>
             : <button className="quiet" disabled={busy} onClick={() => setRemoval(source.id)}>Remove source</button>}
-        </li>)}</ul>
-        {activeSources.length < state.limits.sources && <form onSubmit={submitSource}>
-          <label htmlFor="repository-path">Repository path</label><input id="repository-path" placeholder="/home/you/projects/order-api" value={sourcePath} onChange={event => setSourcePath(event.target.value)} required />
-          <button disabled={busy || !sourcePath.trim()} type="submit">Add repository</button>
-        </form>}
+        </li>)}</ul></details>}
+        <SourceOnboarding key={state.sourceSetVersion} refresh={refresh} />
         <details className="advanced"><summary>Source policy and limits</summary>
           <p>Committed UTF-8 text only. Symlinks, submodules, LFS pointers, binary files and common secret paths are excluded. This is not a secret scanner.</p>
-          <p>Up to {state.limits.paths.toLocaleString()} paths, {state.limits.fileBytes / 1024 / 1024} MiB per file and {state.limits.totalBytes / 1024 / 1024} MiB total. A {state.limits.wallMs / 60000}-minute wall limit pauses indexing.</p>
+          <p>Up to {state.limits.paths.toLocaleString()} paths, {state.limits.fileBytes / 1024 / 1024} MiB per file and {state.limits.totalBytes / 1024 / 1024} MiB total. New indexes divide path and byte budgets equally across repositories, with root README and manifests first; unused shares stay reserved. A {state.limits.wallMs / 60000}-minute wall limit pauses indexing.</p>
           <label htmlFor="exclusions">Additional excluded paths</label><textarea id="exclusions" rows={4} placeholder={'private\nconfig/credentials.json'} value={excludes ?? state.policy.excludedPaths.join('\n')} onChange={event => setExcludes(event.target.value)} />
           <p>One relative file or directory prefix per line. Changing policy fences old indexes until you index again.</p>
           <button disabled={busy} onClick={() => void act(async () => { await api('/policy', 'PUT', { excludedPaths: (excludes ?? state.policy.excludedPaths.join('\n')).split('\n').map(line => line.trim()).filter(Boolean) }); pendingStart.current = undefined; setExcludes(null); setSelected(''); })}>Save policy</button>

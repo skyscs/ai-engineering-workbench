@@ -51,6 +51,11 @@ source revocation and late-response fences cover cards, reading links and citati
 new registrations remain separate from historical content. See
 [ADR 0027](docs/decisions/0027-loredock-project-orientation.md).
 
+Bulk path previews and confirmations use the same session/CSRF boundary. Registration
+revalidates canonical identities and the registry before atomic insertion; persisted
+receipts cannot reauthorize revoked sources. No directory scan or source execution is
+introduced. See [ADR 0029](docs/decisions/0029-loredock-bulk-source-baseline.md).
+
 The sections below describe Workbench's existing AI investigation boundary.
 
 ## Goal

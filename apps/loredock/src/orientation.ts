@@ -1,3 +1,4 @@
+import { defaults } from './store.js';
 import type { Catalog } from './catalog.js';
 import { sha256 } from './extract.js';
 import { readMapDocument, type MapDocument } from './map-document.js';
@@ -5,8 +6,8 @@ import { CatalogError } from './types.js';
 import type { OrientationExcerpt, OrientationSource, ProjectOrientation } from './orientation-types.js';
 import type { MapEvidence } from './system-map-types.js';
 
-export const orientationLimits = { repositories: 3, documents: 9, fileBytes: 32 * 1024, textBytes: 96 * 1024,
-  fileSpans: 8, excerptBytes: 2000, excerptLines: 16, outputBytes: 128 * 1024 } as const;
+export const orientationLimits = { repositories: defaults.sources, documents: 60, fileBytes: 32 * 1024, textBytes: 20 * 32 * 1024,
+  fileSpans: 8, excerptBytes: 2000, excerptLines: 16, outputBytes: 512 * 1024 } as const;
 interface Document extends MapDocument { status: string; reason: string | null }
 
 /** Select original lines, never synthesize a repository role or interpret source instructions. */
@@ -104,7 +105,7 @@ export function projectOrientation(catalog: Catalog, buildId?: string): ProjectO
   if (build.status === 'partial') gaps.push('The source index is partial; inspect source coverage and exclusions.');
   if (sources.length !== build.sources.length) gaps.push('Revoked sources and their documentation are excluded.');
   if (unindexedSources.length) gaps.push('Active repositories outside this saved index need a new knowledge update; their content is not mixed into this view.');
-  const result = { schemaVersion: 'loredock-orientation-v1' as const, adapterVersion: 'readme-orientation-v1' as const, buildId: build.id,
+  const result = { schemaVersion: 'loredock-orientation-v1' as const, adapterVersion: 'readme-orientation-v2' as const, buildId: build.id,
     policyVersion: build.policyVersion, sourceSetVersion: build.sourceSetVersion, registryVersion: project.sourceSetVersion,
     stale: build.id !== project.publishedBuildId || build.sourceSetVersion !== project.sourceSetVersion,
     partial: true as const, deploymentCoherence: 'unknown' as const, sources: cards, unindexedSources, evidence, gaps, omissions,

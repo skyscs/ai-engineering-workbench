@@ -26,7 +26,7 @@ test('local transport requires exact host/origin, protected reads and CSRF with 
   assert.match(response.headers.get('set-cookie')!, /HttpOnly/i);
   assert.match(response.headers.get('set-cookie')!, /SameSite=Strict/i);
   assert.equal((await request('/api/project', { headers: { cookie } })).status, 200);
-  assert.equal((await request('/api/sources', { method: 'POST', headers: { cookie, origin: url } })).status, 403);
+  for (const route of ['/api/sources', '/api/sources/preview', '/api/sources/register']) assert.equal((await request(route, { method: 'POST', headers: { cookie, origin: url } })).status, 403);
   const headers = { cookie, origin: url, 'x-loredock-csrf': token, 'content-type': 'application/json' };
   assert.equal((await request('/api/sources', { method: 'POST', headers, body: '{' })).status, 400);
   assert.equal((await request('/api/sources', { method: 'POST', headers, body: JSON.stringify({ path: '../escape' }) })).status, 400);
@@ -47,7 +47,14 @@ test('HTTP workflow registers, indexes, searches, opens evidence and fences revo
   const { token } = await session.json() as { token: string };
   const headers = { ...shared, cookie: session.headers.get('set-cookie')!.split(';')[0]!, 'x-loredock-csrf': token, 'content-type': 'application/json' };
   const request = (route: string, method = 'GET', value?: unknown) => app.request(base + '/api' + route, { method, headers, ...value === undefined ? {} : { body: JSON.stringify(value) } });
-  const source = await (await request('/sources', 'POST', { path: path.join(fixture.root, 'sources/order-api') })).json() as { id: string };
+  const paths = [path.join(fixture.root, 'sources/order-api'), '../invalid'];
+  const preview = await (await request('/sources/preview', 'POST', { paths })).json() as { previewHash: string };
+  assert.equal(catalog.state().sources.length, 0);
+  const input = { paths, previewHash: preview.previewHash, requestId: 'http-registration' };
+  const registered = await request('/sources/register', 'POST', input); assert.equal(registered.status, 201);
+  const receipt = await registered.json() as { sourceIds: string[] };
+  assert.deepEqual(await (await request('/sources/register', 'POST', input)).json(), receipt);
+  const source = { id: receipt.sourceIds[0]! };
   const state = catalog.state();
   const started = await request('/builds', 'POST', { requestId: 'http-build', policyVersion: state.policyVersion, sourceSetVersion: state.sourceSetVersion });
   assert.equal(started.status, 202); await catalog.idle();

@@ -106,7 +106,7 @@ try {
   await page.send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 1200, deviceScaleFactor: 1, mobile: false });
   await page.send('Page.navigate', { url: 'http://127.0.0.1:4244' }); await text('Add your first repository.');
   for (const id of repositoryIds) {
-    await input('repository-path', path.join(fixture.root, 'sources', id)); await click('Add repository');
+    await input('repository-path', path.join(fixture.root, 'sources', id)); await click('Preview repositories'); await text('Review repositories'); await click('Add 1 repository');
     await waitFor(() => evaluate(`[...document.querySelectorAll('.sources strong')].some(e=>e.textContent===${JSON.stringify(id)})`), 'Source did not appear.');
   }
   await click('Index sources'); await text('18 indexed · 9 excluded · 0 failed · 0 pending');

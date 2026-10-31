@@ -30,8 +30,11 @@ adds basic original README context and a first reading guide.
 [Task 023](tasks/023-loredock-answer-review-context.md) connects bounded engineer notes
 to answer previews, immutable inputs and review freshness through merged PR #27.
 [Task 024](tasks/024-loredock-scale-corpus.md) establishes a heterogeneous twenty-source
-fixture and [capacity baseline](docs/loredock/SCALE_READINESS.md). Product registration
-still supports three sources; bulk onboarding and fair baseline orientation come next.
+fixture and [capacity baseline](docs/loredock/SCALE_READINESS.md) through merged PR #28.
+[Task 025](tasks/025-loredock-bulk-onboarding.md) adds reviewed bulk local paths, twenty
+active sources and fixed equal index shares with baseline README orientation.
+Next: measure and improve bounded question retrieval against the expanded corpus,
+without widening model payloads or claiming L5 readiness from source coverage.
 Broader synthesis, adapters, semantic/AI refresh and scale acceptance remain separate.
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation

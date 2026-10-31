@@ -1,0 +1,112 @@
+{
+  "schemaVersion": "loredock-scale-readiness/2",
+  "checkedAt": "2026-10-31T12:35:39.058Z",
+  "baseline": {
+    "schemaVersion": "loredock-scale-baseline/1",
+    "sourceCount": 20,
+    "eligibleFiles": 79,
+    "revisionVector": {
+      "portal": "603a69798dc12c3205e88d0498881b0c01079932",
+      "order-api": "237510937b4388fc718b7e9f93869954950df1bb",
+      "order-worker": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+      "checkout-bff": "07d87b7d8a7a93ee8f93f6cdf3ae03ef8253869f",
+      "inventory-api": "0e7f2a7f4776d224736bf10b8e64fd226f2d1d86",
+      "inventory-worker": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+      "shipping-api": "1d89443e2914afb8de2b02389aabfe862b2a3e22",
+      "shipping-worker": "e71a493dede8f64a0785550cf4968b3050c86019",
+      "payment-adapter": "6d85bd3ba393ec880ce95ad1af29311b066bd2f4",
+      "notification-worker": "9e8b82475fd5d3317923d7f4e7c399ed99f5356a",
+      "reporting-api": "23fc2d8f162f93758f47221207e842f4ae55da39",
+      "contract-library": "6fc0b2f8bbd4b88a35b6c04e6dc974b762cc3cbe",
+      "tenant-library": "f7e01099f81a705281b6c50f2571c1a2cc116617",
+      "ui-components": "3ef8f414dff741b0140cc9f23d91a47d740fe1b9",
+      "legacy-admin": "831849791b519da2c71f3ee4c918fbc7a6479b52",
+      "deployment-local": "266b8b73fbf744f2df4395e223df13b7e7504ffe",
+      "deployment-production": "20e07d89a00cc5ad20af50a49550b10f82b4f9f4",
+      "database-migrations": "d75867701ea1a0a3b103a9eecc9d7532c11c9058",
+      "architecture-docs": "53dcb38eeb689da1418d6ef8dd9555a357d85dba",
+      "supplier-sync": "ea9faab3d1e0a2bdcfcb93b3791cbade992129b6"
+    },
+    "manifestHash": "0bea0ff2e26acc13b4f4766cb154ded7cd2b366b064e6c84fb56c1c632532b74",
+    "oracleHash": "6d2ed2e8051e37721fedcb5b031034c1dc6bb4f3ef35beb4aa53596bb26fcc16"
+  },
+  "databaseVersion": 7,
+  "measurements": {
+    "generationMs": 581.152025,
+    "previewMs": 130.85705300000006,
+    "registrationMs": 124.53110199999992,
+    "registrationGitCommands": 80,
+    "overviewMs": 8.182444999999916,
+    "nodeVersion": "v22.23.2",
+    "platform": "linux"
+  },
+  "production": {
+    "requestedSources": 20,
+    "registeredSources": 20,
+    "initial": {
+      "durationMs": 1543.589613,
+      "gitCommands": 437,
+      "gitBlobReads": 99,
+      "coverage": {
+        "indexed": 79,
+        "excluded": 60,
+        "failed": 0,
+        "pending": 0,
+        "bytes": 16869,
+        "reasons": {
+          "binary": 20,
+          "policy": 20,
+          "symlink": 20
+        }
+      },
+      "omittedPaths": 0,
+      "allocation": {
+        "version": "source-shares-v1",
+        "paths": 10000,
+        "bytes": 52428800
+      }
+    },
+    "refresh": {
+      "durationMs": 773.8909950000002,
+      "gitCommands": 200,
+      "gitBlobReads": 20,
+      "reusedFiles": 79
+    },
+    "orientation": {
+      "repositories": 20,
+      "withContext": 20,
+      "examinedDocuments": 35,
+      "parsedBytes": 7892,
+      "outputBytes": 30109,
+      "omissions": {}
+    },
+    "deeperProjections": {
+      "declarationCoverage": {
+        "indexedFiles": 79,
+        "candidateDocuments": 30,
+        "examinedDocuments": 30,
+        "parsedBytes": 4775
+      },
+      "flowCoverage": {
+        "candidateDocuments": 21,
+        "examinedDocuments": 21,
+        "parsedBytes": 5335
+      },
+      "semanticQuality": "not-evaluated"
+    },
+    "retained": {
+      "generations": 2,
+      "rawBytes": 33738,
+      "spanTextBytes": 33580,
+      "databaseBytes": 712704,
+      "includesIndexesAndMetadata": true
+    }
+  },
+  "modelRequests": 0,
+  "modelUsage": null,
+  "questionCount": 20,
+  "answerQuality": "not-evaluated",
+  "routingQuality": "not-evaluated",
+  "sourceCheckoutsUnchanged": true,
+  "scope": "Small heterogeneous topology using production limits. Separate automated imbalance/long-document tests; not a production load benchmark or L5 acceptance."
+}

@@ -134,9 +134,9 @@ test('README input receives priority across every repository before optional man
     }
   });
   const result = projectOrientation(state.catalog);
-  assert.equal(result.coverage.withContext, 3); assert.equal(result.coverage.parsedBytes, orientationLimits.textBytes);
-  assert.equal(result.coverage.examinedDocuments, 3); assert.equal(result.omissions['input-byte-limit'], 3);
-  assert.ok(result.sources.every(source => source.context && source.reading.every(document => document.kind === 'readme')));
+  assert.equal(result.coverage.withContext, 3); assert.ok(result.coverage.parsedBytes >= repos.length * orientationLimits.fileBytes);
+  assert.equal(result.coverage.examinedDocuments, 6); assert.equal(result.omissions['input-byte-limit'], undefined);
+  assert.ok(result.sources.every(source => source.context && source.reading[0]?.kind === 'readme'));
 });
 
 test('binary and policy-excluded README files report exclusion without exposing source text', async t => {

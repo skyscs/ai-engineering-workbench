@@ -13,5 +13,11 @@ export function removeRefreshSchema(store: CatalogStore) {
 
 /** Remove only schema 6 additions from owned legacy migration fixtures. */
 export function removeReconciliationSchema(store: CatalogStore) {
+  removeOnboardingSchema(store);
   store.db.exec('DROP TABLE correction_reapplications;');
+}
+
+/** Remove only schema 7 additions from owned legacy migration fixtures. */
+export function removeOnboardingSchema(store: CatalogStore) {
+  store.db.exec('DROP TABLE source_registrations; ALTER TABLE builds DROP COLUMN allocation;');
 }
