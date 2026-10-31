@@ -56,7 +56,6 @@ export async function auditProspectiveAnswers(directory = prospectiveArtifacts, 
       if (result.dispatched) assert.deepEqual(attempt.runtime, report.contract.identity);
       const originals = new Map(result.originals.map(span => [span.id, span]));
       assert.equal(originals.size, input.spans.length);
-      assert.deepEqual(result.requirements, intent.requirements.map(requirement => measureRequirement(requirement, result.originals, fixture.manifest)));
       for (const span of input.spans) {
         const original = originals.get(span.id); assert.ok(original);
         for (const [key, value] of Object.entries(span)) assert.deepEqual(value, original[key]);
@@ -73,6 +72,8 @@ export async function auditProspectiveAnswers(directory = prospectiveArtifacts, 
         assert.equal(original.text, text.split('\n').slice(original.startLine - 1, original.endLine).join('\n'));
         assert.equal(digest(original.text), original.spanHash); spans++;
       }
+      assert.deepEqual(result.requirements, intent.requirements.map(requirement => measureRequirement(requirement, result.originals, fixture.manifest)),
+        'Recorded reference recall differs from the verified original evidence.');
       const answer = attempt.answer ?? { claims: [], unknowns: [] };
       if (attempt.status === 'succeeded') assert.deepEqual(JSON.parse(result.rawOutput), answer);
       assert.equal(assessment.claimReview.length, answer.claims.length);

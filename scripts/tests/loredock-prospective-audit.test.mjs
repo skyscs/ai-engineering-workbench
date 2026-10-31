@@ -15,7 +15,7 @@ test('prospective audit reconstructs originals and preserves the failed semantic
   assert.ok(audit.inputSpanOccurrencesChecked > 0 && audit.claimsReviewed > 0 && audit.requirementsReviewed > 0);
 });
 
-test('prospective audit rejects omitted requirement judgments and consistently rehashed wrong source ownership', async t => {
+test('prospective audit rejects missing judgments, wrong ownership and altered recall despite consistent hashes', async t => {
   const directory = await mkdtemp(path.join(os.tmpdir(), 'loredock-prospective-audit-'));
   t.after(() => rm(directory, { recursive: true, force: true }));
   const raw = await readFile(new URL('answer-result.json', prospectiveArtifacts), 'utf8');
@@ -36,4 +36,9 @@ test('prospective audit rejects omitted requirement judgments and consistently r
   await writeFile(path.join(directory, 'answer-result.json'), changed);
   await writeFile(path.join(directory, 'semantic-review.json'), JSON.stringify(originalReview));
   await assert.rejects(auditProspectiveAnswers(directory), /Original source ownership/);
+  const changedRecall = JSON.parse(raw); changedRecall.results[0].requirements[0].available = false;
+  const recallRaw = JSON.stringify(changedRecall); originalReview.rawResultSha256 = digest(recallRaw);
+  await writeFile(path.join(directory, 'answer-result.json'), recallRaw);
+  await writeFile(path.join(directory, 'semantic-review.json'), JSON.stringify(originalReview));
+  await assert.rejects(auditProspectiveAnswers(directory), /Recorded reference recall/);
 });
