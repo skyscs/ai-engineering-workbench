@@ -1,5 +1,28 @@
 # Development status
 
+## Task 053 — External-content literal search feasibility
+
+Implemented and locally verified, 2026-11-01. PR #56 reached main as `02fa3a9` after
+push `41319043446` and pull-request `41319094084` passed for exact head
+`fc0c60942430af77eaca86b1c82da96ef399885e`. Design/pins: `84c05cb`/`c45affe`;
+prospective support-set clarification: `4b9d1c5`; measured implementation: `5b6489d`.
+
+The single owned twenty-source, 179-file comparison passes 182/182 ordered search/rank/
+snippet/context checks across conversion, restart, refresh, revocation and compaction.
+Originals, non-literal-search records, code facts and purge agree. Both refreshes reuse
+all files. Compacted total allocation drops from 4,526,080 to 3,719,168 bytes (17.8%);
+literal FTS plus the stable mapping drops from 958,464 to 147,456 bytes (84.6%).
+Strict types, 412 tests and builds pass. The full raw result and original 173/182 rehearsal
+ordering failure are retained; an independent Python recount confirms the final result.
+
+See [Task 053](../tasks/053-loredock-search-storage-feasibility.md),
+[frozen design](../fixtures/loredock-search-storage/DESIGN.md) and
+[measurement/limitations](fixtures/loredock-search-storage/README.md). The prototype is
+confined to scripts/tests; production schema 8 and the live user demo stay unchanged.
+Next: matched rebuild-only control and full token/position comparison, because conversion
+also changes FTS segment packing. Then choose migration hardening based on that comparison.
+No corporate inputs, model calls, historical evaluation reruns or semantic acceptance.
+
 ## Task 052 — Explicit offline compaction
 
 Implemented and locally verified, 2026-11-01. PR #55 reached main as `e064b8f` after

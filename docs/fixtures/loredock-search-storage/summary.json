@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "loredock-search-storage-summary/1",
+  "comparisons": 182,
+  "expectedComparisons": 182,
+  "equalComparisons": 182,
+  "failures": [],
+  "mechanical": true,
+  "literalRatio": 0.15384615384615385,
+  "totalRatio": 0.8217194570135746,
+  "passed": true
+}

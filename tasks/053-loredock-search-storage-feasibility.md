@@ -1,6 +1,6 @@
 # Task 053 — External-content literal search feasibility
 
-Status: in progress, 2026-11-01.
+Status: implemented and locally verified, 2026-11-01. Contract: `84c05cb`; pins: `c45affe`.
 
 Follow Tasks 051–052 with a prospective, model-free storage experiment. The literal FTS
 index repeats text already retained in original spans. Compare an external-content FTS5
@@ -36,3 +36,16 @@ Run focused integration checks, strict checks, all tests/builds and the compiled
 Retain results and limitations, review/create PR and merge after both exact-head CI events
 pass. If the gate passes, the next bounded task is migration/write/purge hardening before
 production adoption; otherwise document the blocker. No real-model or corporate inputs.
+
+## Outcome
+
+The single committed experiment passes 182/182 comparisons and both frozen space
+thresholds. Compacted total allocation falls 17.8%; literal FTS plus mapping falls 84.6%.
+Originals, historical records, code payloads, both search paths, refresh reuse and source
+purge survive. Strict checks, 412 tests and builds pass. All raw results and the initial
+support-order rehearsal failure remain available in the [report](../docs/fixtures/loredock-search-storage/README.md).
+
+Production remains unchanged. Review identified a size-attribution confound: conversion
+also rebuilds FTS postings. Before migration hardening, add a rebuild-only control and
+complete vocabulary/position comparison so the storage choice has a matched baseline.
+This follow-up does not alter the frozen result or its passed bounded gate.
