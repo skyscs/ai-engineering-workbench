@@ -123,8 +123,12 @@ aliases while retaining full identities, overloads and source ambiguity under qu
 Compatible inventories remain usable without reanalysis.
 [Task 050](tasks/050-loredock-synthetic-demo.md) delivers `pnpm loredock:demo`: twenty owned
 sources with a ready index/inventory, separate retained data and model mode forced off.
-Next: hands-on feedback through the documented synthetic demo route before choosing
-broader question-context changes.
+The owner requested independent synthetic work while manual feedback is unavailable.
+[Task 051](tasks/051-loredock-storage-audit.md) adds read-only storage accounting, separating
+SQLite allocation, payload copies, live sidecars and history dependencies. Next: explicit
+offline compaction of already-free pages without deleting history, followed by measured
+deduplication/retention design. The running user demo and pending feedback stay separate
+from these maintenance checks; broader question-context changes remain open.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

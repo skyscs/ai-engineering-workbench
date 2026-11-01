@@ -1,6 +1,6 @@
 # Task 051 — Read-only storage accounting before retention
 
-Status: in progress, 2026-11-01.
+Status: implemented and locally verified, 2026-11-01. Scope: `d9738e8`.
 
 The owner requested continued synthetic development while manual testing is unavailable.
 Task 041 measured approximately doubled database size after an unchanged refresh. Raw
@@ -38,3 +38,14 @@ strict checks, full tests/builds; retain a small twenty-source before/after repo
 concrete storage design recommendation. Do not repeat frozen full-volume or model runs.
 Review/create the PR and merge after both exact-head CI events pass. Continue with the
 smallest measured storage improvement; owner feedback and semantic acceptance stay open.
+
+## Outcome
+
+The explicit JSON command performs schema-8 snapshot accounting through a read-only
+connection, with separate fixed-file measurements and no content/identity export.
+Strict checks, 403 tests and builds pass. Four integration tests and the owned twenty-source
+compiled smoke verify accounting, dependencies, live ownership/job preservation, purge,
+CLI use and unchanged closed database bytes. The user demo remains running untouched.
+See [measurements and staged storage recommendation](../docs/fixtures/loredock-storage-audit/README.md).
+Next: explicit offline compaction of already-free pages, preserving all logical history;
+deduplication and retention require their own contracts. No model/corporate inputs used.

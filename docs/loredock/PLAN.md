@@ -104,8 +104,12 @@ The amended exact-set oracle passes 18/18; the original 16/18 package-name error
 [Task 049](../../tasks/049-loredock-short-java-symbols.md) adds exact short Java class/method
 aliases under query v2, retaining full identities and overload/source ambiguity without
 reanalysis. [Task 050](../../tasks/050-loredock-synthetic-demo.md) adds `pnpm loredock:demo`
-with twenty prepared sources, isolated retained data and model mode forced off. Next:
-hands-on feedback through the documented demo route before broader question-context work.
+with twenty prepared sources, isolated retained data and model mode forced off. The owner
+requested independent synthetic work while manual feedback is unavailable.
+[Task 051](../../tasks/051-loredock-storage-audit.md) adds read-only storage accounting and
+measures refresh copies and reusable free pages without changing history. Next: explicit
+offline compaction, then prospective deduplication/retention design. Keep the prepared
+demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.
 No tuning on observed model answers is included.
 Full L3

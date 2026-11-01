@@ -1,5 +1,31 @@
 # Development status
 
+## Task 051 — Read-only storage accounting
+
+Implemented and locally verified, 2026-11-01. PR #54 reached main as `341470d` after
+push `41260652763` and pull-request `41260662039` passed for exact head
+`f5cc0f16c7dee75421381dbaca5e373ed6482935`. Scope was committed in `d9738e8`.
+
+The owner requested continued synthetic development while manual feedback is unavailable.
+`pnpm loredock:storage --data-dir /absolute/loredock-data` reports aggregate schema-8
+storage through a read-only snapshot without CatalogStore recovery/ownership. SQLite
+allocation, payload copies, live file lengths and overlapping history dependencies remain
+distinct; no text, source paths or connection settings are exported. There is no deletion,
+compaction, checkpoint, migration, Git or model execution.
+
+Strict types, 403 tests and builds pass. Four new integration tests verify byte/page
+accounting, UTF-8/NUL, refresh, dependency overlap, retained code facts, purge, live job/
+ownership preservation, closed database byte identity and invalid inputs. The owned
+twenty-source compiled smoke grows SQLite allocation from 561,152 to 827,392 bytes after
+an unchanged refresh. Source removal makes 90,112 bytes reusable without shrinking the
+file. Original reads and Git checkouts remain unchanged; the actual closed-catalog CLI
+preserves all database/owner bytes. The user demo remains running untouched.
+
+See [Task 051](../tasks/051-loredock-storage-audit.md) and
+[measurements/design recommendation](fixtures/loredock-storage-audit/README.md).
+Next: explicit offline compaction of already-free pages while preserving logical history.
+Deduplication, retention policy, owner feedback and semantic readiness are separate work.
+
 ## Task 050 — One-command isolated synthetic demo
 
 Implemented and locally verified, 2026-11-01. PR #53 reached main as `1fafc0a` after
