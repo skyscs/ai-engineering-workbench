@@ -112,8 +112,10 @@ measures refresh copies and reusable free pages without changing history.
 explicit offline compaction, preserving logical rows, rankings and citations.
 [Task 053](../../tasks/053-loredock-search-storage-feasibility.md) passes an isolated literal
 search storage experiment, with 182/182 comparisons and 17.8% lower total allocation.
-Next: a matched rebuild-only control and full token/position comparison before choosing
-migration hardening; production remains unchanged. Explicit
+[Task 054](../../tasks/054-loredock-search-rebuild-control.md) confirms complete token/position
+equality, 112/112 query comparisons and 17.4% further savings against a matched rebuild-only
+control. Next: production migration/write/purge hardening with atomic conversion and
+maintenance compatibility; production remains unchanged. Explicit
 retention needs separate dependency rules. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.

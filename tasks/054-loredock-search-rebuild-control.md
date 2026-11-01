@@ -1,6 +1,6 @@
 # Task 054 — Matched rebuild control and complete literal vocabulary
 
-Status: in progress, 2026-11-01.
+Status: implemented and locally verified, 2026-11-01. Design/pins: `018763a`/`d6bfcb1`.
 
 Task 053's isolated candidate passes mechanical checks and reduces compacted total size
 17.8%, but conversion also rebuilds FTS postings. Separate that effect before selecting
@@ -36,3 +36,17 @@ production schema/API/UI change or daemon restart. Run strict checks, full tests
 and one committed fixed comparison; retain raw results and the decision. Review/create
 the PR, merge after both exact-head CI events pass and continue according to the decision.
 The user demo, manual feedback and independent semantic acceptance remain separate.
+
+## Outcome
+
+Committed run `ff08c04` passes 112/112 exact query comparisons and 31/31 structural,
+completeness and restart checks. All 17,164 token instances and 358 document identities
+agree. Rebuilding alone saves 28,672 bytes; external content saves a further 778,240 bytes
+(17.4%) against that control. Per-object sizes attribute the difference to the removed
+823,296-byte text copy, less mapping and experiment-marker overhead. Full raw vectors and
+an independent recount are retained in the [report](../docs/fixtures/loredock-search-control/README.md).
+
+Strict checks, 413 tests and builds pass. Production remains unchanged. The matched gate
+supports a separate schema migration/write/purge hardening task, including atomic failure,
+legacy row/configuration preservation and maintenance/report compatibility. No model,
+corporate input, historical rerun or user-demo mutation.

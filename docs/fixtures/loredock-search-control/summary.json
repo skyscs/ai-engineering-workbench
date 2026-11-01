@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "loredock-search-control-summary/1",
+  "queryComparisons": 112,
+  "equalQueryComparisons": 112,
+  "checks": 31,
+  "failures": [],
+  "mechanical": true,
+  "literalRatio": 0.15859030837004406,
+  "totalRatio": 0.8256880733944955,
+  "passed": true
+}

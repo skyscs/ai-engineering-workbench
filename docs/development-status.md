@@ -1,5 +1,31 @@
 # Development status
 
+## Task 054 — Matched rebuild-only control
+
+Implemented and locally verified, 2026-11-01. PR #57 reached main as `f56b7f6` after
+push `41325992288` and pull-request `41326204376` passed for exact head
+`ec06308576ab16aadadd9671dfa8f445d0d1d8eb`. Design/pins: `018763a`/`d6bfcb1`;
+single measured implementation: `ff08c04`.
+
+The three variants share one stopped twenty-source/179-file catalog with two indexes and
+one 121-file code inventory. All 17,164 token occurrences, 358 document identities, sizes,
+global statistics and non-literal record digests agree. All 112 query/context comparisons
+and 31 structural/completeness/restart checks pass. Rebuild-only saves 28,672 bytes;
+external content saves a further 778,240 bytes (17.4%) against the matched control.
+Per-object allocation isolates the removed text copy, mapping and marker overhead.
+
+Strict types, all 413 tests and builds pass. The complete three-source rehearsal includes
+adversarial changes to tokens, identities, query data, missing observations and thresholds.
+Independent Python inspection of the raw vectors, context hashes, queries and restart
+records confirms the gate. Source checkouts and the user demo remain unchanged; no model
+call, corporate source or earlier evaluation rerun. The exclusive attempt receipt and raw
+results are retained. See [Task 054](../tasks/054-loredock-search-rebuild-control.md) and
+[measurement/decision](fixtures/loredock-search-control/README.md).
+
+Next: production migration/write/purge hardening with atomic conversion, legacy identity/
+configuration preservation and storage-report/compaction compatibility. Production is
+still schema 8; the prototype is not promoted by this report. Semantic gates remain open.
+
 ## Task 053 — External-content literal search feasibility
 
 Implemented and locally verified, 2026-11-01. PR #56 reached main as `02fa3a9` after

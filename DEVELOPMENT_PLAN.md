@@ -130,8 +130,10 @@ SQLite allocation, payload copies, live sidecars and history dependencies.
 already-free pages while preserving all logical history.
 [Task 053](tasks/053-loredock-search-storage-feasibility.md) passes a prospective external-
 content literal-search comparison: 182/182 mechanical checks and 17.8% lower total allocation
-on the fixed small shape. Production stays unchanged. Next: a matched rebuild-only control
-and full token/position comparison before choosing schema/migration hardening;
+on the fixed small shape. [Task 054](tasks/054-loredock-search-rebuild-control.md) adds the
+matched rebuild control: complete token/position equality, 112/112 query comparisons and
+17.4% further total savings against rebuilding alone. Production stays unchanged. Next:
+atomic schema migration and write/purge hardening, including maintenance compatibility;
 explicit retention requires separate dependency rules. The user demo and feedback stay separate
 from these maintenance checks; broader question-context changes remain open.
 Preserve all failed evaluations;
