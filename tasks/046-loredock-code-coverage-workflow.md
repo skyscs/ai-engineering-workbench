@@ -1,6 +1,7 @@
 # Task 046 — Code coverage in the indexing workflow
 
-Status: scoped before implementation, 2026-11-01.
+Status: implemented and locally verified, 2026-11-01.
+Scope was committed in `39eaa20` after PR #49 (`7ee582f`) passed both exact-head CI events.
 
 Connect Task 045's durable service to the existing local application. Keep one primary
 workflow: Index sources / Update knowledge publishes committed text, then local bounded
@@ -50,3 +51,24 @@ No full-volume or real-model rerun is authorized by this slice.
 After exact-head push and pull-request CI pass, merge and continue with separately bounded
 query access to inventory facts and originals. Complete-file coverage alone does not
 satisfy semantic acceptance or authorize the Workbench bridge.
+
+## Outcome
+
+New current publications now trigger bounded local analysis through a daemon-owned
+observer; active work is respected and superseded publications coalesce. Existing indexes,
+failed attempts and interrupted work remain explicit. Automatic admission errors are
+reported without changing the source index. Protected lifecycle/file APIs and the compact
+Code coverage section retain all original validation, parser identities and budgets.
+
+The UI distinguishes affected files from gap-message counts, keeps details collapsed,
+provides fifty-file pages and keyboard originals, and rejects delayed scope/page/file
+responses. Request generations also protect project-state polling; obsolete pending
+source-index receipts clear on policy/registry/publication changes.
+
+Strict types, all 379 tests and production builds pass. New browser acceptance covers
+121 files across twenty sources, all three pages, six unsupported files/seven messages,
+keyboard/focus/escaping, refresh/restart and held-response fences. The existing candidate
+browser regression also passes. See [verification](../docs/fixtures/loredock-code-coverage/README.md)
+and [ADR 0041](../docs/decisions/0041-loredock-code-coverage-workflow.md).
+No graph/prompt/selection widening, corporate input, full-volume rerun or model request.
+Next: bounded query access to full-inventory facts with original support and explicit gaps.

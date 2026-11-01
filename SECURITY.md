@@ -35,9 +35,13 @@ The internal durable code-inventory service validates stored originals, Git blob
 parser fingerprints and bounded file checkpoints before reuse within an interrupted run.
 It adds no Git/model/source execution. Registry/policy changes atomically fence inventories
 and clear file derivatives; existing revocation purge also covers every dependent generation.
-Two bounded inventories are retained, independently of raw index history. Task 045 exposes
-no HTTP endpoint or automatically enabled worker; see
-[ADR 0040](docs/decisions/0040-loredock-durable-code-inventory.md).
+Two bounded inventories are retained, independently of raw index history; see
+[ADR 0040](docs/decisions/0040-loredock-durable-code-inventory.md). Task 046 enables analysis
+for new current index publications. Protected APIs preserve Host/Origin/session/CSRF and
+original ownership checks; manual starts bind expected source/policy versions. Startup does
+not resume or retry old attempts. Project, summary, page/file and original-response fences
+prevent late data from restoring an obsolete scope. See
+[ADR 0041](docs/decisions/0041-loredock-code-coverage-workflow.md).
 Engineer corrections retain explicit human/unverified provenance. Bounded notes matching
 retrieved passages are previewed and sent separately to the answer model as untrusted
 assertions, never instructions or source citation IDs. Answers inherit their complete

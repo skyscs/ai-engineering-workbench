@@ -108,8 +108,11 @@ and seven unsupported-syntax gap occurrences. All 98 sampled symbol ranges agree
 [Task 045](tasks/045-loredock-durable-code-inventory.md) implements the bounded durable
 service with actual parser fingerprints, validated restart/resume, atomic file checkpoints,
 source/policy fencing and two-inventory retention under schema 8. It reparses new indexes
-and leaves existing projections/answers unchanged. Next: protected API and simple coverage
-UI in the indexing workflow, then separately bounded query use of the wider inventory.
+and leaves existing projections/answers unchanged.
+[Task 046](tasks/046-loredock-code-coverage-workflow.md) connects the service to new index
+publication, protected API controls and compact code coverage/file browsing. Existing
+indexes and interrupted work remain explicit; late context/detail responses are fenced.
+Next: separately bounded query access to full-inventory facts and their original support.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

@@ -19,9 +19,11 @@ See the [owner acceptance](L2_ACCEPTANCE.md),
 [orientation decision](../decisions/0027-loredock-project-orientation.md),
 [answer checkpoint](ANSWER_FOUNDATION.md) and [user guide](USER_GUIDE.md).
 Task 045 adds an internal schema-8 code inventory service with bounded durable file
-checkpoints, explicit resume, original validation and source purge. It is not an HTTP
-contract or a replacement for the sampled map/answer context; see
-[ADR 0040](../decisions/0040-loredock-durable-code-inventory.md).
+checkpoints, explicit resume, original validation and source purge. Task 046 exposes
+bounded summaries, file pages, validated facts and lifecycle controls under `/api/code-analysis`,
+and prepares new publications automatically. Existing sampled map/answer context remains
+separate; see [ADR 0040](../decisions/0040-loredock-durable-code-inventory.md),
+[ADR 0041](../decisions/0041-loredock-code-coverage-workflow.md) and the user-guide API table.
 
 The [executable fixture](../../fixtures/loredock/README.md) uses a smaller, versioned
 fixture manifest. Do not treat its IDs or JSON shape as a public product contract.

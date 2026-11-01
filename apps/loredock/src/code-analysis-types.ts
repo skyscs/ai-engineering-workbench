@@ -29,3 +29,14 @@ export interface AnalysisPayload {
   sourceId: string; sourceName: string; revision: string; path: string; blob: string; contentHash: string;
   facts: CodeFacts; ranges: FactRanges; evidence: MapEvidence[];
 }
+export interface AnalysisSummary {
+  id: string; buildId: string; status: AnalysisStatus; published: boolean; createdAt: string; reason: string | null;
+  candidates: number; counts: Record<string, number>; gaps: number; filesWithGaps: number; examined: number;
+  textBytes: number; payloadBytes: number; elapsedMs: number; limits: AnalysisLimits; fingerprint: string; currentParser: boolean; staleIndex: boolean;
+}
+export interface AnalysisFileSummary {
+  fileId: string; sourceId: string; sourceName: string; path: string; status: AnalysisUnit['status']; reason: string | null; gapCount: number;
+}
+export interface AnalysisState {
+  inventories: AnalysisSummary[]; pendingBuildId: string | null; automaticError: { buildId: string; message: string } | null;
+}
