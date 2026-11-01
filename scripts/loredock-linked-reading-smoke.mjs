@@ -106,7 +106,7 @@ try {
   assert.equal(await evaluate(`${portal}.querySelectorAll('.linked-reading li').length`),3);
   assert.equal(await evaluate(`${portal}.querySelectorAll('.linked-reading img,.linked-reading a').length`),0);
   assert.equal(await evaluate('window.linkInjected===undefined'),true);
-  await text('1 additional local documentation links are not listed.');await text('It may be missing or outside inventory coverage.');
+  await text('1 additional local documentation link is not listed.');await text('It may be missing or outside inventory coverage.');
   checks.push('Collapsed reading shows three targets, one omission, a missing-file gap and inert hostile label.');
   await evaluate(`${portal}.scrollIntoView()`);await screenshot('linked-desktop.png');
   await page.send('Emulation.setDeviceMetricsOverride',{width:390,height:900,deviceScaleFactor:1,mobile:true});

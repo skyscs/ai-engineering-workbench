@@ -95,7 +95,7 @@ export function projectOrientation(catalog: Catalog, buildId?: string): ProjectO
     card.omittedLinkedDocuments = linked.omittedLinkedDocuments;
     card.linkedDocuments = linked.links.map(link => ({ ...link, state: 'missing', evidenceIds: [],
       reason: 'This linked document is not recorded in the selected index. It may be missing or outside inventory coverage.' }));
-    if (card.omittedLinkedDocuments) { card.gaps.push(`${card.omittedLinkedDocuments} distinct local documentation links exceed navigation label/path/count limits.`); omit('linked-document-navigation-limit'); }
+    if (card.omittedLinkedDocuments) { card.gaps.push(`Local documentation links omitted: ${card.omittedLinkedDocuments} (empty labels or navigation label/path/count limits).`); omit('linked-document-navigation-limit'); }
     if (card.omittedSections) { card.gaps.push(`${card.omittedSections} README headings are not listed because their labels are empty or exceed navigation limits.`); omit('section-navigation-limit'); }
     card.readme = { path: file.path, state: card.context ? 'available' : 'no-prose', reason: card.context
       ? 'Original introductory README lines; documented intent may be incomplete or outdated.'

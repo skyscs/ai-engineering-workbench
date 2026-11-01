@@ -83,7 +83,7 @@ export function ProjectOverview({ buildId, boundary, openEvidence }: { buildId: 
             <div className="readme-section-links">{document.readmeEvidenceIds.map(id => <button className="quiet" key={id}
               aria-label={`Read README link to ${document.path}`} onClick={() => openEvidence(id)}>Read README link · line {document.line}</button>)}</div>
           </li>)}</ul>
-          {source.omittedLinkedDocuments > 0 && <p className="notice">{source.omittedLinkedDocuments} additional local documentation links are not listed.</p>}
+          {source.omittedLinkedDocuments > 0 && <p className="notice">{source.omittedLinkedDocuments} additional local documentation {source.omittedLinkedDocuments === 1 ? 'link is' : 'links are'} not listed.</p>}
           <p className="muted">Up to {value.limits.linkedDocuments} distinct local documents per README. Some link styles are unsupported; the complete README remains available below.</p>
         </details>}
         {source.reading.length > 0 && <details className="orientation-reading"><summary>More source reading</summary>
