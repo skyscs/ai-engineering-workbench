@@ -5,6 +5,8 @@
 Accepted for the Task 045 service foundation, 2026-11-01. HTTP/UI, automatic indexing
 integration and use in query context are separate follow-up work. The daemon does not
 start this service automatically in this task.
+Task 046 subsequently connects the service to new index publication and protected browsing;
+see [ADR 0041](0041-loredock-code-coverage-workflow.md).
 
 ## Context
 

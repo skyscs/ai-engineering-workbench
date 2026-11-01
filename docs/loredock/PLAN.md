@@ -90,8 +90,11 @@ syntax gaps. All 98 sampled symbol ranges agree; one extra handler method become
 [Task 045](../../tasks/045-loredock-durable-code-inventory.md) adds the internal durable
 service with parser fingerprints, validated restart/resume, atomic per-file checkpoints,
 source/policy fencing and two-inventory retention under schema 8. New indexes reparse;
-existing graph and answer selection remain unchanged. Next: protected API and simple
-coverage UI in the indexing workflow, then bounded query use of the wider inventory.
+existing graph and answer selection remain unchanged.
+[Task 046](../../tasks/046-loredock-code-coverage-workflow.md) connects new publications
+to automatic local analysis, protected controls and compact code coverage/file pages.
+Existing indexes and interrupted work stay explicit; late scope/detail responses are fenced.
+Next: bounded query access to the wider inventory and its original support.
 No tuning on observed model answers is included.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale

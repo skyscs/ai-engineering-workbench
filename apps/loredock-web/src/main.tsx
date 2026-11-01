@@ -9,11 +9,13 @@ import { IndexChangeView } from './IndexChanges';
 import { SourceOnboarding } from './SourceOnboarding';
 import { ProjectOverview } from './ProjectOverview';
 import { CandidatePanel } from './CandidatePanel';
+import { CodeInventory } from './CodeInventory';
 
 function App() {
   const [state, setState] = useState<ProjectState>();
   const [answersEnabled, setAnswersEnabled] = useState(false);
-  useEffect(() => { void api<{ modelExecution: boolean }>('/health').then(value => setAnswersEnabled(value.modelExecution)).catch(cause => setError((cause as Error).message)); }, []);
+  const [codeEnabled, setCodeEnabled] = useState(false);
+  useEffect(() => { void api<{ modelExecution: boolean; codeAnalysis: boolean }>('/health').then(value => { setAnswersEnabled(value.modelExecution); setCodeEnabled(value.codeAnalysis); }).catch(cause => setError((cause as Error).message)); }, []);
   const [error, setError] = useState(''); const [busy, setBusy] = useState(false);
   const [query, setQuery] = useState('');
   const [selected, setSelected] = useState(''); const [results, setResults] = useState<SearchResult>();
@@ -25,19 +27,26 @@ function App() {
   const evidenceRequest = useRef(0);
   const clearEvidence = useCallback(() => { evidenceRequest.current++; setEvidence(undefined); }, []);
   const boundary = useRef('');
-  const refresh = useCallback(async () => { const next = await api<ProjectState>('/project'); setState(next); }, []);
+  const projectRequest = useRef(0);
+  const refresh = useCallback(async () => {
+    const request = ++projectRequest.current, next = await api<ProjectState>('/project');
+    if (request === projectRequest.current) setState(next);
+  }, []);
   useEffect(() => {
-    let cancelled = false;
+    let cancelled = false, polling = false;
     const poll = async () => {
-      try { const next = await api<ProjectState>('/project'); if (!cancelled) setState(next); }
+      if (polling) return; polling = true;
+      try { await refresh(); }
       catch (cause) { if (!cancelled) setError((cause as Error).message); }
+      finally { polling = false; }
     };
     void poll(); const timer = setInterval(() => { void poll(); }, 1000);
-    return () => { cancelled = true; clearInterval(timer); };
-  }, []);
+    return () => { cancelled = true; projectRequest.current++; clearInterval(timer); };
+  }, [refresh]);
   const policyVersion = state?.policyVersion;
   const sourceSetVersion = state?.sourceSetVersion;
   const published = state?.publishedBuildId;
+  useEffect(() => { pendingStart.current = undefined; }, [policyVersion, sourceSetVersion, published]);
   useEffect(() => { evidenceRequest.current++; setResults(undefined); setEvidence(undefined); setGaps(undefined); }, [policyVersion, sourceSetVersion, selected, published]);
   useEffect(() => {
     if (selected && state && !state.builds.some(build => build.id === selected && build.published && build.policyVersion === state.policyVersion)) setSelected('');
@@ -122,6 +131,9 @@ function App() {
               {gaps && <div className="gaps"><p>Up to 100 file records are shown. Counts above cover the full inventory.</p>{gaps.map((file, index) => <p key={index}><code>{file.path}</code> — {file.reason}{file.error ? `: ${file.error}` : ''}</p>)}</div>}
             </details>
             <IndexChangeView buildId={searchBuild} boundary={`${boundary.current}:${published}`} openEvidence={id => void openEvidence(id)} />
+            {codeEnabled && searchBuild && <CodeInventory key={`${boundary.current}:${published}`} buildId={searchBuild}
+              policyVersion={state.policyVersion} sourceSetVersion={state.sourceSetVersion} staleIndex={currentBuild?.sourceSetVersion !== state.sourceSetVersion}
+              openEvidence={id => void openEvidence(id)} clearEvidence={clearEvidence} />}
           </>}
         </div>
         <CandidatePanel buildId={searchBuild} boundary={`${boundary.current}:${published}`} correctionRevision={state.correctionRevision} openEvidence={id => void openEvidence(id)} clearEvidence={clearEvidence} />

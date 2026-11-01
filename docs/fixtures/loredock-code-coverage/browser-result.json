@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "loredock-code-coverage-browser/1",
+  "sources": 20,
+  "candidateFiles": 121,
+  "modelRequests": 0,
+  "answerModeDisabled": true,
+  "automaticAnalysis": true,
+  "unsupportedFiles": 6,
+  "gapMessages": 7,
+  "collapsedDetails": true,
+  "keyboardDisclosure": true,
+  "keyboardFileFacts": true,
+  "keyboardOriginalEvidence": true,
+  "escapedSourceLabels": true,
+  "filePages": [
+    50,
+    50,
+    21
+  ],
+  "uniqueFiles": 121,
+  "delayedFileReplacementFenced": true,
+  "delayedOriginalCollapseFenced": true,
+  "delayedPageRefreshFenced": true,
+  "restartPreservesInventoryIds": true,
+  "lateProjectPollFenced": true,
+  "delayedFilePolicyFenced": true,
+  "delayedFileRevocationFenced": true,
+  "mobileWidth": 390,
+  "horizontalOverflow": false
+}

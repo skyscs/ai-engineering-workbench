@@ -7,7 +7,7 @@ import { readMapDocument } from './map-document.js';
 import { typescriptFacts } from './code-typescript.js';
 import { javaFacts } from './code-java.js';
 import { codeAnalysisFingerprint, factRanges, verifyFactRanges } from './code-analysis-facts.js';
-import { codeAnalysisLimits, type AnalysisLimits, type AnalysisRow, type AnalysisFile, type AnalysisUnit, type AnalysisPayload } from './code-analysis-types.js';
+import { codeAnalysisLimits, type AnalysisLimits, type AnalysisRow, type AnalysisFile, type AnalysisUnit, type AnalysisPayload, type AnalysisSummary, type AnalysisFileSummary } from './code-analysis-types.js';
 
 const predicate = "(lower(f.path) LIKE '%.ts' OR lower(f.path) LIKE '%.js' OR lower(f.path) LIKE '%.vue' OR lower(f.path) LIKE '%.java')";
 const fileColumns = 'f.id,f.sourceId,bs.name AS sourceName,bs.revision,f.path,f.blob,f.contentHash,f.size,length(f.raw) AS storedBytes';
@@ -69,12 +69,13 @@ export class CodeAnalysis {
     checked(gitBlobHash(document.raw, file.blob) === file.blob);
     return document;
   }
-  get(id: string) {
+  get(id: string): AnalysisSummary {
     const row = this.row(id);
     const counts = this.store.all<{ status: AnalysisUnit['status']; count: number }>('SELECT status,count(*) count FROM code_analysis_files WHERE runId=? GROUP BY status', id);
-    const gaps = this.store.one<{ count: number }>('SELECT coalesce(sum(gapCount),0) count FROM code_analysis_files WHERE runId=?', id)!.count;
+    const coverage = this.store.one<{ gaps: number; filesWithGaps: number; examined: number }>(`SELECT coalesce(sum(gapCount),0) gaps,
+      count(CASE WHEN gapCount>0 THEN 1 END) filesWithGaps,count(CASE WHEN inputBytes>0 THEN 1 END) examined FROM code_analysis_files WHERE runId=?`, id)!;
     return { id: row.id, buildId: row.buildId, status: row.status, published: Boolean(row.published), createdAt: row.createdAt, reason: row.reason,
-      candidates: row.candidates, counts: Object.fromEntries(counts.map(item => [item.status, item.count])), gaps,
+      candidates: row.candidates, counts: Object.fromEntries(counts.map(item => [item.status, item.count])), ...coverage,
       textBytes: row.textBytes, payloadBytes: row.payloadBytes, elapsedMs: row.elapsedMs, limits: JSON.parse(row.limits) as AnalysisLimits,
       fingerprint: row.fingerprint, currentParser: row.fingerprint === this.fingerprint,
       staleIndex: this.store.buildRow(row.buildId).sourceSetVersion !== this.store.project().sourceSetVersion };
@@ -83,7 +84,7 @@ export class CodeAnalysis {
   files(id: string, offset = 0) {
     const row = this.row(id); this.authorize(row);
     if (!Number.isSafeInteger(offset) || offset < 0 || offset >= Math.max(1, row.candidates) || offset % 50) throw new CatalogError('INVALID_PAGE', 'Choose an available code-file page.');
-    return this.store.all<{ fileId: string; sourceId: string; sourceName: string; path: string; status: AnalysisUnit['status']; reason: string | null; gapCount: number }>(
+    return this.store.all<AnalysisFileSummary>(
       `SELECT u.fileId,f.sourceId,bs.name sourceName,f.path,u.status,u.reason,u.gapCount FROM code_analysis_files u JOIN files f ON f.id=u.fileId
       JOIN build_sources bs ON bs.buildId=f.buildId AND bs.sourceId=f.sourceId WHERE u.runId=? ORDER BY u.ordinal LIMIT 50 OFFSET ?`, id, offset);
   }

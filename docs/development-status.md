@@ -1,5 +1,32 @@
 # Development status
 
+## Task 046 — Code coverage in the indexing workflow
+
+Implemented and locally verified, 2026-11-01. PR #49 reached main as `7ee582f` after
+push `41253535078` and pull-request `41253546061` passed for exact head
+`395930ec2e9648ec3bbb3576ce58bd3b42fdc8ac`. Scope was committed in `39eaa20`.
+
+New current index publications now trigger bounded local code analysis. A daemon-owned
+observer queues/coalesces publications, respects manual attempts and never resumes or
+retries old work automatically. Startup leaves prior indexes explicit. Protected APIs
+expose lifecycle controls, fifty-file pages and one validated payload. Compact coverage
+shows distinct examined/unsupported-file/message counts; details and repeat controls stay
+collapsed. Keyboard navigation opens original sources. Late project/summary/page/file/
+evidence responses are fenced, and obsolete pending index-start receipts clear on scope
+changes. Existing graph, candidate and answer inputs remain unchanged.
+
+Strict types, all 379 tests and production builds pass. Four new integration tests cover
+coordination, isolated start errors and HTTP boundaries. Browser acceptance verifies 121
+files across twenty sources, 50/50/21 pages, six unsupported files/seven messages, escaping,
+keyboard originals, narrow layout, refresh/restart and held-response scope fences. The
+existing candidate browser suite also passes. No corporate input, model request or new
+full-volume benchmark. See [Task 046](../tasks/046-loredock-code-coverage-workflow.md),
+[ADR 0041](decisions/0041-loredock-code-coverage-workflow.md) and
+[verification](fixtures/loredock-code-coverage/README.md).
+
+Next: bounded query access to the wider inventory and its original support. Full-file
+examination still does not establish semantic acceptance, and the bridge remains gated.
+
 ## Task 045 — Durable bounded code inventory
 
 Implemented and locally verified, 2026-11-01. PR #48 reached main as

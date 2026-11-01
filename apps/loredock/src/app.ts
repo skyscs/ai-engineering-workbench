@@ -16,8 +16,10 @@ import { indexChanges } from './index-changes.js';
 import { Reconciliation } from './reconciliation.js';
 import { projectOrientation } from './orientation.js';
 import { sourceCandidatePreview } from './source-candidates.js';
+import type { CodeAnalysis } from './code-analysis.js';
+import type { CodeAnalysisFollow } from './code-analysis-follow.js';
 
-export function createApp(catalog: Catalog, options: { publicDir?: string; development?: boolean; answers?: Answers } = {}) {
+export function createApp(catalog: Catalog, options: { publicDir?: string; development?: boolean; answers?: Answers; codeAnalysis?: CodeAnalysis; codeFollow?: CodeAnalysisFollow } = {}) {
   const app = new Hono();
   const hosts = new Set(['127.0.0.1:4244', ...options.development ? ['127.0.0.1:5174'] : []]);
   const origins = new Set([...hosts].map(host => `http://${host}`));
@@ -50,7 +52,7 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
     }
     await next();
   });
-  app.get('/api/health', c => c.json({ service: 'loredock', version: '0.1.0', modelExecution: Boolean(options.answers) }));
+  app.get('/api/health', c => c.json({ service: 'loredock', version: '0.1.0', modelExecution: Boolean(options.answers), codeAnalysis: Boolean(options.codeAnalysis) }));
   app.post('/api/session', c => {
     const existing = sessions.get(getCookie(c, 'loredock_session') ?? '');
     if (existing) return c.json({ token: existing.token });
@@ -90,6 +92,40 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
   app.get('/api/system-map', c => c.json(declarationMap(catalog, c.req.query('buildId'))));
   app.get('/api/code-flows', c => c.json(codeFlows(catalog, c.req.query('buildId'))));
   app.get('/api/orientation', c => c.json(projectOrientation(catalog, c.req.query('buildId'))));
+  const codeAnalysis = options.codeAnalysis;
+  if (codeAnalysis) {
+    app.get('/api/code-analysis', c => c.json(options.codeFollow?.state() ?? { inventories: codeAnalysis.list(), pendingBuildId: null, automaticError: null }));
+    app.post('/api/code-analysis', async c => {
+      const input = await body(c.req), project = catalog.store.project();
+      if (Object.keys(input).some(key => !['requestId', 'buildId', 'policyVersion', 'sourceSetVersion'].includes(key))
+        || typeof input.requestId !== 'string' || typeof input.buildId !== 'string' || !input.buildId || input.buildId.length > 100
+        || !Number.isSafeInteger(input.policyVersion) || !Number.isSafeInteger(input.sourceSetVersion)) {
+        throw new CatalogError('INVALID_REQUEST', 'A request ID, published index and current source/policy versions are required.');
+      }
+      if (input.policyVersion !== project.policyVersion || input.sourceSetVersion !== project.sourceSetVersion
+        || catalog.readBuild(input.buildId).sourceSetVersion !== project.sourceSetVersion) {
+        throw new CatalogError('CONFLICT', 'Sources or policy changed. Update knowledge before analyzing code.', 409);
+      }
+      return c.json(codeAnalysis.start(input.requestId, input.buildId), 202);
+    });
+    app.get('/api/code-analysis/:id/files', c => {
+      const offset = c.req.query('offset');
+      if (offset !== undefined && !/^(0|[1-9]\d{0,4})$/.test(offset)) throw new CatalogError('INVALID_PAGE', 'Choose an available code-file page.');
+      return c.json({ files: codeAnalysis.files(c.req.param('id'), offset === undefined ? 0 : Number(offset)), offset: offset === undefined ? 0 : Number(offset), limit: 50 });
+    });
+    app.get('/api/code-analysis/:id/files/:fileId', c => c.json(codeAnalysis.file(c.req.param('id'), c.req.param('fileId'))));
+    app.post('/api/code-analysis/:id/:action', async c => {
+      const text = await c.req.text();
+      if (text.trim()) {
+        let input: unknown;
+        try { input = JSON.parse(text); } catch { throw new CatalogError('INVALID_JSON', 'Code analysis controls take no arguments.'); }
+        if (!input || typeof input !== 'object' || Array.isArray(input) || Object.keys(input).length) throw new CatalogError('INVALID_REQUEST', 'Code analysis controls take no arguments.');
+      }
+      const action = c.req.param('action');
+      if (action !== 'pause' && action !== 'resume' && action !== 'cancel') throw new CatalogError('INVALID_ACTION', 'Unknown code analysis action.');
+      return c.json(codeAnalysis.control(c.req.param('id'), action));
+    });
+  }
   app.post('/api/candidates/preview', async c => {
     const input = await body(c.req);
     if (Object.keys(input).some(key => key !== 'question' && key !== 'buildId' && key !== 'relatedOffset') || typeof input.question !== 'string'

@@ -53,6 +53,8 @@ directory. Linux is the verified platform.
    exact commits, unavailable sources, dirty-worktree notices, omitted path counts and
    reasons for exclusions. **Show excluded and failed files** lists up to 100 examples
    with file errors; aggregate counts cover the entire considered inventory.
+   **Code coverage** then examines supported code syntax automatically for the new
+   published index. You can use search and maps while this separate local phase runs.
 4. To find a starting repository, describe the problem under **Where should I look?**
    and click **Find candidate repositories**. Review original evidence and **Other matches**.
 5. Enter a concrete term under **Explore the sources**, such as `orders.placed.v2`,
@@ -71,6 +73,46 @@ staged and untracked differences; they do not run clean filters or include those
 changes. Every index records independent revisions, not proof of a coherent deployment.
 Production environment values and external systems remain unknown unless included in
 explicitly registered sources.
+
+## Inspect code coverage
+
+**Code coverage**, under **Source index**, shows how many candidate code files were
+examined and how many contain syntax gaps. A file may have several gap messages;
+examined does not mean fully understood. Excluded, failed, unattempted or omitted
+results appear explicitly when present. No Codex setup or extra input fields are needed.
+
+Expand **Code files and limits** to browse fifty files at a time. Use **Next code files**
+and **Previous code files**, then **Inspect file facts** for supported symbols,
+operations and any parser gaps. The selected file heading receives keyboard focus.
+**Original lines …** opens its validated committed source; read that original before
+interpreting a syntax fact as behavior. Unsupported files remain searchable as source text
+when they were admitted to the source index. The fact view does not establish runtime
+execution, deployment wiring or complete framework understanding.
+
+Newly published current indexes start code analysis automatically while the daemon runs.
+If another inventory is running, the latest new index waits; superseded publications do
+not all create redundant work. Previously published indexes at startup remain explicit:
+use **Analyze code** when none exists. **Pause code analysis**, **Resume code analysis**
+and **Cancel code analysis** control this phase independently of source indexing.
+Restart preserves completed results and marks active work interrupted; it never resumes
+that work automatically. A failed attempt also needs an explicit retry. **Analyze code
+again**, inside the details for completed results, creates a new inventory. Parser/runtime
+changes require a new inventory instead of relabeling saved facts.
+
+The selected **Index version** also selects code coverage. At most two inventories retain
+their file facts; an older one can be evicted when a new attempt starts. Source indexes,
+answers and engineer corrections have their separate retention rules. New registrations,
+source removal and policy changes fence and clear these disposable code facts. Update
+knowledge for the current source set. Page/file changes and changing scope clear open
+detail and reject late responses. An automatic analysis error leaves the published source
+index usable and appears beside coverage.
+
+Limits are 10,000 candidates, 32 KiB/file, eight original spans/file, 50 MiB examined
+text, 128 KiB fact/provenance payload per file, 16 MiB per inventory and five minutes of
+cumulative active work, checked between files. Unsupported parser guards still apply.
+The two payload budgets exclude SQLite/metadata/WAL overhead and original index history.
+Current maps, candidate previews and answer prompts still use their existing bounded
+projections; integration of this wider inventory into queries is a separate next step.
 
 ## Find candidate repositories
 
@@ -688,6 +730,11 @@ require the session. No tokens belong in URLs or logs.
 | `GET /api/evidence/:id` | Reopen a validated, authorized stored citation. |
 | `GET /api/system-map?buildId=...` | Bounded declaration projection for the current or a selected authorized published index. |
 | `GET /api/code-flows?buildId=...` | Versioned code links, partial flow outlines, candidate hops and original evidence from the same authorized index. |
+| `GET /api/code-analysis` | At most two inventory summaries, the newest queued index and any scoped automatic-start error. |
+| `POST /api/code-analysis` | Start/replay `{requestId, buildId, policyVersion, sourceSetVersion}` for an authorized published index matching current source/policy versions. Unknown fields are rejected. |
+| `POST /api/code-analysis/:id/:action` | Explicit `pause`, `resume` or `cancel`; no arguments (an empty object is accepted). Resume validates the pinned checkpoints and current parser. |
+| `GET /api/code-analysis/:id/files?offset=...` | Fifty scoped file records; offset is an available nonnegative multiple of 50, default 0. |
+| `GET /api/code-analysis/:id/files/:fileId` | One validated published file payload with bounded facts, original references and syntax gaps. Foreign, revoked, stale-parser and evicted results are unavailable. |
 | `GET /api/orientation?buildId=...` | Original README context/gaps, optional manifest reading, selected revisions/coverage and separate unindexed-source gaps; no model calls. |
 | `POST /api/candidates/preview` | Model-free source suggestions from `{question, buildId?, relatedOffset?}`, original support, related-repository pages, other matches and uncertainty. `relatedOffset` defaults to 0; use an available multiple of 4 below 20. Related projection v2 returns offset/limit/total and nullable previous/next offsets. Invalid/unavailable offsets return `INVALID_PAGE`. Requires session/CSRF; no saved investigation scope. |
 | `GET /api/corrections?buildId=...` | Current human correction overlay/revision and flow-review dependencies for the selected index. |
