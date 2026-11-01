@@ -12,7 +12,7 @@ import { compareHeaders } from '../src/http-headers.js';
 // @ts-expect-error The prospective offline reader is an independent JavaScript harness.
 import { savedFlowProjection, graphSemantics } from '../../../scripts/loredock-durable-flows.mjs';
 // @ts-expect-error Owned fixture preparation does not execute a frozen measurement receipt.
-import { prepareFlowCase } from '../../../scripts/loredock-durable-flow-probe.mjs';
+import { prepareFlowCase, reopenSupport } from '../../../scripts/loredock-durable-flow-probe.mjs';
 
 const services = { Catalog, CatalogStore, SourceGit, CodeAnalysis, codeFlows, declarationMap, sha256, CatalogError, compareHeaders };
 
@@ -24,6 +24,9 @@ test('offline saved-fact comparison preserves graph semantics and detects change
   const current = codeFlows(state.catalog), saved = await savedFlowProjection(services, state.analysis, state.buildId);
   assert.ok(saved.graph); assert.notEqual(saved.graph.adapterVersion, current.adapterVersion);
   assert.deepEqual(graphSemantics(saved.graph), graphSemantics(current));
+  assert.ok(reopenSupport(state, saved).length >= 5);
+  const wrongOwner = structuredClone(saved); wrongOwner.payloads[0].sourceId = 'wrong-owner';
+  assert.throws(() => reopenSupport(state, wrongOwner));
   for (const mutate of [
     (graph: typeof current) => { graph.nodes[0]!.label += ' changed'; },
     (graph: typeof current) => { graph.edges[0]!.status = 'candidate'; },

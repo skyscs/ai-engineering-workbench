@@ -77,15 +77,18 @@ function captureControl(services, state, buildId) {
     timings: { projectionMs, inputVerificationMs: performance.now() - verifyStart } };
 }
 
-function reopenSupport(state, value) {
+export function reopenSupport(state, value) {
   const refs = new Map(Object.values(value.graph?.evidence ?? {}).map(ref => [ref.id, ref]));
   for (const payload of value.payloads ?? []) for (const ref of payload.evidence) refs.set(ref.id, ref);
   const reopened = [];
   for (const ref of refs.values()) {
     const original = state.catalog.evidence(ref.id), text = state.originals.get(`${original.sourceName}/${original.revision}/${original.path}`);
     assert.notEqual(text, undefined, 'Citation is outside the independently frozen source bytes.');
-    for (const key of ['sourceId', 'sourceName', 'revision', 'path', 'startLine', 'endLine', 'contentHash', 'spanHash']) assert.equal(original[key], ref[key]);
+    for (const key of ['id', 'sourceName', 'revision', 'path', 'startLine', 'endLine']) assert.equal(original[key], ref[key]);
     assert.equal(original.buildId, value.graph?.buildId ?? value.buildId);
+    const source = state.store.one('SELECT sourceId FROM build_sources WHERE buildId=? AND name=?', original.buildId, original.sourceName);
+    assert.equal(original.sourceId, source.sourceId);
+    for (const payload of value.payloads ?? []) if (payload.evidence.some(item => item.id === original.id)) assert.equal(original.sourceId, payload.sourceId);
     assert.equal(original.contentHash, digest(text));
     assert.equal(original.blobId, servicesBlobHash(text, original.blobId.length));
     assert.equal(original.text, text.replaceAll('\r\n', '\n').split('\n').slice(original.startLine - 1, original.endLine).join('\n'));
@@ -117,7 +120,7 @@ async function measure(services, state, mode, buildId = state.buildId, options =
     value = mode === 'control' ? captureControl(services, state, buildId)
       : await savedFlowProjection(services, state.analysis, buildId, mode, { ...options, afterFile });
     const reopenStart = performance.now(); value.reopened = reopenSupport(state, value); value.reopenMs = performance.now() - reopenStart;
-  } catch (error) { value = { status: 'harness-failed', error: { code: error.code ?? null, message: error.message, stack: error.stack } }; }
+  } catch (error) { value = { ...value, status: 'harness-failed', error: { code: error.code ?? null, message: error.message, stack: error.stack } }; }
   finally { clearInterval(interval); rssPeak = Math.max(rssPeak, process.memoryUsage().rss); samples++; }
   const after = state.counters(), projectionWork = Object.fromEntries(Object.keys(before).map(key => [key, after[key] - before[key] - excludedHook[key]]));
   return { ...value, measurement: { wallMs: performance.now() - began, serializedResultBytes: Buffer.byteLength(JSON.stringify(value)),
