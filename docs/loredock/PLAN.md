@@ -136,6 +136,11 @@ boundary shape. No production behavior or model qualification changes.
 Markdown/text documents referenced by the root README. Exact original links/targets,
 explicit gaps, fair reading rounds and existing budgets/history fences preserve simple
 navigation without external fetching, new forms or answer-context changes.
+[Task 061](../../tasks/061-loredock-inventory-flow-contract.md) traces saved code facts
+through graph selection, original validation, correction/reapplication and answer inputs.
+The [durable-flow design](DURABLE_FLOW_DESIGN.md) chooses an offline parity comparison and
+wider-input diagnostic next. More retained facts do not establish a complete graph; no
+production switch, graph-budget increase or semantic acceptance is included.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.

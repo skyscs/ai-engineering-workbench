@@ -1,6 +1,6 @@
 # Task 061 — Durable facts and wider flow projection contract
 
-Status: scoped before analysis, 2026-11-01.
+Status: analyzed and locally verified, 2026-11-01. Scope `7cc98d9` preceded analysis.
 
 Task 060 extends document reading. The next whole-system context gap is that durable code
 analysis examines the full admitted inventory, while code-flow/candidate projections still
@@ -33,3 +33,18 @@ update roadmap/status and preserve the running demo/data/assets. Verify referenc
 consistency against the current source; no redundant application/browser rerun is required
 for prose-only changes. Review and merge a separate PR after both exact-head CI events
 pass. Broader semantic/private-pilot acceptance and the Workbench bridge remain gated.
+
+## Recorded outcome
+
+The [design](../docs/loredock/DURABLE_FLOW_DESIGN.md) traces the separate file and graph
+limits, different ordering, full-original validation, parser identity and disposable fact
+lifecycle. Wider admission affects correction/reapplication targets, related-source clues
+and answer publication checks, so a production switch cannot be a local loop replacement.
+
+The next bounded slice is an offline three-mode comparison: production control, exact
+saved-fact parity and a deliberately naive wider diagnostic. Nine prospective scenarios
+cover support displacement, ambiguity, availability, integrity, yielded scope changes,
+history and eviction. Inputs/oracles must be frozen before running; a failed wider candidate
+is retained as a result, not tuned into a passing claim. No experiment or product behavior
+is implemented in this documentation task. Source/reference checks pass; existing runtime
+verification and frozen evaluations are retained without a redundant local rerun.

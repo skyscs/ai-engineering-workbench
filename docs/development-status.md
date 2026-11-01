@@ -1,5 +1,29 @@
 # Development status
 
+## Task 061 — Durable facts and wider flow projection contract
+
+Analyzed and locally verified, 2026-11-01. Scope `7cc98d9` preceded analysis.
+PR #64 reached main as `ef720f0` after push `41337293010` and pull-request `41337336623`
+passed for exact head `7f7ae87a0ac87cf1eea49cf1d5e6851b614e0ba4` (445 tests).
+
+The [design](loredock/DURABLE_FLOW_DESIGN.md) audits current sample/order, graph and
+declaration limits, reusable facts/ranges, full-original validation, parser fingerprints,
+scope fences and two-inventory retention. Existing correction/reapplication, related-source
+and answer-publication consumers make wider selection a compatibility change. Dense files
+can consume graph slots, and additional matches can invalidate apparent uniqueness.
+
+The next bounded slice is an offline comparison of the unchanged production control,
+exact saved-fact parity and a naive wider-input diagnostic. Nine prospective scenarios
+fix support, ambiguity, availability, corruption, scope-change and history expectations
+before implementation. A wider candidate may fail the promotion gate; retaining that
+failure completes the experiment without authorizing a product switch or adaptive tuning.
+
+Source contracts and local document links are verified. This task changes only English
+documentation; no new experiment, product code, schema, UI, model call or corporate source.
+Existing runtime/browser evidence is retained without a redundant local rerun. The running
+user demo and frozen semantic gates stay unchanged. See
+[Task 061](../tasks/061-loredock-inventory-flow-contract.md).
+
 ## Task 060 — README-linked local documentation
 
 Implemented and locally verified, 2026-11-01. Scope `7621647`; implementation `ca6c182`;

@@ -149,6 +149,10 @@ bounded original README section navigation. [Task 059](tasks/059-loredock-readme
 verifies twenty full-budget READMEs with exact section/original-part and historical identity.
 [Task 060](tasks/060-loredock-linked-reading.md) adds same-repository linked-document
 reading with original citations, explicit gaps and fair use of remaining document budgets.
+[Task 061](tasks/061-loredock-inventory-flow-contract.md) audits the gap between durable
+code facts and the bounded graph, including correction and answer dependencies. Its
+[design](docs/loredock/DURABLE_FLOW_DESIGN.md) specifies an offline parity/wider-input
+comparison as the next slice; it does not change production selection or graph budgets.
 The user demo and feedback stay separate from these checks; broader semantic synthesis
 and question-context changes remain open.
 Preserve all failed evaluations;
