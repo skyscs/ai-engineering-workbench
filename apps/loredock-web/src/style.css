@@ -52,14 +52,21 @@
 }
 .orientation-reading,
 .readme-sections,
+.linked-reading,
 .orientation-coverage{
   margin-top:16px
 }
 .orientation-reading strong{
   display:block
 }
-.readme-sections li{
+.readme-sections li,
+.linked-reading li{
   margin:12px 0
+}
+.linked-reading code{
+  display:block;
+  white-space:normal;
+  margin:6px 0
 }
 .readme-sections li p{
   margin:6px 0

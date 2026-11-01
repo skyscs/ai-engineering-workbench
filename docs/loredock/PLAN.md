@@ -132,6 +132,10 @@ glossary extraction and architecture synthesis remain separately scoped.
 READMEs: 240 exact sections, 160 original parts, visible manifest/heading omissions,
 49.53 ms first projection and unchanged historical/restart identity on the constructed
 boundary shape. No production behavior or model qualification changes.
+[Task 060](../../tasks/060-loredock-linked-reading.md) adds bounded reading of same-repository
+Markdown/text documents referenced by the root README. Exact original links/targets,
+explicit gaps, fair reading rounds and existing budgets/history fences preserve simple
+navigation without external fetching, new forms or answer-context changes.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.

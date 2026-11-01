@@ -95,6 +95,10 @@ with raw/span/metadata integrity checks and fresh repository inventory. Comparis
 omit revoked scopes and fence old policies. Purge clears all copied byte/span generations
 and extraction fingerprints. See [ADR 0025](docs/decisions/0025-loredock-incremental-refresh.md).
 Project orientation quotes authorized original README lines and links saved manifests.
+README-linked document reading uses fixed source/build/path catalog lookups only, complete
+original validation and the same budgets/fences. It never fetches URLs, opens the working
+tree or follows parent/cross-repository paths; labels are escaped text and links are not
+crawled recursively. See [ADR 0048](docs/decisions/0048-loredock-linked-reading.md).
 It executes no setup instructions, HTML, Git command or model call. Current-policy,
 source revocation and late-response fences cover cards, reading links and citations;
 new registrations remain separate from historical content. See

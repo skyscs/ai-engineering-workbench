@@ -251,6 +251,28 @@ as omissions. **More source reading** retains the complete original when this pa
 outline is insufficient. A README with only headings can still offer navigation even
 when no introductory paragraph is available.
 
+Expand **Documentation linked from README** to read local architecture, terminology or
+setup files that the README references. **Read document** (or **Read document part N**)
+opens each saved original part; **Read README link · line N** shows where that reference
+came from. Both use the selected index's source revision. Missing, excluded or limited
+targets have a visible explanation. A link fragment such as `#setup` opens the whole saved
+file, not a resolved section anchor.
+
+The first three distinct supported local paths are listed in README order. Labels are
+limited to 160 UTF-8 bytes and decoded paths to 512 bytes; over-limit entries are omitted
+whole with a count. Only simple single-line `[label](relative/path.md)` links to Markdown,
+TXT or extensionless README files in that same repository are supported. Percent-encoded
+spaces are accepted. Images, code, HTML, reference-style links, nested/escaped labels,
+optional title syntax and other Markdown forms may be absent. External URLs, parent/
+absolute paths and query-bearing destinations are not opened. Linked files are not crawled
+recursively. Full original README reading remains available for unsupported formats.
+
+Linked reading uses the existing document/byte budget after all root READMEs and manifests,
+in rounds across repositories. It does not add files to the index, inspect your working
+files, contact external services or expand answer-model inputs. See
+[verification](../fixtures/loredock-linked-reading/README.md) and
+[ADR 0048](../decisions/0048-loredock-linked-reading.md).
+
 These excerpts are documented intent, not verified roles or a generated architecture
 summary. They can be outdated or contradict code/configuration: the demo API README's
 `orders.created.v1` remains visible even though its local configuration says
@@ -278,7 +300,7 @@ Code-only or oversized introductions remain gaps, with original reading links wh
 available. Failed/truncated inventories cannot establish that documentation is absent.
 
 Overview coverage is not a percentage of system understanding. Diagnostics under
-**Overview coverage and gaps** disclose the bounds: sixty root documents, 32 KiB/file,
+**Overview coverage and gaps** disclose the bounds: sixty README/manifest/linked documents, 32 KiB/file,
 640 KiB source input, eight spans/file, 16 complete lines / 2,000 UTF-8 bytes per excerpt
 and 512 KiB output. Every saved authorized repository gets context or a visible gap.
 When README input fills the aggregate budget, optional manifest reading can be omitted;
@@ -916,7 +938,7 @@ require the session. No tokens belong in URLs or logs.
 | `POST /api/code-analysis/:id/:action` | Explicit `pause`, `resume` or `cancel`; no arguments (an empty object is accepted). Resume validates the pinned checkpoints and current parser. |
 | `GET /api/code-analysis/:id/files?offset=...` | Fifty scoped file records; offset is an available nonnegative multiple of 50, default 0. |
 | `GET /api/code-analysis/:id/files/:fileId` | One validated published file payload with bounded facts, original references and syntax gaps. Foreign, revoked, stale-parser and evicted results are unavailable. |
-| `GET /api/orientation?buildId=...` | Orientation v2 / adapter v3: original README context/gaps, bounded section ranges/original-part IDs, optional manifest reading, selected revisions/coverage and separate unindexed-source gaps; no model calls. |
+| `GET /api/orientation?buildId=...` | Orientation v3 / adapter v4: original README context/gaps, bounded section ranges and linked-document original IDs/states, optional manifest reading, selected revisions/coverage and separate unindexed-source gaps; no model calls. |
 | `POST /api/candidates/preview` | Model-free source suggestions from `{question, buildId?, relatedOffset?}`, original support, related-repository pages, other matches and uncertainty. `relatedOffset` defaults to 0; use an available multiple of 4 below 20. Related projection v2 returns offset/limit/total and nullable previous/next offsets. Invalid/unavailable offsets return `INVALID_PAGE`. Requires session/CSRF; no saved investigation scope. |
 | `GET /api/corrections?buildId=...` | Current human correction overlay/revision and flow-review dependencies for the selected index. |
 | `GET /api/corrections/:id/history` | Authorized immutable versions and original relationship/evidence provenance. |

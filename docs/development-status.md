@@ -1,5 +1,38 @@
 # Development status
 
+## Task 060 — README-linked local documentation
+
+Implemented and locally verified, 2026-11-01. Scope `7621647`; implementation `ca6c182`;
+message review `343dfbe`. PR #63 reached main as `a75c7ea` after push `41334896630` and
+pull-request `41334903472` passed for exact head `5e1d63a3e1f3ef0761f424e9b3005f8984985ef7`
+(436 tests). The superseded documentation-only head's CI runs were explicitly cancelled.
+
+Orientation v3 / adapter v4 now exposes up to three distinct local documents referenced
+by a validated root README, with literal labels, referring-line evidence and every admitted
+target part. Fixed same-source/build/path lookups preserve pinned revisions; no URL fetch,
+working-tree read, recursion or cross-source fallback. A conservative inline-link profile
+rejects unsafe paths and makes unsupported syntax explicit. Missing/excluded/unavailable/
+limited targets remain visible. Existing README and manifest priority, byte/document caps
+and source/index/policy fences remain intact. Linked reads use remaining capacity in source
+rounds. No persisted schema, code-parser fingerprint, answer prompt/retrieval or Workbench
+change. The collapsed reading control adds no form or model setup.
+
+Strict types, 445 tests and production builds pass; thirty-four focused checks/subchecks
+include nine new tests. Twenty sources verify 20/5/0 admitted links across three rounds
+within sixty total documents, then complete README coverage with all linked originals
+limited at the full 640 KiB input budget. The initial scale-test setup encountered an
+existing docs directory; only fixture initialization needed correction.
+
+Nine compiled browser conditions pass: original target/README navigation and focus,
+hostile-label escaping, omissions, missing targets, 390px layout, immutable historical
+reading and delayed index/source/policy response fences. Screenshot review led to a
+singular/plural wording fix; final builds and browser checks were repeated. The owned
+worktree and non-forwarding proxy preserve the running user demo's data/process/assets.
+See [verification](fixtures/loredock-linked-reading/README.md),
+[Task 060](../tasks/060-loredock-linked-reading.md) and
+[ADR 0048](decisions/0048-loredock-linked-reading.md). Model calls and corporate sources
+remain unused; frozen semantic gates and private-pilot requirements are unchanged.
+
 ## Task 059 — Twenty-repository README navigation boundary check
 
 Implemented and locally verified, 2026-11-01. Scope `d78cf9f`; measurement implementation
