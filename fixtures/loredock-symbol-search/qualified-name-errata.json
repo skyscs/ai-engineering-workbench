@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "loredock-symbol-name-errata/1",
+  "corrections": [
+    { "id": "s05", "source": "inventory-worker", "path": "src/StockProjection.java", "from": "StockProjection.accept", "to": "synthetic.stock.StockProjection.accept" },
+    { "id": "s05", "source": "shipping-worker", "path": "src/Shipments.java", "from": "Shipments.accept", "to": "synthetic.shipping.Shipments.accept" },
+    { "id": "s05", "source": "notification-worker", "path": "src/Notify.java", "from": "Notify.accept", "to": "synthetic.notifications.Notify.accept" }
+  ]
+}

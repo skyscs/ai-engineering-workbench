@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "loredock-symbol-search-amendment/1",
+  "originalBaselineHash": "ee1a28f4840832691b11a0beec1a1782eba6dc30dbff6d36f5215f4f9428d8b5",
+  "sourceHashes": {
+    "fixtures/loredock-symbol-search/ERRATA.md": "2aa37bcd9647f3727779fcfd73ce41279458af670197b5d02a8def782650a0f5",
+    "fixtures/loredock-symbol-search/qualified-name-errata.json": "188180e7d2413ae4b8bfc686c049dc4b94204159e4dc665200aeb290055786c8"
+  },
+  "fullMeasurementsBeforeAmendment": 0,
+  "scope": "Three package-qualified expected names only; retain original and amended assessments separately."
+}

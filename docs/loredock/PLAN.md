@@ -98,8 +98,11 @@ Existing indexes and interrupted work stay explicit; late scope/detail responses
 the matching published inventory through the existing source-search input. Bounded scans,
 source-balanced results, original revalidation and late-response fences preserve explicit
 coverage without changing graph/answer selection.
-Next: qualify lookup coverage and latency on the fixed larger synthetic shape before
-extending broader retrieval. No corporate sources or real-model reruns are required.
+[Task 048](../../tasks/048-loredock-symbol-search-qualification.md) measures all 3,621 retained
+files in eighteen complete lookups, 818/865 ms median/max latency and identical repeats.
+The amended exact-set oracle passes 18/18; the original 16/18 package-name error stays recorded.
+Next: familiar short Java class/method lookup retaining qualified identity and ambiguity,
+before broader retrieval. No corporate sources or real-model reruns are required.
 No tuning on observed model answers is included.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale
