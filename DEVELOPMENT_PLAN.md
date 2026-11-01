@@ -121,8 +121,10 @@ The prospectively amended oracle passes 18/18; the original 16/18 naming error r
 [Task 049](tasks/049-loredock-short-java-symbols.md) adds exact short Java class/method
 aliases while retaining full identities, overloads and source ambiguity under query v2.
 Compatible inventories remain usable without reanalysis.
-Next: an isolated one-command synthetic demo for manual exploration without twenty path
-inputs, before extending broader retrieval.
+[Task 050](tasks/050-loredock-synthetic-demo.md) delivers `pnpm loredock:demo`: twenty owned
+sources with a ready index/inventory, separate retained data and model mode forced off.
+Next: hands-on feedback through the documented synthetic demo route before choosing
+broader question-context changes.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

@@ -103,8 +103,10 @@ files in eighteen complete lookups, 818/865 ms median/max latency and identical 
 The amended exact-set oracle passes 18/18; the original 16/18 package-name error stays recorded.
 [Task 049](../../tasks/049-loredock-short-java-symbols.md) adds exact short Java class/method
 aliases under query v2, retaining full identities and overload/source ambiguity without
-reanalysis. Next: an isolated one-command synthetic demo for manual exploration without
-twenty path inputs. No corporate sources or real-model reruns are required.
+reanalysis. [Task 050](../../tasks/050-loredock-synthetic-demo.md) adds `pnpm loredock:demo`
+with twenty prepared sources, isolated retained data and model mode forced off. Next:
+hands-on feedback through the documented demo route before broader question-context work.
+No corporate sources or real-model reruns are required.
 No tuning on observed model answers is included.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale

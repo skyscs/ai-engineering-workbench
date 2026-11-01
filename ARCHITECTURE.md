@@ -35,6 +35,9 @@ fence; existing sampled graph and answer selection remain separate. See
 Task 049 adds exact short Java name aliases at query time under response version 2,
 retaining full identities and the same saved parser facts; see
 [ADR 0043](docs/decisions/0043-loredock-short-java-symbols.md).
+The source-build synthetic demo launcher prepares an owned twenty-source catalog and
+inventory, releases service/store ownership, then starts the normal compiled daemon with
+isolated data and model mode off. See [ADR 0044](docs/decisions/0044-loredock-isolated-synthetic-demo.md).
 See [ADR 0040](docs/decisions/0040-loredock-durable-code-inventory.md) and
 [ADR 0041](docs/decisions/0041-loredock-code-coverage-workflow.md).
 Bounded question-context sampling across twenty sources, stable selection and explicit

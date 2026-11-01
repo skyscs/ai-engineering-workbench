@@ -48,6 +48,12 @@ original-file validation precede use; an asynchronous scan rechecks scope/run id
 before returning. Corruption fails visibly. Query edits and source/index/policy changes
 invalidate pending text, symbol and original responses. See
 [ADR 0042](docs/decisions/0042-loredock-exact-symbol-search.md).
+The optional `pnpm loredock:demo` command accepts no source/data-path arguments and
+registers only freshly generated synthetic source roots. It checks port availability,
+uses isolated retained data, releases preparer ownership before daemon startup and forces
+answer/development mode off despite inherited LoreDock settings. Signals target owned
+work/processes; an occupied port does not authorize stopping another application. See
+[ADR 0044](docs/decisions/0044-loredock-isolated-synthetic-demo.md).
 Engineer corrections retain explicit human/unverified provenance. Bounded notes matching
 retrieved passages are previewed and sent separately to the answer model as untrusted
 assertions, never instructions or source citation IDs. Answers inherit their complete

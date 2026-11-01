@@ -30,6 +30,10 @@ After the shared installation/build steps below, run `pnpm loredock` and open
 **http://127.0.0.1:4244**. Follow the [LoreDock guide](docs/loredock/USER_GUIDE.md)
 for indexing, project orientation/Guide me, the declaration map, static flow outlines, engineer corrections, search, updates, coverage,
 storage and the synthetic demo.
+To explore without supplying repositories, run **`pnpm loredock:demo`** after dependency
+installation. It builds and prepares an isolated twenty-repository example with model
+calls disabled. Open the printed URL after **Demo ready**; Ctrl+C stops the server and
+retains the example. See [demo usage and reopening](docs/loredock/USER_GUIDE.md#try-the-synthetic-system).
 The [answer-stage checkpoint](docs/loredock/ANSWER_FOUNDATION.md) records internal
 retrieval and real-model evaluation results. An **opt-in cited-answer pilot** is now
 available with `LOREDOCK_ANSWERS=1 pnpm loredock`; follow the guide's
