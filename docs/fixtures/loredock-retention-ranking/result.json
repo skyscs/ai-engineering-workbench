@@ -1,0 +1,619 @@
+{
+  "schemaVersion": "loredock-retention-ranking-probe/1",
+  "checkedAt": "2026-11-01T17:06:26.299Z",
+  "commit": "47a3e9c8ba128c30d3953779fdbded10bd7f1cc9",
+  "scriptSha256": "749a49f6eab12f2edad7085b1b60ea995b51725a521354c80f570efbb74fa8bc",
+  "node": "v22.23.2",
+  "sqliteVersion": "3.51.3",
+  "scope": "In-memory FTS mechanism with a current-build filter; not the full application retrieval pipeline.",
+  "modelRequests": 0,
+  "userDataOpened": false,
+  "originalIdentities": [
+    {
+      "id": 1,
+      "sha256": "b91b63ec89d89f059aa915a36eb3a48e1c51c985169c34a081584061d8615cb2"
+    },
+    {
+      "id": 2,
+      "sha256": "cdea410a111da7c40675255aef920b1b2c618aa95f707ee015a4f79253e79759"
+    }
+  ],
+  "before": {
+    "search": {
+      "rows": 12,
+      "tokenInstances": 2022,
+      "currentTokens": [
+        {
+          "term": "alpha",
+          "doc": 1,
+          "col": "text",
+          "offset": 0
+        },
+        {
+          "term": "alpha",
+          "doc": 1,
+          "col": "text",
+          "offset": 1
+        },
+        {
+          "term": "alpha",
+          "doc": 2,
+          "col": "text",
+          "offset": 0
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 2
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 3
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 4
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 5
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 6
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 7
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 8
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 9
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 10
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 11
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 12
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 13
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 14
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 15
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 16
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 17
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 18
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 19
+        },
+        {
+          "term": "filler",
+          "doc": 2,
+          "col": "text",
+          "offset": 1
+        }
+      ],
+      "scores": [
+        {
+          "id": 1,
+          "rank": -2.6235277205017975
+        },
+        {
+          "id": 2,
+          "rank": -2.4088106566662986
+        }
+      ]
+    },
+    "question_search": {
+      "rows": 12,
+      "tokenInstances": 2022,
+      "currentTokens": [
+        {
+          "term": "alpha",
+          "doc": 1,
+          "col": "text",
+          "offset": 0
+        },
+        {
+          "term": "alpha",
+          "doc": 1,
+          "col": "text",
+          "offset": 1
+        },
+        {
+          "term": "alpha",
+          "doc": 2,
+          "col": "text",
+          "offset": 0
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 2
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 3
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 4
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 5
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 6
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 7
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 8
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 9
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 10
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 11
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 12
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 13
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 14
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 15
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 16
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 17
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 18
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 19
+        },
+        {
+          "term": "filler",
+          "doc": 2,
+          "col": "text",
+          "offset": 1
+        }
+      ],
+      "scores": [
+        {
+          "id": 1,
+          "rank": -2.6235277205017975
+        },
+        {
+          "id": 2,
+          "rank": -2.4088106566662986
+        }
+      ]
+    }
+  },
+  "after": {
+    "search": {
+      "rows": 2,
+      "tokenInstances": 22,
+      "currentTokens": [
+        {
+          "term": "alpha",
+          "doc": 1,
+          "col": "text",
+          "offset": 0
+        },
+        {
+          "term": "alpha",
+          "doc": 1,
+          "col": "text",
+          "offset": 1
+        },
+        {
+          "term": "alpha",
+          "doc": 2,
+          "col": "text",
+          "offset": 0
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 2
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 3
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 4
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 5
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 6
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 7
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 8
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 9
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 10
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 11
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 12
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 13
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 14
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 15
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 16
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 17
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 18
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 19
+        },
+        {
+          "term": "filler",
+          "doc": 2,
+          "col": "text",
+          "offset": 1
+        }
+      ],
+      "scores": [
+        {
+          "id": 2,
+          "rank": -0.0000015031055900621119
+        },
+        {
+          "id": 1,
+          "rank": -0.000001117782909930716
+        }
+      ]
+    },
+    "question_search": {
+      "rows": 2,
+      "tokenInstances": 22,
+      "currentTokens": [
+        {
+          "term": "alpha",
+          "doc": 1,
+          "col": "text",
+          "offset": 0
+        },
+        {
+          "term": "alpha",
+          "doc": 1,
+          "col": "text",
+          "offset": 1
+        },
+        {
+          "term": "alpha",
+          "doc": 2,
+          "col": "text",
+          "offset": 0
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 2
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 3
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 4
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 5
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 6
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 7
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 8
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 9
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 10
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 11
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 12
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 13
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 14
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 15
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 16
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 17
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 18
+        },
+        {
+          "term": "filler",
+          "doc": 1,
+          "col": "text",
+          "offset": 19
+        },
+        {
+          "term": "filler",
+          "doc": 2,
+          "col": "text",
+          "offset": 1
+        }
+      ],
+      "scores": [
+        {
+          "id": 2,
+          "rank": -0.0000015031055900621119
+        },
+        {
+          "id": 1,
+          "rank": -0.000001117782909930716
+        }
+      ]
+    }
+  },
+  "currentTextAndTokensUnchanged": true,
+  "rankingOrderChanged": true
+}

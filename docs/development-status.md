@@ -1,5 +1,26 @@
 # Development status
 
+## Task 056 — Retained-history contract
+
+Analyzed and locally verified, 2026-11-01. PR #59 reached main as `eec52f3` after
+push `41329101646` and pull-request `41329182677` passed for exact head
+`1c569b26a57bf891ac1925b943c5a76fd7bcf876` (421 tests). Scope `2b29883`; probe `47a3e9c`.
+
+The [dependency design](loredock/RETENTION_DESIGN.md) traces current and unfinished work,
+historical citation/answer/review readers, refresh/reuse ancestry, code facts and request
+replay to current source constraints. It separates metadata from payload availability and
+keeps history by default. A bounded read-only generation report is the next specified slice.
+
+The fixed in-memory [ranking probe](fixtures/loredock-retention-ranking/README.md) exposes
+an implicit dependency: removing ten historical documents reverses the order of two
+current matches in both external literal and Porter FTS, while current text/token positions
+stay exact. Raw scores and counts are retained; an independent formula recount agrees.
+This is a SQLite mechanism demonstration, not a full answer-selector evaluation.
+
+The probe assertions, syntax and document/source links pass. No production behavior,
+schema/API/UI, cleanup command, user data/process, model request, corporate source or
+frozen evaluation changed. Automatic pruning and broader semantic readiness remain open.
+
 ## Task 055 — Production external-content literal search
 
 Implemented and locally verified, 2026-11-01: strict checks, 421 tests and builds pass.

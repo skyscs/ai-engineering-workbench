@@ -1,6 +1,6 @@
 # Task 056 — Retained-history dependency and ranking contract
 
-Status: scoped before analysis/probe implementation, 2026-11-01.
+Status: analyzed and locally verified, 2026-11-01. Scope `2b29883`; probe `47a3e9c`.
 
 Task 055 removes one text copy but does not bound retained history. Before selecting
 any deletion policy, review the existing dependency and retrieval semantics and make
@@ -34,3 +34,17 @@ update the roadmap/status, check artifact links and the probe's assertions, and 
 separate PR. Merge only after both exact-head CI events pass. The follow-up contract
 must identify what can proceed without manual feedback and what a future removal
 operation would need to preserve; it does not authorize deleting existing user data.
+
+## Outcome
+
+The dependency review identifies metadata and payload consumers, immutable correction
+lineage, request replay and implicit shared-ranking statistics. The fixed probe passes:
+both FTS layouts flip current result order from A/B to B/A after only historical rows
+are removed, with current text/token positions unchanged. Full scores and an independent
+BM25 formula recount are retained in the [report](../docs/fixtures/loredock-retention-ranking/README.md).
+
+The [design](../docs/loredock/RETENTION_DESIGN.md) keeps history by default and specifies
+a bounded, read-only per-generation dependency diagnostic as the next independent slice.
+It does not claim deletion eligibility or alter ranking, data availability, schema/API/UI,
+model behavior, user processes or frozen evaluations. Source-reference/link validation
+and the executable probe pass; existing application CI remains the regression check.
