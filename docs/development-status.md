@@ -1,5 +1,33 @@
 # Development status
 
+## Task 049 — Familiar Java names in symbol search
+
+Implemented and locally verified, 2026-11-01. PR #52 reached main as `2231a19` after
+push `41257929497` and pull-request `41257943518` passed for exact head
+`b4986f199834326595b5d83a9a435be0772d58a5`. Scope was committed in `c1e8cb9`.
+
+Version-2 exact-symbol lookup accepts short packaged Java class/method spellings such as
+`StockProjection` and `StockProjection.accept`. Results retain full qualified names and
+every admitted source/overload range. Aliases require coherent stored class/method names;
+other-language filenames do not become Java classes. Existing literal matching, bounds,
+original checks and response fences remain. Parser facts/fingerprint and schema 8 are
+unchanged; compatible inventories remain usable without reanalysis.
+
+Strict types, all 392 tests and production builds pass. New integration coverage tests
+two packages with identical short classes/display names, overloaded methods, literal/case
+negatives, TypeScript isolation, protected HTTP and inventory reuse. The compiled parser
+fingerprint matches the Task 048 measurement. Browser workflow version 3 passes short
+class/method lookup, full qualified display and keyboard originals alongside the existing
+coverage/search/late-response/narrow-layout checks. Historical qualification correctly
+rejects changed query implementation hashes; its full-run receipt remains untouched.
+
+See [Task 049](../tasks/049-loredock-short-java-symbols.md),
+[ADR 0043](decisions/0043-loredock-short-java-symbols.md) and
+[verification](fixtures/loredock-short-java-symbols/README.md). No corporate input, model
+call, parser change or new full-volume benchmark. Next: an isolated one-command synthetic
+demo so manual exploration does not require twenty path inputs. Broader semantic readiness
+and the Workbench bridge remain separate.
+
 ## Task 048 — Larger exact-symbol qualification
 
 Implemented and locally verified, 2026-11-01. PR #51 reached main as `9b0a118` after

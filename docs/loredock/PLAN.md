@@ -101,8 +101,10 @@ coverage without changing graph/answer selection.
 [Task 048](../../tasks/048-loredock-symbol-search-qualification.md) measures all 3,621 retained
 files in eighteen complete lookups, 818/865 ms median/max latency and identical repeats.
 The amended exact-set oracle passes 18/18; the original 16/18 package-name error stays recorded.
-Next: familiar short Java class/method lookup retaining qualified identity and ambiguity,
-before broader retrieval. No corporate sources or real-model reruns are required.
+[Task 049](../../tasks/049-loredock-short-java-symbols.md) adds exact short Java class/method
+aliases under query v2, retaining full identities and overload/source ambiguity without
+reanalysis. Next: an isolated one-command synthetic demo for manual exploration without
+twenty path inputs. No corporate sources or real-model reruns are required.
 No tuning on observed model answers is included.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale

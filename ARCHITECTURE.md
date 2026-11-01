@@ -32,6 +32,9 @@ analysis, protected controls and code-coverage browsing. Task 047 adds bounded e
 lookup over the matching published inventory with original revalidation and a final scope
 fence; existing sampled graph and answer selection remain separate. See
 [ADR 0042](docs/decisions/0042-loredock-exact-symbol-search.md).
+Task 049 adds exact short Java name aliases at query time under response version 2,
+retaining full identities and the same saved parser facts; see
+[ADR 0043](docs/decisions/0043-loredock-short-java-symbols.md).
 See [ADR 0040](docs/decisions/0040-loredock-durable-code-inventory.md) and
 [ADR 0041](docs/decisions/0041-loredock-code-coverage-workflow.md).
 Bounded question-context sampling across twenty sources, stable selection and explicit

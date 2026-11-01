@@ -1,6 +1,6 @@
 # Task 049 — Familiar Java names in exact-symbol search
 
-Status: scoped before implementation, 2026-11-01.
+Status: implemented and locally verified, 2026-11-01. Scope was committed in `c1e8cb9`.
 
 After the larger lookup qualification, make packaged Java symbols discoverable with
 the short class/method spelling engineers commonly know. Reuse validated durable facts;
@@ -39,3 +39,25 @@ Run strict checks, full tests/builds and the owned browser workflow. Update usag
 matching semantics and verification records. Review/create the PR, merge after both CI
 events pass for its exact head, and continue the authorized sequence. No corporate input,
 new full-volume measurement, parser expansion or model call in this task.
+
+## Outcome
+
+Query response version 2 adds only exact short Java class/method aliases derived from
+coherent full names. Every result keeps full qualified identity and original ranges;
+packages, overloads and duplicate display names are not collapsed. Existing match forms,
+limits and source/policy/query fences remain.
+
+Strict types, all 392 tests and production builds pass. The new owned integration case
+checks two packages/sources with identical class/display names and overloaded methods,
+literal/case negatives, TypeScript filename isolation, protected HTTP results and reuse
+of one inventory. The compiled parser fingerprint still matches Task 048's recorded
+`4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc`.
+The historical qualifier correctly rejects changed query implementation hashes without
+starting another measurement.
+
+Browser workflow version 3 passes short class/method search, full qualified display and
+keyboard originals alongside earlier coverage, search, late-response and 390px checks.
+See [verification](../docs/fixtures/loredock-short-java-symbols/README.md) and
+[ADR 0043](../docs/decisions/0043-loredock-short-java-symbols.md).
+No corporate input, model, new full-volume run or parser change. Next: an isolated
+one-command synthetic demo for manual exploration without twenty path inputs.
