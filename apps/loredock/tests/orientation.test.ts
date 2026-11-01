@@ -46,7 +46,7 @@ test('orientation quotes all three documented contexts including stale topic pro
   const changes = () => state.store.one<{ count: number }>('SELECT total_changes() AS count')!.count, writes = changes();
   const result = projectOrientation(state.catalog);
   assert.equal(result.sources.length, 3); assert.equal(result.coverage.withContext, 3); assert.equal(result.coverage.examinedDocuments, 6);
-  assert.equal(result.schemaVersion, 'loredock-orientation-v1'); assert.equal(result.partial, true); assert.equal(result.deploymentCoherence, 'unknown');
+  assert.equal(result.schemaVersion, 'loredock-orientation-v2'); assert.equal(result.partial, true); assert.equal(result.deploymentCoherence, 'unknown');
   assert.match(result.sources.find(source => source.sourceName === 'portal')!.context!.text, /Vue\/TypeScript/);
   assert.match(result.sources.find(source => source.sourceName === 'order-api')!.context!.text, /orders.created.v1/);
   assert.match(result.sources.find(source => source.sourceName === 'order-worker')!.context!.text, /MongoDB/);
@@ -200,4 +200,33 @@ test('orientation transport uses session/no-store and permits only published cur
   assert.equal((await response.json() as ProjectOrientation).coverage.withContext, 3);
   state.store.run("UPDATE builds SET published=0 WHERE id=?", state.catalog.state().publishedBuildId!);
   assert.equal((await app.request(base + '/api/orientation', { headers })).status, 409);
+});
+
+test('section navigation reuses complete originals without new reads and stays pinned/fenced through refresh and restart', async t => {
+  const state = await setup(t, async fixture => {
+    await writeFile(file(fixture, 'portal', 'README.md'), '# Portal\nOriginal introduction.\n\n'
+      + '\n'.repeat(115) + '## Architecture\n' + 'Documented boundary.\n'.repeat(125) + '## Glossary\nOrder means a documented request.\n');
+  });
+  const commands = state.git.commands, writes = state.store.one<{n:number}>('SELECT total_changes() AS n')!.n;
+  const before = projectOrientation(state.catalog), source = before.sources[0]!;
+  assert.equal(before.adapterVersion, 'readme-orientation-v3'); assert.equal(source.sections.length, 3);
+  assert.equal(source.sections[1]!.evidenceIds.length, 3);
+  const original = (await readFile(file(state.fixture, 'portal', 'README.md'), 'utf8')).split('\n');
+  for (const section of source.sections) {
+    assert.match(original[section.startLine - 1]!, /^#+ /);
+    const references = section.evidenceIds.map(id => state.catalog.evidence(id));
+    assert.ok(references[0]!.startLine <= section.startLine); assert.ok(references.at(-1)!.endLine >= section.endLine);
+    assert.ok(references.every(ref => ref.sourceId === source.sourceId && ref.buildId === before.buildId && ref.path === 'README.md'));
+  }
+  assert.equal(state.git.commands, commands); assert.equal(state.store.one<{n:number}>('SELECT total_changes() AS n')!.n, writes);
+  assert.equal(before.coverage.examinedDocuments, 6);
+  await writeFile(file(state.fixture, 'portal', 'README.md'), '# Portal\nChanged introduction.\n\n## New section\nNew documented content.\n');
+  commit(state.fixture); await state.index('section-refresh');
+  assert.deepEqual(projectOrientation(state.catalog, before.buildId).sources[0]!.sections, source.sections);
+  assert.equal(projectOrientation(state.catalog).sources[0]!.sections[1]!.title, 'New section');
+  await state.restart(); assert.deepEqual(projectOrientation(state.catalog, before.buildId).sources[0]!.sections, source.sections);
+  state.catalog.revoke(source.sourceId);
+  assert.equal(projectOrientation(state.catalog, before.buildId).sources.some(card => card.sourceId === source.sourceId), false);
+  for (const id of source.sections[1]!.evidenceIds) assert.throws(() => state.catalog.evidence(id), /unavailable/);
+  state.catalog.updatePolicy(['README.md']); assert.throws(() => projectOrientation(state.catalog, before.buildId), /old policy/);
 });

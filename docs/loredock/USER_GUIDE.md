@@ -233,6 +233,24 @@ committed lines, including their original revision and integrity metadata. Under
 **More source reading**, open the original README spans and available root package/Maven
 manifests. All reading is local and makes no model calls.
 
+Expand **Browse README sections** on a repository card to find its documented
+architecture, terminology, setup or other headings without entering a search query.
+Choose **Read section** to open the supporting original. Long sections have several
+**Read section part N** buttons; read each part for the complete section. The viewer
+shows the original 120-line evidence chunks, which can include neighboring sections.
+The listed line range identifies the section itself; a parent includes its subsections.
+The control starts collapsed and follows the selected index version.
+
+Navigation recognizes Markdown-style `#` through `######` headings with up to three
+leading spaces. It skips code, quote/list-contained headings and conservative HTML
+blocks/comments. Setext/other heading styles and inline Markdown rendering are outside
+this profile. At most twelve headings per README are listed, each at most 160 UTF-8
+bytes; empty, longer and over-count labels are omitted whole, with a count. Recognized
+omitted headings still close earlier section ranges. Unsupported styles are not counted
+as omissions. **More source reading** retains the complete original when this partial
+outline is insufficient. A README with only headings can still offer navigation even
+when no introductory paragraph is available.
+
 These excerpts are documented intent, not verified roles or a generated architecture
 summary. They can be outdated or contradict code/configuration: the demo API README's
 `orders.created.v1` remains visible even though its local configuration says
@@ -272,7 +290,9 @@ listed separately until **Update knowledge** includes them. Source removal hides
 context and fences citations, including late responses; a policy change requires a new
 index. No separate model configuration, learning state or extra source form is needed.
 See [orientation evidence](../fixtures/loredock-orientation/README.md) and
-[ADR 0027](../decisions/0027-loredock-project-orientation.md).
+[ADR 0027](../decisions/0027-loredock-project-orientation.md). Section navigation has
+[separate verification](../fixtures/loredock-readme-sections/README.md) and
+[ADR 0047](../decisions/0047-loredock-readme-sections.md).
 
 ## Explore the declaration map
 
@@ -892,7 +912,7 @@ require the session. No tokens belong in URLs or logs.
 | `POST /api/code-analysis/:id/:action` | Explicit `pause`, `resume` or `cancel`; no arguments (an empty object is accepted). Resume validates the pinned checkpoints and current parser. |
 | `GET /api/code-analysis/:id/files?offset=...` | Fifty scoped file records; offset is an available nonnegative multiple of 50, default 0. |
 | `GET /api/code-analysis/:id/files/:fileId` | One validated published file payload with bounded facts, original references and syntax gaps. Foreign, revoked, stale-parser and evicted results are unavailable. |
-| `GET /api/orientation?buildId=...` | Original README context/gaps, optional manifest reading, selected revisions/coverage and separate unindexed-source gaps; no model calls. |
+| `GET /api/orientation?buildId=...` | Orientation v2 / adapter v3: original README context/gaps, bounded section ranges/original-part IDs, optional manifest reading, selected revisions/coverage and separate unindexed-source gaps; no model calls. |
 | `POST /api/candidates/preview` | Model-free source suggestions from `{question, buildId?, relatedOffset?}`, original support, related-repository pages, other matches and uncertainty. `relatedOffset` defaults to 0; use an available multiple of 4 below 20. Related projection v2 returns offset/limit/total and nullable previous/next offsets. Invalid/unavailable offsets return `INVALID_PAGE`. Requires session/CSRF; no saved investigation scope. |
 | `GET /api/corrections?buildId=...` | Current human correction overlay/revision and flow-review dependencies for the selected index. |
 | `GET /api/corrections/:id/history` | Authorized immutable versions and original relationship/evidence provenance. |

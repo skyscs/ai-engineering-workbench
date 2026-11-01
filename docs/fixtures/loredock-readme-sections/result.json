@@ -1,0 +1,826 @@
+{
+  "schemaVersion": "loredock-readme-sections-smoke/1",
+  "createdAt": "2026-11-01T17:53:52.829Z",
+  "implementationCommit": "7e66e29029479c84e9ecdaff6db8054b39148bac",
+  "node": "v22.23.2",
+  "chrome": "Google Chrome 152.0.7977.82",
+  "sourceCount": 3,
+  "initialRevisions": {
+    "portal": "e7b5ad2c3b198d5a7da160bb66b2009271c0f036",
+    "order-api": "237510937b4388fc718b7e9f93869954950df1bb",
+    "order-worker": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37"
+  },
+  "refreshedRevisions": {
+    "portal": "6b02b21cf5a0a3156ba231235ea3d4dea43cae89",
+    "order-api": "237510937b4388fc718b7e9f93869954950df1bb",
+    "order-worker": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37"
+  },
+  "initialBuildId": "c0e0bd1f-9979-4279-a30c-d056431d981e",
+  "refreshedBuildId": "4fd0dff5-7519-430b-8f9d-7a0a87ed0363",
+  "orientation": {
+    "schemaVersion": "loredock-orientation-v2",
+    "adapterVersion": "readme-orientation-v3",
+    "buildId": "c0e0bd1f-9979-4279-a30c-d056431d981e",
+    "policyVersion": 1,
+    "sourceSetVersion": 4,
+    "registryVersion": 4,
+    "stale": false,
+    "partial": true,
+    "deploymentCoherence": "unknown",
+    "sources": [
+      {
+        "sourceId": "61c958cc-d882-495d-9c0f-c3e0a4b3d338",
+        "sourceName": "portal",
+        "revision": "e7b5ad2c3b198d5a7da160bb66b2009271c0f036",
+        "sourceStatus": "ready",
+        "coverage": {
+          "indexed": 6,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 4900,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        },
+        "omittedInventory": 0,
+        "readme": {
+          "path": "README.md",
+          "state": "available",
+          "reason": "Original introductory README lines; documented intent may be incomplete or outdated."
+        },
+        "context": {
+          "text": "Documented user interface context.",
+          "startLine": 2,
+          "endLine": 2,
+          "evidenceIds": [
+            "8eb308dd-364e-48f3-b477-332d065aec86"
+          ],
+          "truncated": false,
+          "provenance": "documented",
+          "verification": "unverified"
+        },
+        "sections": [
+          {
+            "title": "Portal",
+            "level": 1,
+            "startLine": 1,
+            "endLine": 279,
+            "evidenceIds": [
+              "8eb308dd-364e-48f3-b477-332d065aec86",
+              "212bb4a5-d7d7-4cdf-9736-d0c1f7239580",
+              "ffce7f1c-4b54-47ca-b903-ec9aa7405920"
+            ]
+          },
+          {
+            "title": "Architecture",
+            "level": 2,
+            "startLine": 119,
+            "endLine": 246,
+            "evidenceIds": [
+              "8eb308dd-364e-48f3-b477-332d065aec86",
+              "212bb4a5-d7d7-4cdf-9736-d0c1f7239580",
+              "ffce7f1c-4b54-47ca-b903-ec9aa7405920"
+            ]
+          },
+          {
+            "title": "<img src=x onerror=\"window.sectionInjected=true\">",
+            "level": 3,
+            "startLine": 245,
+            "endLine": 246,
+            "evidenceIds": [
+              "ffce7f1c-4b54-47ca-b903-ec9aa7405920"
+            ]
+          },
+          {
+            "title": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+            "level": 2,
+            "startLine": 247,
+            "endLine": 251,
+            "evidenceIds": [
+              "ffce7f1c-4b54-47ca-b903-ec9aa7405920"
+            ]
+          },
+          {
+            "title": "Term 1",
+            "level": 2,
+            "startLine": 252,
+            "endLine": 253,
+            "evidenceIds": [
+              "ffce7f1c-4b54-47ca-b903-ec9aa7405920"
+            ]
+          },
+          {
+            "title": "Term 2",
+            "level": 2,
+            "startLine": 254,
+            "endLine": 255,
+            "evidenceIds": [
+              "ffce7f1c-4b54-47ca-b903-ec9aa7405920"
+            ]
+          },
+          {
+            "title": "Term 3",
+            "level": 2,
+            "startLine": 256,
+            "endLine": 257,
+            "evidenceIds": [
+              "ffce7f1c-4b54-47ca-b903-ec9aa7405920"
+            ]
+          },
+          {
+            "title": "Term 4",
+            "level": 2,
+            "startLine": 258,
+            "endLine": 259,
+            "evidenceIds": [
+              "ffce7f1c-4b54-47ca-b903-ec9aa7405920"
+            ]
+          },
+          {
+            "title": "Term 5",
+            "level": 2,
+            "startLine": 260,
+            "endLine": 261,
+            "evidenceIds": [
+              "ffce7f1c-4b54-47ca-b903-ec9aa7405920"
+            ]
+          },
+          {
+            "title": "Term 6",
+            "level": 2,
+            "startLine": 262,
+            "endLine": 263,
+            "evidenceIds": [
+              "ffce7f1c-4b54-47ca-b903-ec9aa7405920"
+            ]
+          },
+          {
+            "title": "Term 7",
+            "level": 2,
+            "startLine": 264,
+            "endLine": 265,
+            "evidenceIds": [
+              "ffce7f1c-4b54-47ca-b903-ec9aa7405920"
+            ]
+          },
+          {
+            "title": "Term 8",
+            "level": 2,
+            "startLine": 266,
+            "endLine": 267,
+            "evidenceIds": [
+              "ffce7f1c-4b54-47ca-b903-ec9aa7405920"
+            ]
+          }
+        ],
+        "omittedSections": 6,
+        "reading": [
+          {
+            "kind": "readme",
+            "path": "README.md",
+            "evidenceIds": [
+              "8eb308dd-364e-48f3-b477-332d065aec86",
+              "212bb4a5-d7d7-4cdf-9736-d0c1f7239580",
+              "ffce7f1c-4b54-47ca-b903-ec9aa7405920"
+            ]
+          },
+          {
+            "kind": "manifest",
+            "path": "package.json",
+            "evidenceIds": [
+              "42fc43a9-8516-476a-a076-33055b63ff84"
+            ]
+          }
+        ],
+        "gaps": [
+          "Some source files were excluded or failed; this card is not a complete repository analysis.",
+          "6 README headings are not listed because their labels are empty or exceed navigation limits."
+        ]
+      },
+      {
+        "sourceId": "21e00956-0750-41ce-8253-089228c75758",
+        "sourceName": "order-api",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "sourceStatus": "ready",
+        "coverage": {
+          "indexed": 7,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 2439,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        },
+        "omittedInventory": 0,
+        "readme": {
+          "path": "README.md",
+          "state": "available",
+          "reason": "Original introductory README lines; documented intent may be incomplete or outdated."
+        },
+        "context": {
+          "text": "Synthetic Java source samples with application-specific transport interfaces.\nPOST /api/orders accepts an orderId and the X-Tenant header, then publishes OrderPlaced.\nThe order event topic is orders.created.v1.\nProduction may override the topic using ORDER_TOPIC; deployment values are absent.\nNo architecture decision explains the choice of Kafka instead of synchronous HTTP.\nBilling behavior is outside this repository set.",
+          "startLine": 3,
+          "endLine": 8,
+          "evidenceIds": [
+            "39acae74-a477-4731-b766-97b20c092a88"
+          ],
+          "truncated": false,
+          "provenance": "documented",
+          "verification": "unverified"
+        },
+        "sections": [
+          {
+            "title": "Order API",
+            "level": 1,
+            "startLine": 1,
+            "endLine": 8,
+            "evidenceIds": [
+              "39acae74-a477-4731-b766-97b20c092a88"
+            ]
+          }
+        ],
+        "omittedSections": 0,
+        "reading": [
+          {
+            "kind": "readme",
+            "path": "README.md",
+            "evidenceIds": [
+              "39acae74-a477-4731-b766-97b20c092a88"
+            ]
+          },
+          {
+            "kind": "manifest",
+            "path": "pom.xml",
+            "evidenceIds": [
+              "47096b48-4c62-449a-b904-f756ac8f9fae"
+            ]
+          }
+        ],
+        "gaps": [
+          "Some source files were excluded or failed; this card is not a complete repository analysis."
+        ]
+      },
+      {
+        "sourceId": "54f4d23d-8bb1-4a13-97f5-8ba5987cdb9d",
+        "sourceName": "order-worker",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "sourceStatus": "ready",
+        "coverage": {
+          "indexed": 5,
+          "excluded": 3,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 2100,
+          "reasons": {
+            "binary": 1,
+            "policy": 1,
+            "symlink": 1
+          }
+        },
+        "omittedInventory": 0,
+        "readme": {
+          "path": "README.md",
+          "state": "available",
+          "reason": "Original introductory README lines; documented intent may be incomplete or outdated."
+        },
+        "context": {
+          "text": "Synthetic Java consumer and MongoDB access interfaces; no drivers are supplied.\nLocal configuration consumes orders.placed.v2 and stores the order projection.\nThe configured production topic and deployed revisions are unknown.\nAcknowledgment, retry, dead-letter routing and database indexes are not implemented here.\nNo repository in this fixture implements billing.",
+          "startLine": 3,
+          "endLine": 7,
+          "evidenceIds": [
+            "817078ad-3fa8-4458-a714-ebe0f866889c"
+          ],
+          "truncated": false,
+          "provenance": "documented",
+          "verification": "unverified"
+        },
+        "sections": [
+          {
+            "title": "Order projection worker",
+            "level": 1,
+            "startLine": 1,
+            "endLine": 7,
+            "evidenceIds": [
+              "817078ad-3fa8-4458-a714-ebe0f866889c"
+            ]
+          }
+        ],
+        "omittedSections": 0,
+        "reading": [
+          {
+            "kind": "readme",
+            "path": "README.md",
+            "evidenceIds": [
+              "817078ad-3fa8-4458-a714-ebe0f866889c"
+            ]
+          },
+          {
+            "kind": "manifest",
+            "path": "pom.xml",
+            "evidenceIds": [
+              "9718a475-c578-4808-9d62-21273b696e36"
+            ]
+          }
+        ],
+        "gaps": [
+          "Some source files were excluded or failed; this card is not a complete repository analysis."
+        ]
+      }
+    ],
+    "unindexedSources": [],
+    "evidence": {
+      "8eb308dd-364e-48f3-b477-332d065aec86": {
+        "id": "8eb308dd-364e-48f3-b477-332d065aec86",
+        "sourceName": "portal",
+        "path": "README.md",
+        "revision": "e7b5ad2c3b198d5a7da160bb66b2009271c0f036",
+        "startLine": 1,
+        "endLine": 120
+      },
+      "212bb4a5-d7d7-4cdf-9736-d0c1f7239580": {
+        "id": "212bb4a5-d7d7-4cdf-9736-d0c1f7239580",
+        "sourceName": "portal",
+        "path": "README.md",
+        "revision": "e7b5ad2c3b198d5a7da160bb66b2009271c0f036",
+        "startLine": 121,
+        "endLine": 240
+      },
+      "ffce7f1c-4b54-47ca-b903-ec9aa7405920": {
+        "id": "ffce7f1c-4b54-47ca-b903-ec9aa7405920",
+        "sourceName": "portal",
+        "path": "README.md",
+        "revision": "e7b5ad2c3b198d5a7da160bb66b2009271c0f036",
+        "startLine": 241,
+        "endLine": 279
+      },
+      "39acae74-a477-4731-b766-97b20c092a88": {
+        "id": "39acae74-a477-4731-b766-97b20c092a88",
+        "sourceName": "order-api",
+        "path": "README.md",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "startLine": 1,
+        "endLine": 8
+      },
+      "817078ad-3fa8-4458-a714-ebe0f866889c": {
+        "id": "817078ad-3fa8-4458-a714-ebe0f866889c",
+        "sourceName": "order-worker",
+        "path": "README.md",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "startLine": 1,
+        "endLine": 7
+      },
+      "42fc43a9-8516-476a-a076-33055b63ff84": {
+        "id": "42fc43a9-8516-476a-a076-33055b63ff84",
+        "sourceName": "portal",
+        "path": "package.json",
+        "revision": "e7b5ad2c3b198d5a7da160bb66b2009271c0f036",
+        "startLine": 1,
+        "endLine": 7
+      },
+      "47096b48-4c62-449a-b904-f756ac8f9fae": {
+        "id": "47096b48-4c62-449a-b904-f756ac8f9fae",
+        "sourceName": "order-api",
+        "path": "pom.xml",
+        "revision": "237510937b4388fc718b7e9f93869954950df1bb",
+        "startLine": 1,
+        "endLine": 8
+      },
+      "9718a475-c578-4808-9d62-21273b696e36": {
+        "id": "9718a475-c578-4808-9d62-21273b696e36",
+        "sourceName": "order-worker",
+        "path": "pom.xml",
+        "revision": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "startLine": 1,
+        "endLine": 8
+      }
+    },
+    "gaps": [
+      "README excerpts are documented intent, not verified repository responsibilities, current configuration or deployment evidence.",
+      "This view provides a starting point; it does not synthesize a complete architecture, reconcile contradictions or understand every source file.",
+      "The source index is partial; inspect source coverage and exclusions."
+    ],
+    "omissions": {
+      "section-navigation-limit": 1
+    },
+    "coverage": {
+      "repositories": 3,
+      "withContext": 3,
+      "examinedDocuments": 6,
+      "parsedBytes": 5452
+    },
+    "limits": {
+      "repositories": 20,
+      "documents": 60,
+      "fileBytes": 32768,
+      "textBytes": 655360,
+      "fileSpans": 8,
+      "excerptBytes": 2000,
+      "excerptLines": 16,
+      "outputBytes": 524288,
+      "sections": 12,
+      "headingBytes": 160
+    },
+    "inputHash": "90e50286f8936fd3b8edee79c724ab6936c6c66e61ca5d16b3fb3284bd24bf11"
+  },
+  "checks": [
+    "Browser proxy sentinel confirms owned transport before application navigation.",
+    "Collapsed navigation, twelve-heading bound, six omissions and literal hostile title render correctly.",
+    "The 390px layout has no horizontal overflow, including a 160-byte unbroken label.",
+    "All three overlapping Architecture parts open original evidence and receive focus.",
+    "Update knowledge exposes new headings; historical selection retains the original sections.",
+    "A delayed historical orientation response cannot replace the newly selected index.",
+    "Source removal fences a delayed orientation response and removes section navigation.",
+    "Policy changes remove old navigation and fence a delayed section evidence response.",
+    "Source heads and working trees are unchanged after the explicit owned fixture update."
+  ],
+  "modelRequests": 0,
+  "transport": "An owned loopback HTTP proxy dispatches directly to the compiled in-process app; no upstream forwarding or listener on port 4244.",
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/favicon.ico",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/assets/index-DpkIVQVd.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/assets/index-DBFtwltX.js",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/favicon.ico",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/builds/c0e0bd1f-9979-4279-a30c-d056431d981e/changes",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/orientation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system-map",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/corrections",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-flows",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/orientation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/evidence/8eb308dd-364e-48f3-b477-332d065aec86",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/evidence/212bb4a5-d7d7-4cdf-9736-d0c1f7239580",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/evidence/ffce7f1c-4b54-47ca-b903-ec9aa7405920",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/builds",
+      "status": 202
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/builds/4fd0dff5-7519-430b-8f9d-7a0a87ed0363/changes",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/orientation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system-map",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/corrections",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-flows",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/builds/c0e0bd1f-9979-4279-a30c-d056431d981e/changes",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/orientation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system-map",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/corrections",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-flows",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/builds/4fd0dff5-7519-430b-8f9d-7a0a87ed0363/changes",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/orientation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system-map",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/corrections",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-flows",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/builds/c0e0bd1f-9979-4279-a30c-d056431d981e/changes",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/orientation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system-map",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/corrections",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-flows",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/builds/4fd0dff5-7519-430b-8f9d-7a0a87ed0363/changes",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/orientation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system-map",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/corrections",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-flows",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/builds/c0e0bd1f-9979-4279-a30c-d056431d981e/changes",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/orientation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system-map",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/corrections",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-flows",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/sources/61c958cc-d882-495d-9c0f-c3e0a4b3d338/revoke",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/builds/c0e0bd1f-9979-4279-a30c-d056431d981e/changes",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/orientation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system-map",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/corrections",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-flows",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/builds/4fd0dff5-7519-430b-8f9d-7a0a87ed0363/changes",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/orientation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system-map",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/corrections",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-flows",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/evidence/6307426e-5fc8-4cf1-94f0-56628c3bd82d",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/policy",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "status": 200
+    }
+  ]
+}

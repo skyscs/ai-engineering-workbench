@@ -1,5 +1,35 @@
 # Development status
 
+## Task 058 — Source-backed README section navigation
+
+Implemented and locally verified, 2026-11-01. Scope `078c48d`, implementation `a59da3a`,
+layout `7e66e29`. PR #61 reached main as `c022875` after push `41331409691` and
+pull-request `41331463400` passed for exact head `26e8166e1965d8ea475277437dbafbb5b3f73d05`.
+
+Overview schema v2 / adapter v3 reuses each validated README to expose up to twelve
+literal ATX headings, each at most 160 UTF-8 bytes, with inclusive section ranges and
+all overlapping original evidence parts. Nested ranges, unsupported syntax and whole-label
+omissions stay explicit. Existing document/input/output budgets, introductory prose,
+reading links, historical identity and source/policy fences are preserved. The collapsed
+**Browse README sections** control requires no form or model configuration. No persisted
+schema, code parser fingerprint, answer prompt, retrieval or Workbench behavior changes.
+
+Strict checks, 434 tests and production builds pass; the focused orientation/section run
+has 23 passing checks/subchecks. A terminal-newline edge discovered in integration was
+fixed before delivery. Nine compiled browser conditions pass on three synthetic sources,
+including multi-part navigation/focus, escaped hostile labels, 390px layout, historical
+updates, delayed index/source responses and policy-fenced evidence. A test rehearsal
+mistook a no-op policy save for a policy change; the corrected harness changes the owned
+policy. Visual review led to explicit spacing between original-part links.
+
+The browser uses an ephemeral non-forwarding proxy and owned in-process application with
+a transport sentinel, preserving the ordinary origin protections. Builds ran in a separate
+worktree; the existing user demo process, data and compiled assets were not changed.
+See [verification](fixtures/loredock-readme-sections/README.md),
+[Task 058](../tasks/058-loredock-readme-sections.md) and
+[ADR 0047](decisions/0047-loredock-readme-sections.md). No real-model/private-pilot or
+semantic architecture acceptance is claimed; broader glossary/synthesis remains open.
+
 ## Task 057 — Read-only generation dependency inventory
 
 Implemented and locally verified, 2026-11-01. Strict checks, 428 tests and builds pass.
