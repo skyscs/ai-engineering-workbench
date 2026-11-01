@@ -2,8 +2,8 @@
 
 ## Task 057 — Read-only generation dependency inventory
 
-Implemented; strict checks, 428 tests and builds pass; compiled smoke pending, 2026-11-01.
-Scope `6c046e9`.
+Implemented and locally verified, 2026-11-01. Strict checks, 428 tests and builds pass.
+Scope `6c046e9`; compiled/package-command verification uses implementation `1123e6c`.
 PR #60 reached main as `ef7407f` after push `41330056441` and pull-request `41330232152`
 passed for exact head `4d6d74b971fafaa251175403cd9819ad677abf0e` (421 tests).
 
@@ -22,10 +22,16 @@ rows, malformed metadata/dangling references and invalid paths/schemas. Two init
 assumptions were corrected: the fixture code inventory is legitimately partial, and a
 read-only SQLite open can leave bookkeeping sidecars. Production required no behavior fix.
 
+The owned twenty-source compiled smoke records three 79-file generations plus one
+preparing build. The actual package command agrees with the live report apart from
+capture time, keeps main/owner database bytes and pending state exact, and leaves every
+source checkout unchanged. Incoming reuse is 79/79/0/0; incoming baselines are 1/1/1/0;
+the two latest code inventories remain counted. See [verification](fixtures/loredock-history-audit/README.md).
+
 See [Task 057](../tasks/057-loredock-history-audit.md) and
 [the retained-history contract](loredock/RETENTION_DESIGN.md). The user demo and frozen
 evaluations remain untouched; no corporate source or model request. This completes the
-bounded diagnostic scope after verification; future deletion/ranking/content-sharing
+bounded diagnostic scope; future deletion/ranking/content-sharing
 work needs its own prospective contract.
 
 ## Task 056 — Retained-history contract

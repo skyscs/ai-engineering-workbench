@@ -1,6 +1,6 @@
 # Task 057 — Read-only generation dependency inventory
 
-Status: implemented; strict checks, 428 tests and builds pass; compiled smoke pending, 2026-11-01.
+Status: implemented and locally verified, 2026-11-01.
 Scope committed before implementation in `6c046e9`.
 
 Implement the next diagnostic defined by Task 056 and
@@ -36,3 +36,16 @@ smoke with source-checkout preservation, then review/create/merge after both exa
 events pass. Do not touch the running user demo or any frozen experiment/receipt. This
 finishes the bounded read-only history diagnostic; future deletion/ranking/content-sharing
 changes need their own contract and do not follow implicitly from the report.
+
+## Outcome
+
+Strict checks, 428 tests and builds pass. The sixteen-check focused maintenance run
+includes seven new history checks/subchecks. Compiled implementation `1123e6c` passes
+the actual package command on twenty owned sources with three 79-file generations and
+one preparing build. Live and closed reports agree, including incoming baseline/reuse
+counts and two retained code inventories; main/owner bytes, pending state and source
+checkouts remain unchanged. See [verification](../docs/fixtures/loredock-history-audit/README.md).
+
+No cleanup, recovery, model request, corporate input, user-demo change or frozen result
+mutation. The bounded independent diagnostic sequence is complete; semantic/manual gates
+and any future destructive retention or ranking/content-sharing design remain separate.
