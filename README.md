@@ -39,6 +39,9 @@ aggregate SQLite, payload and history-dependency sizes without modifying the cat
 Explicit offline `pnpm loredock:compact --data-dir /absolute/loredock-data` can reclaim
 already-free SQLite pages while keeping history. See
 [storage, backup and compaction](docs/loredock/USER_GUIDE.md#local-storage-and-backup).
+The next normal start upgrades older catalogs to schema 9, sharing original text with
+literal search. Back up the complete stopped data directory before upgrading; existing
+citations and history are preserved. The guide explains migration and rollback.
 The [answer-stage checkpoint](docs/loredock/ANSWER_FOUNDATION.md) records internal
 retrieval and real-model evaluation results. An **opt-in cited-answer pilot** is now
 available with `LOREDOCK_ANSWERS=1 pnpm loredock`; follow the guide's

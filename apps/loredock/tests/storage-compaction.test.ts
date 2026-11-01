@@ -83,7 +83,7 @@ test('live ownership rejects compaction; the actual CLI returns a byte-preservin
   const directory = await mkdtemp(path.join(tmpdir(), 'loredock-compact-empty-')); t.after(() => rm(directory, {recursive: true, force: true}));
   const store = new CatalogStore(directory);
   try {assert.throws(() => compactStorage(directory), /in use/); assert.equal(store.project().policyVersion, 1);}
-  finally {store.close();}
+  finally {store.db.exec('VACUUM'); store.close();}
   const before = await readFile(path.join(directory, 'loredock.db'));
   const result = JSON.parse(execFileSync(process.execPath, [path.resolve('../../scripts/loredock-compact.mjs'), '--data-dir', directory], {encoding: 'utf8'}));
   assert.equal(result.status, 'unchanged'); assert.equal(result.reclaimedSqliteBytes, 0);
@@ -106,7 +106,7 @@ test('a separate database writer blocks compaction without recovery, retries or 
 test('compaction refuses unsupported, missing and symlinked data before creating or upgrading a catalog', async t => {
   const directory = await mkdtemp(path.join(tmpdir(), 'loredock-compact-invalid-')); t.after(() => rm(directory, {recursive: true, force: true}));
   assert.throws(() => compactStorage(directory), /existing/); assert.deepEqual(await readdir(directory), []);
-  const store = new CatalogStore(directory); store.db.exec('PRAGMA user_version=9'); store.close();
+  const store = new CatalogStore(directory); store.db.exec('PRAGMA user_version=10'); store.close();
   const database = path.join(directory, 'loredock.db'), before = await readFile(database);
   assert.throws(() => compactStorage(directory), /schema 8/); assert.deepEqual(await readFile(database), before);
   for (const name of ['loredock.db-journal', '.owner.db-wal', '.owner.db-shm']) {

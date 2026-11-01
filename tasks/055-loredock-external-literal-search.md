@@ -1,6 +1,7 @@
 # Task 055 — Production external-content literal search
 
-Status: scoped before implementation, 2026-11-01.
+Status: implemented; compiled migration verification pending, 2026-11-01.
+Scope committed before implementation in `80f97f3`.
 
 Tasks 053–054 justify removing the redundant literal-search text copy. The matched
 control preserves complete token positions and all queries while saving 17.4% of

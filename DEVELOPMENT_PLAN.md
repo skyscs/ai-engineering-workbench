@@ -132,9 +132,11 @@ already-free pages while preserving all logical history.
 content literal-search comparison: 182/182 mechanical checks and 17.8% lower total allocation
 on the fixed small shape. [Task 054](tasks/054-loredock-search-rebuild-control.md) adds the
 matched rebuild control: complete token/position equality, 112/112 query comparisons and
-17.4% further total savings against rebuilding alone. Production stays unchanged. Next:
-atomic schema migration and write/purge hardening, including maintenance compatibility;
-explicit retention requires separate dependency rules. The user demo and feedback stay separate
+17.4% further total savings against rebuilding alone.
+[Task 055](tasks/055-loredock-external-literal-search.md) implements production schema 9
+with atomic legacy conversion, stable row identities/settings, transactional write/purge
+and schema-8/9 maintenance compatibility. Logical text and stored copies are distinguished
+in version-2 reports. Explicit retention requires separate dependency rules. The user demo and feedback stay separate
 from these maintenance checks; broader question-context changes remain open.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.

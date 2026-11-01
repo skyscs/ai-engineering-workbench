@@ -114,8 +114,10 @@ explicit offline compaction, preserving logical rows, rankings and citations.
 search storage experiment, with 182/182 comparisons and 17.8% lower total allocation.
 [Task 054](../../tasks/054-loredock-search-rebuild-control.md) confirms complete token/position
 equality, 112/112 query comparisons and 17.4% further savings against a matched rebuild-only
-control. Next: production migration/write/purge hardening with atomic conversion and
-maintenance compatibility; production remains unchanged. Explicit
+control. [Task 055](../../tasks/055-loredock-external-literal-search.md) implements schema-9
+external literal content with atomic conversion, stable identities/settings, transactional
+write/purge and schema-8/9 maintenance compatibility. Version-2 reports distinguish
+logical text from its stored copy. Explicit
 retention needs separate dependency rules. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.

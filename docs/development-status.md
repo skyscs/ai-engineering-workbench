@@ -1,5 +1,32 @@
 # Development status
 
+## Task 055 — Production external-content literal search
+
+Implementation and strict checks, 421 tests and builds pass, 2026-11-01. Compiled legacy
+migration smoke and final review remain pending. Scope was committed in `80f97f3`.
+PR #58 reached main as `753d134` after push `41327678690` and pull-request `41327759757`
+passed for exact head `eec85d6a88322dbc6b221c7ad14c52936d0e96a3`.
+
+Schema 9 uses original spans as literal FTS content with stable document mappings.
+Migration validates the old layout, postings and full text correspondence before atomic
+conversion and restart recovery; rowids, rank/config settings and all other records stay
+intact. File writes and ordered source purge keep mappings/postings transactional.
+Accounting/compaction accept both schemas without upgrading them; version-2 JSON reports
+distinguish shared logical text from copied bytes and count mapping allocation correctly.
+
+Tests cover complete vocabulary, exact historical/current queries and contexts, saved
+notes/answers/code facts, settings, restart, refresh, purge, file/purge rollback, invalid
+content/layout and a mid-conversion collision with ownership release. Old-version migration
+tests now include the genuine prior FTS layout. Archived experiments are not executed
+against the new schema: their frozen raw results are recounted with adversarial checks.
+An initial test exposed INTEGER versus REAL binding for numeric FTS settings; fixed and
+covered by a nondefault configuration migration. No frozen result or receipt was changed.
+
+See [Task 055](../tasks/055-loredock-external-literal-search.md) and
+[ADR 0046](decisions/0046-loredock-external-literal-search.md). The user's running demo
+remains on its existing process/schema. No corporate source, model request or semantic
+acceptance. History retention and broader context work remain separate.
+
 ## Task 054 — Matched rebuild-only control
 
 Implemented and locally verified, 2026-11-01. PR #57 reached main as `f56b7f6` after

@@ -710,6 +710,20 @@ Each build stores its admitted bytes independently. There is no cross-build
 deduplication or automatic history-retention limit yet; the 50 MiB cap is per build,
 not a total data-directory cap. Monitor local storage during repeated large indexes.
 
+The next normal start with this version upgrades an older catalog to schema 9. Literal
+search then reads its text from the saved original spans instead of keeping another copy;
+saved citations, history, notes and code inventories retain their identities. Back up the
+complete stopped data directory before upgrading and leave free disk space for both old
+and new indexes plus temporary/WAL files. Startup performs a one-time full index scan and
+rebuild, so a large history can take longer to open. No additional input is required.
+
+If conversion fails, preserve the directory and error message; do not change the schema
+version or delete database sidecars. Schema-8 conversion is atomic and failure leaves its
+logical records intact. To return to an older application after a successful upgrade,
+restore the complete pre-upgrade backup while LoreDock is stopped. Older builds cannot
+open schema 9. The upgrade frees pages for reuse but does not automatically shrink the
+database file; offline compaction below is optional.
+
 For a detailed local storage report, use the existing LoreDock data directory:
 
 ```bash
@@ -717,7 +731,7 @@ pnpm --silent loredock:storage --data-dir /absolute/path/to/loredock-data
 ```
 
 This advanced maintenance command prints JSON and makes no logical changes. It needs
-Node 22 and an existing schema-8 catalog; it never creates or upgrades a database. It
+Node 22 and an existing schema-8 or schema-9 catalog; it never creates or upgrades a database. It
 can run while LoreDock is open and does not interrupt jobs or acquire daemon ownership.
 Large histories require a full scan, so run it when needed rather than polling it.
 The report contains counts and byte sizes only, without repository paths, source text,
@@ -727,7 +741,12 @@ questions or connection configuration. Redirect stdout to a file to retain the r
 space inside that allocation. `disk` measures only the listed database/sidecar file
 lengths, separately from the SQLite snapshot. It excludes repositories, backups and other
 directory contents. Payload sizes are already inside SQLite allocation: do not add them
-to the disk total. Duplicate estimates and overlapping dependency counts do not identify
+to the disk total. Audit version 2 reports `payloads.literalSearch.bytes` as logical
+searchable text; `contentStorage: "shared-original-spans"` and `copiedTextBytes: 0` mean
+schema 9 has no separate literal text copy. Its mapping and postings remain included in
+`sqlite.allocations.literalSearch`. Schema 8 reports `contentStorage: "copied"` with its
+copied text bytes. Compaction version 2 embeds the same audit format before and after.
+Duplicate estimates and overlapping dependency counts do not identify
 safe-to-delete history or promise reclaimable space. No cleanup runs automatically.
 See [storage measurements and next steps](../fixtures/loredock-storage-audit/README.md).
 

@@ -39,9 +39,14 @@ The source-build synthetic demo launcher prepares an owned twenty-source catalog
 inventory, releases service/store ownership, then starts the normal compiled daemon with
 isolated data and model mode off. See [ADR 0044](docs/decisions/0044-loredock-isolated-synthetic-demo.md).
 Explicit storage accounting and offline compaction use separate maintenance commands,
-preserving schema 8, logical history and normal job recovery. Compaction acquires daemon
+preserving logical history and normal job recovery. Compaction acquires daemon
 ownership and rewrites physical SQLite pages only when free pages exist; see
 [ADR 0045](docs/decisions/0045-loredock-offline-storage-maintenance.md).
+Schema 9 uses original spans as external literal-search content, with a stable integer
+mapping, atomic legacy migration and explicit transactional writes/purge. Question search
+and parser facts are unchanged. Maintenance accepts schemas 8 and 9; version-2 reports
+distinguish logical text from its stored copy. See
+[ADR 0046](docs/decisions/0046-loredock-external-literal-search.md).
 See [ADR 0040](docs/decisions/0040-loredock-durable-code-inventory.md) and
 [ADR 0041](docs/decisions/0041-loredock-code-coverage-workflow.md).
 Bounded question-context sampling across twenty sources, stable selection and explicit
