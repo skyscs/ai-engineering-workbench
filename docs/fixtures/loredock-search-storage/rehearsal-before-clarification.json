@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "loredock-search-storage-summary/1",
+  "comparisons": 182,
+  "expectedComparisons": 182,
+  "equalComparisons": 173,
+  "failures": [
+    {
+      "stage": "refreshed",
+      "generation": 2,
+      "query": "orders",
+      "equal": false,
+      "fields": [
+        "context.value.interfaces.comparisons.1.evidenceIds.0",
+        "context.value.interfaces.comparisons.1.evidenceIds.1"
+      ]
+    },
+    {
+      "stage": "refreshed",
+      "generation": 2,
+      "query": "orders.placed.v2",
+      "equal": false,
+      "fields": [
+        "context.value.interfaces.comparisons.1.evidenceIds.0",
+        "context.value.interfaces.comparisons.1.evidenceIds.1"
+      ]
+    },
+    {
+      "stage": "refreshed",
+      "generation": 2,
+      "query": "tenantId",
+      "equal": false,
+      "fields": [
+        "context.value.interfaces.comparisons.1.evidenceIds.0",
+        "context.value.interfaces.comparisons.1.evidenceIds.1"
+      ]
+    },
+    {
+      "stage": "refreshed",
+      "generation": 2,
+      "query": "OrderPlaced",
+      "equal": false,
+      "fields": [
+        "context.value.interfaces.comparisons.1.evidenceIds.0",
+        "context.value.interfaces.comparisons.1.evidenceIds.1"
+      ]
+    },
+    {
+      "stage": "refreshed",
+      "generation": 2,
+      "query": "ORDER_TOPIC",
+      "equal": false,
+      "fields": [
+        "context.value.interfaces.comparisons.1.evidenceIds.0",
+        "context.value.interfaces.comparisons.1.evidenceIds.1"
+      ]
+    },
+    {
+      "stage": "refreshed",
+      "generation": 2,
+      "query": "shop.orders",
+      "equal": false,
+      "fields": [
+        "context.value.interfaces.comparisons.1.evidenceIds.0",
+        "context.value.interfaces.comparisons.1.evidenceIds.1"
+      ]
+    },
+    {
+      "stage": "refreshed",
+      "generation": 2,
+      "query": "orders tenantId",
+      "equal": false,
+      "fields": [
+        "context.value.interfaces.comparisons.1.evidenceIds.0",
+        "context.value.interfaces.comparisons.1.evidenceIds.1"
+      ]
+    },
+    {
+      "stage": "refreshed",
+      "generation": 2,
+      "query": "noSuchStorageProbe053",
+      "equal": false,
+      "fields": [
+        "context.value.interfaces.comparisons.1.evidenceIds.0",
+        "context.value.interfaces.comparisons.1.evidenceIds.1"
+      ]
+    },
+    {
+      "stage": "refreshed",
+      "generation": 2,
+      "query": "StockProjection.accept",
+      "equal": false,
+      "fields": [
+        "context.value.interfaces.comparisons.1.evidenceIds.0",
+        "context.value.interfaces.comparisons.1.evidenceIds.1"
+      ]
+    }
+  ],
+  "mechanical": false,
+  "literalRatio": 0.6428571428571429,
+  "totalRatio": 0.9622641509433962,
+  "passed": false
+}

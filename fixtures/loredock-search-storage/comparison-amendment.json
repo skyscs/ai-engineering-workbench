@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "loredock-search-storage-comparison-amendment/1",
+  "fixedMeasurementsBeforeClarification": 0,
+  "hashes": {
+    "fixtures/loredock-search-storage/COMPARISON.md": "6bf16234360a5399db8987661bcb052266db347b9aeeedce848ddba2b2484289",
+    "fixtures/loredock-search-storage/baseline.json": "ff1816b0eecbaba021ba343891620831f696c2a7e1fa196bc4b4f7ac66387e1b"
+  }
+}
