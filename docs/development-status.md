@@ -1,5 +1,35 @@
 # Development status
 
+## Task 050 — One-command isolated synthetic demo
+
+Implemented and locally verified, 2026-11-01. PR #53 reached main as `1fafc0a` after
+push `41258777686` and pull-request `41258786898` passed for exact head
+`57267b0e9a6828fbbee6c324302820d027ce06e6`. Scope was committed in `8d8594b`.
+
+`pnpm loredock:demo` builds the application, creates twenty owned synthetic sources and
+separate data, indexes once, analyzes once and starts the normal daemon after releasing
+preparer ownership. The ready example has 79 admitted files, sixty exclusions and 21
+retained code candidates with six affected syntax files/seven gap messages. Answer and
+development mode are forced off. Port checks happen before source creation; another
+listener is never stopped. Signals stop owned work and retain sources/data, including
+early/incomplete preparation. Printed paths and a safely quoted command support reopening.
+
+Strict types, all 399 tests and builds pass. Five integration and two launcher tests cover
+ownership, exact scope, original lookup, retained data, incomplete/interrupted stages,
+environment isolation, shell quoting and occupied ports. Browser acceptance runs the actual
+package command, verifies the ready UI without path entry, model-free health, short Java
+lookup/keyboard originals, an untouched external data directory, occupied-port rejection,
+retained manual file, graceful shutdown, unchanged index/inventory on reopen and interrupted
+preparation without a daemon/retry. Mobile layout and screenshots pass inspection.
+
+See [Task 050](../tasks/050-loredock-synthetic-demo.md),
+[ADR 0044](decisions/0044-loredock-isolated-synthetic-demo.md),
+[verification](fixtures/loredock-synthetic-demo/README.md) and
+[manual review route](loredock/USER_GUIDE.md#try-the-synthetic-system). No corporate input,
+model call, new benchmark, app schema or UI/API change. Next: hands-on feedback on the
+ready synthetic experience before broader question-context work. Independent semantic
+acceptance and the Workbench bridge remain gated.
+
 ## Task 049 — Familiar Java names in symbol search
 
 Implemented and locally verified, 2026-11-01. PR #52 reached main as `2231a19` after

@@ -712,6 +712,47 @@ not a total data-directory cap. Monitor local storage during repeated large inde
 
 ## Try the synthetic system
 
+After installing dependencies with the documented Node/pnpm toolchain, run:
+
+```sh
+pnpm loredock:demo
+```
+
+The command builds LoreDock, creates twenty synthetic repositories in a fresh temporary
+root, prepares a separate data directory, indexes their committed files and analyzes code.
+When **Demo ready** appears, open **http://127.0.0.1:4244**. There are no repository paths
+to enter and no Codex setup. Demo startup forces model calls off even if your shell normally
+enables answers, and it uses its own directory even if `LOREDOCK_DATA_DIR` is already set.
+If port 4244 is occupied, stop your existing LoreDock instance first; the command does not
+terminate it. The loopback address and browser-session protection are the same as normal.
+
+Expect twenty connected repositories, 79 indexed files, sixty known exclusions and
+21 examined code files. Six files retain seven syntax-gap messages. Try this short route:
+
+1. Open **Project overview** and read a repository's original README context.
+2. Under **Explore the sources**, search `StockProjection.accept`, then open **Original lines**.
+   The result keeps the full name `synthetic.stock.StockProjection.accept`.
+3. Under **Where should I look?**, describe `OrderPlaced is missing tenantId` and inspect
+   the original evidence, other matches and related-source clues. These are reading aids.
+4. Inspect **Code coverage** and its file pages to distinguish examined files from supported
+   syntax. Kafka, MongoDB and the example services are illustrative; they are not running.
+
+Press **Ctrl+C** in the terminal to stop the demo. The launcher retains the generated
+repositories, application data and any notes. It prints **Demo root**, **Demo data** and
+an exact **Reopen later** command; use that command to reopen the same project without
+creating another fixture or reindexing it. A fresh `pnpm loredock:demo` creates another
+isolated example. Interrupted preparation leaves its progress in the printed directory
+without automatically resuming or retrying. `demo.json` records a successfully prepared
+example's source/index/inventory metadata.
+
+These roots are under the OS temporary directory and may eventually be cleaned by the OS.
+For long-lived work, use normal sources/data and the backup guidance above. Keep recorded
+source paths when restoring; moving a source root does not rewrite its registered paths.
+You may remove a stopped generated root once you no longer need its sources, data or notes.
+
+For the smaller three-repository fixture without automatic app setup, the earlier generator
+remains available:
+
 ```sh
 node scripts/loredock-fixture.mjs
 ```
@@ -727,6 +768,9 @@ For repeatable acceptance, run `node scripts/loredock-smoke.mjs` after building 
 Chrome installed and port 4244 free. It creates its own database and fixture, tests
 desktop/mobile usage, revocation, policy changes and restart, then cleans up its
 processes and source inputs. See [browser evidence](../fixtures/loredock-catalog/README.md).
+The twenty-source launch/stop/reopen check is `node scripts/loredock-demo-smoke.mjs`.
+It uses owned temporary data and cleans up its own generated examples after verifying
+retention. See [demo verification](../fixtures/loredock-synthetic-demo/README.md).
 
 ## Local API
 

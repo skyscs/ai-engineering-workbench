@@ -1,6 +1,6 @@
 # Task 050 — One-command isolated synthetic demo
 
-Status: scoped before implementation, 2026-11-01.
+Status: implemented and locally verified, 2026-11-01. Scope was committed in `8d8594b`.
 
 Provide a ready-to-explore twenty-repository LoreDock example without corporate sources,
 Codex configuration or manually entering every repository path. Reuse the existing small
@@ -44,3 +44,29 @@ Document the single command first in the synthetic-demo guide, with examples and
 restart behavior. Retain the verification report and limitations. Review/create the PR,
 merge after both exact-head CI events pass, and move to hands-on review of the resulting
 synthetic experience. Independent semantic acceptance and the Workbench bridge remain gated.
+
+## Outcome
+
+`pnpm loredock:demo` builds and prepares exactly twenty generated sources in a new owned
+temporary root, then starts the normal compiled daemon against its separate data. One
+index publishes 79 files and one analysis retains 21 code candidates; six affected files
+and seven syntax-gap messages remain explicit. The launcher forces model/development mode
+off, checks the port before creating sources, releases preparer ownership before handoff
+and reports readiness only after its own daemon listens. Ctrl+C stops owned work and
+retains sources/data with a safely quoted reopening command.
+
+Strict types, all 399 tests and production builds pass. Five integration and two launcher
+tests cover exact preparation, source roots, ownership release, original lookup, retained
+data, incomplete stages, cancellation including before the store opens, isolated environment,
+literal shell quoting and occupied-port behavior. The actual package command also passes
+browser acceptance: ready UI without path input, short Java lookup/keyboard originals,
+model mode off despite inherited settings, unchanged external data, occupied-port rejection,
+graceful shutdown, retained manual file, reopening the same index/inventory and interrupted
+preparation without a daemon or retry. The 390px layout has no horizontal overflow.
+
+See [verification](../docs/fixtures/loredock-synthetic-demo/README.md),
+[ADR 0044](../docs/decisions/0044-loredock-isolated-synthetic-demo.md) and the
+[manual demo route](../docs/loredock/USER_GUIDE.md#try-the-synthetic-system).
+No corporate sources, real model, new benchmark, app schema or UI/API change.
+Next: hands-on feedback on this ready synthetic experience before choosing broader
+question-context work. Independent semantic acceptance remains open.
