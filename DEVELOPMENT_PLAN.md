@@ -127,8 +127,11 @@ The owner requested independent synthetic work while manual feedback is unavaila
 [Task 051](tasks/051-loredock-storage-audit.md) adds read-only storage accounting, separating
 SQLite allocation, payload copies, live sidecars and history dependencies.
 [Task 052](tasks/052-loredock-offline-compaction.md) adds explicit offline compaction of
-already-free pages while preserving all logical history. Next: prospective deduplication
-experiments with query/ranking/provenance/purge equivalence before choosing a schema change;
+already-free pages while preserving all logical history.
+[Task 053](tasks/053-loredock-search-storage-feasibility.md) passes a prospective external-
+content literal-search comparison: 182/182 mechanical checks and 17.8% lower total allocation
+on the fixed small shape. Production stays unchanged. Next: a matched rebuild-only control
+and full token/position comparison before choosing schema/migration hardening;
 explicit retention requires separate dependency rules. The user demo and feedback stay separate
 from these maintenance checks; broader question-context changes remain open.
 Preserve all failed evaluations;

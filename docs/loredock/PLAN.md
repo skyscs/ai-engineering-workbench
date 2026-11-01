@@ -109,8 +109,11 @@ requested independent synthetic work while manual feedback is unavailable.
 [Task 051](../../tasks/051-loredock-storage-audit.md) adds read-only storage accounting and
 measures refresh copies and reusable free pages without changing history.
 [Task 052](../../tasks/052-loredock-offline-compaction.md) reclaims already-free pages through
-explicit offline compaction, preserving logical rows, rankings and citations. Next:
-prospective deduplication experiments with query/provenance/purge equivalence; explicit
+explicit offline compaction, preserving logical rows, rankings and citations.
+[Task 053](../../tasks/053-loredock-search-storage-feasibility.md) passes an isolated literal
+search storage experiment, with 182/182 comparisons and 17.8% lower total allocation.
+Next: a matched rebuild-only control and full token/position comparison before choosing
+migration hardening; production remains unchanged. Explicit
 retention needs separate dependency rules. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.
