@@ -1,0 +1,683 @@
+{
+  "schemaVersion": "loredock-search-migration-smoke/1",
+  "checkedAt": "2026-11-01T16:57:52.245Z",
+  "commit": "20d2031a00205a630027c3338003bc7b97bfb4c4",
+  "legacyCommit": "753d134d16c38c870ec365b8835145b24a641d18",
+  "node": "v22.23.2",
+  "sqliteVersion": "3.51.3",
+  "implementation": {
+    "legacy": {
+      "allocation.js": "2437856c6f8b88461617015bd398eb4838ac9e4095f31c877307f23e004af1b4",
+      "answer-context.js": "423c08bdb24f09cdc54c4d3f6257e34f620d0c7f9a172c31328a376ebff70706",
+      "answer-expansion.js": "5b6332d1385d182f33ad11a2329f38ac6742af40a37d46c8514d6971c9cd81e9",
+      "answer-interfaces.js": "d6a6a77e2bfcd7e439cfb263c141c5b5ed2b9c7af7abcaedf749c890e75b3966",
+      "answer-prompt.js": "261720639c8310bc011fde78779e1579d5ed14da038ebe97d1425658a0b279a2",
+      "answer-review.js": "734f9602b2c0f7f48c8d191dfee31ec863f1c2dad5aae99fe109cd7b96f030ef",
+      "answers.js": "519ee8b5449f3b827448263b44e317ab54fabec11d2990d8d3d5a407264b949f",
+      "app.js": "e58bf2b92068dd6df3e4fb06974d7463da02316c95ca4c55e5396e1ce3d38236",
+      "candidate-links.js": "339b9b3fed60dd82ab981eb6cc1bd714611d1b9027920e9745ed22162c4b9a0a",
+      "catalog.js": "e381ed4d02e8b03542ea2dda7fc35d765f0ff9f75e11eb1983a5637d09cd5433",
+      "checkpoint.js": "7215a27a3be0438aa3d57d35b7b0e24d650d88137d611231ac9b4dd8aa3f12df",
+      "code-analysis-facts.js": "9b43fdc39a173e6991d77d0fc49acd53b960e302f5bf392c1858be9d65b05166",
+      "code-analysis-follow.js": "fc767cb8c5c960f586555418caba8cc353859492e57db8464f27f8463faf647f",
+      "code-analysis-types.js": "044c5daac440bea79b7425cd7b0da667d8e8a30f709acf20830869285f8da1ab",
+      "code-analysis.js": "103e804cd122524831fcb6d1d3861108fc2322941f53b7e58bbfa3e292270768",
+      "code-facts.js": "a5d8f8c7ad85ffb1751cde309e3f79235b2ef7315dbbe79d05dc1517aec3e6e4",
+      "code-flow-types.js": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "code-flows.js": "00e2dfc1f96c1796e1acaaee1dec9952a2959151356396a92361d918a164edd6",
+      "code-java.js": "3761da0b7f651a35083dfca56be2c9b267b84adeec7d6128b88dcf6be806a8b7",
+      "code-symbol-types.js": "7861687d7ef017de832e65e66972a10d2c885ea608750693b30589de9f28e109",
+      "code-symbols.js": "71be0bedce2c19c548cc38df778c1a8a77e98ddd8db8f8d97416c686e8473fca",
+      "code-typescript.js": "bed4a32a30f629aec58f02ae4e0284cde053d318b39046fcde54d6640a6772b9",
+      "correction-types.js": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "corrections.js": "73cfeb0f8449110edbab80bb566f7dfe26c2e4be03a5e08bd4ceedf3c51051da",
+      "extract.js": "984633a62b0d083f7765aaad7c70211b5dc4fcb81e15022c80e0f477878e6090",
+      "git.js": "8938e323444586bb0ae502e7052fdd3a343f746ed38e4bb0abf140546f843de8",
+      "http-headers.js": "402d2035827c44c2087d31c5c5767e598f9c7121f94747f82e81efed5a421e53",
+      "index-change-types.js": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "index-changes.js": "3b5ca7ec773c52f7694230b5e2c1b6a217f2f1542dea9928f93c0085798cdee3",
+      "index.js": "c6bf231faa8ff3f9807fee084f410027f2bf1e519e2634b275873e5f0262a222",
+      "map-document.js": "418bd45adf403260ca92b9d033d769bd20136da720acfc9dc19de1ad4fc7b8c1",
+      "orientation-types.js": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "orientation.js": "d230fdbba391243b158eb3016fe039ca576599bc985f5192277a81cfdbfeb084",
+      "reconciliation-types.js": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "reconciliation.js": "a386e2b034741728bb3d823f59153f35d43ba7b88c5f485208bf0673a7df7dc0",
+      "search-text.js": "21de7c741e37940803505981e4e03f0390ad654cdd1ae71b76e6c1861ed8e97c",
+      "source-candidates.js": "01790e195d6e69f302e6983dd5fe2a72ca25801aa5da18fa2bdae63bc908e2a8",
+      "source-registration.js": "c1a59472a50961a03f5bc95169669bf98044bc08c108e26474ad2adc81aaf9dc",
+      "store.js": "ac42c42cea5756aed8b4850a23a642e3c8db7b0f73cd32d9db03df21740a0a0f",
+      "system-map-types.js": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "system-map.js": "bb2b1c872817c928ec70761a36c75b055f785d6fdc642b9f8a9301bd58a9efbd",
+      "types.js": "b8b55bceba56ab305c5eb4f6a9047a27f91ed4d38ff084bdae213dae1dc319fd"
+    },
+    "current": {
+      "allocation.js": "2437856c6f8b88461617015bd398eb4838ac9e4095f31c877307f23e004af1b4",
+      "answer-context.js": "423c08bdb24f09cdc54c4d3f6257e34f620d0c7f9a172c31328a376ebff70706",
+      "answer-expansion.js": "5b6332d1385d182f33ad11a2329f38ac6742af40a37d46c8514d6971c9cd81e9",
+      "answer-interfaces.js": "d6a6a77e2bfcd7e439cfb263c141c5b5ed2b9c7af7abcaedf749c890e75b3966",
+      "answer-prompt.js": "261720639c8310bc011fde78779e1579d5ed14da038ebe97d1425658a0b279a2",
+      "answer-review.js": "734f9602b2c0f7f48c8d191dfee31ec863f1c2dad5aae99fe109cd7b96f030ef",
+      "answers.js": "519ee8b5449f3b827448263b44e317ab54fabec11d2990d8d3d5a407264b949f",
+      "app.js": "e58bf2b92068dd6df3e4fb06974d7463da02316c95ca4c55e5396e1ce3d38236",
+      "candidate-links.js": "339b9b3fed60dd82ab981eb6cc1bd714611d1b9027920e9745ed22162c4b9a0a",
+      "catalog.js": "e381ed4d02e8b03542ea2dda7fc35d765f0ff9f75e11eb1983a5637d09cd5433",
+      "checkpoint.js": "7215a27a3be0438aa3d57d35b7b0e24d650d88137d611231ac9b4dd8aa3f12df",
+      "code-analysis-facts.js": "9b43fdc39a173e6991d77d0fc49acd53b960e302f5bf392c1858be9d65b05166",
+      "code-analysis-follow.js": "fc767cb8c5c960f586555418caba8cc353859492e57db8464f27f8463faf647f",
+      "code-analysis-types.js": "044c5daac440bea79b7425cd7b0da667d8e8a30f709acf20830869285f8da1ab",
+      "code-analysis.js": "103e804cd122524831fcb6d1d3861108fc2322941f53b7e58bbfa3e292270768",
+      "code-facts.js": "a5d8f8c7ad85ffb1751cde309e3f79235b2ef7315dbbe79d05dc1517aec3e6e4",
+      "code-flow-types.js": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "code-flows.js": "00e2dfc1f96c1796e1acaaee1dec9952a2959151356396a92361d918a164edd6",
+      "code-java.js": "3761da0b7f651a35083dfca56be2c9b267b84adeec7d6128b88dcf6be806a8b7",
+      "code-symbol-types.js": "7861687d7ef017de832e65e66972a10d2c885ea608750693b30589de9f28e109",
+      "code-symbols.js": "71be0bedce2c19c548cc38df778c1a8a77e98ddd8db8f8d97416c686e8473fca",
+      "code-typescript.js": "bed4a32a30f629aec58f02ae4e0284cde053d318b39046fcde54d6640a6772b9",
+      "correction-types.js": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "corrections.js": "73cfeb0f8449110edbab80bb566f7dfe26c2e4be03a5e08bd4ceedf3c51051da",
+      "extract.js": "984633a62b0d083f7765aaad7c70211b5dc4fcb81e15022c80e0f477878e6090",
+      "git.js": "8938e323444586bb0ae502e7052fdd3a343f746ed38e4bb0abf140546f843de8",
+      "http-headers.js": "402d2035827c44c2087d31c5c5767e598f9c7121f94747f82e81efed5a421e53",
+      "index-change-types.js": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "index-changes.js": "3b5ca7ec773c52f7694230b5e2c1b6a217f2f1542dea9928f93c0085798cdee3",
+      "index.js": "c6bf231faa8ff3f9807fee084f410027f2bf1e519e2634b275873e5f0262a222",
+      "literal-search-storage.js": "b5975acc6f0c928398ab65d894c5be48e28ce18ca31587fef247f589dd8ac24b",
+      "map-document.js": "418bd45adf403260ca92b9d033d769bd20136da720acfc9dc19de1ad4fc7b8c1",
+      "orientation-types.js": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "orientation.js": "d230fdbba391243b158eb3016fe039ca576599bc985f5192277a81cfdbfeb084",
+      "reconciliation-types.js": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "reconciliation.js": "a386e2b034741728bb3d823f59153f35d43ba7b88c5f485208bf0673a7df7dc0",
+      "search-text.js": "21de7c741e37940803505981e4e03f0390ad654cdd1ae71b76e6c1861ed8e97c",
+      "source-candidates.js": "01790e195d6e69f302e6983dd5fe2a72ca25801aa5da18fa2bdae63bc908e2a8",
+      "source-registration.js": "c1a59472a50961a03f5bc95169669bf98044bc08c108e26474ad2adc81aaf9dc",
+      "store.js": "3617df4ca954a29cd1ad5598b1c2d0903d5c28f1f9a9d6e6a414ef7f0f014515",
+      "system-map-types.js": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "system-map.js": "bb2b1c872817c928ec70761a36c75b055f785d6fdc642b9f8a9301bd58a9efbd",
+      "types.js": "b8b55bceba56ab305c5eb4f6a9047a27f91ed4d38ff084bdae213dae1dc319fd"
+    }
+  },
+  "sources": 20,
+  "indexedFilesPerBuild": 79,
+  "codeFiles": 21,
+  "modelRequests": 0,
+  "sourceCheckoutsUnchanged": true,
+  "preserved": {
+    "vocabulary": {
+      "equal": true,
+      "sha256": "d25bda4d9687bb562ac82d8da6fdec90f8ed0bca8f5a1f50f15c04ac8b500919"
+    },
+    "documents": {
+      "equal": true,
+      "sha256": "e36710b8dc506e80eb166ff3abed83d850ff9b0b6c1e13e746552322e921ade5"
+    },
+    "documentSizes": {
+      "equal": true,
+      "sha256": "a118fc3657366c887822869c3b88c55fca8a768991119552fa212fcee227c6b7"
+    },
+    "totals": {
+      "equal": true,
+      "sha256": "a40a7def01c12f763a8b585fc788dc353c57e0d8ca315b9e658eb024b28ce3b7"
+    },
+    "nonLiteralRecords": {
+      "equal": true,
+      "sha256": "33f6ec0b8c15b57776611f0beb0c7b566d71d30c19fb7980e6b89578bcd7459c"
+    }
+  },
+  "tokenInstances": 3964,
+  "documents": 158,
+  "queryComparisons": 56,
+  "savedInventoryPreserved": true,
+  "refreshReused": 79,
+  "purgeIntegrityPassed": true,
+  "before": {
+    "schemaVersion": "loredock-storage-audit/2",
+    "capturedAt": "2026-11-01T16:57:49.901Z",
+    "databaseVersion": 8,
+    "sqlite": {
+      "pageSize": 4096,
+      "pages": 202,
+      "freePages": 0,
+      "allocatedBytes": 827392,
+      "freePageBytes": 0,
+      "allocations": {
+        "answers": 20480,
+        "catalogAndOtherMetadata": 86016,
+        "codeInventory": 126976,
+        "engineerReview": 53248,
+        "originalsAndFileMetadata": 204800,
+        "questionSearch": 147456,
+        "literalSearch": 98304,
+        "originalSpans": 90112
+      },
+      "unassignedBytes": 0
+    },
+    "payloads": {
+      "originals": {
+        "rows": 278,
+        "bytes": 33738
+      },
+      "fileMetadata": {
+        "rows": 278,
+        "bytes": 6808
+      },
+      "spans": {
+        "rows": 158,
+        "bytes": 33580
+      },
+      "literalSearch": {
+        "rows": 158,
+        "bytes": 33580,
+        "contentStorage": "copied",
+        "copiedTextBytes": 33580
+      },
+      "questionSearch": {
+        "rows": 158,
+        "bytes": 72660
+      },
+      "codeFacts": {
+        "rows": 42,
+        "bytes": 57672
+      },
+      "answerContexts": {
+        "rows": 0,
+        "bytes": 0
+      },
+      "answerResults": {
+        "rows": 0,
+        "bytes": 0
+      },
+      "engineerNotes": {
+        "rows": 0,
+        "bytes": 0
+      }
+    },
+    "generations": {
+      "total": 2,
+      "published": 2,
+      "unfinished": 0,
+      "currentPointer": 1
+    },
+    "dependencies": {
+      "meaning": "Overlapping generation counts, not deletion eligibility.",
+      "withAnswerAttempts": 0,
+      "withEngineerReview": 0,
+      "withCodeInventories": 2,
+      "usedAsRefreshBaseline": 1,
+      "withReusedFileReferences": 1
+    },
+    "duplicateCandidates": {
+      "meaning": "Same stored hash and byte length only; neither verified equality nor reclaimable disk space.",
+      "originals": {
+        "extraCopies": 80,
+        "bytes": 17095
+      },
+      "spans": {
+        "extraCopies": 80,
+        "bytes": 17015
+      }
+    },
+    "disk": {
+      "sampledAt": "2026-11-01T16:57:49.901Z",
+      "files": [
+        {
+          "name": "loredock.db",
+          "bytes": 778240
+        },
+        {
+          "name": "loredock.db-wal",
+          "bytes": 4157112
+        },
+        {
+          "name": "loredock.db-shm",
+          "bytes": 32768
+        },
+        {
+          "name": "loredock.db-journal",
+          "bytes": null
+        },
+        {
+          "name": ".owner.db",
+          "bytes": 0
+        },
+        {
+          "name": ".owner.db-journal",
+          "bytes": 512
+        },
+        {
+          "name": ".owner.db-wal",
+          "bytes": null
+        },
+        {
+          "name": ".owner.db-shm",
+          "bytes": null
+        }
+      ],
+      "observedFileBytes": 4968632
+    },
+    "limits": [
+      "SQLite values describe one read snapshot; separately sampled sidecar lengths can change while LoreDock runs.",
+      "Disk values are file lengths for the listed database files only, not allocated filesystem blocks or a directory total.",
+      "Payload bytes are selected UTF-8/BLOB contents inside SQLite allocation. Do not add them to page or disk totals.",
+      "Literal-search bytes are logical searchable text; copiedTextBytes excludes shared original spans. Mapping and postings are counted in SQLite allocation.",
+      "Payload row counts include records with null content; bytes count only retained content.",
+      "History has no automatic retention limit. This report does not delete, compact, checkpoint, migrate or restart work.",
+      "A read-only SQLite connection may maintain shared-memory bookkeeping; this is not a forensic disk acquisition."
+    ]
+  },
+  "migrated": {
+    "schemaVersion": "loredock-storage-audit/2",
+    "capturedAt": "2026-11-01T16:57:50.431Z",
+    "databaseVersion": 9,
+    "sqlite": {
+      "pageSize": 4096,
+      "pages": 217,
+      "freePages": 24,
+      "allocatedBytes": 888832,
+      "freePageBytes": 98304,
+      "allocations": {
+        "answers": 20480,
+        "catalogAndOtherMetadata": 86016,
+        "codeInventory": 126976,
+        "engineerReview": 53248,
+        "originalsAndFileMetadata": 204800,
+        "literalSearch": 61440,
+        "questionSearch": 147456,
+        "originalSpans": 90112
+      },
+      "unassignedBytes": 0
+    },
+    "payloads": {
+      "originals": {
+        "rows": 278,
+        "bytes": 33738
+      },
+      "fileMetadata": {
+        "rows": 278,
+        "bytes": 6808
+      },
+      "spans": {
+        "rows": 158,
+        "bytes": 33580
+      },
+      "literalSearch": {
+        "rows": 158,
+        "bytes": 33580,
+        "contentStorage": "shared-original-spans",
+        "copiedTextBytes": 0
+      },
+      "questionSearch": {
+        "rows": 158,
+        "bytes": 72660
+      },
+      "codeFacts": {
+        "rows": 42,
+        "bytes": 57672
+      },
+      "answerContexts": {
+        "rows": 0,
+        "bytes": 0
+      },
+      "answerResults": {
+        "rows": 0,
+        "bytes": 0
+      },
+      "engineerNotes": {
+        "rows": 0,
+        "bytes": 0
+      }
+    },
+    "generations": {
+      "total": 2,
+      "published": 2,
+      "unfinished": 0,
+      "currentPointer": 1
+    },
+    "dependencies": {
+      "meaning": "Overlapping generation counts, not deletion eligibility.",
+      "withAnswerAttempts": 0,
+      "withEngineerReview": 0,
+      "withCodeInventories": 2,
+      "usedAsRefreshBaseline": 1,
+      "withReusedFileReferences": 1
+    },
+    "duplicateCandidates": {
+      "meaning": "Same stored hash and byte length only; neither verified equality nor reclaimable disk space.",
+      "originals": {
+        "extraCopies": 80,
+        "bytes": 17095
+      },
+      "spans": {
+        "extraCopies": 80,
+        "bytes": 17015
+      }
+    },
+    "disk": {
+      "sampledAt": "2026-11-01T16:57:50.432Z",
+      "files": [
+        {
+          "name": "loredock.db",
+          "bytes": 827392
+        },
+        {
+          "name": "loredock.db-wal",
+          "bytes": 173072
+        },
+        {
+          "name": "loredock.db-shm",
+          "bytes": 32768
+        },
+        {
+          "name": "loredock.db-journal",
+          "bytes": null
+        },
+        {
+          "name": ".owner.db",
+          "bytes": 0
+        },
+        {
+          "name": ".owner.db-journal",
+          "bytes": 512
+        },
+        {
+          "name": ".owner.db-wal",
+          "bytes": null
+        },
+        {
+          "name": ".owner.db-shm",
+          "bytes": null
+        }
+      ],
+      "observedFileBytes": 1033744
+    },
+    "limits": [
+      "SQLite values describe one read snapshot; separately sampled sidecar lengths can change while LoreDock runs.",
+      "Disk values are file lengths for the listed database files only, not allocated filesystem blocks or a directory total.",
+      "Payload bytes are selected UTF-8/BLOB contents inside SQLite allocation. Do not add them to page or disk totals.",
+      "Literal-search bytes are logical searchable text; copiedTextBytes excludes shared original spans. Mapping and postings are counted in SQLite allocation.",
+      "Payload row counts include records with null content; bytes count only retained content.",
+      "History has no automatic retention limit. This report does not delete, compact, checkpoint, migrate or restart work.",
+      "A read-only SQLite connection may maintain shared-memory bookkeeping; this is not a forensic disk acquisition."
+    ]
+  },
+  "compaction": {
+    "schemaVersion": "loredock-storage-compaction/2",
+    "completedAt": "2026-11-01T16:57:50.670Z",
+    "status": "compacted",
+    "reclaimedSqliteBytes": 98304,
+    "before": {
+      "schemaVersion": "loredock-storage-audit/2",
+      "capturedAt": "2026-11-01T16:57:50.662Z",
+      "databaseVersion": 9,
+      "sqlite": {
+        "pageSize": 4096,
+        "pages": 217,
+        "freePages": 24,
+        "allocatedBytes": 888832,
+        "freePageBytes": 98304,
+        "allocations": {
+          "answers": 20480,
+          "catalogAndOtherMetadata": 86016,
+          "codeInventory": 126976,
+          "engineerReview": 53248,
+          "originalsAndFileMetadata": 204800,
+          "literalSearch": 61440,
+          "questionSearch": 147456,
+          "originalSpans": 90112
+        },
+        "unassignedBytes": 0
+      },
+      "payloads": {
+        "originals": {
+          "rows": 278,
+          "bytes": 33738
+        },
+        "fileMetadata": {
+          "rows": 278,
+          "bytes": 6808
+        },
+        "spans": {
+          "rows": 158,
+          "bytes": 33580
+        },
+        "literalSearch": {
+          "rows": 158,
+          "bytes": 33580,
+          "contentStorage": "shared-original-spans",
+          "copiedTextBytes": 0
+        },
+        "questionSearch": {
+          "rows": 158,
+          "bytes": 72660
+        },
+        "codeFacts": {
+          "rows": 42,
+          "bytes": 57672
+        },
+        "answerContexts": {
+          "rows": 0,
+          "bytes": 0
+        },
+        "answerResults": {
+          "rows": 0,
+          "bytes": 0
+        },
+        "engineerNotes": {
+          "rows": 0,
+          "bytes": 0
+        }
+      },
+      "generations": {
+        "total": 2,
+        "published": 2,
+        "unfinished": 0,
+        "currentPointer": 1
+      },
+      "dependencies": {
+        "meaning": "Overlapping generation counts, not deletion eligibility.",
+        "withAnswerAttempts": 0,
+        "withEngineerReview": 0,
+        "withCodeInventories": 2,
+        "usedAsRefreshBaseline": 1,
+        "withReusedFileReferences": 1
+      },
+      "duplicateCandidates": {
+        "meaning": "Same stored hash and byte length only; neither verified equality nor reclaimable disk space.",
+        "originals": {
+          "extraCopies": 80,
+          "bytes": 17095
+        },
+        "spans": {
+          "extraCopies": 80,
+          "bytes": 17015
+        }
+      },
+      "disk": {
+        "sampledAt": "2026-11-01T16:57:50.663Z",
+        "files": [
+          {
+            "name": "loredock.db",
+            "bytes": 888832
+          },
+          {
+            "name": "loredock.db-wal",
+            "bytes": 0
+          },
+          {
+            "name": "loredock.db-shm",
+            "bytes": 32768
+          },
+          {
+            "name": "loredock.db-journal",
+            "bytes": null
+          },
+          {
+            "name": ".owner.db",
+            "bytes": 0
+          },
+          {
+            "name": ".owner.db-journal",
+            "bytes": 512
+          },
+          {
+            "name": ".owner.db-wal",
+            "bytes": null
+          },
+          {
+            "name": ".owner.db-shm",
+            "bytes": null
+          }
+        ],
+        "observedFileBytes": 922112
+      },
+      "limits": [
+        "SQLite values describe one read snapshot; separately sampled sidecar lengths can change while LoreDock runs.",
+        "Disk values are file lengths for the listed database files only, not allocated filesystem blocks or a directory total.",
+        "Payload bytes are selected UTF-8/BLOB contents inside SQLite allocation. Do not add them to page or disk totals.",
+        "Literal-search bytes are logical searchable text; copiedTextBytes excludes shared original spans. Mapping and postings are counted in SQLite allocation.",
+        "Payload row counts include records with null content; bytes count only retained content.",
+        "History has no automatic retention limit. This report does not delete, compact, checkpoint, migrate or restart work.",
+        "A read-only SQLite connection may maintain shared-memory bookkeeping; this is not a forensic disk acquisition."
+      ]
+    },
+    "after": {
+      "schemaVersion": "loredock-storage-audit/2",
+      "capturedAt": "2026-11-01T16:57:50.669Z",
+      "databaseVersion": 9,
+      "sqlite": {
+        "pageSize": 4096,
+        "pages": 193,
+        "freePages": 0,
+        "allocatedBytes": 790528,
+        "freePageBytes": 0,
+        "allocations": {
+          "answers": 20480,
+          "catalogAndOtherMetadata": 86016,
+          "codeInventory": 126976,
+          "engineerReview": 53248,
+          "originalsAndFileMetadata": 204800,
+          "literalSearch": 61440,
+          "questionSearch": 147456,
+          "originalSpans": 90112
+        },
+        "unassignedBytes": 0
+      },
+      "payloads": {
+        "originals": {
+          "rows": 278,
+          "bytes": 33738
+        },
+        "fileMetadata": {
+          "rows": 278,
+          "bytes": 6808
+        },
+        "spans": {
+          "rows": 158,
+          "bytes": 33580
+        },
+        "literalSearch": {
+          "rows": 158,
+          "bytes": 33580,
+          "contentStorage": "shared-original-spans",
+          "copiedTextBytes": 0
+        },
+        "questionSearch": {
+          "rows": 158,
+          "bytes": 72660
+        },
+        "codeFacts": {
+          "rows": 42,
+          "bytes": 57672
+        },
+        "answerContexts": {
+          "rows": 0,
+          "bytes": 0
+        },
+        "answerResults": {
+          "rows": 0,
+          "bytes": 0
+        },
+        "engineerNotes": {
+          "rows": 0,
+          "bytes": 0
+        }
+      },
+      "generations": {
+        "total": 2,
+        "published": 2,
+        "unfinished": 0,
+        "currentPointer": 1
+      },
+      "dependencies": {
+        "meaning": "Overlapping generation counts, not deletion eligibility.",
+        "withAnswerAttempts": 0,
+        "withEngineerReview": 0,
+        "withCodeInventories": 2,
+        "usedAsRefreshBaseline": 1,
+        "withReusedFileReferences": 1
+      },
+      "duplicateCandidates": {
+        "meaning": "Same stored hash and byte length only; neither verified equality nor reclaimable disk space.",
+        "originals": {
+          "extraCopies": 80,
+          "bytes": 17095
+        },
+        "spans": {
+          "extraCopies": 80,
+          "bytes": 17015
+        }
+      },
+      "disk": {
+        "sampledAt": "2026-11-01T16:57:50.670Z",
+        "files": [
+          {
+            "name": "loredock.db",
+            "bytes": 790528
+          },
+          {
+            "name": "loredock.db-wal",
+            "bytes": 0
+          },
+          {
+            "name": "loredock.db-shm",
+            "bytes": 32768
+          },
+          {
+            "name": "loredock.db-journal",
+            "bytes": null
+          },
+          {
+            "name": ".owner.db",
+            "bytes": 0
+          },
+          {
+            "name": ".owner.db-journal",
+            "bytes": 512
+          },
+          {
+            "name": ".owner.db-wal",
+            "bytes": null
+          },
+          {
+            "name": ".owner.db-shm",
+            "bytes": null
+          }
+        ],
+        "observedFileBytes": 823808
+      },
+      "limits": [
+        "SQLite values describe one read snapshot; separately sampled sidecar lengths can change while LoreDock runs.",
+        "Disk values are file lengths for the listed database files only, not allocated filesystem blocks or a directory total.",
+        "Payload bytes are selected UTF-8/BLOB contents inside SQLite allocation. Do not add them to page or disk totals.",
+        "Literal-search bytes are logical searchable text; copiedTextBytes excludes shared original spans. Mapping and postings are counted in SQLite allocation.",
+        "Payload row counts include records with null content; bytes count only retained content.",
+        "History has no automatic retention limit. This report does not delete, compact, checkpoint, migrate or restart work.",
+        "A read-only SQLite connection may maintain shared-memory bookkeeping; this is not a forensic disk acquisition."
+      ]
+    },
+    "limits": [
+      "This explicit operation keeps logical records and history; it does not impose a total storage quota.",
+      "Only already-free SQLite pages trigger compaction. Actual savings also depend on page layout.",
+      "A failure can leave completed checkpoint or compaction work in place. No automatic retry or job recovery is performed."
+    ]
+  }
+}

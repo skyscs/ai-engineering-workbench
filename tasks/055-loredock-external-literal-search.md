@@ -1,6 +1,6 @@
 # Task 055 — Production external-content literal search
 
-Status: implemented; compiled migration verification pending, 2026-11-01.
+Status: implemented and locally verified, 2026-11-01.
 Scope committed before implementation in `80f97f3`.
 
 Tasks 053–054 justify removing the redundant literal-search text copy. The matched
@@ -41,3 +41,17 @@ run strict checks, full tests/builds and an owned compiled migration/maintenance
 Review, create the PR and merge after both exact-head CI events succeed. The running
 user demo stays on its existing process/data; owner feedback and semantic gates remain
 open. Follow-up scope depends on findings, without rerunning exhausted evaluations.
+
+## Outcome
+
+Strict checks, 421 tests and builds pass; the final focused storage/migration run passes
+21 tests including explicit rank vectors. Compiled implementation `20d2031` successfully
+upgrades a twenty-source database written by the actual previous application `753d134`.
+All token/document/non-literal vectors and 56 query/context comparisons agree; 79 files
+reuse their extraction and revocation preserves integrity. The explicit compaction command
+reduces this catalog from 827,392 legacy bytes to 790,528 bytes, with zero copied literal
+text bytes. See [verification and limits](../docs/fixtures/loredock-search-migration/README.md).
+
+No live user migration/restart, model call, corporate input or historical evaluation rerun.
+The next bounded design work can inventory retained-history dependencies before choosing
+any removal policy; automatic deletion is not part of this storage change.
