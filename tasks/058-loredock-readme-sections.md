@@ -1,6 +1,6 @@
 # Task 058 — Source-backed README section navigation
 
-Status: scoped before implementation, 2026-11-01.
+Status: implemented and locally verified, 2026-11-01. Scope committed before code as `078c48d`.
 
 Return from the completed storage diagnostic sequence to the roadmap's broader project
 orientation. The overview currently exposes the introductory paragraph and undifferentiated
@@ -43,3 +43,13 @@ checks, update English documentation and an ADR, run strict/full checks/builds, 
 publish a PR, and merge after both exact-head CI events pass. Preserve all frozen results
 and exhausted model budgets. This is document navigation, not semantic acceptance or a
 Workbench bridge; subsequent glossary/synthesis work remains separately scoped.
+
+## Verification
+
+Implementation `a59da3a`, layout `7e66e29`. Strict checks, 434 tests and production builds
+pass. The 23-test focused run and nine-condition compiled browser scenario cover the
+contract above. Original-part links gained explicit spacing after screenshot review.
+See [verification and reproduction](../docs/fixtures/loredock-readme-sections/README.md)
+and [ADR 0047](../docs/decisions/0047-loredock-readme-sections.md). Existing user demo,
+frozen evaluations and model budgets remain untouched. Large-project navigation costs
+and broader glossary/synthesis are not qualified by this three-source browser check.
