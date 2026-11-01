@@ -92,6 +92,9 @@ and syntax gaps; expand its file pages to inspect facts and original sources. Ex
 indexes can be analyzed explicitly. In **Explore the sources**, an exact name such as
 `Orders.accept` also searches the compatible code inventory and opens its original lines.
 Symbol coverage and limits are visible; original text search remains independently available.
+A separate [larger lookup qualification](docs/fixtures/loredock-symbol-qualification/README.md)
+checks all 3,621 retained synthetic code files per query, with original verification and
+recorded local timings. Broader framework and semantic acceptance remain open.
 
 ## What v0.1 does
 

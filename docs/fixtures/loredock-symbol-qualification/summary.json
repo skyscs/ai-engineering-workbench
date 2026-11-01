@@ -1,0 +1,348 @@
+{
+  "schemaVersion": "loredock-symbol-search-qualification/1",
+  "checkedAt": "2026-11-01T00:40:09.687Z",
+  "smoke": false,
+  "fixtureMs": 1525.288865,
+  "graphCheck": {
+    "adapterVersion": "pilot-code-v3",
+    "coverage": {
+      "candidateDocuments": 3621,
+      "examinedDocuments": 100,
+      "parsedBytes": 186453
+    },
+    "absentExpected": true
+  },
+  "verifiedOriginals": {
+    "verifiedSpanOccurrences": 18,
+    "verifiedFiles": 7
+  },
+  "sampledPeakRssBytes": 228364288,
+  "memoryScope": "Shared evaluator process, sampled every 100 ms and at query boundaries; includes fixture/index allocations.",
+  "sourceCheckoutsUnchanged": true,
+  "modelRequests": 0,
+  "answerAttempts": 0,
+  "mechanicalQualificationPassed": false,
+  "amendedMechanicalQualificationPassed": true,
+  "semanticAcceptance": false,
+  "independentReview": "pending",
+  "limitation": "Known simple synthetic source volume and a mechanical oracle; not representative framework cost, independent semantic acceptance or a production latency commitment.",
+  "rawFile": "raw-result.json",
+  "rawSha256": "1c8c8ae3fbf47c02691903d11440dcd510c06d49afa983eeef19955f3a9ac29b",
+  "rawBytes": 134505,
+  "measurementCommit": "1ab42d7c014d56feda9bc9079916cb37d33148ff",
+  "originalDesignCommit": "13c907e",
+  "prospectiveAmendmentCommit": "6caaaa7",
+  "index": {
+    "ms": 64422.28546100001,
+    "coverage": {
+      "indexed": 3679,
+      "excluded": 60,
+      "failed": 0,
+      "pending": 0,
+      "bytes": 7389669,
+      "reasons": {
+        "binary": 20,
+        "policy": 20,
+        "symlink": 20
+      }
+    }
+  },
+  "analysis": {
+    "status": "available",
+    "ms": 4341.811019999994,
+    "inventory": {
+      "id": "d756fbf1-d731-4f57-be7c-d78242d4fe57",
+      "buildId": "823ea269-dbc6-4f1a-ad8b-c81cfeb9ec0f",
+      "status": "partial",
+      "published": true,
+      "createdAt": "2026-11-01T00:39:50.137Z",
+      "reason": "Source or code coverage gaps remain.",
+      "candidates": 3621,
+      "counts": {
+        "parsed": 3621
+      },
+      "gaps": 7,
+      "filesWithGaps": 6,
+      "examined": 3621,
+      "textBytes": 7378135,
+      "payloadBytes": 4389516,
+      "elapsedMs": 4225.585814999999,
+      "limits": {
+        "documents": 10000,
+        "fileBytes": 32768,
+        "fileSpans": 8,
+        "textBytes": 52428800,
+        "filePayloadBytes": 131072,
+        "payloadBytes": 16777216,
+        "wallMs": 300000
+      },
+      "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+      "currentParser": true,
+      "staleIndex": false
+    }
+  },
+  "originalSummary": {
+    "expectedQueries": 18,
+    "recordedQueries": 18,
+    "availableQueries": 18,
+    "mechanicallyPassingQueries": 16,
+    "repeatDifferences": [],
+    "mechanicalChecksPassed": false,
+    "timing": {
+      "targetMs": 5500,
+      "medianMs": 818.0613404999967,
+      "maxMs": 865.3278240000072,
+      "allQueriesWithinTarget": true
+    }
+  },
+  "amendedSummary": {
+    "expectedQueries": 18,
+    "recordedQueries": 18,
+    "availableQueries": 18,
+    "mechanicallyPassingQueries": 18,
+    "repeatDifferences": [],
+    "mechanicalChecksPassed": true,
+    "timing": {
+      "targetMs": 5500,
+      "medianMs": 818.0613404999967,
+      "maxMs": 865.3278240000072,
+      "allQueriesWithinTarget": true
+    }
+  },
+  "queries": [
+    {
+      "id": "s01",
+      "query": "loadProbe000179",
+      "status": "available",
+      "ms": 865.3278240000072,
+      "responseBytes": 1698,
+      "originalsVerified": true,
+      "pass": 1,
+      "scannedFiles": 3621,
+      "matches": 1,
+      "originalExactMatches": true,
+      "amendedExactMatches": true
+    },
+    {
+      "id": "s02",
+      "query": "loadProbe100179",
+      "status": "available",
+      "ms": 829.5276279999962,
+      "responseBytes": 1712,
+      "originalsVerified": true,
+      "pass": 1,
+      "scannedFiles": 3621,
+      "matches": 1,
+      "originalExactMatches": true,
+      "amendedExactMatches": true
+    },
+    {
+      "id": "s03",
+      "query": "loadProbe190179",
+      "status": "available",
+      "ms": 839.5228860000061,
+      "responseBytes": 1712,
+      "originalsVerified": true,
+      "pass": 1,
+      "scannedFiles": 3621,
+      "matches": 1,
+      "originalExactMatches": true,
+      "amendedExactMatches": true
+    },
+    {
+      "id": "s04",
+      "query": "Orders.accept",
+      "status": "available",
+      "ms": 819.9753840000049,
+      "responseBytes": 1709,
+      "originalsVerified": true,
+      "pass": 1,
+      "scannedFiles": 3621,
+      "matches": 1,
+      "originalExactMatches": true,
+      "amendedExactMatches": true
+    },
+    {
+      "id": "s05",
+      "query": "accept",
+      "status": "available",
+      "ms": 825.3876439999876,
+      "responseBytes": 4249,
+      "originalsVerified": true,
+      "pass": 1,
+      "scannedFiles": 3621,
+      "matches": 4,
+      "originalExactMatches": false,
+      "amendedExactMatches": true
+    },
+    {
+      "id": "s06",
+      "query": "Orders",
+      "status": "available",
+      "ms": 816.3134050000081,
+      "responseBytes": 1702,
+      "originalsVerified": true,
+      "pass": 1,
+      "scannedFiles": 3621,
+      "matches": 1,
+      "originalExactMatches": true,
+      "amendedExactMatches": true
+    },
+    {
+      "id": "s07",
+      "query": "OrderBadge",
+      "status": "available",
+      "ms": 817.9624170000025,
+      "responseBytes": 882,
+      "originalsVerified": true,
+      "pass": 1,
+      "scannedFiles": 3621,
+      "matches": 0,
+      "originalExactMatches": true,
+      "amendedExactMatches": true
+    },
+    {
+      "id": "s08",
+      "query": "loadprobe190179",
+      "status": "available",
+      "ms": 821.8191829999996,
+      "responseBytes": 887,
+      "originalsVerified": true,
+      "pass": 1,
+      "scannedFiles": 3621,
+      "matches": 0,
+      "originalExactMatches": true,
+      "amendedExactMatches": true
+    },
+    {
+      "id": "s09",
+      "query": "nonexistentSyntheticSymbol048",
+      "status": "available",
+      "ms": 813.4075319999974,
+      "responseBytes": 901,
+      "originalsVerified": true,
+      "pass": 1,
+      "scannedFiles": 3621,
+      "matches": 0,
+      "originalExactMatches": true,
+      "amendedExactMatches": true
+    },
+    {
+      "id": "s01",
+      "query": "loadProbe000179",
+      "status": "available",
+      "ms": 812.4244730000064,
+      "responseBytes": 1698,
+      "originalsVerified": true,
+      "pass": 2,
+      "scannedFiles": 3621,
+      "matches": 1,
+      "originalExactMatches": true,
+      "amendedExactMatches": true
+    },
+    {
+      "id": "s02",
+      "query": "loadProbe100179",
+      "status": "available",
+      "ms": 809.2226269999956,
+      "responseBytes": 1712,
+      "originalsVerified": true,
+      "pass": 2,
+      "scannedFiles": 3621,
+      "matches": 1,
+      "originalExactMatches": true,
+      "amendedExactMatches": true
+    },
+    {
+      "id": "s03",
+      "query": "loadProbe190179",
+      "status": "available",
+      "ms": 822.3809040000051,
+      "responseBytes": 1712,
+      "originalsVerified": true,
+      "pass": 2,
+      "scannedFiles": 3621,
+      "matches": 1,
+      "originalExactMatches": true,
+      "amendedExactMatches": true
+    },
+    {
+      "id": "s04",
+      "query": "Orders.accept",
+      "status": "available",
+      "ms": 803.7698320000054,
+      "responseBytes": 1709,
+      "originalsVerified": true,
+      "pass": 2,
+      "scannedFiles": 3621,
+      "matches": 1,
+      "originalExactMatches": true,
+      "amendedExactMatches": true
+    },
+    {
+      "id": "s05",
+      "query": "accept",
+      "status": "available",
+      "ms": 812.4138200000016,
+      "responseBytes": 4249,
+      "originalsVerified": true,
+      "pass": 2,
+      "scannedFiles": 3621,
+      "matches": 4,
+      "originalExactMatches": false,
+      "amendedExactMatches": true
+    },
+    {
+      "id": "s06",
+      "query": "Orders",
+      "status": "available",
+      "ms": 810.0752969999885,
+      "responseBytes": 1702,
+      "originalsVerified": true,
+      "pass": 2,
+      "scannedFiles": 3621,
+      "matches": 1,
+      "originalExactMatches": true,
+      "amendedExactMatches": true
+    },
+    {
+      "id": "s07",
+      "query": "OrderBadge",
+      "status": "available",
+      "ms": 810.4010199999902,
+      "responseBytes": 882,
+      "originalsVerified": true,
+      "pass": 2,
+      "scannedFiles": 3621,
+      "matches": 0,
+      "originalExactMatches": true,
+      "amendedExactMatches": true
+    },
+    {
+      "id": "s08",
+      "query": "loadprobe190179",
+      "status": "available",
+      "ms": 838.3497380000044,
+      "responseBytes": 887,
+      "originalsVerified": true,
+      "pass": 2,
+      "scannedFiles": 3621,
+      "matches": 0,
+      "originalExactMatches": true,
+      "amendedExactMatches": true
+    },
+    {
+      "id": "s09",
+      "query": "nonexistentSyntheticSymbol048",
+      "status": "available",
+      "ms": 818.160263999991,
+      "responseBytes": 901,
+      "originalsVerified": true,
+      "pass": 2,
+      "scannedFiles": 3621,
+      "matches": 0,
+      "originalExactMatches": true,
+      "amendedExactMatches": true
+    }
+  ]
+}

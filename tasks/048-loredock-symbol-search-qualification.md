@@ -1,6 +1,6 @@
 # Task 048 — Larger synthetic exact-symbol qualification
 
-Status: scoped before implementation and measurement, 2026-11-01. Follows PR #51 / main `9b0a118`.
+Status: implemented and locally verified, 2026-11-01. Follows PR #51 / main `9b0a118`.
 
 Qualify the Task 047 query path on the unchanged Task 041 volume shape before broader
 retrieval uses durable facts. Owned synthetic sources only; no corporate sources, real
@@ -42,3 +42,25 @@ and commit the harness before the single full measurement, then retain its raw a
 and an honest summary. Any code optimization or changed threshold requires a new task;
 do not tune and replay this protocol. Open a PR, review it, merge after both CI events
 pass for the exact head, and continue the next planned slice.
+
+## Outcome
+
+Original design/cases were frozen in `13c907e`. The first small smoke exposed three
+missing package prefixes in the s05 expected Java names. Those original inputs remain
+unchanged; prospective amendment `6caaaa7` records the exact corrected labels before
+any full-size generation. Both original and amended scores are retained separately.
+
+Harness `1ab42d7` preceded the single full measurement. All 3,679 eligible files were
+indexed, and all 3,621 code candidates retained with six affected syntax files / seven
+gap messages. Each of eighteen queries scanned all candidates. Exact-set checks pass
+18/18 under the amended oracle; the original oracle remains 16/18 solely for s05's names.
+Every returned original was verified, repeats agree, and no time/output omission occurred.
+Median lookup time is 818.061 ms; maximum 865.328 ms, below the 5,500 ms local target.
+Indexing took 64.422 seconds and durable analysis 4.342 seconds. No source checkout changed.
+
+Strict types, 391 tests and production builds pass. Five new pure tests cover frozen
+inputs/amendment, stage gating, raw-result reassessment and repeat comparisons; the owned
+121-file smoke verifies the compiled harness. See the [complete report](../docs/fixtures/loredock-symbol-qualification/README.md).
+No model, corporate input, production change or hidden rerun. The full-attempt receipt
+remains consumed. Next: short Java name lookup with complete qualified identity and
+explicit ambiguity, before broader retrieval changes.

@@ -115,8 +115,11 @@ indexes and interrupted work remain explicit; late context/detail responses are 
 [Task 047](tasks/047-loredock-exact-symbol-search.md) adds exact-symbol lookup over the
 compatible published inventory, sharing the existing search input while preserving
 independent text results. Original support, bounded scans and late-result fences are explicit.
-Next: separately qualify lookup coverage/latency on the fixed larger synthetic shape before
-extending broader retrieval.
+[Task 048](tasks/048-loredock-symbol-search-qualification.md) qualifies all 3,621 retained
+files in eighteen lookups, with identical repeats and 818/865 ms median/max local latency.
+The prospectively amended oracle passes 18/18; the original 16/18 naming error remains recorded.
+Next: familiar short Java class/method lookup with complete qualified identity and explicit
+ambiguity, before extending broader retrieval.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

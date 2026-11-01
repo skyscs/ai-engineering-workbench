@@ -1,0 +1,3232 @@
+{
+  "schemaVersion": "loredock-symbol-search-qualification/1",
+  "checkedAt": "2026-11-01T00:40:09.687Z",
+  "smoke": false,
+  "frozen": {
+    "schemaVersion": "loredock-symbol-search-design/1",
+    "frozenAt": "2026-11-01T00:33:03.065166+00:00",
+    "sourceHashes": {
+      "fixtures/loredock-symbol-search/DESIGN.md": "4375bf1ac1130b1023ca93a8c9616ef89b51f627ff8696709e34368fd630b57f",
+      "fixtures/loredock-symbol-search/cases.mjs": "5a267b6d7ca3def1255c1c883bdcdace8ea474239f932d9610bdb978d67ac744",
+      "fixtures/loredock-capacity/baseline.json": "4e73179f235565c5d42d842df9bfa3f4e6073e1743fdcf931c53bfb483152807"
+    },
+    "productCommit": "9b0a118971cc2ba5a9a93bc042ea6effd4689937",
+    "productHashes": {
+      "apps/loredock/src/allocation.ts": "63765bb1ea6357fb2db3c1cb73519de619ae73b9886f3e46eb0ccdf62dd8d930",
+      "apps/loredock/src/answer-context.ts": "2553c8f0d0de75687f83f2419fb52c590880615aca1d25d0725f7e479be672cb",
+      "apps/loredock/src/answer-expansion.ts": "2af1fa98e42101108182f44c62d1608aff8af889503408c14dde9a595bc7eb2d",
+      "apps/loredock/src/answer-interfaces.ts": "74bdab01c1cba0f3624ad33c9d6367b801a95fb423553bff3800ea383337fa2d",
+      "apps/loredock/src/answer-prompt.ts": "7afb00937c71a6bbf3f6f3d18aceeb36f77e5b2c6f181d78c1273b0add16adc8",
+      "apps/loredock/src/answer-review.ts": "60adef0485a2ec4c329ab8a055f1136032a905ab85de349e121bd3a0a8d7a7b6",
+      "apps/loredock/src/answers.ts": "36b1421ba4682f17cf052bd16b0db4655ee8c23e0c3bcf3fabc41f9126f22d39",
+      "apps/loredock/src/app.ts": "e5be6d77e800560d67205d69fe13dd0e20a83a0eb9e0a369a6b12c1552e641f9",
+      "apps/loredock/src/candidate-links.ts": "7a09fbfb892044211e47fcb5bebe298161a63caa96d0ed7e85e8ca2b05d3cf0a",
+      "apps/loredock/src/catalog.ts": "04eb7036f8294d74413d82a0243fbfda8ba2cd055f16100da184954bd891e5fe",
+      "apps/loredock/src/checkpoint.ts": "4845cc1822319491448c02c91ce11d16bb10f632c82e3691d4238dcb439554d8",
+      "apps/loredock/src/code-analysis-facts.ts": "82fb810a3fa6a790538925cb5431c1ccc08b7e096229378fe95d0e91b85d5167",
+      "apps/loredock/src/code-analysis-follow.ts": "6bcf81dcb92d0fe254a34e4419d5f4173ad0ab2148d73790725e28e5ebfaf844",
+      "apps/loredock/src/code-analysis-types.ts": "505bd871b64f3ee5be89375da6acf02cbc36966c3a10ad4c7cc4d63f8a2f8192",
+      "apps/loredock/src/code-analysis.ts": "45485d1b1e5534546d8d40504d7d04090442ce6298142222740ba9942e5764da",
+      "apps/loredock/src/code-facts.ts": "38227b1619f13457b45883dcba6dd9316c62a2fa72ef858b51a77779287a2151",
+      "apps/loredock/src/code-flow-types.ts": "08f6c660defb34745801b216b12b62d22db197a5e269fa8a62ec3a1b1e7ce449",
+      "apps/loredock/src/code-flows.ts": "c94ed41d6cbc86e26f7997b852eb92df32e2fb3e443a044559a52c4d80274a7f",
+      "apps/loredock/src/code-java.ts": "d51ff800a32a513f1e3a8eed7015d9be96817fef00c9eb1f70ff2f06b5d92389",
+      "apps/loredock/src/code-symbol-types.ts": "e54a28c5a3221e8cc9859f1bb9fbd761e49987ca4aaff2922f7146fa4789ff64",
+      "apps/loredock/src/code-symbols.ts": "2470fe0cefe2d250677e278795e175676391155d4848164c728039fc79c3cb02",
+      "apps/loredock/src/code-typescript.ts": "773a8ced3b8e304c7d306fa9a91e060ce7da7194ebcde5a4ccb5aa12f9c1a5ad",
+      "apps/loredock/src/correction-types.ts": "10f0d81bed28f5a22ab7174b37a714d6b872bcb0c7d3f7e2b7db19f4bf90c43b",
+      "apps/loredock/src/corrections.ts": "798f30324dee9d6677ff65d8b3d467790123943689c150dc07904372cd000001",
+      "apps/loredock/src/extract.ts": "0909a4884ff9a82bd9eaaa6b625c7044f69eba3f3c53771b16668c2cdd3e6c2b",
+      "apps/loredock/src/git.ts": "db71527e26ea0d2c14486a0390b275c92054489624276eec5961e60015c1aab1",
+      "apps/loredock/src/http-headers.ts": "967bddace78b2c472401e4a490b08ca7cfc44eae725a537d52c7b102ebbdb1a9",
+      "apps/loredock/src/index-change-types.ts": "43537553719e84174d5649962c41752637ba540ff250b7fefa61a7f0e652d3c8",
+      "apps/loredock/src/index-changes.ts": "24a1e0fd9c2faa5b03440f8689f2fbb1c5d31a54af8bb97b537b9a14adbce149",
+      "apps/loredock/src/index.ts": "f8e791f73fd1b54563f03087639efc430ecae24d2aa8c7ebb62fe494ac357b12",
+      "apps/loredock/src/map-document.ts": "741ddd865b8c7ac63082f67200d3e5b55d74fa1cc9ce156b84aaa328165aede7",
+      "apps/loredock/src/orientation-types.ts": "6b97536bb7836834b94a058cfe7c850077d37ca8e08e813676216de3e3528a49",
+      "apps/loredock/src/orientation.ts": "ef0a84fe5c7f71dd42e6f6342921c1f046e1213307f7de66cef031be316bb044",
+      "apps/loredock/src/reconciliation-types.ts": "bd5545a1c90d4022813b81f7b022f90afe2916ce1f43b1df2c4c726d6a3cc8ca",
+      "apps/loredock/src/reconciliation.ts": "a68162812fb3bd42f75c735348fab5d7ac0e1bdb57380634687dd275d74844b4",
+      "apps/loredock/src/search-text.ts": "b283822b5903f47aed6ac3ed07191c38681beaa11e4ecebb188638719dddb91a",
+      "apps/loredock/src/source-candidates.ts": "0e5c742c6820165fdeef672960909d16be29ae5daa787560f571942499ec69ca",
+      "apps/loredock/src/source-registration.ts": "0d94d7a68b4afc9080a56fcd35514a133c4ab96e7c59e080865026bb449ac5dc",
+      "apps/loredock/src/store.ts": "3736d1734dc103de91066875acaf50b144e77dbe84a345c0bd70815986edd368",
+      "apps/loredock/src/system-map-types.ts": "b88a210909fce3ae04be238ba53c05d2ccc9cd24ba93c775df9a7f67fdcf7f45",
+      "apps/loredock/src/system-map.ts": "1ebb790be8568cfd97bab092cdb5e454f684405617258d2db6c16e8766c212b8",
+      "apps/loredock/src/types.ts": "c2224039777498e97697bacc2400a4b272d6c582f58766a244d3dc77af0339ba",
+      "pnpm-lock.yaml": "7518f6697e3a529114fd835acbe23df2251e1ed25d6077f94d541409876d9312"
+    },
+    "initialIndexAttempts": 1,
+    "analysisAttempts": 1,
+    "passes": 2,
+    "queriesPerPass": 9,
+    "modelRequests": 0,
+    "eligibleFiles": 3679,
+    "candidateFiles": 3621,
+    "unsupportedFiles": 6,
+    "gapMessages": 7,
+    "queryTargetMs": 5500,
+    "lookupLimits": {
+      "queryBytes": 200,
+      "matches": 20,
+      "outputBytes": 262144,
+      "wallMs": 5000
+    }
+  },
+  "amendment": {
+    "amendment": {
+      "schemaVersion": "loredock-symbol-search-amendment/1",
+      "originalBaselineHash": "ee1a28f4840832691b11a0beec1a1782eba6dc30dbff6d36f5215f4f9428d8b5",
+      "sourceHashes": {
+        "fixtures/loredock-symbol-search/ERRATA.md": "2aa37bcd9647f3727779fcfd73ce41279458af670197b5d02a8def782650a0f5",
+        "fixtures/loredock-symbol-search/qualified-name-errata.json": "188180e7d2413ae4b8bfc686c049dc4b94204159e4dc665200aeb290055786c8"
+      },
+      "fullMeasurementsBeforeAmendment": 0,
+      "scope": "Three package-qualified expected names only; retain original and amended assessments separately."
+    },
+    "corrections": [
+      {
+        "id": "s05",
+        "source": "inventory-worker",
+        "path": "src/StockProjection.java",
+        "from": "StockProjection.accept",
+        "to": "synthetic.stock.StockProjection.accept"
+      },
+      {
+        "id": "s05",
+        "source": "shipping-worker",
+        "path": "src/Shipments.java",
+        "from": "Shipments.accept",
+        "to": "synthetic.shipping.Shipments.accept"
+      },
+      {
+        "id": "s05",
+        "source": "notification-worker",
+        "path": "src/Notify.java",
+        "from": "Notify.accept",
+        "to": "synthetic.notifications.Notify.accept"
+      }
+    ]
+  },
+  "implementation": {
+    "commit": "1ab42d7c014d56feda9bc9079916cb37d33148ff",
+    "node": "v22.23.2",
+    "typescriptVersion": "5.9.3",
+    "hashes": {
+      "scripts/loredock-symbol-search-qualification.mjs": "577550cb6cd8993b7d956a97d1a49056c50b84881b62d5ea37321eef49dbc5ee",
+      "apps/loredock/dist/allocation.js": "2437856c6f8b88461617015bd398eb4838ac9e4095f31c877307f23e004af1b4",
+      "apps/loredock/dist/answer-context.js": "423c08bdb24f09cdc54c4d3f6257e34f620d0c7f9a172c31328a376ebff70706",
+      "apps/loredock/dist/answer-expansion.js": "5b6332d1385d182f33ad11a2329f38ac6742af40a37d46c8514d6971c9cd81e9",
+      "apps/loredock/dist/answer-interfaces.js": "d6a6a77e2bfcd7e439cfb263c141c5b5ed2b9c7af7abcaedf749c890e75b3966",
+      "apps/loredock/dist/answer-prompt.js": "261720639c8310bc011fde78779e1579d5ed14da038ebe97d1425658a0b279a2",
+      "apps/loredock/dist/answer-review.js": "734f9602b2c0f7f48c8d191dfee31ec863f1c2dad5aae99fe109cd7b96f030ef",
+      "apps/loredock/dist/answers.js": "519ee8b5449f3b827448263b44e317ab54fabec11d2990d8d3d5a407264b949f",
+      "apps/loredock/dist/app.js": "e58bf2b92068dd6df3e4fb06974d7463da02316c95ca4c55e5396e1ce3d38236",
+      "apps/loredock/dist/candidate-links.js": "339b9b3fed60dd82ab981eb6cc1bd714611d1b9027920e9745ed22162c4b9a0a",
+      "apps/loredock/dist/catalog.js": "e381ed4d02e8b03542ea2dda7fc35d765f0ff9f75e11eb1983a5637d09cd5433",
+      "apps/loredock/dist/checkpoint.js": "7215a27a3be0438aa3d57d35b7b0e24d650d88137d611231ac9b4dd8aa3f12df",
+      "apps/loredock/dist/code-analysis-facts.js": "9b43fdc39a173e6991d77d0fc49acd53b960e302f5bf392c1858be9d65b05166",
+      "apps/loredock/dist/code-analysis-follow.js": "fc767cb8c5c960f586555418caba8cc353859492e57db8464f27f8463faf647f",
+      "apps/loredock/dist/code-analysis-types.js": "044c5daac440bea79b7425cd7b0da667d8e8a30f709acf20830869285f8da1ab",
+      "apps/loredock/dist/code-analysis.js": "103e804cd122524831fcb6d1d3861108fc2322941f53b7e58bbfa3e292270768",
+      "apps/loredock/dist/code-facts.js": "a5d8f8c7ad85ffb1751cde309e3f79235b2ef7315dbbe79d05dc1517aec3e6e4",
+      "apps/loredock/dist/code-flow-types.js": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "apps/loredock/dist/code-flows.js": "00e2dfc1f96c1796e1acaaee1dec9952a2959151356396a92361d918a164edd6",
+      "apps/loredock/dist/code-java.js": "3761da0b7f651a35083dfca56be2c9b267b84adeec7d6128b88dcf6be806a8b7",
+      "apps/loredock/dist/code-symbol-types.js": "7861687d7ef017de832e65e66972a10d2c885ea608750693b30589de9f28e109",
+      "apps/loredock/dist/code-symbols.js": "a23f9d35cefd41a555a3630daf45527b31b2fe54aefbb4f6fbedb1128ac94be9",
+      "apps/loredock/dist/code-typescript.js": "bed4a32a30f629aec58f02ae4e0284cde053d318b39046fcde54d6640a6772b9",
+      "apps/loredock/dist/correction-types.js": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "apps/loredock/dist/corrections.js": "73cfeb0f8449110edbab80bb566f7dfe26c2e4be03a5e08bd4ceedf3c51051da",
+      "apps/loredock/dist/extract.js": "984633a62b0d083f7765aaad7c70211b5dc4fcb81e15022c80e0f477878e6090",
+      "apps/loredock/dist/git.js": "8938e323444586bb0ae502e7052fdd3a343f746ed38e4bb0abf140546f843de8",
+      "apps/loredock/dist/http-headers.js": "402d2035827c44c2087d31c5c5767e598f9c7121f94747f82e81efed5a421e53",
+      "apps/loredock/dist/index-change-types.js": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "apps/loredock/dist/index-changes.js": "3b5ca7ec773c52f7694230b5e2c1b6a217f2f1542dea9928f93c0085798cdee3",
+      "apps/loredock/dist/index.js": "c6bf231faa8ff3f9807fee084f410027f2bf1e519e2634b275873e5f0262a222",
+      "apps/loredock/dist/map-document.js": "418bd45adf403260ca92b9d033d769bd20136da720acfc9dc19de1ad4fc7b8c1",
+      "apps/loredock/dist/orientation-types.js": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "apps/loredock/dist/orientation.js": "d230fdbba391243b158eb3016fe039ca576599bc985f5192277a81cfdbfeb084",
+      "apps/loredock/dist/reconciliation-types.js": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "apps/loredock/dist/reconciliation.js": "a386e2b034741728bb3d823f59153f35d43ba7b88c5f485208bf0673a7df7dc0",
+      "apps/loredock/dist/search-text.js": "21de7c741e37940803505981e4e03f0390ad654cdd1ae71b76e6c1861ed8e97c",
+      "apps/loredock/dist/source-candidates.js": "01790e195d6e69f302e6983dd5fe2a72ca25801aa5da18fa2bdae63bc908e2a8",
+      "apps/loredock/dist/source-registration.js": "c1a59472a50961a03f5bc95169669bf98044bc08c108e26474ad2adc81aaf9dc",
+      "apps/loredock/dist/store.js": "ac42c42cea5756aed8b4850a23a642e3c8db7b0f73cd32d9db03df21740a0a0f",
+      "apps/loredock/dist/system-map-types.js": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "apps/loredock/dist/system-map.js": "bb2b1c872817c928ec70761a36c75b055f785d6fdc642b9f8a9301bd58a9efbd",
+      "apps/loredock/dist/types.js": "b8b55bceba56ab305c5eb4f6a9047a27f91ed4d38ff084bdae213dae1dc319fd",
+      "apps/loredock/node_modules/typescript/lib/typescript.js": "3ae902c92cc44dace175c0e69e13a4b0899f6983c6121d76b9ab8dd5795e7675"
+    }
+  },
+  "sourceBaseline": {
+    "schemaVersion": "loredock-capacity-baseline/1",
+    "sourceCount": 20,
+    "filesPerSource": 180,
+    "fileBytes": 2048,
+    "eligibleFiles": 3679,
+    "eligibleBytes": 7389669,
+    "excludedFiles": 60,
+    "revisionVector": {
+      "portal": "35d5157178848c3a2d68ca5705aaa120739160b1",
+      "order-api": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+      "order-worker": "3c6bb0c4bbe06e47b093dd479f4e38f6a5c98d29",
+      "checkout-bff": "6e5d3d0183b95e1aa8457e4242269bae45bb1366",
+      "inventory-api": "a3dffed060948dd7079221066f0c6bf95b3a6096",
+      "inventory-worker": "874a84a9a8beb27afb0e5779fb9a8a9c2e9dff2b",
+      "shipping-api": "21149277675b21cf0b6f194fa4f97a6ef96c634d",
+      "shipping-worker": "6a644025f2343a590b2cc758a71b9289ab5e9912",
+      "payment-adapter": "e76da77bbe00ff2b898800f1d6152ba41196d096",
+      "notification-worker": "7c2d0446c3e67a09c65c175e7ca87da944deb4af",
+      "reporting-api": "d9531e2a34f81db9a40c40d92df034ffffb93ca3",
+      "contract-library": "b25de47dbaab47fe2463614e855abf0a9e1f949a",
+      "tenant-library": "c220ecb290a120676462f8886bf79cf29f763def",
+      "ui-components": "d95754097de51ef782251398acf3989bd6c6a87f",
+      "legacy-admin": "2f14667888cabf0e4c62e6be395ceb4c7fdfe6fd",
+      "deployment-local": "4d205e39099c1f81f28715b50364dcec9317153c",
+      "deployment-production": "573f90ec9ed976662e8408b3c642ca3fbaa80510",
+      "database-migrations": "82a5c7fd812ebeca170f65a2199bcbfc52320383",
+      "architecture-docs": "d41ed438ea86cc0409c4c3348b5d38dc26290e74",
+      "supplier-sync": "3f3b93cd9942a5b0e016d9fb0053358b0149408b"
+    },
+    "manifestHash": "cf428a88c4067850b808950e045d4c9ea88051130cf085662b028bae7d40a938",
+    "probesHash": "c308a2c09ac9304bfae1219f9a211efa2dbbfba3597b1bf073e66931d30ac7e9",
+    "parentBaseline": {
+      "schemaVersion": "loredock-scale-baseline/1",
+      "sourceCount": 20,
+      "eligibleFiles": 79,
+      "revisionVector": {
+        "portal": "603a69798dc12c3205e88d0498881b0c01079932",
+        "order-api": "237510937b4388fc718b7e9f93869954950df1bb",
+        "order-worker": "211aa99e97ae82bda0ef69e3d4b7954abab5eb37",
+        "checkout-bff": "07d87b7d8a7a93ee8f93f6cdf3ae03ef8253869f",
+        "inventory-api": "0e7f2a7f4776d224736bf10b8e64fd226f2d1d86",
+        "inventory-worker": "ddd6e72aa0a8d32d701ac1ab4e05b01abd4eba32",
+        "shipping-api": "1d89443e2914afb8de2b02389aabfe862b2a3e22",
+        "shipping-worker": "e71a493dede8f64a0785550cf4968b3050c86019",
+        "payment-adapter": "6d85bd3ba393ec880ce95ad1af29311b066bd2f4",
+        "notification-worker": "9e8b82475fd5d3317923d7f4e7c399ed99f5356a",
+        "reporting-api": "23fc2d8f162f93758f47221207e842f4ae55da39",
+        "contract-library": "6fc0b2f8bbd4b88a35b6c04e6dc974b762cc3cbe",
+        "tenant-library": "f7e01099f81a705281b6c50f2571c1a2cc116617",
+        "ui-components": "3ef8f414dff741b0140cc9f23d91a47d740fe1b9",
+        "legacy-admin": "831849791b519da2c71f3ee4c918fbc7a6479b52",
+        "deployment-local": "266b8b73fbf744f2df4395e223df13b7e7504ffe",
+        "deployment-production": "20e07d89a00cc5ad20af50a49550b10f82b4f9f4",
+        "database-migrations": "d75867701ea1a0a3b103a9eecc9d7532c11c9058",
+        "architecture-docs": "53dcb38eeb689da1418d6ef8dd9555a357d85dba",
+        "supplier-sync": "ea9faab3d1e0a2bdcfcb93b3791cbade992129b6"
+      },
+      "manifestHash": "0bea0ff2e26acc13b4f4766cb154ded7cd2b366b064e6c84fb56c1c632532b74",
+      "oracleHash": "6d2ed2e8051e37721fedcb5b031034c1dc6bb4f3ef35beb4aa53596bb26fcc16"
+    }
+  },
+  "fixtureMs": 1525.288865,
+  "stages": {
+    "initial": {
+      "status": "available",
+      "ms": 64422.28546100001,
+      "build": {
+        "id": "823ea269-dbc6-4f1a-ad8b-c81cfeb9ec0f",
+        "status": "partial",
+        "policyVersion": 1,
+        "sourceSetVersion": 2,
+        "createdAt": "2026-11-01T00:38:45.573Z",
+        "reason": "Coverage gaps are listed below.",
+        "published": true,
+        "sources": [
+          {
+            "sourceId": "32f8fd83-3ed6-4e50-a405-579ce1fb2477",
+            "name": "portal",
+            "revision": "35d5157178848c3a2d68ca5705aaa120739160b1",
+            "tree": "7226a6e595284eb2bc781cf150386b4626198897",
+            "status": "ready",
+            "dirty": false,
+            "error": null,
+            "omitted": 0,
+            "coverage": {
+              "indexed": 186,
+              "excluded": 3,
+              "failed": 0,
+              "pending": 0,
+              "bytes": 370286,
+              "reasons": {
+                "binary": 1,
+                "policy": 1,
+                "symlink": 1
+              }
+            }
+          },
+          {
+            "sourceId": "56e8afff-d89f-4366-9f12-132950134d77",
+            "name": "order-api",
+            "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+            "tree": "4a29a04c70f3d04280b5771499365d9ba0bbe481",
+            "status": "ready",
+            "dirty": false,
+            "error": null,
+            "omitted": 0,
+            "coverage": {
+              "indexed": 187,
+              "excluded": 3,
+              "failed": 0,
+              "pending": 0,
+              "bytes": 371079,
+              "reasons": {
+                "binary": 1,
+                "policy": 1,
+                "symlink": 1
+              }
+            }
+          },
+          {
+            "sourceId": "65264cf2-65e1-4a78-9c12-85750fc96e78",
+            "name": "order-worker",
+            "revision": "3c6bb0c4bbe06e47b093dd479f4e38f6a5c98d29",
+            "tree": "0c580f047796d8f0bb885826545e1d301afc02e5",
+            "status": "ready",
+            "dirty": false,
+            "error": null,
+            "omitted": 0,
+            "coverage": {
+              "indexed": 185,
+              "excluded": 3,
+              "failed": 0,
+              "pending": 0,
+              "bytes": 370740,
+              "reasons": {
+                "binary": 1,
+                "policy": 1,
+                "symlink": 1
+              }
+            }
+          },
+          {
+            "sourceId": "603a2266-ce41-46ba-8abd-ccecbcfae1a4",
+            "name": "checkout-bff",
+            "revision": "6e5d3d0183b95e1aa8457e4242269bae45bb1366",
+            "tree": "8f8f599e6d2f7213d38b6c146749068ed974e637",
+            "status": "ready",
+            "dirty": false,
+            "error": null,
+            "omitted": 0,
+            "coverage": {
+              "indexed": 183,
+              "excluded": 3,
+              "failed": 0,
+              "pending": 0,
+              "bytes": 369177,
+              "reasons": {
+                "binary": 1,
+                "policy": 1,
+                "symlink": 1
+              }
+            }
+          },
+          {
+            "sourceId": "79310a66-3fbd-445e-9aaa-394aa4e72326",
+            "name": "inventory-api",
+            "revision": "a3dffed060948dd7079221066f0c6bf95b3a6096",
+            "tree": "61ef5223f1cd3aa6f064927aea17da55fc10ae2f",
+            "status": "ready",
+            "dirty": false,
+            "error": null,
+            "omitted": 0,
+            "coverage": {
+              "indexed": 185,
+              "excluded": 3,
+              "failed": 0,
+              "pending": 0,
+              "bytes": 369722,
+              "reasons": {
+                "binary": 1,
+                "policy": 1,
+                "symlink": 1
+              }
+            }
+          },
+          {
+            "sourceId": "6acdf8eb-c085-4a23-b9e5-a166ed7e1349",
+            "name": "inventory-worker",
+            "revision": "874a84a9a8beb27afb0e5779fb9a8a9c2e9dff2b",
+            "tree": "0db23e65175ab3e6d5c3bb6fee539e98e005c205",
+            "status": "ready",
+            "dirty": false,
+            "error": null,
+            "omitted": 0,
+            "coverage": {
+              "indexed": 184,
+              "excluded": 3,
+              "failed": 0,
+              "pending": 0,
+              "bytes": 369402,
+              "reasons": {
+                "binary": 1,
+                "policy": 1,
+                "symlink": 1
+              }
+            }
+          },
+          {
+            "sourceId": "1309517b-591b-45ba-a451-c2d0bf3558de",
+            "name": "shipping-api",
+            "revision": "21149277675b21cf0b6f194fa4f97a6ef96c634d",
+            "tree": "be1d3dfecb9d84b3449c525892d5a88476a74bbf",
+            "status": "ready",
+            "dirty": false,
+            "error": null,
+            "omitted": 0,
+            "coverage": {
+              "indexed": 184,
+              "excluded": 3,
+              "failed": 0,
+              "pending": 0,
+              "bytes": 369295,
+              "reasons": {
+                "binary": 1,
+                "policy": 1,
+                "symlink": 1
+              }
+            }
+          },
+          {
+            "sourceId": "331e8e3e-673c-41ab-b4b5-cfb21ed0741e",
+            "name": "shipping-worker",
+            "revision": "6a644025f2343a590b2cc758a71b9289ab5e9912",
+            "tree": "b8bfcda2fa9d59b0e75232a99c9153255b064441",
+            "status": "ready",
+            "dirty": false,
+            "error": null,
+            "omitted": 0,
+            "coverage": {
+              "indexed": 184,
+              "excluded": 3,
+              "failed": 0,
+              "pending": 0,
+              "bytes": 369405,
+              "reasons": {
+                "binary": 1,
+                "policy": 1,
+                "symlink": 1
+              }
+            }
+          },
+          {
+            "sourceId": "4a705728-8ac5-486e-9f8a-59a17c1ca735",
+            "name": "payment-adapter",
+            "revision": "e76da77bbe00ff2b898800f1d6152ba41196d096",
+            "tree": "50c455f3cfd6246a2f97eb93c61b7dce28b7b8fb",
+            "status": "ready",
+            "dirty": false,
+            "error": null,
+            "omitted": 0,
+            "coverage": {
+              "indexed": 183,
+              "excluded": 3,
+              "failed": 0,
+              "pending": 0,
+              "bytes": 369082,
+              "reasons": {
+                "binary": 1,
+                "policy": 1,
+                "symlink": 1
+              }
+            }
+          },
+          {
+            "sourceId": "3b700624-ab41-4c16-b326-9750d21b6789",
+            "name": "notification-worker",
+            "revision": "7c2d0446c3e67a09c65c175e7ca87da944deb4af",
+            "tree": "73aa512320c521c05cc21d0009c18b8fdb1cc19e",
+            "status": "ready",
+            "dirty": false,
+            "error": null,
+            "omitted": 0,
+            "coverage": {
+              "indexed": 184,
+              "excluded": 3,
+              "failed": 0,
+              "pending": 0,
+              "bytes": 369456,
+              "reasons": {
+                "binary": 1,
+                "policy": 1,
+                "symlink": 1
+              }
+            }
+          },
+          {
+            "sourceId": "6a8b79e6-3be9-4d1c-9ea0-3dc2e590b868",
+            "name": "reporting-api",
+            "revision": "d9531e2a34f81db9a40c40d92df034ffffb93ca3",
+            "tree": "01a1fcfa5c30c289c44f3df09d444f5ccba9bb6c",
+            "status": "ready",
+            "dirty": false,
+            "error": null,
+            "omitted": 0,
+            "coverage": {
+              "indexed": 184,
+              "excluded": 3,
+              "failed": 0,
+              "pending": 0,
+              "bytes": 369204,
+              "reasons": {
+                "binary": 1,
+                "policy": 1,
+                "symlink": 1
+              }
+            }
+          },
+          {
+            "sourceId": "e59e93cc-5120-410f-b9ae-1c4d7a4e2325",
+            "name": "contract-library",
+            "revision": "b25de47dbaab47fe2463614e855abf0a9e1f949a",
+            "tree": "a499d0e02597b7369bfcffed85278e169d39649e",
+            "status": "ready",
+            "dirty": false,
+            "error": null,
+            "omitted": 0,
+            "coverage": {
+              "indexed": 184,
+              "excluded": 3,
+              "failed": 0,
+              "pending": 0,
+              "bytes": 369335,
+              "reasons": {
+                "binary": 1,
+                "policy": 1,
+                "symlink": 1
+              }
+            }
+          },
+          {
+            "sourceId": "3f53cbe6-7378-4182-a340-be1cbd6ea770",
+            "name": "tenant-library",
+            "revision": "c220ecb290a120676462f8886bf79cf29f763def",
+            "tree": "135f19e8298ec90d6313492009f3d3301bc97315",
+            "status": "ready",
+            "dirty": false,
+            "error": null,
+            "omitted": 0,
+            "coverage": {
+              "indexed": 183,
+              "excluded": 3,
+              "failed": 0,
+              "pending": 0,
+              "bytes": 369098,
+              "reasons": {
+                "binary": 1,
+                "policy": 1,
+                "symlink": 1
+              }
+            }
+          },
+          {
+            "sourceId": "b4fd67dc-8a16-4ac0-80d7-b5b87cae358f",
+            "name": "ui-components",
+            "revision": "d95754097de51ef782251398acf3989bd6c6a87f",
+            "tree": "32035804873f129b1f10c5802a723476f9a61c5f",
+            "status": "ready",
+            "dirty": false,
+            "error": null,
+            "omitted": 0,
+            "coverage": {
+              "indexed": 183,
+              "excluded": 3,
+              "failed": 0,
+              "pending": 0,
+              "bytes": 369063,
+              "reasons": {
+                "binary": 1,
+                "policy": 1,
+                "symlink": 1
+              }
+            }
+          },
+          {
+            "sourceId": "04a94aaf-7475-47ae-930d-13d9b583717f",
+            "name": "legacy-admin",
+            "revision": "2f14667888cabf0e4c62e6be395ceb4c7fdfe6fd",
+            "tree": "e92cfdbcd19493eedfac8298086987217e5b2bd9",
+            "status": "ready",
+            "dirty": false,
+            "error": null,
+            "omitted": 0,
+            "coverage": {
+              "indexed": 184,
+              "excluded": 3,
+              "failed": 0,
+              "pending": 0,
+              "bytes": 369250,
+              "reasons": {
+                "binary": 1,
+                "policy": 1,
+                "symlink": 1
+              }
+            }
+          },
+          {
+            "sourceId": "34ff526d-2b14-4782-a24f-cfed2892bd36",
+            "name": "deployment-local",
+            "revision": "4d205e39099c1f81f28715b50364dcec9317153c",
+            "tree": "8ffbea0c47d1c82d6ba1cf9ec9ea2ddaef88ea47",
+            "status": "ready",
+            "dirty": false,
+            "error": null,
+            "omitted": 0,
+            "coverage": {
+              "indexed": 183,
+              "excluded": 3,
+              "failed": 0,
+              "pending": 0,
+              "bytes": 369128,
+              "reasons": {
+                "binary": 1,
+                "policy": 1,
+                "symlink": 1
+              }
+            }
+          },
+          {
+            "sourceId": "6dca9992-7725-4d3e-83b9-3d049a33c239",
+            "name": "deployment-production",
+            "revision": "573f90ec9ed976662e8408b3c642ca3fbaa80510",
+            "tree": "ce6b675a8593f1a5e0d431bf3cd9c1c343a9831b",
+            "status": "ready",
+            "dirty": false,
+            "error": null,
+            "omitted": 0,
+            "coverage": {
+              "indexed": 183,
+              "excluded": 3,
+              "failed": 0,
+              "pending": 0,
+              "bytes": 369091,
+              "reasons": {
+                "binary": 1,
+                "policy": 1,
+                "symlink": 1
+              }
+            }
+          },
+          {
+            "sourceId": "4b353250-38ab-49b0-8914-5b3f1742e4dd",
+            "name": "database-migrations",
+            "revision": "82a5c7fd812ebeca170f65a2199bcbfc52320383",
+            "tree": "cfbae9e269048c64b5da249fd48f996f4c71750a",
+            "status": "ready",
+            "dirty": false,
+            "error": null,
+            "omitted": 0,
+            "coverage": {
+              "indexed": 183,
+              "excluded": 3,
+              "failed": 0,
+              "pending": 0,
+              "bytes": 369175,
+              "reasons": {
+                "binary": 1,
+                "policy": 1,
+                "symlink": 1
+              }
+            }
+          },
+          {
+            "sourceId": "5931d23d-e5ec-447e-be49-62bc8e547f5a",
+            "name": "architecture-docs",
+            "revision": "d41ed438ea86cc0409c4c3348b5d38dc26290e74",
+            "tree": "c85a75235d66d7dee0c0ce19ee56d40250052bb6",
+            "status": "ready",
+            "dirty": false,
+            "error": null,
+            "omitted": 0,
+            "coverage": {
+              "indexed": 184,
+              "excluded": 3,
+              "failed": 0,
+              "pending": 0,
+              "bytes": 369524,
+              "reasons": {
+                "binary": 1,
+                "policy": 1,
+                "symlink": 1
+              }
+            }
+          },
+          {
+            "sourceId": "30f164a9-b869-4dc2-ba07-1eb148349608",
+            "name": "supplier-sync",
+            "revision": "3f3b93cd9942a5b0e016d9fb0053358b0149408b",
+            "tree": "eae5e3c8e6cf85209b8d1f1d57ee89dd9a843276",
+            "status": "ready",
+            "dirty": false,
+            "error": null,
+            "omitted": 0,
+            "coverage": {
+              "indexed": 183,
+              "excluded": 3,
+              "failed": 0,
+              "pending": 0,
+              "bytes": 369157,
+              "reasons": {
+                "binary": 1,
+                "policy": 1,
+                "symlink": 1
+              }
+            }
+          }
+        ],
+        "coverage": {
+          "indexed": 3679,
+          "excluded": 60,
+          "failed": 0,
+          "pending": 0,
+          "bytes": 7389669,
+          "reasons": {
+            "binary": 20,
+            "policy": 20,
+            "symlink": 20
+          }
+        },
+        "extractorVersion": "text-v1",
+        "refresh": {
+          "baselineBuildId": null,
+          "version": "git-reuse-v1",
+          "reusedFiles": 0,
+          "gitReadAttempts": 3699,
+          "cacheRejections": 0
+        }
+      }
+    },
+    "analysis": {
+      "status": "available",
+      "ms": 4341.811019999994,
+      "inventory": {
+        "id": "d756fbf1-d731-4f57-be7c-d78242d4fe57",
+        "buildId": "823ea269-dbc6-4f1a-ad8b-c81cfeb9ec0f",
+        "status": "partial",
+        "published": true,
+        "createdAt": "2026-11-01T00:39:50.137Z",
+        "reason": "Source or code coverage gaps remain.",
+        "candidates": 3621,
+        "counts": {
+          "parsed": 3621
+        },
+        "gaps": 7,
+        "filesWithGaps": 6,
+        "examined": 3621,
+        "textBytes": 7378135,
+        "payloadBytes": 4389516,
+        "elapsedMs": 4225.585814999999,
+        "limits": {
+          "documents": 10000,
+          "fileBytes": 32768,
+          "fileSpans": 8,
+          "textBytes": 52428800,
+          "filePayloadBytes": 131072,
+          "payloadBytes": 16777216,
+          "wallMs": 300000
+        },
+        "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+        "currentParser": true,
+        "staleIndex": false
+      }
+    },
+    "queries": {
+      "status": "available",
+      "passes": [
+        {
+          "pass": 1,
+          "queries": [
+            {
+              "id": "s01",
+              "query": "loadProbe000179",
+              "status": "available",
+              "ms": 865.3278240000072,
+              "rssBefore": 220225536,
+              "rssAfter": 222674944,
+              "responseBytes": 1698,
+              "response": {
+                "schemaVersion": "loredock-code-symbols/1",
+                "buildId": "823ea269-dbc6-4f1a-ad8b-c81cfeb9ec0f",
+                "query": "loadProbe000179",
+                "status": "available",
+                "reason": null,
+                "inventory": {
+                  "id": "d756fbf1-d731-4f57-be7c-d78242d4fe57",
+                  "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+                  "policyVersion": 1,
+                  "registryVersion": 2
+                },
+                "limits": {
+                  "queryBytes": 200,
+                  "matches": 20,
+                  "outputBytes": 262144,
+                  "wallMs": 5000
+                },
+                "matches": [
+                  {
+                    "id": "da06b5340fa3edf6fe51100d96ec92ccc083ba78d29e002cae893b9e7c93f643",
+                    "fileId": "25af9667-f9a3-4ca4-ba7f-cfd57de2d578",
+                    "sourceId": "32f8fd83-3ed6-4e50-a405-579ce1fb2477",
+                    "sourceName": "portal",
+                    "path": "load/probe-0179.ts",
+                    "revision": "35d5157178848c3a2d68ca5705aaa120739160b1",
+                    "blob": "10a00f834d158bd6c5065f2422a4199931f1a755",
+                    "contentHash": "c6bbb0cd915063746b9e7279fdf58537754b13d26771b4e9e531407d44a00e7a",
+                    "name": "loadProbe000179",
+                    "qualifiedName": "loadProbe000179",
+                    "role": "function",
+                    "range": {
+                      "startLine": 1,
+                      "endLine": 23,
+                      "textHash": "dbc486c7206bcf1d993f2535d08b7553e4d821ed1a6e8e08b648265e859af38c"
+                    },
+                    "evidence": [
+                      {
+                        "id": "0ce37ee2-0766-43ea-900b-80e8636d63fb",
+                        "sourceName": "portal",
+                        "path": "load/probe-0179.ts",
+                        "revision": "35d5157178848c3a2d68ca5705aaa120739160b1",
+                        "startLine": 1,
+                        "endLine": 24
+                      }
+                    ],
+                    "status": "syntax-only"
+                  }
+                ],
+                "partial": true,
+                "coverage": {
+                  "candidateFiles": 3621,
+                  "retainedFiles": 3621,
+                  "scannedFiles": 3621,
+                  "scanComplete": true,
+                  "timeStopped": false,
+                  "matchedFiles": 1,
+                  "matchingSymbols": 1,
+                  "matchedSources": 1,
+                  "omittedMatches": 0,
+                  "outputLimited": false,
+                  "filesWithSyntaxGaps": 6,
+                  "syntaxGapMessages": 7,
+                  "excluded": 0,
+                  "failed": 0,
+                  "unattempted": 0,
+                  "omitted": 0
+                },
+                "limitation": "Exact supported source syntax only. No match does not establish absence; unsupported code and runtime behavior remain unknown."
+              },
+              "originals": [
+                {
+                  "source": "portal",
+                  "path": "load/probe-0179.ts",
+                  "revision": "35d5157178848c3a2d68ca5705aaa120739160b1",
+                  "blob": "10a00f834d158bd6c5065f2422a4199931f1a755",
+                  "contentHash": "c6bbb0cd915063746b9e7279fdf58537754b13d26771b4e9e531407d44a00e7a",
+                  "range": {
+                    "startLine": 1,
+                    "endLine": 23,
+                    "textHash": "dbc486c7206bcf1d993f2535d08b7553e4d821ed1a6e8e08b648265e859af38c"
+                  },
+                  "spans": 1
+                }
+              ],
+              "originalsVerified": true,
+              "assessment": {
+                "expectedMatches": [
+                  {
+                    "source": "portal",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe000179"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "portal",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe000179"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              },
+              "amendedAssessment": {
+                "expectedMatches": [
+                  {
+                    "source": "portal",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe000179"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "portal",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe000179"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              }
+            },
+            {
+              "id": "s02",
+              "query": "loadProbe100179",
+              "status": "available",
+              "ms": 829.5276279999962,
+              "rssBefore": 222298112,
+              "rssAfter": 222703616,
+              "responseBytes": 1712,
+              "response": {
+                "schemaVersion": "loredock-code-symbols/1",
+                "buildId": "823ea269-dbc6-4f1a-ad8b-c81cfeb9ec0f",
+                "query": "loadProbe100179",
+                "status": "available",
+                "reason": null,
+                "inventory": {
+                  "id": "d756fbf1-d731-4f57-be7c-d78242d4fe57",
+                  "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+                  "policyVersion": 1,
+                  "registryVersion": 2
+                },
+                "limits": {
+                  "queryBytes": 200,
+                  "matches": 20,
+                  "outputBytes": 262144,
+                  "wallMs": 5000
+                },
+                "matches": [
+                  {
+                    "id": "7981da3bf9ba0cb949ee3753e6bbe880030209a2c557683346d5d972b6435550",
+                    "fileId": "525178e9-798d-4106-b96f-2c29fa0c57f3",
+                    "sourceId": "6a8b79e6-3be9-4d1c-9ea0-3dc2e590b868",
+                    "sourceName": "reporting-api",
+                    "path": "load/probe-0179.ts",
+                    "revision": "d9531e2a34f81db9a40c40d92df034ffffb93ca3",
+                    "blob": "ac1e88876a0e4b4ffba7bd668bb0ad936cbc258d",
+                    "contentHash": "93c9ea60f7c28093a48a8493b767da39c78ec193656c5601e05d072fea0329a8",
+                    "name": "loadProbe100179",
+                    "qualifiedName": "loadProbe100179",
+                    "role": "function",
+                    "range": {
+                      "startLine": 1,
+                      "endLine": 23,
+                      "textHash": "37852c55acc0122c738c87d5b616ef1718438d76adcbd9b0e64add4f09a433b5"
+                    },
+                    "evidence": [
+                      {
+                        "id": "5912c591-366f-4604-972e-4b7df1667ece",
+                        "sourceName": "reporting-api",
+                        "path": "load/probe-0179.ts",
+                        "revision": "d9531e2a34f81db9a40c40d92df034ffffb93ca3",
+                        "startLine": 1,
+                        "endLine": 24
+                      }
+                    ],
+                    "status": "syntax-only"
+                  }
+                ],
+                "partial": true,
+                "coverage": {
+                  "candidateFiles": 3621,
+                  "retainedFiles": 3621,
+                  "scannedFiles": 3621,
+                  "scanComplete": true,
+                  "timeStopped": false,
+                  "matchedFiles": 1,
+                  "matchingSymbols": 1,
+                  "matchedSources": 1,
+                  "omittedMatches": 0,
+                  "outputLimited": false,
+                  "filesWithSyntaxGaps": 6,
+                  "syntaxGapMessages": 7,
+                  "excluded": 0,
+                  "failed": 0,
+                  "unattempted": 0,
+                  "omitted": 0
+                },
+                "limitation": "Exact supported source syntax only. No match does not establish absence; unsupported code and runtime behavior remain unknown."
+              },
+              "originals": [
+                {
+                  "source": "reporting-api",
+                  "path": "load/probe-0179.ts",
+                  "revision": "d9531e2a34f81db9a40c40d92df034ffffb93ca3",
+                  "blob": "ac1e88876a0e4b4ffba7bd668bb0ad936cbc258d",
+                  "contentHash": "93c9ea60f7c28093a48a8493b767da39c78ec193656c5601e05d072fea0329a8",
+                  "range": {
+                    "startLine": 1,
+                    "endLine": 23,
+                    "textHash": "37852c55acc0122c738c87d5b616ef1718438d76adcbd9b0e64add4f09a433b5"
+                  },
+                  "spans": 1
+                }
+              ],
+              "originalsVerified": true,
+              "assessment": {
+                "expectedMatches": [
+                  {
+                    "source": "reporting-api",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe100179"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "reporting-api",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe100179"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              },
+              "amendedAssessment": {
+                "expectedMatches": [
+                  {
+                    "source": "reporting-api",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe100179"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "reporting-api",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe100179"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              }
+            },
+            {
+              "id": "s03",
+              "query": "loadProbe190179",
+              "status": "available",
+              "ms": 839.5228860000061,
+              "rssBefore": 222703616,
+              "rssAfter": 222720000,
+              "responseBytes": 1712,
+              "response": {
+                "schemaVersion": "loredock-code-symbols/1",
+                "buildId": "823ea269-dbc6-4f1a-ad8b-c81cfeb9ec0f",
+                "query": "loadProbe190179",
+                "status": "available",
+                "reason": null,
+                "inventory": {
+                  "id": "d756fbf1-d731-4f57-be7c-d78242d4fe57",
+                  "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+                  "policyVersion": 1,
+                  "registryVersion": 2
+                },
+                "limits": {
+                  "queryBytes": 200,
+                  "matches": 20,
+                  "outputBytes": 262144,
+                  "wallMs": 5000
+                },
+                "matches": [
+                  {
+                    "id": "a534f5a4eb88b824a0d36803bd3cc476f63fe30222df08b34af28f9da8018e89",
+                    "fileId": "5b6ac638-38d0-48bb-93bc-679c762cc59c",
+                    "sourceId": "30f164a9-b869-4dc2-ba07-1eb148349608",
+                    "sourceName": "supplier-sync",
+                    "path": "load/probe-0179.ts",
+                    "revision": "3f3b93cd9942a5b0e016d9fb0053358b0149408b",
+                    "blob": "1107ce11d1f29e46e24afeae80d32b64d08b4c31",
+                    "contentHash": "fabcc4e985e22ad7c42dd8d092f086c4e8b6bd275c07e5ee9eec2ecb9cc0f9fd",
+                    "name": "loadProbe190179",
+                    "qualifiedName": "loadProbe190179",
+                    "role": "function",
+                    "range": {
+                      "startLine": 1,
+                      "endLine": 23,
+                      "textHash": "6f38a6377e0946b5a28241e846b2f1589fed5b8581ecc9a7867321da7ffe22b4"
+                    },
+                    "evidence": [
+                      {
+                        "id": "03f7fc2a-680e-49b6-9ce3-6bbcd20eb130",
+                        "sourceName": "supplier-sync",
+                        "path": "load/probe-0179.ts",
+                        "revision": "3f3b93cd9942a5b0e016d9fb0053358b0149408b",
+                        "startLine": 1,
+                        "endLine": 24
+                      }
+                    ],
+                    "status": "syntax-only"
+                  }
+                ],
+                "partial": true,
+                "coverage": {
+                  "candidateFiles": 3621,
+                  "retainedFiles": 3621,
+                  "scannedFiles": 3621,
+                  "scanComplete": true,
+                  "timeStopped": false,
+                  "matchedFiles": 1,
+                  "matchingSymbols": 1,
+                  "matchedSources": 1,
+                  "omittedMatches": 0,
+                  "outputLimited": false,
+                  "filesWithSyntaxGaps": 6,
+                  "syntaxGapMessages": 7,
+                  "excluded": 0,
+                  "failed": 0,
+                  "unattempted": 0,
+                  "omitted": 0
+                },
+                "limitation": "Exact supported source syntax only. No match does not establish absence; unsupported code and runtime behavior remain unknown."
+              },
+              "originals": [
+                {
+                  "source": "supplier-sync",
+                  "path": "load/probe-0179.ts",
+                  "revision": "3f3b93cd9942a5b0e016d9fb0053358b0149408b",
+                  "blob": "1107ce11d1f29e46e24afeae80d32b64d08b4c31",
+                  "contentHash": "fabcc4e985e22ad7c42dd8d092f086c4e8b6bd275c07e5ee9eec2ecb9cc0f9fd",
+                  "range": {
+                    "startLine": 1,
+                    "endLine": 23,
+                    "textHash": "6f38a6377e0946b5a28241e846b2f1589fed5b8581ecc9a7867321da7ffe22b4"
+                  },
+                  "spans": 1
+                }
+              ],
+              "originalsVerified": true,
+              "assessment": {
+                "expectedMatches": [
+                  {
+                    "source": "supplier-sync",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe190179"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "supplier-sync",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe190179"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              },
+              "amendedAssessment": {
+                "expectedMatches": [
+                  {
+                    "source": "supplier-sync",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe190179"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "supplier-sync",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe190179"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              }
+            },
+            {
+              "id": "s04",
+              "query": "Orders.accept",
+              "status": "available",
+              "ms": 819.9753840000049,
+              "rssBefore": 222326784,
+              "rssAfter": 222720000,
+              "responseBytes": 1709,
+              "response": {
+                "schemaVersion": "loredock-code-symbols/1",
+                "buildId": "823ea269-dbc6-4f1a-ad8b-c81cfeb9ec0f",
+                "query": "Orders.accept",
+                "status": "available",
+                "reason": null,
+                "inventory": {
+                  "id": "d756fbf1-d731-4f57-be7c-d78242d4fe57",
+                  "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+                  "policyVersion": 1,
+                  "registryVersion": 2
+                },
+                "limits": {
+                  "queryBytes": 200,
+                  "matches": 20,
+                  "outputBytes": 262144,
+                  "wallMs": 5000
+                },
+                "matches": [
+                  {
+                    "id": "61a8829980e0c79ddfc53cd4f923d0d9d1e7b4fc89c1396e919ff71abe22ef8c",
+                    "fileId": "24df6599-0b32-421f-ab99-0292becff2ec",
+                    "sourceId": "56e8afff-d89f-4366-9f12-132950134d77",
+                    "sourceName": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                    "blob": "975db0047e781fc2390836a2a968d7eb30a914fe",
+                    "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+                    "name": "accept",
+                    "qualifiedName": "Orders.accept",
+                    "role": "java-method",
+                    "range": {
+                      "startLine": 13,
+                      "endLine": 17,
+                      "textHash": "758e57438bdf9e6a2453f9ef9fb06acccb77e1bf44eae74695ac0a555ed990bb"
+                    },
+                    "evidence": [
+                      {
+                        "id": "e9265686-afc7-4f72-a958-cfe41d5b92d1",
+                        "sourceName": "order-api",
+                        "path": "src/main/java/Orders.java",
+                        "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                        "startLine": 1,
+                        "endLine": 18
+                      }
+                    ],
+                    "status": "syntax-only"
+                  }
+                ],
+                "partial": true,
+                "coverage": {
+                  "candidateFiles": 3621,
+                  "retainedFiles": 3621,
+                  "scannedFiles": 3621,
+                  "scanComplete": true,
+                  "timeStopped": false,
+                  "matchedFiles": 1,
+                  "matchingSymbols": 1,
+                  "matchedSources": 1,
+                  "omittedMatches": 0,
+                  "outputLimited": false,
+                  "filesWithSyntaxGaps": 6,
+                  "syntaxGapMessages": 7,
+                  "excluded": 0,
+                  "failed": 0,
+                  "unattempted": 0,
+                  "omitted": 0
+                },
+                "limitation": "Exact supported source syntax only. No match does not establish absence; unsupported code and runtime behavior remain unknown."
+              },
+              "originals": [
+                {
+                  "source": "order-api",
+                  "path": "src/main/java/Orders.java",
+                  "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                  "blob": "975db0047e781fc2390836a2a968d7eb30a914fe",
+                  "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+                  "range": {
+                    "startLine": 13,
+                    "endLine": 17,
+                    "textHash": "758e57438bdf9e6a2453f9ef9fb06acccb77e1bf44eae74695ac0a555ed990bb"
+                  },
+                  "spans": 1
+                }
+              ],
+              "originalsVerified": true,
+              "assessment": {
+                "expectedMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              },
+              "amendedAssessment": {
+                "expectedMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              }
+            },
+            {
+              "id": "s05",
+              "query": "accept",
+              "status": "available",
+              "ms": 825.3876439999876,
+              "rssBefore": 222326784,
+              "rssAfter": 222720000,
+              "responseBytes": 4249,
+              "response": {
+                "schemaVersion": "loredock-code-symbols/1",
+                "buildId": "823ea269-dbc6-4f1a-ad8b-c81cfeb9ec0f",
+                "query": "accept",
+                "status": "available",
+                "reason": null,
+                "inventory": {
+                  "id": "d756fbf1-d731-4f57-be7c-d78242d4fe57",
+                  "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+                  "policyVersion": 1,
+                  "registryVersion": 2
+                },
+                "limits": {
+                  "queryBytes": 200,
+                  "matches": 20,
+                  "outputBytes": 262144,
+                  "wallMs": 5000
+                },
+                "matches": [
+                  {
+                    "id": "61a8829980e0c79ddfc53cd4f923d0d9d1e7b4fc89c1396e919ff71abe22ef8c",
+                    "fileId": "24df6599-0b32-421f-ab99-0292becff2ec",
+                    "sourceId": "56e8afff-d89f-4366-9f12-132950134d77",
+                    "sourceName": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                    "blob": "975db0047e781fc2390836a2a968d7eb30a914fe",
+                    "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+                    "name": "accept",
+                    "qualifiedName": "Orders.accept",
+                    "role": "java-method",
+                    "range": {
+                      "startLine": 13,
+                      "endLine": 17,
+                      "textHash": "758e57438bdf9e6a2453f9ef9fb06acccb77e1bf44eae74695ac0a555ed990bb"
+                    },
+                    "evidence": [
+                      {
+                        "id": "e9265686-afc7-4f72-a958-cfe41d5b92d1",
+                        "sourceName": "order-api",
+                        "path": "src/main/java/Orders.java",
+                        "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                        "startLine": 1,
+                        "endLine": 18
+                      }
+                    ],
+                    "status": "syntax-only"
+                  },
+                  {
+                    "id": "bb3ec59044ca25f2f416faddc91a9d79aa45290c1abd767a66f45401ec56b454",
+                    "fileId": "222762b0-b1ed-4a20-9c4b-fcaf470092c3",
+                    "sourceId": "6acdf8eb-c085-4a23-b9e5-a166ed7e1349",
+                    "sourceName": "inventory-worker",
+                    "path": "src/StockProjection.java",
+                    "revision": "874a84a9a8beb27afb0e5779fb9a8a9c2e9dff2b",
+                    "blob": "4b2f90579e71f57be852684d173a2220e7a4e291",
+                    "contentHash": "16972cc6f4c69a56e202ca19dc4fc4324e448ea29a897f03c13e769091c894f3",
+                    "name": "accept",
+                    "qualifiedName": "synthetic.stock.StockProjection.accept",
+                    "role": "java-method",
+                    "range": {
+                      "startLine": 4,
+                      "endLine": 4,
+                      "textHash": "ba618680e357b4ff285d2a2f266a02cb7b63048c1c9fef35487fa670254aa509"
+                    },
+                    "evidence": [
+                      {
+                        "id": "dd2d933c-c6a3-4330-b0b0-1bfe67134c10",
+                        "sourceName": "inventory-worker",
+                        "path": "src/StockProjection.java",
+                        "revision": "874a84a9a8beb27afb0e5779fb9a8a9c2e9dff2b",
+                        "startLine": 1,
+                        "endLine": 4
+                      }
+                    ],
+                    "status": "syntax-only"
+                  },
+                  {
+                    "id": "fa5e5991fa387d619581ce86c23a5364f8129168c1d38f51ad1a2949ae782d89",
+                    "fileId": "7289feba-50e2-43bd-bee5-f4716a3139d8",
+                    "sourceId": "331e8e3e-673c-41ab-b4b5-cfb21ed0741e",
+                    "sourceName": "shipping-worker",
+                    "path": "src/Shipments.java",
+                    "revision": "6a644025f2343a590b2cc758a71b9289ab5e9912",
+                    "blob": "2307427cb426cb7f9b5344c99840936980c12e32",
+                    "contentHash": "9d4b894cf44e31f6647f17145ad0d52327cb3ce50ba2edaf256d8d925a78f822",
+                    "name": "accept",
+                    "qualifiedName": "synthetic.shipping.Shipments.accept",
+                    "role": "java-method",
+                    "range": {
+                      "startLine": 4,
+                      "endLine": 4,
+                      "textHash": "d6383ec5c6b87c96a3e13b29a9d1ef8ce0bd02f59a438e54f4b36485ae383aca"
+                    },
+                    "evidence": [
+                      {
+                        "id": "ea02a6e5-c53c-4242-bcf6-f1478132b1cb",
+                        "sourceName": "shipping-worker",
+                        "path": "src/Shipments.java",
+                        "revision": "6a644025f2343a590b2cc758a71b9289ab5e9912",
+                        "startLine": 1,
+                        "endLine": 4
+                      }
+                    ],
+                    "status": "syntax-only"
+                  },
+                  {
+                    "id": "72856914ad4a91019e5ccb8b24c65fbfb839c1dd61bebf6e86ae86abf59f0fa3",
+                    "fileId": "12ff4035-c3a5-454e-8123-ad7cf12e7190",
+                    "sourceId": "3b700624-ab41-4c16-b326-9750d21b6789",
+                    "sourceName": "notification-worker",
+                    "path": "src/Notify.java",
+                    "revision": "7c2d0446c3e67a09c65c175e7ca87da944deb4af",
+                    "blob": "7dd72b8837d68ae11f9558c6cf4a30e97d6aec3c",
+                    "contentHash": "c6ad3f752a295cb0b312c8543aaa846bfa7a1f73b8cc9d42aac9dcb966795705",
+                    "name": "accept",
+                    "qualifiedName": "synthetic.notifications.Notify.accept",
+                    "role": "java-method",
+                    "range": {
+                      "startLine": 4,
+                      "endLine": 4,
+                      "textHash": "d6c9800a3af91450619b0b03fa148b79cb6e6b1e1c5b168d2be08af3fa7863ee"
+                    },
+                    "evidence": [
+                      {
+                        "id": "2ff2f5a0-9e85-4514-8f30-4c39b6e160f2",
+                        "sourceName": "notification-worker",
+                        "path": "src/Notify.java",
+                        "revision": "7c2d0446c3e67a09c65c175e7ca87da944deb4af",
+                        "startLine": 1,
+                        "endLine": 4
+                      }
+                    ],
+                    "status": "syntax-only"
+                  }
+                ],
+                "partial": true,
+                "coverage": {
+                  "candidateFiles": 3621,
+                  "retainedFiles": 3621,
+                  "scannedFiles": 3621,
+                  "scanComplete": true,
+                  "timeStopped": false,
+                  "matchedFiles": 4,
+                  "matchingSymbols": 4,
+                  "matchedSources": 4,
+                  "omittedMatches": 0,
+                  "outputLimited": false,
+                  "filesWithSyntaxGaps": 6,
+                  "syntaxGapMessages": 7,
+                  "excluded": 0,
+                  "failed": 0,
+                  "unattempted": 0,
+                  "omitted": 0
+                },
+                "limitation": "Exact supported source syntax only. No match does not establish absence; unsupported code and runtime behavior remain unknown."
+              },
+              "originals": [
+                {
+                  "source": "order-api",
+                  "path": "src/main/java/Orders.java",
+                  "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                  "blob": "975db0047e781fc2390836a2a968d7eb30a914fe",
+                  "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+                  "range": {
+                    "startLine": 13,
+                    "endLine": 17,
+                    "textHash": "758e57438bdf9e6a2453f9ef9fb06acccb77e1bf44eae74695ac0a555ed990bb"
+                  },
+                  "spans": 1
+                },
+                {
+                  "source": "inventory-worker",
+                  "path": "src/StockProjection.java",
+                  "revision": "874a84a9a8beb27afb0e5779fb9a8a9c2e9dff2b",
+                  "blob": "4b2f90579e71f57be852684d173a2220e7a4e291",
+                  "contentHash": "16972cc6f4c69a56e202ca19dc4fc4324e448ea29a897f03c13e769091c894f3",
+                  "range": {
+                    "startLine": 4,
+                    "endLine": 4,
+                    "textHash": "ba618680e357b4ff285d2a2f266a02cb7b63048c1c9fef35487fa670254aa509"
+                  },
+                  "spans": 1
+                },
+                {
+                  "source": "shipping-worker",
+                  "path": "src/Shipments.java",
+                  "revision": "6a644025f2343a590b2cc758a71b9289ab5e9912",
+                  "blob": "2307427cb426cb7f9b5344c99840936980c12e32",
+                  "contentHash": "9d4b894cf44e31f6647f17145ad0d52327cb3ce50ba2edaf256d8d925a78f822",
+                  "range": {
+                    "startLine": 4,
+                    "endLine": 4,
+                    "textHash": "d6383ec5c6b87c96a3e13b29a9d1ef8ce0bd02f59a438e54f4b36485ae383aca"
+                  },
+                  "spans": 1
+                },
+                {
+                  "source": "notification-worker",
+                  "path": "src/Notify.java",
+                  "revision": "7c2d0446c3e67a09c65c175e7ca87da944deb4af",
+                  "blob": "7dd72b8837d68ae11f9558c6cf4a30e97d6aec3c",
+                  "contentHash": "c6ad3f752a295cb0b312c8543aaa846bfa7a1f73b8cc9d42aac9dcb966795705",
+                  "range": {
+                    "startLine": 4,
+                    "endLine": 4,
+                    "textHash": "d6c9800a3af91450619b0b03fa148b79cb6e6b1e1c5b168d2be08af3fa7863ee"
+                  },
+                  "spans": 1
+                }
+              ],
+              "originalsVerified": true,
+              "assessment": {
+                "expectedMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  },
+                  {
+                    "source": "inventory-worker",
+                    "path": "src/StockProjection.java",
+                    "symbol": "StockProjection.accept"
+                  },
+                  {
+                    "source": "shipping-worker",
+                    "path": "src/Shipments.java",
+                    "symbol": "Shipments.accept"
+                  },
+                  {
+                    "source": "notification-worker",
+                    "path": "src/Notify.java",
+                    "symbol": "Notify.accept"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  },
+                  {
+                    "source": "inventory-worker",
+                    "path": "src/StockProjection.java",
+                    "symbol": "synthetic.stock.StockProjection.accept"
+                  },
+                  {
+                    "source": "shipping-worker",
+                    "path": "src/Shipments.java",
+                    "symbol": "synthetic.shipping.Shipments.accept"
+                  },
+                  {
+                    "source": "notification-worker",
+                    "path": "src/Notify.java",
+                    "symbol": "synthetic.notifications.Notify.accept"
+                  }
+                ],
+                "exactMatches": false,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              },
+              "amendedAssessment": {
+                "expectedMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  },
+                  {
+                    "source": "inventory-worker",
+                    "path": "src/StockProjection.java",
+                    "symbol": "synthetic.stock.StockProjection.accept"
+                  },
+                  {
+                    "source": "shipping-worker",
+                    "path": "src/Shipments.java",
+                    "symbol": "synthetic.shipping.Shipments.accept"
+                  },
+                  {
+                    "source": "notification-worker",
+                    "path": "src/Notify.java",
+                    "symbol": "synthetic.notifications.Notify.accept"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  },
+                  {
+                    "source": "inventory-worker",
+                    "path": "src/StockProjection.java",
+                    "symbol": "synthetic.stock.StockProjection.accept"
+                  },
+                  {
+                    "source": "shipping-worker",
+                    "path": "src/Shipments.java",
+                    "symbol": "synthetic.shipping.Shipments.accept"
+                  },
+                  {
+                    "source": "notification-worker",
+                    "path": "src/Notify.java",
+                    "symbol": "synthetic.notifications.Notify.accept"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              }
+            },
+            {
+              "id": "s06",
+              "query": "Orders",
+              "status": "available",
+              "ms": 816.3134050000081,
+              "rssBefore": 224948224,
+              "rssAfter": 224866304,
+              "responseBytes": 1702,
+              "response": {
+                "schemaVersion": "loredock-code-symbols/1",
+                "buildId": "823ea269-dbc6-4f1a-ad8b-c81cfeb9ec0f",
+                "query": "Orders",
+                "status": "available",
+                "reason": null,
+                "inventory": {
+                  "id": "d756fbf1-d731-4f57-be7c-d78242d4fe57",
+                  "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+                  "policyVersion": 1,
+                  "registryVersion": 2
+                },
+                "limits": {
+                  "queryBytes": 200,
+                  "matches": 20,
+                  "outputBytes": 262144,
+                  "wallMs": 5000
+                },
+                "matches": [
+                  {
+                    "id": "61a8829980e0c79ddfc53cd4f923d0d9d1e7b4fc89c1396e919ff71abe22ef8c",
+                    "fileId": "24df6599-0b32-421f-ab99-0292becff2ec",
+                    "sourceId": "56e8afff-d89f-4366-9f12-132950134d77",
+                    "sourceName": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                    "blob": "975db0047e781fc2390836a2a968d7eb30a914fe",
+                    "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+                    "name": "accept",
+                    "qualifiedName": "Orders.accept",
+                    "role": "java-method",
+                    "range": {
+                      "startLine": 13,
+                      "endLine": 17,
+                      "textHash": "758e57438bdf9e6a2453f9ef9fb06acccb77e1bf44eae74695ac0a555ed990bb"
+                    },
+                    "evidence": [
+                      {
+                        "id": "e9265686-afc7-4f72-a958-cfe41d5b92d1",
+                        "sourceName": "order-api",
+                        "path": "src/main/java/Orders.java",
+                        "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                        "startLine": 1,
+                        "endLine": 18
+                      }
+                    ],
+                    "status": "syntax-only"
+                  }
+                ],
+                "partial": true,
+                "coverage": {
+                  "candidateFiles": 3621,
+                  "retainedFiles": 3621,
+                  "scannedFiles": 3621,
+                  "scanComplete": true,
+                  "timeStopped": false,
+                  "matchedFiles": 1,
+                  "matchingSymbols": 1,
+                  "matchedSources": 1,
+                  "omittedMatches": 0,
+                  "outputLimited": false,
+                  "filesWithSyntaxGaps": 6,
+                  "syntaxGapMessages": 7,
+                  "excluded": 0,
+                  "failed": 0,
+                  "unattempted": 0,
+                  "omitted": 0
+                },
+                "limitation": "Exact supported source syntax only. No match does not establish absence; unsupported code and runtime behavior remain unknown."
+              },
+              "originals": [
+                {
+                  "source": "order-api",
+                  "path": "src/main/java/Orders.java",
+                  "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                  "blob": "975db0047e781fc2390836a2a968d7eb30a914fe",
+                  "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+                  "range": {
+                    "startLine": 13,
+                    "endLine": 17,
+                    "textHash": "758e57438bdf9e6a2453f9ef9fb06acccb77e1bf44eae74695ac0a555ed990bb"
+                  },
+                  "spans": 1
+                }
+              ],
+              "originalsVerified": true,
+              "assessment": {
+                "expectedMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              },
+              "amendedAssessment": {
+                "expectedMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              }
+            },
+            {
+              "id": "s07",
+              "query": "OrderBadge",
+              "status": "available",
+              "ms": 817.9624170000025,
+              "rssBefore": 224866304,
+              "rssAfter": 224890880,
+              "responseBytes": 882,
+              "response": {
+                "schemaVersion": "loredock-code-symbols/1",
+                "buildId": "823ea269-dbc6-4f1a-ad8b-c81cfeb9ec0f",
+                "query": "OrderBadge",
+                "status": "available",
+                "reason": null,
+                "inventory": {
+                  "id": "d756fbf1-d731-4f57-be7c-d78242d4fe57",
+                  "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+                  "policyVersion": 1,
+                  "registryVersion": 2
+                },
+                "limits": {
+                  "queryBytes": 200,
+                  "matches": 20,
+                  "outputBytes": 262144,
+                  "wallMs": 5000
+                },
+                "matches": [],
+                "partial": true,
+                "coverage": {
+                  "candidateFiles": 3621,
+                  "retainedFiles": 3621,
+                  "scannedFiles": 3621,
+                  "scanComplete": true,
+                  "timeStopped": false,
+                  "matchedFiles": 0,
+                  "matchingSymbols": 0,
+                  "matchedSources": 0,
+                  "omittedMatches": 0,
+                  "outputLimited": false,
+                  "filesWithSyntaxGaps": 6,
+                  "syntaxGapMessages": 7,
+                  "excluded": 0,
+                  "failed": 0,
+                  "unattempted": 0,
+                  "omitted": 0
+                },
+                "limitation": "Exact supported source syntax only. No match does not establish absence; unsupported code and runtime behavior remain unknown."
+              },
+              "originals": [],
+              "originalsVerified": true,
+              "assessment": {
+                "expectedMatches": [],
+                "actualMatches": [],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              },
+              "amendedAssessment": {
+                "expectedMatches": [],
+                "actualMatches": [],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              }
+            },
+            {
+              "id": "s08",
+              "query": "loadprobe190179",
+              "status": "available",
+              "ms": 821.8191829999996,
+              "rssBefore": 224890880,
+              "rssAfter": 225013760,
+              "responseBytes": 887,
+              "response": {
+                "schemaVersion": "loredock-code-symbols/1",
+                "buildId": "823ea269-dbc6-4f1a-ad8b-c81cfeb9ec0f",
+                "query": "loadprobe190179",
+                "status": "available",
+                "reason": null,
+                "inventory": {
+                  "id": "d756fbf1-d731-4f57-be7c-d78242d4fe57",
+                  "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+                  "policyVersion": 1,
+                  "registryVersion": 2
+                },
+                "limits": {
+                  "queryBytes": 200,
+                  "matches": 20,
+                  "outputBytes": 262144,
+                  "wallMs": 5000
+                },
+                "matches": [],
+                "partial": true,
+                "coverage": {
+                  "candidateFiles": 3621,
+                  "retainedFiles": 3621,
+                  "scannedFiles": 3621,
+                  "scanComplete": true,
+                  "timeStopped": false,
+                  "matchedFiles": 0,
+                  "matchingSymbols": 0,
+                  "matchedSources": 0,
+                  "omittedMatches": 0,
+                  "outputLimited": false,
+                  "filesWithSyntaxGaps": 6,
+                  "syntaxGapMessages": 7,
+                  "excluded": 0,
+                  "failed": 0,
+                  "unattempted": 0,
+                  "omitted": 0
+                },
+                "limitation": "Exact supported source syntax only. No match does not establish absence; unsupported code and runtime behavior remain unknown."
+              },
+              "originals": [],
+              "originalsVerified": true,
+              "assessment": {
+                "expectedMatches": [],
+                "actualMatches": [],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              },
+              "amendedAssessment": {
+                "expectedMatches": [],
+                "actualMatches": [],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              }
+            },
+            {
+              "id": "s09",
+              "query": "nonexistentSyntheticSymbol048",
+              "status": "available",
+              "ms": 813.4075319999974,
+              "rssBefore": 225013760,
+              "rssAfter": 225013760,
+              "responseBytes": 901,
+              "response": {
+                "schemaVersion": "loredock-code-symbols/1",
+                "buildId": "823ea269-dbc6-4f1a-ad8b-c81cfeb9ec0f",
+                "query": "nonexistentSyntheticSymbol048",
+                "status": "available",
+                "reason": null,
+                "inventory": {
+                  "id": "d756fbf1-d731-4f57-be7c-d78242d4fe57",
+                  "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+                  "policyVersion": 1,
+                  "registryVersion": 2
+                },
+                "limits": {
+                  "queryBytes": 200,
+                  "matches": 20,
+                  "outputBytes": 262144,
+                  "wallMs": 5000
+                },
+                "matches": [],
+                "partial": true,
+                "coverage": {
+                  "candidateFiles": 3621,
+                  "retainedFiles": 3621,
+                  "scannedFiles": 3621,
+                  "scanComplete": true,
+                  "timeStopped": false,
+                  "matchedFiles": 0,
+                  "matchingSymbols": 0,
+                  "matchedSources": 0,
+                  "omittedMatches": 0,
+                  "outputLimited": false,
+                  "filesWithSyntaxGaps": 6,
+                  "syntaxGapMessages": 7,
+                  "excluded": 0,
+                  "failed": 0,
+                  "unattempted": 0,
+                  "omitted": 0
+                },
+                "limitation": "Exact supported source syntax only. No match does not establish absence; unsupported code and runtime behavior remain unknown."
+              },
+              "originals": [],
+              "originalsVerified": true,
+              "assessment": {
+                "expectedMatches": [],
+                "actualMatches": [],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              },
+              "amendedAssessment": {
+                "expectedMatches": [],
+                "actualMatches": [],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              }
+            }
+          ]
+        },
+        {
+          "pass": 2,
+          "queries": [
+            {
+              "id": "s01",
+              "query": "loadProbe000179",
+              "status": "available",
+              "ms": 812.4244730000064,
+              "rssBefore": 225013760,
+              "rssAfter": 227819520,
+              "responseBytes": 1698,
+              "response": {
+                "schemaVersion": "loredock-code-symbols/1",
+                "buildId": "823ea269-dbc6-4f1a-ad8b-c81cfeb9ec0f",
+                "query": "loadProbe000179",
+                "status": "available",
+                "reason": null,
+                "inventory": {
+                  "id": "d756fbf1-d731-4f57-be7c-d78242d4fe57",
+                  "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+                  "policyVersion": 1,
+                  "registryVersion": 2
+                },
+                "limits": {
+                  "queryBytes": 200,
+                  "matches": 20,
+                  "outputBytes": 262144,
+                  "wallMs": 5000
+                },
+                "matches": [
+                  {
+                    "id": "da06b5340fa3edf6fe51100d96ec92ccc083ba78d29e002cae893b9e7c93f643",
+                    "fileId": "25af9667-f9a3-4ca4-ba7f-cfd57de2d578",
+                    "sourceId": "32f8fd83-3ed6-4e50-a405-579ce1fb2477",
+                    "sourceName": "portal",
+                    "path": "load/probe-0179.ts",
+                    "revision": "35d5157178848c3a2d68ca5705aaa120739160b1",
+                    "blob": "10a00f834d158bd6c5065f2422a4199931f1a755",
+                    "contentHash": "c6bbb0cd915063746b9e7279fdf58537754b13d26771b4e9e531407d44a00e7a",
+                    "name": "loadProbe000179",
+                    "qualifiedName": "loadProbe000179",
+                    "role": "function",
+                    "range": {
+                      "startLine": 1,
+                      "endLine": 23,
+                      "textHash": "dbc486c7206bcf1d993f2535d08b7553e4d821ed1a6e8e08b648265e859af38c"
+                    },
+                    "evidence": [
+                      {
+                        "id": "0ce37ee2-0766-43ea-900b-80e8636d63fb",
+                        "sourceName": "portal",
+                        "path": "load/probe-0179.ts",
+                        "revision": "35d5157178848c3a2d68ca5705aaa120739160b1",
+                        "startLine": 1,
+                        "endLine": 24
+                      }
+                    ],
+                    "status": "syntax-only"
+                  }
+                ],
+                "partial": true,
+                "coverage": {
+                  "candidateFiles": 3621,
+                  "retainedFiles": 3621,
+                  "scannedFiles": 3621,
+                  "scanComplete": true,
+                  "timeStopped": false,
+                  "matchedFiles": 1,
+                  "matchingSymbols": 1,
+                  "matchedSources": 1,
+                  "omittedMatches": 0,
+                  "outputLimited": false,
+                  "filesWithSyntaxGaps": 6,
+                  "syntaxGapMessages": 7,
+                  "excluded": 0,
+                  "failed": 0,
+                  "unattempted": 0,
+                  "omitted": 0
+                },
+                "limitation": "Exact supported source syntax only. No match does not establish absence; unsupported code and runtime behavior remain unknown."
+              },
+              "originals": [
+                {
+                  "source": "portal",
+                  "path": "load/probe-0179.ts",
+                  "revision": "35d5157178848c3a2d68ca5705aaa120739160b1",
+                  "blob": "10a00f834d158bd6c5065f2422a4199931f1a755",
+                  "contentHash": "c6bbb0cd915063746b9e7279fdf58537754b13d26771b4e9e531407d44a00e7a",
+                  "range": {
+                    "startLine": 1,
+                    "endLine": 23,
+                    "textHash": "dbc486c7206bcf1d993f2535d08b7553e4d821ed1a6e8e08b648265e859af38c"
+                  },
+                  "spans": 1
+                }
+              ],
+              "originalsVerified": true,
+              "assessment": {
+                "expectedMatches": [
+                  {
+                    "source": "portal",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe000179"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "portal",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe000179"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              },
+              "amendedAssessment": {
+                "expectedMatches": [
+                  {
+                    "source": "portal",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe000179"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "portal",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe000179"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              }
+            },
+            {
+              "id": "s02",
+              "query": "loadProbe100179",
+              "status": "available",
+              "ms": 809.2226269999956,
+              "rssBefore": 227819520,
+              "rssAfter": 227840000,
+              "responseBytes": 1712,
+              "response": {
+                "schemaVersion": "loredock-code-symbols/1",
+                "buildId": "823ea269-dbc6-4f1a-ad8b-c81cfeb9ec0f",
+                "query": "loadProbe100179",
+                "status": "available",
+                "reason": null,
+                "inventory": {
+                  "id": "d756fbf1-d731-4f57-be7c-d78242d4fe57",
+                  "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+                  "policyVersion": 1,
+                  "registryVersion": 2
+                },
+                "limits": {
+                  "queryBytes": 200,
+                  "matches": 20,
+                  "outputBytes": 262144,
+                  "wallMs": 5000
+                },
+                "matches": [
+                  {
+                    "id": "7981da3bf9ba0cb949ee3753e6bbe880030209a2c557683346d5d972b6435550",
+                    "fileId": "525178e9-798d-4106-b96f-2c29fa0c57f3",
+                    "sourceId": "6a8b79e6-3be9-4d1c-9ea0-3dc2e590b868",
+                    "sourceName": "reporting-api",
+                    "path": "load/probe-0179.ts",
+                    "revision": "d9531e2a34f81db9a40c40d92df034ffffb93ca3",
+                    "blob": "ac1e88876a0e4b4ffba7bd668bb0ad936cbc258d",
+                    "contentHash": "93c9ea60f7c28093a48a8493b767da39c78ec193656c5601e05d072fea0329a8",
+                    "name": "loadProbe100179",
+                    "qualifiedName": "loadProbe100179",
+                    "role": "function",
+                    "range": {
+                      "startLine": 1,
+                      "endLine": 23,
+                      "textHash": "37852c55acc0122c738c87d5b616ef1718438d76adcbd9b0e64add4f09a433b5"
+                    },
+                    "evidence": [
+                      {
+                        "id": "5912c591-366f-4604-972e-4b7df1667ece",
+                        "sourceName": "reporting-api",
+                        "path": "load/probe-0179.ts",
+                        "revision": "d9531e2a34f81db9a40c40d92df034ffffb93ca3",
+                        "startLine": 1,
+                        "endLine": 24
+                      }
+                    ],
+                    "status": "syntax-only"
+                  }
+                ],
+                "partial": true,
+                "coverage": {
+                  "candidateFiles": 3621,
+                  "retainedFiles": 3621,
+                  "scannedFiles": 3621,
+                  "scanComplete": true,
+                  "timeStopped": false,
+                  "matchedFiles": 1,
+                  "matchingSymbols": 1,
+                  "matchedSources": 1,
+                  "omittedMatches": 0,
+                  "outputLimited": false,
+                  "filesWithSyntaxGaps": 6,
+                  "syntaxGapMessages": 7,
+                  "excluded": 0,
+                  "failed": 0,
+                  "unattempted": 0,
+                  "omitted": 0
+                },
+                "limitation": "Exact supported source syntax only. No match does not establish absence; unsupported code and runtime behavior remain unknown."
+              },
+              "originals": [
+                {
+                  "source": "reporting-api",
+                  "path": "load/probe-0179.ts",
+                  "revision": "d9531e2a34f81db9a40c40d92df034ffffb93ca3",
+                  "blob": "ac1e88876a0e4b4ffba7bd668bb0ad936cbc258d",
+                  "contentHash": "93c9ea60f7c28093a48a8493b767da39c78ec193656c5601e05d072fea0329a8",
+                  "range": {
+                    "startLine": 1,
+                    "endLine": 23,
+                    "textHash": "37852c55acc0122c738c87d5b616ef1718438d76adcbd9b0e64add4f09a433b5"
+                  },
+                  "spans": 1
+                }
+              ],
+              "originalsVerified": true,
+              "assessment": {
+                "expectedMatches": [
+                  {
+                    "source": "reporting-api",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe100179"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "reporting-api",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe100179"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              },
+              "amendedAssessment": {
+                "expectedMatches": [
+                  {
+                    "source": "reporting-api",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe100179"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "reporting-api",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe100179"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              }
+            },
+            {
+              "id": "s03",
+              "query": "loadProbe190179",
+              "status": "available",
+              "ms": 822.3809040000051,
+              "rssBefore": 227840000,
+              "rssAfter": 227840000,
+              "responseBytes": 1712,
+              "response": {
+                "schemaVersion": "loredock-code-symbols/1",
+                "buildId": "823ea269-dbc6-4f1a-ad8b-c81cfeb9ec0f",
+                "query": "loadProbe190179",
+                "status": "available",
+                "reason": null,
+                "inventory": {
+                  "id": "d756fbf1-d731-4f57-be7c-d78242d4fe57",
+                  "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+                  "policyVersion": 1,
+                  "registryVersion": 2
+                },
+                "limits": {
+                  "queryBytes": 200,
+                  "matches": 20,
+                  "outputBytes": 262144,
+                  "wallMs": 5000
+                },
+                "matches": [
+                  {
+                    "id": "a534f5a4eb88b824a0d36803bd3cc476f63fe30222df08b34af28f9da8018e89",
+                    "fileId": "5b6ac638-38d0-48bb-93bc-679c762cc59c",
+                    "sourceId": "30f164a9-b869-4dc2-ba07-1eb148349608",
+                    "sourceName": "supplier-sync",
+                    "path": "load/probe-0179.ts",
+                    "revision": "3f3b93cd9942a5b0e016d9fb0053358b0149408b",
+                    "blob": "1107ce11d1f29e46e24afeae80d32b64d08b4c31",
+                    "contentHash": "fabcc4e985e22ad7c42dd8d092f086c4e8b6bd275c07e5ee9eec2ecb9cc0f9fd",
+                    "name": "loadProbe190179",
+                    "qualifiedName": "loadProbe190179",
+                    "role": "function",
+                    "range": {
+                      "startLine": 1,
+                      "endLine": 23,
+                      "textHash": "6f38a6377e0946b5a28241e846b2f1589fed5b8581ecc9a7867321da7ffe22b4"
+                    },
+                    "evidence": [
+                      {
+                        "id": "03f7fc2a-680e-49b6-9ce3-6bbcd20eb130",
+                        "sourceName": "supplier-sync",
+                        "path": "load/probe-0179.ts",
+                        "revision": "3f3b93cd9942a5b0e016d9fb0053358b0149408b",
+                        "startLine": 1,
+                        "endLine": 24
+                      }
+                    ],
+                    "status": "syntax-only"
+                  }
+                ],
+                "partial": true,
+                "coverage": {
+                  "candidateFiles": 3621,
+                  "retainedFiles": 3621,
+                  "scannedFiles": 3621,
+                  "scanComplete": true,
+                  "timeStopped": false,
+                  "matchedFiles": 1,
+                  "matchingSymbols": 1,
+                  "matchedSources": 1,
+                  "omittedMatches": 0,
+                  "outputLimited": false,
+                  "filesWithSyntaxGaps": 6,
+                  "syntaxGapMessages": 7,
+                  "excluded": 0,
+                  "failed": 0,
+                  "unattempted": 0,
+                  "omitted": 0
+                },
+                "limitation": "Exact supported source syntax only. No match does not establish absence; unsupported code and runtime behavior remain unknown."
+              },
+              "originals": [
+                {
+                  "source": "supplier-sync",
+                  "path": "load/probe-0179.ts",
+                  "revision": "3f3b93cd9942a5b0e016d9fb0053358b0149408b",
+                  "blob": "1107ce11d1f29e46e24afeae80d32b64d08b4c31",
+                  "contentHash": "fabcc4e985e22ad7c42dd8d092f086c4e8b6bd275c07e5ee9eec2ecb9cc0f9fd",
+                  "range": {
+                    "startLine": 1,
+                    "endLine": 23,
+                    "textHash": "6f38a6377e0946b5a28241e846b2f1589fed5b8581ecc9a7867321da7ffe22b4"
+                  },
+                  "spans": 1
+                }
+              ],
+              "originalsVerified": true,
+              "assessment": {
+                "expectedMatches": [
+                  {
+                    "source": "supplier-sync",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe190179"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "supplier-sync",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe190179"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              },
+              "amendedAssessment": {
+                "expectedMatches": [
+                  {
+                    "source": "supplier-sync",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe190179"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "supplier-sync",
+                    "path": "load/probe-0179.ts",
+                    "symbol": "loadProbe190179"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              }
+            },
+            {
+              "id": "s04",
+              "query": "Orders.accept",
+              "status": "available",
+              "ms": 803.7698320000054,
+              "rssBefore": 227840000,
+              "rssAfter": 227840000,
+              "responseBytes": 1709,
+              "response": {
+                "schemaVersion": "loredock-code-symbols/1",
+                "buildId": "823ea269-dbc6-4f1a-ad8b-c81cfeb9ec0f",
+                "query": "Orders.accept",
+                "status": "available",
+                "reason": null,
+                "inventory": {
+                  "id": "d756fbf1-d731-4f57-be7c-d78242d4fe57",
+                  "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+                  "policyVersion": 1,
+                  "registryVersion": 2
+                },
+                "limits": {
+                  "queryBytes": 200,
+                  "matches": 20,
+                  "outputBytes": 262144,
+                  "wallMs": 5000
+                },
+                "matches": [
+                  {
+                    "id": "61a8829980e0c79ddfc53cd4f923d0d9d1e7b4fc89c1396e919ff71abe22ef8c",
+                    "fileId": "24df6599-0b32-421f-ab99-0292becff2ec",
+                    "sourceId": "56e8afff-d89f-4366-9f12-132950134d77",
+                    "sourceName": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                    "blob": "975db0047e781fc2390836a2a968d7eb30a914fe",
+                    "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+                    "name": "accept",
+                    "qualifiedName": "Orders.accept",
+                    "role": "java-method",
+                    "range": {
+                      "startLine": 13,
+                      "endLine": 17,
+                      "textHash": "758e57438bdf9e6a2453f9ef9fb06acccb77e1bf44eae74695ac0a555ed990bb"
+                    },
+                    "evidence": [
+                      {
+                        "id": "e9265686-afc7-4f72-a958-cfe41d5b92d1",
+                        "sourceName": "order-api",
+                        "path": "src/main/java/Orders.java",
+                        "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                        "startLine": 1,
+                        "endLine": 18
+                      }
+                    ],
+                    "status": "syntax-only"
+                  }
+                ],
+                "partial": true,
+                "coverage": {
+                  "candidateFiles": 3621,
+                  "retainedFiles": 3621,
+                  "scannedFiles": 3621,
+                  "scanComplete": true,
+                  "timeStopped": false,
+                  "matchedFiles": 1,
+                  "matchingSymbols": 1,
+                  "matchedSources": 1,
+                  "omittedMatches": 0,
+                  "outputLimited": false,
+                  "filesWithSyntaxGaps": 6,
+                  "syntaxGapMessages": 7,
+                  "excluded": 0,
+                  "failed": 0,
+                  "unattempted": 0,
+                  "omitted": 0
+                },
+                "limitation": "Exact supported source syntax only. No match does not establish absence; unsupported code and runtime behavior remain unknown."
+              },
+              "originals": [
+                {
+                  "source": "order-api",
+                  "path": "src/main/java/Orders.java",
+                  "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                  "blob": "975db0047e781fc2390836a2a968d7eb30a914fe",
+                  "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+                  "range": {
+                    "startLine": 13,
+                    "endLine": 17,
+                    "textHash": "758e57438bdf9e6a2453f9ef9fb06acccb77e1bf44eae74695ac0a555ed990bb"
+                  },
+                  "spans": 1
+                }
+              ],
+              "originalsVerified": true,
+              "assessment": {
+                "expectedMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              },
+              "amendedAssessment": {
+                "expectedMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              }
+            },
+            {
+              "id": "s05",
+              "query": "accept",
+              "status": "available",
+              "ms": 812.4138200000016,
+              "rssBefore": 227446784,
+              "rssAfter": 227971072,
+              "responseBytes": 4249,
+              "response": {
+                "schemaVersion": "loredock-code-symbols/1",
+                "buildId": "823ea269-dbc6-4f1a-ad8b-c81cfeb9ec0f",
+                "query": "accept",
+                "status": "available",
+                "reason": null,
+                "inventory": {
+                  "id": "d756fbf1-d731-4f57-be7c-d78242d4fe57",
+                  "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+                  "policyVersion": 1,
+                  "registryVersion": 2
+                },
+                "limits": {
+                  "queryBytes": 200,
+                  "matches": 20,
+                  "outputBytes": 262144,
+                  "wallMs": 5000
+                },
+                "matches": [
+                  {
+                    "id": "61a8829980e0c79ddfc53cd4f923d0d9d1e7b4fc89c1396e919ff71abe22ef8c",
+                    "fileId": "24df6599-0b32-421f-ab99-0292becff2ec",
+                    "sourceId": "56e8afff-d89f-4366-9f12-132950134d77",
+                    "sourceName": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                    "blob": "975db0047e781fc2390836a2a968d7eb30a914fe",
+                    "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+                    "name": "accept",
+                    "qualifiedName": "Orders.accept",
+                    "role": "java-method",
+                    "range": {
+                      "startLine": 13,
+                      "endLine": 17,
+                      "textHash": "758e57438bdf9e6a2453f9ef9fb06acccb77e1bf44eae74695ac0a555ed990bb"
+                    },
+                    "evidence": [
+                      {
+                        "id": "e9265686-afc7-4f72-a958-cfe41d5b92d1",
+                        "sourceName": "order-api",
+                        "path": "src/main/java/Orders.java",
+                        "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                        "startLine": 1,
+                        "endLine": 18
+                      }
+                    ],
+                    "status": "syntax-only"
+                  },
+                  {
+                    "id": "bb3ec59044ca25f2f416faddc91a9d79aa45290c1abd767a66f45401ec56b454",
+                    "fileId": "222762b0-b1ed-4a20-9c4b-fcaf470092c3",
+                    "sourceId": "6acdf8eb-c085-4a23-b9e5-a166ed7e1349",
+                    "sourceName": "inventory-worker",
+                    "path": "src/StockProjection.java",
+                    "revision": "874a84a9a8beb27afb0e5779fb9a8a9c2e9dff2b",
+                    "blob": "4b2f90579e71f57be852684d173a2220e7a4e291",
+                    "contentHash": "16972cc6f4c69a56e202ca19dc4fc4324e448ea29a897f03c13e769091c894f3",
+                    "name": "accept",
+                    "qualifiedName": "synthetic.stock.StockProjection.accept",
+                    "role": "java-method",
+                    "range": {
+                      "startLine": 4,
+                      "endLine": 4,
+                      "textHash": "ba618680e357b4ff285d2a2f266a02cb7b63048c1c9fef35487fa670254aa509"
+                    },
+                    "evidence": [
+                      {
+                        "id": "dd2d933c-c6a3-4330-b0b0-1bfe67134c10",
+                        "sourceName": "inventory-worker",
+                        "path": "src/StockProjection.java",
+                        "revision": "874a84a9a8beb27afb0e5779fb9a8a9c2e9dff2b",
+                        "startLine": 1,
+                        "endLine": 4
+                      }
+                    ],
+                    "status": "syntax-only"
+                  },
+                  {
+                    "id": "fa5e5991fa387d619581ce86c23a5364f8129168c1d38f51ad1a2949ae782d89",
+                    "fileId": "7289feba-50e2-43bd-bee5-f4716a3139d8",
+                    "sourceId": "331e8e3e-673c-41ab-b4b5-cfb21ed0741e",
+                    "sourceName": "shipping-worker",
+                    "path": "src/Shipments.java",
+                    "revision": "6a644025f2343a590b2cc758a71b9289ab5e9912",
+                    "blob": "2307427cb426cb7f9b5344c99840936980c12e32",
+                    "contentHash": "9d4b894cf44e31f6647f17145ad0d52327cb3ce50ba2edaf256d8d925a78f822",
+                    "name": "accept",
+                    "qualifiedName": "synthetic.shipping.Shipments.accept",
+                    "role": "java-method",
+                    "range": {
+                      "startLine": 4,
+                      "endLine": 4,
+                      "textHash": "d6383ec5c6b87c96a3e13b29a9d1ef8ce0bd02f59a438e54f4b36485ae383aca"
+                    },
+                    "evidence": [
+                      {
+                        "id": "ea02a6e5-c53c-4242-bcf6-f1478132b1cb",
+                        "sourceName": "shipping-worker",
+                        "path": "src/Shipments.java",
+                        "revision": "6a644025f2343a590b2cc758a71b9289ab5e9912",
+                        "startLine": 1,
+                        "endLine": 4
+                      }
+                    ],
+                    "status": "syntax-only"
+                  },
+                  {
+                    "id": "72856914ad4a91019e5ccb8b24c65fbfb839c1dd61bebf6e86ae86abf59f0fa3",
+                    "fileId": "12ff4035-c3a5-454e-8123-ad7cf12e7190",
+                    "sourceId": "3b700624-ab41-4c16-b326-9750d21b6789",
+                    "sourceName": "notification-worker",
+                    "path": "src/Notify.java",
+                    "revision": "7c2d0446c3e67a09c65c175e7ca87da944deb4af",
+                    "blob": "7dd72b8837d68ae11f9558c6cf4a30e97d6aec3c",
+                    "contentHash": "c6ad3f752a295cb0b312c8543aaa846bfa7a1f73b8cc9d42aac9dcb966795705",
+                    "name": "accept",
+                    "qualifiedName": "synthetic.notifications.Notify.accept",
+                    "role": "java-method",
+                    "range": {
+                      "startLine": 4,
+                      "endLine": 4,
+                      "textHash": "d6c9800a3af91450619b0b03fa148b79cb6e6b1e1c5b168d2be08af3fa7863ee"
+                    },
+                    "evidence": [
+                      {
+                        "id": "2ff2f5a0-9e85-4514-8f30-4c39b6e160f2",
+                        "sourceName": "notification-worker",
+                        "path": "src/Notify.java",
+                        "revision": "7c2d0446c3e67a09c65c175e7ca87da944deb4af",
+                        "startLine": 1,
+                        "endLine": 4
+                      }
+                    ],
+                    "status": "syntax-only"
+                  }
+                ],
+                "partial": true,
+                "coverage": {
+                  "candidateFiles": 3621,
+                  "retainedFiles": 3621,
+                  "scannedFiles": 3621,
+                  "scanComplete": true,
+                  "timeStopped": false,
+                  "matchedFiles": 4,
+                  "matchingSymbols": 4,
+                  "matchedSources": 4,
+                  "omittedMatches": 0,
+                  "outputLimited": false,
+                  "filesWithSyntaxGaps": 6,
+                  "syntaxGapMessages": 7,
+                  "excluded": 0,
+                  "failed": 0,
+                  "unattempted": 0,
+                  "omitted": 0
+                },
+                "limitation": "Exact supported source syntax only. No match does not establish absence; unsupported code and runtime behavior remain unknown."
+              },
+              "originals": [
+                {
+                  "source": "order-api",
+                  "path": "src/main/java/Orders.java",
+                  "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                  "blob": "975db0047e781fc2390836a2a968d7eb30a914fe",
+                  "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+                  "range": {
+                    "startLine": 13,
+                    "endLine": 17,
+                    "textHash": "758e57438bdf9e6a2453f9ef9fb06acccb77e1bf44eae74695ac0a555ed990bb"
+                  },
+                  "spans": 1
+                },
+                {
+                  "source": "inventory-worker",
+                  "path": "src/StockProjection.java",
+                  "revision": "874a84a9a8beb27afb0e5779fb9a8a9c2e9dff2b",
+                  "blob": "4b2f90579e71f57be852684d173a2220e7a4e291",
+                  "contentHash": "16972cc6f4c69a56e202ca19dc4fc4324e448ea29a897f03c13e769091c894f3",
+                  "range": {
+                    "startLine": 4,
+                    "endLine": 4,
+                    "textHash": "ba618680e357b4ff285d2a2f266a02cb7b63048c1c9fef35487fa670254aa509"
+                  },
+                  "spans": 1
+                },
+                {
+                  "source": "shipping-worker",
+                  "path": "src/Shipments.java",
+                  "revision": "6a644025f2343a590b2cc758a71b9289ab5e9912",
+                  "blob": "2307427cb426cb7f9b5344c99840936980c12e32",
+                  "contentHash": "9d4b894cf44e31f6647f17145ad0d52327cb3ce50ba2edaf256d8d925a78f822",
+                  "range": {
+                    "startLine": 4,
+                    "endLine": 4,
+                    "textHash": "d6383ec5c6b87c96a3e13b29a9d1ef8ce0bd02f59a438e54f4b36485ae383aca"
+                  },
+                  "spans": 1
+                },
+                {
+                  "source": "notification-worker",
+                  "path": "src/Notify.java",
+                  "revision": "7c2d0446c3e67a09c65c175e7ca87da944deb4af",
+                  "blob": "7dd72b8837d68ae11f9558c6cf4a30e97d6aec3c",
+                  "contentHash": "c6ad3f752a295cb0b312c8543aaa846bfa7a1f73b8cc9d42aac9dcb966795705",
+                  "range": {
+                    "startLine": 4,
+                    "endLine": 4,
+                    "textHash": "d6c9800a3af91450619b0b03fa148b79cb6e6b1e1c5b168d2be08af3fa7863ee"
+                  },
+                  "spans": 1
+                }
+              ],
+              "originalsVerified": true,
+              "assessment": {
+                "expectedMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  },
+                  {
+                    "source": "inventory-worker",
+                    "path": "src/StockProjection.java",
+                    "symbol": "StockProjection.accept"
+                  },
+                  {
+                    "source": "shipping-worker",
+                    "path": "src/Shipments.java",
+                    "symbol": "Shipments.accept"
+                  },
+                  {
+                    "source": "notification-worker",
+                    "path": "src/Notify.java",
+                    "symbol": "Notify.accept"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  },
+                  {
+                    "source": "inventory-worker",
+                    "path": "src/StockProjection.java",
+                    "symbol": "synthetic.stock.StockProjection.accept"
+                  },
+                  {
+                    "source": "shipping-worker",
+                    "path": "src/Shipments.java",
+                    "symbol": "synthetic.shipping.Shipments.accept"
+                  },
+                  {
+                    "source": "notification-worker",
+                    "path": "src/Notify.java",
+                    "symbol": "synthetic.notifications.Notify.accept"
+                  }
+                ],
+                "exactMatches": false,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              },
+              "amendedAssessment": {
+                "expectedMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  },
+                  {
+                    "source": "inventory-worker",
+                    "path": "src/StockProjection.java",
+                    "symbol": "synthetic.stock.StockProjection.accept"
+                  },
+                  {
+                    "source": "shipping-worker",
+                    "path": "src/Shipments.java",
+                    "symbol": "synthetic.shipping.Shipments.accept"
+                  },
+                  {
+                    "source": "notification-worker",
+                    "path": "src/Notify.java",
+                    "symbol": "synthetic.notifications.Notify.accept"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  },
+                  {
+                    "source": "inventory-worker",
+                    "path": "src/StockProjection.java",
+                    "symbol": "synthetic.stock.StockProjection.accept"
+                  },
+                  {
+                    "source": "shipping-worker",
+                    "path": "src/Shipments.java",
+                    "symbol": "synthetic.shipping.Shipments.accept"
+                  },
+                  {
+                    "source": "notification-worker",
+                    "path": "src/Notify.java",
+                    "symbol": "synthetic.notifications.Notify.accept"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              }
+            },
+            {
+              "id": "s06",
+              "query": "Orders",
+              "status": "available",
+              "ms": 810.0752969999885,
+              "rssBefore": 227971072,
+              "rssAfter": 227921920,
+              "responseBytes": 1702,
+              "response": {
+                "schemaVersion": "loredock-code-symbols/1",
+                "buildId": "823ea269-dbc6-4f1a-ad8b-c81cfeb9ec0f",
+                "query": "Orders",
+                "status": "available",
+                "reason": null,
+                "inventory": {
+                  "id": "d756fbf1-d731-4f57-be7c-d78242d4fe57",
+                  "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+                  "policyVersion": 1,
+                  "registryVersion": 2
+                },
+                "limits": {
+                  "queryBytes": 200,
+                  "matches": 20,
+                  "outputBytes": 262144,
+                  "wallMs": 5000
+                },
+                "matches": [
+                  {
+                    "id": "61a8829980e0c79ddfc53cd4f923d0d9d1e7b4fc89c1396e919ff71abe22ef8c",
+                    "fileId": "24df6599-0b32-421f-ab99-0292becff2ec",
+                    "sourceId": "56e8afff-d89f-4366-9f12-132950134d77",
+                    "sourceName": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                    "blob": "975db0047e781fc2390836a2a968d7eb30a914fe",
+                    "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+                    "name": "accept",
+                    "qualifiedName": "Orders.accept",
+                    "role": "java-method",
+                    "range": {
+                      "startLine": 13,
+                      "endLine": 17,
+                      "textHash": "758e57438bdf9e6a2453f9ef9fb06acccb77e1bf44eae74695ac0a555ed990bb"
+                    },
+                    "evidence": [
+                      {
+                        "id": "e9265686-afc7-4f72-a958-cfe41d5b92d1",
+                        "sourceName": "order-api",
+                        "path": "src/main/java/Orders.java",
+                        "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                        "startLine": 1,
+                        "endLine": 18
+                      }
+                    ],
+                    "status": "syntax-only"
+                  }
+                ],
+                "partial": true,
+                "coverage": {
+                  "candidateFiles": 3621,
+                  "retainedFiles": 3621,
+                  "scannedFiles": 3621,
+                  "scanComplete": true,
+                  "timeStopped": false,
+                  "matchedFiles": 1,
+                  "matchingSymbols": 1,
+                  "matchedSources": 1,
+                  "omittedMatches": 0,
+                  "outputLimited": false,
+                  "filesWithSyntaxGaps": 6,
+                  "syntaxGapMessages": 7,
+                  "excluded": 0,
+                  "failed": 0,
+                  "unattempted": 0,
+                  "omitted": 0
+                },
+                "limitation": "Exact supported source syntax only. No match does not establish absence; unsupported code and runtime behavior remain unknown."
+              },
+              "originals": [
+                {
+                  "source": "order-api",
+                  "path": "src/main/java/Orders.java",
+                  "revision": "7b15279a3b6d2582b832a4a698c2a0fd6e995959",
+                  "blob": "975db0047e781fc2390836a2a968d7eb30a914fe",
+                  "contentHash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+                  "range": {
+                    "startLine": 13,
+                    "endLine": 17,
+                    "textHash": "758e57438bdf9e6a2453f9ef9fb06acccb77e1bf44eae74695ac0a555ed990bb"
+                  },
+                  "spans": 1
+                }
+              ],
+              "originalsVerified": true,
+              "assessment": {
+                "expectedMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              },
+              "amendedAssessment": {
+                "expectedMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  }
+                ],
+                "actualMatches": [
+                  {
+                    "source": "order-api",
+                    "path": "src/main/java/Orders.java",
+                    "symbol": "Orders.accept"
+                  }
+                ],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              }
+            },
+            {
+              "id": "s07",
+              "query": "OrderBadge",
+              "status": "available",
+              "ms": 810.4010199999902,
+              "rssBefore": 227921920,
+              "rssAfter": 227962880,
+              "responseBytes": 882,
+              "response": {
+                "schemaVersion": "loredock-code-symbols/1",
+                "buildId": "823ea269-dbc6-4f1a-ad8b-c81cfeb9ec0f",
+                "query": "OrderBadge",
+                "status": "available",
+                "reason": null,
+                "inventory": {
+                  "id": "d756fbf1-d731-4f57-be7c-d78242d4fe57",
+                  "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+                  "policyVersion": 1,
+                  "registryVersion": 2
+                },
+                "limits": {
+                  "queryBytes": 200,
+                  "matches": 20,
+                  "outputBytes": 262144,
+                  "wallMs": 5000
+                },
+                "matches": [],
+                "partial": true,
+                "coverage": {
+                  "candidateFiles": 3621,
+                  "retainedFiles": 3621,
+                  "scannedFiles": 3621,
+                  "scanComplete": true,
+                  "timeStopped": false,
+                  "matchedFiles": 0,
+                  "matchingSymbols": 0,
+                  "matchedSources": 0,
+                  "omittedMatches": 0,
+                  "outputLimited": false,
+                  "filesWithSyntaxGaps": 6,
+                  "syntaxGapMessages": 7,
+                  "excluded": 0,
+                  "failed": 0,
+                  "unattempted": 0,
+                  "omitted": 0
+                },
+                "limitation": "Exact supported source syntax only. No match does not establish absence; unsupported code and runtime behavior remain unknown."
+              },
+              "originals": [],
+              "originalsVerified": true,
+              "assessment": {
+                "expectedMatches": [],
+                "actualMatches": [],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              },
+              "amendedAssessment": {
+                "expectedMatches": [],
+                "actualMatches": [],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              }
+            },
+            {
+              "id": "s08",
+              "query": "loadprobe190179",
+              "status": "available",
+              "ms": 838.3497380000044,
+              "rssBefore": 227962880,
+              "rssAfter": 227950592,
+              "responseBytes": 887,
+              "response": {
+                "schemaVersion": "loredock-code-symbols/1",
+                "buildId": "823ea269-dbc6-4f1a-ad8b-c81cfeb9ec0f",
+                "query": "loadprobe190179",
+                "status": "available",
+                "reason": null,
+                "inventory": {
+                  "id": "d756fbf1-d731-4f57-be7c-d78242d4fe57",
+                  "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+                  "policyVersion": 1,
+                  "registryVersion": 2
+                },
+                "limits": {
+                  "queryBytes": 200,
+                  "matches": 20,
+                  "outputBytes": 262144,
+                  "wallMs": 5000
+                },
+                "matches": [],
+                "partial": true,
+                "coverage": {
+                  "candidateFiles": 3621,
+                  "retainedFiles": 3621,
+                  "scannedFiles": 3621,
+                  "scanComplete": true,
+                  "timeStopped": false,
+                  "matchedFiles": 0,
+                  "matchingSymbols": 0,
+                  "matchedSources": 0,
+                  "omittedMatches": 0,
+                  "outputLimited": false,
+                  "filesWithSyntaxGaps": 6,
+                  "syntaxGapMessages": 7,
+                  "excluded": 0,
+                  "failed": 0,
+                  "unattempted": 0,
+                  "omitted": 0
+                },
+                "limitation": "Exact supported source syntax only. No match does not establish absence; unsupported code and runtime behavior remain unknown."
+              },
+              "originals": [],
+              "originalsVerified": true,
+              "assessment": {
+                "expectedMatches": [],
+                "actualMatches": [],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              },
+              "amendedAssessment": {
+                "expectedMatches": [],
+                "actualMatches": [],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              }
+            },
+            {
+              "id": "s09",
+              "query": "nonexistentSyntheticSymbol048",
+              "status": "available",
+              "ms": 818.160263999991,
+              "rssBefore": 227950592,
+              "rssAfter": 227950592,
+              "responseBytes": 901,
+              "response": {
+                "schemaVersion": "loredock-code-symbols/1",
+                "buildId": "823ea269-dbc6-4f1a-ad8b-c81cfeb9ec0f",
+                "query": "nonexistentSyntheticSymbol048",
+                "status": "available",
+                "reason": null,
+                "inventory": {
+                  "id": "d756fbf1-d731-4f57-be7c-d78242d4fe57",
+                  "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+                  "policyVersion": 1,
+                  "registryVersion": 2
+                },
+                "limits": {
+                  "queryBytes": 200,
+                  "matches": 20,
+                  "outputBytes": 262144,
+                  "wallMs": 5000
+                },
+                "matches": [],
+                "partial": true,
+                "coverage": {
+                  "candidateFiles": 3621,
+                  "retainedFiles": 3621,
+                  "scannedFiles": 3621,
+                  "scanComplete": true,
+                  "timeStopped": false,
+                  "matchedFiles": 0,
+                  "matchingSymbols": 0,
+                  "matchedSources": 0,
+                  "omittedMatches": 0,
+                  "outputLimited": false,
+                  "filesWithSyntaxGaps": 6,
+                  "syntaxGapMessages": 7,
+                  "excluded": 0,
+                  "failed": 0,
+                  "unattempted": 0,
+                  "omitted": 0
+                },
+                "limitation": "Exact supported source syntax only. No match does not establish absence; unsupported code and runtime behavior remain unknown."
+              },
+              "originals": [],
+              "originalsVerified": true,
+              "assessment": {
+                "expectedMatches": [],
+                "actualMatches": [],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              },
+              "amendedAssessment": {
+                "expectedMatches": [],
+                "actualMatches": [],
+                "exactMatches": true,
+                "completeScan": true,
+                "completeOutput": true,
+                "limitsPreserved": true,
+                "gapsExplicit": true
+              }
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "expectedQueries": 18,
+        "recordedQueries": 18,
+        "availableQueries": 18,
+        "mechanicallyPassingQueries": 16,
+        "repeatDifferences": [],
+        "mechanicalChecksPassed": false,
+        "timing": {
+          "targetMs": 5500,
+          "medianMs": 818.0613404999967,
+          "maxMs": 865.3278240000072,
+          "allQueriesWithinTarget": true
+        }
+      },
+      "amendedSummary": {
+        "expectedQueries": 18,
+        "recordedQueries": 18,
+        "availableQueries": 18,
+        "mechanicallyPassingQueries": 18,
+        "repeatDifferences": [],
+        "mechanicalChecksPassed": true,
+        "timing": {
+          "targetMs": 5500,
+          "medianMs": 818.0613404999967,
+          "maxMs": 865.3278240000072,
+          "allQueriesWithinTarget": true
+        }
+      }
+    }
+  },
+  "graphCheck": {
+    "adapterVersion": "pilot-code-v3",
+    "coverage": {
+      "candidateDocuments": 3621,
+      "examinedDocuments": 100,
+      "parsedBytes": 186453
+    },
+    "absentExpected": true
+  },
+  "verifiedOriginals": {
+    "verifiedSpanOccurrences": 18,
+    "verifiedFiles": 7
+  },
+  "sampledPeakRssBytes": 228364288,
+  "memoryScope": "Shared evaluator process, sampled every 100 ms and at query boundaries; includes fixture/index allocations.",
+  "sourceCheckoutsUnchanged": true,
+  "modelRequests": 0,
+  "answerAttempts": 0,
+  "mechanicalQualificationPassed": false,
+  "amendedMechanicalQualificationPassed": true,
+  "semanticAcceptance": false,
+  "independentReview": "pending",
+  "limitation": "Known simple synthetic source volume and a mechanical oracle; not representative framework cost, independent semantic acceptance or a production latency commitment."
+}

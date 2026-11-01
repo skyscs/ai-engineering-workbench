@@ -1,5 +1,34 @@
 # Development status
 
+## Task 048 — Larger exact-symbol qualification
+
+Implemented and locally verified, 2026-11-01. PR #51 reached main as `9b0a118` after
+push `41256842171` and pull-request `41256855087` passed for exact head
+`8424001df13cfd9a0fdb07491f6ced7251e0733b`. Original design/cases were frozen in `13c907e`.
+Small-shape verification exposed three missing Java package prefixes in the s05 oracle;
+prospective amendment `6caaaa7` preserves the original and corrects only those names.
+
+Committed harness `1ab42d7` performed one fresh full-size index and one durable analysis,
+then eighteen fixed queries. All 3,679 eligible files were indexed in 64.422 seconds.
+All 3,621 code candidates were retained in 4.342 seconds, with six affected syntax files
+and seven gap messages. Each query scanned the complete inventory. The amended exact-set
+assessment passes 18/18; the original stays 16/18 solely for s05's package prefixes.
+All eighteen original-span occurrences across seven files match Git, repeat results agree,
+and no time/output omission occurs. Median/max lookup time is 818.061/865.328 ms against
+the frozen 5,500 ms local target. Sampled shared evaluator RSS peaks at 228,364,288 bytes.
+
+Strict types, all 391 tests and builds pass. Five new protocol/comparison tests and an
+owned small-shape compiled smoke pass. Both assessments were recounted from the raw
+measurement. Source checkouts remain unchanged; no corporate sources, model calls,
+production tuning, refresh, retry or rerun. The exclusive full-attempt receipt is retained.
+See [Task 048](../tasks/048-loredock-symbol-search-qualification.md),
+[protocol/amendment](../fixtures/loredock-symbol-search/ERRATA.md) and
+[complete report](fixtures/loredock-symbol-qualification/README.md).
+
+Next: support familiar short Java class/method names while retaining fully qualified
+identities and ambiguous source matches. Broader retrieval and semantic acceptance remain
+separate; a simple volume measurement does not establish corporate-framework readiness.
+
 ## Task 047 — Exact-symbol search over the durable inventory
 
 Implemented and locally verified, 2026-11-01. PR #50 reached main as `04eaee9` after
