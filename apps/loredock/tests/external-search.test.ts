@@ -51,7 +51,7 @@ test('external literal search preserves row identities, ranks, snippets, origina
   state.right.revoke(source.id); state.left.revoke(source.id); compare();
   assert.equal(state.candidate.one<{n: number}>(`SELECT count(*) AS n FROM literal_search_documents d JOIN spans s ON s.id=d.spanId
     JOIN files f ON f.id=s.fileId WHERE f.sourceId=?`, source.id)!.n, 0); validateExternalSearch(state.candidate);
-  state.left.updatePolicy(['config/']); state.right.updatePolicy(['config/']);
+  state.left.updatePolicy(['config']); state.right.updatePolicy(['config']);
   assert.throws(() => state.left.search('orders', state.first), {code: 'POLICY_CHANGED'});
   assert.throws(() => state.right.search('orders', state.first), {code: 'POLICY_CHANGED'});
 });
