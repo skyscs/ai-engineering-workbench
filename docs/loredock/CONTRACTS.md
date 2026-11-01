@@ -24,6 +24,12 @@ bounded summaries, file pages, validated facts and lifecycle controls under `/ap
 and prepares new publications automatically. Existing sampled map/answer context remains
 separate; see [ADR 0040](../decisions/0040-loredock-durable-code-inventory.md),
 [ADR 0041](../decisions/0041-loredock-code-coverage-workflow.md) and the user-guide API table.
+Task 047 adds protected `GET /api/code-symbols?q=...&buildId=...` with response version
+`loredock-code-symbols/1`. Exact names use a compatible published inventory for the pinned
+index; absence of one is an explicit unavailable result. A five-second cooperative scan,
+twenty matches and 256 KiB output bound the response. Every admitted symbol retains its
+validated original references, source/revision/range identity and syntax-only status.
+See [ADR 0042](../decisions/0042-loredock-exact-symbol-search.md).
 
 The [executable fixture](../../fixtures/loredock/README.md) uses a smaller, versioned
 fixture manifest. Do not treat its IDs or JSON shape as a public product contract.

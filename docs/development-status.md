@@ -1,5 +1,34 @@
 # Development status
 
+## Task 047 — Exact-symbol search over the durable inventory
+
+Implemented and locally verified, 2026-11-01. PR #50 reached main as `04eaee9` after
+push `41255332085` and pull-request `41255345084` passed for exact head
+`e02936fed895b1d33d654b1de18f451a7d96f757`. Scope was committed in `7b3a9dd`.
+
+The existing source-search input now runs independent literal text and exact-symbol
+lookups. Symbol matches use the compatible published inventory for the pinned index,
+validate manifests/originals and retain source/revision/range support. A five-second
+cooperative scan, twenty source-balanced matches and 256 KiB response make omissions
+explicit. No-compatible-inventory and corruption stay distinct from no-match. Lightweight
+catalog header validation avoids recomputing aggregate index coverage for each file.
+Query edits, replacement searches and source/index/policy changes fence pending results
+and original evidence; source-index controls remain usable during lookup.
+
+Strict types, all 386 tests and production builds pass. Seven new integration tests cover
+literal/class/qualified matching, duplicate source names, time/output bounds, corruption,
+foreign mappings, historical and paused-repeat inventory selection, and yielded-scan
+revocation/policy/eviction. A 121-file shape finds `Orders.accept` outside the unchanged
+100-document graph sample. Browser verification covers independent text results, injected
+lookup failure, keyboard originals, escaped labels, 390px layout and late-result fences,
+alongside the existing coverage and candidate suites.
+
+See [Task 047](../tasks/047-loredock-exact-symbol-search.md),
+[ADR 0042](decisions/0042-loredock-exact-symbol-search.md) and
+[verification](fixtures/loredock-symbol-search/README.md). No corporate inputs, model
+requests or full-volume benchmark were used. Next: qualify lookup coverage and latency
+on the fixed larger synthetic shape before broadening retrieval. Semantic gates stay open.
+
 ## Task 046 — Code coverage in the indexing workflow
 
 Implemented and locally verified, 2026-11-01. PR #49 reached main as `7ee582f` after

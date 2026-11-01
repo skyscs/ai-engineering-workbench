@@ -42,6 +42,12 @@ original ownership checks; manual starts bind expected source/policy versions. S
 not resume or retry old attempts. Project, summary, page/file and original-response fences
 prevent late data from restoring an obsolete scope. See
 [ADR 0041](docs/decisions/0041-loredock-code-coverage-workflow.md).
+Exact-symbol lookup uses the same protected read boundary. Literal queries cannot become
+SQL, regular expressions or executed source. Bounded manifest/checkpoint validation and
+original-file validation precede use; an asynchronous scan rechecks scope/run identity
+before returning. Corruption fails visibly. Query edits and source/index/policy changes
+invalidate pending text, symbol and original responses. See
+[ADR 0042](docs/decisions/0042-loredock-exact-symbol-search.md).
 Engineer corrections retain explicit human/unverified provenance. Bounded notes matching
 retrieved passages are previewed and sent separately to the answer model as untrusted
 assertions, never instructions or source citation IDs. Answers inherit their complete

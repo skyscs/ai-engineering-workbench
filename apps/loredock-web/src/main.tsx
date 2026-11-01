@@ -10,6 +10,8 @@ import { SourceOnboarding } from './SourceOnboarding';
 import { ProjectOverview } from './ProjectOverview';
 import { CandidatePanel } from './CandidatePanel';
 import { CodeInventory } from './CodeInventory';
+import { SymbolMatches } from './SymbolMatches';
+import type { CodeSymbolResult } from '../../loredock/src/code-symbol-types';
 
 function App() {
   const [state, setState] = useState<ProjectState>();
@@ -19,6 +21,8 @@ function App() {
   const [error, setError] = useState(''); const [busy, setBusy] = useState(false);
   const [query, setQuery] = useState('');
   const [selected, setSelected] = useState(''); const [results, setResults] = useState<SearchResult>();
+  const [symbols, setSymbols] = useState<CodeSymbolResult>(), [symbolError, setSymbolError] = useState(''), [symbolsLoading, setSymbolsLoading] = useState(false);
+  const [searching, setSearching] = useState(false); const searchRequest = useRef(0), searchBusy = useRef(false);
   const [evidence, setEvidence] = useState<Evidence>(); const [excludes, setExcludes] = useState<string | null>(null);
   const [removal, setRemoval] = useState<string>();
   const [gaps, setGaps] = useState<{ path: string; status: string; reason: string | null; error: string | null }[]>();
@@ -47,7 +51,7 @@ function App() {
   const sourceSetVersion = state?.sourceSetVersion;
   const published = state?.publishedBuildId;
   useEffect(() => { pendingStart.current = undefined; }, [policyVersion, sourceSetVersion, published]);
-  useEffect(() => { evidenceRequest.current++; setResults(undefined); setEvidence(undefined); setGaps(undefined); }, [policyVersion, sourceSetVersion, selected, published]);
+  useEffect(() => { evidenceRequest.current++; searchRequest.current++; setResults(undefined); setSymbols(undefined); setSymbolError(''); setSymbolsLoading(false); setEvidence(undefined); setGaps(undefined); }, [policyVersion, sourceSetVersion, selected, published]);
   useEffect(() => {
     if (selected && state && !state.builds.some(build => build.id === selected && build.published && build.policyVersion === state.policyVersion)) setSelected('');
   }, [selected, state]);
@@ -72,11 +76,18 @@ function App() {
       if (current === boundary.current && request === evidenceRequest.current) setError((cause as Error).message);
     }
   }
-  function search(event: FormEvent) { event.preventDefault(); void act(async () => {
-    const current = boundary.current; evidenceRequest.current++; setEvidence(undefined);
-    const response = await api<SearchResult>(`/search?q=${encodeURIComponent(query)}&buildId=${encodeURIComponent(searchBuild)}`);
-    if (current === boundary.current) setResults(response);
-  }); }
+  function search(event: FormEvent) {
+    event.preventDefault(); if (searchBusy.current) return;
+    searchBusy.current = true; setSearching(true); setError(''); clearEvidence(); setResults(undefined); setSymbols(undefined); setSymbolError(''); setSymbolsLoading(codeEnabled);
+    const current = boundary.current, request = ++searchRequest.current;
+    const valid = () => current === boundary.current && request === searchRequest.current;
+    const params = `q=${encodeURIComponent(query)}&buildId=${encodeURIComponent(searchBuild)}`;
+    const passages = api<SearchResult>(`/search?${params}`).then(value => { if (valid()) setResults(value); })
+      .catch(cause => { if (valid()) setError((cause as Error).message); });
+    const symbolLookup = codeEnabled ? api<CodeSymbolResult>(`/code-symbols?${params}`).then(value => { if (valid()) setSymbols(value); })
+      .catch(cause => { if (valid()) setSymbolError((cause as Error).message); }).finally(() => { if (valid()) setSymbolsLoading(false); }) : Promise.resolve();
+    void Promise.all([passages, symbolLookup]).finally(() => { searchBusy.current = false; setSearching(false); });
+  }
 
   return <main>
     <header><a className="brand" href="/">LoreDock<span>System sources</span></a><span className="local">{answersEnabled ? 'Local sources · Codex answers' : 'Local catalog · No model calls'}</span></header>
@@ -147,8 +158,11 @@ function App() {
             <option value="">Latest published index</option>{state.builds.filter(build => build.published && build.policyVersion === state.policyVersion).map(build => <option key={build.id} value={build.id}>{new Date(build.createdAt).toLocaleString()} · {build.status} · {build.id.slice(0, 8)}</option>)}
           </select></label>}
           {currentBuild && currentBuild.sourceSetVersion !== state.sourceSetVersion && <p className="notice">Sources changed since this index. Removed sources are fenced; index again to include the current source set.</p>}
-          <form className="search" onSubmit={search}><label className="sr-only" htmlFor="source-query">Search sources</label><input id="source-query" placeholder="Try orders.placed.v2" value={query} onChange={event => setQuery(event.target.value)} required maxLength={500} /><button className="primary" disabled={busy || !searchBuild || !query.trim()}>Search</button></form>
+          <form className="search" onSubmit={search}><label className="sr-only" htmlFor="source-query">Search sources</label><input id="source-query" placeholder="Try orders.placed.v2 or Orders.accept" value={query} onChange={event => {
+            searchRequest.current++; clearEvidence(); setQuery(event.target.value); setResults(undefined); setSymbols(undefined); setSymbolError(''); setSymbolsLoading(false);
+          }} required maxLength={500} /><button className="primary" disabled={busy || searching || !searchBuild || !query.trim()}>Search</button></form>
           {!searchBuild && <p className="empty">Index your sources to start exploring.</p>}
+          <SymbolMatches value={symbols} error={symbolError} loading={symbolsLoading} openEvidence={id => void openEvidence(id)} />
           {results && <><p role="status">{results.hits.length ? `${results.hits.length} matching passages (up to 30 shown).` : 'No indexed matches. This does not prove the behavior is absent; check coverage and excluded sources.'}</p>
             {results.partial && <p className="muted">This index has coverage gaps.</p>}
             <ul className="results">{results.hits.map(hit => <li key={hit.id}><button className="result" disabled={busy} onClick={() => void openEvidence(hit.id)}>
