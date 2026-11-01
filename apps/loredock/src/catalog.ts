@@ -163,7 +163,8 @@ export class Catalog {
     // Keep publication outside the cache-validation catch: DB failures must not become cache misses.
     this.store.finishFile(file, cached, previous.id); return true;
   }
-  private authorizeBuild(id: string) {
+  /** Authorize immutable index metadata without recomputing aggregate coverage per file. */
+  readBuildHeader(id: string) {
     const build = this.store.buildRow(id);
     if (!build.published) throw new CatalogError('NOT_READY', 'This index has not been published.', 409);
     if (build.policyVersion !== this.store.project().policyVersion) throw new CatalogError('POLICY_CHANGED', 'This index uses an old policy. Index sources again.', 409);
@@ -172,13 +173,13 @@ export class Catalog {
   readBuild(buildId?: string) {
     const id = buildId ?? this.store.project().publishedBuildId;
     if (!id) throw new CatalogError('NOT_READY', 'Index sources before exploring the system map.', 409);
-    this.authorizeBuild(id); return this.store.build(id);
+    this.readBuildHeader(id); return this.store.build(id);
   }
   search(query: string, buildId?: string): SearchResult {
     if (!query.trim() || query.length > 500) throw new CatalogError('INVALID_QUERY', 'Enter between 1 and 500 characters.');
     const id = buildId ?? this.store.project().publishedBuildId;
     if (!id) throw new CatalogError('NOT_READY', 'Index sources before searching.', 409);
-    const build = this.authorizeBuild(id);
+    const build = this.readBuildHeader(id);
     // Literal terms only; user punctuation cannot become FTS operators or SQL.
     const terms = query.trim().split(/\s+/).slice(0, 20).map(term => '"' + term.replaceAll('"', '""') + '"').join(' AND ');
     const hits = this.store.all<SearchHit>(`SELECT s.id,f.sourceId,bs.name AS sourceName,bs.revision,f.path,s.startLine,s.endLine,
@@ -193,7 +194,7 @@ export class Catalog {
       FROM spans s JOIN files f ON f.id=s.fileId JOIN sources src ON src.id=f.sourceId
       JOIN build_sources bs ON bs.buildId=f.buildId AND bs.sourceId=f.sourceId WHERE s.id=? AND f.status='indexed'`, id);
     if (!row || row.sourceStatus !== 'active') throw new CatalogError('NOT_FOUND', 'This evidence is unavailable or revoked.', 404);
-    this.authorizeBuild(row.buildId);
+    this.readBuildHeader(row.buildId);
     if (sha256(Buffer.from(row.raw)) !== row.contentHash || sha256(row.text) !== row.spanHash) throw new CatalogError('CORRUPT_EVIDENCE', 'Stored evidence failed its integrity check.', 409);
     const lines = new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(row.raw).replaceAll('\r\n', '\n').split('\n');
     if (row.startLine < 1 || row.endLine < row.startLine || row.endLine > lines.length || lines.slice(row.startLine - 1, row.endLine).join('\n') !== row.text) throw new CatalogError('CORRUPT_EVIDENCE', 'Stored evidence does not match its source range.', 409);

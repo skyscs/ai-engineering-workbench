@@ -19,7 +19,7 @@ function checked(condition: unknown): asserts condition {
 function inputHash(run: Pick<AnalysisRow, 'buildId' | 'fingerprint'>, file: AnalysisFile) {
   return sha256(JSON.stringify({ buildId: run.buildId, fingerprint: run.fingerprint, file }));
 }
-function checkpointHash(unit: AnalysisUnit) {
+function checkpointHash(unit: Omit<AnalysisUnit, 'payload'>) {
   return sha256(JSON.stringify([unit.runId, unit.fileId, unit.ordinal, unit.inputHash, unit.status, unit.reason,
     unit.inputBytes, unit.payloadBytes, unit.gapCount, unit.payloadHash]));
 }
@@ -51,7 +51,7 @@ export class CodeAnalysis {
     if (row.status === 'fenced' || project.policyVersion !== row.policyVersion || project.sourceSetVersion !== row.registryVersion) {
       throw new CatalogError('ANALYSIS_FENCED', 'Sources or policy changed. Start a new code inventory.', 409);
     }
-    this.catalog.readBuild(row.buildId);
+    this.catalog.readBuildHeader(row.buildId);
     if (row.fingerprint !== this.fingerprint) throw new CatalogError('PARSER_CHANGED', 'The code parser changed. Start a new inventory.', 409);
     checked(row.limits === JSON.stringify(this.limits));
   }
@@ -81,6 +81,24 @@ export class CodeAnalysis {
       staleIndex: this.store.buildRow(row.buildId).sourceSetVersion !== this.store.project().sourceSetVersion };
   }
   list() { return this.store.all<{ id: string }>('SELECT id FROM code_analyses ORDER BY rowid DESC').map(row => this.get(row.id)); }
+  /** Read the complete bounded unit manifest before an asynchronous query, without loading payloads. */
+  snapshot(id: string) {
+    const row = this.row(id); this.authorize(row);
+    if (!row.published) throw new CatalogError('NOT_READY', 'Finish code analysis before querying its facts.', 409);
+    const units = this.store.all<Omit<AnalysisUnit, 'payload'> & { storedBytes: number | null }>(`SELECT runId,fileId,ordinal,inputHash,status,reason,inputBytes,payloadBytes,gapCount,payloadHash,checkpointHash,
+      length(CAST(payload AS BLOB)) storedBytes FROM code_analysis_files WHERE runId=? ORDER BY ordinal LIMIT ?`, id, codeAnalysisLimits.documents + 1);
+    checked(units.length === row.candidates && units.length <= codeAnalysisLimits.documents
+      && units.every((unit, index) => unit.ordinal === index && unit.status !== 'pending' && checkpointHash(unit) === unit.checkpointHash
+        && Number.isSafeInteger(unit.inputBytes) && unit.inputBytes >= 0 && Number.isSafeInteger(unit.payloadBytes) && unit.payloadBytes >= 0
+        && Number.isSafeInteger(unit.gapCount) && unit.gapCount >= 0
+        && (unit.status === 'parsed' ? unit.storedBytes === unit.payloadBytes && unit.payloadBytes <= this.limits.filePayloadBytes
+          : unit.storedBytes === null && unit.payloadBytes === 0 && unit.payloadHash === null))
+      && sha256(JSON.stringify(units.map(({ fileId, inputHash }) => ({ fileId, inputHash })))) === row.manifestHash
+      && units.reduce((sum, unit) => sum + unit.inputBytes, 0) === row.textBytes && row.textBytes <= this.limits.textBytes
+      && units.reduce((sum, unit) => sum + unit.payloadBytes, 0) === row.payloadBytes && row.payloadBytes <= this.limits.payloadBytes);
+    return { summary: this.get(id), policyVersion: row.policyVersion, registryVersion: row.registryVersion,
+      manifestHash: row.manifestHash, fileIds: units.filter(unit => unit.status === 'parsed').map(unit => unit.fileId) };
+  }
   files(id: string, offset = 0) {
     const row = this.row(id); this.authorize(row);
     if (!Number.isSafeInteger(offset) || offset < 0 || offset >= Math.max(1, row.candidates) || offset % 50) throw new CatalogError('INVALID_PAGE', 'Choose an available code-file page.');

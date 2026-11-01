@@ -89,7 +89,9 @@ The [durable inventory foundation](docs/decisions/0040-loredock-durable-code-inv
 persists bounded per-file facts with validated restart/resume and source purge.
 New indexes now start local code analysis automatically. **Code coverage** shows progress
 and syntax gaps; expand its file pages to inspect facts and original sources. Existing
-indexes can be analyzed explicitly. Broader query integration remains the next step.
+indexes can be analyzed explicitly. In **Explore the sources**, an exact name such as
+`Orders.accept` also searches the compatible code inventory and opens its original lines.
+Symbol coverage and limits are visible; original text search remains independently available.
 
 ## What v0.1 does
 

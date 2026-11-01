@@ -18,6 +18,7 @@ import { projectOrientation } from './orientation.js';
 import { sourceCandidatePreview } from './source-candidates.js';
 import type { CodeAnalysis } from './code-analysis.js';
 import type { CodeAnalysisFollow } from './code-analysis-follow.js';
+import { lookupCodeSymbols } from './code-symbols.js';
 
 export function createApp(catalog: Catalog, options: { publicDir?: string; development?: boolean; answers?: Answers; codeAnalysis?: CodeAnalysis; codeFollow?: CodeAnalysisFollow } = {}) {
   const app = new Hono();
@@ -94,6 +95,7 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
   app.get('/api/orientation', c => c.json(projectOrientation(catalog, c.req.query('buildId'))));
   const codeAnalysis = options.codeAnalysis;
   if (codeAnalysis) {
+    app.get('/api/code-symbols', async c => c.json(await lookupCodeSymbols(codeAnalysis, c.req.query('q') ?? '', c.req.query('buildId'))));
     app.get('/api/code-analysis', c => c.json(options.codeFollow?.state() ?? { inventories: codeAnalysis.list(), pendingBuildId: null, automaticError: null }));
     app.post('/api/code-analysis', async c => {
       const input = await body(c.req), project = catalog.store.project();

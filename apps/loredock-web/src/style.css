@@ -1,4 +1,6 @@
 .code-inventory{border-top:1px solid #d8e1d8;margin-top:1.25rem;padding-top:1rem;overflow-wrap:anywhere}
+.symbol-matches,.symbol-coverage{overflow-wrap:anywhere}
+.symbol-matches .results>li{padding:1rem}
 .code-coverage-counts{display:block;margin-top:.4rem}
 .code-files{list-style:none;padding:0}
 .code-files>li{border-bottom:1px solid #d8e1d8;padding:.75rem 0}

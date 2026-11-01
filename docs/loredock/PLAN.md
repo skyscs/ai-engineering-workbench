@@ -94,7 +94,12 @@ existing graph and answer selection remain unchanged.
 [Task 046](../../tasks/046-loredock-code-coverage-workflow.md) connects new publications
 to automatic local analysis, protected controls and compact code coverage/file pages.
 Existing indexes and interrupted work stay explicit; late scope/detail responses are fenced.
-Next: bounded query access to the wider inventory and its original support.
+[Task 047](../../tasks/047-loredock-exact-symbol-search.md) adds exact-symbol lookup over
+the matching published inventory through the existing source-search input. Bounded scans,
+source-balanced results, original revalidation and late-response fences preserve explicit
+coverage without changing graph/answer selection.
+Next: qualify lookup coverage and latency on the fixed larger synthetic shape before
+extending broader retrieval. No corporate sources or real-model reruns are required.
 No tuning on observed model answers is included.
 Full L3
 acceptance, broader adapters/synthesis/Guide me, semantic/AI refresh, scale

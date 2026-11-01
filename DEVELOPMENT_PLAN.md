@@ -112,7 +112,11 @@ and leaves existing projections/answers unchanged.
 [Task 046](tasks/046-loredock-code-coverage-workflow.md) connects the service to new index
 publication, protected API controls and compact code coverage/file browsing. Existing
 indexes and interrupted work remain explicit; late context/detail responses are fenced.
-Next: separately bounded query access to full-inventory facts and their original support.
+[Task 047](tasks/047-loredock-exact-symbol-search.md) adds exact-symbol lookup over the
+compatible published inventory, sharing the existing search input while preserving
+independent text results. Original support, bounded scans and late-result fences are explicit.
+Next: separately qualify lookup coverage/latency on the fixed larger synthetic shape before
+extending broader retrieval.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

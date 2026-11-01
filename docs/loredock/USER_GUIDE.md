@@ -63,10 +63,27 @@ directory. Linux is the verified platform.
    immutable revision and numbered line range. **Integrity and extracted metadata**
    exposes content hashes and bounded JSON/Maven metadata when useful.
 
-Search uses literal lexical terms combined with AND. It returns at most 30 passages;
+Text search uses literal lexical terms combined with AND. It returns at most 30 passages;
 it does not translate natural-language questions or infer architecture. A result is
 source text, not an AI conclusion. No matches means no matches in the admitted index,
 not proof that behavior is absent from the whole system.
+
+The same input also checks **Supported symbols** after code analysis has published a
+compatible inventory. Try an exact function/method name, qualified name such as
+`Orders.accept`, or a Java class name. Matching is case-sensitive, trims surrounding
+whitespace and accepts at most 200 UTF-8 bytes; it does not interpret regex or fuzzy names.
+Click **Original lines** to inspect a result's source at its recorded revision. The search
+can reach retained files outside the smaller graph sample, but it does not establish
+runtime calls or class bindings.
+
+**Symbol coverage and limits** reports checked files, observed matches and omissions.
+At most twenty matches are shown, alternating between matching sources in their saved
+order, within a 256 KiB response. A five-second budget is checked between files; a time
+stop leaves remaining files unsearched. Unsupported syntax, excluded/failed/unattempted
+files and evicted or outdated inventories remain gaps. A no-match result cannot establish
+absence. If symbols are unavailable, inspect **Code coverage** and use **Analyze code**;
+text results are still available independently. Editing the query or changing source/index
+scope clears old results and open evidence, including responses that arrive late.
 
 Only committed content is indexed. Working-file checks conservatively detect stat,
 staged and untracked differences; they do not run clean filters or include those
@@ -111,8 +128,8 @@ Limits are 10,000 candidates, 32 KiB/file, eight original spans/file, 50 MiB exa
 text, 128 KiB fact/provenance payload per file, 16 MiB per inventory and five minutes of
 cumulative active work, checked between files. Unsupported parser guards still apply.
 The two payload budgets exclude SQLite/metadata/WAL overhead and original index history.
-Current maps, candidate previews and answer prompts still use their existing bounded
-projections; integration of this wider inventory into queries is a separate next step.
+Exact-symbol lookup uses this wider inventory. Maps, candidate previews and answer prompts
+still use their existing bounded projections; broader query integration remains separate.
 
 ## Find candidate repositories
 
@@ -727,6 +744,7 @@ require the session. No tokens belong in URLs or logs.
 | `GET /api/builds/:id/files` | First 100 excluded/failed authorized file records. |
 | `GET /api/builds/:id/changes` | Bounded authorized inventory comparison, source revisions, reuse/read diagnostics and original/selected evidence IDs. |
 | `GET /api/search?q=...&buildId=...` | Search the current or a selected published index. |
+| `GET /api/code-symbols?q=...&buildId=...` | Exact case-sensitive symbol/class lookup over the compatible published inventory; 200 UTF-8 query bytes, twenty matches, 256 KiB response and a five-second cooperative scan. Unavailable inventory is explicit; original text search stays independent. |
 | `GET /api/evidence/:id` | Reopen a validated, authorized stored citation. |
 | `GET /api/system-map?buildId=...` | Bounded declaration projection for the current or a selected authorized published index. |
 | `GET /api/code-flows?buildId=...` | Versioned code links, partial flow outlines, candidate hops and original evidence from the same authorized index. |

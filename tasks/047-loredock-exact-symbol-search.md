@@ -1,6 +1,6 @@
 # Task 047 — Bounded exact-symbol lookup over complete code inventories
 
-Status: scoped before implementation, 2026-11-01.
+Status: implemented and locally verified, 2026-11-01. Scope was committed in `7b3a9dd`.
 
 Use the durable inventory in a first bounded query path. Exact supported symbol lookup
 can reach files outside the interactive graph sample without widening the graph or model
@@ -54,3 +54,26 @@ flows without adding a second search input. Run relevant checks, strict types, f
 and sequential owned-browser acceptance. Preserve all historical reports and failed gates.
 After both exact-head CI events pass, merge and continue the planned sequence; a broader
 semantic retrieval or Workbench bridge change requires its own contract.
+
+## Outcome
+
+The protected exact-symbol endpoint validates a complete compatible unit manifest and
+each scanned original, then fences the final response. It reports bounded source-balanced
+matches and explicit inventory/scan gaps. Lightweight catalog header authorization avoids
+per-file aggregate coverage recomputation. The existing source-search input independently
+loads symbol and text results, with original buttons and request/scope fences.
+
+Strict types, 386 tests and production builds pass. Seven new integration tests cover
+literal matching, ownership/corruption, historical and paused-repeat selection, output/time
+bounds and asynchronous policy/revocation/eviction. On the owned 121-file shape, exact
+`Orders.accept` lookup succeeds outside the unchanged 100-document graph sample.
+
+Browser acceptance retains the code-coverage workflow and adds shared-input lookup,
+keyboard originals, escaped source labels, independent raw results, injected lookup failure,
+unsupported/no-match limits and held text/symbol/evidence responses across query edits,
+refresh, policy changes and revocation. The separate candidate regression also passes.
+See [verification](../docs/fixtures/loredock-symbol-search/README.md) and
+[ADR 0042](../docs/decisions/0042-loredock-exact-symbol-search.md).
+
+Next: freeze a separate larger-shape lookup coverage/latency qualification before broader
+retrieval changes. No corporate input, model call or new full-volume run was used here.
