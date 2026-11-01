@@ -54,7 +54,7 @@ uses isolated retained data, releases preparer ownership before daemon startup a
 answer/development mode off despite inherited LoreDock settings. Signals target owned
 work/processes; an occupied port does not authorize stopping another application. See
 [ADR 0044](docs/decisions/0044-loredock-isolated-synthetic-demo.md).
-The explicit storage-report command opens only an existing schema-8 catalog read-only,
+The explicit storage-report command opens only an existing schema-8 or schema-9 catalog read-only,
 without daemon ownership, migrations or recovery. It exports aggregate counts/bytes,
 not source text, paths or connection settings. Fixed database/sidecar paths must be regular
 files. Read-only SQLite can maintain shared-memory bookkeeping; this is not a forensic
@@ -64,6 +64,12 @@ existing regular main/owner database and sidecar files. It performs SQLite physi
 maintenance without logical history deletion, schema migration, job recovery or process
 termination. Backup/temporary-space requirements and partial-maintenance failure behavior
 are documented in [ADR 0045](docs/decisions/0045-loredock-offline-storage-maintenance.md).
+Schema-9 conversion validates literal postings and original correspondence inside one
+transaction before job recovery. Unsupported/corrupt legacy content fails without silent
+repair. External literal postings are deleted before original spans during transactional
+purge; stable mapping rows cascade with spans. Conversion does not vacuum, contact models
+or restart another process; stopped backup/rollback requirements are documented in
+[ADR 0046](docs/decisions/0046-loredock-external-literal-search.md).
 Engineer corrections retain explicit human/unverified provenance. Bounded notes matching
 retrieved passages are previewed and sent separately to the answer model as untrusted
 assertions, never instructions or source citation IDs. Answers inherit their complete

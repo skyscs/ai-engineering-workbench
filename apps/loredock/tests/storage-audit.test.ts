@@ -8,6 +8,9 @@ import {test, type TestContext} from 'node:test';
 import {CatalogStore} from '../src/store.js';
 import {Catalog} from '../src/catalog.js';
 import {CodeAnalysis} from '../src/code-analysis.js';
+import {removeExternalSearchSchema} from './legacy-schema.js';
+// @ts-expect-error The explicit maintenance command is plain JavaScript.
+import {compactStorage} from '../../../scripts/loredock-compact.mjs';
 // @ts-expect-error The explicit maintenance command is plain JavaScript.
 import {auditStorage, storageArguments} from '../../../scripts/loredock-storage.mjs';
 // @ts-expect-error The owned fixture generator is plain JavaScript.
@@ -27,13 +30,19 @@ async function setup(t: TestContext) {
   return {fixture, directory, store, catalog, analysis, source, start, close};
 }
 
-test('storage accounting includes UTF-8 and NUL bytes, SQLite pages and both search copies without exporting content', async t => {
+test('storage accounting includes UTF-8/NUL, shared literal text and mapping pages without exporting content', async t => {
   const {store, directory, start} = await setup(t); await start('first');
   const file = store.one<{id: string; metadata: string}>('SELECT id,metadata FROM files WHERE raw IS NOT NULL LIMIT 1')!;
   const metadataBytes = store.all<{metadata: string}>('SELECT metadata FROM files').reduce((sum, row) => sum + Buffer.byteLength(row.metadata), 0);
   const marker = 'private-marker-雪\u0000é';
   store.run('UPDATE files SET metadata=? WHERE id=?', marker, file.id);
   const report = auditStorage(directory);
+  assert.equal(report.schemaVersion, 'loredock-storage-audit/2'); assert.equal(report.databaseVersion, 9);
+  assert.equal(report.payloads.literalSearch.contentStorage, 'shared-original-spans');
+  assert.equal(report.payloads.literalSearch.copiedTextBytes, 0);
+  const literalPages = store.one<{bytes: number}>(`SELECT sum(d.pgsize) AS bytes FROM dbstat d
+    JOIN sqlite_schema s ON s.name=d.name WHERE s.tbl_name LIKE 'search_%' OR s.tbl_name='literal_search_documents'`)!.bytes;
+  assert.equal(report.sqlite.allocations.literalSearch, literalPages);
   const originals = store.all<{raw: Uint8Array | null; metadata: string}>('SELECT raw,metadata FROM files');
   const spans = store.all<{text: string}>('SELECT text FROM spans');
   assert.equal(report.payloads.originals.bytes, originals.reduce((sum, row) => sum + (row.raw?.length ?? 0), 0));
@@ -47,6 +56,25 @@ test('storage accounting includes UTF-8 and NUL bytes, SQLite pages and both sea
   assert.equal(report.disk.observedFileBytes, report.disk.files.reduce((sum: number, file: {bytes: number | null}) => sum + (file.bytes ?? 0), 0));
   const text = JSON.stringify(report);
   for (const forbidden of [directory, marker, 'order-api', file.id]) assert.ok(!text.includes(forbidden));
+});
+
+test('accounting and compaction retain schema 8 and report its copied text without recovery or migration', async t => {
+  const {store, directory, start, close} = await setup(t); await start('first');
+  const project = store.project(), pending = store.start('pending', project.sourceSetVersion, project.policyVersion);
+  removeExternalSearchSchema(store.db);
+  const scores = store.all("SELECT rowid,spanId,rank FROM search WHERE search MATCH 'orders' ORDER BY rank,rowid");
+  await close(); const before = await readFile(path.join(directory, 'loredock.db'));
+  const report = auditStorage(directory);
+  assert.equal(report.databaseVersion, 8); assert.equal(report.payloads.literalSearch.contentStorage, 'copied');
+  assert.equal(report.payloads.literalSearch.copiedTextBytes, report.payloads.literalSearch.bytes);
+  assert.ok(report.payloads.literalSearch.bytes > 0); assert.deepEqual(await readFile(path.join(directory, 'loredock.db')), before);
+  const compacted = compactStorage(directory); assert.equal(compacted.schemaVersion, 'loredock-storage-compaction/2');
+  assert.equal(compacted.after.databaseVersion, 8); assert.deepEqual(compacted.after.payloads, report.payloads);
+  const db = new DatabaseSync(path.join(directory, 'loredock.db'), {readOnly: true});
+  try {assert.equal(db.prepare('PRAGMA user_version').get()!.user_version, 8);
+    assert.equal(db.prepare('SELECT status FROM builds WHERE id=?').get(pending.id)!.status, 'preparing');
+    assert.deepEqual(db.prepare("SELECT rowid,spanId,rank FROM search WHERE search MATCH 'orders' ORDER BY rank,rowid").all(), scores);}
+  finally {db.close();}
 });
 
 test('unchanged refresh copies and overlapping dependencies are counted while live jobs and ownership survive', async t => {
@@ -104,7 +132,7 @@ test('storage accounting rejects absent, foreign, unsupported and symlinked file
   assert.throws(() => auditStorage(root), /not found/); assert.deepEqual(await readdir(root), []);
   await writeFile(path.join(root, 'workbench.db'), 'owned sentinel');
   assert.throws(() => auditStorage(root), /Workbench/); await rm(path.join(root, 'workbench.db'));
-  const database = path.join(root, 'loredock.db'), db = new DatabaseSync(database); db.exec('PRAGMA user_version=9'); db.close();
+  const database = path.join(root, 'loredock.db'), db = new DatabaseSync(database); db.exec('PRAGMA user_version=10'); db.close();
   const before = await readFile(database); assert.throws(() => auditStorage(root), /schema 8/); assert.deepEqual(await readFile(database), before);
   await symlink(database, path.join(root, 'loredock.db-wal')); assert.throws(() => auditStorage(root), /regular files/);
   await rm(path.join(root, 'loredock.db-wal')); await rm(database); await symlink(path.join(root, 'missing'), database);

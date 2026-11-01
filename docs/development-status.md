@@ -1,5 +1,40 @@
 # Development status
 
+## Task 055 — Production external-content literal search
+
+Implemented and locally verified, 2026-11-01: strict checks, 421 tests and builds pass.
+Scope was committed in `80f97f3`; compiled verification uses implementation `20d2031`.
+PR #58 reached main as `753d134` after push `41327678690` and pull-request `41327759757`
+passed for exact head `eec85d6a88322dbc6b221c7ad14c52936d0e96a3`.
+
+Schema 9 uses original spans as literal FTS content with stable document mappings.
+Migration validates the old layout, postings and full text correspondence before atomic
+conversion and restart recovery; rowids, rank/config settings and all other records stay
+intact. File writes and ordered source purge keep mappings/postings transactional.
+Accounting/compaction accept both schemas without upgrading them; version-2 JSON reports
+distinguish shared logical text from copied bytes and count mapping allocation correctly.
+
+Tests cover complete vocabulary, exact historical/current queries and contexts, saved
+notes/answers/code facts, settings, restart, refresh, purge, file/purge rollback, invalid
+content/layout and a mid-conversion collision with ownership release. Old-version migration
+tests now include the genuine prior FTS layout. Archived experiments are not executed
+against the new schema: their frozen raw results are recounted with adversarial checks.
+An initial test exposed INTEGER versus REAL binding for numeric FTS settings; fixed and
+covered by a nondefault configuration migration. No frozen result or receipt was changed.
+
+A separate checkout of the actual preceding application creates the compiled smoke's
+twenty-source schema-8 input. All 3,964 token instances, 158 document identities, non-literal
+digests and 56 query/context comparisons agree after migration and compaction/reopen.
+Code facts remain usable, a further index reuses all 79 files, and revocation integrity
+passes. The compacted catalog is 790,528 bytes versus 827,392 legacy bytes (4.5% smaller
+on this shape); migration alone retains reusable free pages. The final 21-test focused
+regression includes explicit rank vectors. See [verification](fixtures/loredock-search-migration/README.md).
+
+See [Task 055](../tasks/055-loredock-external-literal-search.md) and
+[ADR 0046](decisions/0046-loredock-external-literal-search.md). The user's running demo
+remains on its existing process/schema. No corporate source, model request or semantic
+acceptance. History retention and broader context work remain separate.
+
 ## Task 054 — Matched rebuild-only control
 
 Implemented and locally verified, 2026-11-01. PR #57 reached main as `f56b7f6` after

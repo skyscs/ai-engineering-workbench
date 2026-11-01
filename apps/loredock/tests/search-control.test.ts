@@ -1,20 +1,12 @@
 import assert from 'node:assert/strict';
-import {rm} from 'node:fs/promises';
+import {readFile} from 'node:fs/promises';
+import {gunzipSync} from 'node:zlib';
 import {test} from 'node:test';
-import {CatalogStore} from '../src/store.js';
-import {Catalog} from '../src/catalog.js';
-import {CodeAnalysis} from '../src/code-analysis.js';
-import {retrieveAnswerContext, questionTerms} from '../src/answer-context.js';
 // @ts-expect-error The isolated control experiment is plain JavaScript.
-import {compareSearchControl, assessSearchControl, verifySearchControlContract} from '../../../scripts/loredock-search-control-study.mjs';
-// @ts-expect-error The owned fixture generator is plain JavaScript.
-import {createLoreDockFixture} from '../../../scripts/loredock-fixture.mjs';
-
-test('the rebuild control rehearses all token, identity and query comparisons and rejects mutated raw results', async t => {
-  await verifySearchControlContract(); const fixture = await createLoreDockFixture();
-  t.after(() => rm(fixture.root, {recursive: true, force: true}));
-  const result = await compareSearchControl({CatalogStore, Catalog, CodeAnalysis, retrieveAnswerContext, questionTerms}, fixture,
-    {expectedFiles: 18, expectedCodeFiles: 5});
+import {assessSearchControl, verifySearchControlContract} from '../../../scripts/loredock-search-control-study.mjs';
+test('the archived rebuild control recounts all retained vectors and rejects mutated observations', async () => {
+  await verifySearchControlContract();
+  const result = JSON.parse(gunzipSync(await readFile(new URL('../../../docs/fixtures/loredock-search-control/raw-result.json.gz', import.meta.url))).toString()).result;
   assert.equal(result.error, undefined); assert.equal(result.summary.mechanical, true, JSON.stringify(result.summary));
   assert.equal(result.summary.queryComparisons, 112); assert.equal(result.summary.checks, 31);
   const token = structuredClone(result); token.stages[0].variants.external.vocabulary[0][3]++;

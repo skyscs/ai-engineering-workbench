@@ -73,7 +73,7 @@ test('input bounds and a schema 6 upgrade preserve existing sources, evidence an
   const paused = s.catalog.start('legacy-paused', state.sourceSetVersion, state.policyVersion);
   s.catalog.control(paused.id, 'pause'); await s.catalog.idle();
   removeOnboardingSchema(s.store); s.store.db.exec('PRAGMA user_version=6'); await s.restart();
-  assert.equal(s.store.one<{ user_version: number }>('PRAGMA user_version')!.user_version, 8);
+  assert.equal(s.store.one<{ user_version: number }>('PRAGMA user_version')!.user_version, 9);
   assert.deepEqual(s.catalog.evidence(evidence.id), evidence); assert.equal(s.store.buildRow(build.id).allocation, null);
   s.catalog.control(paused.id, 'resume'); await s.catalog.idle();
   assert.equal(s.store.build(paused.id).coverage.indexed, 6);

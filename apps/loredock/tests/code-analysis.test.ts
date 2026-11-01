@@ -170,7 +170,7 @@ test('registry, revocation and policy changes atomically fence and purge complet
 test('schema 7 upgrade preserves original evidence and rejects malformed fact ranges', async t => {
   const s = await setup(t), evidence = s.catalog.evidence(s.catalog.search('billing').hits[0]!.id);
   await s.analysis.stop(); removeCodeAnalysisSchema(s.store); s.store.db.exec('PRAGMA user_version=7'); await s.restart();
-  assert.equal(s.store.one<{ user_version: number }>('PRAGMA user_version')!.user_version, 8); assert.deepEqual(s.catalog.evidence(evidence.id), evidence);
+  assert.equal(s.store.one<{ user_version: number }>('PRAGMA user_version')!.user_version, 9); assert.deepEqual(s.catalog.evidence(evidence.id), evidence);
   const content = '// 😀\nexport function amber() { return fetch("/amber"); }\n', facts = typescriptFacts(content, 'amber.ts'), ranges = factRanges(content, facts);
   assert.equal(ranges.symbols[0]!.startLine, 2); assert.equal(ranges.symbols[0]!.textHash, sha256(content.slice(facts.symbols[0]!.start, facts.symbols[0]!.end)));
   const detached = structuredClone(facts); detached.operations[0]!.owner = 'unknown'; assert.throws(() => factRanges(content, detached), { code: 'CORRUPT_CODE_FACTS' });

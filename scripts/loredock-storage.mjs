@@ -19,7 +19,7 @@ function regularFile(file, required = false) {
 function allocationGroup(table) {
   if (table === 'files') return 'originalsAndFileMetadata';
   if (table === 'spans') return 'originalSpans';
-  if (table === 'search' || table.startsWith('search_')) return 'literalSearch';
+  if (table === 'search' || table.startsWith('search_') || table === 'literal_search_documents') return 'literalSearch';
   if (table === 'question_search' || table.startsWith('question_search_')) return 'questionSearch';
   if (table.startsWith('code_')) return 'codeInventory';
   if (table === 'answer_attempts' || table === 'answer_sources') return 'answers';
@@ -39,7 +39,7 @@ export function auditStorage(directory) {
     db.exec('PRAGMA query_only=ON; PRAGMA trusted_schema=OFF; PRAGMA temp_store=MEMORY; PRAGMA busy_timeout=1000; BEGIN;');
     const one = sql => db.prepare(sql).get();
     const version = one('PRAGMA user_version').user_version;
-    if (version !== 8) throw new Error('Storage accounting requires LoreDock database schema 8; no migration was attempted.');
+    if (version !== 8 && version !== 9) throw new Error('Storage accounting requires LoreDock database schema 8 or 9; no migration was attempted.');
     const project = one('SELECT publishedBuildId FROM project WHERE id=1');
     if (!project) throw new Error('The LoreDock project record is missing.');
     const payload = (table, columns) => one(`SELECT count(*) AS rows, coalesce(sum(${columns.map(byteLength).join('+')}),0) AS bytes FROM ${table}`);
@@ -55,13 +55,17 @@ export function auditStorage(directory) {
       const group = allocationGroup(row.tableName); allocations[group] = (allocations[group] ?? 0) + row.bytes;
     }
     const accountedBytes = Object.values(allocations).reduce((sum, bytes) => sum + bytes, 0);
+    const literalText = payload('search', ['text']);
     snapshot = {
-      schemaVersion: 'loredock-storage-audit/1', capturedAt: new Date().toISOString(), databaseVersion: version,
+      schemaVersion: 'loredock-storage-audit/2', capturedAt: new Date().toISOString(), databaseVersion: version,
       sqlite: {pageSize, pages, freePages, allocatedBytes: pages * pageSize, freePageBytes: freePages * pageSize,
         allocations, unassignedBytes: pages * pageSize - freePages * pageSize - accountedBytes},
       payloads: {
         originals: payload('files', ['raw']), fileMetadata: payload('files', ['metadata']),
-        spans: payload('spans', ['text']), literalSearch: payload('search', ['text']), questionSearch: payload('question_search', ['text']),
+        spans: payload('spans', ['text']), literalSearch: {...literalText,
+          contentStorage: version === 9 ? 'shared-original-spans' : 'copied',
+          copiedTextBytes: version === 9 ? 0 : literalText.bytes},
+        questionSearch: payload('question_search', ['text']),
         codeFacts: payload('code_analysis_files', ['payload']), answerContexts: payload('answer_attempts', ['context']),
         answerResults: payload('answer_attempts', ['result']), engineerNotes: payload('corrections', ['statement','environment','target'])
       },
@@ -91,6 +95,7 @@ export function auditStorage(directory) {
       'SQLite values describe one read snapshot; separately sampled sidecar lengths can change while LoreDock runs.',
       'Disk values are file lengths for the listed database files only, not allocated filesystem blocks or a directory total.',
       'Payload bytes are selected UTF-8/BLOB contents inside SQLite allocation. Do not add them to page or disk totals.',
+      'Literal-search bytes are logical searchable text; copiedTextBytes excludes shared original spans. Mapping and postings are counted in SQLite allocation.',
       'Payload row counts include records with null content; bytes count only retained content.',
       'History has no automatic retention limit. This report does not delete, compact, checkpoint, migrate or restart work.',
       'A read-only SQLite connection may maintain shared-memory bookkeeping; this is not a forensic disk acquisition.'

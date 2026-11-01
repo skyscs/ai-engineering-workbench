@@ -47,7 +47,7 @@ export function compactStorage(directory) {
       database.close(); database = undefined; status = 'compacted';
     }
     const after = auditStorage(directory);
-    return {schemaVersion: 'loredock-storage-compaction/1', completedAt: new Date().toISOString(), status,
+    return {schemaVersion: 'loredock-storage-compaction/2', completedAt: new Date().toISOString(), status,
       reclaimedSqliteBytes: before.sqlite.allocatedBytes - after.sqlite.allocatedBytes, before, after,
       limits: [
         'This explicit operation keeps logical records and history; it does not impose a total storage quota.',
