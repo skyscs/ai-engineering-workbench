@@ -8,7 +8,8 @@ provide system context for future Workbench investigations. Its first implementa
 connects up to twenty local Git repositories through one reviewed path list, indexes
 committed text with equal source budgets and opens exact
 source citations. **Project overview** shows original README context or an explicit gap for
-each repository; **Guide me** provides a short route through source context, interfaces,
+each repository. **Browse README sections** opens documented architecture, terminology
+or setup sections through their original source parts. **Guide me** provides a short route through source context, interfaces,
 one partial flow and coverage. A declaration map shows scoped routes, contracts and
 configuration comparisons. Two bounded static flow outlines connect supported Vue/TypeScript and
 Dojo client code to Java interface calls, with candidate hops and unresolved wiring.

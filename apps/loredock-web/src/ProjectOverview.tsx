@@ -61,6 +61,16 @@ export function ProjectOverview({ buildId, boundary, openEvidence }: { buildId: 
           <div className="orientation-citations">{source.context.evidenceIds.map((id, index) => <button className="quiet" key={id} onClick={() => openEvidence(id)}>
             Open README evidence{source.context!.evidenceIds.length > 1 ? ` ${index + 1}` : ''}</button>)}</div>
         </> : <div className="notice"><strong>README context unavailable</strong><p>{source.readme.reason}</p></div>}
+        {(source.sections?.length > 0 || source.omittedSections > 0) && <details className="readme-sections" key={`${key}:sections`}><summary>Browse README sections</summary>
+          <p className="muted">Original headings, not verified system knowledge. Some heading styles may be absent; the full README remains available below.</p>
+          <ol>{source.sections.map(section => <li key={section.startLine}>
+            <strong>{section.title}</strong><p className="muted">Lines {section.startLine}–{section.endLine}</p>
+            {section.evidenceIds.map((id, index) => <button className="quiet" key={id}
+              aria-label={`Read ${section.title}, original part ${index + 1}`} onClick={() => openEvidence(id)}>
+              Read section{section.evidenceIds.length > 1 ? ` part ${index + 1}` : ''}</button>)}
+          </li>)}</ol>
+          {source.omittedSections > 0 && <p className="notice">{source.omittedSections} additional headings are not listed. Open the full README for complete context.</p>}
+        </details>}
         {source.reading.length > 0 && <details className="orientation-reading"><summary>More source reading</summary>
           {source.reading.map(document => <div key={document.path}><strong>{document.path}</strong>
             {document.evidenceIds.map((id, index) => <button className="quiet" key={id} onClick={() => openEvidence(id)}>Open {document.kind === 'readme' ? 'README' : 'manifest'} part {index + 1}</button>)}
@@ -79,6 +89,7 @@ export function ProjectOverview({ buildId, boundary, openEvidence }: { buildId: 
         <ul>{Object.entries(value.omissions).map(([reason, count]) => <li key={reason}>{reason}: {count}</li>)}</ul>
         <p>At most {value.limits.documents} root README/manifest documents, {value.limits.fileBytes / 1024} KiB each, {value.limits.textBytes / 1024} KiB source input,
           {' '}{value.limits.fileSpans} spans per file, {value.limits.excerptLines} lines / {value.limits.excerptBytes} UTF-8 bytes per excerpt and {value.limits.outputBytes / 1024} KiB output.</p>
+        <p>Section navigation lists up to {value.limits.sections} Markdown-style # headings per README, with labels up to {value.limits.headingBytes} UTF-8 bytes. This is not a complete document outline.</p>
         <p className="muted">{value.adapterVersion} · no model calls · no setup commands executed</p>
       </details>
     </>}

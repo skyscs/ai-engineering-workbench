@@ -5,20 +5,24 @@ export interface OrientationExcerpt {
   text: string; startLine: number; endLine: number; evidenceIds: string[]; truncated: boolean;
   provenance: 'documented'; verification: 'unverified';
 }
+export interface OrientationSection {
+  title: string; level: number; startLine: number; endLine: number; evidenceIds: string[];
+}
 export interface OrientationSource {
   sourceId: string; sourceName: string; revision: string | null; sourceStatus: BuildSource['status']; coverage: Coverage; omittedInventory: number;
   readme: { path: string | null; state: 'available' | 'missing' | 'ambiguous' | 'excluded' | 'unavailable' | 'limited' | 'no-prose'; reason: string };
   context: OrientationExcerpt | null;
+  sections: OrientationSection[]; omittedSections: number;
   reading: { kind: 'readme' | 'manifest'; path: string; evidenceIds: string[] }[];
   gaps: string[];
 }
 export interface ProjectOrientation {
-  schemaVersion: 'loredock-orientation-v1'; adapterVersion: 'readme-orientation-v2'; buildId: string;
+  schemaVersion: 'loredock-orientation-v2'; adapterVersion: 'readme-orientation-v3'; buildId: string;
   policyVersion: number; sourceSetVersion: number; registryVersion: number; stale: boolean;
   partial: true; deploymentCoherence: 'unknown'; sources: OrientationSource[];
   unindexedSources: { sourceId: string; sourceName: string }[];
   evidence: Record<string, MapEvidence>; gaps: string[]; omissions: Record<string, number>;
   coverage: { repositories: number; withContext: number; examinedDocuments: number; parsedBytes: number };
-  limits: { repositories: number; documents: number; fileBytes: number; textBytes: number; fileSpans: number; excerptBytes: number; excerptLines: number; outputBytes: number };
+  limits: { repositories: number; documents: number; fileBytes: number; textBytes: number; fileSpans: number; excerptBytes: number; excerptLines: number; outputBytes: number; sections: number; headingBytes: number };
   inputHash: string;
 }

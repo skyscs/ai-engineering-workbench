@@ -124,6 +124,10 @@ Keep history by default; its chosen follow-up is the [read-only generation depen
 including omitted-generation references and unchanged recovery state. The scoped diagnostic
 sequence is complete; future retention, raw-content sharing or ranking changes require
 their own prospective contract.
+[Task 058](../../tasks/058-loredock-readme-sections.md) returns to project orientation:
+bounded original README headings navigate architecture, terminology and setup through
+existing source citations. This adds no new input form or model configuration. Broader
+glossary extraction and architecture synthesis remain separately scoped.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.
