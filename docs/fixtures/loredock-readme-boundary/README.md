@@ -34,8 +34,9 @@ omission diagnostics count twenty affected documents, with four omitted labels p
 | Refreshed index after restart | 62.66 | 135,560 |
 | Historical index after restart | 33.04 | 135,559 |
 
-Every measured projection reads twenty documents, 655,360 original bytes and 160 issued
-parts, makes zero Git calls and causes zero SQLite writes. All outputs stay below the
+Every measured projection accounts for twenty documents and 655,360 source-input bytes,
+opens 160 issued parts, makes zero Git calls and causes zero SQLite writes. Input bytes
+are not physical I/O: evidence validation can reread originals. All outputs stay below the
 524,288-byte cap. The historical byte difference is the JSON `stale` boolean. Repeated
 projections are identical, including input hashes. The first-read latency is below the
 prospective one-second analysis trigger; no performance change was needed. Timing was
