@@ -46,7 +46,7 @@ test('orientation quotes all three documented contexts including stale topic pro
   const changes = () => state.store.one<{ count: number }>('SELECT total_changes() AS count')!.count, writes = changes();
   const result = projectOrientation(state.catalog);
   assert.equal(result.sources.length, 3); assert.equal(result.coverage.withContext, 3); assert.equal(result.coverage.examinedDocuments, 6);
-  assert.equal(result.schemaVersion, 'loredock-orientation-v2'); assert.equal(result.partial, true); assert.equal(result.deploymentCoherence, 'unknown');
+  assert.equal(result.schemaVersion, 'loredock-orientation-v3'); assert.equal(result.partial, true); assert.equal(result.deploymentCoherence, 'unknown');
   assert.match(result.sources.find(source => source.sourceName === 'portal')!.context!.text, /Vue\/TypeScript/);
   assert.match(result.sources.find(source => source.sourceName === 'order-api')!.context!.text, /orders.created.v1/);
   assert.match(result.sources.find(source => source.sourceName === 'order-worker')!.context!.text, /MongoDB/);
@@ -209,7 +209,7 @@ test('section navigation reuses complete originals without new reads and stays p
   });
   const commands = state.git.commands, writes = state.store.one<{n:number}>('SELECT total_changes() AS n')!.n;
   const before = projectOrientation(state.catalog), source = before.sources[0]!;
-  assert.equal(before.adapterVersion, 'readme-orientation-v3'); assert.equal(source.sections.length, 3);
+  assert.equal(before.adapterVersion, 'readme-orientation-v4'); assert.equal(source.sections.length, 3);
   assert.equal(source.sections[1]!.evidenceIds.length, 3);
   const original = (await readFile(file(state.fixture, 'portal', 'README.md'), 'utf8')).split('\n');
   for (const section of source.sections) {
@@ -229,4 +229,71 @@ test('section navigation reuses complete originals without new reads and stays p
   assert.equal(projectOrientation(state.catalog, before.buildId).sources.some(card => card.sourceId === source.sourceId), false);
   for (const id of source.sections[1]!.evidenceIds) assert.throws(() => state.catalog.evidence(id), /unavailable/);
   state.catalog.updatePolicy(['README.md']); assert.throws(() => projectOrientation(state.catalog, before.buildId), /old policy/);
+});
+
+test('README-linked documents retain complete target/origin evidence without recursion, writes or Git reads', async t => {
+  const state = await setup(t, async fixture => {
+    await mkdir(file(fixture,'portal','docs'));
+    await writeFile(file(fixture,'portal','README.md'),'# Portal\nOriginal context.\n\nSee [Architecture](docs/system.md#overview).\n[Setup](docs/setup%20guide.txt)\n[Missing](docs/missing.md)\n[Omitted](docs/extra.md)\n');
+    await writeFile(file(fixture,'portal','docs/system.md'),'# Architecture\n'+'Documented boundary.\n'.repeat(125)+'[Do not crawl](deep.md)\n');
+    await writeFile(file(fixture,'portal','docs/setup guide.txt'),'Local setup.\n');
+    await writeFile(file(fixture,'portal','docs/deep.md'),'Nested document is not visited.\n');
+  });
+  const before = state.catalog.state(), commands = state.git.commands, writes = state.store.one<{n:number}>('SELECT total_changes() AS n')!.n;
+  const value = projectOrientation(state.catalog), source = value.sources[0]!;
+  assert.equal(source.omittedLinkedDocuments,1);assert.equal(value.coverage.examinedDocuments,8);
+  assert.deepEqual(source.linkedDocuments.map(row=>[row.path,row.state]),[['docs/system.md','available'],['docs/setup guide.txt','available'],['docs/missing.md','missing']]);
+  const linked = source.linkedDocuments[0]!;assert.equal(linked.evidenceIds.length,2);assert.equal(linked.line,4);
+  for (const id of linked.readmeEvidenceIds) { const original = state.catalog.evidence(id);assert.equal(original.path,'README.md');assert.match(original.text,/\[Architecture\]/); }
+  for (const id of linked.evidenceIds) {const original=state.catalog.evidence(id);assert.equal(original.sourceId,source.sourceId);assert.equal(original.buildId,value.buildId);assert.equal(original.path,linked.path);}
+  assert.equal(Object.values(value.evidence).some(ref=>ref.path==='docs/deep.md'),false);
+  assert.equal(state.git.commands,commands);assert.equal(state.store.one<{n:number}>('SELECT total_changes() AS n')!.n,writes);assert.deepEqual(state.catalog.state(),before);
+  assert.deepEqual(projectOrientation(state.catalog),value);
+});
+
+test('linked-reading states preserve source boundaries, exclusions and file/span limits without opening rejected targets', async t => {
+  const state = await setup(t, async fixture => {
+    for(const repo of repos)await mkdir(file(fixture,repo,'docs'));
+    await writeFile(file(fixture,'portal','README.md'),'# Portal\nContext.\n[Missing here](docs/remote.md) [Binary](docs/binary.md) [Too large](docs/large.md)\n');
+    await writeFile(file(fixture,'order-api','docs/remote.md'),'Another source must not fill this gap.\n');
+    await writeFile(file(fixture,'portal','docs/binary.md'),Buffer.from('Binary\0payload'));
+    await writeFile(file(fixture,'portal','docs/large.md'),'x'.repeat(orientationLimits.fileBytes+1));
+    await writeFile(file(fixture,'order-worker','README.md'),'# Worker\nContext.\n[Tall](docs/tall.md) [Empty](docs/empty.md)\n');
+    await writeFile(file(fixture,'order-worker','docs/tall.md'),'line\n'.repeat(961));
+    await writeFile(file(fixture,'order-worker','docs/empty.md'),'');
+  });
+  const original = state.catalog.evidence.bind(state.catalog), opened:string[]=[];
+  state.catalog.evidence=id=>{const ref=original(id);opened.push(ref.path);return ref;};
+  const value=projectOrientation(state.catalog);
+  assert.deepEqual(value.sources[0]!.linkedDocuments.map(row=>row.state),['missing','excluded','limited']);
+  assert.deepEqual(value.sources[2]!.linkedDocuments.map(row=>row.state),['limited','excluded']);
+  assert.equal(opened.some(p=>p.startsWith('docs/')),false);
+  assert.ok(value.sources[0]!.linkedDocuments[0]!.reason.includes('outside inventory coverage'));
+});
+
+test('corrupt linked originals fail visibly rather than publish unchecked navigation', async t => {
+  const state=await setup(t,async fixture=>{
+    await writeFile(file(fixture,'portal','README.md'),'# Portal\nContext.\n[Design](design.md)');
+    await writeFile(file(fixture,'portal','design.md'),'Original design.\n');
+  });
+  const ref=projectOrientation(state.catalog).sources[0]!.linkedDocuments[0]!.evidenceIds[0]!;
+  state.store.run('UPDATE spans SET text=? WHERE id=?','Damaged linked text',ref);
+  assert.throws(()=>projectOrientation(state.catalog),/integrity/);
+});
+
+test('linked documentation follows pinned refresh/restart history and source/policy fences', async t => {
+  const state=await setup(t,async fixture=>{
+    await writeFile(file(fixture,'portal','README.md'),'# Portal\nContext.\n[Design](design.md)');
+    await writeFile(file(fixture,'portal','design.md'),'Original design.\n');
+  });
+  const before=projectOrientation(state.catalog),source=before.sources[0]!,linked=source.linkedDocuments[0]!;
+  await writeFile(file(state.fixture,'portal','design.md'),'Changed design.\n');commit(state.fixture);await state.index('linked-refresh');
+  assert.deepEqual(projectOrientation(state.catalog,before.buildId).sources[0]!.linkedDocuments,source.linkedDocuments);
+  const current=projectOrientation(state.catalog).sources[0]!.linkedDocuments[0]!;
+  assert.notDeepEqual(current.evidenceIds,linked.evidenceIds);assert.equal(state.catalog.evidence(current.evidenceIds[0]!).text,'Changed design.');
+  await state.restart();assert.deepEqual(projectOrientation(state.catalog,before.buildId).sources[0]!.linkedDocuments,source.linkedDocuments);
+  state.catalog.updatePolicy(['design.md']);assert.throws(()=>projectOrientation(state.catalog,before.buildId),/old policy/);await state.index('linked-policy');
+  assert.equal(projectOrientation(state.catalog).sources[0]!.linkedDocuments[0]!.state,'excluded');
+  state.catalog.revoke(source.sourceId);assert.equal(projectOrientation(state.catalog).sources.some(row=>row.sourceId===source.sourceId),false);
+  for(const id of [...linked.evidenceIds,...linked.readmeEvidenceIds])assert.throws(()=>state.catalog.evidence(id),/unavailable/);
 });

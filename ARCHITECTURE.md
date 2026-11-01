@@ -19,6 +19,10 @@ Schema 6 records explicit correction reapplication with immutable original-versi
 lineage; see [ADR 0026](docs/decisions/0026-loredock-correction-reconciliation.md).
 The model-free README orientation and reading guide reuse saved original evidence
 without another schema; see [ADR 0027](docs/decisions/0027-loredock-project-orientation.md).
+Orientation v3 / adapter v4 also exposes bounded README sections and same-repository
+linked-document reading while preserving root-document priority and source budgets;
+see [ADR 0047](docs/decisions/0047-loredock-readme-sections.md) and
+[ADR 0048](docs/decisions/0048-loredock-linked-reading.md).
 Answer contexts now freeze bounded matching engineer notes and their source dependencies;
 see [ADR 0028](docs/decisions/0028-loredock-answer-review-context.md). Source citations,
 human review and saved-answer freshness remain separate.

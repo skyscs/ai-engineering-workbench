@@ -6,9 +6,10 @@ import { CatalogError } from './types.js';
 import type { OrientationExcerpt, OrientationSource, ProjectOrientation } from './orientation-types.js';
 import type { MapEvidence } from './system-map-types.js';
 import { readmeSections, sectionLimits } from './readme-sections.js';
+import { readmeLinks, linkedReadingLimits } from './readme-links.js';
 
 export const orientationLimits = { repositories: defaults.sources, documents: 60, fileBytes: 32 * 1024, textBytes: 20 * 32 * 1024,
-  fileSpans: 8, excerptBytes: 2000, excerptLines: 16, outputBytes: 512 * 1024, ...sectionLimits } as const;
+  fileSpans: 8, excerptBytes: 2000, excerptLines: 16, outputBytes: 512 * 1024, ...sectionLimits, ...linkedReadingLimits } as const;
 interface Document extends MapDocument { status: string; reason: string | null }
 
 /** Select original lines, never synthesize a repository role or interpret source instructions. */
@@ -46,7 +47,7 @@ export function projectOrientation(catalog: Catalog, buildId?: string): ProjectO
   const cards: OrientationSource[] = sources.map(source => ({ sourceId: source.sourceId, sourceName: source.name, revision: source.revision,
     sourceStatus: source.status, coverage: source.coverage, omittedInventory: source.omitted,
     readme: { path: null, state: 'missing', reason: 'No supported root README is recorded in this index. Nested documentation remains available through source search when indexed.' },
-    context: null, sections: [], omittedSections: 0, reading: [], gaps: [] }));
+    context: null, sections: [], omittedSections: 0, linkedDocuments: [], omittedLinkedDocuments: 0, reading: [], gaps: [] }));
   function read(file: Document, card: OrientationSource) {
     if (file.status !== 'indexed') { card.gaps.push(`${file.path} is ${file.status}: ${file.reason ?? 'original text unavailable'}.`); omit('document-not-indexed'); return null; }
     if (!Number.isSafeInteger(file.size) || !Number.isSafeInteger(file.storedBytes) || file.size < 0 || file.storedBytes < 0) {
@@ -90,6 +91,11 @@ export function projectOrientation(catalog: Catalog, buildId?: string): ProjectO
     card.reading.push({ kind: 'readme', path: file.path, evidenceIds: document.refs.map(span => span.id) });
     card.context = introduction(document.content, document.refs);
     Object.assign(card, readmeSections(document.content, document.refs));
+    const linked = readmeLinks(document.content, file.path, document.refs);
+    card.omittedLinkedDocuments = linked.omittedLinkedDocuments;
+    card.linkedDocuments = linked.links.map(link => ({ ...link, state: 'missing', evidenceIds: [],
+      reason: 'This linked document is not recorded in the selected index. It may be missing or outside inventory coverage.' }));
+    if (card.omittedLinkedDocuments) { card.gaps.push(`${card.omittedLinkedDocuments} distinct local documentation links exceed navigation label/path/count limits.`); omit('linked-document-navigation-limit'); }
     if (card.omittedSections) { card.gaps.push(`${card.omittedSections} README headings are not listed because their labels are empty or exceed navigation limits.`); omit('section-navigation-limit'); }
     card.readme = { path: file.path, state: card.context ? 'available' : 'no-prose', reason: card.context
       ? 'Original introductory README lines; documented intent may be incomplete or outdated.'
@@ -101,6 +107,18 @@ export function projectOrientation(catalog: Catalog, buildId?: string): ProjectO
     const document = read(file, card);
     if (document) card.reading.push({ kind: 'manifest', path: file.path, evidenceIds: document.refs.map(span => span.id) });
   }
+  // Preserve README/manifest priority; share remaining reading capacity in source rounds.
+  for (let round = 0; round < orientationLimits.linkedDocuments; round++) for (const card of cards) {
+    const link = card.linkedDocuments[round]; if (!link) continue;
+    const file = store.one<Document>(`SELECT f.id,f.sourceId,f.path,f.size,length(f.raw) AS storedBytes,f.status,f.reason
+      FROM files f WHERE f.buildId=? AND f.sourceId=? AND f.path=?`, build.id, card.sourceId, link.path);
+    if (!file) { omit('linked-document-not-recorded'); card.gaps.push(`${link.path}: ${link.reason}`); continue; }
+    const document = read(file, card);
+    if (document) { link.state = 'available'; link.reason = 'Original linked document from this saved repository revision; README intent is unverified.';
+      link.evidenceIds = document.refs.map(ref => ref.id); }
+    else { link.state = file.status === 'indexed' ? 'limited' : ['excluded', 'purged'].includes(file.status) ? 'excluded' : 'unavailable';
+      link.reason = card.gaps.at(-1)!; }
+  }
   const unindexedSources = store.all<{ id: string; name: string }>("SELECT id,name FROM sources WHERE status='active' ORDER BY rowid")
     .filter(source => !sources.some(recorded => recorded.sourceId === source.id)).map(({ id, name }) => ({ sourceId: id, sourceName: name }));
   const gaps = ['README excerpts are documented intent, not verified repository responsibilities, current configuration or deployment evidence.',
@@ -108,7 +126,7 @@ export function projectOrientation(catalog: Catalog, buildId?: string): ProjectO
   if (build.status === 'partial') gaps.push('The source index is partial; inspect source coverage and exclusions.');
   if (sources.length !== build.sources.length) gaps.push('Revoked sources and their documentation are excluded.');
   if (unindexedSources.length) gaps.push('Active repositories outside this saved index need a new knowledge update; their content is not mixed into this view.');
-  const result = { schemaVersion: 'loredock-orientation-v2' as const, adapterVersion: 'readme-orientation-v3' as const, buildId: build.id,
+  const result = { schemaVersion: 'loredock-orientation-v3' as const, adapterVersion: 'readme-orientation-v4' as const, buildId: build.id,
     policyVersion: build.policyVersion, sourceSetVersion: build.sourceSetVersion, registryVersion: project.sourceSetVersion,
     stale: build.id !== project.publishedBuildId || build.sourceSetVersion !== project.sourceSetVersion,
     partial: true as const, deploymentCoherence: 'unknown' as const, sources: cards, unindexedSources, evidence, gaps, omissions,

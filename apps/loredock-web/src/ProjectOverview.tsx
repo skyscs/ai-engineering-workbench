@@ -71,6 +71,21 @@ export function ProjectOverview({ buildId, boundary, openEvidence }: { buildId: 
           </li>)}</ol>
           {source.omittedSections > 0 && <p className="notice">{source.omittedSections} additional headings are not listed. Open the full README for complete context.</p>}
         </details>}
+        {(source.linkedDocuments?.length > 0 || source.omittedLinkedDocuments > 0) && <details className="linked-reading" key={`${key}:linked-reading`}>
+          <summary>Documentation linked from README</summary>
+          <p className="muted">Read saved documents referenced by this README. Link labels express documented intent; fragments open the full file.</p>
+          <ul>{source.linkedDocuments.map(document => <li key={document.path}>
+            <strong>{document.label}</strong><code>{document.path}</code>
+            <div className="readme-section-links">{document.evidenceIds.map((id, index) => <button className="quiet" key={id}
+              aria-label={`Read ${document.path}, original part ${index + 1}`} onClick={() => openEvidence(id)}>
+              Read document{document.evidenceIds.length > 1 ? ` part ${index + 1}` : ''}</button>)}</div>
+            {document.state !== 'available' && <p className="notice">{document.reason}</p>}
+            <div className="readme-section-links">{document.readmeEvidenceIds.map(id => <button className="quiet" key={id}
+              aria-label={`Read README link to ${document.path}`} onClick={() => openEvidence(id)}>Read README link · line {document.line}</button>)}</div>
+          </li>)}</ul>
+          {source.omittedLinkedDocuments > 0 && <p className="notice">{source.omittedLinkedDocuments} additional local documentation links are not listed.</p>}
+          <p className="muted">Up to {value.limits.linkedDocuments} distinct local documents per README. Some link styles are unsupported; the complete README remains available below.</p>
+        </details>}
         {source.reading.length > 0 && <details className="orientation-reading"><summary>More source reading</summary>
           {source.reading.map(document => <div key={document.path}><strong>{document.path}</strong>
             {document.evidenceIds.map((id, index) => <button className="quiet" key={id} onClick={() => openEvidence(id)}>Open {document.kind === 'readme' ? 'README' : 'manifest'} part {index + 1}</button>)}
@@ -87,9 +102,10 @@ export function ProjectOverview({ buildId, boundary, openEvidence }: { buildId: 
         </div>)}
         <ul>{value.gaps.map(gap => <li key={gap}>{gap}</li>)}</ul>
         <ul>{Object.entries(value.omissions).map(([reason, count]) => <li key={reason}>{reason}: {count}</li>)}</ul>
-        <p>At most {value.limits.documents} root README/manifest documents, {value.limits.fileBytes / 1024} KiB each, {value.limits.textBytes / 1024} KiB source input,
+        <p>At most {value.limits.documents} README, manifest and linked documents, {value.limits.fileBytes / 1024} KiB each, {value.limits.textBytes / 1024} KiB source input,
           {' '}{value.limits.fileSpans} spans per file, {value.limits.excerptLines} lines / {value.limits.excerptBytes} UTF-8 bytes per excerpt and {value.limits.outputBytes / 1024} KiB output.</p>
         <p>Section navigation lists up to {value.limits.sections} Markdown-style # headings per README, with labels up to {value.limits.headingBytes} UTF-8 bytes. This is not a complete document outline.</p>
+        <p>Linked reading uses remaining capacity after all root READMEs and manifests, in rounds across repositories. Labels are limited to {value.limits.linkLabelBytes} UTF-8 bytes and local paths to {value.limits.linkPathBytes} bytes.</p>
         <p className="muted">{value.adapterVersion} · no model calls · no setup commands executed</p>
       </details>
     </>}

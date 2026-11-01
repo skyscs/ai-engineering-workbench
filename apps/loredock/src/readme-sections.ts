@@ -1,3 +1,4 @@
+import { readmeLines } from './readme-lines.js';
 import type { MapEvidence } from './system-map-types.js';
 import type { OrientationSection } from './orientation-types.js';
 
@@ -8,31 +9,8 @@ export function readmeSections(content: string, refs: Pick<MapEvidence, 'id' | '
   const lines = content.split('\n'), headings: { title: string; level: number; startLine: number }[] = [];
   // Match issued evidence: a terminal newline does not create another source line.
   if (content.endsWith('\n')) lines.pop();
-  let fence: string | undefined, html: string | undefined, list = false, listBlank = false;
-  for (let index = 0; index < lines.length; index++) {
-    const line = lines[index]!;
-    if (fence) {
-      const close = /^ {0,3}(`{3,}|~{3,})[ \t]*$/.exec(line)?.[1];
-      if (close && close[0] === fence[0] && close.length >= fence.length) fence = undefined;
-      continue;
-    }
-    if (html) {
-      if (html === 'blank' ? !line.trim() : html === 'comment' ? line.includes('-->')
-        : html === 'processing' ? line.includes('?>') : html === 'cdata' ? line.includes(']]>')
-        : html === 'declaration' ? line.includes('>') : line.toLowerCase().includes(`</${html}>`)) html = undefined;
-      continue;
-    }
-    const open = /^ {0,3}(`{3,}|~{3,})(.*)$/.exec(line);
-    if (open && !(open[1]![0] === '`' && open[2]!.includes('`'))) { fence = open[1]; continue; }
-    const comment = line.indexOf('<!--');
-    if (comment >= 0) { if (!line.includes('-->', comment + 4)) html = 'comment'; continue; }
-    if (/^ {0,3}<!\[CDATA\[/.test(line)) { if (!line.includes(']]>')) html = 'cdata'; continue; }
-    if (/^ {0,3}<![A-Z]/.test(line)) { if (!line.includes('>')) html = 'declaration'; continue; }
-    if (/^ {0,3}<\?/.test(line)) { if (!line.includes('?>')) html = 'processing'; continue; }
-    const rawTag = /^ {0,3}<(script|pre|style|textarea)(?:[ \t>]|$)/i.exec(line)?.[1]?.toLowerCase();
-    if (rawTag) { if (!line.toLowerCase().includes(`</${rawTag}>`)) html = rawTag; continue; }
-    // HTML-looking blocks are intentionally conservative; full originals remain available.
-    if (/^ {0,3}<\/?[A-Za-z!]/.test(line)) { html = 'blank'; continue; }
+  let list = false, listBlank = false;
+  for (const { line, index } of readmeLines(lines)) {
     if (/^ {0,3}(?:[-+*]|[0-9]{1,9}[.)])[ \t]+/.test(line)) { list = true; listBlank = false; continue; }
     if (list) {
       if (!line.trim()) { listBlank = true; continue; }
