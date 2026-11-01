@@ -1,5 +1,32 @@
 # Development status
 
+## Task 052 — Explicit offline compaction
+
+Implemented and locally verified, 2026-11-01. PR #55 reached main as `e064b8f` after
+push `41317832453` and pull-request `41317875970` passed for exact head
+`5ae2bf261cb1e69ef16fa30349dfbb2bf50d31c7`. Scope was committed in `b2d9332`.
+
+`pnpm loredock:compact --data-dir /absolute/loredock-data` requires existing schema-8
+data and the daemon's exclusive owner lock. It performs no application recovery/migration
+and refuses a live owner. With free pages, it checks integrity, checkpoints, vacuums once
+and checkpoints again; otherwise it reports a no-op. JSON before/after accounting contains
+only aggregate data. Standard main/owner SQLite sidecar paths are checked for regular files.
+
+Strict types, all 407 tests and builds pass. Four new integration tests and the final
+eight-test storage regression run verify physical shrinkage, every logical table, both
+FTS rankings, historical/current search and originals, engineer history, saved answer
+rows, code facts and thirteen-file refresh reuse. Live ownership, independent database
+locks, no-op, invalid schema/path/symlink handling and ownership release pass. The actual
+package command on a separately generated twenty-source catalog reclaims 126,976 bytes
+(839,680 → 712,704), preserving generation rows and a surviving citation after reopening.
+No user data/process, corporate source, model call or frozen evaluation was used.
+
+See [Task 052](../tasks/052-loredock-offline-compaction.md),
+[ADR 0045](decisions/0045-loredock-offline-storage-maintenance.md) and
+[verification](fixtures/loredock-storage-compaction/README.md). Compaction does not cap
+history growth. Next: prospective deduplication equivalence experiments and separate
+retention design. Owner feedback and independent semantic readiness remain open.
+
 ## Task 051 — Read-only storage accounting
 
 Implemented and locally verified, 2026-11-01. PR #54 reached main as `341470d` after

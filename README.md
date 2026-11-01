@@ -36,7 +36,9 @@ calls disabled. Open the printed URL after **Demo ready**; Ctrl+C stops the serv
 retains the example. See [demo usage and reopening](docs/loredock/USER_GUIDE.md#try-the-synthetic-system).
 For storage diagnosis, `pnpm loredock:storage --data-dir /absolute/loredock-data` reports
 aggregate SQLite, payload and history-dependency sizes without modifying the catalog.
-See [storage and backup](docs/loredock/USER_GUIDE.md#local-storage-and-backup).
+Explicit offline `pnpm loredock:compact --data-dir /absolute/loredock-data` can reclaim
+already-free SQLite pages while keeping history. See
+[storage, backup and compaction](docs/loredock/USER_GUIDE.md#local-storage-and-backup).
 The [answer-stage checkpoint](docs/loredock/ANSWER_FOUNDATION.md) records internal
 retrieval and real-model evaluation results. An **opt-in cited-answer pilot** is now
 available with `LOREDOCK_ANSWERS=1 pnpm loredock`; follow the guide's

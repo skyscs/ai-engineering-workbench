@@ -731,6 +731,29 @@ to the disk total. Duplicate estimates and overlapping dependency counts do not 
 safe-to-delete history or promise reclaimable space. No cleanup runs automatically.
 See [storage measurements and next steps](../fixtures/loredock-storage-audit/README.md).
 
+If `sqlite.freePageBytes` is substantial after source removal, you can reclaim that space:
+
+1. Stop the LoreDock process that owns this directory. Leave its data files in place.
+2. Back up the complete stopped data directory and leave enough free disk space for SQLite
+   to rewrite the database and its temporary/WAL files.
+3. Run the explicit offline command:
+
+```bash
+pnpm --silent loredock:compact --data-dir /absolute/path/to/loredock-data
+```
+
+The command keeps every logical record and earlier index. It reports before/after storage
+and measured `reclaimedSqliteBytes`. `status: "unchanged"` means no whole free pages were
+available; no VACUUM was attempted. A running LoreDock owner is rejected without stopping
+it. Other database readers/writers can also block maintenance; close them and retry
+explicitly. If SQLite reports a failure, preserve the directory and backup: a checkpoint
+or compaction may already have completed before a later step failed. Never remove WAL,
+journal or `.owner.db` files to bypass an error. Restart LoreDock normally afterward.
+
+Compaction does not impose a storage quota or discard retained history. Repeated indexes
+still increase retained data. No cleanup command runs automatically during startup or
+indexing. See [compaction verification](../fixtures/loredock-storage-compaction/README.md).
+
 ## Try the synthetic system
 
 After installing dependencies with the documented Node/pnpm toolchain, run:
