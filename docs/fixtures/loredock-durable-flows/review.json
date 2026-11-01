@@ -1,0 +1,128 @@
+{
+  "schemaVersion": "loredock-durable-flow-review/1",
+  "measuredReceiptSha256": "4ce77694dbbb5dfaf78cd8ddaddb8597494b16666fe6f09975312830813ea7a8",
+  "measurementImplementation": "786fb827f6aeb013988a5b9538e5efdb6cecefbb",
+  "measurementsRepeated": false,
+  "originalSummary": {
+    "cases": 21,
+    "checks": 313,
+    "passed": 306,
+    "failedChecks": [
+      {
+        "case": "F01",
+        "name": "Facts, ranges and originals match",
+        "passed": false
+      },
+      {
+        "case": "F02",
+        "name": "Facts, ranges and originals match",
+        "passed": false
+      },
+      {
+        "case": "F03",
+        "name": "Facts, ranges and originals match",
+        "passed": false
+      },
+      {
+        "case": "F03",
+        "name": "Dense input remains retained within payload bounds",
+        "passed": false
+      },
+      {
+        "case": "F04",
+        "name": "Facts, ranges and originals match",
+        "passed": false
+      },
+      {
+        "case": "F05-topic",
+        "name": "Facts, ranges and originals match",
+        "passed": false
+      },
+      {
+        "case": "F05-environment",
+        "name": "Facts, ranges and originals match",
+        "passed": false
+      }
+    ],
+    "widerSupportGate": [
+      {
+        "case": "F01",
+        "passed": true
+      },
+      {
+        "case": "F02",
+        "passed": false
+      },
+      {
+        "case": "F03",
+        "passed": true
+      },
+      {
+        "case": "F04",
+        "passed": true
+      },
+      {
+        "case": "F05-topic",
+        "passed": true
+      },
+      {
+        "case": "F05-environment",
+        "passed": true
+      }
+    ],
+    "promotion": "No production switch. A wider support failure rejects the naive selection; parity alone does not authorize integration."
+  },
+  "serializedParity": [
+    {
+      "case": "F01",
+      "orderedGraph": true,
+      "serializedFactsRangesOriginals": true,
+      "exactSelection": true
+    },
+    {
+      "case": "F02",
+      "orderedGraph": true,
+      "serializedFactsRangesOriginals": true,
+      "exactSelection": true
+    },
+    {
+      "case": "F03",
+      "orderedGraph": true,
+      "serializedFactsRangesOriginals": true,
+      "exactSelection": true
+    },
+    {
+      "case": "F04",
+      "orderedGraph": true,
+      "serializedFactsRangesOriginals": true,
+      "exactSelection": true
+    },
+    {
+      "case": "F05-topic",
+      "orderedGraph": true,
+      "serializedFactsRangesOriginals": true,
+      "exactSelection": true
+    },
+    {
+      "case": "F05-environment",
+      "orderedGraph": true,
+      "serializedFactsRangesOriginals": true,
+      "exactSelection": true
+    }
+  ],
+  "interpretation": "Six live-object comparisons distinguished the parser record dictionary's null prototype from the plain object prototype restored by JSON. Serialized semantic vectors are equal. The raw failed checks remain unchanged.",
+  "denseOracle": {
+    "expectedSymbols": 200,
+    "retainedSymbols": 100,
+    "gaps": [
+      "typescript-symbol-limit"
+    ],
+    "satisfied": false,
+    "interpretation": "The frozen assumption missed the existing 100-symbol TypeScript parser cap. This case does not saturate the 160-node graph and cannot qualify dense-file admission."
+  },
+  "projectionObservations": 73,
+  "allProjectionReadsUnchanged": true,
+  "originalSpansReopenedIncludingRepeats": 1557,
+  "allHarnessReadsCompleted": true,
+  "decision": "Reject naive wider-input production promotion: F02 retains seven critical facts but admits only three required nodes, with 211 node-limit omissions. Keep production unchanged; scope support-aware selection separately."
+}

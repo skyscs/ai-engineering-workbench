@@ -152,7 +152,12 @@ reading with original citations, explicit gaps and fair use of remaining documen
 [Task 061](tasks/061-loredock-inventory-flow-contract.md) audits the gap between durable
 code facts and the bounded graph, including correction and answer dependencies. Its
 [design](docs/loredock/DURABLE_FLOW_DESIGN.md) specifies an offline parity/wider-input
-comparison as the next slice; it does not change production selection or graph budgets.
+comparison; it does not change production selection or graph budgets.
+[Task 062](tasks/062-loredock-durable-flow-comparison.md) executes that comparison: serialized
+parity holds, but wider reading retains seven critical facts and admits only three required
+nodes in the 365-file case. Naive wider selection is rejected; parser-cap and harness failures
+remain recorded. Next, freeze support-aware admission and ambiguity handling on fresh cases
+before changing production behavior.
 The user demo and feedback stay separate from these checks; broader semantic synthesis
 and question-context changes remain open.
 Preserve all failed evaluations;

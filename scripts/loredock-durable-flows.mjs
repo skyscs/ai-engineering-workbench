@@ -102,3 +102,9 @@ export function graphSemantics(graph) {
     edges: graph.edges.map(edge => ({ ...edge, id: edgeId(edge.id), from: nodeId(edge.from), to: nodeId(edge.to) })),
     flows: graph.flows.map((flow, index) => ({ ...flow, id: `flow:${index}`, nodeIds: flow.nodeIds.map(nodeId), edgeIds: flow.edgeIds.map(edgeId) })) };
 }
+
+/** Compare the persisted JSON fact contract, including all values and ordered arrays. */
+export function serializedFactVectors(payloads) {
+  return JSON.parse(JSON.stringify(payloads.map(({ fileId, path, sourceId, facts, ranges, evidence }) =>
+    ({ fileId, path, sourceId, facts, ranges, evidence }))));
+}

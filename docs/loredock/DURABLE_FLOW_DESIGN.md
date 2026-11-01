@@ -1,7 +1,8 @@
 # Durable facts and wider flow context
 
 Status: design reviewed against `ef720f0`, 2026-11-01. Task 061 is analysis only.
-No wider graph, replacement selection, new endpoint or experiment is implemented here.
+The original prospective contract below was executed offline by Task 062; see the
+[retained results](../fixtures/loredock-durable-flows/README.md). Production selection is unchanged.
 
 ## Recommendation
 
@@ -11,7 +12,7 @@ separately from graph admission. Preserving facts does not preserve selected rel
 node admission, ambiguity, declaration coverage and comparison budgets can change the graph.
 Keep production flow/candidate/answer/correction behavior unchanged during that experiment.
 
-The next bounded task should implement the prospective offline comparison below. A parity
+Task 062 implements the prospective offline comparison below. A parity
 pass permits considering a shared fact-to-graph assembler; it does not authorize wider
 selection or a production switch. A wider candidate that loses required support or weakens
 ambiguity must be rejected, with its negative results retained.
@@ -190,3 +191,19 @@ promotion gates; recording that failure completes the experiment, not the wider 
 If selection needs revision, author a new prospective contract and counterexamples before
 tuning. Passing this experiment would still not establish semantic L5 readiness, a private
 pilot, independent human review or Workbench routing acceptance.
+
+## Task 062 result and next boundary
+
+The [retained comparison](../fixtures/loredock-durable-flows/README.md) confirms bounded
+saved-fact parity but rejects the naive wider graph: 365 retained files recover all seven
+critical facts, while the 160-node graph admits only three required nodes. The dense-file
+assumption also missed the existing 100-symbol per-file parser caps (TypeScript and Java);
+its 200-function input retains 100 and does not saturate the graph. This failure remains
+recorded; no retrospective fixture/oracle change is made.
+
+The next prospective contract should resolve supported ambiguity against all retained
+facts before choosing displayed nodes, then admit bounded complete supporting relationships
+with explicit omitted branches. Evaluate fresh multiple-dense-file and competing-root
+cases, preservation of supporting imports/types/records, and alternatives outside displayed
+slots. No new ranking policy is implemented or accepted by this recommendation. Keep
+current answer/correction provenance separate and preserve all failed semantic gates.

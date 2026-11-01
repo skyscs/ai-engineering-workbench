@@ -18,3 +18,10 @@ later harness check fails. A focused test now opens real compact references and 
 wrong payload ownership. No input, oracle, parser, selection, assembler or production
 behavior changes. The corrected run uses a separate fresh output directory and retains
 its own implementation identity; failed and corrected receipts must remain distinguishable.
+
+The corrected measurement also preserves six live-object equality failures: `emptyFacts()`
+creates `records` with a null prototype, while JSON persistence reconstructs a plain object.
+The full serialized vectors are equal. `review.json` documents an offline interpretation
+of the retained measurement, and a comparison-helper test verifies that record value changes
+still fail. No measurement is repeated for this representation correction. The separate
+200-function dense-case expectation remains unsatisfied under the existing parser cap.

@@ -1,5 +1,33 @@
 # Development status
 
+## Task 062 — Offline durable-fact flow comparison
+
+Implemented and locally verified, 2026-11-01; naive wider-input promotion rejected.
+Scope `b368729`, inputs `759cb04`, prototype `ca93fb7`, measured harness correction `786fb82`.
+PR #65 reached main as `7e8c921` after push `41338599043` and pull-request `41338615866`
+passed for exact head `ba289a872a0128dc8db4caf97a95ad03273af8ab` (445 tests).
+
+The separate offline assembler/reader compares production, exact saved-fact parity and
+wider inventory input without changing application code. All 21 F01–F09 variants are
+retained. Six main serialized parity vectors match; partial syntax preserves graph parity.
+The 365-file scan retains seven critical facts but only three required graph nodes, reaching
+160 nodes with 211 omissions. Do not promote this selection. The dense case also exposes
+an overlooked 100-symbol parser cap, so its intended saturation condition remains unqualified.
+
+The [verification](fixtures/loredock-durable-flows/README.md) preserves the first citation-
+harness failure and corrected raw 306/313 result. Six equality failures reflect null versus
+plain dictionary prototypes; an offline review confirms equal serialized values without a
+measurement rerun. The seventh failed dense-file expectation is retained. All 73 projection
+observations make zero Git calls/SQLite writes outside explicitly measured lifecycle hooks;
+1,557 original span occurrences reopen exactly. Missing/partial/corrupt inventories, scope
+changes, restart and eviction are exercised separately.
+
+Strict checks, 447 tests and builds pass; a later comparison-helper regression passes with
+three focused checks and strict types, bringing the suite to 448 tests. The demo process,
+data/assets, frozen semantic evaluations and model budgets stay untouched. Next: freeze
+support-aware selection with a separate ambiguity universe and fresh multiple-dense-file /
+competing-root cases before implementation. See [Task 062](../tasks/062-loredock-durable-flow-comparison.md).
+
 ## Task 061 — Durable facts and wider flow projection contract
 
 Analyzed and locally verified, 2026-11-01. Scope `7cc98d9` preceded analysis.

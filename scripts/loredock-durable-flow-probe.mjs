@@ -7,7 +7,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 import { createLoreDockFixture, fixtureGit, digest } from './loredock-fixture.mjs';
 import { flowCorpus, sources, supportOracle, baselineEdges } from '../fixtures/loredock-durable-flows/corpus.mjs';
-import { savedFlowProjection, selectFlowFiles, graphSemantics } from './loredock-durable-flows.mjs';
+import { savedFlowProjection, selectFlowFiles, graphSemantics, serializedFactVectors } from './loredock-durable-flows.mjs';
 import { baselineFlowLimits } from './loredock-durable-flow-assembler.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
@@ -183,7 +183,7 @@ export async function runDurableFlowProbe(services, outputDirectory) {
       const wide = await observe('wide'), wideRepeat = await observe('wide'); check('Wider reading repeats exactly', sameReading(wide, wideRepeat));
       check('Ordered parity graph matches production', !!parity.graph && isDeepStrictEqual(graphSemantics(control.graph), graphSemantics(parity.graph)));
       check('Exact selected files match', isDeepStrictEqual(control.selection, parity.selection));
-      check('Facts, ranges and originals match', isDeepStrictEqual(control.payloads, (parity.payloads ?? []).map(({ fileId, path, sourceId, facts, ranges, evidence }) => ({ fileId, path, sourceId, facts, ranges, evidence }))));
+      check('Facts, ranges and originals match', isDeepStrictEqual(serializedFactVectors(control.payloads), serializedFactVectors(parity.payloads ?? [])));
       entry.support = Object.fromEntries([['control', control], ['parity', parity], ['wide', wide]].map(([name, value]) => [name, support(value, contract.generated[variant].support)]));
       entry.edgeCounts = Object.fromEntries([['control', control], ['parity', parity], ['wide', wide]].map(([name, value]) => [name, value.graph ? graphCounts(value.graph) : null]));
       check('Wider scan retains every critical fact', entry.support.wide?.every(item => item.retained));
