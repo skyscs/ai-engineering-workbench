@@ -710,6 +710,27 @@ Each build stores its admitted bytes independently. There is no cross-build
 deduplication or automatic history-retention limit yet; the 50 MiB cap is per build,
 not a total data-directory cap. Monitor local storage during repeated large indexes.
 
+For a detailed local storage report, use the existing LoreDock data directory:
+
+```bash
+pnpm --silent loredock:storage --data-dir /absolute/path/to/loredock-data
+```
+
+This advanced maintenance command prints JSON and makes no logical changes. It needs
+Node 22 and an existing schema-8 catalog; it never creates or upgrades a database. It
+can run while LoreDock is open and does not interrupt jobs or acquire daemon ownership.
+Large histories require a full scan, so run it when needed rather than polling it.
+The report contains counts and byte sizes only, without repository paths, source text,
+questions or connection configuration. Redirect stdout to a file to retain the report.
+
+`sqlite.allocatedBytes` includes tables, indexes and free pages; `freePageBytes` is reusable
+space inside that allocation. `disk` measures only the listed database/sidecar file
+lengths, separately from the SQLite snapshot. It excludes repositories, backups and other
+directory contents. Payload sizes are already inside SQLite allocation: do not add them
+to the disk total. Duplicate estimates and overlapping dependency counts do not identify
+safe-to-delete history or promise reclaimable space. No cleanup runs automatically.
+See [storage measurements and next steps](../fixtures/loredock-storage-audit/README.md).
+
 ## Try the synthetic system
 
 After installing dependencies with the documented Node/pnpm toolchain, run:
