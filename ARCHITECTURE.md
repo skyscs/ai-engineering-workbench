@@ -47,6 +47,9 @@ mapping, atomic legacy migration and explicit transactional writes/purge. Questi
 and parser facts are unchanged. Maintenance accepts schemas 8 and 9; version-2 reports
 distinguish logical text from its stored copy. See
 [ADR 0046](docs/decisions/0046-loredock-external-literal-search.md).
+The separate history diagnostic shares the maintenance read-only snapshot boundary and
+reports bounded generation payload/dependency counts without application recovery or
+deletion eligibility. See the [retention contract](docs/loredock/RETENTION_DESIGN.md).
 See [ADR 0040](docs/decisions/0040-loredock-durable-code-inventory.md) and
 [ADR 0041](docs/decisions/0041-loredock-code-coverage-workflow.md).
 Bounded question-context sampling across twenty sources, stable selection and explicit

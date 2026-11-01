@@ -119,7 +119,11 @@ external literal content with atomic conversion, stable identities/settings, tra
 write/purge and schema-8/9 maintenance compatibility. Version-2 reports distinguish
 logical text from its stored copy. [Task 056](../../tasks/056-loredock-history-retention-contract.md)
 maps dependencies and demonstrates a current-result reorder after historical removal.
-Keep history by default; the next slice is the [read-only generation dependency inventory](RETENTION_DESIGN.md).
+Keep history by default; its chosen follow-up is the [read-only generation dependency inventory](RETENTION_DESIGN.md).
+[Task 057](../../tasks/057-loredock-history-audit.md) implements the bounded read-only report,
+including omitted-generation references and unchanged recovery state. The scoped diagnostic
+sequence is complete; future retention, raw-content sharing or ranking changes require
+their own prospective contract.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.

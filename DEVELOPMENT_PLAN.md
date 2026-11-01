@@ -138,8 +138,12 @@ with atomic legacy conversion, stable row identities/settings, transactional wri
 and schema-8/9 maintenance compatibility. Logical text and stored copies are distinguished
 in version-2 reports. [Task 056](tasks/056-loredock-history-retention-contract.md) maps
 history dependencies and demonstrates that deleting old postings can reorder current
-matches despite unchanged current text. Keep history by default; the next slice is the
+matches despite unchanged current text. Keep history by default; its chosen follow-up is the
 [read-only generation dependency inventory](docs/loredock/RETENTION_DESIGN.md), not deletion.
+[Task 057](tasks/057-loredock-history-audit.md) implements that bounded report, including
+references from omitted generations, malformed-reference reporting and unchanged recovery
+state. This completes the scoped read-only storage/history diagnostic sequence; future
+retention, raw-content sharing or ranking changes need a separate prospective contract.
 The user demo and feedback stay separate
 from these maintenance checks; broader question-context changes remain open.
 Preserve all failed evaluations;

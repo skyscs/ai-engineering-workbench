@@ -28,13 +28,13 @@ function allocationGroup(table) {
 }
 const byteLength = column => `coalesce(length(CAST(${column} AS BLOB)),0)`;
 
-export function auditStorage(directory) {
+/** Synchronous maintenance read: one snapshot, no ownership or application recovery. */
+export function readStorageSnapshot(directory, read) {
   if (typeof directory !== 'string' || !path.isAbsolute(directory)) throw new Error('Use an absolute existing LoreDock data directory.');
   try { lstatSync(path.join(directory, 'workbench.db')); throw new Error('Use a separate LoreDock data directory, not Workbench data.'); }
   catch (error) { if (error.code !== 'ENOENT') throw error; }
   for (const name of databaseFiles) regularFile(path.join(directory, name), name === 'loredock.db');
   const db = new DatabaseSync(path.join(directory, 'loredock.db'), {readOnly: true});
-  let snapshot;
   try {
     db.exec('PRAGMA query_only=ON; PRAGMA trusted_schema=OFF; PRAGMA temp_store=MEMORY; PRAGMA busy_timeout=1000; BEGIN;');
     const one = sql => db.prepare(sql).get();
@@ -42,6 +42,15 @@ export function auditStorage(directory) {
     if (version !== 8 && version !== 9) throw new Error('Storage accounting requires LoreDock database schema 8 or 9; no migration was attempted.');
     const project = one('SELECT publishedBuildId FROM project WHERE id=1');
     if (!project) throw new Error('The LoreDock project record is missing.');
+    const result = read(db, version);
+    db.exec('ROLLBACK;');
+    return result;
+  } finally { db.close(); }
+}
+
+export function auditStorage(directory) {
+  const snapshot = readStorageSnapshot(directory, (db, version) => {
+    const one = sql => db.prepare(sql).get();
     const payload = (table, columns) => one(`SELECT count(*) AS rows, coalesce(sum(${columns.map(byteLength).join('+')}),0) AS bytes FROM ${table}`);
     const duplicateCandidates = (table, hash, content) => one(`SELECT coalesce(sum(copies-1),0) AS extraCopies,
       coalesce(sum((copies-1)*bytes),0) AS bytes FROM
@@ -56,7 +65,7 @@ export function auditStorage(directory) {
     }
     const accountedBytes = Object.values(allocations).reduce((sum, bytes) => sum + bytes, 0);
     const literalText = payload('search', ['text']);
-    snapshot = {
+    return {
       schemaVersion: 'loredock-storage-audit/2', capturedAt: new Date().toISOString(), databaseVersion: version,
       sqlite: {pageSize, pages, freePages, allocatedBytes: pages * pageSize, freePageBytes: freePages * pageSize,
         allocations, unassignedBytes: pages * pageSize - freePages * pageSize - accountedBytes},
@@ -86,8 +95,7 @@ export function auditStorage(directory) {
         originals: duplicateCandidates('files', 'contentHash', 'raw'), spans: duplicateCandidates('spans', 'hash', 'text')
       }
     };
-    db.exec('ROLLBACK;');
-  } finally { db.close(); }
+  });
   const files = databaseFiles.map(name => ({name, bytes: regularFile(path.join(directory, name), name === 'loredock.db')}));
   const report = {...snapshot, disk: {sampledAt: new Date().toISOString(), files,
     observedFileBytes: files.reduce((sum, file) => sum + (file.bytes ?? 0), 0)},

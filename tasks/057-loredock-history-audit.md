@@ -1,6 +1,7 @@
 # Task 057 — Read-only generation dependency inventory
 
-Status: scoped before implementation, 2026-11-01.
+Status: implemented; strict checks, 428 tests and builds pass; compiled smoke pending, 2026-11-01.
+Scope committed before implementation in `6c046e9`.
 
 Implement the next diagnostic defined by Task 056 and
 [the retention design](../docs/loredock/RETENTION_DESIGN.md). Do not implement cleanup.

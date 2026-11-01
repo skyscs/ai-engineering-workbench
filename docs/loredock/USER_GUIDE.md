@@ -750,6 +750,34 @@ Duplicate estimates and overlapping dependency counts do not identify
 safe-to-delete history or promise reclaimable space. No cleanup runs automatically.
 See [storage measurements and next steps](../fixtures/loredock-storage-audit/README.md).
 
+To see how individual index generations contribute to retained history, use:
+
+```bash
+pnpm --silent loredock:history --data-dir /absolute/path/to/loredock-data
+```
+
+This read-only command supports the same schemas and can run while LoreDock is open.
+It reports opaque build IDs, dates/status, the current pointer, direct baselines, file/
+span/search/code counts, logical bytes and dependencies from answers, review versions,
+code runs, later updates and reused files. Failed answers, withdrawn notes and purged
+metadata remain counted. Source text, repository names/paths, questions, note statements
+and connection settings are omitted. It does not recover or resume unfinished work.
+
+`generations.items` contains up to 1,000 generations in creation/database order, within
+a 4 MiB JSON limit. Check `total`, `reported`, `omitted` and `complete`: an omitted current
+or older index is still retained and can have dependencies. Incoming counts include
+references from generations outside the displayed detail. `referenceChecks` covers SQL
+foreign keys, the current pointer and displayed build metadata; it does not validate
+embedded citation JSON, FTS postings or complete transitive dependencies. `inconsistent`
+means a detected issue needs investigation, not that a record can be deleted.
+
+These are overlapping logical byte counts, not disk savings or a deletion preview.
+Removing historical search documents can change the order of current results because
+ranking uses shared statistics. Run the report when diagnosing growth rather than polling
+large histories. It makes no cleanup recommendation. See the
+[history dependency design](RETENTION_DESIGN.md) and
+[command verification](../fixtures/loredock-history-audit/README.md).
+
 If `sqlite.freePageBytes` is substantial after source removal, you can reclaim that space:
 
 1. Stop the LoreDock process that owns this directory. Leave its data files in place.
