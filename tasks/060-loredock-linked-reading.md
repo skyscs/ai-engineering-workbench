@@ -1,6 +1,6 @@
 # Task 060 — README-linked local documentation
 
-Status: scoped before implementation, 2026-11-01.
+Status: implemented and locally verified, 2026-11-01. Scope `7621647` preceded implementation `ca6c182`; message review `343dfbe`.
 
 Extend the roadmap's source-backed orientation beyond the root README. A repository
 README often points to architecture, terminology or setup documents that are already
@@ -51,3 +51,12 @@ Use only fresh synthetic sources and a separate worktree; preserve the running u
 its compiled assets/data and all frozen evaluation evidence/budgets. Update English guide,
 roadmap/status and an ADR, run strict/full checks, review, publish and merge after both
 exact-head CI events pass. Broader semantic synthesis and external connectors stay open.
+
+## Recorded verification
+
+Strict checks, 445 tests and production builds pass. Thirty-four focused checks/subchecks
+cover the contract, including twenty-source remaining-slot fairness and full-budget README
+priority. Nine compiled browser conditions pass with reviewed desktop/mobile screenshots.
+See [verification and reproduction](../docs/fixtures/loredock-linked-reading/README.md)
+and [ADR 0048](../docs/decisions/0048-loredock-linked-reading.md). Current answer selection,
+frozen evaluations and the running user demo remain unchanged.

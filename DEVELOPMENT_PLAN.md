@@ -144,8 +144,13 @@ matches despite unchanged current text. Keep history by default; its chosen foll
 references from omitted generations, malformed-reference reporting and unchanged recovery
 state. This completes the scoped read-only storage/history diagnostic sequence; future
 retention, raw-content sharing or ranking changes need a separate prospective contract.
-The user demo and feedback stay separate
-from these maintenance checks; broader question-context changes remain open.
+[Task 058](tasks/058-loredock-readme-sections.md) returns to source orientation with
+bounded original README section navigation. [Task 059](tasks/059-loredock-readme-boundary.md)
+verifies twenty full-budget READMEs with exact section/original-part and historical identity.
+[Task 060](tasks/060-loredock-linked-reading.md) adds same-repository linked-document
+reading with original citations, explicit gaps and fair use of remaining document budgets.
+The user demo and feedback stay separate from these checks; broader semantic synthesis
+and question-context changes remain open.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
