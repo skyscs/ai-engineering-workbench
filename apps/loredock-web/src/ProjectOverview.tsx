@@ -65,9 +65,9 @@ export function ProjectOverview({ buildId, boundary, openEvidence }: { buildId: 
           <p className="muted">Original headings, not verified system knowledge. Some heading styles may be absent; the full README remains available below.</p>
           <ol>{source.sections.map(section => <li key={section.startLine}>
             <strong>{section.title}</strong><p className="muted">Lines {section.startLine}–{section.endLine}</p>
-            {section.evidenceIds.map((id, index) => <button className="quiet" key={id}
+            <div className="readme-section-links">{section.evidenceIds.map((id, index) => <button className="quiet" key={id}
               aria-label={`Read ${section.title}, original part ${index + 1}`} onClick={() => openEvidence(id)}>
-              Read section{section.evidenceIds.length > 1 ? ` part ${index + 1}` : ''}</button>)}
+              Read section{section.evidenceIds.length > 1 ? ` part ${index + 1}` : ''}</button>)}</div>
           </li>)}</ol>
           {source.omittedSections > 0 && <p className="notice">{source.omittedSections} additional headings are not listed. Open the full README for complete context.</p>}
         </details>}

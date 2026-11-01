@@ -58,6 +58,17 @@
 .orientation-reading strong{
   display:block
 }
+.readme-sections li{
+  margin:12px 0
+}
+.readme-sections li p{
+  margin:6px 0
+}
+.readme-section-links{
+  display:flex;
+  flex-wrap:wrap;
+  column-gap:14px
+}
 .earlier-corrections{
   margin:22px 0;
   padding:18px;
