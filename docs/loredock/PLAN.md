@@ -141,6 +141,12 @@ through graph selection, original validation, correction/reapplication and answe
 The [durable-flow design](DURABLE_FLOW_DESIGN.md) chooses an offline parity comparison and
 wider-input diagnostic next. More retained facts do not establish a complete graph; no
 production switch, graph-budget increase or semantic acceptance is included.
+[Task 062](../../tasks/062-loredock-durable-flow-comparison.md) records 21 offline variants:
+saved-fact parity holds, while naive wider input loses four of seven required graph nodes
+under the existing cap. Its [retained results](../fixtures/loredock-durable-flows/README.md)
+reject promotion and expose the dense-case parser-limit assumption. The next selection
+contract must distinguish full ambiguity resolution from graph admission, with fresh
+multiple-dense-file and competing-root examples before implementation.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.
