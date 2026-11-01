@@ -59,6 +59,11 @@ without daemon ownership, migrations or recovery. It exports aggregate counts/by
 not source text, paths or connection settings. Fixed database/sidecar paths must be regular
 files. Read-only SQLite can maintain shared-memory bookkeeping; this is not a forensic
 acquisition or secure-erasure claim. See [storage accounting](docs/fixtures/loredock-storage-audit/README.md).
+The history diagnostic uses that same read-only boundary. It exports bounded opaque build
+metadata and aggregate dependency/payload counts, omitting repository names/paths, text,
+questions, notes and configuration. Malformed reported metadata is replaced with neutral
+values and flagged. SQL reference checks are not validation of all embedded provenance;
+the report grants no deletion authority. See [history design](docs/loredock/RETENTION_DESIGN.md).
 Explicit offline compaction requires the same exclusive owner lock as the daemon and
 existing regular main/owner database and sidecar files. It performs SQLite physical
 maintenance without logical history deletion, schema migration, job recovery or process

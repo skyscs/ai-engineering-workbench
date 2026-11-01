@@ -1,7 +1,7 @@
 # Retained-history design boundary
 
-Task 056, 2026-11-01. This is a reviewed design for the next read-only diagnostic,
-not an implemented history-removal feature. Schema 9 reduces one text copy; raw
+Task 056, 2026-11-01; the read-only diagnostic is implemented by Task 057. This design
+does not introduce a history-removal feature. Schema 9 reduces one text copy; raw
 originals, issued citations and build history remain independently retained.
 
 ## Findings
@@ -73,10 +73,10 @@ A future destructive operation needs a concrete preview, revalidation under excl
 ownership, atomic failure/recovery, explicit unavailable-content semantics and a user
 action selecting the exact removal. This document grants no authority to delete user data.
 
-## Next slice: read-only generation dependency inventory
+## Read-only generation dependency inventory
 
-Proposed advanced command: `pnpm loredock:history --data-dir /absolute/loredock-data`.
-It is not available yet. Accept existing schemas 8 and 9; use one read-only transaction,
+Implemented advanced command: `pnpm loredock:history --data-dir /absolute/loredock-data`.
+Its contract accepts existing schemas 8 and 9 with one read-only transaction,
 regular-file/sidecar checks and no CatalogStore construction. Do not acquire daemon
 ownership, recover work, create/migrate/checkpoint a database, invoke Git/models or parse
 connection secrets. Keep the existing aggregate storage report's contract unchanged.

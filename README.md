@@ -36,6 +36,8 @@ calls disabled. Open the printed URL after **Demo ready**; Ctrl+C stops the serv
 retains the example. See [demo usage and reopening](docs/loredock/USER_GUIDE.md#try-the-synthetic-system).
 For storage diagnosis, `pnpm loredock:storage --data-dir /absolute/loredock-data` reports
 aggregate SQLite, payload and history-dependency sizes without modifying the catalog.
+`pnpm loredock:history --data-dir /absolute/loredock-data` shows bounded per-index
+payload and dependency counts; it does not select history for deletion.
 Explicit offline `pnpm loredock:compact --data-dir /absolute/loredock-data` can reclaim
 already-free SQLite pages while keeping history. See
 [storage, backup and compaction](docs/loredock/USER_GUIDE.md#local-storage-and-backup).

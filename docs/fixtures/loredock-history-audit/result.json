@@ -1,0 +1,233 @@
+{
+  "schemaVersion": "loredock-history-smoke/1",
+  "checkedAt": "2026-11-01T17:24:07.955Z",
+  "commit": "1123e6c66fb0002c2d0704d51de6b7e3bb81e179",
+  "node": "v22.23.2",
+  "implementation": {
+    "scripts/loredock-history.mjs": "053600ab77766e6f6a6179a1552b00032217be7bc6708b39d92cf5ce3e1bfa44",
+    "scripts/loredock-storage.mjs": "03406266729fee4f3a0896cdf1282041fe2d45ae7a5474c7ce106c3bfe4a5c1e",
+    "scripts/loredock-history-smoke.mjs": "4fe8e6ad40d6127b0915a38026f453258199b90cfaf1db56d47a355e9607e2db",
+    "scripts/loredock-demo.mjs": "96e70b00e9ac759c69d7524706da03f5482e318f42ae325375750d8af7bf5cdc"
+  },
+  "sources": 20,
+  "modelRequests": 0,
+  "usedPackageCommand": true,
+  "liveReadAgrees": true,
+  "mainAndOwnerBytesUnchanged": true,
+  "sourceCheckoutsUnchanged": true,
+  "pendingRecoveryStateUnchanged": true,
+  "history": {
+    "schemaVersion": "loredock-history-audit/1",
+    "capturedAt": "2026-11-01T17:24:07.810Z",
+    "databaseVersion": 9,
+    "referenceChecks": {
+      "status": "passed",
+      "foreignKeyViolations": 0,
+      "currentPointerMissing": false,
+      "currentPointerMalformed": false,
+      "invalidReportedMetadata": 0,
+      "coverage": "SQL foreign keys, current pointer and reported build metadata only; embedded JSON, FTS postings and transitive dependencies are not validated."
+    },
+    "generations": {
+      "total": 4,
+      "reported": 4,
+      "omitted": 0,
+      "complete": true,
+      "limit": 1000,
+      "items": [
+        {
+          "id": "f7dc80ca-2af6-438b-9e41-45841c32f978",
+          "createdAt": "2026-11-01T17:24:04.230Z",
+          "status": "partial",
+          "published": true,
+          "current": false,
+          "baselineBuildId": null,
+          "files": {
+            "total": 139,
+            "indexed": 79,
+            "excluded": 60,
+            "failed": 0,
+            "pending": 0,
+            "purged": 0,
+            "unrecognized": 0,
+            "rawBytes": 16869
+          },
+          "spans": {
+            "total": 79,
+            "textBytes": 16790
+          },
+          "search": {
+            "literalDocuments": 79,
+            "questionDocuments": 79
+          },
+          "answers": {
+            "total": 0,
+            "unfinished": 0
+          },
+          "review": {
+            "versions": 0,
+            "purged": 0,
+            "withdrawals": 0,
+            "sourceForReapplications": 0,
+            "reappliedFromOtherBuilds": 0
+          },
+          "code": {
+            "runs": 0,
+            "unfinished": 0,
+            "payloadBytes": 0
+          },
+          "incoming": {
+            "baselineBuilds": 1,
+            "reusedFiles": 79
+          }
+        },
+        {
+          "id": "51921776-e55a-4578-ab2e-bcfffd409aeb",
+          "createdAt": "2026-11-01T17:24:05.940Z",
+          "status": "partial",
+          "published": true,
+          "current": false,
+          "baselineBuildId": "f7dc80ca-2af6-438b-9e41-45841c32f978",
+          "files": {
+            "total": 139,
+            "indexed": 79,
+            "excluded": 60,
+            "failed": 0,
+            "pending": 0,
+            "purged": 0,
+            "unrecognized": 0,
+            "rawBytes": 16869
+          },
+          "spans": {
+            "total": 79,
+            "textBytes": 16790
+          },
+          "search": {
+            "literalDocuments": 79,
+            "questionDocuments": 79
+          },
+          "answers": {
+            "total": 0,
+            "unfinished": 0
+          },
+          "review": {
+            "versions": 0,
+            "purged": 0,
+            "withdrawals": 0,
+            "sourceForReapplications": 0,
+            "reappliedFromOtherBuilds": 0
+          },
+          "code": {
+            "runs": 1,
+            "unfinished": 0,
+            "payloadBytes": 28836
+          },
+          "incoming": {
+            "baselineBuilds": 1,
+            "reusedFiles": 79
+          }
+        },
+        {
+          "id": "50efe5bb-474e-491c-8586-8653d1de0001",
+          "createdAt": "2026-11-01T17:24:06.742Z",
+          "status": "partial",
+          "published": true,
+          "current": true,
+          "baselineBuildId": "51921776-e55a-4578-ab2e-bcfffd409aeb",
+          "files": {
+            "total": 139,
+            "indexed": 79,
+            "excluded": 60,
+            "failed": 0,
+            "pending": 0,
+            "purged": 0,
+            "unrecognized": 0,
+            "rawBytes": 16869
+          },
+          "spans": {
+            "total": 79,
+            "textBytes": 16790
+          },
+          "search": {
+            "literalDocuments": 79,
+            "questionDocuments": 79
+          },
+          "answers": {
+            "total": 0,
+            "unfinished": 0
+          },
+          "review": {
+            "versions": 0,
+            "purged": 0,
+            "withdrawals": 0,
+            "sourceForReapplications": 0,
+            "reappliedFromOtherBuilds": 0
+          },
+          "code": {
+            "runs": 1,
+            "unfinished": 0,
+            "payloadBytes": 28836
+          },
+          "incoming": {
+            "baselineBuilds": 1,
+            "reusedFiles": 0
+          }
+        },
+        {
+          "id": "d87d9c6b-bf21-4ea2-8031-5c6bd4ffc2ea",
+          "createdAt": "2026-11-01T17:24:07.573Z",
+          "status": "preparing",
+          "published": false,
+          "current": false,
+          "baselineBuildId": "50efe5bb-474e-491c-8586-8653d1de0001",
+          "files": {
+            "total": 0,
+            "indexed": 0,
+            "excluded": 0,
+            "failed": 0,
+            "pending": 0,
+            "purged": 0,
+            "unrecognized": 0,
+            "rawBytes": 0
+          },
+          "spans": {
+            "total": 0,
+            "textBytes": 0
+          },
+          "search": {
+            "literalDocuments": 0,
+            "questionDocuments": 0
+          },
+          "answers": {
+            "total": 0,
+            "unfinished": 0
+          },
+          "review": {
+            "versions": 0,
+            "purged": 0,
+            "withdrawals": 0,
+            "sourceForReapplications": 0,
+            "reappliedFromOtherBuilds": 0
+          },
+          "code": {
+            "runs": 0,
+            "unfinished": 0,
+            "payloadBytes": 0
+          },
+          "incoming": {
+            "baselineBuilds": 0,
+            "reusedFiles": 0
+          }
+        }
+      ]
+    },
+    "limits": [
+      "Direct references and logical payload counts do not establish deletion eligibility or reclaimable disk space.",
+      "Literal and question FTS statistics span generations. Removing historical documents can change current ranking and selected context.",
+      "Payload byte counters overlap SQLite allocation; do not add them to page/disk totals.",
+      "Terminal, fenced, purged and withdrawn metadata is retained in counts. Omitted generations may have dependencies.",
+      "This on-demand report may scan large histories. It never deletes, migrates, recovers, checkpoints, compacts or starts work.",
+      "Read-only SQLite may maintain shared-memory bookkeeping; this is not a forensic disk acquisition."
+    ]
+  }
+}
