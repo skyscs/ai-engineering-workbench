@@ -281,6 +281,10 @@ Overview coverage is not a percentage of system understanding. Diagnostics under
 **Overview coverage and gaps** disclose the bounds: sixty root documents, 32 KiB/file,
 640 KiB source input, eight spans/file, 16 complete lines / 2,000 UTF-8 bytes per excerpt
 and 512 KiB output. Every saved authorized repository gets context or a visible gap.
+When README input fills the aggregate budget, optional manifest reading can be omitted;
+those files remain available through source search when indexed. The
+[twenty-README boundary check](../fixtures/loredock-readme-boundary/README.md) verifies
+complete section navigation for that constructed shape, without a general latency guarantee.
 The text selector skips headings/code blocks; it is not a full Markdown or semantic
 analyzer. Other markup stays literal.
 

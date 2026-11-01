@@ -1,6 +1,6 @@
 # Task 059 — Twenty-repository README navigation boundary check
 
-Status: scoped before implementation, 2026-11-01.
+Status: implemented and locally verified, 2026-11-01. Scope committed as `d78cf9f` before implementation `7d58bf7`.
 
 Task 058 delivers source-backed section navigation and a three-source browser check.
 Measure the existing projection at its twenty-source README/input/span bounds before
@@ -42,3 +42,12 @@ No browser rerun is required because UI is unchanged. Run appropriate strict/ful
 review artifacts, publish a separate PR and merge after both exact-head CI events pass.
 The result qualifies this constructed boundary shape only; real documentation quality,
 large-project wall time and the private pilot remain open.
+
+## Recorded outcome
+
+The complete shape passes: twenty contexts, 240 exact sections, eighty omitted labels,
+160 original parts, 655,360 input bytes and 135,560 output bytes. Initial/repeated reads
+take 49.53/42.04/36.11 ms with zero Git calls/SQLite writes. All 79 files are reused;
+historical and restarted projections retain identity. Local strict checks, 436 tests
+and production builds pass. No product changes or browser rerun were needed. See the
+[measurement and limitations](../docs/fixtures/loredock-readme-boundary/README.md).

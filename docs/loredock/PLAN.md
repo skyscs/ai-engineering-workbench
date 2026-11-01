@@ -128,6 +128,10 @@ their own prospective contract.
 bounded original README headings navigate architecture, terminology and setup through
 existing source citations. This adds no new input form or model configuration. Broader
 glossary extraction and architecture synthesis remain separately scoped.
+[Task 059](../../tasks/059-loredock-readme-boundary.md) verifies twenty full-budget root
+READMEs: 240 exact sections, 160 original parts, visible manifest/heading omissions,
+49.53 ms first projection and unchanged historical/restart identity on the constructed
+boundary shape. No production behavior or model qualification changes.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.
