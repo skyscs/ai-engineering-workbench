@@ -136,7 +136,11 @@ matched rebuild control: complete token/position equality, 112/112 query compari
 [Task 055](tasks/055-loredock-external-literal-search.md) implements production schema 9
 with atomic legacy conversion, stable row identities/settings, transactional write/purge
 and schema-8/9 maintenance compatibility. Logical text and stored copies are distinguished
-in version-2 reports. Explicit retention requires separate dependency rules. The user demo and feedback stay separate
+in version-2 reports. [Task 056](tasks/056-loredock-history-retention-contract.md) maps
+history dependencies and demonstrates that deleting old postings can reorder current
+matches despite unchanged current text. Keep history by default; the next slice is the
+[read-only generation dependency inventory](docs/loredock/RETENTION_DESIGN.md), not deletion.
+The user demo and feedback stay separate
 from these maintenance checks; broader question-context changes remain open.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.

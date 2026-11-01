@@ -117,8 +117,10 @@ equality, 112/112 query comparisons and 17.4% further savings against a matched 
 control. [Task 055](../../tasks/055-loredock-external-literal-search.md) implements schema-9
 external literal content with atomic conversion, stable identities/settings, transactional
 write/purge and schema-8/9 maintenance compatibility. Version-2 reports distinguish
-logical text from its stored copy. Explicit
-retention needs separate dependency rules. Keep the prepared
+logical text from its stored copy. [Task 056](../../tasks/056-loredock-history-retention-contract.md)
+maps dependencies and demonstrates a current-result reorder after historical removal.
+Keep history by default; the next slice is the [read-only generation dependency inventory](RETENTION_DESIGN.md).
+No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.
 No tuning on observed model answers is included.
