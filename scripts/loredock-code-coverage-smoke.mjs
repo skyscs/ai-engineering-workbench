@@ -122,6 +122,13 @@ try {
   await evaluate("document.querySelector('.symbol-matches button').focus()"); await enter(); await text('Source evidence');
   assert.equal(await evaluate("document.activeElement===document.querySelector('.evidence h2')"),true);
   assert.equal(await evaluate("document.querySelector('.evidence strong').textContent"),'order-api');
+  await search('StockProjection.accept'); await symbolReady('StockProjection.accept'); await searchDone();
+  assert.equal(await evaluate("document.querySelector('.symbol-matches li strong').textContent"),'synthetic.stock.StockProjection.accept');
+  await search('StockProjection'); await symbolReady('StockProjection'); await searchDone();
+  await evaluate("document.querySelector('.symbol-matches button').focus()"); await enter(); await text('Source evidence');
+  assert.equal(await evaluate("document.activeElement===document.querySelector('.evidence h2')"),true);
+  assert.equal(await evaluate("document.querySelector('.evidence strong').textContent"),'inventory-worker');
+  await evaluate("document.querySelector('.symbol-matches').scrollIntoView()"); await screenshot('short-java-symbol-mobile.png');
   await search('loadProbe000004'); await symbolReady('loadProbe000004'); await searchDone();
   assert.equal(await evaluate("document.querySelector('.symbol-matches li p').textContent.startsWith("+JSON.stringify(hostileLabel)+")"),true);
   assert.equal(await evaluate("document.querySelectorAll('.symbol-matches img').length"),0);
@@ -185,12 +192,13 @@ try {
   await waitFor(()=>evaluate("document.querySelectorAll('.sources > li').length===19"),'Source revocation did not reach the page.');
   await release(); assert.equal(await evaluate("document.querySelector('.code-file-facts')===null && document.querySelector('.code-files')===null"),true); assert.equal(await noSymbols(),true);
   await noOverflow();
-  const result={schemaVersion:'loredock-code-coverage-browser/2',sources:20,candidateFiles:121,modelRequests:0,answerModeDisabled:true,
+  const result={schemaVersion:'loredock-code-coverage-browser/3',sources:20,candidateFiles:121,modelRequests:0,answerModeDisabled:true,
     automaticAnalysis:true,unsupportedFiles:6,gapMessages:7,collapsedDetails:true,keyboardDisclosure:true,keyboardFileFacts:true,
     keyboardOriginalEvidence:true,escapedSourceLabels:true,filePages:[50,50,21],uniqueFiles:121,
     delayedFileReplacementFenced:true,delayedOriginalCollapseFenced:true,delayedPageRefreshFenced:true,
     restartPreservesInventoryIds:true,lateProjectPollFenced:true,delayedFilePolicyFenced:true,delayedFileRevocationFenced:true,
     sharedSearchInput:true,exactQualifiedSymbol:true,keyboardSymbolOriginal:true,escapedSymbolSource:true,
+    shortJavaMethod:true,shortJavaClass:true,qualifiedJavaIdentityPreserved:true,keyboardShortJavaOriginal:true,
     textSearchIndependentOfSymbolFailure:true,textAvailableBeforeSymbols:true,delayedSymbolQueryEditFenced:true,delayedTextQueryEditFenced:true,
     delayedSymbolOriginalEditFenced:true,delayedSymbolRefreshFenced:true,delayedSymbolPolicyFenced:true,delayedSymbolRevocationFenced:true,
     unsupportedSymbolHasExplicitLimitation:true,mobileWidth:390,horizontalOverflow:false};

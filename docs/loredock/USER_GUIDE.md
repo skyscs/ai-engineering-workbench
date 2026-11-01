@@ -70,7 +70,11 @@ not proof that behavior is absent from the whole system.
 
 The same input also checks **Supported symbols** after code analysis has published a
 compatible inventory. Try an exact function/method name, qualified name such as
-`Orders.accept`, or a Java class name. Matching is case-sensitive, trims surrounding
+`Orders.accept`, or a Java class name. For packaged Java, short names also work:
+`StockProjection` and `StockProjection.accept` find
+`synthetic.stock.StockProjection.accept`. Results keep the full name and original source;
+identical short names in different packages and overloaded methods remain separate.
+This does not resolve Java imports or choose the runtime type. Matching is case-sensitive, trims surrounding
 whitespace and accepts at most 200 UTF-8 bytes; it does not interpret regex or fuzzy names.
 Click **Original lines** to inspect a result's source at its recorded revision. The search
 can reach retained files outside the smaller graph sample, but it does not establish
@@ -744,7 +748,7 @@ require the session. No tokens belong in URLs or logs.
 | `GET /api/builds/:id/files` | First 100 excluded/failed authorized file records. |
 | `GET /api/builds/:id/changes` | Bounded authorized inventory comparison, source revisions, reuse/read diagnostics and original/selected evidence IDs. |
 | `GET /api/search?q=...&buildId=...` | Search the current or a selected published index. |
-| `GET /api/code-symbols?q=...&buildId=...` | Exact case-sensitive symbol/class lookup over the compatible published inventory; 200 UTF-8 query bytes, twenty matches, 256 KiB response and a five-second cooperative scan. Unavailable inventory is explicit; original text search stays independent. |
+| `GET /api/code-symbols?q=...&buildId=...` | Version `loredock-code-symbols/2`: exact names including short Java class/method aliases, with full qualified identities retained. Compatible inventory required; 200 UTF-8 query bytes, twenty matches, 256 KiB response and a five-second cooperative scan. Unavailable inventory is explicit; original text search stays independent. |
 | `GET /api/evidence/:id` | Reopen a validated, authorized stored citation. |
 | `GET /api/system-map?buildId=...` | Bounded declaration projection for the current or a selected authorized published index. |
 | `GET /api/code-flows?buildId=...` | Versioned code links, partial flow outlines, candidate hops and original evidence from the same authorized index. |

@@ -1,8 +1,16 @@
 import { setImmediate as yieldTurn } from 'node:timers/promises';
 import type { CodeAnalysis } from './code-analysis.js';
+import type { SymbolFact } from './code-facts.js';
 import { sha256 } from './extract.js';
 import { CatalogError } from './types.js';
 import { codeSymbolLimits, type CodeSymbolMatch, type CodeSymbolResult } from './code-symbol-types.js';
+
+function matchesName(symbol: SymbolFact, query: string) {
+  if (symbol.name === query || symbol.qualifiedName === query || symbol.className === query) return true;
+  if (symbol.role !== 'java-method' || !symbol.className || symbol.qualifiedName !== `${symbol.className}.${symbol.name}`) return false;
+  const shortClass = symbol.className.slice(symbol.className.lastIndexOf('.') + 1);
+  return shortClass !== '' && (query === shortClass || query === `${shortClass}.${symbol.name}`);
+}
 
 export async function lookupCodeSymbols(analysis: CodeAnalysis, input: string, buildId?: string, overrides: Partial<typeof codeSymbolLimits> = {}): Promise<CodeSymbolResult> {
   const limits = { ...codeSymbolLimits, ...overrides };
@@ -15,7 +23,7 @@ export async function lookupCodeSymbols(analysis: CodeAnalysis, input: string, b
   const query = input.trim(), catalog = analysis.catalog, id = buildId ?? catalog.store.project().publishedBuildId;
   if (!id) throw new CatalogError('NOT_READY', 'Index sources before looking up symbols.', 409);
   catalog.readBuildHeader(id);
-  const result: CodeSymbolResult = { schemaVersion: 'loredock-code-symbols/1', buildId: id, query, status: 'unavailable', reason: null, inventory: null,
+  const result: CodeSymbolResult = { schemaVersion: 'loredock-code-symbols/2', buildId: id, query, status: 'unavailable', reason: null, inventory: null,
     limits, matches: [], partial: true, coverage: null,
     limitation: 'Exact supported source syntax only. No match does not establish absence; unsupported code and runtime behavior remain unknown.' };
   const inventory = analysis.list().find(run => run.buildId === id && run.published && run.currentParser);
@@ -28,7 +36,7 @@ export async function lookupCodeSymbols(analysis: CodeAnalysis, input: string, b
   for (const fileId of snapshot.fileIds) {
     if (performance.now() - began >= limits.wallMs) { coverage.timeStopped = true; break; }
     const file = analysis.file(inventory.id, fileId); coverage.scannedFiles++;
-    const matching = file.facts.symbols.filter(symbol => symbol.name === query || symbol.qualifiedName === query || symbol.className === query).sort((a, b) => a.start - b.start);
+    const matching = file.facts.symbols.filter(symbol => matchesName(symbol, query)).sort((a, b) => a.start - b.start);
     if (matching.length) coverage.matchedFiles++;
     for (const symbol of matching) {
       coverage.matchingSymbols++;

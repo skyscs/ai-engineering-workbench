@@ -8,7 +8,7 @@ export interface CodeSymbolMatch {
   name: string; qualifiedName: string; role: SymbolFact['role']; range: FactRange; evidence: MapEvidence[]; status: 'syntax-only';
 }
 export interface CodeSymbolResult {
-  schemaVersion: 'loredock-code-symbols/1'; buildId: string; query: string; status: 'available' | 'unavailable'; reason: string | null;
+  schemaVersion: 'loredock-code-symbols/2'; buildId: string; query: string; status: 'available' | 'unavailable'; reason: string | null;
   inventory: { id: string; fingerprint: string; policyVersion: number; registryVersion: number } | null;
   limits: typeof codeSymbolLimits; matches: CodeSymbolMatch[]; partial: boolean;
   coverage: { candidateFiles: number; retainedFiles: number; scannedFiles: number; scanComplete: boolean; timeStopped: boolean;

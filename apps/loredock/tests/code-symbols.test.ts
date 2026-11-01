@@ -14,19 +14,28 @@ import { createLoreDockFixture, fixtureGit } from '../../../scripts/loredock-fix
 // @ts-expect-error Owned volume-shape generation is plain JavaScript.
 import { createCapacityFixture } from '../../../scripts/loredock-capacity-fixture.mjs';
 
-async function setup(t: TestContext, options: { volume?: boolean; repeatedClass?: boolean } = {}) {
+async function setup(t: TestContext, options: { volume?: boolean; repeatedClass?: boolean; packagedClasses?: boolean } = {}) {
   const fixture = options.volume ? await createCapacityFixture(5) : await createLoreDockFixture();
   if (options.repeatedClass) for (const source of ['order-api', 'order-worker']) {
     await writeFile(path.join(fixture.root, 'sources', source, 'src/main/java/Amber.java'),
       'public class Amber {\n' + Array.from({ length: 20 }, (_, index) => `  public String method${index}() { return "amber"; }`).join('\n') + '\n}\n');
     fixtureGit(fixture.root, source, ['add', 'src/main/java/Amber.java']); fixtureGit(fixture.root, source, ['commit', '-m', 'Add owned symbol lookup example']);
   }
+  if (options.packagedClasses) {
+    for (const [source, namespace] of [['order-api', 'demo.alpha'], ['order-worker', 'demo.beta']] as const) {
+      await writeFile(path.join(fixture.root, 'sources', source, 'src/main/java/Shared.java'),
+        `package ${namespace};\npublic class Shared {\n  public String run(String value) { return value; }\n  public String run(int value) { return "owned"; }\n  public void stop() {}\n}\n`);
+      fixtureGit(fixture.root, source, ['add', 'src/main/java/Shared.java']); fixtureGit(fixture.root, source, ['commit', '-m', 'Add owned packaged Java methods']);
+    }
+    await writeFile(path.join(fixture.root, 'sources/portal/src/Shared.ts'), 'export function run() { return "owned"; }\n');
+    fixtureGit(fixture.root, 'portal', ['add', 'src/Shared.ts']); fixtureGit(fixture.root, 'portal', ['commit', '-m', 'Add unrelated TypeScript function']);
+  }
   const store = new CatalogStore(path.join(fixture.root, 'symbols-data')), catalog = new Catalog(store), analysis = new CodeAnalysis(catalog);
   t.after(async () => { await analysis.stop(); await catalog.stop(); store.close(); await rm(fixture.root, { recursive: true, force: true }); });
   const sources: string[] = options.volume ? fixture.manifest.sources.map((source: { id: string }) => source.id) : ['portal', 'order-api', 'order-worker'];
   const paths = sources.map(id => path.join(fixture.root, 'sources', id)), preview = await catalog.previewSources(paths);
   await catalog.registerSources({ paths, previewHash: preview.previewHash, requestId: 'sources' });
-  if (options.repeatedClass) store.run("UPDATE sources SET name='same display name' WHERE name IN ('order-api','order-worker')");
+  if (options.repeatedClass || options.packagedClasses) store.run("UPDATE sources SET name='same display name' WHERE name IN ('order-api','order-worker')");
   const index = async (key: string) => { const state = catalog.state(), build = catalog.start(key, state.sourceSetVersion, state.policyVersion); await catalog.idle(); return build.id; };
   const buildId = await index('initial');
   const analyze = async (key: string, id = buildId) => { const run = analysis.start(key, id); await analysis.idle(); return run.id; };
@@ -101,6 +110,37 @@ test('a paused repeat does not hide the compatible published inventory for the s
   const repeat = s.analysis.start('repeat', s.buildId); s.analysis.control(repeat.id, 'pause'); await s.analysis.idle();
   assert.equal(s.analysis.get(repeat.id).published, false);
   assert.equal((await lookupCodeSymbols(s.analysis, 'accept', s.buildId)).inventory!.id, published);
+});
+
+test('short Java class and method names preserve packages, overloads and source identity without treating filenames as classes', async t => {
+  const s = await setup(t, { packagedClasses: true }), id = await s.analyze('packaged'), fingerprint = s.analysis.fingerprint;
+  const short = await lookupCodeSymbols(s.analysis, 'Shared.run', s.buildId);
+  assert.equal(short.schemaVersion, 'loredock-code-symbols/2'); assert.equal(short.inventory!.id, id);
+  assert.equal(short.coverage!.matchingSymbols, 4); assert.equal(short.coverage!.matchedSources, 2);
+  assert.deepEqual(short.matches.map(match => match.qualifiedName), ['demo.alpha.Shared.run', 'demo.beta.Shared.run', 'demo.alpha.Shared.run', 'demo.beta.Shared.run']);
+  assert.equal(new Set(short.matches.map(match => match.id)).size, 4); assert.equal(new Set(short.matches.map(match => match.sourceId)).size, 2);
+  assert.deepEqual([...new Set(short.matches.map(match => match.sourceName))], ['same display name']);
+  const full = await lookupCodeSymbols(s.analysis, 'demo.alpha.Shared.run', s.buildId);
+  assert.equal(full.matches.length, 2); assert.deepEqual(full.matches, short.matches.filter(match => match.qualifiedName === 'demo.alpha.Shared.run'));
+  assert.notEqual(full.matches[0]!.range.startLine, full.matches[1]!.range.startLine);
+  const className = await lookupCodeSymbols(s.analysis, 'Shared', s.buildId); assert.equal(className.matches.length, 6);
+  assert.equal(className.matches.filter(match => match.name === 'stop').length, 2);
+  assert.equal((await lookupCodeSymbols(s.analysis, 'demo.alpha.Shared', s.buildId)).matches.length, 3);
+  const simple = await lookupCodeSymbols(s.analysis, 'run', s.buildId);
+  assert.equal(simple.matches.length, 5); assert.equal(simple.matches.filter(match => match.sourceName === 'portal').length, 1);
+  for (const query of ['shared.run', 'Shared.RUN', 'alpha.Shared.run', 'demo.alpha', 'Shared.*', 'Shared.run()']) {
+    assert.equal((await lookupCodeSymbols(s.analysis, query, s.buildId)).matches.length, 0);
+  }
+  for (const match of className.matches) for (const ref of match.evidence) {
+    const original = s.catalog.evidence(ref.id); assert.equal(original.sourceId, match.sourceId); assert.equal(original.path, 'src/main/java/Shared.java');
+    assert.equal(original.revision, match.revision); assert.ok(ref.startLine <= match.range.endLine && ref.endLine >= match.range.startLine);
+  }
+  assert.equal(s.analysis.fingerprint, fingerprint); assert.deepEqual(s.analysis.list().map(run => run.id), [id]);
+  const app = createApp(s.catalog, { codeAnalysis: s.analysis }), base = 'http://127.0.0.1:4244';
+  const session = await app.request(base + '/api/session', { method: 'POST', headers: { host: '127.0.0.1:4244', origin: base, 'x-loredock-client': 'web' } });
+  const response = await app.request(base + '/api/code-symbols?q=Shared.run&buildId=' + s.buildId, { headers: { host: '127.0.0.1:4244', cookie: session.headers.get('set-cookie')!.split(';')[0]! } });
+  assert.equal(response.status, 200); assert.deepEqual(await response.json(), short);
+  assert.equal(s.store.all('SELECT id FROM answer_attempts').length, 0);
 });
 
 test('revocation, policy changes and inventory eviction during a yielded lookup prevent publication', async t => {

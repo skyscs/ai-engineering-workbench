@@ -118,8 +118,11 @@ independent text results. Original support, bounded scans and late-result fences
 [Task 048](tasks/048-loredock-symbol-search-qualification.md) qualifies all 3,621 retained
 files in eighteen lookups, with identical repeats and 818/865 ms median/max local latency.
 The prospectively amended oracle passes 18/18; the original 16/18 naming error remains recorded.
-Next: familiar short Java class/method lookup with complete qualified identity and explicit
-ambiguity, before extending broader retrieval.
+[Task 049](tasks/049-loredock-short-java-symbols.md) adds exact short Java class/method
+aliases while retaining full identities, overloads and source ambiguity under query v2.
+Compatible inventories remain usable without reanalysis.
+Next: an isolated one-command synthetic demo for manual exploration without twenty path
+inputs, before extending broader retrieval.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
