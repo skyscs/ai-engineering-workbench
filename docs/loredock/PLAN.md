@@ -107,8 +107,11 @@ reanalysis. [Task 050](../../tasks/050-loredock-synthetic-demo.md) adds `pnpm lo
 with twenty prepared sources, isolated retained data and model mode forced off. The owner
 requested independent synthetic work while manual feedback is unavailable.
 [Task 051](../../tasks/051-loredock-storage-audit.md) adds read-only storage accounting and
-measures refresh copies and reusable free pages without changing history. Next: explicit
-offline compaction, then prospective deduplication/retention design. Keep the prepared
+measures refresh copies and reusable free pages without changing history.
+[Task 052](../../tasks/052-loredock-offline-compaction.md) reclaims already-free pages through
+explicit offline compaction, preserving logical rows, rankings and citations. Next:
+prospective deduplication experiments with query/provenance/purge equivalence; explicit
+retention needs separate dependency rules. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.
 No tuning on observed model answers is included.

@@ -17,6 +17,7 @@
     "loredock": "pnpm --filter @loredock/daemon start",
     "loredock:demo": "pnpm build && node scripts/loredock-demo.mjs",
     "loredock:storage": "node scripts/loredock-storage.mjs",
+    "loredock:compact": "node scripts/loredock-compact.mjs",
     "loredock:dev": "LOREDOCK_DEVELOPMENT=1 pnpm --parallel --filter '@loredock/*' dev"
   }
 }

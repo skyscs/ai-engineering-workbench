@@ -1,6 +1,6 @@
 # Task 052 — Explicit offline compaction without history deletion
 
-Status: in progress, 2026-11-01.
+Status: implemented and locally verified, 2026-11-01. Scope: `b2d9332`.
 
 Task 051 measured 90,112 reusable bytes after source removal in the small twenty-source
 catalog. SQLite reuses those pages but does not shrink the database file automatically.
@@ -34,3 +34,21 @@ Reopen normally and verify refresh reuse still works. Test actual CLI invocation
 retain a compiled smoke report. Run strict checks, all tests/builds, review/create PR and
 merge after both exact-head CI events pass. Follow with prospective deduplication/retention
 work; owner feedback and independent semantic acceptance remain separate.
+
+## Outcome
+
+The explicit schema-8 command acquires existing daemon ownership, reports a no-op without
+free pages, or performs quick checks, checkpoints and one VACUUM. It preserves all logical
+history and never recovers jobs or stops another owner. Read-only accounting also checks
+the remaining standard SQLite journal/owner sidecar paths before opening a connection.
+
+Strict types, 407 tests and builds pass, including four new integration scenarios and
+the final eight-test storage regression run. Every logical table, FTS ranking, historical/
+current citation, code inventory and engineer note survives the owned pressure scenario;
+all thirteen remaining indexed files are reusable on the next refresh. The real package
+command reclaims 126,976 bytes on the separate twenty-source smoke. User demo data and its
+live process are untouched. See [verification](../docs/fixtures/loredock-storage-compaction/README.md)
+and [ADR 0045](../docs/decisions/0045-loredock-offline-storage-maintenance.md).
+
+Next: prospective deduplication/retention design. Compaction does not cap history growth;
+manual product feedback and semantic acceptance remain open.

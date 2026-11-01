@@ -3,7 +3,8 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {DatabaseSync} from 'node:sqlite';
 
-const databaseFiles = ['loredock.db', 'loredock.db-wal', 'loredock.db-shm', '.owner.db', '.owner.db-journal'];
+const databaseFiles = ['loredock.db', 'loredock.db-wal', 'loredock.db-shm', 'loredock.db-journal',
+  '.owner.db', '.owner.db-journal', '.owner.db-wal', '.owner.db-shm'];
 function regularFile(file, required = false) {
   try {
     const stat = lstatSync(file);

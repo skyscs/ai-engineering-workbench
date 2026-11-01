@@ -1,0 +1,285 @@
+{
+  "schemaVersion": "loredock-compaction-smoke/1",
+  "checkedAt": "2026-11-01T14:57:21.253Z",
+  "sourceCount": 20,
+  "modelRequests": 0,
+  "originalPreserved": true,
+  "generationsPreserved": true,
+  "usedPackageCommand": true,
+  "compactionScriptSha256": "5a1f6cd0bb8a2cb22a5ff8ebbc9be35132500b1b961ff9f7fa1380b499e531e2",
+  "report": {
+    "schemaVersion": "loredock-storage-compaction/1",
+    "completedAt": "2026-11-01T14:57:21.235Z",
+    "status": "compacted",
+    "reclaimedSqliteBytes": 126976,
+    "before": {
+      "schemaVersion": "loredock-storage-audit/1",
+      "capturedAt": "2026-11-01T14:57:21.225Z",
+      "databaseVersion": 8,
+      "sqlite": {
+        "pageSize": 4096,
+        "pages": 205,
+        "freePages": 22,
+        "allocatedBytes": 839680,
+        "freePageBytes": 90112,
+        "allocations": {
+          "answers": 20480,
+          "catalogAndOtherMetadata": 86016,
+          "codeInventory": 36864,
+          "engineerReview": 53248,
+          "originalsAndFileMetadata": 217088,
+          "questionSearch": 147456,
+          "literalSearch": 98304,
+          "originalSpans": 90112
+        },
+        "unassignedBytes": 0
+      },
+      "payloads": {
+        "originals": {
+          "rows": 278,
+          "bytes": 30446
+        },
+        "fileMetadata": {
+          "rows": 278,
+          "bytes": 6368
+        },
+        "spans": {
+          "rows": 146,
+          "bytes": 30300
+        },
+        "literalSearch": {
+          "rows": 146,
+          "bytes": 30300
+        },
+        "questionSearch": {
+          "rows": 146,
+          "bytes": 65690
+        },
+        "codeFacts": {
+          "rows": 0,
+          "bytes": 0
+        },
+        "answerContexts": {
+          "rows": 0,
+          "bytes": 0
+        },
+        "answerResults": {
+          "rows": 0,
+          "bytes": 0
+        },
+        "engineerNotes": {
+          "rows": 0,
+          "bytes": 0
+        }
+      },
+      "generations": {
+        "total": 2,
+        "published": 2,
+        "unfinished": 0,
+        "currentPointer": 1
+      },
+      "dependencies": {
+        "meaning": "Overlapping generation counts, not deletion eligibility.",
+        "withAnswerAttempts": 0,
+        "withEngineerReview": 0,
+        "withCodeInventories": 2,
+        "usedAsRefreshBaseline": 1,
+        "withReusedFileReferences": 1
+      },
+      "duplicateCandidates": {
+        "meaning": "Same stored hash and byte length only; neither verified equality nor reclaimable disk space.",
+        "originals": {
+          "extraCopies": 74,
+          "bytes": 15449
+        },
+        "spans": {
+          "extraCopies": 74,
+          "bytes": 15375
+        }
+      },
+      "disk": {
+        "sampledAt": "2026-11-01T14:57:21.226Z",
+        "files": [
+          {
+            "name": "loredock.db",
+            "bytes": 839680
+          },
+          {
+            "name": "loredock.db-wal",
+            "bytes": 0
+          },
+          {
+            "name": "loredock.db-shm",
+            "bytes": 32768
+          },
+          {
+            "name": "loredock.db-journal",
+            "bytes": null
+          },
+          {
+            "name": ".owner.db",
+            "bytes": 0
+          },
+          {
+            "name": ".owner.db-journal",
+            "bytes": 512
+          },
+          {
+            "name": ".owner.db-wal",
+            "bytes": null
+          },
+          {
+            "name": ".owner.db-shm",
+            "bytes": null
+          }
+        ],
+        "observedFileBytes": 872960
+      },
+      "limits": [
+        "SQLite values describe one read snapshot; separately sampled sidecar lengths can change while LoreDock runs.",
+        "Disk values are file lengths for the listed database files only, not allocated filesystem blocks or a directory total.",
+        "Payload bytes are selected UTF-8/BLOB contents inside SQLite allocation. Do not add them to page or disk totals.",
+        "Payload row counts include records with null content; bytes count only retained content.",
+        "History has no automatic retention limit. This report does not delete, compact, checkpoint, migrate or restart work.",
+        "A read-only SQLite connection may maintain shared-memory bookkeeping; this is not a forensic disk acquisition."
+      ]
+    },
+    "after": {
+      "schemaVersion": "loredock-storage-audit/1",
+      "capturedAt": "2026-11-01T14:57:21.234Z",
+      "databaseVersion": 8,
+      "sqlite": {
+        "pageSize": 4096,
+        "pages": 174,
+        "freePages": 0,
+        "allocatedBytes": 712704,
+        "freePageBytes": 0,
+        "allocations": {
+          "answers": 20480,
+          "catalogAndOtherMetadata": 86016,
+          "codeInventory": 36864,
+          "engineerReview": 53248,
+          "originalsAndFileMetadata": 200704,
+          "questionSearch": 135168,
+          "literalSearch": 94208,
+          "originalSpans": 86016
+        },
+        "unassignedBytes": 0
+      },
+      "payloads": {
+        "originals": {
+          "rows": 278,
+          "bytes": 30446
+        },
+        "fileMetadata": {
+          "rows": 278,
+          "bytes": 6368
+        },
+        "spans": {
+          "rows": 146,
+          "bytes": 30300
+        },
+        "literalSearch": {
+          "rows": 146,
+          "bytes": 30300
+        },
+        "questionSearch": {
+          "rows": 146,
+          "bytes": 65690
+        },
+        "codeFacts": {
+          "rows": 0,
+          "bytes": 0
+        },
+        "answerContexts": {
+          "rows": 0,
+          "bytes": 0
+        },
+        "answerResults": {
+          "rows": 0,
+          "bytes": 0
+        },
+        "engineerNotes": {
+          "rows": 0,
+          "bytes": 0
+        }
+      },
+      "generations": {
+        "total": 2,
+        "published": 2,
+        "unfinished": 0,
+        "currentPointer": 1
+      },
+      "dependencies": {
+        "meaning": "Overlapping generation counts, not deletion eligibility.",
+        "withAnswerAttempts": 0,
+        "withEngineerReview": 0,
+        "withCodeInventories": 2,
+        "usedAsRefreshBaseline": 1,
+        "withReusedFileReferences": 1
+      },
+      "duplicateCandidates": {
+        "meaning": "Same stored hash and byte length only; neither verified equality nor reclaimable disk space.",
+        "originals": {
+          "extraCopies": 74,
+          "bytes": 15449
+        },
+        "spans": {
+          "extraCopies": 74,
+          "bytes": 15375
+        }
+      },
+      "disk": {
+        "sampledAt": "2026-11-01T14:57:21.235Z",
+        "files": [
+          {
+            "name": "loredock.db",
+            "bytes": 712704
+          },
+          {
+            "name": "loredock.db-wal",
+            "bytes": 0
+          },
+          {
+            "name": "loredock.db-shm",
+            "bytes": 32768
+          },
+          {
+            "name": "loredock.db-journal",
+            "bytes": null
+          },
+          {
+            "name": ".owner.db",
+            "bytes": 0
+          },
+          {
+            "name": ".owner.db-journal",
+            "bytes": 512
+          },
+          {
+            "name": ".owner.db-wal",
+            "bytes": null
+          },
+          {
+            "name": ".owner.db-shm",
+            "bytes": null
+          }
+        ],
+        "observedFileBytes": 745984
+      },
+      "limits": [
+        "SQLite values describe one read snapshot; separately sampled sidecar lengths can change while LoreDock runs.",
+        "Disk values are file lengths for the listed database files only, not allocated filesystem blocks or a directory total.",
+        "Payload bytes are selected UTF-8/BLOB contents inside SQLite allocation. Do not add them to page or disk totals.",
+        "Payload row counts include records with null content; bytes count only retained content.",
+        "History has no automatic retention limit. This report does not delete, compact, checkpoint, migrate or restart work.",
+        "A read-only SQLite connection may maintain shared-memory bookkeeping; this is not a forensic disk acquisition."
+      ]
+    },
+    "limits": [
+      "This explicit operation keeps logical records and history; it does not impose a total storage quota.",
+      "Only already-free SQLite pages trigger compaction. Actual savings also depend on page layout.",
+      "A failure can leave completed checkpoint or compaction work in place. No automatic retry or job recovery is performed."
+    ]
+  }
+}
