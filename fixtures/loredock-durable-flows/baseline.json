@@ -1,0 +1,3425 @@
+{
+  "schemaVersion": "loredock-durable-flow-contract/1",
+  "productionBase": "7e8c921ccb0640daaac3fafaef81c7aab482cf0f",
+  "sourceHashes": {
+    "fixtures/loredock-durable-flows/corpus.mjs": "37911290fe046af29b4e358ff7b72cb61a3bf152cf0cbf996cda3d24d44c00a6",
+    "fixtures/loredock-durable-flows/DESIGN.md": "db302e93b2f6155a7f8ebd8fe49aa6f5436efc423ab57141050ec352ba71d5bb",
+    "scripts/loredock-fixture.mjs": "fb358947824d1b6df46a04bcc6ddface0660e4141d0782844e0e2e0f481540b7",
+    "fixtures/loredock/oracle.mjs": "20ae9b3dcd237fadccb195b72a31c1d7e610b2a666b5576f73969b159a66c3aa",
+    "pnpm-lock.yaml": "7518f6697e3a529114fd835acbe23df2251e1ed25d6077f94d541409876d9312",
+    "fixtures/loredock/repos/portal/README.md": "4dfe0f8ac50f0e8b4584e0921c5a89bc684da3f98f9adc3575f0ae17e1c9fd21",
+    "fixtures/loredock/repos/portal/package.json": "5f63d7d05c7735f4c3622fb837b73a7687fc98568d045ba2a7435d7ea6eb5ff9",
+    "fixtures/loredock/repos/portal/src/Checkout.vue": "9ad7d244165172b4eb462d0caeb022f0f56a74db743e8ec28be9e8b030e2ba88",
+    "fixtures/loredock/repos/portal/src/orders.ts": "39e7b2a6ae1d45a2fbdc3903cd9f4d8c79419c6ba5f72c40de7aca6b5d0da410",
+    "fixtures/loredock/repos/portal/legacy/orders.js": "6d02218565b2f0d038ea728d6864dbb7d74646ceed19a1d33fb3e131a3a9a293",
+    "fixtures/loredock/repos/portal/config/local.json": "37c4ae84a8ccb522960504104dc3e316ec96e96c086bee933642fcdd3fe6b608",
+    "fixtures/loredock/repos/order-api/README.md": "0bdd3acf2cde47a3fe1e587e9bcf8bb0d749e2507c5e0633a6aa30073d479e61",
+    "fixtures/loredock/repos/order-api/pom.xml": "b172e59a5d5d42a72e5ea68af530d6ba7ba489d92de52dba4d2a636febdf1781",
+    "fixtures/loredock/repos/order-api/config/routes.json": "161e949a54ab2ab99648cd5dd07de4c4115d554d411e85dfc919412877e00a5e",
+    "fixtures/loredock/repos/order-api/config/local.json": "d407e198084d63c25904025f9420ab898b3660c545e90999124137dbfc7d865f",
+    "fixtures/loredock/repos/order-api/src/main/java/Orders.java": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c",
+    "fixtures/loredock/repos/order-api/contracts/OrderPlaced.json": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+    "fixtures/loredock/repos/order-api/notes/source-instructions.txt": "06c1a905e0574514e3aed8d0ef9961c502904d7d22f79916e8e5628789536375",
+    "fixtures/loredock/repos/order-worker/README.md": "1fe2344c9f7d46ff007c9eb29b363b6a5a89be1e5312548ffa27ff982beb1794",
+    "fixtures/loredock/repos/order-worker/pom.xml": "4b2c11e0362e4b34f4f29f36a753437208f56a3f83536ad9664fcb1bd9fe7758",
+    "fixtures/loredock/repos/order-worker/config/local.json": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49",
+    "fixtures/loredock/repos/order-worker/src/main/java/OrderConsumer.java": "bc2c347b007865acd3044b52dba791f7f37abd235f5c406c06b4cf2f3516dfb0",
+    "fixtures/loredock/repos/order-worker/contracts/OrderPlaced.json": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79",
+    "apps/loredock/src/code-flows.ts": "c94ed41d6cbc86e26f7997b852eb92df32e2fb3e443a044559a52c4d80274a7f",
+    "apps/loredock/src/code-analysis.ts": "45485d1b1e5534546d8d40504d7d04090442ce6298142222740ba9942e5764da",
+    "apps/loredock/src/code-analysis-facts.ts": "82fb810a3fa6a790538925cb5431c1ccc08b7e096229378fe95d0e91b85d5167",
+    "apps/loredock/src/code-analysis-types.ts": "505bd871b64f3ee5be89375da6acf02cbc36966c3a10ad4c7cc4d63f8a2f8192",
+    "apps/loredock/src/code-facts.ts": "38227b1619f13457b45883dcba6dd9316c62a2fa72ef858b51a77779287a2151",
+    "apps/loredock/src/code-typescript.ts": "773a8ced3b8e304c7d306fa9a91e060ce7da7194ebcde5a4ccb5aa12f9c1a5ad",
+    "apps/loredock/src/code-java.ts": "d51ff800a32a513f1e3a8eed7015d9be96817fef00c9eb1f70ff2f06b5d92389",
+    "apps/loredock/src/map-document.ts": "741ddd865b8c7ac63082f67200d3e5b55d74fa1cc9ce156b84aaa328165aede7",
+    "apps/loredock/src/extract.ts": "0909a4884ff9a82bd9eaaa6b625c7044f69eba3f3c53771b16668c2cdd3e6c2b",
+    "apps/loredock/src/system-map.ts": "1ebb790be8568cfd97bab092cdb5e454f684405617258d2db6c16e8766c212b8",
+    "apps/loredock/src/http-headers.ts": "967bddace78b2c472401e4a490b08ca7cfc44eae725a537d52c7b102ebbdb1a9"
+  },
+  "generated": {
+    "small": {
+      "files": [
+        {
+          "source": "portal",
+          "path": "README.md",
+          "bytes": 327,
+          "hash": "4dfe0f8ac50f0e8b4584e0921c5a89bc684da3f98f9adc3575f0ae17e1c9fd21"
+        },
+        {
+          "source": "portal",
+          "path": "package.json",
+          "bytes": 257,
+          "hash": "5f63d7d05c7735f4c3622fb837b73a7687fc98568d045ba2a7435d7ea6eb5ff9"
+        },
+        {
+          "source": "portal",
+          "path": "src/Checkout.vue",
+          "bytes": 275,
+          "hash": "9ad7d244165172b4eb462d0caeb022f0f56a74db743e8ec28be9e8b030e2ba88"
+        },
+        {
+          "source": "portal",
+          "path": "src/orders.ts",
+          "bytes": 383,
+          "hash": "39e7b2a6ae1d45a2fbdc3903cd9f4d8c79419c6ba5f72c40de7aca6b5d0da410"
+        },
+        {
+          "source": "portal",
+          "path": "legacy/orders.js",
+          "bytes": 309,
+          "hash": "6d02218565b2f0d038ea728d6864dbb7d74646ceed19a1d33fb3e131a3a9a293"
+        },
+        {
+          "source": "portal",
+          "path": "config/local.json",
+          "bytes": 95,
+          "hash": "37c4ae84a8ccb522960504104dc3e316ec96e96c086bee933642fcdd3fe6b608"
+        },
+        {
+          "source": "order-api",
+          "path": "README.md",
+          "bytes": 439,
+          "hash": "0bdd3acf2cde47a3fe1e587e9bcf8bb0d749e2507c5e0633a6aa30073d479e61"
+        },
+        {
+          "source": "order-api",
+          "path": "pom.xml",
+          "bytes": 389,
+          "hash": "b172e59a5d5d42a72e5ea68af530d6ba7ba489d92de52dba4d2a636febdf1781"
+        },
+        {
+          "source": "order-api",
+          "path": "config/routes.json",
+          "bytes": 240,
+          "hash": "161e949a54ab2ab99648cd5dd07de4c4115d554d411e85dfc919412877e00a5e"
+        },
+        {
+          "source": "order-api",
+          "path": "config/local.json",
+          "bytes": 103,
+          "hash": "d407e198084d63c25904025f9420ab898b3660c545e90999124137dbfc7d865f"
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "bytes": 792,
+          "hash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c"
+        },
+        {
+          "source": "order-api",
+          "path": "contracts/OrderPlaced.json",
+          "bytes": 226,
+          "hash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79"
+        },
+        {
+          "source": "order-api",
+          "path": "notes/source-instructions.txt",
+          "bytes": 250,
+          "hash": "06c1a905e0574514e3aed8d0ef9961c502904d7d22f79916e8e5628789536375"
+        },
+        {
+          "source": "order-worker",
+          "path": "README.md",
+          "bytes": 394,
+          "hash": "1fe2344c9f7d46ff007c9eb29b363b6a5a89be1e5312548ffa27ff982beb1794"
+        },
+        {
+          "source": "order-worker",
+          "path": "pom.xml",
+          "bytes": 392,
+          "hash": "4b2c11e0362e4b34f4f29f36a753437208f56a3f83536ad9664fcb1bd9fe7758"
+        },
+        {
+          "source": "order-worker",
+          "path": "config/local.json",
+          "bytes": 162,
+          "hash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49"
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "bytes": 926,
+          "hash": "bc2c347b007865acd3044b52dba791f7f37abd235f5c406c06b4cf2f3516dfb0"
+        },
+        {
+          "source": "order-worker",
+          "path": "contracts/OrderPlaced.json",
+          "bytes": 226,
+          "hash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79"
+        }
+      ],
+      "support": [
+        {
+          "source": "portal",
+          "path": "src/Checkout.vue",
+          "kind": "symbol",
+          "literal": "const submit =",
+          "label": "submit",
+          "line": 4
+        },
+        {
+          "source": "portal",
+          "path": "src/orders.ts",
+          "kind": "http-request",
+          "literal": "const response = await fetch(",
+          "label": "POST /api/orders",
+          "line": 2
+        },
+        {
+          "source": "portal",
+          "path": "legacy/orders.js",
+          "kind": "http-request",
+          "literal": "return request.post('/legacy/orders'",
+          "label": "POST /legacy/orders",
+          "line": 3
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "kind": "symbol",
+          "literal": "Accepted accept(",
+          "label": "Orders.accept",
+          "line": 13
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "kind": "event-publish",
+          "literal": "publisher.publish(",
+          "label": "Publish OrderPlaced",
+          "line": 15
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "kind": "event-subscribe",
+          "literal": "kafka.subscribe(",
+          "label": "Subscribe via KafkaSubscriber",
+          "line": 12
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "kind": "document-write",
+          "literal": "collection.replaceOne(",
+          "label": "MongoCollection.replaceOne",
+          "line": 16
+        }
+      ]
+    },
+    "long-path": {
+      "files": [
+        {
+          "source": "portal",
+          "path": "README.md",
+          "bytes": 327,
+          "hash": "4dfe0f8ac50f0e8b4584e0921c5a89bc684da3f98f9adc3575f0ae17e1c9fd21"
+        },
+        {
+          "source": "portal",
+          "path": "package.json",
+          "bytes": 257,
+          "hash": "5f63d7d05c7735f4c3622fb837b73a7687fc98568d045ba2a7435d7ea6eb5ff9"
+        },
+        {
+          "source": "portal",
+          "path": "src/Checkout.vue",
+          "bytes": 275,
+          "hash": "9ad7d244165172b4eb462d0caeb022f0f56a74db743e8ec28be9e8b030e2ba88"
+        },
+        {
+          "source": "portal",
+          "path": "src/orders.ts",
+          "bytes": 383,
+          "hash": "39e7b2a6ae1d45a2fbdc3903cd9f4d8c79419c6ba5f72c40de7aca6b5d0da410"
+        },
+        {
+          "source": "portal",
+          "path": "legacy/orders.js",
+          "bytes": 309,
+          "hash": "6d02218565b2f0d038ea728d6864dbb7d74646ceed19a1d33fb3e131a3a9a293"
+        },
+        {
+          "source": "portal",
+          "path": "config/local.json",
+          "bytes": 95,
+          "hash": "37c4ae84a8ccb522960504104dc3e316ec96e96c086bee933642fcdd3fe6b608"
+        },
+        {
+          "source": "portal",
+          "path": "a000.ts",
+          "bytes": 40,
+          "hash": "a9aaa83c1597f2a84dbce5a7e6b38f9b8dbb9ba131265a3a15a1e54b47ba143c"
+        },
+        {
+          "source": "portal",
+          "path": "a001.ts",
+          "bytes": 40,
+          "hash": "91487fad9120359bf39fdd88c12f13850b62388a2236e4026ce07c5964c15540"
+        },
+        {
+          "source": "portal",
+          "path": "a002.ts",
+          "bytes": 40,
+          "hash": "7d202ea44ae3f929e5ca528a89e11f21ee2a5af54c22fce5a6e49fe1144ce59e"
+        },
+        {
+          "source": "portal",
+          "path": "a003.ts",
+          "bytes": 40,
+          "hash": "626575951f3b3653dbcbf8d60674433412d2ea8a7439dea316203b77b128e8e7"
+        },
+        {
+          "source": "portal",
+          "path": "a004.ts",
+          "bytes": 40,
+          "hash": "d5aca421da0d364c9dc3d938c906a1c315dd27762395fca63fb9a181dc4a791a"
+        },
+        {
+          "source": "portal",
+          "path": "a005.ts",
+          "bytes": 40,
+          "hash": "955b20bc29919fa4c7a09b8bb526c86ba5b673cd63d11a7af1c150f83ec99966"
+        },
+        {
+          "source": "portal",
+          "path": "a006.ts",
+          "bytes": 40,
+          "hash": "23ec609eb99462186296ca029104b9eac14ec7727bf74ff3a436cbefc4b76080"
+        },
+        {
+          "source": "portal",
+          "path": "a007.ts",
+          "bytes": 40,
+          "hash": "a158fdb50620debf32ccc7452dbe2321085a6998e22cd35555beb701dcaf0921"
+        },
+        {
+          "source": "portal",
+          "path": "a008.ts",
+          "bytes": 40,
+          "hash": "09e95330b8153e088444f72c52f7915be6bb986e5630ca2a64e38bd92a6aa798"
+        },
+        {
+          "source": "portal",
+          "path": "a009.ts",
+          "bytes": 40,
+          "hash": "813ae2ae341635032122d3328815bcef33403b4e8a2cb18caf5030f3f081e0fd"
+        },
+        {
+          "source": "portal",
+          "path": "a010.ts",
+          "bytes": 42,
+          "hash": "13857c8604fcacde3f9a584d069c9ac1fd64d267763c5ba9fc7b0e14b9616b01"
+        },
+        {
+          "source": "portal",
+          "path": "a011.ts",
+          "bytes": 42,
+          "hash": "3871c030a81abb1854036948257e6d515c61f5fe9c0a34ef592748f5da6b45a8"
+        },
+        {
+          "source": "portal",
+          "path": "a012.ts",
+          "bytes": 42,
+          "hash": "c31be9fb4a4f927c777084c37070c6164e604b0dccf7e712d6f46f6ac822d259"
+        },
+        {
+          "source": "portal",
+          "path": "a013.ts",
+          "bytes": 42,
+          "hash": "b8e6733626c2b08494a3abbefcb019372f9873d6c47fb597751fa35288e8ea99"
+        },
+        {
+          "source": "portal",
+          "path": "a014.ts",
+          "bytes": 42,
+          "hash": "4ca0500fe5850c8a2b6ce2a321450cf6a1bfeb990e6a6e19ca344035bfcbe957"
+        },
+        {
+          "source": "portal",
+          "path": "a015.ts",
+          "bytes": 42,
+          "hash": "b6c5af48ce78225da9f81949ab015dd6bfa166258d16f9bbfa549b9ccedf59f3"
+        },
+        {
+          "source": "portal",
+          "path": "a016.ts",
+          "bytes": 42,
+          "hash": "510f1d3aab83e46dbb3fada50433a85f4c30bf7809b7a59744050c7b5eb400f1"
+        },
+        {
+          "source": "portal",
+          "path": "a017.ts",
+          "bytes": 42,
+          "hash": "4ddb0d7a8e112ed8f40f1a16142fc8a24d056638295f8c8974bb6ad10365d1ba"
+        },
+        {
+          "source": "portal",
+          "path": "a018.ts",
+          "bytes": 42,
+          "hash": "ea8cae835fb3e54832eae6dca82acff88491ebf4124b8197dc2da214ad789acc"
+        },
+        {
+          "source": "portal",
+          "path": "a019.ts",
+          "bytes": 42,
+          "hash": "f9fa3b9532561dd734fdb6f06052fc08ce4599262071551d7850e9da69859a9b"
+        },
+        {
+          "source": "portal",
+          "path": "a020.ts",
+          "bytes": 42,
+          "hash": "913395583ccfe7d93271c7883ce13dd1de51e5535eaa8047ad21942929d93d0b"
+        },
+        {
+          "source": "portal",
+          "path": "a021.ts",
+          "bytes": 42,
+          "hash": "200985956239d273c880672a0f078ae08cd98b637c9a5649ff984b9a97f7c782"
+        },
+        {
+          "source": "portal",
+          "path": "a022.ts",
+          "bytes": 42,
+          "hash": "619c3a58160225a64bb2c03a07a536da192df0717eab608e97b42a25e8f134f5"
+        },
+        {
+          "source": "portal",
+          "path": "a023.ts",
+          "bytes": 42,
+          "hash": "f5f96645b9bd761cfc47001a39fc77000f07d0d36cf3d7eb25ad7164a51056ee"
+        },
+        {
+          "source": "portal",
+          "path": "a024.ts",
+          "bytes": 42,
+          "hash": "f54c9786d1372301a1ff59219f9f1940285684f783be0ec2e3afade3ab5a3ada"
+        },
+        {
+          "source": "portal",
+          "path": "a025.ts",
+          "bytes": 42,
+          "hash": "5648d43a4d1640e3b37e29c58296eea7b84215e3b0ccab63493a2efdcefa55b3"
+        },
+        {
+          "source": "portal",
+          "path": "a026.ts",
+          "bytes": 42,
+          "hash": "84b0354c45f39cfe72d5be5ba1c0ac97e9e1cad5fff333b82817f3fc3ad1b713"
+        },
+        {
+          "source": "portal",
+          "path": "a027.ts",
+          "bytes": 42,
+          "hash": "76b60463ef4942ac4c20fee3d1bc5ac02eacf0d7afc435db64ee1aff3273d99e"
+        },
+        {
+          "source": "portal",
+          "path": "a028.ts",
+          "bytes": 42,
+          "hash": "97418e35675bab5d3b1aa97fd590dca75bc8712ddfe4002d9caeb06931d3efed"
+        },
+        {
+          "source": "portal",
+          "path": "a029.ts",
+          "bytes": 42,
+          "hash": "2877ecf40bd66cf0dd1bf78c1aee82e5bb4264684a6bafeafa2c62e5d907055c"
+        },
+        {
+          "source": "portal",
+          "path": "a030.ts",
+          "bytes": 42,
+          "hash": "db721603e0215c1dbac4b4f06789eb24e472ecf9f22288f40fb051cfb93cd580"
+        },
+        {
+          "source": "portal",
+          "path": "a031.ts",
+          "bytes": 42,
+          "hash": "2c2479d3af36d155ce82d22f672c45ac8cf22fa3c733ea4f847bc780852d5f7e"
+        },
+        {
+          "source": "portal",
+          "path": "a032.ts",
+          "bytes": 42,
+          "hash": "4decb2a28e2196f370d1349011fdc6487c48f1757d45f884f9342e9142ee1569"
+        },
+        {
+          "source": "portal",
+          "path": "a033.ts",
+          "bytes": 42,
+          "hash": "99aa6e1ffdfdd8432b07a1e497c642b5fe5997b1eaf20adc24e27d962c05c05a"
+        },
+        {
+          "source": "portal",
+          "path": "a034.ts",
+          "bytes": 42,
+          "hash": "1f4ac050b77c6b333d3ebed9750246ff387e37e9970543bced815f0ce914c6ff"
+        },
+        {
+          "source": "portal",
+          "path": "a035.ts",
+          "bytes": 42,
+          "hash": "740af6cceb3a3fa1e55bd5c859e06d2056e57f8a699abdc12e73eaf0572ae80f"
+        },
+        {
+          "source": "portal",
+          "path": "a036.ts",
+          "bytes": 42,
+          "hash": "5155edf4b627c4a8fec7385898172ee6b02049ef5bee9112e1668c94ba1e2e73"
+        },
+        {
+          "source": "portal",
+          "path": "a037.ts",
+          "bytes": 42,
+          "hash": "03b30a0abb61ae7738f02977ba5d9f585d767f201793564bf0e8c376931d033e"
+        },
+        {
+          "source": "portal",
+          "path": "a038.ts",
+          "bytes": 42,
+          "hash": "edee12935343117dd9f7e4573761a7d2c52214d619dd4410634bc45f49a4c7ed"
+        },
+        {
+          "source": "portal",
+          "path": "a039.ts",
+          "bytes": 42,
+          "hash": "f3e29b32782aec226811b73f02ab4558ed7fc3b81328d45b27035851fd73f5b7"
+        },
+        {
+          "source": "portal",
+          "path": "a040.ts",
+          "bytes": 42,
+          "hash": "337e77bf6c8495429a2144867f6f7fb71c1c9c5db1983d3f4f0c0bd544dd6b9a"
+        },
+        {
+          "source": "portal",
+          "path": "a041.ts",
+          "bytes": 42,
+          "hash": "0d772767b2d423d1495cab83b4778c8f978436f89c66d4c229508e943ffb8694"
+        },
+        {
+          "source": "portal",
+          "path": "a042.ts",
+          "bytes": 42,
+          "hash": "8c3415910a77f4d35363872f377d949d8ca38dd0626ef60e519db50dd951f4bd"
+        },
+        {
+          "source": "portal",
+          "path": "a043.ts",
+          "bytes": 42,
+          "hash": "8878bc00d4587b7c7c89401912b3ab5fc3a099f5d3225c68483334a1be6572e1"
+        },
+        {
+          "source": "portal",
+          "path": "a044.ts",
+          "bytes": 42,
+          "hash": "42678f99d7a778edcbb8ec145ffbb32369dd584516b8c712f8e5af5263bb0d5f"
+        },
+        {
+          "source": "portal",
+          "path": "a045.ts",
+          "bytes": 42,
+          "hash": "f84de7887da6463bc4226755866b29b863467ba13dd1a3e9d6eda0cac5b8f356"
+        },
+        {
+          "source": "portal",
+          "path": "a046.ts",
+          "bytes": 42,
+          "hash": "43df47e9ace39b7777a40a857b01d03131a596b91ab78491df6caef402f2a717"
+        },
+        {
+          "source": "portal",
+          "path": "a047.ts",
+          "bytes": 42,
+          "hash": "97142d476e98ca277b51fca86069035066cbc8f148d070107836fe30d427de1f"
+        },
+        {
+          "source": "portal",
+          "path": "a048.ts",
+          "bytes": 42,
+          "hash": "f3f44881b0a4e0b61637ccb0a4dc727eb08debcce5957be44ec34c2161182513"
+        },
+        {
+          "source": "portal",
+          "path": "a049.ts",
+          "bytes": 42,
+          "hash": "779ca66c7a268e1f9b8123fe9c973261c37c6324926f0318759cf2ba2d3ac190"
+        },
+        {
+          "source": "portal",
+          "path": "a050.ts",
+          "bytes": 42,
+          "hash": "7aafebd7e8dc60469bbe26a03d62f3c845b1b5c2229b6f81fe93f2bd40282a56"
+        },
+        {
+          "source": "portal",
+          "path": "a051.ts",
+          "bytes": 42,
+          "hash": "02fc76dd677e39bb3d95697b6d47a12c5d28667d9445aca3dc5b3e41699ad056"
+        },
+        {
+          "source": "portal",
+          "path": "a052.ts",
+          "bytes": 42,
+          "hash": "4378252b1022179dcf97964f8265d87c3b87a6592cff9471f223dd7973e1b175"
+        },
+        {
+          "source": "portal",
+          "path": "a053.ts",
+          "bytes": 42,
+          "hash": "b8758c6cadcad58ef42f0d89e3b22ddd5ba348172f777e622062abe30a5bebda"
+        },
+        {
+          "source": "portal",
+          "path": "a054.ts",
+          "bytes": 42,
+          "hash": "00ac0759ca3c913ced2e2a4d8fa5c51e368c9da52e44821c3e09ec2beb7001d6"
+        },
+        {
+          "source": "portal",
+          "path": "a055.ts",
+          "bytes": 42,
+          "hash": "eec0d6be7e7edd060ab089dd4c9b763e9272db55481a2d81de70b5587c0baed4"
+        },
+        {
+          "source": "portal",
+          "path": "a056.ts",
+          "bytes": 42,
+          "hash": "6a603962b2ce4712a0809cf6021713a2ca94b30f96d0ba91b34514065245e6c9"
+        },
+        {
+          "source": "portal",
+          "path": "a057.ts",
+          "bytes": 42,
+          "hash": "f58da75c8e67ba0f9fe796bc16d41a51e1553dea4f2a99725fd3e8088a954c4c"
+        },
+        {
+          "source": "portal",
+          "path": "a058.ts",
+          "bytes": 42,
+          "hash": "6bced01a041d4310421ad6a3390557862b9df947c4366338ec2357566fb5cf33"
+        },
+        {
+          "source": "portal",
+          "path": "a059.ts",
+          "bytes": 42,
+          "hash": "27ab7518387dd8cb8617e3cf9c01741795f82698651c55b534e94301c2cb9ec8"
+        },
+        {
+          "source": "portal",
+          "path": "a060.ts",
+          "bytes": 42,
+          "hash": "93143021b49f17f3d7c7a27fdd7e9eb745b9ecc3e84336525ac8ac35b370be7f"
+        },
+        {
+          "source": "portal",
+          "path": "a061.ts",
+          "bytes": 42,
+          "hash": "14c709b90e47fdea01619f3a93feaf5c5170070ed9146b38aae7aed95a17e629"
+        },
+        {
+          "source": "portal",
+          "path": "a062.ts",
+          "bytes": 42,
+          "hash": "903178bc8189e3f94c290369d0e404b7e219b49338c0eae49ffb1f9a5737495d"
+        },
+        {
+          "source": "portal",
+          "path": "a063.ts",
+          "bytes": 42,
+          "hash": "5e9a412b3decc0f31619f4027973174a898e3a17f00e1b7ae6d862002307acf2"
+        },
+        {
+          "source": "portal",
+          "path": "a064.ts",
+          "bytes": 42,
+          "hash": "b08675b4fb914f04c18e02eb5d38d6e98b7db3682c6c4b0773a36355253be8f9"
+        },
+        {
+          "source": "portal",
+          "path": "a065.ts",
+          "bytes": 42,
+          "hash": "e0e798f15d5ecd93d77656fda80408437ab696b15b6deff4ee0365204a6ed03e"
+        },
+        {
+          "source": "portal",
+          "path": "a066.ts",
+          "bytes": 42,
+          "hash": "597e03593d236cd26f0ed71a529ec1a7d93dee740b909a1b9677be79f7c81597"
+        },
+        {
+          "source": "portal",
+          "path": "a067.ts",
+          "bytes": 42,
+          "hash": "d2d95d57939e06a8afd657a838ca1fcc6eb292f54596cf26742a88e98e2ea5e9"
+        },
+        {
+          "source": "portal",
+          "path": "a068.ts",
+          "bytes": 42,
+          "hash": "3d82892f3c6e0bc1ac8876660162ee5371564babd0943345c84cfaf5d099c375"
+        },
+        {
+          "source": "portal",
+          "path": "a069.ts",
+          "bytes": 42,
+          "hash": "f2b4e290db7c7b3f1f727bc5a6960d420a3578e095bbf564198d9d11c6528090"
+        },
+        {
+          "source": "portal",
+          "path": "a070.ts",
+          "bytes": 42,
+          "hash": "14cf5d8e5416e681cd5563e8b6a5c3fb6c045d3978fe7204c4d4f9509397e7d8"
+        },
+        {
+          "source": "portal",
+          "path": "a071.ts",
+          "bytes": 42,
+          "hash": "6bc6a515a21b14b906efab0a56debd5c5018248ad26665dca648bd0cbdb24dd4"
+        },
+        {
+          "source": "portal",
+          "path": "a072.ts",
+          "bytes": 42,
+          "hash": "16e8bfb7b60652a08ce7c3bea381845a9eb263f6e3cdebc5b2b3588ca68cabdf"
+        },
+        {
+          "source": "portal",
+          "path": "a073.ts",
+          "bytes": 42,
+          "hash": "051119f57dc791146e45ba07e76ecee8e5249472630e0b761105d150321f24f2"
+        },
+        {
+          "source": "portal",
+          "path": "a074.ts",
+          "bytes": 42,
+          "hash": "75e955dae577627bf892f187bd13e55ad4f7752148fdcb7384ee36ae1de5e8a7"
+        },
+        {
+          "source": "portal",
+          "path": "a075.ts",
+          "bytes": 42,
+          "hash": "0df9e19246de4034a4b897a86b383dfbd9e0d88e532d09385bf13661f4467386"
+        },
+        {
+          "source": "portal",
+          "path": "a076.ts",
+          "bytes": 42,
+          "hash": "a03228f8699473689cd68692041d086bfd153e6502fb6c53275325119c7f3e7a"
+        },
+        {
+          "source": "portal",
+          "path": "a077.ts",
+          "bytes": 42,
+          "hash": "34156d691bc4c1666d1106cfa41bfa8773043fcb64a3e318fbc6186ce0063e85"
+        },
+        {
+          "source": "portal",
+          "path": "a078.ts",
+          "bytes": 42,
+          "hash": "e3a8ff8d78bc907fa0746e6b2fd56928f095e7226a812ae3174f1a0505264cab"
+        },
+        {
+          "source": "portal",
+          "path": "a079.ts",
+          "bytes": 42,
+          "hash": "66001b2157513f30ca35ea035f2015f7fd8a9f61c9d6de09fc4f0adeb24b0ec5"
+        },
+        {
+          "source": "portal",
+          "path": "a080.ts",
+          "bytes": 42,
+          "hash": "58c69e6213b9e9b41a48a097777db91115b9cd45e172451e633ade5d06255170"
+        },
+        {
+          "source": "portal",
+          "path": "a081.ts",
+          "bytes": 42,
+          "hash": "af850644960fbdf049c4976b0ccc9e2abb029c4383fccc579082e0f92ef5c20f"
+        },
+        {
+          "source": "portal",
+          "path": "a082.ts",
+          "bytes": 42,
+          "hash": "f769a7b393c05ef4bb2433b87d71d7b5a4ab9b55084fa5a7d916d59af68c6d91"
+        },
+        {
+          "source": "portal",
+          "path": "a083.ts",
+          "bytes": 42,
+          "hash": "5461b4e35349724feefd5d5aba067b6d523487a72b099e9272229242c12c4871"
+        },
+        {
+          "source": "portal",
+          "path": "a084.ts",
+          "bytes": 42,
+          "hash": "f166b72fc5381c900bf738b01c09179b0cd57cf5420097da83c0d1f11830a7ef"
+        },
+        {
+          "source": "portal",
+          "path": "a085.ts",
+          "bytes": 42,
+          "hash": "a22ad75f7c5f50014617e3a5365fa07b9a121a837f57308c6a38287064fe0008"
+        },
+        {
+          "source": "portal",
+          "path": "a086.ts",
+          "bytes": 42,
+          "hash": "08fb13fa344710679ca305e6a40e4ab60823d446929ec4e69ce21d2f2403863a"
+        },
+        {
+          "source": "portal",
+          "path": "a087.ts",
+          "bytes": 42,
+          "hash": "d0dd7bfcabdb26641eb2015d53d269621416c99162f9232584673f1e64658f51"
+        },
+        {
+          "source": "portal",
+          "path": "a088.ts",
+          "bytes": 42,
+          "hash": "f95b16804ddd9e9605175294244aa3b69b9413803edaa26f20b27432a484d17b"
+        },
+        {
+          "source": "portal",
+          "path": "a089.ts",
+          "bytes": 42,
+          "hash": "82aef46e8215ef72aa63c1c2ebe3834dcb031e91c8bb0c15a24f15a2684e8bcf"
+        },
+        {
+          "source": "portal",
+          "path": "a090.ts",
+          "bytes": 42,
+          "hash": "3501ac3892807fd38ad4580c67153a015480b31fd229277c0d57613b93fd4dad"
+        },
+        {
+          "source": "portal",
+          "path": "a091.ts",
+          "bytes": 42,
+          "hash": "ce3bebff9098ec9d61a36c76d4d01733214a5f3e3f7cc07f91cdd48b073668b3"
+        },
+        {
+          "source": "portal",
+          "path": "a092.ts",
+          "bytes": 42,
+          "hash": "9396f47951270a7df381a600c2600592df2b292854ca1ed8830d39750faef5f5"
+        },
+        {
+          "source": "portal",
+          "path": "a093.ts",
+          "bytes": 42,
+          "hash": "2b9311ee2ba746a238440caf68db7ef062185a753aef1b9ba9bdb6bd12dd0661"
+        },
+        {
+          "source": "portal",
+          "path": "a094.ts",
+          "bytes": 42,
+          "hash": "c5ab47f7c38a3eba12ffe05459c2ea4d9857f37c46e540231bfeda9334625981"
+        },
+        {
+          "source": "portal",
+          "path": "a095.ts",
+          "bytes": 42,
+          "hash": "7e1b848d6d9b245b30763f83f2f4f8bd1fc9b8e4097620e70b9b5f24462bc56d"
+        },
+        {
+          "source": "portal",
+          "path": "a096.ts",
+          "bytes": 42,
+          "hash": "fab192fcd9e62b733d6fe2539a9048076df40363d93a6c04773dc2634b617ed7"
+        },
+        {
+          "source": "portal",
+          "path": "a097.ts",
+          "bytes": 42,
+          "hash": "6c62a0a9ca056a6b9552e6ecc80b5bb522340a089508b937e806193048097c3e"
+        },
+        {
+          "source": "portal",
+          "path": "a098.ts",
+          "bytes": 42,
+          "hash": "5894a619e5a98c66008c97d2fab13b78ffeedda44e93615483fae3a6429fc7c2"
+        },
+        {
+          "source": "portal",
+          "path": "a099.ts",
+          "bytes": 42,
+          "hash": "de90f2422c738f480407068cb2099f925665ef43b45dfcd1fc94f0e34955fe32"
+        },
+        {
+          "source": "portal",
+          "path": "a100.ts",
+          "bytes": 44,
+          "hash": "077453f8e82b4d002250429640066615f741c855a6ad6364b5619e9a31b0ac63"
+        },
+        {
+          "source": "portal",
+          "path": "a101.ts",
+          "bytes": 44,
+          "hash": "766a9d09f104ebc22e4207ac2448414d3db64d166370173de14bcc98c42ec031"
+        },
+        {
+          "source": "portal",
+          "path": "a102.ts",
+          "bytes": 44,
+          "hash": "26c267b0449694d37c42b6802f64ca6d96bc1e653cc6dabe3ed1e288582f1501"
+        },
+        {
+          "source": "portal",
+          "path": "a103.ts",
+          "bytes": 44,
+          "hash": "d083016e92bfa36317b526b243c735ad8f3f002e9fce661bb9d2846b288f42d8"
+        },
+        {
+          "source": "portal",
+          "path": "a104.ts",
+          "bytes": 44,
+          "hash": "634863b2a3a6ba3334e4f5ba33a5fb577d3b33fce4eca83644e550cdf38f0f7f"
+        },
+        {
+          "source": "portal",
+          "path": "a105.ts",
+          "bytes": 44,
+          "hash": "17654ba1ea9454a5e205b925b3747eb3ed2a6d14f71934489014774c5f185849"
+        },
+        {
+          "source": "portal",
+          "path": "a106.ts",
+          "bytes": 44,
+          "hash": "6f10a208a237fc691ce7b9d0d3a8e053dbd8f6d33dba3a46b12a4af158d5a477"
+        },
+        {
+          "source": "portal",
+          "path": "a107.ts",
+          "bytes": 44,
+          "hash": "e70c4de61e71a2df844ce677a83e6b72733edee947d1174f7c7bbefa7d0843c9"
+        },
+        {
+          "source": "portal",
+          "path": "a108.ts",
+          "bytes": 44,
+          "hash": "6f7d688eac36a50073c71c08daefe55d92eaebae852968a97a447471c00a6b81"
+        },
+        {
+          "source": "portal",
+          "path": "a109.ts",
+          "bytes": 44,
+          "hash": "857efed1ed274c303472a95fbbdfc6a4f980947240cae1ac05c9b06e60a564da"
+        },
+        {
+          "source": "portal",
+          "path": "a110.ts",
+          "bytes": 44,
+          "hash": "6e9a92914505a2069f947b9228af18d094059078403cb712b5895434f2c3c893"
+        },
+        {
+          "source": "portal",
+          "path": "a111.ts",
+          "bytes": 44,
+          "hash": "270bf79d037f52fb250152e3812de431d7c00f252180ac4a7636c0b4786a9053"
+        },
+        {
+          "source": "portal",
+          "path": "a112.ts",
+          "bytes": 44,
+          "hash": "537bdc0ede5d7d54ce324dd6334001a6d38f81ced558b1e684bf404efdb3175d"
+        },
+        {
+          "source": "portal",
+          "path": "a113.ts",
+          "bytes": 44,
+          "hash": "fe4646967677d95efc9099ac00297d4bab064faa698b2149effa2e397dad236c"
+        },
+        {
+          "source": "portal",
+          "path": "a114.ts",
+          "bytes": 44,
+          "hash": "182487b0a33be1fb3ab70c00ca9fdfbd757d714cb0f33906775388d30221bcaa"
+        },
+        {
+          "source": "portal",
+          "path": "a115.ts",
+          "bytes": 44,
+          "hash": "02f7aa5903960f6b977a27c95f8a2c7f0c7fef3c1810864ad17187035c1a4bad"
+        },
+        {
+          "source": "portal",
+          "path": "a116.ts",
+          "bytes": 44,
+          "hash": "4a358abe7bac673546c51f6a08ec9b725b7ef46520fc4475e00b47a5a0d4080e"
+        },
+        {
+          "source": "portal",
+          "path": "a117.ts",
+          "bytes": 44,
+          "hash": "ffb159bea31c00b46882047408acb4b58cf1e2a59879b3c3ccf545755f441445"
+        },
+        {
+          "source": "portal",
+          "path": "a118.ts",
+          "bytes": 44,
+          "hash": "244002ff082faa28bf5b9519f29a79703ef49b66402005fc2b29e6a46b5ceddc"
+        },
+        {
+          "source": "portal",
+          "path": "a119.ts",
+          "bytes": 44,
+          "hash": "655637b0f1e1d75c58e1b6a71e39be04233da2f9eb78f9211aa4c93461af7819"
+        },
+        {
+          "source": "order-api",
+          "path": "README.md",
+          "bytes": 439,
+          "hash": "0bdd3acf2cde47a3fe1e587e9bcf8bb0d749e2507c5e0633a6aa30073d479e61"
+        },
+        {
+          "source": "order-api",
+          "path": "pom.xml",
+          "bytes": 389,
+          "hash": "b172e59a5d5d42a72e5ea68af530d6ba7ba489d92de52dba4d2a636febdf1781"
+        },
+        {
+          "source": "order-api",
+          "path": "config/routes.json",
+          "bytes": 240,
+          "hash": "161e949a54ab2ab99648cd5dd07de4c4115d554d411e85dfc919412877e00a5e"
+        },
+        {
+          "source": "order-api",
+          "path": "config/local.json",
+          "bytes": 103,
+          "hash": "d407e198084d63c25904025f9420ab898b3660c545e90999124137dbfc7d865f"
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "bytes": 792,
+          "hash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c"
+        },
+        {
+          "source": "order-api",
+          "path": "contracts/OrderPlaced.json",
+          "bytes": 226,
+          "hash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79"
+        },
+        {
+          "source": "order-api",
+          "path": "notes/source-instructions.txt",
+          "bytes": 250,
+          "hash": "06c1a905e0574514e3aed8d0ef9961c502904d7d22f79916e8e5628789536375"
+        },
+        {
+          "source": "order-api",
+          "path": "a000.ts",
+          "bytes": 40,
+          "hash": "a9aaa83c1597f2a84dbce5a7e6b38f9b8dbb9ba131265a3a15a1e54b47ba143c"
+        },
+        {
+          "source": "order-api",
+          "path": "a001.ts",
+          "bytes": 40,
+          "hash": "91487fad9120359bf39fdd88c12f13850b62388a2236e4026ce07c5964c15540"
+        },
+        {
+          "source": "order-api",
+          "path": "a002.ts",
+          "bytes": 40,
+          "hash": "7d202ea44ae3f929e5ca528a89e11f21ee2a5af54c22fce5a6e49fe1144ce59e"
+        },
+        {
+          "source": "order-api",
+          "path": "a003.ts",
+          "bytes": 40,
+          "hash": "626575951f3b3653dbcbf8d60674433412d2ea8a7439dea316203b77b128e8e7"
+        },
+        {
+          "source": "order-api",
+          "path": "a004.ts",
+          "bytes": 40,
+          "hash": "d5aca421da0d364c9dc3d938c906a1c315dd27762395fca63fb9a181dc4a791a"
+        },
+        {
+          "source": "order-api",
+          "path": "a005.ts",
+          "bytes": 40,
+          "hash": "955b20bc29919fa4c7a09b8bb526c86ba5b673cd63d11a7af1c150f83ec99966"
+        },
+        {
+          "source": "order-api",
+          "path": "a006.ts",
+          "bytes": 40,
+          "hash": "23ec609eb99462186296ca029104b9eac14ec7727bf74ff3a436cbefc4b76080"
+        },
+        {
+          "source": "order-api",
+          "path": "a007.ts",
+          "bytes": 40,
+          "hash": "a158fdb50620debf32ccc7452dbe2321085a6998e22cd35555beb701dcaf0921"
+        },
+        {
+          "source": "order-api",
+          "path": "a008.ts",
+          "bytes": 40,
+          "hash": "09e95330b8153e088444f72c52f7915be6bb986e5630ca2a64e38bd92a6aa798"
+        },
+        {
+          "source": "order-api",
+          "path": "a009.ts",
+          "bytes": 40,
+          "hash": "813ae2ae341635032122d3328815bcef33403b4e8a2cb18caf5030f3f081e0fd"
+        },
+        {
+          "source": "order-api",
+          "path": "a010.ts",
+          "bytes": 42,
+          "hash": "13857c8604fcacde3f9a584d069c9ac1fd64d267763c5ba9fc7b0e14b9616b01"
+        },
+        {
+          "source": "order-api",
+          "path": "a011.ts",
+          "bytes": 42,
+          "hash": "3871c030a81abb1854036948257e6d515c61f5fe9c0a34ef592748f5da6b45a8"
+        },
+        {
+          "source": "order-api",
+          "path": "a012.ts",
+          "bytes": 42,
+          "hash": "c31be9fb4a4f927c777084c37070c6164e604b0dccf7e712d6f46f6ac822d259"
+        },
+        {
+          "source": "order-api",
+          "path": "a013.ts",
+          "bytes": 42,
+          "hash": "b8e6733626c2b08494a3abbefcb019372f9873d6c47fb597751fa35288e8ea99"
+        },
+        {
+          "source": "order-api",
+          "path": "a014.ts",
+          "bytes": 42,
+          "hash": "4ca0500fe5850c8a2b6ce2a321450cf6a1bfeb990e6a6e19ca344035bfcbe957"
+        },
+        {
+          "source": "order-api",
+          "path": "a015.ts",
+          "bytes": 42,
+          "hash": "b6c5af48ce78225da9f81949ab015dd6bfa166258d16f9bbfa549b9ccedf59f3"
+        },
+        {
+          "source": "order-api",
+          "path": "a016.ts",
+          "bytes": 42,
+          "hash": "510f1d3aab83e46dbb3fada50433a85f4c30bf7809b7a59744050c7b5eb400f1"
+        },
+        {
+          "source": "order-api",
+          "path": "a017.ts",
+          "bytes": 42,
+          "hash": "4ddb0d7a8e112ed8f40f1a16142fc8a24d056638295f8c8974bb6ad10365d1ba"
+        },
+        {
+          "source": "order-api",
+          "path": "a018.ts",
+          "bytes": 42,
+          "hash": "ea8cae835fb3e54832eae6dca82acff88491ebf4124b8197dc2da214ad789acc"
+        },
+        {
+          "source": "order-api",
+          "path": "a019.ts",
+          "bytes": 42,
+          "hash": "f9fa3b9532561dd734fdb6f06052fc08ce4599262071551d7850e9da69859a9b"
+        },
+        {
+          "source": "order-api",
+          "path": "a020.ts",
+          "bytes": 42,
+          "hash": "913395583ccfe7d93271c7883ce13dd1de51e5535eaa8047ad21942929d93d0b"
+        },
+        {
+          "source": "order-api",
+          "path": "a021.ts",
+          "bytes": 42,
+          "hash": "200985956239d273c880672a0f078ae08cd98b637c9a5649ff984b9a97f7c782"
+        },
+        {
+          "source": "order-api",
+          "path": "a022.ts",
+          "bytes": 42,
+          "hash": "619c3a58160225a64bb2c03a07a536da192df0717eab608e97b42a25e8f134f5"
+        },
+        {
+          "source": "order-api",
+          "path": "a023.ts",
+          "bytes": 42,
+          "hash": "f5f96645b9bd761cfc47001a39fc77000f07d0d36cf3d7eb25ad7164a51056ee"
+        },
+        {
+          "source": "order-api",
+          "path": "a024.ts",
+          "bytes": 42,
+          "hash": "f54c9786d1372301a1ff59219f9f1940285684f783be0ec2e3afade3ab5a3ada"
+        },
+        {
+          "source": "order-api",
+          "path": "a025.ts",
+          "bytes": 42,
+          "hash": "5648d43a4d1640e3b37e29c58296eea7b84215e3b0ccab63493a2efdcefa55b3"
+        },
+        {
+          "source": "order-api",
+          "path": "a026.ts",
+          "bytes": 42,
+          "hash": "84b0354c45f39cfe72d5be5ba1c0ac97e9e1cad5fff333b82817f3fc3ad1b713"
+        },
+        {
+          "source": "order-api",
+          "path": "a027.ts",
+          "bytes": 42,
+          "hash": "76b60463ef4942ac4c20fee3d1bc5ac02eacf0d7afc435db64ee1aff3273d99e"
+        },
+        {
+          "source": "order-api",
+          "path": "a028.ts",
+          "bytes": 42,
+          "hash": "97418e35675bab5d3b1aa97fd590dca75bc8712ddfe4002d9caeb06931d3efed"
+        },
+        {
+          "source": "order-api",
+          "path": "a029.ts",
+          "bytes": 42,
+          "hash": "2877ecf40bd66cf0dd1bf78c1aee82e5bb4264684a6bafeafa2c62e5d907055c"
+        },
+        {
+          "source": "order-api",
+          "path": "a030.ts",
+          "bytes": 42,
+          "hash": "db721603e0215c1dbac4b4f06789eb24e472ecf9f22288f40fb051cfb93cd580"
+        },
+        {
+          "source": "order-api",
+          "path": "a031.ts",
+          "bytes": 42,
+          "hash": "2c2479d3af36d155ce82d22f672c45ac8cf22fa3c733ea4f847bc780852d5f7e"
+        },
+        {
+          "source": "order-api",
+          "path": "a032.ts",
+          "bytes": 42,
+          "hash": "4decb2a28e2196f370d1349011fdc6487c48f1757d45f884f9342e9142ee1569"
+        },
+        {
+          "source": "order-api",
+          "path": "a033.ts",
+          "bytes": 42,
+          "hash": "99aa6e1ffdfdd8432b07a1e497c642b5fe5997b1eaf20adc24e27d962c05c05a"
+        },
+        {
+          "source": "order-api",
+          "path": "a034.ts",
+          "bytes": 42,
+          "hash": "1f4ac050b77c6b333d3ebed9750246ff387e37e9970543bced815f0ce914c6ff"
+        },
+        {
+          "source": "order-api",
+          "path": "a035.ts",
+          "bytes": 42,
+          "hash": "740af6cceb3a3fa1e55bd5c859e06d2056e57f8a699abdc12e73eaf0572ae80f"
+        },
+        {
+          "source": "order-api",
+          "path": "a036.ts",
+          "bytes": 42,
+          "hash": "5155edf4b627c4a8fec7385898172ee6b02049ef5bee9112e1668c94ba1e2e73"
+        },
+        {
+          "source": "order-api",
+          "path": "a037.ts",
+          "bytes": 42,
+          "hash": "03b30a0abb61ae7738f02977ba5d9f585d767f201793564bf0e8c376931d033e"
+        },
+        {
+          "source": "order-api",
+          "path": "a038.ts",
+          "bytes": 42,
+          "hash": "edee12935343117dd9f7e4573761a7d2c52214d619dd4410634bc45f49a4c7ed"
+        },
+        {
+          "source": "order-api",
+          "path": "a039.ts",
+          "bytes": 42,
+          "hash": "f3e29b32782aec226811b73f02ab4558ed7fc3b81328d45b27035851fd73f5b7"
+        },
+        {
+          "source": "order-api",
+          "path": "a040.ts",
+          "bytes": 42,
+          "hash": "337e77bf6c8495429a2144867f6f7fb71c1c9c5db1983d3f4f0c0bd544dd6b9a"
+        },
+        {
+          "source": "order-api",
+          "path": "a041.ts",
+          "bytes": 42,
+          "hash": "0d772767b2d423d1495cab83b4778c8f978436f89c66d4c229508e943ffb8694"
+        },
+        {
+          "source": "order-api",
+          "path": "a042.ts",
+          "bytes": 42,
+          "hash": "8c3415910a77f4d35363872f377d949d8ca38dd0626ef60e519db50dd951f4bd"
+        },
+        {
+          "source": "order-api",
+          "path": "a043.ts",
+          "bytes": 42,
+          "hash": "8878bc00d4587b7c7c89401912b3ab5fc3a099f5d3225c68483334a1be6572e1"
+        },
+        {
+          "source": "order-api",
+          "path": "a044.ts",
+          "bytes": 42,
+          "hash": "42678f99d7a778edcbb8ec145ffbb32369dd584516b8c712f8e5af5263bb0d5f"
+        },
+        {
+          "source": "order-api",
+          "path": "a045.ts",
+          "bytes": 42,
+          "hash": "f84de7887da6463bc4226755866b29b863467ba13dd1a3e9d6eda0cac5b8f356"
+        },
+        {
+          "source": "order-api",
+          "path": "a046.ts",
+          "bytes": 42,
+          "hash": "43df47e9ace39b7777a40a857b01d03131a596b91ab78491df6caef402f2a717"
+        },
+        {
+          "source": "order-api",
+          "path": "a047.ts",
+          "bytes": 42,
+          "hash": "97142d476e98ca277b51fca86069035066cbc8f148d070107836fe30d427de1f"
+        },
+        {
+          "source": "order-api",
+          "path": "a048.ts",
+          "bytes": 42,
+          "hash": "f3f44881b0a4e0b61637ccb0a4dc727eb08debcce5957be44ec34c2161182513"
+        },
+        {
+          "source": "order-api",
+          "path": "a049.ts",
+          "bytes": 42,
+          "hash": "779ca66c7a268e1f9b8123fe9c973261c37c6324926f0318759cf2ba2d3ac190"
+        },
+        {
+          "source": "order-api",
+          "path": "a050.ts",
+          "bytes": 42,
+          "hash": "7aafebd7e8dc60469bbe26a03d62f3c845b1b5c2229b6f81fe93f2bd40282a56"
+        },
+        {
+          "source": "order-api",
+          "path": "a051.ts",
+          "bytes": 42,
+          "hash": "02fc76dd677e39bb3d95697b6d47a12c5d28667d9445aca3dc5b3e41699ad056"
+        },
+        {
+          "source": "order-api",
+          "path": "a052.ts",
+          "bytes": 42,
+          "hash": "4378252b1022179dcf97964f8265d87c3b87a6592cff9471f223dd7973e1b175"
+        },
+        {
+          "source": "order-api",
+          "path": "a053.ts",
+          "bytes": 42,
+          "hash": "b8758c6cadcad58ef42f0d89e3b22ddd5ba348172f777e622062abe30a5bebda"
+        },
+        {
+          "source": "order-api",
+          "path": "a054.ts",
+          "bytes": 42,
+          "hash": "00ac0759ca3c913ced2e2a4d8fa5c51e368c9da52e44821c3e09ec2beb7001d6"
+        },
+        {
+          "source": "order-api",
+          "path": "a055.ts",
+          "bytes": 42,
+          "hash": "eec0d6be7e7edd060ab089dd4c9b763e9272db55481a2d81de70b5587c0baed4"
+        },
+        {
+          "source": "order-api",
+          "path": "a056.ts",
+          "bytes": 42,
+          "hash": "6a603962b2ce4712a0809cf6021713a2ca94b30f96d0ba91b34514065245e6c9"
+        },
+        {
+          "source": "order-api",
+          "path": "a057.ts",
+          "bytes": 42,
+          "hash": "f58da75c8e67ba0f9fe796bc16d41a51e1553dea4f2a99725fd3e8088a954c4c"
+        },
+        {
+          "source": "order-api",
+          "path": "a058.ts",
+          "bytes": 42,
+          "hash": "6bced01a041d4310421ad6a3390557862b9df947c4366338ec2357566fb5cf33"
+        },
+        {
+          "source": "order-api",
+          "path": "a059.ts",
+          "bytes": 42,
+          "hash": "27ab7518387dd8cb8617e3cf9c01741795f82698651c55b534e94301c2cb9ec8"
+        },
+        {
+          "source": "order-api",
+          "path": "a060.ts",
+          "bytes": 42,
+          "hash": "93143021b49f17f3d7c7a27fdd7e9eb745b9ecc3e84336525ac8ac35b370be7f"
+        },
+        {
+          "source": "order-api",
+          "path": "a061.ts",
+          "bytes": 42,
+          "hash": "14c709b90e47fdea01619f3a93feaf5c5170070ed9146b38aae7aed95a17e629"
+        },
+        {
+          "source": "order-api",
+          "path": "a062.ts",
+          "bytes": 42,
+          "hash": "903178bc8189e3f94c290369d0e404b7e219b49338c0eae49ffb1f9a5737495d"
+        },
+        {
+          "source": "order-api",
+          "path": "a063.ts",
+          "bytes": 42,
+          "hash": "5e9a412b3decc0f31619f4027973174a898e3a17f00e1b7ae6d862002307acf2"
+        },
+        {
+          "source": "order-api",
+          "path": "a064.ts",
+          "bytes": 42,
+          "hash": "b08675b4fb914f04c18e02eb5d38d6e98b7db3682c6c4b0773a36355253be8f9"
+        },
+        {
+          "source": "order-api",
+          "path": "a065.ts",
+          "bytes": 42,
+          "hash": "e0e798f15d5ecd93d77656fda80408437ab696b15b6deff4ee0365204a6ed03e"
+        },
+        {
+          "source": "order-api",
+          "path": "a066.ts",
+          "bytes": 42,
+          "hash": "597e03593d236cd26f0ed71a529ec1a7d93dee740b909a1b9677be79f7c81597"
+        },
+        {
+          "source": "order-api",
+          "path": "a067.ts",
+          "bytes": 42,
+          "hash": "d2d95d57939e06a8afd657a838ca1fcc6eb292f54596cf26742a88e98e2ea5e9"
+        },
+        {
+          "source": "order-api",
+          "path": "a068.ts",
+          "bytes": 42,
+          "hash": "3d82892f3c6e0bc1ac8876660162ee5371564babd0943345c84cfaf5d099c375"
+        },
+        {
+          "source": "order-api",
+          "path": "a069.ts",
+          "bytes": 42,
+          "hash": "f2b4e290db7c7b3f1f727bc5a6960d420a3578e095bbf564198d9d11c6528090"
+        },
+        {
+          "source": "order-api",
+          "path": "a070.ts",
+          "bytes": 42,
+          "hash": "14cf5d8e5416e681cd5563e8b6a5c3fb6c045d3978fe7204c4d4f9509397e7d8"
+        },
+        {
+          "source": "order-api",
+          "path": "a071.ts",
+          "bytes": 42,
+          "hash": "6bc6a515a21b14b906efab0a56debd5c5018248ad26665dca648bd0cbdb24dd4"
+        },
+        {
+          "source": "order-api",
+          "path": "a072.ts",
+          "bytes": 42,
+          "hash": "16e8bfb7b60652a08ce7c3bea381845a9eb263f6e3cdebc5b2b3588ca68cabdf"
+        },
+        {
+          "source": "order-api",
+          "path": "a073.ts",
+          "bytes": 42,
+          "hash": "051119f57dc791146e45ba07e76ecee8e5249472630e0b761105d150321f24f2"
+        },
+        {
+          "source": "order-api",
+          "path": "a074.ts",
+          "bytes": 42,
+          "hash": "75e955dae577627bf892f187bd13e55ad4f7752148fdcb7384ee36ae1de5e8a7"
+        },
+        {
+          "source": "order-api",
+          "path": "a075.ts",
+          "bytes": 42,
+          "hash": "0df9e19246de4034a4b897a86b383dfbd9e0d88e532d09385bf13661f4467386"
+        },
+        {
+          "source": "order-api",
+          "path": "a076.ts",
+          "bytes": 42,
+          "hash": "a03228f8699473689cd68692041d086bfd153e6502fb6c53275325119c7f3e7a"
+        },
+        {
+          "source": "order-api",
+          "path": "a077.ts",
+          "bytes": 42,
+          "hash": "34156d691bc4c1666d1106cfa41bfa8773043fcb64a3e318fbc6186ce0063e85"
+        },
+        {
+          "source": "order-api",
+          "path": "a078.ts",
+          "bytes": 42,
+          "hash": "e3a8ff8d78bc907fa0746e6b2fd56928f095e7226a812ae3174f1a0505264cab"
+        },
+        {
+          "source": "order-api",
+          "path": "a079.ts",
+          "bytes": 42,
+          "hash": "66001b2157513f30ca35ea035f2015f7fd8a9f61c9d6de09fc4f0adeb24b0ec5"
+        },
+        {
+          "source": "order-api",
+          "path": "a080.ts",
+          "bytes": 42,
+          "hash": "58c69e6213b9e9b41a48a097777db91115b9cd45e172451e633ade5d06255170"
+        },
+        {
+          "source": "order-api",
+          "path": "a081.ts",
+          "bytes": 42,
+          "hash": "af850644960fbdf049c4976b0ccc9e2abb029c4383fccc579082e0f92ef5c20f"
+        },
+        {
+          "source": "order-api",
+          "path": "a082.ts",
+          "bytes": 42,
+          "hash": "f769a7b393c05ef4bb2433b87d71d7b5a4ab9b55084fa5a7d916d59af68c6d91"
+        },
+        {
+          "source": "order-api",
+          "path": "a083.ts",
+          "bytes": 42,
+          "hash": "5461b4e35349724feefd5d5aba067b6d523487a72b099e9272229242c12c4871"
+        },
+        {
+          "source": "order-api",
+          "path": "a084.ts",
+          "bytes": 42,
+          "hash": "f166b72fc5381c900bf738b01c09179b0cd57cf5420097da83c0d1f11830a7ef"
+        },
+        {
+          "source": "order-api",
+          "path": "a085.ts",
+          "bytes": 42,
+          "hash": "a22ad75f7c5f50014617e3a5365fa07b9a121a837f57308c6a38287064fe0008"
+        },
+        {
+          "source": "order-api",
+          "path": "a086.ts",
+          "bytes": 42,
+          "hash": "08fb13fa344710679ca305e6a40e4ab60823d446929ec4e69ce21d2f2403863a"
+        },
+        {
+          "source": "order-api",
+          "path": "a087.ts",
+          "bytes": 42,
+          "hash": "d0dd7bfcabdb26641eb2015d53d269621416c99162f9232584673f1e64658f51"
+        },
+        {
+          "source": "order-api",
+          "path": "a088.ts",
+          "bytes": 42,
+          "hash": "f95b16804ddd9e9605175294244aa3b69b9413803edaa26f20b27432a484d17b"
+        },
+        {
+          "source": "order-api",
+          "path": "a089.ts",
+          "bytes": 42,
+          "hash": "82aef46e8215ef72aa63c1c2ebe3834dcb031e91c8bb0c15a24f15a2684e8bcf"
+        },
+        {
+          "source": "order-api",
+          "path": "a090.ts",
+          "bytes": 42,
+          "hash": "3501ac3892807fd38ad4580c67153a015480b31fd229277c0d57613b93fd4dad"
+        },
+        {
+          "source": "order-api",
+          "path": "a091.ts",
+          "bytes": 42,
+          "hash": "ce3bebff9098ec9d61a36c76d4d01733214a5f3e3f7cc07f91cdd48b073668b3"
+        },
+        {
+          "source": "order-api",
+          "path": "a092.ts",
+          "bytes": 42,
+          "hash": "9396f47951270a7df381a600c2600592df2b292854ca1ed8830d39750faef5f5"
+        },
+        {
+          "source": "order-api",
+          "path": "a093.ts",
+          "bytes": 42,
+          "hash": "2b9311ee2ba746a238440caf68db7ef062185a753aef1b9ba9bdb6bd12dd0661"
+        },
+        {
+          "source": "order-api",
+          "path": "a094.ts",
+          "bytes": 42,
+          "hash": "c5ab47f7c38a3eba12ffe05459c2ea4d9857f37c46e540231bfeda9334625981"
+        },
+        {
+          "source": "order-api",
+          "path": "a095.ts",
+          "bytes": 42,
+          "hash": "7e1b848d6d9b245b30763f83f2f4f8bd1fc9b8e4097620e70b9b5f24462bc56d"
+        },
+        {
+          "source": "order-api",
+          "path": "a096.ts",
+          "bytes": 42,
+          "hash": "fab192fcd9e62b733d6fe2539a9048076df40363d93a6c04773dc2634b617ed7"
+        },
+        {
+          "source": "order-api",
+          "path": "a097.ts",
+          "bytes": 42,
+          "hash": "6c62a0a9ca056a6b9552e6ecc80b5bb522340a089508b937e806193048097c3e"
+        },
+        {
+          "source": "order-api",
+          "path": "a098.ts",
+          "bytes": 42,
+          "hash": "5894a619e5a98c66008c97d2fab13b78ffeedda44e93615483fae3a6429fc7c2"
+        },
+        {
+          "source": "order-api",
+          "path": "a099.ts",
+          "bytes": 42,
+          "hash": "de90f2422c738f480407068cb2099f925665ef43b45dfcd1fc94f0e34955fe32"
+        },
+        {
+          "source": "order-api",
+          "path": "a100.ts",
+          "bytes": 44,
+          "hash": "077453f8e82b4d002250429640066615f741c855a6ad6364b5619e9a31b0ac63"
+        },
+        {
+          "source": "order-api",
+          "path": "a101.ts",
+          "bytes": 44,
+          "hash": "766a9d09f104ebc22e4207ac2448414d3db64d166370173de14bcc98c42ec031"
+        },
+        {
+          "source": "order-api",
+          "path": "a102.ts",
+          "bytes": 44,
+          "hash": "26c267b0449694d37c42b6802f64ca6d96bc1e653cc6dabe3ed1e288582f1501"
+        },
+        {
+          "source": "order-api",
+          "path": "a103.ts",
+          "bytes": 44,
+          "hash": "d083016e92bfa36317b526b243c735ad8f3f002e9fce661bb9d2846b288f42d8"
+        },
+        {
+          "source": "order-api",
+          "path": "a104.ts",
+          "bytes": 44,
+          "hash": "634863b2a3a6ba3334e4f5ba33a5fb577d3b33fce4eca83644e550cdf38f0f7f"
+        },
+        {
+          "source": "order-api",
+          "path": "a105.ts",
+          "bytes": 44,
+          "hash": "17654ba1ea9454a5e205b925b3747eb3ed2a6d14f71934489014774c5f185849"
+        },
+        {
+          "source": "order-api",
+          "path": "a106.ts",
+          "bytes": 44,
+          "hash": "6f10a208a237fc691ce7b9d0d3a8e053dbd8f6d33dba3a46b12a4af158d5a477"
+        },
+        {
+          "source": "order-api",
+          "path": "a107.ts",
+          "bytes": 44,
+          "hash": "e70c4de61e71a2df844ce677a83e6b72733edee947d1174f7c7bbefa7d0843c9"
+        },
+        {
+          "source": "order-api",
+          "path": "a108.ts",
+          "bytes": 44,
+          "hash": "6f7d688eac36a50073c71c08daefe55d92eaebae852968a97a447471c00a6b81"
+        },
+        {
+          "source": "order-api",
+          "path": "a109.ts",
+          "bytes": 44,
+          "hash": "857efed1ed274c303472a95fbbdfc6a4f980947240cae1ac05c9b06e60a564da"
+        },
+        {
+          "source": "order-api",
+          "path": "a110.ts",
+          "bytes": 44,
+          "hash": "6e9a92914505a2069f947b9228af18d094059078403cb712b5895434f2c3c893"
+        },
+        {
+          "source": "order-api",
+          "path": "a111.ts",
+          "bytes": 44,
+          "hash": "270bf79d037f52fb250152e3812de431d7c00f252180ac4a7636c0b4786a9053"
+        },
+        {
+          "source": "order-api",
+          "path": "a112.ts",
+          "bytes": 44,
+          "hash": "537bdc0ede5d7d54ce324dd6334001a6d38f81ced558b1e684bf404efdb3175d"
+        },
+        {
+          "source": "order-api",
+          "path": "a113.ts",
+          "bytes": 44,
+          "hash": "fe4646967677d95efc9099ac00297d4bab064faa698b2149effa2e397dad236c"
+        },
+        {
+          "source": "order-api",
+          "path": "a114.ts",
+          "bytes": 44,
+          "hash": "182487b0a33be1fb3ab70c00ca9fdfbd757d714cb0f33906775388d30221bcaa"
+        },
+        {
+          "source": "order-api",
+          "path": "a115.ts",
+          "bytes": 44,
+          "hash": "02f7aa5903960f6b977a27c95f8a2c7f0c7fef3c1810864ad17187035c1a4bad"
+        },
+        {
+          "source": "order-api",
+          "path": "a116.ts",
+          "bytes": 44,
+          "hash": "4a358abe7bac673546c51f6a08ec9b725b7ef46520fc4475e00b47a5a0d4080e"
+        },
+        {
+          "source": "order-api",
+          "path": "a117.ts",
+          "bytes": 44,
+          "hash": "ffb159bea31c00b46882047408acb4b58cf1e2a59879b3c3ccf545755f441445"
+        },
+        {
+          "source": "order-api",
+          "path": "a118.ts",
+          "bytes": 44,
+          "hash": "244002ff082faa28bf5b9519f29a79703ef49b66402005fc2b29e6a46b5ceddc"
+        },
+        {
+          "source": "order-api",
+          "path": "a119.ts",
+          "bytes": 44,
+          "hash": "655637b0f1e1d75c58e1b6a71e39be04233da2f9eb78f9211aa4c93461af7819"
+        },
+        {
+          "source": "order-worker",
+          "path": "README.md",
+          "bytes": 394,
+          "hash": "1fe2344c9f7d46ff007c9eb29b363b6a5a89be1e5312548ffa27ff982beb1794"
+        },
+        {
+          "source": "order-worker",
+          "path": "pom.xml",
+          "bytes": 392,
+          "hash": "4b2c11e0362e4b34f4f29f36a753437208f56a3f83536ad9664fcb1bd9fe7758"
+        },
+        {
+          "source": "order-worker",
+          "path": "config/local.json",
+          "bytes": 162,
+          "hash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49"
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "bytes": 926,
+          "hash": "bc2c347b007865acd3044b52dba791f7f37abd235f5c406c06b4cf2f3516dfb0"
+        },
+        {
+          "source": "order-worker",
+          "path": "contracts/OrderPlaced.json",
+          "bytes": 226,
+          "hash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79"
+        },
+        {
+          "source": "order-worker",
+          "path": "a000.ts",
+          "bytes": 40,
+          "hash": "a9aaa83c1597f2a84dbce5a7e6b38f9b8dbb9ba131265a3a15a1e54b47ba143c"
+        },
+        {
+          "source": "order-worker",
+          "path": "a001.ts",
+          "bytes": 40,
+          "hash": "91487fad9120359bf39fdd88c12f13850b62388a2236e4026ce07c5964c15540"
+        },
+        {
+          "source": "order-worker",
+          "path": "a002.ts",
+          "bytes": 40,
+          "hash": "7d202ea44ae3f929e5ca528a89e11f21ee2a5af54c22fce5a6e49fe1144ce59e"
+        },
+        {
+          "source": "order-worker",
+          "path": "a003.ts",
+          "bytes": 40,
+          "hash": "626575951f3b3653dbcbf8d60674433412d2ea8a7439dea316203b77b128e8e7"
+        },
+        {
+          "source": "order-worker",
+          "path": "a004.ts",
+          "bytes": 40,
+          "hash": "d5aca421da0d364c9dc3d938c906a1c315dd27762395fca63fb9a181dc4a791a"
+        },
+        {
+          "source": "order-worker",
+          "path": "a005.ts",
+          "bytes": 40,
+          "hash": "955b20bc29919fa4c7a09b8bb526c86ba5b673cd63d11a7af1c150f83ec99966"
+        },
+        {
+          "source": "order-worker",
+          "path": "a006.ts",
+          "bytes": 40,
+          "hash": "23ec609eb99462186296ca029104b9eac14ec7727bf74ff3a436cbefc4b76080"
+        },
+        {
+          "source": "order-worker",
+          "path": "a007.ts",
+          "bytes": 40,
+          "hash": "a158fdb50620debf32ccc7452dbe2321085a6998e22cd35555beb701dcaf0921"
+        },
+        {
+          "source": "order-worker",
+          "path": "a008.ts",
+          "bytes": 40,
+          "hash": "09e95330b8153e088444f72c52f7915be6bb986e5630ca2a64e38bd92a6aa798"
+        },
+        {
+          "source": "order-worker",
+          "path": "a009.ts",
+          "bytes": 40,
+          "hash": "813ae2ae341635032122d3328815bcef33403b4e8a2cb18caf5030f3f081e0fd"
+        },
+        {
+          "source": "order-worker",
+          "path": "a010.ts",
+          "bytes": 42,
+          "hash": "13857c8604fcacde3f9a584d069c9ac1fd64d267763c5ba9fc7b0e14b9616b01"
+        },
+        {
+          "source": "order-worker",
+          "path": "a011.ts",
+          "bytes": 42,
+          "hash": "3871c030a81abb1854036948257e6d515c61f5fe9c0a34ef592748f5da6b45a8"
+        },
+        {
+          "source": "order-worker",
+          "path": "a012.ts",
+          "bytes": 42,
+          "hash": "c31be9fb4a4f927c777084c37070c6164e604b0dccf7e712d6f46f6ac822d259"
+        },
+        {
+          "source": "order-worker",
+          "path": "a013.ts",
+          "bytes": 42,
+          "hash": "b8e6733626c2b08494a3abbefcb019372f9873d6c47fb597751fa35288e8ea99"
+        },
+        {
+          "source": "order-worker",
+          "path": "a014.ts",
+          "bytes": 42,
+          "hash": "4ca0500fe5850c8a2b6ce2a321450cf6a1bfeb990e6a6e19ca344035bfcbe957"
+        },
+        {
+          "source": "order-worker",
+          "path": "a015.ts",
+          "bytes": 42,
+          "hash": "b6c5af48ce78225da9f81949ab015dd6bfa166258d16f9bbfa549b9ccedf59f3"
+        },
+        {
+          "source": "order-worker",
+          "path": "a016.ts",
+          "bytes": 42,
+          "hash": "510f1d3aab83e46dbb3fada50433a85f4c30bf7809b7a59744050c7b5eb400f1"
+        },
+        {
+          "source": "order-worker",
+          "path": "a017.ts",
+          "bytes": 42,
+          "hash": "4ddb0d7a8e112ed8f40f1a16142fc8a24d056638295f8c8974bb6ad10365d1ba"
+        },
+        {
+          "source": "order-worker",
+          "path": "a018.ts",
+          "bytes": 42,
+          "hash": "ea8cae835fb3e54832eae6dca82acff88491ebf4124b8197dc2da214ad789acc"
+        },
+        {
+          "source": "order-worker",
+          "path": "a019.ts",
+          "bytes": 42,
+          "hash": "f9fa3b9532561dd734fdb6f06052fc08ce4599262071551d7850e9da69859a9b"
+        },
+        {
+          "source": "order-worker",
+          "path": "a020.ts",
+          "bytes": 42,
+          "hash": "913395583ccfe7d93271c7883ce13dd1de51e5535eaa8047ad21942929d93d0b"
+        },
+        {
+          "source": "order-worker",
+          "path": "a021.ts",
+          "bytes": 42,
+          "hash": "200985956239d273c880672a0f078ae08cd98b637c9a5649ff984b9a97f7c782"
+        },
+        {
+          "source": "order-worker",
+          "path": "a022.ts",
+          "bytes": 42,
+          "hash": "619c3a58160225a64bb2c03a07a536da192df0717eab608e97b42a25e8f134f5"
+        },
+        {
+          "source": "order-worker",
+          "path": "a023.ts",
+          "bytes": 42,
+          "hash": "f5f96645b9bd761cfc47001a39fc77000f07d0d36cf3d7eb25ad7164a51056ee"
+        },
+        {
+          "source": "order-worker",
+          "path": "a024.ts",
+          "bytes": 42,
+          "hash": "f54c9786d1372301a1ff59219f9f1940285684f783be0ec2e3afade3ab5a3ada"
+        },
+        {
+          "source": "order-worker",
+          "path": "a025.ts",
+          "bytes": 42,
+          "hash": "5648d43a4d1640e3b37e29c58296eea7b84215e3b0ccab63493a2efdcefa55b3"
+        },
+        {
+          "source": "order-worker",
+          "path": "a026.ts",
+          "bytes": 42,
+          "hash": "84b0354c45f39cfe72d5be5ba1c0ac97e9e1cad5fff333b82817f3fc3ad1b713"
+        },
+        {
+          "source": "order-worker",
+          "path": "a027.ts",
+          "bytes": 42,
+          "hash": "76b60463ef4942ac4c20fee3d1bc5ac02eacf0d7afc435db64ee1aff3273d99e"
+        },
+        {
+          "source": "order-worker",
+          "path": "a028.ts",
+          "bytes": 42,
+          "hash": "97418e35675bab5d3b1aa97fd590dca75bc8712ddfe4002d9caeb06931d3efed"
+        },
+        {
+          "source": "order-worker",
+          "path": "a029.ts",
+          "bytes": 42,
+          "hash": "2877ecf40bd66cf0dd1bf78c1aee82e5bb4264684a6bafeafa2c62e5d907055c"
+        },
+        {
+          "source": "order-worker",
+          "path": "a030.ts",
+          "bytes": 42,
+          "hash": "db721603e0215c1dbac4b4f06789eb24e472ecf9f22288f40fb051cfb93cd580"
+        },
+        {
+          "source": "order-worker",
+          "path": "a031.ts",
+          "bytes": 42,
+          "hash": "2c2479d3af36d155ce82d22f672c45ac8cf22fa3c733ea4f847bc780852d5f7e"
+        },
+        {
+          "source": "order-worker",
+          "path": "a032.ts",
+          "bytes": 42,
+          "hash": "4decb2a28e2196f370d1349011fdc6487c48f1757d45f884f9342e9142ee1569"
+        },
+        {
+          "source": "order-worker",
+          "path": "a033.ts",
+          "bytes": 42,
+          "hash": "99aa6e1ffdfdd8432b07a1e497c642b5fe5997b1eaf20adc24e27d962c05c05a"
+        },
+        {
+          "source": "order-worker",
+          "path": "a034.ts",
+          "bytes": 42,
+          "hash": "1f4ac050b77c6b333d3ebed9750246ff387e37e9970543bced815f0ce914c6ff"
+        },
+        {
+          "source": "order-worker",
+          "path": "a035.ts",
+          "bytes": 42,
+          "hash": "740af6cceb3a3fa1e55bd5c859e06d2056e57f8a699abdc12e73eaf0572ae80f"
+        },
+        {
+          "source": "order-worker",
+          "path": "a036.ts",
+          "bytes": 42,
+          "hash": "5155edf4b627c4a8fec7385898172ee6b02049ef5bee9112e1668c94ba1e2e73"
+        },
+        {
+          "source": "order-worker",
+          "path": "a037.ts",
+          "bytes": 42,
+          "hash": "03b30a0abb61ae7738f02977ba5d9f585d767f201793564bf0e8c376931d033e"
+        },
+        {
+          "source": "order-worker",
+          "path": "a038.ts",
+          "bytes": 42,
+          "hash": "edee12935343117dd9f7e4573761a7d2c52214d619dd4410634bc45f49a4c7ed"
+        },
+        {
+          "source": "order-worker",
+          "path": "a039.ts",
+          "bytes": 42,
+          "hash": "f3e29b32782aec226811b73f02ab4558ed7fc3b81328d45b27035851fd73f5b7"
+        },
+        {
+          "source": "order-worker",
+          "path": "a040.ts",
+          "bytes": 42,
+          "hash": "337e77bf6c8495429a2144867f6f7fb71c1c9c5db1983d3f4f0c0bd544dd6b9a"
+        },
+        {
+          "source": "order-worker",
+          "path": "a041.ts",
+          "bytes": 42,
+          "hash": "0d772767b2d423d1495cab83b4778c8f978436f89c66d4c229508e943ffb8694"
+        },
+        {
+          "source": "order-worker",
+          "path": "a042.ts",
+          "bytes": 42,
+          "hash": "8c3415910a77f4d35363872f377d949d8ca38dd0626ef60e519db50dd951f4bd"
+        },
+        {
+          "source": "order-worker",
+          "path": "a043.ts",
+          "bytes": 42,
+          "hash": "8878bc00d4587b7c7c89401912b3ab5fc3a099f5d3225c68483334a1be6572e1"
+        },
+        {
+          "source": "order-worker",
+          "path": "a044.ts",
+          "bytes": 42,
+          "hash": "42678f99d7a778edcbb8ec145ffbb32369dd584516b8c712f8e5af5263bb0d5f"
+        },
+        {
+          "source": "order-worker",
+          "path": "a045.ts",
+          "bytes": 42,
+          "hash": "f84de7887da6463bc4226755866b29b863467ba13dd1a3e9d6eda0cac5b8f356"
+        },
+        {
+          "source": "order-worker",
+          "path": "a046.ts",
+          "bytes": 42,
+          "hash": "43df47e9ace39b7777a40a857b01d03131a596b91ab78491df6caef402f2a717"
+        },
+        {
+          "source": "order-worker",
+          "path": "a047.ts",
+          "bytes": 42,
+          "hash": "97142d476e98ca277b51fca86069035066cbc8f148d070107836fe30d427de1f"
+        },
+        {
+          "source": "order-worker",
+          "path": "a048.ts",
+          "bytes": 42,
+          "hash": "f3f44881b0a4e0b61637ccb0a4dc727eb08debcce5957be44ec34c2161182513"
+        },
+        {
+          "source": "order-worker",
+          "path": "a049.ts",
+          "bytes": 42,
+          "hash": "779ca66c7a268e1f9b8123fe9c973261c37c6324926f0318759cf2ba2d3ac190"
+        },
+        {
+          "source": "order-worker",
+          "path": "a050.ts",
+          "bytes": 42,
+          "hash": "7aafebd7e8dc60469bbe26a03d62f3c845b1b5c2229b6f81fe93f2bd40282a56"
+        },
+        {
+          "source": "order-worker",
+          "path": "a051.ts",
+          "bytes": 42,
+          "hash": "02fc76dd677e39bb3d95697b6d47a12c5d28667d9445aca3dc5b3e41699ad056"
+        },
+        {
+          "source": "order-worker",
+          "path": "a052.ts",
+          "bytes": 42,
+          "hash": "4378252b1022179dcf97964f8265d87c3b87a6592cff9471f223dd7973e1b175"
+        },
+        {
+          "source": "order-worker",
+          "path": "a053.ts",
+          "bytes": 42,
+          "hash": "b8758c6cadcad58ef42f0d89e3b22ddd5ba348172f777e622062abe30a5bebda"
+        },
+        {
+          "source": "order-worker",
+          "path": "a054.ts",
+          "bytes": 42,
+          "hash": "00ac0759ca3c913ced2e2a4d8fa5c51e368c9da52e44821c3e09ec2beb7001d6"
+        },
+        {
+          "source": "order-worker",
+          "path": "a055.ts",
+          "bytes": 42,
+          "hash": "eec0d6be7e7edd060ab089dd4c9b763e9272db55481a2d81de70b5587c0baed4"
+        },
+        {
+          "source": "order-worker",
+          "path": "a056.ts",
+          "bytes": 42,
+          "hash": "6a603962b2ce4712a0809cf6021713a2ca94b30f96d0ba91b34514065245e6c9"
+        },
+        {
+          "source": "order-worker",
+          "path": "a057.ts",
+          "bytes": 42,
+          "hash": "f58da75c8e67ba0f9fe796bc16d41a51e1553dea4f2a99725fd3e8088a954c4c"
+        },
+        {
+          "source": "order-worker",
+          "path": "a058.ts",
+          "bytes": 42,
+          "hash": "6bced01a041d4310421ad6a3390557862b9df947c4366338ec2357566fb5cf33"
+        },
+        {
+          "source": "order-worker",
+          "path": "a059.ts",
+          "bytes": 42,
+          "hash": "27ab7518387dd8cb8617e3cf9c01741795f82698651c55b534e94301c2cb9ec8"
+        },
+        {
+          "source": "order-worker",
+          "path": "a060.ts",
+          "bytes": 42,
+          "hash": "93143021b49f17f3d7c7a27fdd7e9eb745b9ecc3e84336525ac8ac35b370be7f"
+        },
+        {
+          "source": "order-worker",
+          "path": "a061.ts",
+          "bytes": 42,
+          "hash": "14c709b90e47fdea01619f3a93feaf5c5170070ed9146b38aae7aed95a17e629"
+        },
+        {
+          "source": "order-worker",
+          "path": "a062.ts",
+          "bytes": 42,
+          "hash": "903178bc8189e3f94c290369d0e404b7e219b49338c0eae49ffb1f9a5737495d"
+        },
+        {
+          "source": "order-worker",
+          "path": "a063.ts",
+          "bytes": 42,
+          "hash": "5e9a412b3decc0f31619f4027973174a898e3a17f00e1b7ae6d862002307acf2"
+        },
+        {
+          "source": "order-worker",
+          "path": "a064.ts",
+          "bytes": 42,
+          "hash": "b08675b4fb914f04c18e02eb5d38d6e98b7db3682c6c4b0773a36355253be8f9"
+        },
+        {
+          "source": "order-worker",
+          "path": "a065.ts",
+          "bytes": 42,
+          "hash": "e0e798f15d5ecd93d77656fda80408437ab696b15b6deff4ee0365204a6ed03e"
+        },
+        {
+          "source": "order-worker",
+          "path": "a066.ts",
+          "bytes": 42,
+          "hash": "597e03593d236cd26f0ed71a529ec1a7d93dee740b909a1b9677be79f7c81597"
+        },
+        {
+          "source": "order-worker",
+          "path": "a067.ts",
+          "bytes": 42,
+          "hash": "d2d95d57939e06a8afd657a838ca1fcc6eb292f54596cf26742a88e98e2ea5e9"
+        },
+        {
+          "source": "order-worker",
+          "path": "a068.ts",
+          "bytes": 42,
+          "hash": "3d82892f3c6e0bc1ac8876660162ee5371564babd0943345c84cfaf5d099c375"
+        },
+        {
+          "source": "order-worker",
+          "path": "a069.ts",
+          "bytes": 42,
+          "hash": "f2b4e290db7c7b3f1f727bc5a6960d420a3578e095bbf564198d9d11c6528090"
+        },
+        {
+          "source": "order-worker",
+          "path": "a070.ts",
+          "bytes": 42,
+          "hash": "14cf5d8e5416e681cd5563e8b6a5c3fb6c045d3978fe7204c4d4f9509397e7d8"
+        },
+        {
+          "source": "order-worker",
+          "path": "a071.ts",
+          "bytes": 42,
+          "hash": "6bc6a515a21b14b906efab0a56debd5c5018248ad26665dca648bd0cbdb24dd4"
+        },
+        {
+          "source": "order-worker",
+          "path": "a072.ts",
+          "bytes": 42,
+          "hash": "16e8bfb7b60652a08ce7c3bea381845a9eb263f6e3cdebc5b2b3588ca68cabdf"
+        },
+        {
+          "source": "order-worker",
+          "path": "a073.ts",
+          "bytes": 42,
+          "hash": "051119f57dc791146e45ba07e76ecee8e5249472630e0b761105d150321f24f2"
+        },
+        {
+          "source": "order-worker",
+          "path": "a074.ts",
+          "bytes": 42,
+          "hash": "75e955dae577627bf892f187bd13e55ad4f7752148fdcb7384ee36ae1de5e8a7"
+        },
+        {
+          "source": "order-worker",
+          "path": "a075.ts",
+          "bytes": 42,
+          "hash": "0df9e19246de4034a4b897a86b383dfbd9e0d88e532d09385bf13661f4467386"
+        },
+        {
+          "source": "order-worker",
+          "path": "a076.ts",
+          "bytes": 42,
+          "hash": "a03228f8699473689cd68692041d086bfd153e6502fb6c53275325119c7f3e7a"
+        },
+        {
+          "source": "order-worker",
+          "path": "a077.ts",
+          "bytes": 42,
+          "hash": "34156d691bc4c1666d1106cfa41bfa8773043fcb64a3e318fbc6186ce0063e85"
+        },
+        {
+          "source": "order-worker",
+          "path": "a078.ts",
+          "bytes": 42,
+          "hash": "e3a8ff8d78bc907fa0746e6b2fd56928f095e7226a812ae3174f1a0505264cab"
+        },
+        {
+          "source": "order-worker",
+          "path": "a079.ts",
+          "bytes": 42,
+          "hash": "66001b2157513f30ca35ea035f2015f7fd8a9f61c9d6de09fc4f0adeb24b0ec5"
+        },
+        {
+          "source": "order-worker",
+          "path": "a080.ts",
+          "bytes": 42,
+          "hash": "58c69e6213b9e9b41a48a097777db91115b9cd45e172451e633ade5d06255170"
+        },
+        {
+          "source": "order-worker",
+          "path": "a081.ts",
+          "bytes": 42,
+          "hash": "af850644960fbdf049c4976b0ccc9e2abb029c4383fccc579082e0f92ef5c20f"
+        },
+        {
+          "source": "order-worker",
+          "path": "a082.ts",
+          "bytes": 42,
+          "hash": "f769a7b393c05ef4bb2433b87d71d7b5a4ab9b55084fa5a7d916d59af68c6d91"
+        },
+        {
+          "source": "order-worker",
+          "path": "a083.ts",
+          "bytes": 42,
+          "hash": "5461b4e35349724feefd5d5aba067b6d523487a72b099e9272229242c12c4871"
+        },
+        {
+          "source": "order-worker",
+          "path": "a084.ts",
+          "bytes": 42,
+          "hash": "f166b72fc5381c900bf738b01c09179b0cd57cf5420097da83c0d1f11830a7ef"
+        },
+        {
+          "source": "order-worker",
+          "path": "a085.ts",
+          "bytes": 42,
+          "hash": "a22ad75f7c5f50014617e3a5365fa07b9a121a837f57308c6a38287064fe0008"
+        },
+        {
+          "source": "order-worker",
+          "path": "a086.ts",
+          "bytes": 42,
+          "hash": "08fb13fa344710679ca305e6a40e4ab60823d446929ec4e69ce21d2f2403863a"
+        },
+        {
+          "source": "order-worker",
+          "path": "a087.ts",
+          "bytes": 42,
+          "hash": "d0dd7bfcabdb26641eb2015d53d269621416c99162f9232584673f1e64658f51"
+        },
+        {
+          "source": "order-worker",
+          "path": "a088.ts",
+          "bytes": 42,
+          "hash": "f95b16804ddd9e9605175294244aa3b69b9413803edaa26f20b27432a484d17b"
+        },
+        {
+          "source": "order-worker",
+          "path": "a089.ts",
+          "bytes": 42,
+          "hash": "82aef46e8215ef72aa63c1c2ebe3834dcb031e91c8bb0c15a24f15a2684e8bcf"
+        },
+        {
+          "source": "order-worker",
+          "path": "a090.ts",
+          "bytes": 42,
+          "hash": "3501ac3892807fd38ad4580c67153a015480b31fd229277c0d57613b93fd4dad"
+        },
+        {
+          "source": "order-worker",
+          "path": "a091.ts",
+          "bytes": 42,
+          "hash": "ce3bebff9098ec9d61a36c76d4d01733214a5f3e3f7cc07f91cdd48b073668b3"
+        },
+        {
+          "source": "order-worker",
+          "path": "a092.ts",
+          "bytes": 42,
+          "hash": "9396f47951270a7df381a600c2600592df2b292854ca1ed8830d39750faef5f5"
+        },
+        {
+          "source": "order-worker",
+          "path": "a093.ts",
+          "bytes": 42,
+          "hash": "2b9311ee2ba746a238440caf68db7ef062185a753aef1b9ba9bdb6bd12dd0661"
+        },
+        {
+          "source": "order-worker",
+          "path": "a094.ts",
+          "bytes": 42,
+          "hash": "c5ab47f7c38a3eba12ffe05459c2ea4d9857f37c46e540231bfeda9334625981"
+        },
+        {
+          "source": "order-worker",
+          "path": "a095.ts",
+          "bytes": 42,
+          "hash": "7e1b848d6d9b245b30763f83f2f4f8bd1fc9b8e4097620e70b9b5f24462bc56d"
+        },
+        {
+          "source": "order-worker",
+          "path": "a096.ts",
+          "bytes": 42,
+          "hash": "fab192fcd9e62b733d6fe2539a9048076df40363d93a6c04773dc2634b617ed7"
+        },
+        {
+          "source": "order-worker",
+          "path": "a097.ts",
+          "bytes": 42,
+          "hash": "6c62a0a9ca056a6b9552e6ecc80b5bb522340a089508b937e806193048097c3e"
+        },
+        {
+          "source": "order-worker",
+          "path": "a098.ts",
+          "bytes": 42,
+          "hash": "5894a619e5a98c66008c97d2fab13b78ffeedda44e93615483fae3a6429fc7c2"
+        },
+        {
+          "source": "order-worker",
+          "path": "a099.ts",
+          "bytes": 42,
+          "hash": "de90f2422c738f480407068cb2099f925665ef43b45dfcd1fc94f0e34955fe32"
+        },
+        {
+          "source": "order-worker",
+          "path": "a100.ts",
+          "bytes": 44,
+          "hash": "077453f8e82b4d002250429640066615f741c855a6ad6364b5619e9a31b0ac63"
+        },
+        {
+          "source": "order-worker",
+          "path": "a101.ts",
+          "bytes": 44,
+          "hash": "766a9d09f104ebc22e4207ac2448414d3db64d166370173de14bcc98c42ec031"
+        },
+        {
+          "source": "order-worker",
+          "path": "a102.ts",
+          "bytes": 44,
+          "hash": "26c267b0449694d37c42b6802f64ca6d96bc1e653cc6dabe3ed1e288582f1501"
+        },
+        {
+          "source": "order-worker",
+          "path": "a103.ts",
+          "bytes": 44,
+          "hash": "d083016e92bfa36317b526b243c735ad8f3f002e9fce661bb9d2846b288f42d8"
+        },
+        {
+          "source": "order-worker",
+          "path": "a104.ts",
+          "bytes": 44,
+          "hash": "634863b2a3a6ba3334e4f5ba33a5fb577d3b33fce4eca83644e550cdf38f0f7f"
+        },
+        {
+          "source": "order-worker",
+          "path": "a105.ts",
+          "bytes": 44,
+          "hash": "17654ba1ea9454a5e205b925b3747eb3ed2a6d14f71934489014774c5f185849"
+        },
+        {
+          "source": "order-worker",
+          "path": "a106.ts",
+          "bytes": 44,
+          "hash": "6f10a208a237fc691ce7b9d0d3a8e053dbd8f6d33dba3a46b12a4af158d5a477"
+        },
+        {
+          "source": "order-worker",
+          "path": "a107.ts",
+          "bytes": 44,
+          "hash": "e70c4de61e71a2df844ce677a83e6b72733edee947d1174f7c7bbefa7d0843c9"
+        },
+        {
+          "source": "order-worker",
+          "path": "a108.ts",
+          "bytes": 44,
+          "hash": "6f7d688eac36a50073c71c08daefe55d92eaebae852968a97a447471c00a6b81"
+        },
+        {
+          "source": "order-worker",
+          "path": "a109.ts",
+          "bytes": 44,
+          "hash": "857efed1ed274c303472a95fbbdfc6a4f980947240cae1ac05c9b06e60a564da"
+        },
+        {
+          "source": "order-worker",
+          "path": "a110.ts",
+          "bytes": 44,
+          "hash": "6e9a92914505a2069f947b9228af18d094059078403cb712b5895434f2c3c893"
+        },
+        {
+          "source": "order-worker",
+          "path": "a111.ts",
+          "bytes": 44,
+          "hash": "270bf79d037f52fb250152e3812de431d7c00f252180ac4a7636c0b4786a9053"
+        },
+        {
+          "source": "order-worker",
+          "path": "a112.ts",
+          "bytes": 44,
+          "hash": "537bdc0ede5d7d54ce324dd6334001a6d38f81ced558b1e684bf404efdb3175d"
+        },
+        {
+          "source": "order-worker",
+          "path": "a113.ts",
+          "bytes": 44,
+          "hash": "fe4646967677d95efc9099ac00297d4bab064faa698b2149effa2e397dad236c"
+        },
+        {
+          "source": "order-worker",
+          "path": "a114.ts",
+          "bytes": 44,
+          "hash": "182487b0a33be1fb3ab70c00ca9fdfbd757d714cb0f33906775388d30221bcaa"
+        },
+        {
+          "source": "order-worker",
+          "path": "a115.ts",
+          "bytes": 44,
+          "hash": "02f7aa5903960f6b977a27c95f8a2c7f0c7fef3c1810864ad17187035c1a4bad"
+        },
+        {
+          "source": "order-worker",
+          "path": "a116.ts",
+          "bytes": 44,
+          "hash": "4a358abe7bac673546c51f6a08ec9b725b7ef46520fc4475e00b47a5a0d4080e"
+        },
+        {
+          "source": "order-worker",
+          "path": "a117.ts",
+          "bytes": 44,
+          "hash": "ffb159bea31c00b46882047408acb4b58cf1e2a59879b3c3ccf545755f441445"
+        },
+        {
+          "source": "order-worker",
+          "path": "a118.ts",
+          "bytes": 44,
+          "hash": "244002ff082faa28bf5b9519f29a79703ef49b66402005fc2b29e6a46b5ceddc"
+        },
+        {
+          "source": "order-worker",
+          "path": "a119.ts",
+          "bytes": 44,
+          "hash": "655637b0f1e1d75c58e1b6a71e39be04233da2f9eb78f9211aa4c93461af7819"
+        }
+      ],
+      "support": [
+        {
+          "source": "portal",
+          "path": "src/Checkout.vue",
+          "kind": "symbol",
+          "literal": "const submit =",
+          "label": "submit",
+          "line": 4
+        },
+        {
+          "source": "portal",
+          "path": "src/orders.ts",
+          "kind": "http-request",
+          "literal": "const response = await fetch(",
+          "label": "POST /api/orders",
+          "line": 2
+        },
+        {
+          "source": "portal",
+          "path": "legacy/orders.js",
+          "kind": "http-request",
+          "literal": "return request.post('/legacy/orders'",
+          "label": "POST /legacy/orders",
+          "line": 3
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "kind": "symbol",
+          "literal": "Accepted accept(",
+          "label": "Orders.accept",
+          "line": 13
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "kind": "event-publish",
+          "literal": "publisher.publish(",
+          "label": "Publish OrderPlaced",
+          "line": 15
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "kind": "event-subscribe",
+          "literal": "kafka.subscribe(",
+          "label": "Subscribe via KafkaSubscriber",
+          "line": 12
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "kind": "document-write",
+          "literal": "collection.replaceOne(",
+          "label": "MongoCollection.replaceOne",
+          "line": 16
+        }
+      ]
+    },
+    "dense": {
+      "files": [
+        {
+          "source": "portal",
+          "path": "README.md",
+          "bytes": 327,
+          "hash": "4dfe0f8ac50f0e8b4584e0921c5a89bc684da3f98f9adc3575f0ae17e1c9fd21"
+        },
+        {
+          "source": "portal",
+          "path": "package.json",
+          "bytes": 257,
+          "hash": "5f63d7d05c7735f4c3622fb837b73a7687fc98568d045ba2a7435d7ea6eb5ff9"
+        },
+        {
+          "source": "portal",
+          "path": "src/Checkout.vue",
+          "bytes": 275,
+          "hash": "9ad7d244165172b4eb462d0caeb022f0f56a74db743e8ec28be9e8b030e2ba88"
+        },
+        {
+          "source": "portal",
+          "path": "src/orders.ts",
+          "bytes": 383,
+          "hash": "39e7b2a6ae1d45a2fbdc3903cd9f4d8c79419c6ba5f72c40de7aca6b5d0da410"
+        },
+        {
+          "source": "portal",
+          "path": "legacy/orders.js",
+          "bytes": 309,
+          "hash": "6d02218565b2f0d038ea728d6864dbb7d74646ceed19a1d33fb3e131a3a9a293"
+        },
+        {
+          "source": "portal",
+          "path": "config/local.json",
+          "bytes": 95,
+          "hash": "37c4ae84a8ccb522960504104dc3e316ec96e96c086bee933642fcdd3fe6b608"
+        },
+        {
+          "source": "portal",
+          "path": "a.ts",
+          "bytes": 8380,
+          "hash": "8344fe14843c9ef77109a357615ae983070564eddae803445aaeca47677601f9"
+        },
+        {
+          "source": "order-api",
+          "path": "README.md",
+          "bytes": 439,
+          "hash": "0bdd3acf2cde47a3fe1e587e9bcf8bb0d749e2507c5e0633a6aa30073d479e61"
+        },
+        {
+          "source": "order-api",
+          "path": "pom.xml",
+          "bytes": 389,
+          "hash": "b172e59a5d5d42a72e5ea68af530d6ba7ba489d92de52dba4d2a636febdf1781"
+        },
+        {
+          "source": "order-api",
+          "path": "config/routes.json",
+          "bytes": 240,
+          "hash": "161e949a54ab2ab99648cd5dd07de4c4115d554d411e85dfc919412877e00a5e"
+        },
+        {
+          "source": "order-api",
+          "path": "config/local.json",
+          "bytes": 103,
+          "hash": "d407e198084d63c25904025f9420ab898b3660c545e90999124137dbfc7d865f"
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "bytes": 792,
+          "hash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c"
+        },
+        {
+          "source": "order-api",
+          "path": "contracts/OrderPlaced.json",
+          "bytes": 226,
+          "hash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79"
+        },
+        {
+          "source": "order-api",
+          "path": "notes/source-instructions.txt",
+          "bytes": 250,
+          "hash": "06c1a905e0574514e3aed8d0ef9961c502904d7d22f79916e8e5628789536375"
+        },
+        {
+          "source": "order-worker",
+          "path": "README.md",
+          "bytes": 394,
+          "hash": "1fe2344c9f7d46ff007c9eb29b363b6a5a89be1e5312548ffa27ff982beb1794"
+        },
+        {
+          "source": "order-worker",
+          "path": "pom.xml",
+          "bytes": 392,
+          "hash": "4b2c11e0362e4b34f4f29f36a753437208f56a3f83536ad9664fcb1bd9fe7758"
+        },
+        {
+          "source": "order-worker",
+          "path": "config/local.json",
+          "bytes": 162,
+          "hash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49"
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "bytes": 926,
+          "hash": "bc2c347b007865acd3044b52dba791f7f37abd235f5c406c06b4cf2f3516dfb0"
+        },
+        {
+          "source": "order-worker",
+          "path": "contracts/OrderPlaced.json",
+          "bytes": 226,
+          "hash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79"
+        }
+      ],
+      "support": [
+        {
+          "source": "portal",
+          "path": "src/Checkout.vue",
+          "kind": "symbol",
+          "literal": "const submit =",
+          "label": "submit",
+          "line": 4
+        },
+        {
+          "source": "portal",
+          "path": "src/orders.ts",
+          "kind": "http-request",
+          "literal": "const response = await fetch(",
+          "label": "POST /api/orders",
+          "line": 2
+        },
+        {
+          "source": "portal",
+          "path": "legacy/orders.js",
+          "kind": "http-request",
+          "literal": "return request.post('/legacy/orders'",
+          "label": "POST /legacy/orders",
+          "line": 3
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "kind": "symbol",
+          "literal": "Accepted accept(",
+          "label": "Orders.accept",
+          "line": 13
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "kind": "event-publish",
+          "literal": "publisher.publish(",
+          "label": "Publish OrderPlaced",
+          "line": 15
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "kind": "event-subscribe",
+          "literal": "kafka.subscribe(",
+          "label": "Subscribe via KafkaSubscriber",
+          "line": 12
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "kind": "document-write",
+          "literal": "collection.replaceOne(",
+          "label": "MongoCollection.replaceOne",
+          "line": 16
+        }
+      ]
+    },
+    "ambiguous": {
+      "files": [
+        {
+          "source": "portal",
+          "path": "README.md",
+          "bytes": 327,
+          "hash": "4dfe0f8ac50f0e8b4584e0921c5a89bc684da3f98f9adc3575f0ae17e1c9fd21"
+        },
+        {
+          "source": "portal",
+          "path": "package.json",
+          "bytes": 257,
+          "hash": "5f63d7d05c7735f4c3622fb837b73a7687fc98568d045ba2a7435d7ea6eb5ff9"
+        },
+        {
+          "source": "portal",
+          "path": "src/Checkout.vue",
+          "bytes": 275,
+          "hash": "9ad7d244165172b4eb462d0caeb022f0f56a74db743e8ec28be9e8b030e2ba88"
+        },
+        {
+          "source": "portal",
+          "path": "src/orders.ts",
+          "bytes": 383,
+          "hash": "39e7b2a6ae1d45a2fbdc3903cd9f4d8c79419c6ba5f72c40de7aca6b5d0da410"
+        },
+        {
+          "source": "portal",
+          "path": "legacy/orders.js",
+          "bytes": 309,
+          "hash": "6d02218565b2f0d038ea728d6864dbb7d74646ceed19a1d33fb3e131a3a9a293"
+        },
+        {
+          "source": "portal",
+          "path": "config/local.json",
+          "bytes": 95,
+          "hash": "37c4ae84a8ccb522960504104dc3e316ec96e96c086bee933642fcdd3fe6b608"
+        },
+        {
+          "source": "portal",
+          "path": "src/orders.js",
+          "bytes": 67,
+          "hash": "ecd972f7f6c7057ac760a6a60fca1b8e8f0e221ed83fb8885e98b6410991c246"
+        },
+        {
+          "source": "order-api",
+          "path": "README.md",
+          "bytes": 439,
+          "hash": "0bdd3acf2cde47a3fe1e587e9bcf8bb0d749e2507c5e0633a6aa30073d479e61"
+        },
+        {
+          "source": "order-api",
+          "path": "pom.xml",
+          "bytes": 389,
+          "hash": "b172e59a5d5d42a72e5ea68af530d6ba7ba489d92de52dba4d2a636febdf1781"
+        },
+        {
+          "source": "order-api",
+          "path": "config/routes.json",
+          "bytes": 240,
+          "hash": "161e949a54ab2ab99648cd5dd07de4c4115d554d411e85dfc919412877e00a5e"
+        },
+        {
+          "source": "order-api",
+          "path": "config/local.json",
+          "bytes": 103,
+          "hash": "d407e198084d63c25904025f9420ab898b3660c545e90999124137dbfc7d865f"
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "bytes": 792,
+          "hash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c"
+        },
+        {
+          "source": "order-api",
+          "path": "contracts/OrderPlaced.json",
+          "bytes": 226,
+          "hash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79"
+        },
+        {
+          "source": "order-api",
+          "path": "notes/source-instructions.txt",
+          "bytes": 250,
+          "hash": "06c1a905e0574514e3aed8d0ef9961c502904d7d22f79916e8e5628789536375"
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Shadow.java",
+          "bytes": 71,
+          "hash": "d0c97c4a8ae25495eb6eebadc49603d601995c9b1d760c110bfe3d82609a001a"
+        },
+        {
+          "source": "order-worker",
+          "path": "README.md",
+          "bytes": 394,
+          "hash": "1fe2344c9f7d46ff007c9eb29b363b6a5a89be1e5312548ffa27ff982beb1794"
+        },
+        {
+          "source": "order-worker",
+          "path": "pom.xml",
+          "bytes": 392,
+          "hash": "4b2c11e0362e4b34f4f29f36a753437208f56a3f83536ad9664fcb1bd9fe7758"
+        },
+        {
+          "source": "order-worker",
+          "path": "config/local.json",
+          "bytes": 162,
+          "hash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49"
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "bytes": 926,
+          "hash": "bc2c347b007865acd3044b52dba791f7f37abd235f5c406c06b4cf2f3516dfb0"
+        },
+        {
+          "source": "order-worker",
+          "path": "contracts/OrderPlaced.json",
+          "bytes": 226,
+          "hash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79"
+        }
+      ],
+      "support": [
+        {
+          "source": "portal",
+          "path": "src/Checkout.vue",
+          "kind": "symbol",
+          "literal": "const submit =",
+          "label": "submit",
+          "line": 4
+        },
+        {
+          "source": "portal",
+          "path": "src/orders.ts",
+          "kind": "http-request",
+          "literal": "const response = await fetch(",
+          "label": "POST /api/orders",
+          "line": 2
+        },
+        {
+          "source": "portal",
+          "path": "legacy/orders.js",
+          "kind": "http-request",
+          "literal": "return request.post('/legacy/orders'",
+          "label": "POST /legacy/orders",
+          "line": 3
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "kind": "symbol",
+          "literal": "Accepted accept(",
+          "label": "Orders.accept",
+          "line": 13
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "kind": "event-publish",
+          "literal": "publisher.publish(",
+          "label": "Publish OrderPlaced",
+          "line": 15
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "kind": "event-subscribe",
+          "literal": "kafka.subscribe(",
+          "label": "Subscribe via KafkaSubscriber",
+          "line": 12
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "kind": "document-write",
+          "literal": "collection.replaceOne(",
+          "label": "MongoCollection.replaceOne",
+          "line": 16
+        }
+      ]
+    },
+    "topic": {
+      "files": [
+        {
+          "source": "portal",
+          "path": "README.md",
+          "bytes": 327,
+          "hash": "4dfe0f8ac50f0e8b4584e0921c5a89bc684da3f98f9adc3575f0ae17e1c9fd21"
+        },
+        {
+          "source": "portal",
+          "path": "package.json",
+          "bytes": 257,
+          "hash": "5f63d7d05c7735f4c3622fb837b73a7687fc98568d045ba2a7435d7ea6eb5ff9"
+        },
+        {
+          "source": "portal",
+          "path": "src/Checkout.vue",
+          "bytes": 285,
+          "hash": "ed78721a8296fc82bdcadc9a4a87e471280f3eebb3844642f29172342057363a"
+        },
+        {
+          "source": "portal",
+          "path": "src/orders.ts",
+          "bytes": 383,
+          "hash": "39e7b2a6ae1d45a2fbdc3903cd9f4d8c79419c6ba5f72c40de7aca6b5d0da410"
+        },
+        {
+          "source": "portal",
+          "path": "legacy/orders.js",
+          "bytes": 309,
+          "hash": "6d02218565b2f0d038ea728d6864dbb7d74646ceed19a1d33fb3e131a3a9a293"
+        },
+        {
+          "source": "portal",
+          "path": "config/local.json",
+          "bytes": 95,
+          "hash": "37c4ae84a8ccb522960504104dc3e316ec96e96c086bee933642fcdd3fe6b608"
+        },
+        {
+          "source": "order-api",
+          "path": "README.md",
+          "bytes": 439,
+          "hash": "0bdd3acf2cde47a3fe1e587e9bcf8bb0d749e2507c5e0633a6aa30073d479e61"
+        },
+        {
+          "source": "order-api",
+          "path": "pom.xml",
+          "bytes": 389,
+          "hash": "b172e59a5d5d42a72e5ea68af530d6ba7ba489d92de52dba4d2a636febdf1781"
+        },
+        {
+          "source": "order-api",
+          "path": "config/routes.json",
+          "bytes": 240,
+          "hash": "161e949a54ab2ab99648cd5dd07de4c4115d554d411e85dfc919412877e00a5e"
+        },
+        {
+          "source": "order-api",
+          "path": "config/local.json",
+          "bytes": 103,
+          "hash": "d407e198084d63c25904025f9420ab898b3660c545e90999124137dbfc7d865f"
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "bytes": 804,
+          "hash": "1f0f35269e111a193554581186773a734cc50b3bbe1c2c09e909f4467264043e"
+        },
+        {
+          "source": "order-api",
+          "path": "contracts/OrderPlaced.json",
+          "bytes": 226,
+          "hash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79"
+        },
+        {
+          "source": "order-api",
+          "path": "notes/source-instructions.txt",
+          "bytes": 250,
+          "hash": "06c1a905e0574514e3aed8d0ef9961c502904d7d22f79916e8e5628789536375"
+        },
+        {
+          "source": "order-worker",
+          "path": "README.md",
+          "bytes": 394,
+          "hash": "1fe2344c9f7d46ff007c9eb29b363b6a5a89be1e5312548ffa27ff982beb1794"
+        },
+        {
+          "source": "order-worker",
+          "path": "pom.xml",
+          "bytes": 392,
+          "hash": "4b2c11e0362e4b34f4f29f36a753437208f56a3f83536ad9664fcb1bd9fe7758"
+        },
+        {
+          "source": "order-worker",
+          "path": "config/local.json",
+          "bytes": 162,
+          "hash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49"
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "bytes": 926,
+          "hash": "bc2c347b007865acd3044b52dba791f7f37abd235f5c406c06b4cf2f3516dfb0"
+        },
+        {
+          "source": "order-worker",
+          "path": "contracts/OrderPlaced.json",
+          "bytes": 226,
+          "hash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79"
+        }
+      ],
+      "support": [
+        {
+          "source": "portal",
+          "path": "src/Checkout.vue",
+          "kind": "symbol",
+          "literal": "const submit =",
+          "label": "submit",
+          "line": 4
+        },
+        {
+          "source": "portal",
+          "path": "src/orders.ts",
+          "kind": "http-request",
+          "literal": "const response = await fetch(",
+          "label": "POST /api/orders",
+          "line": 2
+        },
+        {
+          "source": "portal",
+          "path": "legacy/orders.js",
+          "kind": "http-request",
+          "literal": "return request.post('/legacy/orders'",
+          "label": "POST /legacy/orders",
+          "line": 3
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "kind": "symbol",
+          "literal": "Accepted accept(",
+          "label": "Orders.accept",
+          "line": 13
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "kind": "event-publish",
+          "literal": "publisher.publish(",
+          "label": "Publish OrderPlaced",
+          "line": 15
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "kind": "event-subscribe",
+          "literal": "kafka.subscribe(",
+          "label": "Subscribe via KafkaSubscriber",
+          "line": 12
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "kind": "document-write",
+          "literal": "collection.replaceOne(",
+          "label": "MongoCollection.replaceOne",
+          "line": 16
+        }
+      ]
+    },
+    "environment": {
+      "files": [
+        {
+          "source": "portal",
+          "path": "README.md",
+          "bytes": 327,
+          "hash": "4dfe0f8ac50f0e8b4584e0921c5a89bc684da3f98f9adc3575f0ae17e1c9fd21"
+        },
+        {
+          "source": "portal",
+          "path": "package.json",
+          "bytes": 257,
+          "hash": "5f63d7d05c7735f4c3622fb837b73a7687fc98568d045ba2a7435d7ea6eb5ff9"
+        },
+        {
+          "source": "portal",
+          "path": "src/Checkout.vue",
+          "bytes": 285,
+          "hash": "ed78721a8296fc82bdcadc9a4a87e471280f3eebb3844642f29172342057363a"
+        },
+        {
+          "source": "portal",
+          "path": "src/orders.ts",
+          "bytes": 383,
+          "hash": "39e7b2a6ae1d45a2fbdc3903cd9f4d8c79419c6ba5f72c40de7aca6b5d0da410"
+        },
+        {
+          "source": "portal",
+          "path": "legacy/orders.js",
+          "bytes": 309,
+          "hash": "6d02218565b2f0d038ea728d6864dbb7d74646ceed19a1d33fb3e131a3a9a293"
+        },
+        {
+          "source": "portal",
+          "path": "config/local.json",
+          "bytes": 95,
+          "hash": "37c4ae84a8ccb522960504104dc3e316ec96e96c086bee933642fcdd3fe6b608"
+        },
+        {
+          "source": "order-api",
+          "path": "README.md",
+          "bytes": 439,
+          "hash": "0bdd3acf2cde47a3fe1e587e9bcf8bb0d749e2507c5e0633a6aa30073d479e61"
+        },
+        {
+          "source": "order-api",
+          "path": "pom.xml",
+          "bytes": 389,
+          "hash": "b172e59a5d5d42a72e5ea68af530d6ba7ba489d92de52dba4d2a636febdf1781"
+        },
+        {
+          "source": "order-api",
+          "path": "config/routes.json",
+          "bytes": 240,
+          "hash": "161e949a54ab2ab99648cd5dd07de4c4115d554d411e85dfc919412877e00a5e"
+        },
+        {
+          "source": "order-api",
+          "path": "config/local.json",
+          "bytes": 103,
+          "hash": "d407e198084d63c25904025f9420ab898b3660c545e90999124137dbfc7d865f"
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "bytes": 792,
+          "hash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c"
+        },
+        {
+          "source": "order-api",
+          "path": "contracts/OrderPlaced.json",
+          "bytes": 226,
+          "hash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79"
+        },
+        {
+          "source": "order-api",
+          "path": "notes/source-instructions.txt",
+          "bytes": 250,
+          "hash": "06c1a905e0574514e3aed8d0ef9961c502904d7d22f79916e8e5628789536375"
+        },
+        {
+          "source": "order-worker",
+          "path": "README.md",
+          "bytes": 394,
+          "hash": "1fe2344c9f7d46ff007c9eb29b363b6a5a89be1e5312548ffa27ff982beb1794"
+        },
+        {
+          "source": "order-worker",
+          "path": "pom.xml",
+          "bytes": 392,
+          "hash": "4b2c11e0362e4b34f4f29f36a753437208f56a3f83536ad9664fcb1bd9fe7758"
+        },
+        {
+          "source": "order-worker",
+          "path": "config/local.json",
+          "bytes": 164,
+          "hash": "6aff969f1bbf1f79fd5423fd69b6e5a3aaa99d4fa1aade956bb89c9f441efedb"
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "bytes": 926,
+          "hash": "bc2c347b007865acd3044b52dba791f7f37abd235f5c406c06b4cf2f3516dfb0"
+        },
+        {
+          "source": "order-worker",
+          "path": "contracts/OrderPlaced.json",
+          "bytes": 226,
+          "hash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79"
+        }
+      ],
+      "support": [
+        {
+          "source": "portal",
+          "path": "src/Checkout.vue",
+          "kind": "symbol",
+          "literal": "const submit =",
+          "label": "submit",
+          "line": 4
+        },
+        {
+          "source": "portal",
+          "path": "src/orders.ts",
+          "kind": "http-request",
+          "literal": "const response = await fetch(",
+          "label": "POST /api/orders",
+          "line": 2
+        },
+        {
+          "source": "portal",
+          "path": "legacy/orders.js",
+          "kind": "http-request",
+          "literal": "return request.post('/legacy/orders'",
+          "label": "POST /legacy/orders",
+          "line": 3
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "kind": "symbol",
+          "literal": "Accepted accept(",
+          "label": "Orders.accept",
+          "line": 13
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "kind": "event-publish",
+          "literal": "publisher.publish(",
+          "label": "Publish OrderPlaced",
+          "line": 15
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "kind": "event-subscribe",
+          "literal": "kafka.subscribe(",
+          "label": "Subscribe via KafkaSubscriber",
+          "line": 12
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "kind": "document-write",
+          "literal": "collection.replaceOne(",
+          "label": "MongoCollection.replaceOne",
+          "line": 16
+        }
+      ]
+    },
+    "syntax-gap": {
+      "files": [
+        {
+          "source": "portal",
+          "path": "README.md",
+          "bytes": 327,
+          "hash": "4dfe0f8ac50f0e8b4584e0921c5a89bc684da3f98f9adc3575f0ae17e1c9fd21"
+        },
+        {
+          "source": "portal",
+          "path": "package.json",
+          "bytes": 257,
+          "hash": "5f63d7d05c7735f4c3622fb837b73a7687fc98568d045ba2a7435d7ea6eb5ff9"
+        },
+        {
+          "source": "portal",
+          "path": "src/Checkout.vue",
+          "bytes": 275,
+          "hash": "9ad7d244165172b4eb462d0caeb022f0f56a74db743e8ec28be9e8b030e2ba88"
+        },
+        {
+          "source": "portal",
+          "path": "src/orders.ts",
+          "bytes": 383,
+          "hash": "39e7b2a6ae1d45a2fbdc3903cd9f4d8c79419c6ba5f72c40de7aca6b5d0da410"
+        },
+        {
+          "source": "portal",
+          "path": "legacy/orders.js",
+          "bytes": 309,
+          "hash": "6d02218565b2f0d038ea728d6864dbb7d74646ceed19a1d33fb3e131a3a9a293"
+        },
+        {
+          "source": "portal",
+          "path": "config/local.json",
+          "bytes": 95,
+          "hash": "37c4ae84a8ccb522960504104dc3e316ec96e96c086bee933642fcdd3fe6b608"
+        },
+        {
+          "source": "portal",
+          "path": "bad.ts",
+          "bytes": 24,
+          "hash": "46cafd298d716e65193b2fd2ec7bb60d6040c376affb46882caa108a02203b2a"
+        },
+        {
+          "source": "order-api",
+          "path": "README.md",
+          "bytes": 439,
+          "hash": "0bdd3acf2cde47a3fe1e587e9bcf8bb0d749e2507c5e0633a6aa30073d479e61"
+        },
+        {
+          "source": "order-api",
+          "path": "pom.xml",
+          "bytes": 389,
+          "hash": "b172e59a5d5d42a72e5ea68af530d6ba7ba489d92de52dba4d2a636febdf1781"
+        },
+        {
+          "source": "order-api",
+          "path": "config/routes.json",
+          "bytes": 240,
+          "hash": "161e949a54ab2ab99648cd5dd07de4c4115d554d411e85dfc919412877e00a5e"
+        },
+        {
+          "source": "order-api",
+          "path": "config/local.json",
+          "bytes": 103,
+          "hash": "d407e198084d63c25904025f9420ab898b3660c545e90999124137dbfc7d865f"
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "bytes": 792,
+          "hash": "533356fbff3802cf2f9085bc881c774a08851267d02a4448e8cc7105feb2352c"
+        },
+        {
+          "source": "order-api",
+          "path": "contracts/OrderPlaced.json",
+          "bytes": 226,
+          "hash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79"
+        },
+        {
+          "source": "order-api",
+          "path": "notes/source-instructions.txt",
+          "bytes": 250,
+          "hash": "06c1a905e0574514e3aed8d0ef9961c502904d7d22f79916e8e5628789536375"
+        },
+        {
+          "source": "order-worker",
+          "path": "README.md",
+          "bytes": 394,
+          "hash": "1fe2344c9f7d46ff007c9eb29b363b6a5a89be1e5312548ffa27ff982beb1794"
+        },
+        {
+          "source": "order-worker",
+          "path": "pom.xml",
+          "bytes": 392,
+          "hash": "4b2c11e0362e4b34f4f29f36a753437208f56a3f83536ad9664fcb1bd9fe7758"
+        },
+        {
+          "source": "order-worker",
+          "path": "config/local.json",
+          "bytes": 162,
+          "hash": "d459c3d83f1a5dd9d452a86e409f1c208479fa4322a76474ab3e6816dbc15d49"
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "bytes": 926,
+          "hash": "bc2c347b007865acd3044b52dba791f7f37abd235f5c406c06b4cf2f3516dfb0"
+        },
+        {
+          "source": "order-worker",
+          "path": "contracts/OrderPlaced.json",
+          "bytes": 226,
+          "hash": "b7226f44f281c6ee098c6d652ff33c40b32ca8954b451273c27d47a7579ddb79"
+        }
+      ],
+      "support": [
+        {
+          "source": "portal",
+          "path": "src/Checkout.vue",
+          "kind": "symbol",
+          "literal": "const submit =",
+          "label": "submit",
+          "line": 4
+        },
+        {
+          "source": "portal",
+          "path": "src/orders.ts",
+          "kind": "http-request",
+          "literal": "const response = await fetch(",
+          "label": "POST /api/orders",
+          "line": 2
+        },
+        {
+          "source": "portal",
+          "path": "legacy/orders.js",
+          "kind": "http-request",
+          "literal": "return request.post('/legacy/orders'",
+          "label": "POST /legacy/orders",
+          "line": 3
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "kind": "symbol",
+          "literal": "Accepted accept(",
+          "label": "Orders.accept",
+          "line": 13
+        },
+        {
+          "source": "order-api",
+          "path": "src/main/java/Orders.java",
+          "kind": "event-publish",
+          "literal": "publisher.publish(",
+          "label": "Publish OrderPlaced",
+          "line": 15
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "kind": "event-subscribe",
+          "literal": "kafka.subscribe(",
+          "label": "Subscribe via KafkaSubscriber",
+          "line": 12
+        },
+        {
+          "source": "order-worker",
+          "path": "src/main/java/OrderConsumer.java",
+          "kind": "document-write",
+          "literal": "collection.replaceOne(",
+          "label": "MongoCollection.replaceOne",
+          "line": 16
+        }
+      ]
+    }
+  },
+  "baselineEdges": {
+    "calls": 1,
+    "performs": 5,
+    "routes-to": 2,
+    "implements": 1,
+    "http-target": 2,
+    "event-delivery": 1,
+    "dispatch-candidate": 1
+  }
+}
