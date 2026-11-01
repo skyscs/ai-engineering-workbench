@@ -1,5 +1,37 @@
 # Development status
 
+## Task 059 — Twenty-repository README navigation boundary check
+
+Implemented and locally verified, 2026-11-01. Scope `d78cf9f`; measurement implementation
+`7d58bf7`. PR #62 reached main as `2d90170` after push `41333895882` and pull-request
+`41333933674` passed for exact head `91af8ff698251cd00c9b816f55825def32cade25` (434 tests).
+
+An independently specified synthetic corpus fills the current twenty-README input budget:
+32,768 UTF-8 bytes and 960 lines per document, nested ranges, 160-byte Unicode labels,
+fenced/commented false headings and omitted boundary headings. The compiled projection
+preserves all twenty contexts, 240 exact sections, eighty disclosed omitted labels and
+160 original parts. Fifteen optional manifests are visibly omitted, preserving README
+priority. Output is 135,560 bytes under the 524,288-byte cap. All original chunks reopen
+with exact source/revision/build/hash/text identity; full reading lists retain eight parts.
+
+First/repeated projection latencies are 49.53/42.04/36.11 ms, below the prospective
+one-second analysis trigger. The complete measured range is 33.04–72.68 ms across refresh,
+history and restart. Measurements ran concurrently with local checks and are descriptive,
+not an isolated-machine or UI latency guarantee. Every measured projection makes zero Git
+calls and zero SQLite writes, reading twenty documents and 160 original parts. Refresh
+reuses all 79 indexed files; historical identity and both restart projections remain exact.
+Sources stay unchanged after fixture preparation; no answer attempt or model request.
+
+Strict checks, 436 tests and production builds pass. Two new independent corpus/range
+regressions cover the full twenty-source shape. Production code and UI are unchanged;
+therefore the Task 058 browser evidence is retained without a redundant rerun. The owned
+worktree protects the existing user demo's data/process/assets. See
+[Task 059](../tasks/059-loredock-readme-boundary.md),
+[input/oracle](../fixtures/loredock-readme-boundary/README.md) and
+[complete measurement](fixtures/loredock-readme-boundary/README.md). This constructed
+boundary shape does not qualify private-project documentation, broader synthesis or the
+still-failed semantic answer gates. Frozen evaluations and model budgets remain untouched.
+
 ## Task 058 — Source-backed README section navigation
 
 Implemented and locally verified, 2026-11-01. Scope `078c48d`, implementation `a59da3a`,
