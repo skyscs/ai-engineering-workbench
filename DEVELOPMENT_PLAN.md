@@ -197,8 +197,14 @@ Existing consumers and storage remain unchanged.
 [Task 069](tasks/069-loredock-connected-path-browser.md) adds the collapsed browser,
 explicit page/root selection, inventory publication/eviction handling and stale-response/
 evidence fences. Fifteen fresh Chrome checks cover desktop/narrow layouts and request
-lifetimes. Next: scope Phase D's broader-consumer and saved-provenance contract before
-any semantic qualification or production consumer change.
+lifetimes.
+[Task 070](tasks/070-loredock-path-consumer-contract.md) defines Phase D's
+[consumer/provenance contract](docs/loredock/CONNECTED_PATH_CONSUMERS.md): qualify immutable
+path receipts offline before adding durable consumers. Default display paths do not select
+question context or repositories. History survives fact eviction only with complete saved
+support and authorization dependencies. Next: freeze fresh receipt/lifecycle cases and
+bounds, then run that separate model-free qualification. No production consumer changes
+or new semantic acceptance follow from this design alone.
 The user demo and feedback stay separate from these checks; broader semantic synthesis
 and question-context changes remain open.
 Preserve all failed evaluations;

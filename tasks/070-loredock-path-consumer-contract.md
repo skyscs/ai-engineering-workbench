@@ -1,6 +1,6 @@
 # Task 070 — Connected-path consumer and provenance contract
 
-Status: scoped before implementation, 2026-11-02.
+Status: design completed and reviewed, 2026-11-02; scope `2dee42a`.
 
 ## Baseline and authorization
 
@@ -30,3 +30,18 @@ restart or qualification rerun belongs to this task.
 - Distinguish structural/integrity verification from semantic/private-pilot acceptance.
 - Update integration/development status and document the decision in an ADR.
 - Review local document targets and exact diff; merge after both exact-head CI events pass.
+
+## Result
+
+Added `CONNECTED_PATH_CONSUMERS.md` and ADR 0050. Reviewed actual connected-read,
+answer/interface/publication, related-candidate, correction/reapplication and inventory/
+retention contracts. The smallest successor is an offline immutable receipt qualification;
+production storage, question selection, new answer semantics, new review targets and
+routing remain gated separately. The design specifies complete projection/support,
+whole-scope dependencies, prospective size bounds, atomic capture handoff, historical
+readability without fact inventories, corruption/purge boundaries and fresh-case stop rules.
+
+Updated architecture, integration and development status. Verified all new relative document
+targets and reviewed the complete diff. No executable files changed; local test/build reruns
+are unnecessary for this documentation-only task. Required push/pull-request CI still gates
+merge. Historical evidence and budgets are unchanged.

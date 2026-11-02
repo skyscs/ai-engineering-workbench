@@ -288,6 +288,7 @@ cover desktop/390px, keyboard/focus, unavailable/empty/busy states and delayed r
 across inventory/navigation/index/source/policy boundaries. See the retained
 [browser evidence](../fixtures/loredock-connected-browser/README.md).
 
-Next: separately scope Phase D's consumer/provenance/review decision. This browser's
+Task 070 specifies Phase D's [consumer/provenance/review decision](CONNECTED_PATH_CONSUMERS.md).
+The next delivery is a fresh offline immutable-receipt qualification. This browser's
 functional checks do not qualify autonomous routing, new answer semantics, review-target
 migration or the private pilot. Earlier failed evaluations and frozen budgets remain intact.
