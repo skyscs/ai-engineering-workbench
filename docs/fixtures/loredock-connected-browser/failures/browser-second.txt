@@ -1,0 +1,11 @@
+(node:350017) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+Error: Missing UI text: Paths use an older saved index.
+    at waitFor (file:///home/toshiba/aew/worktrees/task069-connected-path-browser/scripts/loredock-connected-browser-smoke.mjs:28:9)
+    at async file:///home/toshiba/aew/worktrees/task069-connected-path-browser/scripts/loredock-connected-browser-smoke.mjs:180:84
+
+Node.js v22.23.2

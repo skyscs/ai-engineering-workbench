@@ -1,0 +1,1025 @@
+{
+  "schemaVersion": "loredock-connected-browser-smoke/1",
+  "createdAt": "2026-11-02T14:20:22.095Z",
+  "implementationCommit": "c6b796f6d84679f81672e450cef489f6de97acad",
+  "node": "v22.23.2",
+  "chrome": "Google Chrome 152.0.7977.82",
+  "sourceCount": 3,
+  "initialRevisions": {
+    "console": "102d7a4fa2aba6011e39c7a29e80f478e383e80b",
+    "parcel-api": "327be767d469f9440c416597c0782660d7f0527f",
+    "parcel-worker": "733f4e1deb8c49f737cd0c336d87ffdd054a17f6"
+  },
+  "checks": [
+    "Owned non-forwarding transport verified by a unique sentinel before app navigation.",
+    "Collapsed by default, keyboard opening reads without starting analysis, and missing facts link focuses Code coverage.",
+    "Publication loads two qualified default paths and four of nine entries; existing static/header cards remain. Desktop and 390px layouts fit.",
+    "Root pagination clears paths/originals and focuses the result; a later isolated root stays inspectable and an oversized entry remains counted/unavailable.",
+    "Delayed originals cannot return after page navigation; delayed pages cannot return after collapse even when cancellation is ignored.",
+    "Delayed selected-root and owned inventory-poll responses cannot reopen a collapsed browser or trigger another path read.",
+    "A newer paused attempt preserves the old view without graph reads; publication reloads defaults once and fences pending originals.",
+    "A real busy response leaves no stale graph, does not auto-retry on progress polls, and supports explicit retry.",
+    "A delayed graph from an older inventory cannot replace the newly published default view.",
+    "Selected-index and newly published-index boundaries discard delayed pages/originals; retained historical paths remain explicitly labeled.",
+    "Inventory eviction clears the historical path/root view without starting analysis or switching indexes.",
+    "Source revocation discards a delayed graph and its original identifiers.",
+    "Policy changes discard delayed originals from the connected-path browser.",
+    "An empty supported inventory renders zero entry points with an explicit unknown-behavior qualification.",
+    "Owned source checkouts remain unchanged throughout browser actions; no model/answer requests."
+  ],
+  "modelRequests": 0,
+  "pathReads": 28,
+  "transport": "Owned loopback HTTP proxy dispatches to the compiled in-process app; no upstream forwarding or listener on port 4244.",
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/favicon.ico",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/assets/index-CH-Ai1k9.css",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/assets/index-CY-NXyI4.js",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/session",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/favicon.ico",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/builds/74f92c44-b8e8-425c-a8f9-99a609ce0048/changes",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/orientation",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system-map",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/corrections",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-flows",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/favicon.ico",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 202
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/evidence/4dbc3244-373e-4e34-aca0-dd92741610e0",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths/roots",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048&inventoryId=891235dc-975c-4056-9b41-3f763b1cf8f8&generationId=0dcf56ad4af1cd8598d72a66889aadb77be50dba5967348a32fd60efae7c5eb8&offset=4",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048&inventoryId=891235dc-975c-4056-9b41-3f763b1cf8f8&generationId=0dcf56ad4af1cd8598d72a66889aadb77be50dba5967348a32fd60efae7c5eb8&rootId=a57922312b3e567996cd54b95251eeaff8c9e3ae683705603ff4c0d21d542fd3",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048&inventoryId=891235dc-975c-4056-9b41-3f763b1cf8f8&generationId=0dcf56ad4af1cd8598d72a66889aadb77be50dba5967348a32fd60efae7c5eb8",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths/roots",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048&inventoryId=891235dc-975c-4056-9b41-3f763b1cf8f8&generationId=0dcf56ad4af1cd8598d72a66889aadb77be50dba5967348a32fd60efae7c5eb8&offset=4",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths/roots",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048&inventoryId=891235dc-975c-4056-9b41-3f763b1cf8f8&generationId=0dcf56ad4af1cd8598d72a66889aadb77be50dba5967348a32fd60efae7c5eb8&offset=8",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths/roots",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048&inventoryId=891235dc-975c-4056-9b41-3f763b1cf8f8&generationId=0dcf56ad4af1cd8598d72a66889aadb77be50dba5967348a32fd60efae7c5eb8&offset=4",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048&inventoryId=891235dc-975c-4056-9b41-3f763b1cf8f8&generationId=0dcf56ad4af1cd8598d72a66889aadb77be50dba5967348a32fd60efae7c5eb8",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/evidence/4dbc3244-373e-4e34-aca0-dd92741610e0",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths/roots",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048&inventoryId=891235dc-975c-4056-9b41-3f763b1cf8f8&generationId=0dcf56ad4af1cd8598d72a66889aadb77be50dba5967348a32fd60efae7c5eb8&offset=4",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths/roots",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048&inventoryId=891235dc-975c-4056-9b41-3f763b1cf8f8&generationId=0dcf56ad4af1cd8598d72a66889aadb77be50dba5967348a32fd60efae7c5eb8&offset=8",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048&inventoryId=891235dc-975c-4056-9b41-3f763b1cf8f8&generationId=0dcf56ad4af1cd8598d72a66889aadb77be50dba5967348a32fd60efae7c5eb8&rootId=514ae3f9efce23ace77f06a57618ec1ea32efdc3882d28c953d40ce4da3bcba9",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/evidence/4dbc3244-373e-4e34-aca0-dd92741610e0",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048&inventoryId=d8ba0497-bff1-4c8a-a763-55201b20e7da&generationId=9c629a54d8aadc6ee78f9dbb58a21f6c93a151e437743e81c0435ade7eaa2c02",
+      "status": 409
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048&inventoryId=d8ba0497-bff1-4c8a-a763-55201b20e7da&generationId=9c629a54d8aadc6ee78f9dbb58a21f6c93a151e437743e81c0435ade7eaa2c02",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048&inventoryId=d8ba0497-bff1-4c8a-a763-55201b20e7da&generationId=9c629a54d8aadc6ee78f9dbb58a21f6c93a151e437743e81c0435ade7eaa2c02",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths/roots",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048&inventoryId=2ffbfe21-48ba-49b6-ba93-2225735f8be1&generationId=1a0c02aa9c63958381b3b73830655c37d9db97bcaeba2d51888fcf086fadaccd&offset=4",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/builds/d49db795-9160-45fb-894a-fbf8709ce6a6/changes",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/orientation",
+      "query": "?buildId=d49db795-9160-45fb-894a-fbf8709ce6a6",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system-map",
+      "query": "?buildId=d49db795-9160-45fb-894a-fbf8709ce6a6",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/corrections",
+      "query": "?buildId=d49db795-9160-45fb-894a-fbf8709ce6a6",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=d49db795-9160-45fb-894a-fbf8709ce6a6",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-flows",
+      "query": "?buildId=d49db795-9160-45fb-894a-fbf8709ce6a6",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=d49db795-9160-45fb-894a-fbf8709ce6a6",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/builds/74f92c44-b8e8-425c-a8f9-99a609ce0048/changes",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/orientation",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system-map",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/corrections",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-flows",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/evidence/4dbc3244-373e-4e34-aca0-dd92741610e0",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/builds/118a2f7e-d726-4a91-b4f3-77d40ff76fef/changes",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/orientation",
+      "query": "?buildId=118a2f7e-d726-4a91-b4f3-77d40ff76fef",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system-map",
+      "query": "?buildId=118a2f7e-d726-4a91-b4f3-77d40ff76fef",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/corrections",
+      "query": "?buildId=118a2f7e-d726-4a91-b4f3-77d40ff76fef",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=118a2f7e-d726-4a91-b4f3-77d40ff76fef",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-flows",
+      "query": "?buildId=118a2f7e-d726-4a91-b4f3-77d40ff76fef",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=118a2f7e-d726-4a91-b4f3-77d40ff76fef",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/builds/74f92c44-b8e8-425c-a8f9-99a609ce0048/changes",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/orientation",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system-map",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/corrections",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-flows",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths",
+      "query": "?buildId=74f92c44-b8e8-425c-a8f9-99a609ce0048",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/builds/118a2f7e-d726-4a91-b4f3-77d40ff76fef/changes",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/orientation",
+      "query": "?buildId=118a2f7e-d726-4a91-b4f3-77d40ff76fef",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system-map",
+      "query": "?buildId=118a2f7e-d726-4a91-b4f3-77d40ff76fef",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/corrections",
+      "query": "?buildId=118a2f7e-d726-4a91-b4f3-77d40ff76fef",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=118a2f7e-d726-4a91-b4f3-77d40ff76fef",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-flows",
+      "query": "?buildId=118a2f7e-d726-4a91-b4f3-77d40ff76fef",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=118a2f7e-d726-4a91-b4f3-77d40ff76fef",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths",
+      "query": "?buildId=118a2f7e-d726-4a91-b4f3-77d40ff76fef",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths",
+      "query": "?buildId=118a2f7e-d726-4a91-b4f3-77d40ff76fef&inventoryId=2ffdd01c-a60c-428b-9c86-9d9ac0ce7ede&generationId=512ffb2a113f356f77679a69a0f8efc38ab3d4e559653bb8c00f0eaa34fbb492",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/builds/118a2f7e-d726-4a91-b4f3-77d40ff76fef/changes",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/orientation",
+      "query": "?buildId=118a2f7e-d726-4a91-b4f3-77d40ff76fef",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system-map",
+      "query": "?buildId=118a2f7e-d726-4a91-b4f3-77d40ff76fef",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/corrections",
+      "query": "?buildId=118a2f7e-d726-4a91-b4f3-77d40ff76fef",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=118a2f7e-d726-4a91-b4f3-77d40ff76fef",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-flows",
+      "query": "?buildId=118a2f7e-d726-4a91-b4f3-77d40ff76fef",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/builds/253c5b62-c217-4dee-bc38-66e0aa5065d5/changes",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/orientation",
+      "query": "?buildId=253c5b62-c217-4dee-bc38-66e0aa5065d5",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system-map",
+      "query": "?buildId=253c5b62-c217-4dee-bc38-66e0aa5065d5",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/corrections",
+      "query": "?buildId=253c5b62-c217-4dee-bc38-66e0aa5065d5",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=253c5b62-c217-4dee-bc38-66e0aa5065d5",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-flows",
+      "query": "?buildId=253c5b62-c217-4dee-bc38-66e0aa5065d5",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=253c5b62-c217-4dee-bc38-66e0aa5065d5",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths",
+      "query": "?buildId=253c5b62-c217-4dee-bc38-66e0aa5065d5",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/evidence/9b4196ed-c021-4cb4-87dd-6f8285789bd6",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/builds/5e4c7d7e-56c3-414a-920b-2e17c0510767/changes",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/orientation",
+      "query": "?buildId=5e4c7d7e-56c3-414a-920b-2e17c0510767",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system-map",
+      "query": "?buildId=5e4c7d7e-56c3-414a-920b-2e17c0510767",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/corrections",
+      "query": "?buildId=5e4c7d7e-56c3-414a-920b-2e17c0510767",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=5e4c7d7e-56c3-414a-920b-2e17c0510767",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-flows",
+      "query": "?buildId=5e4c7d7e-56c3-414a-920b-2e17c0510767",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=5e4c7d7e-56c3-414a-920b-2e17c0510767",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-paths",
+      "query": "?buildId=5e4c7d7e-56c3-414a-920b-2e17c0510767",
+      "status": 200
+    }
+  ]
+}

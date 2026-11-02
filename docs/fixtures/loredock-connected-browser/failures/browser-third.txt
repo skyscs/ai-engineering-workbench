@@ -1,0 +1,12 @@
+(node:350982) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+Error: TypeError: Cannot read properties of null (reading 'click')
+    at <anonymous>:1:61
+    at evaluate (file:///home/toshiba/aew/worktrees/task069-connected-path-browser/scripts/loredock-connected-browser-smoke.mjs:91:40)
+    at async file:///home/toshiba/aew/worktrees/task069-connected-path-browser/scripts/loredock-connected-browser-smoke.mjs:202:33
+
+Node.js v22.23.2

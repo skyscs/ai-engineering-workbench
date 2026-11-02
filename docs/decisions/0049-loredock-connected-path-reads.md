@@ -3,7 +3,7 @@
 ## Status
 
 Implemented by Task 068, 2026-11-02, after Task 067 passed its prospective offline
-binding-coverage qualification. Browser integration is a separate next task.
+binding-coverage qualification. Task 069 adds the separate browser integration below.
 
 ## Decision
 
@@ -83,3 +83,24 @@ claimed for the HTTP port. Task 067's retained measurements qualify the underlyi
 algorithm on its synthetic family. Cooperative deadlines and sampled resource measurements
 do not establish general real-time guarantees. The next phase adds a collapsed browser
 view and checks its request/evidence fences without switching existing consumers.
+
+## Browser integration (Task 069)
+
+Mount a separate collapsed connected-path view beside the existing flow adapter. Reuse
+map scope/historical identity and the app's original reader; pass `clearEvidence` through
+SystemMap. Enable it only when the daemon advertises code analysis. There are no new
+settings or persisted UI selections.
+
+The expanded component owns a lightweight analysis poll and one serialized path reader.
+A request sequence and component lifetime fence completions independently of AbortSignal;
+only the latest pending selection may run. Published compatible inventory changes reset
+to defaults once. New unpublished attempts retain the earlier published view. Pinned errors
+require an explicit retry or explicit default reload. Collapse/unmount clears originals
+opened from this view and cancels owned work. Existing shared session bootstrap remains
+independent of an individual request's cancellation.
+
+Historical labeling uses map staleness, which includes a newer published build; the
+analysis summary's stale flag only describes registry mismatch. Fifteen owned browser
+checks include buffered responses delivered despite cancellation, a real server busy read,
+publication/eviction, source/policy changes, empty/unavailable states and keyboard/focus.
+These are functional checks, not broader semantic or private-pilot acceptance.

@@ -114,6 +114,12 @@ A separate [larger lookup qualification](docs/fixtures/loredock-symbol-qualifica
 checks all 3,621 retained synthetic code files per query, with original verification and
 recorded local timings. Broader framework and semantic acceptance remain open.
 
+In **System map**, expand **Browse connected paths** to read up to two paths from the
+published code inventory, page through supported entry points, choose one path and open
+its original lines. Coverage gaps and static connection candidates remain visible. This
+optional local preview makes no model calls and does not change answer or routing behavior.
+See the [usage guide](docs/loredock/USER_GUIDE.md#browse-connected-paths).
+
 ## What v0.1 does
 
 Workbench runs a browser UI and a local daemon. You describe a problem, select

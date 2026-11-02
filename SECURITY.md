@@ -263,3 +263,11 @@ deny:
 ```
 
 Policy enforcement is not required for the first end-to-end v0.1 investigation, but security-sensitive code must not be architected in a way that makes such enforcement impossible later.
+
+The connected-path browser (Task 069) cancels obsolete reads but also fences completed
+responses independently of cancellation. Source/policy/index changes remount its scope;
+inventory publication/eviction and root/page navigation clear pending original evidence.
+Collapse/unmount stops its lightweight polling and clears originals opened from the view.
+A retry keeps its pinned selection; replacing it requires an explicit default reload or a
+new compatible inventory publication. No new model, arbitrary-path input or review write
+is introduced by this browser.

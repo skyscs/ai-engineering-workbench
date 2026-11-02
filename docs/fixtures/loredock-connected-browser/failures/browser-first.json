@@ -1,0 +1,374 @@
+{
+  "message": "Error: Missing UI text: No compatible published code inventory\n    at waitFor (file:///home/toshiba/aew/worktrees/task069-connected-path-browser/scripts/loredock-connected-browser-smoke.mjs:28:9)\n    at async file:///home/toshiba/aew/worktrees/task069-connected-path-browser/scripts/loredock-connected-browser-smoke.mjs:119:3",
+  "checks": [
+    "Owned non-forwarding transport verified by a unique sentinel before app navigation."
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/favicon.ico",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/assets/index-CH-Ai1k9.css",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/assets/index-Ce3RQlTV.js",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/session",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/favicon.ico",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/builds/5966c70f-9de4-4a19-ab51-97375450eb0a/changes",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/orientation",
+      "query": "?buildId=5966c70f-9de4-4a19-ab51-97375450eb0a",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system-map",
+      "query": "?buildId=5966c70f-9de4-4a19-ab51-97375450eb0a",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/corrections",
+      "query": "?buildId=5966c70f-9de4-4a19-ab51-97375450eb0a",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=5966c70f-9de4-4a19-ab51-97375450eb0a",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-flows",
+      "query": "?buildId=5966c70f-9de4-4a19-ab51-97375450eb0a",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=5966c70f-9de4-4a19-ab51-97375450eb0a",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=5966c70f-9de4-4a19-ab51-97375450eb0a",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=5966c70f-9de4-4a19-ab51-97375450eb0a",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=5966c70f-9de4-4a19-ab51-97375450eb0a",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=5966c70f-9de4-4a19-ab51-97375450eb0a",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=5966c70f-9de4-4a19-ab51-97375450eb0a",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=5966c70f-9de4-4a19-ab51-97375450eb0a",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=5966c70f-9de4-4a19-ab51-97375450eb0a",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=5966c70f-9de4-4a19-ab51-97375450eb0a",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=5966c70f-9de4-4a19-ab51-97375450eb0a",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=5966c70f-9de4-4a19-ab51-97375450eb0a",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=5966c70f-9de4-4a19-ab51-97375450eb0a",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=5966c70f-9de4-4a19-ab51-97375450eb0a",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=5966c70f-9de4-4a19-ab51-97375450eb0a",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=5966c70f-9de4-4a19-ab51-97375450eb0a",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/project",
+      "query": "",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/correction-reconciliation",
+      "query": "?buildId=5966c70f-9de4-4a19-ab51-97375450eb0a",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/code-analysis",
+      "query": "",
+      "status": 200
+    }
+  ]
+}

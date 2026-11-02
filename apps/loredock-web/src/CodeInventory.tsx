@@ -87,7 +87,7 @@ export function CodeInventory({ buildId, policyVersion, sourceSetVersion, staleI
     .filter(([status]) => (run.counts[status!] ?? 0) > 0).map(([status, label]) => `${run.counts[status!]} ${label}`).join(' · ') : '';
   const needsStart = !run || !run.currentParser || ['failed', 'cancelled', 'fenced'].includes(run.status);
   return <section className="code-inventory" aria-labelledby="code-coverage-heading">
-    <h3 id="code-coverage-heading">Code coverage</h3>
+    <h3 id="code-coverage-heading" tabIndex={-1}>Code coverage</h3>
     <p className="muted">Code is checked locally after each new index.</p>
     {!state ? <p role="status">Reading code coverage…</p> : <>
       <p role="status"><strong>{queued ? 'Code analysis is queued after the current inventory.' : title}</strong>
