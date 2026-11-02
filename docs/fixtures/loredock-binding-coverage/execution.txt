@@ -1,0 +1,51 @@
+Exit status: 0
+
+STDOUT
+B01: 41/41
+B02: 41/41
+B03: 41/41
+B04: 41/41
+B05: 26/26
+B06: 29/29
+B07: 29/29
+B08: 23/23
+B09: 23/23
+B10: 24/24
+B11: 24/24
+B12: 25/25
+B13: 23/23
+B14: 23/23
+B15: 23/23
+B16: 25/25
+B17: 24/24
+B18: 25/25
+B19: 24/24
+B20: 24/24
+B21: 38/38
+B22: 29/29
+B23: 26/26
+B24: 56/56
+B25: 32/32
+B26-metadata: 23/23
+B26-read: 23/23
+B26-resolve: 23/23
+B26-admit: 23/23
+B27: 23/23
+B28: 23/23
+B29: 23/23
+B30-facts: 23/23
+B30-original: 23/23
+B31: 47/47
+B32: 31/31
+{
+  "cases": 37,
+  "observations": 87,
+  "checks": 1031,
+  "failures": [],
+  "reopenedSpans": 46221,
+  "decision": "Offline qualification only; production integration requires a separate typed backend task and unchanged historical consumers."
+}
+
+STDERR
+(node:88310) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)

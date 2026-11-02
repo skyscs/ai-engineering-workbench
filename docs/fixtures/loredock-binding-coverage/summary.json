@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "loredock-binding-coverage-result/1",
+  "gate": "passed",
+  "implementationCommit": "3f4c96bf6b82cba602ac8b9fbd75f6168e341fb7",
+  "cases": 37,
+  "observations": 87,
+  "checks": 1031,
+  "failures": [],
+  "reopenedSpans": 46221,
+  "decision": "Offline qualification only; production integration requires a separate typed backend task and unchanged historical consumers.",
+  "treeObservations": 11,
+  "projectionObservations": 76,
+  "archive": {
+    "file": "observations.jsonl.gz",
+    "bytes": 9999357,
+    "sha256": "d84eac2f0baec57ada25069c2deb5bf8aab62fffcc080a17c9f8b068efaaccde",
+    "uncompressedBytes": 43363226,
+    "uncompressedSha256": "769ca0cbceaa85b8ee37a251ad6c7ca5b16e14c11262b9f38eb019de0963739d"
+  },
+  "exitStatus": 0,
+  "scope": "Qualified offline binding coverage only. A separate typed backend and protected API task must preserve existing consumers; no semantic or runtime acceptance."
+}

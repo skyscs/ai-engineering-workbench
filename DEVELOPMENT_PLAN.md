@@ -183,6 +183,13 @@ conservative same-source Java domains and separate ambiguity/incompleteness diag
 Source path omissions and opaque boundaries remain blockers. A saved-tree proof must precede
 absence claims, with bounded metadata and no projection Git calls. Next: freeze and execute
 fresh useful-path, adversarial, tree-integrity and resource qualification before backend work.
+[Task 067](tasks/067-loredock-binding-coverage-qualification.md) passes that fresh offline
+qualification: 1,031/1,031 checks, independent saved-tree proof, conservative binding domains
+and seven critical nodes/two writes through 9,975 code files. All first/repeat resource
+thresholds pass; metadata, cancellation, scope, ambiguity and lifecycle failures remain
+explicit. [Retained evidence](docs/fixtures/loredock-binding-coverage/README.md) permits the
+separately scoped typed backend/protected-read phase, then simple browser integration.
+It does not switch current graph/answer/review consumers or establish semantic acceptance.
 The user demo and feedback stay separate from these checks; broader semantic synthesis
 and question-context changes remain open.
 Preserve all failed evaluations;

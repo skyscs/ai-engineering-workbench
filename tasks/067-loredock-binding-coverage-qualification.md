@@ -1,6 +1,6 @@
 # Task 067 — Binding completeness qualification
 
-Status: scoped before implementation, 2026-11-02.
+Status: implemented and locally verified, 2026-11-02; offline gate passed.
 
 Execute the [binding completeness contract](../docs/loredock/BINDING_COMPLETENESS.md) as a
 separate offline experiment. Qualify useful paths and conservative missing-target behavior
@@ -61,3 +61,18 @@ hard scheduling guarantee. No heavy local checks run during qualification.
 The first-run output is written outside `/tmp`, under the workspace measurement
 directory, and refuses an existing destination. Each raw observation is saved before
 the next one. No result has yet been used to tune this candidate or the frozen oracle.
+
+## Result
+
+Measured candidate/harness `3f4c96bf6b82cba602ac8b9fbd75f6168e341fb7` passes all 1,031
+checks across 37 cases and 87 observations. Every base first/repeat retains seven
+critical nodes and two write-ending paths within all resource bounds. At 9,975 code
+files, wall times are 3,557/3,626 ms and maximum timer delays are 57/61 ms. All 46,221
+original span occurrences reopen exactly; projection Git/store mutations are zero
+outside counted lifecycle hooks. No oracle amendment or replacement run occurred.
+
+See the [retained evidence](../docs/fixtures/loredock-binding-coverage/README.md).
+Full strict checks, 462 tests and builds pass. Next: separately scope typed backend
+and protected reads, including application concurrency and root-page contracts.
+Existing application consumers, old measurements and exhausted model budgets stay
+unchanged; this qualification is not semantic/runtime/private-pilot acceptance.
