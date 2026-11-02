@@ -1,5 +1,25 @@
 # Development status
 
+## Task 072 — Event-topic evidence contract
+
+Design completed and locally reviewed, 2026-11-03; scope `fddad3b`. PR #75 merged as
+`c3bb8ff` after exact head `6b11b012a680432941914bef6c3af094bfa81f78` passed push
+41545106891 and pull-request 41545150480 CI (488 tests), with an identical merge tree.
+CI preserves Task 071's failed 86/88 qualification; that matrix is exhausted.
+
+The [new contract](loredock/EVENT_TOPIC_EVIDENCE.md) selects a separately versioned offline
+rule grounded in equal supported Java topic literals. It preserves consumer completeness,
+contract evidence and full original support, without inferring a configuration key's role.
+Computed/escaped/oversized expressions abstain; declared contract environment does not
+establish deployment. Changed provenance requires explicit new projection/receipt identities.
+
+Next: fresh prospective structural, ambiguity, support, resource and receipt-history cases.
+Use source/path/kind-aware expected identities and journal raw observations before assertions.
+Local source/reference and diff review cover this design-only change. No production parser,
+resolver, API, UI, storage, consumer or model budget change; no frozen matrix rerun or demo
+modification. See [ADR 0051](decisions/0051-loredock-literal-event-topics.md) and
+[Task 072](../tasks/072-loredock-event-topic-evidence.md).
+
 ## Task 071 — Offline path receipts: qualification rejected
 
 First frozen run completed 2026-11-03. Scope `f17ac85`, freeze `634c77b`, candidate
