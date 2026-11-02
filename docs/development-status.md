@@ -1,5 +1,32 @@
 # Development status
 
+## Task 068 — Typed connected paths and protected reads
+
+Implemented and locally verified, 2026-11-02; scope `efa84f4`, implementation `6db3590`.
+PR #71 merged as `a6ac15a` after push `41451690413` and pull-request `41451831925`
+passed for exact head `40cfc4068233cdbaa890108094949d8dd6af8027` (462 tests), with an
+identical merge tree. Task 067's passing gate permits this separate backend phase.
+
+The strict typed service preserves qualified saved-tree proof, complete binding domains,
+indexed resolution and atomic paths. Protected `/api/code-paths` and `/api/code-paths/roots`
+return bounded paths and four-entry-point pages with complete original support, generation/
+projection identities and coverage. Internal fact and alternative vectors stay private.
+One reader per catalog, client/shutdown cancellation, explicit busy and conservative
+concurrent-write rejection preserve request ownership and input integrity. New unpublished
+attempts do not replace a retained published inventory; stable explicit retry remains possible.
+
+Full strict checks, 482 tests and builds pass; the added real TCP cancellation regression
+and targeted strict recheck pass as well (483 tests now defined). Twenty-one new checks
+cover parity, tree bytes, root pages/support, protected HTTP validation, lifecycle/integrity
+failures, empty/unavailable states and historical restart. Original graph/answer/candidate/
+review behavior, schemas and frozen measurements are unchanged. No model calls, corporate
+sources or demo restart. See [ADR 0049](decisions/0049-loredock-connected-path-reads.md),
+[API details](loredock/CODE_PATHS_API.md) and [Task 068](../tasks/068-loredock-connected-path-reads.md).
+
+Next: Phase C's collapsed browser path view and late path/page/inventory/original-response
+fences, then synthetic desktop/narrow-screen checks. This backend does not establish new
+semantic/runtime/private-pilot acceptance or switch existing historical consumers.
+
 ## Task 067 — Binding completeness qualification
 
 Implemented and locally verified, 2026-11-02; offline gate passed. Scope `c02d729`,

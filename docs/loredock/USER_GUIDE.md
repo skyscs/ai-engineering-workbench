@@ -933,6 +933,8 @@ require the session. No tokens belong in URLs or logs.
 | `GET /api/evidence/:id` | Reopen a validated, authorized stored citation. |
 | `GET /api/system-map?buildId=...` | Bounded declaration projection for the current or a selected authorized published index. |
 | `GET /api/code-flows?buildId=...` | Versioned code links, partial flow outlines, candidate hops and original evidence from the same authorized index. |
+| `GET /api/code-paths?buildId=...` | Separate connected paths over compatible published code facts, with verified saved path coverage, original support and the first four entry points. Optional paired inventory/generation IDs pin a selected root. See the [connected-path API](CODE_PATHS_API.md); browser integration is separate. |
+| `GET /api/code-paths/roots?buildId=...&inventoryId=...&generationId=...&offset=...` | Four entry points from the pinned generation, with complete original support and explicit unavailable cards. No graph or internal fact vectors; the complete response is bounded to 512 KiB. |
 | `GET /api/code-analysis` | At most two inventory summaries, the newest queued index and any scoped automatic-start error. |
 | `POST /api/code-analysis` | Start/replay `{requestId, buildId, policyVersion, sourceSetVersion}` for an authorized published index matching current source/policy versions. Unknown fields are rejected. |
 | `POST /api/code-analysis/:id/:action` | Explicit `pause`, `resume` or `cancel`; no arguments (an empty object is accepted). Resume validates the pinned checkpoints and current parser. |

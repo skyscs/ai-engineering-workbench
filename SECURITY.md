@@ -48,6 +48,12 @@ original-file validation precede use; an asynchronous scan rechecks scope/run id
 before returning. Corruption fails visibly. Query edits and source/index/policy changes
 invalidate pending text, symbol and original responses. See
 [ADR 0042](docs/decisions/0042-loredock-exact-symbol-search.md).
+Connected-path reads use that same boundary and existing analysis owner. Saved Git-tree
+verification precedes absence claims; unknown paths, relevant gaps and opaque boundaries
+block positive uniqueness. Explicit roots/pages pin a generation and expose no internal
+fact vectors. Scope, integrity, cancellation and concurrent-write failures discard pending
+data. One connected read per catalog is allowed, with shutdown/client cancellation and
+bounded success envelopes. See [ADR 0049](docs/decisions/0049-loredock-connected-path-reads.md).
 The optional `pnpm loredock:demo` command accepts no source/data-path arguments and
 registers only freshly generated synthetic source roots. It checks port availability,
 uses isolated retained data, releases preparer ownership before daemon startup and forces

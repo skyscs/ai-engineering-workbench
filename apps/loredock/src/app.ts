@@ -19,8 +19,9 @@ import { sourceCandidatePreview } from './source-candidates.js';
 import type { CodeAnalysis } from './code-analysis.js';
 import type { CodeAnalysisFollow } from './code-analysis-follow.js';
 import { lookupCodeSymbols } from './code-symbols.js';
+import { CodePaths, pathRequest } from './code-paths.js';
 
-export function createApp(catalog: Catalog, options: { publicDir?: string; development?: boolean; answers?: Answers; codeAnalysis?: CodeAnalysis; codeFollow?: CodeAnalysisFollow } = {}) {
+export function createApp(catalog: Catalog, options: { publicDir?: string; development?: boolean; answers?: Answers; codeAnalysis?: CodeAnalysis; codeFollow?: CodeAnalysisFollow; codePaths?: CodePaths } = {}) {
   const app = new Hono();
   const hosts = new Set(['127.0.0.1:4244', ...options.development ? ['127.0.0.1:5174'] : []]);
   const origins = new Set([...hosts].map(host => `http://${host}`));
@@ -95,6 +96,9 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
   app.get('/api/orientation', c => c.json(projectOrientation(catalog, c.req.query('buildId'))));
   const codeAnalysis = options.codeAnalysis;
   if (codeAnalysis) {
+    const codePaths = options.codePaths ?? new CodePaths(codeAnalysis);
+    app.get('/api/code-paths', async c => c.json(await codePaths.read(pathRequest(new URL(c.req.url).searchParams, 'paths'), 'paths', c.req.raw.signal)));
+    app.get('/api/code-paths/roots', async c => c.json(await codePaths.read(pathRequest(new URL(c.req.url).searchParams, 'roots'), 'roots', c.req.raw.signal)));
     app.get('/api/code-symbols', async c => c.json(await lookupCodeSymbols(codeAnalysis, c.req.query('q') ?? '', c.req.query('buildId'))));
     app.get('/api/code-analysis', c => c.json(options.codeFollow?.state() ?? { inventories: codeAnalysis.list(), pendingBuildId: null, automaticError: null }));
     app.post('/api/code-analysis', async c => {
