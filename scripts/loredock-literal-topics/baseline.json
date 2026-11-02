@@ -1,0 +1,19 @@
+{
+  "baseline": "c3bb8ff",
+  "copied": {
+    "apps/loredock/src/code-paths-resolve.ts": "d4c46ce19a963e6f6a2c7d37de5e3c1e1870454af5a6f0aba0404e63a1866332",
+    "apps/loredock/src/code-paths-admit.ts": "77b069bc96de261c38b16803b6c7c40e1c4c7a58b3e6d7aa87d3ad056bf5ef8b",
+    "apps/loredock/src/code-paths.ts": "dc1f0b32e1524dc93f535ac73043d950c3b59df8435cd6608d2943fbcce13329",
+    "scripts/loredock-path-receipt.mjs": "f1f7906c4c2cce7fc4d25d63b75076c30fad9d7c42fba6e32fff1bccd12adfec"
+  },
+  "shared": [
+    "PathWork",
+    "bindingMetadata",
+    "bindingDomains",
+    "assertBindingMetadata",
+    "declarationMap",
+    "compareHeaders",
+    "sha256",
+    "CatalogError"
+  ]
+}

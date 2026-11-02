@@ -40,3 +40,18 @@ Small-fixture success does not qualify maximum-volume behavior, semantics or pri
 Run strict/relevant regression checks and builds; review the diff and documentation, then
 merge only after successful push and pull-request CI for the exact final head. Any production
 integration remains a separately scoped review after the evidence is assessed.
+
+## Before the frozen run
+
+Scope `619e15f` precedes fresh input/oracle/protocol freeze `8803a06`. PR #76 merged as
+`385d70a` after exact head `d118e40303cdc7d7e93c0ef4ee85423997f429f8` passed push
+41546702430 and pull-request 41546721936 CI (488 tests). Its merge tree matches that head;
+the successor branch includes this merge without rewriting its frozen input commit.
+
+The offline candidate uses injected production readers/fences and explicit forked matching,
+admission and receipt validators. Separate small regressions cover full-hop history, dynamic
+abstention, typed changed-alternative identity, resealed witness corruption and literal bounds.
+An initial regression fixture omitted the required contract transport; its first failure and
+diagnostic remain in local logs, followed by the corrected independent fixture's passing run.
+The frozen parcel inputs were not changed or executed during this correction. A first test
+launcher used the wrong working directory and failed before running tests; that log is retained.
