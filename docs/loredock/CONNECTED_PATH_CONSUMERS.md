@@ -66,6 +66,15 @@ The first offline format is proposed as `loredock-path-receipt/1` and contains:
   Timestamps and diagnostic timings stay outside content identity. Record exact producer
   adapter/selection/parser fingerprints rather than inferring them from a label.
 
+Projection hashing has an existing ordering contract: `CodePaths` hashes compact
+`JSON.stringify` output after removing `projectionId`, preserving the producer's property
+order. Keep the exact compact projection JSON as a string/byte field inside the receipt;
+validate a parsed copy without sorting or rewriting that field. The receipt's own canonical
+hash covers those exact bytes plus canonically ordered originals/dependencies. Do not
+recursively canonicalize the stored projection and then expect the old projection hash to
+match. Include a JSON round-trip/order case in the next oracle. Nested JSON escaping counts
+toward the complete receipt size bound.
+
 Prospective ceilings for the offline task: the unchanged **512 KiB** projection envelope,
 **30 distinct original spans**, **64 KiB UTF-8 original text**, and **640 KiB serialized
 receipt**, all measured on the complete representation. These are admission bounds, not

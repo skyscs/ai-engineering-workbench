@@ -38,7 +38,7 @@ answer/interface/publication, related-candidate, correction/reapplication and in
 retention contracts. The smallest successor is an offline immutable receipt qualification;
 production storage, question selection, new answer semantics, new review targets and
 routing remain gated separately. The design specifies complete projection/support,
-whole-scope dependencies, prospective size bounds, atomic capture handoff, historical
+whole-scope dependencies, exact producer JSON ordering, prospective size bounds, atomic capture handoff, historical
 readability without fact inventories, corruption/purge boundaries and fresh-case stop rules.
 
 Updated architecture, integration and development status. Verified all new relative document
