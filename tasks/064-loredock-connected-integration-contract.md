@@ -1,6 +1,6 @@
 # Task 064 — Connected path integration contract
 
-Status: scoped before analysis, 2026-11-02.
+Status: design completed, 2026-11-02; scope `9bc373c` preceded analysis.
 
 Task 063 qualifies an offline connected-path policy. Specify the smallest useful route
 from that candidate to the existing application without silently replacing saved-answer,
@@ -29,3 +29,18 @@ Commit scope before analysis. Add an English integration design linked from road
 verify local code/document references and review the complete diff. No redundant local
 runtime/browser run for prose-only changes. Publish a separate PR after the preceding
 qualification merges, verify both exact-head CI events, merge and synchronize source.
+
+## Outcome
+
+Added [the integration contract](../docs/loredock/CONNECTED_PATH_INTEGRATION.md), covering
+single analysis ownership, disposable inventory/history behavior, current consumer coupling,
+generation/root identity, protected bounded reads, simple root browsing and pending-original
+fences. Full wire envelopes include metadata/support in the bound; offline diagnostic
+vectors cannot leak into the proposed API. Read-side analysis, implicit adapter migration,
+automatic retries and partial-universe uniqueness remain excluded.
+
+The next phase freezes a fresh prospective scale/work contract before implementing an
+indexed cooperative resolver. Typed backend and browser integration follow only qualified
+results; broader answer/review adoption requires a separate proposal and acceptance.
+Roadmap/status links updated. Source/document references and the complete diff reviewed;
+application code, measurements, model budgets and owner demo remain unchanged.

@@ -154,6 +154,12 @@ omissions and source-history fences remain explicit. The [retained qualification
 justifies a separate integration/provenance/root-navigation proposal, not an implicit
 replacement of application graphs, answer context or correction targets. Larger-universe
 performance and private-pilot/semantic acceptance remain open.
+[Task 064](../../tasks/064-loredock-connected-integration-contract.md) defines the
+[connected-path integration contract](CONNECTED_PATH_INTEGRATION.md). A fresh prospective
+scale/work qualification precedes typed protected reads and a collapsed browser with
+four-entry-point pages. Inventory/generation/root identities and evidence-response fences
+remain separate from current answer/correction/candidate consumers. No product switch or
+scale acceptance follows from this design; the next task freezes the new qualification.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.
