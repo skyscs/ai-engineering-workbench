@@ -51,3 +51,14 @@ test('connected reads honor internal limits, admit whole paths and discard data 
   assert.equal(changed, true); assert.equal(fenced.error.code, 'ANALYSIS_FENCED'); assert.equal(fenced.graph, null);
   assert.deepEqual(fenced.payloads, []); assert.equal(fenced.resolution, undefined); assert.equal(fenced.inventory, undefined);
 });
+
+test('index-excluded code makes source uniqueness incomplete without loading every excluded path', async t => {
+  const state = await prepareConnectedCase(services); t.after(() => state.close());
+  state.catalog.updatePolicy(['legacy']); const buildId = await state.index('policy-index'); await state.analyze('policy-facts', buildId);
+  const value = await connectedProjection(services, state.analysis, buildId);
+  assert.equal(value.status, 'available');
+  const reasons = Object.values(value.coverage.incompleteSources).flat() as string[];
+  assert.ok(reasons.includes('Index-excluded code files: 1'));
+  assert.ok(!value.graph.edges.some((edge: FlowEdge) => edge.kind === 'calls'));
+  assert.ok(value.resolution.resolutions.some((item: { kind: string; outcome: string }) => item.kind === 'calls' && item.outcome === 'incomplete'));
+});

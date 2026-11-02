@@ -95,7 +95,10 @@ export async function connectedProjection(services, analysis, buildId, options =
     const incomplete = new Map();
     const mark = (id, reason) => { const reasons = incomplete.get(id) ?? []; reasons.push(reason); incomplete.set(id, reasons); };
     for (const unit of units) if (unit.status !== 'parsed') mark(unit.sourceId, `${unit.path}: ${unit.status}: ${unit.reason}`);
-    for (const file of catalog.store.all(`SELECT sourceId,path,status FROM files WHERE buildId=? AND status<>'indexed' AND ${codePredicate}`, buildId)) mark(file.sourceId, `${file.path}: index ${file.status}`);
+    // Group excluded originals by the at-most-twenty source identities, not by path.
+    const excluded = catalog.store.all(`SELECT sourceId,count(*) count FROM files WHERE buildId=? AND status<>'indexed' AND ${codePredicate} GROUP BY sourceId LIMIT 21`, buildId);
+    if (excluded.length > 20) throw new services.CatalogError('RESOLUTION_LIMIT', 'Excluded-source metadata exceeds the source bound.', 409);
+    for (const source of excluded) mark(source.sourceId, `Index-excluded code files: ${source.count}`);
     const entries = []; let factEntries = 0;
     const deadline = () => { if (performance.now() - began >= limits.wallMs) throw new services.CatalogError('SCAN_INCOMPLETE', 'Cooperative read/resolve time bound reached; no graph is issued.', 409); };
     for (const fileId of snapshot.fileIds) {
