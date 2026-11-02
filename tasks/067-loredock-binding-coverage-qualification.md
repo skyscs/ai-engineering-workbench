@@ -29,3 +29,12 @@ from resource measurement. Retain exact first observations and assess the frozen
 Review the complete diff, publish a separate PR, verify push and pull-request CI for the
 exact head, merge and synchronize source. Only a passing qualification permits the next
 typed backend task; failures require diagnosis and a prospective successor.
+
+## Recovery checkpoint
+
+After the host restart on 2026-11-02, the temporary worktree and its uncommitted
+metadata draft were unavailable. Scope `c02d729` and frozen inputs `2efdfa9` survived
+in Git. Work resumed in a persistent worktree; the frozen qualification had not
+been executed. The lost metadata draft was reconstructed, with no oracle change.
+The previous demo process and temporary data were also unavailable after restart;
+this task does not recreate or migrate them.
