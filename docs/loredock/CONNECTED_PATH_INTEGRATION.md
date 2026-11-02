@@ -1,8 +1,10 @@
 # Connected paths: application integration contract
 
-Status: design only, 2026-11-02; reviewed against `9f9f080` after Task 063.
-[Task 064](../../tasks/064-loredock-connected-integration-contract.md) specifies the next
-sequence. The endpoints, types and interface below are proposed, not implemented.
+Status: Phase A qualified by Task 067; Phase B implemented by Task 068, 2026-11-02.
+[Task 064](../../tasks/064-loredock-connected-integration-contract.md) established this
+sequence after review against `9f9f080`. The typed backend/endpoints are now available;
+the browser interface below remains the next phase. See the implemented
+[API contract](CODE_PATHS_API.md) and [ADR 0049](../decisions/0049-loredock-connected-path-reads.md).
 
 ## Decision and evidence
 
@@ -254,3 +256,18 @@ generation lifetime against the actual analysis owner. The offline prototype rej
 database write during a read; explicitly assess newer unpublished analysis activity and
 conservative retries during integration. Existing graph/answer/review/candidate consumers
 remain on their current adapter. No HTTP or browser feature is delivered by this gate.
+
+## Task 068 result: Phase B backend available
+
+The typed service and protected path/root-page endpoints now implement the qualified
+binding-domain interpretation, original support and generation/projection identities.
+Four-entry-point pages preserve isolated roots and explicit unavailable entries when
+complete support cannot fit. No fact/resolution vector is exposed by HTTP.
+
+One read per catalog, request cancellation and shutdown release are explicit. The
+conservative write fence rejects a pending read during concurrent database changes;
+it does not unpublish an older usable inventory. Small parity, integrity, lifecycle,
+HTTP and real TCP cancellation checks cover the port. No frozen volume run is repeated.
+
+Phase C browser integration is next. Existing graph/answer/candidate/review consumers,
+history and schema remain unchanged; the new paths are not approved investigation scope.

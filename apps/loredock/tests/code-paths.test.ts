@@ -2,6 +2,9 @@ import assert from 'node:assert/strict';
 import { test, type TestContext } from 'node:test';
 import { writeFile, mkdir, symlink, chmod } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
+import { once } from 'node:events';
+import { request as httpRequest, type IncomingHttpHeaders } from 'node:http';
+import { serve } from '@hono/node-server';
 import path from 'node:path';
 import { Catalog } from '../src/catalog.js';
 import { CatalogStore } from '../src/store.js';
@@ -292,4 +295,43 @@ test('HTTP cancellation releases a busy read and leaves lightweight routes respo
   controller.abort(); release(); const cancelled = await response; assert.equal(cancelled.status, 409);
   assert.equal((await cancelled.json() as { error: { code: string } }).error.code, 'CANCELLED');
   assert.equal((await app.request(url, { headers })).status, 200);
+});
+
+test('a closed TCP request aborts connected work through the Node adapter', { timeout: 15000 }, async t => {
+  const s = await prepareConnectedCase(services) as State;
+  let server: ReturnType<typeof serve> | undefined, paths: CodePaths | undefined, release = () => {};
+  t.after(async () => {
+    release(); await paths?.stop(); if (server && 'closeAllConnections' in server) server.closeAllConnections();
+    if (server) await new Promise<void>(resolve => server!.close(() => resolve()));
+    await s.close();
+  });
+  await s.analyze('facts'); let enter!: () => void, held = false, serverSignal: AbortSignal | undefined, report!: (code: string) => void;
+  const reached = new Promise<void>(resolve => { enter = resolve; }), gate = new Promise<void>(resolve => { release = resolve; });
+  const observed = new Promise<string>(resolve => { report = resolve; });
+  paths = new CodePaths(s.analysis, { checkpoint: async () => { if (!held) { held = true; enter(); await gate; } } });
+  const read = paths.read.bind(paths);
+  paths.read = (input, kind, signal) => {
+    serverSignal ??= signal;
+    return read(input, kind, signal).catch(error => { report(error instanceof CatalogError ? error.code : 'UNEXPECTED'); throw error; });
+  };
+  const app = createApp(s.catalog, { codeAnalysis: s.analysis, codePaths: paths });
+  server = serve({ fetch: app.fetch, hostname: '127.0.0.1', port: 0 }); await once(server, 'listening');
+  const address = server.address(); assert.ok(address && typeof address === 'object'); const base = `http://127.0.0.1:${address.port}`;
+  // Native HTTP preserves the allowed Host while this owned listener uses an ephemeral port.
+  const request = (route: string, headers: Record<string, string>, method = 'GET', signal?: AbortSignal) =>
+    new Promise<{ status: number; headers: IncomingHttpHeaders; body: string }>((resolve, reject) => {
+      const req = httpRequest(base + route, { headers, method, ...signal ? { signal } : {} }, response => {
+        let body = ''; response.setEncoding('utf8'); response.on('data', chunk => { body += chunk; });
+        response.on('end', () => resolve({ status: response.statusCode!, headers: response.headers, body })); response.on('error', reject);
+      }); req.on('error', reject); req.end();
+    });
+  const session = await request('/api/session', { host: '127.0.0.1:4244', origin: 'http://127.0.0.1:4244', 'x-loredock-client': 'web' }, 'POST');
+  assert.equal(session.status, 200);
+  const headers = { host: '127.0.0.1:4244', cookie: session.headers['set-cookie']![0]!.split(';')[0]! }, controller = new AbortController();
+  const response = request(`/api/code-paths?buildId=${s.buildId}`, headers, 'GET', controller.signal); await reached;
+  assert.ok(serverSignal); const aborted = serverSignal.aborted ? Promise.resolve() : once(serverSignal, 'abort');
+  const rejected = assert.rejects(response, { name: 'AbortError' }); controller.abort(); await rejected; await aborted; release();
+  assert.equal(await observed, 'CANCELLED');
+  const retry = await request(`/api/code-paths?buildId=${s.buildId}`, headers);
+  assert.equal(retry.status, 200); available(JSON.parse(retry.body) as CodePathsResponse);
 });

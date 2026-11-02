@@ -40,7 +40,8 @@ One connected read per catalog may run at a time, including across service insta
 Further requests fail busy without a queue. Client cancellation and daemon shutdown
 abort cooperative work and release ownership before the store closes. The Hono Node
 adapter forwards premature connection closure to the request signal; service/API tests
-also verify signal propagation and release. Other lightweight reads remain available.
+and an owned ephemeral TCP listener verify cancellation and a subsequent successful read.
+Other lightweight reads remain available.
 
 Preserve the qualified conservative database-write fence: any SQLite mutation during
 an asynchronous scan discards that pending response, even when the write belongs to a

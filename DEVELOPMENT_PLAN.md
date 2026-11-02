@@ -190,6 +190,11 @@ thresholds pass; metadata, cancellation, scope, ambiguity and lifecycle failures
 explicit. [Retained evidence](docs/fixtures/loredock-binding-coverage/README.md) permits the
 separately scoped typed backend/protected-read phase, then simple browser integration.
 It does not switch current graph/answer/review consumers or establish semantic acceptance.
+[Task 068](tasks/068-loredock-connected-path-reads.md) implements the separately versioned
+typed service and protected path/four-entry-point reads, with complete bounded envelopes,
+original support, generation identity and cooperative busy/cancel/shutdown handling.
+Existing consumers and storage remain unchanged. The next phase is the collapsed browser
+view with explicit page/root selection and stale-response/evidence fences.
 The user demo and feedback stay separate from these checks; broader semantic synthesis
 and question-context changes remain open.
 Preserve all failed evaluations;

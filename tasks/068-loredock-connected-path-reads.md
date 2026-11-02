@@ -1,6 +1,6 @@
 # Task 068 — Typed connected-path service and protected reads
 
-Status: scoped before implementation, 2026-11-02.
+Status: implemented and locally verified, 2026-11-02; scope commit `efa84f4` preceded implementation.
 
 Implement Phase B of the [integration contract](../docs/loredock/CONNECTED_PATH_INTEGRATION.md)
 after Task 067's passing offline qualification. PR #71 merged as `a6ac15a` after push
@@ -51,3 +51,25 @@ without separately qualifying their integrity and resource effects.
 - Run full strict checks/tests/builds. Document implemented API, identity, concurrency and
   limitations in an ADR and development status. Review the complete diff, verify both CI
   events for the exact PR head, merge and synchronize source before Phase C browser work.
+
+## Result
+
+Implementation `6db3590` adds strict typed metadata/work/resolution/admission modules,
+transport-only types, one read owner, protected routes and shutdown integration. Full
+`pnpm check` passes 482 tests and builds. A subsequent real TCP cancellation regression
+and strict recheck pass too, bringing the defined suite to 483 tests. The TCP check uses
+an owned ephemeral loopback listener, preserves normal Host checks, aborts the client
+socket and verifies a successful subsequent read. Its initial test-client Host override
+was rejected with 403; the test now uses native HTTP to send the explicit allowed Host.
+
+Twenty-one new tests cover normalized reference parity, independent SHA-256 tree bytes,
+original support, root pages/isolated/oversized entries, empty catalogs, typed and HTTP
+validation, unchanged legacy paths, missing/evicted facts, newer unpublished attempts,
+concurrent-write fencing, busy/cancel/shutdown, corruption, revocation and historical
+restart. The port converts output/support assertions into explicit domain errors; a
+focused output-limit check caught this missing error normalization before publication.
+
+See [ADR 0049](../docs/decisions/0049-loredock-connected-path-reads.md) and the
+[API reference](../docs/loredock/CODE_PATHS_API.md). Frozen matrices, schemas, saved
+answers/corrections, model budgets and user data remain unchanged. Phase C browser
+integration follows exact-head CI and merge; no browser controls are claimed here.
