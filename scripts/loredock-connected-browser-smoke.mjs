@@ -104,7 +104,8 @@ try {
   const hold = (pattern, signalled = false) => evaluate(`(()=>{const native=window.fetch;let first=true,release;const gate=new Promise(r=>release=r);
     window.held=false;window.delivered=false;window.releaseHeld=release;window.restoreFetch=()=>{window.fetch=native;};
     window.fetch=async(...args)=>{const held=first&&String(args[0]).includes(${JSON.stringify(pattern)})&&(!${signalled}||Boolean(args[1]?.signal));if(held)first=false;
-      const response=await native(...args);if(held){window.held=true;await gate;window.delivered=true;}return response;};})()`);
+      const response=await native(...args);if(held){const bytes=await response.arrayBuffer();const completed=new Response(bytes,{status:response.status,headers:response.headers});
+      window.held=true;await gate;window.delivered=true;return completed;}return response;};})()`);
   const held = () => wait('window.held===true', 'The response was not held.');
   const release = async () => { await evaluate('window.releaseHeld()'); await wait('window.delivered===true', 'Held response was not released.');
     await evaluate('new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))'); await evaluate('window.restoreFetch()'); };
@@ -192,8 +193,8 @@ try {
   checks.push('Inventory eviction clears the historical path/root view without starting analysis or switching indexes.');
   await select(''); await shown(nextBuild); await open(); const latestId = analysis.list().find(run => run.published).id; await ready(latestId);
   await hold('/api/code-paths?'); await click('Show default paths'); await held();
-  const consoleSource = catalog.state().sources.find(source => source.name === 'console');
-  assert.ok(consoleSource); catalog.revoke(consoleSource.id);
+  const revokedSource = catalog.state().sources.find(source => source.name === 'parcel-api');
+  assert.ok(revokedSource); catalog.revoke(revokedSource.id);
   await wait("!document.querySelector('.connected-path-browser')", 'Source boundary did not close the browser.'); await release();
   assert.equal(await evaluate("Boolean(document.querySelector('.connected-path-browser'))"), false);
   checks.push('Source revocation discards a delayed graph and its original identifiers.');
