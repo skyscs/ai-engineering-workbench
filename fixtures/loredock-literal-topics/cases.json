@@ -1,0 +1,446 @@
+[
+  {
+    "name": "renamed-setting",
+    "changes": {},
+    "expected": {
+      "delivery": true,
+      "controlDelivery": false
+    }
+  },
+  {
+    "name": "no-settings",
+    "changes": {
+      "parcel-publisher": {
+        "config/test.json": null
+      },
+      "parcel-index": {
+        "config/test.json": null
+      }
+    },
+    "expected": {
+      "delivery": true,
+      "controlDelivery": false
+    }
+  },
+  {
+    "name": "unrelated-settings",
+    "changes": {
+      "parcel-publisher": {
+        "config/test.json": "{\n  \"environment\": \"test\",\n  \"uiLabel\": \"Ready\"\n}\n"
+      },
+      "parcel-index": {
+        "config/test.json": "{\n  \"environment\": \"test\",\n  \"uiLabel\": \"Ready\"\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": true,
+      "controlDelivery": false
+    }
+  },
+  {
+    "name": "duplicate-settings",
+    "changes": {
+      "parcel-publisher": {
+        "config/extra.json": "{\n  \"environment\": \"test\",\n  \"queueChannel\": \"parcel.queued.v3\"\n}\n"
+      },
+      "parcel-index": {
+        "config/extra.json": "{\n  \"environment\": \"test\",\n  \"queueChannel\": \"parcel.queued.v3\"\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": true,
+      "controlDelivery": false
+    }
+  },
+  {
+    "name": "different-unbound-setting",
+    "changes": {
+      "parcel-index": {
+        "config/test.json": "{\n  \"environment\": \"test\",\n  \"queueChannel\": \"other.unbound.value\"\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": true,
+      "controlDelivery": false
+    }
+  },
+  {
+    "name": "legacy-key-control",
+    "changes": {
+      "parcel-publisher": {
+        "config/test.json": "{\n  \"environment\": \"test\",\n  \"orderTopic\": \"parcel.queued.v3\"\n}\n"
+      },
+      "parcel-index": {
+        "config/test.json": "{\n  \"environment\": \"test\",\n  \"orderTopic\": \"parcel.queued.v3\"\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": true,
+      "controlDelivery": true
+    }
+  },
+  {
+    "name": "unspecified-contract-scope",
+    "changes": {
+      "parcel-publisher": {
+        "contracts/ParcelQueued.json": "{\n  \"name\": \"ParcelQueued\",\n  \"version\": 3,\n  \"fields\": {\n    \"parcel\": \"string\",\n    \"tenant\": \"string\"\n  },\n  \"transport\": \"Kafka\"\n}\n"
+      },
+      "parcel-index": {
+        "contracts/ParcelQueued.json": "{\n  \"name\": \"ParcelQueued\",\n  \"version\": 3,\n  \"fields\": {\n    \"parcel\": \"string\",\n    \"tenant\": \"string\"\n  },\n  \"transport\": \"Kafka\"\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": true,
+      "environment": null
+    }
+  },
+  {
+    "name": "unicode-equal",
+    "changes": {
+      "parcel-publisher": {
+        "java/Parcels.java": "record ParcelQueued(String parcel, String tenant) {}\ninterface EventPublisher { void publish(String topic, String key, ParcelQueued event); }\nfinal class Parcels {\n  private final EventPublisher publisher;\n  Parcels(EventPublisher publisher) { this.publisher = publisher; }\n  void queue(String parcel, String tenant) {\n    var event = new ParcelQueued(parcel, tenant);\n    publisher.publish(\"café.包裹\", tenant, event);\n  }\n}\n"
+      },
+      "parcel-index": {
+        "java/QueueReader.java": "record ParcelQueued(String parcel, String tenant) {}\nrecord ParcelKey(String tenant, String parcel) {}\ninterface MongoCollection { void replaceOne(ParcelKey selector, ParcelQueued document, boolean upsert); }\ninterface KafkaSubscriber { void subscribe(String topic, String group, QueueReader handler); }\nfinal class QueueReader {\n  private final MongoCollection collection;\n  QueueReader(MongoCollection collection) { this.collection = collection; }\n  void start(KafkaSubscriber subscriber, String group) { subscriber.subscribe(\"café.包裹\", group, this); }\n  void onMessage(ParcelQueued event) {\n    var selector = new ParcelKey(event.tenant(), event.parcel());\n    collection.replaceOne(selector, event, true);\n  }\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": true,
+      "topic": "café.包裹"
+    }
+  },
+  {
+    "name": "maximum-literal",
+    "changes": {
+      "parcel-publisher": {
+        "java/Parcels.java": "record ParcelQueued(String parcel, String tenant) {}\ninterface EventPublisher { void publish(String topic, String key, ParcelQueued event); }\nfinal class Parcels {\n  private final EventPublisher publisher;\n  Parcels(EventPublisher publisher) { this.publisher = publisher; }\n  void queue(String parcel, String tenant) {\n    var event = new ParcelQueued(parcel, tenant);\n    publisher.publish(\"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\", tenant, event);\n  }\n}\n"
+      },
+      "parcel-index": {
+        "java/QueueReader.java": "record ParcelQueued(String parcel, String tenant) {}\nrecord ParcelKey(String tenant, String parcel) {}\ninterface MongoCollection { void replaceOne(ParcelKey selector, ParcelQueued document, boolean upsert); }\ninterface KafkaSubscriber { void subscribe(String topic, String group, QueueReader handler); }\nfinal class QueueReader {\n  private final MongoCollection collection;\n  QueueReader(MongoCollection collection) { this.collection = collection; }\n  void start(KafkaSubscriber subscriber, String group) { subscriber.subscribe(\"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\", group, this); }\n  void onMessage(ParcelQueued event) {\n    var selector = new ParcelKey(event.tenant(), event.parcel());\n    collection.replaceOne(selector, event, true);\n  }\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": true,
+      "topic": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    }
+  },
+  {
+    "name": "parameter",
+    "changes": {
+      "parcel-publisher": {
+        "java/Parcels.java": "record ParcelQueued(String parcel, String tenant) {}\ninterface EventPublisher { void publish(String topic, String key, ParcelQueued event); }\nfinal class Parcels {\n  private final EventPublisher publisher;\n  Parcels(EventPublisher publisher) { this.publisher = publisher; }\n  void queue(String parcel, String tenant) {\n    var event = new ParcelQueued(parcel, tenant);\n    publisher.publish(tenant, tenant, event);\n  }\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": false,
+      "unknown": true
+    }
+  },
+  {
+    "name": "field",
+    "changes": {
+      "parcel-publisher": {
+        "java/Parcels.java": "record ParcelQueued(String parcel, String tenant) {}\ninterface EventPublisher { void publish(String topic, String key, ParcelQueued event); }\nfinal class Parcels {\n  private final EventPublisher publisher;\n  Parcels(EventPublisher publisher) { this.publisher = publisher; }\n  void queue(String parcel, String tenant) {\n    var event = new ParcelQueued(parcel, tenant);\n    publisher.publish(Topics.channel, tenant, event);\n  }\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": false,
+      "unknown": true
+    }
+  },
+  {
+    "name": "call",
+    "changes": {
+      "parcel-publisher": {
+        "java/Parcels.java": "record ParcelQueued(String parcel, String tenant) {}\ninterface EventPublisher { void publish(String topic, String key, ParcelQueued event); }\nfinal class Parcels {\n  private final EventPublisher publisher;\n  Parcels(EventPublisher publisher) { this.publisher = publisher; }\n  void queue(String parcel, String tenant) {\n    var event = new ParcelQueued(parcel, tenant);\n    publisher.publish(topicName(), tenant, event);\n  }\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": false,
+      "unknown": true
+    }
+  },
+  {
+    "name": "concatenation",
+    "changes": {
+      "parcel-publisher": {
+        "java/Parcels.java": "record ParcelQueued(String parcel, String tenant) {}\ninterface EventPublisher { void publish(String topic, String key, ParcelQueued event); }\nfinal class Parcels {\n  private final EventPublisher publisher;\n  Parcels(EventPublisher publisher) { this.publisher = publisher; }\n  void queue(String parcel, String tenant) {\n    var event = new ParcelQueued(parcel, tenant);\n    publisher.publish(\"parcel.\" + \"queued.v3\", tenant, event);\n  }\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": false,
+      "unknown": true
+    }
+  },
+  {
+    "name": "parentheses",
+    "changes": {
+      "parcel-publisher": {
+        "java/Parcels.java": "record ParcelQueued(String parcel, String tenant) {}\ninterface EventPublisher { void publish(String topic, String key, ParcelQueued event); }\nfinal class Parcels {\n  private final EventPublisher publisher;\n  Parcels(EventPublisher publisher) { this.publisher = publisher; }\n  void queue(String parcel, String tenant) {\n    var event = new ParcelQueued(parcel, tenant);\n    publisher.publish((\"parcel.queued.v3\"), tenant, event);\n  }\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": false,
+      "unknown": true
+    }
+  },
+  {
+    "name": "empty",
+    "changes": {
+      "parcel-publisher": {
+        "java/Parcels.java": "record ParcelQueued(String parcel, String tenant) {}\ninterface EventPublisher { void publish(String topic, String key, ParcelQueued event); }\nfinal class Parcels {\n  private final EventPublisher publisher;\n  Parcels(EventPublisher publisher) { this.publisher = publisher; }\n  void queue(String parcel, String tenant) {\n    var event = new ParcelQueued(parcel, tenant);\n    publisher.publish(\"\", tenant, event);\n  }\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": false,
+      "unknown": true
+    }
+  },
+  {
+    "name": "escape",
+    "changes": {
+      "parcel-publisher": {
+        "java/Parcels.java": "record ParcelQueued(String parcel, String tenant) {}\ninterface EventPublisher { void publish(String topic, String key, ParcelQueued event); }\nfinal class Parcels {\n  private final EventPublisher publisher;\n  Parcels(EventPublisher publisher) { this.publisher = publisher; }\n  void queue(String parcel, String tenant) {\n    var event = new ParcelQueued(parcel, tenant);\n    publisher.publish(\"parcel\\tqueued\", tenant, event);\n  }\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": false,
+      "unknown": true
+    }
+  },
+  {
+    "name": "unicode-escape",
+    "changes": {
+      "parcel-publisher": {
+        "java/Parcels.java": "record ParcelQueued(String parcel, String tenant) {}\ninterface EventPublisher { void publish(String topic, String key, ParcelQueued event); }\nfinal class Parcels {\n  private final EventPublisher publisher;\n  Parcels(EventPublisher publisher) { this.publisher = publisher; }\n  void queue(String parcel, String tenant) {\n    var event = new ParcelQueued(parcel, tenant);\n    publisher.publish(\"parcel.\\u0071ueued.v3\", tenant, event);\n  }\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": false,
+      "unknown": true
+    }
+  },
+  {
+    "name": "text-block",
+    "changes": {
+      "parcel-publisher": {
+        "java/Parcels.java": "record ParcelQueued(String parcel, String tenant) {}\ninterface EventPublisher { void publish(String topic, String key, ParcelQueued event); }\nfinal class Parcels {\n  private final EventPublisher publisher;\n  Parcels(EventPublisher publisher) { this.publisher = publisher; }\n  void queue(String parcel, String tenant) {\n    var event = new ParcelQueued(parcel, tenant);\n    publisher.publish(\"\"\"\nparcel.queued.v3\n\"\"\", tenant, event);\n  }\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": false,
+      "unknown": true
+    }
+  },
+  {
+    "name": "oversized",
+    "changes": {
+      "parcel-publisher": {
+        "java/Parcels.java": "record ParcelQueued(String parcel, String tenant) {}\ninterface EventPublisher { void publish(String topic, String key, ParcelQueued event); }\nfinal class Parcels {\n  private final EventPublisher publisher;\n  Parcels(EventPublisher publisher) { this.publisher = publisher; }\n  void queue(String parcel, String tenant) {\n    var event = new ParcelQueued(parcel, tenant);\n    publisher.publish(\"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\", tenant, event);\n  }\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": false,
+      "unknown": true
+    }
+  },
+  {
+    "name": "dynamic-legacy-control",
+    "changes": {
+      "parcel-publisher": {
+        "java/Parcels.java": "record ParcelQueued(String parcel, String tenant) {}\ninterface EventPublisher { void publish(String topic, String key, ParcelQueued event); }\nfinal class Parcels {\n  private final EventPublisher publisher;\n  Parcels(EventPublisher publisher) { this.publisher = publisher; }\n  void queue(String parcel, String tenant) {\n    var event = new ParcelQueued(parcel, tenant);\n    publisher.publish(tenant, tenant, event);\n  }\n}\n",
+        "config/test.json": "{\n  \"environment\": \"test\",\n  \"orderTopic\": \"parcel.queued.v3\"\n}\n"
+      },
+      "parcel-index": {
+        "java/QueueReader.java": "record ParcelQueued(String parcel, String tenant) {}\nrecord ParcelKey(String tenant, String parcel) {}\ninterface MongoCollection { void replaceOne(ParcelKey selector, ParcelQueued document, boolean upsert); }\ninterface KafkaSubscriber { void subscribe(String topic, String group, QueueReader handler); }\nfinal class QueueReader {\n  private final MongoCollection collection;\n  QueueReader(MongoCollection collection) { this.collection = collection; }\n  void start(KafkaSubscriber subscriber, String group) { subscriber.subscribe(group, group, this); }\n  void onMessage(ParcelQueued event) {\n    var selector = new ParcelKey(event.tenant(), event.parcel());\n    collection.replaceOne(selector, event, true);\n  }\n}\n",
+        "config/test.json": "{\n  \"environment\": \"test\",\n  \"orderTopic\": \"parcel.queued.v3\"\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": false,
+      "controlDelivery": true,
+      "unknown": true
+    }
+  },
+  {
+    "name": "case-difference",
+    "changes": {
+      "parcel-publisher": {
+        "java/Parcels.java": "record ParcelQueued(String parcel, String tenant) {}\ninterface EventPublisher { void publish(String topic, String key, ParcelQueued event); }\nfinal class Parcels {\n  private final EventPublisher publisher;\n  Parcels(EventPublisher publisher) { this.publisher = publisher; }\n  void queue(String parcel, String tenant) {\n    var event = new ParcelQueued(parcel, tenant);\n    publisher.publish(\"Parcel.queued.v3\", tenant, event);\n  }\n}\n"
+      },
+      "parcel-index": {
+        "java/QueueReader.java": "record ParcelQueued(String parcel, String tenant) {}\nrecord ParcelKey(String tenant, String parcel) {}\ninterface MongoCollection { void replaceOne(ParcelKey selector, ParcelQueued document, boolean upsert); }\ninterface KafkaSubscriber { void subscribe(String topic, String group, QueueReader handler); }\nfinal class QueueReader {\n  private final MongoCollection collection;\n  QueueReader(MongoCollection collection) { this.collection = collection; }\n  void start(KafkaSubscriber subscriber, String group) { subscriber.subscribe(\"parcel.queued.v3\", group, this); }\n  void onMessage(ParcelQueued event) {\n    var selector = new ParcelKey(event.tenant(), event.parcel());\n    collection.replaceOne(selector, event, true);\n  }\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": false,
+      "reason": "different-literal-topics"
+    }
+  },
+  {
+    "name": "whitespace-difference",
+    "changes": {
+      "parcel-publisher": {
+        "java/Parcels.java": "record ParcelQueued(String parcel, String tenant) {}\ninterface EventPublisher { void publish(String topic, String key, ParcelQueued event); }\nfinal class Parcels {\n  private final EventPublisher publisher;\n  Parcels(EventPublisher publisher) { this.publisher = publisher; }\n  void queue(String parcel, String tenant) {\n    var event = new ParcelQueued(parcel, tenant);\n    publisher.publish(\"parcel.queued.v3 \", tenant, event);\n  }\n}\n"
+      },
+      "parcel-index": {
+        "java/QueueReader.java": "record ParcelQueued(String parcel, String tenant) {}\nrecord ParcelKey(String tenant, String parcel) {}\ninterface MongoCollection { void replaceOne(ParcelKey selector, ParcelQueued document, boolean upsert); }\ninterface KafkaSubscriber { void subscribe(String topic, String group, QueueReader handler); }\nfinal class QueueReader {\n  private final MongoCollection collection;\n  QueueReader(MongoCollection collection) { this.collection = collection; }\n  void start(KafkaSubscriber subscriber, String group) { subscriber.subscribe(\"parcel.queued.v3\", group, this); }\n  void onMessage(ParcelQueued event) {\n    var selector = new ParcelKey(event.tenant(), event.parcel());\n    collection.replaceOne(selector, event, true);\n  }\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": false,
+      "reason": "different-literal-topics"
+    }
+  },
+  {
+    "name": "unicode-difference",
+    "changes": {
+      "parcel-publisher": {
+        "java/Parcels.java": "record ParcelQueued(String parcel, String tenant) {}\ninterface EventPublisher { void publish(String topic, String key, ParcelQueued event); }\nfinal class Parcels {\n  private final EventPublisher publisher;\n  Parcels(EventPublisher publisher) { this.publisher = publisher; }\n  void queue(String parcel, String tenant) {\n    var event = new ParcelQueued(parcel, tenant);\n    publisher.publish(\"café\", tenant, event);\n  }\n}\n"
+      },
+      "parcel-index": {
+        "java/QueueReader.java": "record ParcelQueued(String parcel, String tenant) {}\nrecord ParcelKey(String tenant, String parcel) {}\ninterface MongoCollection { void replaceOne(ParcelKey selector, ParcelQueued document, boolean upsert); }\ninterface KafkaSubscriber { void subscribe(String topic, String group, QueueReader handler); }\nfinal class QueueReader {\n  private final MongoCollection collection;\n  QueueReader(MongoCollection collection) { this.collection = collection; }\n  void start(KafkaSubscriber subscriber, String group) { subscriber.subscribe(\"café\", group, this); }\n  void onMessage(ParcelQueued event) {\n    var selector = new ParcelKey(event.tenant(), event.parcel());\n    collection.replaceOne(selector, event, true);\n  }\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": false,
+      "reason": "different-literal-topics"
+    }
+  },
+  {
+    "name": "contract-name",
+    "changes": {
+      "parcel-index": {
+        "contracts/ParcelQueued.json": "{\n  \"name\": \"DifferentEvent\",\n  \"version\": 3,\n  \"fields\": {\n    \"parcel\": \"string\",\n    \"tenant\": \"string\"\n  },\n  \"transport\": \"Kafka\",\n  \"environment\": \"test\"\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": false
+    }
+  },
+  {
+    "name": "contract-version",
+    "changes": {
+      "parcel-index": {
+        "contracts/ParcelQueued.json": "{\n  \"name\": \"ParcelQueued\",\n  \"version\": 4,\n  \"fields\": {\n    \"parcel\": \"string\",\n    \"tenant\": \"string\"\n  },\n  \"transport\": \"Kafka\",\n  \"environment\": \"test\"\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": false
+    }
+  },
+  {
+    "name": "contract-fields",
+    "changes": {
+      "parcel-index": {
+        "contracts/ParcelQueued.json": "{\n  \"name\": \"ParcelQueued\",\n  \"version\": 3,\n  \"fields\": {\n    \"parcel\": \"string\",\n    \"owner\": \"string\"\n  },\n  \"transport\": \"Kafka\",\n  \"environment\": \"test\"\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": false
+    }
+  },
+  {
+    "name": "contract-environment",
+    "changes": {
+      "parcel-index": {
+        "contracts/ParcelQueued.json": "{\n  \"name\": \"ParcelQueued\",\n  \"version\": 3,\n  \"fields\": {\n    \"parcel\": \"string\",\n    \"tenant\": \"string\"\n  },\n  \"transport\": \"Kafka\",\n  \"environment\": \"production\"\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": false
+    }
+  },
+  {
+    "name": "missing-contract",
+    "changes": {
+      "parcel-index": {
+        "contracts/ParcelQueued.json": null
+      }
+    },
+    "expected": {
+      "delivery": false
+    }
+  },
+  {
+    "name": "duplicate-contract",
+    "changes": {
+      "parcel-index": {
+        "contracts/ParcelQueuedCopy.json": "{\n  \"name\": \"ParcelQueued\",\n  \"version\": 3,\n  \"fields\": {\n    \"parcel\": \"string\",\n    \"tenant\": \"string\"\n  },\n  \"transport\": \"Kafka\",\n  \"environment\": \"test\"\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": false
+    }
+  },
+  {
+    "name": "consumer-record-mismatch",
+    "changes": {
+      "parcel-index": {
+        "java/QueueReader.java": "record ParcelQueued(String parcel, String owner) {}\nrecord ParcelKey(String tenant, String parcel) {}\ninterface MongoCollection { void replaceOne(ParcelKey selector, ParcelQueued document, boolean upsert); }\ninterface KafkaSubscriber { void subscribe(String topic, String group, QueueReader handler); }\nfinal class QueueReader {\n  private final MongoCollection collection;\n  QueueReader(MongoCollection collection) { this.collection = collection; }\n  void start(KafkaSubscriber subscriber, String group) { subscriber.subscribe(\"parcel.queued.v3\", group, this); }\n  void onMessage(ParcelQueued event) {\n    var selector = new ParcelKey(event.tenant(), event.parcel());\n    collection.replaceOne(selector, event, true);\n  }\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": false
+    }
+  },
+  {
+    "name": "incomplete-java-domain",
+    "changes": {
+      "parcel-index": {
+        "java/Marker.java": "interface Marker {}\n"
+      }
+    },
+    "expected": {
+      "delivery": false,
+      "reason": "incomplete-consumer-source"
+    }
+  },
+  {
+    "name": "multiple-consumers",
+    "changes": {
+      "parcel-index": {
+        "other/QueueReader.java": "record ParcelQueued(String parcel, String tenant) {}\nrecord ParcelKey(String tenant, String parcel) {}\ninterface MongoCollection { void replaceOne(ParcelKey selector, ParcelQueued document, boolean upsert); }\ninterface KafkaSubscriber { void subscribe(String topic, String group, QueueReader handler); }\nfinal class QueueReader {\n  private final MongoCollection collection;\n  QueueReader(MongoCollection collection) { this.collection = collection; }\n  void start(KafkaSubscriber subscriber, String group) { subscriber.subscribe(\"parcel.queued.v3\", group, this); }\n  void onMessage(ParcelQueued event) {\n    var selector = new ParcelKey(event.tenant(), event.parcel());\n    collection.replaceOne(selector, event, true);\n  }\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": false,
+      "reason": "ambiguous-consumer-method"
+    }
+  },
+  {
+    "name": "two-publishers",
+    "changes": {
+      "parcel-publisher": {
+        "java/Parcels.java": "record ParcelQueued(String parcel, String tenant) {}\ninterface EventPublisher { void publish(String topic, String key, ParcelQueued event); }\nfinal class Parcels {\n  private final EventPublisher publisher;\n  Parcels(EventPublisher publisher) { this.publisher = publisher; }\n  void queue(String parcel, String tenant) {\n    var event = new ParcelQueued(parcel, tenant);\n    publisher.publish(\"parcel.queued.v3\", tenant, event);\n    publisher.publish(\"parcel.queued.v3\", tenant, event);\n  }\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": true,
+      "alternatePaths": true
+    }
+  },
+  {
+    "name": "two-subscriptions",
+    "changes": {
+      "parcel-index": {
+        "java/QueueReader.java": "record ParcelQueued(String parcel, String tenant) {}\nrecord ParcelKey(String tenant, String parcel) {}\ninterface MongoCollection { void replaceOne(ParcelKey selector, ParcelQueued document, boolean upsert); }\ninterface KafkaSubscriber { void subscribe(String topic, String group, QueueReader handler); }\nfinal class QueueReader {\n  private final MongoCollection collection;\n  QueueReader(MongoCollection collection) { this.collection = collection; }\n  void start(KafkaSubscriber subscriber, String group) { subscriber.subscribe(\"parcel.queued.v3\", group, this); }\n  void also(KafkaSubscriber subscriber, String group) { subscriber.subscribe(\"parcel.queued.v3\", group, this); }\n  void onMessage(ParcelQueued event) {\n    var selector = new ParcelKey(event.tenant(), event.parcel());\n    collection.replaceOne(selector, event, true);\n  }\n}\n"
+      }
+    },
+    "expected": {
+      "delivery": true,
+      "alternatePaths": true
+    }
+  },
+  {
+    "name": "omitted-facts",
+    "changes": {},
+    "analysisLimits": {
+      "documents": 1
+    },
+    "expected": {
+      "delivery": false,
+      "unknown": true
+    }
+  }
+]

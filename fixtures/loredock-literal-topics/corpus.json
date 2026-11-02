@@ -1,0 +1,27 @@
+{
+  "parcel-console": {
+    "README.md": "# Parcel console\nOwned synthetic actions; gateway authority is unspecified.\n",
+    "ui/queue.ts": "export async function queueParcel(parcel: string, tenant: string) {\n  const response = await fetch(\"/v3/parcels\", {\n    method: \"POST\", headers: { \"X-Parcel-Tenant\": tenant }, body: JSON.stringify({ parcel }),\n  });\n  return response.json();\n}\n",
+    "ui/AAQueue.vue": "<script setup lang=\"ts\">\nimport { queueParcel } from \"./queue\";\nconst props = defineProps<{ parcel: string; tenant: string }>();\nconst enqueue = () => queueParcel(props.parcel, props.tenant);\n</script>\n<template><button @click=\"enqueue\">Queue parcel</button></template>\n",
+    "ui/BBRepeat.vue": "<script setup lang=\"ts\">\nimport { queueParcel } from \"./queue\";\nconst props = defineProps<{ parcel: string; tenant: string }>();\nconst repeat = () => queueParcel(props.parcel, props.tenant);\n</script>\n<template><button @click=\"repeat\">Queue parcel</button></template>\n",
+    "ui/CCBatch.vue": "<script setup lang=\"ts\">\nimport { queueParcel } from \"./queue\";\nconst props = defineProps<{ parcel: string; tenant: string }>();\nconst batch = () => queueParcel(props.parcel, props.tenant);\n</script>\n<template><button @click=\"batch\">Queue parcel</button></template>\n",
+    "ui/DDFollow.vue": "<script setup lang=\"ts\">\nimport { queueParcel } from \"./queue\";\nconst props = defineProps<{ parcel: string; tenant: string }>();\nconst follow = () => queueParcel(props.parcel, props.tenant);\n</script>\n<template><button @click=\"follow\">Queue parcel</button></template>\n",
+    "ui/ZZInspect.vue": "<script setup lang=\"ts\">\nimport { inspectParcel } from \"./unavailable\";\nconst inspect = () => inspectParcel();\n</script>\n<template><button @click=\"inspect\">Inspect parcel</button></template>\n"
+  },
+  "parcel-publisher": {
+    "README.md": "# Parcel publisher\nThe interface does not identify a broker.\n",
+    "config/routes.json": "{\n  \"routes\": [\n    {\n      \"method\": \"POST\",\n      \"path\": \"/v3/parcels\",\n      \"handler\": \"Parcels.queue\"\n    }\n  ],\n  \"headerBindings\": {\n    \"Parcels.queue.tenant\": \"X-Parcel-Tenant\"\n  }\n}\n",
+    "config/test.json": "{\n  \"environment\": \"test\",\n  \"queueChannel\": \"parcel.queued.v3\"\n}\n",
+    "contracts/ParcelQueued.json": "{\n  \"name\": \"ParcelQueued\",\n  \"version\": 3,\n  \"fields\": {\n    \"parcel\": \"string\",\n    \"tenant\": \"string\"\n  },\n  \"transport\": \"Kafka\",\n  \"environment\": \"test\"\n}\n",
+    "java/Parcels.java": "record ParcelQueued(String parcel, String tenant) {}\ninterface EventPublisher { void publish(String topic, String key, ParcelQueued event); }\nfinal class Parcels {\n  private final EventPublisher publisher;\n  Parcels(EventPublisher publisher) { this.publisher = publisher; }\n  void queue(String parcel, String tenant) {\n    var event = new ParcelQueued(parcel, tenant);\n    publisher.publish(\"parcel.queued.v3\", tenant, event);\n  }\n}\n"
+  },
+  "parcel-index": {
+    "README.md": "# Parcel index\nSubscriber dispatch and collection binding are unspecified.\n",
+    "config/test.json": "{\n  \"environment\": \"test\",\n  \"queueChannel\": \"parcel.queued.v3\"\n}\n",
+    "contracts/ParcelQueued.json": "{\n  \"name\": \"ParcelQueued\",\n  \"version\": 3,\n  \"fields\": {\n    \"parcel\": \"string\",\n    \"tenant\": \"string\"\n  },\n  \"transport\": \"Kafka\",\n  \"environment\": \"test\"\n}\n",
+    "java/QueueReader.java": "record ParcelQueued(String parcel, String tenant) {}\nrecord ParcelKey(String tenant, String parcel) {}\ninterface MongoCollection { void replaceOne(ParcelKey selector, ParcelQueued document, boolean upsert); }\ninterface KafkaSubscriber { void subscribe(String topic, String group, QueueReader handler); }\nfinal class QueueReader {\n  private final MongoCollection collection;\n  QueueReader(MongoCollection collection) { this.collection = collection; }\n  void start(KafkaSubscriber subscriber, String group) { subscriber.subscribe(\"parcel.queued.v3\", group, this); }\n  void onMessage(ParcelQueued event) {\n    var selector = new ParcelKey(event.tenant(), event.parcel());\n    collection.replaceOne(selector, event, true);\n  }\n}\n"
+  },
+  "parcel-guide": {
+    "README.md": "# Parcel guide\nUncited source retained in the authorized build scope.\n"
+  }
+}
