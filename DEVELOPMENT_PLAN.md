@@ -170,6 +170,13 @@ cooperative resolution on fresh larger inputs, then add separate protected reads
 collapsed path browser with four-entry-point pages. Generation identity and late-response
 fences preserve originals and historical consumers. This is a design, not an available UI
 or a replacement for current answer/review derivations. Scale qualification is next.
+[Task 065](tasks/065-loredock-connected-scale.md) executes that fresh qualification with
+indexed cooperative resolution: full reads of 9,975 code files meet the declared resource
+bounds, but useful-path/root/branch conditions fail (605/628 checks). Unrelated constant-only
+TypeScript gaps suppress imports and Java bindings under the conservative whole-source
+rule. [All first-run results](docs/fixtures/loredock-connected-scale/README.md) remain frozen;
+production promotion is rejected. Next, specify and independently qualify completeness for
+each binding search, retaining unknown/truncated target blockers and existing history fences.
 The user demo and feedback stay separate from these checks; broader semantic synthesis
 and question-context changes remain open.
 Preserve all failed evaluations;

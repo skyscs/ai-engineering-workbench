@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "loredock-connected-scale-retained/1",
+  "decision": "Rejected: resource checks pass, but required useful-path and branch/root conditions fail.",
+  "checks": 628,
+  "passed": 605,
+  "failed": 23,
+  "cases": 22,
+  "observations": 46,
+  "reopenedSpans": 46028,
+  "uncompressedBytes": 41419118,
+  "uncompressedSha256": "550f3b2cea1c01c882b95d39483775efe9c7a2fa7a838766249e867858c93b26",
+  "compressedBytes": 9691609,
+  "compressedSha256": "0254e6748e2db34d1671129e237c63b41d6a5ff8a49b8cf637a6f8d91b4ca3c2",
+  "receiptSha256": "c260b0b01782048285bc8649a132882b674f6a0de4e9d7b9bacfaf85927e03c2",
+  "implementationCommit": "8a06c992fe3d2d849662d7a02c652e19efd1de46"
+}

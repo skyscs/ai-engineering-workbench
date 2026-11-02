@@ -160,6 +160,12 @@ scale/work qualification precedes typed protected reads and a collapsed browser 
 four-entry-point pages. Inventory/generation/root identities and evidence-response fences
 remain separate from current answer/correction/candidate consumers. No product switch or
 scale acceptance follows from this design; the next task freezes the new qualification.
+[Task 065](../../tasks/065-loredock-connected-scale.md) implements the separate indexed,
+yielding candidate and runs that fresh matrix once. Resource bounds pass through 9,975 code
+files, but 23 useful-path/root/branch checks fail because unrelated TypeScript gaps block
+source-wide uniqueness. [Retained results](../fixtures/loredock-connected-scale/README.md)
+reject production promotion. A new binding-completeness contract and fresh qualification
+precede backend/UI adoption; do not ignore gaps or revise the failed oracle retrospectively.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.

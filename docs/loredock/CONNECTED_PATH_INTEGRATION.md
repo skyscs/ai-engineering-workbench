@@ -217,3 +217,17 @@ implementation, and merge only after both push and pull-request CI succeed for t
 head. The owner's authorization permits continuing this sequence without waiting for a
 new command. It does not convert synthetic or agent verification into product acceptance.
 The existing failed semantic evaluations and exhausted model budgets remain unchanged.
+
+## Task 065 result: Phase A remains unqualified
+
+The [fresh scale run](../fixtures/loredock-connected-scale/README.md) reads 9,975 code files
+within its prospective resource bounds, but 23/628 checks fail. Literal descriptor files
+produce TypeScript profile gaps, and the conservative whole-source rule suppresses otherwise
+supported import and Java bindings. Useful paths, root counts and branch exercises fail.
+All first observations and the original oracle remain retained; no replacement run occurs.
+
+Before Phase B, specify a new completeness boundary for each binding search and qualify it
+on fresh positive/negative inputs. Known import target paths and Java-only candidate domains
+may permit narrower uncertainty, but unknown index paths, missing/excluded targets and parser
+truncation must remain blockers. Resource success alone does not qualify Phase A or authorize
+production adoption. Existing graph/answer/review/candidate consumers remain unchanged.

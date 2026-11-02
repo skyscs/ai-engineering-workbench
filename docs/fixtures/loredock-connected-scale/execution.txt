@@ -1,0 +1,148 @@
+(node:1049507) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+S01: 33/37
+S02: 33/37
+S03: 33/37
+S04: 33/37
+S05: 26/26
+S06: 27/29
+S07: 29/29
+S08: 24/24
+S09: 28/29
+S10: 27/29
+S11: 25/26
+S12: 49/50
+S13: 29/29
+S14-read: 23/23
+S14-resolve: 23/23
+S14-admit: 23/23
+S15: 23/23
+S16: 23/23
+S17: 23/23
+S18-facts: 23/23
+S18-original: 23/23
+S19: 25/25
+{
+  "cases": 22,
+  "observations": 46,
+  "checks": 628,
+  "failures": [
+    {
+      "case": "S01",
+      "name": "first: complete useful path family",
+      "passed": false
+    },
+    {
+      "case": "S01",
+      "name": "first: seven original critical nodes",
+      "passed": false
+    },
+    {
+      "case": "S01",
+      "name": "repeat: complete useful path family",
+      "passed": false
+    },
+    {
+      "case": "S01",
+      "name": "repeat: seven original critical nodes",
+      "passed": false
+    },
+    {
+      "case": "S02",
+      "name": "first: complete useful path family",
+      "passed": false
+    },
+    {
+      "case": "S02",
+      "name": "first: seven original critical nodes",
+      "passed": false
+    },
+    {
+      "case": "S02",
+      "name": "repeat: complete useful path family",
+      "passed": false
+    },
+    {
+      "case": "S02",
+      "name": "repeat: seven original critical nodes",
+      "passed": false
+    },
+    {
+      "case": "S03",
+      "name": "first: complete useful path family",
+      "passed": false
+    },
+    {
+      "case": "S03",
+      "name": "first: seven original critical nodes",
+      "passed": false
+    },
+    {
+      "case": "S03",
+      "name": "repeat: complete useful path family",
+      "passed": false
+    },
+    {
+      "case": "S03",
+      "name": "repeat: seven original critical nodes",
+      "passed": false
+    },
+    {
+      "case": "S04",
+      "name": "first: complete useful path family",
+      "passed": false
+    },
+    {
+      "case": "S04",
+      "name": "first: seven original critical nodes",
+      "passed": false
+    },
+    {
+      "case": "S04",
+      "name": "repeat: complete useful path family",
+      "passed": false
+    },
+    {
+      "case": "S04",
+      "name": "repeat: seven original critical nodes",
+      "passed": false
+    },
+    {
+      "case": "S06",
+      "name": "calls: alternatives/incompleteness recorded",
+      "passed": false
+    },
+    {
+      "case": "S06",
+      "name": "implements: alternatives/incompleteness recorded",
+      "passed": false
+    },
+    {
+      "case": "S09",
+      "name": "Nine roots and seven default omissions",
+      "passed": false
+    },
+    {
+      "case": "S10",
+      "name": "Wide branches preserve useful paths",
+      "passed": false
+    },
+    {
+      "case": "S10",
+      "name": "Branch work is bounded and disclosed",
+      "passed": false
+    },
+    {
+      "case": "S11",
+      "name": "Cycle does not hide supported writes",
+      "passed": false
+    },
+    {
+      "case": "S12",
+      "name": "Whole-path display omission",
+      "passed": false
+    }
+  ],
+  "reopenedSpans": 46028,
+  "decision": "Offline qualification only; production integration requires a separate typed backend task and unchanged historical consumers."
+}

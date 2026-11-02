@@ -1,6 +1,6 @@
 # Task 065 — Connected resolution scale and work qualification
 
-Status: scoped before implementation, 2026-11-02.
+Status: offline experiment completed; gate failed and promotion rejected, 2026-11-02.
 
 Follow Phase A of the [integration contract](../docs/loredock/CONNECTED_PATH_INTEGRATION.md).
 Qualify an offline indexed, cooperative resolver on fresh owned synthetic inputs before
@@ -28,3 +28,23 @@ candidate implementation. Use an isolated owned worktree/data directory. Add foc
 for meaningful resolution/work invariants and run required repository checks. Publish a
 separate PR after Task 064 merges; review the complete diff and both exact-head CI events
 before merge. Failures remain visible and block the production integration phase.
+
+## Outcome
+
+Scope `d01d8c0`, fresh corpus/resource freeze `d7e76b4`, measured implementation `8a06c99`.
+The indexed cooperative candidate and exact first-run artifacts are retained in
+[verification](../docs/fixtures/loredock-connected-scale/README.md). Across 22 cases and 46
+observations, 605/628 checks pass; all 23 failures remain recorded. All eight base resource
+observations pass, including complete reads of 9,975 code files at 4,236/4,246 ms. Original
+support reopens 46,028 times; projection read-side mutation/Git counters stay zero.
+
+Useful paths fail because the unchanged conservative source-level gap rule lets unrelated
+constant-only TypeScript files suppress known import and Java bindings. This also changes
+root/branch expectations. The prospective oracle is not rewritten and the experiment is not
+rerun. Source/cancel/integrity/eviction/history boundaries pass, but do not establish useful
+connected context. Production integration is rejected pending a new binding-completeness
+contract and fresh counterexamples/resource qualification.
+
+Four focused regression tests and full strict checks/builds pass (456 tests). Application
+code, schema, answer/review consumers, frozen earlier results, model budgets and owner demo
+remain unchanged. Roadmap/status now records the failed gate and its next boundary.

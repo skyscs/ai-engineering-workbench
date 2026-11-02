@@ -1,5 +1,32 @@
 # Development status
 
+## Task 065 — Connected resolution scale qualification
+
+Completed offline, 2026-11-02; gate failed, production promotion rejected. Scope `d01d8c0`,
+fresh input/resource contract `d7e76b4`, measured implementation `8a06c99`. PR #68 reached
+main as `f59fefc` after push `41427651181` and pull-request `41427687382` passed for exact
+head `3c1d151668857012853265238dadeba1d7053ccb` (452 tests); the merge tree matches that head.
+
+The separate candidate indexes all supported alternatives and yields during read, resolve
+and admission stages, with work/cancel/scope fences and explicit root inspection. The fresh
+twenty-source matrix records 22 cases, 46 observations and 605/628 passing checks. All eight
+base resource observations pass: 9,975 code files read in 4,236/4,246 ms, with 64/66 ms maximum
+timer delay. All 46,028 original span occurrences reopen exactly; projection Git/store-write
+counters are zero outside separately counted lifecycle hooks.
+
+All 23 failed checks remain in [the first-run receipt](fixtures/loredock-connected-scale/README.md).
+Constant-only TypeScript files produce unsupported-profile gaps; the conservative whole-source
+rule suppresses known relative imports and Java bindings elsewhere. Useful paths, expected
+root counts and branch exercises fail despite full reading and acceptable resource usage.
+The oracle is not amended and no replacement run occurs. Cancellation, policy/source changes,
+eviction, original/fact corruption and restart checks pass without overriding that failure.
+
+Strict types, 456 tests and builds pass. No application/schema/UI/answer/review switch, model
+call, old experiment rerun or owner demo change. Next: a new binding-completeness contract
+and fresh positive/negative qualification before the protected backend phase. Missing,
+excluded or truncated target candidates and unknown index paths must still block positive
+uniqueness. See [Task 065](../tasks/065-loredock-connected-scale.md).
+
 ## Task 064 — Connected path integration contract
 
 Design completed, 2026-11-02; scope `9bc373c` preceded analysis. PR #67 reached main as
