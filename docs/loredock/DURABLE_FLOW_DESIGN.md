@@ -207,3 +207,17 @@ with explicit omitted branches. Evaluate fresh multiple-dense-file and competing
 cases, preservation of supporting imports/types/records, and alternatives outside displayed
 slots. No new ranking policy is implemented or accepted by this recommendation. Keep
 current answer/correction provenance separate and preserve all failed semantic gates.
+
+## Task 063 connected-admission qualification
+
+The [fresh parcel experiment](../fixtures/loredock-connected-admission/README.md) separates
+full retained-fact resolution from atomic path admission. All 306 checks pass across twenty
+cases, preserving seven required nodes in the 221-file and multiple-dense-file shapes.
+Incomplete sources block positive uniqueness; omitted roots/branches stay explicit. This
+is a separate prototype, with unchanged application consumers and preserved Task 062 failures.
+
+The next integration contract must bind index/inventory/fingerprint/manifest/scope identity,
+show missing/incomplete availability and offer access to omitted roots, while preserving
+existing answer/correction history. The cooperative deadline and qualification at 221 files
+do not establish production maximum-volume performance. No production switch is authorized
+by this synthetic qualification alone.

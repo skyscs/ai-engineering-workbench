@@ -158,6 +158,12 @@ parity holds, but wider reading retains seven critical facts and admits only thr
 nodes in the 365-file case. Naive wider selection is rejected; parser-cap and harness failures
 remain recorded. Next, freeze support-aware admission and ambiguity handling on fresh cases
 before changing production behavior.
+[Task 063](tasks/063-loredock-connected-admission.md) qualifies a separate connected-admission
+prototype on fresh inputs: 306/306 checks, seven required nodes retained in both distraction
+and multiple-dense-file cases, with global ambiguity and incomplete-source guards. Whole
+paths fit unchanged display caps; other roots/branches remain explicitly omitted. The next
+step is a separate integration/provenance/root-navigation contract and larger-universe
+qualification. Existing application/answer/correction behavior remains unchanged.
 The user demo and feedback stay separate from these checks; broader semantic synthesis
 and question-context changes remain open.
 Preserve all failed evaluations;

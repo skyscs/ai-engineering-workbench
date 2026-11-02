@@ -1,0 +1,3007 @@
+{
+  "schemaVersion": "loredock-connected-admission-contract/1",
+  "productionBase": "a4d4a7d28ea42a1cf8028280c028b462ebcb170b",
+  "sourceHashes": {
+    "fixtures/loredock-connected-admission/corpus.mjs": "0145460b9ef5d79746fb5f5831b6ef4c885a4f2eeab162f35e48d91bde20e262",
+    "fixtures/loredock-connected-admission/DESIGN.md": "082a2e8e83d2684510d7610bbf3bd4f302f56c8d1229c6430375bbcfb01a568a",
+    "scripts/loredock-durable-flow-assembler.mjs": "9af2c8582101eeadbd189243a63c78b3f1a4a565aeac405e790aeea39d76b7cf",
+    "scripts/loredock-durable-flows.mjs": "8250f23c5db8c41d9a9f19ac3960a6369ab80d91791d7cba2837b64c87d575bd",
+    "pnpm-lock.yaml": "7518f6697e3a529114fd835acbe23df2251e1ed25d6077f94d541409876d9312",
+    "apps/loredock/src/code-flows.ts": "c94ed41d6cbc86e26f7997b852eb92df32e2fb3e443a044559a52c4d80274a7f",
+    "apps/loredock/src/code-analysis.ts": "45485d1b1e5534546d8d40504d7d04090442ce6298142222740ba9942e5764da",
+    "apps/loredock/src/code-analysis-facts.ts": "82fb810a3fa6a790538925cb5431c1ccc08b7e096229378fe95d0e91b85d5167",
+    "apps/loredock/src/code-analysis-types.ts": "505bd871b64f3ee5be89375da6acf02cbc36966c3a10ad4c7cc4d63f8a2f8192",
+    "apps/loredock/src/code-facts.ts": "38227b1619f13457b45883dcba6dd9316c62a2fa72ef858b51a77779287a2151",
+    "apps/loredock/src/code-typescript.ts": "773a8ced3b8e304c7d306fa9a91e060ce7da7194ebcde5a4ccb5aa12f9c1a5ad",
+    "apps/loredock/src/code-java.ts": "d51ff800a32a513f1e3a8eed7015d9be96817fef00c9eb1f70ff2f06b5d92389",
+    "apps/loredock/src/map-document.ts": "741ddd865b8c7ac63082f67200d3e5b55d74fa1cc9ce156b84aaa328165aede7",
+    "apps/loredock/src/extract.ts": "0909a4884ff9a82bd9eaaa6b625c7044f69eba3f3c53771b16668c2cdd3e6c2b",
+    "apps/loredock/src/system-map.ts": "1ebb790be8568cfd97bab092cdb5e454f684405617258d2db6c16e8766c212b8",
+    "apps/loredock/src/http-headers.ts": "967bddace78b2c472401e4a490b08ca7cfc44eae725a537d52c7b102ebbdb1a9"
+  },
+  "generated": {
+    "small": {
+      "files": [
+        {
+          "source": "console",
+          "path": "README.md",
+          "bytes": 94,
+          "hash": "7de1503a473c4aefb09b0c89c0a69cc5edd0f091a84f6357c5404ddd88787dc0"
+        },
+        {
+          "source": "console",
+          "path": "package.json",
+          "bytes": 56,
+          "hash": "43a4b7e7c4cb82c0025ba954f8826148b92656055e4c38f68b5c15bd82f8c8c7"
+        },
+        {
+          "source": "console",
+          "path": "src/Dispatch.vue",
+          "bytes": 259,
+          "hash": "41b0db12e5d6277d3ac502bb99c11eda580dae85232fbefcdb1e04480c59cfc5"
+        },
+        {
+          "source": "console",
+          "path": "src/parcels.ts",
+          "bytes": 235,
+          "hash": "99bfe83c43fa0c161122ec7232e7b4dc41d40552c70535d3132150c7e99472ee"
+        },
+        {
+          "source": "console",
+          "path": "legacy/parcels.js",
+          "bytes": 220,
+          "hash": "2820493184983a49bea7b9a4530f7486f521e53dd4b2f89f66aeef1e2a43e356"
+        },
+        {
+          "source": "parcel-api",
+          "path": "README.md",
+          "bytes": 81,
+          "hash": "9e2dfbcdf404606828497451a48111f30ff7dd719ccf61295cc7f1f6501e48f0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "config/routes.json",
+          "bytes": 299,
+          "hash": "9425eaeb323c6f9b3a59996109173fd9e12d44a20565b85f40847483eac10db8"
+        },
+        {
+          "source": "parcel-api",
+          "path": "config/local.json",
+          "bytes": 66,
+          "hash": "4b1a29d12ac12a571c3ee020d36916a1241dcf21560f7c403b996a05607b46c5"
+        },
+        {
+          "source": "parcel-api",
+          "path": "contracts/ParcelCreated.json",
+          "bytes": 161,
+          "hash": "e452971664908d341189a66c99cf6a3e4b25c548a0a00f8708b5c761fbc587f0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "bytes": 426,
+          "hash": "e61e0316b0338935fe374e6c44e44d8cb189b4092e3c38b26370ad0b7ec84768"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "README.md",
+          "bytes": 92,
+          "hash": "9cb55d11ed2f57c042c1e7880ba340c3536916d5afbabfb36118d57326ae6384"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "config/local.json",
+          "bytes": 66,
+          "hash": "4b1a29d12ac12a571c3ee020d36916a1241dcf21560f7c403b996a05607b46c5"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "contracts/ParcelCreated.json",
+          "bytes": 161,
+          "hash": "e452971664908d341189a66c99cf6a3e4b25c548a0a00f8708b5c761fbc587f0"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "bytes": 713,
+          "hash": "bd4e8e34ebf8821254a2ffdd9255f024fe37e0d3d754ceed9b22662c26eb442c"
+        }
+      ],
+      "support": [
+        {
+          "source": "console",
+          "path": "src/Dispatch.vue",
+          "kind": "symbol",
+          "label": "send",
+          "literal": "const send =",
+          "line": 4
+        },
+        {
+          "source": "console",
+          "path": "src/parcels.ts",
+          "kind": "http-request",
+          "label": "POST /v1/parcels",
+          "literal": "const response = await fetch(",
+          "line": 2
+        },
+        {
+          "source": "console",
+          "path": "legacy/parcels.js",
+          "kind": "http-request",
+          "label": "POST /legacy/parcels",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "kind": "symbol",
+          "label": "Parcels.accept",
+          "literal": "void accept(",
+          "line": 6
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "kind": "event-publish",
+          "label": "Publish ParcelCreated",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ],
+      "codeFiles": 5
+    },
+    "distractions": {
+      "files": [
+        {
+          "source": "console",
+          "path": "README.md",
+          "bytes": 94,
+          "hash": "7de1503a473c4aefb09b0c89c0a69cc5edd0f091a84f6357c5404ddd88787dc0"
+        },
+        {
+          "source": "console",
+          "path": "package.json",
+          "bytes": 56,
+          "hash": "43a4b7e7c4cb82c0025ba954f8826148b92656055e4c38f68b5c15bd82f8c8c7"
+        },
+        {
+          "source": "console",
+          "path": "src/Dispatch.vue",
+          "bytes": 259,
+          "hash": "41b0db12e5d6277d3ac502bb99c11eda580dae85232fbefcdb1e04480c59cfc5"
+        },
+        {
+          "source": "console",
+          "path": "src/parcels.ts",
+          "bytes": 235,
+          "hash": "99bfe83c43fa0c161122ec7232e7b4dc41d40552c70535d3132150c7e99472ee"
+        },
+        {
+          "source": "console",
+          "path": "legacy/parcels.js",
+          "bytes": 220,
+          "hash": "2820493184983a49bea7b9a4530f7486f521e53dd4b2f89f66aeef1e2a43e356"
+        },
+        {
+          "source": "console",
+          "path": "a00.ts",
+          "bytes": 41,
+          "hash": "08cc3a1587e622ee734e9529d672b72f21e68074135d849172b9a9d57f94950e"
+        },
+        {
+          "source": "console",
+          "path": "a01.ts",
+          "bytes": 41,
+          "hash": "869a6878a52c19e0bb7dda64d1b5a6751df1012f80870b1dd96e1fd328907354"
+        },
+        {
+          "source": "console",
+          "path": "a02.ts",
+          "bytes": 41,
+          "hash": "bd03adb14f901a077878d1d36d6d3a62fbf17ef839ccaea578594b880409db13"
+        },
+        {
+          "source": "console",
+          "path": "a03.ts",
+          "bytes": 41,
+          "hash": "303feed5aefe93d5a430cfb899db86b9b6da1c89afc37fc2df8cbdbdd5030259"
+        },
+        {
+          "source": "console",
+          "path": "a04.ts",
+          "bytes": 41,
+          "hash": "4f3a4e72b38f102dcb1bdad85583d03230c42371818de92eb098c25ae53f9494"
+        },
+        {
+          "source": "console",
+          "path": "a05.ts",
+          "bytes": 41,
+          "hash": "d0cb42ebd37d2627112563c5a5f58f8b7921b1a078bba68ea469ba20c34711a4"
+        },
+        {
+          "source": "console",
+          "path": "a06.ts",
+          "bytes": 41,
+          "hash": "481c6764bd175a84c45d03afd8c5c24711adde87e7f1c5b695de557e478afb59"
+        },
+        {
+          "source": "console",
+          "path": "a07.ts",
+          "bytes": 41,
+          "hash": "f1f8aab512a312c93a663f2dd518804cf6e8c6cb3449b288a4e80a019900a902"
+        },
+        {
+          "source": "console",
+          "path": "a08.ts",
+          "bytes": 41,
+          "hash": "002381804355dd34133717ee146d7f8b7b4c3b199d07195462cae03c41a68365"
+        },
+        {
+          "source": "console",
+          "path": "a09.ts",
+          "bytes": 41,
+          "hash": "a9b10ee20552f9ac119ae11933679b1a0d583dd95b7a6f9e9074e72d2aa6989b"
+        },
+        {
+          "source": "console",
+          "path": "a10.ts",
+          "bytes": 42,
+          "hash": "e58b902345af0a3501c870a011499cfb6d9298816afc21a32ab7d69e59fe14c8"
+        },
+        {
+          "source": "console",
+          "path": "a11.ts",
+          "bytes": 42,
+          "hash": "df288bfa5ff013dbcff7e3f43ca9dfa2fe7b8b7b00b21cd1251a8cc1112bb8ad"
+        },
+        {
+          "source": "console",
+          "path": "a12.ts",
+          "bytes": 42,
+          "hash": "55b7815f2bd478b26a32aed3051b233fc35e96bfa65af13718df63001a9c9622"
+        },
+        {
+          "source": "console",
+          "path": "a13.ts",
+          "bytes": 42,
+          "hash": "226c6d33edeccfece41217ab351901da4601964d4dd0c007afeb4eeaef8948d7"
+        },
+        {
+          "source": "console",
+          "path": "a14.ts",
+          "bytes": 42,
+          "hash": "7e9885949ce614201745d2d3ffb4757993c52d7027e039b947d3d011a0e27a15"
+        },
+        {
+          "source": "console",
+          "path": "a15.ts",
+          "bytes": 42,
+          "hash": "3dcc9e3175182ac2f37fe3fa4316d62bd09f58c688757c039368b73091e3562c"
+        },
+        {
+          "source": "console",
+          "path": "a16.ts",
+          "bytes": 42,
+          "hash": "3d77e055454626e2701d5a56d2cb961e0ac306e0506355f1cc18af340877bbd1"
+        },
+        {
+          "source": "console",
+          "path": "a17.ts",
+          "bytes": 42,
+          "hash": "6f1bb7e676242f3d6711a22b7032b24727b61041c08869a06ec9c0bf835cbd51"
+        },
+        {
+          "source": "console",
+          "path": "a18.ts",
+          "bytes": 42,
+          "hash": "e743cf05df343b7376809011a6d02ea2cc8bad04eb37bd8ca8b351ff7e161581"
+        },
+        {
+          "source": "console",
+          "path": "a19.ts",
+          "bytes": 42,
+          "hash": "199e271574c29e7d188e36cbf0631ca853bb3c1f3f960dac4171213254641601"
+        },
+        {
+          "source": "console",
+          "path": "a20.ts",
+          "bytes": 42,
+          "hash": "c6982674691deaf13767e7b29050d8ea449ef78958535a8609a30eb2e7160a54"
+        },
+        {
+          "source": "console",
+          "path": "a21.ts",
+          "bytes": 42,
+          "hash": "c86a55733ac79d00491831c86c7e2166078e87d6427913133bfe19df367cce2e"
+        },
+        {
+          "source": "console",
+          "path": "a22.ts",
+          "bytes": 42,
+          "hash": "e6c9af7eb42481cad7d320b38ef06705fea1042abd717c68b7bad856a1518a4b"
+        },
+        {
+          "source": "console",
+          "path": "a23.ts",
+          "bytes": 42,
+          "hash": "2352063b384b95d55b916169b60e9ec891fe711275baec9dd45325c22bdfcd62"
+        },
+        {
+          "source": "console",
+          "path": "a24.ts",
+          "bytes": 42,
+          "hash": "40868c67979a2b430c3994aebb0c5d551d12b6e21c492744ef80dd429ab815f2"
+        },
+        {
+          "source": "console",
+          "path": "a25.ts",
+          "bytes": 42,
+          "hash": "cd7247283a0e02b1b6d11dbc3cb3f21747c4d827445cc08e2ddefc096f340e8a"
+        },
+        {
+          "source": "console",
+          "path": "a26.ts",
+          "bytes": 42,
+          "hash": "1550b01fbc34f60b2e5f9eaa59c3263d0c7f7ec207a130020678e94587d0dd3f"
+        },
+        {
+          "source": "console",
+          "path": "a27.ts",
+          "bytes": 42,
+          "hash": "d917612fba934b21617cd15e42f6dddd02ce8eb2d5d098604d4c568897a91c25"
+        },
+        {
+          "source": "console",
+          "path": "a28.ts",
+          "bytes": 42,
+          "hash": "d0e580b5f3159ca2226ab67b94fadd0a6b7e888977e027e730da86463c38a301"
+        },
+        {
+          "source": "console",
+          "path": "a29.ts",
+          "bytes": 42,
+          "hash": "2c237a250b9053c6580b126221bd42a1c50510f0583358b84fccbadf65acc29a"
+        },
+        {
+          "source": "console",
+          "path": "a30.ts",
+          "bytes": 42,
+          "hash": "2a2ceb27468d1319a86d6e63ed164febd5f58283433d3bb1fb1011d18d2df3ad"
+        },
+        {
+          "source": "console",
+          "path": "a31.ts",
+          "bytes": 42,
+          "hash": "f3ebba48af633ac935d466e1779499e3fd045ade794e9f75f37567bd3eb55e50"
+        },
+        {
+          "source": "console",
+          "path": "a32.ts",
+          "bytes": 42,
+          "hash": "b12ad00ee9291cd0d2a517f8f0080f038bc91fedb0234c98e66625f2e9672656"
+        },
+        {
+          "source": "console",
+          "path": "a33.ts",
+          "bytes": 42,
+          "hash": "48a409d770858168263261afcf3ae9e34487e613c9658a1850d7320ea514f5f0"
+        },
+        {
+          "source": "console",
+          "path": "a34.ts",
+          "bytes": 42,
+          "hash": "b2f0294f682b2cc99b9a67d742b18eb26dafb789804914ef5f2acde73742efc9"
+        },
+        {
+          "source": "console",
+          "path": "a35.ts",
+          "bytes": 42,
+          "hash": "52dfaef702f0a3e00faff3420b9b1fbbe33d923f67e9281246d96ad443e0b626"
+        },
+        {
+          "source": "console",
+          "path": "a36.ts",
+          "bytes": 42,
+          "hash": "7f3ec16316bc221420aa98fb36607165c6828a5923836d39be95336bf1168323"
+        },
+        {
+          "source": "console",
+          "path": "a37.ts",
+          "bytes": 42,
+          "hash": "3906127f48c42fcf71dc4979effdf746812ce2b7cd1c3dbc9241292ba1ee6821"
+        },
+        {
+          "source": "console",
+          "path": "a38.ts",
+          "bytes": 42,
+          "hash": "b9826e6a6774dc964f0edcf26a26ccf45d35615b0d322c04a095fbe1b8da665f"
+        },
+        {
+          "source": "console",
+          "path": "a39.ts",
+          "bytes": 42,
+          "hash": "3486bc8196525ccf446fddedb2d5754b345176770684538e58c0ab25147ea04c"
+        },
+        {
+          "source": "console",
+          "path": "a40.ts",
+          "bytes": 42,
+          "hash": "c98bbec788243582afde15da7ce913319527c52f99c2814ad80556595e860bd8"
+        },
+        {
+          "source": "console",
+          "path": "a41.ts",
+          "bytes": 42,
+          "hash": "1b92d6ae231757418280d22d9a07285a58990993177f0e341473d08989b5cb08"
+        },
+        {
+          "source": "console",
+          "path": "a42.ts",
+          "bytes": 42,
+          "hash": "88c7739c07d7f027440fb3270522a7386735f7ae6cf49cd4ba938255716293ea"
+        },
+        {
+          "source": "console",
+          "path": "a43.ts",
+          "bytes": 42,
+          "hash": "7bb5c3c5d8ed5b64a6a7fa760f5165343973d705fec353863c7c2f95e475746e"
+        },
+        {
+          "source": "console",
+          "path": "a44.ts",
+          "bytes": 42,
+          "hash": "30e01fa5d2ca23907e6f0502f961b32811f8bbb8320c01e13d97f03c9baf7242"
+        },
+        {
+          "source": "console",
+          "path": "a45.ts",
+          "bytes": 42,
+          "hash": "3c8c21af26854158190a5e247c5518bc88c46e5f1a53abd56bdaceb54844449d"
+        },
+        {
+          "source": "console",
+          "path": "a46.ts",
+          "bytes": 42,
+          "hash": "5bb8971d90f17d33e40eb74e8f5bf7db709beef5018a10dc7149388363cb76bc"
+        },
+        {
+          "source": "console",
+          "path": "a47.ts",
+          "bytes": 42,
+          "hash": "b4c026eec9c8c3d058ea28b95e376e4f50e45046c033ff74b2e2e72e71c5512d"
+        },
+        {
+          "source": "console",
+          "path": "a48.ts",
+          "bytes": 42,
+          "hash": "1796b80479e8fc4b3ef1fd5646889573f90027f88280c1cd2f8e15ac8ce89688"
+        },
+        {
+          "source": "console",
+          "path": "a49.ts",
+          "bytes": 42,
+          "hash": "6be7f91cfe56dd8a63accd24d01de97d43502337ac300b1f4b5bb38f06f744dc"
+        },
+        {
+          "source": "console",
+          "path": "a50.ts",
+          "bytes": 42,
+          "hash": "47d5ae106f0b15672d06b93e4ba83549c5e766cbe96e3829820af91668558a82"
+        },
+        {
+          "source": "console",
+          "path": "a51.ts",
+          "bytes": 42,
+          "hash": "1d6acaef99f6dc7e96f37d2f2869c45e652575fa1c0f150853b48adb866848d4"
+        },
+        {
+          "source": "console",
+          "path": "a52.ts",
+          "bytes": 42,
+          "hash": "6614b54f2e4dd0ee1d19d5a95cf9374471b20b5f14b6d5233ceedd665d082604"
+        },
+        {
+          "source": "console",
+          "path": "a53.ts",
+          "bytes": 42,
+          "hash": "8cd97bb38730a2b5089af8efdb40b95f884b6c9380fbf45951d077f495bb5b07"
+        },
+        {
+          "source": "console",
+          "path": "a54.ts",
+          "bytes": 42,
+          "hash": "e659bdd1731db85fafe3f91e5f0804b124a133cc889497cd09232cc8143b4805"
+        },
+        {
+          "source": "console",
+          "path": "a55.ts",
+          "bytes": 42,
+          "hash": "61579b83ed1e734a47c788304b43a7c0a6f3463137fa8efd0e92cb3aa68d4a1d"
+        },
+        {
+          "source": "console",
+          "path": "a56.ts",
+          "bytes": 42,
+          "hash": "a1d40863faa5c24856e5757b3fbfa9aa0ad8c4b2bd2981995be1132a3fd3cffe"
+        },
+        {
+          "source": "console",
+          "path": "a57.ts",
+          "bytes": 42,
+          "hash": "6afe46d005e1d5c417922432505bddb24ef7c0132d5c5f28aaabd1031c9f2347"
+        },
+        {
+          "source": "console",
+          "path": "a58.ts",
+          "bytes": 42,
+          "hash": "650d7bb02551aca047e2f1433af181efbe56e2caffeef9a09cf4406cf957a82d"
+        },
+        {
+          "source": "console",
+          "path": "a59.ts",
+          "bytes": 42,
+          "hash": "535d9542fd5efb3c4b0a77e1de2e3c2b23bb74e744df696c446055fed5f2abb2"
+        },
+        {
+          "source": "console",
+          "path": "a60.ts",
+          "bytes": 42,
+          "hash": "46e6638676a619cc8e7010fc0a03237ae5d388490472d86ebf0b39e6f8ad13e2"
+        },
+        {
+          "source": "console",
+          "path": "a61.ts",
+          "bytes": 42,
+          "hash": "f7f9afe9e60cfc11c379a053e6a939115a4510dce5ce871405c286db90e1aaa4"
+        },
+        {
+          "source": "console",
+          "path": "a62.ts",
+          "bytes": 42,
+          "hash": "fa64666d9f6e40e5cb2bf6c81640cd23ccd506281e7c4f01fa3bbbdc73838598"
+        },
+        {
+          "source": "console",
+          "path": "a63.ts",
+          "bytes": 42,
+          "hash": "c08499433a44c7cedc01ad4a0b8a25f78264c17fc735e2c0b46c901f265236bf"
+        },
+        {
+          "source": "console",
+          "path": "a64.ts",
+          "bytes": 42,
+          "hash": "c5822c5265907a50d686f97423ed4bdc7b0a34aa169851f0a75ef0500bd2a7c2"
+        },
+        {
+          "source": "console",
+          "path": "a65.ts",
+          "bytes": 42,
+          "hash": "782c613be7dd57c12bc7c081d070c764fdab626a4e4c8d6b2dc7371ce13497fe"
+        },
+        {
+          "source": "console",
+          "path": "a66.ts",
+          "bytes": 42,
+          "hash": "073ab4e05138745964039845afccee2337c3f731d4eed1cc693935ad2645913f"
+        },
+        {
+          "source": "console",
+          "path": "a67.ts",
+          "bytes": 42,
+          "hash": "37b6710d5e354290cbfe84e9d8e0716d71f5279000b1b945ac6b90ced9ef90ea"
+        },
+        {
+          "source": "console",
+          "path": "a68.ts",
+          "bytes": 42,
+          "hash": "1b86e88e1938bb7f37da3173693566f8294c650358adaf519d98cb424352d3f7"
+        },
+        {
+          "source": "console",
+          "path": "a69.ts",
+          "bytes": 42,
+          "hash": "19ef9cd28c315294079876b1b81465a972081a63441a3250bfb7095724eb0350"
+        },
+        {
+          "source": "console",
+          "path": "a70.ts",
+          "bytes": 42,
+          "hash": "769f1843773771fe617d37146faeb647d156b187c7aa6ad6c0a38181afb8d63e"
+        },
+        {
+          "source": "console",
+          "path": "a71.ts",
+          "bytes": 42,
+          "hash": "93a4f0dc22c18cd4a130d144b3930b9d736c078e61281c25b6e75bb0d1240480"
+        },
+        {
+          "source": "parcel-api",
+          "path": "README.md",
+          "bytes": 81,
+          "hash": "9e2dfbcdf404606828497451a48111f30ff7dd719ccf61295cc7f1f6501e48f0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "config/routes.json",
+          "bytes": 299,
+          "hash": "9425eaeb323c6f9b3a59996109173fd9e12d44a20565b85f40847483eac10db8"
+        },
+        {
+          "source": "parcel-api",
+          "path": "config/local.json",
+          "bytes": 66,
+          "hash": "4b1a29d12ac12a571c3ee020d36916a1241dcf21560f7c403b996a05607b46c5"
+        },
+        {
+          "source": "parcel-api",
+          "path": "contracts/ParcelCreated.json",
+          "bytes": 161,
+          "hash": "e452971664908d341189a66c99cf6a3e4b25c548a0a00f8708b5c761fbc587f0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "bytes": 426,
+          "hash": "e61e0316b0338935fe374e6c44e44d8cb189b4092e3c38b26370ad0b7ec84768"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a00.ts",
+          "bytes": 41,
+          "hash": "08cc3a1587e622ee734e9529d672b72f21e68074135d849172b9a9d57f94950e"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a01.ts",
+          "bytes": 41,
+          "hash": "869a6878a52c19e0bb7dda64d1b5a6751df1012f80870b1dd96e1fd328907354"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a02.ts",
+          "bytes": 41,
+          "hash": "bd03adb14f901a077878d1d36d6d3a62fbf17ef839ccaea578594b880409db13"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a03.ts",
+          "bytes": 41,
+          "hash": "303feed5aefe93d5a430cfb899db86b9b6da1c89afc37fc2df8cbdbdd5030259"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a04.ts",
+          "bytes": 41,
+          "hash": "4f3a4e72b38f102dcb1bdad85583d03230c42371818de92eb098c25ae53f9494"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a05.ts",
+          "bytes": 41,
+          "hash": "d0cb42ebd37d2627112563c5a5f58f8b7921b1a078bba68ea469ba20c34711a4"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a06.ts",
+          "bytes": 41,
+          "hash": "481c6764bd175a84c45d03afd8c5c24711adde87e7f1c5b695de557e478afb59"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a07.ts",
+          "bytes": 41,
+          "hash": "f1f8aab512a312c93a663f2dd518804cf6e8c6cb3449b288a4e80a019900a902"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a08.ts",
+          "bytes": 41,
+          "hash": "002381804355dd34133717ee146d7f8b7b4c3b199d07195462cae03c41a68365"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a09.ts",
+          "bytes": 41,
+          "hash": "a9b10ee20552f9ac119ae11933679b1a0d583dd95b7a6f9e9074e72d2aa6989b"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a10.ts",
+          "bytes": 42,
+          "hash": "e58b902345af0a3501c870a011499cfb6d9298816afc21a32ab7d69e59fe14c8"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a11.ts",
+          "bytes": 42,
+          "hash": "df288bfa5ff013dbcff7e3f43ca9dfa2fe7b8b7b00b21cd1251a8cc1112bb8ad"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a12.ts",
+          "bytes": 42,
+          "hash": "55b7815f2bd478b26a32aed3051b233fc35e96bfa65af13718df63001a9c9622"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a13.ts",
+          "bytes": 42,
+          "hash": "226c6d33edeccfece41217ab351901da4601964d4dd0c007afeb4eeaef8948d7"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a14.ts",
+          "bytes": 42,
+          "hash": "7e9885949ce614201745d2d3ffb4757993c52d7027e039b947d3d011a0e27a15"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a15.ts",
+          "bytes": 42,
+          "hash": "3dcc9e3175182ac2f37fe3fa4316d62bd09f58c688757c039368b73091e3562c"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a16.ts",
+          "bytes": 42,
+          "hash": "3d77e055454626e2701d5a56d2cb961e0ac306e0506355f1cc18af340877bbd1"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a17.ts",
+          "bytes": 42,
+          "hash": "6f1bb7e676242f3d6711a22b7032b24727b61041c08869a06ec9c0bf835cbd51"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a18.ts",
+          "bytes": 42,
+          "hash": "e743cf05df343b7376809011a6d02ea2cc8bad04eb37bd8ca8b351ff7e161581"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a19.ts",
+          "bytes": 42,
+          "hash": "199e271574c29e7d188e36cbf0631ca853bb3c1f3f960dac4171213254641601"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a20.ts",
+          "bytes": 42,
+          "hash": "c6982674691deaf13767e7b29050d8ea449ef78958535a8609a30eb2e7160a54"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a21.ts",
+          "bytes": 42,
+          "hash": "c86a55733ac79d00491831c86c7e2166078e87d6427913133bfe19df367cce2e"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a22.ts",
+          "bytes": 42,
+          "hash": "e6c9af7eb42481cad7d320b38ef06705fea1042abd717c68b7bad856a1518a4b"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a23.ts",
+          "bytes": 42,
+          "hash": "2352063b384b95d55b916169b60e9ec891fe711275baec9dd45325c22bdfcd62"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a24.ts",
+          "bytes": 42,
+          "hash": "40868c67979a2b430c3994aebb0c5d551d12b6e21c492744ef80dd429ab815f2"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a25.ts",
+          "bytes": 42,
+          "hash": "cd7247283a0e02b1b6d11dbc3cb3f21747c4d827445cc08e2ddefc096f340e8a"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a26.ts",
+          "bytes": 42,
+          "hash": "1550b01fbc34f60b2e5f9eaa59c3263d0c7f7ec207a130020678e94587d0dd3f"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a27.ts",
+          "bytes": 42,
+          "hash": "d917612fba934b21617cd15e42f6dddd02ce8eb2d5d098604d4c568897a91c25"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a28.ts",
+          "bytes": 42,
+          "hash": "d0e580b5f3159ca2226ab67b94fadd0a6b7e888977e027e730da86463c38a301"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a29.ts",
+          "bytes": 42,
+          "hash": "2c237a250b9053c6580b126221bd42a1c50510f0583358b84fccbadf65acc29a"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a30.ts",
+          "bytes": 42,
+          "hash": "2a2ceb27468d1319a86d6e63ed164febd5f58283433d3bb1fb1011d18d2df3ad"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a31.ts",
+          "bytes": 42,
+          "hash": "f3ebba48af633ac935d466e1779499e3fd045ade794e9f75f37567bd3eb55e50"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a32.ts",
+          "bytes": 42,
+          "hash": "b12ad00ee9291cd0d2a517f8f0080f038bc91fedb0234c98e66625f2e9672656"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a33.ts",
+          "bytes": 42,
+          "hash": "48a409d770858168263261afcf3ae9e34487e613c9658a1850d7320ea514f5f0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a34.ts",
+          "bytes": 42,
+          "hash": "b2f0294f682b2cc99b9a67d742b18eb26dafb789804914ef5f2acde73742efc9"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a35.ts",
+          "bytes": 42,
+          "hash": "52dfaef702f0a3e00faff3420b9b1fbbe33d923f67e9281246d96ad443e0b626"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a36.ts",
+          "bytes": 42,
+          "hash": "7f3ec16316bc221420aa98fb36607165c6828a5923836d39be95336bf1168323"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a37.ts",
+          "bytes": 42,
+          "hash": "3906127f48c42fcf71dc4979effdf746812ce2b7cd1c3dbc9241292ba1ee6821"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a38.ts",
+          "bytes": 42,
+          "hash": "b9826e6a6774dc964f0edcf26a26ccf45d35615b0d322c04a095fbe1b8da665f"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a39.ts",
+          "bytes": 42,
+          "hash": "3486bc8196525ccf446fddedb2d5754b345176770684538e58c0ab25147ea04c"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a40.ts",
+          "bytes": 42,
+          "hash": "c98bbec788243582afde15da7ce913319527c52f99c2814ad80556595e860bd8"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a41.ts",
+          "bytes": 42,
+          "hash": "1b92d6ae231757418280d22d9a07285a58990993177f0e341473d08989b5cb08"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a42.ts",
+          "bytes": 42,
+          "hash": "88c7739c07d7f027440fb3270522a7386735f7ae6cf49cd4ba938255716293ea"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a43.ts",
+          "bytes": 42,
+          "hash": "7bb5c3c5d8ed5b64a6a7fa760f5165343973d705fec353863c7c2f95e475746e"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a44.ts",
+          "bytes": 42,
+          "hash": "30e01fa5d2ca23907e6f0502f961b32811f8bbb8320c01e13d97f03c9baf7242"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a45.ts",
+          "bytes": 42,
+          "hash": "3c8c21af26854158190a5e247c5518bc88c46e5f1a53abd56bdaceb54844449d"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a46.ts",
+          "bytes": 42,
+          "hash": "5bb8971d90f17d33e40eb74e8f5bf7db709beef5018a10dc7149388363cb76bc"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a47.ts",
+          "bytes": 42,
+          "hash": "b4c026eec9c8c3d058ea28b95e376e4f50e45046c033ff74b2e2e72e71c5512d"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a48.ts",
+          "bytes": 42,
+          "hash": "1796b80479e8fc4b3ef1fd5646889573f90027f88280c1cd2f8e15ac8ce89688"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a49.ts",
+          "bytes": 42,
+          "hash": "6be7f91cfe56dd8a63accd24d01de97d43502337ac300b1f4b5bb38f06f744dc"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a50.ts",
+          "bytes": 42,
+          "hash": "47d5ae106f0b15672d06b93e4ba83549c5e766cbe96e3829820af91668558a82"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a51.ts",
+          "bytes": 42,
+          "hash": "1d6acaef99f6dc7e96f37d2f2869c45e652575fa1c0f150853b48adb866848d4"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a52.ts",
+          "bytes": 42,
+          "hash": "6614b54f2e4dd0ee1d19d5a95cf9374471b20b5f14b6d5233ceedd665d082604"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a53.ts",
+          "bytes": 42,
+          "hash": "8cd97bb38730a2b5089af8efdb40b95f884b6c9380fbf45951d077f495bb5b07"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a54.ts",
+          "bytes": 42,
+          "hash": "e659bdd1731db85fafe3f91e5f0804b124a133cc889497cd09232cc8143b4805"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a55.ts",
+          "bytes": 42,
+          "hash": "61579b83ed1e734a47c788304b43a7c0a6f3463137fa8efd0e92cb3aa68d4a1d"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a56.ts",
+          "bytes": 42,
+          "hash": "a1d40863faa5c24856e5757b3fbfa9aa0ad8c4b2bd2981995be1132a3fd3cffe"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a57.ts",
+          "bytes": 42,
+          "hash": "6afe46d005e1d5c417922432505bddb24ef7c0132d5c5f28aaabd1031c9f2347"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a58.ts",
+          "bytes": 42,
+          "hash": "650d7bb02551aca047e2f1433af181efbe56e2caffeef9a09cf4406cf957a82d"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a59.ts",
+          "bytes": 42,
+          "hash": "535d9542fd5efb3c4b0a77e1de2e3c2b23bb74e744df696c446055fed5f2abb2"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a60.ts",
+          "bytes": 42,
+          "hash": "46e6638676a619cc8e7010fc0a03237ae5d388490472d86ebf0b39e6f8ad13e2"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a61.ts",
+          "bytes": 42,
+          "hash": "f7f9afe9e60cfc11c379a053e6a939115a4510dce5ce871405c286db90e1aaa4"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a62.ts",
+          "bytes": 42,
+          "hash": "fa64666d9f6e40e5cb2bf6c81640cd23ccd506281e7c4f01fa3bbbdc73838598"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a63.ts",
+          "bytes": 42,
+          "hash": "c08499433a44c7cedc01ad4a0b8a25f78264c17fc735e2c0b46c901f265236bf"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a64.ts",
+          "bytes": 42,
+          "hash": "c5822c5265907a50d686f97423ed4bdc7b0a34aa169851f0a75ef0500bd2a7c2"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a65.ts",
+          "bytes": 42,
+          "hash": "782c613be7dd57c12bc7c081d070c764fdab626a4e4c8d6b2dc7371ce13497fe"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a66.ts",
+          "bytes": 42,
+          "hash": "073ab4e05138745964039845afccee2337c3f731d4eed1cc693935ad2645913f"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a67.ts",
+          "bytes": 42,
+          "hash": "37b6710d5e354290cbfe84e9d8e0716d71f5279000b1b945ac6b90ced9ef90ea"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a68.ts",
+          "bytes": 42,
+          "hash": "1b86e88e1938bb7f37da3173693566f8294c650358adaf519d98cb424352d3f7"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a69.ts",
+          "bytes": 42,
+          "hash": "19ef9cd28c315294079876b1b81465a972081a63441a3250bfb7095724eb0350"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a70.ts",
+          "bytes": 42,
+          "hash": "769f1843773771fe617d37146faeb647d156b187c7aa6ad6c0a38181afb8d63e"
+        },
+        {
+          "source": "parcel-api",
+          "path": "a71.ts",
+          "bytes": 42,
+          "hash": "93a4f0dc22c18cd4a130d144b3930b9d736c078e61281c25b6e75bb0d1240480"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "README.md",
+          "bytes": 92,
+          "hash": "9cb55d11ed2f57c042c1e7880ba340c3536916d5afbabfb36118d57326ae6384"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "config/local.json",
+          "bytes": 66,
+          "hash": "4b1a29d12ac12a571c3ee020d36916a1241dcf21560f7c403b996a05607b46c5"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "contracts/ParcelCreated.json",
+          "bytes": 161,
+          "hash": "e452971664908d341189a66c99cf6a3e4b25c548a0a00f8708b5c761fbc587f0"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "bytes": 713,
+          "hash": "bd4e8e34ebf8821254a2ffdd9255f024fe37e0d3d754ceed9b22662c26eb442c"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a00.ts",
+          "bytes": 41,
+          "hash": "08cc3a1587e622ee734e9529d672b72f21e68074135d849172b9a9d57f94950e"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a01.ts",
+          "bytes": 41,
+          "hash": "869a6878a52c19e0bb7dda64d1b5a6751df1012f80870b1dd96e1fd328907354"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a02.ts",
+          "bytes": 41,
+          "hash": "bd03adb14f901a077878d1d36d6d3a62fbf17ef839ccaea578594b880409db13"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a03.ts",
+          "bytes": 41,
+          "hash": "303feed5aefe93d5a430cfb899db86b9b6da1c89afc37fc2df8cbdbdd5030259"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a04.ts",
+          "bytes": 41,
+          "hash": "4f3a4e72b38f102dcb1bdad85583d03230c42371818de92eb098c25ae53f9494"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a05.ts",
+          "bytes": 41,
+          "hash": "d0cb42ebd37d2627112563c5a5f58f8b7921b1a078bba68ea469ba20c34711a4"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a06.ts",
+          "bytes": 41,
+          "hash": "481c6764bd175a84c45d03afd8c5c24711adde87e7f1c5b695de557e478afb59"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a07.ts",
+          "bytes": 41,
+          "hash": "f1f8aab512a312c93a663f2dd518804cf6e8c6cb3449b288a4e80a019900a902"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a08.ts",
+          "bytes": 41,
+          "hash": "002381804355dd34133717ee146d7f8b7b4c3b199d07195462cae03c41a68365"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a09.ts",
+          "bytes": 41,
+          "hash": "a9b10ee20552f9ac119ae11933679b1a0d583dd95b7a6f9e9074e72d2aa6989b"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a10.ts",
+          "bytes": 42,
+          "hash": "e58b902345af0a3501c870a011499cfb6d9298816afc21a32ab7d69e59fe14c8"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a11.ts",
+          "bytes": 42,
+          "hash": "df288bfa5ff013dbcff7e3f43ca9dfa2fe7b8b7b00b21cd1251a8cc1112bb8ad"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a12.ts",
+          "bytes": 42,
+          "hash": "55b7815f2bd478b26a32aed3051b233fc35e96bfa65af13718df63001a9c9622"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a13.ts",
+          "bytes": 42,
+          "hash": "226c6d33edeccfece41217ab351901da4601964d4dd0c007afeb4eeaef8948d7"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a14.ts",
+          "bytes": 42,
+          "hash": "7e9885949ce614201745d2d3ffb4757993c52d7027e039b947d3d011a0e27a15"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a15.ts",
+          "bytes": 42,
+          "hash": "3dcc9e3175182ac2f37fe3fa4316d62bd09f58c688757c039368b73091e3562c"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a16.ts",
+          "bytes": 42,
+          "hash": "3d77e055454626e2701d5a56d2cb961e0ac306e0506355f1cc18af340877bbd1"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a17.ts",
+          "bytes": 42,
+          "hash": "6f1bb7e676242f3d6711a22b7032b24727b61041c08869a06ec9c0bf835cbd51"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a18.ts",
+          "bytes": 42,
+          "hash": "e743cf05df343b7376809011a6d02ea2cc8bad04eb37bd8ca8b351ff7e161581"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a19.ts",
+          "bytes": 42,
+          "hash": "199e271574c29e7d188e36cbf0631ca853bb3c1f3f960dac4171213254641601"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a20.ts",
+          "bytes": 42,
+          "hash": "c6982674691deaf13767e7b29050d8ea449ef78958535a8609a30eb2e7160a54"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a21.ts",
+          "bytes": 42,
+          "hash": "c86a55733ac79d00491831c86c7e2166078e87d6427913133bfe19df367cce2e"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a22.ts",
+          "bytes": 42,
+          "hash": "e6c9af7eb42481cad7d320b38ef06705fea1042abd717c68b7bad856a1518a4b"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a23.ts",
+          "bytes": 42,
+          "hash": "2352063b384b95d55b916169b60e9ec891fe711275baec9dd45325c22bdfcd62"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a24.ts",
+          "bytes": 42,
+          "hash": "40868c67979a2b430c3994aebb0c5d551d12b6e21c492744ef80dd429ab815f2"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a25.ts",
+          "bytes": 42,
+          "hash": "cd7247283a0e02b1b6d11dbc3cb3f21747c4d827445cc08e2ddefc096f340e8a"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a26.ts",
+          "bytes": 42,
+          "hash": "1550b01fbc34f60b2e5f9eaa59c3263d0c7f7ec207a130020678e94587d0dd3f"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a27.ts",
+          "bytes": 42,
+          "hash": "d917612fba934b21617cd15e42f6dddd02ce8eb2d5d098604d4c568897a91c25"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a28.ts",
+          "bytes": 42,
+          "hash": "d0e580b5f3159ca2226ab67b94fadd0a6b7e888977e027e730da86463c38a301"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a29.ts",
+          "bytes": 42,
+          "hash": "2c237a250b9053c6580b126221bd42a1c50510f0583358b84fccbadf65acc29a"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a30.ts",
+          "bytes": 42,
+          "hash": "2a2ceb27468d1319a86d6e63ed164febd5f58283433d3bb1fb1011d18d2df3ad"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a31.ts",
+          "bytes": 42,
+          "hash": "f3ebba48af633ac935d466e1779499e3fd045ade794e9f75f37567bd3eb55e50"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a32.ts",
+          "bytes": 42,
+          "hash": "b12ad00ee9291cd0d2a517f8f0080f038bc91fedb0234c98e66625f2e9672656"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a33.ts",
+          "bytes": 42,
+          "hash": "48a409d770858168263261afcf3ae9e34487e613c9658a1850d7320ea514f5f0"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a34.ts",
+          "bytes": 42,
+          "hash": "b2f0294f682b2cc99b9a67d742b18eb26dafb789804914ef5f2acde73742efc9"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a35.ts",
+          "bytes": 42,
+          "hash": "52dfaef702f0a3e00faff3420b9b1fbbe33d923f67e9281246d96ad443e0b626"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a36.ts",
+          "bytes": 42,
+          "hash": "7f3ec16316bc221420aa98fb36607165c6828a5923836d39be95336bf1168323"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a37.ts",
+          "bytes": 42,
+          "hash": "3906127f48c42fcf71dc4979effdf746812ce2b7cd1c3dbc9241292ba1ee6821"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a38.ts",
+          "bytes": 42,
+          "hash": "b9826e6a6774dc964f0edcf26a26ccf45d35615b0d322c04a095fbe1b8da665f"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a39.ts",
+          "bytes": 42,
+          "hash": "3486bc8196525ccf446fddedb2d5754b345176770684538e58c0ab25147ea04c"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a40.ts",
+          "bytes": 42,
+          "hash": "c98bbec788243582afde15da7ce913319527c52f99c2814ad80556595e860bd8"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a41.ts",
+          "bytes": 42,
+          "hash": "1b92d6ae231757418280d22d9a07285a58990993177f0e341473d08989b5cb08"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a42.ts",
+          "bytes": 42,
+          "hash": "88c7739c07d7f027440fb3270522a7386735f7ae6cf49cd4ba938255716293ea"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a43.ts",
+          "bytes": 42,
+          "hash": "7bb5c3c5d8ed5b64a6a7fa760f5165343973d705fec353863c7c2f95e475746e"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a44.ts",
+          "bytes": 42,
+          "hash": "30e01fa5d2ca23907e6f0502f961b32811f8bbb8320c01e13d97f03c9baf7242"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a45.ts",
+          "bytes": 42,
+          "hash": "3c8c21af26854158190a5e247c5518bc88c46e5f1a53abd56bdaceb54844449d"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a46.ts",
+          "bytes": 42,
+          "hash": "5bb8971d90f17d33e40eb74e8f5bf7db709beef5018a10dc7149388363cb76bc"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a47.ts",
+          "bytes": 42,
+          "hash": "b4c026eec9c8c3d058ea28b95e376e4f50e45046c033ff74b2e2e72e71c5512d"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a48.ts",
+          "bytes": 42,
+          "hash": "1796b80479e8fc4b3ef1fd5646889573f90027f88280c1cd2f8e15ac8ce89688"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a49.ts",
+          "bytes": 42,
+          "hash": "6be7f91cfe56dd8a63accd24d01de97d43502337ac300b1f4b5bb38f06f744dc"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a50.ts",
+          "bytes": 42,
+          "hash": "47d5ae106f0b15672d06b93e4ba83549c5e766cbe96e3829820af91668558a82"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a51.ts",
+          "bytes": 42,
+          "hash": "1d6acaef99f6dc7e96f37d2f2869c45e652575fa1c0f150853b48adb866848d4"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a52.ts",
+          "bytes": 42,
+          "hash": "6614b54f2e4dd0ee1d19d5a95cf9374471b20b5f14b6d5233ceedd665d082604"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a53.ts",
+          "bytes": 42,
+          "hash": "8cd97bb38730a2b5089af8efdb40b95f884b6c9380fbf45951d077f495bb5b07"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a54.ts",
+          "bytes": 42,
+          "hash": "e659bdd1731db85fafe3f91e5f0804b124a133cc889497cd09232cc8143b4805"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a55.ts",
+          "bytes": 42,
+          "hash": "61579b83ed1e734a47c788304b43a7c0a6f3463137fa8efd0e92cb3aa68d4a1d"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a56.ts",
+          "bytes": 42,
+          "hash": "a1d40863faa5c24856e5757b3fbfa9aa0ad8c4b2bd2981995be1132a3fd3cffe"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a57.ts",
+          "bytes": 42,
+          "hash": "6afe46d005e1d5c417922432505bddb24ef7c0132d5c5f28aaabd1031c9f2347"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a58.ts",
+          "bytes": 42,
+          "hash": "650d7bb02551aca047e2f1433af181efbe56e2caffeef9a09cf4406cf957a82d"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a59.ts",
+          "bytes": 42,
+          "hash": "535d9542fd5efb3c4b0a77e1de2e3c2b23bb74e744df696c446055fed5f2abb2"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a60.ts",
+          "bytes": 42,
+          "hash": "46e6638676a619cc8e7010fc0a03237ae5d388490472d86ebf0b39e6f8ad13e2"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a61.ts",
+          "bytes": 42,
+          "hash": "f7f9afe9e60cfc11c379a053e6a939115a4510dce5ce871405c286db90e1aaa4"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a62.ts",
+          "bytes": 42,
+          "hash": "fa64666d9f6e40e5cb2bf6c81640cd23ccd506281e7c4f01fa3bbbdc73838598"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a63.ts",
+          "bytes": 42,
+          "hash": "c08499433a44c7cedc01ad4a0b8a25f78264c17fc735e2c0b46c901f265236bf"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a64.ts",
+          "bytes": 42,
+          "hash": "c5822c5265907a50d686f97423ed4bdc7b0a34aa169851f0a75ef0500bd2a7c2"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a65.ts",
+          "bytes": 42,
+          "hash": "782c613be7dd57c12bc7c081d070c764fdab626a4e4c8d6b2dc7371ce13497fe"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a66.ts",
+          "bytes": 42,
+          "hash": "073ab4e05138745964039845afccee2337c3f731d4eed1cc693935ad2645913f"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a67.ts",
+          "bytes": 42,
+          "hash": "37b6710d5e354290cbfe84e9d8e0716d71f5279000b1b945ac6b90ced9ef90ea"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a68.ts",
+          "bytes": 42,
+          "hash": "1b86e88e1938bb7f37da3173693566f8294c650358adaf519d98cb424352d3f7"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a69.ts",
+          "bytes": 42,
+          "hash": "19ef9cd28c315294079876b1b81465a972081a63441a3250bfb7095724eb0350"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a70.ts",
+          "bytes": 42,
+          "hash": "769f1843773771fe617d37146faeb647d156b187c7aa6ad6c0a38181afb8d63e"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "a71.ts",
+          "bytes": 42,
+          "hash": "93a4f0dc22c18cd4a130d144b3930b9d736c078e61281c25b6e75bb0d1240480"
+        }
+      ],
+      "support": [
+        {
+          "source": "console",
+          "path": "src/Dispatch.vue",
+          "kind": "symbol",
+          "label": "send",
+          "literal": "const send =",
+          "line": 4
+        },
+        {
+          "source": "console",
+          "path": "src/parcels.ts",
+          "kind": "http-request",
+          "label": "POST /v1/parcels",
+          "literal": "const response = await fetch(",
+          "line": 2
+        },
+        {
+          "source": "console",
+          "path": "legacy/parcels.js",
+          "kind": "http-request",
+          "label": "POST /legacy/parcels",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "kind": "symbol",
+          "label": "Parcels.accept",
+          "literal": "void accept(",
+          "line": 6
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "kind": "event-publish",
+          "label": "Publish ParcelCreated",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ],
+      "codeFiles": 221
+    },
+    "dense": {
+      "files": [
+        {
+          "source": "console",
+          "path": "README.md",
+          "bytes": 94,
+          "hash": "7de1503a473c4aefb09b0c89c0a69cc5edd0f091a84f6357c5404ddd88787dc0"
+        },
+        {
+          "source": "console",
+          "path": "package.json",
+          "bytes": 56,
+          "hash": "43a4b7e7c4cb82c0025ba954f8826148b92656055e4c38f68b5c15bd82f8c8c7"
+        },
+        {
+          "source": "console",
+          "path": "src/Dispatch.vue",
+          "bytes": 259,
+          "hash": "41b0db12e5d6277d3ac502bb99c11eda580dae85232fbefcdb1e04480c59cfc5"
+        },
+        {
+          "source": "console",
+          "path": "src/parcels.ts",
+          "bytes": 235,
+          "hash": "99bfe83c43fa0c161122ec7232e7b4dc41d40552c70535d3132150c7e99472ee"
+        },
+        {
+          "source": "console",
+          "path": "legacy/parcels.js",
+          "bytes": 220,
+          "hash": "2820493184983a49bea7b9a4530f7486f521e53dd4b2f89f66aeef1e2a43e356"
+        },
+        {
+          "source": "console",
+          "path": "a.ts",
+          "bytes": 3260,
+          "hash": "e5928d431e7fb3538867deaa42201b3d70fd802eca1357a16bdd55eb74fc5e6f"
+        },
+        {
+          "source": "console",
+          "path": "b.ts",
+          "bytes": 3180,
+          "hash": "81c354fdb6c1fa101c20d23864424cf9bba334a6e0a16400acd82108a6b6aabf"
+        },
+        {
+          "source": "parcel-api",
+          "path": "README.md",
+          "bytes": 81,
+          "hash": "9e2dfbcdf404606828497451a48111f30ff7dd719ccf61295cc7f1f6501e48f0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "config/routes.json",
+          "bytes": 299,
+          "hash": "9425eaeb323c6f9b3a59996109173fd9e12d44a20565b85f40847483eac10db8"
+        },
+        {
+          "source": "parcel-api",
+          "path": "config/local.json",
+          "bytes": 66,
+          "hash": "4b1a29d12ac12a571c3ee020d36916a1241dcf21560f7c403b996a05607b46c5"
+        },
+        {
+          "source": "parcel-api",
+          "path": "contracts/ParcelCreated.json",
+          "bytes": 161,
+          "hash": "e452971664908d341189a66c99cf6a3e4b25c548a0a00f8708b5c761fbc587f0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "bytes": 426,
+          "hash": "e61e0316b0338935fe374e6c44e44d8cb189b4092e3c38b26370ad0b7ec84768"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "README.md",
+          "bytes": 92,
+          "hash": "9cb55d11ed2f57c042c1e7880ba340c3536916d5afbabfb36118d57326ae6384"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "config/local.json",
+          "bytes": 66,
+          "hash": "4b1a29d12ac12a571c3ee020d36916a1241dcf21560f7c403b996a05607b46c5"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "contracts/ParcelCreated.json",
+          "bytes": 161,
+          "hash": "e452971664908d341189a66c99cf6a3e4b25c548a0a00f8708b5c761fbc587f0"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "bytes": 713,
+          "hash": "bd4e8e34ebf8821254a2ffdd9255f024fe37e0d3d754ceed9b22662c26eb442c"
+        }
+      ],
+      "support": [
+        {
+          "source": "console",
+          "path": "src/Dispatch.vue",
+          "kind": "symbol",
+          "label": "send",
+          "literal": "const send =",
+          "line": 4
+        },
+        {
+          "source": "console",
+          "path": "src/parcels.ts",
+          "kind": "http-request",
+          "label": "POST /v1/parcels",
+          "literal": "const response = await fetch(",
+          "line": 2
+        },
+        {
+          "source": "console",
+          "path": "legacy/parcels.js",
+          "kind": "http-request",
+          "label": "POST /legacy/parcels",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "kind": "symbol",
+          "label": "Parcels.accept",
+          "literal": "void accept(",
+          "line": 6
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "kind": "event-publish",
+          "label": "Publish ParcelCreated",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ],
+      "codeFiles": 7
+    },
+    "ambiguity": {
+      "files": [
+        {
+          "source": "console",
+          "path": "README.md",
+          "bytes": 94,
+          "hash": "7de1503a473c4aefb09b0c89c0a69cc5edd0f091a84f6357c5404ddd88787dc0"
+        },
+        {
+          "source": "console",
+          "path": "package.json",
+          "bytes": 56,
+          "hash": "43a4b7e7c4cb82c0025ba954f8826148b92656055e4c38f68b5c15bd82f8c8c7"
+        },
+        {
+          "source": "console",
+          "path": "src/Dispatch.vue",
+          "bytes": 259,
+          "hash": "41b0db12e5d6277d3ac502bb99c11eda580dae85232fbefcdb1e04480c59cfc5"
+        },
+        {
+          "source": "console",
+          "path": "src/parcels.ts",
+          "bytes": 235,
+          "hash": "99bfe83c43fa0c161122ec7232e7b4dc41d40552c70535d3132150c7e99472ee"
+        },
+        {
+          "source": "console",
+          "path": "legacy/parcels.js",
+          "bytes": 220,
+          "hash": "2820493184983a49bea7b9a4530f7486f521e53dd4b2f89f66aeef1e2a43e356"
+        },
+        {
+          "source": "console",
+          "path": "a.ts",
+          "bytes": 3260,
+          "hash": "e5928d431e7fb3538867deaa42201b3d70fd802eca1357a16bdd55eb74fc5e6f"
+        },
+        {
+          "source": "console",
+          "path": "b.ts",
+          "bytes": 3180,
+          "hash": "81c354fdb6c1fa101c20d23864424cf9bba334a6e0a16400acd82108a6b6aabf"
+        },
+        {
+          "source": "console",
+          "path": "src/parcels/index.ts",
+          "bytes": 53,
+          "hash": "149fed79c94047dffa2066bec1114473d556da91d438b30c00c963123dabcce7"
+        },
+        {
+          "source": "parcel-api",
+          "path": "README.md",
+          "bytes": 81,
+          "hash": "9e2dfbcdf404606828497451a48111f30ff7dd719ccf61295cc7f1f6501e48f0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "config/routes.json",
+          "bytes": 299,
+          "hash": "9425eaeb323c6f9b3a59996109173fd9e12d44a20565b85f40847483eac10db8"
+        },
+        {
+          "source": "parcel-api",
+          "path": "config/local.json",
+          "bytes": 66,
+          "hash": "4b1a29d12ac12a571c3ee020d36916a1241dcf21560f7c403b996a05607b46c5"
+        },
+        {
+          "source": "parcel-api",
+          "path": "contracts/ParcelCreated.json",
+          "bytes": 161,
+          "hash": "e452971664908d341189a66c99cf6a3e4b25c548a0a00f8708b5c761fbc587f0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "bytes": 426,
+          "hash": "e61e0316b0338935fe374e6c44e44d8cb189b4092e3c38b26370ad0b7ec84768"
+        },
+        {
+          "source": "parcel-api",
+          "path": "zz/Shadow.java",
+          "bytes": 65,
+          "hash": "0ce2ade5a18d30539f1b82af643345f1b9c3027d8b9ba193f1963a6119805103"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "README.md",
+          "bytes": 92,
+          "hash": "9cb55d11ed2f57c042c1e7880ba340c3536916d5afbabfb36118d57326ae6384"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "config/local.json",
+          "bytes": 66,
+          "hash": "4b1a29d12ac12a571c3ee020d36916a1241dcf21560f7c403b996a05607b46c5"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "contracts/ParcelCreated.json",
+          "bytes": 161,
+          "hash": "e452971664908d341189a66c99cf6a3e4b25c548a0a00f8708b5c761fbc587f0"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "bytes": 713,
+          "hash": "bd4e8e34ebf8821254a2ffdd9255f024fe37e0d3d754ceed9b22662c26eb442c"
+        }
+      ],
+      "support": [
+        {
+          "source": "console",
+          "path": "src/Dispatch.vue",
+          "kind": "symbol",
+          "label": "send",
+          "literal": "const send =",
+          "line": 4
+        },
+        {
+          "source": "console",
+          "path": "src/parcels.ts",
+          "kind": "http-request",
+          "label": "POST /v1/parcels",
+          "literal": "const response = await fetch(",
+          "line": 2
+        },
+        {
+          "source": "console",
+          "path": "legacy/parcels.js",
+          "kind": "http-request",
+          "label": "POST /legacy/parcels",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "kind": "symbol",
+          "label": "Parcels.accept",
+          "literal": "void accept(",
+          "line": 6
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "kind": "event-publish",
+          "label": "Publish ParcelCreated",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ],
+      "codeFiles": 9
+    },
+    "truncated": {
+      "files": [
+        {
+          "source": "console",
+          "path": "README.md",
+          "bytes": 94,
+          "hash": "7de1503a473c4aefb09b0c89c0a69cc5edd0f091a84f6357c5404ddd88787dc0"
+        },
+        {
+          "source": "console",
+          "path": "package.json",
+          "bytes": 56,
+          "hash": "43a4b7e7c4cb82c0025ba954f8826148b92656055e4c38f68b5c15bd82f8c8c7"
+        },
+        {
+          "source": "console",
+          "path": "src/Dispatch.vue",
+          "bytes": 259,
+          "hash": "41b0db12e5d6277d3ac502bb99c11eda580dae85232fbefcdb1e04480c59cfc5"
+        },
+        {
+          "source": "console",
+          "path": "src/parcels.ts",
+          "bytes": 235,
+          "hash": "99bfe83c43fa0c161122ec7232e7b4dc41d40552c70535d3132150c7e99472ee"
+        },
+        {
+          "source": "console",
+          "path": "legacy/parcels.js",
+          "bytes": 220,
+          "hash": "2820493184983a49bea7b9a4530f7486f521e53dd4b2f89f66aeef1e2a43e356"
+        },
+        {
+          "source": "console",
+          "path": "src/parcels/index.ts",
+          "bytes": 4240,
+          "hash": "bf879e54d7a1e1707b3b6fa62c3919cd388176e5c146778daee9d86a00a032e9"
+        },
+        {
+          "source": "parcel-api",
+          "path": "README.md",
+          "bytes": 81,
+          "hash": "9e2dfbcdf404606828497451a48111f30ff7dd719ccf61295cc7f1f6501e48f0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "config/routes.json",
+          "bytes": 299,
+          "hash": "9425eaeb323c6f9b3a59996109173fd9e12d44a20565b85f40847483eac10db8"
+        },
+        {
+          "source": "parcel-api",
+          "path": "config/local.json",
+          "bytes": 66,
+          "hash": "4b1a29d12ac12a571c3ee020d36916a1241dcf21560f7c403b996a05607b46c5"
+        },
+        {
+          "source": "parcel-api",
+          "path": "contracts/ParcelCreated.json",
+          "bytes": 161,
+          "hash": "e452971664908d341189a66c99cf6a3e4b25c548a0a00f8708b5c761fbc587f0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "bytes": 426,
+          "hash": "e61e0316b0338935fe374e6c44e44d8cb189b4092e3c38b26370ad0b7ec84768"
+        },
+        {
+          "source": "parcel-api",
+          "path": "zz/Shadow.java",
+          "bytes": 3977,
+          "hash": "f04dd663ce5337c5a4dfdd94865578977dcd44e78c9d5370ce2080656506657b"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "README.md",
+          "bytes": 92,
+          "hash": "9cb55d11ed2f57c042c1e7880ba340c3536916d5afbabfb36118d57326ae6384"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "config/local.json",
+          "bytes": 66,
+          "hash": "4b1a29d12ac12a571c3ee020d36916a1241dcf21560f7c403b996a05607b46c5"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "contracts/ParcelCreated.json",
+          "bytes": 161,
+          "hash": "e452971664908d341189a66c99cf6a3e4b25c548a0a00f8708b5c761fbc587f0"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "bytes": 713,
+          "hash": "bd4e8e34ebf8821254a2ffdd9255f024fe37e0d3d754ceed9b22662c26eb442c"
+        }
+      ],
+      "support": [
+        {
+          "source": "console",
+          "path": "src/Dispatch.vue",
+          "kind": "symbol",
+          "label": "send",
+          "literal": "const send =",
+          "line": 4
+        },
+        {
+          "source": "console",
+          "path": "src/parcels.ts",
+          "kind": "http-request",
+          "label": "POST /v1/parcels",
+          "literal": "const response = await fetch(",
+          "line": 2
+        },
+        {
+          "source": "console",
+          "path": "legacy/parcels.js",
+          "kind": "http-request",
+          "label": "POST /legacy/parcels",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "kind": "symbol",
+          "label": "Parcels.accept",
+          "literal": "void accept(",
+          "line": 6
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "kind": "event-publish",
+          "label": "Publish ParcelCreated",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ],
+      "codeFiles": 7
+    },
+    "missing": {
+      "files": [
+        {
+          "source": "console",
+          "path": "README.md",
+          "bytes": 94,
+          "hash": "7de1503a473c4aefb09b0c89c0a69cc5edd0f091a84f6357c5404ddd88787dc0"
+        },
+        {
+          "source": "console",
+          "path": "package.json",
+          "bytes": 56,
+          "hash": "43a4b7e7c4cb82c0025ba954f8826148b92656055e4c38f68b5c15bd82f8c8c7"
+        },
+        {
+          "source": "console",
+          "path": "src/Dispatch.vue",
+          "bytes": 259,
+          "hash": "41b0db12e5d6277d3ac502bb99c11eda580dae85232fbefcdb1e04480c59cfc5"
+        },
+        {
+          "source": "console",
+          "path": "src/parcels.ts",
+          "bytes": 235,
+          "hash": "99bfe83c43fa0c161122ec7232e7b4dc41d40552c70535d3132150c7e99472ee"
+        },
+        {
+          "source": "console",
+          "path": "legacy/parcels.js",
+          "bytes": 220,
+          "hash": "2820493184983a49bea7b9a4530f7486f521e53dd4b2f89f66aeef1e2a43e356"
+        },
+        {
+          "source": "parcel-api",
+          "path": "README.md",
+          "bytes": 81,
+          "hash": "9e2dfbcdf404606828497451a48111f30ff7dd719ccf61295cc7f1f6501e48f0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "config/routes.json",
+          "bytes": 299,
+          "hash": "9425eaeb323c6f9b3a59996109173fd9e12d44a20565b85f40847483eac10db8"
+        },
+        {
+          "source": "parcel-api",
+          "path": "config/local.json",
+          "bytes": 66,
+          "hash": "4b1a29d12ac12a571c3ee020d36916a1241dcf21560f7c403b996a05607b46c5"
+        },
+        {
+          "source": "parcel-api",
+          "path": "contracts/ParcelCreated.json",
+          "bytes": 161,
+          "hash": "e452971664908d341189a66c99cf6a3e4b25c548a0a00f8708b5c761fbc587f0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "bytes": 426,
+          "hash": "e61e0316b0338935fe374e6c44e44d8cb189b4092e3c38b26370ad0b7ec84768"
+        },
+        {
+          "source": "parcel-api",
+          "path": "zz/Shadow.java",
+          "bytes": 65,
+          "hash": "0ce2ade5a18d30539f1b82af643345f1b9c3027d8b9ba193f1963a6119805103"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "README.md",
+          "bytes": 92,
+          "hash": "9cb55d11ed2f57c042c1e7880ba340c3536916d5afbabfb36118d57326ae6384"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "config/local.json",
+          "bytes": 66,
+          "hash": "4b1a29d12ac12a571c3ee020d36916a1241dcf21560f7c403b996a05607b46c5"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "contracts/ParcelCreated.json",
+          "bytes": 161,
+          "hash": "e452971664908d341189a66c99cf6a3e4b25c548a0a00f8708b5c761fbc587f0"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "bytes": 713,
+          "hash": "bd4e8e34ebf8821254a2ffdd9255f024fe37e0d3d754ceed9b22662c26eb442c"
+        }
+      ],
+      "support": [
+        {
+          "source": "console",
+          "path": "src/Dispatch.vue",
+          "kind": "symbol",
+          "label": "send",
+          "literal": "const send =",
+          "line": 4
+        },
+        {
+          "source": "console",
+          "path": "src/parcels.ts",
+          "kind": "http-request",
+          "label": "POST /v1/parcels",
+          "literal": "const response = await fetch(",
+          "line": 2
+        },
+        {
+          "source": "console",
+          "path": "legacy/parcels.js",
+          "kind": "http-request",
+          "label": "POST /legacy/parcels",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "kind": "symbol",
+          "label": "Parcels.accept",
+          "literal": "void accept(",
+          "line": 6
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "kind": "event-publish",
+          "label": "Publish ParcelCreated",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ],
+      "codeFiles": 6
+    },
+    "topic": {
+      "files": [
+        {
+          "source": "console",
+          "path": "README.md",
+          "bytes": 94,
+          "hash": "7de1503a473c4aefb09b0c89c0a69cc5edd0f091a84f6357c5404ddd88787dc0"
+        },
+        {
+          "source": "console",
+          "path": "package.json",
+          "bytes": 56,
+          "hash": "43a4b7e7c4cb82c0025ba954f8826148b92656055e4c38f68b5c15bd82f8c8c7"
+        },
+        {
+          "source": "console",
+          "path": "src/Dispatch.vue",
+          "bytes": 259,
+          "hash": "41b0db12e5d6277d3ac502bb99c11eda580dae85232fbefcdb1e04480c59cfc5"
+        },
+        {
+          "source": "console",
+          "path": "src/parcels.ts",
+          "bytes": 235,
+          "hash": "99bfe83c43fa0c161122ec7232e7b4dc41d40552c70535d3132150c7e99472ee"
+        },
+        {
+          "source": "console",
+          "path": "legacy/parcels.js",
+          "bytes": 220,
+          "hash": "2820493184983a49bea7b9a4530f7486f521e53dd4b2f89f66aeef1e2a43e356"
+        },
+        {
+          "source": "parcel-api",
+          "path": "README.md",
+          "bytes": 81,
+          "hash": "9e2dfbcdf404606828497451a48111f30ff7dd719ccf61295cc7f1f6501e48f0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "config/routes.json",
+          "bytes": 299,
+          "hash": "9425eaeb323c6f9b3a59996109173fd9e12d44a20565b85f40847483eac10db8"
+        },
+        {
+          "source": "parcel-api",
+          "path": "config/local.json",
+          "bytes": 66,
+          "hash": "4b1a29d12ac12a571c3ee020d36916a1241dcf21560f7c403b996a05607b46c5"
+        },
+        {
+          "source": "parcel-api",
+          "path": "contracts/ParcelCreated.json",
+          "bytes": 161,
+          "hash": "e452971664908d341189a66c99cf6a3e4b25c548a0a00f8708b5c761fbc587f0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "bytes": 424,
+          "hash": "56002ccc4f98aed94918e14f67cad211b53041b7360d1645a1c4d24c33b93818"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "README.md",
+          "bytes": 92,
+          "hash": "9cb55d11ed2f57c042c1e7880ba340c3536916d5afbabfb36118d57326ae6384"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "config/local.json",
+          "bytes": 66,
+          "hash": "4b1a29d12ac12a571c3ee020d36916a1241dcf21560f7c403b996a05607b46c5"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "contracts/ParcelCreated.json",
+          "bytes": 161,
+          "hash": "e452971664908d341189a66c99cf6a3e4b25c548a0a00f8708b5c761fbc587f0"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "bytes": 713,
+          "hash": "bd4e8e34ebf8821254a2ffdd9255f024fe37e0d3d754ceed9b22662c26eb442c"
+        }
+      ],
+      "support": [
+        {
+          "source": "console",
+          "path": "src/Dispatch.vue",
+          "kind": "symbol",
+          "label": "send",
+          "literal": "const send =",
+          "line": 4
+        },
+        {
+          "source": "console",
+          "path": "src/parcels.ts",
+          "kind": "http-request",
+          "label": "POST /v1/parcels",
+          "literal": "const response = await fetch(",
+          "line": 2
+        },
+        {
+          "source": "console",
+          "path": "legacy/parcels.js",
+          "kind": "http-request",
+          "label": "POST /legacy/parcels",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "kind": "symbol",
+          "label": "Parcels.accept",
+          "literal": "void accept(",
+          "line": 6
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "kind": "event-publish",
+          "label": "Publish ParcelCreated",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ],
+      "codeFiles": 5
+    },
+    "environment": {
+      "files": [
+        {
+          "source": "console",
+          "path": "README.md",
+          "bytes": 94,
+          "hash": "7de1503a473c4aefb09b0c89c0a69cc5edd0f091a84f6357c5404ddd88787dc0"
+        },
+        {
+          "source": "console",
+          "path": "package.json",
+          "bytes": 56,
+          "hash": "43a4b7e7c4cb82c0025ba954f8826148b92656055e4c38f68b5c15bd82f8c8c7"
+        },
+        {
+          "source": "console",
+          "path": "src/Dispatch.vue",
+          "bytes": 259,
+          "hash": "41b0db12e5d6277d3ac502bb99c11eda580dae85232fbefcdb1e04480c59cfc5"
+        },
+        {
+          "source": "console",
+          "path": "src/parcels.ts",
+          "bytes": 235,
+          "hash": "99bfe83c43fa0c161122ec7232e7b4dc41d40552c70535d3132150c7e99472ee"
+        },
+        {
+          "source": "console",
+          "path": "legacy/parcels.js",
+          "bytes": 220,
+          "hash": "2820493184983a49bea7b9a4530f7486f521e53dd4b2f89f66aeef1e2a43e356"
+        },
+        {
+          "source": "parcel-api",
+          "path": "README.md",
+          "bytes": 81,
+          "hash": "9e2dfbcdf404606828497451a48111f30ff7dd719ccf61295cc7f1f6501e48f0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "config/routes.json",
+          "bytes": 299,
+          "hash": "9425eaeb323c6f9b3a59996109173fd9e12d44a20565b85f40847483eac10db8"
+        },
+        {
+          "source": "parcel-api",
+          "path": "config/local.json",
+          "bytes": 66,
+          "hash": "4b1a29d12ac12a571c3ee020d36916a1241dcf21560f7c403b996a05607b46c5"
+        },
+        {
+          "source": "parcel-api",
+          "path": "contracts/ParcelCreated.json",
+          "bytes": 161,
+          "hash": "e452971664908d341189a66c99cf6a3e4b25c548a0a00f8708b5c761fbc587f0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "bytes": 426,
+          "hash": "e61e0316b0338935fe374e6c44e44d8cb189b4092e3c38b26370ad0b7ec84768"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "README.md",
+          "bytes": 92,
+          "hash": "9cb55d11ed2f57c042c1e7880ba340c3536916d5afbabfb36118d57326ae6384"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "config/local.json",
+          "bytes": 68,
+          "hash": "6285ace1cfed16514ab1209836452b178d8ef6589c6ba7b22bacdd656d711c21"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "contracts/ParcelCreated.json",
+          "bytes": 161,
+          "hash": "e452971664908d341189a66c99cf6a3e4b25c548a0a00f8708b5c761fbc587f0"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "bytes": 713,
+          "hash": "bd4e8e34ebf8821254a2ffdd9255f024fe37e0d3d754ceed9b22662c26eb442c"
+        }
+      ],
+      "support": [
+        {
+          "source": "console",
+          "path": "src/Dispatch.vue",
+          "kind": "symbol",
+          "label": "send",
+          "literal": "const send =",
+          "line": 4
+        },
+        {
+          "source": "console",
+          "path": "src/parcels.ts",
+          "kind": "http-request",
+          "label": "POST /v1/parcels",
+          "literal": "const response = await fetch(",
+          "line": 2
+        },
+        {
+          "source": "console",
+          "path": "legacy/parcels.js",
+          "kind": "http-request",
+          "label": "POST /legacy/parcels",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "kind": "symbol",
+          "label": "Parcels.accept",
+          "literal": "void accept(",
+          "line": 6
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "kind": "event-publish",
+          "label": "Publish ParcelCreated",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ],
+      "codeFiles": 5
+    },
+    "roots": {
+      "files": [
+        {
+          "source": "console",
+          "path": "README.md",
+          "bytes": 94,
+          "hash": "7de1503a473c4aefb09b0c89c0a69cc5edd0f091a84f6357c5404ddd88787dc0"
+        },
+        {
+          "source": "console",
+          "path": "package.json",
+          "bytes": 56,
+          "hash": "43a4b7e7c4cb82c0025ba954f8826148b92656055e4c38f68b5c15bd82f8c8c7"
+        },
+        {
+          "source": "console",
+          "path": "src/Dispatch.vue",
+          "bytes": 259,
+          "hash": "41b0db12e5d6277d3ac502bb99c11eda580dae85232fbefcdb1e04480c59cfc5"
+        },
+        {
+          "source": "console",
+          "path": "src/parcels.ts",
+          "bytes": 235,
+          "hash": "99bfe83c43fa0c161122ec7232e7b4dc41d40552c70535d3132150c7e99472ee"
+        },
+        {
+          "source": "console",
+          "path": "legacy/parcels.js",
+          "bytes": 220,
+          "hash": "2820493184983a49bea7b9a4530f7486f521e53dd4b2f89f66aeef1e2a43e356"
+        },
+        {
+          "source": "console",
+          "path": "src/A.vue",
+          "bytes": 261,
+          "hash": "1f457fbce691bcc2b4fe52c3b616b4122f8b063b980fdbcfb04ed0905d3c0839"
+        },
+        {
+          "source": "console",
+          "path": "src/B.vue",
+          "bytes": 259,
+          "hash": "d1249267ea84ff532759c291aba015c45bb12382263602765ffbdb6170eebf47"
+        },
+        {
+          "source": "parcel-api",
+          "path": "README.md",
+          "bytes": 81,
+          "hash": "9e2dfbcdf404606828497451a48111f30ff7dd719ccf61295cc7f1f6501e48f0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "config/routes.json",
+          "bytes": 299,
+          "hash": "9425eaeb323c6f9b3a59996109173fd9e12d44a20565b85f40847483eac10db8"
+        },
+        {
+          "source": "parcel-api",
+          "path": "config/local.json",
+          "bytes": 66,
+          "hash": "4b1a29d12ac12a571c3ee020d36916a1241dcf21560f7c403b996a05607b46c5"
+        },
+        {
+          "source": "parcel-api",
+          "path": "contracts/ParcelCreated.json",
+          "bytes": 161,
+          "hash": "e452971664908d341189a66c99cf6a3e4b25c548a0a00f8708b5c761fbc587f0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "bytes": 426,
+          "hash": "e61e0316b0338935fe374e6c44e44d8cb189b4092e3c38b26370ad0b7ec84768"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "README.md",
+          "bytes": 92,
+          "hash": "9cb55d11ed2f57c042c1e7880ba340c3536916d5afbabfb36118d57326ae6384"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "config/local.json",
+          "bytes": 66,
+          "hash": "4b1a29d12ac12a571c3ee020d36916a1241dcf21560f7c403b996a05607b46c5"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "contracts/ParcelCreated.json",
+          "bytes": 161,
+          "hash": "e452971664908d341189a66c99cf6a3e4b25c548a0a00f8708b5c761fbc587f0"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "bytes": 713,
+          "hash": "bd4e8e34ebf8821254a2ffdd9255f024fe37e0d3d754ceed9b22662c26eb442c"
+        }
+      ],
+      "support": [
+        {
+          "source": "console",
+          "path": "src/Dispatch.vue",
+          "kind": "symbol",
+          "label": "send",
+          "literal": "const send =",
+          "line": 4
+        },
+        {
+          "source": "console",
+          "path": "src/parcels.ts",
+          "kind": "http-request",
+          "label": "POST /v1/parcels",
+          "literal": "const response = await fetch(",
+          "line": 2
+        },
+        {
+          "source": "console",
+          "path": "legacy/parcels.js",
+          "kind": "http-request",
+          "label": "POST /legacy/parcels",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "kind": "symbol",
+          "label": "Parcels.accept",
+          "literal": "void accept(",
+          "line": 6
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "kind": "event-publish",
+          "label": "Publish ParcelCreated",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ],
+      "codeFiles": 7
+    },
+    "long-chain": {
+      "files": [
+        {
+          "source": "console",
+          "path": "README.md",
+          "bytes": 94,
+          "hash": "7de1503a473c4aefb09b0c89c0a69cc5edd0f091a84f6357c5404ddd88787dc0"
+        },
+        {
+          "source": "console",
+          "path": "package.json",
+          "bytes": 56,
+          "hash": "43a4b7e7c4cb82c0025ba954f8826148b92656055e4c38f68b5c15bd82f8c8c7"
+        },
+        {
+          "source": "console",
+          "path": "src/Dispatch.vue",
+          "bytes": 250,
+          "hash": "a8eb0f85a0a0674459de1ab934c7a476c48600b99b5ba52341b66f0c0cb7415f"
+        },
+        {
+          "source": "console",
+          "path": "src/parcels.ts",
+          "bytes": 235,
+          "hash": "99bfe83c43fa0c161122ec7232e7b4dc41d40552c70535d3132150c7e99472ee"
+        },
+        {
+          "source": "console",
+          "path": "legacy/parcels.js",
+          "bytes": 220,
+          "hash": "2820493184983a49bea7b9a4530f7486f521e53dd4b2f89f66aeef1e2a43e356"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop00.ts",
+          "bytes": 110,
+          "hash": "07f76f902c5e057c92a803f9aded64da36a6ebf2e17743173cd7bfe8fe31a3cc"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop01.ts",
+          "bytes": 110,
+          "hash": "e079819e7c32690753407aa1953fd5d2912274bb759fe9452d5fe8fe60f90133"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop02.ts",
+          "bytes": 110,
+          "hash": "808ac46677496b2081f0633fb132ee5d40a7e8df9fad98c92f2f27f984f90a92"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop03.ts",
+          "bytes": 110,
+          "hash": "6aea2b0975bfebeacd6f361a1ce4f76e01cdecbd209b91fe696035b625a658b3"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop04.ts",
+          "bytes": 110,
+          "hash": "e434301e3339a01632ff269cf352c10d4ad6d081656c7634a6e2ac598510cfba"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop05.ts",
+          "bytes": 110,
+          "hash": "f441f436b99d5362b1bfdae5490c9deca00577e065c080c8fbf9a55b46f7db82"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop06.ts",
+          "bytes": 110,
+          "hash": "3353e7b6491536c5e24dfbded045629ee7c88ede150881ce7303bad264f23a56"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop07.ts",
+          "bytes": 110,
+          "hash": "b705beb1fafdb5159ab45f13b22dce16aafb668f0c51d3742fff22663a97fb06"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop08.ts",
+          "bytes": 110,
+          "hash": "9d067190d81e196ea0e3e5ffd934006b0bf8cbdcd2f9bf0c1af66be721bdd7ac"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop09.ts",
+          "bytes": 112,
+          "hash": "28ff67e22a501268cf6e892147734091e04b3acac1dfb697f9e1692b89481502"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop10.ts",
+          "bytes": 113,
+          "hash": "97bc44789f51407437962b7bf846889e2c147eb0e185a8513f0d00de9c0381c3"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop11.ts",
+          "bytes": 113,
+          "hash": "8d76608a44750f888fdf35374f51fa8e0992c1747bfae5c3c1f90647b2f031fe"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop12.ts",
+          "bytes": 113,
+          "hash": "d54ebcec37a723e38ca4ee78584728010247d985333e329d63ccb3d8e9a08b8e"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop13.ts",
+          "bytes": 113,
+          "hash": "fdae5b69bbbbf24ae629eeaf785ef70763fe5e49d18c0ef6d326ef31cac88143"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop14.ts",
+          "bytes": 113,
+          "hash": "d4f32424b68517694dd975172e95215223a67090b41bec7dc3d6366031d07347"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop15.ts",
+          "bytes": 113,
+          "hash": "970d42776ac0cbd73d5f8c6c042d01adb8a121f4eac83e00c15fb44026ad229f"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop16.ts",
+          "bytes": 113,
+          "hash": "e1b56781b64c64f2b8b3e13ed87da4b846c5ef319bf6c31237ba3cb11d624267"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop17.ts",
+          "bytes": 113,
+          "hash": "87696fd8ba89b1a4daaa69dc0d15584a838564a60a7612c34752a25db1f879ec"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop18.ts",
+          "bytes": 113,
+          "hash": "332121231a7a4090768718f0be9f642e878d924a11e447164788b92ebc98c91b"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop19.ts",
+          "bytes": 113,
+          "hash": "6abf6f255ea9d3c8ebfc8f4f150acfd2b1bd9b66bf719c188d0952fd58b27fa1"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop20.ts",
+          "bytes": 113,
+          "hash": "8b994f49991568d4ad3736cf4f5269db65b4e7ff15cedbc8d5207db905cfb623"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop21.ts",
+          "bytes": 113,
+          "hash": "c9c0e50bc84d026dd3d8426d49f53653c1a6f8cad32058e22cc46bd1d262961b"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop22.ts",
+          "bytes": 113,
+          "hash": "8b022e3e73a648b6fd11e63d6ab3f3d5c78998e096deeaf0aba8bcc8f2a073d9"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop23.ts",
+          "bytes": 113,
+          "hash": "3795772798dd6b40645f777a57e7b9449dcc670225cdd3f44f8e4d69132c0462"
+        },
+        {
+          "source": "console",
+          "path": "src/hops/hop24.ts",
+          "bytes": 126,
+          "hash": "36897d11f418b904935ae23f4b6047435345112848b78f8a6817c7bb201228d0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "README.md",
+          "bytes": 81,
+          "hash": "9e2dfbcdf404606828497451a48111f30ff7dd719ccf61295cc7f1f6501e48f0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "config/routes.json",
+          "bytes": 299,
+          "hash": "9425eaeb323c6f9b3a59996109173fd9e12d44a20565b85f40847483eac10db8"
+        },
+        {
+          "source": "parcel-api",
+          "path": "config/local.json",
+          "bytes": 66,
+          "hash": "4b1a29d12ac12a571c3ee020d36916a1241dcf21560f7c403b996a05607b46c5"
+        },
+        {
+          "source": "parcel-api",
+          "path": "contracts/ParcelCreated.json",
+          "bytes": 161,
+          "hash": "e452971664908d341189a66c99cf6a3e4b25c548a0a00f8708b5c761fbc587f0"
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "bytes": 426,
+          "hash": "e61e0316b0338935fe374e6c44e44d8cb189b4092e3c38b26370ad0b7ec84768"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "README.md",
+          "bytes": 92,
+          "hash": "9cb55d11ed2f57c042c1e7880ba340c3536916d5afbabfb36118d57326ae6384"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "config/local.json",
+          "bytes": 66,
+          "hash": "4b1a29d12ac12a571c3ee020d36916a1241dcf21560f7c403b996a05607b46c5"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "contracts/ParcelCreated.json",
+          "bytes": 161,
+          "hash": "e452971664908d341189a66c99cf6a3e4b25c548a0a00f8708b5c761fbc587f0"
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "bytes": 713,
+          "hash": "bd4e8e34ebf8821254a2ffdd9255f024fe37e0d3d754ceed9b22662c26eb442c"
+        }
+      ],
+      "support": [
+        {
+          "source": "console",
+          "path": "src/Dispatch.vue",
+          "kind": "symbol",
+          "label": "send",
+          "literal": "const send =",
+          "line": 4
+        },
+        {
+          "source": "console",
+          "path": "src/parcels.ts",
+          "kind": "http-request",
+          "label": "POST /v1/parcels",
+          "literal": "const response = await fetch(",
+          "line": 2
+        },
+        {
+          "source": "console",
+          "path": "legacy/parcels.js",
+          "kind": "http-request",
+          "label": "POST /legacy/parcels",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "kind": "symbol",
+          "label": "Parcels.accept",
+          "literal": "void accept(",
+          "line": 6
+        },
+        {
+          "source": "parcel-api",
+          "path": "src/main/java/Parcels.java",
+          "kind": "event-publish",
+          "label": "Publish ParcelCreated",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "parcel-worker",
+          "path": "src/main/java/ParcelConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ],
+      "codeFiles": 30
+    }
+  },
+  "preObservationClarification": "Before any prototype observations, separately bound stored binding records and alternative references at 12000 each; no source/oracle change."
+}

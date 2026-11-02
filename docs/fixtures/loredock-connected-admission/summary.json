@@ -1,0 +1,473 @@
+{
+  "schemaVersion": "loredock-connected-admission-summary/1",
+  "measurementImplementation": "121033a1f743e6a1a4cca5ce8128ec85b97f0487",
+  "rawReceiptSha256": "c701221c81cae9ec96ecef957406af680ceacb1acf1204f68cb7b71fe77018d4",
+  "rawBytes": 11821439,
+  "compressedBytes": 1402607,
+  "cases": 20,
+  "checks": 306,
+  "failedChecks": [],
+  "observations": 76,
+  "reopenedSpanOccurrences": 1841,
+  "decision": "Known synthetic policy qualification only. Keep production unchanged; integration requires its own provenance, missing-root navigation and compatibility contract.",
+  "allMeasuredProjectionsReadOnly": true,
+  "modes": [
+    {
+      "case": "C01",
+      "variant": "small",
+      "requiredNodeCounts": {
+        "production": 7,
+        "naive": 7,
+        "connected": 7
+      },
+      "connected": [
+        {
+          "projectionMs": 6.344816000000037,
+          "readMs": 2.2683319999999867,
+          "resolveMs": 2.722185999999965,
+          "admitMs": 0.7747490000000425,
+          "graphBytes": 21711,
+          "retainedFiles": 5,
+          "resolutionNodes": 14,
+          "nodes": 13,
+          "edges": 12,
+          "incompleteSources": 0,
+          "omissions": {
+            "unselected-resolution-nodes": 1,
+            "unselected-resolution-edges": 1
+          }
+        },
+        {
+          "projectionMs": 4.38438199999996,
+          "readMs": 2.036200000000008,
+          "resolveMs": 1.7641390000000001,
+          "admitMs": 0.31082100000003265,
+          "graphBytes": 21711,
+          "retainedFiles": 5,
+          "resolutionNodes": 14,
+          "nodes": 13,
+          "edges": 12,
+          "incompleteSources": 0,
+          "omissions": {
+            "unselected-resolution-nodes": 1,
+            "unselected-resolution-edges": 1
+          }
+        }
+      ]
+    },
+    {
+      "case": "C02",
+      "variant": "distractions",
+      "requiredNodeCounts": {
+        "production": 0,
+        "naive": 5,
+        "connected": 7
+      },
+      "connected": [
+        {
+          "projectionMs": 58.36825900000031,
+          "readMs": 53.49761200000012,
+          "resolveMs": 3.368970000000445,
+          "admitMs": 0.29315200000019104,
+          "graphBytes": 21721,
+          "retainedFiles": 221,
+          "resolutionNodes": 230,
+          "nodes": 13,
+          "edges": 12,
+          "incompleteSources": 0,
+          "omissions": {
+            "unselected-resolution-nodes": 217,
+            "unselected-resolution-edges": 1
+          }
+        },
+        {
+          "projectionMs": 52.8285249999999,
+          "readMs": 48.895166999999674,
+          "resolveMs": 2.6606430000001637,
+          "admitMs": 0.26865799999995943,
+          "graphBytes": 21721,
+          "retainedFiles": 221,
+          "resolutionNodes": 230,
+          "nodes": 13,
+          "edges": 12,
+          "incompleteSources": 0,
+          "omissions": {
+            "unselected-resolution-nodes": 217,
+            "unselected-resolution-edges": 1
+          }
+        }
+      ]
+    },
+    {
+      "case": "C03",
+      "variant": "dense",
+      "requiredNodeCounts": {
+        "production": 4,
+        "naive": 0,
+        "connected": 7
+      },
+      "connected": [
+        {
+          "projectionMs": 6.279211000000032,
+          "readMs": 3.57670699999926,
+          "resolveMs": 2.0906160000004093,
+          "admitMs": 0.292276000000129,
+          "graphBytes": 21716,
+          "retainedFiles": 7,
+          "resolutionNodes": 174,
+          "nodes": 13,
+          "edges": 12,
+          "incompleteSources": 0,
+          "omissions": {
+            "unselected-resolution-nodes": 161,
+            "unselected-resolution-edges": 1
+          }
+        },
+        {
+          "projectionMs": 6.013652999999977,
+          "readMs": 3.4879140000002735,
+          "resolveMs": 1.943569999999454,
+          "admitMs": 0.26009199999953125,
+          "graphBytes": 21716,
+          "retainedFiles": 7,
+          "resolutionNodes": 174,
+          "nodes": 13,
+          "edges": 12,
+          "incompleteSources": 0,
+          "omissions": {
+            "unselected-resolution-nodes": 161,
+            "unselected-resolution-edges": 1
+          }
+        }
+      ]
+    },
+    {
+      "case": "C04",
+      "variant": "ambiguity",
+      "requiredNodeCounts": {
+        "production": 2,
+        "naive": 0,
+        "connected": 2
+      },
+      "connected": [
+        {
+          "projectionMs": 6.614628000000266,
+          "readMs": 3.865762999999788,
+          "resolveMs": 2.2776420000000144,
+          "admitMs": 0.17042899999978545,
+          "graphBytes": 7839,
+          "retainedFiles": 9,
+          "resolutionNodes": 176,
+          "nodes": 5,
+          "edges": 3,
+          "incompleteSources": 0,
+          "omissions": {
+            "ambiguous-import": 1,
+            "ambiguous-handler": 1,
+            "unselected-roots": 1,
+            "unselected-resolution-nodes": 171,
+            "unselected-resolution-edges": 8
+          }
+        },
+        {
+          "projectionMs": 6.159499999999753,
+          "readMs": 3.8102149999995163,
+          "resolveMs": 1.9063459999997576,
+          "admitMs": 0.14599600000019564,
+          "graphBytes": 7839,
+          "retainedFiles": 9,
+          "resolutionNodes": 176,
+          "nodes": 5,
+          "edges": 3,
+          "incompleteSources": 0,
+          "omissions": {
+            "ambiguous-import": 1,
+            "ambiguous-handler": 1,
+            "unselected-roots": 1,
+            "unselected-resolution-nodes": 171,
+            "unselected-resolution-edges": 8
+          }
+        }
+      ]
+    },
+    {
+      "case": "C05",
+      "variant": "truncated",
+      "requiredNodeCounts": {
+        "production": 7,
+        "naive": 5,
+        "connected": 2
+      },
+      "connected": [
+        {
+          "projectionMs": 6.628757000000405,
+          "readMs": 3.638708999999835,
+          "resolveMs": 2.4462809999995443,
+          "admitMs": 0.2312179999998989,
+          "graphBytes": 7922,
+          "retainedFiles": 7,
+          "resolutionNodes": 214,
+          "nodes": 5,
+          "edges": 3,
+          "incompleteSources": 2,
+          "omissions": {
+            "adapter:typescript-symbol-limit": 1,
+            "adapter:java-symbol-limit": 1,
+            "incomplete-import-source": 1,
+            "incomplete-handler-source": 1,
+            "unselected-roots": 1,
+            "unselected-resolution-nodes": 209,
+            "unselected-resolution-edges": 8
+          }
+        },
+        {
+          "projectionMs": 6.283840000000055,
+          "readMs": 3.569962999999916,
+          "resolveMs": 2.1800679999996646,
+          "admitMs": 0.2507900000000518,
+          "graphBytes": 7922,
+          "retainedFiles": 7,
+          "resolutionNodes": 214,
+          "nodes": 5,
+          "edges": 3,
+          "incompleteSources": 2,
+          "omissions": {
+            "adapter:typescript-symbol-limit": 1,
+            "adapter:java-symbol-limit": 1,
+            "incomplete-import-source": 1,
+            "incomplete-handler-source": 1,
+            "unselected-roots": 1,
+            "unselected-resolution-nodes": 209,
+            "unselected-resolution-edges": 8
+          }
+        }
+      ]
+    },
+    {
+      "case": "C06",
+      "variant": "missing",
+      "requiredNodeCounts": {
+        "production": 7,
+        "naive": 5,
+        "connected": 3
+      },
+      "connected": [
+        {
+          "projectionMs": 3.795711000000665,
+          "readMs": 1.9323340000000826,
+          "resolveMs": 1.4192680000005566,
+          "admitMs": 0.16941299999962212,
+          "graphBytes": 12552,
+          "retainedFiles": 4,
+          "resolutionNodes": 10,
+          "nodes": 8,
+          "edges": 7,
+          "incompleteSources": 2,
+          "omissions": {
+            "incomplete-handler-source": 1,
+            "unselected-resolution-nodes": 2,
+            "unselected-resolution-edges": 1
+          }
+        },
+        {
+          "projectionMs": 3.7752659999996467,
+          "readMs": 1.9780009999994945,
+          "resolveMs": 1.3846029999995153,
+          "admitMs": 0.15608900000006543,
+          "graphBytes": 12552,
+          "retainedFiles": 4,
+          "resolutionNodes": 10,
+          "nodes": 8,
+          "edges": 7,
+          "incompleteSources": 2,
+          "omissions": {
+            "incomplete-handler-source": 1,
+            "unselected-resolution-nodes": 2,
+            "unselected-resolution-edges": 1
+          }
+        }
+      ]
+    },
+    {
+      "case": "C07-topic",
+      "variant": "topic",
+      "requiredNodeCounts": {
+        "production": 7,
+        "naive": 7,
+        "connected": 5
+      },
+      "connected": [
+        {
+          "projectionMs": 3.9659369999990304,
+          "readMs": 2.129206999999951,
+          "resolveMs": 1.4072610000002896,
+          "admitMs": 0.1970899999996618,
+          "graphBytes": 15255,
+          "retainedFiles": 5,
+          "resolutionNodes": 14,
+          "nodes": 10,
+          "edges": 9,
+          "incompleteSources": 0,
+          "omissions": {
+            "contradictory-literal-topic": 1,
+            "unselected-resolution-nodes": 4,
+            "unselected-resolution-edges": 2
+          }
+        },
+        {
+          "projectionMs": 3.9968529999987368,
+          "readMs": 2.154081999999107,
+          "resolveMs": 1.4254620000010618,
+          "admitMs": 0.1864689999983966,
+          "graphBytes": 15255,
+          "retainedFiles": 5,
+          "resolutionNodes": 14,
+          "nodes": 10,
+          "edges": 9,
+          "incompleteSources": 0,
+          "omissions": {
+            "contradictory-literal-topic": 1,
+            "unselected-resolution-nodes": 4,
+            "unselected-resolution-edges": 2
+          }
+        }
+      ]
+    },
+    {
+      "case": "C07-environment",
+      "variant": "environment",
+      "requiredNodeCounts": {
+        "production": 7,
+        "naive": 7,
+        "connected": 5
+      },
+      "connected": [
+        {
+          "projectionMs": 4.152180000000953,
+          "readMs": 2.251217999999426,
+          "resolveMs": 1.4379230000013195,
+          "admitMs": 0.2247929999994085,
+          "graphBytes": 15264,
+          "retainedFiles": 5,
+          "resolutionNodes": 14,
+          "nodes": 10,
+          "edges": 9,
+          "incompleteSources": 0,
+          "omissions": {
+            "unresolved-contract-or-topic-scope": 1,
+            "unselected-resolution-nodes": 4,
+            "unselected-resolution-edges": 2
+          }
+        },
+        {
+          "projectionMs": 3.9575320000003558,
+          "readMs": 2.14527199999975,
+          "resolveMs": 1.394814999999653,
+          "admitMs": 0.18894899999941117,
+          "graphBytes": 15264,
+          "retainedFiles": 5,
+          "resolutionNodes": 14,
+          "nodes": 10,
+          "edges": 9,
+          "incompleteSources": 0,
+          "omissions": {
+            "unresolved-contract-or-topic-scope": 1,
+            "unselected-resolution-nodes": 4,
+            "unselected-resolution-edges": 2
+          }
+        }
+      ]
+    },
+    {
+      "case": "C08",
+      "variant": "roots",
+      "requiredNodeCounts": {
+        "production": 7,
+        "naive": 7,
+        "connected": 5
+      },
+      "connected": [
+        {
+          "projectionMs": 8.78124299999945,
+          "readMs": 4.906694000001153,
+          "resolveMs": 3.0082950000014534,
+          "admitMs": 0.42154999999911524,
+          "graphBytes": 19389,
+          "retainedFiles": 7,
+          "resolutionNodes": 16,
+          "nodes": 11,
+          "edges": 10,
+          "incompleteSources": 0,
+          "omissions": {
+            "unselected-roots": 2,
+            "unselected-resolution-nodes": 5,
+            "unselected-resolution-edges": 5
+          }
+        },
+        {
+          "projectionMs": 4.902910000000702,
+          "readMs": 2.98690600000009,
+          "resolveMs": 1.4418170000008104,
+          "admitMs": 0.22998700000061945,
+          "graphBytes": 19389,
+          "retainedFiles": 7,
+          "resolutionNodes": 16,
+          "nodes": 11,
+          "edges": 10,
+          "incompleteSources": 0,
+          "omissions": {
+            "unselected-roots": 2,
+            "unselected-resolution-nodes": 5,
+            "unselected-resolution-edges": 5
+          }
+        }
+      ]
+    },
+    {
+      "case": "C09",
+      "variant": "long-chain",
+      "requiredNodeCounts": {
+        "production": 7,
+        "naive": 7,
+        "connected": 6
+      },
+      "connected": [
+        {
+          "projectionMs": 10.53056000000106,
+          "readMs": 7.9094160000004194,
+          "resolveMs": 1.7116120000009687,
+          "admitMs": 0.5177409999996598,
+          "graphBytes": 38889,
+          "retainedFiles": 30,
+          "resolutionNodes": 39,
+          "nodes": 29,
+          "edges": 27,
+          "incompleteSources": 0,
+          "omissions": {
+            "flow-step-limit": 1,
+            "unselected-resolution-nodes": 10,
+            "unselected-resolution-edges": 11
+          }
+        },
+        {
+          "projectionMs": 10.512515000000349,
+          "readMs": 7.925747999999658,
+          "resolveMs": 1.6884769999996934,
+          "admitMs": 0.5278809999999794,
+          "graphBytes": 38889,
+          "retainedFiles": 30,
+          "resolutionNodes": 39,
+          "nodes": 29,
+          "edges": 27,
+          "incompleteSources": 0,
+          "omissions": {
+            "flow-step-limit": 1,
+            "unselected-resolution-nodes": 10,
+            "unselected-resolution-edges": 11
+          }
+        }
+      ]
+    }
+  ],
+  "qualification": "C01-C03 preserve all seven required nodes. Other cases intentionally require ambiguity, incomplete-source guards or visible omitted paths; their lower node counts are not full-support acceptance."
+}
