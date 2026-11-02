@@ -1,0 +1,130 @@
+{
+  "schemaVersion": "loredock-independent-tree-vectors/1",
+  "generator": "System Git write-tree over fresh cached entries, before candidate implementation",
+  "vectors": [
+    {
+      "id": "sha1-empty",
+      "algorithm": "sha1",
+      "entries": [],
+      "tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904"
+    },
+    {
+      "id": "sha1-mixed",
+      "algorithm": "sha1",
+      "entries": [
+        {
+          "path": "bin.c",
+          "mode": "100644",
+          "blob": "efda1c653ed630cd39805b2034d63b7c47d8422f",
+          "size": 26
+        },
+        {
+          "path": "bin/run.sh",
+          "mode": "100755",
+          "blob": "0074a962630212c8da013c94cdaaa26068de464d",
+          "size": 23
+        },
+        {
+          "path": "bin0",
+          "mode": "100644",
+          "blob": "2964cbd97b198bec2358e2c8d8fa7e52b8d09d63",
+          "size": 25
+        },
+        {
+          "path": "café/é.ts",
+          "mode": "100644",
+          "blob": "47b9deeb423df66f8d4b96276abd79a8338d34fd",
+          "size": 30
+        },
+        {
+          "path": "中.txt",
+          "mode": "100644",
+          "blob": "b624c6131a7b672dd3597ed84b268a36f2f949a0",
+          "size": 19
+        },
+        {
+          "path": "__proto__/constructor",
+          "mode": "100644",
+          "blob": "c58743b87964dddb7da36101c34d44ba78955f82",
+          "size": 29
+        },
+        {
+          "path": "link",
+          "mode": "120000",
+          "blob": "c5e82d74585d15d6ea821b5f23cd65624190f244",
+          "size": 3
+        },
+        {
+          "path": "module",
+          "mode": "160000",
+          "blob": "ece401b9c8a84480403b42e4814ed41c53fb3e96",
+          "size": 0
+        }
+      ],
+      "tree": "5179ac05546234d9cd5a51f3bd9ad116d1081dcf",
+      "gitListing": "100644 blob c58743b87964dddb7da36101c34d44ba78955f82      29\t__proto__/constructor\n100644 blob efda1c653ed630cd39805b2034d63b7c47d8422f      26\tbin.c\n100755 blob 0074a962630212c8da013c94cdaaa26068de464d      23\tbin/run.sh\n100644 blob 2964cbd97b198bec2358e2c8d8fa7e52b8d09d63      25\tbin0\n100644 blob 47b9deeb423df66f8d4b96276abd79a8338d34fd      30\t\"caf\\303\\251/\\303\\251.ts\"\n120000 blob c5e82d74585d15d6ea821b5f23cd65624190f244       3\tlink\n160000 commit ece401b9c8a84480403b42e4814ed41c53fb3e96       -\tmodule\n100644 blob b624c6131a7b672dd3597ed84b268a36f2f949a0      19\t\"\\344\\270\\255.txt\""
+    },
+    {
+      "id": "sha256-empty",
+      "algorithm": "sha256",
+      "entries": [],
+      "tree": "6ef19b41225c5369f1c104d45d8d85efa9b057b53b14b4b9b939dd74decc5321"
+    },
+    {
+      "id": "sha256-mixed",
+      "algorithm": "sha256",
+      "entries": [
+        {
+          "path": "bin.c",
+          "mode": "100644",
+          "blob": "ea25354a186075274265a0b44de4812ecf14667906db20402f469598aecbfecc",
+          "size": 26
+        },
+        {
+          "path": "bin/run.sh",
+          "mode": "100755",
+          "blob": "4124e9aebe839f646c46869923fd86bbb0284662e44f82ec4b477b491ca386c7",
+          "size": 23
+        },
+        {
+          "path": "bin0",
+          "mode": "100644",
+          "blob": "5a9d0298b106f7a58332481c2e48e870d697e630385387209aad6fa307016bb3",
+          "size": 25
+        },
+        {
+          "path": "café/é.ts",
+          "mode": "100644",
+          "blob": "82678a172af9f9eede432819cc25d7d2acf420331ab494fe9f94e4a62da3ac17",
+          "size": 30
+        },
+        {
+          "path": "中.txt",
+          "mode": "100644",
+          "blob": "09e34c24aadecae49717a234c3f71440477d309b791e97d061992009834489eb",
+          "size": 19
+        },
+        {
+          "path": "__proto__/constructor",
+          "mode": "100644",
+          "blob": "8dbd35cca06ffda725331a657fb4ba0dfc50e83239ded776f06f7af7ff33ad0b",
+          "size": 29
+        },
+        {
+          "path": "link",
+          "mode": "120000",
+          "blob": "795c2db1014a1e9f44a35d21595dd81fb29c4f750e1cf68fcd2c77ba73155d1d",
+          "size": 3
+        },
+        {
+          "path": "module",
+          "mode": "160000",
+          "blob": "a8ee37cd6ee0bde0a16fdc24c2562f13379c4c4d7fb7b4d88f178772204ed430",
+          "size": 0
+        }
+      ],
+      "tree": "c665335036f8b9b942468f888469e98b02a6125cba13126c20425ed39937dc63",
+      "gitListing": "100644 blob 8dbd35cca06ffda725331a657fb4ba0dfc50e83239ded776f06f7af7ff33ad0b      29\t__proto__/constructor\n100644 blob ea25354a186075274265a0b44de4812ecf14667906db20402f469598aecbfecc      26\tbin.c\n100755 blob 4124e9aebe839f646c46869923fd86bbb0284662e44f82ec4b477b491ca386c7      23\tbin/run.sh\n100644 blob 5a9d0298b106f7a58332481c2e48e870d697e630385387209aad6fa307016bb3      25\tbin0\n100644 blob 82678a172af9f9eede432819cc25d7d2acf420331ab494fe9f94e4a62da3ac17      30\t\"caf\\303\\251/\\303\\251.ts\"\n120000 blob 795c2db1014a1e9f44a35d21595dd81fb29c4f750e1cf68fcd2c77ba73155d1d       3\tlink\n160000 commit a8ee37cd6ee0bde0a16fdc24c2562f13379c4c4d7fb7b4d88f178772204ed430       -\tmodule\n100644 blob 09e34c24aadecae49717a234c3f71440477d309b791e97d061992009834489eb      19\t\"\\344\\270\\255.txt\""
+    }
+  ]
+}

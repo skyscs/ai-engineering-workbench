@@ -1,5 +1,31 @@
 # Development status
 
+## Task 067 — Binding completeness qualification
+
+Implemented and locally verified, 2026-11-02; offline gate passed. Scope `c02d729`,
+fresh frozen inputs/tree vectors `2efdfa9`, measured candidate/harness `3f4c96b`.
+PR #70 merged as `7bfb4d0` after push `41434052816` and pull-request `41434143112`
+passed for exact head `c2daab933e5f277215797312ecbe0fee6e0da53d` (456 tests).
+
+The separate candidate verifies bounded saved metadata against recorded Git trees,
+joins every indexed code path to its manifest unit and scopes supported binding searches
+to relevant import paths/Java files. Unknown coverage and opaque boundaries remain blockers;
+cardinality and incompleteness are independent. Node/root identities bind the generation,
+and final metadata/manifest/scope checks discard changed pending results.
+
+The [first-run matrix](fixtures/loredock-binding-coverage/README.md) passes 1,031/1,031
+checks across 37 cases and 87 observations. Every base size retains seven critical nodes,
+thirteen displayed nodes, twelve edges and two writes. All eight resource observations pass:
+9,975 code files take 3,557/3,626 ms, with 57/61 ms maximum timer delay. All 46,221 original
+span occurrences reopen exactly; projection Git/store writes are zero outside counted hooks.
+Task 065's failed evaluation and all other frozen measurements remain unchanged.
+
+Strict checks, 462 tests and builds pass. The host restart removed temporary worktree/demo
+state; committed inputs survived and work/receipts moved to persistent directories. No demo
+restart, corporate code or model request. Next: the typed backend and protected-read phase,
+with explicit concurrency, root pages and HTTP boundaries before browser integration.
+This offline result does not establish semantic/runtime/private-pilot or product acceptance.
+
 ## Task 066 — Binding completeness contract
 
 Design completed, 2026-11-02; scope `dc4d625` preceded analysis. PR #69 merged as `7cf0eac`

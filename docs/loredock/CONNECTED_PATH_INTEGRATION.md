@@ -238,3 +238,19 @@ The saved code manifest alone cannot establish absent paths when source shares o
 Bounded source/file metadata, recorded-tree verification and opaque-boundary handling must
 therefore join the fresh qualification before Phase B. Parser facts and existing consumers
 remain unchanged; this contract is not a qualified implementation.
+
+## Task 067 result: offline Phase A gate passed
+
+The [fresh binding-coverage qualification](../fixtures/loredock-binding-coverage/README.md)
+passes all 1,031 checks, preserving useful paths and all relevant uncertainty through
+9,975 code files within the prospective resource bounds. It verifies complete saved paths
+against recorded trees, with exact import-path and conservative Java candidate domains.
+Task 066's domain rules supersede the earlier whole-source incompleteness rule for the
+qualified successor. Task 065's failure remains retained.
+
+Phase B may now be scoped separately. Port the qualified interpretation into strict types,
+then qualify the proposed protected envelopes, root pages, cancellation/busy behavior and
+generation lifetime against the actual analysis owner. The offline prototype rejects any
+database write during a read; explicitly assess newer unpublished analysis activity and
+conservative retries during integration. Existing graph/answer/review/candidate consumers
+remain on their current adapter. No HTTP or browser feature is delivered by this gate.

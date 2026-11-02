@@ -1,0 +1,3173 @@
+{
+  "schemaVersion": "loredock-binding-coverage-contract/1",
+  "createdAt": "2026-11-02",
+  "sourceHashes": {
+    "fixtures/loredock-binding-coverage/corpus.mjs": "85ffa99b746bbfd0e8c01e7379eb2bf912440faf74c1801c9ad4bf1a156d8cc9",
+    "fixtures/loredock-binding-coverage/tree-vectors.json": "57641c08794ad3aabb2720a3fa59ada4d6811250a24aed0e63feb962e3b3f524",
+    "fixtures/loredock-binding-coverage/DESIGN.md": "9474174510890fdcb0c3b1badac7bbd906a788fee61201abb64e584e4410cde3"
+  },
+  "generated": [
+    {
+      "total": 200,
+      "variant": "base",
+      "codePaths": 175,
+      "fileManifestHash": "c5c7732db1864f0529358ff2ae410d52735e37074ec62b1199f2752eb1db1f05",
+      "sources": [
+        {
+          "source": "booking-web",
+          "files": 10,
+          "bytes": 1216,
+          "hash": "babf3717cd71381aedcad7692907557ef462fc7c3700f9161a94bd182eeb929e"
+        },
+        {
+          "source": "booking-api",
+          "files": 10,
+          "bytes": 1383,
+          "hash": "3000b534beaafd417a9eafe51a41ba7d59ec24e47cf8a197e4f360a96f2169e1"
+        },
+        {
+          "source": "booking-worker",
+          "files": 10,
+          "bytes": 1419,
+          "hash": "fc7d5d5a58d91a40914743bdef3532c62a470c1684b0913c346c2223f860b24a"
+        },
+        {
+          "source": "support-00",
+          "files": 10,
+          "bytes": 595,
+          "hash": "8b5cc0b4b8a120f0a729e7b4f1d5377aff638c1d2f6e0dafa560791cbdfd6ad2"
+        },
+        {
+          "source": "support-01",
+          "files": 10,
+          "bytes": 595,
+          "hash": "1b35dfa1f83248cf47e606f2851044d87a3dbf29854e6208c8468c8cdf6c1ec5"
+        },
+        {
+          "source": "support-02",
+          "files": 10,
+          "bytes": 595,
+          "hash": "67eeb93e18d6f99e5e93b39b4bd87155aaa5eb35e5484c5bdbca4c2a021959eb"
+        },
+        {
+          "source": "support-03",
+          "files": 10,
+          "bytes": 595,
+          "hash": "faf4d2e0dfa4f3c0e2da67c75ebc6049cbd3676d0774c74e9960488ad743d313"
+        },
+        {
+          "source": "support-04",
+          "files": 10,
+          "bytes": 595,
+          "hash": "7806b1cf6f374f133a9b696c86b0e848f6650b8d2622adc96b10ad3fca1e9924"
+        },
+        {
+          "source": "support-05",
+          "files": 10,
+          "bytes": 595,
+          "hash": "a048b57b6e1ea00fc50676a499bedb415e4a4cf7f70daf222d7a5702473ea975"
+        },
+        {
+          "source": "support-06",
+          "files": 10,
+          "bytes": 595,
+          "hash": "6298441bc684d0e2213ba942bd8958e428b56c60d8a2fae7a3e4a2094816b4ae"
+        },
+        {
+          "source": "support-07",
+          "files": 10,
+          "bytes": 608,
+          "hash": "9a838b1ae248e23b64c13abb1a992de180655a1880e6c6d6d607f4645ef84af9"
+        },
+        {
+          "source": "support-08",
+          "files": 10,
+          "bytes": 608,
+          "hash": "e56696131d05d9792810139b54a6e79789a93e601830222094e9c496c84cc1c2"
+        },
+        {
+          "source": "support-09",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f63e3e7442f931748e79d2629ee65d420c07ded083436c465c2a586ee84cc705"
+        },
+        {
+          "source": "support-10",
+          "files": 10,
+          "bytes": 608,
+          "hash": "67814fe0e776aaf2132331ebad9eba28f40132c78bb899c9a09ef80aac23bac5"
+        },
+        {
+          "source": "support-11",
+          "files": 10,
+          "bytes": 608,
+          "hash": "5815060861f9f39184fa0f030e070d7cb754bfd9cad8fe1417a8d8f160a2025c"
+        },
+        {
+          "source": "support-12",
+          "files": 10,
+          "bytes": 608,
+          "hash": "0c8d84ced3bcb4e24fd6b6f3901116644e075eacbc66fc2a620372b27f1f82e8"
+        },
+        {
+          "source": "support-13",
+          "files": 10,
+          "bytes": 608,
+          "hash": "3275d9702354630ac4453c0d3cd3e8d9c924bae86221463a7a5dc14523300f95"
+        },
+        {
+          "source": "support-14",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f60c3cafcb5514a16e654caa4047df188b8fe56c30c746ae4c5186079b3e296e"
+        },
+        {
+          "source": "support-15",
+          "files": 10,
+          "bytes": 608,
+          "hash": "eb27348884d60bcf76d908db8303f4b266f5de3e5078f3d923bf550d7a6b1d58"
+        },
+        {
+          "source": "support-16",
+          "files": 10,
+          "bytes": 608,
+          "hash": "efefe27601f9199de3d902603a91d0305f0f69b7627148ac95b3e7557887ddbd"
+        }
+      ],
+      "support": [
+        {
+          "source": "booking-web",
+          "path": "src/Reserve.vue",
+          "kind": "symbol",
+          "label": "reserve",
+          "literal": "const reserve =",
+          "line": 4
+        },
+        {
+          "source": "booking-web",
+          "path": "zz/client.ts",
+          "kind": "http-request",
+          "label": "POST /bookings/reserve",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "booking-web",
+          "path": "src/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/bookings",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "symbol",
+          "label": "Bookings.reserve",
+          "literal": "void reserve(",
+          "line": 6
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "event-publish",
+          "label": "Publish BookingReserved",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 800,
+      "variant": "base",
+      "codePaths": 775,
+      "fileManifestHash": "fbca91df4719d887d5ac4af81593812a1ad1a8ec9294b7c3fc7e3446e2661ae1",
+      "sources": [
+        {
+          "source": "booking-web",
+          "files": 40,
+          "bytes": 2978,
+          "hash": "01e7398091501f6c27cdefed904636f6efeaeb2730d62f00313dc3188d4941ae"
+        },
+        {
+          "source": "booking-api",
+          "files": 40,
+          "bytes": 3143,
+          "hash": "43f6d56322b6376110741fdbc769827d214f78b1f5fae827304eb5a21c6f83ac"
+        },
+        {
+          "source": "booking-worker",
+          "files": 40,
+          "bytes": 3181,
+          "hash": "a9171df37aad533ff697d760337bd86e86673fd31edd53097acc0eb7f93febca"
+        },
+        {
+          "source": "support-00",
+          "files": 40,
+          "bytes": 2363,
+          "hash": "59c5382b2626e47a38f1ffdb9686236e4b109b9238bcd4a34374edd176fa4777"
+        },
+        {
+          "source": "support-01",
+          "files": 40,
+          "bytes": 2363,
+          "hash": "3cd57358d2bf7804c1fcd408ecc7b4d063071a6912d9344c3c31234d9e5aad77"
+        },
+        {
+          "source": "support-02",
+          "files": 40,
+          "bytes": 2363,
+          "hash": "623aae692f4d67530feab38719821ae15203d17dadfc84c2b2407e3028db9fbc"
+        },
+        {
+          "source": "support-03",
+          "files": 40,
+          "bytes": 2363,
+          "hash": "01a2b9ecacf048dc4f0c9d38b283b7e4e6a541e003c467c24c16ef34c32f0dfb"
+        },
+        {
+          "source": "support-04",
+          "files": 40,
+          "bytes": 2363,
+          "hash": "222ee93fd29d7b50b4e11511171b1d70d832cef66b70fce19caab0e7b50a86da"
+        },
+        {
+          "source": "support-05",
+          "files": 40,
+          "bytes": 2363,
+          "hash": "90e632152a75d0c2cc554848a8e09059537d326bc98a6a7f620d9bd8f1400dbd"
+        },
+        {
+          "source": "support-06",
+          "files": 40,
+          "bytes": 2363,
+          "hash": "040921a7cebbacee5990fefab1b6e481ec7b787592461370706b7ae5afd8d534"
+        },
+        {
+          "source": "support-07",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "8552bd3cfc9e831d7e7bfbadae68603a8f4199bdb91f59a8a4cce0ee138fbfa5"
+        },
+        {
+          "source": "support-08",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "caf0901d0e390e7d41fa451f4eb52a055fe34c99177e82413838acdad1045ed6"
+        },
+        {
+          "source": "support-09",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "a177acd53848f0d9924c24541c5968597aee650a5a42438b0f89860dce7875f2"
+        },
+        {
+          "source": "support-10",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "864d65afc3a1a1f563a09c8ec0078906727993d2a066805b3cab42da8c21de41"
+        },
+        {
+          "source": "support-11",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "b14a23b3168bc106d84bf78f34e29b6ca1b0139fec0301e3d2457e412c8f5ae6"
+        },
+        {
+          "source": "support-12",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "66e6bfdeeafb2dccdfbd9568d12fa5fc45883ab076b523c328152e57afad54f6"
+        },
+        {
+          "source": "support-13",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "bb29700bdeb7f24d4963788ccf7dc2c09fede91cec95c713baf01873c1ffe6b9"
+        },
+        {
+          "source": "support-14",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "bfe76205318fc227705af353aaaa0e01e3d5c9cb8f9b0d9aaccdf8ede379d553"
+        },
+        {
+          "source": "support-15",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "2ed965ffdc8733010837ae18b8c5fdb2a7a1daf156b1b372005688f67ff55d03"
+        },
+        {
+          "source": "support-16",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "7b5798200c40dc9d8b9b4894a77ff091bb1c6f0e41212a83df7e17c98eb2bb5e"
+        }
+      ],
+      "support": [
+        {
+          "source": "booking-web",
+          "path": "src/Reserve.vue",
+          "kind": "symbol",
+          "label": "reserve",
+          "literal": "const reserve =",
+          "line": 4
+        },
+        {
+          "source": "booking-web",
+          "path": "zz/client.ts",
+          "kind": "http-request",
+          "label": "POST /bookings/reserve",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "booking-web",
+          "path": "src/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/bookings",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "symbol",
+          "label": "Bookings.reserve",
+          "literal": "void reserve(",
+          "line": 6
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "event-publish",
+          "label": "Publish BookingReserved",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 4000,
+      "variant": "base",
+      "codePaths": 3975,
+      "fileManifestHash": "7f6409b0e97240315c80f862ce68cebb873043225e5ec4d187294d8618e9412c",
+      "sources": [
+        {
+          "source": "booking-web",
+          "files": 200,
+          "bytes": 12610,
+          "hash": "9d449a54ae42c6ba350cd5c78efbc03442bc2e5c9fa936fcf708eca03c6c31ad"
+        },
+        {
+          "source": "booking-api",
+          "files": 200,
+          "bytes": 12773,
+          "hash": "a44748a77ef0f6b14a756ca5d3910896149c0d8ae90f0137869e39863a4d12f3"
+        },
+        {
+          "source": "booking-worker",
+          "files": 200,
+          "bytes": 12813,
+          "hash": "aeebc5d49599324c05da6a1187729375520f0cedaa9406261e303a47946a5cc8"
+        },
+        {
+          "source": "support-00",
+          "files": 200,
+          "bytes": 12001,
+          "hash": "b673c8c8389cef6a345d60d297a498a917fc34dffa42fbbc2473091074eaf360"
+        },
+        {
+          "source": "support-01",
+          "files": 200,
+          "bytes": 12001,
+          "hash": "75a85e644dce2bb11408d3542bd1ea5657fced3eb64590f8161b1dd5e562fc78"
+        },
+        {
+          "source": "support-02",
+          "files": 200,
+          "bytes": 12001,
+          "hash": "d3ba1cb4ac43f51c0c6b631ec1d57089b164f70003e7546bf28c80c803ffa456"
+        },
+        {
+          "source": "support-03",
+          "files": 200,
+          "bytes": 12001,
+          "hash": "49c206ca90a203de4a4386a83b4f67af3e1ec6dfe3ad671e2c4015ff0be0c0d6"
+        },
+        {
+          "source": "support-04",
+          "files": 200,
+          "bytes": 12001,
+          "hash": "e5367a5eb38ce73761d2d052efcb0e576dcd910e89b28e14340f141dec9c923a"
+        },
+        {
+          "source": "support-05",
+          "files": 200,
+          "bytes": 12001,
+          "hash": "1093532ebefc337b2c0609c16406c0e769fa26ce23908667dfaa2415663ccc49"
+        },
+        {
+          "source": "support-06",
+          "files": 200,
+          "bytes": 12001,
+          "hash": "fccdbe172b348c59695df7d666774e3ce5df6496494286cb5bf2ab03a8c44c8d"
+        },
+        {
+          "source": "support-07",
+          "files": 200,
+          "bytes": 12299,
+          "hash": "1feda43ff957688d58641fd019d91a0d803aa74a662c18893f84da054b6f8c62"
+        },
+        {
+          "source": "support-08",
+          "files": 200,
+          "bytes": 12299,
+          "hash": "02e529293c8cda567361321247f46d14a0b04f05dca538ba790272d28fe26b15"
+        },
+        {
+          "source": "support-09",
+          "files": 200,
+          "bytes": 12299,
+          "hash": "0a0b8f53dda524932fd22eb9bb4978b0b909f195d27259c2fa8c7fcd2951bf9c"
+        },
+        {
+          "source": "support-10",
+          "files": 200,
+          "bytes": 12299,
+          "hash": "a5cadca8b4419b4b651c2ebcaa0943facf8f664f2cad789fcc2c8a7e85b85be1"
+        },
+        {
+          "source": "support-11",
+          "files": 200,
+          "bytes": 12299,
+          "hash": "6e92455cf27adfab49801bf9479758d181e9fa17678cef7bbaa2b7fcd8364733"
+        },
+        {
+          "source": "support-12",
+          "files": 200,
+          "bytes": 12299,
+          "hash": "822dce16f5f30ac302d8d01aba0c341a7762fcdae71dfe7d5ce9bff9dc966038"
+        },
+        {
+          "source": "support-13",
+          "files": 200,
+          "bytes": 12299,
+          "hash": "5696844088b73f70fcf8ac700fab00fcda37077f515dbdbd0eb894971581fb56"
+        },
+        {
+          "source": "support-14",
+          "files": 200,
+          "bytes": 12299,
+          "hash": "e47a8f83f3f9582ef3bf1e9d6bfb50578417c43685109f83d9fea24e6a5200fe"
+        },
+        {
+          "source": "support-15",
+          "files": 200,
+          "bytes": 12299,
+          "hash": "02b7b81038ea807964f09ae3be54dd9e47d3359a0de338c577a9000c617ac796"
+        },
+        {
+          "source": "support-16",
+          "files": 200,
+          "bytes": 12299,
+          "hash": "f27044cbd176c7b4dc3ae75ef16a96e000bc822d91cb7697febc22c53b7a0c37"
+        }
+      ],
+      "support": [
+        {
+          "source": "booking-web",
+          "path": "src/Reserve.vue",
+          "kind": "symbol",
+          "label": "reserve",
+          "literal": "const reserve =",
+          "line": 4
+        },
+        {
+          "source": "booking-web",
+          "path": "zz/client.ts",
+          "kind": "http-request",
+          "label": "POST /bookings/reserve",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "booking-web",
+          "path": "src/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/bookings",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "symbol",
+          "label": "Bookings.reserve",
+          "literal": "void reserve(",
+          "line": 6
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "event-publish",
+          "label": "Publish BookingReserved",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 10000,
+      "variant": "base",
+      "codePaths": 9975,
+      "fileManifestHash": "f2e163841c8687013d14a5c824d24788e92ef6b6588cb4df4e625546689c9a4d",
+      "sources": [
+        {
+          "source": "booking-web",
+          "files": 500,
+          "bytes": 30910,
+          "hash": "8d866ab4876b0ee8bd2afd9fec1e191cd5f92e7082a079d595f6aad625f9be88"
+        },
+        {
+          "source": "booking-api",
+          "files": 500,
+          "bytes": 31073,
+          "hash": "ff27a2a07e82592f51794513f78e8468d675262b3dfd2ad6e388847df38dff12"
+        },
+        {
+          "source": "booking-worker",
+          "files": 500,
+          "bytes": 31113,
+          "hash": "6120be80f7204467ea2675e140128a02d1c5f741f9650b603d8920c0af5e699b"
+        },
+        {
+          "source": "support-00",
+          "files": 500,
+          "bytes": 30301,
+          "hash": "26c959f111fbd2ef918e46a60fdf14f60bbcefebd3c38ab094e69866ea1d5de5"
+        },
+        {
+          "source": "support-01",
+          "files": 500,
+          "bytes": 30301,
+          "hash": "e37fe1f6051f26f068e3681ce9858c4876162b1b4b983c8bdef3263082d9c2dc"
+        },
+        {
+          "source": "support-02",
+          "files": 500,
+          "bytes": 30301,
+          "hash": "b3af74ba877398401e55dbed6fd1320e5e8cc9e32a057e2d81e679e82ce16387"
+        },
+        {
+          "source": "support-03",
+          "files": 500,
+          "bytes": 30301,
+          "hash": "ce5eea1ee488f254258cd5c5766e0bdc9b780b0044cd171557f3d89d84061e37"
+        },
+        {
+          "source": "support-04",
+          "files": 500,
+          "bytes": 30301,
+          "hash": "cbe7c4e71760b331b8f3a3eb2c0e383f918efae320ff268482dc71e3655857bb"
+        },
+        {
+          "source": "support-05",
+          "files": 500,
+          "bytes": 30301,
+          "hash": "643b2dd8da52f4575749faa52bb5201715f9a63d6e1ef8a583886156914532db"
+        },
+        {
+          "source": "support-06",
+          "files": 500,
+          "bytes": 30301,
+          "hash": "af329d97f76deaf343d866b51542132106ca8cfd361ebd7f805ba4b08c29d097"
+        },
+        {
+          "source": "support-07",
+          "files": 500,
+          "bytes": 31049,
+          "hash": "40866378c92982876fe247b3f89042a154055ab53770c21a2c675caf68a1e5c8"
+        },
+        {
+          "source": "support-08",
+          "files": 500,
+          "bytes": 31049,
+          "hash": "81851a0edc4ddf04222c9cf71bacf8a3a038fb8c2424d4c4670fcaf0753ee477"
+        },
+        {
+          "source": "support-09",
+          "files": 500,
+          "bytes": 31049,
+          "hash": "9a467d5953404fbea9deea8d786272ce812c128cbde93ffb004933f2168fb443"
+        },
+        {
+          "source": "support-10",
+          "files": 500,
+          "bytes": 31049,
+          "hash": "d9e53b8157987455ff156a34081907f472072946bed729205b1173251ae6dc18"
+        },
+        {
+          "source": "support-11",
+          "files": 500,
+          "bytes": 31049,
+          "hash": "ebbe9016ea2f44611adfe2b85a3aee70752fa8c8a4ec393f765693e168486a5c"
+        },
+        {
+          "source": "support-12",
+          "files": 500,
+          "bytes": 31049,
+          "hash": "c885d0bfb099a02e1e180856ec74ef6a1694795dd2111065b6f8b9ef0cd1dc64"
+        },
+        {
+          "source": "support-13",
+          "files": 500,
+          "bytes": 31049,
+          "hash": "d53c18dd1c0f1f280911590ccc341b44fade92e8e874f4e57a58adb652f6f90d"
+        },
+        {
+          "source": "support-14",
+          "files": 500,
+          "bytes": 31049,
+          "hash": "a1135c048920642d5a592a20154d05a9d0677bbc1703cc3f2490262d68647942"
+        },
+        {
+          "source": "support-15",
+          "files": 500,
+          "bytes": 31049,
+          "hash": "e1898cc15e4e9cab685993f817c6b4d6132a91192b4c8812ba3676c3856a5da7"
+        },
+        {
+          "source": "support-16",
+          "files": 500,
+          "bytes": 31049,
+          "hash": "615dd6b433a3bcda4d2a2f4135b8dcc8cbbf175ff1cb1e16896216cb1921f3b3"
+        }
+      ],
+      "support": [
+        {
+          "source": "booking-web",
+          "path": "src/Reserve.vue",
+          "kind": "symbol",
+          "label": "reserve",
+          "literal": "const reserve =",
+          "line": 4
+        },
+        {
+          "source": "booking-web",
+          "path": "zz/client.ts",
+          "kind": "http-request",
+          "label": "POST /bookings/reserve",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "booking-web",
+          "path": "src/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/bookings",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "symbol",
+          "label": "Bookings.reserve",
+          "literal": "void reserve(",
+          "line": 6
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "event-publish",
+          "label": "Publish BookingReserved",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 200,
+      "variant": "alternatives",
+      "codePaths": 175,
+      "fileManifestHash": "a1ec820bb8e004e561e1bdbef812c23c066348c4bed8c1052a67e4ea9099be7d",
+      "sources": [
+        {
+          "source": "booking-web",
+          "files": 10,
+          "bytes": 1218,
+          "hash": "a72e1ab784a88712251484bea254159ce10a30fc61f4dbbf4644248f3e65b333"
+        },
+        {
+          "source": "booking-api",
+          "files": 10,
+          "bytes": 1402,
+          "hash": "7c85be7b8e868187913d5e6d41768af7c03f5fe8b0fb4c4775a80ddedd5e80e4"
+        },
+        {
+          "source": "booking-worker",
+          "files": 10,
+          "bytes": 1419,
+          "hash": "fc7d5d5a58d91a40914743bdef3532c62a470c1684b0913c346c2223f860b24a"
+        },
+        {
+          "source": "support-00",
+          "files": 10,
+          "bytes": 595,
+          "hash": "8b5cc0b4b8a120f0a729e7b4f1d5377aff638c1d2f6e0dafa560791cbdfd6ad2"
+        },
+        {
+          "source": "support-01",
+          "files": 10,
+          "bytes": 595,
+          "hash": "1b35dfa1f83248cf47e606f2851044d87a3dbf29854e6208c8468c8cdf6c1ec5"
+        },
+        {
+          "source": "support-02",
+          "files": 10,
+          "bytes": 595,
+          "hash": "67eeb93e18d6f99e5e93b39b4bd87155aaa5eb35e5484c5bdbca4c2a021959eb"
+        },
+        {
+          "source": "support-03",
+          "files": 10,
+          "bytes": 595,
+          "hash": "faf4d2e0dfa4f3c0e2da67c75ebc6049cbd3676d0774c74e9960488ad743d313"
+        },
+        {
+          "source": "support-04",
+          "files": 10,
+          "bytes": 595,
+          "hash": "7806b1cf6f374f133a9b696c86b0e848f6650b8d2622adc96b10ad3fca1e9924"
+        },
+        {
+          "source": "support-05",
+          "files": 10,
+          "bytes": 595,
+          "hash": "a048b57b6e1ea00fc50676a499bedb415e4a4cf7f70daf222d7a5702473ea975"
+        },
+        {
+          "source": "support-06",
+          "files": 10,
+          "bytes": 595,
+          "hash": "6298441bc684d0e2213ba942bd8958e428b56c60d8a2fae7a3e4a2094816b4ae"
+        },
+        {
+          "source": "support-07",
+          "files": 10,
+          "bytes": 608,
+          "hash": "9a838b1ae248e23b64c13abb1a992de180655a1880e6c6d6d607f4645ef84af9"
+        },
+        {
+          "source": "support-08",
+          "files": 10,
+          "bytes": 608,
+          "hash": "e56696131d05d9792810139b54a6e79789a93e601830222094e9c496c84cc1c2"
+        },
+        {
+          "source": "support-09",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f63e3e7442f931748e79d2629ee65d420c07ded083436c465c2a586ee84cc705"
+        },
+        {
+          "source": "support-10",
+          "files": 10,
+          "bytes": 608,
+          "hash": "67814fe0e776aaf2132331ebad9eba28f40132c78bb899c9a09ef80aac23bac5"
+        },
+        {
+          "source": "support-11",
+          "files": 10,
+          "bytes": 608,
+          "hash": "5815060861f9f39184fa0f030e070d7cb754bfd9cad8fe1417a8d8f160a2025c"
+        },
+        {
+          "source": "support-12",
+          "files": 10,
+          "bytes": 608,
+          "hash": "0c8d84ced3bcb4e24fd6b6f3901116644e075eacbc66fc2a620372b27f1f82e8"
+        },
+        {
+          "source": "support-13",
+          "files": 10,
+          "bytes": 608,
+          "hash": "3275d9702354630ac4453c0d3cd3e8d9c924bae86221463a7a5dc14523300f95"
+        },
+        {
+          "source": "support-14",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f60c3cafcb5514a16e654caa4047df188b8fe56c30c746ae4c5186079b3e296e"
+        },
+        {
+          "source": "support-15",
+          "files": 10,
+          "bytes": 608,
+          "hash": "eb27348884d60bcf76d908db8303f4b266f5de3e5078f3d923bf550d7a6b1d58"
+        },
+        {
+          "source": "support-16",
+          "files": 10,
+          "bytes": 608,
+          "hash": "efefe27601f9199de3d902603a91d0305f0f69b7627148ac95b3e7557887ddbd"
+        }
+      ],
+      "support": [
+        {
+          "source": "booking-web",
+          "path": "src/Reserve.vue",
+          "kind": "symbol",
+          "label": "reserve",
+          "literal": "const reserve =",
+          "line": 4
+        },
+        {
+          "source": "booking-web",
+          "path": "zz/client.ts",
+          "kind": "http-request",
+          "label": "POST /bookings/reserve",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "booking-web",
+          "path": "src/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/bookings",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "symbol",
+          "label": "Bookings.reserve",
+          "literal": "void reserve(",
+          "line": 6
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "event-publish",
+          "label": "Publish BookingReserved",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 200,
+      "variant": "truncated",
+      "codePaths": 175,
+      "fileManifestHash": "64b3e38588f1553c66917ed78632dd6d35e342737146809cedac74e6259965cb",
+      "sources": [
+        {
+          "source": "booking-web",
+          "files": 10,
+          "bytes": 5391,
+          "hash": "4f191690a04f717b4156074e15338f303819931842b033dbcebd967d4dbd40fe"
+        },
+        {
+          "source": "booking-api",
+          "files": 10,
+          "bytes": 5514,
+          "hash": "dc48c83e9319f921cf4e64cfa0f39bf79587863785432c34648ba7ac96eeb9a3"
+        },
+        {
+          "source": "booking-worker",
+          "files": 10,
+          "bytes": 1419,
+          "hash": "fc7d5d5a58d91a40914743bdef3532c62a470c1684b0913c346c2223f860b24a"
+        },
+        {
+          "source": "support-00",
+          "files": 10,
+          "bytes": 595,
+          "hash": "8b5cc0b4b8a120f0a729e7b4f1d5377aff638c1d2f6e0dafa560791cbdfd6ad2"
+        },
+        {
+          "source": "support-01",
+          "files": 10,
+          "bytes": 595,
+          "hash": "1b35dfa1f83248cf47e606f2851044d87a3dbf29854e6208c8468c8cdf6c1ec5"
+        },
+        {
+          "source": "support-02",
+          "files": 10,
+          "bytes": 595,
+          "hash": "67eeb93e18d6f99e5e93b39b4bd87155aaa5eb35e5484c5bdbca4c2a021959eb"
+        },
+        {
+          "source": "support-03",
+          "files": 10,
+          "bytes": 595,
+          "hash": "faf4d2e0dfa4f3c0e2da67c75ebc6049cbd3676d0774c74e9960488ad743d313"
+        },
+        {
+          "source": "support-04",
+          "files": 10,
+          "bytes": 595,
+          "hash": "7806b1cf6f374f133a9b696c86b0e848f6650b8d2622adc96b10ad3fca1e9924"
+        },
+        {
+          "source": "support-05",
+          "files": 10,
+          "bytes": 595,
+          "hash": "a048b57b6e1ea00fc50676a499bedb415e4a4cf7f70daf222d7a5702473ea975"
+        },
+        {
+          "source": "support-06",
+          "files": 10,
+          "bytes": 595,
+          "hash": "6298441bc684d0e2213ba942bd8958e428b56c60d8a2fae7a3e4a2094816b4ae"
+        },
+        {
+          "source": "support-07",
+          "files": 10,
+          "bytes": 608,
+          "hash": "9a838b1ae248e23b64c13abb1a992de180655a1880e6c6d6d607f4645ef84af9"
+        },
+        {
+          "source": "support-08",
+          "files": 10,
+          "bytes": 608,
+          "hash": "e56696131d05d9792810139b54a6e79789a93e601830222094e9c496c84cc1c2"
+        },
+        {
+          "source": "support-09",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f63e3e7442f931748e79d2629ee65d420c07ded083436c465c2a586ee84cc705"
+        },
+        {
+          "source": "support-10",
+          "files": 10,
+          "bytes": 608,
+          "hash": "67814fe0e776aaf2132331ebad9eba28f40132c78bb899c9a09ef80aac23bac5"
+        },
+        {
+          "source": "support-11",
+          "files": 10,
+          "bytes": 608,
+          "hash": "5815060861f9f39184fa0f030e070d7cb754bfd9cad8fe1417a8d8f160a2025c"
+        },
+        {
+          "source": "support-12",
+          "files": 10,
+          "bytes": 608,
+          "hash": "0c8d84ced3bcb4e24fd6b6f3901116644e075eacbc66fc2a620372b27f1f82e8"
+        },
+        {
+          "source": "support-13",
+          "files": 10,
+          "bytes": 608,
+          "hash": "3275d9702354630ac4453c0d3cd3e8d9c924bae86221463a7a5dc14523300f95"
+        },
+        {
+          "source": "support-14",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f60c3cafcb5514a16e654caa4047df188b8fe56c30c746ae4c5186079b3e296e"
+        },
+        {
+          "source": "support-15",
+          "files": 10,
+          "bytes": 608,
+          "hash": "eb27348884d60bcf76d908db8303f4b266f5de3e5078f3d923bf550d7a6b1d58"
+        },
+        {
+          "source": "support-16",
+          "files": 10,
+          "bytes": 608,
+          "hash": "efefe27601f9199de3d902603a91d0305f0f69b7627148ac95b3e7557887ddbd"
+        }
+      ],
+      "support": [
+        {
+          "source": "booking-web",
+          "path": "src/Reserve.vue",
+          "kind": "symbol",
+          "label": "reserve",
+          "literal": "const reserve =",
+          "line": 4
+        },
+        {
+          "source": "booking-web",
+          "path": "zz/client.ts",
+          "kind": "http-request",
+          "label": "POST /bookings/reserve",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "booking-web",
+          "path": "src/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/bookings",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "symbol",
+          "label": "Bookings.reserve",
+          "literal": "void reserve(",
+          "line": 6
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "event-publish",
+          "label": "Publish BookingReserved",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 200,
+      "variant": "unsupported-target",
+      "codePaths": 175,
+      "fileManifestHash": "c96339179d57367f655659d9c0c3bf43aa878744f86373e979e3062aff299a74",
+      "sources": [
+        {
+          "source": "booking-web",
+          "files": 10,
+          "bytes": 1215,
+          "hash": "90c80057ed3e39e7a579cce42257ba531137332c0058c2e86839beb37da6d372"
+        },
+        {
+          "source": "booking-api",
+          "files": 10,
+          "bytes": 1383,
+          "hash": "3000b534beaafd417a9eafe51a41ba7d59ec24e47cf8a197e4f360a96f2169e1"
+        },
+        {
+          "source": "booking-worker",
+          "files": 10,
+          "bytes": 1419,
+          "hash": "fc7d5d5a58d91a40914743bdef3532c62a470c1684b0913c346c2223f860b24a"
+        },
+        {
+          "source": "support-00",
+          "files": 10,
+          "bytes": 595,
+          "hash": "8b5cc0b4b8a120f0a729e7b4f1d5377aff638c1d2f6e0dafa560791cbdfd6ad2"
+        },
+        {
+          "source": "support-01",
+          "files": 10,
+          "bytes": 595,
+          "hash": "1b35dfa1f83248cf47e606f2851044d87a3dbf29854e6208c8468c8cdf6c1ec5"
+        },
+        {
+          "source": "support-02",
+          "files": 10,
+          "bytes": 595,
+          "hash": "67eeb93e18d6f99e5e93b39b4bd87155aaa5eb35e5484c5bdbca4c2a021959eb"
+        },
+        {
+          "source": "support-03",
+          "files": 10,
+          "bytes": 595,
+          "hash": "faf4d2e0dfa4f3c0e2da67c75ebc6049cbd3676d0774c74e9960488ad743d313"
+        },
+        {
+          "source": "support-04",
+          "files": 10,
+          "bytes": 595,
+          "hash": "7806b1cf6f374f133a9b696c86b0e848f6650b8d2622adc96b10ad3fca1e9924"
+        },
+        {
+          "source": "support-05",
+          "files": 10,
+          "bytes": 595,
+          "hash": "a048b57b6e1ea00fc50676a499bedb415e4a4cf7f70daf222d7a5702473ea975"
+        },
+        {
+          "source": "support-06",
+          "files": 10,
+          "bytes": 595,
+          "hash": "6298441bc684d0e2213ba942bd8958e428b56c60d8a2fae7a3e4a2094816b4ae"
+        },
+        {
+          "source": "support-07",
+          "files": 10,
+          "bytes": 608,
+          "hash": "9a838b1ae248e23b64c13abb1a992de180655a1880e6c6d6d607f4645ef84af9"
+        },
+        {
+          "source": "support-08",
+          "files": 10,
+          "bytes": 608,
+          "hash": "e56696131d05d9792810139b54a6e79789a93e601830222094e9c496c84cc1c2"
+        },
+        {
+          "source": "support-09",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f63e3e7442f931748e79d2629ee65d420c07ded083436c465c2a586ee84cc705"
+        },
+        {
+          "source": "support-10",
+          "files": 10,
+          "bytes": 608,
+          "hash": "67814fe0e776aaf2132331ebad9eba28f40132c78bb899c9a09ef80aac23bac5"
+        },
+        {
+          "source": "support-11",
+          "files": 10,
+          "bytes": 608,
+          "hash": "5815060861f9f39184fa0f030e070d7cb754bfd9cad8fe1417a8d8f160a2025c"
+        },
+        {
+          "source": "support-12",
+          "files": 10,
+          "bytes": 608,
+          "hash": "0c8d84ced3bcb4e24fd6b6f3901116644e075eacbc66fc2a620372b27f1f82e8"
+        },
+        {
+          "source": "support-13",
+          "files": 10,
+          "bytes": 608,
+          "hash": "3275d9702354630ac4453c0d3cd3e8d9c924bae86221463a7a5dc14523300f95"
+        },
+        {
+          "source": "support-14",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f60c3cafcb5514a16e654caa4047df188b8fe56c30c746ae4c5186079b3e296e"
+        },
+        {
+          "source": "support-15",
+          "files": 10,
+          "bytes": 608,
+          "hash": "eb27348884d60bcf76d908db8303f4b266f5de3e5078f3d923bf550d7a6b1d58"
+        },
+        {
+          "source": "support-16",
+          "files": 10,
+          "bytes": 608,
+          "hash": "efefe27601f9199de3d902603a91d0305f0f69b7627148ac95b3e7557887ddbd"
+        }
+      ],
+      "support": [
+        {
+          "source": "booking-web",
+          "path": "src/Reserve.vue",
+          "kind": "symbol",
+          "label": "reserve",
+          "literal": "const reserve =",
+          "line": 4
+        },
+        {
+          "source": "booking-web",
+          "path": "zz/client.ts",
+          "kind": "http-request",
+          "label": "POST /bookings/reserve",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "booking-web",
+          "path": "src/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/bookings",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "symbol",
+          "label": "Bookings.reserve",
+          "literal": "void reserve(",
+          "line": 6
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "event-publish",
+          "label": "Publish BookingReserved",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 200,
+      "variant": "missing-target",
+      "codePaths": 175,
+      "fileManifestHash": "7cbfa9d0f01db060569fd83cc3841aeb2f7b8f592c78b9dd616891d307541d60",
+      "sources": [
+        {
+          "source": "booking-web",
+          "files": 10,
+          "bytes": 1018,
+          "hash": "d8f760a608396fec2a81c20074e6d98ce2a8a152c7769247ac355d89d45f3a74"
+        },
+        {
+          "source": "booking-api",
+          "files": 10,
+          "bytes": 1383,
+          "hash": "3000b534beaafd417a9eafe51a41ba7d59ec24e47cf8a197e4f360a96f2169e1"
+        },
+        {
+          "source": "booking-worker",
+          "files": 10,
+          "bytes": 1419,
+          "hash": "fc7d5d5a58d91a40914743bdef3532c62a470c1684b0913c346c2223f860b24a"
+        },
+        {
+          "source": "support-00",
+          "files": 10,
+          "bytes": 595,
+          "hash": "8b5cc0b4b8a120f0a729e7b4f1d5377aff638c1d2f6e0dafa560791cbdfd6ad2"
+        },
+        {
+          "source": "support-01",
+          "files": 10,
+          "bytes": 595,
+          "hash": "1b35dfa1f83248cf47e606f2851044d87a3dbf29854e6208c8468c8cdf6c1ec5"
+        },
+        {
+          "source": "support-02",
+          "files": 10,
+          "bytes": 595,
+          "hash": "67eeb93e18d6f99e5e93b39b4bd87155aaa5eb35e5484c5bdbca4c2a021959eb"
+        },
+        {
+          "source": "support-03",
+          "files": 10,
+          "bytes": 595,
+          "hash": "faf4d2e0dfa4f3c0e2da67c75ebc6049cbd3676d0774c74e9960488ad743d313"
+        },
+        {
+          "source": "support-04",
+          "files": 10,
+          "bytes": 595,
+          "hash": "7806b1cf6f374f133a9b696c86b0e848f6650b8d2622adc96b10ad3fca1e9924"
+        },
+        {
+          "source": "support-05",
+          "files": 10,
+          "bytes": 595,
+          "hash": "a048b57b6e1ea00fc50676a499bedb415e4a4cf7f70daf222d7a5702473ea975"
+        },
+        {
+          "source": "support-06",
+          "files": 10,
+          "bytes": 595,
+          "hash": "6298441bc684d0e2213ba942bd8958e428b56c60d8a2fae7a3e4a2094816b4ae"
+        },
+        {
+          "source": "support-07",
+          "files": 10,
+          "bytes": 608,
+          "hash": "9a838b1ae248e23b64c13abb1a992de180655a1880e6c6d6d607f4645ef84af9"
+        },
+        {
+          "source": "support-08",
+          "files": 10,
+          "bytes": 608,
+          "hash": "e56696131d05d9792810139b54a6e79789a93e601830222094e9c496c84cc1c2"
+        },
+        {
+          "source": "support-09",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f63e3e7442f931748e79d2629ee65d420c07ded083436c465c2a586ee84cc705"
+        },
+        {
+          "source": "support-10",
+          "files": 10,
+          "bytes": 608,
+          "hash": "67814fe0e776aaf2132331ebad9eba28f40132c78bb899c9a09ef80aac23bac5"
+        },
+        {
+          "source": "support-11",
+          "files": 10,
+          "bytes": 608,
+          "hash": "5815060861f9f39184fa0f030e070d7cb754bfd9cad8fe1417a8d8f160a2025c"
+        },
+        {
+          "source": "support-12",
+          "files": 10,
+          "bytes": 608,
+          "hash": "0c8d84ced3bcb4e24fd6b6f3901116644e075eacbc66fc2a620372b27f1f82e8"
+        },
+        {
+          "source": "support-13",
+          "files": 10,
+          "bytes": 608,
+          "hash": "3275d9702354630ac4453c0d3cd3e8d9c924bae86221463a7a5dc14523300f95"
+        },
+        {
+          "source": "support-14",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f60c3cafcb5514a16e654caa4047df188b8fe56c30c746ae4c5186079b3e296e"
+        },
+        {
+          "source": "support-15",
+          "files": 10,
+          "bytes": 608,
+          "hash": "eb27348884d60bcf76d908db8303f4b266f5de3e5078f3d923bf550d7a6b1d58"
+        },
+        {
+          "source": "support-16",
+          "files": 10,
+          "bytes": 608,
+          "hash": "efefe27601f9199de3d902603a91d0305f0f69b7627148ac95b3e7557887ddbd"
+        }
+      ],
+      "support": [
+        {
+          "source": "booking-web",
+          "path": "src/Reserve.vue",
+          "kind": "symbol",
+          "label": "reserve",
+          "literal": "const reserve =",
+          "line": 4
+        },
+        {
+          "source": "booking-web",
+          "path": "zz/client.ts",
+          "kind": "http-request",
+          "label": "POST /bookings/reserve",
+          "literal": "fetch(",
+          "line": 0
+        },
+        {
+          "source": "booking-web",
+          "path": "src/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/bookings",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "symbol",
+          "label": "Bookings.reserve",
+          "literal": "void reserve(",
+          "line": 6
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "event-publish",
+          "label": "Publish BookingReserved",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 200,
+      "variant": "java-gap",
+      "codePaths": 175,
+      "fileManifestHash": "a2123f94b25b2c702fe7517fd79fe64193a4b5e08ff28061bf01f96bd97b57ab",
+      "sources": [
+        {
+          "source": "booking-web",
+          "files": 10,
+          "bytes": 1216,
+          "hash": "babf3717cd71381aedcad7692907557ef462fc7c3700f9161a94bd182eeb929e"
+        },
+        {
+          "source": "booking-api",
+          "files": 10,
+          "bytes": 1383,
+          "hash": "3000b534beaafd417a9eafe51a41ba7d59ec24e47cf8a197e4f360a96f2169e1"
+        },
+        {
+          "source": "booking-worker",
+          "files": 10,
+          "bytes": 1408,
+          "hash": "c024f476e8460f29420e4a6cae5b6f70fb301ed4772e64ab2f44418ebe68a2f0"
+        },
+        {
+          "source": "support-00",
+          "files": 10,
+          "bytes": 595,
+          "hash": "8b5cc0b4b8a120f0a729e7b4f1d5377aff638c1d2f6e0dafa560791cbdfd6ad2"
+        },
+        {
+          "source": "support-01",
+          "files": 10,
+          "bytes": 595,
+          "hash": "1b35dfa1f83248cf47e606f2851044d87a3dbf29854e6208c8468c8cdf6c1ec5"
+        },
+        {
+          "source": "support-02",
+          "files": 10,
+          "bytes": 595,
+          "hash": "67eeb93e18d6f99e5e93b39b4bd87155aaa5eb35e5484c5bdbca4c2a021959eb"
+        },
+        {
+          "source": "support-03",
+          "files": 10,
+          "bytes": 595,
+          "hash": "faf4d2e0dfa4f3c0e2da67c75ebc6049cbd3676d0774c74e9960488ad743d313"
+        },
+        {
+          "source": "support-04",
+          "files": 10,
+          "bytes": 595,
+          "hash": "7806b1cf6f374f133a9b696c86b0e848f6650b8d2622adc96b10ad3fca1e9924"
+        },
+        {
+          "source": "support-05",
+          "files": 10,
+          "bytes": 595,
+          "hash": "a048b57b6e1ea00fc50676a499bedb415e4a4cf7f70daf222d7a5702473ea975"
+        },
+        {
+          "source": "support-06",
+          "files": 10,
+          "bytes": 595,
+          "hash": "6298441bc684d0e2213ba942bd8958e428b56c60d8a2fae7a3e4a2094816b4ae"
+        },
+        {
+          "source": "support-07",
+          "files": 10,
+          "bytes": 608,
+          "hash": "9a838b1ae248e23b64c13abb1a992de180655a1880e6c6d6d607f4645ef84af9"
+        },
+        {
+          "source": "support-08",
+          "files": 10,
+          "bytes": 608,
+          "hash": "e56696131d05d9792810139b54a6e79789a93e601830222094e9c496c84cc1c2"
+        },
+        {
+          "source": "support-09",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f63e3e7442f931748e79d2629ee65d420c07ded083436c465c2a586ee84cc705"
+        },
+        {
+          "source": "support-10",
+          "files": 10,
+          "bytes": 608,
+          "hash": "67814fe0e776aaf2132331ebad9eba28f40132c78bb899c9a09ef80aac23bac5"
+        },
+        {
+          "source": "support-11",
+          "files": 10,
+          "bytes": 608,
+          "hash": "5815060861f9f39184fa0f030e070d7cb754bfd9cad8fe1417a8d8f160a2025c"
+        },
+        {
+          "source": "support-12",
+          "files": 10,
+          "bytes": 608,
+          "hash": "0c8d84ced3bcb4e24fd6b6f3901116644e075eacbc66fc2a620372b27f1f82e8"
+        },
+        {
+          "source": "support-13",
+          "files": 10,
+          "bytes": 608,
+          "hash": "3275d9702354630ac4453c0d3cd3e8d9c924bae86221463a7a5dc14523300f95"
+        },
+        {
+          "source": "support-14",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f60c3cafcb5514a16e654caa4047df188b8fe56c30c746ae4c5186079b3e296e"
+        },
+        {
+          "source": "support-15",
+          "files": 10,
+          "bytes": 608,
+          "hash": "eb27348884d60bcf76d908db8303f4b266f5de3e5078f3d923bf550d7a6b1d58"
+        },
+        {
+          "source": "support-16",
+          "files": 10,
+          "bytes": 608,
+          "hash": "efefe27601f9199de3d902603a91d0305f0f69b7627148ac95b3e7557887ddbd"
+        }
+      ],
+      "support": [
+        {
+          "source": "booking-web",
+          "path": "src/Reserve.vue",
+          "kind": "symbol",
+          "label": "reserve",
+          "literal": "const reserve =",
+          "line": 4
+        },
+        {
+          "source": "booking-web",
+          "path": "zz/client.ts",
+          "kind": "http-request",
+          "label": "POST /bookings/reserve",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "booking-web",
+          "path": "src/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/bookings",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "symbol",
+          "label": "Bookings.reserve",
+          "literal": "void reserve(",
+          "line": 6
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "event-publish",
+          "label": "Publish BookingReserved",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 200,
+      "variant": "java-case",
+      "codePaths": 175,
+      "fileManifestHash": "dd7d513dcdffd149df46d6bd65ab027ab893557d517baaf7a7ed9d606d948364",
+      "sources": [
+        {
+          "source": "booking-web",
+          "files": 10,
+          "bytes": 1216,
+          "hash": "babf3717cd71381aedcad7692907557ef462fc7c3700f9161a94bd182eeb929e"
+        },
+        {
+          "source": "booking-api",
+          "files": 10,
+          "bytes": 1402,
+          "hash": "c9b12746473ec81a0d0d053381505103f7baadb082a722008156147ce67c2d96"
+        },
+        {
+          "source": "booking-worker",
+          "files": 10,
+          "bytes": 1419,
+          "hash": "fc7d5d5a58d91a40914743bdef3532c62a470c1684b0913c346c2223f860b24a"
+        },
+        {
+          "source": "support-00",
+          "files": 10,
+          "bytes": 595,
+          "hash": "8b5cc0b4b8a120f0a729e7b4f1d5377aff638c1d2f6e0dafa560791cbdfd6ad2"
+        },
+        {
+          "source": "support-01",
+          "files": 10,
+          "bytes": 595,
+          "hash": "1b35dfa1f83248cf47e606f2851044d87a3dbf29854e6208c8468c8cdf6c1ec5"
+        },
+        {
+          "source": "support-02",
+          "files": 10,
+          "bytes": 595,
+          "hash": "67eeb93e18d6f99e5e93b39b4bd87155aaa5eb35e5484c5bdbca4c2a021959eb"
+        },
+        {
+          "source": "support-03",
+          "files": 10,
+          "bytes": 595,
+          "hash": "faf4d2e0dfa4f3c0e2da67c75ebc6049cbd3676d0774c74e9960488ad743d313"
+        },
+        {
+          "source": "support-04",
+          "files": 10,
+          "bytes": 595,
+          "hash": "7806b1cf6f374f133a9b696c86b0e848f6650b8d2622adc96b10ad3fca1e9924"
+        },
+        {
+          "source": "support-05",
+          "files": 10,
+          "bytes": 595,
+          "hash": "a048b57b6e1ea00fc50676a499bedb415e4a4cf7f70daf222d7a5702473ea975"
+        },
+        {
+          "source": "support-06",
+          "files": 10,
+          "bytes": 595,
+          "hash": "6298441bc684d0e2213ba942bd8958e428b56c60d8a2fae7a3e4a2094816b4ae"
+        },
+        {
+          "source": "support-07",
+          "files": 10,
+          "bytes": 608,
+          "hash": "9a838b1ae248e23b64c13abb1a992de180655a1880e6c6d6d607f4645ef84af9"
+        },
+        {
+          "source": "support-08",
+          "files": 10,
+          "bytes": 608,
+          "hash": "e56696131d05d9792810139b54a6e79789a93e601830222094e9c496c84cc1c2"
+        },
+        {
+          "source": "support-09",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f63e3e7442f931748e79d2629ee65d420c07ded083436c465c2a586ee84cc705"
+        },
+        {
+          "source": "support-10",
+          "files": 10,
+          "bytes": 608,
+          "hash": "67814fe0e776aaf2132331ebad9eba28f40132c78bb899c9a09ef80aac23bac5"
+        },
+        {
+          "source": "support-11",
+          "files": 10,
+          "bytes": 608,
+          "hash": "5815060861f9f39184fa0f030e070d7cb754bfd9cad8fe1417a8d8f160a2025c"
+        },
+        {
+          "source": "support-12",
+          "files": 10,
+          "bytes": 608,
+          "hash": "0c8d84ced3bcb4e24fd6b6f3901116644e075eacbc66fc2a620372b27f1f82e8"
+        },
+        {
+          "source": "support-13",
+          "files": 10,
+          "bytes": 608,
+          "hash": "3275d9702354630ac4453c0d3cd3e8d9c924bae86221463a7a5dc14523300f95"
+        },
+        {
+          "source": "support-14",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f60c3cafcb5514a16e654caa4047df188b8fe56c30c746ae4c5186079b3e296e"
+        },
+        {
+          "source": "support-15",
+          "files": 10,
+          "bytes": 608,
+          "hash": "eb27348884d60bcf76d908db8303f4b266f5de3e5078f3d923bf550d7a6b1d58"
+        },
+        {
+          "source": "support-16",
+          "files": 10,
+          "bytes": 608,
+          "hash": "efefe27601f9199de3d902603a91d0305f0f69b7627148ac95b3e7557887ddbd"
+        }
+      ],
+      "support": [
+        {
+          "source": "booking-web",
+          "path": "src/Reserve.vue",
+          "kind": "symbol",
+          "label": "reserve",
+          "literal": "const reserve =",
+          "line": 4
+        },
+        {
+          "source": "booking-web",
+          "path": "zz/client.ts",
+          "kind": "http-request",
+          "label": "POST /bookings/reserve",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "booking-web",
+          "path": "src/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/bookings",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "symbol",
+          "label": "Bookings.reserve",
+          "literal": "void reserve(",
+          "line": 6
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "event-publish",
+          "label": "Publish BookingReserved",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 200,
+      "variant": "consumer-alternative",
+      "codePaths": 175,
+      "fileManifestHash": "15de45b7f1de1c6b6e116014be95ecaa47132a7841f8d0f5fe42c8a9ac40e211",
+      "sources": [
+        {
+          "source": "booking-web",
+          "files": 10,
+          "bytes": 1216,
+          "hash": "babf3717cd71381aedcad7692907557ef462fc7c3700f9161a94bd182eeb929e"
+        },
+        {
+          "source": "booking-api",
+          "files": 10,
+          "bytes": 1383,
+          "hash": "3000b534beaafd417a9eafe51a41ba7d59ec24e47cf8a197e4f360a96f2169e1"
+        },
+        {
+          "source": "booking-worker",
+          "files": 10,
+          "bytes": 2105,
+          "hash": "44546ae72568f1711bd5f42394f10b9eb38b667cb75553571a21ce5e794c6274"
+        },
+        {
+          "source": "support-00",
+          "files": 10,
+          "bytes": 595,
+          "hash": "8b5cc0b4b8a120f0a729e7b4f1d5377aff638c1d2f6e0dafa560791cbdfd6ad2"
+        },
+        {
+          "source": "support-01",
+          "files": 10,
+          "bytes": 595,
+          "hash": "1b35dfa1f83248cf47e606f2851044d87a3dbf29854e6208c8468c8cdf6c1ec5"
+        },
+        {
+          "source": "support-02",
+          "files": 10,
+          "bytes": 595,
+          "hash": "67eeb93e18d6f99e5e93b39b4bd87155aaa5eb35e5484c5bdbca4c2a021959eb"
+        },
+        {
+          "source": "support-03",
+          "files": 10,
+          "bytes": 595,
+          "hash": "faf4d2e0dfa4f3c0e2da67c75ebc6049cbd3676d0774c74e9960488ad743d313"
+        },
+        {
+          "source": "support-04",
+          "files": 10,
+          "bytes": 595,
+          "hash": "7806b1cf6f374f133a9b696c86b0e848f6650b8d2622adc96b10ad3fca1e9924"
+        },
+        {
+          "source": "support-05",
+          "files": 10,
+          "bytes": 595,
+          "hash": "a048b57b6e1ea00fc50676a499bedb415e4a4cf7f70daf222d7a5702473ea975"
+        },
+        {
+          "source": "support-06",
+          "files": 10,
+          "bytes": 595,
+          "hash": "6298441bc684d0e2213ba942bd8958e428b56c60d8a2fae7a3e4a2094816b4ae"
+        },
+        {
+          "source": "support-07",
+          "files": 10,
+          "bytes": 608,
+          "hash": "9a838b1ae248e23b64c13abb1a992de180655a1880e6c6d6d607f4645ef84af9"
+        },
+        {
+          "source": "support-08",
+          "files": 10,
+          "bytes": 608,
+          "hash": "e56696131d05d9792810139b54a6e79789a93e601830222094e9c496c84cc1c2"
+        },
+        {
+          "source": "support-09",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f63e3e7442f931748e79d2629ee65d420c07ded083436c465c2a586ee84cc705"
+        },
+        {
+          "source": "support-10",
+          "files": 10,
+          "bytes": 608,
+          "hash": "67814fe0e776aaf2132331ebad9eba28f40132c78bb899c9a09ef80aac23bac5"
+        },
+        {
+          "source": "support-11",
+          "files": 10,
+          "bytes": 608,
+          "hash": "5815060861f9f39184fa0f030e070d7cb754bfd9cad8fe1417a8d8f160a2025c"
+        },
+        {
+          "source": "support-12",
+          "files": 10,
+          "bytes": 608,
+          "hash": "0c8d84ced3bcb4e24fd6b6f3901116644e075eacbc66fc2a620372b27f1f82e8"
+        },
+        {
+          "source": "support-13",
+          "files": 10,
+          "bytes": 608,
+          "hash": "3275d9702354630ac4453c0d3cd3e8d9c924bae86221463a7a5dc14523300f95"
+        },
+        {
+          "source": "support-14",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f60c3cafcb5514a16e654caa4047df188b8fe56c30c746ae4c5186079b3e296e"
+        },
+        {
+          "source": "support-15",
+          "files": 10,
+          "bytes": 608,
+          "hash": "eb27348884d60bcf76d908db8303f4b266f5de3e5078f3d923bf550d7a6b1d58"
+        },
+        {
+          "source": "support-16",
+          "files": 10,
+          "bytes": 608,
+          "hash": "efefe27601f9199de3d902603a91d0305f0f69b7627148ac95b3e7557887ddbd"
+        }
+      ],
+      "support": [
+        {
+          "source": "booking-web",
+          "path": "src/Reserve.vue",
+          "kind": "symbol",
+          "label": "reserve",
+          "literal": "const reserve =",
+          "line": 4
+        },
+        {
+          "source": "booking-web",
+          "path": "zz/client.ts",
+          "kind": "http-request",
+          "label": "POST /bookings/reserve",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "booking-web",
+          "path": "src/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/bookings",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "symbol",
+          "label": "Bookings.reserve",
+          "literal": "void reserve(",
+          "line": 6
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "event-publish",
+          "label": "Publish BookingReserved",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 800,
+      "variant": "roots",
+      "codePaths": 775,
+      "fileManifestHash": "1e8c401a7234931c3b834956d2cfa5ce450c57ce42e8cd2e3ae0a636e2ff804d",
+      "sources": [
+        {
+          "source": "booking-web",
+          "files": 40,
+          "bytes": 4345,
+          "hash": "494e20019fcc15e6e439bc2c90015f5048b25849a750f4a76c31b4543190adde"
+        },
+        {
+          "source": "booking-api",
+          "files": 40,
+          "bytes": 3143,
+          "hash": "43f6d56322b6376110741fdbc769827d214f78b1f5fae827304eb5a21c6f83ac"
+        },
+        {
+          "source": "booking-worker",
+          "files": 40,
+          "bytes": 3181,
+          "hash": "a9171df37aad533ff697d760337bd86e86673fd31edd53097acc0eb7f93febca"
+        },
+        {
+          "source": "support-00",
+          "files": 40,
+          "bytes": 2363,
+          "hash": "59c5382b2626e47a38f1ffdb9686236e4b109b9238bcd4a34374edd176fa4777"
+        },
+        {
+          "source": "support-01",
+          "files": 40,
+          "bytes": 2363,
+          "hash": "3cd57358d2bf7804c1fcd408ecc7b4d063071a6912d9344c3c31234d9e5aad77"
+        },
+        {
+          "source": "support-02",
+          "files": 40,
+          "bytes": 2363,
+          "hash": "623aae692f4d67530feab38719821ae15203d17dadfc84c2b2407e3028db9fbc"
+        },
+        {
+          "source": "support-03",
+          "files": 40,
+          "bytes": 2363,
+          "hash": "01a2b9ecacf048dc4f0c9d38b283b7e4e6a541e003c467c24c16ef34c32f0dfb"
+        },
+        {
+          "source": "support-04",
+          "files": 40,
+          "bytes": 2363,
+          "hash": "222ee93fd29d7b50b4e11511171b1d70d832cef66b70fce19caab0e7b50a86da"
+        },
+        {
+          "source": "support-05",
+          "files": 40,
+          "bytes": 2363,
+          "hash": "90e632152a75d0c2cc554848a8e09059537d326bc98a6a7f620d9bd8f1400dbd"
+        },
+        {
+          "source": "support-06",
+          "files": 40,
+          "bytes": 2363,
+          "hash": "040921a7cebbacee5990fefab1b6e481ec7b787592461370706b7ae5afd8d534"
+        },
+        {
+          "source": "support-07",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "8552bd3cfc9e831d7e7bfbadae68603a8f4199bdb91f59a8a4cce0ee138fbfa5"
+        },
+        {
+          "source": "support-08",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "caf0901d0e390e7d41fa451f4eb52a055fe34c99177e82413838acdad1045ed6"
+        },
+        {
+          "source": "support-09",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "a177acd53848f0d9924c24541c5968597aee650a5a42438b0f89860dce7875f2"
+        },
+        {
+          "source": "support-10",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "864d65afc3a1a1f563a09c8ec0078906727993d2a066805b3cab42da8c21de41"
+        },
+        {
+          "source": "support-11",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "b14a23b3168bc106d84bf78f34e29b6ca1b0139fec0301e3d2457e412c8f5ae6"
+        },
+        {
+          "source": "support-12",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "66e6bfdeeafb2dccdfbd9568d12fa5fc45883ab076b523c328152e57afad54f6"
+        },
+        {
+          "source": "support-13",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "bb29700bdeb7f24d4963788ccf7dc2c09fede91cec95c713baf01873c1ffe6b9"
+        },
+        {
+          "source": "support-14",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "bfe76205318fc227705af353aaaa0e01e3d5c9cb8f9b0d9aaccdf8ede379d553"
+        },
+        {
+          "source": "support-15",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "2ed965ffdc8733010837ae18b8c5fdb2a7a1daf156b1b372005688f67ff55d03"
+        },
+        {
+          "source": "support-16",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "7b5798200c40dc9d8b9b4894a77ff091bb1c6f0e41212a83df7e17c98eb2bb5e"
+        }
+      ],
+      "support": [
+        {
+          "source": "booking-web",
+          "path": "src/Reserve.vue",
+          "kind": "symbol",
+          "label": "reserve",
+          "literal": "const reserve =",
+          "line": 4
+        },
+        {
+          "source": "booking-web",
+          "path": "zz/client.ts",
+          "kind": "http-request",
+          "label": "POST /bookings/reserve",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "booking-web",
+          "path": "src/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/bookings",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "symbol",
+          "label": "Bookings.reserve",
+          "literal": "void reserve(",
+          "line": 6
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "event-publish",
+          "label": "Publish BookingReserved",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 2400,
+      "variant": "branches",
+      "codePaths": 2375,
+      "fileManifestHash": "8a9e36a8a751d446db8586379ab650f40b762daa584f51d0dc1456b6c4675c9d",
+      "sources": [
+        {
+          "source": "booking-web",
+          "files": 120,
+          "bytes": 19859,
+          "hash": "61fdd3b4e5fe90858116fab92e15eb3f45b341f5e85f2a797a86bb2be0872d4e"
+        },
+        {
+          "source": "booking-api",
+          "files": 120,
+          "bytes": 7893,
+          "hash": "e1ef6985122f73af4e2e1c255bfd011029cc20436ea0cd23aaade7c76c2faff3"
+        },
+        {
+          "source": "booking-worker",
+          "files": 120,
+          "bytes": 7933,
+          "hash": "f9d77149a150d054876a6bc87d533ae1798ac8c75307a5bc61a741e4f761313f"
+        },
+        {
+          "source": "support-00",
+          "files": 120,
+          "bytes": 7121,
+          "hash": "20e13fc8611d19c24e5dd153c1b31cbdaabd905dc9e9821b70cff0d32bd077fd"
+        },
+        {
+          "source": "support-01",
+          "files": 120,
+          "bytes": 7121,
+          "hash": "5b05f0edfc927bf11640692d4ab1d1c5df8dd094a10b745f51d2b8fdbac74469"
+        },
+        {
+          "source": "support-02",
+          "files": 120,
+          "bytes": 7121,
+          "hash": "ecccab33d1da19ccc19d4eb8110374eec873523f4ee4b9351f6f5ee5fef45cb2"
+        },
+        {
+          "source": "support-03",
+          "files": 120,
+          "bytes": 7121,
+          "hash": "36fc7d3175d0f6edae05a47776549569b56950fdf0ac5214006d6611f359cbd3"
+        },
+        {
+          "source": "support-04",
+          "files": 120,
+          "bytes": 7121,
+          "hash": "d9c8171ef63b39d7942e2f6263228e9ff8e1c85af106275627a023687d4f63b5"
+        },
+        {
+          "source": "support-05",
+          "files": 120,
+          "bytes": 7121,
+          "hash": "f81a2693325a72ddff971b7ee9628e2ed8bbf54c8d6aa6607198499ca58a2548"
+        },
+        {
+          "source": "support-06",
+          "files": 120,
+          "bytes": 7121,
+          "hash": "46d879bb066bd3e32fef6b3274e43309595c59558c66fe427c950800ffa5368d"
+        },
+        {
+          "source": "support-07",
+          "files": 120,
+          "bytes": 7299,
+          "hash": "2c1f8f5932e1c95d2089e0510b211f2756ee8c69650d66dd3c089e69dc306424"
+        },
+        {
+          "source": "support-08",
+          "files": 120,
+          "bytes": 7299,
+          "hash": "f52a4eed79171ae95b4ff789ffa9100549d08b4a86801a4ad4fbe01b792fbe53"
+        },
+        {
+          "source": "support-09",
+          "files": 120,
+          "bytes": 7299,
+          "hash": "12c3e811bd99a7ccac936755e040a17be4be880e162394f6a1a639ee63b01729"
+        },
+        {
+          "source": "support-10",
+          "files": 120,
+          "bytes": 7299,
+          "hash": "903d5399631819813b44e16a3678e9eacfc5e774e5364ed5e448096284828a21"
+        },
+        {
+          "source": "support-11",
+          "files": 120,
+          "bytes": 7299,
+          "hash": "0b6468758b2848a421f784c4ea5179050af5d45b2380df22f8b9c4a04995e5da"
+        },
+        {
+          "source": "support-12",
+          "files": 120,
+          "bytes": 7299,
+          "hash": "092c6c830807fda73ff9955b47050588012a8305090de210beddb526073b4c00"
+        },
+        {
+          "source": "support-13",
+          "files": 120,
+          "bytes": 7299,
+          "hash": "9e728b1edcfce3626bd0d34be500f5dd384eef7642a1c00796d759c635681a13"
+        },
+        {
+          "source": "support-14",
+          "files": 120,
+          "bytes": 7299,
+          "hash": "2b72cc4b81e795be0c60d1fd52a0188265d5b7eb0d30b4db28135a821f922e1e"
+        },
+        {
+          "source": "support-15",
+          "files": 120,
+          "bytes": 7299,
+          "hash": "9502eff0d575ee6f13aa2320a529d2c5494c268485e682ffb3a05068bce50989"
+        },
+        {
+          "source": "support-16",
+          "files": 120,
+          "bytes": 7299,
+          "hash": "f1d8f35bf9cf2edb6dd53b0ce4e754c4912ea7ab270b26b35088e749c5a03c28"
+        }
+      ],
+      "support": [
+        {
+          "source": "booking-web",
+          "path": "src/Reserve.vue",
+          "kind": "symbol",
+          "label": "reserve",
+          "literal": "const reserve =",
+          "line": 4
+        },
+        {
+          "source": "booking-web",
+          "path": "zz/client.ts",
+          "kind": "http-request",
+          "label": "POST /bookings/reserve",
+          "literal": "fetch(",
+          "line": 0
+        },
+        {
+          "source": "booking-web",
+          "path": "src/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/bookings",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "symbol",
+          "label": "Bookings.reserve",
+          "literal": "void reserve(",
+          "line": 6
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "event-publish",
+          "label": "Publish BookingReserved",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 800,
+      "variant": "cycle",
+      "codePaths": 775,
+      "fileManifestHash": "ed46d43719b99a63cc6f168aa0a227ad30ae0ad6f751d59f7329534b9dba1168",
+      "sources": [
+        {
+          "source": "booking-web",
+          "files": 40,
+          "bytes": 3052,
+          "hash": "c6b4eec2cd9a46fc5618dbcc453a450486b5ceece1f0c45662859349a0e55fd6"
+        },
+        {
+          "source": "booking-api",
+          "files": 40,
+          "bytes": 3143,
+          "hash": "43f6d56322b6376110741fdbc769827d214f78b1f5fae827304eb5a21c6f83ac"
+        },
+        {
+          "source": "booking-worker",
+          "files": 40,
+          "bytes": 3181,
+          "hash": "a9171df37aad533ff697d760337bd86e86673fd31edd53097acc0eb7f93febca"
+        },
+        {
+          "source": "support-00",
+          "files": 40,
+          "bytes": 2363,
+          "hash": "59c5382b2626e47a38f1ffdb9686236e4b109b9238bcd4a34374edd176fa4777"
+        },
+        {
+          "source": "support-01",
+          "files": 40,
+          "bytes": 2363,
+          "hash": "3cd57358d2bf7804c1fcd408ecc7b4d063071a6912d9344c3c31234d9e5aad77"
+        },
+        {
+          "source": "support-02",
+          "files": 40,
+          "bytes": 2363,
+          "hash": "623aae692f4d67530feab38719821ae15203d17dadfc84c2b2407e3028db9fbc"
+        },
+        {
+          "source": "support-03",
+          "files": 40,
+          "bytes": 2363,
+          "hash": "01a2b9ecacf048dc4f0c9d38b283b7e4e6a541e003c467c24c16ef34c32f0dfb"
+        },
+        {
+          "source": "support-04",
+          "files": 40,
+          "bytes": 2363,
+          "hash": "222ee93fd29d7b50b4e11511171b1d70d832cef66b70fce19caab0e7b50a86da"
+        },
+        {
+          "source": "support-05",
+          "files": 40,
+          "bytes": 2363,
+          "hash": "90e632152a75d0c2cc554848a8e09059537d326bc98a6a7f620d9bd8f1400dbd"
+        },
+        {
+          "source": "support-06",
+          "files": 40,
+          "bytes": 2363,
+          "hash": "040921a7cebbacee5990fefab1b6e481ec7b787592461370706b7ae5afd8d534"
+        },
+        {
+          "source": "support-07",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "8552bd3cfc9e831d7e7bfbadae68603a8f4199bdb91f59a8a4cce0ee138fbfa5"
+        },
+        {
+          "source": "support-08",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "caf0901d0e390e7d41fa451f4eb52a055fe34c99177e82413838acdad1045ed6"
+        },
+        {
+          "source": "support-09",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "a177acd53848f0d9924c24541c5968597aee650a5a42438b0f89860dce7875f2"
+        },
+        {
+          "source": "support-10",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "864d65afc3a1a1f563a09c8ec0078906727993d2a066805b3cab42da8c21de41"
+        },
+        {
+          "source": "support-11",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "b14a23b3168bc106d84bf78f34e29b6ca1b0139fec0301e3d2457e412c8f5ae6"
+        },
+        {
+          "source": "support-12",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "66e6bfdeeafb2dccdfbd9568d12fa5fc45883ab076b523c328152e57afad54f6"
+        },
+        {
+          "source": "support-13",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "bb29700bdeb7f24d4963788ccf7dc2c09fede91cec95c713baf01873c1ffe6b9"
+        },
+        {
+          "source": "support-14",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "bfe76205318fc227705af353aaaa0e01e3d5c9cb8f9b0d9aaccdf8ede379d553"
+        },
+        {
+          "source": "support-15",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "2ed965ffdc8733010837ae18b8c5fdb2a7a1daf156b1b372005688f67ff55d03"
+        },
+        {
+          "source": "support-16",
+          "files": 40,
+          "bytes": 2421,
+          "hash": "7b5798200c40dc9d8b9b4894a77ff091bb1c6f0e41212a83df7e17c98eb2bb5e"
+        }
+      ],
+      "support": [
+        {
+          "source": "booking-web",
+          "path": "src/Reserve.vue",
+          "kind": "symbol",
+          "label": "reserve",
+          "literal": "const reserve =",
+          "line": 4
+        },
+        {
+          "source": "booking-web",
+          "path": "zz/client.ts",
+          "kind": "http-request",
+          "label": "POST /bookings/reserve",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "booking-web",
+          "path": "src/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/bookings",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "symbol",
+          "label": "Bookings.reserve",
+          "literal": "void reserve(",
+          "line": 6
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "event-publish",
+          "label": "Publish BookingReserved",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 200,
+      "variant": "symlink-target",
+      "codePaths": 175,
+      "fileManifestHash": "8d5ec5e2c84ba22f179f257ced97e695e7796f4a66cfcc334e622fa88088a7ab",
+      "sources": [
+        {
+          "source": "booking-web",
+          "files": 10,
+          "bytes": 1172,
+          "hash": "4bf11f2fda0646140e6816decf786c2720310d71b77f91fb1882d9bd3637c9d5"
+        },
+        {
+          "source": "booking-api",
+          "files": 10,
+          "bytes": 1383,
+          "hash": "3000b534beaafd417a9eafe51a41ba7d59ec24e47cf8a197e4f360a96f2169e1"
+        },
+        {
+          "source": "booking-worker",
+          "files": 10,
+          "bytes": 1419,
+          "hash": "fc7d5d5a58d91a40914743bdef3532c62a470c1684b0913c346c2223f860b24a"
+        },
+        {
+          "source": "support-00",
+          "files": 10,
+          "bytes": 595,
+          "hash": "8b5cc0b4b8a120f0a729e7b4f1d5377aff638c1d2f6e0dafa560791cbdfd6ad2"
+        },
+        {
+          "source": "support-01",
+          "files": 10,
+          "bytes": 595,
+          "hash": "1b35dfa1f83248cf47e606f2851044d87a3dbf29854e6208c8468c8cdf6c1ec5"
+        },
+        {
+          "source": "support-02",
+          "files": 10,
+          "bytes": 595,
+          "hash": "67eeb93e18d6f99e5e93b39b4bd87155aaa5eb35e5484c5bdbca4c2a021959eb"
+        },
+        {
+          "source": "support-03",
+          "files": 10,
+          "bytes": 595,
+          "hash": "faf4d2e0dfa4f3c0e2da67c75ebc6049cbd3676d0774c74e9960488ad743d313"
+        },
+        {
+          "source": "support-04",
+          "files": 10,
+          "bytes": 595,
+          "hash": "7806b1cf6f374f133a9b696c86b0e848f6650b8d2622adc96b10ad3fca1e9924"
+        },
+        {
+          "source": "support-05",
+          "files": 10,
+          "bytes": 595,
+          "hash": "a048b57b6e1ea00fc50676a499bedb415e4a4cf7f70daf222d7a5702473ea975"
+        },
+        {
+          "source": "support-06",
+          "files": 10,
+          "bytes": 595,
+          "hash": "6298441bc684d0e2213ba942bd8958e428b56c60d8a2fae7a3e4a2094816b4ae"
+        },
+        {
+          "source": "support-07",
+          "files": 10,
+          "bytes": 608,
+          "hash": "9a838b1ae248e23b64c13abb1a992de180655a1880e6c6d6d607f4645ef84af9"
+        },
+        {
+          "source": "support-08",
+          "files": 10,
+          "bytes": 608,
+          "hash": "e56696131d05d9792810139b54a6e79789a93e601830222094e9c496c84cc1c2"
+        },
+        {
+          "source": "support-09",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f63e3e7442f931748e79d2629ee65d420c07ded083436c465c2a586ee84cc705"
+        },
+        {
+          "source": "support-10",
+          "files": 10,
+          "bytes": 608,
+          "hash": "67814fe0e776aaf2132331ebad9eba28f40132c78bb899c9a09ef80aac23bac5"
+        },
+        {
+          "source": "support-11",
+          "files": 10,
+          "bytes": 608,
+          "hash": "5815060861f9f39184fa0f030e070d7cb754bfd9cad8fe1417a8d8f160a2025c"
+        },
+        {
+          "source": "support-12",
+          "files": 10,
+          "bytes": 608,
+          "hash": "0c8d84ced3bcb4e24fd6b6f3901116644e075eacbc66fc2a620372b27f1f82e8"
+        },
+        {
+          "source": "support-13",
+          "files": 10,
+          "bytes": 608,
+          "hash": "3275d9702354630ac4453c0d3cd3e8d9c924bae86221463a7a5dc14523300f95"
+        },
+        {
+          "source": "support-14",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f60c3cafcb5514a16e654caa4047df188b8fe56c30c746ae4c5186079b3e296e"
+        },
+        {
+          "source": "support-15",
+          "files": 10,
+          "bytes": 608,
+          "hash": "eb27348884d60bcf76d908db8303f4b266f5de3e5078f3d923bf550d7a6b1d58"
+        },
+        {
+          "source": "support-16",
+          "files": 10,
+          "bytes": 608,
+          "hash": "efefe27601f9199de3d902603a91d0305f0f69b7627148ac95b3e7557887ddbd"
+        }
+      ],
+      "support": [
+        {
+          "source": "booking-web",
+          "path": "src/Reserve.vue",
+          "kind": "symbol",
+          "label": "reserve",
+          "literal": "const reserve =",
+          "line": 4
+        },
+        {
+          "source": "booking-web",
+          "path": "zz/client.ts",
+          "kind": "http-request",
+          "label": "POST /bookings/reserve",
+          "literal": "fetch(",
+          "line": 0
+        },
+        {
+          "source": "booking-web",
+          "path": "src/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/bookings",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "symbol",
+          "label": "Bookings.reserve",
+          "literal": "void reserve(",
+          "line": 6
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "event-publish",
+          "label": "Publish BookingReserved",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 200,
+      "variant": "opaque-ancestor",
+      "codePaths": 174,
+      "fileManifestHash": "41d05f9d7c22a730056a6907cede1aa3ac0203ff01b16655388d3ee0d2be99d8",
+      "sources": [
+        {
+          "source": "booking-web",
+          "files": 10,
+          "bytes": 1163,
+          "hash": "38c89757614939263240d45e65218c6d56b11961fd1ae52a1c605c7e2e33eb2d"
+        },
+        {
+          "source": "booking-api",
+          "files": 10,
+          "bytes": 1383,
+          "hash": "3000b534beaafd417a9eafe51a41ba7d59ec24e47cf8a197e4f360a96f2169e1"
+        },
+        {
+          "source": "booking-worker",
+          "files": 10,
+          "bytes": 1419,
+          "hash": "fc7d5d5a58d91a40914743bdef3532c62a470c1684b0913c346c2223f860b24a"
+        },
+        {
+          "source": "support-00",
+          "files": 10,
+          "bytes": 595,
+          "hash": "8b5cc0b4b8a120f0a729e7b4f1d5377aff638c1d2f6e0dafa560791cbdfd6ad2"
+        },
+        {
+          "source": "support-01",
+          "files": 10,
+          "bytes": 595,
+          "hash": "1b35dfa1f83248cf47e606f2851044d87a3dbf29854e6208c8468c8cdf6c1ec5"
+        },
+        {
+          "source": "support-02",
+          "files": 10,
+          "bytes": 595,
+          "hash": "67eeb93e18d6f99e5e93b39b4bd87155aaa5eb35e5484c5bdbca4c2a021959eb"
+        },
+        {
+          "source": "support-03",
+          "files": 10,
+          "bytes": 595,
+          "hash": "faf4d2e0dfa4f3c0e2da67c75ebc6049cbd3676d0774c74e9960488ad743d313"
+        },
+        {
+          "source": "support-04",
+          "files": 10,
+          "bytes": 595,
+          "hash": "7806b1cf6f374f133a9b696c86b0e848f6650b8d2622adc96b10ad3fca1e9924"
+        },
+        {
+          "source": "support-05",
+          "files": 10,
+          "bytes": 595,
+          "hash": "a048b57b6e1ea00fc50676a499bedb415e4a4cf7f70daf222d7a5702473ea975"
+        },
+        {
+          "source": "support-06",
+          "files": 10,
+          "bytes": 595,
+          "hash": "6298441bc684d0e2213ba942bd8958e428b56c60d8a2fae7a3e4a2094816b4ae"
+        },
+        {
+          "source": "support-07",
+          "files": 10,
+          "bytes": 608,
+          "hash": "9a838b1ae248e23b64c13abb1a992de180655a1880e6c6d6d607f4645ef84af9"
+        },
+        {
+          "source": "support-08",
+          "files": 10,
+          "bytes": 608,
+          "hash": "e56696131d05d9792810139b54a6e79789a93e601830222094e9c496c84cc1c2"
+        },
+        {
+          "source": "support-09",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f63e3e7442f931748e79d2629ee65d420c07ded083436c465c2a586ee84cc705"
+        },
+        {
+          "source": "support-10",
+          "files": 10,
+          "bytes": 608,
+          "hash": "67814fe0e776aaf2132331ebad9eba28f40132c78bb899c9a09ef80aac23bac5"
+        },
+        {
+          "source": "support-11",
+          "files": 10,
+          "bytes": 608,
+          "hash": "5815060861f9f39184fa0f030e070d7cb754bfd9cad8fe1417a8d8f160a2025c"
+        },
+        {
+          "source": "support-12",
+          "files": 10,
+          "bytes": 608,
+          "hash": "0c8d84ced3bcb4e24fd6b6f3901116644e075eacbc66fc2a620372b27f1f82e8"
+        },
+        {
+          "source": "support-13",
+          "files": 10,
+          "bytes": 608,
+          "hash": "3275d9702354630ac4453c0d3cd3e8d9c924bae86221463a7a5dc14523300f95"
+        },
+        {
+          "source": "support-14",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f60c3cafcb5514a16e654caa4047df188b8fe56c30c746ae4c5186079b3e296e"
+        },
+        {
+          "source": "support-15",
+          "files": 10,
+          "bytes": 608,
+          "hash": "eb27348884d60bcf76d908db8303f4b266f5de3e5078f3d923bf550d7a6b1d58"
+        },
+        {
+          "source": "support-16",
+          "files": 10,
+          "bytes": 608,
+          "hash": "efefe27601f9199de3d902603a91d0305f0f69b7627148ac95b3e7557887ddbd"
+        }
+      ],
+      "support": [
+        {
+          "source": "booking-web",
+          "path": "src/Reserve.vue",
+          "kind": "symbol",
+          "label": "reserve",
+          "literal": "const reserve =",
+          "line": 4
+        },
+        {
+          "source": "booking-web",
+          "path": "zz/client.ts",
+          "kind": "http-request",
+          "label": "POST /bookings/reserve",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "booking-web",
+          "path": "src/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/bookings",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "symbol",
+          "label": "Bookings.reserve",
+          "literal": "void reserve(",
+          "line": 6
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "event-publish",
+          "label": "Publish BookingReserved",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 200,
+      "variant": "gitlink",
+      "codePaths": 174,
+      "fileManifestHash": "8f11a0b46356d9e576705e914659c7aee06637d0fee9a36c99f2535ed92d43c2",
+      "sources": [
+        {
+          "source": "booking-web",
+          "files": 10,
+          "bytes": 1216,
+          "hash": "babf3717cd71381aedcad7692907557ef462fc7c3700f9161a94bd182eeb929e"
+        },
+        {
+          "source": "booking-api",
+          "files": 10,
+          "bytes": 1383,
+          "hash": "3000b534beaafd417a9eafe51a41ba7d59ec24e47cf8a197e4f360a96f2169e1"
+        },
+        {
+          "source": "booking-worker",
+          "files": 10,
+          "bytes": 1555,
+          "hash": "0d947f10b09e70f5de01f1972d8660e87dc9cee129a4832b59908d59d64e9b47"
+        },
+        {
+          "source": "support-00",
+          "files": 10,
+          "bytes": 595,
+          "hash": "8b5cc0b4b8a120f0a729e7b4f1d5377aff638c1d2f6e0dafa560791cbdfd6ad2"
+        },
+        {
+          "source": "support-01",
+          "files": 10,
+          "bytes": 595,
+          "hash": "1b35dfa1f83248cf47e606f2851044d87a3dbf29854e6208c8468c8cdf6c1ec5"
+        },
+        {
+          "source": "support-02",
+          "files": 10,
+          "bytes": 595,
+          "hash": "67eeb93e18d6f99e5e93b39b4bd87155aaa5eb35e5484c5bdbca4c2a021959eb"
+        },
+        {
+          "source": "support-03",
+          "files": 10,
+          "bytes": 595,
+          "hash": "faf4d2e0dfa4f3c0e2da67c75ebc6049cbd3676d0774c74e9960488ad743d313"
+        },
+        {
+          "source": "support-04",
+          "files": 10,
+          "bytes": 595,
+          "hash": "7806b1cf6f374f133a9b696c86b0e848f6650b8d2622adc96b10ad3fca1e9924"
+        },
+        {
+          "source": "support-05",
+          "files": 10,
+          "bytes": 595,
+          "hash": "a048b57b6e1ea00fc50676a499bedb415e4a4cf7f70daf222d7a5702473ea975"
+        },
+        {
+          "source": "support-06",
+          "files": 10,
+          "bytes": 595,
+          "hash": "6298441bc684d0e2213ba942bd8958e428b56c60d8a2fae7a3e4a2094816b4ae"
+        },
+        {
+          "source": "support-07",
+          "files": 10,
+          "bytes": 608,
+          "hash": "9a838b1ae248e23b64c13abb1a992de180655a1880e6c6d6d607f4645ef84af9"
+        },
+        {
+          "source": "support-08",
+          "files": 10,
+          "bytes": 608,
+          "hash": "e56696131d05d9792810139b54a6e79789a93e601830222094e9c496c84cc1c2"
+        },
+        {
+          "source": "support-09",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f63e3e7442f931748e79d2629ee65d420c07ded083436c465c2a586ee84cc705"
+        },
+        {
+          "source": "support-10",
+          "files": 10,
+          "bytes": 608,
+          "hash": "67814fe0e776aaf2132331ebad9eba28f40132c78bb899c9a09ef80aac23bac5"
+        },
+        {
+          "source": "support-11",
+          "files": 10,
+          "bytes": 608,
+          "hash": "5815060861f9f39184fa0f030e070d7cb754bfd9cad8fe1417a8d8f160a2025c"
+        },
+        {
+          "source": "support-12",
+          "files": 10,
+          "bytes": 608,
+          "hash": "0c8d84ced3bcb4e24fd6b6f3901116644e075eacbc66fc2a620372b27f1f82e8"
+        },
+        {
+          "source": "support-13",
+          "files": 10,
+          "bytes": 608,
+          "hash": "3275d9702354630ac4453c0d3cd3e8d9c924bae86221463a7a5dc14523300f95"
+        },
+        {
+          "source": "support-14",
+          "files": 10,
+          "bytes": 608,
+          "hash": "f60c3cafcb5514a16e654caa4047df188b8fe56c30c746ae4c5186079b3e296e"
+        },
+        {
+          "source": "support-15",
+          "files": 10,
+          "bytes": 608,
+          "hash": "eb27348884d60bcf76d908db8303f4b266f5de3e5078f3d923bf550d7a6b1d58"
+        },
+        {
+          "source": "support-16",
+          "files": 10,
+          "bytes": 608,
+          "hash": "efefe27601f9199de3d902603a91d0305f0f69b7627148ac95b3e7557887ddbd"
+        }
+      ],
+      "support": [
+        {
+          "source": "booking-web",
+          "path": "src/Reserve.vue",
+          "kind": "symbol",
+          "label": "reserve",
+          "literal": "const reserve =",
+          "line": 4
+        },
+        {
+          "source": "booking-web",
+          "path": "zz/client.ts",
+          "kind": "http-request",
+          "label": "POST /bookings/reserve",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "booking-web",
+          "path": "src/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/bookings",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "symbol",
+          "label": "Bookings.reserve",
+          "literal": "void reserve(",
+          "line": 6
+        },
+        {
+          "source": "booking-api",
+          "path": "src/Bookings.java",
+          "kind": "event-publish",
+          "label": "Publish BookingReserved",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "booking-worker",
+          "path": "src/BookingConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    }
+  ]
+}
