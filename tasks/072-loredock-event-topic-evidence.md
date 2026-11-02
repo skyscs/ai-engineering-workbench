@@ -1,6 +1,6 @@
 # Task 072 — Event-topic evidence contract
 
-Status: scoped before implementation, 2026-11-03.
+Status: design completed and locally reviewed, 2026-11-03. Scope commit `fddad3b`.
 
 ## Baseline
 
@@ -28,3 +28,17 @@ Trace the current rule and retained failure, choose the smallest defensible succ
 and define its fresh prospective comparison/receipt cases and stop conditions. Record an
 ADR and update the active development/integration contract. Review all new local document
 targets and the diff; merge only after both exact-head CI events succeed.
+
+## Result
+
+The [topic-evidence contract](../docs/loredock/EVENT_TOPIC_EVIDENCE.md) and
+[ADR 0051](../docs/decisions/0051-loredock-literal-event-topics.md) select exact, bounded
+direct-literal equality while retaining complete consumer alternatives, admitted contract
+evidence and original support. Unbound settings do not select or suppress this candidate;
+dynamic expressions abstain without a hidden legacy fallback. Declared environment and
+runtime deployment remain distinct. New identities and receipt validation are mandatory.
+
+The next fresh qualification must test both useful paths and conservative losses, and
+journal raw observations before typed source/path/kind assertions. Task 071's failure and
+bytes remain unchanged. Source/reference and complete-diff review cover this design-only
+change; no runtime, model, demo or frozen evaluation was executed.

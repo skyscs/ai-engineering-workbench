@@ -210,8 +210,13 @@ receipt experiment. Its frozen gate fails: 86/88 cases pass; a business-specific
 requirement drops the useful event hop, and a harness label-only lookup prevents the
 changed-alternative history check. [First outcomes](docs/fixtures/loredock-path-receipts/README.md)
 are retained without reruns. Receipt/history integrity and resource checks are useful but
-do not permit production promotion. Next: define event-topic evidence/ambiguity semantics,
-then qualify a fresh successor with role/source/path-aware observer identities.
+do not permit production promotion.
+[Task 072](tasks/072-loredock-event-topic-evidence.md) defines the separately versioned
+[topic-evidence contract](docs/loredock/EVENT_TOPIC_EVIDENCE.md): exact bounded direct Java
+literals, complete consumer/contract evidence, explicit dynamic-expression abstention and
+no inferred JSON-setting binding. Next: freeze fresh useful-path, ambiguity, support and
+receipt-lifecycle cases, then qualify that offline successor with typed observer identities
+and raw observations journaled before assertions. Existing production adapters stay intact.
 The user demo and feedback stay separate from these checks; broader semantic synthesis
 and question-context changes remain open.
 Preserve all failed evaluations;

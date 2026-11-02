@@ -233,3 +233,9 @@ Other integrity/lifecycle/resource evidence is retained, without relabeling the 
 or rerunning the matrix. Next: a separately scoped topic-evidence contract and fresh
 qualification with typed oracle identities and early raw-observation journaling. No new
 answer/review/candidate adapter or model budget follows from the experiment.
+
+Task 072 records the [successor topic-evidence contract](EVENT_TOPIC_EVIDENCE.md). The
+fresh offline comparison must use explicit direct literals, preserve contract/consumer
+completeness and original support, and identify its changed derivation separately. Dynamic
+expressions remain unknown. A complete useful path and a valid typed observer are mandatory
+alongside receipt integrity; the earlier shortened-path resource pass is insufficient.

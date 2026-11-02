@@ -417,3 +417,9 @@ follows the map index. Existing answer, candidate and review adapters remain sep
 consumer boundary, without implementing it: qualify immutable receipts offline before
 persisting connected-path context. Historical readability, current applicability and
 question relevance are separate contracts. Existing consumer adapters stay authoritative.
+
+[ADR 0051](docs/decisions/0051-loredock-literal-event-topics.md) scopes a fresh offline
+event candidate from direct topic literals after the receipt experiment exposed a fixed
+configuration-key assumption. It retains complete contract/consumer evidence and unknown
+runtime scope, with new derivation identities. Production matching and consumers remain
+unchanged pending qualification and a separate integration decision.
