@@ -1,0 +1,62 @@
+
+> ai-engineering-workbench@0.1.0 check /home/toshiba/aew/worktrees/task069-connected-path-browser
+> pnpm typecheck && pnpm test && pnpm build
+
+
+> ai-engineering-workbench@0.1.0 typecheck /home/toshiba/aew/worktrees/task069-connected-path-browser
+> pnpm build:packages && pnpm -r typecheck
+
+
+> ai-engineering-workbench@0.1.0 build:packages /home/toshiba/aew/worktrees/task069-connected-path-browser
+> pnpm -r --filter './packages/**' build
+
+Scope: 6 of 11 workspace projects
+packages/core build$ tsc -p tsconfig.json
+packages/core build: Done
+packages/ai build$ tsc -p tsconfig.json
+packages/git build$ tsc -p tsconfig.json
+packages/shared build$ tsc -p tsconfig.json
+packages/workflow build$ tsc -p tsconfig.json
+packages/shared build: Done
+packages/workflow build: Done
+packages/ai build: Done
+packages/git build: Done
+packages/storage build$ tsc -p tsconfig.json
+packages/storage build: Done
+Scope: 10 of 11 workspace projects
+packages/core typecheck$ tsc -p tsconfig.json --noEmit --pretty false
+packages/core typecheck: Done
+packages/ai typecheck$ tsc -p tsconfig.check.json --pretty false
+packages/shared typecheck$ tsc -p tsconfig.json --noEmit --pretty false
+packages/git typecheck$ tsc -p tsconfig.check.json --pretty false
+packages/workflow typecheck$ tsc -p tsconfig.json --noEmit --pretty false
+packages/shared typecheck: Done
+packages/workflow typecheck: Done
+packages/git typecheck: Done
+packages/ai typecheck: Done
+apps/loredock typecheck$ tsc -p tsconfig.check.json --pretty false
+apps/web typecheck$ tsc -b --pretty false
+packages/storage typecheck$ tsc -p tsconfig.check.json --pretty false
+packages/storage typecheck: Done
+apps/web typecheck: Done
+apps/loredock typecheck: Done
+apps/daemon typecheck$ tsc -p tsconfig.check.json --pretty false
+apps/loredock-web typecheck$ tsc -b --pretty false
+apps/daemon typecheck: Done
+apps/loredock-web typecheck: src/api.ts(9,46): error TS2769: No overload matches this call.
+apps/loredock-web typecheck:   Overload 1 of 2, '(input: string | URL | Request, init?: RequestInit | undefined): Promise<Response>', gave the following error.
+apps/loredock-web typecheck:     Argument of type '{ body?: string; method: string; signal: AbortSignal | undefined; headers: { 'Content-Type': string; 'x-loredock-csrf': string; }; }' is not assignable to parameter of type 'RequestInit' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+apps/loredock-web typecheck:       Types of property 'signal' are incompatible.
+apps/loredock-web typecheck:         Type 'AbortSignal | undefined' is not assignable to type 'AbortSignal | null'.
+apps/loredock-web typecheck:           Type 'undefined' is not assignable to type 'AbortSignal | null'.
+apps/loredock-web typecheck:   Overload 2 of 2, '(input: URL | RequestInfo, init?: RequestInit | undefined): Promise<Response>', gave the following error.
+apps/loredock-web typecheck:     Argument of type '{ body?: string; method: string; signal: AbortSignal | undefined; headers: { 'Content-Type': string; 'x-loredock-csrf': string; }; }' is not assignable to parameter of type 'RequestInit' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+apps/loredock-web typecheck:       Types of property 'signal' are incompatible.
+apps/loredock-web typecheck:         Type 'AbortSignal | undefined' is not assignable to type 'AbortSignal | null'.
+apps/loredock-web typecheck:           Type 'undefined' is not assignable to type 'AbortSignal | null'.
+apps/loredock-web typecheck: Failed
+/home/toshiba/aew/worktrees/task069-connected-path-browser/apps/loredock-web:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @loredock/web@0.1.0 typecheck: `tsc -b --pretty false`
+Exit status 1
+ ELIFECYCLE  Command failed with exit code 1.
+ ELIFECYCLE  Command failed with exit code 1.

@@ -1,0 +1,11 @@
+(node:349368) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+Error: Missing UI text: No compatible published code inventory
+    at waitFor (file:///home/toshiba/aew/worktrees/task069-connected-path-browser/scripts/loredock-connected-browser-smoke.mjs:28:9)
+    at async file:///home/toshiba/aew/worktrees/task069-connected-path-browser/scripts/loredock-connected-browser-smoke.mjs:119:3
+
+Node.js v22.23.2

@@ -193,8 +193,12 @@ It does not switch current graph/answer/review consumers or establish semantic a
 [Task 068](tasks/068-loredock-connected-path-reads.md) implements the separately versioned
 typed service and protected path/four-entry-point reads, with complete bounded envelopes,
 original support, generation identity and cooperative busy/cancel/shutdown handling.
-Existing consumers and storage remain unchanged. The next phase is the collapsed browser
-view with explicit page/root selection and stale-response/evidence fences.
+Existing consumers and storage remain unchanged.
+[Task 069](tasks/069-loredock-connected-path-browser.md) adds the collapsed browser,
+explicit page/root selection, inventory publication/eviction handling and stale-response/
+evidence fences. Fifteen fresh Chrome checks cover desktop/narrow layouts and request
+lifetimes. Next: scope Phase D's broader-consumer and saved-provenance contract before
+any semantic qualification or production consumer change.
 The user demo and feedback stay separate from these checks; broader semantic synthesis
 and question-context changes remain open.
 Preserve all failed evaluations;

@@ -1,5 +1,29 @@
 # Development status
 
+## Task 069 — Connected-path browser
+
+Implemented and locally verified, 2026-11-02; scope `a08b9a2`, implementation `108a3ad`,
+final browser candidate `c6b796f`. PR #72 merged as `a485dd7` after exact head
+`ccc4dee3d6aabdb058d1137ea03f21f4c9bd7fda` passed push `41458071930` and pull-request
+`41458229766` CI (483 tests); the merge tree matches that head.
+
+The collapsed **Browse connected paths** section shows two default paths, four-entry-point
+pages, chosen/isolated roots and original citations. It preserves older completed facts
+while a newer attempt runs, resets once on compatible publication/eviction, labels historical
+indexes and fences late responses independently of cancellation. Existing static/header
+comparison cards, review controls, answer/candidate adapters and storage remain unchanged.
+
+Full strict checks, 483 tests and builds pass. The historical-label fix passes a targeted
+web recheck. [Fifteen fresh Chrome checks](fixtures/loredock-connected-browser/README.md)
+cover desktop/390px, keyboard/focus, missing/empty/unavailable/busy states and buffered late
+root/page/inventory/index/source/policy/original responses. First failures remain recorded.
+No model calls, corporate code, frozen-matrix rerun or demo/data modification.
+
+Next: separately scope Phase D's broader consumers and durable provenance/review contract.
+Browser navigation is not semantic/private-pilot acceptance or autonomous routing.
+See [Task 069](../tasks/069-loredock-connected-path-browser.md) and the
+[usage guide](loredock/USER_GUIDE.md#browse-connected-paths).
+
 ## Task 068 — Typed connected paths and protected reads
 
 Implemented and locally verified, 2026-11-02; scope `efa84f4`, implementation `6db3590`.

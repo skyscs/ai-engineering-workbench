@@ -1,6 +1,6 @@
 # Task 069 — Browse connected source paths
 
-Status: scoped before implementation, 2026-11-02.
+Status: implemented and locally verified, 2026-11-02; scope `a08b9a2`, implementation `108a3ad`, final browser candidate `c6b796f`.
 
 ## Baseline and authorization
 
@@ -41,3 +41,26 @@ or change an existing user's demo, data or listener.
 Update user guidance/status and keep results in persistent worktrees/artifacts.
 Review the final diff and merge only after push and pull-request CI succeed on
 that exact head. Phase D consumer semantics remains a separately scoped next task.
+
+## Result and review
+
+Added `ConnectedPaths.tsx`, shared request cancellation support, map capability/scope
+wiring, a focusable coverage heading and responsive styles. Existing flow/correction
+components and backend consumers retain their behavior. Requests serialize behind one
+owner; selection/context sequence checks remain authoritative after cancellation.
+
+`pnpm check` passes strict checks, **483 tests** and builds. The historical-label fix
+passes a subsequent targeted web build/typecheck. The fresh Chrome scenario passes
+**15 checks / 28 path reads**, including completely buffered stale responses delivered
+past cancellation. Desktop and 390px screenshots were visually inspected. All original
+fixture commits stay unchanged during browser actions; no model call or user demo/data
+change occurred. [First failures and final artifacts](../docs/fixtures/loredock-connected-browser/README.md)
+remain visible. The missing historical label was a product issue; the Enter activation
+and post-revocation root selection failures were harness issues, corrected explicitly.
+
+Updated README, usage/API guidance, integration contract, architecture/security and ADR
+0049. Reviewed cancellation/session ownership, publication vs progress, historical index
+labels, unavailable cards, bounded transport rendering and separation from existing
+review/answer adapters. No frozen matrices or exhausted model budgets were rerun.
+
+Next: Phase D consumer/provenance/review design, separately scoped before implementation.

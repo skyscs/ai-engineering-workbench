@@ -406,3 +406,9 @@ Task 010 stores intervention/run provenance and dependency edges. Context change
 invalidate dependent results transitively in the same SQLite transaction. Previous
 report links are revision provenance, while freshness follows current task inputs.
 See [ADR 0014](docs/decisions/0014-human-interventions-and-invalidation.md).
+
+Task 069 exposes those reads in the collapsed **Browse connected paths** browser.
+It owns expanded-only inventory polling, serializes selection reads and fences responses
+by component scope, inventory/generation and request sequence. It shares original evidence
+with the app, clearing pending originals on navigation/lifetime changes. Historical status
+follows the map index. Existing answer, candidate and review adapters remain separate.

@@ -1,9 +1,9 @@
 # Connected paths: application integration contract
 
-Status: Phase A qualified by Task 067; Phase B implemented by Task 068, 2026-11-02.
+Status: Phase A qualified by Task 067; Phases B and C implemented by Tasks 068–069, 2026-11-02.
 [Task 064](../../tasks/064-loredock-connected-integration-contract.md) established this
 sequence after review against `9f9f080`. The typed backend/endpoints are now available;
-the browser interface below remains the next phase. See the implemented
+the browser interface below is implemented. See the implemented
 [API contract](CODE_PATHS_API.md) and [ADR 0049](../decisions/0049-loredock-connected-path-reads.md).
 
 ## Decision and evidence
@@ -269,5 +269,25 @@ conservative write fence rejects a pending read during concurrent database chang
 it does not unpublish an older usable inventory. Small parity, integrity, lifecycle,
 HTTP and real TCP cancellation checks cover the port. No frozen volume run is repeated.
 
-Phase C browser integration is next. Existing graph/answer/candidate/review consumers,
+Task 069 implements Phase C below. Existing graph/answer/candidate/review consumers,
 history and schema remain unchanged; the new paths are not approved investigation scope.
+
+## Task 069 result: Phase C browser available
+
+**Browse connected paths** is collapsed inside System map. It reads default paths and
+four-root pages, supports isolated-root inspection and original citations, and distinguishes
+source gaps, unavailable cards, roots outside the page and roots outside chosen paths.
+Historical status follows the selected map's index identity rather than the inventory's
+registry-only stale flag. No new form, review target, answer input or model call is added.
+
+While expanded, lightweight inventory polling retains older published facts during a new
+unpublished attempt. Publication or eviction invalidates selection and owned evidence.
+Each graph/page request is serialized, aborted when obsolete and fenced independently of
+cancellation. Collapse/unmount stops owned polling. Fifteen fresh synthetic Chrome checks
+cover desktop/390px, keyboard/focus, unavailable/empty/busy states and delayed responses
+across inventory/navigation/index/source/policy boundaries. See the retained
+[browser evidence](../fixtures/loredock-connected-browser/README.md).
+
+Next: separately scope Phase D's consumer/provenance/review decision. This browser's
+functional checks do not qualify autonomous routing, new answer semantics, review-target
+migration or the private pilot. Earlier failed evaluations and frozen budgets remain intact.

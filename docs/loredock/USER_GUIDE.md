@@ -356,6 +356,42 @@ bytes, without resuming AI work or storing a second graph database.
 The declaration projection remains separate from the bounded code links below.
 See [map evidence](../fixtures/loredock-declaration-map/README.md).
 
+## Browse connected paths
+
+In **System map**, expand **Browse connected paths** after **Code coverage** has
+finished. No model, repository selector or extra configuration is needed. The view
+reads the selected index's compatible published code inventory and shows up to two
+**Partial source paths** plus four supported entry points.
+
+1. Read a path's numbered source steps. **Static connection candidate** marks a
+   possible cross-source hop; it does not prove runtime wiring or execution order.
+2. Click **Original: …** to open the exact saved source lines. The evidence heading
+   receives focus. Existing correction controls stay in **Static flow outlines**;
+   this new preview does not feed answers or accept link corrections.
+3. Choose an entry-point card to inspect one path from that symbol. Isolated entry
+   points remain inspectable. **Show default paths** restores the default pair.
+4. Use **Next entry points** and **Previous entry points** for pages of four. Changing
+   pages clears the previous path and original evidence. Choose an entry on that page
+   to continue. Root order is deterministic, not an importance or incident ranking.
+5. Expand **Path coverage and omissions** for syntax gaps, incomplete bindings,
+   excluded/omitted files and display limits. Entries outside this page and outside
+   the selected paths are different counts. An oversized entry remains counted but
+   unavailable; zero supported entries does not establish absence of behavior.
+
+If no compatible inventory exists, **Inspect Code coverage** focuses the existing
+analysis controls. Opening this browser never starts analysis. A newer running or paused
+attempt leaves an earlier completed inventory usable and labeled. When a compatible
+inventory publishes, the expanded browser clears old evidence and loads defaults once.
+It does not repeatedly resolve paths on progress updates. Inventory eviction clears the
+view without selecting a different index. Historical paths carry an older-index label.
+
+Busy or failed reads show **Retry path request**, which repeats that selection.
+**Reload default paths** explicitly starts over with the current published inventory.
+There is no automatic retry loop. Collapsing the section stops its polling and clears
+originals opened from it. Source, policy, selected/published index, inventory and navigation
+changes fence responses that arrive late. Runtime behavior, deployment coherence and
+unsupported syntax remain unknown. See the [read contract](CODE_PATHS_API.md).
+
 ## Follow a static flow outline
 
 After indexing, **Static flow outlines** appears inside **System map**, without any
@@ -933,7 +969,7 @@ require the session. No tokens belong in URLs or logs.
 | `GET /api/evidence/:id` | Reopen a validated, authorized stored citation. |
 | `GET /api/system-map?buildId=...` | Bounded declaration projection for the current or a selected authorized published index. |
 | `GET /api/code-flows?buildId=...` | Versioned code links, partial flow outlines, candidate hops and original evidence from the same authorized index. |
-| `GET /api/code-paths?buildId=...` | Separate connected paths over compatible published code facts, with verified saved path coverage, original support and the first four entry points. Optional paired inventory/generation IDs pin a selected root. See the [connected-path API](CODE_PATHS_API.md); browser integration is separate. |
+| `GET /api/code-paths?buildId=...` | Separate connected paths over compatible published code facts, with verified saved path coverage, original support and the first four entry points. Optional paired inventory/generation IDs pin a selected root. See the [connected-path API](CODE_PATHS_API.md); also used by **Browse connected paths**. |
 | `GET /api/code-paths/roots?buildId=...&inventoryId=...&generationId=...&offset=...` | Four entry points from the pinned generation, with complete original support and explicit unavailable cards. No graph or internal fact vectors; the complete response is bounded to 512 KiB. |
 | `GET /api/code-analysis` | At most two inventory summaries, the newest queued index and any scoped automatic-start error. |
 | `POST /api/code-analysis` | Start/replay `{requestId, buildId, policyVersion, sourceSetVersion}` for an authorized published index matching current source/policy versions. Unknown fields are rejected. |
