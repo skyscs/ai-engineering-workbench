@@ -1,0 +1,1684 @@
+{
+  "schemaVersion": "loredock-connected-scale-contract/1",
+  "createdAt": "2026-11-02",
+  "sourceHashes": {
+    "fixtures/loredock-connected-scale/corpus.mjs": "5398c96a5183bf780afa130fe841c674fe2b6cdd9cc3b2e8fa8b0e85610ac214",
+    "fixtures/loredock-connected-scale/DESIGN.md": "50965a914c0061c0166654acedfbf1f888dfae8dd83c40bc5e4bdaa503704e5d"
+  },
+  "generated": [
+    {
+      "total": 120,
+      "variant": "base",
+      "codeFiles": 95,
+      "fileManifestHash": "9bf624a562eee9893d77cec3819c55da7e7684a7b6eafaee40c9d619c09dde17",
+      "sources": [
+        {
+          "source": "portal",
+          "files": 6,
+          "bytes": 922,
+          "hash": "e959180272534d35e5a095bc9809f241a8a86cf5be1428ddc71551cfaf64640c"
+        },
+        {
+          "source": "provision-api",
+          "files": 6,
+          "bytes": 1122,
+          "hash": "27536a31d4a76b35cbecf038350e93fca257563e5d2260f646ff9323f998e992"
+        },
+        {
+          "source": "provision-worker",
+          "files": 6,
+          "bytes": 1158,
+          "hash": "94e3f57d17c666e5c7aa33c886e7ba53d0a8cc0772b6b01b03161dfea5dd11a6"
+        },
+        {
+          "source": "module-00",
+          "files": 6,
+          "bytes": 319,
+          "hash": "2253a4a26c722620f24faf98ef49075d96b21312f727c1678412fb01530673fa"
+        },
+        {
+          "source": "module-01",
+          "files": 6,
+          "bytes": 319,
+          "hash": "4fef86a72bcc25711d64d8f14304b3207ae50f478b64bcf46de4c859d0aa7605"
+        },
+        {
+          "source": "module-02",
+          "files": 6,
+          "bytes": 319,
+          "hash": "2b30b1bcea090e93d71ebc64b14ecd7002079f7577db0973de33c691e60bfc85"
+        },
+        {
+          "source": "module-03",
+          "files": 6,
+          "bytes": 319,
+          "hash": "5cbc4faabbaa71a1fa3f69cab26d6db383c98ab9dd7d88ef805cb1196585d893"
+        },
+        {
+          "source": "module-04",
+          "files": 6,
+          "bytes": 319,
+          "hash": "7dc86495c2f22036f00b3ed77519e1fd6efcf05629ac84245944b57db9476bf5"
+        },
+        {
+          "source": "module-05",
+          "files": 6,
+          "bytes": 319,
+          "hash": "96ca622a78c7527be03f9ef136f116cf36fae880f6f3171f6db8176ef1857f03"
+        },
+        {
+          "source": "module-06",
+          "files": 6,
+          "bytes": 319,
+          "hash": "321ea78004a83afe7e880bf621e66e2b8bcb6df36f7b9047ebc5ba24e0e5ce9a"
+        },
+        {
+          "source": "module-07",
+          "files": 6,
+          "bytes": 326,
+          "hash": "1dfec50757fbe2eb970a931a85bfc68b64019a7402e819e3547844ee4ee7f4d9"
+        },
+        {
+          "source": "module-08",
+          "files": 6,
+          "bytes": 326,
+          "hash": "b5f39a5beed8ed043bf9a1f5ce3cd654a9de2683025edc9b93e3155782df8c20"
+        },
+        {
+          "source": "module-09",
+          "files": 6,
+          "bytes": 326,
+          "hash": "23fa2e16e498733a2fb116026965601b165ec8055d69f0a1ea0938d9c55c485b"
+        },
+        {
+          "source": "module-10",
+          "files": 6,
+          "bytes": 326,
+          "hash": "b48233ce88f4177ce2fb0dabbee1bea0ce2061273ac3d238cdd113c1d96368a1"
+        },
+        {
+          "source": "module-11",
+          "files": 6,
+          "bytes": 326,
+          "hash": "f4d8fc2663bb913d5b67d9990b4bddd387b3310b6be457f6152e6d49cfb45df6"
+        },
+        {
+          "source": "module-12",
+          "files": 6,
+          "bytes": 326,
+          "hash": "55804417203f67346b59dbd50b712840864c57d40436c515704c7ca92d2a9aff"
+        },
+        {
+          "source": "module-13",
+          "files": 6,
+          "bytes": 326,
+          "hash": "a5c0737b02138846774550a5f366f6bb5c6bc0d2e987160f42e4801822e756fe"
+        },
+        {
+          "source": "module-14",
+          "files": 6,
+          "bytes": 326,
+          "hash": "d7577be5725c89de37dfe6ca5514c724b43824cf323da9a7eaf48b4eb56a06c7"
+        },
+        {
+          "source": "module-15",
+          "files": 6,
+          "bytes": 326,
+          "hash": "fd47b58e596e9ba7d78120e46636e950aae3a2879a065e924d3db8a331bdb549"
+        },
+        {
+          "source": "module-16",
+          "files": 6,
+          "bytes": 326,
+          "hash": "95ec2af76a1655c68fecc5a7cff3a9bf603915a049079c383cc21770c4f1c4a9"
+        }
+      ],
+      "support": [
+        {
+          "source": "portal",
+          "path": "z/Provision.vue",
+          "kind": "symbol",
+          "label": "activate",
+          "literal": "const activate =",
+          "line": 4
+        },
+        {
+          "source": "portal",
+          "path": "z/provision.ts",
+          "kind": "http-request",
+          "label": "POST /devices/activate",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "portal",
+          "path": "z/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/activate",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "provision-api",
+          "path": "z/Devices.java",
+          "kind": "symbol",
+          "label": "Devices.activate",
+          "literal": "void activate(",
+          "line": 6
+        },
+        {
+          "source": "provision-api",
+          "path": "z/Devices.java",
+          "kind": "event-publish",
+          "label": "Publish DeviceActivated",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "provision-worker",
+          "path": "z/DeviceConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "provision-worker",
+          "path": "z/DeviceConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 600,
+      "variant": "base",
+      "codeFiles": 575,
+      "fileManifestHash": "7cfcc959034d5493445f53143420f8cb634acb4df49f3c168e343b6ee0f6a3b7",
+      "sources": [
+        {
+          "source": "portal",
+          "files": 30,
+          "bytes": 2142,
+          "hash": "2e461eee118635a0b0455b5e4d70a774c0ec2714895c892084ca6ce39fc0c7d9"
+        },
+        {
+          "source": "provision-api",
+          "files": 30,
+          "bytes": 2340,
+          "hash": "a94beebea434315fa8ca52c5ca388a4d069ec3fb4d958f97a5f7ab20e1614d43"
+        },
+        {
+          "source": "provision-worker",
+          "files": 30,
+          "bytes": 2378,
+          "hash": "655f11cc884ec8cdb36d8c94c6ee2db848ba688a5038084afeb707348e52fbd9"
+        },
+        {
+          "source": "module-00",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "42d25de4f18e9e35acc6be369b9d861460ebcc5e1daad63d4657344ee519d897"
+        },
+        {
+          "source": "module-01",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "e84d42615d815b29a8f8c2785a11d7b19131cb5cf40271ed30eb3b0e9ad1f6ae"
+        },
+        {
+          "source": "module-02",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "6c6762838e24f71b977eec049ee5ebc378c4356569b3a85358c2eebe63937350"
+        },
+        {
+          "source": "module-03",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "90eb7cfa8e94c85f149931abd6c13e8cb0c26cb3e77800a6f2e02c56b2f3454e"
+        },
+        {
+          "source": "module-04",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "5b909cc31763ed548ce3c78159e3368bd6097f0877b6911b0f2d26476a8e7da9"
+        },
+        {
+          "source": "module-05",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "62eba43af7aefcadc4ef6e7af71ba9ddfd50196c4dd2787320c853b901bf57b0"
+        },
+        {
+          "source": "module-06",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "0a631aecf541af4d5ea87b7f4c7b5b7ee71ac0692754635d266ba6532350598f"
+        },
+        {
+          "source": "module-07",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "a38612ae4defd635999fbaf1569d5945649790e4d15bac578715d78fd1ee37a3"
+        },
+        {
+          "source": "module-08",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "4890818c3520a5441ae9d134fc961471cd5a6c63865983f50fdec67da17c47a1"
+        },
+        {
+          "source": "module-09",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "8bcea48f6f370c118ab4650ea0bfd0bcb71c220cb172b68fa5d21534223fe7fb"
+        },
+        {
+          "source": "module-10",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "affaa3b82b58a13c0909e820d2e43b433ccdd2dfbd081d8aa7d185ba28e95cf5"
+        },
+        {
+          "source": "module-11",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "dd1a3f78c71a5c317b7dad8ea8c273ed375dede0bff68d228035bda3c2e049da"
+        },
+        {
+          "source": "module-12",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "b5341056baed3c017c10ef68dffd509527de018484080c4549ed3dd26231c172"
+        },
+        {
+          "source": "module-13",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "45255b68487d065a84c09a9626f73ca4081761605b2a290d9360157dc9112d2a"
+        },
+        {
+          "source": "module-14",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "99dd472c052b88f59974dd5bdd7c7dba4533c8b06cd0419ef436c8480a562679"
+        },
+        {
+          "source": "module-15",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "c9e14e91f74b0f78f273a68735925cac6d46fe84d3359ff589c7b9ebf8c3f0ef"
+        },
+        {
+          "source": "module-16",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "72da077e7b9d1f3b804eee5bda0a3dc904c31e6136889aa82fe6ca5120958cea"
+        }
+      ],
+      "support": [
+        {
+          "source": "portal",
+          "path": "z/Provision.vue",
+          "kind": "symbol",
+          "label": "activate",
+          "literal": "const activate =",
+          "line": 4
+        },
+        {
+          "source": "portal",
+          "path": "z/provision.ts",
+          "kind": "http-request",
+          "label": "POST /devices/activate",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "portal",
+          "path": "z/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/activate",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "provision-api",
+          "path": "z/Devices.java",
+          "kind": "symbol",
+          "label": "Devices.activate",
+          "literal": "void activate(",
+          "line": 6
+        },
+        {
+          "source": "provision-api",
+          "path": "z/Devices.java",
+          "kind": "event-publish",
+          "label": "Publish DeviceActivated",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "provision-worker",
+          "path": "z/DeviceConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "provision-worker",
+          "path": "z/DeviceConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 3600,
+      "variant": "base",
+      "codeFiles": 3575,
+      "fileManifestHash": "cb110848c15de5abf57e87a6192c0f9fafe36c0f7452651b48a0c49cf6ca49a6",
+      "sources": [
+        {
+          "source": "portal",
+          "files": 180,
+          "bytes": 10019,
+          "hash": "1b5232eddb73925bc9e5951f5d4d225d7793a9342171ddacc2289ab9875d9e03"
+        },
+        {
+          "source": "provision-api",
+          "files": 180,
+          "bytes": 10215,
+          "hash": "1ee694fa284052200b2805c98479001d95663950cd89765cb8e609c0dd617a4f"
+        },
+        {
+          "source": "provision-worker",
+          "files": 180,
+          "bytes": 10255,
+          "hash": "60516465726e31f1b875021c1bfbcbfee15afdecefdb1482722cf0c8ec1570d9"
+        },
+        {
+          "source": "module-00",
+          "files": 180,
+          "bytes": 9428,
+          "hash": "51d9d66f0ca9a3efb5cf3562462fc89308d4538cb1246c7a1f8f13534214dfc9"
+        },
+        {
+          "source": "module-01",
+          "files": 180,
+          "bytes": 9428,
+          "hash": "84654b88633c4c2f68fdd8be5058ed86ef4e0527f6f5e0c29c236677f2e5ce48"
+        },
+        {
+          "source": "module-02",
+          "files": 180,
+          "bytes": 9428,
+          "hash": "a2afbcf3ac8943bed0629ebdb3cd3c4111e32401ccb398dc8ae4d9d191389d5c"
+        },
+        {
+          "source": "module-03",
+          "files": 180,
+          "bytes": 9428,
+          "hash": "5472b34544532871f57183dae90b2d6fac12a465b96bd722eba032d6c4f6ae3e"
+        },
+        {
+          "source": "module-04",
+          "files": 180,
+          "bytes": 9428,
+          "hash": "252744f72aa706c68af238bf818240f645dc9ebc54ff25941bd887e186bd5c98"
+        },
+        {
+          "source": "module-05",
+          "files": 180,
+          "bytes": 9428,
+          "hash": "bf871f3c53658a0c0ca5048fdd4b88df66787821dbde1a12c812c4d8388d1b36"
+        },
+        {
+          "source": "module-06",
+          "files": 180,
+          "bytes": 9428,
+          "hash": "83a1156a59e4992770588013ae4148c76e79bc8c0e9db03652eb6191d711eaac"
+        },
+        {
+          "source": "module-07",
+          "files": 180,
+          "bytes": 9696,
+          "hash": "502443e49ee63e9b3c1f4c0af6b68fad39abb62807350f15877eb269ee9c15e1"
+        },
+        {
+          "source": "module-08",
+          "files": 180,
+          "bytes": 9696,
+          "hash": "b6ad59b0afc791d733c79f91ace17dfd6b30de2a8b06cb38d2192571b90b5e62"
+        },
+        {
+          "source": "module-09",
+          "files": 180,
+          "bytes": 9696,
+          "hash": "fb65b2158451ee8330d6a303d9f1f95c2dfb95f3fa6515edf09b06c5f81e05f6"
+        },
+        {
+          "source": "module-10",
+          "files": 180,
+          "bytes": 9696,
+          "hash": "705df0c7291f4f5aa3338447b126f1d009861f3d6a2b5737aeced9cfeb40f7df"
+        },
+        {
+          "source": "module-11",
+          "files": 180,
+          "bytes": 9696,
+          "hash": "70d27adda4970cac3b86520cececb2df6eb4b682b48f0e2b002080a10e0623ae"
+        },
+        {
+          "source": "module-12",
+          "files": 180,
+          "bytes": 9696,
+          "hash": "902f288636b192ba785867fbfac18834a2a6e9f210f8783ab9c784aa7d35f502"
+        },
+        {
+          "source": "module-13",
+          "files": 180,
+          "bytes": 9696,
+          "hash": "8db53d6052da0f28308175cc9c69ceaaca662e37ade563ad8a0f6d499cec6c01"
+        },
+        {
+          "source": "module-14",
+          "files": 180,
+          "bytes": 9696,
+          "hash": "0506dd640dd06627d52de02d1b6f8036a8718b6e6a42dd50e90e6c638356866d"
+        },
+        {
+          "source": "module-15",
+          "files": 180,
+          "bytes": 9696,
+          "hash": "dba8eab9c5ae7f089b3a645c229fe494705f3722654f1be66235bfd04796230a"
+        },
+        {
+          "source": "module-16",
+          "files": 180,
+          "bytes": 9696,
+          "hash": "09d5be11878157855b36416eb22db17526052ddbd9580730011e24318161c3f2"
+        }
+      ],
+      "support": [
+        {
+          "source": "portal",
+          "path": "z/Provision.vue",
+          "kind": "symbol",
+          "label": "activate",
+          "literal": "const activate =",
+          "line": 4
+        },
+        {
+          "source": "portal",
+          "path": "z/provision.ts",
+          "kind": "http-request",
+          "label": "POST /devices/activate",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "portal",
+          "path": "z/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/activate",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "provision-api",
+          "path": "z/Devices.java",
+          "kind": "symbol",
+          "label": "Devices.activate",
+          "literal": "void activate(",
+          "line": 6
+        },
+        {
+          "source": "provision-api",
+          "path": "z/Devices.java",
+          "kind": "event-publish",
+          "label": "Publish DeviceActivated",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "provision-worker",
+          "path": "z/DeviceConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "provision-worker",
+          "path": "z/DeviceConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 10000,
+      "variant": "base",
+      "codeFiles": 9975,
+      "fileManifestHash": "066ef60274db1371d0a16200a6336b09502c37ba17127392ec9a30191c305b3c",
+      "sources": [
+        {
+          "source": "portal",
+          "files": 500,
+          "bytes": 27139,
+          "hash": "8cdbd13d5b05dc242d2703c9c49d790ce892da42d3868bccf1399c1f0f41e41d"
+        },
+        {
+          "source": "provision-api",
+          "files": 500,
+          "bytes": 27335,
+          "hash": "f5397ddfcbb4bf2e625fe93ff3bb334e2e087b618af806c6a5146660d6443d11"
+        },
+        {
+          "source": "provision-worker",
+          "files": 500,
+          "bytes": 27375,
+          "hash": "eb6496a54bf25499a7b1fa1bec63dbad17f14884c67c55cb9aab671bd2c43249"
+        },
+        {
+          "source": "module-00",
+          "files": 500,
+          "bytes": 26548,
+          "hash": "65a7d41dc51655c4feee66adaeecaa02a1935d666f62f6a5c513d6787676b98b"
+        },
+        {
+          "source": "module-01",
+          "files": 500,
+          "bytes": 26548,
+          "hash": "713c866daaba60cb03b3a32983243b4c13a19646aedffeb95598e6adecd6d487"
+        },
+        {
+          "source": "module-02",
+          "files": 500,
+          "bytes": 26548,
+          "hash": "3a83d9ff109a0b97401ff8c203547ad8c6da7bf5d651f099f5d96a1e4593b9d9"
+        },
+        {
+          "source": "module-03",
+          "files": 500,
+          "bytes": 26548,
+          "hash": "c5fd6e16c84071db1d1b23d7132ceab9013c96d0da272d090bf53ef5806c2c9e"
+        },
+        {
+          "source": "module-04",
+          "files": 500,
+          "bytes": 26548,
+          "hash": "18a9aaedf246bb9b96197fc10d83ee70b79d6f5f59dc6c175b67772bf4146f0c"
+        },
+        {
+          "source": "module-05",
+          "files": 500,
+          "bytes": 26548,
+          "hash": "5c16ea53c20714128ff7e96abb6a97bce27b85226a6e721e91ba5eaec66da0fe"
+        },
+        {
+          "source": "module-06",
+          "files": 500,
+          "bytes": 26548,
+          "hash": "4c26d55721ba36cf84a3e4ecc714f22d5eacf648df5075142ae1432fb7d496a4"
+        },
+        {
+          "source": "module-07",
+          "files": 500,
+          "bytes": 27296,
+          "hash": "03f2821db25dffbe8e6fb4f0c505263ce7d6d1ed8bd05787985d8404034121cc"
+        },
+        {
+          "source": "module-08",
+          "files": 500,
+          "bytes": 27296,
+          "hash": "05caeaee0203580a14f12eb76bdc4277ce141a56a9fa1237201b51de4524f2b3"
+        },
+        {
+          "source": "module-09",
+          "files": 500,
+          "bytes": 27296,
+          "hash": "b14280179dd0dd5648cff7f8ffb45eb583a9003e8ca3e0499eb1afbf5b96ddf0"
+        },
+        {
+          "source": "module-10",
+          "files": 500,
+          "bytes": 27296,
+          "hash": "35927c926e1c54cfb5c2b2b21c749438479cbaab0cf2158a86d74e2a3f4eb79e"
+        },
+        {
+          "source": "module-11",
+          "files": 500,
+          "bytes": 27296,
+          "hash": "5342fb3b50fab907940c71acdd4c3bc65addc7ec212a4f39f8f8202f26333111"
+        },
+        {
+          "source": "module-12",
+          "files": 500,
+          "bytes": 27296,
+          "hash": "72b1aacf69ab0b0973e4a3de45f44e3d5365c6f33bf53133a31e2ca14dca00f3"
+        },
+        {
+          "source": "module-13",
+          "files": 500,
+          "bytes": 27296,
+          "hash": "62e7c1089d56d42960671dcb0bfba691a810088dabe3989f64b80eda473f77ac"
+        },
+        {
+          "source": "module-14",
+          "files": 500,
+          "bytes": 27296,
+          "hash": "a49d52ea0b1af7ac460f34e802926bcd230a8c8ca8f30293997d2c9c2c1f39ef"
+        },
+        {
+          "source": "module-15",
+          "files": 500,
+          "bytes": 27296,
+          "hash": "f321200d409308646d5ceeda7d2a710bedd360bb9d90025da0cdb770fe8e3179"
+        },
+        {
+          "source": "module-16",
+          "files": 500,
+          "bytes": 27296,
+          "hash": "59b7e7ccb2129bf6efae22bcbcfe162159c01f800970b8d1d0cd51bc6c4c6e3c"
+        }
+      ],
+      "support": [
+        {
+          "source": "portal",
+          "path": "z/Provision.vue",
+          "kind": "symbol",
+          "label": "activate",
+          "literal": "const activate =",
+          "line": 4
+        },
+        {
+          "source": "portal",
+          "path": "z/provision.ts",
+          "kind": "http-request",
+          "label": "POST /devices/activate",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "portal",
+          "path": "z/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/activate",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "provision-api",
+          "path": "z/Devices.java",
+          "kind": "symbol",
+          "label": "Devices.activate",
+          "literal": "void activate(",
+          "line": 6
+        },
+        {
+          "source": "provision-api",
+          "path": "z/Devices.java",
+          "kind": "event-publish",
+          "label": "Publish DeviceActivated",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "provision-worker",
+          "path": "z/DeviceConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "provision-worker",
+          "path": "z/DeviceConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 600,
+      "variant": "ambiguity",
+      "codeFiles": 575,
+      "fileManifestHash": "aeea6868f11e794bdf8245c6415e4f1010032c921656620022c2d471c6028c91",
+      "sources": [
+        {
+          "source": "portal",
+          "files": 30,
+          "bytes": 2136,
+          "hash": "77e01840e66a9058920ef4a71f5a07b4cafc8083f9c4ff1912d6e0f47de2943e"
+        },
+        {
+          "source": "provision-api",
+          "files": 30,
+          "bytes": 2367,
+          "hash": "36d464b7cb57bf6a2617852e4cdfe90c0f184ea057e069aed7c71f68ca65e266"
+        },
+        {
+          "source": "provision-worker",
+          "files": 30,
+          "bytes": 2378,
+          "hash": "655f11cc884ec8cdb36d8c94c6ee2db848ba688a5038084afeb707348e52fbd9"
+        },
+        {
+          "source": "module-00",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "42d25de4f18e9e35acc6be369b9d861460ebcc5e1daad63d4657344ee519d897"
+        },
+        {
+          "source": "module-01",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "e84d42615d815b29a8f8c2785a11d7b19131cb5cf40271ed30eb3b0e9ad1f6ae"
+        },
+        {
+          "source": "module-02",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "6c6762838e24f71b977eec049ee5ebc378c4356569b3a85358c2eebe63937350"
+        },
+        {
+          "source": "module-03",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "90eb7cfa8e94c85f149931abd6c13e8cb0c26cb3e77800a6f2e02c56b2f3454e"
+        },
+        {
+          "source": "module-04",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "5b909cc31763ed548ce3c78159e3368bd6097f0877b6911b0f2d26476a8e7da9"
+        },
+        {
+          "source": "module-05",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "62eba43af7aefcadc4ef6e7af71ba9ddfd50196c4dd2787320c853b901bf57b0"
+        },
+        {
+          "source": "module-06",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "0a631aecf541af4d5ea87b7f4c7b5b7ee71ac0692754635d266ba6532350598f"
+        },
+        {
+          "source": "module-07",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "a38612ae4defd635999fbaf1569d5945649790e4d15bac578715d78fd1ee37a3"
+        },
+        {
+          "source": "module-08",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "4890818c3520a5441ae9d134fc961471cd5a6c63865983f50fdec67da17c47a1"
+        },
+        {
+          "source": "module-09",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "8bcea48f6f370c118ab4650ea0bfd0bcb71c220cb172b68fa5d21534223fe7fb"
+        },
+        {
+          "source": "module-10",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "affaa3b82b58a13c0909e820d2e43b433ccdd2dfbd081d8aa7d185ba28e95cf5"
+        },
+        {
+          "source": "module-11",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "dd1a3f78c71a5c317b7dad8ea8c273ed375dede0bff68d228035bda3c2e049da"
+        },
+        {
+          "source": "module-12",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "b5341056baed3c017c10ef68dffd509527de018484080c4549ed3dd26231c172"
+        },
+        {
+          "source": "module-13",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "45255b68487d065a84c09a9626f73ca4081761605b2a290d9360157dc9112d2a"
+        },
+        {
+          "source": "module-14",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "99dd472c052b88f59974dd5bdd7c7dba4533c8b06cd0419ef436c8480a562679"
+        },
+        {
+          "source": "module-15",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "c9e14e91f74b0f78f273a68735925cac6d46fe84d3359ff589c7b9ebf8c3f0ef"
+        },
+        {
+          "source": "module-16",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "72da077e7b9d1f3b804eee5bda0a3dc904c31e6136889aa82fe6ca5120958cea"
+        }
+      ],
+      "support": [
+        {
+          "source": "portal",
+          "path": "z/Provision.vue",
+          "kind": "symbol",
+          "label": "activate",
+          "literal": "const activate =",
+          "line": 4
+        },
+        {
+          "source": "portal",
+          "path": "z/provision.ts",
+          "kind": "http-request",
+          "label": "POST /devices/activate",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "portal",
+          "path": "z/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/activate",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "provision-api",
+          "path": "z/Devices.java",
+          "kind": "symbol",
+          "label": "Devices.activate",
+          "literal": "void activate(",
+          "line": 6
+        },
+        {
+          "source": "provision-api",
+          "path": "z/Devices.java",
+          "kind": "event-publish",
+          "label": "Publish DeviceActivated",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "provision-worker",
+          "path": "z/DeviceConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "provision-worker",
+          "path": "z/DeviceConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 600,
+      "variant": "truncation",
+      "codeFiles": 575,
+      "fileManifestHash": "04e07f464b6d1640644fb8e2fe1690374a32640798d6a74d4c81bf60653ae19c",
+      "sources": [
+        {
+          "source": "portal",
+          "files": 30,
+          "bytes": 6313,
+          "hash": "2721201c005c63ad27f2861c10cf901beec40fb93cbd1ecc1db4e7e7fee82873"
+        },
+        {
+          "source": "provision-api",
+          "files": 30,
+          "bytes": 6279,
+          "hash": "9d656eb72c5b8f4e0872789a1a7ed02a91913ec3f0ab62d4d27c1d645e002764"
+        },
+        {
+          "source": "provision-worker",
+          "files": 30,
+          "bytes": 2378,
+          "hash": "655f11cc884ec8cdb36d8c94c6ee2db848ba688a5038084afeb707348e52fbd9"
+        },
+        {
+          "source": "module-00",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "42d25de4f18e9e35acc6be369b9d861460ebcc5e1daad63d4657344ee519d897"
+        },
+        {
+          "source": "module-01",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "e84d42615d815b29a8f8c2785a11d7b19131cb5cf40271ed30eb3b0e9ad1f6ae"
+        },
+        {
+          "source": "module-02",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "6c6762838e24f71b977eec049ee5ebc378c4356569b3a85358c2eebe63937350"
+        },
+        {
+          "source": "module-03",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "90eb7cfa8e94c85f149931abd6c13e8cb0c26cb3e77800a6f2e02c56b2f3454e"
+        },
+        {
+          "source": "module-04",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "5b909cc31763ed548ce3c78159e3368bd6097f0877b6911b0f2d26476a8e7da9"
+        },
+        {
+          "source": "module-05",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "62eba43af7aefcadc4ef6e7af71ba9ddfd50196c4dd2787320c853b901bf57b0"
+        },
+        {
+          "source": "module-06",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "0a631aecf541af4d5ea87b7f4c7b5b7ee71ac0692754635d266ba6532350598f"
+        },
+        {
+          "source": "module-07",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "a38612ae4defd635999fbaf1569d5945649790e4d15bac578715d78fd1ee37a3"
+        },
+        {
+          "source": "module-08",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "4890818c3520a5441ae9d134fc961471cd5a6c63865983f50fdec67da17c47a1"
+        },
+        {
+          "source": "module-09",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "8bcea48f6f370c118ab4650ea0bfd0bcb71c220cb172b68fa5d21534223fe7fb"
+        },
+        {
+          "source": "module-10",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "affaa3b82b58a13c0909e820d2e43b433ccdd2dfbd081d8aa7d185ba28e95cf5"
+        },
+        {
+          "source": "module-11",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "dd1a3f78c71a5c317b7dad8ea8c273ed375dede0bff68d228035bda3c2e049da"
+        },
+        {
+          "source": "module-12",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "b5341056baed3c017c10ef68dffd509527de018484080c4549ed3dd26231c172"
+        },
+        {
+          "source": "module-13",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "45255b68487d065a84c09a9626f73ca4081761605b2a290d9360157dc9112d2a"
+        },
+        {
+          "source": "module-14",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "99dd472c052b88f59974dd5bdd7c7dba4533c8b06cd0419ef436c8480a562679"
+        },
+        {
+          "source": "module-15",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "c9e14e91f74b0f78f273a68735925cac6d46fe84d3359ff589c7b9ebf8c3f0ef"
+        },
+        {
+          "source": "module-16",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "72da077e7b9d1f3b804eee5bda0a3dc904c31e6136889aa82fe6ca5120958cea"
+        }
+      ],
+      "support": [
+        {
+          "source": "portal",
+          "path": "z/Provision.vue",
+          "kind": "symbol",
+          "label": "activate",
+          "literal": "const activate =",
+          "line": 4
+        },
+        {
+          "source": "portal",
+          "path": "z/provision.ts",
+          "kind": "http-request",
+          "label": "POST /devices/activate",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "portal",
+          "path": "z/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/activate",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "provision-api",
+          "path": "z/Devices.java",
+          "kind": "symbol",
+          "label": "Devices.activate",
+          "literal": "void activate(",
+          "line": 6
+        },
+        {
+          "source": "provision-api",
+          "path": "z/Devices.java",
+          "kind": "event-publish",
+          "label": "Publish DeviceActivated",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "provision-worker",
+          "path": "z/DeviceConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "provision-worker",
+          "path": "z/DeviceConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 600,
+      "variant": "roots",
+      "codeFiles": 575,
+      "fileManifestHash": "a742c1df323444765a7bd5d3ce166a6605cfb5e45c7f342ab7e3355ce578bbae",
+      "sources": [
+        {
+          "source": "portal",
+          "files": 30,
+          "bytes": 3683,
+          "hash": "009830e03cc3d447392a58bb10977f4a3395bfceab4069ecf219e9b2c91fa683"
+        },
+        {
+          "source": "provision-api",
+          "files": 30,
+          "bytes": 2340,
+          "hash": "a94beebea434315fa8ca52c5ca388a4d069ec3fb4d958f97a5f7ab20e1614d43"
+        },
+        {
+          "source": "provision-worker",
+          "files": 30,
+          "bytes": 2378,
+          "hash": "655f11cc884ec8cdb36d8c94c6ee2db848ba688a5038084afeb707348e52fbd9"
+        },
+        {
+          "source": "module-00",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "42d25de4f18e9e35acc6be369b9d861460ebcc5e1daad63d4657344ee519d897"
+        },
+        {
+          "source": "module-01",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "e84d42615d815b29a8f8c2785a11d7b19131cb5cf40271ed30eb3b0e9ad1f6ae"
+        },
+        {
+          "source": "module-02",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "6c6762838e24f71b977eec049ee5ebc378c4356569b3a85358c2eebe63937350"
+        },
+        {
+          "source": "module-03",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "90eb7cfa8e94c85f149931abd6c13e8cb0c26cb3e77800a6f2e02c56b2f3454e"
+        },
+        {
+          "source": "module-04",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "5b909cc31763ed548ce3c78159e3368bd6097f0877b6911b0f2d26476a8e7da9"
+        },
+        {
+          "source": "module-05",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "62eba43af7aefcadc4ef6e7af71ba9ddfd50196c4dd2787320c853b901bf57b0"
+        },
+        {
+          "source": "module-06",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "0a631aecf541af4d5ea87b7f4c7b5b7ee71ac0692754635d266ba6532350598f"
+        },
+        {
+          "source": "module-07",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "a38612ae4defd635999fbaf1569d5945649790e4d15bac578715d78fd1ee37a3"
+        },
+        {
+          "source": "module-08",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "4890818c3520a5441ae9d134fc961471cd5a6c63865983f50fdec67da17c47a1"
+        },
+        {
+          "source": "module-09",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "8bcea48f6f370c118ab4650ea0bfd0bcb71c220cb172b68fa5d21534223fe7fb"
+        },
+        {
+          "source": "module-10",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "affaa3b82b58a13c0909e820d2e43b433ccdd2dfbd081d8aa7d185ba28e95cf5"
+        },
+        {
+          "source": "module-11",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "dd1a3f78c71a5c317b7dad8ea8c273ed375dede0bff68d228035bda3c2e049da"
+        },
+        {
+          "source": "module-12",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "b5341056baed3c017c10ef68dffd509527de018484080c4549ed3dd26231c172"
+        },
+        {
+          "source": "module-13",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "45255b68487d065a84c09a9626f73ca4081761605b2a290d9360157dc9112d2a"
+        },
+        {
+          "source": "module-14",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "99dd472c052b88f59974dd5bdd7c7dba4533c8b06cd0419ef436c8480a562679"
+        },
+        {
+          "source": "module-15",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "c9e14e91f74b0f78f273a68735925cac6d46fe84d3359ff589c7b9ebf8c3f0ef"
+        },
+        {
+          "source": "module-16",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "72da077e7b9d1f3b804eee5bda0a3dc904c31e6136889aa82fe6ca5120958cea"
+        }
+      ],
+      "support": [
+        {
+          "source": "portal",
+          "path": "z/Provision.vue",
+          "kind": "symbol",
+          "label": "activate",
+          "literal": "const activate =",
+          "line": 4
+        },
+        {
+          "source": "portal",
+          "path": "z/provision.ts",
+          "kind": "http-request",
+          "label": "POST /devices/activate",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "portal",
+          "path": "z/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/activate",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "provision-api",
+          "path": "z/Devices.java",
+          "kind": "symbol",
+          "label": "Devices.activate",
+          "literal": "void activate(",
+          "line": 6
+        },
+        {
+          "source": "provision-api",
+          "path": "z/Devices.java",
+          "kind": "event-publish",
+          "label": "Publish DeviceActivated",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "provision-worker",
+          "path": "z/DeviceConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "provision-worker",
+          "path": "z/DeviceConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 600,
+      "variant": "cycle",
+      "codeFiles": 575,
+      "fileManifestHash": "c59388199f24547c3589950f234dabf95f94254462ee683fb8f536f7b6d92ddd",
+      "sources": [
+        {
+          "source": "portal",
+          "files": 30,
+          "bytes": 2192,
+          "hash": "1acc971a3056152e10e814e10e3b920a1e7cb6cb13659ee0a516f390bf1afc69"
+        },
+        {
+          "source": "provision-api",
+          "files": 30,
+          "bytes": 2340,
+          "hash": "a94beebea434315fa8ca52c5ca388a4d069ec3fb4d958f97a5f7ab20e1614d43"
+        },
+        {
+          "source": "provision-worker",
+          "files": 30,
+          "bytes": 2378,
+          "hash": "655f11cc884ec8cdb36d8c94c6ee2db848ba688a5038084afeb707348e52fbd9"
+        },
+        {
+          "source": "module-00",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "42d25de4f18e9e35acc6be369b9d861460ebcc5e1daad63d4657344ee519d897"
+        },
+        {
+          "source": "module-01",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "e84d42615d815b29a8f8c2785a11d7b19131cb5cf40271ed30eb3b0e9ad1f6ae"
+        },
+        {
+          "source": "module-02",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "6c6762838e24f71b977eec049ee5ebc378c4356569b3a85358c2eebe63937350"
+        },
+        {
+          "source": "module-03",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "90eb7cfa8e94c85f149931abd6c13e8cb0c26cb3e77800a6f2e02c56b2f3454e"
+        },
+        {
+          "source": "module-04",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "5b909cc31763ed548ce3c78159e3368bd6097f0877b6911b0f2d26476a8e7da9"
+        },
+        {
+          "source": "module-05",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "62eba43af7aefcadc4ef6e7af71ba9ddfd50196c4dd2787320c853b901bf57b0"
+        },
+        {
+          "source": "module-06",
+          "files": 30,
+          "bytes": 1545,
+          "hash": "0a631aecf541af4d5ea87b7f4c7b5b7ee71ac0692754635d266ba6532350598f"
+        },
+        {
+          "source": "module-07",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "a38612ae4defd635999fbaf1569d5945649790e4d15bac578715d78fd1ee37a3"
+        },
+        {
+          "source": "module-08",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "4890818c3520a5441ae9d134fc961471cd5a6c63865983f50fdec67da17c47a1"
+        },
+        {
+          "source": "module-09",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "8bcea48f6f370c118ab4650ea0bfd0bcb71c220cb172b68fa5d21534223fe7fb"
+        },
+        {
+          "source": "module-10",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "affaa3b82b58a13c0909e820d2e43b433ccdd2dfbd081d8aa7d185ba28e95cf5"
+        },
+        {
+          "source": "module-11",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "dd1a3f78c71a5c317b7dad8ea8c273ed375dede0bff68d228035bda3c2e049da"
+        },
+        {
+          "source": "module-12",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "b5341056baed3c017c10ef68dffd509527de018484080c4549ed3dd26231c172"
+        },
+        {
+          "source": "module-13",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "45255b68487d065a84c09a9626f73ca4081761605b2a290d9360157dc9112d2a"
+        },
+        {
+          "source": "module-14",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "99dd472c052b88f59974dd5bdd7c7dba4533c8b06cd0419ef436c8480a562679"
+        },
+        {
+          "source": "module-15",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "c9e14e91f74b0f78f273a68735925cac6d46fe84d3359ff589c7b9ebf8c3f0ef"
+        },
+        {
+          "source": "module-16",
+          "files": 30,
+          "bytes": 1588,
+          "hash": "72da077e7b9d1f3b804eee5bda0a3dc904c31e6136889aa82fe6ca5120958cea"
+        }
+      ],
+      "support": [
+        {
+          "source": "portal",
+          "path": "z/Provision.vue",
+          "kind": "symbol",
+          "label": "activate",
+          "literal": "const activate =",
+          "line": 4
+        },
+        {
+          "source": "portal",
+          "path": "z/provision.ts",
+          "kind": "http-request",
+          "label": "POST /devices/activate",
+          "literal": "fetch(",
+          "line": 2
+        },
+        {
+          "source": "portal",
+          "path": "z/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/activate",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "provision-api",
+          "path": "z/Devices.java",
+          "kind": "symbol",
+          "label": "Devices.activate",
+          "literal": "void activate(",
+          "line": 6
+        },
+        {
+          "source": "provision-api",
+          "path": "z/Devices.java",
+          "kind": "event-publish",
+          "label": "Publish DeviceActivated",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "provision-worker",
+          "path": "z/DeviceConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "provision-worker",
+          "path": "z/DeviceConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "total": 3600,
+      "variant": "branches",
+      "codeFiles": 3575,
+      "fileManifestHash": "5611352fa5567b5c2e9ef8e837f97d0d4d79f66c439f884dd84ac96e92bee62c",
+      "sources": [
+        {
+          "source": "portal",
+          "files": 180,
+          "bytes": 22586,
+          "hash": "b482dca765f187a52785557f402cec92b79eeff296b935636297d276325f1b0e"
+        },
+        {
+          "source": "provision-api",
+          "files": 180,
+          "bytes": 10215,
+          "hash": "1ee694fa284052200b2805c98479001d95663950cd89765cb8e609c0dd617a4f"
+        },
+        {
+          "source": "provision-worker",
+          "files": 180,
+          "bytes": 10255,
+          "hash": "60516465726e31f1b875021c1bfbcbfee15afdecefdb1482722cf0c8ec1570d9"
+        },
+        {
+          "source": "module-00",
+          "files": 180,
+          "bytes": 9428,
+          "hash": "51d9d66f0ca9a3efb5cf3562462fc89308d4538cb1246c7a1f8f13534214dfc9"
+        },
+        {
+          "source": "module-01",
+          "files": 180,
+          "bytes": 9428,
+          "hash": "84654b88633c4c2f68fdd8be5058ed86ef4e0527f6f5e0c29c236677f2e5ce48"
+        },
+        {
+          "source": "module-02",
+          "files": 180,
+          "bytes": 9428,
+          "hash": "a2afbcf3ac8943bed0629ebdb3cd3c4111e32401ccb398dc8ae4d9d191389d5c"
+        },
+        {
+          "source": "module-03",
+          "files": 180,
+          "bytes": 9428,
+          "hash": "5472b34544532871f57183dae90b2d6fac12a465b96bd722eba032d6c4f6ae3e"
+        },
+        {
+          "source": "module-04",
+          "files": 180,
+          "bytes": 9428,
+          "hash": "252744f72aa706c68af238bf818240f645dc9ebc54ff25941bd887e186bd5c98"
+        },
+        {
+          "source": "module-05",
+          "files": 180,
+          "bytes": 9428,
+          "hash": "bf871f3c53658a0c0ca5048fdd4b88df66787821dbde1a12c812c4d8388d1b36"
+        },
+        {
+          "source": "module-06",
+          "files": 180,
+          "bytes": 9428,
+          "hash": "83a1156a59e4992770588013ae4148c76e79bc8c0e9db03652eb6191d711eaac"
+        },
+        {
+          "source": "module-07",
+          "files": 180,
+          "bytes": 9696,
+          "hash": "502443e49ee63e9b3c1f4c0af6b68fad39abb62807350f15877eb269ee9c15e1"
+        },
+        {
+          "source": "module-08",
+          "files": 180,
+          "bytes": 9696,
+          "hash": "b6ad59b0afc791d733c79f91ace17dfd6b30de2a8b06cb38d2192571b90b5e62"
+        },
+        {
+          "source": "module-09",
+          "files": 180,
+          "bytes": 9696,
+          "hash": "fb65b2158451ee8330d6a303d9f1f95c2dfb95f3fa6515edf09b06c5f81e05f6"
+        },
+        {
+          "source": "module-10",
+          "files": 180,
+          "bytes": 9696,
+          "hash": "705df0c7291f4f5aa3338447b126f1d009861f3d6a2b5737aeced9cfeb40f7df"
+        },
+        {
+          "source": "module-11",
+          "files": 180,
+          "bytes": 9696,
+          "hash": "70d27adda4970cac3b86520cececb2df6eb4b682b48f0e2b002080a10e0623ae"
+        },
+        {
+          "source": "module-12",
+          "files": 180,
+          "bytes": 9696,
+          "hash": "902f288636b192ba785867fbfac18834a2a6e9f210f8783ab9c784aa7d35f502"
+        },
+        {
+          "source": "module-13",
+          "files": 180,
+          "bytes": 9696,
+          "hash": "8db53d6052da0f28308175cc9c69ceaaca662e37ade563ad8a0f6d499cec6c01"
+        },
+        {
+          "source": "module-14",
+          "files": 180,
+          "bytes": 9696,
+          "hash": "0506dd640dd06627d52de02d1b6f8036a8718b6e6a42dd50e90e6c638356866d"
+        },
+        {
+          "source": "module-15",
+          "files": 180,
+          "bytes": 9696,
+          "hash": "dba8eab9c5ae7f089b3a645c229fe494705f3722654f1be66235bfd04796230a"
+        },
+        {
+          "source": "module-16",
+          "files": 180,
+          "bytes": 9696,
+          "hash": "09d5be11878157855b36416eb22db17526052ddbd9580730011e24318161c3f2"
+        }
+      ],
+      "support": [
+        {
+          "source": "portal",
+          "path": "z/Provision.vue",
+          "kind": "symbol",
+          "label": "activate",
+          "literal": "const activate =",
+          "line": 4
+        },
+        {
+          "source": "portal",
+          "path": "z/provision.ts",
+          "kind": "http-request",
+          "label": "POST /devices/activate",
+          "literal": "fetch(",
+          "line": 0
+        },
+        {
+          "source": "portal",
+          "path": "z/legacy.js",
+          "kind": "http-request",
+          "label": "POST /legacy/activate",
+          "literal": "return request.post(",
+          "line": 3
+        },
+        {
+          "source": "provision-api",
+          "path": "z/Devices.java",
+          "kind": "symbol",
+          "label": "Devices.activate",
+          "literal": "void activate(",
+          "line": 6
+        },
+        {
+          "source": "provision-api",
+          "path": "z/Devices.java",
+          "kind": "event-publish",
+          "label": "Publish DeviceActivated",
+          "literal": "publisher.publish(",
+          "line": 8
+        },
+        {
+          "source": "provision-worker",
+          "path": "z/DeviceConsumer.java",
+          "kind": "event-subscribe",
+          "label": "Subscribe via KafkaSubscriber",
+          "literal": "void start(",
+          "line": 8
+        },
+        {
+          "source": "provision-worker",
+          "path": "z/DeviceConsumer.java",
+          "kind": "document-write",
+          "label": "MongoCollection.replaceOne",
+          "literal": "collection.replaceOne(",
+          "line": 11
+        }
+      ]
+    }
+  ]
+}
