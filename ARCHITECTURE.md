@@ -42,6 +42,11 @@ retaining full identities and the same saved parser facts; see
 The source-build synthetic demo launcher prepares an owned twenty-source catalog and
 inventory, releases service/store ownership, then starts the normal compiled daemon with
 isolated data and model mode off. See [ADR 0044](docs/decisions/0044-loredock-isolated-synthetic-demo.md).
+The separate connected-path read service verifies saved path trees and complete binding
+domains over that inventory. Protected reads return bounded paths and four-entry-point
+pages with generation identity, original support and cooperative request ownership.
+Existing graph/answer/review consumers stay on their current adapter; browser integration
+is separate. See [ADR 0049](docs/decisions/0049-loredock-connected-path-reads.md).
 Explicit storage accounting and offline compaction use separate maintenance commands,
 preserving logical history and normal job recovery. Compaction acquires daemon
 ownership and rewrites physical SQLite pages only when free pages exist; see
