@@ -1,0 +1,31 @@
+# Task 067 — Binding completeness qualification
+
+Status: scoped before implementation, 2026-11-02.
+
+Execute the [binding completeness contract](../docs/loredock/BINDING_COMPLETENESS.md) as a
+separate offline experiment. Qualify useful paths and conservative missing-target behavior
+before the connected-path backend phase. Keep Task 065's failed observations/oracle intact.
+
+## Scope
+
+- Freeze fresh owned twenty-source inputs, original/path/root expectations, independent Git
+  tree vectors, metadata encoding and first-run resource protocol before implementation.
+- Verify bounded saved source/file metadata against recorded Git trees where path coverage
+  is complete; retain source omissions and opaque boundaries as unknown. Validate the join
+  to the published CodeAnalysis manifest and final metadata/scope identity without Git reads.
+- Scope supported imports to exact target paths and Java bindings to potential Java files.
+  Keep all relevant alternatives, gaps and truncation blockers; separate cardinality from
+  incompleteness. Preserve parsers, matching predicates, original support and display limits.
+- Measure fresh positive/adversarial/root/branch/tree/lifecycle/resource cases once, with
+  declared repeats, retained failures, bounded work and no projection Git/store mutations.
+- No application/schema/API/UI/answer/review switch, old experiment rerun, model request,
+  corporate source access or modification/restart of the owner's running demo.
+
+## Delivery
+
+Commit scope, then the prospective inputs/criteria, then candidate/harness identity before
+measurement. Add meaningful focused regression checks; run strict checks/builds separately
+from resource measurement. Retain exact first observations and assess the frozen gate.
+Review the complete diff, publish a separate PR, verify push and pull-request CI for the
+exact head, merge and synchronize source. Only a passing qualification permits the next
+typed backend task; failures require diagnosis and a prospective successor.
