@@ -1,5 +1,29 @@
 # Development status
 
+## Task 066 — Binding completeness contract
+
+Design completed, 2026-11-02; scope `dc4d625` preceded analysis. PR #69 merged as `7cf0eac`
+after push `41432173043` and pull-request `41432213254` passed for exact head
+`bde1afe1cac9e016f25e18813cecdc5f6d5bb277` (456 tests). Merging the offline experiment
+preserves its failed gate; it does not promote the candidate into the application.
+
+The [new contract](loredock/BINDING_COMPLETENESS.md) narrows uncertainty to supported import
+target-path alternatives and same-source Java handler/consumer domains. All relevant missing,
+excluded or gapped targets remain blockers, with ambiguity and incompleteness reported
+separately. It keeps parser facts and matching predicates unchanged.
+
+The audit also identifies a distinct source boundary: `CodeAnalysis` counts only indexed
+code files, while catalog source shares can omit entire paths. Unknown source enumeration
+and opaque entries must prevent false absence/uniqueness. Before using a known-absent path,
+the successor must verify bounded saved metadata against its recorded Git tree, without
+projection Git calls. Fresh tree vectors, excluded-row corruption, adversarial targets,
+root/branch consequences and useful maximum-volume paths are part of the next qualification.
+
+Local reference/source and complete-diff review cover this design-only task. No runtime,
+browser or frozen measurement rerun; no parser/prototype/application/schema/history/model
+budget or owner demo change. Next: freeze fresh inputs and qualify the new completeness
+policy before the protected backend phase. See [Task 066](../tasks/066-loredock-binding-completeness.md).
+
 ## Task 065 — Connected resolution scale qualification
 
 Completed offline, 2026-11-02; gate failed, production promotion rejected. Scope `d01d8c0`,

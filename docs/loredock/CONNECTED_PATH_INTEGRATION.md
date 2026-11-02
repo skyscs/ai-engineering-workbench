@@ -231,3 +231,10 @@ on fresh positive/negative inputs. Known import target paths and Java-only candi
 may permit narrower uncertainty, but unknown index paths, missing/excluded targets and parser
 truncation must remain blockers. Resource success alone does not qualify Phase A or authorize
 production adoption. Existing graph/answer/review/candidate consumers remain unchanged.
+
+[Task 066's completeness contract](BINDING_COMPLETENESS.md) specifies exact supported import
+paths and conservative Java candidate domains, with separate cardinality and incompleteness.
+The saved code manifest alone cannot establish absent paths when source shares omit entries.
+Bounded source/file metadata, recorded-tree verification and opaque-boundary handling must
+therefore join the fresh qualification before Phase B. Parser facts and existing consumers
+remain unchanged; this contract is not a qualified implementation.
