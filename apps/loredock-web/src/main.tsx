@@ -149,8 +149,8 @@ function App() {
         </div>
         <CandidatePanel buildId={searchBuild} boundary={`${boundary.current}:${published}`} correctionRevision={state.correctionRevision} openEvidence={id => void openEvidence(id)} clearEvidence={clearEvidence} />
         <ProjectOverview key={`${boundary.current}:${published}`} buildId={searchBuild} boundary={`${boundary.current}:${published}`} openEvidence={id => void openEvidence(id)} />
-        <SystemMap buildId={searchBuild} boundary={`${boundary.current}:${published}`} correctionRevision={state.correctionRevision}
-          refreshProject={() => void refresh().catch(cause => setError((cause as Error).message))} openEvidence={id => void openEvidence(id)} />
+        <SystemMap codeEnabled={codeEnabled} buildId={searchBuild} boundary={`${boundary.current}:${published}`} correctionRevision={state.correctionRevision}
+          refreshProject={() => void refresh().catch(cause => setError((cause as Error).message))} openEvidence={id => void openEvidence(id)} clearEvidence={clearEvidence} />
         {answersEnabled && <AnswerPanel buildId={searchBuild} boundary={`${boundary.current}:${published}`} correctionRevision={state.correctionRevision} openEvidence={id => void openEvidence(id)} />}
         <div className="panel">
           <h2>Explore the sources</h2><p className="muted">Search exact terms such as an endpoint, event, collection or class name.</p>
