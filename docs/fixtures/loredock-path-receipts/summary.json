@@ -1,0 +1,44 @@
+{
+  "status": "rejected",
+  "cases": 88,
+  "passedCases": 86,
+  "failedCases": [
+    {
+      "name": "default-first",
+      "message": "Required source node: Subscribe via KafkaSubscriber"
+    },
+    {
+      "name": "history-alternative-change",
+      "message": "The expression evaluated to a falsy value:\n\n  assert.ok(condition, message)\n"
+    }
+  ],
+  "passedCountedAssertions": 989,
+  "observations": 113,
+  "successfulOperations": 38,
+  "maxima": {
+    "wallMs": 19.401733999999124,
+    "maxSliceMs": 9.760974999999917,
+    "peakRssMiB": 214.3984375,
+    "heapGrowthMiB": 3.0261917114257812
+  },
+  "byteWorkMaxima": {
+    "work": 44441,
+    "projectionBytes": 17800,
+    "receiptBytes": 24994,
+    "textBytes": 1603,
+    "spans": 6,
+    "sources": 4
+  },
+  "archive": {
+    "files": 42,
+    "rawBytes": 1160233,
+    "gzipBytes": 87558,
+    "gzipSha256": "a40b568d6c48f9662e2c09f11ac59c3f57aff06ff95444b534cde6e30297a3b9"
+  },
+  "candidateCommit": "0e5019296d86c5e8546dd13c627a76090d1e62a1",
+  "inputHashes": {
+    "corpus.json": "253518d3dd37ff7db42c04cfc67d61212b8790f194c2222e19106aad5880c00b",
+    "oracle.json": "fff1ebb470dc4c76c05042d049b4a41b899a430bc6e6c4a98302d70067523b11",
+    "README.md": "9fd5db6550f7ad5aa70e2a907a23f8d17e569930aa5bb251233707024f8f2063"
+  }
+}

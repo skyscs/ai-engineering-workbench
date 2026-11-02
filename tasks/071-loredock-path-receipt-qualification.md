@@ -1,6 +1,6 @@
 # Task 071 — Offline immutable path receipt qualification
 
-Status: scoped before implementation, 2026-11-03.
+Status: completed offline, gate rejected, 2026-11-03. Scope `f17ac85`; freeze `634c77b`; measured candidate `0e50192`.
 
 ## Baseline and authorization
 
@@ -35,3 +35,29 @@ Run appropriate strict/regression/full checks, review the complete diff, publish
 merge only after push and pull-request CI pass for the exact head. Keep worktree/toolchain/
 raw measurements outside /tmp. Production receipt storage and consumer adoption require a
 separate next scope even after a pass.
+
+## Result
+
+Implemented only offline scripts and five separate regression tests. The first frozen run
+returns exit 1: 86/88 cases, 989 passed counted assertions, 113 observations. Default paths
+stop before subscriber/write because the current resolver requires the exact `orderTopic`
+setting name. The alternatives-history case has a harness precondition error: a label-only
+lookup selects a handler reference instead of the Java symbol. Neither failure is retuned
+or rerun. [All raw outcomes and diagnosis](../docs/fixtures/loredock-path-receipts/README.md)
+remain archived; production promotion is rejected.
+
+All other availability, bound, cancellation, corruption and lifecycle cases pass. Historical
+reads survive ordinary fact eviction/restart without deriving replacements; source/policy
+changes fence complete dependencies. Captures serialize exact projection bytes and guard
+final publication against a competing SQLite writer. All 38 successful operation readings
+meet their frozen resource thresholds, but shorter paths do not qualify full-hop success.
+
+The repository check passes 483 existing tests and builds. Five new focused source-based
+regressions and a targeted strict check also pass (488 tests now defined). Review caught
+and removed a test-only prebuilt-dist dependency before CI by injecting services into the
+fixture helper. Input hashes and the measured candidate were preserved after execution;
+archive reconstruction verifies all 42 raw receipt files. No production schema, API, parser,
+model, consumer, demo or user-data change was introduced.
+
+Next: a separately scoped event-topic evidence contract, then fresh useful-path/receipt
+qualification. This failed gate and the unexecuted tail of each failing case stay explicit.

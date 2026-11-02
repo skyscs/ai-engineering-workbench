@@ -1,5 +1,29 @@
 # Development status
 
+## Task 071 — Offline path receipts: qualification rejected
+
+First frozen run completed 2026-11-03. Scope `f17ac85`, freeze `634c77b`, candidate
+`0e5019296d86c5e8546dd13c627a76090d1e62a1`. PR #74 merged as `4c31c53` after exact head
+`ee1b17e91e586e963282764480aeaf7b5bd1e2e2` passed push 41464612840 and pull-request
+41464618513 CI. The [retained result](fixtures/loredock-path-receipts/README.md) has
+86/88 cases passing, 989 passed counted assertions, 113 observations and exit 1.
+
+The offline receipt preserves complete producer JSON, originals and whole source scope;
+its final synchronous file publication guards the catalog epoch with a SQLite lock.
+History reads validate without fact/Git access and fence policy/revocation/corruption.
+All 38 successful operation resource readings meet bounds. However, the current exact
+`orderTopic` profile drops the expected event hop for fresh `bookingTopic` sources, and
+a label-only harness lookup confuses a handler reference with its Java symbol before
+checking changed alternatives. The corresponding later assertions were not executed.
+**No production receipt/consumer promotion is permitted; the matrix is exhausted.**
+
+The normal check passes 483 existing tests/builds; five new receipt regressions and final
+strict checks pass separately (488 tests defined). All 42 raw receipt artifacts and first
+stdout/stderr/exit are retained. No production runtime/schema/parser change or model call.
+Next: scope an event-topic evidence contract independent of the special configuration key,
+then fresh useful-path/receipt cases and typed observer identities. Old failed gates remain.
+See [Task 071](../tasks/071-loredock-path-receipt-qualification.md).
+
 ## Task 070 — Connected-path consumer and provenance decision
 
 Design reviewed against `9476b22`, 2026-11-02; scope `2dee42a`. PR #73 merged after

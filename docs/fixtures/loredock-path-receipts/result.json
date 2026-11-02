@@ -1,0 +1,4454 @@
+{
+  "schemaVersion": "task071-receipt-result/1",
+  "createdAt": "2026-11-02T23:17:49.469Z",
+  "candidateCommit": "0e5019296d86c5e8546dd13c627a76090d1e62a1",
+  "inputHashes": {
+    "corpus.json": "253518d3dd37ff7db42c04cfc67d61212b8790f194c2222e19106aad5880c00b",
+    "oracle.json": "fff1ebb470dc4c76c05042d049b4a41b899a430bc6e6c4a98302d70067523b11",
+    "README.md": "9fd5db6550f7ad5aa70e2a907a23f8d17e569930aa5bb251233707024f8f2063"
+  },
+  "node": "v22.23.2",
+  "hardware": {
+    "platform": "linux",
+    "arch": "x64",
+    "cpus": 16,
+    "cpu": "12th Gen Intel(R) Core(TM) i5-12500H",
+    "memoryBytes": 32718753792
+  },
+  "limits": {
+    "projectionBytes": 524288,
+    "spans": 30,
+    "textBytes": 65536,
+    "receiptBytes": 655360,
+    "wallMs": 5000,
+    "work": 1000000,
+    "sources": 20
+  },
+  "resourceLimits": {
+    "maxSliceMs": 150,
+    "sampledRssMiB": 384,
+    "sampledHeapGrowthMiB": 64,
+    "sampleIntervalMs": 5
+  },
+  "modelRequests": 0,
+  "scope": "Owned synthetic structural/integrity qualification; no independent semantic or private-pilot acceptance.",
+  "checks": 989,
+  "failureCount": 2,
+  "records": [
+    {
+      "name": "default-first",
+      "status": "fail",
+      "checks": 15,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "Required source node: Subscribe via KafkaSubscriber",
+        "stack": "AssertionError [ERR_ASSERTION]: Required source node: Subscribe via KafkaSubscriber\n    at check (file:///home/toshiba/aew/worktrees/task071-path-receipts/scripts/loredock-receipt-probe.mjs:35:48)\n    at file:///home/toshiba/aew/worktrees/task071-path-receipts/scripts/loredock-receipt-probe.mjs:127:7\n    at async run (file:///home/toshiba/aew/worktrees/task071-path-receipts/scripts/loredock-receipt-probe.mjs:47:24)\n    at async file:///home/toshiba/aew/worktrees/task071-path-receipts/scripts/loredock-receipt-probe.mjs:123:3\n    at async fresh (file:///home/toshiba/aew/worktrees/task071-path-receipts/scripts/loredock-receipt-probe.mjs:53:49)\n    at async file:///home/toshiba/aew/worktrees/task071-path-receipts/scripts/loredock-receipt-probe.mjs:121:1"
+      }
+    },
+    {
+      "name": "default-repeat",
+      "status": "pass",
+      "checks": 10,
+      "detail": {
+        "receiptId": "eca5daac4200140666291b9f455d0ed411eb63ea5fc61ae979259e9fe2389896"
+      }
+    },
+    {
+      "name": "selected-first",
+      "status": "pass",
+      "checks": 24,
+      "detail": {
+        "receiptId": "0f8db8a2c6adfcb136ad761eb90f98cec1c7300f58d73dc68f40f196582559a6"
+      }
+    },
+    {
+      "name": "selected-repeat",
+      "status": "pass",
+      "checks": 10,
+      "detail": null
+    },
+    {
+      "name": "isolated",
+      "status": "pass",
+      "checks": 25,
+      "detail": null
+    },
+    {
+      "name": "roundtrip",
+      "status": "pass",
+      "checks": 29,
+      "detail": null
+    },
+    {
+      "name": "external-lock",
+      "status": "pass",
+      "checks": 11,
+      "detail": null
+    },
+    {
+      "name": "availability-missing",
+      "status": "pass",
+      "checks": 7,
+      "detail": {
+        "code": "RECEIPT_UNAVAILABLE"
+      }
+    },
+    {
+      "name": "availability-unpublished",
+      "status": "pass",
+      "checks": 7,
+      "detail": {
+        "code": "RECEIPT_UNAVAILABLE"
+      }
+    },
+    {
+      "name": "availability-incompatible",
+      "status": "pass",
+      "checks": 7,
+      "detail": {
+        "code": "RECEIPT_UNAVAILABLE"
+      }
+    },
+    {
+      "name": "availability-root-page",
+      "status": "pass",
+      "checks": 7,
+      "detail": {
+        "code": "INVALID_RECEIPT_SELECTION"
+      }
+    },
+    {
+      "name": "availability-busy",
+      "status": "pass",
+      "checks": 7,
+      "detail": {
+        "code": "PATHS_BUSY"
+      }
+    },
+    {
+      "name": "limit-projectionBytes",
+      "status": "pass",
+      "checks": 7,
+      "detail": {
+        "code": "RECEIPT_PROJECTION_LIMIT"
+      }
+    },
+    {
+      "name": "limit-spans",
+      "status": "pass",
+      "checks": 7,
+      "detail": {
+        "code": "RECEIPT_SPAN_LIMIT"
+      }
+    },
+    {
+      "name": "limit-textBytes",
+      "status": "pass",
+      "checks": 7,
+      "detail": {
+        "code": "RECEIPT_TEXT_LIMIT"
+      }
+    },
+    {
+      "name": "limit-receiptBytes",
+      "status": "pass",
+      "checks": 7,
+      "detail": {
+        "code": "RECEIPT_BYTES_LIMIT"
+      }
+    },
+    {
+      "name": "limit-wallMs",
+      "status": "pass",
+      "checks": 7,
+      "detail": {
+        "code": "RECEIPT_TIME_LIMIT"
+      }
+    },
+    {
+      "name": "limit-work",
+      "status": "pass",
+      "checks": 7,
+      "detail": {
+        "code": "RECEIPT_WORK_LIMIT"
+      }
+    },
+    {
+      "name": "limit-sources",
+      "status": "pass",
+      "checks": 7,
+      "detail": {
+        "code": "RECEIPT_SOURCE_LIMIT"
+      }
+    },
+    {
+      "name": "invalid-limit-{\"unknown\":1}",
+      "status": "pass",
+      "checks": 7,
+      "detail": {
+        "code": "INVALID_RECEIPT_LIMIT"
+      }
+    },
+    {
+      "name": "invalid-limit-{\"spans\":31}",
+      "status": "pass",
+      "checks": 7,
+      "detail": {
+        "code": "INVALID_RECEIPT_LIMIT"
+      }
+    },
+    {
+      "name": "invalid-limit-{\"work\":-1}",
+      "status": "pass",
+      "checks": 7,
+      "detail": {
+        "code": "INVALID_RECEIPT_LIMIT"
+      }
+    },
+    {
+      "name": "invalid-limit-{\"wallMs\":0.5}",
+      "status": "pass",
+      "checks": 7,
+      "detail": {
+        "code": "INVALID_RECEIPT_LIMIT"
+      }
+    },
+    {
+      "name": "cancel-start",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "CANCELLED"
+      }
+    },
+    {
+      "name": "cancel-projection",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "CANCELLED"
+      }
+    },
+    {
+      "name": "cancel-originals",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "CANCELLED"
+      }
+    },
+    {
+      "name": "cancel-prepared",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "CANCELLED"
+      }
+    },
+    {
+      "name": "cancel-handoff",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "CANCELLED"
+      }
+    },
+    {
+      "name": "fence-start-metadata",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-start-manifest",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-start-original",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-start-policy",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-start-registry",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-start-cited-revocation",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-start-uncited-revocation",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-projection-metadata",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-projection-manifest",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-projection-original",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-projection-policy",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-projection-registry",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-projection-cited-revocation",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-projection-uncited-revocation",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-originals-metadata",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-originals-manifest",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-originals-original",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-originals-policy",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-originals-registry",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-originals-cited-revocation",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-originals-uncited-revocation",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-prepared-metadata",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-prepared-manifest",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-prepared-original",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-prepared-policy",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-prepared-registry",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-prepared-cited-revocation",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-prepared-uncited-revocation",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-handoff-metadata",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-handoff-manifest",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-handoff-original",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-handoff-policy",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-handoff-registry",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-handoff-cited-revocation",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "fence-handoff-uncited-revocation",
+      "status": "pass",
+      "checks": 8,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "external-commit-before-handoff",
+      "status": "pass",
+      "checks": 9,
+      "detail": {
+        "code": "RECEIPT_FENCED"
+      }
+    },
+    {
+      "name": "history-eviction",
+      "status": "pass",
+      "checks": 26,
+      "detail": null
+    },
+    {
+      "name": "history-restart",
+      "status": "pass",
+      "checks": 26,
+      "detail": null
+    },
+    {
+      "name": "history-new-index",
+      "status": "pass",
+      "checks": 27,
+      "detail": null
+    },
+    {
+      "name": "history-registry-growth",
+      "status": "pass",
+      "checks": 27,
+      "detail": null
+    },
+    {
+      "name": "history-parser-change",
+      "status": "pass",
+      "checks": 26,
+      "detail": null
+    },
+    {
+      "name": "history-alternative-change",
+      "status": "fail",
+      "checks": 11,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "The expression evaluated to a falsy value:\n\n  assert.ok(condition, message)\n",
+        "stack": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(condition, message)\n\n    at check (file:///home/toshiba/aew/worktrees/task071-path-receipts/scripts/loredock-receipt-probe.mjs:35:48)\n    at file:///home/toshiba/aew/worktrees/task071-path-receipts/scripts/loredock-receipt-probe.mjs:223:5\n    at async fresh (file:///home/toshiba/aew/worktrees/task071-path-receipts/scripts/loredock-receipt-probe.mjs:53:49)\n    at async run (file:///home/toshiba/aew/worktrees/task071-path-receipts/scripts/loredock-receipt-probe.mjs:47:24)\n    at async file:///home/toshiba/aew/worktrees/task071-path-receipts/scripts/loredock-receipt-probe.mjs:210:41"
+      }
+    },
+    {
+      "name": "history-cited-revocation",
+      "status": "pass",
+      "checks": 17,
+      "detail": null
+    },
+    {
+      "name": "history-uncited-revocation",
+      "status": "pass",
+      "checks": 17,
+      "detail": null
+    },
+    {
+      "name": "history-policy",
+      "status": "pass",
+      "checks": 17,
+      "detail": null
+    },
+    {
+      "name": "history-missing-original",
+      "status": "pass",
+      "checks": 17,
+      "detail": null
+    },
+    {
+      "name": "history-corrupt-original",
+      "status": "pass",
+      "checks": 17,
+      "detail": null
+    },
+    {
+      "name": "history-missing-file",
+      "status": "pass",
+      "checks": 16,
+      "detail": null
+    },
+    {
+      "name": "corrupt-format",
+      "status": "pass",
+      "checks": 15,
+      "detail": {
+        "code": "CORRUPT_RECEIPT",
+        "artifact": "receipts/corrupt-format-mutated.json"
+      }
+    },
+    {
+      "name": "corrupt-projection-json",
+      "status": "pass",
+      "checks": 15,
+      "detail": {
+        "code": "CORRUPT_RECEIPT",
+        "artifact": "receipts/corrupt-projection-json-mutated.json"
+      }
+    },
+    {
+      "name": "corrupt-generation",
+      "status": "pass",
+      "checks": 15,
+      "detail": {
+        "code": "CORRUPT_RECEIPT",
+        "artifact": "receipts/corrupt-generation-mutated.json"
+      }
+    },
+    {
+      "name": "corrupt-projection-hash",
+      "status": "pass",
+      "checks": 15,
+      "detail": {
+        "code": "CORRUPT_RECEIPT",
+        "artifact": "receipts/corrupt-projection-hash-mutated.json"
+      }
+    },
+    {
+      "name": "corrupt-receipt-hash",
+      "status": "pass",
+      "checks": 15,
+      "detail": {
+        "code": "CORRUPT_RECEIPT",
+        "artifact": "receipts/corrupt-receipt-hash-mutated.json"
+      }
+    },
+    {
+      "name": "corrupt-original-text",
+      "status": "pass",
+      "checks": 15,
+      "detail": {
+        "code": "CORRUPT_RECEIPT",
+        "artifact": "receipts/corrupt-original-text-mutated.json"
+      }
+    },
+    {
+      "name": "corrupt-original-hash",
+      "status": "pass",
+      "checks": 15,
+      "detail": {
+        "code": "CORRUPT_RECEIPT",
+        "artifact": "receipts/corrupt-original-hash-mutated.json"
+      }
+    },
+    {
+      "name": "corrupt-original-range",
+      "status": "pass",
+      "checks": 15,
+      "detail": {
+        "code": "CORRUPT_RECEIPT",
+        "artifact": "receipts/corrupt-original-range-mutated.json"
+      }
+    },
+    {
+      "name": "corrupt-foreign-build",
+      "status": "pass",
+      "checks": 15,
+      "detail": {
+        "code": "CORRUPT_RECEIPT",
+        "artifact": "receipts/corrupt-foreign-build-mutated.json"
+      }
+    },
+    {
+      "name": "corrupt-missing-support",
+      "status": "pass",
+      "checks": 15,
+      "detail": {
+        "code": "CORRUPT_RECEIPT",
+        "artifact": "receipts/corrupt-missing-support-mutated.json"
+      }
+    },
+    {
+      "name": "corrupt-missing-dependency",
+      "status": "pass",
+      "checks": 15,
+      "detail": {
+        "code": "RECEIPT_SCOPE_FENCED",
+        "artifact": "receipts/corrupt-missing-dependency-mutated.json"
+      }
+    },
+    {
+      "name": "corrupt-unknown-key",
+      "status": "pass",
+      "checks": 15,
+      "detail": {
+        "code": "CORRUPT_RECEIPT",
+        "artifact": "receipts/corrupt-unknown-key-mutated.json"
+      }
+    }
+  ],
+  "observations": [
+    {
+      "name": "default-first",
+      "status": "captured",
+      "code": null,
+      "wallMs": 18.665172000000098,
+      "maxSliceMs": 6.5578629999999976,
+      "baselineRssMiB": 140.15625,
+      "peakRssMiB": 142.40625,
+      "heapGrowthMiB": 3.0261917114257812,
+      "metrics": {
+        "wallMs": 18.38036599999998,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "default-repeat",
+      "status": "captured",
+      "code": null,
+      "wallMs": 15.309844999999996,
+      "maxSliceMs": 5.260479999999916,
+      "baselineRssMiB": 142.65625,
+      "peakRssMiB": 145.40625,
+      "heapGrowthMiB": 2.3308181762695312,
+      "metrics": {
+        "wallMs": 15.228296999999998,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 12,
+        "snapshots": 6,
+        "pathReads": 2,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "selected-first",
+      "status": "captured",
+      "code": null,
+      "wallMs": 11.858464000000026,
+      "maxSliceMs": 7.264821999999981,
+      "baselineRssMiB": 145.40625,
+      "peakRssMiB": 145.40625,
+      "heapGrowthMiB": 2.4427871704101562,
+      "metrics": {
+        "wallMs": 11.785757999999987,
+        "work": 39035,
+        "checkpoints": 10,
+        "projectionBytes": 15180,
+        "receiptBytes": 22212,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 12,
+        "snapshots": 6,
+        "pathReads": 2,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 18,
+        "snapshots": 9,
+        "pathReads": 3,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "selected-read",
+      "status": "recorded",
+      "code": null,
+      "wallMs": 2.620046000000002,
+      "maxSliceMs": 2.5956019999999853,
+      "baselineRssMiB": 145.40625,
+      "peakRssMiB": 145.68359375,
+      "heapGrowthMiB": 1.1803131103515625,
+      "metrics": {
+        "wallMs": 2.4361490000000003,
+        "work": 39026,
+        "checkpoints": 7,
+        "projectionBytes": 15180,
+        "receiptBytes": 22212,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 0
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 18,
+        "snapshots": 9,
+        "pathReads": 3,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 18,
+        "snapshots": 9,
+        "pathReads": 3,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "selected-repeat",
+      "status": "captured",
+      "code": null,
+      "wallMs": 14.531896000000074,
+      "maxSliceMs": 9.760974999999917,
+      "baselineRssMiB": 145.68359375,
+      "peakRssMiB": 145.80859375,
+      "heapGrowthMiB": 0.9073867797851562,
+      "metrics": {
+        "wallMs": 14.461039000000028,
+        "work": 39035,
+        "checkpoints": 10,
+        "projectionBytes": 15180,
+        "receiptBytes": 22212,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 18,
+        "snapshots": 9,
+        "pathReads": 3,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 24,
+        "snapshots": 12,
+        "pathReads": 4,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "isolated",
+      "status": "captured",
+      "code": null,
+      "wallMs": 10.158256000000051,
+      "maxSliceMs": 5.319972000000007,
+      "baselineRssMiB": 145.80859375,
+      "peakRssMiB": 145.93359375,
+      "heapGrowthMiB": 1.7164993286132812,
+      "metrics": {
+        "wallMs": 10.09025500000007,
+        "work": 19362,
+        "checkpoints": 7,
+        "projectionBytes": 7337,
+        "receiptBytes": 11285,
+        "textBytes": 718,
+        "spans": 3,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 24,
+        "snapshots": 12,
+        "pathReads": 4,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 30,
+        "snapshots": 15,
+        "pathReads": 5,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "isolated-read",
+      "status": "recorded",
+      "code": null,
+      "wallMs": 1.4164300000001049,
+      "maxSliceMs": 1.3985979999999927,
+      "baselineRssMiB": 145.93359375,
+      "peakRssMiB": 145.93359375,
+      "heapGrowthMiB": 0.5734939575195312,
+      "metrics": {
+        "wallMs": 1.3711100000000442,
+        "work": 19353,
+        "checkpoints": 4,
+        "projectionBytes": 7337,
+        "receiptBytes": 11285,
+        "textBytes": 718,
+        "spans": 3,
+        "sources": 4,
+        "publicationLocks": 0
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 30,
+        "snapshots": 15,
+        "pathReads": 5,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 30,
+        "snapshots": 15,
+        "pathReads": 5,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "roundtrip-read",
+      "status": "recorded",
+      "code": null,
+      "wallMs": 2.5418859999999768,
+      "maxSliceMs": 2.523050000000012,
+      "baselineRssMiB": 145.93359375,
+      "peakRssMiB": 146.05859375,
+      "heapGrowthMiB": 1.2064361572265625,
+      "metrics": {
+        "wallMs": 2.4842689999999266,
+        "work": 44432,
+        "checkpoints": 7,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 0
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 30,
+        "snapshots": 15,
+        "pathReads": 5,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 30,
+        "snapshots": 15,
+        "pathReads": 5,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "external-lock",
+      "status": "captured",
+      "code": null,
+      "wallMs": 12.603824000000031,
+      "maxSliceMs": 7.709123999999974,
+      "baselineRssMiB": 146.43359375,
+      "peakRssMiB": 146.43359375,
+      "heapGrowthMiB": 2.6823348999023438,
+      "metrics": {
+        "wallMs": 12.520426000000043,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 30,
+        "snapshots": 15,
+        "pathReads": 5,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 36,
+        "snapshots": 18,
+        "pathReads": 6,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "missing",
+      "status": "failed",
+      "code": "RECEIPT_UNAVAILABLE",
+      "wallMs": 0.5769410000000335,
+      "maxSliceMs": 0.5536980000001677,
+      "baselineRssMiB": 146.43359375,
+      "peakRssMiB": 146.43359375,
+      "heapGrowthMiB": 0.0560760498046875,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 136,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 392
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 136,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 1,
+        "changedRows": 392
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "unpublished",
+      "status": "failed",
+      "code": "RECEIPT_UNAVAILABLE",
+      "wallMs": 1.1714600000000246,
+      "maxSliceMs": 1.133822999999893,
+      "baselineRssMiB": 146.82421875,
+      "peakRssMiB": 146.82421875,
+      "heapGrowthMiB": 0.05933380126953125,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 146,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 404
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 146,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 1,
+        "changedRows": 404
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "incompatible",
+      "status": "failed",
+      "code": "RECEIPT_UNAVAILABLE",
+      "wallMs": 0.5204999999996289,
+      "maxSliceMs": 0.5032040000000961,
+      "baselineRssMiB": 147.44921875,
+      "peakRssMiB": 147.44921875,
+      "heapGrowthMiB": 0.06839752197265625,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 159,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 417
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 159,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 1,
+        "changedRows": 417
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "root-page",
+      "status": "failed",
+      "code": "INVALID_RECEIPT_SELECTION",
+      "wallMs": 0.2235499999997046,
+      "maxSliceMs": 0.20470799999975497,
+      "baselineRssMiB": 147.82421875,
+      "peakRssMiB": 147.82421875,
+      "heapGrowthMiB": 0.0168609619140625,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "busy",
+      "status": "failed",
+      "code": "PATHS_BUSY",
+      "wallMs": 0.40475599999990663,
+      "maxSliceMs": 0.38775900000018737,
+      "baselineRssMiB": 148.07421875,
+      "peakRssMiB": 148.07421875,
+      "heapGrowthMiB": 0.0497589111328125,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 1,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 1,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "limit-projectionBytes",
+      "status": "failed",
+      "code": "RECEIPT_PROJECTION_LIMIT",
+      "wallMs": 6.526594999999816,
+      "maxSliceMs": 4.748404999999821,
+      "baselineRssMiB": 148.69921875,
+      "peakRssMiB": 148.69921875,
+      "heapGrowthMiB": 1.4358367919921875,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "limit-spans",
+      "status": "failed",
+      "code": "RECEIPT_SPAN_LIMIT",
+      "wallMs": 7.173415999999634,
+      "maxSliceMs": 5.0627519999998185,
+      "baselineRssMiB": 149.44921875,
+      "peakRssMiB": 149.57421875,
+      "heapGrowthMiB": 1.6164474487304688,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "limit-textBytes",
+      "status": "failed",
+      "code": "RECEIPT_TEXT_LIMIT",
+      "wallMs": 8.765397000000121,
+      "maxSliceMs": 5.5630709999995815,
+      "baselineRssMiB": 151.82421875,
+      "peakRssMiB": 153.57421875,
+      "heapGrowthMiB": 1.8115615844726562,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "limit-receiptBytes",
+      "status": "failed",
+      "code": "RECEIPT_BYTES_LIMIT",
+      "wallMs": 8.59689999999955,
+      "maxSliceMs": 4.78226100000029,
+      "baselineRssMiB": 155.82421875,
+      "peakRssMiB": 155.82421875,
+      "heapGrowthMiB": 2.3902969360351562,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "limit-wallMs",
+      "status": "failed",
+      "code": "RECEIPT_TIME_LIMIT",
+      "wallMs": 0.11397399999987101,
+      "maxSliceMs": 0.10036099999979342,
+      "baselineRssMiB": 157.57421875,
+      "peakRssMiB": 157.57421875,
+      "heapGrowthMiB": 0.00917816162109375,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "limit-work",
+      "status": "failed",
+      "code": "RECEIPT_WORK_LIMIT",
+      "wallMs": 0.18603299999995215,
+      "maxSliceMs": 0.1709099999998216,
+      "baselineRssMiB": 161.82421875,
+      "peakRssMiB": 161.82421875,
+      "heapGrowthMiB": 0.01995086669921875,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "limit-sources",
+      "status": "failed",
+      "code": "RECEIPT_SOURCE_LIMIT",
+      "wallMs": 0.27971699999943667,
+      "maxSliceMs": 0.26277200000004086,
+      "baselineRssMiB": 161.82421875,
+      "peakRssMiB": 161.82421875,
+      "heapGrowthMiB": 0.0403900146484375,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "invalid-limit",
+      "status": "failed",
+      "code": "INVALID_RECEIPT_LIMIT",
+      "wallMs": 0.13350099999934173,
+      "maxSliceMs": 0.12003399999957765,
+      "baselineRssMiB": 161.82421875,
+      "peakRssMiB": 161.82421875,
+      "heapGrowthMiB": 0.00762939453125,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "invalid-limit",
+      "status": "failed",
+      "code": "INVALID_RECEIPT_LIMIT",
+      "wallMs": 0.07579299999997602,
+      "maxSliceMs": 0.06309400000009191,
+      "baselineRssMiB": 162.82421875,
+      "peakRssMiB": 162.82421875,
+      "heapGrowthMiB": 0.00576019287109375,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "invalid-limit",
+      "status": "failed",
+      "code": "INVALID_RECEIPT_LIMIT",
+      "wallMs": 0.07570399999985966,
+      "maxSliceMs": 0.06350500000007742,
+      "baselineRssMiB": 163.57421875,
+      "peakRssMiB": 163.57421875,
+      "heapGrowthMiB": 0.00618743896484375,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "invalid-limit",
+      "status": "failed",
+      "code": "INVALID_RECEIPT_LIMIT",
+      "wallMs": 0.08699800000067626,
+      "maxSliceMs": 0.0717449999992823,
+      "baselineRssMiB": 163.57421875,
+      "peakRssMiB": 163.57421875,
+      "heapGrowthMiB": 0.0061798095703125,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "cancel-start",
+      "status": "failed",
+      "code": "CANCELLED",
+      "wallMs": 0.4005189999988943,
+      "maxSliceMs": 0.382461000001058,
+      "baselineRssMiB": 164.69921875,
+      "peakRssMiB": 164.69921875,
+      "heapGrowthMiB": 0.0347137451171875,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "cancel-projection",
+      "status": "failed",
+      "code": "CANCELLED",
+      "wallMs": 6.581844000000274,
+      "maxSliceMs": 5.116965999999593,
+      "baselineRssMiB": 164.82421875,
+      "peakRssMiB": 164.82421875,
+      "heapGrowthMiB": 1.3854446411132812,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "cancel-originals",
+      "status": "failed",
+      "code": "CANCELLED",
+      "wallMs": 7.085919999999533,
+      "maxSliceMs": 4.7747440000002825,
+      "baselineRssMiB": 164.82421875,
+      "peakRssMiB": 164.82421875,
+      "heapGrowthMiB": 1.822296142578125,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "cancel-prepared",
+      "status": "failed",
+      "code": "CANCELLED",
+      "wallMs": 8.14089800000147,
+      "maxSliceMs": 4.559443000000101,
+      "baselineRssMiB": 165.94921875,
+      "peakRssMiB": 166.07421875,
+      "heapGrowthMiB": 1.9576797485351562,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "cancel-handoff",
+      "status": "failed",
+      "code": "CANCELLED",
+      "wallMs": 8.831641000000673,
+      "maxSliceMs": 4.578176000000894,
+      "baselineRssMiB": 166.19921875,
+      "peakRssMiB": 166.32421875,
+      "heapGrowthMiB": 2.46478271484375,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "fence-start-metadata",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 1.6196770000005927,
+      "maxSliceMs": 1.5987000000004628,
+      "baselineRssMiB": 167.19921875,
+      "peakRssMiB": 167.19921875,
+      "heapGrowthMiB": 0.04718017578125,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 159,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 420
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 1,
+        "changedRows": 4,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-start-manifest",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 1.812768000001597,
+      "maxSliceMs": 1.7946460000002844,
+      "baselineRssMiB": 167.44921875,
+      "peakRssMiB": 167.44921875,
+      "heapGrowthMiB": 0.04291534423828125,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 159,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 417
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 1,
+        "changedRows": 1,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-start-original",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 1.4814659999992728,
+      "maxSliceMs": 1.462893999998414,
+      "baselineRssMiB": 167.44921875,
+      "peakRssMiB": 167.44921875,
+      "heapGrowthMiB": 0.04290771484375,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 159,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 417
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 1,
+        "changedRows": 1,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-start-policy",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 1.5955749999993714,
+      "maxSliceMs": 1.573130000000674,
+      "baselineRssMiB": 168.32421875,
+      "peakRssMiB": 168.32421875,
+      "heapGrowthMiB": 0.04756927490234375,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 160,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 424
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 2,
+        "changedRows": 8,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-start-registry",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 25.818452999999863,
+      "maxSliceMs": 11.999966000001223,
+      "baselineRssMiB": 168.32421875,
+      "peakRssMiB": 168.32421875,
+      "heapGrowthMiB": 0.15906524658203125,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 86,
+        "writeCalls": 160,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 425
+      },
+      "allowedLifecycle": {
+        "gitCalls": 2,
+        "writeCalls": 2,
+        "changedRows": 9,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-start-cited-revocation",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 3.031696000000011,
+      "maxSliceMs": 3.0074660000009317,
+      "baselineRssMiB": 168.44921875,
+      "peakRssMiB": 168.44921875,
+      "heapGrowthMiB": 0.07183837890625,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 483
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 12,
+        "changedRows": 67,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-start-uncited-revocation",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 3.3444369999997434,
+      "maxSliceMs": 3.322161000000051,
+      "baselineRssMiB": 169.69921875,
+      "peakRssMiB": 169.69921875,
+      "heapGrowthMiB": 0.0682525634765625,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 443
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 12,
+        "changedRows": 27,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-projection-metadata",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 7.4596719999990455,
+      "maxSliceMs": 4.617368000001079,
+      "baselineRssMiB": 169.69921875,
+      "peakRssMiB": 169.69921875,
+      "heapGrowthMiB": 1.4200210571289062,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 159,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 420
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 1,
+        "changedRows": 4,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-projection-manifest",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 7.41942200000085,
+      "maxSliceMs": 4.66378799999984,
+      "baselineRssMiB": 169.82421875,
+      "peakRssMiB": 169.82421875,
+      "heapGrowthMiB": 1.40936279296875,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 159,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 417
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 1,
+        "changedRows": 1,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-projection-original",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 14.541633999999249,
+      "maxSliceMs": 5.856402000001253,
+      "baselineRssMiB": 171.0859375,
+      "peakRssMiB": 171.2109375,
+      "heapGrowthMiB": 1.379241943359375,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 159,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 417
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 1,
+        "changedRows": 1,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-projection-policy",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 7.554033999998865,
+      "maxSliceMs": 5.025580999999875,
+      "baselineRssMiB": 171.20703125,
+      "peakRssMiB": 171.20703125,
+      "heapGrowthMiB": 1.3939056396484375,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 160,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 424
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 2,
+        "changedRows": 8,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-projection-registry",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 30.562431999998807,
+      "maxSliceMs": 11.678431000000273,
+      "baselineRssMiB": 171.83203125,
+      "peakRssMiB": 171.83203125,
+      "heapGrowthMiB": 1.510406494140625,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 86,
+        "writeCalls": 160,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 425
+      },
+      "allowedLifecycle": {
+        "gitCalls": 2,
+        "writeCalls": 2,
+        "changedRows": 9,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-projection-cited-revocation",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 9.370029999998224,
+      "maxSliceMs": 4.710778000000573,
+      "baselineRssMiB": 172.20703125,
+      "peakRssMiB": 172.20703125,
+      "heapGrowthMiB": 1.4057159423828125,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 483
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 12,
+        "changedRows": 67,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-projection-uncited-revocation",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 14.739600000000792,
+      "maxSliceMs": 8.706924999998591,
+      "baselineRssMiB": 172.20703125,
+      "peakRssMiB": 173.20703125,
+      "heapGrowthMiB": 0,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 443
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 12,
+        "changedRows": 27,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-originals-metadata",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 8.491423999999824,
+      "maxSliceMs": 4.604149999999208,
+      "baselineRssMiB": 173.33203125,
+      "peakRssMiB": 173.33203125,
+      "heapGrowthMiB": 1.8233566284179688,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 159,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 420
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 1,
+        "changedRows": 4,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-originals-manifest",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 8.85000299999956,
+      "maxSliceMs": 4.589858999999706,
+      "baselineRssMiB": 173.33203125,
+      "peakRssMiB": 173.33203125,
+      "heapGrowthMiB": 1.789794921875,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 159,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 417
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 1,
+        "changedRows": 1,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-originals-original",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 7.860445999998774,
+      "maxSliceMs": 4.650061000000278,
+      "baselineRssMiB": 174.359375,
+      "peakRssMiB": 174.359375,
+      "heapGrowthMiB": 1.8068771362304688,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 159,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 417
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 1,
+        "changedRows": 1,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-originals-policy",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 13.204940999999963,
+      "maxSliceMs": 6.150637999999162,
+      "baselineRssMiB": 174.22265625,
+      "peakRssMiB": 174.22265625,
+      "heapGrowthMiB": 1.8162841796875,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 160,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 424
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 2,
+        "changedRows": 8,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-originals-registry",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 32.07719400000133,
+      "maxSliceMs": 11.873453000000154,
+      "baselineRssMiB": 174.84765625,
+      "peakRssMiB": 174.84765625,
+      "heapGrowthMiB": 1.9320602416992188,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 86,
+        "writeCalls": 160,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 425
+      },
+      "allowedLifecycle": {
+        "gitCalls": 2,
+        "writeCalls": 2,
+        "changedRows": 9,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-originals-cited-revocation",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 19.290837000000465,
+      "maxSliceMs": 8.398232999999891,
+      "baselineRssMiB": 174.97265625,
+      "peakRssMiB": 174.97265625,
+      "heapGrowthMiB": 1.8475570678710938,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 483
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 12,
+        "changedRows": 67,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-originals-uncited-revocation",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 10.213352999999188,
+      "maxSliceMs": 5.548550000003161,
+      "baselineRssMiB": 175.97265625,
+      "peakRssMiB": 175.97265625,
+      "heapGrowthMiB": 1.8113937377929688,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 443
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 12,
+        "changedRows": 27,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-prepared-metadata",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 15.876123999998526,
+      "maxSliceMs": 5.982338000001619,
+      "baselineRssMiB": 176.09765625,
+      "peakRssMiB": 176.22265625,
+      "heapGrowthMiB": 1.9664764404296875,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 159,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 420
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 1,
+        "changedRows": 4,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-prepared-manifest",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 8.860998000000109,
+      "maxSliceMs": 4.496392000000924,
+      "baselineRssMiB": 176.97265625,
+      "peakRssMiB": 176.97265625,
+      "heapGrowthMiB": 1.9557418823242188,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 159,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 417
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 1,
+        "changedRows": 1,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-prepared-original",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 9.22355299999981,
+      "maxSliceMs": 4.92570600000181,
+      "baselineRssMiB": 176.97265625,
+      "peakRssMiB": 176.97265625,
+      "heapGrowthMiB": 1.9839706420898438,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 159,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 417
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 1,
+        "changedRows": 1,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-prepared-policy",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 19.985749999999825,
+      "maxSliceMs": 6.698516000000382,
+      "baselineRssMiB": 177.09765625,
+      "peakRssMiB": 177.84765625,
+      "heapGrowthMiB": 1.0394134521484375,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 160,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 424
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 2,
+        "changedRows": 8,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-prepared-registry",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 36.19562800000131,
+      "maxSliceMs": 13.174383000001399,
+      "baselineRssMiB": 178.22265625,
+      "peakRssMiB": 178.34765625,
+      "heapGrowthMiB": 2.112701416015625,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 86,
+        "writeCalls": 160,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 425
+      },
+      "allowedLifecycle": {
+        "gitCalls": 2,
+        "writeCalls": 2,
+        "changedRows": 9,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-prepared-cited-revocation",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 16.232576999998855,
+      "maxSliceMs": 6.970313999998325,
+      "baselineRssMiB": 178.08203125,
+      "peakRssMiB": 178.70703125,
+      "heapGrowthMiB": 0.7330551147460938,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 483
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 12,
+        "changedRows": 67,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-prepared-uncited-revocation",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 10.743759000000864,
+      "maxSliceMs": 6.354124999998021,
+      "baselineRssMiB": 179.08203125,
+      "peakRssMiB": 179.08203125,
+      "heapGrowthMiB": 2.0106735229492188,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 443
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 12,
+        "changedRows": 27,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-handoff-metadata",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 9.588888999998744,
+      "maxSliceMs": 4.926830999997037,
+      "baselineRssMiB": 179.08203125,
+      "peakRssMiB": 179.08203125,
+      "heapGrowthMiB": 2.3762283325195312,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 159,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 420
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 1,
+        "changedRows": 4,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-handoff-manifest",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 10.004645999997592,
+      "maxSliceMs": 5.692934999999125,
+      "baselineRssMiB": 179.83203125,
+      "peakRssMiB": 181.70703125,
+      "heapGrowthMiB": 2.3765029907226562,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 159,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 417
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 1,
+        "changedRows": 1,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-handoff-original",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 10.088439999999537,
+      "maxSliceMs": 5.627399000000878,
+      "baselineRssMiB": 187.33203125,
+      "peakRssMiB": 187.33203125,
+      "heapGrowthMiB": 2.4333572387695312,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 159,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 417
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 1,
+        "changedRows": 1,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-handoff-policy",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 10.908407000002626,
+      "maxSliceMs": 6.010984000000462,
+      "baselineRssMiB": 188.20703125,
+      "peakRssMiB": 188.20703125,
+      "heapGrowthMiB": 2.3835067749023438,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 160,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 424
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 2,
+        "changedRows": 8,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-handoff-registry",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 40.45204999999987,
+      "maxSliceMs": 17.25139300000228,
+      "baselineRssMiB": 188.3359375,
+      "peakRssMiB": 188.4609375,
+      "heapGrowthMiB": 2.5569839477539062,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 86,
+        "writeCalls": 160,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 425
+      },
+      "allowedLifecycle": {
+        "gitCalls": 2,
+        "writeCalls": 2,
+        "changedRows": 9,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-handoff-cited-revocation",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 13.582171000001836,
+      "maxSliceMs": 8.828440000001137,
+      "baselineRssMiB": 189.2109375,
+      "peakRssMiB": 189.3359375,
+      "heapGrowthMiB": 2.4482498168945312,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 483
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 12,
+        "changedRows": 67,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "fence-handoff-uncited-revocation",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 11.99190599999929,
+      "maxSliceMs": 7.5584450000023935,
+      "baselineRssMiB": 189.3359375,
+      "peakRssMiB": 189.3359375,
+      "heapGrowthMiB": 2.4291534423828125,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 443
+      },
+      "allowedLifecycle": {
+        "gitCalls": 0,
+        "writeCalls": 12,
+        "changedRows": 27,
+        "legacy": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593"
+      }
+    },
+    {
+      "name": "external-commit",
+      "status": "failed",
+      "code": "RECEIPT_FENCED",
+      "wallMs": 10.423970000003465,
+      "maxSliceMs": 5.9269249999997555,
+      "baselineRssMiB": 190.0859375,
+      "peakRssMiB": 190.0859375,
+      "heapGrowthMiB": 2.4355850219726562,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 2,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": {
+        "externalCommits": 1
+      }
+    },
+    {
+      "name": "history-eviction-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 16.318218000000343,
+      "maxSliceMs": 6.630580999997619,
+      "baselineRssMiB": 191.0859375,
+      "peakRssMiB": 191.8359375,
+      "heapGrowthMiB": 0,
+      "metrics": {
+        "wallMs": 16.245614999999816,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-eviction",
+      "status": "recorded",
+      "code": null,
+      "wallMs": 2.5635419999998703,
+      "maxSliceMs": 2.5422120000002906,
+      "baselineRssMiB": 191.8359375,
+      "peakRssMiB": 191.8359375,
+      "heapGrowthMiB": 1.2158050537109375,
+      "metrics": {
+        "wallMs": 2.501241999998456,
+        "work": 44432,
+        "checkpoints": 7,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 0
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 214,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 487
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 214,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 487
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-restart-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 16.316625999999815,
+      "maxSliceMs": 6.015363999998954,
+      "baselineRssMiB": 192.3359375,
+      "peakRssMiB": 193.0859375,
+      "heapGrowthMiB": 0,
+      "metrics": {
+        "wallMs": 16.25774199999796,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-restart",
+      "status": "recorded",
+      "code": null,
+      "wallMs": 2.539213000000018,
+      "maxSliceMs": 2.520160999996733,
+      "baselineRssMiB": 193.0859375,
+      "peakRssMiB": 193.0859375,
+      "heapGrowthMiB": 1.2334823608398438,
+      "metrics": {
+        "wallMs": 2.482866999998805,
+        "work": 44432,
+        "checkpoints": 7,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 0
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 214,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 0
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 214,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 0
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-new-index-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 15.331725000000006,
+      "maxSliceMs": 6.15845199999967,
+      "baselineRssMiB": 193.3359375,
+      "peakRssMiB": 193.7109375,
+      "heapGrowthMiB": 0,
+      "metrics": {
+        "wallMs": 15.273301000001084,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-new-index",
+      "status": "recorded",
+      "code": null,
+      "wallMs": 2.5879119999990507,
+      "maxSliceMs": 2.5684650000002875,
+      "baselineRssMiB": 193.8359375,
+      "peakRssMiB": 193.8359375,
+      "heapGrowthMiB": 1.2010040283203125,
+      "metrics": {
+        "wallMs": 2.5300769999994372,
+        "work": 44432,
+        "checkpoints": 7,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 0
+      },
+      "before": {
+        "gitCalls": 112,
+        "writeCalls": 282,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 786
+      },
+      "after": {
+        "gitCalls": 112,
+        "writeCalls": 282,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 786
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-registry-growth-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 14.803725000001577,
+      "maxSliceMs": 5.542257000000973,
+      "baselineRssMiB": 193.8359375,
+      "peakRssMiB": 194.2109375,
+      "heapGrowthMiB": 0,
+      "metrics": {
+        "wallMs": 14.745412000000215,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-registry-growth",
+      "status": "recorded",
+      "code": null,
+      "wallMs": 3.118537999998807,
+      "maxSliceMs": 3.1007839999983844,
+      "baselineRssMiB": 194.2109375,
+      "peakRssMiB": 194.2109375,
+      "heapGrowthMiB": 1.2117767333984375,
+      "metrics": {
+        "wallMs": 3.0643089999975928,
+        "work": 44432,
+        "checkpoints": 7,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 0
+      },
+      "before": {
+        "gitCalls": 86,
+        "writeCalls": 172,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 437
+      },
+      "after": {
+        "gitCalls": 86,
+        "writeCalls": 172,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 437
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-parser-change-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 15.879569000000629,
+      "maxSliceMs": 6.775175999999192,
+      "baselineRssMiB": 197.7109375,
+      "peakRssMiB": 200.3359375,
+      "heapGrowthMiB": 0.791290283203125,
+      "metrics": {
+        "wallMs": 15.812064999998256,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-parser-change",
+      "status": "recorded",
+      "code": null,
+      "wallMs": 2.4821440000014263,
+      "maxSliceMs": 2.463244999999006,
+      "baselineRssMiB": 201.8359375,
+      "peakRssMiB": 202.4609375,
+      "heapGrowthMiB": 1.2456893920898438,
+      "metrics": {
+        "wallMs": 2.430127999999968,
+        "work": 44432,
+        "checkpoints": 7,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 0
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 171,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 429
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 171,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 429
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-alternative-change-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 15.603240000000369,
+      "maxSliceMs": 6.404106999998476,
+      "baselineRssMiB": 202.7109375,
+      "peakRssMiB": 203.0859375,
+      "heapGrowthMiB": 1.1121826171875,
+      "metrics": {
+        "wallMs": 15.546895999999833,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-cited-revocation-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 16.74671899999521,
+      "maxSliceMs": 7.6091079999969224,
+      "baselineRssMiB": 203.91015625,
+      "peakRssMiB": 204.28515625,
+      "heapGrowthMiB": 0,
+      "metrics": {
+        "wallMs": 16.68859300000622,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-cited-revocation",
+      "status": "failed",
+      "code": "RECEIPT_SCOPE_FENCED",
+      "wallMs": 1.3907429999962915,
+      "maxSliceMs": 1.3744500000029802,
+      "baselineRssMiB": 204.28515625,
+      "peakRssMiB": 204.41015625,
+      "heapGrowthMiB": 0.8564453125,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 182,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 497
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 182,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 497
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-uncited-revocation-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 15.117687999998452,
+      "maxSliceMs": 6.40004300000146,
+      "baselineRssMiB": 204.53515625,
+      "peakRssMiB": 205.03515625,
+      "heapGrowthMiB": 1.2535247802734375,
+      "metrics": {
+        "wallMs": 15.060915000001842,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-uncited-revocation",
+      "status": "failed",
+      "code": "RECEIPT_SCOPE_FENCED",
+      "wallMs": 1.3431610000043293,
+      "maxSliceMs": 1.328178999996453,
+      "baselineRssMiB": 205.03515625,
+      "peakRssMiB": 205.03515625,
+      "heapGrowthMiB": 0.797088623046875,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 182,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 457
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 182,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 457
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-policy-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 13.598849000001792,
+      "maxSliceMs": 8.87237499999901,
+      "baselineRssMiB": 205.41015625,
+      "peakRssMiB": 205.53515625,
+      "heapGrowthMiB": 2.56634521484375,
+      "metrics": {
+        "wallMs": 13.507904999998573,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-policy",
+      "status": "failed",
+      "code": "POLICY_CHANGED",
+      "wallMs": 1.2878579999960493,
+      "maxSliceMs": 1.2719859999997425,
+      "baselineRssMiB": 205.53515625,
+      "peakRssMiB": 205.53515625,
+      "heapGrowthMiB": 0.8813018798828125,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 172,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 436
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 172,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 436
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-missing-original-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 11.092907999998715,
+      "maxSliceMs": 6.813479999997071,
+      "baselineRssMiB": 208.41015625,
+      "peakRssMiB": 208.41015625,
+      "heapGrowthMiB": 2.52215576171875,
+      "metrics": {
+        "wallMs": 11.032936000003247,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-missing-original",
+      "status": "failed",
+      "code": "NOT_FOUND",
+      "wallMs": 1.4590180000013788,
+      "maxSliceMs": 1.4445970000015222,
+      "baselineRssMiB": 208.41015625,
+      "peakRssMiB": 208.41015625,
+      "heapGrowthMiB": 0.90948486328125,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 171,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 430
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 171,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 430
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-corrupt-original-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 9.88749700000335,
+      "maxSliceMs": 5.576394000003347,
+      "baselineRssMiB": 208.7734375,
+      "peakRssMiB": 208.7734375,
+      "heapGrowthMiB": 2.59588623046875,
+      "metrics": {
+        "wallMs": 9.834962000000814,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-corrupt-original",
+      "status": "failed",
+      "code": "CORRUPT_EVIDENCE",
+      "wallMs": 1.502345000000787,
+      "maxSliceMs": 1.4871520000015153,
+      "baselineRssMiB": 208.8984375,
+      "peakRssMiB": 208.8984375,
+      "heapGrowthMiB": 0.9595947265625,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 171,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 429
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 171,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 429
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-missing-file-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 11.267149999999674,
+      "maxSliceMs": 6.325806000000739,
+      "baselineRssMiB": 209.1484375,
+      "peakRssMiB": 209.2734375,
+      "heapGrowthMiB": 2.5483856201171875,
+      "metrics": {
+        "wallMs": 11.213088999997126,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "history-missing-file",
+      "status": "failed",
+      "code": "ENOENT",
+      "wallMs": 0.14896600000065519,
+      "maxSliceMs": 0.13483999999880325,
+      "baselineRssMiB": 209.2734375,
+      "peakRssMiB": 209.2734375,
+      "heapGrowthMiB": 0.09975433349609375,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 428
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 170,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 428
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-format-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 16.54989399999613,
+      "maxSliceMs": 5.839437000002363,
+      "baselineRssMiB": 209.3984375,
+      "peakRssMiB": 209.8984375,
+      "heapGrowthMiB": 0,
+      "metrics": {
+        "wallMs": 16.494330000001355,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-format",
+      "status": "failed",
+      "code": "CORRUPT_RECEIPT",
+      "wallMs": 0.29286599999613827,
+      "maxSliceMs": 0.28012000000308035,
+      "baselineRssMiB": 209.8984375,
+      "peakRssMiB": 209.8984375,
+      "heapGrowthMiB": 0.1156463623046875,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-projection-json-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 10.348828000001959,
+      "maxSliceMs": 5.61566799999855,
+      "baselineRssMiB": 209.8984375,
+      "peakRssMiB": 209.8984375,
+      "heapGrowthMiB": 2.4199752807617188,
+      "metrics": {
+        "wallMs": 10.291706000003614,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-projection-json",
+      "status": "failed",
+      "code": "CORRUPT_RECEIPT",
+      "wallMs": 0.3044519999966724,
+      "maxSliceMs": 0.29238900000200374,
+      "baselineRssMiB": 209.8984375,
+      "peakRssMiB": 210.0234375,
+      "heapGrowthMiB": 0.15969085693359375,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-generation-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 19.401733999999124,
+      "maxSliceMs": 8.282977000002575,
+      "baselineRssMiB": 210.6484375,
+      "peakRssMiB": 210.7734375,
+      "heapGrowthMiB": 2.4784927368164062,
+      "metrics": {
+        "wallMs": 19.342248000000836,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-generation",
+      "status": "failed",
+      "code": "CORRUPT_RECEIPT",
+      "wallMs": 0.6156689999988885,
+      "maxSliceMs": 0.602656000002753,
+      "baselineRssMiB": 210.7734375,
+      "peakRssMiB": 210.7734375,
+      "heapGrowthMiB": 0.6261215209960938,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-projection-hash-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 10.206138000001374,
+      "maxSliceMs": 5.2116339999993215,
+      "baselineRssMiB": 210.8984375,
+      "peakRssMiB": 210.8984375,
+      "heapGrowthMiB": 2.4155807495117188,
+      "metrics": {
+        "wallMs": 10.153769999997166,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-projection-hash",
+      "status": "failed",
+      "code": "CORRUPT_RECEIPT",
+      "wallMs": 0.6361130000004778,
+      "maxSliceMs": 0.6218940000035218,
+      "baselineRssMiB": 210.8984375,
+      "peakRssMiB": 210.8984375,
+      "heapGrowthMiB": 0.6261520385742188,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-receipt-hash-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 11.229504000002635,
+      "maxSliceMs": 6.654613999999128,
+      "baselineRssMiB": 211.6484375,
+      "peakRssMiB": 211.6484375,
+      "heapGrowthMiB": 2.4424896240234375,
+      "metrics": {
+        "wallMs": 11.154974999997648,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-receipt-hash",
+      "status": "failed",
+      "code": "CORRUPT_RECEIPT",
+      "wallMs": 0.3728960000007646,
+      "maxSliceMs": 0.36119600000529317,
+      "baselineRssMiB": 211.6484375,
+      "peakRssMiB": 211.6484375,
+      "heapGrowthMiB": 0.3201141357421875,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-original-text-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 12.117573000003176,
+      "maxSliceMs": 7.591415999995661,
+      "baselineRssMiB": 211.6484375,
+      "peakRssMiB": 211.7734375,
+      "heapGrowthMiB": 2.452362060546875,
+      "metrics": {
+        "wallMs": 12.033582000003662,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-original-text",
+      "status": "failed",
+      "code": "CORRUPT_RECEIPT",
+      "wallMs": 1.4556859999938752,
+      "maxSliceMs": 1.4392010000010487,
+      "baselineRssMiB": 212.1484375,
+      "peakRssMiB": 212.1484375,
+      "heapGrowthMiB": 0.873931884765625,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-original-hash-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 10.395979000000807,
+      "maxSliceMs": 5.921673000004375,
+      "baselineRssMiB": 212.1484375,
+      "peakRssMiB": 212.2734375,
+      "heapGrowthMiB": 2.4354248046875,
+      "metrics": {
+        "wallMs": 10.338434000004781,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-original-hash",
+      "status": "failed",
+      "code": "CORRUPT_RECEIPT",
+      "wallMs": 1.5280560000028345,
+      "maxSliceMs": 1.5109109999975772,
+      "baselineRssMiB": 212.2734375,
+      "peakRssMiB": 212.2734375,
+      "heapGrowthMiB": 0.8737030029296875,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-original-range-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 14.44481100000121,
+      "maxSliceMs": 5.302182999999786,
+      "baselineRssMiB": 212.3984375,
+      "peakRssMiB": 212.8984375,
+      "heapGrowthMiB": 0,
+      "metrics": {
+        "wallMs": 14.393738999999186,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-original-range",
+      "status": "failed",
+      "code": "CORRUPT_RECEIPT",
+      "wallMs": 1.3822260000015376,
+      "maxSliceMs": 1.364780999996583,
+      "baselineRssMiB": 212.8984375,
+      "peakRssMiB": 212.8984375,
+      "heapGrowthMiB": 0.836578369140625,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-foreign-build-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 11.164796999997634,
+      "maxSliceMs": 6.145345000004454,
+      "baselineRssMiB": 213.0234375,
+      "peakRssMiB": 213.0234375,
+      "heapGrowthMiB": 2.4128799438476562,
+      "metrics": {
+        "wallMs": 11.109071999999287,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-foreign-build",
+      "status": "failed",
+      "code": "CORRUPT_RECEIPT",
+      "wallMs": 1.3679340000016964,
+      "maxSliceMs": 1.3535609999962617,
+      "baselineRssMiB": 213.0234375,
+      "peakRssMiB": 213.0234375,
+      "heapGrowthMiB": 0.884765625,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-missing-support-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 10.47022399999696,
+      "maxSliceMs": 5.44695800000045,
+      "baselineRssMiB": 213.6484375,
+      "peakRssMiB": 213.6484375,
+      "heapGrowthMiB": 2.4249420166015625,
+      "metrics": {
+        "wallMs": 10.412247000000207,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-missing-support",
+      "status": "failed",
+      "code": "CORRUPT_RECEIPT",
+      "wallMs": 1.208468000004359,
+      "maxSliceMs": 1.1949180000010529,
+      "baselineRssMiB": 213.6484375,
+      "peakRssMiB": 213.6484375,
+      "heapGrowthMiB": 0.8287429809570312,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-missing-dependency-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 10.690348999996786,
+      "maxSliceMs": 5.640305000000808,
+      "baselineRssMiB": 214.0234375,
+      "peakRssMiB": 214.1484375,
+      "heapGrowthMiB": 2.4759521484375,
+      "metrics": {
+        "wallMs": 10.635236000001896,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-missing-dependency",
+      "status": "failed",
+      "code": "RECEIPT_SCOPE_FENCED",
+      "wallMs": 1.3284530000019004,
+      "maxSliceMs": 1.3129579999949783,
+      "baselineRssMiB": 214.2734375,
+      "peakRssMiB": 214.2734375,
+      "heapGrowthMiB": 0.7974319458007812,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-unknown-key-capture",
+      "status": "captured",
+      "code": null,
+      "wallMs": 11.68288400000165,
+      "maxSliceMs": 7.1499409999960335,
+      "baselineRssMiB": 214.3984375,
+      "peakRssMiB": 214.3984375,
+      "heapGrowthMiB": 2.4067840576171875,
+      "metrics": {
+        "wallMs": 11.619684000004781,
+        "work": 44441,
+        "checkpoints": 10,
+        "projectionBytes": 17800,
+        "receiptBytes": 24994,
+        "textBytes": 1603,
+        "spans": 6,
+        "sources": 4,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 0,
+        "snapshots": 0,
+        "pathReads": 0,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    },
+    {
+      "name": "corrupt-unknown-key",
+      "status": "failed",
+      "code": "CORRUPT_RECEIPT",
+      "wallMs": 0.2998139999981504,
+      "maxSliceMs": 0.28773500000534113,
+      "baselineRssMiB": 214.3984375,
+      "peakRssMiB": 214.3984375,
+      "heapGrowthMiB": 0.11740875244140625,
+      "metrics": null,
+      "before": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "after": {
+        "gitCalls": 84,
+        "writeCalls": 158,
+        "factReads": 6,
+        "snapshots": 3,
+        "pathReads": 1,
+        "changedRows": 416
+      },
+      "allowedLifecycle": null
+    }
+  ]
+}

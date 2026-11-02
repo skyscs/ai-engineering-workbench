@@ -205,6 +205,13 @@ question context or repositories. History survives fact eviction only with compl
 support and authorization dependencies. Next: freeze fresh receipt/lifecycle cases and
 bounds, then run that separate model-free qualification. No production consumer changes
 or new semantic acceptance follow from this design alone.
+[Task 071](tasks/071-loredock-path-receipt-qualification.md) implements that separate offline
+receipt experiment. Its frozen gate fails: 86/88 cases pass; a business-specific `orderTopic`
+requirement drops the useful event hop, and a harness label-only lookup prevents the
+changed-alternative history check. [First outcomes](docs/fixtures/loredock-path-receipts/README.md)
+are retained without reruns. Receipt/history integrity and resource checks are useful but
+do not permit production promotion. Next: define event-topic evidence/ambiguity semantics,
+then qualify a fresh successor with role/source/path-aware observer identities.
 The user demo and feedback stay separate from these checks; broader semantic synthesis
 and question-context changes remain open.
 Preserve all failed evaluations;
