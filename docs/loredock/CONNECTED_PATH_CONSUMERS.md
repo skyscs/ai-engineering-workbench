@@ -220,3 +220,16 @@ Tasks 034, 044, 048, 062, 063, 065 or 067 or relabel any historical gate.
 
 Task 070 does not freeze a corpus, allocate model attempts, run this qualification or
 claim a receipt implementation. Its output is this decision and the next-task boundary.
+
+## Task 071 outcome
+
+The first [offline receipt qualification](../fixtures/loredock-path-receipts/README.md)
+failed its frozen gate (86/88 cases), so this design is not promoted to production storage.
+The useful path stops at publish because the existing resolver's topic-setting profile
+requires the exact `orderTopic` key. A separate harness lookup conflates a same-label
+handler reference and symbol, preventing the changed-alternative history assertion.
+
+Other integrity/lifecycle/resource evidence is retained, without relabeling the failures
+or rerunning the matrix. Next: a separately scoped topic-evidence contract and fresh
+qualification with typed oracle identities and early raw-observation journaling. No new
+answer/review/candidate adapter or model budget follows from the experiment.

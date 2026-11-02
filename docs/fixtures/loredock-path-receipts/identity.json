@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "task071-receipt-result/1",
+  "createdAt": "2026-11-02T23:17:49.469Z",
+  "candidateCommit": "0e5019296d86c5e8546dd13c627a76090d1e62a1",
+  "inputHashes": {
+    "corpus.json": "253518d3dd37ff7db42c04cfc67d61212b8790f194c2222e19106aad5880c00b",
+    "oracle.json": "fff1ebb470dc4c76c05042d049b4a41b899a430bc6e6c4a98302d70067523b11",
+    "README.md": "9fd5db6550f7ad5aa70e2a907a23f8d17e569930aa5bb251233707024f8f2063"
+  },
+  "node": "v22.23.2",
+  "hardware": {
+    "platform": "linux",
+    "arch": "x64",
+    "cpus": 16,
+    "cpu": "12th Gen Intel(R) Core(TM) i5-12500H",
+    "memoryBytes": 32718753792
+  },
+  "limits": {
+    "projectionBytes": 524288,
+    "spans": 30,
+    "textBytes": 65536,
+    "receiptBytes": 655360,
+    "wallMs": 5000,
+    "work": 1000000,
+    "sources": 20
+  },
+  "resourceLimits": {
+    "maxSliceMs": 150,
+    "sampledRssMiB": 384,
+    "sampledHeapGrowthMiB": 64,
+    "sampleIntervalMs": 5
+  },
+  "modelRequests": 0,
+  "scope": "Owned synthetic structural/integrity qualification; no independent semantic or private-pilot acceptance."
+}

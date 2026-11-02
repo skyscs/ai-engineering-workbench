@@ -1,0 +1,155 @@
+{
+  "schemaVersion": "task071-receipt-oracle/1",
+  "authorship": "Agent-authored from source bytes before implementation; not blinded or independent external assessment.",
+  "sourceNames": [
+    "seat-desk",
+    "booking-service",
+    "booking-ledger",
+    "seat-notes"
+  ],
+  "uncitedSource": "seat-notes",
+  "defaultFlows": 2,
+  "criticalNodes": [
+    [
+      "seat-desk",
+      "ui/AAReserve.vue",
+      "symbol",
+      "reserve"
+    ],
+    [
+      "seat-desk",
+      "ui/BBRepeat.vue",
+      "symbol",
+      "again"
+    ],
+    [
+      "seat-desk",
+      "ui/booking.ts",
+      "http-request",
+      "POST /v2/bookings"
+    ],
+    [
+      "booking-service",
+      "java/Reservations.java",
+      "symbol",
+      "Reservations.place"
+    ],
+    [
+      "booking-service",
+      "java/Reservations.java",
+      "event-publish",
+      "Publish BookingPlaced"
+    ],
+    [
+      "booking-ledger",
+      "java/BookingConsumer.java",
+      "event-subscribe",
+      "Subscribe via KafkaSubscriber"
+    ],
+    [
+      "booking-ledger",
+      "java/BookingConsumer.java",
+      "document-write",
+      "MongoCollection.replaceOne"
+    ]
+  ],
+  "isolatedRoot": [
+    "seat-desk",
+    "ui/ZInspect.vue",
+    "inspect"
+  ],
+  "alternative": {
+    "source": "booking-service",
+    "path": "shadow/Alternative.java",
+    "text": "final class Reservations { void place(String seat, String account) {} }\n"
+  },
+  "limits": {
+    "projectionBytes": 524288,
+    "spans": 30,
+    "textBytes": 65536,
+    "receiptBytes": 655360,
+    "wallMs": 5000,
+    "work": 1000000,
+    "sources": 20
+  },
+  "resources": {
+    "maxSliceMs": 150,
+    "sampledRssMiB": 384,
+    "sampledHeapGrowthMiB": 64,
+    "sampleIntervalMs": 5
+  },
+  "captureStages": [
+    "start",
+    "projection",
+    "originals",
+    "prepared",
+    "handoff"
+  ],
+  "mutations": [
+    "metadata",
+    "manifest",
+    "original",
+    "policy",
+    "registry",
+    "cited-revocation",
+    "uncited-revocation"
+  ],
+  "captureSuccesses": [
+    "default-first",
+    "default-repeat",
+    "selected-first",
+    "selected-repeat",
+    "isolated",
+    "roundtrip",
+    "external-lock"
+  ],
+  "availabilityFailures": [
+    "missing",
+    "unpublished",
+    "incompatible",
+    "root-page",
+    "busy"
+  ],
+  "historyCases": [
+    "eviction",
+    "restart",
+    "new-index",
+    "registry-growth",
+    "parser-change",
+    "alternative-change",
+    "cited-revocation",
+    "uncited-revocation",
+    "policy",
+    "missing-original",
+    "corrupt-original",
+    "missing-file"
+  ],
+  "corruptions": [
+    "format",
+    "projection-json",
+    "generation",
+    "projection-hash",
+    "receipt-hash",
+    "original-text",
+    "original-hash",
+    "original-range",
+    "foreign-build",
+    "missing-support",
+    "missing-dependency",
+    "unknown-key"
+  ],
+  "historyProhibitions": [
+    "path-read",
+    "analysis-snapshot",
+    "analysis-file",
+    "git",
+    "store-write",
+    "model"
+  ],
+  "legacyInvariants": [
+    "answer-context-bytes",
+    "legacy-flow-bytes",
+    "correction-tables",
+    "source-commits"
+  ]
+}

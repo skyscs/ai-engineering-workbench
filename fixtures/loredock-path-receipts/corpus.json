@@ -1,0 +1,26 @@
+{
+  "seat-desk": {
+    "README.md": "# Seat desk\nTwo source actions request a reservation. Production URL routing is unspecified.\n",
+    "package.json": "{\n  \"name\": \"owned-seat-desk\",\n  \"private\": true\n}\n",
+    "ui/AAReserve.vue": "<script setup lang=\"ts\">\nimport { placeBooking } from \"./booking\";\nconst props = defineProps<{ seat: string; account: string }>();\nconst reserve = () => placeBooking(props.seat, props.account);\n</script>\n<template><button @click=\"reserve\">Reserve seat</button></template>\n",
+    "ui/BBRepeat.vue": "<script setup lang=\"ts\">\nimport { placeBooking } from \"./booking\";\nconst props = defineProps<{ seat: string; account: string }>();\nconst again = () => placeBooking(props.seat, props.account);\n</script>\n<template><button @click=\"again\">Reserve seat</button></template>\n",
+    "ui/ZInspect.vue": "<script setup lang=\"ts\">\nimport { inspectSeat } from \"./missing\";\nconst inspect = () => inspectSeat();\n</script>\n<template><button @click=\"inspect\">Inspect seat</button></template>\n",
+    "ui/booking.ts": "export async function placeBooking(seat: string, account: string) {\n  const result = await fetch(\"/v2/bookings\", {\n    method: \"POST\", headers: { \"X-Seat-Account\": account }, body: JSON.stringify({ seat }),\n  });\n  return result.json();\n}\n"
+  },
+  "booking-service": {
+    "README.md": "# Booking service\nThe publisher is an interface. Server and broker authority remain unspecified.\n",
+    "config/routes.json": "{\n  \"routes\": [\n    {\n      \"method\": \"POST\",\n      \"path\": \"/v2/bookings\",\n      \"handler\": \"Reservations.place\"\n    }\n  ],\n  \"headerBindings\": {\n    \"Reservations.place.account\": \"X-Seat-Account\"\n  }\n}\n",
+    "config/staging.json": "{\n  \"environment\": \"staging\",\n  \"bookingTopic\": \"booking.placed.v2\"\n}\n",
+    "contracts/BookingPlaced.json": "{\n  \"name\": \"BookingPlaced\",\n  \"version\": 2,\n  \"fields\": {\n    \"seat\": \"string\",\n    \"account\": \"string\"\n  },\n  \"transport\": \"Kafka\",\n  \"encoding\": \"unspecified\"\n}\n",
+    "java/Reservations.java": "record BookingPlaced(String seat, String account) {}\ninterface EventPublisher { void publish(String topic, String key, BookingPlaced event); }\nfinal class Reservations {\n  private final EventPublisher publisher;\n  Reservations(EventPublisher publisher) { this.publisher = publisher; }\n  void place(String seat, String account) {\n    var event = new BookingPlaced(seat, account);\n    publisher.publish(\"booking.placed.v2\", account, event);\n  }\n}\n"
+  },
+  "booking-ledger": {
+    "README.md": "# Booking ledger\nSubscriber dispatch and the concrete collection are not supplied.\n",
+    "config/staging.json": "{\n  \"environment\": \"staging\",\n  \"bookingTopic\": \"booking.placed.v2\"\n}\n",
+    "contracts/BookingPlaced.json": "{\n  \"name\": \"BookingPlaced\",\n  \"version\": 2,\n  \"fields\": {\n    \"seat\": \"string\",\n    \"account\": \"string\"\n  },\n  \"transport\": \"Kafka\",\n  \"encoding\": \"unspecified\"\n}\n",
+    "java/BookingConsumer.java": "record BookingPlaced(String seat, String account) {}\nrecord SeatKey(String account, String seat) {}\ninterface MongoCollection { void replaceOne(SeatKey selector, BookingPlaced document, boolean upsert); }\ninterface KafkaSubscriber { void subscribe(String topic, String group, BookingConsumer handler); }\nfinal class BookingConsumer {\n  private final MongoCollection collection;\n  BookingConsumer(MongoCollection collection) { this.collection = collection; }\n  void start(KafkaSubscriber subscriber, String group) { subscriber.subscribe(\"booking.placed.v2\", group, this); }\n  void onMessage(BookingPlaced event) {\n    var selector = new SeatKey(event.account(), event.seat());\n    collection.replaceOne(selector, event, true);\n  }\n}\n"
+  },
+  "seat-notes": {
+    "README.md": "# Seat notes\nOwned documentation-only source. No supported entry point is declared here.\n"
+  }
+}
