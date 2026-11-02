@@ -50,7 +50,7 @@ class ProjectionWork {
     this.check(); this.lastYield = performance.now();
   }
   stats() {
-    return { workUnits: this.units, checkpoints: this.checkpoints, maxChunkMs: this.maxChunkMs,
+    return { workUnits: this.units, checkpoints: this.checkpoints, maxChunkMs: Math.max(this.maxChunkMs, performance.now() - this.lastYield),
       timings: { ...this.timings, [this.stage]: (this.timings[this.stage] ?? 0) + performance.now() - this.stageStart,
         wallMs: performance.now() - this.began } };
   }
@@ -77,7 +77,7 @@ export async function bindingProjection(services, analysis, buildId, options = {
       manifestHash: snapshot.manifestHash, metadataDigest: metadata.digest,
       policyVersion: snapshot.policyVersion, registryVersion: snapshot.registryVersion, adapter: 'task067-binding-v1', limits };
     const generationId = services.sha256(JSON.stringify(identity));
-    if (options.rootId && !options.generationId || options.generationId && options.generationId !== generationId)
+    if ((options.rootId && !options.generationId) || (options.generationId && options.generationId !== generationId))
       throw new services.CatalogError('INVALID_GENERATION', 'Choose a root from the current generation.', 400);
     const entries = [], consumed = []; let factEntries = 0;
     for (const fileId of snapshot.fileIds) {

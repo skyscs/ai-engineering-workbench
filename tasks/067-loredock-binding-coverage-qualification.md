@@ -38,3 +38,26 @@ in Git. Work resumed in a persistent worktree; the frozen qualification had not
 been executed. The lost metadata draft was reconstructed, with no oracle change.
 The previous demo process and temporary data were also unavailable after restart;
 this task does not recreate or migrate them.
+
+## Candidate before qualification
+
+Implementation `def961e` passed six small regression tests without executing this
+task's frozen matrix. Full strict checks, 462 tests and builds passed before the
+first qualification. The measured successor adds complete matrix/receipt handling
+and includes the final synchronous interval in checkpoint timing.
+
+The offline candidate preserves parser/matching policy and path admission. It uses
+length-prefixed metadata digests, iterative canonical Git tree reconstruction,
+complete manifest joins and generation-bound node/root identities. Known target
+cardinality and incomplete domains are separate diagnostics. SQLite change counters
+also fence edits across asynchronous reads, including edits to already-read rows.
+
+Bounded synchronous operations remain: metadata aggregate/page SQL, existing inventory
+snapshot validation and per-file original validation, declaration projection,
+per-directory and existing deterministic resolver/path sorts, and final JSON sizing.
+Cooperative checkpoints and the armed heartbeat cover their observed latency, not a
+hard scheduling guarantee. No heavy local checks run during qualification.
+
+The first-run output is written outside `/tmp`, under the workspace measurement
+directory, and refuses an existing destination. Each raw observation is saved before
+the next one. No result has yet been used to tune this candidate or the frozen oracle.
