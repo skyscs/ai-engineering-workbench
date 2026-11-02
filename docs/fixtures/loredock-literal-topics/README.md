@@ -81,7 +81,7 @@ neither the frozen protocol nor its results.
   each with path, byte count, SHA-256 and exact UTF-8 content. Gzip SHA-256:
   `49d12d6f850c7dc63d9d42ceab6ff6632e579616f02388dba19ff6e4cc2cfd28`.
 - Independent regression [first launcher failure](regression-launcher-first.log),
-  [first fixture failures](regression-first.log), [diagnostic](regression-diagnostic.log),
+  [first fixture failures](regression-first.log.gz), [diagnostic](regression-diagnostic.log),
   [final four integration checks](regression-final.log) and [literal-profile check](profile-final.log).
   The first small regression omitted contract `transport`; only that separate fixture was
   corrected. Frozen inputs were never used for development retuning.
