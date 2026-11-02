@@ -113,9 +113,11 @@ try {
   await page.send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 1000, deviceScaleFactor: 1, mobile: false });
   await page.send('Page.navigate', { url: origin }); await shown(buildId); await text('Browse connected paths');
   assert.equal(await evaluate("document.querySelector('.connected-paths').open"), false); assert.equal(pathReads(), 0);
+  await page.send('Page.bringToFront');
   await evaluate("document.querySelector('.connected-paths > summary').focus()");
-  await page.send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Enter', code: 'Enter', windowsVirtualKeyCode: 13 });
-  await page.send('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Enter', code: 'Enter', windowsVirtualKeyCode: 13 });
+  assert.equal(await evaluate('document.activeElement.textContent'), 'Browse connected paths');
+  await page.send('Input.dispatchKeyEvent', { type: 'keyDown', key: ' ', code: 'Space', windowsVirtualKeyCode: 32 });
+  await page.send('Input.dispatchKeyEvent', { type: 'keyUp', key: ' ', code: 'Space', windowsVirtualKeyCode: 32 });
   await text('No compatible published code inventory'); assert.equal(analysis.list().length, 0);
   await evaluate("document.querySelector('.connected-path-browser a').click()");
   assert.equal(await evaluate('document.activeElement.id'), 'code-coverage-heading');
@@ -205,6 +207,10 @@ try {
     transport: 'Owned loopback HTTP proxy dispatches to the compiled in-process app; no upstream forwarding or listener on port 4244.', requests };
   await writeFile(path.join(output, 'result.json'), JSON.stringify(result, null, 2) + '\n'); console.log(JSON.stringify({ output, checks: checks.length, pathReads: pathReads() }));
 } catch (error) {
+  if (page) {
+    const state = await page.send('Runtime.evaluate', { expression: '({text:document.body.innerText,active:document.activeElement.outerHTML,open:document.querySelector(".connected-paths")?.open})', returnByValue: true });
+    await writeFile(path.join(output, 'browser-failure.json'), JSON.stringify(state.result.value, null, 2) + '\n');
+  }
   await writeFile(path.join(output, 'failure.json'), JSON.stringify({ message: error.stack, checks, requests }, null, 2) + '\n');
   throw error;
 } finally {
