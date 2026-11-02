@@ -1,5 +1,26 @@
 # Development status
 
+## Task 070 — Connected-path consumer and provenance decision
+
+Design reviewed against `9476b22`, 2026-11-02; scope `2dee42a`. PR #73 merged after
+exact head `9263bce433816658794a2acd408e007408d9ff28` passed push `41461640680` and
+pull-request `41461701867` CI (483 tests), with an identical merge tree. Task 069's
+fifteen fresh browser checks and first failures remain recorded.
+
+The [consumer contract](loredock/CONNECTED_PATH_CONSUMERS.md) chooses an offline immutable
+receipt/lifecycle qualification before any new production consumer. It separates recorded
+history from current applicability, preserves complete original and scope dependencies,
+requires atomic capture fencing, and retains all existing answer/review bytes and adapters.
+Default display paths do not establish question relevance or repository routing. New notes
+need a distinct namespace and completeness-aware equivalence; aggregate gap counts and
+matching citation lines are insufficient for reapplication.
+
+Next: freeze fresh synthetic receipt/support/lifecycle cases and resource bounds before
+implementing the model-free experiment. No new persistence, parser/schema/API/UI behavior,
+model attempts, corporate sources or demo changes. Existing failed semantic/private-pilot
+gates and exhausted budgets remain unchanged. [ADR 0050](decisions/0050-loredock-connected-path-consumers.md)
+and [Task 070](../tasks/070-loredock-path-consumer-contract.md) record the decision.
+
 ## Task 069 — Connected-path browser
 
 Implemented and locally verified, 2026-11-02; scope `a08b9a2`, implementation `108a3ad`,

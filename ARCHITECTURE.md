@@ -412,3 +412,8 @@ It owns expanded-only inventory polling, serializes selection reads and fences r
 by component scope, inventory/generation and request sequence. It shares original evidence
 with the app, clearing pending originals on navigation/lifetime changes. Historical status
 follows the map index. Existing answer, candidate and review adapters remain separate.
+
+[ADR 0050](docs/decisions/0050-loredock-connected-path-consumers.md) defines the next
+consumer boundary, without implementing it: qualify immutable receipts offline before
+persisting connected-path context. Historical readability, current applicability and
+question relevance are separate contracts. Existing consumer adapters stay authoritative.
