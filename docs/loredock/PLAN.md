@@ -166,6 +166,12 @@ files, but 23 useful-path/root/branch checks fail because unrelated TypeScript g
 source-wide uniqueness. [Retained results](../fixtures/loredock-connected-scale/README.md)
 reject production promotion. A new binding-completeness contract and fresh qualification
 precede backend/UI adoption; do not ignore gaps or revise the failed oracle retrospectively.
+[Task 066](../../tasks/066-loredock-binding-completeness.md) defines
+[binding-specific completeness](BINDING_COMPLETENESS.md), preserving unknown/truncated target
+blockers while separating irrelevant path/language gaps. Its audit adds source path-share
+omissions, opaque entries and verified saved-tree metadata to the qualification boundary.
+Fresh independent useful-path and adversarial/resource cases come next; no prototype or
+application behavior changes merely by recording this design.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.

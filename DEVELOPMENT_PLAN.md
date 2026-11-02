@@ -177,6 +177,12 @@ TypeScript gaps suppress imports and Java bindings under the conservative whole-
 rule. [All first-run results](docs/fixtures/loredock-connected-scale/README.md) remain frozen;
 production promotion is rejected. Next, specify and independently qualify completeness for
 each binding search, retaining unknown/truncated target blockers and existing history fences.
+[Task 066](tasks/066-loredock-binding-completeness.md) specifies that
+[completeness contract](docs/loredock/BINDING_COMPLETENESS.md): exact import target-path domains,
+conservative same-source Java domains and separate ambiguity/incompleteness diagnostics.
+Source path omissions and opaque boundaries remain blockers. A saved-tree proof must precede
+absence claims, with bounded metadata and no projection Git calls. Next: freeze and execute
+fresh useful-path, adversarial, tree-integrity and resource qualification before backend work.
 The user demo and feedback stay separate from these checks; broader semantic synthesis
 and question-context changes remain open.
 Preserve all failed evaluations;
