@@ -1,6 +1,7 @@
 # Task 063 — Offline connected flow admission
 
-Status: scoped before implementation, 2026-11-02.
+Status: implemented and locally verified, 2026-11-02.
+Scope `c9c02f7`; input `8cd1cee`; measured implementation `121033a`; metadata review `b2e0208`.
 
 Task 062 rejects naive wider graph input. Define and evaluate an independent bounded
 selection prototype that resolves supported bindings against the complete retained fact
@@ -32,3 +33,18 @@ Add meaningful contract regressions, run strict/full checks, review the complete
 record English results/limits and the next bounded step. Publish a separate PR, verify
 both exact-head CI events, merge and synchronize source. Synthetic success alone does
 not establish semantic/private-pilot readiness or authorize a production switch.
+
+## Recorded outcome
+
+The [qualification](../docs/fixtures/loredock-connected-admission/README.md) passes 306/306
+checks in twenty cases, with 76 read-only projection observations and 1,841 exact original
+span reopens. The candidate preserves all seven required nodes and both write-ending paths
+in the baseline, 221-file distraction and multiple-dense-file cases. Complete alternatives
+and source incompleteness remain separate from displayed slots. Partial roots, branches,
+depth and budgets are explicit; lifecycle/integrity failures discard pending data.
+
+Strict full checks pass 451 tests/builds. Post-measurement review bounds excluded metadata
+by source; four focused checks and strict types pass (452 tests total). The measured receipt
+and all earlier negative experiments remain unchanged. Application behavior and the running
+demo are preserved. The next step is a separate integration/provenance/root-navigation
+contract, including larger-universe performance qualification before increasing bounds.

@@ -147,6 +147,13 @@ under the existing cap. Its [retained results](../fixtures/loredock-durable-flow
 reject promotion and expose the dense-case parser-limit assumption. The next selection
 contract must distinguish full ambiguity resolution from graph admission, with fresh
 multiple-dense-file and competing-root examples before implementation.
+[Task 063](../../tasks/063-loredock-connected-admission.md) executes that fresh policy:
+306/306 checks preserve required paths through 221-file distractions and separate dense
+files, while ambiguity/incomplete sources block false uniqueness. Root/depth/branch
+omissions and source-history fences remain explicit. The [retained qualification](../fixtures/loredock-connected-admission/README.md)
+justifies a separate integration/provenance/root-navigation proposal, not an implicit
+replacement of application graphs, answer context or correction targets. Larger-universe
+performance and private-pilot/semantic acceptance remain open.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.

@@ -1,5 +1,33 @@
 # Development status
 
+## Task 063 — Offline connected flow admission
+
+Implemented and locally verified, 2026-11-02. Scope `c9c02f7`, fresh input `8cd1cee`,
+measured implementation/binding-budget clarification `121033a`, metadata review `b2e0208`.
+PR #66 reached main as `a4d4a7d` after push `41351605712` and pull-request `41351632141`
+passed for exact head `4697ec01b6d2848ecda0495bead83e09b266a43d` (448 tests).
+
+The candidate resolves supported bindings against all retained facts before admitting
+whole root paths. Missing, excluded or truncated source code prevents false uniqueness;
+alternatives remain visible to resolution even outside display slots. A fresh parcel
+corpus passes 306/306 checks across twenty cases. Baseline, 221-file distraction and two
+separate dense files preserve seven required nodes and two write-ending paths within the
+unchanged display caps. Competing roots, long paths and budgets retain explicit omissions;
+contradictory wiring and lifecycle/integrity failures remain unresolved/unavailable.
+
+All 76 projection observations make zero Git calls/SQLite writes outside separately counted
+lifecycle hooks; 1,841 original span occurrences reopen exactly. First/repeated distracted
+projection takes 58.37/52.83 ms on this machine. Full resolution/display vectors and exact
+repeats are retained in [verification](fixtures/loredock-connected-admission/README.md).
+This known synthetic shape is not full-volume or semantic/private-pilot acceptance.
+
+Strict full checks pass 451 tests/builds. A later source-grouped excluded-metadata check
+passes with four focused checks and strict types (452 tests total), without rerunning or
+rewriting measurements. Application code, schema/UI, answer/correction/history consumers,
+user demo assets/data/process and old failed gates stay unchanged. Next: an explicit
+integration/provenance/root-navigation contract and larger-universe qualification before
+production adoption. See [Task 063](../tasks/063-loredock-connected-admission.md).
+
 ## Task 062 — Offline durable-fact flow comparison
 
 Implemented and locally verified, 2026-11-01; naive wider-input promotion rejected.
