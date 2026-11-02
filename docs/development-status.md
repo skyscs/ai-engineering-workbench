@@ -1,5 +1,30 @@
 # Development status
 
+## Task 064 — Connected path integration contract
+
+Design completed, 2026-11-02; scope `9bc373c` preceded analysis. PR #67 reached main as
+`9f9f080` after push `41425608990` and pull-request `41425616816` passed for exact head
+`f81824ac528263a5af262dae1826e4b4a134e1bc` (452 tests). The merge tree matches that head.
+
+The [integration contract](loredock/CONNECTED_PATH_INTEGRATION.md) traces the existing
+CodeAnalysis owner, disposable inventory retention, protected APIs, UI request fences and
+answer/review/candidate consumers. It keeps those consumers on the current graph adapter
+and proposes a separate collapsed path browser with four-entry-point pages, explicit root
+selection and bounded original support. Inventory/generation identity, complete wire limits,
+unavailable states and cancellation/scope/eviction handling are specified before any API or
+UI change. Newly published facts must also invalidate pending root/page/original responses.
+
+Next: freeze fresh larger-input and work-budget cases before an indexed, cooperative
+resolver experiment. The 221-file result does not establish 10,000-file capacity; useful
+successful inputs and explicit over-budget failures both need prospective thresholds.
+Protected backend and browser tasks follow only a passing qualification. Broader answer,
+review and routing adoption remains a separately qualified decision.
+
+Local source/document-reference and complete-diff review cover this prose-only task; no
+redundant runtime/browser or frozen experiment rerun. Application code/schema, all retained
+measurements and failed semantic gates, model budgets and the running owner demo remain
+unchanged. See [Task 064](../tasks/064-loredock-connected-integration-contract.md).
+
 ## Task 063 — Offline connected flow admission
 
 Implemented and locally verified, 2026-11-02. Scope `c9c02f7`, fresh input `8cd1cee`,

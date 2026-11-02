@@ -164,6 +164,12 @@ and multiple-dense-file cases, with global ambiguity and incomplete-source guard
 paths fit unchanged display caps; other roots/branches remain explicitly omitted. The next
 step is a separate integration/provenance/root-navigation contract and larger-universe
 qualification. Existing application/answer/correction behavior remains unchanged.
+[Task 064](tasks/064-loredock-connected-integration-contract.md) specifies the
+[integration sequence](docs/loredock/CONNECTED_PATH_INTEGRATION.md): first qualify indexed,
+cooperative resolution on fresh larger inputs, then add separate protected reads and a
+collapsed path browser with four-entry-point pages. Generation identity and late-response
+fences preserve originals and historical consumers. This is a design, not an available UI
+or a replacement for current answer/review derivations. Scale qualification is next.
 The user demo and feedback stay separate from these checks; broader semantic synthesis
 and question-context changes remain open.
 Preserve all failed evaluations;

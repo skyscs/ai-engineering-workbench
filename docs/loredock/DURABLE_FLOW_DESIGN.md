@@ -221,3 +221,11 @@ show missing/incomplete availability and offer access to omitted roots, while pr
 existing answer/correction history. The cooperative deadline and qualification at 221 files
 do not establish production maximum-volume performance. No production switch is authorized
 by this synthetic qualification alone.
+
+## Task 064 integration contract
+
+The [application integration design](CONNECTED_PATH_INTEGRATION.md) traces existing analysis,
+API, UI, answer and review consumers. It specifies separate generation-bound reads and a
+collapsed path browser with explicit root navigation, complete envelope bounds and original
+response fences. Fresh larger-universe/resource qualification comes before production reads
+or UI adoption. Existing graph/answer/review adapters and history remain unchanged.
