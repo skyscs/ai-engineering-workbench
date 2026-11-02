@@ -1,6 +1,6 @@
 # Task 073 — Literal-topic path and receipt qualification
 
-Status: scoped before implementation, 2026-11-03.
+Status: implemented and locally verified; first frozen gate passed, 2026-11-03.
 
 ## Baseline and sequence
 
@@ -55,3 +55,17 @@ An initial regression fixture omitted the required contract transport; its first
 diagnostic remain in local logs, followed by the corrected independent fixture's passing run.
 The frozen parcel inputs were not changed or executed during this correction. A first test
 launcher used the wrong working directory and failed before running tests; that log is retained.
+
+## Result
+
+Candidate/observer `3d92e73966a80db5f95f935ca2438a7a776a8bad` passes 134/134 frozen cases
+and 10,793 counted assertions, with exit 0. Eleven positive variants retain two complete
+write-ending paths; dynamic/ambiguous/unsupported variants abstain. Typed alternative history,
+complete support, all lifecycle/refusal cases and 113 successful resource observations pass.
+[The retained report](../docs/fixtures/loredock-literal-topics/README.md) includes all 235 raw
+artifacts and discloses the generic unknown-gap assertion's limitation plus direct readback.
+
+Full strict checks, 493 tests and builds pass; final targeted independent regressions pass.
+No production code/consumer change, model call, corporate access or old experiment rerun.
+Next: fresh twenty-source/near-limit resource qualification and an integration review; the
+small four-source family does not authorize production promotion or semantic acceptance.

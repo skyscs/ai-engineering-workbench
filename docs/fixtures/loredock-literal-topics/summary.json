@@ -1,0 +1,62 @@
+{
+  "candidateCommit": "3d92e73966a80db5f95f935ca2438a7a776a8bad",
+  "cases": 134,
+  "passedCases": 134,
+  "checks": 10793,
+  "observations": 207,
+  "successfulResourceOperations": 113,
+  "statuses": {
+    "available": 77,
+    "failed": 82,
+    "captured": 28,
+    "recorded": 8
+  },
+  "maximum": {
+    "wallMs": {
+      "value": 25.515274000004865,
+      "observation": "corrupt-duplicate-key-capture"
+    },
+    "maxSliceMs": {
+      "value": 10.029128000001947,
+      "observation": "history-new-index-capture"
+    },
+    "peakRssMiB": {
+      "value": 198.36328125,
+      "observation": "corrupt-duplicate-key-capture"
+    },
+    "heapGrowthMiB": {
+      "value": 3.4626083374023438,
+      "observation": "external-lock"
+    },
+    "work": {
+      "value": 63172,
+      "observation": "default-first"
+    },
+    "projectionBytes": {
+      "value": 24461,
+      "observation": "default-first"
+    },
+    "receiptBytes": {
+      "value": 35673,
+      "observation": "default-first"
+    },
+    "textBytes": {
+      "value": 2977,
+      "observation": "default-first"
+    },
+    "spans": {
+      "value": 10,
+      "observation": "default-first"
+    },
+    "sources": {
+      "value": 4,
+      "observation": "default-first"
+    }
+  },
+  "archive": {
+    "files": 235,
+    "uncompressedBytes": 3536951,
+    "gzipBytes": 456682,
+    "sha256": "49d12d6f850c7dc63d9d42ceab6ff6632e579616f02388dba19ff6e4cc2cfd28"
+  }
+}

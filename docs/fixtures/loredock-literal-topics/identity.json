@@ -1,0 +1,57 @@
+{
+  "baseline": {
+    "baseline": "c3bb8ff",
+    "copied": {
+      "apps/loredock/src/code-paths-resolve.ts": "d4c46ce19a963e6f6a2c7d37de5e3c1e1870454af5a6f0aba0404e63a1866332",
+      "apps/loredock/src/code-paths-admit.ts": "77b069bc96de261c38b16803b6c7c40e1c4c7a58b3e6d7aa87d3ad056bf5ef8b",
+      "apps/loredock/src/code-paths.ts": "dc1f0b32e1524dc93f535ac73043d950c3b59df8435cd6608d2943fbcce13329",
+      "scripts/loredock-path-receipt.mjs": "f1f7906c4c2cce7fc4d25d63b75076c30fad9d7c42fba6e32fff1bccd12adfec"
+    },
+    "shared": [
+      "PathWork",
+      "bindingMetadata",
+      "bindingDomains",
+      "assertBindingMetadata",
+      "declarationMap",
+      "compareHeaders",
+      "sha256",
+      "CatalogError"
+    ]
+  },
+  "baselineHash": "a9f5b1b51abbcb90ae80613e225ea8adc7a209e2b21d5fb3b8910d8d21778619",
+  "freezeCommit": "8803a06",
+  "schemaVersion": "task073-literal-topic-result/1",
+  "createdAt": "2026-11-02T23:49:36.419Z",
+  "candidateCommit": "3d92e73966a80db5f95f935ca2438a7a776a8bad",
+  "inputHashes": {
+    "corpus.json": "a7b2b41a387c147ca060b38b6b4a6e9421f8b52a6a9bcaaf6a2cae2162a581fe",
+    "oracle.json": "632bca9d964feb11822892ee19939ecc0a6a8bee1515c2c9650b22910ff90788",
+    "README.md": "584a4180a369224beaa6659f53bacc1baed4bc8c9c0ce020c9ee97145bd4a15a",
+    "cases.json": "f4b846a7ab2eb0f0331d8c4db8411e6cfcb8bb82f4977b2b7bbcf2bbe8e75465"
+  },
+  "node": "v22.23.2",
+  "hardware": {
+    "platform": "linux",
+    "arch": "x64",
+    "cpus": 16,
+    "cpu": "12th Gen Intel(R) Core(TM) i5-12500H",
+    "memoryBytes": 32718753792
+  },
+  "limits": {
+    "projectionBytes": 524288,
+    "spans": 30,
+    "textBytes": 65536,
+    "receiptBytes": 655360,
+    "wallMs": 5000,
+    "work": 1000000,
+    "sources": 20
+  },
+  "resourceLimits": {
+    "maxSliceMs": 150,
+    "sampledRssMiB": 384,
+    "sampledHeapGrowthMiB": 64,
+    "sampleIntervalMs": 5
+  },
+  "modelRequests": 0,
+  "scope": "Owned synthetic structural/integrity qualification; no independent semantic or private-pilot acceptance."
+}

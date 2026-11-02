@@ -239,3 +239,13 @@ fresh offline comparison must use explicit direct literals, preserve contract/co
 completeness and original support, and identify its changed derivation separately. Dynamic
 expressions remain unknown. A complete useful path and a valid typed observer are mandatory
 alongside receipt integrity; the earlier shortened-path resource pass is insufficient.
+
+## Task 073 outcome
+
+The [fresh literal-topic qualification](../fixtures/loredock-literal-topics/README.md)
+passes 134/134 cases and 10,793 counted assertions. Complete literal-based paths, typed
+alternative history and receipt integrity pass with explicitly versioned offline identities.
+Dynamic expressions abstain as designed. All 113 successful small-family resource readings
+meet bounds; raw results and the observer's generic unknown-gap limitation remain recorded.
+Next: fresh twenty-source/near-limit resource review before production integration. Existing
+production adapters, historical bytes and semantic/private-pilot gates remain unchanged.
