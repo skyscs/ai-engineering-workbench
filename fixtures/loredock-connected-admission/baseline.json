@@ -3,7 +3,7 @@
   "productionBase": "a4d4a7d28ea42a1cf8028280c028b462ebcb170b",
   "sourceHashes": {
     "fixtures/loredock-connected-admission/corpus.mjs": "0145460b9ef5d79746fb5f5831b6ef4c885a4f2eeab162f35e48d91bde20e262",
-    "fixtures/loredock-connected-admission/DESIGN.md": "6a832f2a1daf3658ba9debc367f257bc3970fe90a44b92835d9e9ceaebf68cdc",
+    "fixtures/loredock-connected-admission/DESIGN.md": "082a2e8e83d2684510d7610bbf3bd4f302f56c8d1229c6430375bbcfb01a568a",
     "scripts/loredock-durable-flow-assembler.mjs": "9af2c8582101eeadbd189243a63c78b3f1a4a565aeac405e790aeea39d76b7cf",
     "scripts/loredock-durable-flows.mjs": "8250f23c5db8c41d9a9f19ac3960a6369ab80d91791d7cba2837b64c87d575bd",
     "pnpm-lock.yaml": "7518f6697e3a529114fd835acbe23df2251e1ed25d6077f94d541409876d9312",
@@ -3002,5 +3002,6 @@
       ],
       "codeFiles": 30
     }
-  }
+  },
+  "preObservationClarification": "Before any prototype observations, separately bound stored binding records and alternative references at 12000 each; no source/oracle change."
 }

@@ -19,7 +19,7 @@ source locators and implementation before observations. No models or corporate s
    bindings for an incomplete target source. Other retained syntax can remain visible with
    explicit gaps. Unknown syntax outside the supported profiles is still not runtime proof.
 3. Bound temporary work separately: at most 10,000 symbol/operation/call/record entries,
-   12,000 resolution nodes and 12,000 resolution edges; exceeding these fails the whole
+   12,000 resolution nodes, 12,000 resolution edges, and 12,000 binding records/target references each; exceeding these fails the whole
    candidate. HTTP/event pair comparisons remain capped at 2,000. Resolution nodes do not
    consume display slots. No hidden truncation may turn an ambiguous match into a unique
    one. Record full alternative identities in the diagnostic receipt, with bounded counts
