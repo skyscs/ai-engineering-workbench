@@ -55,7 +55,7 @@ export function SystemMap({ buildId, boundary, correctionRevision, refreshProjec
       {overlay && !overlay.editable && <p className="notice">Index the remaining sources before adding corrections. Notes from the revoked source scope are unavailable.</p>}
       <EarlierCorrections key={key} buildId={buildId} boundary={boundary} revision={correctionRevision}
         changed={correctionsChanged} openEvidence={openEvidence} />
-      {codeEnabled && <ConnectedPaths key={key} buildId={buildId} sourceNames={Object.fromEntries(map.nodes.filter(node => node.kind === 'repository').map(node => [node.sourceId, node.sourceName]))} openEvidence={openEvidence} clearEvidence={clearEvidence} />}
+      {codeEnabled && <ConnectedPaths key={key} buildId={buildId} staleIndex={map.stale} sourceNames={Object.fromEntries(map.nodes.filter(node => node.kind === 'repository').map(node => [node.sourceId, node.sourceName]))} openEvidence={openEvidence} clearEvidence={clearEvidence} />}
       <CodeFlowsView buildId={buildId} boundary={boundary} openEvidence={openEvidence}
         overlay={overlay} reviewReady={reviewReady} correctionsChanged={correctionsChanged} />
       <div className="map-repositories">{map.nodes.filter(node => node.kind === 'repository').map(repository => <details className="map-repository" key={repository.id}>

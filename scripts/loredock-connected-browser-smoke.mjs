@@ -101,9 +101,9 @@ try {
   const pathReads = () => requests.filter(request => request.path.startsWith('/api/code-paths')).length;
   const screenshot = async name => writeFile(path.join(output, name), Buffer.from((await page.send('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
   // Deliberately deliver completed responses even after AbortSignal cancellation.
-  const hold = pattern => evaluate(`(()=>{const native=window.fetch;let first=true,release;const gate=new Promise(r=>release=r);
+  const hold = (pattern, signalled = false) => evaluate(`(()=>{const native=window.fetch;let first=true,release;const gate=new Promise(r=>release=r);
     window.held=false;window.delivered=false;window.releaseHeld=release;window.restoreFetch=()=>{window.fetch=native;};
-    window.fetch=async(...args)=>{const held=first&&String(args[0]).includes(${JSON.stringify(pattern)});if(held)first=false;
+    window.fetch=async(...args)=>{const held=first&&String(args[0]).includes(${JSON.stringify(pattern)})&&(!${signalled}||Boolean(args[1]?.signal));if(held)first=false;
       const response=await native(...args);if(held){window.held=true;await gate;window.delivered=true;}return response;};})()`);
   const held = () => wait('window.held===true', 'The response was not held.');
   const release = async () => { await evaluate('window.releaseHeld()'); await wait('window.delivered===true', 'Held response was not released.');
@@ -152,6 +152,13 @@ try {
   assert.equal(await evaluate("Boolean(document.querySelector('.connected-path-browser'))"), false);
   await open(); await ready(inventoryId);
   checks.push('Delayed originals cannot return after page navigation; delayed pages cannot return after collapse even when cancellation is ignored.');
+  await hold('/api/code-paths?'); await evaluate("document.querySelector('.connected-roots > li > button').click()"); await held();
+  await collapse(); await release(); assert.equal(await evaluate("Boolean(document.querySelector('.connected-path-browser'))"), false);
+  await open(); await ready(inventoryId);
+  await hold('/api/code-analysis', true); await held(); const beforeCollapsed = pathReads(); await collapse(); await release();
+  assert.equal(pathReads(), beforeCollapsed); assert.equal(await evaluate("Boolean(document.querySelector('.connected-path-browser'))"), false);
+  await open(); await ready(inventoryId);
+  checks.push('Delayed selected-root and owned inventory-poll responses cannot reopen a collapsed browser or trigger another path read.');
   const beforePending = pathReads();
   const pending = analysis.start('browser-paused', buildId); analysis.control(pending.id, 'pause'); await analysis.idle();
   await text('Paths use an earlier completed inventory.'); assert.equal(pathReads(), beforePending);
@@ -196,6 +203,12 @@ try {
   await wait("!document.querySelector('.connected-path-browser')", 'Policy boundary did not close the browser.'); await release();
   assert.equal(await evaluate("Boolean(document.querySelector('.evidence'))"), false);
   checks.push('Policy changes discard delayed originals from the connected-path browser.');
+  catalog.updatePolicy(['README.md', 'src', 'legacy']);
+  const emptyBuild = await fixture.index('empty-supported-code'); await fixture.analyze('empty-facts', emptyBuild);
+  await shown(emptyBuild); await open(); await ready(analysis.list().find(run => run.published).id);
+  await text('No supported entry points in this inventory.');
+  assert.equal(await evaluate("document.querySelectorAll('.connected-flow,.connected-roots > li').length"), 0);
+  checks.push('An empty supported inventory renders zero entry points with an explicit unknown-behavior qualification.');
   assert.deepEqual(revisions(), initialRevisions);
   for (const source of Object.keys(fixture.corpus)) assert.equal(connectedGit(fixture.root, source, ['status', '--porcelain=v1']), '');
   assert.equal(requests.some(request => request.path.startsWith('/api/answers')), false);

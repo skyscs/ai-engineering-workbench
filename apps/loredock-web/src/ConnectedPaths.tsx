@@ -4,7 +4,7 @@ import type { CodePathsAvailable, CodePathsResponse } from '../../loredock/src/c
 import type { MapEvidence } from '../../loredock/src/system-map-types';
 import { api } from './api';
 
-type Props = { buildId: string; sourceNames: Record<string, string>; openEvidence(id: string): void; clearEvidence(): void };
+type Props = { buildId: string; staleIndex: boolean; sourceNames: Record<string, string>; openEvidence(id: string): void; clearEvidence(): void };
 type Selection = { inventoryId?: string; generationId?: string; rootId?: string; offset?: number };
 type Read = (selection: Selection) => void;
 
@@ -16,7 +16,7 @@ export function ConnectedPaths(props: Props) {
   </details>;
 }
 
-function PathBrowser({ buildId, sourceNames, openEvidence, clearEvidence }: Props) {
+function PathBrowser({ buildId, staleIndex, sourceNames, openEvidence, clearEvidence }: Props) {
   const [result, setResult] = useState<CodePathsResponse>();
   const [error, setError] = useState(''), [pollError, setPollError] = useState('');
   const [loading, setLoading] = useState(true);
@@ -92,7 +92,7 @@ function PathBrowser({ buildId, sourceNames, openEvidence, clearEvidence }: Prop
     <p className="notice">Static source connections only. Runtime behavior and deployment coherence are unknown.
       Missing paths do not establish absence of behavior.</p>
     <p className="muted">This local preview makes no model calls and is not answer context. Reviewable links remain in Static flow outlines.</p>
-    {inventory?.staleIndex && <p className="notice">Paths use an older saved index.</p>}
+    {staleIndex && <p className="notice">Paths use an older saved index.</p>}
     {attempt && !attempt.published && <p className="notice">Code analysis is {attempt.status}.
       {inventory ? ' Paths use an earlier completed inventory.' : ' Waiting for the first compatible completed inventory; analysis is controlled in Code coverage.'}</p>}
     {loading && <p role="status">Reading connected paths…</p>}
