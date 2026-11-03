@@ -56,3 +56,12 @@ function. Reusing either wholesale would retain the dependency problem or reopen
 application state. The next implementation should isolate bounded pure validation
 in new helpers and leave all frozen modules unchanged. No implementation, fixture
 generation, candidate execution or resource measurement has occurred in this task.
+
+The pure boundary must retain fatal UTF-8 decoding, duplicate-key rejection through
+canonical round trips, receipt/projection/topic/accounting versions, depth/output
+bounds, graph endpoint/support membership and original metadata/hash checks. The
+existing full receipt reader also reopens originals and current authorization;
+those live operations must not be imitated by an offline assessment. Compare only
+the frozen metadata/source vector and label current applicability as unevaluated.
+Artifact references must stay within the owned output root and retain byte/hash
+checks before parsing; malformed references must not become arbitrary file reads.
