@@ -187,3 +187,8 @@ exceed unchanged limits. Neither fresh-process success nor shorter emitted paths
 establish a memory fix. Do not automatically integrate streaming or broaden consumer
 semantics. Repair evaluation boundaries and make the next bounded memory decision
 from retained allocation/ownership evidence before another fresh qualification.
+
+Task 083's [recovery contract](QUALIFICATION_RECOVERY.md) now defines the pre-freeze
+compatibility review and independent evaluator dependencies. Implement that offline
+workflow on tiny inputs before the next memory decision; do not reinterpret Task
+082's post-run byte readback as a replacement qualification score.

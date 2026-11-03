@@ -1,5 +1,25 @@
 # Development status
 
+## Task 083 — Qualification recovery contract reviewed
+
+Design completed and locally reviewed, 2026-11-03; scope `7c77142`. PR #86 merged
+as `c1acf12` after exact head `f2ae5e9` passed push 41634388668 and pull-request
+41634604737 CI (521 tests), with an identical tree. Task 082 remains rejected.
+
+The [recovery contract](loredock/QUALIFICATION_RECOVERY.md) requires a source/adapter
+capability review before freezing positive resource inputs. Future offline
+assessment separates artifact shape, original support, usefulness, history, raw
+parity and resources, with explicit blocked dependencies and strict overall gates.
+An unsupported consumer remains a gap; no adapter rule is broadened.
+
+Next: implement the offline assessment/preflight workflow with independent tiny
+positive/negative regressions, then decide the remaining same-process memory work
+from retained evidence before another qualification. Streaming remains unqualified.
+Source, reference and full-diff review cover this design. No runtime, new corpus,
+measurement, model call, corporate source or demo change. See
+[ADR 0054](decisions/0054-loredock-qualification-recovery.md) and
+[Task 083](../tasks/083-loredock-qualification-recovery.md).
+
 ## Task 082 — Resource qualification rejected; fixture precondition error retained
 
 The first frozen run completed 2026-11-03 at measured head `4bccec8`, freeze

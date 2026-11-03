@@ -282,6 +282,13 @@ profile, leaving useful paths truncated; large same-process isolated heap growth
 and history RSS also fail. All first bytes/scores remain. Next: repair compatibility
 review and independent raw/history evaluation, then choose remaining memory work
 from evidence. No promotion, raised limits or rerun of this observed family.
+[Task 083](tasks/083-loredock-qualification-recovery.md) defines that recovery:
+review authored paths against pinned adapter prerequisites before freeze, and
+evaluate raw artifacts/support/usefulness/history/parity/resources independently
+with explicit dependent states. Next implement the offline assessment workflow
+on tiny independent inputs, then scope the remaining memory decision. All old
+failures and production boundaries remain intact; see
+[ADR 0054](docs/decisions/0054-loredock-qualification-recovery.md).
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

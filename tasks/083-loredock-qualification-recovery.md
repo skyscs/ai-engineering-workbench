@@ -1,6 +1,6 @@
 # Task 083 — Qualification preparation and evaluation recovery contract
 
-Status: in progress, 2026-11-03.
+Status: design completed and locally reviewed, 2026-11-03.
 
 ## Scope
 
@@ -48,3 +48,10 @@ dependency states. [ADR 0054](../docs/decisions/0054-loredock-qualification-reco
 records the decision. The next implementation uses independent tiny positive and
 negative cases; remaining memory attribution/selection precedes another qualification.
 No new corpus, candidate execution or production change is included.
+
+PR #86 merged as `c1acf124e0465d46534896fa059896a1a2bc1922` after exact head
+`f2ae5e9badc84e2d2694a95de3800614b7ae2204` passed push 41634388668 and pull-request
+41634604737 CI (521 tests). Its merge tree is identical and included here. Main
+is clean and synchronized. Source/control-flow, artifact-readback, reference and
+full-diff review cover this documentation-only decision; no local runtime rerun
+is necessary. Both exact-head CI events remain required before this branch merges.
