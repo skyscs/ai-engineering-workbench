@@ -1,0 +1,45 @@
+# Task 082 — Uninstrumented streaming snapshot qualification
+
+Status: in progress, 2026-11-03.
+
+## Scope
+
+Task 081 functionally verifies one opt-in candidate: streaming complete snapshot
+headers and manifest hash input with identical results and refusal boundaries.
+Start from reviewed head `38a4ac9`. Verify PR #85's exact-head push/pull-request CI
+and identical merge tree before the first qualification execution. Production and
+all old measured implementations, inputs, results and failures remain unchanged.
+
+Freeze one new owned twenty-source family at a small and near-10,000-file size,
+including exact source/byte hashes, typed useful paths and complete support oracle,
+before parsing or observing those inputs. Freeze two sequential lifecycles per
+size: same process after preparation and a fresh reader of an identical stopped
+catalog copy. Both use the unchanged Task 081 candidate and omit profiler/phase/
+query/owner instrumentation. Keep ordinary counters, aggregate charge sums and the
+unchanged 5-ms outer resource sampler.
+
+Each lifecycle executes default capture, three repeats, selected and isolated
+captures, offset-four root paging and history after two replacement analyses evict
+the original inventory. Preparation/replacement analyses remain outside read
+intervals, but their process residency is not reset or subtracted. Preserve all
+original/scope/manifest/work/publication checks and exact cross-process bytes.
+
+Retain the 5,000-ms operation, 1,000,000-work-unit, 150-ms sampled interval, 384-MiB
+process RSS and 64-MiB heap-growth limits plus all output limits. No raised caps,
+forced GC, idle-until-memory-drops, looped tuning or selective reruns. Verify an
+independent tiny full-process regression before committing the measured candidate.
+Preserve raw returns/errors before checking resources and integrity separately;
+every timeout, missing operation, child/cleanup error and resource failure remains.
+
+## Completion and decision
+
+Execute the frozen qualification once after clean committed checks and no concurrent
+heavy work. Retain original results, raw artifacts, identities, logs and exits.
+All planned useful/integrity/resource/lifecycle conditions must pass to permit a
+separate production integration review. Even success is not semantic/private-pilot
+acceptance. Failure leaves the candidate unqualified and requires a separately
+scoped evidence-based next decision; never repair the observed family retroactively.
+
+Run strict checks/builds and review both exact-head CI events before merge. Continue
+the authorized task sequence after preserving the result. No production feature
+change, corporate sources, model calls, old-family reruns or demo operations.
