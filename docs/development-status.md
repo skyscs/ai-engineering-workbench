@@ -1,5 +1,32 @@
 # Development status
 
+## Task 079 — Complete paired controls; allocation attribution still bounded
+
+First frozen run completed 2026-11-03. Scope `e8848a0`, freeze `3663114`, measured
+candidate `23215ac8fe1092a44a0ae2036f9a804f7ad9622a`. PR #82 merged as `ab44345`
+after exact head `9c20301df5301c706e6d5569adf2cd6e2379a4df` passed push 41622014967
+and pull-request 41622043041 CI (506 tests), with an identical tree.
+
+The [retained attribution](fixtures/loredock-memory-attribution/README.md) executes
+all 48 operations, with 48 integrity passes, 39 resource passes and four exact
+cross-arm comparisons. No operation is blocked and all six workers exit 0; the
+coordinator exits 1 for nine memory failures. Large first capture heap growth is
+71.805/68.332/67.954 MiB in same/reopened/control processes; histories reach
+401.664/399.539/406.535 MiB RSS after replacement analyses. All small operations pass.
+
+Preparation or phase/query hooks alone cannot explain the first-read failure.
+Known payload/domain ownership and snapshot/SQL/async work remain competing costs;
+phase endpoints and query counts do not establish allocated bytes or a leak. No
+optimization is selected. Next: targeted allocation profiling on new declared inputs,
+with profiler data excluded from resource acceptance, followed by one supported
+candidate and fresh uninstrumented qualification.
+
+Full strict checks, 509 tests and builds pass. All first measurement bytes, 110 raw
+archive frames, process exits and development logs are retained. An external packaging
+path error was corrected and recorded after the run without changing its outputs.
+No production, old matrix, model, corporate source, demo or semantic/private-pilot
+gate changes. See [Task 079](../tasks/079-loredock-memory-attribution.md).
+
 ## Task 078 — Complete diagnostic process regression
 
 Implementation locally verified, 2026-11-03; scope `7679e0e`. The separate

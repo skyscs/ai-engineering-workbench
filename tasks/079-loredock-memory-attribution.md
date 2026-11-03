@@ -1,6 +1,6 @@
 # Task 079 — Fresh memory attribution after process repair
 
-Status: in progress, 2026-11-03.
+Status: first attribution completed; resource failures retained, 2026-11-03.
 
 ## Baseline and constraints
 
@@ -66,3 +66,25 @@ dependent readers. The owned-child watchdog regression also passes. Full strict
 checks, 509 tests and builds pass on their first run. Frozen inputs, reused runner/
 observer/budget bytes and production source are unchanged. The candidate/harness
 must be committed before its single run; no frozen source has been parsed or measured.
+
+## First frozen outcome
+
+Candidate `23215ac8fe1092a44a0ae2036f9a804f7ad9622a` ran once after the input freeze.
+The [retained result](../docs/fixtures/loredock-memory-attribution/README.md) records
+48/48 integrity passes, 39/48 resource passes and all four exact cross-arm comparisons.
+All six workers exit 0; the coordinator exits 1 for nine memory failures. Nothing is
+blocked. All first large captures exceed 64 MiB heap growth, including the control
+without phase/query hooks; all large histories exceed 384 MiB RSS after replacement
+analyses. Previous gates remain unchanged and no production promotion follows.
+
+The controls distinguish the read failure from preparation/observer-only explanations.
+Bounded phase and ownership counts cannot apportion payload/domain versus snapshot/
+SQL/async allocations or explain the entire retained RSS cost. No optimization is
+selected. Next: a targeted allocation profile under a separately declared fresh-input
+protocol, not another broad matrix or an acceptance sample with profiler overhead.
+
+All 110 raw archive frames, first exits and successful development checks are retained.
+Readback verifies hashes, counters and stopped source-header values without running
+the candidate again. An external post-run packager initially used the wrong checkout
+path; its failure and correction are recorded without modifying measurement bytes.
+Frozen inputs, candidate scripts and imported baselines are now exhausted and unchanged.
