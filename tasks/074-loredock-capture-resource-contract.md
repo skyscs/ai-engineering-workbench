@@ -13,6 +13,10 @@ Preparation starts from PR #77 head `e2ee5e70872925487234860485c814245a024c4a` w
 exact-head CI runs. Record its successful merge before the successor experiment is observed.
 Task 073's measured implementation, inputs, observer and results are now frozen/exhausted.
 
+PR #77 subsequently merged as `1e5ba6b` after that exact head passed push 41548938928
+and pull-request 41548975123 CI (493 tests). The merge tree matches the reviewed head.
+This branch includes the merge and retains only the new resource-contract documentation.
+
 ## Scope
 
 Design only. Audit the current path/receipt resource accounting and source allocation,

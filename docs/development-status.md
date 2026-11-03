@@ -6,6 +6,9 @@ Design completed and locally reviewed, 2026-11-03; scope `2ebade9`. Task 073's f
 134/134-case qualification remains frozen. Its outer capture clock includes nested work,
 but its reported receipt units exclude the independent path counter.
 
+PR #77 merged as `1e5ba6b` after exact head `e2ee5e70872925487234860485c814245a024c4a`
+passed push 41548938928 and pull-request 41548975123 CI (493 tests), with an identical tree.
+
 The [new contract](loredock/CAPTURE_RESOURCE_CONTRACT.md) defines one request-local deadline
 and shared counter, with separate subtotals and no double charging or raised caps. Nested
 checks enforce the original deadline/cancellation, while source/manifest/original fences and
