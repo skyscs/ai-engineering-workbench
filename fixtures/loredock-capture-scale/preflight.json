@@ -1,5 +1,5 @@
 {
-  "status": "preparation-only-not-frozen",
+  "status": "frozen-input-generation-only",
   "sourceNames": [
     "a-sensor-ui",
     "b-reading-intake",
