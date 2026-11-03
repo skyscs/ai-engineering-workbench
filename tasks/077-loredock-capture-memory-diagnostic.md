@@ -9,6 +9,10 @@ PR #80 design head is `b72390cb33b0c29273e11e33bdec07bcff297693`; record its ver
 push/pull-request CI and merge before observing a diagnostic candidate. Task 075's
 61/68 gate, candidate, inputs and raw results remain unchanged and exhausted.
 
+PR #80 merged as `85f509c7bba200528ed7ea633b8dd914d4fa19b8` after that exact design
+head passed push 41604721856 and pull-request 41604735333 CI (499 tests). The merge tree
+is identical to the reviewed head, and this branch includes the verified merge.
+
 This is attribution work, not resource acceptance or a production optimization. No
 corporate sources, model calls, old matrix reruns, user-demo operations or threshold changes.
 
