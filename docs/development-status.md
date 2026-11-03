@@ -1,5 +1,29 @@
 # Development status
 
+## Task 082 — Resource qualification rejected; fixture precondition error retained
+
+The first frozen run completed 2026-11-03 at measured head `4bccec8`, freeze
+`c723cab`. All four children exit 0 and all 32 operations execute. The
+[retained result](fixtures/loredock-streaming-qualification/README.md) records
+8/32 integrity passes, 30/32 resource passes and 0/2 qualified parity comparisons.
+
+The authored fixture uses `onIssued` outside the documented `onMessage` consumer
+profile, so twenty useful captures stop at event publication. Four dependent
+history evaluations fail because their first receipt was not retained after that
+semantic refusal. Separate saved-byte readback confirms original support, raw
+cross-process parity and matching history without changing the failed oracle or
+scores. This is not a demonstrated snapshot regression or complete-path acceptance.
+
+Large same-process isolated heap growth reaches 66.666 MiB and history RSS reaches
+397.477 MiB, exceeding unchanged 64/384 MiB limits. The streaming candidate remains
+unqualified independently of fixture compatibility. No production integration.
+
+Next: repair qualification preflight/evaluation boundaries separately and decide
+the remaining allocation/residency work from evidence before a new qualification.
+Full strict checks, 521 tests and builds pass; raw artifacts, logs and every failure
+remain retained. This and all previous measured families are exhausted. No models,
+corporate sources or demo work. See [Task 082](../tasks/082-loredock-streaming-qualification.md).
+
 ## Task 081 — Streaming snapshot candidate functionally verified
 
 Implemented and locally verified, 2026-11-03; scope `25764e9`, implementation

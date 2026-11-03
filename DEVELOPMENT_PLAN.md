@@ -276,6 +276,12 @@ Real SQLite differential cases preserve the full snapshot and its refusal bounda
 all 24 independent process operations retain exact receipt/projection bytes and
 shared work. Full strict checks, 519 tests and builds pass. Next: a separately frozen
 uninstrumented resource qualification, including history RSS, before any integration.
+[Task 082](tasks/082-loredock-streaming-qualification.md) executes that fresh family
+once and rejects qualification. Its authored consumer name is outside the documented
+profile, leaving useful paths truncated; large same-process isolated heap growth
+and history RSS also fail. All first bytes/scores remain. Next: repair compatibility
+review and independent raw/history evaluation, then choose remaining memory work
+from evidence. No promotion, raised limits or rerun of this observed family.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

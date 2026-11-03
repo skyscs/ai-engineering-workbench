@@ -172,3 +172,18 @@ successor. Retain every check and ordered parsed-file ID; preserve the same thre
 snapshot/final fences and hash bytes. No caching, skipped inputs or larger bounds.
 Use independent regressions and a fresh uninstrumented resource qualification
 before promotion. History RSS remains an unresolved acceptance requirement.
+
+## Task 082 rejected qualification
+
+The [first uninstrumented streaming qualification](../fixtures/loredock-streaming-qualification/README.md)
+executes all 32 operations but fails useful-path and memory gates. The fixture's
+`onIssued` expectation exceeds the preserved `onMessage` consumer profile; this
+must be caught by compatibility review before freezing future resource inputs.
+Dependent history/parity evaluation also needs to retain raw valid returns when a
+useful-path assertion fails. Original failures remain; readback is not requalification.
+
+Same-process isolated heap growth (66.666 MiB) and history RSS (397.477 MiB) still
+exceed unchanged limits. Neither fresh-process success nor shorter emitted paths
+establish a memory fix. Do not automatically integrate streaming or broaden consumer
+semantics. Repair evaluation boundaries and make the next bounded memory decision
+from retained allocation/ownership evidence before another fresh qualification.

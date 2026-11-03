@@ -1,0 +1,304 @@
+{
+  "schemaVersion": "task082-streaming-preflight/1",
+  "method": "Pure generated UTF-8 counts and hashes; no parser or candidate observation.",
+  "vectors": [
+    {
+      "pathsPerSource": 29,
+      "files": 580,
+      "codeFiles": 557,
+      "bytes": 30557,
+      "corpusHash": "2d65d251ca605b1c019e38c2728826b321ff810276475f732346652b74bd05e5",
+      "sources": [
+        {
+          "name": "a-kit-console",
+          "files": 29,
+          "codeFiles": 28,
+          "bytes": 2489,
+          "contentHash": "736dc7cc3079cafec4028cc81b819b196f2d2d8728780ac9af1b541b321cb188"
+        },
+        {
+          "name": "b-issue-service",
+          "files": 29,
+          "codeFiles": 26,
+          "bytes": 2046,
+          "contentHash": "7f0b31cc7bf9878e27772ff9043e19bdfc8bda62ae8dd99d77986c1a86715f71"
+        },
+        {
+          "name": "c-stock-journal",
+          "files": 29,
+          "codeFiles": 27,
+          "bytes": 2152,
+          "contentHash": "33ac1e1999d9885977357f16c296bfdd4697d54aca47873043f2ba2567207da6"
+        },
+        {
+          "name": "d-operations-notes",
+          "files": 29,
+          "codeFiles": 28,
+          "bytes": 1486,
+          "contentHash": "95bf5fdb3436962300ce15daf17e21e3467dd903820fbae739ea981eaf615b47"
+        },
+        {
+          "name": "e-team-guide-01",
+          "files": 29,
+          "codeFiles": 28,
+          "bytes": 1399,
+          "contentHash": "7ff0ea20554c0d93d1a5eb119c91ff0375a04384491a2de66b5a58676bedc9a0"
+        },
+        {
+          "name": "e-team-guide-02",
+          "files": 29,
+          "codeFiles": 28,
+          "bytes": 1399,
+          "contentHash": "10c38c7651400b8f51d17e8b77469372334ea62c318a67387ed2670eed8bd008"
+        },
+        {
+          "name": "e-team-guide-03",
+          "files": 29,
+          "codeFiles": 28,
+          "bytes": 1399,
+          "contentHash": "0187f3e2c28e9c642137ca04017c5a5939402167939eeee8e72a09535133b8a3"
+        },
+        {
+          "name": "e-team-guide-04",
+          "files": 29,
+          "codeFiles": 28,
+          "bytes": 1399,
+          "contentHash": "ae17eb65048b8f2b6e15b988ae29f6805a0bdf46f5aaf46861d132f55e0f3545"
+        },
+        {
+          "name": "e-team-guide-05",
+          "files": 29,
+          "codeFiles": 28,
+          "bytes": 1399,
+          "contentHash": "01c995d9c2fbc966a567132b703993da50e28415bcbbccd014905a63a0dc1dbf"
+        },
+        {
+          "name": "e-team-guide-06",
+          "files": 29,
+          "codeFiles": 28,
+          "bytes": 1399,
+          "contentHash": "6a5767949ed8db080399392f0cdfdc3ed9034b11547aeb1c0b79afb688c8f9ef"
+        },
+        {
+          "name": "e-team-guide-07",
+          "files": 29,
+          "codeFiles": 28,
+          "bytes": 1399,
+          "contentHash": "6f278192b920215af7b8e0fbce266061fc1cce2cec6d743f62005817fe7ddfad"
+        },
+        {
+          "name": "e-team-guide-08",
+          "files": 29,
+          "codeFiles": 28,
+          "bytes": 1399,
+          "contentHash": "e7a82475984f5eda4890ab2951ac07b0b24934923f91a115c0e0a37a321dfaa7"
+        },
+        {
+          "name": "e-team-guide-09",
+          "files": 29,
+          "codeFiles": 28,
+          "bytes": 1399,
+          "contentHash": "98f5147d7f3fdca6ad7eccd026f8bdab0d9ed0791ceca4cf9122092829a1a260"
+        },
+        {
+          "name": "e-team-guide-10",
+          "files": 29,
+          "codeFiles": 28,
+          "bytes": 1399,
+          "contentHash": "e0ab06b70ac0de98b239875c8bf64b6cce1b4e088803f8d4461613910c589a35"
+        },
+        {
+          "name": "e-team-guide-11",
+          "files": 29,
+          "codeFiles": 28,
+          "bytes": 1399,
+          "contentHash": "ad4af1fa8d965614a8aec10a460a128a35e1150947c862636247f7b333f01a9a"
+        },
+        {
+          "name": "e-team-guide-12",
+          "files": 29,
+          "codeFiles": 28,
+          "bytes": 1399,
+          "contentHash": "d6e13419401532937750c57bc554710824f93e9e1990f1f4da428c2208f7df89"
+        },
+        {
+          "name": "e-team-guide-13",
+          "files": 29,
+          "codeFiles": 28,
+          "bytes": 1399,
+          "contentHash": "5d188cdcbf90b9990d5f21920eae8a6a9c9ffbf65d2329c914c6b264ad16d3d2"
+        },
+        {
+          "name": "e-team-guide-14",
+          "files": 29,
+          "codeFiles": 28,
+          "bytes": 1399,
+          "contentHash": "a1dd61adbf649e76b22859d902fceecac21e7bd305aafb208557d5a17930572c"
+        },
+        {
+          "name": "e-team-guide-15",
+          "files": 29,
+          "codeFiles": 28,
+          "bytes": 1399,
+          "contentHash": "1375c78dab2fa333e0dddeb5ae227afebe13c0d047f6918a0770e4dec4f08c5d"
+        },
+        {
+          "name": "e-team-guide-16",
+          "files": 29,
+          "codeFiles": 28,
+          "bytes": 1399,
+          "contentHash": "60da4034d3fe1a4aeb7bc3a52f3bb614df9ed1e51af610d93991998b02a7ffd4"
+        }
+      ]
+    },
+    {
+      "pathsPerSource": 499,
+      "files": 9980,
+      "codeFiles": 9957,
+      "bytes": 480776,
+      "corpusHash": "f29a6ea932929d41fd10bc042722b5e0bf5ce2f1994aed9ac1324bc17d20a456",
+      "sources": [
+        {
+          "name": "a-kit-console",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 24031,
+          "contentHash": "490a44a47f7ac103328ee99a64d6c922e777382a4176cc63927f32fec48ac709"
+        },
+        {
+          "name": "b-issue-service",
+          "files": 499,
+          "codeFiles": 496,
+          "bytes": 24531,
+          "contentHash": "a7ff8fd81313693f17ca9cb56b5f496d22602141d98f6c4f72fb5c8cda917493"
+        },
+        {
+          "name": "c-stock-journal",
+          "files": 499,
+          "codeFiles": 497,
+          "bytes": 24638,
+          "contentHash": "590f1b71f6f5428834b81918f536a1ffc44d0ed48c17a92dc9c708793993a1fa"
+        },
+        {
+          "name": "d-operations-notes",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 25384,
+          "contentHash": "28b4255a0adea163e143d5181b7c495586d094c2c11a69a2f83b0b132ad1037b"
+        },
+        {
+          "name": "e-team-guide-01",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23887,
+          "contentHash": "7e26760bdf6ce632ee354c8aa875f2c1b29c754a7f78b710f19ded274a8e625f"
+        },
+        {
+          "name": "e-team-guide-02",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23887,
+          "contentHash": "6abda7950642cabe468d2414e9b624e8c8f100e1ae4532a0d03717eb830670a6"
+        },
+        {
+          "name": "e-team-guide-03",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23887,
+          "contentHash": "d777a77c90b44c01c4e2ae41fdd19dd8e94fa8600dcabb39f59a3c1c1e31deb4"
+        },
+        {
+          "name": "e-team-guide-04",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23887,
+          "contentHash": "06fff00ef394f8c568b35a14f7442638c8f7327fe28193d4942d9f9853e56764"
+        },
+        {
+          "name": "e-team-guide-05",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23887,
+          "contentHash": "cd2a11a31f5326508c49e0c48c91778ab474aea7832ba53b2de99c6a71b53697"
+        },
+        {
+          "name": "e-team-guide-06",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23887,
+          "contentHash": "9e51160c6487277dc3a522726a92eadb750701ea42347466aa92671acd247a35"
+        },
+        {
+          "name": "e-team-guide-07",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23887,
+          "contentHash": "ca1ab8308271ab4ddcc004efdcd2673dadde3b08c5870398645bc39001a5aaf8"
+        },
+        {
+          "name": "e-team-guide-08",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23887,
+          "contentHash": "e60cfbc14a7ba2d9fc732fbbae0833844318dd6fbf8659e26beca46ad7cc1187"
+        },
+        {
+          "name": "e-team-guide-09",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23887,
+          "contentHash": "159202a10ce2d23144cbb41c8d50611374dbf8bdbd8aae07f4d305ff47cd7a95"
+        },
+        {
+          "name": "e-team-guide-10",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23887,
+          "contentHash": "add5644d6f9ac192e8a2509d834debaae6829798b50f4f64d9acd1137d977bd9"
+        },
+        {
+          "name": "e-team-guide-11",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23887,
+          "contentHash": "2395d9818324c0abc803f9b7fd7d65d784e12bd9288e4db71626f70d71a96261"
+        },
+        {
+          "name": "e-team-guide-12",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23887,
+          "contentHash": "66befe3486d29e3f4ac0a140d771fa58b8500c1dc643719b8e9bf755f65713e3"
+        },
+        {
+          "name": "e-team-guide-13",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23887,
+          "contentHash": "631aa9745ed2c71dd39881d9d285a1d607ca0e24fb96e1e8a8619961b4506a90"
+        },
+        {
+          "name": "e-team-guide-14",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23887,
+          "contentHash": "d2948d61d3e32fae2d1a2876c8e430cd907faf8db6956959f83641c084a0f4ef"
+        },
+        {
+          "name": "e-team-guide-15",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23887,
+          "contentHash": "46f09c17e178b9096d877266c89b9727937b591a797965dac24098da9cfde220"
+        },
+        {
+          "name": "e-team-guide-16",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23887,
+          "contentHash": "44c6cce01d33a3b6f0d0c107b8bdeb651f65efa49505ccec67f593739e9acec2"
+        }
+      ]
+    }
+  ]
+}
