@@ -15,6 +15,10 @@ push/pull-request CI runs. Record the verified merge before the next diagnostic 
 Preserve all Task 075 candidate/input/observer/result bytes and every earlier exhausted
 matrix. No rerun, replacement measurement or changed threshold is permitted.
 
+PR #79 subsequently merged as `935c280aeac6c02e0d8d47789d65ce56ed22a9f4` after
+that exact head passed push 41603883965 and pull-request 41603915076 CI (499 tests).
+The merge tree matches the reviewed head; this branch includes the verified merge.
+
 ## Scope
 
 Design only. Read retained measurements and trace concrete allocation/ownership sites in

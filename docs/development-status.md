@@ -17,6 +17,10 @@ corporate source access or demo modification. Source/reference/diff review cover
 See [ADR 0053](decisions/0053-loredock-capture-memory-diagnosis.md) and
 [Task 076](../tasks/076-loredock-capture-memory-diagnosis.md).
 
+PR #79 merged as `935c280` after exact head `7aaebb8cff49a8d1e272afad07862c843cc14293`
+passed push 41603883965 and pull-request 41603915076 CI (499 tests). Its merge tree is
+identical to the reviewed head. These checks preserve the rejected resource gate.
+
 ## Task 075 — Shared capture budget: scale gate rejected
 
 First frozen run completed 2026-11-03. Scope `021f840`, freeze `efc1e92`, measured
