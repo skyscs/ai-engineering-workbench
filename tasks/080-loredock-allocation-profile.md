@@ -20,7 +20,8 @@ and profile serialization are outside the sampling interval. No broad three-arm
 matrix, repeats, history profiling or resource qualification is included here.
 
 Use the existing unchanged capture/path/receipt implementation and limits. An
-internal inspector session must not open a network debugger or force collection.
+internal inspector session must not open a network debugger or explicitly request
+collection. The pre-observation revision below declares backend collection at export.
 Declare interval, collected-object policy, raw profile/summary bounds, watchdogs,
 phase scope and interpretation limits before observation. Validate support with
 independent tiny regressions, including failure/cleanup paths. Retain the first raw
@@ -44,3 +45,38 @@ qualification covering complete capture and history lifecycles.
 No production changes, corporate data, model calls, user-demo operations or old
 matrix reruns. Complete strict/relevant tests/builds and both exact-head CI events
 before merge, then continue the already authorized task sequence.
+
+## Preparation checkpoint
+
+Scope `d58d2f9`; input/protocol freeze `c34cece`. Pure generation confirms twenty
+sources, 9,940 files, 9,917 code files and 509,091 UTF-8 bytes. The 21-fact useful
+path/original oracle was authored before parsing or candidate observation. The
+protocol declares one fresh capture, 32-KiB V8 sampling with both collected-object
+flags, explicit profile/summary bounds and no resource-acceptance claim.
+
+PR #83 merged as `3c294434a3eb189c92a324ebc88cb2c656795deb` after exact head
+`336dd85bbf86297a69293fe8f9a9deef0af44a77` passed push 41624889057 and pull-request
+41624946975 CI (509 tests). The merge tree equals the reviewed head and is included
+here. The primary checkout is clean, with no rebuild or demo operation.
+
+Independent inspector sampling/cleanup/summary tests and the complete two-process
+locker regression passed on their first runs. The integration preserves profile
+data, source-supported receipt bytes, child errors and watchdog exits. Focused
+typechecking and full checks precede the candidate commit and its single profile.
+No frozen input has been parsed or observed yet.
+
+## Pre-observation protocol correction
+
+The first full check failed on the tiny independent regression: four returned
+allocation samples referenced a node absent from V8's exported tree. Its receipt
+remained correct. Pinned runtime source also shows that inspector sampling forces
+collection when retrieving a profile, contrary to the original protocol assumption.
+No frozen device input has been prepared, parsed or measured.
+
+[Revision 2](../fixtures/loredock-allocation-profile/PROTOCOL_REVISION_2.md) prospectively
+declares backend collection/export overhead and explicit unmapped-sample accounting.
+The original freeze remains unchanged. Structural failures and all bounds remain;
+unknown weights cannot be assigned to an application hotspot or used for acceptance.
+Raw failure/profile/exit bytes and the first failed full check are retained under
+`docs/fixtures/loredock-allocation-profile-development/`. The amended protocol must
+be committed before implementing its handling and before the single frozen profile.

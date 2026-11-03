@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "task080-profile-policy/2",
+  "allowUnmappedSamples": true,
+  "backendStopForcesGC": true,
+  "backendExportAllocationsIncluded": true
+}
