@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "task080-allocation-oracle/1",
+  "authorship": "Agent-authored from source construction before parser or candidate observations; not blind assessment.",
+  "sizes": [
+    {
+      "pathsPerSource": 497,
+      "files": 9940,
+      "codeFiles": 9917,
+      "bytes": 509091,
+      "facts": 21
+    }
+  ],
+  "topic": "checkouts.recorded.v3",
+  "environment": "simulation",
+  "defaultFlows": 2,
+  "rootCount": 5,
+  "defaultOriginals": 10,
+  "sourceCount": 20,
+  "uncitedSource": "d-fleet-handbook",
+  "requiredNodes": [
+    [
+      "a-device-console",
+      "ui/AAAssign.vue",
+      "symbol",
+      "assign",
+      "vue-action"
+    ],
+    [
+      "a-device-console",
+      "ui/BBCheckout.vue",
+      "symbol",
+      "checkout",
+      "vue-action"
+    ],
+    [
+      "a-device-console",
+      "ui/checkout.ts",
+      "http-request",
+      "POST /v3/checkouts",
+      null
+    ],
+    [
+      "b-checkout-api",
+      "config/checkouts.json",
+      "handler-reference",
+      "Checkouts.record",
+      null
+    ],
+    [
+      "b-checkout-api",
+      "checkout/Checkouts.java",
+      "symbol",
+      "Checkouts.record",
+      "java-method"
+    ],
+    [
+      "b-checkout-api",
+      "checkout/Checkouts.java",
+      "event-publish",
+      "Publish CheckoutRecorded",
+      null
+    ],
+    [
+      "c-custody-ledger",
+      "custody/CustodyWriter.java",
+      "event-subscribe",
+      "Subscribe via KafkaSubscriber",
+      null
+    ],
+    [
+      "c-custody-ledger",
+      "custody/CustodyWriter.java",
+      "document-write",
+      "MongoCollection.replaceOne",
+      null
+    ]
+  ],
+  "limits": {
+    "wallMs": 5000,
+    "work": 1000000,
+    "projectionBytes": 524288,
+    "receiptBytes": 655360,
+    "textBytes": 65536,
+    "spans": 30,
+    "sources": 20
+  },
+  "resources": {
+    "sampleIntervalMs": 5,
+    "maxSliceMs": 150,
+    "sampledRssMiB": 384,
+    "sampledHeapGrowthMiB": 64
+  },
+  "profile": {
+    "samplingInterval": 32768,
+    "includeObjectsCollectedByMajorGC": true,
+    "includeObjectsCollectedByMinorGC": true,
+    "validationBytes": 33554432,
+    "treeNodes": 32768,
+    "samples": 262144,
+    "depth": 128,
+    "summaryFrames": 100,
+    "summaryBytes": 262144,
+    "preparerWatchdogMs": 900000,
+    "readerWatchdogMs": 120000,
+    "overallWatchdogMs": 1080000,
+    "resourceAcceptance": false
+  }
+}

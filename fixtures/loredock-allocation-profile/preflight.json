@@ -1,0 +1,151 @@
+{
+  "schemaVersion": "task080-allocation-preflight/1",
+  "method": "Pure generation/count/hash verification before parser or candidate observation.",
+  "pathsPerSource": 497,
+  "files": 9940,
+  "codeFiles": 9917,
+  "bytes": 509091,
+  "corpusHash": "0d97165d48dec6ef5b58410dc0bdb9e40b822523a33e7e799c0f9ce5897489ea",
+  "sources": [
+    {
+      "name": "a-device-console",
+      "files": 497,
+      "codeFiles": 496,
+      "bytes": 27025,
+      "contentHash": "0f23e160a21720f1bf40e003fea6a6adf40a8aff673c7a8c16183c210af18765"
+    },
+    {
+      "name": "b-checkout-api",
+      "files": 497,
+      "codeFiles": 494,
+      "bytes": 25487,
+      "contentHash": "a8d3386138f7dbea3b90b2610f6b243250483b9564723bec6d810b3e593c9fc3"
+    },
+    {
+      "name": "c-custody-ledger",
+      "files": 497,
+      "codeFiles": 495,
+      "bytes": 26560,
+      "contentHash": "cfc11627fb21f34134e7bab8492ac874bcaf1e11215167d6804be38a2efe4631"
+    },
+    {
+      "name": "d-fleet-handbook",
+      "files": 497,
+      "codeFiles": 496,
+      "bytes": 25763,
+      "contentHash": "6d1d7a3a31ea60c69c3b1d98fb3138f8aabdca5aff17f1c6eebe64d4bff95ec0"
+    },
+    {
+      "name": "e-zone-notes-01",
+      "files": 497,
+      "codeFiles": 496,
+      "bytes": 25266,
+      "contentHash": "f2f0a47791c788fa846d348719152c4d7c2a4e80f336bb55068c262f902bc3b9"
+    },
+    {
+      "name": "e-zone-notes-02",
+      "files": 497,
+      "codeFiles": 496,
+      "bytes": 25266,
+      "contentHash": "55fb23c9fda7b8b64544a2fdeb7d0cf20d619617ce1df91c6baff767bd029483"
+    },
+    {
+      "name": "e-zone-notes-03",
+      "files": 497,
+      "codeFiles": 496,
+      "bytes": 25266,
+      "contentHash": "187e24d5546ff47ee7cf623f73e43c3311c9aeed80430a9bbd08aaf018e25deb"
+    },
+    {
+      "name": "e-zone-notes-04",
+      "files": 497,
+      "codeFiles": 496,
+      "bytes": 25266,
+      "contentHash": "394e4caa1bba470ac394143ab69906807f8fb2cf60b2ee9b09f704f0964e2e0c"
+    },
+    {
+      "name": "e-zone-notes-05",
+      "files": 497,
+      "codeFiles": 496,
+      "bytes": 25266,
+      "contentHash": "67795e98254f37661030a69d86394a13e02f4e39539f82967a660d4e919e38dc"
+    },
+    {
+      "name": "e-zone-notes-06",
+      "files": 497,
+      "codeFiles": 496,
+      "bytes": 25266,
+      "contentHash": "455c8541a385931912f5ade3b6fb75923078a5fc0924a210a1a54ec426ba96c3"
+    },
+    {
+      "name": "e-zone-notes-07",
+      "files": 497,
+      "codeFiles": 496,
+      "bytes": 25266,
+      "contentHash": "a280c083bacc847ba73c519653a2bc008f3ddfa5202b944b7965fcf3683dd939"
+    },
+    {
+      "name": "e-zone-notes-08",
+      "files": 497,
+      "codeFiles": 496,
+      "bytes": 25266,
+      "contentHash": "08042b6749183e09bb5444e0bd8eaf67090787d1c46c0dded02542522f5e5ea5"
+    },
+    {
+      "name": "e-zone-notes-09",
+      "files": 497,
+      "codeFiles": 496,
+      "bytes": 25266,
+      "contentHash": "2f4a89aab6d3c220957b17a1f2ece759ae3fb29598e0af9b5f754e3123134169"
+    },
+    {
+      "name": "e-zone-notes-10",
+      "files": 497,
+      "codeFiles": 496,
+      "bytes": 25266,
+      "contentHash": "a6cd5be674efccb93a257d944adb30779d48206e3433b9b5cb8e6efcd847d738"
+    },
+    {
+      "name": "e-zone-notes-11",
+      "files": 497,
+      "codeFiles": 496,
+      "bytes": 25266,
+      "contentHash": "9bc955aeadbb16816dbe981249616f4c50115a782df472b64aeac9da2c2c362f"
+    },
+    {
+      "name": "e-zone-notes-12",
+      "files": 497,
+      "codeFiles": 496,
+      "bytes": 25266,
+      "contentHash": "8e12aa0b0b171bb0433a5596e1654f58af735526e53f4bde87d6e7dd3f18696a"
+    },
+    {
+      "name": "e-zone-notes-13",
+      "files": 497,
+      "codeFiles": 496,
+      "bytes": 25266,
+      "contentHash": "aa9aaddadebb61a5a8124a1f1ed5a173f466a15a63546be5d5df7046d43d4eec"
+    },
+    {
+      "name": "e-zone-notes-14",
+      "files": 497,
+      "codeFiles": 496,
+      "bytes": 25266,
+      "contentHash": "a2bad51167abe9fca41c9ac607e809200c9b30b62a50e9c8f9f6d4a6aa306502"
+    },
+    {
+      "name": "e-zone-notes-15",
+      "files": 497,
+      "codeFiles": 496,
+      "bytes": 25266,
+      "contentHash": "2c9f72d27a67393c9882c05b841e893ae3c8cd952228f662334617f4fdfc85e4"
+    },
+    {
+      "name": "e-zone-notes-16",
+      "files": 497,
+      "codeFiles": 496,
+      "bytes": 25266,
+      "contentHash": "d4e17c4b5ce68cceb5c978ae2e123f21e10ed76f9d300656339502642347ecd7"
+    }
+  ]
+}
