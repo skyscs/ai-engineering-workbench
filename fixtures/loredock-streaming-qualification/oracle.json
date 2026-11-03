@@ -1,0 +1,202 @@
+{
+  "schemaVersion": "task082-streaming-oracle/1",
+  "authorship": "Agent-authored from source construction before parser or candidate observations; not blind assessment.",
+  "sizes": [
+    {
+      "pathsPerSource": 29,
+      "files": 580,
+      "codeFiles": 557,
+      "bytes": 30557,
+      "facts": 21
+    },
+    {
+      "pathsPerSource": 499,
+      "files": 9980,
+      "codeFiles": 9957,
+      "bytes": 480776,
+      "facts": 21
+    }
+  ],
+  "arms": [
+    "same-process",
+    "reopened-process"
+  ],
+  "operations": [
+    "first",
+    "repeat-1",
+    "repeat-2",
+    "repeat-3",
+    "selected",
+    "page-4",
+    "isolated",
+    "history"
+  ],
+  "topic": "kit.issued.v4",
+  "environment": "laboratory",
+  "defaultFlows": 2,
+  "selectedFlows": 1,
+  "rootCount": 5,
+  "defaultOriginals": 10,
+  "isolatedOriginals": 5,
+  "sourceCount": 20,
+  "uncitedSource": "d-operations-notes",
+  "selectedRoot": [
+    "a-kit-console",
+    "ui/AAAllocate.vue",
+    "allocate",
+    "vue-action"
+  ],
+  "isolatedRoot": [
+    "a-kit-console",
+    "ui/ZZLocate.vue",
+    "locate",
+    "vue-action"
+  ],
+  "requiredNodes": [
+    [
+      "a-kit-console",
+      "ui/AAAllocate.vue",
+      "symbol",
+      "allocate",
+      "vue-action"
+    ],
+    [
+      "a-kit-console",
+      "ui/BBIssue.vue",
+      "symbol",
+      "issue",
+      "vue-action"
+    ],
+    [
+      "a-kit-console",
+      "ui/issues.ts",
+      "http-request",
+      "POST /v4/issues",
+      null
+    ],
+    [
+      "b-issue-service",
+      "routing/issues.json",
+      "handler-reference",
+      "Issues.issue",
+      null
+    ],
+    [
+      "b-issue-service",
+      "issues/Issues.java",
+      "symbol",
+      "Issues.issue",
+      "java-method"
+    ],
+    [
+      "b-issue-service",
+      "issues/Issues.java",
+      "event-publish",
+      "Publish KitIssued",
+      null
+    ],
+    [
+      "c-stock-journal",
+      "stock/StockProjector.java",
+      "event-subscribe",
+      "Subscribe via KafkaSubscriber",
+      null
+    ],
+    [
+      "c-stock-journal",
+      "stock/StockProjector.java",
+      "document-write",
+      "MongoCollection.replaceOne",
+      null
+    ]
+  ],
+  "selectedRequiredNodes": [
+    [
+      "a-kit-console",
+      "ui/AAAllocate.vue",
+      "symbol",
+      "allocate",
+      "vue-action"
+    ],
+    [
+      "a-kit-console",
+      "ui/issues.ts",
+      "http-request",
+      "POST /v4/issues",
+      null
+    ],
+    [
+      "b-issue-service",
+      "routing/issues.json",
+      "handler-reference",
+      "Issues.issue",
+      null
+    ],
+    [
+      "b-issue-service",
+      "issues/Issues.java",
+      "symbol",
+      "Issues.issue",
+      "java-method"
+    ],
+    [
+      "b-issue-service",
+      "issues/Issues.java",
+      "event-publish",
+      "Publish KitIssued",
+      null
+    ],
+    [
+      "c-stock-journal",
+      "stock/StockProjector.java",
+      "event-subscribe",
+      "Subscribe via KafkaSubscriber",
+      null
+    ],
+    [
+      "c-stock-journal",
+      "stock/StockProjector.java",
+      "document-write",
+      "MongoCollection.replaceOne",
+      null
+    ]
+  ],
+  "isolated": {
+    "nodes": 1,
+    "edges": 0,
+    "flows": 1,
+    "terminalKind": "symbol",
+    "reason": "unresolved-import"
+  },
+  "limits": {
+    "wallMs": 5000,
+    "work": 1000000,
+    "projectionBytes": 524288,
+    "receiptBytes": 655360,
+    "textBytes": 65536,
+    "spans": 30,
+    "sources": 20
+  },
+  "resources": {
+    "sampleIntervalMs": 5,
+    "maxSliceMs": 150,
+    "sampledRssMiB": 384,
+    "sampledHeapGrowthMiB": 64
+  },
+  "diagnostic": {
+    "preparerWatchdogMs": 900000,
+    "readerWatchdogMs": 600000,
+    "overallWatchdogMs": 1800000
+  },
+  "instrumentation": {
+    "profiler": false,
+    "phaseHooks": false,
+    "queryHooks": false,
+    "ownerHooks": false,
+    "ordinaryCounters": true,
+    "aggregateCharges": true,
+    "outerResourceSampler": true
+  },
+  "parityExcludedProjectionFields": [],
+  "parityExcludedReceiptFields": []
+}
