@@ -1,6 +1,6 @@
 # Task 075 — Shared capture budget and twenty-source qualification
 
-Status: candidate implemented and locally checked; frozen run pending, 2026-11-03. Scope `021f840`.
+Status: first qualification completed; promotion rejected on memory, 2026-11-03. Scope `021f840`.
 
 ## Baseline
 
@@ -77,3 +77,22 @@ Full strict checks, 499 tests and builds pass. All six new independent regressio
 on their first execution, covering aggregate-only exhaustion, nested deadline, post-link
 cleanup/idempotency, historical accounting and closed/foreign budget ownership. The measured
 candidate/harness must be committed before launching the frozen matrix exactly once.
+
+## First frozen outcome
+
+Candidate/observer `6232fee3a3b81abf956e27bc7e277b7ef2a867e9` ran exactly once after
+input freeze `efc1e92`. The [retained result](../docs/fixtures/loredock-capture-scale/README.md)
+records 61/68 cases passing, 4,515 assertions, 105 observations, 165 raw artifacts and exit 1.
+Complete first captures pass at all three sizes. Four large operation returns exceed 64 MiB
+heap growth; large history and two small variants exceed 384 MiB process RSS. No thresholds
+or measured bytes were changed, and later assertions in failed cases remain unexecuted.
+
+All 27 stage/fault, four publication and six small history cases pass. Independent charge
+histograms match the shared/phase metrics. First raw observations, errors, byte hashes and
+validation logs are archived; readback does not turn failed cases into passes. Full strict
+checks, 499 tests and builds passed before the run. Final changes add only documentation
+and evidence. Production adapters, earlier experiments and user data remain untouched.
+
+This candidate and matrix are now exhausted. Next: separately diagnose memory ownership,
+transient allocation and process/preparation effects from retained evidence and fresh
+prospective diagnostics. A changed successor must qualify before production integration.

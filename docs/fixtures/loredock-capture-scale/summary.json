@@ -1,0 +1,1531 @@
+{
+  "schemaVersion": "task075-retained-readback/1",
+  "gate": "rejected",
+  "cases": 68,
+  "passedCases": 61,
+  "failedCases": 7,
+  "countedAssertions": 4515,
+  "exit": 1,
+  "rawFiles": 165,
+  "rawBytes": 2784940,
+  "archiveSha256": "c80ed24b4ceedb201f0564280da2b63558205704f5e646efe9d16a35503519ad",
+  "observations": 105,
+  "operationReturns": {
+    "captured": 60,
+    "available": 3,
+    "failed": 37,
+    "recorded": 5
+  },
+  "refusalCodes": {
+    "CAPTURE_WORK_LIMIT": 12,
+    "CAPTURE_TIME_LIMIT": 9,
+    "CANCELLED": 11,
+    "RECEIPT_FENCED": 1,
+    "RECEIPT_SCOPE_FENCED": 2,
+    "POLICY_CHANGED": 1,
+    "CORRUPT_EVIDENCE": 1
+  },
+  "resourceObservations": 68,
+  "resourceViolations": [
+    {
+      "name": "size-499-repeat",
+      "baselineRssMiB": 328.27734375,
+      "violations": {
+        "heapGrowthMiB": 79.29019165039062
+      }
+    },
+    {
+      "name": "size-499-selected",
+      "baselineRssMiB": 333.6640625,
+      "violations": {
+        "heapGrowthMiB": 64.10612487792969
+      }
+    },
+    {
+      "name": "size-499-isolated",
+      "baselineRssMiB": 380.30078125,
+      "violations": {
+        "heapGrowthMiB": 67.79907989501953
+      }
+    },
+    {
+      "name": "size-499-recovery",
+      "baselineRssMiB": 379.18359375,
+      "violations": {
+        "heapGrowthMiB": 67.2114486694336
+      }
+    },
+    {
+      "name": "size-499-history",
+      "baselineRssMiB": 406.421875,
+      "violations": {
+        "peakRssMiB": 406.421875
+      }
+    },
+    {
+      "name": "long-support",
+      "baselineRssMiB": 406.921875,
+      "violations": {
+        "peakRssMiB": 407.19140625
+      }
+    },
+    {
+      "name": "branches",
+      "baselineRssMiB": 407.31640625,
+      "violations": {
+        "peakRssMiB": 407.31640625
+      }
+    }
+  ],
+  "resourceMaxima": {
+    "wallMs": 3271.0060999999987,
+    "maxSliceMs": 74.40020500001265,
+    "peakRssMiB": 407.31640625,
+    "heapGrowthMiB": 79.29019165039062
+  },
+  "metricMaxima": {
+    "totalWork": 374607,
+    "pathWork": 290113,
+    "receiptWork": 154656,
+    "projectionBytes": 30422,
+    "receiptBytes": 83832,
+    "textBytes": 39888,
+    "spans": 12,
+    "sources": 20
+  },
+  "failedRecords": [
+    {
+      "name": "size-499-repeat",
+      "status": "fail",
+      "checks": 12,
+      "remainingAssertions": "Unexecuted after the first failed prerequisite/assertion; not counted as passes.",
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "Sampled heap growth.",
+        "stack": "AssertionError [ERR_ASSERTION]: Sampled heap growth.\n    at check (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:47:48)\n    at observed (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:114:81)\n    at async file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:206:81\n    at async run (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:57:24)\n    at async file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:206:5"
+      }
+    },
+    {
+      "name": "size-499-selected",
+      "status": "fail",
+      "checks": 13,
+      "remainingAssertions": "Unexecuted after the first failed prerequisite/assertion; not counted as passes.",
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "Sampled heap growth.",
+        "stack": "AssertionError [ERR_ASSERTION]: Sampled heap growth.\n    at check (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:47:48)\n    at observed (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:114:81)\n    at async file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:209:22\n    at async run (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:57:24)\n    at async file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:207:5"
+      }
+    },
+    {
+      "name": "size-499-isolated",
+      "status": "fail",
+      "checks": 27,
+      "remainingAssertions": "Unexecuted after the first failed prerequisite/assertion; not counted as passes.",
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "Sampled heap growth.",
+        "stack": "AssertionError [ERR_ASSERTION]: Sampled heap growth.\n    at check (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:47:48)\n    at observed (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:114:81)\n    at async file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:219:21\n    at async run (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:57:24)\n    at async file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:212:5"
+      }
+    },
+    {
+      "name": "size-499-aggregate-only",
+      "status": "fail",
+      "checks": 23,
+      "remainingAssertions": "Unexecuted after the first failed prerequisite/assertion; not counted as passes.",
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "Sampled heap growth.",
+        "stack": "AssertionError [ERR_ASSERTION]: Sampled heap growth.\n    at check (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:47:48)\n    at observed (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:114:81)\n    at async file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:227:24\n    at async run (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:57:24)\n    at async file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:222:5"
+      }
+    },
+    {
+      "name": "size-499-eviction-restart-history",
+      "status": "fail",
+      "checks": 11,
+      "remainingAssertions": "Unexecuted after the first failed prerequisite/assertion; not counted as passes.",
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "Sampled RSS.",
+        "stack": "AssertionError [ERR_ASSERTION]: Sampled RSS.\n    at check (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:47:48)\n    at observed (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:114:5)\n    at async history (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:128:41)\n    at async file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:234:20\n    at async run (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:57:24)\n    at async file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:230:5"
+      }
+    },
+    {
+      "name": "variant-long-support",
+      "status": "fail",
+      "checks": 13,
+      "remainingAssertions": "Unexecuted after the first failed prerequisite/assertion; not counted as passes.",
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "Sampled RSS.",
+        "stack": "AssertionError [ERR_ASSERTION]: Sampled RSS.\n    at check (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:47:48)\n    at observed (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:114:5)\n    at async file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:240:17\n    at async fresh (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:87:16)\n    at async run (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:57:24)\n    at async file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:239:40"
+      }
+    },
+    {
+      "name": "variant-branches",
+      "status": "fail",
+      "checks": 13,
+      "remainingAssertions": "Unexecuted after the first failed prerequisite/assertion; not counted as passes.",
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "Sampled RSS.",
+        "stack": "AssertionError [ERR_ASSERTION]: Sampled RSS.\n    at check (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:47:48)\n    at observed (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:114:5)\n    at async file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:240:17\n    at async fresh (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:87:16)\n    at async run (file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:57:24)\n    at async file:///home/toshiba/aew/worktrees/task075-capture-scale/scripts/loredock-capture-scale/probe.mjs:239:40"
+      }
+    }
+  ],
+  "receiptReadback": [
+    {
+      "name": "size-24-first",
+      "receiptId": "771da5219366a05f413027eac6f4ff807ee893dbb843c21a6653a297260c22cb",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "size-24-repeat",
+      "receiptId": "771da5219366a05f413027eac6f4ff807ee893dbb843c21a6653a297260c22cb",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "size-24-selected",
+      "receiptId": "c297c196a2dd6e0e8608480aead18d566a85669528510f59f4cc1a9a3267aecd",
+      "flows": 1,
+      "terminalKinds": [
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 4,
+        "unselected-resolution-nodes": 5,
+        "unselected-resolution-edges": 4
+      }
+    },
+    {
+      "name": "size-24-isolated",
+      "receiptId": "174087fe7f6d0676db31a3071f769943f7caee4154f93a88ce88a642a42297d9",
+      "flows": 1,
+      "terminalKinds": [
+        "symbol"
+      ],
+      "sources": 20,
+      "originals": 5,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 4,
+        "unselected-resolution-nodes": 14,
+        "unselected-resolution-edges": 13
+      }
+    },
+    {
+      "name": "size-24-recovery",
+      "receiptId": "771da5219366a05f413027eac6f4ff807ee893dbb843c21a6653a297260c22cb",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "size-124-first",
+      "receiptId": "e6fed68c09147c0537b98fb41443c5dee57b7267a22e9984b233456b1722615a",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 2449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 2449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "size-124-repeat",
+      "receiptId": "e6fed68c09147c0537b98fb41443c5dee57b7267a22e9984b233456b1722615a",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 2449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 2449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "size-124-selected",
+      "receiptId": "6983d3396785b8adf56fd7f94decdfe6347ab8b95e1dcf229e5f10ea67e89f6a",
+      "flows": 1,
+      "terminalKinds": [
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 2449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 2449,
+        "unresolved-import": 1,
+        "unselected-roots": 4,
+        "unselected-resolution-nodes": 5,
+        "unselected-resolution-edges": 4
+      }
+    },
+    {
+      "name": "size-124-isolated",
+      "receiptId": "8dd127607f07717688c48444a00de30bbc20155e6d91bfa9f3f66a550068bd18",
+      "flows": 1,
+      "terminalKinds": [
+        "symbol"
+      ],
+      "sources": 20,
+      "originals": 5,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 2449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 2449,
+        "unresolved-import": 1,
+        "unselected-roots": 4,
+        "unselected-resolution-nodes": 14,
+        "unselected-resolution-edges": 13
+      }
+    },
+    {
+      "name": "size-124-recovery",
+      "receiptId": "e6fed68c09147c0537b98fb41443c5dee57b7267a22e9984b233456b1722615a",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 2449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 2449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "size-499-first",
+      "receiptId": "59cf0bd03b15165cd0f8de1bad1eb8d0900fd4dbd23698a856bd62b2337d0a7e",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 9949,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 9949,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "size-499-repeat",
+      "receiptId": "59cf0bd03b15165cd0f8de1bad1eb8d0900fd4dbd23698a856bd62b2337d0a7e",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 9949,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 9949,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "size-499-selected",
+      "receiptId": "c728c2d83359918d4346270d77785543c1d40fdb1d0c84db7dcb81c1af7c958c",
+      "flows": 1,
+      "terminalKinds": [
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 9949,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 9949,
+        "unresolved-import": 1,
+        "unselected-roots": 4,
+        "unselected-resolution-nodes": 5,
+        "unselected-resolution-edges": 4
+      }
+    },
+    {
+      "name": "size-499-isolated",
+      "receiptId": "03cb4ca53b0b17492be1c7611f0672eaae7e537a11485588eb55793e40852f3b",
+      "flows": 1,
+      "terminalKinds": [
+        "symbol"
+      ],
+      "sources": 20,
+      "originals": 5,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 9949,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 9949,
+        "unresolved-import": 1,
+        "unselected-roots": 4,
+        "unselected-resolution-nodes": 14,
+        "unselected-resolution-edges": 13
+      }
+    },
+    {
+      "name": "size-499-recovery",
+      "receiptId": "59cf0bd03b15165cd0f8de1bad1eb8d0900fd4dbd23698a856bd62b2337d0a7e",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 9949,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 9949,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "long-support",
+      "receiptId": "0c562765bc048b4c40fd1b387ff0a4095d38e3c24964c23f65591334c9585bc4",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 12,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "branches",
+      "receiptId": "0e08bbdf00457ebeb77a4f9bb5de745288149d999a02ee8f64e568edacb5b332",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "alternate-terminal-paths": 70,
+        "unselected-resolution-nodes": 19,
+        "unselected-resolution-edges": 53
+      }
+    },
+    {
+      "name": "comparison-pressure",
+      "receiptId": "5d42fb191ec82c3ce92b0b012cce7cbf8477da35eb42c4cdc6af909f550d062b",
+      "flows": 1,
+      "terminalKinds": [
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "comparison-limit": 3
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "comparison-limit": 3,
+        "unselected-roots": 3,
+        "flow-traversal-limit": 79,
+        "alternate-terminal-paths": 327,
+        "root-without-completed-path": 1,
+        "unselected-resolution-nodes": 140,
+        "unselected-resolution-edges": 2137
+      }
+    },
+    {
+      "name": "different-topic",
+      "receiptId": "f1d7979baa06141d85d8f0462ef119a6e6d5b0d7fb1e6e5b0451dfc738867987",
+      "flows": 2,
+      "terminalKinds": [
+        "event-publish",
+        "event-publish"
+      ],
+      "sources": 20,
+      "originals": 7,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "different-literal-topics": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "different-literal-topics": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 7,
+        "unselected-resolution-edges": 4
+      }
+    },
+    {
+      "name": "dynamic-topic",
+      "receiptId": "eaff564afad81aa5c14e026d183e38dae65953da2aaa51e7ead4bf54eec65df4",
+      "flows": 2,
+      "terminalKinds": [
+        "event-publish",
+        "event-publish"
+      ],
+      "sources": 20,
+      "originals": 7,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unresolved-topic-expression": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unresolved-topic-expression": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 7,
+        "unselected-resolution-edges": 4
+      }
+    },
+    {
+      "name": "ambiguous-handler",
+      "receiptId": "701acb8bc22c9bc139c6ec59d75a68cb552e4ab332610763da5792eeac380609",
+      "flows": 2,
+      "terminalKinds": [
+        "handler-reference",
+        "handler-reference"
+      ],
+      "sources": 20,
+      "originals": 6,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "ambiguous-handler": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "ambiguous-handler": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 10,
+        "unselected-resolution-edges": 7
+      }
+    },
+    {
+      "name": "incomplete-consumer",
+      "receiptId": "9b6328485a999cc0a8379e9b402d3d15bf314a177d8e5ca6a2c8be90434e0505",
+      "flows": 2,
+      "terminalKinds": [
+        "event-publish",
+        "event-publish"
+      ],
+      "sources": 20,
+      "originals": 7,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "adapter:unsupported-java-profile": 1,
+        "unresolved-import": 1,
+        "incomplete-consumer-source": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "adapter:unsupported-java-profile": 1,
+        "unresolved-import": 1,
+        "incomplete-consumer-source": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 7,
+        "unselected-resolution-edges": 4
+      }
+    },
+    {
+      "name": "source-overflow",
+      "receiptId": "fe65d40afa2ad717b6e91d3d7a587b278883e742c87415e04f562fb241e8c79e",
+      "flows": 2,
+      "terminalKinds": [
+        "handler-reference",
+        "handler-reference"
+      ],
+      "sources": 20,
+      "originals": 6,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 925,
+        "unresolved-import": 1,
+        "incomplete-handler-source": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 925,
+        "unresolved-import": 1,
+        "incomplete-handler-source": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 9,
+        "unselected-resolution-edges": 7
+      }
+    },
+    {
+      "name": "opaque-path",
+      "receiptId": "6038caa3742e1535e47353da701559a6c30187002ed0549593e85b9442b49609",
+      "flows": 2,
+      "terminalKinds": [
+        "handler-reference",
+        "handler-reference"
+      ],
+      "sources": 20,
+      "originals": 6,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "incomplete-handler-source": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "incomplete-handler-source": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 9,
+        "unselected-resolution-edges": 7
+      }
+    },
+    {
+      "name": "omitted-facts",
+      "receiptId": "5a2de66413c2aa381989eec4e2d766bab915633702dce8854e81a1e0a24435dc",
+      "flows": 2,
+      "terminalKinds": [
+        "symbol",
+        "symbol"
+      ],
+      "sources": 20,
+      "originals": 2,
+      "omissions": {
+        "incomplete-import-source": 2,
+        "incomplete-handler-source": 1
+      },
+      "displayOmissions": {
+        "incomplete-import-source": 2,
+        "incomplete-handler-source": 1,
+        "unselected-resolution-nodes": 2,
+        "unselected-resolution-edges": 1
+      }
+    },
+    {
+      "name": "path-metadata-budget-recovery",
+      "receiptId": "119621ae87cd752f491c8a7062088beca97e078e7812ce98b42917f1a25aeab9",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "path-metadata-deadline-recovery",
+      "receiptId": "3f931c591d5061e559b6fc429d49ae3a8a5cad09f32a78e1692a75330ca47a24",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "path-metadata-cancel-recovery",
+      "receiptId": "6b78c51fbf101f239347cf6ff356526df68a5024f4944da0f2ce24b5567ff711",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "path-read-budget-recovery",
+      "receiptId": "127e266dd7e4c35eac7f424c264accce59b5c7285b7085eb428550bb0f085a9e",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "path-read-deadline-recovery",
+      "receiptId": "b881f17220d462f9f0fa78b528e5c9239c62e7759aae2a602b6a84ccf0f49395",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "path-read-cancel-recovery",
+      "receiptId": "ebcf91c86077fab75b65b045cbffa4f5bcd9dbadc42c045cf97eec4a1f86e475",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "path-resolve-budget-recovery",
+      "receiptId": "6c3f887d8ba16f679044e7f2653b0d86a390d4486c607e0bc933ab796ba793b3",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "path-resolve-deadline-recovery",
+      "receiptId": "b5cabc1f94cae9322dd39443de850aa6e3e583db031d63b5c020af0d2f2cc2b8",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "path-resolve-cancel-recovery",
+      "receiptId": "e61bc61df384503b9b3cae39bb84ea207ab1389322b01493164a385a3485a0db",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "path-admit-budget-recovery",
+      "receiptId": "682c7e8caaac2cfbf9b4f2c589f823327a3edae29f3a95ef379a3cc39a1cc706",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "path-admit-deadline-recovery",
+      "receiptId": "9946b2ca95d7d1ca98249a9eb3bdaa392a27774dafedc9e9c2d1ec43ab140338",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "path-admit-cancel-recovery",
+      "receiptId": "cd9e54152b7475c4f2ca88db9017f290d69e5d653d2aed56f5ad308a3531b01e",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "receipt-start-budget-recovery",
+      "receiptId": "c7e2d07e68b317f8738e254cb47b467bd1a32054ddc74953ecf5dbeb5ab9e80f",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "receipt-start-deadline-recovery",
+      "receiptId": "5a8c03b456267953206af0b402cbf3e118243397c4b818e858d85d3c6764dd2d",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "receipt-start-cancel-recovery",
+      "receiptId": "26b83817b23989a7af263dfdcd031f88c4fcb8dae065c9e72b85ac691b24dffa",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "receipt-projection-budget-recovery",
+      "receiptId": "82f39113b6188864854b4501fb77ad7537f1d4df19a71763597bc4d0f957289e",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "receipt-projection-deadline-recovery",
+      "receiptId": "47036e8773cb0ff7094f4cbee289034bea7b9b801099de64b71b5fdabeaf559e",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "receipt-projection-cancel-recovery",
+      "receiptId": "bff69cadb2e5830b4c9e3c40cdc6c0f33d294a1b59c3954f6c33bf74c535559c",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "receipt-originals-budget-recovery",
+      "receiptId": "35659d1032f3a9cb06f899a2ac5d8f60f0bf9d5e52fa9ce56d4e8bc72c926adf",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "receipt-originals-deadline-recovery",
+      "receiptId": "a2d2c4e8579bc720d5cc6e41e5cc576bc7f6b4fe9c352b4abc0dd0b7e4de0aac",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "receipt-originals-cancel-recovery",
+      "receiptId": "c41bd526f1e24edcda98795566e49570877701529794e2eabe766a1ae96681b1",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "receipt-prepared-budget-recovery",
+      "receiptId": "0748e103b59a68d09f880830d1850969da9b940946dfdda65be13cc979c086ec",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "receipt-prepared-deadline-recovery",
+      "receiptId": "412ac60add3c985c970800fd93962042a722cd7a9d0dfe7cf7d907094e048aea",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "receipt-prepared-cancel-recovery",
+      "receiptId": "c4b2d32ea2a7514a837ffefdf54c8bd4b70f4e6e23d0ffa1bacabc79068790bc",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "receipt-handoff-budget-recovery",
+      "receiptId": "f536097036f7238702596c1a196913268c464501106c8ecc6bc9b0642f77fe43",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "receipt-handoff-deadline-recovery",
+      "receiptId": "ac2bdbfc9c0beafb1a33cc926ce4953a343cde56576437a2b1678bb5565ae7ef",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "receipt-handoff-cancel-recovery",
+      "receiptId": "c8528000c890e37bc5df0c273374d2e0f77d0e69423e6f95785fbb3e7554ada9",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "existing-target-cancel-initial",
+      "receiptId": "c4e9d3fc51e3a48e5e2bf4ddb490acfbb4d88ce0ab32e7b844d46ce591bc0e09",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "competing-lock",
+      "receiptId": "00f3a827c2b1ffa0b096284acf2058f12b15ca6cf79f07835706d79122e3024e",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "eviction-initial",
+      "receiptId": "da20907ca302de79fac43efebc513a27dcc4c015eef5874767d67aa58764061e",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "restart-initial",
+      "receiptId": "b75264cdec8ebe6ebcb862e0ded581ea73d0eaa162cfc7965a0e118916fbdfb9",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "cited-revocation-initial",
+      "receiptId": "7d5b375e9ef74bab73c25a48c9a9fe709ad176c70a21b4730bbb49f10a055ffa",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "uncited-revocation-initial",
+      "receiptId": "84dfcb36c0389a7930967a6f2d805bed2fd80417e61e4821e288b24bc083f1c7",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "policy-initial",
+      "receiptId": "801b550ce65463b0b742b52646b4f4d4a51aa2aa1c31d41b017ffd39bed2cdfc",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    },
+    {
+      "name": "corrupt-original-initial",
+      "receiptId": "d019425edc1cbd73dc3dc147dcac83f469c9f3069dc34891b01258be971330be",
+      "flows": 2,
+      "terminalKinds": [
+        "document-write",
+        "document-write"
+      ],
+      "sources": 20,
+      "originals": 10,
+      "omissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1
+      },
+      "displayOmissions": {
+        "adapter:unsupported-typescript-profile": 449,
+        "unresolved-import": 1,
+        "unselected-roots": 3,
+        "unselected-resolution-nodes": 4,
+        "unselected-resolution-edges": 3
+      }
+    }
+  ],
+  "validationLogs": {
+    "budget-unit-first.log.gz": {
+      "bytes": 357,
+      "sha256": "9b939dd072790a1b4550a641bb544f80c184135426ba5e13c6a538394a912037"
+    },
+    "focused-first.log.gz": {
+      "bytes": 1520,
+      "sha256": "e8e645b1b96ff2da5adb5f6361ec775d1998ada18888d2d5edc398802d545d03"
+    },
+    "check.log.gz": {
+      "bytes": 200171,
+      "sha256": "36a5d8da7652ee2faed395b57a94c5245d037166b284e048045d04d4be3bdbff"
+    }
+  },
+  "note": "Readback verifies retained bytes and reports observations without candidate execution or additional measured assertions. Later semantic assertions in failed cases remain unexecuted."
+}

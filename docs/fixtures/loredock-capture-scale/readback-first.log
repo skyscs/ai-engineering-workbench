@@ -1,0 +1,4 @@
+size-499-selected flows 1 originals 10 scope 20
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+AssertionError
