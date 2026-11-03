@@ -1,5 +1,28 @@
 # Development status
 
+## Task 087 — Complete terminal ownership diagnostic retained
+
+One [fresh frozen run](fixtures/loredock-terminal-memory/README.md) covers 20 sources,
+9,920 files and the full eight-operation lifecycle. Complete typed paths, original
+spans, source scope, repeats and evicted history pass. Four operation resource gates
+fail; streaming remains unqualified. The worker and both separate bounded heap
+parsers exit zero, while the outer diagnostic correctly exits one.
+
+Both terminal graphs are complete. Selected service instances disappear after
+normal close/reference release; remaining schema/database/statement matches have
+runtime-template structures. No unexpected application retainer was identified,
+and native/RSS ownership remains unknown. The evidence selects one next candidate:
+request-local compaction after full payload validation, preserving all facts, gaps,
+originals, completeness and fences. Independent equivalence checks must precede
+a fresh uninstrumented qualification; no production optimization is promoted.
+
+Two full local checks pass 538 tests, strict typechecks and builds. The first tiny
+RSS exit-race failure, its pre-freeze correction, all large raw graphs/results and
+all failed gates remain inspectable. PR #90 merged as `db9bdd1` after `90fefe1`
+passed push 41736504448 and pull-request 41736623195 CI with an identical tree.
+See [Task 087](../tasks/087-loredock-terminal-memory.md). Exact-head CI remains
+required before this task's merge; no model or corporate data was used.
+
 ## Task 086 — Terminal heap helpers implemented on independent tiny inputs
 
 The [offline helpers](../scripts/loredock-terminal-ownership/README.md) bound owned

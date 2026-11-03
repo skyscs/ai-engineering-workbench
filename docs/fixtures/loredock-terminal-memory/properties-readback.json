@@ -1,0 +1,710 @@
+{
+  "method": "Read only previously selected raw graph nodes; no new selectors, exports or resource observation.",
+  "resourceAcceptance": false,
+  "nodes": [
+    {
+      "stage": "after-history",
+      "index": 38340,
+      "id": 76681,
+      "name": "DatabaseSync",
+      "edges": [
+        {
+          "edgeIndex": 100259,
+          "type": "property",
+          "name": "isOpen",
+          "targetIndex": 87729,
+          "targetType": "hidden",
+          "targetName": "system / AccessorPair"
+        },
+        {
+          "edgeIndex": 100260,
+          "type": "property",
+          "name": "get isOpen",
+          "targetIndex": 87730,
+          "targetType": "hidden",
+          "targetName": "system / FunctionTemplateInfo"
+        },
+        {
+          "edgeIndex": 100261,
+          "type": "property",
+          "name": "isTransaction",
+          "targetIndex": 87731,
+          "targetType": "hidden",
+          "targetName": "system / AccessorPair"
+        },
+        {
+          "edgeIndex": 100262,
+          "type": "property",
+          "name": "get isTransaction",
+          "targetIndex": 87732,
+          "targetType": "hidden",
+          "targetName": "system / FunctionTemplateInfo"
+        },
+        {
+          "edgeIndex": 100263,
+          "type": "property",
+          "name": "<symbol sqlite-type>",
+          "targetIndex": 29912,
+          "targetType": "string",
+          "targetName": "node:sqlite"
+        },
+        {
+          "edgeIndex": 100264,
+          "type": "property",
+          "name": "__proto__",
+          "targetIndex": 87733,
+          "targetType": "object",
+          "targetName": "Object"
+        },
+        {
+          "edgeIndex": 100265,
+          "type": "internal",
+          "name": "properties",
+          "targetIndex": 87805,
+          "targetType": "hidden",
+          "targetName": "system / PropertyArray"
+        },
+        {
+          "edgeIndex": 100266,
+          "type": "internal",
+          "name": "map",
+          "targetIndex": 61331,
+          "targetType": "object shape",
+          "targetName": "system / Map"
+        },
+        {
+          "edgeIndex": 100267,
+          "type": "internal",
+          "name": "javascript_to_native",
+          "targetIndex": 203545,
+          "targetType": "native",
+          "targetName": "Node / DatabaseSync"
+        }
+      ]
+    },
+    {
+      "stage": "after-history",
+      "index": 38341,
+      "id": 76683,
+      "name": "DatabaseSync",
+      "edges": [
+        {
+          "edgeIndex": 100268,
+          "type": "property",
+          "name": "isOpen",
+          "targetIndex": 87729,
+          "targetType": "hidden",
+          "targetName": "system / AccessorPair"
+        },
+        {
+          "edgeIndex": 100269,
+          "type": "property",
+          "name": "get isOpen",
+          "targetIndex": 87730,
+          "targetType": "hidden",
+          "targetName": "system / FunctionTemplateInfo"
+        },
+        {
+          "edgeIndex": 100270,
+          "type": "property",
+          "name": "isTransaction",
+          "targetIndex": 87731,
+          "targetType": "hidden",
+          "targetName": "system / AccessorPair"
+        },
+        {
+          "edgeIndex": 100271,
+          "type": "property",
+          "name": "get isTransaction",
+          "targetIndex": 87732,
+          "targetType": "hidden",
+          "targetName": "system / FunctionTemplateInfo"
+        },
+        {
+          "edgeIndex": 100272,
+          "type": "property",
+          "name": "<symbol sqlite-type>",
+          "targetIndex": 29912,
+          "targetType": "string",
+          "targetName": "node:sqlite"
+        },
+        {
+          "edgeIndex": 100273,
+          "type": "property",
+          "name": "__proto__",
+          "targetIndex": 87733,
+          "targetType": "object",
+          "targetName": "Object"
+        },
+        {
+          "edgeIndex": 100274,
+          "type": "internal",
+          "name": "properties",
+          "targetIndex": 87734,
+          "targetType": "hidden",
+          "targetName": "system / PropertyArray"
+        },
+        {
+          "edgeIndex": 100275,
+          "type": "internal",
+          "name": "map",
+          "targetIndex": 61331,
+          "targetType": "object shape",
+          "targetName": "system / Map"
+        },
+        {
+          "edgeIndex": 100276,
+          "type": "internal",
+          "name": "javascript_to_native",
+          "targetIndex": 203547,
+          "targetType": "native",
+          "targetName": "Node / DatabaseSync"
+        }
+      ]
+    },
+    {
+      "stage": "after-history",
+      "index": 111111,
+      "id": 222223,
+      "name": "DatabaseSync",
+      "edges": [
+        {
+          "edgeIndex": 442284,
+          "type": "property",
+          "name": "isOpen",
+          "targetIndex": 87729,
+          "targetType": "hidden",
+          "targetName": "system / AccessorPair"
+        },
+        {
+          "edgeIndex": 442285,
+          "type": "property",
+          "name": "get isOpen",
+          "targetIndex": 87730,
+          "targetType": "hidden",
+          "targetName": "system / FunctionTemplateInfo"
+        },
+        {
+          "edgeIndex": 442286,
+          "type": "property",
+          "name": "isTransaction",
+          "targetIndex": 87731,
+          "targetType": "hidden",
+          "targetName": "system / AccessorPair"
+        },
+        {
+          "edgeIndex": 442287,
+          "type": "property",
+          "name": "get isTransaction",
+          "targetIndex": 87732,
+          "targetType": "hidden",
+          "targetName": "system / FunctionTemplateInfo"
+        },
+        {
+          "edgeIndex": 442288,
+          "type": "property",
+          "name": "<symbol sqlite-type>",
+          "targetIndex": 29912,
+          "targetType": "string",
+          "targetName": "node:sqlite"
+        },
+        {
+          "edgeIndex": 442289,
+          "type": "property",
+          "name": "__proto__",
+          "targetIndex": 87733,
+          "targetType": "object",
+          "targetName": "Object"
+        },
+        {
+          "edgeIndex": 442290,
+          "type": "internal",
+          "name": "properties",
+          "targetIndex": 177681,
+          "targetType": "hidden",
+          "targetName": "system / PropertyArray"
+        },
+        {
+          "edgeIndex": 442291,
+          "type": "internal",
+          "name": "map",
+          "targetIndex": 61331,
+          "targetType": "object shape",
+          "targetName": "system / Map"
+        }
+      ]
+    },
+    {
+      "stage": "after-history",
+      "index": 111112,
+      "id": 222225,
+      "name": "StatementSync",
+      "edges": [
+        {
+          "edgeIndex": 442292,
+          "type": "property",
+          "name": "sourceSQL",
+          "targetIndex": 139409,
+          "targetType": "hidden",
+          "targetName": "system / AccessorPair"
+        },
+        {
+          "edgeIndex": 442293,
+          "type": "property",
+          "name": "get sourceSQL",
+          "targetIndex": 142318,
+          "targetType": "hidden",
+          "targetName": "system / FunctionTemplateInfo"
+        },
+        {
+          "edgeIndex": 442294,
+          "type": "property",
+          "name": "expandedSQL",
+          "targetIndex": 139410,
+          "targetType": "hidden",
+          "targetName": "system / AccessorPair"
+        },
+        {
+          "edgeIndex": 442295,
+          "type": "property",
+          "name": "get expandedSQL",
+          "targetIndex": 142319,
+          "targetType": "hidden",
+          "targetName": "system / FunctionTemplateInfo"
+        },
+        {
+          "edgeIndex": 442296,
+          "type": "property",
+          "name": "__proto__",
+          "targetIndex": 142330,
+          "targetType": "object",
+          "targetName": "Object"
+        },
+        {
+          "edgeIndex": 442297,
+          "type": "internal",
+          "name": "map",
+          "targetIndex": 71583,
+          "targetType": "object shape",
+          "targetName": "system / Map"
+        }
+      ]
+    },
+    {
+      "stage": "after-history",
+      "index": 129992,
+      "id": 259985,
+      "name": "Object",
+      "edges": [
+        {
+          "edgeIndex": 527140,
+          "type": "property",
+          "name": "schemaVersion",
+          "targetIndex": 26360,
+          "targetType": "string",
+          "targetName": "loredock-file-facts/1"
+        },
+        {
+          "edgeIndex": 527141,
+          "type": "property",
+          "name": "inputHash",
+          "targetIndex": 32,
+          "targetType": "hidden",
+          "targetName": "system / Hole"
+        },
+        {
+          "edgeIndex": 527142,
+          "type": "property",
+          "name": "fingerprint",
+          "targetIndex": 32,
+          "targetType": "hidden",
+          "targetName": "system / Hole"
+        },
+        {
+          "edgeIndex": 527143,
+          "type": "property",
+          "name": "buildId",
+          "targetIndex": 32,
+          "targetType": "hidden",
+          "targetName": "system / Hole"
+        },
+        {
+          "edgeIndex": 527144,
+          "type": "property",
+          "name": "fileId",
+          "targetIndex": 32,
+          "targetType": "hidden",
+          "targetName": "system / Hole"
+        },
+        {
+          "edgeIndex": 527145,
+          "type": "property",
+          "name": "sourceId",
+          "targetIndex": 32,
+          "targetType": "hidden",
+          "targetName": "system / Hole"
+        },
+        {
+          "edgeIndex": 527146,
+          "type": "property",
+          "name": "sourceName",
+          "targetIndex": 32,
+          "targetType": "hidden",
+          "targetName": "system / Hole"
+        },
+        {
+          "edgeIndex": 527147,
+          "type": "property",
+          "name": "revision",
+          "targetIndex": 32,
+          "targetType": "hidden",
+          "targetName": "system / Hole"
+        },
+        {
+          "edgeIndex": 527148,
+          "type": "property",
+          "name": "path",
+          "targetIndex": 32,
+          "targetType": "hidden",
+          "targetName": "system / Hole"
+        },
+        {
+          "edgeIndex": 527149,
+          "type": "property",
+          "name": "blob",
+          "targetIndex": 32,
+          "targetType": "hidden",
+          "targetName": "system / Hole"
+        },
+        {
+          "edgeIndex": 527150,
+          "type": "property",
+          "name": "contentHash",
+          "targetIndex": 32,
+          "targetType": "hidden",
+          "targetName": "system / Hole"
+        },
+        {
+          "edgeIndex": 527151,
+          "type": "property",
+          "name": "__proto__",
+          "targetIndex": 42505,
+          "targetType": "object",
+          "targetName": "Object"
+        },
+        {
+          "edgeIndex": 527152,
+          "type": "internal",
+          "name": "map",
+          "targetIndex": 71651,
+          "targetType": "object shape",
+          "targetName": "system / Map"
+        }
+      ]
+    },
+    {
+      "stage": "after-history",
+      "index": 190760,
+      "id": 381521,
+      "name": "Object",
+      "edges": [
+        {
+          "edgeIndex": 798024,
+          "type": "property",
+          "name": "schemaVersion",
+          "targetIndex": 190776,
+          "targetType": "string",
+          "targetName": "loredock-file-facts/1"
+        },
+        {
+          "edgeIndex": 798025,
+          "type": "property",
+          "name": "__proto__",
+          "targetIndex": 42505,
+          "targetType": "object",
+          "targetName": "Object"
+        },
+        {
+          "edgeIndex": 798026,
+          "type": "internal",
+          "name": "map",
+          "targetIndex": 121487,
+          "targetType": "object shape",
+          "targetName": "system / Map"
+        }
+      ]
+    },
+    {
+      "stage": "after-release",
+      "index": 100271,
+      "id": 222223,
+      "name": "DatabaseSync",
+      "edges": [
+        {
+          "edgeIndex": 407718,
+          "type": "property",
+          "name": "isOpen",
+          "targetIndex": 126473,
+          "targetType": "hidden",
+          "targetName": "system / AccessorPair"
+        },
+        {
+          "edgeIndex": 407719,
+          "type": "property",
+          "name": "get isOpen",
+          "targetIndex": 128406,
+          "targetType": "hidden",
+          "targetName": "system / FunctionTemplateInfo"
+        },
+        {
+          "edgeIndex": 407720,
+          "type": "property",
+          "name": "isTransaction",
+          "targetIndex": 126474,
+          "targetType": "hidden",
+          "targetName": "system / AccessorPair"
+        },
+        {
+          "edgeIndex": 407721,
+          "type": "property",
+          "name": "get isTransaction",
+          "targetIndex": 128407,
+          "targetType": "hidden",
+          "targetName": "system / FunctionTemplateInfo"
+        },
+        {
+          "edgeIndex": 407722,
+          "type": "property",
+          "name": "<symbol sqlite-type>",
+          "targetIndex": 29909,
+          "targetType": "string",
+          "targetName": "node:sqlite"
+        },
+        {
+          "edgeIndex": 407723,
+          "type": "property",
+          "name": "__proto__",
+          "targetIndex": 128421,
+          "targetType": "object",
+          "targetName": "Object"
+        },
+        {
+          "edgeIndex": 407724,
+          "type": "internal",
+          "name": "properties",
+          "targetIndex": 164277,
+          "targetType": "hidden",
+          "targetName": "system / PropertyArray"
+        },
+        {
+          "edgeIndex": 407725,
+          "type": "internal",
+          "name": "map",
+          "targetIndex": 60824,
+          "targetType": "object shape",
+          "targetName": "system / Map"
+        }
+      ]
+    },
+    {
+      "stage": "after-release",
+      "index": 100272,
+      "id": 222225,
+      "name": "StatementSync",
+      "edges": [
+        {
+          "edgeIndex": 407726,
+          "type": "property",
+          "name": "sourceSQL",
+          "targetIndex": 126476,
+          "targetType": "hidden",
+          "targetName": "system / AccessorPair"
+        },
+        {
+          "edgeIndex": 407727,
+          "type": "property",
+          "name": "get sourceSQL",
+          "targetIndex": 128426,
+          "targetType": "hidden",
+          "targetName": "system / FunctionTemplateInfo"
+        },
+        {
+          "edgeIndex": 407728,
+          "type": "property",
+          "name": "expandedSQL",
+          "targetIndex": 126477,
+          "targetType": "hidden",
+          "targetName": "system / AccessorPair"
+        },
+        {
+          "edgeIndex": 407729,
+          "type": "property",
+          "name": "get expandedSQL",
+          "targetIndex": 128427,
+          "targetType": "hidden",
+          "targetName": "system / FunctionTemplateInfo"
+        },
+        {
+          "edgeIndex": 407730,
+          "type": "property",
+          "name": "__proto__",
+          "targetIndex": 128438,
+          "targetType": "object",
+          "targetName": "Object"
+        },
+        {
+          "edgeIndex": 407731,
+          "type": "internal",
+          "name": "map",
+          "targetIndex": 69778,
+          "targetType": "object shape",
+          "targetName": "system / Map"
+        }
+      ]
+    },
+    {
+      "stage": "after-release",
+      "index": 118148,
+      "id": 259985,
+      "name": "Object",
+      "edges": [
+        {
+          "edgeIndex": 487262,
+          "type": "property",
+          "name": "schemaVersion",
+          "targetIndex": 26360,
+          "targetType": "string",
+          "targetName": "loredock-file-facts/1"
+        },
+        {
+          "edgeIndex": 487263,
+          "type": "property",
+          "name": "inputHash",
+          "targetIndex": 32,
+          "targetType": "hidden",
+          "targetName": "system / Hole"
+        },
+        {
+          "edgeIndex": 487264,
+          "type": "property",
+          "name": "fingerprint",
+          "targetIndex": 32,
+          "targetType": "hidden",
+          "targetName": "system / Hole"
+        },
+        {
+          "edgeIndex": 487265,
+          "type": "property",
+          "name": "buildId",
+          "targetIndex": 32,
+          "targetType": "hidden",
+          "targetName": "system / Hole"
+        },
+        {
+          "edgeIndex": 487266,
+          "type": "property",
+          "name": "fileId",
+          "targetIndex": 32,
+          "targetType": "hidden",
+          "targetName": "system / Hole"
+        },
+        {
+          "edgeIndex": 487267,
+          "type": "property",
+          "name": "sourceId",
+          "targetIndex": 32,
+          "targetType": "hidden",
+          "targetName": "system / Hole"
+        },
+        {
+          "edgeIndex": 487268,
+          "type": "property",
+          "name": "sourceName",
+          "targetIndex": 32,
+          "targetType": "hidden",
+          "targetName": "system / Hole"
+        },
+        {
+          "edgeIndex": 487269,
+          "type": "property",
+          "name": "revision",
+          "targetIndex": 32,
+          "targetType": "hidden",
+          "targetName": "system / Hole"
+        },
+        {
+          "edgeIndex": 487270,
+          "type": "property",
+          "name": "path",
+          "targetIndex": 32,
+          "targetType": "hidden",
+          "targetName": "system / Hole"
+        },
+        {
+          "edgeIndex": 487271,
+          "type": "property",
+          "name": "blob",
+          "targetIndex": 32,
+          "targetType": "hidden",
+          "targetName": "system / Hole"
+        },
+        {
+          "edgeIndex": 487272,
+          "type": "property",
+          "name": "contentHash",
+          "targetIndex": 32,
+          "targetType": "hidden",
+          "targetName": "system / Hole"
+        },
+        {
+          "edgeIndex": 487273,
+          "type": "property",
+          "name": "__proto__",
+          "targetIndex": 42503,
+          "targetType": "object",
+          "targetName": "Object"
+        },
+        {
+          "edgeIndex": 487274,
+          "type": "internal",
+          "name": "map",
+          "targetIndex": 69847,
+          "targetType": "object shape",
+          "targetName": "system / Map"
+        }
+      ]
+    },
+    {
+      "stage": "after-release",
+      "index": 177477,
+      "id": 381521,
+      "name": "Object",
+      "edges": [
+        {
+          "edgeIndex": 756641,
+          "type": "property",
+          "name": "schemaVersion",
+          "targetIndex": 177493,
+          "targetType": "string",
+          "targetName": "loredock-file-facts/1"
+        },
+        {
+          "edgeIndex": 756642,
+          "type": "property",
+          "name": "__proto__",
+          "targetIndex": 42503,
+          "targetType": "object",
+          "targetName": "Object"
+        },
+        {
+          "edgeIndex": 756643,
+          "type": "internal",
+          "name": "map",
+          "targetIndex": 174328,
+          "targetType": "object shape",
+          "targetName": "system / Map"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "workerSha256": "8ef31873c94d480c92ff11761712179c7eb1b37b41e0770e06e6569463c92657",
+  "resourceAcceptance": false,
+  "operations": [
+    {
+      "name": "first",
+      "state": "pass",
+      "meaning": "Saved no-write, work/output accounting, disabled hooks and history nested-read checks only; original resource failures remain."
+    },
+    {
+      "name": "repeat-1",
+      "state": "pass",
+      "meaning": "Saved no-write, work/output accounting, disabled hooks and history nested-read checks only; original resource failures remain."
+    },
+    {
+      "name": "repeat-2",
+      "state": "pass",
+      "meaning": "Saved no-write, work/output accounting, disabled hooks and history nested-read checks only; original resource failures remain."
+    },
+    {
+      "name": "repeat-3",
+      "state": "pass",
+      "meaning": "Saved no-write, work/output accounting, disabled hooks and history nested-read checks only; original resource failures remain."
+    },
+    {
+      "name": "selected",
+      "state": "pass",
+      "meaning": "Saved no-write, work/output accounting, disabled hooks and history nested-read checks only; original resource failures remain."
+    },
+    {
+      "name": "page-4",
+      "state": "pass",
+      "meaning": "Saved no-write, work/output accounting, disabled hooks and history nested-read checks only; original resource failures remain."
+    },
+    {
+      "name": "isolated",
+      "state": "pass",
+      "meaning": "Saved no-write, work/output accounting, disabled hooks and history nested-read checks only; original resource failures remain."
+    },
+    {
+      "name": "history",
+      "state": "pass",
+      "meaning": "Saved no-write, work/output accounting, disabled hooks and history nested-read checks only; original resource failures remain."
+    }
+  ]
+}

@@ -1,0 +1,614 @@
+{
+  "schemaVersion": "task087-terminal-memory-oracle/1",
+  "authorship": "Source-authored before parser/candidate observation, after supported-adapter review; not blind assessment.",
+  "sizes": [
+    {
+      "pathsPerSource": 496,
+      "files": 9920,
+      "codeFiles": 9897,
+      "bytes": 935971,
+      "facts": 21
+    }
+  ],
+  "arms": [
+    "same-process"
+  ],
+  "operations": [
+    "first",
+    "repeat-1",
+    "repeat-2",
+    "repeat-3",
+    "selected",
+    "page-4",
+    "isolated",
+    "history"
+  ],
+  "topic": "archive.accepted.v6",
+  "environment": "archive",
+  "defaultFlows": 2,
+  "selectedFlows": 1,
+  "rootCount": 5,
+  "defaultOriginals": 10,
+  "isolatedOriginals": 5,
+  "sourceCount": 20,
+  "uncitedSource": "d-curation-handbook",
+  "selectedRoot": [
+    "a-intake-desk",
+    "actions/AAAccept.vue",
+    "accept",
+    "vue-action"
+  ],
+  "isolatedRoot": [
+    "a-intake-desk",
+    "actions/ZZSearch.vue",
+    "search",
+    "vue-action"
+  ],
+  "requiredNodes": [
+    [
+      "a-intake-desk",
+      "actions/AAAccept.vue",
+      "symbol",
+      "accept",
+      "vue-action"
+    ],
+    [
+      "a-intake-desk",
+      "actions/BBRegister.vue",
+      "symbol",
+      "register",
+      "vue-action"
+    ],
+    [
+      "a-intake-desk",
+      "actions/accession.ts",
+      "symbol",
+      "acceptArchive",
+      "function"
+    ],
+    [
+      "a-intake-desk",
+      "actions/accession.ts",
+      "http-request",
+      "POST /archive/accessions",
+      null
+    ],
+    [
+      "b-accession-api",
+      "routing/accessions.json",
+      "route",
+      "POST /archive/accessions",
+      null
+    ],
+    [
+      "b-accession-api",
+      "routing/accessions.json",
+      "handler-reference",
+      "Accessions.accept",
+      null
+    ],
+    [
+      "b-accession-api",
+      "accessions/Accessions.java",
+      "symbol",
+      "Accessions.accept",
+      "java-method"
+    ],
+    [
+      "b-accession-api",
+      "accessions/Accessions.java",
+      "event-publish",
+      "Publish ArchiveAccepted",
+      null
+    ],
+    [
+      "c-archive-register",
+      "register/ArchiveWriter.java",
+      "event-subscribe",
+      "Subscribe via KafkaSubscriber",
+      null
+    ],
+    [
+      "c-archive-register",
+      "register/ArchiveWriter.java",
+      "symbol",
+      "ArchiveWriter.onMessage",
+      "java-method"
+    ],
+    [
+      "c-archive-register",
+      "register/ArchiveWriter.java",
+      "document-write",
+      "MongoCollection.replaceOne",
+      null
+    ]
+  ],
+  "selectedRequiredNodes": [
+    [
+      "a-intake-desk",
+      "actions/AAAccept.vue",
+      "symbol",
+      "accept",
+      "vue-action"
+    ],
+    [
+      "a-intake-desk",
+      "actions/accession.ts",
+      "symbol",
+      "acceptArchive",
+      "function"
+    ],
+    [
+      "a-intake-desk",
+      "actions/accession.ts",
+      "http-request",
+      "POST /archive/accessions",
+      null
+    ],
+    [
+      "b-accession-api",
+      "routing/accessions.json",
+      "route",
+      "POST /archive/accessions",
+      null
+    ],
+    [
+      "b-accession-api",
+      "routing/accessions.json",
+      "handler-reference",
+      "Accessions.accept",
+      null
+    ],
+    [
+      "b-accession-api",
+      "accessions/Accessions.java",
+      "symbol",
+      "Accessions.accept",
+      "java-method"
+    ],
+    [
+      "b-accession-api",
+      "accessions/Accessions.java",
+      "event-publish",
+      "Publish ArchiveAccepted",
+      null
+    ],
+    [
+      "c-archive-register",
+      "register/ArchiveWriter.java",
+      "event-subscribe",
+      "Subscribe via KafkaSubscriber",
+      null
+    ],
+    [
+      "c-archive-register",
+      "register/ArchiveWriter.java",
+      "symbol",
+      "ArchiveWriter.onMessage",
+      "java-method"
+    ],
+    [
+      "c-archive-register",
+      "register/ArchiveWriter.java",
+      "document-write",
+      "MongoCollection.replaceOne",
+      null
+    ]
+  ],
+  "isolated": {
+    "nodes": 1,
+    "edges": 0,
+    "flows": 1,
+    "terminalKind": "symbol",
+    "reason": "unresolved-import"
+  },
+  "complete": {
+    "sources": [
+      "a-intake-desk",
+      "b-accession-api",
+      "c-archive-register",
+      "d-curation-handbook",
+      "e-collection-01",
+      "e-collection-02",
+      "e-collection-03",
+      "e-collection-04",
+      "e-collection-05",
+      "e-collection-06",
+      "e-collection-07",
+      "e-collection-08",
+      "e-collection-09",
+      "e-collection-10",
+      "e-collection-11",
+      "e-collection-12",
+      "e-collection-13",
+      "e-collection-14",
+      "e-collection-15",
+      "e-collection-16"
+    ],
+    "roots": [
+      [
+        "a-intake-desk",
+        "actions/AAAccept.vue",
+        "accept",
+        "vue-action"
+      ],
+      [
+        "a-intake-desk",
+        "actions/BBRegister.vue",
+        "register",
+        "vue-action"
+      ],
+      [
+        "a-intake-desk",
+        "actions/CCRetry.vue",
+        "retry",
+        "vue-action"
+      ],
+      [
+        "a-intake-desk",
+        "actions/DDConfirm.vue",
+        "confirm",
+        "vue-action"
+      ]
+    ],
+    "isolatedRoot": [
+      "a-intake-desk",
+      "actions/ZZSearch.vue",
+      "search",
+      "vue-action"
+    ],
+    "flows": [
+      {
+        "nodes": [
+          [
+            "a-intake-desk",
+            "actions/AAAccept.vue",
+            "symbol",
+            "accept",
+            "vue-action"
+          ],
+          [
+            "a-intake-desk",
+            "actions/accession.ts",
+            "symbol",
+            "acceptArchive",
+            "function"
+          ],
+          [
+            "a-intake-desk",
+            "actions/accession.ts",
+            "http-request",
+            "POST /archive/accessions",
+            null
+          ],
+          [
+            "b-accession-api",
+            "routing/accessions.json",
+            "route",
+            "POST /archive/accessions",
+            null
+          ],
+          [
+            "b-accession-api",
+            "routing/accessions.json",
+            "handler-reference",
+            "Accessions.accept",
+            null
+          ],
+          [
+            "b-accession-api",
+            "accessions/Accessions.java",
+            "symbol",
+            "Accessions.accept",
+            "java-method"
+          ],
+          [
+            "b-accession-api",
+            "accessions/Accessions.java",
+            "event-publish",
+            "Publish ArchiveAccepted",
+            null
+          ],
+          [
+            "c-archive-register",
+            "register/ArchiveWriter.java",
+            "event-subscribe",
+            "Subscribe via KafkaSubscriber",
+            null
+          ],
+          [
+            "c-archive-register",
+            "register/ArchiveWriter.java",
+            "symbol",
+            "ArchiveWriter.onMessage",
+            "java-method"
+          ],
+          [
+            "c-archive-register",
+            "register/ArchiveWriter.java",
+            "document-write",
+            "MongoCollection.replaceOne",
+            null
+          ]
+        ],
+        "edges": [
+          "calls",
+          "performs",
+          "http-target",
+          "routes-to",
+          "implements",
+          "performs",
+          "event-delivery",
+          "dispatch-candidate",
+          "performs"
+        ]
+      },
+      {
+        "nodes": [
+          [
+            "a-intake-desk",
+            "actions/BBRegister.vue",
+            "symbol",
+            "register",
+            "vue-action"
+          ],
+          [
+            "a-intake-desk",
+            "actions/accession.ts",
+            "symbol",
+            "acceptArchive",
+            "function"
+          ],
+          [
+            "a-intake-desk",
+            "actions/accession.ts",
+            "http-request",
+            "POST /archive/accessions",
+            null
+          ],
+          [
+            "b-accession-api",
+            "routing/accessions.json",
+            "route",
+            "POST /archive/accessions",
+            null
+          ],
+          [
+            "b-accession-api",
+            "routing/accessions.json",
+            "handler-reference",
+            "Accessions.accept",
+            null
+          ],
+          [
+            "b-accession-api",
+            "accessions/Accessions.java",
+            "symbol",
+            "Accessions.accept",
+            "java-method"
+          ],
+          [
+            "b-accession-api",
+            "accessions/Accessions.java",
+            "event-publish",
+            "Publish ArchiveAccepted",
+            null
+          ],
+          [
+            "c-archive-register",
+            "register/ArchiveWriter.java",
+            "event-subscribe",
+            "Subscribe via KafkaSubscriber",
+            null
+          ],
+          [
+            "c-archive-register",
+            "register/ArchiveWriter.java",
+            "symbol",
+            "ArchiveWriter.onMessage",
+            "java-method"
+          ],
+          [
+            "c-archive-register",
+            "register/ArchiveWriter.java",
+            "document-write",
+            "MongoCollection.replaceOne",
+            null
+          ]
+        ],
+        "edges": [
+          "calls",
+          "performs",
+          "http-target",
+          "routes-to",
+          "implements",
+          "performs",
+          "event-delivery",
+          "dispatch-candidate",
+          "performs"
+        ]
+      }
+    ],
+    "originals": [
+      [
+        "a-intake-desk",
+        "actions/AAAccept.vue",
+        1,
+        6
+      ],
+      [
+        "a-intake-desk",
+        "actions/BBRegister.vue",
+        1,
+        6
+      ],
+      [
+        "a-intake-desk",
+        "actions/CCRetry.vue",
+        1,
+        6
+      ],
+      [
+        "a-intake-desk",
+        "actions/DDConfirm.vue",
+        1,
+        6
+      ],
+      [
+        "a-intake-desk",
+        "actions/accession.ts",
+        1,
+        7
+      ],
+      [
+        "b-accession-api",
+        "routing/accessions.json",
+        1,
+        13
+      ],
+      [
+        "b-accession-api",
+        "accessions/Accessions.java",
+        1,
+        10
+      ],
+      [
+        "b-accession-api",
+        "contracts/ArchiveAccepted.json",
+        1,
+        10
+      ],
+      [
+        "c-archive-register",
+        "register/ArchiveWriter.java",
+        1,
+        13
+      ],
+      [
+        "c-archive-register",
+        "contracts/ArchiveAccepted.json",
+        1,
+        10
+      ]
+    ],
+    "isolatedOriginals": [
+      [
+        "a-intake-desk",
+        "actions/AAAccept.vue",
+        1,
+        6
+      ],
+      [
+        "a-intake-desk",
+        "actions/BBRegister.vue",
+        1,
+        6
+      ],
+      [
+        "a-intake-desk",
+        "actions/CCRetry.vue",
+        1,
+        6
+      ],
+      [
+        "a-intake-desk",
+        "actions/DDConfirm.vue",
+        1,
+        6
+      ],
+      [
+        "a-intake-desk",
+        "actions/ZZSearch.vue",
+        1,
+        5
+      ]
+    ]
+  },
+  "limits": {
+    "wallMs": 5000,
+    "work": 1000000,
+    "projectionBytes": 524288,
+    "receiptBytes": 655360,
+    "textBytes": 65536,
+    "spans": 30,
+    "sources": 20
+  },
+  "resources": {
+    "sampleIntervalMs": 5,
+    "maxSliceMs": 150,
+    "sampledRssMiB": 384,
+    "sampledHeapGrowthMiB": 64
+  },
+  "instrumentation": {
+    "profiler": false,
+    "phaseHooks": false,
+    "queryHooks": false,
+    "ownerHooks": false,
+    "ordinaryCounters": true,
+    "aggregateCharges": true,
+    "outerResourceSampler": true
+  },
+  "terminal": {
+    "fileBytes": 134217728,
+    "nodes": 1000000,
+    "edges": 4000000,
+    "strings": 1000000,
+    "selectors": 8,
+    "matches": 8,
+    "pathSteps": 64,
+    "summaryBytes": 262144,
+    "watchdogMs": 900000,
+    "sampledRssBytes": 1073741824
+  },
+  "supervision": {
+    "rssPollMs": 10,
+    "rssUnavailableMs": 100,
+    "killGraceMs": 1000,
+    "parserWatchdogMs": 60000,
+    "overallWatchdogMs": 1050000
+  },
+  "selectors": [
+    {
+      "label": "file fact payloads",
+      "name": "Object",
+      "properties": {
+        "schemaVersion": "loredock-file-facts/1"
+      }
+    },
+    {
+      "label": "CodePaths",
+      "name": "CodePaths",
+      "properties": {}
+    },
+    {
+      "label": "StreamingCodeAnalysis",
+      "name": "StreamingCodeAnalysis",
+      "properties": {}
+    },
+    {
+      "label": "Catalog",
+      "name": "Catalog",
+      "properties": {}
+    },
+    {
+      "label": "CatalogStore",
+      "name": "CatalogStore",
+      "properties": {}
+    },
+    {
+      "label": "SourceGit",
+      "name": "SourceGit",
+      "properties": {}
+    },
+    {
+      "label": "DatabaseSync",
+      "name": "DatabaseSync",
+      "properties": {}
+    },
+    {
+      "label": "StatementSync",
+      "name": "StatementSync",
+      "properties": {}
+    }
+  ]
+}
