@@ -1,0 +1,26 @@
+[
+  {
+    "file": "rows-first.log.gz",
+    "rawBytes": 725,
+    "rawSha256": "2a6a9d4e4e80212638feb4ca067d8c4e26b2dfe8988ff61231f679d3800f2889",
+    "exitCode": 0
+  },
+  {
+    "file": "process-first.log.gz",
+    "rawBytes": 549,
+    "rawSha256": "e786b0d3cfa968a07b97e2d51d04c4e87aefaec3f51499bf098f2c2f2b1cdbf2",
+    "exitCode": 0
+  },
+  {
+    "file": "typecheck-first.log.gz",
+    "rawBytes": 145,
+    "rawSha256": "c27ce56e0389f3ac33fb2fc3fb453e1087c602e5dba6543db23e3c5d3ba7aae3",
+    "exitCode": 0
+  },
+  {
+    "file": "check-first.log.gz",
+    "rawBytes": 202947,
+    "rawSha256": "c0a7f7c2aa63949052f8d18bdc57d596444c7539a338ba8919a8527e4c734dc8",
+    "exitCode": 0
+  }
+]

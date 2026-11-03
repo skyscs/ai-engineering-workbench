@@ -251,6 +251,12 @@ same-process operations preserve integrity, but six exceed memory and four fresh
 arms stop at a prototype-sensitive source-header assertion. Thirty-two operations and all
 cross-process parity remain unexecuted/unavailable. Next: fix and regression-test the entire
 diagnostic process/JSON boundary before fresh attribution. No optimization is selected.
+[Task 078](tasks/078-loredock-memory-runner.md) repairs that boundary in a separate
+offline runner. Complete scalar-column comparison preserves source guards while an
+independent three-process regression covers all 24 capture/page/history operations,
+exact cross-arm bytes and changed-header refusal. Old experiments remain exhausted.
+Next: freeze a new attribution family using the repaired runner; resource and semantic
+acceptance remain separate from this functional process regression.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

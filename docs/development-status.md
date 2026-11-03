@@ -1,5 +1,27 @@
 # Development status
 
+## Task 078 — Complete diagnostic process regression
+
+Implementation locally verified, 2026-11-03; scope `7679e0e`. The separate
+[offline runner](../scripts/loredock-memory-runner/README.md) compares complete source
+column values across SQLite/JSON without requiring matching object prototypes.
+It preserves missing/extra/value/order checks and rejects unsupported row shapes.
+
+The independent three-source locker regression runs the actual child entry point
+in three separate processes. All 24 operations execute with byte-identical receipts
+and projections, exact originals, observer/control checks and history after eviction
+without nested work. A changed serialized header still produces an explicit error,
+exit 1 and zero read operations. The two scalar-row regressions, process integration
+and focused strict typecheck passed on their first runs. Full strict checks, 506 tests
+and builds pass; the [first logs](fixtures/loredock-memory-runner/README.md) are retained.
+
+PR #81 merged as `f763a7495f618c032253c822c39022bd4f6311aa` after exact head
+`a58e41194b6b9ff9119f9d2b050cdf74de4ba3d3` passed push 41620642665 and pull-request
+41620770009 CI, with an identical tree. Task 077's first failures and all frozen
+bytes remain unchanged. No production change, optimization choice, memory acceptance,
+model call, corporate source or demo operation follows. Next: fresh attribution
+inputs/protocol. See [Task 078](../tasks/078-loredock-memory-runner.md).
+
 ## Task 077 — Memory diagnostic: controls blocked
 
 First frozen run completed 2026-11-03. Scope `a38f7c3`, freeze `8234749`, measured
