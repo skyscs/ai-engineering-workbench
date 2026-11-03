@@ -61,8 +61,10 @@ The independent two-process regression passes on its first run: all sixteen
 operations preserve integrity and lifecycle parity while a deliberately impossible
 parent-only time gate fails every resource observation. Both workers exit 0 and
 report disabled instrumentation. Exit 7 and watchdog regressions preserve errors
-and block the reader without retry. Focused typechecking passes; full checks are
-running before the measured candidate commit.
+and block the reader without retry. Focused typechecking and the first full check
+pass: 521 tests, strict checks and builds on pinned Node 22.23.2. Frozen input,
+candidate/baseline hashes, the runner diff and documentation references were
+reviewed before this measured candidate checkpoint.
 
 An initial external scaffolding assertion matched `observer.mjs` in an import path
 while checking for observer calls, and stopped before writing runner files. The
