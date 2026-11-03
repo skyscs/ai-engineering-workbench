@@ -1,0 +1,267 @@
+{
+  "schemaVersion": "task082-artifact-readback/1",
+  "originalSummary": {
+    "arms": 4,
+    "operations": 32,
+    "integrityPassed": 8,
+    "resourcePassed": 30,
+    "parityPassed": 0,
+    "note": "Fresh candidate qualification only. Historical failures and production consumers remain unchanged."
+  },
+  "note": "Post-run inspection of saved bytes only. No candidate execution, oracle relaxation or replacement qualification score.",
+  "arms": [
+    {
+      "size": 29,
+      "arm": "same-process",
+      "originalSupportedReceipts": 6,
+      "receipts": [
+        {
+          "name": "first",
+          "originals": 7,
+          "terminals": [
+            "event-publish",
+            "event-publish"
+          ],
+          "consumerOmission": 1
+        },
+        {
+          "name": "repeat-1",
+          "originals": 7,
+          "terminals": [
+            "event-publish",
+            "event-publish"
+          ],
+          "consumerOmission": 1
+        },
+        {
+          "name": "repeat-2",
+          "originals": 7,
+          "terminals": [
+            "event-publish",
+            "event-publish"
+          ],
+          "consumerOmission": 1
+        },
+        {
+          "name": "repeat-3",
+          "originals": 7,
+          "terminals": [
+            "event-publish",
+            "event-publish"
+          ],
+          "consumerOmission": 1
+        },
+        {
+          "name": "selected",
+          "originals": 7,
+          "terminals": [
+            "event-publish"
+          ],
+          "consumerOmission": 1
+        },
+        {
+          "name": "isolated",
+          "originals": 5,
+          "terminals": [
+            "symbol"
+          ],
+          "consumerOmission": 1
+        }
+      ],
+      "historyMatchesRecordedFirst": true
+    },
+    {
+      "size": 29,
+      "arm": "reopened-process",
+      "originalSupportedReceipts": 6,
+      "receipts": [
+        {
+          "name": "first",
+          "originals": 7,
+          "terminals": [
+            "event-publish",
+            "event-publish"
+          ],
+          "consumerOmission": 1
+        },
+        {
+          "name": "repeat-1",
+          "originals": 7,
+          "terminals": [
+            "event-publish",
+            "event-publish"
+          ],
+          "consumerOmission": 1
+        },
+        {
+          "name": "repeat-2",
+          "originals": 7,
+          "terminals": [
+            "event-publish",
+            "event-publish"
+          ],
+          "consumerOmission": 1
+        },
+        {
+          "name": "repeat-3",
+          "originals": 7,
+          "terminals": [
+            "event-publish",
+            "event-publish"
+          ],
+          "consumerOmission": 1
+        },
+        {
+          "name": "selected",
+          "originals": 7,
+          "terminals": [
+            "event-publish"
+          ],
+          "consumerOmission": 1
+        },
+        {
+          "name": "isolated",
+          "originals": 5,
+          "terminals": [
+            "symbol"
+          ],
+          "consumerOmission": 1
+        }
+      ],
+      "historyMatchesRecordedFirst": true
+    },
+    {
+      "size": 499,
+      "arm": "same-process",
+      "originalSupportedReceipts": 6,
+      "receipts": [
+        {
+          "name": "first",
+          "originals": 7,
+          "terminals": [
+            "event-publish",
+            "event-publish"
+          ],
+          "consumerOmission": 1
+        },
+        {
+          "name": "repeat-1",
+          "originals": 7,
+          "terminals": [
+            "event-publish",
+            "event-publish"
+          ],
+          "consumerOmission": 1
+        },
+        {
+          "name": "repeat-2",
+          "originals": 7,
+          "terminals": [
+            "event-publish",
+            "event-publish"
+          ],
+          "consumerOmission": 1
+        },
+        {
+          "name": "repeat-3",
+          "originals": 7,
+          "terminals": [
+            "event-publish",
+            "event-publish"
+          ],
+          "consumerOmission": 1
+        },
+        {
+          "name": "selected",
+          "originals": 7,
+          "terminals": [
+            "event-publish"
+          ],
+          "consumerOmission": 1
+        },
+        {
+          "name": "isolated",
+          "originals": 5,
+          "terminals": [
+            "symbol"
+          ],
+          "consumerOmission": 1
+        }
+      ],
+      "historyMatchesRecordedFirst": true
+    },
+    {
+      "size": 499,
+      "arm": "reopened-process",
+      "originalSupportedReceipts": 6,
+      "receipts": [
+        {
+          "name": "first",
+          "originals": 7,
+          "terminals": [
+            "event-publish",
+            "event-publish"
+          ],
+          "consumerOmission": 1
+        },
+        {
+          "name": "repeat-1",
+          "originals": 7,
+          "terminals": [
+            "event-publish",
+            "event-publish"
+          ],
+          "consumerOmission": 1
+        },
+        {
+          "name": "repeat-2",
+          "originals": 7,
+          "terminals": [
+            "event-publish",
+            "event-publish"
+          ],
+          "consumerOmission": 1
+        },
+        {
+          "name": "repeat-3",
+          "originals": 7,
+          "terminals": [
+            "event-publish",
+            "event-publish"
+          ],
+          "consumerOmission": 1
+        },
+        {
+          "name": "selected",
+          "originals": 7,
+          "terminals": [
+            "event-publish"
+          ],
+          "consumerOmission": 1
+        },
+        {
+          "name": "isolated",
+          "originals": 5,
+          "terminals": [
+            "symbol"
+          ],
+          "consumerOmission": 1
+        }
+      ],
+      "historyMatchesRecordedFirst": true
+    }
+  ],
+  "rawComparisons": [
+    {
+      "size": 29,
+      "comparedOperations": 7,
+      "bytesEqual": true
+    },
+    {
+      "size": 499,
+      "comparedOperations": 7,
+      "bytesEqual": true
+    }
+  ],
+  "errors": []
+}

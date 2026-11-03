@@ -1,6 +1,6 @@
 # Task 082 — Uninstrumented streaming snapshot qualification
 
-Status: in progress, 2026-11-03.
+Status: qualification rejected, 2026-11-03; first-run budget exhausted.
 
 ## Scope
 
@@ -70,3 +70,24 @@ An initial external scaffolding assertion matched `observer.mjs` in an import pa
 while checking for observer calls, and stopped before writing runner files. The
 guard was narrowed to actual observer calls. This tooling error did not execute
 the candidate or frozen inputs; no result or protocol was changed.
+
+## First outcome
+
+Measured head `4bccec8668ea32873f6eea48bd5e94e71be35b96` completes all 32 operations
+with four successful children, but the coordinator exits 1: 8 integrity passes,
+30 resource passes and zero qualified parity comparisons. The authored fixture
+expects a complete path through `onIssued`, outside the documented `onMessage`
+consumer profile. Twenty useful captures stop at event publication; four dependent
+history checks fail because the evaluator has not retained the first receipt for
+dependent checks after useful-path refusal.
+
+Independent memory failures also remain: large same-process isolated heap growth
+66.666 MiB and history RSS 397.477 MiB exceed 64/384 MiB. No promotion follows from
+passing small/fresh-process resources or truncated paths. Separate saved-artifact
+readback confirms raw byte parity, original support and matching history without
+changing any first score. All evidence and checks are in the
+[result record](../docs/fixtures/loredock-streaming-qualification/README.md).
+
+Next: separately repair fixture compatibility review and evaluator independence,
+then make an evidence-based decision on remaining same-process allocation/residency.
+No broadened consumer rule, old-family rerun or adjusted resource bound is implied.
