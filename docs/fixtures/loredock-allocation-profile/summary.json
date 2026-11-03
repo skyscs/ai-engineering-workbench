@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "task080-retained-readback/1",
+  "exit": 0,
+  "failed": false,
+  "integrity": {
+    "pass": true,
+    "originals": 10,
+    "facts": 21,
+    "files": 9917,
+    "metrics": {
+      "accountingVersion": "shared-capture-work/1",
+      "pathWork": 288955,
+      "receiptWork": 84876,
+      "totalWork": 373831,
+      "wallMs": 3518.881712,
+      "work": 373831,
+      "checkpoints": 14,
+      "projectionBytes": 28284,
+      "receiptBytes": 43477,
+      "textBytes": 3145,
+      "spans": 10,
+      "sources": 20,
+      "publicationLocks": 1
+    }
+  },
+  "profile": {
+    "pass": true,
+    "sampleReferenceStatus": "complete",
+    "nodes": 517,
+    "samples": 15053,
+    "unmappedSamples": 0,
+    "unmappedSampleBytes": 0,
+    "totalSelfBytes": 505983568,
+    "sampleBytes": 506641312,
+    "backendStopForcesGC": true,
+    "backendExportAllocationsIncluded": true
+  },
+  "resourceAcceptance": "not-evaluated-profiled",
+  "rawFrames": 15,
+  "rawContentBytes": 852315,
+  "archiveSha256": "f40447a391729043832ce47ee8bc9d51d3cf21d38f36809fde8728276fc75ae2",
+  "validationLogs": {
+    "sampler-first": {
+      "bytes": 889,
+      "sha256": "8c39e01d3b45c33f8330b5f9d36c512205443f15d5b03714a7bcb58d94a66e51"
+    },
+    "integration-first": {
+      "bytes": 807,
+      "sha256": "2de44bab0389aa703cf6e852e43a11a0635eed306d65c7cf29a322b696dd3182"
+    },
+    "typecheck-first": {
+      "bytes": 150,
+      "sha256": "0c7691a8d3ea233f72dbcbd52200bd258d491fc9fd0e57b20a7ddc2658425e33"
+    },
+    "check-first": {
+      "bytes": 173198,
+      "sha256": "0205de6e8b0704f3cd0df515ea371abdab9f042e5b9357fb89d262a60a6f4947"
+    },
+    "sampler-final": {
+      "bytes": 1170,
+      "sha256": "0fb3e25552d5549fe744bf9cdbc0a84a49a0afdb507ab86ab9c96e7fa1023a0a"
+    },
+    "integration-final": {
+      "bytes": 806,
+      "sha256": "8b55573eff5255ca3dd218af16b07c111ac57c0deae8f102ebf528c1b60481ab"
+    },
+    "check-final": {
+      "bytes": 206318,
+      "sha256": "5aa65f6b0430f371dd64a9ececd95f7e8793fc75d9b13cae59b451ed2f5403a2"
+    }
+  },
+  "sourceHeaderReadback": "Read-only immutable initial snapshot matches all serialized source-header values.",
+  "note": "One sampled complete capture, including backend GC/export effects. Not resource acceptance or a retained-memory diagnosis."
+}

@@ -158,3 +158,17 @@ remain competing costs. Phase endpoints cannot assign bytes to them or identify 
 residency. Apply the stop rule: scope one targeted allocation profile on separately
 declared new inputs before choosing an optimization. Keep profiler observations outside
 resource acceptance, retain every first profile/error, and do not repeat this broad matrix.
+
+## Task 080 allocation profile and bounded successor
+
+The [single fresh profile](../fixtures/loredock-allocation-profile/README.md) preserves
+complete receipt integrity and inspectable allocation stacks. Snapshot descendants
+carry 60.874 MiB of sampled weights, including 38.022 MiB in three complete-header
+array reads. Backend collection/export is explicitly part of the diagnostic; the
+profile does not establish exact live bytes, native RSS or a complete async partition.
+
+Select streaming snapshot header validation and manifest hashing as one bounded
+successor. Retain every check and ordered parsed-file ID; preserve the same three
+snapshot/final fences and hash bytes. No caching, skipped inputs or larger bounds.
+Use independent regressions and a fresh uninstrumented resource qualification
+before promotion. History RSS remains an unresolved acceptance requirement.

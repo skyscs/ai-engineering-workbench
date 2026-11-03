@@ -172,6 +172,12 @@ blockers while separating irrelevant path/language gaps. Its audit adds source p
 omissions, opaque entries and verified saved-tree metadata to the qualification boundary.
 Fresh independent useful-path and adversarial/resource cases come next; no prototype or
 application behavior changes merely by recording this design.
+Later capture/resource work is tracked in the [development status](../development-status.md).
+Tasks 075/077/079 retain failed memory gates. Task 080's single allocation profile
+supports one next candidate: streaming snapshot validation and manifest hashing,
+with all evidence/scope checks preserved. Independent regression and fresh
+uninstrumented capture/history qualification precede production integration;
+profiling is not resource acceptance.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.

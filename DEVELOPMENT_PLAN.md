@@ -264,6 +264,13 @@ arms; history exceeds RSS after replacement analysis. Phase/count evidence canno
 apportion allocation causes, so no optimization is selected. Next: one targeted
 allocation profile with a separate fresh-input protocol, then one evidence-backed
 candidate and fresh uninstrumented qualification. The broad diagnostic is exhausted.
+[Task 080](tasks/080-loredock-allocation-profile.md) completes that single targeted
+profile with correct receipt content and complete sample references. Inspectable
+snapshot stacks support one candidate: stream complete header validation and the
+identical manifest hash input, retaining parsed IDs and all final fences. Profiled
+allocation weights do not establish live-memory savings or resource acceptance.
+Implement independently, then qualify on fresh uninstrumented capture/history
+lifecycles without changing limits. No production promotion or old-family rerun.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

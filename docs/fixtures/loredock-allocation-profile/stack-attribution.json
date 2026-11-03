@@ -1,0 +1,1343 @@
+{
+  "schemaVersion": "task080-stack-readback/1",
+  "candidate": "Stream complete snapshot header validation and manifest hashing, retaining ordered parsed file IDs and all fences.",
+  "allocationProfileSha256": "5f498cd49fad8112bb4108f0e6b3ffafbbe8bd4fee68d77da7d63741d7022584",
+  "snapshotSelfBytes": 63830832,
+  "snapshotAllSelfBytes": 39868568,
+  "snapshotNodes": [
+    {
+      "nodeId": 501,
+      "selfBytes": 1279312,
+      "stack": [
+        {
+          "id": 1,
+          "functionName": "(root)",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 2,
+          "functionName": "",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 13,
+          "functionName": "captureOwned",
+          "scriptId": "127",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/receipt.mjs",
+          "lineNumber": 184,
+          "columnNumber": 27
+        },
+        {
+          "id": 500,
+          "functionName": "analysis.snapshot",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 25,
+          "columnNumber": 22
+        },
+        {
+          "id": 501,
+          "functionName": "snapshot",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 88,
+          "columnNumber": 12
+        }
+      ]
+    },
+    {
+      "nodeId": 510,
+      "selfBytes": 147360,
+      "stack": [
+        {
+          "id": 1,
+          "functionName": "(root)",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 2,
+          "functionName": "",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 13,
+          "functionName": "captureOwned",
+          "scriptId": "127",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/receipt.mjs",
+          "lineNumber": 184,
+          "columnNumber": 27
+        },
+        {
+          "id": 500,
+          "functionName": "analysis.snapshot",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 25,
+          "columnNumber": 22
+        },
+        {
+          "id": 501,
+          "functionName": "snapshot",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 88,
+          "columnNumber": 12
+        },
+        {
+          "id": 510,
+          "functionName": "filter",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        }
+      ]
+    },
+    {
+      "nodeId": 506,
+      "selfBytes": 158704,
+      "stack": [
+        {
+          "id": 1,
+          "functionName": "(root)",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 2,
+          "functionName": "",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 13,
+          "functionName": "captureOwned",
+          "scriptId": "127",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/receipt.mjs",
+          "lineNumber": 184,
+          "columnNumber": 27
+        },
+        {
+          "id": 500,
+          "functionName": "analysis.snapshot",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 25,
+          "columnNumber": 22
+        },
+        {
+          "id": 501,
+          "functionName": "snapshot",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 88,
+          "columnNumber": 12
+        },
+        {
+          "id": 506,
+          "functionName": "map",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        }
+      ]
+    },
+    {
+      "nodeId": 507,
+      "selfBytes": 327880,
+      "stack": [
+        {
+          "id": 1,
+          "functionName": "(root)",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 2,
+          "functionName": "",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 13,
+          "functionName": "captureOwned",
+          "scriptId": "127",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/receipt.mjs",
+          "lineNumber": 184,
+          "columnNumber": 27
+        },
+        {
+          "id": 500,
+          "functionName": "analysis.snapshot",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 25,
+          "columnNumber": 22
+        },
+        {
+          "id": 501,
+          "functionName": "snapshot",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 88,
+          "columnNumber": 12
+        },
+        {
+          "id": 506,
+          "functionName": "map",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 507,
+          "functionName": "",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 101,
+          "columnNumber": 47
+        }
+      ]
+    },
+    {
+      "nodeId": 505,
+      "selfBytes": 6538048,
+      "stack": [
+        {
+          "id": 1,
+          "functionName": "(root)",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 2,
+          "functionName": "",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 13,
+          "functionName": "captureOwned",
+          "scriptId": "127",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/receipt.mjs",
+          "lineNumber": 184,
+          "columnNumber": 27
+        },
+        {
+          "id": 500,
+          "functionName": "analysis.snapshot",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 25,
+          "columnNumber": 22
+        },
+        {
+          "id": 501,
+          "functionName": "snapshot",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 88,
+          "columnNumber": 12
+        },
+        {
+          "id": 503,
+          "functionName": "every",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 504,
+          "functionName": "",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 96,
+          "columnNumber": 27
+        },
+        {
+          "id": 505,
+          "functionName": "checkpointHash",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 20,
+          "columnNumber": 23
+        }
+      ]
+    },
+    {
+      "nodeId": 502,
+      "selfBytes": 12968720,
+      "stack": [
+        {
+          "id": 1,
+          "functionName": "(root)",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 2,
+          "functionName": "",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 13,
+          "functionName": "captureOwned",
+          "scriptId": "127",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/receipt.mjs",
+          "lineNumber": 184,
+          "columnNumber": 27
+        },
+        {
+          "id": 500,
+          "functionName": "analysis.snapshot",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 25,
+          "columnNumber": 22
+        },
+        {
+          "id": 501,
+          "functionName": "snapshot",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 88,
+          "columnNumber": 12
+        },
+        {
+          "id": 502,
+          "functionName": "all",
+          "scriptId": "174",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/store.js",
+          "lineNumber": 174,
+          "columnNumber": 7
+        }
+      ]
+    },
+    {
+      "nodeId": 509,
+      "selfBytes": 33280,
+      "stack": [
+        {
+          "id": 1,
+          "functionName": "(root)",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 2,
+          "functionName": "",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 13,
+          "functionName": "captureOwned",
+          "scriptId": "127",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/receipt.mjs",
+          "lineNumber": 184,
+          "columnNumber": 27
+        },
+        {
+          "id": 500,
+          "functionName": "analysis.snapshot",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 25,
+          "columnNumber": 22
+        },
+        {
+          "id": 501,
+          "functionName": "snapshot",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 88,
+          "columnNumber": 12
+        },
+        {
+          "id": 508,
+          "functionName": "get",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 75,
+          "columnNumber": 7
+        },
+        {
+          "id": 509,
+          "functionName": "buildRow",
+          "scriptId": "174",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/store.js",
+          "lineNumber": 253,
+          "columnNumber": 12
+        }
+      ]
+    },
+    {
+      "nodeId": 22,
+      "selfBytes": 1279312,
+      "stack": [
+        {
+          "id": 1,
+          "functionName": "(root)",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 2,
+          "functionName": "",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 13,
+          "functionName": "captureOwned",
+          "scriptId": "127",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/receipt.mjs",
+          "lineNumber": 184,
+          "columnNumber": 27
+        },
+        {
+          "id": 17,
+          "functionName": "paths.read",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 29,
+          "columnNumber": 15
+        },
+        {
+          "id": 18,
+          "functionName": "read",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 68,
+          "columnNumber": 14
+        },
+        {
+          "id": 19,
+          "functionName": "readOwned",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 73,
+          "columnNumber": 19
+        },
+        {
+          "id": 20,
+          "functionName": "project",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 99,
+          "columnNumber": 17
+        },
+        {
+          "id": 21,
+          "functionName": "analysis.snapshot",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 25,
+          "columnNumber": 22
+        },
+        {
+          "id": 22,
+          "functionName": "snapshot",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 88,
+          "columnNumber": 12
+        }
+      ]
+    },
+    {
+      "nodeId": 29,
+      "selfBytes": 251344,
+      "stack": [
+        {
+          "id": 1,
+          "functionName": "(root)",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 2,
+          "functionName": "",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 13,
+          "functionName": "captureOwned",
+          "scriptId": "127",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/receipt.mjs",
+          "lineNumber": 184,
+          "columnNumber": 27
+        },
+        {
+          "id": 17,
+          "functionName": "paths.read",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 29,
+          "columnNumber": 15
+        },
+        {
+          "id": 18,
+          "functionName": "read",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 68,
+          "columnNumber": 14
+        },
+        {
+          "id": 19,
+          "functionName": "readOwned",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 73,
+          "columnNumber": 19
+        },
+        {
+          "id": 20,
+          "functionName": "project",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 99,
+          "columnNumber": 17
+        },
+        {
+          "id": 21,
+          "functionName": "analysis.snapshot",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 25,
+          "columnNumber": 22
+        },
+        {
+          "id": 22,
+          "functionName": "snapshot",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 88,
+          "columnNumber": 12
+        },
+        {
+          "id": 29,
+          "functionName": "filter",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        }
+      ]
+    },
+    {
+      "nodeId": 27,
+      "selfBytes": 158704,
+      "stack": [
+        {
+          "id": 1,
+          "functionName": "(root)",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 2,
+          "functionName": "",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 13,
+          "functionName": "captureOwned",
+          "scriptId": "127",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/receipt.mjs",
+          "lineNumber": 184,
+          "columnNumber": 27
+        },
+        {
+          "id": 17,
+          "functionName": "paths.read",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 29,
+          "columnNumber": 15
+        },
+        {
+          "id": 18,
+          "functionName": "read",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 68,
+          "columnNumber": 14
+        },
+        {
+          "id": 19,
+          "functionName": "readOwned",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 73,
+          "columnNumber": 19
+        },
+        {
+          "id": 20,
+          "functionName": "project",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 99,
+          "columnNumber": 17
+        },
+        {
+          "id": 21,
+          "functionName": "analysis.snapshot",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 25,
+          "columnNumber": 22
+        },
+        {
+          "id": 22,
+          "functionName": "snapshot",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 88,
+          "columnNumber": 12
+        },
+        {
+          "id": 27,
+          "functionName": "map",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        }
+      ]
+    },
+    {
+      "nodeId": 28,
+      "selfBytes": 426320,
+      "stack": [
+        {
+          "id": 1,
+          "functionName": "(root)",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 2,
+          "functionName": "",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 13,
+          "functionName": "captureOwned",
+          "scriptId": "127",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/receipt.mjs",
+          "lineNumber": 184,
+          "columnNumber": 27
+        },
+        {
+          "id": 17,
+          "functionName": "paths.read",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 29,
+          "columnNumber": 15
+        },
+        {
+          "id": 18,
+          "functionName": "read",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 68,
+          "columnNumber": 14
+        },
+        {
+          "id": 19,
+          "functionName": "readOwned",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 73,
+          "columnNumber": 19
+        },
+        {
+          "id": 20,
+          "functionName": "project",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 99,
+          "columnNumber": 17
+        },
+        {
+          "id": 21,
+          "functionName": "analysis.snapshot",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 25,
+          "columnNumber": 22
+        },
+        {
+          "id": 22,
+          "functionName": "snapshot",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 88,
+          "columnNumber": 12
+        },
+        {
+          "id": 27,
+          "functionName": "map",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 28,
+          "functionName": "",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 101,
+          "columnNumber": 47
+        }
+      ]
+    },
+    {
+      "nodeId": 26,
+      "selfBytes": 5847120,
+      "stack": [
+        {
+          "id": 1,
+          "functionName": "(root)",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 2,
+          "functionName": "",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 13,
+          "functionName": "captureOwned",
+          "scriptId": "127",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/receipt.mjs",
+          "lineNumber": 184,
+          "columnNumber": 27
+        },
+        {
+          "id": 17,
+          "functionName": "paths.read",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 29,
+          "columnNumber": 15
+        },
+        {
+          "id": 18,
+          "functionName": "read",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 68,
+          "columnNumber": 14
+        },
+        {
+          "id": 19,
+          "functionName": "readOwned",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 73,
+          "columnNumber": 19
+        },
+        {
+          "id": 20,
+          "functionName": "project",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 99,
+          "columnNumber": 17
+        },
+        {
+          "id": 21,
+          "functionName": "analysis.snapshot",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 25,
+          "columnNumber": 22
+        },
+        {
+          "id": 22,
+          "functionName": "snapshot",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 88,
+          "columnNumber": 12
+        },
+        {
+          "id": 24,
+          "functionName": "every",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 25,
+          "functionName": "",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 96,
+          "columnNumber": 27
+        },
+        {
+          "id": 26,
+          "functionName": "checkpointHash",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 20,
+          "columnNumber": 23
+        }
+      ]
+    },
+    {
+      "nodeId": 23,
+      "selfBytes": 13036056,
+      "stack": [
+        {
+          "id": 1,
+          "functionName": "(root)",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 2,
+          "functionName": "",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 13,
+          "functionName": "captureOwned",
+          "scriptId": "127",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/receipt.mjs",
+          "lineNumber": 184,
+          "columnNumber": 27
+        },
+        {
+          "id": 17,
+          "functionName": "paths.read",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 29,
+          "columnNumber": 15
+        },
+        {
+          "id": 18,
+          "functionName": "read",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 68,
+          "columnNumber": 14
+        },
+        {
+          "id": 19,
+          "functionName": "readOwned",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 73,
+          "columnNumber": 19
+        },
+        {
+          "id": 20,
+          "functionName": "project",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 99,
+          "columnNumber": 17
+        },
+        {
+          "id": 21,
+          "functionName": "analysis.snapshot",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 25,
+          "columnNumber": 22
+        },
+        {
+          "id": 22,
+          "functionName": "snapshot",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 88,
+          "columnNumber": 12
+        },
+        {
+          "id": 23,
+          "functionName": "all",
+          "scriptId": "174",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/store.js",
+          "lineNumber": 174,
+          "columnNumber": 7
+        }
+      ]
+    },
+    {
+      "nodeId": 408,
+      "selfBytes": 1279312,
+      "stack": [
+        {
+          "id": 1,
+          "functionName": "(root)",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 2,
+          "functionName": "",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 187,
+          "functionName": "project",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 99,
+          "columnNumber": 17
+        },
+        {
+          "id": 407,
+          "functionName": "analysis.snapshot",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 25,
+          "columnNumber": 22
+        },
+        {
+          "id": 408,
+          "functionName": "snapshot",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 88,
+          "columnNumber": 12
+        }
+      ]
+    },
+    {
+      "nodeId": 415,
+      "selfBytes": 367040,
+      "stack": [
+        {
+          "id": 1,
+          "functionName": "(root)",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 2,
+          "functionName": "",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 187,
+          "functionName": "project",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 99,
+          "columnNumber": 17
+        },
+        {
+          "id": 407,
+          "functionName": "analysis.snapshot",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 25,
+          "columnNumber": 22
+        },
+        {
+          "id": 408,
+          "functionName": "snapshot",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 88,
+          "columnNumber": 12
+        },
+        {
+          "id": 415,
+          "functionName": "filter",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        }
+      ]
+    },
+    {
+      "nodeId": 413,
+      "selfBytes": 158704,
+      "stack": [
+        {
+          "id": 1,
+          "functionName": "(root)",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 2,
+          "functionName": "",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 187,
+          "functionName": "project",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 99,
+          "columnNumber": 17
+        },
+        {
+          "id": 407,
+          "functionName": "analysis.snapshot",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 25,
+          "columnNumber": 22
+        },
+        {
+          "id": 408,
+          "functionName": "snapshot",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 88,
+          "columnNumber": 12
+        },
+        {
+          "id": 413,
+          "functionName": "map",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        }
+      ]
+    },
+    {
+      "nodeId": 414,
+      "selfBytes": 393440,
+      "stack": [
+        {
+          "id": 1,
+          "functionName": "(root)",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 2,
+          "functionName": "",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 187,
+          "functionName": "project",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 99,
+          "columnNumber": 17
+        },
+        {
+          "id": 407,
+          "functionName": "analysis.snapshot",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 25,
+          "columnNumber": 22
+        },
+        {
+          "id": 408,
+          "functionName": "snapshot",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 88,
+          "columnNumber": 12
+        },
+        {
+          "id": 413,
+          "functionName": "map",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 414,
+          "functionName": "",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 101,
+          "columnNumber": 47
+        }
+      ]
+    },
+    {
+      "nodeId": 410,
+      "selfBytes": 60800,
+      "stack": [
+        {
+          "id": 1,
+          "functionName": "(root)",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 2,
+          "functionName": "",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 187,
+          "functionName": "project",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 99,
+          "columnNumber": 17
+        },
+        {
+          "id": 407,
+          "functionName": "analysis.snapshot",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 25,
+          "columnNumber": 22
+        },
+        {
+          "id": 408,
+          "functionName": "snapshot",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 88,
+          "columnNumber": 12
+        },
+        {
+          "id": 410,
+          "functionName": "every",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        }
+      ]
+    },
+    {
+      "nodeId": 412,
+      "selfBytes": 5255584,
+      "stack": [
+        {
+          "id": 1,
+          "functionName": "(root)",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 2,
+          "functionName": "",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 187,
+          "functionName": "project",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 99,
+          "columnNumber": 17
+        },
+        {
+          "id": 407,
+          "functionName": "analysis.snapshot",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 25,
+          "columnNumber": 22
+        },
+        {
+          "id": 408,
+          "functionName": "snapshot",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 88,
+          "columnNumber": 12
+        },
+        {
+          "id": 410,
+          "functionName": "every",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 411,
+          "functionName": "",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 96,
+          "columnNumber": 27
+        },
+        {
+          "id": 412,
+          "functionName": "checkpointHash",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 20,
+          "columnNumber": 23
+        }
+      ]
+    },
+    {
+      "nodeId": 409,
+      "selfBytes": 13863792,
+      "stack": [
+        {
+          "id": 1,
+          "functionName": "(root)",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 2,
+          "functionName": "",
+          "scriptId": "0",
+          "url": "",
+          "lineNumber": -1,
+          "columnNumber": -1
+        },
+        {
+          "id": 187,
+          "functionName": "project",
+          "scriptId": "183",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/paths.mjs",
+          "lineNumber": 99,
+          "columnNumber": 17
+        },
+        {
+          "id": 407,
+          "functionName": "analysis.snapshot",
+          "scriptId": "126",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-capture-memory/fixture.mjs",
+          "lineNumber": 25,
+          "columnNumber": 22
+        },
+        {
+          "id": 408,
+          "functionName": "snapshot",
+          "scriptId": "176",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/code-analysis.js",
+          "lineNumber": 88,
+          "columnNumber": 12
+        },
+        {
+          "id": 409,
+          "functionName": "all",
+          "scriptId": "174",
+          "url": "file:///home/toshiba/aew/worktrees/task080-allocation-profile/apps/loredock/dist/store.js",
+          "lineNumber": 174,
+          "columnNumber": 7
+        }
+      ]
+    }
+  ],
+  "snapshotAllNodeIds": [
+    502,
+    23,
+    409
+  ],
+  "limitations": "Sampling estimates, not live bytes or RSS. Nested subsets must not be summed. Async stacks can omit ancestry; no complete causal attribution. Backend GC/export included. No retention claim or resource acceptance."
+}
