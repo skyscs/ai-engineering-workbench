@@ -1,6 +1,6 @@
 # Task 078 — Diagnostic process and serialization regression
 
-Status: in progress, 2026-11-03.
+Status: implemented and locally verified, 2026-11-03.
 
 ## Baseline and scope
 
@@ -36,3 +36,26 @@ source headers explicitly and preserve nonzero child exits and diagnostics.
 
 After this repair, prepare new prospective attribution inputs in a separate task.
 No optimization is selected and no diagnostic matrix is run in Task 078.
+
+## Implementation and review
+
+Scope commit `7679e0e`. PR #81 merged as `f763a7495f618c032253c822c39022bd4f6311aa`
+after exact head `a58e41194b6b9ff9119f9d2b050cdf74de4ba3d3` passed push 41620642665
+and pull-request 41620770009 CI. The merge tree equals the reviewed head and is
+included in this branch.
+
+The separate [runner](../scripts/loredock-memory-runner/README.md) retains the
+operation sequence, stopped copies and observation mechanics. Its source-row
+comparison checks every enumerable scalar field without prototype-sensitive
+equality. Trusted configuration supplies the corpus/services and exact source
+count instead of importing frozen inputs or prebuilt services.
+
+Two real-SQLite/negative comparison regressions and the complete child-process
+regression passed on their first runs. The independent locker example executes
+24 operations across three fresh processes, preserves exact receipt/projection
+bytes and original support, and reads history without nested analysis after
+eviction. An altered serialized source name produces exit 1, preserved stderr,
+an explicit report error and zero read operations. Focused strict typechecking
+also passed. Full strict checks, 506 tests and builds pass. Source/diff review
+confirms no production or frozen-file changes. The [first verification logs](../docs/fixtures/loredock-memory-runner/README.md)
+are retained. No development failure occurred in these checks.
