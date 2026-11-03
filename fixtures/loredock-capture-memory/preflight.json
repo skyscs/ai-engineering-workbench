@@ -1,0 +1,304 @@
+{
+  "schemaVersion": "task077-memory-preflight/1",
+  "method": "Pure generated UTF-8 counts and hashes; no parser or candidate observation.",
+  "vectors": [
+    {
+      "pathsPerSource": 32,
+      "files": 640,
+      "codeFiles": 617,
+      "bytes": 33963,
+      "corpusHash": "c6c27ed0111a0243dea79d978723b30fa9f38458e2b583466ab3728a0b2776ec",
+      "sources": [
+        {
+          "name": "a-arrival-console",
+          "files": 32,
+          "codeFiles": 31,
+          "bytes": 2810,
+          "contentHash": "4c92f64acd63ba66673e49a63cc8bbf4303ba35a6e1809b21cfeca9dae064114"
+        },
+        {
+          "name": "b-arrival-api",
+          "files": 32,
+          "codeFiles": 29,
+          "bytes": 2167,
+          "contentHash": "7e7e46a0c0415c5b2eb1fb7a0f56db7b33b5af343359e92127e1f475273367fd"
+        },
+        {
+          "name": "c-presence-store",
+          "files": 32,
+          "codeFiles": 30,
+          "bytes": 2355,
+          "contentHash": "a97a87ea3436810218c08fe3ca84c00ec0709006bcd586909cb804099f7136c8"
+        },
+        {
+          "name": "d-operator-handbook",
+          "files": 32,
+          "codeFiles": 31,
+          "bytes": 1687,
+          "contentHash": "007001b02fa5a5029e61f6d0c6431e5da7559120899822545860ebda1b129411"
+        },
+        {
+          "name": "e-area-notes-01",
+          "files": 32,
+          "codeFiles": 31,
+          "bytes": 1559,
+          "contentHash": "feb275d99a385d786846dd47627043aa5bdf08642d09ad02ad61d46f83957c55"
+        },
+        {
+          "name": "e-area-notes-02",
+          "files": 32,
+          "codeFiles": 31,
+          "bytes": 1559,
+          "contentHash": "f85530d00046450c9596543c99c9da8e34cd27331d55040a25b8bc9071e116ee"
+        },
+        {
+          "name": "e-area-notes-03",
+          "files": 32,
+          "codeFiles": 31,
+          "bytes": 1559,
+          "contentHash": "95d66fb2a399745b995c9864c59d43c50b297e51d9d77401cceb143c35b9443d"
+        },
+        {
+          "name": "e-area-notes-04",
+          "files": 32,
+          "codeFiles": 31,
+          "bytes": 1559,
+          "contentHash": "3b914342757fbc0b9d99bbca5e70a6764fe7172d065f2903ca9532a08b6e821c"
+        },
+        {
+          "name": "e-area-notes-05",
+          "files": 32,
+          "codeFiles": 31,
+          "bytes": 1559,
+          "contentHash": "ae9d39ef8a6e9fd6cd8c81d4a285742d3823e231de26c1e5512b1ececc964229"
+        },
+        {
+          "name": "e-area-notes-06",
+          "files": 32,
+          "codeFiles": 31,
+          "bytes": 1559,
+          "contentHash": "1bbc52f9d8d503786b808ed257a39847e1d36c33318b45712d477a511ead86be"
+        },
+        {
+          "name": "e-area-notes-07",
+          "files": 32,
+          "codeFiles": 31,
+          "bytes": 1559,
+          "contentHash": "a381649863b254f2cf58b27c56aa4ab31c64b4f8f57c138d0ec2d931f608cedb"
+        },
+        {
+          "name": "e-area-notes-08",
+          "files": 32,
+          "codeFiles": 31,
+          "bytes": 1559,
+          "contentHash": "1b93b56c6c8b8fc3818de290884648994cc4f218d1c04eada89c51f2cf0f7310"
+        },
+        {
+          "name": "e-area-notes-09",
+          "files": 32,
+          "codeFiles": 31,
+          "bytes": 1559,
+          "contentHash": "b77997f3061737bda59e372af42241be5c44a602c0034f5c388c8b9059b0959a"
+        },
+        {
+          "name": "e-area-notes-10",
+          "files": 32,
+          "codeFiles": 31,
+          "bytes": 1559,
+          "contentHash": "51359786932605bb1fe729c403f31a63cb4f0d02aa232fb463fe32f25a515c31"
+        },
+        {
+          "name": "e-area-notes-11",
+          "files": 32,
+          "codeFiles": 31,
+          "bytes": 1559,
+          "contentHash": "cf0abe6f419ce8b1410b5c8b0e6a2c778571346fe2f521df7f8b66d2911c04c6"
+        },
+        {
+          "name": "e-area-notes-12",
+          "files": 32,
+          "codeFiles": 31,
+          "bytes": 1559,
+          "contentHash": "af4c11d45499633060a9f50fa610f98bb65e532e562b169603b43434f2eb796a"
+        },
+        {
+          "name": "e-area-notes-13",
+          "files": 32,
+          "codeFiles": 31,
+          "bytes": 1559,
+          "contentHash": "c395a3ee150f4ed0ea2b6923ef0f113734fa67b594369c3b2d6ccd1d50f0c301"
+        },
+        {
+          "name": "e-area-notes-14",
+          "files": 32,
+          "codeFiles": 31,
+          "bytes": 1559,
+          "contentHash": "cdf4d012810888a9ca11b81a83eee24acbbd095c7a9d1c90c2b66b46adcc7bbe"
+        },
+        {
+          "name": "e-area-notes-15",
+          "files": 32,
+          "codeFiles": 31,
+          "bytes": 1559,
+          "contentHash": "d9dbd94e69fe06016471ac20c9ebbeab521640d761ad8bfea5ba17a4e359a9af"
+        },
+        {
+          "name": "e-area-notes-16",
+          "files": 32,
+          "codeFiles": 31,
+          "bytes": 1559,
+          "contentHash": "cfbb0a1d20a3fcf8f083cc965e738b796792d5fc1b103d76c5b6e3a544784cfc"
+        }
+      ]
+    },
+    {
+      "pathsPerSource": 496,
+      "files": 9920,
+      "codeFiles": 9897,
+      "bytes": 489612,
+      "corpusHash": "b1eab07feca121b41d98146aeaa3b91c631247925e13b45696d8c5fcdeba396e",
+      "sources": [
+        {
+          "name": "a-arrival-console",
+          "files": 496,
+          "codeFiles": 495,
+          "bytes": 26399,
+          "contentHash": "41fcfb90279da0ca4dbd67abeedc6b9dac3802f3bb4bdaa8eb421906c327b61d"
+        },
+        {
+          "name": "b-arrival-api",
+          "files": 496,
+          "codeFiles": 493,
+          "bytes": 23903,
+          "contentHash": "9328b56bef0c55f6f35839a2797d8951a001ec4e4ec300f47ad9ceebad63e61e"
+        },
+        {
+          "name": "c-presence-store",
+          "files": 496,
+          "codeFiles": 494,
+          "bytes": 25484,
+          "contentHash": "73a51e140ee9be15d5e476344c786d36131561a45e924b1649d114a57ec28e97"
+        },
+        {
+          "name": "d-operator-handbook",
+          "files": 496,
+          "codeFiles": 495,
+          "bytes": 26210,
+          "contentHash": "f6d105e480b323fcb46a4ac3a48cfe5a50017de56a5c550c921e121ec8dd7e55"
+        },
+        {
+          "name": "e-area-notes-01",
+          "files": 496,
+          "codeFiles": 495,
+          "bytes": 24226,
+          "contentHash": "1eca00d84129ef9a1cf8fa5276deb2222dc669e2d0a672e68d89bdd1d7d886dd"
+        },
+        {
+          "name": "e-area-notes-02",
+          "files": 496,
+          "codeFiles": 495,
+          "bytes": 24226,
+          "contentHash": "4c52c3c141e961233dd8c09eb4b3987419dfebe10f0949a70ba9bdef4d3d9f5f"
+        },
+        {
+          "name": "e-area-notes-03",
+          "files": 496,
+          "codeFiles": 495,
+          "bytes": 24226,
+          "contentHash": "01b702987d67ddcb09403e5ae28f94c059d39078ef70b392f4199df791b212c6"
+        },
+        {
+          "name": "e-area-notes-04",
+          "files": 496,
+          "codeFiles": 495,
+          "bytes": 24226,
+          "contentHash": "815a87eb8c1d9e7ddc5dbd539df72a071927a62e9c97d56b0b597113793ee7ee"
+        },
+        {
+          "name": "e-area-notes-05",
+          "files": 496,
+          "codeFiles": 495,
+          "bytes": 24226,
+          "contentHash": "6d1c15f821b77ca5fe96a81e63bf30dda2fd8512f8fae101cb75908663594921"
+        },
+        {
+          "name": "e-area-notes-06",
+          "files": 496,
+          "codeFiles": 495,
+          "bytes": 24226,
+          "contentHash": "e905488ea8ebaff1b6edf4efc65e03ce1622625c05e5f16099ed6f2a2255ad89"
+        },
+        {
+          "name": "e-area-notes-07",
+          "files": 496,
+          "codeFiles": 495,
+          "bytes": 24226,
+          "contentHash": "adddf76b3866d29b1af058fc6f3d2b8305a7bc3cce9a948f4816e2c79a22700b"
+        },
+        {
+          "name": "e-area-notes-08",
+          "files": 496,
+          "codeFiles": 495,
+          "bytes": 24226,
+          "contentHash": "35647e020b8b2a1f3c6ac19a7a86dbf259fd9471cef225d9d0c70fc5a003bcc9"
+        },
+        {
+          "name": "e-area-notes-09",
+          "files": 496,
+          "codeFiles": 495,
+          "bytes": 24226,
+          "contentHash": "414220b5b7a92280cc17476806dbe92cd0c4c384dfd315957c1aca04dfaf31b8"
+        },
+        {
+          "name": "e-area-notes-10",
+          "files": 496,
+          "codeFiles": 495,
+          "bytes": 24226,
+          "contentHash": "85d0f3fe981907a5588714254165d9434a68c7cb8bf350806c70d7c6bc5ead6a"
+        },
+        {
+          "name": "e-area-notes-11",
+          "files": 496,
+          "codeFiles": 495,
+          "bytes": 24226,
+          "contentHash": "f699b2d064f9b24c0ac9bc3892cb2b8888de11ac80edae8d01c00f94617120ab"
+        },
+        {
+          "name": "e-area-notes-12",
+          "files": 496,
+          "codeFiles": 495,
+          "bytes": 24226,
+          "contentHash": "2c2c5655cbbd60f9563a15c355be17ae2a974df9e2ed521cb2ebbc0f6dfb2b57"
+        },
+        {
+          "name": "e-area-notes-13",
+          "files": 496,
+          "codeFiles": 495,
+          "bytes": 24226,
+          "contentHash": "01de8ca66452f1fd4e7bcbd6d7a1728093e4ba782a05b371b134dc04391df95e"
+        },
+        {
+          "name": "e-area-notes-14",
+          "files": 496,
+          "codeFiles": 495,
+          "bytes": 24226,
+          "contentHash": "41952a20c82ec5649a6828ad817a3e37ebafecc0cd0d834c1d59103c04c136ea"
+        },
+        {
+          "name": "e-area-notes-15",
+          "files": 496,
+          "codeFiles": 495,
+          "bytes": 24226,
+          "contentHash": "95a3ca428ad29d150332de69b8649dbe7be213da11bdb07607440e882e348e4e"
+        },
+        {
+          "name": "e-area-notes-16",
+          "files": 496,
+          "codeFiles": 495,
+          "bytes": 24226,
+          "contentHash": "4aa9588668c84953488fbcdbcfb4a5054c93684651b23df6bed5b233fae1b879"
+        }
+      ]
+    }
+  ]
+}

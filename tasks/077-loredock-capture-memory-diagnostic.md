@@ -39,3 +39,14 @@ operation memory separately from preparation/opening and disclose instrumentatio
 Select at most one subsequent optimization only if evidence supports it; any later change
 requires independent regressions and another fresh uninstrumented qualification. Complete
 normal strict/relevant checks and both exact-head CI events before merge.
+
+## Preparation checkpoint
+
+The new pure generator under `fixtures/loredock-capture-memory/` prepares twenty sources
+with 32 or 496 total paths each. In-memory preflight confirms 640/9,920 files,
+617/9,897 code files and 33,963/489,612 UTF-8 bytes, with every source inside its fixed
+share. Expected meaningful facts are 21, derived from the source construction.
+
+Only pure generation/count/hash checks ran. The typed oracle and exact diagnostic protocol
+remain to be completed and frozen before implementation. No repository preparation, parser,
+path/receipt candidate, memory measurement or user-data access has occurred for these inputs.
