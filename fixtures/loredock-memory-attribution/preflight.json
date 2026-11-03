@@ -1,0 +1,304 @@
+{
+  "schemaVersion": "task079-attribution-preflight/1",
+  "method": "Pure generated UTF-8 counts and hashes; no parser or candidate observation.",
+  "vectors": [
+    {
+      "pathsPerSource": 28,
+      "files": 560,
+      "codeFiles": 537,
+      "bytes": 31631,
+      "corpusHash": "cd8869860b1be4659d0f1ea85fdd46655370cc3101931fa254596e066941a392",
+      "sources": [
+        {
+          "name": "a-loan-desk",
+          "files": 28,
+          "codeFiles": 27,
+          "bytes": 2455,
+          "contentHash": "0db9ae106ca8aa871c3c5aa37278d6a2d74bf0dad80d2d13c3763d1ef3bce120"
+        },
+        {
+          "name": "b-loan-service",
+          "files": 28,
+          "codeFiles": 25,
+          "bytes": 2016,
+          "contentHash": "df7f0ceef1752905c7ece694a0bad7a3af3011daf44b2b67572ef42239b0b7bb"
+        },
+        {
+          "name": "c-loan-ledger",
+          "files": 28,
+          "codeFiles": 26,
+          "bytes": 2090,
+          "contentHash": "05118da842ec1725f4fa9d92388fa6be4cce0b67de3ce0aa8dec912f03f1e942"
+        },
+        {
+          "name": "d-shift-handbook",
+          "files": 28,
+          "codeFiles": 27,
+          "bytes": 1422,
+          "contentHash": "0c12a8df93c30158c5c9dc16585bcb1030286506a90dc2c280c0e36cf4c0bbc6"
+        },
+        {
+          "name": "e-reading-guide-01",
+          "files": 28,
+          "codeFiles": 27,
+          "bytes": 1478,
+          "contentHash": "26fe873bbab24fd5e3f2a405a7b2fc1646ae11726e550f6823646b288b5387ce"
+        },
+        {
+          "name": "e-reading-guide-02",
+          "files": 28,
+          "codeFiles": 27,
+          "bytes": 1478,
+          "contentHash": "63948c839ae922899999315c59a2a71cf83cba89a384ec8f04482f172cb29b70"
+        },
+        {
+          "name": "e-reading-guide-03",
+          "files": 28,
+          "codeFiles": 27,
+          "bytes": 1478,
+          "contentHash": "79e0507dd44f2cc6d0aca73cea01745798f562099ce4bcca8c2ac93f8972c35f"
+        },
+        {
+          "name": "e-reading-guide-04",
+          "files": 28,
+          "codeFiles": 27,
+          "bytes": 1478,
+          "contentHash": "2f7ad5ea9a4a98ec8bc0b547a28549c5e9af70504a20fa9d5829cee9382d515e"
+        },
+        {
+          "name": "e-reading-guide-05",
+          "files": 28,
+          "codeFiles": 27,
+          "bytes": 1478,
+          "contentHash": "f4371d120775edffd84bfb26f705b433fb0b93f838ef86d129f159ba847c8243"
+        },
+        {
+          "name": "e-reading-guide-06",
+          "files": 28,
+          "codeFiles": 27,
+          "bytes": 1478,
+          "contentHash": "f0ed4894f9c9976c1de9dd5b942d6d363f70813bc5e020242f355a38f5d0643d"
+        },
+        {
+          "name": "e-reading-guide-07",
+          "files": 28,
+          "codeFiles": 27,
+          "bytes": 1478,
+          "contentHash": "b221320bd460b9b4ca7064dd31bd7098b22602868e2b895e4155175542a4ec15"
+        },
+        {
+          "name": "e-reading-guide-08",
+          "files": 28,
+          "codeFiles": 27,
+          "bytes": 1478,
+          "contentHash": "569382472e4f2127a91268165f917f52f82f2a39231cdd2c1d0accdfba2d0f3c"
+        },
+        {
+          "name": "e-reading-guide-09",
+          "files": 28,
+          "codeFiles": 27,
+          "bytes": 1478,
+          "contentHash": "85c858ecb3ad9354eb2eb2d7c10c587f21c0288b83b344fd5bbea9f28de6d786"
+        },
+        {
+          "name": "e-reading-guide-10",
+          "files": 28,
+          "codeFiles": 27,
+          "bytes": 1478,
+          "contentHash": "759289d98f144b465b449ce2162f458114419170871802e73d392e0ad088ceaf"
+        },
+        {
+          "name": "e-reading-guide-11",
+          "files": 28,
+          "codeFiles": 27,
+          "bytes": 1478,
+          "contentHash": "054c4ab7409fc8cc96d46524e3ee7bb617f8ccacc026954e56833e96bcb977bb"
+        },
+        {
+          "name": "e-reading-guide-12",
+          "files": 28,
+          "codeFiles": 27,
+          "bytes": 1478,
+          "contentHash": "356951efcd94417f636daa5339104f8badd1a47c774995db080031969a763551"
+        },
+        {
+          "name": "e-reading-guide-13",
+          "files": 28,
+          "codeFiles": 27,
+          "bytes": 1478,
+          "contentHash": "3a212fe5be2b0ddeaa59fc7c4b331c263a835f5de5088b2d218c9936e65cea70"
+        },
+        {
+          "name": "e-reading-guide-14",
+          "files": 28,
+          "codeFiles": 27,
+          "bytes": 1478,
+          "contentHash": "217eae23fb433a1531d6ba0ee9ee3ce3b4c4e6d3660469364b6570d530994b98"
+        },
+        {
+          "name": "e-reading-guide-15",
+          "files": 28,
+          "codeFiles": 27,
+          "bytes": 1478,
+          "contentHash": "c544fafae73da18eb2f450a2be9ba6a4632a0eaed08b0c1538f2e46ff410a49f"
+        },
+        {
+          "name": "e-reading-guide-16",
+          "files": 28,
+          "codeFiles": 27,
+          "bytes": 1478,
+          "contentHash": "8e5d8c92ea00c1a3d90456a14085dd1e16e2e234b28067eb9899b2a602f03c4e"
+        }
+      ]
+    },
+    {
+      "pathsPerSource": 498,
+      "files": 9960,
+      "codeFiles": 9937,
+      "bytes": 519900,
+      "corpusHash": "aef475a0c7486c86f3766354cfef1c5a4ce12029f2f15d3c9ef40ae32869877d",
+      "sources": [
+        {
+          "name": "a-loan-desk",
+          "files": 498,
+          "codeFiles": 497,
+          "bytes": 23996,
+          "contentHash": "c55d2e5e38db407f57c5402b9d0f5b0af5501b7e46288ccb10739c0517d5eb59"
+        },
+        {
+          "name": "b-loan-service",
+          "files": 498,
+          "codeFiles": 495,
+          "bytes": 24970,
+          "contentHash": "449d9901cc7ff51d2a872dbe03f393ed0f3c8e3eef7427510f95a45869e5bf8b"
+        },
+        {
+          "name": "c-loan-ledger",
+          "files": 498,
+          "codeFiles": 496,
+          "bytes": 24575,
+          "contentHash": "5cc01d3ab95654451a98ab27e44726c34fc4922cc66b5816a747c8bfc4ed325b"
+        },
+        {
+          "name": "d-shift-handbook",
+          "files": 498,
+          "codeFiles": 497,
+          "bytes": 25319,
+          "contentHash": "8b6dd8ccd8496cb856427795f0e0b64fce56bb04e8ef7c5f10fa8fe74aa89509"
+        },
+        {
+          "name": "e-reading-guide-01",
+          "files": 498,
+          "codeFiles": 497,
+          "bytes": 26315,
+          "contentHash": "e8be4f734c3379a170f175cf209f9fa8b9f6ba4d13ab0143d815f018ee87e6ff"
+        },
+        {
+          "name": "e-reading-guide-02",
+          "files": 498,
+          "codeFiles": 497,
+          "bytes": 26315,
+          "contentHash": "802693d307abf460374cc5d273208a9ba692e48788bf356dc00218f9a7ccab4e"
+        },
+        {
+          "name": "e-reading-guide-03",
+          "files": 498,
+          "codeFiles": 497,
+          "bytes": 26315,
+          "contentHash": "bad7256966e2ccc0849acc02a67f3c5d2f3905d2c0366ded3b3e5220e743a90a"
+        },
+        {
+          "name": "e-reading-guide-04",
+          "files": 498,
+          "codeFiles": 497,
+          "bytes": 26315,
+          "contentHash": "166c3d229804f3cdcaea84f17d2434933451ec39c5c50e286dc0495f65e1435a"
+        },
+        {
+          "name": "e-reading-guide-05",
+          "files": 498,
+          "codeFiles": 497,
+          "bytes": 26315,
+          "contentHash": "ff1ce172af2de1b65a9b237d507d0480622c157280569a08dbe2f5ced64df98e"
+        },
+        {
+          "name": "e-reading-guide-06",
+          "files": 498,
+          "codeFiles": 497,
+          "bytes": 26315,
+          "contentHash": "6903070481309ed9460d32d7f7854cef3213c0361cd89ec1446358f10f812145"
+        },
+        {
+          "name": "e-reading-guide-07",
+          "files": 498,
+          "codeFiles": 497,
+          "bytes": 26315,
+          "contentHash": "8b6fdd644ee9613b2ce617fea88c55d4f9b8d2793ace220985c0b49806a17b60"
+        },
+        {
+          "name": "e-reading-guide-08",
+          "files": 498,
+          "codeFiles": 497,
+          "bytes": 26315,
+          "contentHash": "50d7718ddaca0551f837aa04c1d8be80a17bc6cb2b2f925e2c7d6b1879e6e964"
+        },
+        {
+          "name": "e-reading-guide-09",
+          "files": 498,
+          "codeFiles": 497,
+          "bytes": 26315,
+          "contentHash": "fbe437143dabcc1ae9e2a48f403e9cb2b0bd73bbd142da754d65c782cea6f09f"
+        },
+        {
+          "name": "e-reading-guide-10",
+          "files": 498,
+          "codeFiles": 497,
+          "bytes": 26315,
+          "contentHash": "e1fde60a1010212f022a0c3501db3d0e8b903c2b5b32527e81b513049b2fd6cd"
+        },
+        {
+          "name": "e-reading-guide-11",
+          "files": 498,
+          "codeFiles": 497,
+          "bytes": 26315,
+          "contentHash": "96fea612cf1f5c85a15774084fb1ec7757bdf46e2530f8c934962433ed575e4b"
+        },
+        {
+          "name": "e-reading-guide-12",
+          "files": 498,
+          "codeFiles": 497,
+          "bytes": 26315,
+          "contentHash": "4427c63977bc5a75830f5d2392e5a5b1d0b0e350cbabf4a9a730aba57ff14556"
+        },
+        {
+          "name": "e-reading-guide-13",
+          "files": 498,
+          "codeFiles": 497,
+          "bytes": 26315,
+          "contentHash": "a9b6acb1a6f12c72182fdde4cc43cc998c02f3f195f9ceebe9221714a890ea86"
+        },
+        {
+          "name": "e-reading-guide-14",
+          "files": 498,
+          "codeFiles": 497,
+          "bytes": 26315,
+          "contentHash": "3d584ff5914047877bedae0197e0ba67d60972fa60e4144d6932d9b15740e0a3"
+        },
+        {
+          "name": "e-reading-guide-15",
+          "files": 498,
+          "codeFiles": 497,
+          "bytes": 26315,
+          "contentHash": "1b68b701d849ac2ba5c07cf09f278ca7e582ebde0912c3203ff0ffcf40caf1ac"
+        },
+        {
+          "name": "e-reading-guide-16",
+          "files": 498,
+          "codeFiles": 497,
+          "bytes": 26315,
+          "contentHash": "4b1eab4b37b407aece5017487bc4693409dc6f1a9672272f46a6617313347934"
+        }
+      ]
+    }
+  ]
+}
