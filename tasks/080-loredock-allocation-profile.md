@@ -80,3 +80,10 @@ unknown weights cannot be assigned to an application hotspot or used for accepta
 Raw failure/profile/exit bytes and the first failed full check are retained under
 `docs/fixtures/loredock-allocation-profile-development/`. The amended protocol must
 be committed before implementing its handling and before the single frozen profile.
+
+Revision `59ef02b` was committed before the amended handling. The revised summary
+reports unmapped counts/weights and partial reference status without inventing nodes;
+the original failing profile reads back as four unknown samples weighing 147,416
+reported bytes. The sampled allocation unit tests and fresh-process integration now
+pass. The first failure remains preserved; final full checks are running. No frozen
+device data has been generated through application services or measured.
