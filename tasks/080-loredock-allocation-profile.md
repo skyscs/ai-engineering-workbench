@@ -85,5 +85,7 @@ Revision `59ef02b` was committed before the amended handling. The revised summar
 reports unmapped counts/weights and partial reference status without inventing nodes;
 the original failing profile reads back as four unknown samples weighing 147,416
 reported bytes. The sampled allocation unit tests and fresh-process integration now
-pass. The first failure remains preserved; final full checks are running. No frozen
-device data has been generated through application services or measured.
+pass. The first failure remains preserved. Final `pnpm check` passed all 515 tests,
+strict typechecks and builds on pinned Node 22.23.2. No frozen device data has been
+generated through application services or measured. This checkpoint precedes the
+committed candidate and its one permitted profile execution.
