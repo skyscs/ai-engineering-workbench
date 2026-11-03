@@ -1,6 +1,6 @@
 # Task 088 — Compact validated request-local payload entries
 
-Status: scoped, 2026-11-04.
+Status: implemented and locally verified, 2026-11-04; exact-head CI pending.
 
 ## Evidence and scope
 
@@ -40,3 +40,27 @@ CI and identical merge tree before claiming the accepted baseline.
   complete uninstrumented qualification must measure any memory benefit. All old
   failures remain; no resource improvement, product promotion or L5 readiness claim.
 - No corporate source, real model call or user demo operation.
+
+## Outcome
+
+The new opt-in reader is an exact fork except for its comment, factory name and
+request-entry construction. It records consumed identity before retaining just
+facts/ranges/evidence. The unchanged resolver/domain/receipt services consume the
+same complete data, and the built service composition imports successfully.
+
+Seven focused tests (including three negative-binding subtests) are covered by the
+full check: **545 tests, strict typechecks and builds pass**. Exact default/repeat/
+selected/page/isolated bytes, work/output/read counters, history, fact-free gaps,
+ambiguity, unsupported consumers, corruption, authorization and asynchronous fences
+are preserved. Two first focused failures exposed a test assumption about the
+existing structured registry refusal; both logs and closed databases are retained.
+See the [verification evidence](../docs/fixtures/loredock-compact-payloads/README.md).
+
+Source/fork/full-diff/reference/hash review confirms all eleven baseline dependencies
+and every previously measured module remain unchanged. No new resource family was
+created or run. A later complete uninstrumented qualification is required; this
+task does not claim lower heap/RSS or production readiness.
+
+PR #91 merged as `6a4f588` after exact head `a8dacff` passed push 41740890855 and
+pull-request 41740907626 CI (538 tests); the merge tree is identical. Both CI events
+for this task's final head remain required before merge.

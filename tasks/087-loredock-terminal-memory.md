@@ -1,6 +1,6 @@
 # Task 087 — Fresh terminal memory ownership diagnostic
 
-Status: executed once and locally verified, 2026-11-04; exact-head CI pending.
+Status: verified and merged through PR #91 as `6a4f588`, 2026-11-04.
 
 ## Baseline and scope
 
@@ -74,3 +74,7 @@ candidate saves memory. See the evidence for the retained formatting-only findin
 
 PR #90 merged as `db9bdd1` after exact head `90fefe1` passed push 41736504448 and
 pull-request 41736623195 CI (533 tests); its merge tree is identical.
+
+Exact final head `a8dacff` passed push 41740890855 and pull-request 41740907626 CI
+(538 tests). Merge `6a4f588` has the identical tree. All first resource failures and
+measured bytes remain unchanged in the subsequent candidate task.

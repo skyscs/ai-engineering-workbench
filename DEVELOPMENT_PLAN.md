@@ -314,6 +314,11 @@ schema/database/statement matches have runtime-template structure. Next: one
 request-local compact-payload candidate, preserving every validated fact/gap/domain
 and final fence, proved first on independent regressions. A new uninstrumented
 complete qualification remains mandatory; streaming is not promoted.
+[Task 088](tasks/088-loredock-compact-payloads.md) implements that opt-in compact
+entry representation and proves tested byte/work/refusal equivalence. No new
+resource family or memory improvement is claimed. Next: freeze a fresh supported
+complete-path uninstrumented qualification with both preparer/reopened lifecycles,
+independent assessment and unchanged gates before any production promotion.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
