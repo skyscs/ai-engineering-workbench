@@ -11,6 +11,10 @@ Task 073 passes its small structural family but its separate path/receipt counte
 establish shared work enforcement. All Task 073 inputs, code and results are now exhausted;
 do not edit or rerun them or any earlier frozen experiment.
 
+PR #78 merged as `9d910c2` after exact head `947eb0252e77337270804b570602b69b26a0350a`
+passed push 41549846240 and pull-request 41549980459 CI (493 tests). Its merge tree matches
+that head, and this preparation branch includes the verified merge.
+
 ## Scope
 
 Freeze a fresh twenty-source owned corpus/generator, exact admitted size vectors, typed
