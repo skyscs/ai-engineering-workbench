@@ -200,3 +200,7 @@ Dynamic expressions abstain as designed. All 113 successful small-family resourc
 meet bounds; raw results and the observer's generic unknown-gap limitation remain recorded.
 Next: fresh twenty-source/near-limit resource review before production integration. Existing
 production adapters, historical bytes and semantic/private-pilot gates remain unchanged.
+
+Task 074 specifies the [complete capture resource contract](CAPTURE_RESOURCE_CONTRACT.md).
+The successor must enforce an aggregate path/receipt budget during nested work and respect
+twenty-source allocation. Literal matching and original-support rules remain unchanged.

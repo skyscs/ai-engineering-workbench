@@ -423,3 +423,8 @@ event candidate from direct topic literals after the receipt experiment exposed 
 configuration-key assumption. It retains complete contract/consumer evidence and unknown
 runtime scope, with new derivation identities. Production matching and consumers remain
 unchanged pending qualification and a separate integration decision.
+
+[ADR 0052](docs/decisions/0052-loredock-capture-resource-budget.md) defines a shared internal
+capture deadline/work budget for the next offline scale qualification. Existing local caps
+and publication fences remain, with explicit path/receipt subtotals. No public budget option
+or production adoption follows from the small-family experiment.

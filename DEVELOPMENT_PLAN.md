@@ -224,6 +224,12 @@ positive variants, explicit dynamic abstention and typed alternative-history che
 the observer's unknown-gap limitation and readback. Small-family resource checks pass;
 next qualify twenty-source/near-limit costs on fresh prospective inputs before a separate
 production integration. This does not switch consumers or overturn old semantic gates.
+[Task 074](tasks/074-loredock-capture-resource-contract.md) defines the
+[complete capture budget](docs/loredock/CAPTURE_RESOURCE_CONTRACT.md): one internal deadline
+and shared work counter with distinct path/receipt subtotals, preserving local caps and
+publication fences. Next: freeze fresh twenty-source/near-limit useful paths and aggregate
+exhaustion cases before implementing the separate offline successor. Fixed source shares
+include documentation/configuration, and negative cases must assert the relevant reason.
 The user demo and feedback stay separate from these checks; broader semantic synthesis
 and question-context changes remain open.
 Preserve all failed evaluations;
