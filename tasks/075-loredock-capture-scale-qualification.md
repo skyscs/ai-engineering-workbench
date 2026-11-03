@@ -1,6 +1,6 @@
 # Task 075 — Shared capture budget and twenty-source qualification
 
-Status: in progress; fresh input preparation only, 2026-11-03. Scope commit `021f840`.
+Status: candidate implemented and locally checked; frozen run pending, 2026-11-03. Scope `021f840`.
 
 ## Baseline
 
@@ -60,8 +60,20 @@ are original documentation/routes/contracts. Every source fits its fixed path an
 Only in-memory generation and count/hash checks were run; no repositories were indexed,
 no parser/path candidate observed and no source scope or user data touched.
 
-These inputs are explicitly **not frozen**. Complete typed expected identities, exact
-negative reasons, pressure/refusal variants, aggregate-only exhaustion and resource protocol
-before the freeze commit. Then implement a separate candidate and independent regressions,
-commit the final harness and perform the one-run qualification. Do not execute or retune
-Task 073 while filling these remaining prerequisites.
+At that preparation checkpoint the inputs were not frozen. Commit `efc1e92` subsequently
+froze the generator, exact typed/count oracle, pressure/refusal variants, aggregate-only
+fault formula and one-run protocol before candidate implementation. No parser/projection
+observation was used to define those inputs. Task 073 remains unchanged and exhausted.
+
+## Before the first run
+
+The separate offline candidate owns one shared budget with path/receipt subtotals and
+preserves local caps, literal matching, full support and guarded publication. Explicit
+accounting/adapter identities distinguish it from previous receipts. Final failure cleanup
+removes only newly created files. Independent charge histograms and raw-first observation
+support the forthcoming resource run; preparation is measured separately.
+
+Full strict checks, 499 tests and builds pass. All six new independent regressions pass
+on their first execution, covering aggregate-only exhaustion, nested deadline, post-link
+cleanup/idempotency, historical accounting and closed/foreign budget ownership. The measured
+candidate/harness must be committed before launching the frozen matrix exactly once.
