@@ -1,6 +1,6 @@
 # Task 077 — Fresh capture memory diagnostic
 
-Status: candidate implemented and locally checked; first diagnostic pending, 2026-11-03. Scope `a38f7c3`.
+Status: first diagnostic completed; attribution rejected by observer/resource failures, 2026-11-03. Scope `a38f7c3`.
 
 ## Baseline and constraints
 
@@ -70,3 +70,18 @@ history without nested work. The initial unit launcher exposed a missing functio
 the initial integration assertion incorrectly forbade history's required original read. Both
 development errors were corrected and their first logs retained; the frozen corpus was never
 observed during debugging. The candidate/harness must be committed before its single run.
+
+## First frozen outcome
+
+Candidate/observer `767a112289bfa650784ad6dcc17c520fd66aa478` ran once after the input
+freeze. The [retained first result](../docs/fixtures/loredock-capture-memory/README.md)
+executes 16/48 operations: sixteen pass integrity and ten meet resource bounds. Four
+fresh-process arms stop before reading because the worker compares null-prototype SQLite
+rows with ordinary JSON objects using prototype-sensitive equality. Thirty-two operations
+and all cross-process parity remain unexecuted/unavailable; six large same-process operations
+also exceed memory limits. No optimization or promotion follows from the incomplete diagnostic.
+
+All first artifacts and exits are retained. Read-only closed-catalog inspection confirms
+source-header field values match; this diagnoses the observer but does not restore skipped
+checks. Frozen code, inputs and results are exhausted and unchanged. Next: separately fix
+and regression-test the complete process/JSON boundary before a fresh attribution run.

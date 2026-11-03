@@ -1,0 +1,42 @@
+{
+  "method": "Read-only immutable opens of closed owned arm catalogs; no candidate rerun.",
+  "observations": [
+    {
+      "size": 32,
+      "arm": "same-process",
+      "sourceRows": 20,
+      "equalValues": true
+    },
+    {
+      "size": 32,
+      "arm": "reopened-process",
+      "sourceRows": 20,
+      "equalValues": true
+    },
+    {
+      "size": 32,
+      "arm": "instrumentation-control",
+      "sourceRows": 20,
+      "equalValues": true
+    },
+    {
+      "size": 496,
+      "arm": "same-process",
+      "sourceRows": 20,
+      "equalValues": true
+    },
+    {
+      "size": 496,
+      "arm": "reopened-process",
+      "sourceRows": 20,
+      "equalValues": true
+    },
+    {
+      "size": 496,
+      "arm": "instrumentation-control",
+      "sourceRows": 20,
+      "equalValues": true
+    }
+  ],
+  "limitation": "Value equality diagnoses the observer assertion but cannot execute the 32 blocked operations or establish parity."
+}

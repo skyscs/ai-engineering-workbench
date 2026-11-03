@@ -1,0 +1,683 @@
+{
+  "schemaVersion": "task077-memory-diagnostic/1",
+  "createdAt": "2026-11-03T10:26:13.384Z",
+  "freezeCommit": "8234749",
+  "candidateCommit": "767a112289bfa650784ad6dcc17c520fd66aa478",
+  "inputs": {
+    "corpus.mjs": "1f667634890fe1b513fd08de0b301923d2955afa205c5f455bb40cb5742d3061",
+    "oracle.json": "4dcd8f99dee7aaa1189c98b074d83563b101023ec32ce82b92853cb61ffa6084",
+    "preflight.json": "5f641e7099a7e943e68e87dd5f7cbfcb05b8a60c9c8abbf8dcf09538c571b341",
+    "README.md": "6c9afb9cd783a97e545c7019dad2616be7ae49910186c8b8ef344a916933407b"
+  },
+  "baseline": {
+    "commit": "6232fee3a3b81abf956e27bc7e277b7ef2a867e9",
+    "files": {
+      "scripts/loredock-capture-scale/paths.mjs": "d8fb5df33aa458e06f32fd087587172421549c27e28cb72158b897f66de0cd78",
+      "scripts/loredock-capture-scale/receipt.mjs": "39e4cd406f3e0098046d1eab3b0fd8f655935511cc94da9fe6d03e30ae769a1e",
+      "scripts/loredock-capture-scale/budget.mjs": "4ea01a16a7069870c7b6841624bec1dc338780356ae84a8841a6b04fc67799cc",
+      "scripts/loredock-capture-scale/resolve.mjs": "c06f6a090c7cb3be565a877a649ac305ec9b016e5f0d19b8fb53095792c9cc5e",
+      "scripts/loredock-capture-scale/admit.mjs": "c2fd01cb822fe362fea600ff7b3fa4bb718dbeb1aa422af20b398887459953d4",
+      "scripts/loredock-capture-scale/fixture.mjs": "aaabbe5211d6239801c0f831c0bd570d3089e812c32249e596f9df0f2a4dad47",
+      "apps/loredock/src/code-analysis.ts": "45485d1b1e5534546d8d40504d7d04090442ce6298142222740ba9942e5764da",
+      "apps/loredock/src/code-paths-metadata.ts": "78146a6dff53d3b49659647a8509c119b6bb6ba16753600f72fd35414afbea9b",
+      "apps/loredock/src/code-paths-work.ts": "e5f117d0e2c19876eac8a28de620f1d5abbd3d3fe298900389370bf5f86d28a7",
+      "apps/loredock/src/store.ts": "d2faf0886743e1006bf74c2aceb9ede232ccc4e46d2fd52f47205c9d3b9f0627"
+    }
+  },
+  "node": "v22.23.2",
+  "hardware": {
+    "platform": "linux",
+    "arch": "x64",
+    "cpu": "12th Gen Intel(R) Core(TM) i5-12500H",
+    "cpus": 16,
+    "memoryBytes": 32718753792
+  },
+  "modelRequests": 0,
+  "oracle": {
+    "schemaVersion": "task077-memory-oracle/1",
+    "authorship": "Agent-authored from source construction before parser or candidate observations; not blind assessment.",
+    "sizes": [
+      {
+        "pathsPerSource": 32,
+        "files": 640,
+        "codeFiles": 617,
+        "facts": 21,
+        "bytes": 33963
+      },
+      {
+        "pathsPerSource": 496,
+        "files": 9920,
+        "codeFiles": 9897,
+        "facts": 21,
+        "bytes": 489612
+      }
+    ],
+    "arms": [
+      "same-process",
+      "reopened-process",
+      "instrumentation-control"
+    ],
+    "operations": [
+      "first",
+      "repeat-1",
+      "repeat-2",
+      "repeat-3",
+      "selected",
+      "page-4",
+      "isolated",
+      "history"
+    ],
+    "topic": "arrivals.logged.v5",
+    "environment": "training",
+    "defaultFlows": 2,
+    "selectedFlows": 1,
+    "rootCount": 5,
+    "defaultOriginals": 10,
+    "isolatedOriginals": 5,
+    "sourceCount": 20,
+    "uncitedSource": "d-operator-handbook",
+    "selectedRoot": [
+      "a-arrival-console",
+      "client/AAArrive.vue",
+      "arrive",
+      "vue-action"
+    ],
+    "isolatedRoot": [
+      "a-arrival-console",
+      "client/ZZInspect.vue",
+      "inspect",
+      "vue-action"
+    ],
+    "requiredNodes": [
+      [
+        "a-arrival-console",
+        "client/AAArrive.vue",
+        "symbol",
+        "arrive",
+        "vue-action"
+      ],
+      [
+        "a-arrival-console",
+        "client/BBConfirm.vue",
+        "symbol",
+        "confirm",
+        "vue-action"
+      ],
+      [
+        "a-arrival-console",
+        "client/arrivals.ts",
+        "http-request",
+        "POST /v5/arrivals",
+        null
+      ],
+      [
+        "b-arrival-api",
+        "config/routes.json",
+        "handler-reference",
+        "Arrivals.log",
+        null
+      ],
+      [
+        "b-arrival-api",
+        "service/Arrivals.java",
+        "symbol",
+        "Arrivals.log",
+        "java-method"
+      ],
+      [
+        "b-arrival-api",
+        "service/Arrivals.java",
+        "event-publish",
+        "Publish ArrivalLogged",
+        null
+      ],
+      [
+        "c-presence-store",
+        "service/PresenceWriter.java",
+        "event-subscribe",
+        "Subscribe via KafkaSubscriber",
+        null
+      ],
+      [
+        "c-presence-store",
+        "service/PresenceWriter.java",
+        "document-write",
+        "MongoCollection.replaceOne",
+        null
+      ]
+    ],
+    "isolated": {
+      "nodes": 1,
+      "edges": 0,
+      "flows": 1,
+      "terminalKind": "symbol",
+      "reason": "unresolved-import"
+    },
+    "limits": {
+      "wallMs": 5000,
+      "work": 1000000,
+      "projectionBytes": 524288,
+      "receiptBytes": 655360,
+      "textBytes": 65536,
+      "spans": 30,
+      "sources": 20
+    },
+    "resources": {
+      "sampleIntervalMs": 5,
+      "maxSliceMs": 150,
+      "sampledRssMiB": 384,
+      "sampledHeapGrowthMiB": 64
+    },
+    "diagnostic": {
+      "phaseRecords": 64,
+      "queryIdentities": 128,
+      "preparerWatchdogMs": 900000,
+      "readerWatchdogMs": 600000,
+      "overallWatchdogMs": 1800000
+    },
+    "requiredCapturePhases": [
+      "operation-start",
+      "snapshot-before",
+      "snapshot-after",
+      "metadata-after",
+      "facts-after",
+      "domains-after",
+      "resolution-after",
+      "admission-after",
+      "path-final-before",
+      "path-final-after",
+      "receipt-projection",
+      "receipt-originals",
+      "receipt-publication-before",
+      "receipt-publication-after",
+      "operation-end"
+    ],
+    "parityExcludedProjectionFields": [],
+    "parityExcludedReceiptFields": []
+  },
+  "processes": [
+    {
+      "arm": "same-process",
+      "size": 32,
+      "executable": "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+      "args": [
+        "/home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/worker.mjs",
+        "/home/toshiba/aew/measurements/task077-first-run/size-32",
+        "same-process",
+        "32"
+      ],
+      "environment": {
+        "nodeOptions": null,
+        "locale": "C"
+      },
+      "startedAt": "2026-11-03T10:26:13.392Z",
+      "pid": 1099775,
+      "exit": 0,
+      "signal": null,
+      "wallMs": 13879.455222999999
+    },
+    {
+      "arm": "reopened-process",
+      "size": 32,
+      "executable": "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+      "args": [
+        "/home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/worker.mjs",
+        "/home/toshiba/aew/measurements/task077-first-run/size-32",
+        "reopened-process",
+        "32"
+      ],
+      "environment": {
+        "nodeOptions": null,
+        "locale": "C"
+      },
+      "startedAt": "2026-11-03T10:26:27.292Z",
+      "pid": 1102053,
+      "exit": 1,
+      "signal": null,
+      "wallMs": 309.23686799999996
+    },
+    {
+      "arm": "instrumentation-control",
+      "size": 32,
+      "executable": "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+      "args": [
+        "/home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/worker.mjs",
+        "/home/toshiba/aew/measurements/task077-first-run/size-32",
+        "instrumentation-control",
+        "32"
+      ],
+      "environment": {
+        "nodeOptions": null,
+        "locale": "C"
+      },
+      "startedAt": "2026-11-03T10:26:27.611Z",
+      "pid": 1102064,
+      "exit": 1,
+      "signal": null,
+      "wallMs": 293.8159000000014
+    },
+    {
+      "arm": "same-process",
+      "size": 496,
+      "executable": "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+      "args": [
+        "/home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/worker.mjs",
+        "/home/toshiba/aew/measurements/task077-first-run/size-496",
+        "same-process",
+        "496"
+      ],
+      "environment": {
+        "nodeOptions": null,
+        "locale": "C"
+      },
+      "startedAt": "2026-11-03T10:26:27.910Z",
+      "pid": 1102075,
+      "exit": 0,
+      "signal": null,
+      "wallMs": 334839.467144
+    },
+    {
+      "arm": "reopened-process",
+      "size": 496,
+      "executable": "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+      "args": [
+        "/home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/worker.mjs",
+        "/home/toshiba/aew/measurements/task077-first-run/size-496",
+        "reopened-process",
+        "496"
+      ],
+      "environment": {
+        "nodeOptions": null,
+        "locale": "C"
+      },
+      "startedAt": "2026-11-03T10:32:02.836Z",
+      "pid": 1133513,
+      "exit": 1,
+      "signal": null,
+      "wallMs": 381.0189529999625
+    },
+    {
+      "arm": "instrumentation-control",
+      "size": 496,
+      "executable": "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+      "args": [
+        "/home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/worker.mjs",
+        "/home/toshiba/aew/measurements/task077-first-run/size-496",
+        "instrumentation-control",
+        "496"
+      ],
+      "environment": {
+        "nodeOptions": null,
+        "locale": "C"
+      },
+      "startedAt": "2026-11-03T10:32:03.278Z",
+      "pid": 1133544,
+      "exit": 1,
+      "signal": null,
+      "wallMs": 383.35664399998495
+    }
+  ],
+  "arms": [
+    {
+      "size": 32,
+      "arm": "same-process",
+      "workerErrors": [],
+      "operations": [
+        {
+          "name": "first",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-1",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-2",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-3",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "selected",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "page-4",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "isolated",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "history",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "size": 32,
+      "arm": "reopened-process",
+      "workerErrors": [
+        {
+          "phase": "worker",
+          "name": "AssertionError",
+          "code": "ERR_ASSERTION",
+          "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  [\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/a-arrival-console/.git',\n      name: 'a-arrival-console',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/b-arrival-api/.git',\n      name: 'b-arrival-api',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/c-presence-store/.git',\n      name: 'c-presence-store',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/d-operator-handbook/.git',\n      name: 'd-operator-handbook',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-01/.git',\n      name: 'e-area-notes-01',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-02/.git',\n      name: 'e-area-notes-02',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-03/.git',\n      name: 'e-area-notes-03',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-04/.git',\n      name: 'e-area-notes-04',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-05/.git',\n      name: 'e-area-notes-05',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-06/.git',\n      name: 'e-area-notes-06',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-07/.git',\n      name: 'e-area-notes-07',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-08/.git',\n      name: 'e-area-notes-08',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-09/.git',\n      name: 'e-area-notes-09',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-10/.git',\n      name: 'e-area-notes-10',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-11/.git',\n      name: 'e-area-notes-11',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-12/.git',\n      name: 'e-area-notes-12',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-13/.git',\n      name: 'e-area-notes-13',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-14/.git',\n      name: 'e-area-notes-14',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-15/.git',\n      name: 'e-area-notes-15',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-16/.git',\n      name: 'e-area-notes-16',\n",
+          "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  [\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/a-arrival-console/.git',\n      name: 'a-arrival-console',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/b-arrival-api/.git',\n      name: 'b-arrival-api',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/c-presence-store/.git',\n      name: 'c-presence-store',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/d-operator-handbook/.git',\n      name: 'd-operator-handbook',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-01/.git',\n      name: 'e-area-notes-01',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-02/.git',\n      name: 'e-area-notes-02',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-03/.git',\n      name: 'e-area-notes-03',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-04/.git',\n      name: 'e-area-notes-04',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-05/.git',\n      name: 'e-area-notes-05',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-06/.git',\n      name: 'e-area-notes-06',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-07/.git',\n      name: 'e-area-notes-07',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-08/.git',\n      name: 'e-area-notes-08',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-09/.git',\n      name: 'e-area-notes-09',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-10/.git',\n      name: 'e-area-notes-10',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-11/.git',\n      name: 'e-area-notes-11',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-12/.git',\n      name: 'e-area-notes-12',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-13/.git',\n      name: 'e-area-notes-13',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-14/.git',\n      name: 'e-area-notes-14',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-15/.git',\n      name: 'e-area-notes-15',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-16/.git',\n      name: 'e-area-notes-16',\n\n    at file:///home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/worker.mjs:98:69\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)"
+        }
+      ],
+      "operations": [],
+      "errors": [
+        {
+          "name": "AssertionError",
+          "code": "ERR_ASSERTION",
+          "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   'first',\n-   'repeat-1',\n-   'repeat-2',\n-   'repeat-3',\n-   'selected',\n-   'page-4',\n-   'isolated',\n-   'history'\n- ]\n",
+          "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   'first',\n-   'repeat-1',\n-   'repeat-2',\n-   'repeat-3',\n-   'selected',\n-   'page-4',\n-   'isolated',\n-   'history'\n- ]\n\n    at inspectArm (file:///home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/probe.mjs:63:77)\n    at async file:///home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/probe.mjs:107:22"
+        }
+      ]
+    },
+    {
+      "size": 32,
+      "arm": "instrumentation-control",
+      "workerErrors": [
+        {
+          "phase": "worker",
+          "name": "AssertionError",
+          "code": "ERR_ASSERTION",
+          "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  [\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/a-arrival-console/.git',\n      name: 'a-arrival-console',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/b-arrival-api/.git',\n      name: 'b-arrival-api',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/c-presence-store/.git',\n      name: 'c-presence-store',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/d-operator-handbook/.git',\n      name: 'd-operator-handbook',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-01/.git',\n      name: 'e-area-notes-01',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-02/.git',\n      name: 'e-area-notes-02',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-03/.git',\n      name: 'e-area-notes-03',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-04/.git',\n      name: 'e-area-notes-04',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-05/.git',\n      name: 'e-area-notes-05',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-06/.git',\n      name: 'e-area-notes-06',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-07/.git',\n      name: 'e-area-notes-07',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-08/.git',\n      name: 'e-area-notes-08',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-09/.git',\n      name: 'e-area-notes-09',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-10/.git',\n      name: 'e-area-notes-10',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-11/.git',\n      name: 'e-area-notes-11',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-12/.git',\n      name: 'e-area-notes-12',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-13/.git',\n      name: 'e-area-notes-13',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-14/.git',\n      name: 'e-area-notes-14',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-15/.git',\n      name: 'e-area-notes-15',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-16/.git',\n      name: 'e-area-notes-16',\n",
+          "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  [\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/a-arrival-console/.git',\n      name: 'a-arrival-console',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/b-arrival-api/.git',\n      name: 'b-arrival-api',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/c-presence-store/.git',\n      name: 'c-presence-store',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/d-operator-handbook/.git',\n      name: 'd-operator-handbook',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-01/.git',\n      name: 'e-area-notes-01',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-02/.git',\n      name: 'e-area-notes-02',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-03/.git',\n      name: 'e-area-notes-03',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-04/.git',\n      name: 'e-area-notes-04',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-05/.git',\n      name: 'e-area-notes-05',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-06/.git',\n      name: 'e-area-notes-06',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-07/.git',\n      name: 'e-area-notes-07',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-08/.git',\n      name: 'e-area-notes-08',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-09/.git',\n      name: 'e-area-notes-09',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-10/.git',\n      name: 'e-area-notes-10',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-11/.git',\n      name: 'e-area-notes-11',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-12/.git',\n      name: 'e-area-notes-12',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-13/.git',\n      name: 'e-area-notes-13',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-14/.git',\n      name: 'e-area-notes-14',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-15/.git',\n      name: 'e-area-notes-15',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '987ecd35-e6a2-4860-a68f-8bc55286654b',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-32/sources/e-area-notes-16/.git',\n      name: 'e-area-notes-16',\n\n    at file:///home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/worker.mjs:98:69\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)"
+        }
+      ],
+      "operations": [],
+      "errors": [
+        {
+          "name": "AssertionError",
+          "code": "ERR_ASSERTION",
+          "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   'first',\n-   'repeat-1',\n-   'repeat-2',\n-   'repeat-3',\n-   'selected',\n-   'page-4',\n-   'isolated',\n-   'history'\n- ]\n",
+          "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   'first',\n-   'repeat-1',\n-   'repeat-2',\n-   'repeat-3',\n-   'selected',\n-   'page-4',\n-   'isolated',\n-   'history'\n- ]\n\n    at inspectArm (file:///home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/probe.mjs:63:77)\n    at async file:///home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/probe.mjs:107:22"
+        }
+      ]
+    },
+    {
+      "size": 496,
+      "arm": "same-process",
+      "workerErrors": [],
+      "operations": [
+        {
+          "name": "first",
+          "resources": {
+            "pass": false,
+            "failures": [
+              {
+                "name": "heapGrowthMiB",
+                "value": 72.85087585449219,
+                "bound": 64
+              }
+            ]
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-1",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-2",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-3",
+          "resources": {
+            "pass": false,
+            "failures": [
+              {
+                "name": "peakRssMiB",
+                "value": 396.8046875,
+                "bound": 384
+              },
+              {
+                "name": "heapGrowthMiB",
+                "value": 69.38074493408203,
+                "bound": 64
+              }
+            ]
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "selected",
+          "resources": {
+            "pass": false,
+            "failures": [
+              {
+                "name": "peakRssMiB",
+                "value": 410.640625,
+                "bound": 384
+              }
+            ]
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "page-4",
+          "resources": {
+            "pass": false,
+            "failures": [
+              {
+                "name": "peakRssMiB",
+                "value": 389.7734375,
+                "bound": 384
+              }
+            ]
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "isolated",
+          "resources": {
+            "pass": false,
+            "failures": [
+              {
+                "name": "peakRssMiB",
+                "value": 389.97265625,
+                "bound": 384
+              }
+            ]
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "history",
+          "resources": {
+            "pass": false,
+            "failures": [
+              {
+                "name": "peakRssMiB",
+                "value": 424.93359375,
+                "bound": 384
+              }
+            ]
+          },
+          "integrity": {
+            "pass": true
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "size": 496,
+      "arm": "reopened-process",
+      "workerErrors": [
+        {
+          "phase": "worker",
+          "name": "AssertionError",
+          "code": "ERR_ASSERTION",
+          "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  [\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/a-arrival-console/.git',\n      name: 'a-arrival-console',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/b-arrival-api/.git',\n      name: 'b-arrival-api',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/c-presence-store/.git',\n      name: 'c-presence-store',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/d-operator-handbook/.git',\n      name: 'd-operator-handbook',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-01/.git',\n      name: 'e-area-notes-01',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-02/.git',\n      name: 'e-area-notes-02',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-03/.git',\n      name: 'e-area-notes-03',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-04/.git',\n      name: 'e-area-notes-04',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-05/.git',\n      name: 'e-area-notes-05',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-06/.git',\n      name: 'e-area-notes-06',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-07/.git',\n      name: 'e-area-notes-07',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-08/.git',\n      name: 'e-area-notes-08',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-09/.git',\n      name: 'e-area-notes-09',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-10/.git',\n      name: 'e-area-notes-10',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-11/.git',\n      name: 'e-area-notes-11',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-12/.git',\n      name: 'e-area-notes-12',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-13/.git',\n      name: 'e-area-notes-13',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-14/.git',\n      name: 'e-area-notes-14',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-15/.git',\n      name: 'e-area-notes-15',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-16/.git',\n      name: 'e-area-notes-16',\n",
+          "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  [\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/a-arrival-console/.git',\n      name: 'a-arrival-console',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/b-arrival-api/.git',\n      name: 'b-arrival-api',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/c-presence-store/.git',\n      name: 'c-presence-store',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/d-operator-handbook/.git',\n      name: 'd-operator-handbook',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-01/.git',\n      name: 'e-area-notes-01',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-02/.git',\n      name: 'e-area-notes-02',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-03/.git',\n      name: 'e-area-notes-03',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-04/.git',\n      name: 'e-area-notes-04',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-05/.git',\n      name: 'e-area-notes-05',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-06/.git',\n      name: 'e-area-notes-06',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-07/.git',\n      name: 'e-area-notes-07',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-08/.git',\n      name: 'e-area-notes-08',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-09/.git',\n      name: 'e-area-notes-09',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-10/.git',\n      name: 'e-area-notes-10',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-11/.git',\n      name: 'e-area-notes-11',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-12/.git',\n      name: 'e-area-notes-12',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-13/.git',\n      name: 'e-area-notes-13',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-14/.git',\n      name: 'e-area-notes-14',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-15/.git',\n      name: 'e-area-notes-15',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-16/.git',\n      name: 'e-area-notes-16',\n\n    at file:///home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/worker.mjs:98:69\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)"
+        }
+      ],
+      "operations": [],
+      "errors": [
+        {
+          "name": "AssertionError",
+          "code": "ERR_ASSERTION",
+          "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   'first',\n-   'repeat-1',\n-   'repeat-2',\n-   'repeat-3',\n-   'selected',\n-   'page-4',\n-   'isolated',\n-   'history'\n- ]\n",
+          "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   'first',\n-   'repeat-1',\n-   'repeat-2',\n-   'repeat-3',\n-   'selected',\n-   'page-4',\n-   'isolated',\n-   'history'\n- ]\n\n    at inspectArm (file:///home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/probe.mjs:63:77)\n    at async file:///home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/probe.mjs:107:22"
+        }
+      ]
+    },
+    {
+      "size": 496,
+      "arm": "instrumentation-control",
+      "workerErrors": [
+        {
+          "phase": "worker",
+          "name": "AssertionError",
+          "code": "ERR_ASSERTION",
+          "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  [\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/a-arrival-console/.git',\n      name: 'a-arrival-console',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/b-arrival-api/.git',\n      name: 'b-arrival-api',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/c-presence-store/.git',\n      name: 'c-presence-store',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/d-operator-handbook/.git',\n      name: 'd-operator-handbook',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-01/.git',\n      name: 'e-area-notes-01',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-02/.git',\n      name: 'e-area-notes-02',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-03/.git',\n      name: 'e-area-notes-03',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-04/.git',\n      name: 'e-area-notes-04',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-05/.git',\n      name: 'e-area-notes-05',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-06/.git',\n      name: 'e-area-notes-06',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-07/.git',\n      name: 'e-area-notes-07',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-08/.git',\n      name: 'e-area-notes-08',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-09/.git',\n      name: 'e-area-notes-09',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-10/.git',\n      name: 'e-area-notes-10',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-11/.git',\n      name: 'e-area-notes-11',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-12/.git',\n      name: 'e-area-notes-12',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-13/.git',\n      name: 'e-area-notes-13',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-14/.git',\n      name: 'e-area-notes-14',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-15/.git',\n      name: 'e-area-notes-15',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-16/.git',\n      name: 'e-area-notes-16',\n",
+          "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  [\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/a-arrival-console/.git',\n      name: 'a-arrival-console',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/b-arrival-api/.git',\n      name: 'b-arrival-api',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/c-presence-store/.git',\n      name: 'c-presence-store',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/d-operator-handbook/.git',\n      name: 'd-operator-handbook',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-01/.git',\n      name: 'e-area-notes-01',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-02/.git',\n      name: 'e-area-notes-02',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-03/.git',\n      name: 'e-area-notes-03',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-04/.git',\n      name: 'e-area-notes-04',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-05/.git',\n      name: 'e-area-notes-05',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-06/.git',\n      name: 'e-area-notes-06',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-07/.git',\n      name: 'e-area-notes-07',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-08/.git',\n      name: 'e-area-notes-08',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-09/.git',\n      name: 'e-area-notes-09',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-10/.git',\n      name: 'e-area-notes-10',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-11/.git',\n      name: 'e-area-notes-11',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-12/.git',\n      name: 'e-area-notes-12',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-13/.git',\n      name: 'e-area-notes-13',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-14/.git',\n      name: 'e-area-notes-14',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-15/.git',\n      name: 'e-area-notes-15',\n...\n    },\n+   [Object: null prototype] {\n-   {\n      buildId: '617baefe-af58-4312-bb34-4b383a3ea935',\n      dirty: 0,\n      error: null,\n      gitDir: '/home/toshiba/aew/measurements/task077-first-run/size-496/sources/e-area-notes-16/.git',\n      name: 'e-area-notes-16',\n\n    at file:///home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/worker.mjs:98:69\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)"
+        }
+      ],
+      "operations": [],
+      "errors": [
+        {
+          "name": "AssertionError",
+          "code": "ERR_ASSERTION",
+          "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   'first',\n-   'repeat-1',\n-   'repeat-2',\n-   'repeat-3',\n-   'selected',\n-   'page-4',\n-   'isolated',\n-   'history'\n- ]\n",
+          "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   'first',\n-   'repeat-1',\n-   'repeat-2',\n-   'repeat-3',\n-   'selected',\n-   'page-4',\n-   'isolated',\n-   'history'\n- ]\n\n    at inspectArm (file:///home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/probe.mjs:63:77)\n    at async file:///home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/probe.mjs:107:22"
+        }
+      ]
+    }
+  ],
+  "parity": [
+    {
+      "size": 32,
+      "arm": "reopened-process",
+      "pass": false,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "Missing parity input: first",
+        "stack": "AssertionError [ERR_ASSERTION]: Missing parity input: first\n    at file:///home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/probe.mjs:112:18"
+      }
+    },
+    {
+      "size": 32,
+      "arm": "instrumentation-control",
+      "pass": false,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "Missing parity input: first",
+        "stack": "AssertionError [ERR_ASSERTION]: Missing parity input: first\n    at file:///home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/probe.mjs:112:18"
+      }
+    },
+    {
+      "size": 496,
+      "arm": "reopened-process",
+      "pass": false,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "Missing parity input: first",
+        "stack": "AssertionError [ERR_ASSERTION]: Missing parity input: first\n    at file:///home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/probe.mjs:112:18"
+      }
+    },
+    {
+      "size": 496,
+      "arm": "instrumentation-control",
+      "pass": false,
+      "error": {
+        "name": "AssertionError",
+        "code": "ERR_ASSERTION",
+        "message": "Missing parity input: first",
+        "stack": "AssertionError [ERR_ASSERTION]: Missing parity input: first\n    at file:///home/toshiba/aew/worktrees/task077-capture-memory/scripts/loredock-capture-memory/probe.mjs:112:18"
+      }
+    }
+  ],
+  "errors": [],
+  "summary": {
+    "arms": 6,
+    "operations": 16,
+    "integrityPassed": 16,
+    "resourcePassed": 10,
+    "parityPassed": 0,
+    "note": "A diagnostic only. No prior resource gate or production promotion changes."
+  },
+  "failed": true
+}
