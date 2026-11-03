@@ -35,3 +35,16 @@ measurement, implementation, model call, corporate source or demo operation.
 The next implementation is limited to the offline evaluator/preflight workflow
 and independent tiny regressions. A subsequent separately scoped memory decision
 must precede another fresh complete resource qualification or production review.
+
+## Design checkpoint
+
+Scope `7c77142`. Source review traces the explicit `onMessage` consumer index and
+the coordinator's late first-receipt insertion. The retained saved-byte readback
+supports raw parity/history consistency only; useful-path and memory failures stay.
+
+The [recovery contract](../docs/loredock/QUALIFICATION_RECOVERY.md) defines a concrete
+capability table before input freeze, independent evaluation dimensions and explicit
+dependency states. [ADR 0054](../docs/decisions/0054-loredock-qualification-recovery.md)
+records the decision. The next implementation uses independent tiny positive and
+negative cases; remaining memory attribution/selection precedes another qualification.
+No new corpus, candidate execution or production change is included.
