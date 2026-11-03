@@ -65,3 +65,9 @@ those live operations must not be imitated by an offline assessment. Compare onl
 the frozen metadata/source vector and label current applicability as unevaluated.
 Artifact references must stay within the owned output root and retain byte/hash
 checks before parsing; malformed references must not become arbitrary file reads.
+
+PR #87 merged as `f3f45d002ced2112a4945b57a18a1d4adb3942ca` after exact head
+`3deb58e54d231c6a7cf1ca0c3ac84a962de7e1f1` passed push 41635586123 and pull-request
+41635677777 CI (521 tests). The merge tree is identical and included in this
+branch. Main is clean and synchronized; the implementation boundary and source
+review are committed for the next coding step. No runtime code has changed here.
