@@ -1,6 +1,6 @@
 # Task 084 — Independent offline qualification assessment
 
-Status: scoped; source-boundary review started, 2026-11-03.
+Status: implemented and locally verified; exact-head CI pending, 2026-11-03.
 
 ## Baseline and scope
 
@@ -71,3 +71,39 @@ PR #87 merged as `f3f45d002ced2112a4945b57a18a1d4adb3942ca` after exact head
 41635677777 CI (521 tests). The merge tree is identical and included in this
 branch. Main is clean and synchronized; the implementation boundary and source
 review are committed for the next coding step. No runtime code has changed here.
+
+## Implementation and review
+
+New `scripts/loredock-qualification-assessment/` helpers implement the pure codec,
+bounded artifact reader, separate frozen-source/usefulness validators, per-operation
+assessment and two-arm aggregation. They retain raw receipt bytes before decoding,
+structural values before support/usefulness checks, explicit dependency states and
+strict required-condition gates. The page schema explicitly permits only its null
+graph. Current applicability remains unevaluated; no catalog or source code executes.
+
+The independent [capability table](../scripts/loredock-qualification-assessment/README.md)
+links actual locker syntax to supported rules. Real children run positive `onMessage`
+and negative `onReserved` cases, each with eight operations in both lifecycles.
+The negative case never satisfies the positive complete-path oracle. Additional
+saved-artifact regressions cover opaque-byte parity, missing/corrupt first records,
+source mismatch, altered history, malformed wrappers, finite resource/counter
+requirements, process/watchdog/cleanup errors, absent operations and confined reads.
+
+The first focused run exposed the root-page null-graph extraction error. The first
+typecheck also caught a test-only assertion overload. Both are corrected and
+[retained](../docs/fixtures/loredock-qualification-assessment/README.md), including
+the first child's twenty raw artifact/report/exit frames. A later review keeps
+history's usefulness denominator stable when absent, exposes independent content
+and wrapper shapes, and labels missing content prerequisites as blocked. No old
+family, measured module, original score, product source or runtime setting changes.
+
+Review covers the complete diff, frozen-file separation, imports, reference links,
+actual child boundaries, canonical/hash and source validation, independent failure
+propagation and unchanged strict acceptance. The remaining memory decision follows
+separately; this task does not authorize another resource matrix or establish
+streaming resource acceptance.
+
+Final pinned-toolchain `pnpm check` passes all 529 tests, strict typechecks and
+builds. First and final full checks exit 0; the final run covers the review changes.
+Reference links, archive/log hashes, frozen-file separation and staged whitespace
+checks pass. Exact-head push/pull-request CI remains required before merge.

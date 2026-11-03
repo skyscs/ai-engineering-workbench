@@ -289,6 +289,12 @@ with explicit dependent states. Next implement the offline assessment workflow
 on tiny independent inputs, then scope the remaining memory decision. All old
 failures and production boundaries remain intact; see
 [ADR 0054](docs/decisions/0054-loredock-qualification-recovery.md).
+[Task 084](tasks/084-loredock-qualification-assessment.md) implements the independent
+offline assessment with bounded pure decoding and tiny positive/negative child
+regressions. It retains raw comparisons/history after source or usefulness failures
+and rejects any required failure or blocked dependency. Next: record the remaining
+memory decision from retained ownership/allocation evidence before another resource
+experiment. No exhausted corpus rerun or candidate integration is implied.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

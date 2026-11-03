@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "loredock-assessment-validation/1",
+  "node": "v22.23.2",
+  "pnpm": "10.15.0",
+  "firstFailure": {
+    "frames": 20,
+    "rawBytes": 355060,
+    "archiveBytes": 97718,
+    "sha256": "d1fbb5b4358b6c383b57a3a4ff41257b6ab840493a247bdd3a70485dafa4dafb",
+    "note": "Independent tiny development child only. No database, source checkout or exhausted corpus is archived."
+  },
+  "logs": [
+    {
+      "file": "install-first.log.gz",
+      "exit": 0,
+      "bytes": 326,
+      "sha256": "f57c91941cae3fed30ac2032a03f7365537b30b012daa7f5b45700af58292cff"
+    },
+    {
+      "file": "build-packages-first.log.gz",
+      "exit": 0,
+      "bytes": 606,
+      "sha256": "3b6f3994eb1e9b6854355561260a464a5911f7c745b8d9448de20443f61c0b0d"
+    },
+    {
+      "file": "focused-first.log.gz",
+      "exit": 1,
+      "bytes": 12826,
+      "sha256": "335bc8e9b5b3cfe881fcc9569ba32f41c9b03310477bd66284142eff4b0b7ea5"
+    },
+    {
+      "file": "typecheck-first.log.gz",
+      "exit": 2,
+      "bytes": 513,
+      "sha256": "9302cd06e85a003d66133aec21d7836892503c27de1759465de689a8feacd147"
+    },
+    {
+      "file": "focused-second.log.gz",
+      "exit": 0,
+      "bytes": 2074,
+      "sha256": "01f4aff96e13dc7ab4756dc87ba60003e4408c0d7ef2e45a2935d8066f0f2bd3"
+    },
+    {
+      "file": "typecheck-final.log.gz",
+      "exit": 0,
+      "bytes": 156,
+      "sha256": "2f11cbcb4d68adea3940aace70618b4d07ccb34edcae4c4b79360be52da10c68"
+    },
+    {
+      "file": "focused-final.log.gz",
+      "exit": 0,
+      "bytes": 2073,
+      "sha256": "d5611f0fc9c6fc6e23ea88810b7a157a3664cd37fa2c33e74359493104e80b69"
+    },
+    {
+      "file": "check-first.log.gz",
+      "exit": 0,
+      "bytes": 212168,
+      "sha256": "1bff32df1c35a675bdbe62e3f4a1c7a681f90941622bc67fef6f990a788a9bbd"
+    },
+    {
+      "file": "check-final.log.gz",
+      "exit": 0,
+      "tests": 529,
+      "bytes": 212534,
+      "sha256": "b498a197d936ff29b3ab71f9bfcf562474c54c2b59ccc0d6df95e93ad5429f62"
+    }
+  ]
+}

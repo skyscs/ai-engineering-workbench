@@ -1,5 +1,27 @@
 # Development status
 
+## Task 084 — Independent offline assessment implemented
+
+The [new evaluator](../scripts/loredock-qualification-assessment/README.md) retains
+raw bytes and structural first receipts independently of source/usefulness results.
+Each required dimension has explicit pass/fail/blocked states and denominators;
+missing first receipts block history with a specific reason. Any required failure,
+blocked check or lifecycle error rejects the overall result. Applicability is not
+checked against a live catalog.
+
+Actual tiny child regressions cover supported `onMessage` and an explicitly negative
+`onReserved` case, both lifecycle arms, saved-byte corruption, source mismatches,
+changed histories and resource/process/cleanup failures. First development failures
+and raw outputs are [retained](fixtures/loredock-qualification-assessment/README.md).
+All 529 tests, strict typechecks and builds pass locally; exact-head CI is pending. No frozen family was rerun,
+and no measured or production module changed. Streaming remains unqualified.
+
+PR #87 merged as `f3f45d0` after head `3deb58e` passed push 41635586123 and
+pull-request 41635677777 CI with an identical tree. Next: decide the remaining
+same-process allocation/residency work from retained evidence before scoping a
+fresh targeted observation or optimization. See
+[Task 084](../tasks/084-loredock-qualification-assessment.md).
+
 ## Task 083 — Qualification recovery contract reviewed
 
 Design completed and locally reviewed, 2026-11-03; scope `7c77142`. PR #86 merged
