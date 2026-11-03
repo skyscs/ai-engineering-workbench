@@ -1,0 +1,471 @@
+{
+  "status": "preparation-only-not-frozen",
+  "sourceNames": [
+    "a-sensor-ui",
+    "b-reading-intake",
+    "c-reading-index",
+    "d-calibration-guide",
+    "e-reading-notes-01",
+    "e-reading-notes-02",
+    "e-reading-notes-03",
+    "e-reading-notes-04",
+    "e-reading-notes-05",
+    "e-reading-notes-06",
+    "e-reading-notes-07",
+    "e-reading-notes-08",
+    "e-reading-notes-09",
+    "e-reading-notes-10",
+    "e-reading-notes-11",
+    "e-reading-notes-12",
+    "e-reading-notes-13",
+    "e-reading-notes-14",
+    "e-reading-notes-15",
+    "e-reading-notes-16"
+  ],
+  "vectors": [
+    {
+      "pathsPerSource": 24,
+      "files": 480,
+      "codeFiles": 457,
+      "bytes": 25950,
+      "sources": [
+        {
+          "name": "a-sensor-ui",
+          "files": 24,
+          "codeFiles": 23,
+          "bytes": 2290,
+          "contentHash": "495188763ca0a712404e14ac4b3a73a58928080fddf86a87b4943a1f3ffdf096"
+        },
+        {
+          "name": "b-reading-intake",
+          "files": 24,
+          "codeFiles": 21,
+          "bytes": 1836,
+          "contentHash": "35e85d1188499fd93d65bf4cca6c97427960bfdd535189f0ec31e5541fc6da24"
+        },
+        {
+          "name": "c-reading-index",
+          "files": 24,
+          "codeFiles": 22,
+          "bytes": 1893,
+          "contentHash": "8b30a804fd698a43a4c1946c46d743b1b1ba47a0cf5dcf0f095395e0162ae0f7"
+        },
+        {
+          "name": "d-calibration-guide",
+          "files": 24,
+          "codeFiles": 23,
+          "bytes": 1195,
+          "contentHash": "e933151e83407edd5cf75a483fe7f8a00c888ffc84f22afc64bd7afe30bf9aa3"
+        },
+        {
+          "name": "e-reading-notes-01",
+          "files": 24,
+          "codeFiles": 23,
+          "bytes": 1171,
+          "contentHash": "0667674ce76c82321701ecc7fa411370f4e594edf3a1acc6c53c4ce51e23521a"
+        },
+        {
+          "name": "e-reading-notes-02",
+          "files": 24,
+          "codeFiles": 23,
+          "bytes": 1171,
+          "contentHash": "95da0e228f91d724341000f58a87da6698c96f79ea8b56695c488cbef758ea08"
+        },
+        {
+          "name": "e-reading-notes-03",
+          "files": 24,
+          "codeFiles": 23,
+          "bytes": 1171,
+          "contentHash": "30d0769e5fd66554a26401354b17596b34f8cc59beed69efbd0d868cd6b8de9c"
+        },
+        {
+          "name": "e-reading-notes-04",
+          "files": 24,
+          "codeFiles": 23,
+          "bytes": 1171,
+          "contentHash": "c1d8171d97b836a104286f3eb6331df48de4b214a0ad0e1d1e6ff6e48cdfe4b8"
+        },
+        {
+          "name": "e-reading-notes-05",
+          "files": 24,
+          "codeFiles": 23,
+          "bytes": 1171,
+          "contentHash": "c907d8daaa53cf65c7c14c0fdd44f6a435d8e35a519607553794d1cfb43357d7"
+        },
+        {
+          "name": "e-reading-notes-06",
+          "files": 24,
+          "codeFiles": 23,
+          "bytes": 1171,
+          "contentHash": "5cbcdf3f0dbc41bbc6ca13725fa8d0ae9cc96313233cd027271830f70525e3b4"
+        },
+        {
+          "name": "e-reading-notes-07",
+          "files": 24,
+          "codeFiles": 23,
+          "bytes": 1171,
+          "contentHash": "78e80a2dcb4b7cf82d19cb1eeeab3b85adacb4ac6d86c7b786780324118ff5d3"
+        },
+        {
+          "name": "e-reading-notes-08",
+          "files": 24,
+          "codeFiles": 23,
+          "bytes": 1171,
+          "contentHash": "ba01b51acf2433f50346d1b13b477576089787e40a7cb7740fa73de00f3c5242"
+        },
+        {
+          "name": "e-reading-notes-09",
+          "files": 24,
+          "codeFiles": 23,
+          "bytes": 1171,
+          "contentHash": "0a3c12588ce3ff4bc369c56c256effaa1b64c39481ad76b1cdd795fbb4134ed9"
+        },
+        {
+          "name": "e-reading-notes-10",
+          "files": 24,
+          "codeFiles": 23,
+          "bytes": 1171,
+          "contentHash": "c1e2dcff8b310ccc7ff2e70e9a95ca197fa9e11679b166d73a636386734023c3"
+        },
+        {
+          "name": "e-reading-notes-11",
+          "files": 24,
+          "codeFiles": 23,
+          "bytes": 1171,
+          "contentHash": "3bf94646e241de53a6b34419dd98e649fab7676f7a7aec1b906063f71a89a416"
+        },
+        {
+          "name": "e-reading-notes-12",
+          "files": 24,
+          "codeFiles": 23,
+          "bytes": 1171,
+          "contentHash": "43f13bd1940ea252573fe08911ac77303ad7982578a5842951f6b6b6e40b6079"
+        },
+        {
+          "name": "e-reading-notes-13",
+          "files": 24,
+          "codeFiles": 23,
+          "bytes": 1171,
+          "contentHash": "4ff003c6b83afea40982a834856c29ca3f09402f3c030e89c0c6da02ace65489"
+        },
+        {
+          "name": "e-reading-notes-14",
+          "files": 24,
+          "codeFiles": 23,
+          "bytes": 1171,
+          "contentHash": "62cfcfb7c88a0a5ab9b664dd6ad0716060fa8abfffca6f91d33d7f55b7ca0f4f"
+        },
+        {
+          "name": "e-reading-notes-15",
+          "files": 24,
+          "codeFiles": 23,
+          "bytes": 1171,
+          "contentHash": "689773902184d068c739c23d2cd2e76584f590eb7a9a91435702ea017b2bf3b4"
+        },
+        {
+          "name": "e-reading-notes-16",
+          "files": 24,
+          "codeFiles": 23,
+          "bytes": 1171,
+          "contentHash": "5757f3d9d5f92a1557a806031e64c68e8bfc08a75cb5a6bdc71865b7a012897e"
+        }
+      ]
+    },
+    {
+      "pathsPerSource": 124,
+      "files": 2480,
+      "codeFiles": 2457,
+      "bytes": 119299,
+      "sources": [
+        {
+          "name": "a-sensor-ui",
+          "files": 124,
+          "codeFiles": 123,
+          "bytes": 6307,
+          "contentHash": "688d7adf16b37153a1559aa600963a1ae2293511adc0c4323da8fb190aff8c3a"
+        },
+        {
+          "name": "b-reading-intake",
+          "files": 124,
+          "codeFiles": 121,
+          "bytes": 6356,
+          "contentHash": "92fc5647d78f040f5ba806229b57c9c933f0042a63c01ae6bbffca2590121130"
+        },
+        {
+          "name": "c-reading-index",
+          "files": 124,
+          "codeFiles": 122,
+          "bytes": 6314,
+          "contentHash": "125b932c9b5014e6210f7debd3b72d1089b00531f7e5ab026463aebfb819098c"
+        },
+        {
+          "name": "d-calibration-guide",
+          "files": 124,
+          "codeFiles": 123,
+          "bytes": 6018,
+          "contentHash": "fd56c4103e8b7d0f100d68ee22c74344e3b3c1155df2bfcde0e9448565984519"
+        },
+        {
+          "name": "e-reading-notes-01",
+          "files": 124,
+          "codeFiles": 123,
+          "bytes": 5894,
+          "contentHash": "3e90d070eb914b0ae305ac9757148adf0d21e65e9434fad9b7b4c6012645dde8"
+        },
+        {
+          "name": "e-reading-notes-02",
+          "files": 124,
+          "codeFiles": 123,
+          "bytes": 5894,
+          "contentHash": "d2d8bd7e0314aac4f94e651f7606dfb54f0e047a623d4135ff9f6e7cdea77ba2"
+        },
+        {
+          "name": "e-reading-notes-03",
+          "files": 124,
+          "codeFiles": 123,
+          "bytes": 5894,
+          "contentHash": "341e155a017e0b26d7d14ffca6871080575a03f7662fae318e806acf639a36af"
+        },
+        {
+          "name": "e-reading-notes-04",
+          "files": 124,
+          "codeFiles": 123,
+          "bytes": 5894,
+          "contentHash": "b34ba94217a3e8301a7d12f73d16fd0b24ac952e9ee1f554e315b7d31fce78da"
+        },
+        {
+          "name": "e-reading-notes-05",
+          "files": 124,
+          "codeFiles": 123,
+          "bytes": 5894,
+          "contentHash": "bc363bae023d3e2bcb877f6e44239d38665798bb4deba88fbc6e5316720fcbbc"
+        },
+        {
+          "name": "e-reading-notes-06",
+          "files": 124,
+          "codeFiles": 123,
+          "bytes": 5894,
+          "contentHash": "ca884a9f5244fa1078751e334bd002d74fb3374d466f2702bf7a5236e1d7488a"
+        },
+        {
+          "name": "e-reading-notes-07",
+          "files": 124,
+          "codeFiles": 123,
+          "bytes": 5894,
+          "contentHash": "33f76313c264573f97046a4fab646c7ef29cec8118492704290e90b3dc9e9462"
+        },
+        {
+          "name": "e-reading-notes-08",
+          "files": 124,
+          "codeFiles": 123,
+          "bytes": 5894,
+          "contentHash": "3d83308b03983bcc71cf94297bd88fb0970e74d02e4d8f58d725c8cc6d98c4c6"
+        },
+        {
+          "name": "e-reading-notes-09",
+          "files": 124,
+          "codeFiles": 123,
+          "bytes": 5894,
+          "contentHash": "85c39064744992d8b9e82be41cb87bdc0b257fa985eae1385aaf16e1d60d6a69"
+        },
+        {
+          "name": "e-reading-notes-10",
+          "files": 124,
+          "codeFiles": 123,
+          "bytes": 5894,
+          "contentHash": "c38409b785d31650b3909405e5b3f311e98c16cac1bdfdf18fef9521abac41d2"
+        },
+        {
+          "name": "e-reading-notes-11",
+          "files": 124,
+          "codeFiles": 123,
+          "bytes": 5894,
+          "contentHash": "195a71a7e4aedf9012809dcdd0e69876f086ca2b3869e0ced85e04dbdd0ee11c"
+        },
+        {
+          "name": "e-reading-notes-12",
+          "files": 124,
+          "codeFiles": 123,
+          "bytes": 5894,
+          "contentHash": "ad90677b2f06d2a7acd654185b822b2c82109c64955716fdabc70fc5fde24abf"
+        },
+        {
+          "name": "e-reading-notes-13",
+          "files": 124,
+          "codeFiles": 123,
+          "bytes": 5894,
+          "contentHash": "56c632aab3e4b3693deead9bd9f497f2c2291514fb02e8f5604625dd5f8bb526"
+        },
+        {
+          "name": "e-reading-notes-14",
+          "files": 124,
+          "codeFiles": 123,
+          "bytes": 5894,
+          "contentHash": "bb4515516c08fc046602cbd53d18452ffcdab4123d78b9c71b825d454356fa4e"
+        },
+        {
+          "name": "e-reading-notes-15",
+          "files": 124,
+          "codeFiles": 123,
+          "bytes": 5894,
+          "contentHash": "4545c12b2187bdfe06a954e4650773018fd53079ce51936d3d7631bfce817b78"
+        },
+        {
+          "name": "e-reading-notes-16",
+          "files": 124,
+          "codeFiles": 123,
+          "bytes": 5894,
+          "contentHash": "a41a2f7f1b624d329c734e961cc10c341ad250e7cead7973770e4343bc316433"
+        }
+      ]
+    },
+    {
+      "pathsPerSource": 499,
+      "files": 9980,
+      "codeFiles": 9957,
+      "bytes": 475174,
+      "sources": [
+        {
+          "name": "a-sensor-ui",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 21682,
+          "contentHash": "9b9e9f69c58c14bfc061a51bb879e59ef7dd36f3085e6e0115ef1a9250d48c32"
+        },
+        {
+          "name": "b-reading-intake",
+          "files": 499,
+          "codeFiles": 496,
+          "bytes": 23606,
+          "contentHash": "640e9c4973f03769de2138ba026b276d9ee2c9743e27c1825759a6e1da8c0439"
+        },
+        {
+          "name": "c-reading-index",
+          "files": 499,
+          "codeFiles": 497,
+          "bytes": 23189,
+          "contentHash": "bf23823cf635041ceaee2239793e87adb02c957fe6111f9e8046192ad074038b"
+        },
+        {
+          "name": "d-calibration-guide",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 24393,
+          "contentHash": "5ab5f2b1a7242851fcbb3c01785f0ee09e47e9f3bfc67d9f6d94c2927950d804"
+        },
+        {
+          "name": "e-reading-notes-01",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23894,
+          "contentHash": "4cf90924c0a4f2ef1d2df1234dba977f4cd872c3b7f876209c6d6676aa4c0a0d"
+        },
+        {
+          "name": "e-reading-notes-02",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23894,
+          "contentHash": "0528543580fe361f1f8ea500ce228b172b9720b410572fcce52cd0603a1641ba"
+        },
+        {
+          "name": "e-reading-notes-03",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23894,
+          "contentHash": "1c2d531bdd169cd72a77f833c6f3f6e3b609d1f068b4dba13b457d7cbed92de1"
+        },
+        {
+          "name": "e-reading-notes-04",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23894,
+          "contentHash": "91c592ce769cb51acaff05f8ee1c2437702f0229820b174b937ea20c6dcb9ce8"
+        },
+        {
+          "name": "e-reading-notes-05",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23894,
+          "contentHash": "acaa7a67706b5d579611288d151555a42b2636788d6472e551956be08ecf9442"
+        },
+        {
+          "name": "e-reading-notes-06",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23894,
+          "contentHash": "10c59a5f37514ecf0f248de3ae35ebbf981930ae257c39c01a5883e87ce7aa08"
+        },
+        {
+          "name": "e-reading-notes-07",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23894,
+          "contentHash": "cd8b9928bd3f458ec40b3aa387e582cf254311d647b9f5ef7304ae50829ec849"
+        },
+        {
+          "name": "e-reading-notes-08",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23894,
+          "contentHash": "0117e8e81b6acd4229042e05de91d6623c71288596569b192e925ff87c15871d"
+        },
+        {
+          "name": "e-reading-notes-09",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23894,
+          "contentHash": "8b5d1d6e38fa8ad60e9dd72b9ce38ce3c9acffae39397cb3504d6af191e8ea5c"
+        },
+        {
+          "name": "e-reading-notes-10",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23894,
+          "contentHash": "1d67c8302b6f2efc5202fe62870959d939470dee351feac95f25e91d8cc7972d"
+        },
+        {
+          "name": "e-reading-notes-11",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23894,
+          "contentHash": "5a87330d7149be65394d04694bc8fd64096fd303298bec2f6d07c71d73cefae5"
+        },
+        {
+          "name": "e-reading-notes-12",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23894,
+          "contentHash": "22fc1923d73fa150b7c766078d7239c8339dd588efc9a4f4ed6fa0b1d4aac831"
+        },
+        {
+          "name": "e-reading-notes-13",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23894,
+          "contentHash": "6201a87f2e51a31c0324ebd0516d24cf267dc61d921f04d9ac2cb1a0d5137bae"
+        },
+        {
+          "name": "e-reading-notes-14",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23894,
+          "contentHash": "3e52c24490755a57c059a6815053edcf9e38b48de189bfd3fa73291b9688af5a"
+        },
+        {
+          "name": "e-reading-notes-15",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23894,
+          "contentHash": "cf1b37f96b244b9a80a2311c492c67b6e4c2c650534b53c480da1182305c7bde"
+        },
+        {
+          "name": "e-reading-notes-16",
+          "files": 499,
+          "codeFiles": 498,
+          "bytes": 23894,
+          "contentHash": "210c4535adf615f65ce0a1a5ba5079809a1bbcaf6b811dd20f8ef77ee69440e0"
+        }
+      ]
+    }
+  ]
+}
