@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "task088-development-validation/1",
+  "node": "v22.23.2",
+  "pnpm": "10.15.0",
+  "resourceAcceptance": false,
+  "logs": [
+    {
+      "file": "install-first.log.gz",
+      "exit": 0,
+      "bytes": 326,
+      "sha256": "332ef74e1d5b22e88be87796e8745ff9fb4ad202fcbbfb6f53744703db1de91b"
+    },
+    {
+      "file": "build-packages-first.log.gz",
+      "exit": 0,
+      "bytes": 598,
+      "sha256": "103e808ce20097780addb38300e7e06128a67ef85263b8515a778c51c97e26c1"
+    },
+    {
+      "file": "typecheck-first.log.gz",
+      "exit": 0,
+      "bytes": 148,
+      "sha256": "9f1fdc287be2ce7bb1999729aa6abb434d51b7342d77f319dd4eba1e5fa57c0a"
+    },
+    {
+      "file": "focused-first.log.gz",
+      "exit": 1,
+      "bytes": 2355,
+      "sha256": "9fc0dbf7819b7d5d568522dd52c26b43a2abedb2b8681a1b128d768096709f41"
+    },
+    {
+      "file": "focused-second.log.gz",
+      "exit": 1,
+      "bytes": 2386,
+      "sha256": "f6351146a32ac5f7daf1b30c4c96ee6e4b7eb7779e6419147a6d76d2c8d13d67"
+    },
+    {
+      "file": "check-first.log.gz",
+      "exit": 0,
+      "tests": 545,
+      "bytes": 217803,
+      "sha256": "ad8418c15d89bfe1f237074be3c7c4c6f4b8d3d92c1ebcd63a12e37ab593acaa"
+    }
+  ],
+  "firstFailureSnapshots": [
+    {
+      "file": "failure-1/.owner.db.gz",
+      "original": "/tmp/compact-payloads-D1l5Nj/data/.owner.db",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "failure-1/loredock.db.gz",
+      "original": "/tmp/compact-payloads-D1l5Nj/data/loredock.db",
+      "bytes": 311296,
+      "sha256": "122834e64dcf96b2e4d37fe9a0c7ffa7c76f9c7f2157cb01600308816f4f9cbc"
+    },
+    {
+      "file": "failure-2/.owner.db.gz",
+      "original": "/tmp/compact-payloads-2jFPRD/data/.owner.db",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "failure-2/loredock.db.gz",
+      "original": "/tmp/compact-payloads-2jFPRD/data/loredock.db",
+      "bytes": 311296,
+      "sha256": "292918af6974867f07c68dea633aafb0725842629a1e028137aa048df96930a1"
+    }
+  ],
+  "builtServiceImport": {
+    "state": "pass",
+    "analysis": "StreamingCodeAnalysis",
+    "paths": "CodePaths",
+    "modelRequests": 0
+  }
+}

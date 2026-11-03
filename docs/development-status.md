@@ -1,5 +1,25 @@
 # Development status
 
+## Task 088 — Request-local compact payload candidate verified
+
+The [opt-in reader](../scripts/loredock-compact-payloads/README.md) completes original
+payload validation and records consumed identity before retaining only facts,
+ranges and evidence in request-local entries. Every file/gap/domain and all final
+fences remain; the resolver, receipt code and production consumers are unchanged.
+
+All 545 tests, strict typechecks and builds pass. Independent integration compares
+exact default/repeat/selected/page/isolated bytes, work/output/read counters and
+evicted history, plus corrupted input, incomplete/ambiguous/unsupported bindings,
+authorization and asynchronous fences. First test-assumption failures are
+[retained](fixtures/loredock-compact-payloads/README.md). Source/fork/hash/link review
+passes. No resource corpus was authored or run, and memory savings are unmeasured.
+
+PR #91 merged as `6a4f588` after `a8dacff` passed push 41740890855 and pull-request
+41740907626 CI with an identical tree. Next: separately freeze a fresh complete
+uninstrumented qualification for both preparer and reopened lifecycles under the
+unchanged content/resource gates. Streaming/compaction remain unqualified. See
+[Task 088](../tasks/088-loredock-compact-payloads.md); exact-head CI is pending.
+
 ## Task 087 — Complete terminal ownership diagnostic retained
 
 One [fresh frozen run](fixtures/loredock-terminal-memory/README.md) covers 20 sources,
