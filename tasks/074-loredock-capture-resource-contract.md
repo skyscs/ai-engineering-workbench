@@ -1,6 +1,6 @@
 # Task 074 — Complete capture resource contract
 
-Status: scoped before implementation, 2026-11-03.
+Status: design completed and locally reviewed, 2026-11-03. Scope commit `2ebade9`.
 
 ## Baseline
 
@@ -32,3 +32,17 @@ per-operation aggregate counter and deadline, charge ownership without double co
 internal-only composition, error/cleanup behavior and regression/scale stop conditions.
 Record an ADR, active plan and successor boundary. Review local document targets and the
 complete diff; require both exact-head CI events before merge. No production promotion.
+
+## Result
+
+The [resource contract](../docs/loredock/CAPTURE_RESOURCE_CONTRACT.md) and
+[ADR 0052](../docs/decisions/0052-loredock-capture-resource-budget.md) define one internal
+request budget with separate path/receipt subtotals and exact shared charge ownership.
+The deadline/cancellation signal applies inside nested work; local caps, historical identity
+and guarded publication remain intact. Work units are a proxy and synchronous I/O remains
+cooperative. No new public setting or larger bound is introduced.
+
+The fresh successor must allocate useful code within twenty fixed source shares, retain
+complete paths at each size, verify aggregate-only exhaustion and assert relevant unknown
+reasons. No new inputs were generated, no candidate was executed, and no frozen prototype
+or result was changed. Source-site, reference and complete-diff review cover this design.

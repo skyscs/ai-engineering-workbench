@@ -1,5 +1,24 @@
 # Development status
 
+## Task 074 — Complete capture resource contract
+
+Design completed and locally reviewed, 2026-11-03; scope `2ebade9`. Task 073's first
+134/134-case qualification remains frozen. Its outer capture clock includes nested work,
+but its reported receipt units exclude the independent path counter.
+
+The [new contract](loredock/CAPTURE_RESOURCE_CONTRACT.md) defines one request-local deadline
+and shared counter, with separate subtotals and no double charging or raised caps. Nested
+checks enforce the original deadline/cancellation, while source/manifest/original fences and
+synchronous publication remain intact. A shared-only exhaustion case must refuse before
+publication even when both local subtotals fit. Synchronous I/O remains cooperative.
+
+Next: fresh twenty-source/near-limit inputs with exact admitted counts inside fixed source
+shares, full useful paths, independent charge accounting and precise unknown reasons. This
+design changes no runtime, schema, consumer, history, model budget or frozen experiment.
+Local source/reference and diff review cover the task; no measurement or demo was run.
+See [ADR 0052](decisions/0052-loredock-capture-resource-budget.md) and
+[Task 074](../tasks/074-loredock-capture-resource-contract.md).
+
 ## Task 073 — Offline literal-topic paths and receipts
 
 First frozen qualification passed, 2026-11-03. Scope `619e15f`, input freeze `8803a06`,

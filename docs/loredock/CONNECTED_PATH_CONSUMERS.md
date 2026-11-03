@@ -249,3 +249,7 @@ Dynamic expressions abstain as designed. All 113 successful small-family resourc
 meet bounds; raw results and the observer's generic unknown-gap limitation remain recorded.
 Next: fresh twenty-source/near-limit resource review before production integration. Existing
 production adapters, historical bytes and semantic/private-pilot gates remain unchanged.
+
+Task 074's [resource contract](CAPTURE_RESOURCE_CONTRACT.md) requires a shared operation
+budget before the next scale qualification. Independent layer counters are not an aggregate
+capture ceiling. This adds no production consumer or historical migration.
