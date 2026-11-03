@@ -1,6 +1,6 @@
 # Task 087 — Fresh terminal memory ownership diagnostic
 
-Status: scoped, 2026-11-04.
+Status: executed once and locally verified, 2026-11-04; exact-head CI pending.
 
 ## Baseline and scope
 
@@ -47,3 +47,30 @@ performs assessment/readout after worker exit.
   absent/uncertain owners remain an explicit finding. No production promotion.
 - Complete relevant and pinned full checks, source/full-diff/reference/hash review,
   and both exact-head CI events before merge. No models, corporate code or demo work.
+
+## Outcome
+
+Integration `cb0e374` and exact-path checks `4858706` passed two full checks with
+538 tests, strict typechecks and builds. The first tiny process-observer exit race
+and both raw graphs are retained; its RSS correction preceded input freeze.
+Fresh protocol `5fc0900` fixes 20 sources / 9,920 files / 9,897 code files / 21 facts.
+Measured clean head `2a1da00` executed the family exactly once in 330.310 seconds.
+
+All eight complete typed-path/span/scope and source checks pass, including selected,
+page, isolated, repeats and history. Four of eight original resource gates fail:
+repeat-3 heap growth 64.104 MiB; selected/page/isolated RSS 396.813/395.059/395.148 MiB.
+Both terminal graphs and separate parsers are complete. Services have one matching
+instance before close and zero after release; remaining schema/database/statement
+matches have runtime-template structures, not an identified application payload
+retainer. Runtime paths remain unclassified; no native-RSS or leak claim is made.
+
+The [evidence](../docs/fixtures/loredock-terminal-memory/README.md) preserves every
+raw operation, graph, parser output and process exit. No retry, changed limit,
+extra snapshot, old-family execution or production promotion occurred. The next
+single candidate is request-local compact validated payload entries, first proved
+on independent regression inputs. Qualification must use a separately frozen fresh
+uninstrumented complete lifecycle. This diagnostic does not establish that the
+candidate saves memory. See the evidence for the retained formatting-only finding.
+
+PR #90 merged as `db9bdd1` after exact head `90fefe1` passed push 41736504448 and
+pull-request 41736623195 CI (533 tests); its merge tree is identical.

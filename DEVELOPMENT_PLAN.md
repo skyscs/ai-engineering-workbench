@@ -307,6 +307,13 @@ export/process/parser helpers on tiny independent objects. Weak/runtime/native
 uncertainty stays explicit; snapshots never supply resource acceptance. Next:
 separately author/freeze one compatible positive family and complete protocol before
 the single terminal diagnostic. No prior measured code or input is reused as a run.
+[Task 087](tasks/087-loredock-terminal-memory.md) completes one fresh twenty-source
+terminal diagnostic. Full paths/originals/history pass; four operation resource
+gates fail. Selected service instances disappear after release; the remaining
+schema/database/statement matches have runtime-template structure. Next: one
+request-local compact-payload candidate, preserving every validated fact/gap/domain
+and final fence, proved first on independent regressions. A new uninstrumented
+complete qualification remains mandatory; streaming is not promoted.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

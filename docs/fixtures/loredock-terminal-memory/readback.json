@@ -1,0 +1,899 @@
+{
+  "schemaVersion": "task087-reviewed-readback/1",
+  "freezeCommit": "5fc0900",
+  "measuredCommit": "2a1da00",
+  "resultSha256": "4beff28d2011f2ab21666a8205a19352c344316a9c561fa13b2a908e0dc48be7",
+  "overallFailed": true,
+  "diagnosticComplete": true,
+  "completePaths": {
+    "operations": [
+      {
+        "name": "first",
+        "state": "pass"
+      },
+      {
+        "name": "repeat-1",
+        "state": "pass"
+      },
+      {
+        "name": "repeat-2",
+        "state": "pass"
+      },
+      {
+        "name": "repeat-3",
+        "state": "pass"
+      },
+      {
+        "name": "selected",
+        "state": "pass"
+      },
+      {
+        "name": "page-4",
+        "state": "pass"
+      },
+      {
+        "name": "isolated",
+        "state": "pass"
+      },
+      {
+        "name": "history",
+        "state": "pass"
+      }
+    ],
+    "failed": false
+  },
+  "assessment": {
+    "artifact": {
+      "planned": 8,
+      "pass": 8,
+      "fail": 0,
+      "blocked": 0,
+      "not-applicable": 0,
+      "required": 8
+    },
+    "shape": {
+      "planned": 8,
+      "pass": 8,
+      "fail": 0,
+      "blocked": 0,
+      "not-applicable": 0,
+      "required": 8
+    },
+    "support": {
+      "planned": 8,
+      "pass": 8,
+      "fail": 0,
+      "blocked": 0,
+      "not-applicable": 0,
+      "required": 8
+    },
+    "usefulness": {
+      "planned": 8,
+      "pass": 7,
+      "fail": 0,
+      "blocked": 0,
+      "not-applicable": 1,
+      "required": 7
+    },
+    "history": {
+      "planned": 8,
+      "pass": 1,
+      "fail": 0,
+      "blocked": 0,
+      "not-applicable": 7,
+      "required": 1
+    },
+    "rawRepeat": {
+      "planned": 8,
+      "pass": 3,
+      "fail": 0,
+      "blocked": 0,
+      "not-applicable": 5,
+      "required": 3
+    },
+    "resources": {
+      "planned": 8,
+      "pass": 4,
+      "fail": 4,
+      "blocked": 0,
+      "not-applicable": 0,
+      "required": 8
+    }
+  },
+  "process": {
+    "schemaVersion": "loredock-owned-heap-child/1",
+    "executable": "/usr/bin/prlimit",
+    "args": [
+      "--fsize=134217728:134217728",
+      "--",
+      "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+      "/home/toshiba/aew/worktrees/task087-terminal-memory/scripts/loredock-terminal-memory/child.mjs",
+      "/home/toshiba/aew/measurements/task087-first-run/worker",
+      "/home/toshiba/aew/worktrees/task087-terminal-memory/scripts/loredock-terminal-memory/config.mjs",
+      "496"
+    ],
+    "node": "v22.23.2",
+    "v8": "12.4.254.21-node.56",
+    "limits": {
+      "fileBytes": 134217728,
+      "nodes": 1000000,
+      "edges": 4000000,
+      "strings": 1000000,
+      "selectors": 8,
+      "matches": 8,
+      "pathSteps": 64,
+      "summaryBytes": 262144,
+      "watchdogMs": 900000,
+      "sampledRssBytes": 1073741824
+    },
+    "resourceAcceptance": false,
+    "errors": [],
+    "samples": 32373,
+    "peakRssBytes": 417583104,
+    "rssObservation": {
+      "samples": 32373,
+      "peakRssBytes": 417583104,
+      "missingSamples": 1,
+      "maximumMissingMs": 0.452134000021033,
+      "lastMissingState": "R",
+      "unavailableLimitMs": 100
+    },
+    "pid": 2287885,
+    "exit": 0,
+    "signal": null,
+    "wallMs": 329704.35643800005,
+    "failed": false
+  },
+  "operations": [
+    {
+      "name": "first",
+      "wallMs": 3364.624165999994,
+      "maxSliceMs": 76.28546500002267,
+      "peakRssMiB": 262.3671875,
+      "heapGrowthMiB": 51.42481994628906,
+      "metrics": {
+        "accountingVersion": "shared-capture-work/1",
+        "pathWork": 288371,
+        "receiptWork": 85190,
+        "totalWork": 373561,
+        "wallMs": 3364.278266999987,
+        "work": 373561,
+        "checkpoints": 14,
+        "projectionBytes": 28383,
+        "receiptBytes": 43657,
+        "textBytes": 3200,
+        "spans": 10,
+        "sources": 20,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 0,
+        "writeCalls": 0,
+        "factReads": 0,
+        "snapshots": 1,
+        "pathReads": 0,
+        "originalReads": 0,
+        "changedRows": 0
+      },
+      "after": {
+        "gitCalls": 0,
+        "writeCalls": 0,
+        "factReads": 9897,
+        "snapshots": 4,
+        "pathReads": 1,
+        "originalReads": 9910,
+        "changedRows": 0
+      },
+      "legacyBefore": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593",
+      "legacyAfter": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593",
+      "sums": {
+        "path": 288371,
+        "receipt": 85190
+      }
+    },
+    {
+      "name": "repeat-1",
+      "wallMs": 3357.0285269999877,
+      "maxSliceMs": 72.64399599999888,
+      "peakRssMiB": 335.83984375,
+      "heapGrowthMiB": 54.009796142578125,
+      "metrics": {
+        "accountingVersion": "shared-capture-work/1",
+        "pathWork": 288371,
+        "receiptWork": 85190,
+        "totalWork": 373561,
+        "wallMs": 3356.9124400000146,
+        "work": 373561,
+        "checkpoints": 14,
+        "projectionBytes": 28383,
+        "receiptBytes": 43657,
+        "textBytes": 3200,
+        "spans": 10,
+        "sources": 20,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 0,
+        "writeCalls": 0,
+        "factReads": 9897,
+        "snapshots": 4,
+        "pathReads": 1,
+        "originalReads": 9910,
+        "changedRows": 0
+      },
+      "after": {
+        "gitCalls": 0,
+        "writeCalls": 0,
+        "factReads": 19794,
+        "snapshots": 7,
+        "pathReads": 2,
+        "originalReads": 19820,
+        "changedRows": 0
+      },
+      "legacyBefore": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593",
+      "legacyAfter": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593",
+      "sums": {
+        "path": 288371,
+        "receipt": 85190
+      }
+    },
+    {
+      "name": "repeat-2",
+      "wallMs": 3304.2772819999955,
+      "maxSliceMs": 80.74060799999279,
+      "peakRssMiB": 358.6796875,
+      "heapGrowthMiB": 19.735252380371094,
+      "metrics": {
+        "accountingVersion": "shared-capture-work/1",
+        "pathWork": 288371,
+        "receiptWork": 85190,
+        "totalWork": 373561,
+        "wallMs": 3304.0472810000065,
+        "work": 373561,
+        "checkpoints": 14,
+        "projectionBytes": 28383,
+        "receiptBytes": 43657,
+        "textBytes": 3200,
+        "spans": 10,
+        "sources": 20,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 0,
+        "writeCalls": 0,
+        "factReads": 19794,
+        "snapshots": 7,
+        "pathReads": 2,
+        "originalReads": 19820,
+        "changedRows": 0
+      },
+      "after": {
+        "gitCalls": 0,
+        "writeCalls": 0,
+        "factReads": 29691,
+        "snapshots": 10,
+        "pathReads": 3,
+        "originalReads": 29730,
+        "changedRows": 0
+      },
+      "legacyBefore": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593",
+      "legacyAfter": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593",
+      "sums": {
+        "path": 288371,
+        "receipt": 85190
+      }
+    },
+    {
+      "name": "repeat-3",
+      "wallMs": 3269.0047490000143,
+      "maxSliceMs": 68.29511599999387,
+      "peakRssMiB": 365.8125,
+      "heapGrowthMiB": 64.10367584228516,
+      "metrics": {
+        "accountingVersion": "shared-capture-work/1",
+        "pathWork": 288371,
+        "receiptWork": 85190,
+        "totalWork": 373561,
+        "wallMs": 3268.8178860000044,
+        "work": 373561,
+        "checkpoints": 14,
+        "projectionBytes": 28383,
+        "receiptBytes": 43657,
+        "textBytes": 3200,
+        "spans": 10,
+        "sources": 20,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 0,
+        "writeCalls": 0,
+        "factReads": 29691,
+        "snapshots": 10,
+        "pathReads": 3,
+        "originalReads": 29730,
+        "changedRows": 0
+      },
+      "after": {
+        "gitCalls": 0,
+        "writeCalls": 0,
+        "factReads": 39588,
+        "snapshots": 13,
+        "pathReads": 4,
+        "originalReads": 39640,
+        "changedRows": 0
+      },
+      "legacyBefore": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593",
+      "legacyAfter": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593",
+      "sums": {
+        "path": 288371,
+        "receipt": 85190
+      }
+    },
+    {
+      "name": "selected",
+      "wallMs": 3323.7511380000215,
+      "maxSliceMs": 73.00917499998468,
+      "peakRssMiB": 396.8125,
+      "heapGrowthMiB": 39.916656494140625,
+      "metrics": {
+        "accountingVersion": "shared-capture-work/1",
+        "pathWork": 288352,
+        "receiptWork": 78036,
+        "totalWork": 366388,
+        "wallMs": 3323.5848560000013,
+        "work": 366388,
+        "checkpoints": 14,
+        "projectionBytes": 24901,
+        "receiptBytes": 39989,
+        "textBytes": 3200,
+        "spans": 10,
+        "sources": 20,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 0,
+        "writeCalls": 0,
+        "factReads": 39588,
+        "snapshots": 13,
+        "pathReads": 4,
+        "originalReads": 39640,
+        "changedRows": 0
+      },
+      "after": {
+        "gitCalls": 0,
+        "writeCalls": 0,
+        "factReads": 49485,
+        "snapshots": 16,
+        "pathReads": 5,
+        "originalReads": 49550,
+        "changedRows": 0
+      },
+      "legacyBefore": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593",
+      "legacyAfter": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593",
+      "sums": {
+        "path": 288352,
+        "receipt": 78036
+      }
+    },
+    {
+      "name": "page-4",
+      "wallMs": 3241.4175089999917,
+      "maxSliceMs": 71.33149299997604,
+      "peakRssMiB": 395.05859375,
+      "heapGrowthMiB": 36.61370849609375,
+      "metrics": {
+        "accountingVersion": "shared-capture-work/1",
+        "pathWork": 288286,
+        "receiptWork": 0,
+        "totalWork": 288286,
+        "wallMs": 3241.2167759999866
+      },
+      "before": {
+        "gitCalls": 0,
+        "writeCalls": 0,
+        "factReads": 49485,
+        "snapshots": 16,
+        "pathReads": 5,
+        "originalReads": 49550,
+        "changedRows": 0
+      },
+      "after": {
+        "gitCalls": 0,
+        "writeCalls": 0,
+        "factReads": 59382,
+        "snapshots": 18,
+        "pathReads": 6,
+        "originalReads": 59450,
+        "changedRows": 0
+      },
+      "legacyBefore": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593",
+      "legacyAfter": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593",
+      "sums": {
+        "path": 288286,
+        "receipt": 0
+      }
+    },
+    {
+      "name": "isolated",
+      "wallMs": 3309.217917000031,
+      "maxSliceMs": 75.5632259999984,
+      "peakRssMiB": 395.1484375,
+      "heapGrowthMiB": 18.392654418945312,
+      "metrics": {
+        "accountingVersion": "shared-capture-work/1",
+        "pathWork": 288334,
+        "receiptWork": 44150,
+        "totalWork": 332484,
+        "wallMs": 3309.1043560000253,
+        "work": 332484,
+        "checkpoints": 9,
+        "projectionBytes": 11690,
+        "receiptBytes": 21187,
+        "textBytes": 1356,
+        "spans": 5,
+        "sources": 20,
+        "publicationLocks": 1
+      },
+      "before": {
+        "gitCalls": 0,
+        "writeCalls": 0,
+        "factReads": 59382,
+        "snapshots": 18,
+        "pathReads": 6,
+        "originalReads": 59450,
+        "changedRows": 0
+      },
+      "after": {
+        "gitCalls": 0,
+        "writeCalls": 0,
+        "factReads": 69279,
+        "snapshots": 21,
+        "pathReads": 7,
+        "originalReads": 69355,
+        "changedRows": 0
+      },
+      "legacyBefore": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593",
+      "legacyAfter": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593",
+      "sums": {
+        "path": 288334,
+        "receipt": 44150
+      }
+    },
+    {
+      "name": "history",
+      "wallMs": 4.604786000039894,
+      "maxSliceMs": 4.601438999990933,
+      "peakRssMiB": 359.6875,
+      "heapGrowthMiB": 2.240631103515625,
+      "metrics": {
+        "accountingVersion": "shared-capture-work/1",
+        "pathWork": 0,
+        "receiptWork": 75290,
+        "totalWork": 75290,
+        "wallMs": 4.449408000044059,
+        "work": 75290,
+        "checkpoints": 11,
+        "projectionBytes": 28383,
+        "receiptBytes": 43657,
+        "textBytes": 3200,
+        "spans": 10,
+        "sources": 20,
+        "publicationLocks": 0
+      },
+      "before": {
+        "gitCalls": 0,
+        "writeCalls": 59390,
+        "factReads": 69279,
+        "snapshots": 21,
+        "pathReads": 7,
+        "originalReads": 89149,
+        "changedRows": 69344
+      },
+      "after": {
+        "gitCalls": 0,
+        "writeCalls": 59390,
+        "factReads": 69279,
+        "snapshots": 21,
+        "pathReads": 7,
+        "originalReads": 89159,
+        "changedRows": 69344
+      },
+      "legacyBefore": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593",
+      "legacyAfter": "2512cce3fee33a347bbb2519e16d29b883c5daadc74609224cb68215c50f3593",
+      "sums": {
+        "path": 0,
+        "receipt": 75290
+      }
+    }
+  ],
+  "terminal": [
+    {
+      "reference": {
+        "stage": "after-history",
+        "file": "after-history.heapsnapshot",
+        "bytes": 19761615,
+        "sha256": "d5f1c9dcf5dfe160e772754904d5bcfc7b121855453c48ab567534a66a5ca02f",
+        "before": {
+          "rss": 377159680,
+          "heapTotal": 150536192,
+          "heapUsed": 120087952,
+          "external": 2671822,
+          "arrayBuffers": 307144
+        },
+        "after": {
+          "rss": 250359808,
+          "heapTotal": 40087552,
+          "heapUsed": 37365344,
+          "external": 2389871,
+          "arrayBuffers": 25193
+        },
+        "wallMs": 342.9595219999901,
+        "backendCollection": true,
+        "resourceAcceptance": false
+      },
+      "process": {
+        "schemaVersion": "loredock-owned-heap-child/1",
+        "executable": "/usr/bin/prlimit",
+        "args": [
+          "--fsize=134217728:134217728",
+          "--",
+          "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+          "/home/toshiba/aew/worktrees/task087-terminal-memory/scripts/loredock-terminal-memory/parse-child.mjs",
+          "/home/toshiba/aew/measurements/task087-first-run/parse-after-history",
+          "/home/toshiba/aew/measurements/task087-first-run/worker",
+          "{\"stage\":\"after-history\",\"file\":\"after-history.heapsnapshot\",\"bytes\":19761615,\"sha256\":\"d5f1c9dcf5dfe160e772754904d5bcfc7b121855453c48ab567534a66a5ca02f\",\"before\":{\"rss\":377159680,\"heapTotal\":150536192,\"heapUsed\":120087952,\"external\":2671822,\"arrayBuffers\":307144},\"after\":{\"rss\":250359808,\"heapTotal\":40087552,\"heapUsed\":37365344,\"external\":2389871,\"arrayBuffers\":25193},\"wallMs\":342.9595219999901,\"backendCollection\":true,\"resourceAcceptance\":false}",
+          "[{\"label\":\"file fact payloads\",\"name\":\"Object\",\"properties\":{\"schemaVersion\":\"loredock-file-facts/1\"}},{\"label\":\"CodePaths\",\"name\":\"CodePaths\",\"properties\":{}},{\"label\":\"StreamingCodeAnalysis\",\"name\":\"StreamingCodeAnalysis\",\"properties\":{}},{\"label\":\"Catalog\",\"name\":\"Catalog\",\"properties\":{}},{\"label\":\"CatalogStore\",\"name\":\"CatalogStore\",\"properties\":{}},{\"label\":\"SourceGit\",\"name\":\"SourceGit\",\"properties\":{}},{\"label\":\"DatabaseSync\",\"name\":\"DatabaseSync\",\"properties\":{}},{\"label\":\"StatementSync\",\"name\":\"StatementSync\",\"properties\":{}}]",
+          "{\"fileBytes\":134217728,\"nodes\":1000000,\"edges\":4000000,\"strings\":1000000,\"selectors\":8,\"matches\":8,\"pathSteps\":64,\"summaryBytes\":262144,\"watchdogMs\":60000,\"sampledRssBytes\":1073741824}"
+        ],
+        "node": "v22.23.2",
+        "v8": "12.4.254.21-node.56",
+        "limits": {
+          "fileBytes": 134217728,
+          "nodes": 1000000,
+          "edges": 4000000,
+          "strings": 1000000,
+          "selectors": 8,
+          "matches": 8,
+          "pathSteps": 64,
+          "summaryBytes": 262144,
+          "watchdogMs": 60000,
+          "sampledRssBytes": 1073741824
+        },
+        "resourceAcceptance": false,
+        "errors": [],
+        "samples": 21,
+        "peakRssBytes": 168591360,
+        "rssObservation": {
+          "samples": 21,
+          "peakRssBytes": 168591360,
+          "missingSamples": 0,
+          "maximumMissingMs": 0,
+          "lastMissingState": null,
+          "unavailableLimitMs": 100
+        },
+        "pid": 2319376,
+        "exit": 0,
+        "signal": null,
+        "wallMs": 221.69315000000643,
+        "failed": false
+      },
+      "nodes": 203656,
+      "edges": 847072,
+      "strings": 85168,
+      "shallowBytes": 37524807,
+      "groups": [
+        {
+          "selector": {
+            "label": "file fact payloads",
+            "name": "Object",
+            "properties": {
+              "schemaVersion": "loredock-file-facts/1"
+            }
+          },
+          "count": 2,
+          "shallowBytes": 144,
+          "exampleNodeIndices": [
+            129992,
+            190760
+          ],
+          "pathStates": [
+            "runtime-edges-unclassified",
+            "runtime-edges-unclassified"
+          ]
+        },
+        {
+          "selector": {
+            "label": "CodePaths",
+            "name": "CodePaths",
+            "properties": {}
+          },
+          "count": 1,
+          "shallowBytes": 152,
+          "exampleNodeIndices": [
+            87723
+          ],
+          "pathStates": [
+            "runtime-edges-unclassified"
+          ]
+        },
+        {
+          "selector": {
+            "label": "StreamingCodeAnalysis",
+            "name": "StreamingCodeAnalysis",
+            "properties": {}
+          },
+          "count": 1,
+          "shallowBytes": 160,
+          "exampleNodeIndices": [
+            87713
+          ],
+          "pathStates": [
+            "runtime-edges-unclassified"
+          ]
+        },
+        {
+          "selector": {
+            "label": "Catalog",
+            "name": "Catalog",
+            "properties": {}
+          },
+          "count": 1,
+          "shallowBytes": 160,
+          "exampleNodeIndices": [
+            87714
+          ],
+          "pathStates": [
+            "runtime-edges-unclassified"
+          ]
+        },
+        {
+          "selector": {
+            "label": "CatalogStore",
+            "name": "CatalogStore",
+            "properties": {}
+          },
+          "count": 1,
+          "shallowBytes": 136,
+          "exampleNodeIndices": [
+            87721
+          ],
+          "pathStates": [
+            "runtime-edges-unclassified"
+          ]
+        },
+        {
+          "selector": {
+            "label": "SourceGit",
+            "name": "SourceGit",
+            "properties": {}
+          },
+          "count": 1,
+          "shallowBytes": 104,
+          "exampleNodeIndices": [
+            87783
+          ],
+          "pathStates": [
+            "runtime-edges-unclassified"
+          ]
+        },
+        {
+          "selector": {
+            "label": "DatabaseSync",
+            "name": "DatabaseSync",
+            "properties": {}
+          },
+          "count": 3,
+          "shallowBytes": 120,
+          "exampleNodeIndices": [
+            38340,
+            38341,
+            111111
+          ],
+          "pathStates": [
+            "runtime-edges-unclassified",
+            "runtime-edges-unclassified",
+            "runtime-edges-unclassified"
+          ]
+        },
+        {
+          "selector": {
+            "label": "StatementSync",
+            "name": "StatementSync",
+            "properties": {}
+          },
+          "count": 1,
+          "shallowBytes": 40,
+          "exampleNodeIndices": [
+            111112
+          ],
+          "pathStates": [
+            "runtime-edges-unclassified"
+          ]
+        }
+      ]
+    },
+    {
+      "reference": {
+        "stage": "after-release",
+        "file": "after-release.heapsnapshot",
+        "bytes": 18507694,
+        "sha256": "1c54ad5760773a188b83c64d284b1ecfcda01192f056d981ad52891f15ef558b",
+        "before": {
+          "rss": 251801600,
+          "heapTotal": 43233280,
+          "heapUsed": 37623624,
+          "external": 2543851,
+          "arrayBuffers": 179173
+        },
+        "after": {
+          "rss": 250478592,
+          "heapTotal": 39301120,
+          "heapUsed": 36589656,
+          "external": 2389871,
+          "arrayBuffers": 25193
+        },
+        "wallMs": 276.6256910000229,
+        "backendCollection": true,
+        "resourceAcceptance": false
+      },
+      "process": {
+        "schemaVersion": "loredock-owned-heap-child/1",
+        "executable": "/usr/bin/prlimit",
+        "args": [
+          "--fsize=134217728:134217728",
+          "--",
+          "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+          "/home/toshiba/aew/worktrees/task087-terminal-memory/scripts/loredock-terminal-memory/parse-child.mjs",
+          "/home/toshiba/aew/measurements/task087-first-run/parse-after-release",
+          "/home/toshiba/aew/measurements/task087-first-run/worker",
+          "{\"stage\":\"after-release\",\"file\":\"after-release.heapsnapshot\",\"bytes\":18507694,\"sha256\":\"1c54ad5760773a188b83c64d284b1ecfcda01192f056d981ad52891f15ef558b\",\"before\":{\"rss\":251801600,\"heapTotal\":43233280,\"heapUsed\":37623624,\"external\":2543851,\"arrayBuffers\":179173},\"after\":{\"rss\":250478592,\"heapTotal\":39301120,\"heapUsed\":36589656,\"external\":2389871,\"arrayBuffers\":25193},\"wallMs\":276.6256910000229,\"backendCollection\":true,\"resourceAcceptance\":false}",
+          "[{\"label\":\"file fact payloads\",\"name\":\"Object\",\"properties\":{\"schemaVersion\":\"loredock-file-facts/1\"}},{\"label\":\"CodePaths\",\"name\":\"CodePaths\",\"properties\":{}},{\"label\":\"StreamingCodeAnalysis\",\"name\":\"StreamingCodeAnalysis\",\"properties\":{}},{\"label\":\"Catalog\",\"name\":\"Catalog\",\"properties\":{}},{\"label\":\"CatalogStore\",\"name\":\"CatalogStore\",\"properties\":{}},{\"label\":\"SourceGit\",\"name\":\"SourceGit\",\"properties\":{}},{\"label\":\"DatabaseSync\",\"name\":\"DatabaseSync\",\"properties\":{}},{\"label\":\"StatementSync\",\"name\":\"StatementSync\",\"properties\":{}}]",
+          "{\"fileBytes\":134217728,\"nodes\":1000000,\"edges\":4000000,\"strings\":1000000,\"selectors\":8,\"matches\":8,\"pathSteps\":64,\"summaryBytes\":262144,\"watchdogMs\":60000,\"sampledRssBytes\":1073741824}"
+        ],
+        "node": "v22.23.2",
+        "v8": "12.4.254.21-node.56",
+        "limits": {
+          "fileBytes": 134217728,
+          "nodes": 1000000,
+          "edges": 4000000,
+          "strings": 1000000,
+          "selectors": 8,
+          "matches": 8,
+          "pathSteps": 64,
+          "summaryBytes": 262144,
+          "watchdogMs": 60000,
+          "sampledRssBytes": 1073741824
+        },
+        "resourceAcceptance": false,
+        "errors": [],
+        "samples": 20,
+        "peakRssBytes": 163074048,
+        "rssObservation": {
+          "samples": 20,
+          "peakRssBytes": 163074048,
+          "missingSamples": 0,
+          "maximumMissingMs": 0,
+          "lastMissingState": null,
+          "unavailableLimitMs": 100
+        },
+        "pid": 2319389,
+        "exit": 0,
+        "signal": null,
+        "wallMs": 212.44335000001593,
+        "failed": false
+      },
+      "nodes": 191941,
+      "edges": 810407,
+      "strings": 75173,
+      "shallowBytes": 36748479,
+      "groups": [
+        {
+          "selector": {
+            "label": "file fact payloads",
+            "name": "Object",
+            "properties": {
+              "schemaVersion": "loredock-file-facts/1"
+            }
+          },
+          "count": 2,
+          "shallowBytes": 144,
+          "exampleNodeIndices": [
+            118148,
+            177477
+          ],
+          "pathStates": [
+            "runtime-edges-unclassified",
+            "runtime-edges-unclassified"
+          ]
+        },
+        {
+          "selector": {
+            "label": "CodePaths",
+            "name": "CodePaths",
+            "properties": {}
+          },
+          "count": 0,
+          "shallowBytes": 0,
+          "exampleNodeIndices": [],
+          "pathStates": []
+        },
+        {
+          "selector": {
+            "label": "StreamingCodeAnalysis",
+            "name": "StreamingCodeAnalysis",
+            "properties": {}
+          },
+          "count": 0,
+          "shallowBytes": 0,
+          "exampleNodeIndices": [],
+          "pathStates": []
+        },
+        {
+          "selector": {
+            "label": "Catalog",
+            "name": "Catalog",
+            "properties": {}
+          },
+          "count": 0,
+          "shallowBytes": 0,
+          "exampleNodeIndices": [],
+          "pathStates": []
+        },
+        {
+          "selector": {
+            "label": "CatalogStore",
+            "name": "CatalogStore",
+            "properties": {}
+          },
+          "count": 0,
+          "shallowBytes": 0,
+          "exampleNodeIndices": [],
+          "pathStates": []
+        },
+        {
+          "selector": {
+            "label": "SourceGit",
+            "name": "SourceGit",
+            "properties": {}
+          },
+          "count": 0,
+          "shallowBytes": 0,
+          "exampleNodeIndices": [],
+          "pathStates": []
+        },
+        {
+          "selector": {
+            "label": "DatabaseSync",
+            "name": "DatabaseSync",
+            "properties": {}
+          },
+          "count": 1,
+          "shallowBytes": 40,
+          "exampleNodeIndices": [
+            100271
+          ],
+          "pathStates": [
+            "runtime-edges-unclassified"
+          ]
+        },
+        {
+          "selector": {
+            "label": "StatementSync",
+            "name": "StatementSync",
+            "properties": {}
+          },
+          "count": 1,
+          "shallowBytes": 40,
+          "exampleNodeIndices": [
+            100272
+          ],
+          "pathStates": [
+            "runtime-edges-unclassified"
+          ]
+        }
+      ]
+    }
+  ],
+  "resourceAcceptance": false,
+  "interpretation": "Post-collection graphs only; selected runtime paths remain unclassified. No leak/native-RSS/shutdown-savings claim."
+}

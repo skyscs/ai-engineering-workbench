@@ -1,6 +1,6 @@
 # Task 086 — Bounded terminal heap observation helpers
 
-Status: implemented and locally verified; exact-head CI pending, 2026-11-04.
+Status: verified and merged through PR #90 as `db9bdd1`, 2026-11-04.
 
 ## Baseline and scope
 
@@ -93,3 +93,8 @@ before equality; real child assertions reject wrong order, omitted and duplicate
 extra calls and verify exactly two files. The final full check repeats after this
 correction and again passes all 533 tests, strict typechecks and builds. Both full
 logs remain retained; no large or exhausted input was involved.
+
+Exact head `90fefe1` passed push 41736504448 and pull-request 41736623195 CI
+(533 tests). Merge `db9bdd1` has the identical tree. Task 087 integrates the
+application lifecycle and records a separate pre-freeze RSS exit-race correction;
+the Task 086 first outcomes remain unchanged.
