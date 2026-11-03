@@ -1,0 +1,175 @@
+{
+  "schemaVersion": "task073-topic-oracle/1",
+  "authorship": "Agent-authored from fresh source bytes before implementation; not blind external assessment.",
+  "adapter": "connected-literal-topics-experiment-v1",
+  "rule": {
+    "version": "direct-java-topic-literal/1",
+    "maxUtf8Bytes": 256
+  },
+  "defaultFlows": 2,
+  "defaultTopic": "parcel.queued.v3",
+  "defaultEnvironment": "test",
+  "sourceNames": [
+    "parcel-console",
+    "parcel-publisher",
+    "parcel-index",
+    "parcel-guide"
+  ],
+  "uncitedSource": "parcel-guide",
+  "requiredNodes": [
+    [
+      "parcel-console",
+      "ui/AAQueue.vue",
+      "symbol",
+      "enqueue",
+      "vue-action"
+    ],
+    [
+      "parcel-console",
+      "ui/BBRepeat.vue",
+      "symbol",
+      "repeat",
+      "vue-action"
+    ],
+    [
+      "parcel-console",
+      "ui/queue.ts",
+      "http-request",
+      "POST /v3/parcels",
+      null
+    ],
+    [
+      "parcel-publisher",
+      "config/routes.json",
+      "handler-reference",
+      "Parcels.queue",
+      null
+    ],
+    [
+      "parcel-publisher",
+      "java/Parcels.java",
+      "symbol",
+      "Parcels.queue",
+      "java-method"
+    ],
+    [
+      "parcel-publisher",
+      "java/Parcels.java",
+      "event-publish",
+      "Publish ParcelQueued",
+      null
+    ],
+    [
+      "parcel-index",
+      "java/QueueReader.java",
+      "event-subscribe",
+      "Subscribe via KafkaSubscriber",
+      null
+    ],
+    [
+      "parcel-index",
+      "java/QueueReader.java",
+      "document-write",
+      "MongoCollection.replaceOne",
+      null
+    ]
+  ],
+  "isolatedRoot": [
+    "parcel-console",
+    "ui/ZZInspect.vue",
+    "inspect",
+    "vue-action"
+  ],
+  "alternative": {
+    "source": "parcel-publisher",
+    "path": "shadow/Parcels.java",
+    "text": "final class Parcels { void queue(String parcel, String tenant) {} }\n"
+  },
+  "receiptLimits": {
+    "projectionBytes": 524288,
+    "spans": 30,
+    "textBytes": 65536,
+    "receiptBytes": 655360,
+    "wallMs": 5000,
+    "work": 1000000,
+    "sources": 20
+  },
+  "resources": {
+    "maxSliceMs": 150,
+    "sampledRssMiB": 384,
+    "sampledHeapGrowthMiB": 64,
+    "sampleIntervalMs": 5
+  },
+  "pathReducedLimits": {
+    "comparisons": 0,
+    "nodes": 0,
+    "edges": 0,
+    "steps": 1,
+    "flows": 0,
+    "outputBytes": 0,
+    "work": 0,
+    "facts": 0,
+    "bindingRecords": 0
+  },
+  "pathCancelStages": [
+    "metadata",
+    "read",
+    "resolve",
+    "admit"
+  ],
+  "captureCancelStages": [
+    "start",
+    "projection",
+    "originals",
+    "prepared",
+    "handoff"
+  ],
+  "captureMutationStages": [
+    "start",
+    "projection",
+    "originals",
+    "prepared",
+    "handoff"
+  ],
+  "captureMutations": [
+    "metadata",
+    "manifest",
+    "original",
+    "policy",
+    "registry",
+    "cited-revocation",
+    "uncited-revocation"
+  ],
+  "historyCases": [
+    "eviction",
+    "restart",
+    "new-index",
+    "registry-growth",
+    "alternative-change",
+    "cited-revocation",
+    "uncited-revocation",
+    "policy",
+    "corrupt-original",
+    "missing-file"
+  ],
+  "corruptions": [
+    "outer-hash",
+    "unknown-adapter",
+    "unknown-schema",
+    "topic-value",
+    "topic-expression",
+    "topic-support",
+    "topic-rule",
+    "missing-witness",
+    "unexpected-witness",
+    "original-text",
+    "missing-dependency",
+    "duplicate-key"
+  ],
+  "mandatoryGates": [
+    "useful-path",
+    "support-and-safety",
+    "resources",
+    "observer-validity"
+  ]
+}

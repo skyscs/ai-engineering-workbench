@@ -190,3 +190,13 @@ stdout/stderr/exit and resource samples. A harness failure rejects the applicabl
 
 Task 072 defines this contract only. It does not freeze the successor corpus, implement
 literal-topic matching, allocate model attempts or promote the Task 071 receipt prototype.
+
+## Task 073 outcome
+
+The [fresh literal-topic qualification](../fixtures/loredock-literal-topics/README.md)
+passes 134/134 cases and 10,793 counted assertions. Complete literal-based paths, typed
+alternative history and receipt integrity pass with explicitly versioned offline identities.
+Dynamic expressions abstain as designed. All 113 successful small-family resource readings
+meet bounds; raw results and the observer's generic unknown-gap limitation remain recorded.
+Next: fresh twenty-source/near-limit resource review before production integration. Existing
+production adapters, historical bytes and semantic/private-pilot gates remain unchanged.

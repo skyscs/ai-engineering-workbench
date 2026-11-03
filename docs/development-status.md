@@ -1,5 +1,27 @@
 # Development status
 
+## Task 073 — Offline literal-topic paths and receipts
+
+First frozen qualification passed, 2026-11-03. Scope `619e15f`, input freeze `8803a06`,
+candidate/observer `3d92e73966a80db5f95f935ca2438a7a776a8bad`. PR #76 merged as `385d70a`
+after exact head `d118e40303cdc7d7e93c0ef4ee85423997f429f8` passed push 41546702430 and
+pull-request 41546721936 CI (488 tests), with an identical merge tree.
+
+The [retained first run](fixtures/loredock-literal-topics/README.md) passes 134/134 cases
+and 10,793 assertions. Eleven positive variants retain full write-ending paths using exact
+Java topic literals; the dynamic-setting control intentionally loses its former candidate.
+Explicit experimental identities/witnesses preserve complete original support and receipt
+history. Typed changed-alternative checks, early raw journaling and refusal validation address
+the earlier observer weaknesses; all 235 raw artifacts remain available. A generic unknown-gap
+assertion is weaker than intended; direct readback confirms relevant reasons in every case.
+
+All 113 successful resource observations meet limits on this small four-source family. Full
+strict checks, 493 tests and builds plus final focused checks pass. Production behavior, old
+history, prior failed gates and model budgets remain unchanged. No corporate or demo access.
+Next: separately scope fresh twenty-source/near-limit resources before production integration.
+Small synthetic success does not establish broader semantics, routing or private-pilot readiness.
+See [Task 073](../tasks/073-loredock-literal-topic-qualification.md).
+
 ## Task 072 — Event-topic evidence contract
 
 Design completed and locally reviewed, 2026-11-03; scope `fddad3b`. PR #75 merged as

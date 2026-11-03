@@ -217,6 +217,13 @@ literals, complete consumer/contract evidence, explicit dynamic-expression abste
 no inferred JSON-setting binding. Next: freeze fresh useful-path, ambiguity, support and
 receipt-lifecycle cases, then qualify that offline successor with typed observer identities
 and raw observations journaled before assertions. Existing production adapters stay intact.
+[Task 073](tasks/073-loredock-literal-topic-qualification.md) passes that fresh offline
+qualification: 134/134 cases, 10,793 assertions, complete write-ending paths in eleven
+positive variants, explicit dynamic abstention and typed alternative-history checks.
+[All first observations](docs/fixtures/loredock-literal-topics/README.md) are retained with
+the observer's unknown-gap limitation and readback. Small-family resource checks pass;
+next qualify twenty-source/near-limit costs on fresh prospective inputs before a separate
+production integration. This does not switch consumers or overturn old semantic gates.
 The user demo and feedback stay separate from these checks; broader semantic synthesis
 and question-context changes remain open.
 Preserve all failed evaluations;

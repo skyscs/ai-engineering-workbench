@@ -1,0 +1,295 @@
+// Offline Task 073 fork; baseline source hashes are in baseline.json. Production remains unchanged.
+import path from 'node:path';
+import { topicRule, literalTopic } from './topic.mjs';
+
+export function createTopicResolver(services) {
+const { CatalogError, sha256, compareHeaders } = services;
+// Resolve complete qualified binding domains before applying display caps.
+const unique = (values) => [...new Set(values)].sort();
+/** Code syntax and candidate wiring are navigation aids, never observed execution. */
+async function resolvePathFacts(catalog, buildId, supplied) {
+    const declaration = supplied.declaration, build = catalog.readBuild(buildId);
+    const nodes = [], edges = [], resolutions = [];
+    const nodeIndex = new Map(), edgeIds = new Set(), sourceIndex = new Map(build.sources.map(source => [source.sourceId, source]));
+    const exports = new Map(), javaExact = new Map(), javaShort = new Map(), consumerIndex = new Map(), byOwner = new Map(), incoming = new Set();
+    const key = (...parts) => JSON.stringify(parts);
+    const append = (index, name, value) => { supplied.work.charge(1); const values = index.get(name) ?? []; values.push(value); index.set(name, values); };
+    const get = (index, name) => { const values = index.get(name) ?? []; supplied.work.charge(1); return values; };
+    await supplied.work.step('resolve', 0, true);
+    let alternativeReferences = 0;
+    const available = new Map(Object.values(declaration.evidence).map(ref => [ref.id, ref]));
+    const omissions = {};
+    const symbols = [], operations = [];
+    let parsedBytes = 0, examinedDocuments = 0, comparisons = 0;
+    const omit = (reason, count = 1) => { omissions[reason] = (omissions[reason] ?? 0) + count; };
+    const id = (...parts) => sha256(JSON.stringify([supplied.generationId, 'connected-literal-topics-experiment-v1', ...parts]));
+    function addNode(item) {
+        const existing = nodeIndex.get(item.id);
+        if (existing)
+            return existing;
+        if (nodes.length >= supplied.limits.resolutionNodes)
+            throw new CatalogError('RESOLUTION_LIMIT', 'Resolution node budget exceeded.', 409);
+        nodes.push(item);
+        nodeIndex.set(item.id, item);
+        supplied.work.charge(1);
+        return item;
+    }
+    async function resolution(kind, owner, targets, domain) {
+        alternativeReferences += targets.length;
+        if (resolutions.length >= supplied.limits.bindingRecords || alternativeReferences > supplied.limits.alternativeReferences)
+            throw new CatalogError('RESOLUTION_LIMIT', 'Resolution reference budget exceeded.', 409);
+        const targetIds = [];
+        for (const target of targets) {
+            await supplied.work.step('resolve');
+            targetIds.push(target.node.id);
+        }
+        resolutions.push({ kind, owner, targets: targetIds, incomplete: !domain.complete, domain,
+            outcome: targets.length === 1 ? 'unique' : targets.length ? 'ambiguous' : 'unresolved' });
+    }
+    function link(kind, from, to, status, reason, gaps = [], extra = [], environment = null, headerCheck, topicCheck) {
+        const edgeId = id('edge', kind, from.id, to.id, environment);
+        if (edgeIds.has(edgeId))
+            return;
+        if (edges.length >= supplied.limits.resolutionEdges)
+            throw new CatalogError('RESOLUTION_LIMIT', 'Resolution edge budget exceeded.', 409);
+        const item = { id: edgeId, kind, from: from.id, to: to.id, status, reason, environment, gaps,
+            evidenceIds: unique([...from.evidenceIds, ...to.evidenceIds, ...extra]), ...(headerCheck ? { headerCheck } : {}),
+            ...(topicCheck ? { topicCheck } : {}) };
+        edges.push(item);
+        edgeIds.add(edgeId);
+        supplied.work.charge(1);
+        if (kind === 'calls')
+            incoming.add(to.id);
+    }
+    function compare() {
+        if (comparisons >= supplied.limits.comparisons) {
+            omit('comparison-limit');
+            return false;
+        }
+        comparisons++;
+        supplied.work.charge(1);
+        return true;
+    }
+    const candidateDocuments = supplied.candidateDocuments;
+    for (const { file, payload } of supplied.entries) {
+        await supplied.work.step('resolve');
+        const { facts, evidence: refs } = payload;
+        parsedBytes += file.size;
+        examinedDocuments++;
+        for (const ref of refs)
+            available.set(ref.id, ref);
+        for (const gap of facts.gaps)
+            omit(`adapter:${gap}`);
+        const document = { file, facts, refs }, source = sourceIndex.get(file.sourceId);
+        const localSymbols = new Map(), symbolRanges = new Map(payload.ranges.symbols.map(range => [range.key, range]));
+        const operationRanges = new Map(facts.operations.map((fact, index) => [fact.start, payload.ranges.operations[index]]));
+        const callsByOwner = new Map();
+        for (const call of facts.calls) {
+            await supplied.work.step('resolve');
+            append(callsByOwner, call.owner, call);
+        }
+        function codeNode(key, kind, label, start, end, properties) {
+            const range = key.startsWith('operation:')
+                ? operationRanges.get(start)
+                : symbolRanges.get(key);
+            if (!range)
+                throw new CatalogError('CORRUPT_CODE_FACTS', 'Saved graph range is unavailable.', 409);
+            const { startLine, endLine } = range;
+            return addNode({ id: id('node', file.sourceId, file.path, key), kind, label, sourceId: file.sourceId, sourceName: source.name,
+                path: file.path, revision: source.revision, startLine, endLine, properties,
+                // Types, receiver declarations and imports can precede the operation's own lines.
+                evidenceIds: refs.map(ref => ref.id) });
+        }
+        for (const fact of facts.symbols) {
+            const node = codeNode(fact.key, 'symbol', fact.qualifiedName, fact.start, fact.end, { role: fact.role,
+                ...fact.parameterTypes ? { parameterTypes: fact.parameterTypes.join(', ') } : {} });
+            if (node) {
+                await supplied.work.step('resolve');
+                const symbol = { node, fact, document, calls: callsByOwner.get(fact.key) ?? [] };
+                symbols.push(symbol);
+                localSymbols.set(fact.key, symbol);
+                if (fact.exported && fact.role !== 'amd-function')
+                    append(exports, key(file.sourceId, file.path, fact.name), symbol);
+                if (fact.role === 'java-method') {
+                    append(javaExact, key(file.sourceId, fact.qualifiedName), symbol);
+                    append(javaShort, key(file.sourceId, fact.qualifiedName.split('.').slice(-2).join('.')), symbol);
+                }
+                if (fact.name === 'onMessage' && fact.parameterTypes?.length === 1)
+                    append(consumerIndex, key(file.sourceId, fact.className, fact.parameterTypes[0], facts.records[fact.parameterTypes[0]]), symbol);
+            }
+        }
+        for (const fact of facts.operations) {
+            const owner = localSymbols.get(fact.owner);
+            if (!owner)
+                continue;
+            const properties = Object.fromEntries(Object.entries(fact.properties).filter(([key]) => key !== 'recordSignature'));
+            const label = fact.kind === 'http-request' ? `${properties.method} ${properties.path}` : fact.kind === 'event-publish'
+                ? `Publish ${properties.payloadType}` : fact.kind === 'event-subscribe' ? 'Subscribe via KafkaSubscriber' : 'MongoCollection.replaceOne';
+            const node = codeNode(`operation:${fact.start}`, fact.kind, label, fact.start, fact.end, properties);
+            if (!node)
+                continue;
+            await supplied.work.step('resolve');
+            const operation = { node, fact, owner };
+            operations.push(operation);
+            append(byOwner, owner.node.id, operation);
+            link('performs', owner.node, node, 'static', 'This method/function contains the supported call in the indexed syntax; execution and ordering are unverified.');
+        }
+    }
+    const symbolOrder = new Map(symbols.map((symbol, index) => [symbol.node.id, index]));
+    for (const owner of symbols)
+        for (const call of owner.calls) {
+            await supplied.work.step('resolve');
+            if (!call.module.startsWith('./') && !call.module.startsWith('../')) {
+                omit('unsupported-import-target');
+                continue;
+            }
+            const stem = path.posix.normalize(path.posix.join(path.posix.dirname(owner.node.path), call.module));
+            if (stem === '..' || stem.startsWith('../') || path.posix.isAbsolute(stem)) {
+                omit('unresolved-import');
+                continue;
+            }
+            const paths = /\.(ts|js)$/.test(stem) ? [stem] : [stem + '.ts', stem + '.js', stem + '/index.ts', stem + '/index.js'];
+            const targets = paths.flatMap(file => get(exports, key(owner.node.sourceId, file, call.imported)))
+                .sort((a, b) => symbolOrder.get(a.node.id) - symbolOrder.get(b.node.id));
+            const domain = supplied.domains.imports(owner.node.sourceId, paths), incomplete = !domain.complete;
+            await resolution('calls', owner.node.id, targets, domain);
+            if (incomplete) {
+                omit('incomplete-import-source');
+                continue;
+            }
+            if (targets.length === 1)
+                link('calls', owner.node, targets[0].node, 'static', 'A supported relative named import is called by this function/action.');
+            else
+                omit(targets.length ? 'ambiguous-import' : 'unresolved-import');
+        }
+    const declaredNodes = new Map();
+    function declared(node) {
+        const refs = node.evidenceIds.map(id => available.get(id));
+        const item = addNode({ id: id('declaration', node.id), kind: node.kind === 'http-route' ? 'route' : 'handler-reference', label: node.label,
+            sourceId: node.sourceId, sourceName: node.sourceName, revision: node.revision, path: refs[0].path,
+            startLine: Math.min(...refs.map(ref => ref.startLine)), endLine: Math.max(...refs.map(ref => ref.endLine)),
+            properties: node.properties, evidenceIds: node.evidenceIds });
+        if (item)
+            declaredNodes.set(node.id, item);
+        return item;
+    }
+    for (const node of declaration.nodes.filter(node => node.kind === 'http-route' || node.kind === 'handler-reference'))
+        declared(node);
+    for (const edge of declaration.edges.filter(edge => edge.kind === 'routes-to')) {
+        const from = declaredNodes.get(edge.from), to = declaredNodes.get(edge.to);
+        if (from && to)
+            link('routes-to', from, to, 'static', 'The JSON route names this handler reference. No HTTP server execution is established.');
+    }
+    for (const handler of nodes.filter(node => node.kind === 'handler-reference')) {
+        await supplied.work.step('resolve');
+        const exact = get(javaExact, key(handler.sourceId, handler.label));
+        const targets = exact.length ? exact : get(javaShort, key(handler.sourceId, handler.label));
+        const domain = supplied.domains.java(handler.sourceId), incomplete = !domain.complete;
+        await resolution('implements', handler.id, targets, domain);
+        if (incomplete) {
+            omit('incomplete-handler-source');
+            continue;
+        }
+        if (targets.length === 1)
+            link('implements', handler, targets[0].node, 'static', 'This same-source unique class/method matches the supported handler reference.');
+        else
+            omit(targets.length ? 'ambiguous-handler' : 'unresolved-handler');
+    }
+    const routes = nodes.filter(node => node.kind === 'route');
+    for (const request of operations.filter(operation => operation.fact.kind === 'http-request')) {
+        await supplied.work.step('resolve');
+        for (const route of routes) {
+            await supplied.work.step('resolve');
+            if (!compare())
+                break;
+            if (route.properties.method === request.fact.properties.method && route.properties.path === request.fact.properties.path) {
+                const headers = compareHeaders(request.node.properties, route.properties);
+                link('http-target', request.node, route, 'candidate', `HTTP method/path match a route declaration; authority/proxy and deployment binding are unresolved. ${headers.detail}`, ['The client base URL or proxy is not bound to this route by supported source.',
+                    'Literal header names do not prove runtime values, middleware/proxy rewrites, parameter conversion or identity enforcement.',
+                    ...headers.status === 'match' ? [] : [headers.detail]], [], null, headers);
+            }
+        }
+    }
+    const declarationNodes = new Map(declaration.nodes.map(node => [node.id, node])), contracts = new Map();
+    const pairKey = (a, b) => JSON.stringify([a, b].sort());
+    for (const edge of declaration.edges) {
+        await supplied.work.step('resolve');
+        const a = declarationNodes.get(edge.from), b = declarationNodes.get(edge.to);
+        if (edge.kind === 'contract-match')
+            append(contracts, key(pairKey(a.sourceId, b.sourceId), a.properties.name, JSON.stringify(Object.keys(JSON.parse(a.properties.fields)).sort())), edge);
+    }
+    const subscribers = operations.filter(operation => operation.fact.kind === 'event-subscribe');
+    for (const publisher of operations.filter(operation => operation.fact.kind === 'event-publish'))
+        for (const subscriber of subscribers) {
+            await supplied.work.step('resolve');
+            if (!compare())
+                break;
+            if (publisher.node.sourceId === subscriber.node.sourceId)
+                continue;
+            const consumers = get(consumerIndex, key(subscriber.node.sourceId, subscriber.fact.properties.handlerClass, publisher.fact.properties.payloadType, publisher.fact.properties.recordSignature)).filter(symbol => get(byOwner, symbol.node.id).some(operation => operation.fact.kind === 'document-write'
+                && operation.fact.properties.recordSignature === publisher.fact.properties.recordSignature));
+            const domain = supplied.domains.java(subscriber.node.sourceId), incomplete = !domain.complete;
+            await resolution('consumer', subscriber.node.id, consumers, domain);
+            if (incomplete) {
+                omit('incomplete-consumer-source');
+                continue;
+            }
+            if (consumers.length !== 1) {
+                omit(consumers.length ? 'ambiguous-consumer-method' : 'unresolved-consumer-method');
+                continue;
+            }
+            const matches = get(contracts, key(pairKey(publisher.node.sourceId, subscriber.node.sourceId), publisher.fact.properties.payloadType, JSON.stringify(Object.keys(JSON.parse(publisher.fact.properties.recordSignature)).sort())));
+            if (matches.length !== 1) {
+                omit(matches.length ? 'ambiguous-contract-scope' : 'unresolved-contract-scope');
+                continue;
+            }
+            const match = matches[0], publisherExpression = publisher.fact.properties.topicExpression,
+                subscriberExpression = subscriber.fact.properties.topicExpression;
+            supplied.work.charge(Buffer.byteLength(publisherExpression ?? '') + Buffer.byteLength(subscriberExpression ?? ''));
+            const publisherTopic = literalTopic(publisherExpression), subscriberTopic = literalTopic(subscriberExpression);
+            if (publisherTopic === null || subscriberTopic === null) {
+                omit('unresolved-topic-expression');
+                continue;
+            }
+            if (publisherTopic !== subscriberTopic) {
+                omit('different-literal-topics');
+                continue;
+            }
+            const consumer = consumers[0];
+            const topicCheck = { rule: topicRule.version, value: publisherTopic,
+                publisher: { expression: publisherExpression, evidenceIds: unique(publisher.node.evidenceIds) },
+                subscriber: { expression: subscriberExpression, evidenceIds: unique(subscriber.node.evidenceIds) } };
+            link('event-delivery', publisher.node, subscriber.node, 'candidate',
+                'Equal direct Java topic literals, supported record shapes and matching JSON contracts are candidate delivery clues.',
+                ['Configuration settings and deployment activation are not bound to these call sites.',
+                 'A shared broker, serialization and co-deployment are unverified; JSON contracts are not linked to the record by code.'],
+                unique([...match.evidenceIds, ...consumer.node.evidenceIds]), match.environment, undefined, topicCheck);
+            link('dispatch-candidate', subscriber.node, consumer.node, 'candidate', 'The subscriber receives this class, whose onMessage method accepts the matching record and contains a document write. Dispatch is unresolved.', ['KafkaSubscriber has no implementation proving that subscription dispatches to onMessage.']);
+        }
+    const priorities = { 'vue-action': 0, 'amd-function': 1, function: 2, 'java-method': 3 };
+    const nodeKey = (node) => [node.sourceName, node.path, node.kind, node.label].join('\0');
+    const compareText = (a, b) => a < b ? -1 : a > b ? 1 : 0;
+    const roots = [];
+    for (const symbol of symbols) {
+        await supplied.work.step('resolve');
+        if (symbol.fact.role === 'vue-action' || symbol.fact.role === 'amd-function'
+            || symbol.fact.role === 'function' && get(byOwner, symbol.node.id).some(operation => operation.fact.kind === 'http-request')
+                && !incoming.has(symbol.node.id))
+            roots.push(symbol);
+    }
+    roots.sort((a, b) => priorities[a.fact.role] - priorities[b.fact.role]
+        || compareText(a.node.sourceName, b.node.sourceName) || compareText(a.node.path, b.node.path)
+        || compareText(a.fact.key, b.fact.key) || compareText(a.node.sourceId, b.node.sourceId));
+    await supplied.work.step('resolve', 0, true);
+    return { schemaVersion: 'loredock-literal-topic-resolution/1', adapterVersion: 'connected-literal-topics-experiment-v1', buildId: build.id,
+        policyVersion: declaration.policyVersion, sourceSetVersion: declaration.sourceSetVersion, registryVersion: declaration.registryVersion,
+        stale: declaration.stale, partial: true, deploymentCoherence: 'unknown', nodes, edges,
+        evidence: Object.fromEntries(available), omissions, declarationOmissions: declaration.omissions,
+        roots: roots.map(root => ({ id: root.node.id, role: root.fact.role, key: nodeKey(root.node) })), resolutions,
+        coverage: { candidateDocuments, examinedDocuments, parsedBytes, comparisons, alternativeReferences },
+        gaps: ['Supported syntax and candidate wiring only; runtime dispatch, authority and concrete database ownership remain unknown.',
+            'Declarations have independent bounded coverage. Incomplete target domains cannot establish a unique binding.'] };
+}
+
+return resolvePathFacts;
+}
