@@ -31,3 +31,17 @@ with intact useful content, and a cleanup failure retaining only the first snaps
 They use source services through a test-only `tsx` loader. The frozen diagnostic
 uses built services and unmodified pinned Node instead. Ordinary tests never import
 its corpus or CLI. See [retained development evidence](../../docs/fixtures/loredock-terminal-memory/README.md).
+
+The [fresh protocol](../../fixtures/loredock-terminal-memory/README.md) is frozen at
+`5fc0900`, after 538 tests, strict typechecks and builds passed. `complete.mjs` also
+checks every typed flow node/edge, exact original span and complete source scope.
+Its positive and deliberate mismatch regressions use only independent tiny data.
+The opt-in CLI verifies all frozen input and 264 baseline source/built-file hashes,
+requires clean Git and records the measured entry-point commit before execution:
+
+```sh
+LOREDOCK_TERMINAL_OUTPUT=/absolute/new-owned-output timeout --signal=TERM --kill-after=5s 1050s node scripts/loredock-terminal-memory/probe.mjs
+```
+
+Retain the outer stdout/stderr and exit alongside the owned output. The wrapper
+deadline is part of the frozen protocol; no automatic retry is permitted.
