@@ -1,6 +1,6 @@
 # Task 077 — Fresh capture memory diagnostic
 
-Status: scoped, 2026-11-03.
+Status: candidate implemented and locally checked; first diagnostic pending, 2026-11-03. Scope `a38f7c3`.
 
 ## Baseline and constraints
 
@@ -54,3 +54,19 @@ share. Expected meaningful facts are 21, derived from the source construction.
 Only pure generation/count/hash checks ran. The typed oracle and exact diagnostic protocol
 remain to be completed and frozen before implementation. No repository preparation, parser,
 path/receipt candidate, memory measurement or user-data access has occurred for these inputs.
+
+## Before the first diagnostic
+
+Commit `8234749` subsequently froze the source bytes, typed oracle, exact process/operation
+sequence, resource/observer bounds, watchdogs and independent-gate protocol before candidate
+implementation. The separate fork adds synchronous phase observations only; the unchanged
+producer/accounting identities support exact receipt/projection parity between controls.
+Stopped catalog copies use bounded streaming hashes. Query/owner instrumentation stores no
+parameters or full application objects, and header ownership remains explicitly unavailable.
+
+Full strict checks, 503 tests and builds pass. Four new independent regressions cover bounded
+observation, resource/integrity separation, stopped copies, byte parity with the baseline and
+history without nested work. The initial unit launcher exposed a missing function terminator;
+the initial integration assertion incorrectly forbade history's required original read. Both
+development errors were corrected and their first logs retained; the frozen corpus was never
+observed during debugging. The candidate/harness must be committed before its single run.
