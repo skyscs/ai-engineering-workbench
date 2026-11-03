@@ -1,6 +1,6 @@
 # Task 075 — Shared capture budget and twenty-source qualification
 
-Status: scoped before implementation, 2026-11-03.
+Status: in progress; fresh input preparation only, 2026-11-03. Scope commit `021f840`.
 
 ## Baseline
 
@@ -46,3 +46,18 @@ heavy checks during measurement. No model call, corporate source/data access or 
 Normal strict/relevant tests/builds and both exact-head CI events precede merge. A passing
 offline gate permits a separate integration review, not autonomous routing or semantic/
 private-pilot acceptance.
+
+## Preparation checkpoint
+
+Commit `f2ab543` adds the fresh sensor-reading generator and byte/count preflight under
+`fixtures/loredock-capture-scale/`. It creates twenty sources with 24, 124 or 499 total
+files each: 480/2,480/9,980 paths and 457/2,457/9,957 code files. The 23 remaining files
+are original documentation/routes/contracts. Every source fits its fixed path and byte share.
+Only in-memory generation and count/hash checks were run; no repositories were indexed,
+no parser/path candidate observed and no source scope or user data touched.
+
+These inputs are explicitly **not frozen**. Complete typed expected identities, exact
+negative reasons, pressure/refusal variants, aggregate-only exhaustion and resource protocol
+before the freeze commit. Then implement a separate candidate and independent regressions,
+commit the final harness and perform the one-run qualification. Do not execute or retune
+Task 073 while filling these remaining prerequisites.
