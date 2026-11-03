@@ -43,3 +43,28 @@ scoped evidence-based next decision; never repair the observed family retroactiv
 Run strict checks/builds and review both exact-head CI events before merge. Continue
 the authorized task sequence after preserving the result. No production feature
 change, corporate sources, model calls, old-family reruns or demo operations.
+
+## Preparation checkpoint
+
+Scope `20febd7`; input/protocol freeze `c723cab`. Pure generation records twenty
+sources at 580/9,980 files, 557/9,957 code files and 30,557/480,776 UTF-8 bytes.
+The constructed 21-fact oracle precedes parser/application observation. The
+declared run contains four processes and 32 operations without profiling or
+phase/query/owner hooks. No frozen corpus has been prepared or measured yet.
+
+PR #85 merged as `c223c8657b84079fa394b647c6ad7e3ba7105e85` after exact head
+`38a4ac9e3423e30cdcf57ba716d3ddc339650b4a` passed push 41631462293 and pull-request
+41631494808 CI (519 tests). Its merge tree equals the reviewed head and is included
+here. Main is clean and synchronized without a rebuild or demo operation.
+
+The independent two-process regression passes on its first run: all sixteen
+operations preserve integrity and lifecycle parity while a deliberately impossible
+parent-only time gate fails every resource observation. Both workers exit 0 and
+report disabled instrumentation. Exit 7 and watchdog regressions preserve errors
+and block the reader without retry. Focused typechecking passes; full checks are
+running before the measured candidate commit.
+
+An initial external scaffolding assertion matched `observer.mjs` in an import path
+while checking for observer calls, and stopped before writing runner files. The
+guard was narrowed to actual observer calls. This tooling error did not execute
+the candidate or frozen inputs; no result or protocol was changed.
