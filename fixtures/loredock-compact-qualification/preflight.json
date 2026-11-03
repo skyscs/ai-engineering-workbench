@@ -1,0 +1,154 @@
+{
+  "schemaVersion": "task089-compact-preflight/1",
+  "method": "Pure UTF-8 construction counts and hashes; no parser or candidate execution.",
+  "size": {
+    "pathsPerSource": 494,
+    "files": 9880,
+    "codeFiles": 9857,
+    "bytes": 606669,
+    "facts": 21
+  },
+  "corpusHash": "2cc37c9c75979b35c438526bbc9e93cc7e369ac544ba2366dc435b25f5766976",
+  "sources": [
+    {
+      "name": "a-observation-console",
+      "files": 494,
+      "codeFiles": 493,
+      "bytes": 33842,
+      "contentHash": "11252ddfcd94f42ba3ffb08cce185405069a03cb0872076c2e243e53742e9ad7"
+    },
+    {
+      "name": "b-maintenance-api",
+      "files": 494,
+      "codeFiles": 491,
+      "bytes": 31303,
+      "contentHash": "214beb232aba50e5b5cce74298921300c8e11613d32debe63a87b71241badd03"
+    },
+    {
+      "name": "c-station-ledger",
+      "files": 494,
+      "codeFiles": 492,
+      "bytes": 30897,
+      "contentHash": "ace5ed3fa8805abea25a621bff1b4993cc74633950a1294af560de26b91b9272"
+    },
+    {
+      "name": "d-field-manual",
+      "files": 494,
+      "codeFiles": 493,
+      "bytes": 29107,
+      "contentHash": "8fce94a0114351d043cfb81630aaeb19df1228577f59d101262b82123efdaec2"
+    },
+    {
+      "name": "e-observatory-01",
+      "files": 494,
+      "codeFiles": 493,
+      "bytes": 30095,
+      "contentHash": "23538ee76fdad5d2dff92ee5d36aa249597a4136eec496fee6effbbb3594a641"
+    },
+    {
+      "name": "e-observatory-02",
+      "files": 494,
+      "codeFiles": 493,
+      "bytes": 30095,
+      "contentHash": "65a227831f0c0a597e9965ec91907bcd1e22350bdb5bfe1a0e87d46474207daf"
+    },
+    {
+      "name": "e-observatory-03",
+      "files": 494,
+      "codeFiles": 493,
+      "bytes": 30095,
+      "contentHash": "08289fc26284a831c3e4d453131ec46bc986eb0420b445c73ff36fcf6a085ce8"
+    },
+    {
+      "name": "e-observatory-04",
+      "files": 494,
+      "codeFiles": 493,
+      "bytes": 30095,
+      "contentHash": "22e3d1626e5a491f21bf27be7bf094e87470d2dabde1881ef0575ca22b3b63f6"
+    },
+    {
+      "name": "e-observatory-05",
+      "files": 494,
+      "codeFiles": 493,
+      "bytes": 30095,
+      "contentHash": "3404c65ef5ecf7cd56635b00be8dd7de079927bdc1d3eda5ebcabe0b5f26e59d"
+    },
+    {
+      "name": "e-observatory-06",
+      "files": 494,
+      "codeFiles": 493,
+      "bytes": 30095,
+      "contentHash": "cd966614ae82c9d9d1b505957fce84d3e4f393957258490791ce0acbc31ffdee"
+    },
+    {
+      "name": "e-observatory-07",
+      "files": 494,
+      "codeFiles": 493,
+      "bytes": 30095,
+      "contentHash": "3e6fa27fefa306f228ee61bdb1c816bf46fd0532cd936be517677ce2bf98f9c7"
+    },
+    {
+      "name": "e-observatory-08",
+      "files": 494,
+      "codeFiles": 493,
+      "bytes": 30095,
+      "contentHash": "6d41d54d98a6227b651e99036d2e316671c8e5a66f4046af7f23f94ed2308728"
+    },
+    {
+      "name": "e-observatory-09",
+      "files": 494,
+      "codeFiles": 493,
+      "bytes": 30095,
+      "contentHash": "b4eb26ae25e86a4ae368054c46b102a9ca89aa43575183df65b6774e9051b9d7"
+    },
+    {
+      "name": "e-observatory-10",
+      "files": 494,
+      "codeFiles": 493,
+      "bytes": 30095,
+      "contentHash": "971dc4174b2c0989efd33b492e4f32a6cf48e0fb1245ecf7133dcc92a76b7689"
+    },
+    {
+      "name": "e-observatory-11",
+      "files": 494,
+      "codeFiles": 493,
+      "bytes": 30095,
+      "contentHash": "09f6c651f85f164e29678e62cfd56c5d1de3eedb39a06101684f6da079d3b318"
+    },
+    {
+      "name": "e-observatory-12",
+      "files": 494,
+      "codeFiles": 493,
+      "bytes": 30095,
+      "contentHash": "5f5a728281f5756d9de525895735283f9a4a23adee55c68f81ba211da4d74349"
+    },
+    {
+      "name": "e-observatory-13",
+      "files": 494,
+      "codeFiles": 493,
+      "bytes": 30095,
+      "contentHash": "4ad9e2eff890aa69000e39cbd702d9b0796d51a9bca69f6692f8fc963db9e379"
+    },
+    {
+      "name": "e-observatory-14",
+      "files": 494,
+      "codeFiles": 493,
+      "bytes": 30095,
+      "contentHash": "ac03207c577dde9a0637665ba1128631ac3a244c835346918b94937ebd887ebd"
+    },
+    {
+      "name": "e-observatory-15",
+      "files": 494,
+      "codeFiles": 493,
+      "bytes": 30095,
+      "contentHash": "a1c7a6984172b6b24154457edd3bbdd5542b458d1a25939584e8d0dee25ec8a8"
+    },
+    {
+      "name": "e-observatory-16",
+      "files": 494,
+      "codeFiles": 493,
+      "bytes": 30095,
+      "contentHash": "00139f8936deec379ae0b8f8c07aef5e83d9247c750e0f5d465065443783f9b4"
+    }
+  ]
+}

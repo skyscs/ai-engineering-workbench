@@ -1,0 +1,559 @@
+{
+  "schemaVersion": "task089-compact-qualification-oracle/1",
+  "authorship": "Source-authored complete positive expectations after capability review, before parser/candidate observation; not blind.",
+  "sizes": [
+    {
+      "pathsPerSource": 494,
+      "files": 9880,
+      "codeFiles": 9857,
+      "bytes": 606669,
+      "facts": 21
+    }
+  ],
+  "arms": [
+    "same-process",
+    "reopened-process"
+  ],
+  "operations": [
+    "first",
+    "repeat-1",
+    "repeat-2",
+    "repeat-3",
+    "selected",
+    "page-4",
+    "isolated",
+    "history"
+  ],
+  "topic": "station.maintenance.v3",
+  "environment": "observatory",
+  "defaultFlows": 2,
+  "selectedFlows": 1,
+  "rootCount": 5,
+  "defaultOriginals": 10,
+  "isolatedOriginals": 5,
+  "sourceCount": 20,
+  "uncitedSource": "d-field-manual",
+  "selectedRoot": [
+    "a-observation-console",
+    "console/AAPlan.vue",
+    "plan",
+    "vue-action"
+  ],
+  "isolatedRoot": [
+    "a-observation-console",
+    "console/ZZInspect.vue",
+    "inspect",
+    "vue-action"
+  ],
+  "requiredNodes": [
+    [
+      "a-observation-console",
+      "console/AAPlan.vue",
+      "symbol",
+      "plan",
+      "vue-action"
+    ],
+    [
+      "a-observation-console",
+      "console/BBAssign.vue",
+      "symbol",
+      "assign",
+      "vue-action"
+    ],
+    [
+      "a-observation-console",
+      "console/maintenance.ts",
+      "symbol",
+      "planMaintenance",
+      "function"
+    ],
+    [
+      "a-observation-console",
+      "console/maintenance.ts",
+      "http-request",
+      "POST /observatory/maintenance",
+      null
+    ],
+    [
+      "b-maintenance-api",
+      "http/maintenance.json",
+      "route",
+      "POST /observatory/maintenance",
+      null
+    ],
+    [
+      "b-maintenance-api",
+      "http/maintenance.json",
+      "handler-reference",
+      "Maintenance.plan",
+      null
+    ],
+    [
+      "b-maintenance-api",
+      "maintenance/Maintenance.java",
+      "symbol",
+      "Maintenance.plan",
+      "java-method"
+    ],
+    [
+      "b-maintenance-api",
+      "maintenance/Maintenance.java",
+      "event-publish",
+      "Publish MaintenancePlanned",
+      null
+    ],
+    [
+      "c-station-ledger",
+      "ledger/MaintenanceWriter.java",
+      "event-subscribe",
+      "Subscribe via KafkaSubscriber",
+      null
+    ],
+    [
+      "c-station-ledger",
+      "ledger/MaintenanceWriter.java",
+      "symbol",
+      "MaintenanceWriter.onMessage",
+      "java-method"
+    ],
+    [
+      "c-station-ledger",
+      "ledger/MaintenanceWriter.java",
+      "document-write",
+      "MongoCollection.replaceOne",
+      null
+    ]
+  ],
+  "selectedRequiredNodes": [
+    [
+      "a-observation-console",
+      "console/AAPlan.vue",
+      "symbol",
+      "plan",
+      "vue-action"
+    ],
+    [
+      "a-observation-console",
+      "console/maintenance.ts",
+      "symbol",
+      "planMaintenance",
+      "function"
+    ],
+    [
+      "a-observation-console",
+      "console/maintenance.ts",
+      "http-request",
+      "POST /observatory/maintenance",
+      null
+    ],
+    [
+      "b-maintenance-api",
+      "http/maintenance.json",
+      "route",
+      "POST /observatory/maintenance",
+      null
+    ],
+    [
+      "b-maintenance-api",
+      "http/maintenance.json",
+      "handler-reference",
+      "Maintenance.plan",
+      null
+    ],
+    [
+      "b-maintenance-api",
+      "maintenance/Maintenance.java",
+      "symbol",
+      "Maintenance.plan",
+      "java-method"
+    ],
+    [
+      "b-maintenance-api",
+      "maintenance/Maintenance.java",
+      "event-publish",
+      "Publish MaintenancePlanned",
+      null
+    ],
+    [
+      "c-station-ledger",
+      "ledger/MaintenanceWriter.java",
+      "event-subscribe",
+      "Subscribe via KafkaSubscriber",
+      null
+    ],
+    [
+      "c-station-ledger",
+      "ledger/MaintenanceWriter.java",
+      "symbol",
+      "MaintenanceWriter.onMessage",
+      "java-method"
+    ],
+    [
+      "c-station-ledger",
+      "ledger/MaintenanceWriter.java",
+      "document-write",
+      "MongoCollection.replaceOne",
+      null
+    ]
+  ],
+  "isolated": {
+    "nodes": 1,
+    "edges": 0,
+    "flows": 1,
+    "terminalKind": "symbol",
+    "reason": "unresolved-import"
+  },
+  "complete": {
+    "sources": [
+      "a-observation-console",
+      "b-maintenance-api",
+      "c-station-ledger",
+      "d-field-manual",
+      "e-observatory-01",
+      "e-observatory-02",
+      "e-observatory-03",
+      "e-observatory-04",
+      "e-observatory-05",
+      "e-observatory-06",
+      "e-observatory-07",
+      "e-observatory-08",
+      "e-observatory-09",
+      "e-observatory-10",
+      "e-observatory-11",
+      "e-observatory-12",
+      "e-observatory-13",
+      "e-observatory-14",
+      "e-observatory-15",
+      "e-observatory-16"
+    ],
+    "roots": [
+      [
+        "a-observation-console",
+        "console/AAPlan.vue",
+        "plan",
+        "vue-action"
+      ],
+      [
+        "a-observation-console",
+        "console/BBAssign.vue",
+        "assign",
+        "vue-action"
+      ],
+      [
+        "a-observation-console",
+        "console/CCRetry.vue",
+        "retry",
+        "vue-action"
+      ],
+      [
+        "a-observation-console",
+        "console/DDConfirm.vue",
+        "confirm",
+        "vue-action"
+      ]
+    ],
+    "isolatedRoot": [
+      "a-observation-console",
+      "console/ZZInspect.vue",
+      "inspect",
+      "vue-action"
+    ],
+    "flows": [
+      {
+        "nodes": [
+          [
+            "a-observation-console",
+            "console/AAPlan.vue",
+            "symbol",
+            "plan",
+            "vue-action"
+          ],
+          [
+            "a-observation-console",
+            "console/maintenance.ts",
+            "symbol",
+            "planMaintenance",
+            "function"
+          ],
+          [
+            "a-observation-console",
+            "console/maintenance.ts",
+            "http-request",
+            "POST /observatory/maintenance",
+            null
+          ],
+          [
+            "b-maintenance-api",
+            "http/maintenance.json",
+            "route",
+            "POST /observatory/maintenance",
+            null
+          ],
+          [
+            "b-maintenance-api",
+            "http/maintenance.json",
+            "handler-reference",
+            "Maintenance.plan",
+            null
+          ],
+          [
+            "b-maintenance-api",
+            "maintenance/Maintenance.java",
+            "symbol",
+            "Maintenance.plan",
+            "java-method"
+          ],
+          [
+            "b-maintenance-api",
+            "maintenance/Maintenance.java",
+            "event-publish",
+            "Publish MaintenancePlanned",
+            null
+          ],
+          [
+            "c-station-ledger",
+            "ledger/MaintenanceWriter.java",
+            "event-subscribe",
+            "Subscribe via KafkaSubscriber",
+            null
+          ],
+          [
+            "c-station-ledger",
+            "ledger/MaintenanceWriter.java",
+            "symbol",
+            "MaintenanceWriter.onMessage",
+            "java-method"
+          ],
+          [
+            "c-station-ledger",
+            "ledger/MaintenanceWriter.java",
+            "document-write",
+            "MongoCollection.replaceOne",
+            null
+          ]
+        ],
+        "edges": [
+          "calls",
+          "performs",
+          "http-target",
+          "routes-to",
+          "implements",
+          "performs",
+          "event-delivery",
+          "dispatch-candidate",
+          "performs"
+        ]
+      },
+      {
+        "nodes": [
+          [
+            "a-observation-console",
+            "console/BBAssign.vue",
+            "symbol",
+            "assign",
+            "vue-action"
+          ],
+          [
+            "a-observation-console",
+            "console/maintenance.ts",
+            "symbol",
+            "planMaintenance",
+            "function"
+          ],
+          [
+            "a-observation-console",
+            "console/maintenance.ts",
+            "http-request",
+            "POST /observatory/maintenance",
+            null
+          ],
+          [
+            "b-maintenance-api",
+            "http/maintenance.json",
+            "route",
+            "POST /observatory/maintenance",
+            null
+          ],
+          [
+            "b-maintenance-api",
+            "http/maintenance.json",
+            "handler-reference",
+            "Maintenance.plan",
+            null
+          ],
+          [
+            "b-maintenance-api",
+            "maintenance/Maintenance.java",
+            "symbol",
+            "Maintenance.plan",
+            "java-method"
+          ],
+          [
+            "b-maintenance-api",
+            "maintenance/Maintenance.java",
+            "event-publish",
+            "Publish MaintenancePlanned",
+            null
+          ],
+          [
+            "c-station-ledger",
+            "ledger/MaintenanceWriter.java",
+            "event-subscribe",
+            "Subscribe via KafkaSubscriber",
+            null
+          ],
+          [
+            "c-station-ledger",
+            "ledger/MaintenanceWriter.java",
+            "symbol",
+            "MaintenanceWriter.onMessage",
+            "java-method"
+          ],
+          [
+            "c-station-ledger",
+            "ledger/MaintenanceWriter.java",
+            "document-write",
+            "MongoCollection.replaceOne",
+            null
+          ]
+        ],
+        "edges": [
+          "calls",
+          "performs",
+          "http-target",
+          "routes-to",
+          "implements",
+          "performs",
+          "event-delivery",
+          "dispatch-candidate",
+          "performs"
+        ]
+      }
+    ],
+    "originals": [
+      [
+        "a-observation-console",
+        "console/AAPlan.vue",
+        1,
+        6
+      ],
+      [
+        "a-observation-console",
+        "console/BBAssign.vue",
+        1,
+        6
+      ],
+      [
+        "a-observation-console",
+        "console/CCRetry.vue",
+        1,
+        6
+      ],
+      [
+        "a-observation-console",
+        "console/DDConfirm.vue",
+        1,
+        6
+      ],
+      [
+        "a-observation-console",
+        "console/maintenance.ts",
+        1,
+        7
+      ],
+      [
+        "b-maintenance-api",
+        "http/maintenance.json",
+        1,
+        13
+      ],
+      [
+        "b-maintenance-api",
+        "maintenance/Maintenance.java",
+        1,
+        10
+      ],
+      [
+        "b-maintenance-api",
+        "contracts/MaintenancePlanned.json",
+        1,
+        10
+      ],
+      [
+        "c-station-ledger",
+        "ledger/MaintenanceWriter.java",
+        1,
+        13
+      ],
+      [
+        "c-station-ledger",
+        "contracts/MaintenancePlanned.json",
+        1,
+        10
+      ]
+    ],
+    "isolatedOriginals": [
+      [
+        "a-observation-console",
+        "console/AAPlan.vue",
+        1,
+        6
+      ],
+      [
+        "a-observation-console",
+        "console/BBAssign.vue",
+        1,
+        6
+      ],
+      [
+        "a-observation-console",
+        "console/CCRetry.vue",
+        1,
+        6
+      ],
+      [
+        "a-observation-console",
+        "console/DDConfirm.vue",
+        1,
+        6
+      ],
+      [
+        "a-observation-console",
+        "console/ZZInspect.vue",
+        1,
+        5
+      ]
+    ]
+  },
+  "limits": {
+    "wallMs": 5000,
+    "work": 1000000,
+    "projectionBytes": 524288,
+    "receiptBytes": 655360,
+    "textBytes": 65536,
+    "spans": 30,
+    "sources": 20
+  },
+  "resources": {
+    "sampleIntervalMs": 5,
+    "maxSliceMs": 150,
+    "sampledRssMiB": 384,
+    "sampledHeapGrowthMiB": 64
+  },
+  "diagnostic": {
+    "preparerWatchdogMs": 900000,
+    "readerWatchdogMs": 600000,
+    "overallWatchdogMs": 1800000
+  },
+  "instrumentation": {
+    "profiler": false,
+    "phaseHooks": false,
+    "queryHooks": false,
+    "ownerHooks": false,
+    "ordinaryCounters": true,
+    "aggregateCharges": true,
+    "outerResourceSampler": true
+  },
+  "parityExcludedProjectionFields": [],
+  "parityExcludedReceiptFields": []
+}
