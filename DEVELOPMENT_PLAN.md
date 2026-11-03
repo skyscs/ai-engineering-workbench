@@ -257,6 +257,13 @@ independent three-process regression covers all 24 capture/page/history operatio
 exact cross-arm bytes and changed-header refusal. Old experiments remain exhausted.
 Next: freeze a new attribution family using the repaired runner; resource and semantic
 acceptance remain separate from this functional process regression.
+[Task 079](tasks/079-loredock-memory-attribution.md) completes the repaired paired
+diagnostic on fresh inputs: 48/48 integrity passes and four exact process comparisons,
+but only 39/48 resource passes. Large first captures exceed heap growth in all three
+arms; history exceeds RSS after replacement analysis. Phase/count evidence cannot
+apportion allocation causes, so no optimization is selected. Next: one targeted
+allocation profile with a separate fresh-input protocol, then one evidence-backed
+candidate and fresh uninstrumented qualification. The broad diagnostic is exhausted.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

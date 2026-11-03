@@ -144,3 +144,17 @@ but post-run inspection cannot replace the blocked controls or attribute memory 
 
 Next: separately correct and test the full process/serialization boundary, then freeze a
 new diagnostic family. No optimization is selected; all first bytes and existing limits stay.
+
+## Task 079 outcome after the separate process repair
+
+The [new paired attribution](../fixtures/loredock-memory-attribution/README.md) completes
+all 48 operations with correct content and exact cross-arm bytes; nine resource checks
+still fail. First large captures exceed heap growth in same, reopened and uninstrumented
+processes. Histories exceed RSS after replacement analyses with zero nested read work.
+The preparation/observer-only explanations do not account for all observed failures.
+
+Snapshot arrays, validated payload/domain retention, SQL preparation and async allocation
+remain competing costs. Phase endpoints cannot assign bytes to them or identify native
+residency. Apply the stop rule: scope one targeted allocation profile on separately
+declared new inputs before choosing an optimization. Keep profiler observations outside
+resource acceptance, retain every first profile/error, and do not repeat this broad matrix.

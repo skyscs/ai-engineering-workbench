@@ -1,0 +1,996 @@
+{
+  "schemaVersion": "task079-memory-attribution/1",
+  "freezeCommit": "3663114",
+  "candidateCommit": "23215ac8fe1092a44a0ae2036f9a804f7ad9622a",
+  "inputs": {
+    "corpus.mjs": "392a6a4decd92c7eddcf613de209b2ecdb64c14dbe4cc2c41522696a748856bf",
+    "oracle.json": "ba3ff0a7ef9d92db969106102dfc6161927534f36722c5acb9d92ab6776aa907",
+    "preflight.json": "79af35e50f2418d4cb78da19de3024266c84a5c74372c730e32ebdb796ecfd1e",
+    "README.md": "0ea32f2d7875f326d5897ff88a1b1637d1bac4a89ae688a53dd3436922a0ea4d"
+  },
+  "baseline": {
+    "source": "Task 078 process repair and unchanged Task 077 path/receipt/observer helpers; Task 075 shared-budget baseline.",
+    "files": {
+      "apps/loredock/src/code-analysis.ts": "45485d1b1e5534546d8d40504d7d04090442ce6298142222740ba9942e5764da",
+      "apps/loredock/src/code-paths-metadata.ts": "78146a6dff53d3b49659647a8509c119b6bb6ba16753600f72fd35414afbea9b",
+      "apps/loredock/src/code-paths-work.ts": "e5f117d0e2c19876eac8a28de620f1d5abbd3d3fe298900389370bf5f86d28a7",
+      "apps/loredock/src/store.ts": "d2faf0886743e1006bf74c2aceb9ede232ccc4e46d2fd52f47205c9d3b9f0627",
+      "scripts/loredock-capture-memory/fixture.mjs": "f1a800a50d7e1816debcf513c88f0d94830561215b561578db2d768c19b6a59a",
+      "scripts/loredock-capture-memory/observer.mjs": "96f155b7fbfd01a25712afd4f924bd8d4b078ab63aecb307c438635061fb824c",
+      "scripts/loredock-capture-memory/paths.mjs": "19d2c8dd84af8e5bc8e072a792469c26fa20641692b5f9c0bd4a2bb3737a9b81",
+      "scripts/loredock-capture-memory/receipt.mjs": "2180af582a915ad9f9cd8d612b895eefe0ac3c45c92d099efe4ffdf3a657aee7",
+      "scripts/loredock-capture-memory/services.mjs": "1916b8cfe268bf456202d9740713a422e0691e67cc40bd62dfce335bd73359f3",
+      "scripts/loredock-capture-memory/validate.mjs": "311d6b621f5ba7160ed633b1303c8630f32148c2a1d4a43cb9b9f17c2fa687dd",
+      "scripts/loredock-capture-scale/admit.mjs": "c2fd01cb822fe362fea600ff7b3fa4bb718dbeb1aa422af20b398887459953d4",
+      "scripts/loredock-capture-scale/budget.mjs": "4ea01a16a7069870c7b6841624bec1dc338780356ae84a8841a6b04fc67799cc",
+      "scripts/loredock-capture-scale/fixture.mjs": "aaabbe5211d6239801c0f831c0bd570d3089e812c32249e596f9df0f2a4dad47",
+      "scripts/loredock-capture-scale/paths.mjs": "d8fb5df33aa458e06f32fd087587172421549c27e28cb72158b897f66de0cd78",
+      "scripts/loredock-capture-scale/receipt.mjs": "39e4cd406f3e0098046d1eab3b0fd8f655935511cc94da9fe6d03e30ae769a1e",
+      "scripts/loredock-capture-scale/resolve.mjs": "c06f6a090c7cb3be565a877a649ac305ec9b016e5f0d19b8fb53095792c9cc5e",
+      "scripts/loredock-memory-runner/child.mjs": "9dcda06235ea9c8b07716e1d9f88467cccca364a1eea9e2144c92d544983df66",
+      "scripts/loredock-memory-runner/run.mjs": "33e0f868ec8e3dda094947e30fc00145f903150a356a1fede15d3db0a384f35d",
+      "scripts/loredock-memory-runner/source-rows.mjs": "c9b8cb75b86ee12c7d3bf3bc0ff6ce9980cd621c2f4f56cc26edf24d419c6d21"
+    }
+  },
+  "hardware": {
+    "platform": "linux",
+    "arch": "x64",
+    "cpu": "12th Gen Intel(R) Core(TM) i5-12500H",
+    "cpus": 16,
+    "memoryBytes": 32718753792
+  },
+  "createdAt": "2026-11-03T10:53:41.138Z",
+  "node": "v22.23.2",
+  "modelRequests": 0,
+  "oracle": {
+    "schemaVersion": "task079-attribution-oracle/1",
+    "authorship": "Agent-authored from source construction before parser or candidate observations; not blind assessment.",
+    "sizes": [
+      {
+        "pathsPerSource": 28,
+        "files": 560,
+        "codeFiles": 537,
+        "bytes": 31631,
+        "facts": 21
+      },
+      {
+        "pathsPerSource": 498,
+        "files": 9960,
+        "codeFiles": 9937,
+        "bytes": 519900,
+        "facts": 21
+      }
+    ],
+    "arms": [
+      "same-process",
+      "reopened-process",
+      "instrumentation-control"
+    ],
+    "operations": [
+      "first",
+      "repeat-1",
+      "repeat-2",
+      "repeat-3",
+      "selected",
+      "page-4",
+      "isolated",
+      "history"
+    ],
+    "topic": "loans.opened.v6",
+    "environment": "practice",
+    "defaultFlows": 2,
+    "selectedFlows": 1,
+    "rootCount": 5,
+    "defaultOriginals": 10,
+    "isolatedOriginals": 5,
+    "sourceCount": 20,
+    "uncitedSource": "d-shift-handbook",
+    "selectedRoot": [
+      "a-loan-desk",
+      "desk/AALend.vue",
+      "lend",
+      "vue-action"
+    ],
+    "isolatedRoot": [
+      "a-loan-desk",
+      "desk/ZZSearch.vue",
+      "search",
+      "vue-action"
+    ],
+    "requiredNodes": [
+      [
+        "a-loan-desk",
+        "desk/AALend.vue",
+        "symbol",
+        "lend",
+        "vue-action"
+      ],
+      [
+        "a-loan-desk",
+        "desk/BBIssue.vue",
+        "symbol",
+        "issue",
+        "vue-action"
+      ],
+      [
+        "a-loan-desk",
+        "desk/loans.ts",
+        "http-request",
+        "POST /v6/loans",
+        null
+      ],
+      [
+        "b-loan-service",
+        "routing/loans.json",
+        "handler-reference",
+        "Loans.open",
+        null
+      ],
+      [
+        "b-loan-service",
+        "loans/Loans.java",
+        "symbol",
+        "Loans.open",
+        "java-method"
+      ],
+      [
+        "b-loan-service",
+        "loans/Loans.java",
+        "event-publish",
+        "Publish LoanOpened",
+        null
+      ],
+      [
+        "c-loan-ledger",
+        "ledger/LoanWriter.java",
+        "event-subscribe",
+        "Subscribe via KafkaSubscriber",
+        null
+      ],
+      [
+        "c-loan-ledger",
+        "ledger/LoanWriter.java",
+        "document-write",
+        "MongoCollection.replaceOne",
+        null
+      ]
+    ],
+    "isolated": {
+      "nodes": 1,
+      "edges": 0,
+      "flows": 1,
+      "terminalKind": "symbol",
+      "reason": "unresolved-import"
+    },
+    "limits": {
+      "wallMs": 5000,
+      "work": 1000000,
+      "projectionBytes": 524288,
+      "receiptBytes": 655360,
+      "textBytes": 65536,
+      "spans": 30,
+      "sources": 20
+    },
+    "resources": {
+      "sampleIntervalMs": 5,
+      "maxSliceMs": 150,
+      "sampledRssMiB": 384,
+      "sampledHeapGrowthMiB": 64
+    },
+    "diagnostic": {
+      "phaseRecords": 64,
+      "queryIdentities": 128,
+      "preparerWatchdogMs": 900000,
+      "readerWatchdogMs": 600000,
+      "overallWatchdogMs": 1800000
+    },
+    "requiredCapturePhases": [
+      "operation-start",
+      "snapshot-before",
+      "snapshot-after",
+      "metadata-after",
+      "facts-after",
+      "domains-after",
+      "resolution-after",
+      "admission-after",
+      "path-final-before",
+      "path-final-after",
+      "receipt-projection",
+      "receipt-originals",
+      "receipt-publication-before",
+      "receipt-publication-after",
+      "operation-end"
+    ],
+    "parityExcludedProjectionFields": [],
+    "parityExcludedReceiptFields": [],
+    "selectedRequiredNodes": [
+      [
+        "a-loan-desk",
+        "desk/AALend.vue",
+        "symbol",
+        "lend",
+        "vue-action"
+      ],
+      [
+        "a-loan-desk",
+        "desk/loans.ts",
+        "http-request",
+        "POST /v6/loans",
+        null
+      ],
+      [
+        "b-loan-service",
+        "routing/loans.json",
+        "handler-reference",
+        "Loans.open",
+        null
+      ],
+      [
+        "b-loan-service",
+        "loans/Loans.java",
+        "symbol",
+        "Loans.open",
+        "java-method"
+      ],
+      [
+        "b-loan-service",
+        "loans/Loans.java",
+        "event-publish",
+        "Publish LoanOpened",
+        null
+      ],
+      [
+        "c-loan-ledger",
+        "ledger/LoanWriter.java",
+        "event-subscribe",
+        "Subscribe via KafkaSubscriber",
+        null
+      ],
+      [
+        "c-loan-ledger",
+        "ledger/LoanWriter.java",
+        "document-write",
+        "MongoCollection.replaceOne",
+        null
+      ]
+    ]
+  },
+  "processes": [
+    {
+      "arm": "same-process",
+      "size": 28,
+      "executable": "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+      "args": [
+        "/home/toshiba/aew/worktrees/task079-memory-attribution/scripts/loredock-memory-runner/child.mjs",
+        "/home/toshiba/aew/measurements/task079-first-run/size-28",
+        "same-process",
+        "/home/toshiba/aew/worktrees/task079-memory-attribution/scripts/loredock-memory-attribution/small.mjs"
+      ],
+      "environment": {
+        "nodeOptions": null,
+        "locale": "C"
+      },
+      "startedAt": "2026-11-03T10:53:41.140Z",
+      "pid": 1284697,
+      "exit": 0,
+      "signal": null,
+      "wallMs": 12514.785228
+    },
+    {
+      "arm": "reopened-process",
+      "size": 28,
+      "executable": "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+      "args": [
+        "/home/toshiba/aew/worktrees/task079-memory-attribution/scripts/loredock-memory-runner/child.mjs",
+        "/home/toshiba/aew/measurements/task079-first-run/size-28",
+        "reopened-process",
+        "/home/toshiba/aew/worktrees/task079-memory-attribution/scripts/loredock-memory-attribution/small.mjs"
+      ],
+      "environment": {
+        "nodeOptions": null,
+        "locale": "C"
+      },
+      "startedAt": "2026-11-03T10:53:53.682Z",
+      "pid": 1286731,
+      "exit": 0,
+      "signal": null,
+      "wallMs": 3037.0263779999987
+    },
+    {
+      "arm": "instrumentation-control",
+      "size": 28,
+      "executable": "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+      "args": [
+        "/home/toshiba/aew/worktrees/task079-memory-attribution/scripts/loredock-memory-runner/child.mjs",
+        "/home/toshiba/aew/measurements/task079-first-run/size-28",
+        "instrumentation-control",
+        "/home/toshiba/aew/worktrees/task079-memory-attribution/scripts/loredock-memory-attribution/small.mjs"
+      ],
+      "environment": {
+        "nodeOptions": null,
+        "locale": "C"
+      },
+      "startedAt": "2026-11-03T10:53:56.737Z",
+      "pid": 1286748,
+      "exit": 0,
+      "signal": null,
+      "wallMs": 3185.602478999999
+    },
+    {
+      "arm": "same-process",
+      "size": 498,
+      "executable": "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+      "args": [
+        "/home/toshiba/aew/worktrees/task079-memory-attribution/scripts/loredock-memory-runner/child.mjs",
+        "/home/toshiba/aew/measurements/task079-first-run/size-498",
+        "same-process",
+        "/home/toshiba/aew/worktrees/task079-memory-attribution/scripts/loredock-memory-attribution/large.mjs"
+      ],
+      "environment": {
+        "nodeOptions": null,
+        "locale": "C"
+      },
+      "startedAt": "2026-11-03T10:53:59.936Z",
+      "pid": 1286764,
+      "exit": 0,
+      "signal": null,
+      "wallMs": 331851.36972899997
+    },
+    {
+      "arm": "reopened-process",
+      "size": 498,
+      "executable": "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+      "args": [
+        "/home/toshiba/aew/worktrees/task079-memory-attribution/scripts/loredock-memory-runner/child.mjs",
+        "/home/toshiba/aew/measurements/task079-first-run/size-498",
+        "reopened-process",
+        "/home/toshiba/aew/worktrees/task079-memory-attribution/scripts/loredock-memory-attribution/large.mjs"
+      ],
+      "environment": {
+        "nodeOptions": null,
+        "locale": "C"
+      },
+      "startedAt": "2026-11-03T10:59:31.873Z",
+      "pid": 1318358,
+      "exit": 0,
+      "signal": null,
+      "wallMs": 85647.64390100003
+    },
+    {
+      "arm": "instrumentation-control",
+      "size": 498,
+      "executable": "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+      "args": [
+        "/home/toshiba/aew/worktrees/task079-memory-attribution/scripts/loredock-memory-runner/child.mjs",
+        "/home/toshiba/aew/measurements/task079-first-run/size-498",
+        "instrumentation-control",
+        "/home/toshiba/aew/worktrees/task079-memory-attribution/scripts/loredock-memory-attribution/large.mjs"
+      ],
+      "environment": {
+        "nodeOptions": null,
+        "locale": "C"
+      },
+      "startedAt": "2026-11-03T11:00:57.596Z",
+      "pid": 1318724,
+      "exit": 0,
+      "signal": null,
+      "wallMs": 83858.71860200004
+    }
+  ],
+  "arms": [
+    {
+      "size": 28,
+      "arm": "same-process",
+      "workerErrors": [],
+      "operations": [
+        {
+          "name": "first",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-1",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-2",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-3",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "selected",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "page-4",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "isolated",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "history",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "size": 28,
+      "arm": "reopened-process",
+      "workerErrors": [],
+      "operations": [
+        {
+          "name": "first",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-1",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-2",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-3",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "selected",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "page-4",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "isolated",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "history",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "size": 28,
+      "arm": "instrumentation-control",
+      "workerErrors": [],
+      "operations": [
+        {
+          "name": "first",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-1",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-2",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-3",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "selected",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "page-4",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "isolated",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "history",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "size": 498,
+      "arm": "same-process",
+      "workerErrors": [],
+      "operations": [
+        {
+          "name": "first",
+          "resources": {
+            "pass": false,
+            "failures": [
+              {
+                "name": "heapGrowthMiB",
+                "value": 71.80509185791016,
+                "bound": 64
+              }
+            ]
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-1",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-2",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-3",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "selected",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "page-4",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "isolated",
+          "resources": {
+            "pass": false,
+            "failures": [
+              {
+                "name": "heapGrowthMiB",
+                "value": 65.10777282714844,
+                "bound": 64
+              }
+            ]
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "history",
+          "resources": {
+            "pass": false,
+            "failures": [
+              {
+                "name": "peakRssMiB",
+                "value": 401.6640625,
+                "bound": 384
+              }
+            ]
+          },
+          "integrity": {
+            "pass": true
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "size": 498,
+      "arm": "reopened-process",
+      "workerErrors": [],
+      "operations": [
+        {
+          "name": "first",
+          "resources": {
+            "pass": false,
+            "failures": [
+              {
+                "name": "heapGrowthMiB",
+                "value": 68.33202362060547,
+                "bound": 64
+              }
+            ]
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-1",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-2",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-3",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "selected",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "page-4",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "isolated",
+          "resources": {
+            "pass": false,
+            "failures": [
+              {
+                "name": "heapGrowthMiB",
+                "value": 65.60708618164062,
+                "bound": 64
+              }
+            ]
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "history",
+          "resources": {
+            "pass": false,
+            "failures": [
+              {
+                "name": "peakRssMiB",
+                "value": 399.5390625,
+                "bound": 384
+              }
+            ]
+          },
+          "integrity": {
+            "pass": true
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "size": 498,
+      "arm": "instrumentation-control",
+      "workerErrors": [],
+      "operations": [
+        {
+          "name": "first",
+          "resources": {
+            "pass": false,
+            "failures": [
+              {
+                "name": "heapGrowthMiB",
+                "value": 67.95433044433594,
+                "bound": 64
+              }
+            ]
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-1",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-2",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "repeat-3",
+          "resources": {
+            "pass": false,
+            "failures": [
+              {
+                "name": "heapGrowthMiB",
+                "value": 66.19625091552734,
+                "bound": 64
+              }
+            ]
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "selected",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "page-4",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "isolated",
+          "resources": {
+            "pass": true,
+            "failures": []
+          },
+          "integrity": {
+            "pass": true
+          }
+        },
+        {
+          "name": "history",
+          "resources": {
+            "pass": false,
+            "failures": [
+              {
+                "name": "peakRssMiB",
+                "value": 406.53515625,
+                "bound": 384
+              }
+            ]
+          },
+          "integrity": {
+            "pass": true
+          }
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "parity": [
+    {
+      "size": 28,
+      "arm": "reopened-process",
+      "pass": true
+    },
+    {
+      "size": 28,
+      "arm": "instrumentation-control",
+      "pass": true
+    },
+    {
+      "size": 498,
+      "arm": "reopened-process",
+      "pass": true
+    },
+    {
+      "size": 498,
+      "arm": "instrumentation-control",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "summary": {
+    "arms": 6,
+    "operations": 48,
+    "integrityPassed": 48,
+    "resourcePassed": 39,
+    "parityPassed": 4,
+    "note": "A diagnostic only. No prior resource gate or production promotion changes."
+  },
+  "failed": true
+}
