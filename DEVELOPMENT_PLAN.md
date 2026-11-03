@@ -302,6 +302,11 @@ freezing a new positive family. Exactly two snapshots follow the normal long-liv
 sequence; collection/export effects remain outside acceptance. No cache, payload
 compaction or production promotion is selected; see
 [ADR 0055](docs/decisions/0055-loredock-terminal-memory-ownership.md).
+[Task 086](tasks/086-loredock-terminal-ownership.md) implements the bounded terminal
+export/process/parser helpers on tiny independent objects. Weak/runtime/native
+uncertainty stays explicit; snapshots never supply resource acceptance. Next:
+separately author/freeze one compatible positive family and complete protocol before
+the single terminal diagnostic. No prior measured code or input is reused as a run.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

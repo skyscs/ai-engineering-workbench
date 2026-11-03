@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "loredock-terminal-development-validation/1",
+  "node": "v22.23.2",
+  "v8": "12.4.254.21-node.56",
+  "pnpm": "10.15.0",
+  "resourceAcceptance": false,
+  "preflight": {
+    "file": "schema-preflight.heapsnapshot.gz",
+    "bytes": 5209992,
+    "sha256": "44128c004a60a606cd64c95a9029a05874f7934943c8623668f68c45e095be9b",
+    "archiveBytes": 1026478,
+    "archiveSha256": "8bca8525b5d8dbe665dcf1bca6709ab9a315d7174db56ac9e550c93127d145f1",
+    "exit": {
+      "args": [
+        "timeout",
+        "--signal=TERM",
+        "--kill-after=1s",
+        "30s",
+        "prlimit",
+        "--fsize=16777216:16777216",
+        "--",
+        "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+        "--input-type=module",
+        "-e",
+        "import { writeHeapSnapshot } from \"node:v8\"; writeHeapSnapshot(\"schema.heapsnapshot\");"
+      ],
+      "exit": 0,
+      "wallSeconds": 0.10443327600660268,
+      "purpose": "Independent tiny schema preflight; not resource qualification."
+    }
+  },
+  "logs": [
+    {
+      "file": "focused-first.log.gz",
+      "exit": 1,
+      "bytes": 2245,
+      "sha256": "98d024f5ce2b33f9ccec2b493dc12537d25e24d0d5c5a4707bb2095f260adb09"
+    },
+    {
+      "file": "focused-second.log.gz",
+      "exit": 0,
+      "bytes": 1114,
+      "sha256": "294e269071c3595bb19876c110a4dbce7c7fffb50f1c3cc5c4dd7e4a476ab862"
+    },
+    {
+      "file": "focused-final.log.gz",
+      "exit": 0,
+      "bytes": 1115,
+      "sha256": "49bc7191b23e3aa9d4f38ecbe06d87dcbfb3d78424e2c8a8d13e8140ead18ac9"
+    },
+    {
+      "file": "install-first.log.gz",
+      "exit": 0,
+      "bytes": 326,
+      "sha256": "6984bc69e432767a5dc8e80781c01195850c52204814d496e15432e84f66e2a6"
+    },
+    {
+      "file": "check-first.log.gz",
+      "exit": 0,
+      "tests": 533,
+      "bytes": 213492,
+      "sha256": "820bc8c1ef58125f2be21f0e550e05892a8fe06d10a098e4cd1e1d56ce7de6b2"
+    },
+    {
+      "file": "check-final.log.gz",
+      "exit": 0,
+      "tests": 533,
+      "bytes": 213488,
+      "sha256": "bde1a6fab8f70d9c80a05fa8456dad510410058069499132ec33dc7b8d62fccc"
+    }
+  ],
+  "firstChild": {
+    "frames": 3,
+    "bytes": 2327,
+    "sha256": "f78de0aaa83a9dcbc96bb66688fbd1cba33bd33124cd9b3a3bc72b57a92e6153"
+  }
+}
