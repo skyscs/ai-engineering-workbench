@@ -295,6 +295,13 @@ regressions. It retains raw comparisons/history after source or usefulness failu
 and rejects any required failure or blocked dependency. Next: record the remaining
 memory decision from retained ownership/allocation evidence before another resource
 experiment. No exhausted corpus rerun or candidate integration is implied.
+[Task 085](tasks/085-loredock-memory-ownership-decision.md) selects a targeted
+terminal ownership diagnostic after reviewing saved allocation/close endpoints
+and source lifetimes. Prepare bounded heap export/parsing on tiny inputs before
+freezing a new positive family. Exactly two snapshots follow the normal long-lived
+sequence; collection/export effects remain outside acceptance. No cache, payload
+compaction or production promotion is selected; see
+[ADR 0055](docs/decisions/0055-loredock-terminal-memory-ownership.md).
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

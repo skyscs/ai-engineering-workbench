@@ -192,3 +192,12 @@ Task 083's [recovery contract](QUALIFICATION_RECOVERY.md) now defines the pre-fr
 compatibility review and independent evaluator dependencies. Implement that offline
 workflow on tiny inputs before the next memory decision; do not reinterpret Task
 082's post-run byte readback as a replacement qualification score.
+
+
+Task 084 implements the independent offline assessor. Task 085's
+[ownership decision](MEMORY_OWNERSHIP_DECISION.md) selects a separate two-snapshot
+terminal diagnostic after evicted history and after close/reference release.
+Existing immediate-close RSS endpoints do not attribute retained ownership.
+Implement its bounded process/export/parser boundary on tiny inputs before a new
+positive input freeze. Snapshots collect garbage and cannot supply operation
+resource acceptance; no second optimization or old-family replay is selected.

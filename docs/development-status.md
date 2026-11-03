@@ -1,5 +1,27 @@
 # Development status
 
+## Task 085 — Terminal memory ownership diagnostic selected
+
+Source review and [retained endpoint extraction](fixtures/loredock-memory-ownership/README.md)
+separate request-local payload/domain overlap, transient validation/SQL allocation,
+and post-replacement process residency. Immediate database/service close leaves RSS
+unchanged in the four inspected large workers; it does not identify live objects
+or native allocation ownership.
+
+The [decision](loredock/MEMORY_OWNERSHIP_DECISION.md) selects one future fresh positive
+long-lived diagnostic with two terminal heap snapshots, after evicted history and
+after close/reference release. Snapshot collection/export is intrusive and occurs
+outside ordinary operations. It cannot supply resource acceptance. No statement
+cache, payload compaction or product change is selected.
+
+Next: implement bounded export/parser/process helpers on independent tiny fixtures;
+only then author and freeze the new targeted diagnostic. Exact limits and first-
+failure retention precede execution. All old families remain exhausted and streaming
+remains unqualified. This task changes documentation and saved-byte readback only;
+source/reference/full-diff checks replace unnecessary local runtime tests. See
+[ADR 0055](decisions/0055-loredock-terminal-memory-ownership.md) and
+[Task 085](../tasks/085-loredock-memory-ownership-decision.md).
+
 ## Task 084 — Independent offline assessment implemented
 
 The [new evaluator](../scripts/loredock-qualification-assessment/README.md) retains
@@ -13,7 +35,9 @@ Actual tiny child regressions cover supported `onMessage` and an explicitly nega
 `onReserved` case, both lifecycle arms, saved-byte corruption, source mismatches,
 changed histories and resource/process/cleanup failures. First development failures
 and raw outputs are [retained](fixtures/loredock-qualification-assessment/README.md).
-All 529 tests, strict typechecks and builds pass locally; exact-head CI is pending. No frozen family was rerun,
+All 529 tests, strict typechecks and builds pass. PR #88 merged as `b44c9af` after
+exact head `a1cdbd1` passed push 41733206449 and pull-request 41733233233 CI;
+the merge tree is identical. No frozen family was rerun,
 and no measured or production module changed. Streaming remains unqualified.
 
 PR #87 merged as `f3f45d0` after head `3deb58e` passed push 41635586123 and

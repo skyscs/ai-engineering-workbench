@@ -1,6 +1,6 @@
 # Task 084 — Independent offline qualification assessment
 
-Status: implemented and locally verified; exact-head CI pending, 2026-11-03.
+Status: completed and merged as PR #88, 2026-11-03.
 
 ## Baseline and scope
 
@@ -107,3 +107,9 @@ Final pinned-toolchain `pnpm check` passes all 529 tests, strict typechecks and
 builds. First and final full checks exit 0; the final run covers the review changes.
 Reference links, archive/log hashes, frozen-file separation and staged whitespace
 checks pass. Exact-head push/pull-request CI remains required before merge.
+
+PR #88 merged as `b44c9afe8b2d879d2ae55f56148ad0280ddca121` after final head
+`a1cdbd110b7f81a78db8ef7c0857f8e7e1e3dc54` passed push 41733206449 and pull-request
+41733233233 CI. The merge tree is identical; all 529 tests, typechecks and builds
+pass. Task 085 continues the remaining ownership decision without rerunning any
+exhausted experiment.
