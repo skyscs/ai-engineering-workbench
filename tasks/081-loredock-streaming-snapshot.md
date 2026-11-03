@@ -1,6 +1,6 @@
 # Task 081 — Streaming snapshot validation candidate
 
-Status: in progress, 2026-11-03.
+Status: implemented and locally verified, 2026-11-03; resource qualification pending.
 
 ## Baseline and scope
 
@@ -63,5 +63,8 @@ Its original failure log remains retained, followed by three passing tests.
 The full three-process regression passes on its first run: 24 operations retain
 identical receipt/projection bytes and shared work across candidate/baseline,
 including repeats, selected/isolated paths, page four and history after eviction.
-Focused typechecking passes. Full checks are in progress. No memory qualification
-or frozen corpus execution has occurred.
+Focused typechecking and the first full `pnpm check` pass: 519 tests, strict checks
+and builds. [Retained logs](../docs/fixtures/loredock-streaming-snapshot/README.md)
+include the original test setup failure and all later outcomes. Source/hash/diff
+review confirms unchanged production and measured baseline code. No memory
+qualification or frozen corpus execution has occurred.

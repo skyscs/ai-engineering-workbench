@@ -271,6 +271,11 @@ identical manifest hash input, retaining parsed IDs and all final fences. Profil
 allocation weights do not establish live-memory savings or resource acceptance.
 Implement independently, then qualify on fresh uninstrumented capture/history
 lifecycles without changing limits. No production promotion or old-family rerun.
+[Task 081](tasks/081-loredock-streaming-snapshot.md) implements that opt-in candidate.
+Real SQLite differential cases preserve the full snapshot and its refusal boundary;
+all 24 independent process operations retain exact receipt/projection bytes and
+shared work. Full strict checks, 519 tests and builds pass. Next: a separately frozen
+uninstrumented resource qualification, including history RSS, before any integration.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
