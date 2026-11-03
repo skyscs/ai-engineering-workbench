@@ -20,3 +20,15 @@ cases cover parent-only resource failure, exit 7/missing preparation, cleanup
 failure with a still-valid stopped copy, watchdog termination and malformed saved
 worker JSON. No test imports the [future frozen corpus](../../fixtures/loredock-compact-qualification/README.md)
 or measurement entry point. Neither snapshots nor profilers are used here.
+
+Generic integration `6c4212f` passed 551 tests, strict typechecks and builds before
+input/protocol freeze `81d926f`. Task 088 head `68081c2` passed both exact-head CI
+events and merged as identical-tree `2d99d83`. The CLI verifies all five frozen
+inputs and 406 source/built/script hashes, requires clean Git and records its head.
+
+```sh
+LOREDOCK_COMPACT_OUTPUT=/absolute/new-owned-output timeout --signal=TERM --kill-after=5s 1830s node scripts/loredock-compact-qualification/probe.mjs
+```
+
+Retain the outer stdout/stderr and exit too. The family is exhausted after that
+single execution, including any failed or incomplete result.
