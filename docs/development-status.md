@@ -1,5 +1,29 @@
 # Development status
 
+## Task 081 — Streaming snapshot candidate functionally verified
+
+Implemented and locally verified, 2026-11-03; scope `25764e9`, implementation
+`94ccbdf`. PR #84 merged as `a1c1443` after exact head `d0af1c4` passed push
+41630183897 and pull-request 41630230466 CI (515 tests), with an identical tree.
+
+The [opt-in candidate](../scripts/loredock-streaming-snapshot/README.md) streams
+complete header validation and the identical manifest hash bytes. It retains
+ordered parsed-file IDs and every authorization/checkpoint/count/byte/final fence.
+No result cache, skipped input, larger limit or production change is introduced.
+
+Real SQLite differential tests cover empty/mixed/escaped input, late corruption,
+the exact 10,000-header limit and source/parser/publication refusals. All 24 child-
+process operations retain identical receipt/projection bytes and shared work
+across candidate/baseline, including evicted history without nested work. Full
+strict checks, 519 tests and builds pass. The first test-only nested transaction
+failure and final checks are [retained](fixtures/loredock-streaming-snapshot/README.md).
+
+Next: freeze and execute fresh uninstrumented resource qualification in long-lived
+and reopened processes, including first/repeat/selected/page/history operations.
+Memory savings and history RSS remain unmeasured; all earlier failures and semantic/
+private-pilot gates stand. No model calls, corporate source, demo work or old-family
+reruns. See [Task 081](../tasks/081-loredock-streaming-snapshot.md).
+
 ## Task 080 — Profile complete; one snapshot allocation candidate selected
 
 The single frozen diagnostic completed 2026-11-03 with exit 0 at candidate
