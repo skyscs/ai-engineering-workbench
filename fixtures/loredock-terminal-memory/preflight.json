@@ -1,0 +1,154 @@
+{
+  "schemaVersion": "task087-terminal-preflight/1",
+  "method": "Pure UTF-8 construction counts and hashes only; no parser or candidate.",
+  "size": {
+    "pathsPerSource": 496,
+    "files": 9920,
+    "codeFiles": 9897,
+    "bytes": 935971,
+    "facts": 21
+  },
+  "corpusHash": "9e0886100c76ebddb8d2ebb957ae6a2d0dd69ea961539cba0feacee91f5d4e9c",
+  "sources": [
+    {
+      "name": "a-intake-desk",
+      "files": 496,
+      "codeFiles": 495,
+      "bytes": 46611,
+      "contentHash": "95837280359928878e1f843c6ba4dbad9a76024614a1983f81b21e0027c91599"
+    },
+    {
+      "name": "b-accession-api",
+      "files": 496,
+      "codeFiles": 493,
+      "bytes": 47167,
+      "contentHash": "a87bc8c81201b90dd4e51b3d020fbcd1e5a391cb5a5c16bb5444bddcd8e8d684"
+    },
+    {
+      "name": "c-archive-register",
+      "files": 496,
+      "codeFiles": 494,
+      "bytes": 48757,
+      "contentHash": "e16a133e546b7b33cbecee7324f69f7df8ea73b796a550897fdf1a4794cbb869"
+    },
+    {
+      "name": "d-curation-handbook",
+      "files": 496,
+      "codeFiles": 495,
+      "bytes": 48540,
+      "contentHash": "ce63f67814d44e873601da4831985ec5d534e0ae2accae3c1d3c92d253b70e9e"
+    },
+    {
+      "name": "e-collection-01",
+      "files": 496,
+      "codeFiles": 495,
+      "bytes": 46556,
+      "contentHash": "12957f07e7fb5a4fc9b989908a54d02808e763e6c59ec57743fbcb2dd6f1534a"
+    },
+    {
+      "name": "e-collection-02",
+      "files": 496,
+      "codeFiles": 495,
+      "bytes": 46556,
+      "contentHash": "4a7a52a1666f4e3ba8a41cca359393a8c80128079841e1c546fbbc8a920b5a32"
+    },
+    {
+      "name": "e-collection-03",
+      "files": 496,
+      "codeFiles": 495,
+      "bytes": 46556,
+      "contentHash": "e4452667b988392a74d46c7eb7f91072e829b5122ca926515c2537a87f6477c9"
+    },
+    {
+      "name": "e-collection-04",
+      "files": 496,
+      "codeFiles": 495,
+      "bytes": 46556,
+      "contentHash": "eb06f38fe0c6fafaa409873afce010ae68b1e0683429f0780548f81b3c7b850e"
+    },
+    {
+      "name": "e-collection-05",
+      "files": 496,
+      "codeFiles": 495,
+      "bytes": 46556,
+      "contentHash": "54926f50988f2f1905df1040dce0da6d9334ab50f8ae38a6a0f36aacd9596d3f"
+    },
+    {
+      "name": "e-collection-06",
+      "files": 496,
+      "codeFiles": 495,
+      "bytes": 46556,
+      "contentHash": "84305c19b241a55e207accacdbdccf29222267d860559c57c9c7fba431e739b0"
+    },
+    {
+      "name": "e-collection-07",
+      "files": 496,
+      "codeFiles": 495,
+      "bytes": 46556,
+      "contentHash": "b202a29f0053d89cf982279108e11c4651d05aeb146798f266c753518633726a"
+    },
+    {
+      "name": "e-collection-08",
+      "files": 496,
+      "codeFiles": 495,
+      "bytes": 46556,
+      "contentHash": "0c524d0b5a585ae90fdb0131fdad3bc16c54e268a9d3970c877da75dcd504576"
+    },
+    {
+      "name": "e-collection-09",
+      "files": 496,
+      "codeFiles": 495,
+      "bytes": 46556,
+      "contentHash": "7333f392afbe37f321a7a18ec3e9fbebece3a6a5a849b8d7440e58cefe2bcc53"
+    },
+    {
+      "name": "e-collection-10",
+      "files": 496,
+      "codeFiles": 495,
+      "bytes": 46556,
+      "contentHash": "7beb91e1961e433303755b192a05ec03b5a5cbe9f65fe7d39c8668727455f205"
+    },
+    {
+      "name": "e-collection-11",
+      "files": 496,
+      "codeFiles": 495,
+      "bytes": 46556,
+      "contentHash": "a31522f791fe9fba34ebeb441ff8547d61b99d8f883982360404ae615009be33"
+    },
+    {
+      "name": "e-collection-12",
+      "files": 496,
+      "codeFiles": 495,
+      "bytes": 46556,
+      "contentHash": "5d3c7cbdbcc7ccfc41f2da81d10a2cd15dad1b7efd94e11e7f825d5b20ae03d1"
+    },
+    {
+      "name": "e-collection-13",
+      "files": 496,
+      "codeFiles": 495,
+      "bytes": 46556,
+      "contentHash": "85958e8ee07e4e4b3bab1c463112459ffcdbfa00413ef1db8ccb560d8a322783"
+    },
+    {
+      "name": "e-collection-14",
+      "files": 496,
+      "codeFiles": 495,
+      "bytes": 46556,
+      "contentHash": "05be45bb73a2622977e82c714c9e47ca44a077cae1168f652f548e12c3fb3a93"
+    },
+    {
+      "name": "e-collection-15",
+      "files": 496,
+      "codeFiles": 495,
+      "bytes": 46556,
+      "contentHash": "7dde519fdc43e11f3ee8f6407f665abd446b72bc72fb1359818b39a75ed31cd1"
+    },
+    {
+      "name": "e-collection-16",
+      "files": 496,
+      "codeFiles": 495,
+      "bytes": 46556,
+      "contentHash": "1bdd93ca9d71d6d68bdff7dedb900247eccda440cb7a1b0a5b30b26fcddaf816"
+    }
+  ]
+}
