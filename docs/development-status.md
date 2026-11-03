@@ -1,5 +1,27 @@
 # Development status
 
+## Task 086 — Terminal heap helpers implemented on independent tiny inputs
+
+The [offline helpers](../scripts/loredock-terminal-ownership/README.md) bound owned
+Linux child/file/time/RSS work and validate the pinned V8 graph outside the observed
+worker. They retain exactly two terminal stages, explicit collection/export effects,
+shallow counts and bounded inspectable paths. Weak, runtime and native uncertainty
+cannot become an automated leak or resource-acceptance claim.
+
+Actual tiny exports distinguish a deliberately held object from its released state.
+Four focused tests cover graph corruption, process failures/cancellation/timeouts,
+hard file limits and owned-file refusals. The first Linux limit-record parsing
+failure and full schema preflight are [retained](fixtures/loredock-terminal-ownership/README.md).
+All 533 tests, strict typechecks and builds pass; full-diff/source/reference/hash
+review passes. Both exact-head CI events remain required before merge.
+
+PR #89 merged as `3f00938` after `3b67fae` passed push 41734325502 and pull-request
+41734373519 CI (529 tests), with an identical tree. Next: separately freeze one new
+compatible positive near-limit family and its complete terminal diagnostic protocol,
+then execute it once. No old family, large run, product optimization or model is
+part of this helper task. Streaming remains unqualified. See
+[Task 086](../tasks/086-loredock-terminal-ownership.md).
+
 ## Task 085 — Terminal memory ownership diagnostic selected
 
 Source review and [retained endpoint extraction](fixtures/loredock-memory-ownership/README.md)

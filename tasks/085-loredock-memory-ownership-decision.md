@@ -1,6 +1,6 @@
 # Task 085 — Remaining memory ownership decision
 
-Status: decision completed and locally reviewed; exact-head CI pending, 2026-11-03.
+Status: completed and merged as PR #89, 2026-11-04.
 
 ## Baseline and scope
 
@@ -68,3 +68,8 @@ PR #88 merged as `b44c9afe8b2d879d2ae55f56148ad0280ddca121` after exact head
 41733233233 CI (529 tests). The merge tree is identical. Reference checks and
 archive/worker hashes plus every copied endpoint value pass; the full change is
 restricted to documentation and readback JSON. Main is synchronized separately.
+
+PR #89 merged as `3f00938d69cd87503229bce917a288d705ab4270` after exact head
+`3b67faea570189e79114abf413d9f115b8841ed7` passed push 41734325502 and pull-request
+41734373519 CI. The tree is identical, main is clean, and Task 086 proceeds with
+independent tiny diagnostic helpers before any fresh resource-family authoring.
