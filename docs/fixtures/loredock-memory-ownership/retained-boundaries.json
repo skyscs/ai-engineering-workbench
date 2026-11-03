@@ -1,0 +1,294 @@
+{
+  "schemaVersion": "loredock-retained-boundaries/1",
+  "purpose": "Readback of existing lifecycle endpoints only; no execution, rescoring or memory attribution.",
+  "inputs": [
+    {
+      "archive": "docs/fixtures/loredock-memory-attribution/raw.jsonl.gz",
+      "archiveSha256": "bef99496d78c3b77bd5967aeac702840ebdaa95ba47a84539195ded0632721f8",
+      "workers": [
+        {
+          "path": "size-498/same-process/result.json",
+          "sha256": "b312532ba33fbb60198be615f1c24643f2c54728ce2640f9b59a8deea96cd58e",
+          "boundaries": [
+            {
+              "stage": "preparation-close-before",
+              "atMs": 241534.677196,
+              "rss": 240586752,
+              "heapTotal": 88895488,
+              "heapUsed": 55597256,
+              "external": 2375442,
+              "arrayBuffers": 41407
+            },
+            {
+              "stage": "preparation-close-after",
+              "atMs": 241540.434573,
+              "rss": 240586752,
+              "heapTotal": 88895488,
+              "heapUsed": 55605992,
+              "external": 2375442,
+              "arrayBuffers": 41407
+            },
+            {
+              "stage": "opening-after",
+              "atMs": 241782.101324,
+              "rss": 239624192,
+              "heapTotal": 70041600,
+              "heapUsed": 34314496,
+              "external": 7682313,
+              "arrayBuffers": 5337327
+            },
+            {
+              "stage": "memory-replacement-one-before",
+              "atMs": 265262.291084,
+              "rss": 381714432,
+              "heapTotal": 200445952,
+              "heapUsed": 168692376,
+              "external": 2598821,
+              "arrayBuffers": 253835
+            },
+            {
+              "stage": "memory-replacement-one-after",
+              "atMs": 298326.973561,
+              "rss": 395591680,
+              "heapTotal": 134422528,
+              "heapUsed": 65167840,
+              "external": 2602789,
+              "arrayBuffers": 257803
+            },
+            {
+              "stage": "memory-replacement-two-after",
+              "atMs": 331800.3865,
+              "rss": 421175296,
+              "heapTotal": 134422528,
+              "heapUsed": 93193496,
+              "external": 2651669,
+              "arrayBuffers": 306683
+            },
+            {
+              "stage": "closure-before",
+              "atMs": 331818.840417,
+              "rss": 421175296,
+              "heapTotal": 134422528,
+              "heapUsed": 82589920,
+              "external": 2894588,
+              "arrayBuffers": 549602
+            },
+            {
+              "stage": "closure-after",
+              "atMs": 331824.041013,
+              "rss": 421175296,
+              "heapTotal": 134422528,
+              "heapUsed": 82619048,
+              "external": 2894588,
+              "arrayBuffers": 549602
+            }
+          ]
+        },
+        {
+          "path": "size-498/reopened-process/result.json",
+          "sha256": "ca761e61617be2005788759dfebcc3f2dd2d47a2e0b1e248625d03f3e990f991",
+          "boundaries": [
+            {
+              "stage": "opening-after",
+              "atMs": 292.468841,
+              "rss": 150790144,
+              "heapTotal": 49008640,
+              "heapUsed": 36601152,
+              "external": 40675489,
+              "arrayBuffers": 38338868
+            },
+            {
+              "stage": "memory-replacement-one-before",
+              "atMs": 23591.917332,
+              "rss": 366968832,
+              "heapTotal": 200097792,
+              "heapUsed": 167959368,
+              "external": 2525360,
+              "arrayBuffers": 186691
+            },
+            {
+              "stage": "memory-replacement-one-after",
+              "atMs": 55007.890208,
+              "rss": 415469568,
+              "heapTotal": 221876224,
+              "heapUsed": 188760048,
+              "external": 2423554,
+              "arrayBuffers": 84885
+            },
+            {
+              "stage": "memory-replacement-two-after",
+              "atMs": 85592.743673,
+              "rss": 418947072,
+              "heapTotal": 136519680,
+              "heapUsed": 47088560,
+              "external": 2459548,
+              "arrayBuffers": 120879
+            },
+            {
+              "stage": "closure-before",
+              "atMs": 85614.44738,
+              "rss": 419078144,
+              "heapTotal": 136519680,
+              "heapUsed": 36541888,
+              "external": 2529949,
+              "arrayBuffers": 191280
+            },
+            {
+              "stage": "closure-after",
+              "atMs": 85618.996968,
+              "rss": 419078144,
+              "heapTotal": 136519680,
+              "heapUsed": 36551416,
+              "external": 2529949,
+              "arrayBuffers": 191280
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "archive": "docs/fixtures/loredock-streaming-qualification/raw.jsonl.gz",
+      "archiveSha256": "9efc4200b720b6b885fa41220b0ebc201b461c4d7d8c83797530fdb01eb518b5",
+      "workers": [
+        {
+          "path": "size-499/same-process/result.json",
+          "sha256": "8d6c08fcd8de0c0f2dd08528cc29cb3cc4cb01b2977fba8044317600233b70e0",
+          "boundaries": [
+            {
+              "stage": "preparation-close-before",
+              "atMs": 241986.250676,
+              "rss": 239058944,
+              "heapTotal": 77119488,
+              "heapUsed": 53696992,
+              "external": 2375426,
+              "arrayBuffers": 41391
+            },
+            {
+              "stage": "preparation-close-after",
+              "atMs": 241992.422559,
+              "rss": 239058944,
+              "heapTotal": 77119488,
+              "heapUsed": 53705656,
+              "external": 2375426,
+              "arrayBuffers": 41391
+            },
+            {
+              "stage": "opening-after",
+              "atMs": 242141.260453,
+              "rss": 239366144,
+              "heapTotal": 70303744,
+              "heapUsed": 33932496,
+              "external": 31427425,
+              "arrayBuffers": 29082439
+            },
+            {
+              "stage": "memory-replacement-one-before",
+              "atMs": 264698.188028,
+              "rss": 379641856,
+              "heapTotal": 181297152,
+              "heapUsed": 144147112,
+              "external": 3445892,
+              "arrayBuffers": 1100906
+            },
+            {
+              "stage": "memory-replacement-one-after",
+              "atMs": 297735.268759,
+              "rss": 395522048,
+              "heapTotal": 194928640,
+              "heapUsed": 168904256,
+              "external": 3454025,
+              "arrayBuffers": 1109039
+            },
+            {
+              "stage": "memory-replacement-two-after",
+              "atMs": 331403.529133,
+              "rss": 416784384,
+              "heapTotal": 214065152,
+              "heapUsed": 180983848,
+              "external": 3420457,
+              "arrayBuffers": 1075471
+            },
+            {
+              "stage": "closure-before",
+              "atMs": 331409.629996,
+              "rss": 416784384,
+              "heapTotal": 214065152,
+              "heapUsed": 183199432,
+              "external": 3563224,
+              "arrayBuffers": 1218238
+            },
+            {
+              "stage": "closure-after",
+              "atMs": 331417.219745,
+              "rss": 416784384,
+              "heapTotal": 214065152,
+              "heapUsed": 183205456,
+              "external": 3563224,
+              "arrayBuffers": 1218238
+            }
+          ]
+        },
+        {
+          "path": "size-499/reopened-process/result.json",
+          "sha256": "680c3b85ab1fa8a8865e021412f5b36fa390405536edf21505e7cb3e3e9d5172",
+          "boundaries": [
+            {
+              "stage": "opening-after",
+              "atMs": 296.002026,
+              "rss": 146374656,
+              "heapTotal": 49270784,
+              "heapUsed": 36679400,
+              "external": 40638199,
+              "arrayBuffers": 38301578
+            },
+            {
+              "stage": "memory-replacement-one-before",
+              "atMs": 22888.614312,
+              "rss": 310427648,
+              "heapTotal": 123289600,
+              "heapUsed": 81023400,
+              "external": 2462986,
+              "arrayBuffers": 128951
+            },
+            {
+              "stage": "memory-replacement-one-after",
+              "atMs": 54502.034071,
+              "rss": 303788032,
+              "heapTotal": 130367488,
+              "heapUsed": 97426904,
+              "external": 2442818,
+              "arrayBuffers": 108783
+            },
+            {
+              "stage": "memory-replacement-two-after",
+              "atMs": 84607.871341,
+              "rss": 312029184,
+              "heapTotal": 144785408,
+              "heapUsed": 119918344,
+              "external": 2504994,
+              "arrayBuffers": 170959
+            },
+            {
+              "stage": "closure-before",
+              "atMs": 84614.025698,
+              "rss": 312029184,
+              "heapTotal": 144785408,
+              "heapUsed": 121980184,
+              "external": 2612538,
+              "arrayBuffers": 278503
+            },
+            {
+              "stage": "closure-after",
+              "atMs": 84627.755165,
+              "rss": 312029184,
+              "heapTotal": 144785408,
+              "heapUsed": 121989512,
+              "external": 2612538,
+              "arrayBuffers": 278503
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
