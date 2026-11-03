@@ -19,6 +19,14 @@ an instantaneous kernel memory guarantee. The watchdog remains independent of th
 blocked worker. Partial files and failing exits remain in the owned directory;
 there is no retry, reset or automatic limit increase.
 
+Task 087's actual application integration exposed a process-exit race: Linux can
+omit the memory section while the separately sampled state still says `R`.
+The observer now records missing samples explicitly, stops sampling after exit,
+and rejects a continuing missing-RSS interval at 100 ms. It never substitutes zero
+or requires a zombie state. Malformed present measurements still fail. The
+[first failure](../../docs/fixtures/loredock-terminal-memory/README.md) is retained;
+this correction precedes the new resource-family freeze.
+
 `createTerminalExporter(root, limits)` verifies pinned Node/V8 versions and the
 installed finite file limit. Its returned function accepts `after-history`, then
 `after-release`, exactly once each. It refuses existing target files, writes native
