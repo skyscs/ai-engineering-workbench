@@ -43,3 +43,26 @@ optimization requires independent regressions and fresh uninstrumented qualifica
 No production changes, corporate sources, model calls, demo operations or previous
 matrix reruns. Complete relevant strict checks/builds, source/artifact review and
 both exact-head CI events before merging this bounded iteration.
+
+## Preparation and process repair checkpoint
+
+Scope `e8848a0`; input/protocol freeze `3663114`. The pure preflight records
+560/9,960 files, 537/9,937 code files and 31,631/519,900 UTF-8 bytes across twenty
+sources. Twenty-one meaningful facts and exact typed/default/selected/isolated
+expectations were authored before parsing or candidate observation. This is an
+agent-authored matched diagnostic shape, not independent semantic acceptance.
+
+PR #82 merged as `ab44345c28e2a15d0897526b1eb5645b4654b2de` after exact head
+`9c20301df5301c706e6d5569adf2cd6e2379a4df` passed push 41622014967 and pull-request
+41622043041 CI (506 tests). The merge tree equals the reviewed head and is included
+in this branch. The primary checkout remains clean; no demo rebuild/start occurred.
+
+The separate coordinator loads the repaired child entry point, verifies frozen
+input and baseline hashes, and uses explicit selected-node expectations. Independent
+locker controls passed on their first run: 24/24 integrity checks and both byte
+comparisons remain visible while the coordinator's deliberately zero time gate
+fails all resources. A deliberately failed child preserves exit 7/stderr and blocks
+dependent readers. The owned-child watchdog regression also passes. Full strict
+checks, 509 tests and builds pass on their first run. Frozen inputs, reused runner/
+observer/budget bytes and production source are unchanged. The candidate/harness
+must be committed before its single run; no frozen source has been parsed or measured.
