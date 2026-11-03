@@ -259,3 +259,7 @@ promotion on memory despite complete first captures through 9,980 files. The sha
 does not itself guarantee acceptable allocation or process residency. Diagnose the memory
 boundary separately and qualify a fresh successor before adding production consumers.
 Earlier failed gates and unexecuted assertions remain recorded.
+
+Task 076's [memory diagnosis contract](CAPTURE_MEMORY_DIAGNOSIS.md) keeps this consumer
+boundary closed while attributing allocation and process effects on fresh diagnostic inputs.
+Production integration still requires a later uninstrumented resource qualification.

@@ -145,3 +145,7 @@ Keep this contract's limits and all first-run bytes. Next: separately investigat
 retained versus transient allocations and preparation/process effects, then prospectively
 qualify any changed candidate on fresh inputs. No production receipt consumer is authorized
 by successful accounting, refusal or ordinary CI checks alone.
+
+Task 076 defines the [memory diagnosis boundary](CAPTURE_MEMORY_DIAGNOSIS.md): inspect
+source ownership and compare fresh same-process, reopened-process and instrumentation
+controls before selecting an optimization. Diagnostic samples do not replace this gate.
