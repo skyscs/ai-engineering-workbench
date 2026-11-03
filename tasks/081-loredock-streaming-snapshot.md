@@ -44,3 +44,24 @@ pilot acceptance. A separate task freezes new uninstrumented first/repeat/select
 page/history qualification in long-lived and reopened processes with unchanged
 time/work/output/heap/RSS limits. History RSS remains an unresolved requirement.
 No corporate sources, model calls, old matrix reruns or demo operations.
+
+## Implementation checkpoint
+
+Scope `25764e9`. PR #84 merged as `a1c14436a15c9d1d6758d8772a898c19f61aa18e`
+after exact head `d0af1c4845c91baefaac9a95adfc217fa49c8717` passed push 41630183897
+and pull-request 41630230466 CI (515 tests). The merge tree is identical and is
+included in this branch. Main is synchronized without rebuilding or demo changes.
+
+The separate factory streams complete headers and hash input through the same
+checks, retaining only parsed IDs. Real-SQLite differential tests pass for mixed
+and empty snapshots, escaped hash input, late corruption, limits, policy/parser/
+publication changes, revocation and the exact 10,000-header boundary. The first
+test run exposed a test-only nested transaction in the revocation case; moving
+that final case outside the rollback savepoint preserves the real revoke method.
+Its original failure log remains retained, followed by three passing tests.
+
+The full three-process regression passes on its first run: 24 operations retain
+identical receipt/projection bytes and shared work across candidate/baseline,
+including repeats, selected/isolated paths, page four and history after eviction.
+Focused typechecking passes. Full checks are in progress. No memory qualification
+or frozen corpus execution has occurred.

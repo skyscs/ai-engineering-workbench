@@ -1,0 +1,26 @@
+{
+  "source": "Pinned unchanged application and complete-capture baseline for the separate streaming snapshot candidate.",
+  "files": {
+    "apps/loredock/src/code-analysis.ts": "45485d1b1e5534546d8d40504d7d04090442ce6298142222740ba9942e5764da",
+    "apps/loredock/src/code-paths-metadata.ts": "78146a6dff53d3b49659647a8509c119b6bb6ba16753600f72fd35414afbea9b",
+    "apps/loredock/src/code-paths-work.ts": "e5f117d0e2c19876eac8a28de620f1d5abbd3d3fe298900389370bf5f86d28a7",
+    "apps/loredock/src/store.ts": "d2faf0886743e1006bf74c2aceb9ede232ccc4e46d2fd52f47205c9d3b9f0627",
+    "scripts/loredock-capture-memory/fixture.mjs": "f1a800a50d7e1816debcf513c88f0d94830561215b561578db2d768c19b6a59a",
+    "scripts/loredock-capture-memory/observer.mjs": "96f155b7fbfd01a25712afd4f924bd8d4b078ab63aecb307c438635061fb824c",
+    "scripts/loredock-capture-memory/paths.mjs": "19d2c8dd84af8e5bc8e072a792469c26fa20641692b5f9c0bd4a2bb3737a9b81",
+    "scripts/loredock-capture-memory/receipt.mjs": "2180af582a915ad9f9cd8d612b895eefe0ac3c45c92d099efe4ffdf3a657aee7",
+    "scripts/loredock-capture-memory/services.mjs": "1916b8cfe268bf456202d9740713a422e0691e67cc40bd62dfce335bd73359f3",
+    "scripts/loredock-capture-memory/validate.mjs": "311d6b621f5ba7160ed633b1303c8630f32148c2a1d4a43cb9b9f17c2fa687dd",
+    "scripts/loredock-capture-scale/admit.mjs": "c2fd01cb822fe362fea600ff7b3fa4bb718dbeb1aa422af20b398887459953d4",
+    "scripts/loredock-capture-scale/budget.mjs": "4ea01a16a7069870c7b6841624bec1dc338780356ae84a8841a6b04fc67799cc",
+    "scripts/loredock-capture-scale/fixture.mjs": "aaabbe5211d6239801c0f831c0bd570d3089e812c32249e596f9df0f2a4dad47",
+    "scripts/loredock-capture-scale/paths.mjs": "d8fb5df33aa458e06f32fd087587172421549c27e28cb72158b897f66de0cd78",
+    "scripts/loredock-capture-scale/receipt.mjs": "39e4cd406f3e0098046d1eab3b0fd8f655935511cc94da9fe6d03e30ae769a1e",
+    "scripts/loredock-capture-scale/resolve.mjs": "c06f6a090c7cb3be565a877a649ac305ec9b016e5f0d19b8fb53095792c9cc5e",
+    "scripts/loredock-memory-runner/child.mjs": "9dcda06235ea9c8b07716e1d9f88467cccca364a1eea9e2144c92d544983df66",
+    "scripts/loredock-memory-runner/run.mjs": "33e0f868ec8e3dda094947e30fc00145f903150a356a1fede15d3db0a384f35d",
+    "scripts/loredock-memory-runner/source-rows.mjs": "c9b8cb75b86ee12c7d3bf3bc0ff6ce9980cd621c2f4f56cc26edf24d419c6d21",
+    "scripts/loredock-memory-attribution/validate.mjs": "d56d8c1ac76a11f26b8ecda6abe35a0aa328d81b6ee7a178cd68f77d1adf86c6",
+    "apps/loredock/src/code-analysis-types.ts": "505bd871b64f3ee5be89375da6acf02cbc36966c3a10ad4c7cc4d63f8a2f8192"
+  }
+}
