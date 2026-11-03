@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "task077-memory-oracle/1",
+  "authorship": "Agent-authored from source construction before parser or candidate observations; not blind assessment.",
+  "sizes": [
+    { "pathsPerSource": 32, "files": 640, "codeFiles": 617, "facts": 21, "bytes": 33963 },
+    { "pathsPerSource": 496, "files": 9920, "codeFiles": 9897, "facts": 21, "bytes": 489612 }
+  ],
+  "arms": ["same-process", "reopened-process", "instrumentation-control"],
+  "operations": ["first", "repeat-1", "repeat-2", "repeat-3", "selected", "page-4", "isolated", "history"],
+  "topic": "arrivals.logged.v5",
+  "environment": "training",
+  "defaultFlows": 2,
+  "selectedFlows": 1,
+  "rootCount": 5,
+  "defaultOriginals": 10,
+  "isolatedOriginals": 5,
+  "sourceCount": 20,
+  "uncitedSource": "d-operator-handbook",
+  "selectedRoot": ["a-arrival-console", "client/AAArrive.vue", "arrive", "vue-action"],
+  "isolatedRoot": ["a-arrival-console", "client/ZZInspect.vue", "inspect", "vue-action"],
+  "requiredNodes": [
+    ["a-arrival-console", "client/AAArrive.vue", "symbol", "arrive", "vue-action"],
+    ["a-arrival-console", "client/BBConfirm.vue", "symbol", "confirm", "vue-action"],
+    ["a-arrival-console", "client/arrivals.ts", "http-request", "POST /v5/arrivals", null],
+    ["b-arrival-api", "config/routes.json", "handler-reference", "Arrivals.log", null],
+    ["b-arrival-api", "service/Arrivals.java", "symbol", "Arrivals.log", "java-method"],
+    ["b-arrival-api", "service/Arrivals.java", "event-publish", "Publish ArrivalLogged", null],
+    ["c-presence-store", "service/PresenceWriter.java", "event-subscribe", "Subscribe via KafkaSubscriber", null],
+    ["c-presence-store", "service/PresenceWriter.java", "document-write", "MongoCollection.replaceOne", null]
+  ],
+  "isolated": { "nodes": 1, "edges": 0, "flows": 1, "terminalKind": "symbol", "reason": "unresolved-import" },
+  "limits": { "wallMs": 5000, "work": 1000000, "projectionBytes": 524288, "receiptBytes": 655360, "textBytes": 65536, "spans": 30, "sources": 20 },
+  "resources": { "sampleIntervalMs": 5, "maxSliceMs": 150, "sampledRssMiB": 384, "sampledHeapGrowthMiB": 64 },
+  "diagnostic": { "phaseRecords": 64, "queryIdentities": 128, "preparerWatchdogMs": 900000, "readerWatchdogMs": 600000, "overallWatchdogMs": 1800000 },
+  "requiredCapturePhases": ["operation-start", "snapshot-before", "snapshot-after", "metadata-after", "facts-after", "domains-after", "resolution-after", "admission-after", "path-final-before", "path-final-after", "receipt-projection", "receipt-originals", "receipt-publication-before", "receipt-publication-after", "operation-end"],
+  "parityExcludedProjectionFields": [],
+  "parityExcludedReceiptFields": []
+}

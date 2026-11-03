@@ -245,6 +245,12 @@ query and owner observations must distinguish preparation/process effects and in
 from read allocations. Same-process behavior remains mandatory; reopening or forced collection
 cannot waive it. Next: freeze fresh inputs and execute that diagnostic before selecting one
 optimization and a separate uninstrumented resource qualification. No production switch.
+[Task 077](tasks/077-loredock-capture-memory-diagnostic.md) runs that fresh diagnostic once.
+The [retained outcome](docs/fixtures/loredock-capture-memory/README.md) is rejected: sixteen
+same-process operations preserve integrity, but six exceed memory and four fresh-process
+arms stop at a prototype-sensitive source-header assertion. Thirty-two operations and all
+cross-process parity remain unexecuted/unavailable. Next: fix and regression-test the entire
+diagnostic process/JSON boundary before fresh attribution. No optimization is selected.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

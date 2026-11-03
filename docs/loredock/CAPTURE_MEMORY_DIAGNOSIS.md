@@ -133,3 +133,14 @@ long-lived and reopened lifecycles. Keep the 5,000 ms/1,000,000-unit/150 ms/384 
 bounds and all output limits. Only that passing gate permits separate production integration
 review. The current application, old receipt readers, semantic/private-pilot gates and model
 budgets remain unchanged.
+
+## Task 077 outcome
+
+The [first diagnostic](../fixtures/loredock-capture-memory/README.md) fails its observer and
+resource gates. Sixteen same-process operations pass integrity, while six exceed memory.
+Four fresh-process arms stop at a prototype-sensitive comparison of SQLite rows with JSON
+metadata, leaving 32 operations and cross-arm parity unavailable. Retained values match,
+but post-run inspection cannot replace the blocked controls or attribute memory costs.
+
+Next: separately correct and test the full process/serialization boundary, then freeze a
+new diagnostic family. No optimization is selected; all first bytes and existing limits stay.

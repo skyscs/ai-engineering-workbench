@@ -1,0 +1,15 @@
+{
+  "commit": "6232fee3a3b81abf956e27bc7e277b7ef2a867e9",
+  "files": {
+    "scripts/loredock-capture-scale/paths.mjs": "d8fb5df33aa458e06f32fd087587172421549c27e28cb72158b897f66de0cd78",
+    "scripts/loredock-capture-scale/receipt.mjs": "39e4cd406f3e0098046d1eab3b0fd8f655935511cc94da9fe6d03e30ae769a1e",
+    "scripts/loredock-capture-scale/budget.mjs": "4ea01a16a7069870c7b6841624bec1dc338780356ae84a8841a6b04fc67799cc",
+    "scripts/loredock-capture-scale/resolve.mjs": "c06f6a090c7cb3be565a877a649ac305ec9b016e5f0d19b8fb53095792c9cc5e",
+    "scripts/loredock-capture-scale/admit.mjs": "c2fd01cb822fe362fea600ff7b3fa4bb718dbeb1aa422af20b398887459953d4",
+    "scripts/loredock-capture-scale/fixture.mjs": "aaabbe5211d6239801c0f831c0bd570d3089e812c32249e596f9df0f2a4dad47",
+    "apps/loredock/src/code-analysis.ts": "45485d1b1e5534546d8d40504d7d04090442ce6298142222740ba9942e5764da",
+    "apps/loredock/src/code-paths-metadata.ts": "78146a6dff53d3b49659647a8509c119b6bb6ba16753600f72fd35414afbea9b",
+    "apps/loredock/src/code-paths-work.ts": "e5f117d0e2c19876eac8a28de620f1d5abbd3d3fe298900389370bf5f86d28a7",
+    "apps/loredock/src/store.ts": "d2faf0886743e1006bf74c2aceb9ede232ccc4e46d2fd52f47205c9d3b9f0627"
+  }
+}

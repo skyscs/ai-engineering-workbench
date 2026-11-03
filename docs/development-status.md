@@ -1,5 +1,26 @@
 # Development status
 
+## Task 077 — Memory diagnostic: controls blocked
+
+First frozen run completed 2026-11-03. Scope `a38f7c3`, freeze `8234749`, measured
+candidate/observer `767a112289bfa650784ad6dcc17c520fd66aa478`. PR #80 merged as
+`85f509c` after head `b72390cb33b0c29273e11e33bdec07bcff297693` passed push
+41604721856 and pull-request 41604735333 CI (499 tests), with an identical tree.
+
+The [retained diagnostic](fixtures/loredock-capture-memory/README.md) executes 16/48
+planned operations. Sixteen same-process operations pass integrity, ten meet resources,
+and six exceed memory. Four fresh-process arms stop at the observer's prototype-sensitive
+SQLite-row/JSON comparison; 32 operations and cross-arm parity remain unavailable. A
+read-only value comparison confirms the source columns match but cannot restore those checks.
+No optimization is selected from an incomplete control set, and no prior gate changes.
+
+All first results, process exits, 54 raw archive frames and development failure/final logs
+remain available. Full strict checks, 503 tests and builds pass; the frozen matrix is not
+part of CI. Production and previous experiments are unchanged. Next: repair and regression-
+test the entire process/serialization boundary before new attribution inputs. No model
+requests, corporate sources, demo changes or semantic/private-pilot acceptance. See
+[Task 077](../tasks/077-loredock-capture-memory-diagnostic.md).
+
 ## Task 076 — Capture memory diagnosis contract
 
 Design completed and locally reviewed, 2026-11-03; scope `12bb9f0`. Task 075's rejected
