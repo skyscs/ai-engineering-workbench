@@ -1,0 +1,236 @@
+{
+  "schemaVersion": "task080-allocation-profile/2",
+  "repositoryRoot": "/home/toshiba/aew/worktrees/task080-allocation-profile/",
+  "freezeCommit": "c34cece",
+  "protocolRevisionCommit": "59ef02b",
+  "inputs": {
+    "corpus.mjs": "9a1ea972547849278460bcf2c8f9810f7a355ea4eb6135b4c3643389cd4bda44",
+    "oracle.json": "072c6d389e56bf44e0446515cf94c6d84c202f11f0d57b16337eabc742ec9da0",
+    "preflight.json": "1893987f3926fe8ae1ebac3bd9e636a62ae85b7dfc02578f204bc583080e2511",
+    "README.md": "5a45af42578ef511602fb7eb6d11e4d3796338850d1951b7ef098ace87f97ca1",
+    "PROTOCOL_REVISION_2.md": "7859ac4bfb2d7abd7dc938dd6ffedb84489c6c719333d503d1ea3eb1c7474471",
+    "profile-policy.json": "2a0815ebcc0be00b0c4f239b00e3fcba5c4a40bca4df83e9c4a343349c240b23"
+  },
+  "baseline": {
+    "source": "Unchanged shared-budget capture, process source-row guard and Task 079 receipt validator; profile-only observation.",
+    "files": {
+      "apps/loredock/src/code-analysis.ts": "45485d1b1e5534546d8d40504d7d04090442ce6298142222740ba9942e5764da",
+      "apps/loredock/src/code-paths-metadata.ts": "78146a6dff53d3b49659647a8509c119b6bb6ba16753600f72fd35414afbea9b",
+      "apps/loredock/src/code-paths-work.ts": "e5f117d0e2c19876eac8a28de620f1d5abbd3d3fe298900389370bf5f86d28a7",
+      "apps/loredock/src/store.ts": "d2faf0886743e1006bf74c2aceb9ede232ccc4e46d2fd52f47205c9d3b9f0627",
+      "scripts/loredock-capture-memory/fixture.mjs": "f1a800a50d7e1816debcf513c88f0d94830561215b561578db2d768c19b6a59a",
+      "scripts/loredock-capture-memory/observer.mjs": "96f155b7fbfd01a25712afd4f924bd8d4b078ab63aecb307c438635061fb824c",
+      "scripts/loredock-capture-memory/paths.mjs": "19d2c8dd84af8e5bc8e072a792469c26fa20641692b5f9c0bd4a2bb3737a9b81",
+      "scripts/loredock-capture-memory/receipt.mjs": "2180af582a915ad9f9cd8d612b895eefe0ac3c45c92d099efe4ffdf3a657aee7",
+      "scripts/loredock-capture-memory/services.mjs": "1916b8cfe268bf456202d9740713a422e0691e67cc40bd62dfce335bd73359f3",
+      "scripts/loredock-capture-memory/validate.mjs": "311d6b621f5ba7160ed633b1303c8630f32148c2a1d4a43cb9b9f17c2fa687dd",
+      "scripts/loredock-capture-scale/admit.mjs": "c2fd01cb822fe362fea600ff7b3fa4bb718dbeb1aa422af20b398887459953d4",
+      "scripts/loredock-capture-scale/budget.mjs": "4ea01a16a7069870c7b6841624bec1dc338780356ae84a8841a6b04fc67799cc",
+      "scripts/loredock-capture-scale/fixture.mjs": "aaabbe5211d6239801c0f831c0bd570d3089e812c32249e596f9df0f2a4dad47",
+      "scripts/loredock-capture-scale/paths.mjs": "d8fb5df33aa458e06f32fd087587172421549c27e28cb72158b897f66de0cd78",
+      "scripts/loredock-capture-scale/receipt.mjs": "39e4cd406f3e0098046d1eab3b0fd8f655935511cc94da9fe6d03e30ae769a1e",
+      "scripts/loredock-capture-scale/resolve.mjs": "c06f6a090c7cb3be565a877a649ac305ec9b016e5f0d19b8fb53095792c9cc5e",
+      "scripts/loredock-memory-runner/child.mjs": "9dcda06235ea9c8b07716e1d9f88467cccca364a1eea9e2144c92d544983df66",
+      "scripts/loredock-memory-runner/run.mjs": "33e0f868ec8e3dda094947e30fc00145f903150a356a1fede15d3db0a384f35d",
+      "scripts/loredock-memory-runner/source-rows.mjs": "c9b8cb75b86ee12c7d3bf3bc0ff6ce9980cd621c2f4f56cc26edf24d419c6d21",
+      "scripts/loredock-memory-attribution/validate.mjs": "d56d8c1ac76a11f26b8ecda6abe35a0aa328d81b6ee7a178cd68f77d1adf86c6"
+    }
+  },
+  "candidateCommit": "cd064273e5bce99d6a1237c970b8ac6fa4e7791f",
+  "hardware": {
+    "platform": "linux",
+    "arch": "x64",
+    "cpu": "12th Gen Intel(R) Core(TM) i5-12500H",
+    "cpus": 16,
+    "memoryBytes": 32718753792
+  },
+  "createdAt": "2026-11-03T11:38:59.528Z",
+  "node": "v22.23.2",
+  "v8": "12.4.254.21-node.56",
+  "oracle": {
+    "schemaVersion": "task080-allocation-oracle/1",
+    "authorship": "Agent-authored from source construction before parser or candidate observations; not blind assessment.",
+    "sizes": [
+      {
+        "pathsPerSource": 497,
+        "files": 9940,
+        "codeFiles": 9917,
+        "bytes": 509091,
+        "facts": 21
+      }
+    ],
+    "topic": "checkouts.recorded.v3",
+    "environment": "simulation",
+    "defaultFlows": 2,
+    "rootCount": 5,
+    "defaultOriginals": 10,
+    "sourceCount": 20,
+    "uncitedSource": "d-fleet-handbook",
+    "requiredNodes": [
+      [
+        "a-device-console",
+        "ui/AAAssign.vue",
+        "symbol",
+        "assign",
+        "vue-action"
+      ],
+      [
+        "a-device-console",
+        "ui/BBCheckout.vue",
+        "symbol",
+        "checkout",
+        "vue-action"
+      ],
+      [
+        "a-device-console",
+        "ui/checkout.ts",
+        "http-request",
+        "POST /v3/checkouts",
+        null
+      ],
+      [
+        "b-checkout-api",
+        "config/checkouts.json",
+        "handler-reference",
+        "Checkouts.record",
+        null
+      ],
+      [
+        "b-checkout-api",
+        "checkout/Checkouts.java",
+        "symbol",
+        "Checkouts.record",
+        "java-method"
+      ],
+      [
+        "b-checkout-api",
+        "checkout/Checkouts.java",
+        "event-publish",
+        "Publish CheckoutRecorded",
+        null
+      ],
+      [
+        "c-custody-ledger",
+        "custody/CustodyWriter.java",
+        "event-subscribe",
+        "Subscribe via KafkaSubscriber",
+        null
+      ],
+      [
+        "c-custody-ledger",
+        "custody/CustodyWriter.java",
+        "document-write",
+        "MongoCollection.replaceOne",
+        null
+      ]
+    ],
+    "limits": {
+      "wallMs": 5000,
+      "work": 1000000,
+      "projectionBytes": 524288,
+      "receiptBytes": 655360,
+      "textBytes": 65536,
+      "spans": 30,
+      "sources": 20
+    },
+    "resources": {
+      "sampleIntervalMs": 5,
+      "maxSliceMs": 150,
+      "sampledRssMiB": 384,
+      "sampledHeapGrowthMiB": 64
+    },
+    "profile": {
+      "samplingInterval": 32768,
+      "includeObjectsCollectedByMajorGC": true,
+      "includeObjectsCollectedByMinorGC": true,
+      "validationBytes": 33554432,
+      "treeNodes": 32768,
+      "samples": 262144,
+      "depth": 128,
+      "summaryFrames": 100,
+      "summaryBytes": 262144,
+      "preparerWatchdogMs": 900000,
+      "readerWatchdogMs": 120000,
+      "overallWatchdogMs": 1080000,
+      "resourceAcceptance": false,
+      "allowUnmappedSamples": true,
+      "backendStopForcesGC": true,
+      "backendExportAllocationsIncluded": true
+    }
+  },
+  "modelRequests": 0,
+  "processes": [
+    {
+      "role": "prepare",
+      "executable": "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+      "args": [
+        "/home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-allocation-profile/child.mjs",
+        "/home/toshiba/aew/measurements/task080-first-run",
+        "prepare",
+        "/home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-allocation-profile/config.mjs"
+      ],
+      "environment": {
+        "nodeOptions": null,
+        "locale": "C"
+      },
+      "startedAt": "2026-11-03T11:38:59.530Z",
+      "pid": 1463064,
+      "exit": 0,
+      "signal": null
+    },
+    {
+      "role": "read",
+      "executable": "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+      "args": [
+        "/home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-allocation-profile/child.mjs",
+        "/home/toshiba/aew/measurements/task080-first-run",
+        "read",
+        "/home/toshiba/aew/worktrees/task080-allocation-profile/scripts/loredock-allocation-profile/config.mjs"
+      ],
+      "environment": {
+        "nodeOptions": null,
+        "locale": "C"
+      },
+      "startedAt": "2026-11-03T11:43:02.736Z",
+      "pid": 1494354,
+      "exit": 0,
+      "signal": null
+    }
+  ],
+  "errors": [],
+  "integrity": {
+    "pass": true,
+    "originals": 10,
+    "facts": 21,
+    "files": 9917,
+    "metrics": {
+      "accountingVersion": "shared-capture-work/1",
+      "pathWork": 288955,
+      "receiptWork": 84876,
+      "totalWork": 373831,
+      "wallMs": 3518.881712,
+      "work": 373831,
+      "checkpoints": 14,
+      "projectionBytes": 28284,
+      "receiptBytes": 43477,
+      "textBytes": 3145,
+      "spans": 10,
+      "sources": 20,
+      "publicationLocks": 1
+    }
+  },
+  "resourceAcceptance": "not-evaluated-profiled",
+  "profile": {
+    "pass": true,
+    "sampleReferenceStatus": "complete",
+    "nodes": 517,
+    "samples": 15053,
+    "unmappedSamples": 0,
+    "unmappedSampleBytes": 0,
+    "totalSelfBytes": 505983568,
+    "sampleBytes": 506641312,
+    "backendStopForcesGC": true,
+    "backendExportAllocationsIncluded": true
+  },
+  "failed": false
+}

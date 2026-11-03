@@ -1,5 +1,30 @@
 # Development status
 
+## Task 080 — Profile complete; one snapshot allocation candidate selected
+
+The single frozen diagnostic completed 2026-11-03 with exit 0 at candidate
+`cd064273e5bce99d6a1237c970b8ac6fa4e7791f`. Original freeze `c34cece` and prospective
+V8 protocol revision `59ef02b` precede observation. PR #83 merged as `3c29443` after
+exact head `336dd85` passed push 41624889057 and pull-request 41624946975 checks,
+with an identical merge tree.
+
+The [retained profile](fixtures/loredock-allocation-profile/README.md) validates a
+complete 9,917-code-file capture: 21 facts, ten originals and twenty dependencies.
+Both processes exit 0. All 15,053 sample references resolve across 517 nodes.
+Snapshot stacks account for 60.874 MiB of sampled weights, including 38.022 MiB
+in three complete-header array reads. These are allocation estimates, not retained
+memory, native RSS, a leak diagnosis or resource acceptance.
+
+Next: independently implement streaming snapshot validation/hash input with the
+same ordered parsed IDs and every integrity/scope/publication fence. Qualify it
+later on fresh uninstrumented complete-capture and history lifecycles. No old gate
+changes or matrix reruns. Production behavior and semantic/private-pilot gates stay.
+
+Full strict checks, 515 tests and builds pass. The first independent regression's
+V8 export-reference failure and its prospective correction remain documented;
+first/final logs and all 15 raw result frames are retained. No model, corporate
+source or demo work. See [Task 080](../tasks/080-loredock-allocation-profile.md).
+
 ## Task 079 — Complete paired controls; allocation attribution still bounded
 
 First frozen run completed 2026-11-03. Scope `e8848a0`, freeze `3663114`, measured

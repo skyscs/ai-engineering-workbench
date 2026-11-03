@@ -1,6 +1,6 @@
 # Task 080 — Targeted complete-capture allocation profile
 
-Status: in progress, 2026-11-03.
+Status: diagnostic verified, 2026-11-03; resource acceptance remains unavailable.
 
 ## Baseline and scope
 
@@ -89,3 +89,20 @@ pass. The first failure remains preserved. Final `pnpm check` passed all 515 tes
 strict typechecks and builds on pinned Node 22.23.2. No frozen device data has been
 generated through application services or measured. This checkpoint precedes the
 committed candidate and its one permitted profile execution.
+
+## First execution and decision
+
+Candidate `cd064273e5bce99d6a1237c970b8ac6fa4e7791f` completed the single frozen
+run with exit 0. Both children exit 0. Complete receipt integrity passes for 9,917
+code files, 21 facts, ten originals and twenty source dependencies. The profile
+has 517 nodes and 15,053 samples, with complete references and no unknown weights.
+All raw bytes, logs and frozen-code/hash checks are retained in the
+[result record](../docs/fixtures/loredock-allocation-profile/README.md).
+
+Inspectable snapshot stacks account for 60.874 MiB of sampled direct-node weight,
+including 38.022 MiB in three complete-header array reads. Select one next candidate:
+stream every snapshot header and the identical manifest hash input while retaining
+ordered parsed IDs and all checkpoint/count/byte/authorization/publication checks.
+This is a supported allocation target, not exact live bytes or a history-RSS fix.
+Implement independently and require a new uninstrumented qualification before any
+production promotion. This profile and all earlier matrices are exhausted.
