@@ -239,6 +239,12 @@ complete captures pass through 9,980 files, but repeated large captures exceed h
 and later history/small variants exceed process RSS. Keep every first outcome and all bounds;
 next separately diagnose memory ownership, transient allocations and process/preparation
 effects before qualifying a changed successor. Production consumers remain unchanged.
+[Task 076](tasks/076-loredock-capture-memory-diagnosis.md) records the source ownership audit
+and [fresh diagnostic boundary](docs/loredock/CAPTURE_MEMORY_DIAGNOSIS.md). Bounded phase,
+query and owner observations must distinguish preparation/process effects and instrumentation
+from read allocations. Same-process behavior remains mandatory; reopening or forced collection
+cannot waive it. Next: freeze fresh inputs and execute that diagnostic before selecting one
+optimization and a separate uninstrumented resource qualification. No production switch.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

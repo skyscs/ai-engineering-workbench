@@ -1,6 +1,6 @@
 # Task 076 — Capture memory diagnosis contract
 
-Status: scoped, 2026-11-03.
+Status: design completed and locally reviewed, 2026-11-03. Scope `12bb9f0`.
 
 ## Baseline
 
@@ -35,3 +35,19 @@ instrumented diagnosis from a future uninstrumented resource qualification. Pres
 resource failures independently of later semantic assertions. Record an ADR, active plan
 and scoped next execution boundary. Review local references and the complete diff; both
 CI events for the exact final head must pass before merge.
+
+## Result
+
+The [memory diagnosis contract](../docs/loredock/CAPTURE_MEMORY_DIAGNOSIS.md) traces
+retained payload/metadata/domain lifetimes, transient snapshots/original validation,
+repeated statement preparation, async steps and observer/preparation residency. It keeps
+these as competing hypotheses, not proven causes. [ADR 0053](../docs/decisions/0053-loredock-capture-memory-diagnosis.md)
+requires attribution before selecting one optimization.
+
+The next task freezes fresh owned inputs and a bounded diagnostic with same-process,
+reopened-process and instrumentation controls over identical initial catalog bytes.
+Resource and semantic assertions are reported separately after raw journaling. No forced
+collection, process-per-request reset or threshold change can supply acceptance samples.
+Any optimization still needs independent regressions and a fresh uninstrumented resource
+qualification. Source/reference/diff review cover this design; no new candidate, fixture,
+measurement, model request, corporate source or user-demo operation was executed.

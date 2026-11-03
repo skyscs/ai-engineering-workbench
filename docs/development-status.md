@@ -1,5 +1,22 @@
 # Development status
 
+## Task 076 — Capture memory diagnosis contract
+
+Design completed and locally reviewed, 2026-11-03; scope `12bb9f0`. Task 075's rejected
+61/68-case gate and all raw evidence remain frozen. The
+[ownership audit and diagnostic contract](loredock/CAPTURE_MEMORY_DIAGNOSIS.md) distinguish
+retained payloads, transient validation/snapshots, SQL preparation, async/observer allocation
+and preparation/process residency as hypotheses. No single cause is claimed from RSS alone.
+
+Next: freeze new owned inputs and identical-catalog same-process/reopened/instrumentation
+controls with bounded observations. Resource failures and semantic results must be recorded
+independently after raw journaling. Select one optimization only from attribution, then
+qualify it uninstrumented on another fresh family without changing limits. No production
+runtime/schema/API/UI/consumer changes, new fixture generation, measurement, model calls,
+corporate source access or demo modification. Source/reference/diff review cover this design.
+See [ADR 0053](decisions/0053-loredock-capture-memory-diagnosis.md) and
+[Task 076](../tasks/076-loredock-capture-memory-diagnosis.md).
+
 ## Task 075 — Shared capture budget: scale gate rejected
 
 First frozen run completed 2026-11-03. Scope `021f840`, freeze `efc1e92`, measured
