@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "task089-development-validation/1",
+  "node": "v22.23.2",
+  "pnpm": "10.15.0",
+  "resourceAcceptance": false,
+  "logs": [
+    {
+      "file": "install-first.log.gz",
+      "exit": 0,
+      "bytes": 326,
+      "sha256": "cd674ae611e25d73a535894fb9fc277e8aaffeb8471613623bfa1debd0355fb7"
+    },
+    {
+      "file": "build-packages-first.log.gz",
+      "exit": 0,
+      "bytes": 603,
+      "sha256": "9f29673f27bfb8cfc07d7d546566f3194772a40efaf3ba7ed27856e346bf0c3a"
+    },
+    {
+      "file": "typecheck-first.log.gz",
+      "exit": 0,
+      "bytes": 153,
+      "sha256": "c0c3e5d3c6270c5ae57d4271df05360fcd5b3d7edbe6003c47bc59d307e9f545"
+    },
+    {
+      "file": "focused-first.log.gz",
+      "exit": 0,
+      "bytes": 1055,
+      "sha256": "cd1b477de87291a7c27f456e25de2a66c1a29856c42b45bb1d0fe23a7d9f70d1",
+      "tests": 3
+    },
+    {
+      "file": "check-first.log.gz",
+      "exit": 0,
+      "bytes": 219895,
+      "sha256": "6d7dcc4f530a7ac60049f96e3321430fc64a3dea2137163016262b2d9bea2c16",
+      "tests": 550
+    },
+    {
+      "file": "check-final.log.gz",
+      "exit": 0,
+      "bytes": 220277,
+      "sha256": "538a9474d3a0e4f5fff1309fcd65611db6a144256e323cebe576122ad1ba3368",
+      "tests": 551
+    }
+  ]
+}
