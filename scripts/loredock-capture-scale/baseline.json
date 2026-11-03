@@ -1,0 +1,10 @@
+{
+  "commit": "3d92e73966a80db5f95f935ca2438a7a776a8bad",
+  "files": {
+    "scripts/loredock-literal-topics/paths.mjs": "f3b5ecd53459cc87985e85060edb80698dc20d8e538e4787585fdefa4748c3d2",
+    "scripts/loredock-literal-topics/resolve.mjs": "e29c2e98065823d4792eb2f45b74e11dd39763b62dfa87ed750a4584be667da7",
+    "scripts/loredock-literal-topics/admit.mjs": "32a2575a7a8c3e1ad1da3cbb360f1b90f835cf54f66433f80880069e3c2d6a23",
+    "scripts/loredock-literal-topics/receipt.mjs": "b44829161c899f937ffc1465f87ffff6dc8551ec287ec91c8d4521e5a01f89dc",
+    "scripts/loredock-receipt-fixture.mjs": "044a5518006ea0305587051f2da5b871f98c8a2443e1cd426ff55c9a60c32960"
+  }
+}

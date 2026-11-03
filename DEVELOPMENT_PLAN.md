@@ -232,6 +232,13 @@ exhaustion cases before implementing the separate offline successor. Fixed sourc
 include documentation/configuration, and negative cases must assert the relevant reason.
 The user demo and feedback stay separate from these checks; broader semantic synthesis
 and question-context changes remain open.
+[Task 075](tasks/075-loredock-capture-scale-qualification.md) implements the separate shared
+budget and runs the fresh twenty-source family once. The
+[first resource gate](docs/fixtures/loredock-capture-scale/README.md) is rejected: first
+complete captures pass through 9,980 files, but repeated large captures exceed heap growth
+and later history/small variants exceed process RSS. Keep every first outcome and all bounds;
+next separately diagnose memory ownership, transient allocations and process/preparation
+effects before qualifying a changed successor. Production consumers remain unchanged.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

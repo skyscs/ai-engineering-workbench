@@ -253,3 +253,9 @@ production adapters, historical bytes and semantic/private-pilot gates remain un
 Task 074's [resource contract](CAPTURE_RESOURCE_CONTRACT.md) requires a shared operation
 budget before the next scale qualification. Independent layer counters are not an aggregate
 capture ceiling. This adds no production consumer or historical migration.
+
+Task 075's [first scale result](../fixtures/loredock-capture-scale/README.md) rejects
+promotion on memory despite complete first captures through 9,980 files. The shared budget
+does not itself guarantee acceptable allocation or process residency. Diagnose the memory
+boundary separately and qualify a fresh successor before adding production consumers.
+Earlier failed gates and unexecuted assertions remain recorded.

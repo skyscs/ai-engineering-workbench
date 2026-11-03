@@ -1,0 +1,1072 @@
+[
+  {
+    "name": "long-support",
+    "requestedFiles": 480,
+    "sha256": "ba345d9766949115e7996fbf85845de68be53d367a3742827afdb4570f5a1a50",
+    "sources": [
+      {
+        "source": "a-sensor-ui",
+        "files": 24,
+        "bytes": 2290
+      },
+      {
+        "source": "b-reading-intake",
+        "files": 24,
+        "bytes": 20252
+      },
+      {
+        "source": "c-reading-index",
+        "files": 24,
+        "bytes": 20309
+      },
+      {
+        "source": "d-calibration-guide",
+        "files": 24,
+        "bytes": 1195
+      },
+      {
+        "source": "e-reading-notes-01",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-02",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-03",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-04",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-05",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-06",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-07",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-08",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-09",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-10",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-11",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-12",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-13",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-14",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-15",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-16",
+        "files": 24,
+        "bytes": 1171
+      }
+    ]
+  },
+  {
+    "name": "branches",
+    "requestedFiles": 480,
+    "sha256": "07ebace20a6d3d87986ea4e1a7a169fe02a3906e9fa22191d93d06fa0a2910d8",
+    "sources": [
+      {
+        "source": "a-sensor-ui",
+        "files": 24,
+        "bytes": 2290
+      },
+      {
+        "source": "b-reading-intake",
+        "files": 24,
+        "bytes": 2146
+      },
+      {
+        "source": "c-reading-index",
+        "files": 24,
+        "bytes": 2493
+      },
+      {
+        "source": "d-calibration-guide",
+        "files": 24,
+        "bytes": 1195
+      },
+      {
+        "source": "e-reading-notes-01",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-02",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-03",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-04",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-05",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-06",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-07",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-08",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-09",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-10",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-11",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-12",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-13",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-14",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-15",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-16",
+        "files": 24,
+        "bytes": 1171
+      }
+    ]
+  },
+  {
+    "name": "comparison-pressure",
+    "requestedFiles": 480,
+    "sha256": "9dbbb8ebdc0c99435efef2c6fceeb9fefb4b68369df1e0b39186425585b6ea44",
+    "sources": [
+      {
+        "source": "a-sensor-ui",
+        "files": 24,
+        "bytes": 2290
+      },
+      {
+        "source": "b-reading-intake",
+        "files": 24,
+        "bytes": 4626
+      },
+      {
+        "source": "c-reading-index",
+        "files": 24,
+        "bytes": 7328
+      },
+      {
+        "source": "d-calibration-guide",
+        "files": 24,
+        "bytes": 1195
+      },
+      {
+        "source": "e-reading-notes-01",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-02",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-03",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-04",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-05",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-06",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-07",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-08",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-09",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-10",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-11",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-12",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-13",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-14",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-15",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-16",
+        "files": 24,
+        "bytes": 1171
+      }
+    ]
+  },
+  {
+    "name": "different-topic",
+    "requestedFiles": 480,
+    "sha256": "0e2391e0f1de53531204241b1ee89676fe89a0e137572b9cad9932fbcaef6679",
+    "sources": [
+      {
+        "source": "a-sensor-ui",
+        "files": 24,
+        "bytes": 2290
+      },
+      {
+        "source": "b-reading-intake",
+        "files": 24,
+        "bytes": 1836
+      },
+      {
+        "source": "c-reading-index",
+        "files": 24,
+        "bytes": 1893
+      },
+      {
+        "source": "d-calibration-guide",
+        "files": 24,
+        "bytes": 1195
+      },
+      {
+        "source": "e-reading-notes-01",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-02",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-03",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-04",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-05",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-06",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-07",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-08",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-09",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-10",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-11",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-12",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-13",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-14",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-15",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-16",
+        "files": 24,
+        "bytes": 1171
+      }
+    ]
+  },
+  {
+    "name": "dynamic-topic",
+    "requestedFiles": 480,
+    "sha256": "2d533b62ad1fb1904d4885318462e996d281f0bce7e49dbc5d4dfae5f61c1e32",
+    "sources": [
+      {
+        "source": "a-sensor-ui",
+        "files": 24,
+        "bytes": 2290
+      },
+      {
+        "source": "b-reading-intake",
+        "files": 24,
+        "bytes": 1820
+      },
+      {
+        "source": "c-reading-index",
+        "files": 24,
+        "bytes": 1893
+      },
+      {
+        "source": "d-calibration-guide",
+        "files": 24,
+        "bytes": 1195
+      },
+      {
+        "source": "e-reading-notes-01",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-02",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-03",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-04",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-05",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-06",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-07",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-08",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-09",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-10",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-11",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-12",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-13",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-14",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-15",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-16",
+        "files": 24,
+        "bytes": 1171
+      }
+    ]
+  },
+  {
+    "name": "ambiguous-handler",
+    "requestedFiles": 481,
+    "sha256": "57bfaacf665fb7e476176893dec2996dada7d34d327bc4949886f849bac3cc51",
+    "sources": [
+      {
+        "source": "a-sensor-ui",
+        "files": 24,
+        "bytes": 2290
+      },
+      {
+        "source": "b-reading-intake",
+        "files": 25,
+        "bytes": 1906
+      },
+      {
+        "source": "c-reading-index",
+        "files": 24,
+        "bytes": 1893
+      },
+      {
+        "source": "d-calibration-guide",
+        "files": 24,
+        "bytes": 1195
+      },
+      {
+        "source": "e-reading-notes-01",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-02",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-03",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-04",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-05",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-06",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-07",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-08",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-09",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-10",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-11",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-12",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-13",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-14",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-15",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-16",
+        "files": 24,
+        "bytes": 1171
+      }
+    ]
+  },
+  {
+    "name": "incomplete-consumer",
+    "requestedFiles": 481,
+    "sha256": "2a834fbdf38042d0f2402bf6165cf83d9fc10fed1175ce0bfa3bfe45f7f5431b",
+    "sources": [
+      {
+        "source": "a-sensor-ui",
+        "files": 24,
+        "bytes": 2290
+      },
+      {
+        "source": "b-reading-intake",
+        "files": 24,
+        "bytes": 1836
+      },
+      {
+        "source": "c-reading-index",
+        "files": 25,
+        "bytes": 1913
+      },
+      {
+        "source": "d-calibration-guide",
+        "files": 24,
+        "bytes": 1195
+      },
+      {
+        "source": "e-reading-notes-01",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-02",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-03",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-04",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-05",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-06",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-07",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-08",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-09",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-10",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-11",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-12",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-13",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-14",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-15",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-16",
+        "files": 24,
+        "bytes": 1171
+      }
+    ]
+  },
+  {
+    "name": "source-overflow",
+    "requestedFiles": 957,
+    "sha256": "384ae9c92d0880c2962bf9d7d9418cda18d3f40cdef529d3a98626762f57fd33",
+    "sources": [
+      {
+        "source": "a-sensor-ui",
+        "files": 24,
+        "bytes": 2290
+      },
+      {
+        "source": "b-reading-intake",
+        "files": 501,
+        "bytes": 15559
+      },
+      {
+        "source": "c-reading-index",
+        "files": 24,
+        "bytes": 1893
+      },
+      {
+        "source": "d-calibration-guide",
+        "files": 24,
+        "bytes": 1195
+      },
+      {
+        "source": "e-reading-notes-01",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-02",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-03",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-04",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-05",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-06",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-07",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-08",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-09",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-10",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-11",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-12",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-13",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-14",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-15",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-16",
+        "files": 24,
+        "bytes": 1171
+      }
+    ]
+  },
+  {
+    "name": "opaque-path",
+    "requestedFiles": 481,
+    "sha256": "82d734e75b24febbad5366e1edf0b0805b300c7a0543006670df7e0ffe6f4a19",
+    "sources": [
+      {
+        "source": "a-sensor-ui",
+        "files": 24,
+        "bytes": 2290
+      },
+      {
+        "source": "b-reading-intake",
+        "files": 25,
+        "bytes": 1847
+      },
+      {
+        "source": "c-reading-index",
+        "files": 24,
+        "bytes": 1893
+      },
+      {
+        "source": "d-calibration-guide",
+        "files": 24,
+        "bytes": 1195
+      },
+      {
+        "source": "e-reading-notes-01",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-02",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-03",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-04",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-05",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-06",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-07",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-08",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-09",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-10",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-11",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-12",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-13",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-14",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-15",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-16",
+        "files": 24,
+        "bytes": 1171
+      }
+    ]
+  },
+  {
+    "name": "omitted-facts",
+    "requestedFiles": 480,
+    "sha256": "36e89c75bea1a6503bc96f25e7e469846062aa5cdba2b936b2d872fab9d5204c",
+    "sources": [
+      {
+        "source": "a-sensor-ui",
+        "files": 24,
+        "bytes": 2290
+      },
+      {
+        "source": "b-reading-intake",
+        "files": 24,
+        "bytes": 1836
+      },
+      {
+        "source": "c-reading-index",
+        "files": 24,
+        "bytes": 1893
+      },
+      {
+        "source": "d-calibration-guide",
+        "files": 24,
+        "bytes": 1195
+      },
+      {
+        "source": "e-reading-notes-01",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-02",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-03",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-04",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-05",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-06",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-07",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-08",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-09",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-10",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-11",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-12",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-13",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-14",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-15",
+        "files": 24,
+        "bytes": 1171
+      },
+      {
+        "source": "e-reading-notes-16",
+        "files": 24,
+        "bytes": 1171
+      }
+    ]
+  }
+]

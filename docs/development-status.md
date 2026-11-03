@@ -1,5 +1,29 @@
 # Development status
 
+## Task 075 — Shared capture budget: scale gate rejected
+
+First frozen run completed 2026-11-03. Scope `021f840`, freeze `efc1e92`, measured
+candidate/observer `6232fee3a3b81abf956e27bc7e277b7ef2a867e9`. PR #78 merged as
+`9d910c2` after exact head `947eb0252e77337270804b570602b69b26a0350a` passed push
+41549846240 and pull-request 41549980459 CI (493 tests), with an identical tree.
+
+The [retained first result](fixtures/loredock-capture-scale/README.md) passes 61/68 cases
+with 4,515 counted assertions and exit 1. Complete first captures pass at twenty sources
+through 9,980 total/9,957 code files. Shared work is enforced during nested work and matches
+independent phase histograms. All 27 stage/fault, four publication and six small history
+cases pass. Four large operations exceed 64 MiB heap growth; large history and two small
+variants exceed 384 MiB process RSS. Their later assertions remain unexecuted. This rejects
+promotion; it does not identify a specific memory leak or justify larger limits.
+
+All 165 raw files, 105 observations, first stdout/stderr/exit and validation logs are
+retained. Readback verifies bytes/hashes and reports raw content without another run.
+Full strict checks, 499 tests and builds pass; all six independent new regressions passed
+on their first execution. Production and earlier frozen experiments remain unchanged.
+Next: separately diagnose memory ownership, transient allocations and preparation/process
+boundaries, then qualify any changed candidate on new prospective inputs. No corporate
+sources, model requests, demo changes or semantic/private-pilot acceptance. See
+[Task 075](../tasks/075-loredock-capture-scale-qualification.md).
+
 ## Task 074 — Complete capture resource contract
 
 Design completed and locally reviewed, 2026-11-03; scope `2ebade9`. Task 073's first

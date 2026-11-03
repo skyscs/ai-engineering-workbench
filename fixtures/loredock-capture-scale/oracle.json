@@ -1,0 +1,222 @@
+{
+  "schemaVersion": "task075-capture-scale-oracle/1",
+  "authorship": "Agent-authored from fresh source bytes, not parser/projection observations; not blind external assessment.",
+  "adapter": "connected-capture-budget-experiment-v1",
+  "accounting": "shared-capture-work/1",
+  "topic": "readings.accepted.v4",
+  "environment": "laboratory",
+  "sizes": [
+    {
+      "pathsPerSource": 24,
+      "files": 480,
+      "codeFiles": 457,
+      "facts": 21
+    },
+    {
+      "pathsPerSource": 124,
+      "files": 2480,
+      "codeFiles": 2457,
+      "facts": 21
+    },
+    {
+      "pathsPerSource": 499,
+      "files": 9980,
+      "codeFiles": 9957,
+      "facts": 21
+    }
+  ],
+  "requiredNodes": [
+    [
+      "a-sensor-ui",
+      "app/AARecord.vue",
+      "symbol",
+      "record",
+      "vue-action"
+    ],
+    [
+      "a-sensor-ui",
+      "app/BBRetry.vue",
+      "symbol",
+      "retry",
+      "vue-action"
+    ],
+    [
+      "a-sensor-ui",
+      "app/readings.ts",
+      "http-request",
+      "POST /v4/readings",
+      null
+    ],
+    [
+      "b-reading-intake",
+      "config/routes.json",
+      "handler-reference",
+      "Readings.accept",
+      null
+    ],
+    [
+      "b-reading-intake",
+      "app/Readings.java",
+      "symbol",
+      "Readings.accept",
+      "java-method"
+    ],
+    [
+      "b-reading-intake",
+      "app/Readings.java",
+      "event-publish",
+      "Publish ReadingAccepted",
+      null
+    ],
+    [
+      "c-reading-index",
+      "app/ReadingWriter.java",
+      "event-subscribe",
+      "Subscribe via KafkaSubscriber",
+      null
+    ],
+    [
+      "c-reading-index",
+      "app/ReadingWriter.java",
+      "document-write",
+      "MongoCollection.replaceOne",
+      null
+    ]
+  ],
+  "isolatedRoot": [
+    "a-sensor-ui",
+    "app/ZZInspect.vue",
+    "inspect",
+    "vue-action"
+  ],
+  "uncitedSource": "d-calibration-guide",
+  "limits": {
+    "work": 1000000,
+    "wallMs": 5000,
+    "projectionBytes": 524288,
+    "receiptBytes": 655360,
+    "textBytes": 65536,
+    "spans": 30,
+    "sources": 20
+  },
+  "resources": {
+    "sampleIntervalMs": 5,
+    "maxSliceMs": 150,
+    "sampledRssMiB": 384,
+    "sampledHeapGrowthMiB": 64
+  },
+  "variants": [
+    {
+      "name": "long-support",
+      "flows": 2,
+      "topic": "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+      "minimumTextBytes": 35000
+    },
+    {
+      "name": "branches",
+      "flows": 2,
+      "graphReasons": [
+        "alternate-terminal-paths"
+      ]
+    },
+    {
+      "name": "comparison-pressure",
+      "minimumFlows": 1,
+      "reasons": [
+        "comparison-limit"
+      ],
+      "graphReasons": [
+        "flow-traversal-limit"
+      ]
+    },
+    {
+      "name": "different-topic",
+      "noDelivery": true,
+      "reasons": [
+        "different-literal-topics"
+      ]
+    },
+    {
+      "name": "dynamic-topic",
+      "noDelivery": true,
+      "reasons": [
+        "unresolved-topic-expression"
+      ]
+    },
+    {
+      "name": "ambiguous-handler",
+      "noImplements": true,
+      "reasons": [
+        "ambiguous-handler"
+      ]
+    },
+    {
+      "name": "incomplete-consumer",
+      "noDelivery": true,
+      "reasons": [
+        "incomplete-consumer-source"
+      ]
+    },
+    {
+      "name": "source-overflow",
+      "noImplements": true,
+      "reasons": [
+        "incomplete-handler-source"
+      ],
+      "omittedPaths": 1
+    },
+    {
+      "name": "opaque-path",
+      "noImplements": true,
+      "reasons": [
+        "incomplete-handler-source"
+      ]
+    },
+    {
+      "name": "omitted-facts",
+      "noDelivery": true,
+      "reasons": [
+        "incomplete-import-source"
+      ],
+      "analysisLimits": {
+        "documents": 2
+      }
+    }
+  ],
+  "pathStages": [
+    "metadata",
+    "read",
+    "resolve",
+    "admit"
+  ],
+  "receiptStages": [
+    "start",
+    "projection",
+    "originals",
+    "prepared",
+    "handoff"
+  ],
+  "faults": [
+    "budget",
+    "deadline",
+    "cancel"
+  ],
+  "sharedOnlyCeiling": "max(first.metrics.pathWork, first.metrics.receiptWork): fixed diagnostic formula, never a resource-threshold adjustment",
+  "history": [
+    "eviction",
+    "restart",
+    "cited-revocation",
+    "uncited-revocation",
+    "policy",
+    "corrupt-original"
+  ],
+  "publication": [
+    "new-target-cancel",
+    "existing-target-cancel",
+    "external-commit",
+    "competing-lock"
+  ],
+  "aggregateError": "CAPTURE_WORK_LIMIT",
+  "deadlineError": "CAPTURE_TIME_LIMIT",
+  "cancelError": "CANCELLED"
+}

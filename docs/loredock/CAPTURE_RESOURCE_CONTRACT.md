@@ -1,6 +1,7 @@
 # Complete capture resource contract
 
-Status: design only, Task 074, 2026-11-03. Production remains unchanged. Task 073's
+Status: Task 074 design; Task 075's first offline scale gate is rejected on memory,
+2026-11-03. Production remains unchanged. Task 073's
 [small-family result](../fixtures/loredock-literal-topics/README.md) is retained and exhausted.
 
 ## What the current evidence establishes
@@ -130,3 +131,17 @@ only a separate production integration review. It does not change answer context
 authorize autonomous repository routing or satisfy semantic/private-pilot acceptance.
 
 Task 074 defines this boundary only; it does not freeze inputs or implement the shared budget.
+
+## Task 075 outcome
+
+The [fresh shared-budget qualification](../fixtures/loredock-capture-scale/README.md)
+preserves the first failed resource gate. Complete first captures pass at twenty sources
+through 9,980 files, but repeated large operations exceed the 64 MiB heap-growth threshold.
+Large history and two following small variants exceed 384 MiB process RSS. The single
+process includes preparation and earlier operations; these failures do not identify a
+specific leak or component. Subsequent semantic assertions in failed cases remain unexecuted.
+
+Keep this contract's limits and all first-run bytes. Next: separately investigate ownership,
+retained versus transient allocations and preparation/process effects, then prospectively
+qualify any changed candidate on fresh inputs. No production receipt consumer is authorized
+by successful accounting, refusal or ordinary CI checks alone.
