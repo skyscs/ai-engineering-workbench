@@ -7,6 +7,8 @@ import { fileURLToPath } from 'node:url';
 import { configuration } from './fixtures/terminal-memory-config.js';
 // @ts-expect-error Owned generic diagnostic coordinator, never a frozen corpus or CLI.
 import { runTerminalDiagnostic } from '../../../scripts/loredock-terminal-memory/coordinator.mjs';
+// @ts-expect-error Additional offline exact-path checker on independent saved test data.
+import { assessComplete } from '../../../scripts/loredock-terminal-memory/complete.mjs';
 
 test('complete tiny lifecycle preserves ordinary checks before bounded terminal exports and separate parsers', { timeout: 120000 }, async t => {
   const root = await mkdtemp(path.join(tmpdir(), 'terminal-memory-process-')); let passed = false;
@@ -26,6 +28,7 @@ test('complete tiny lifecycle preserves ordinary checks before bounded terminal 
   assert.equal(report.assessment.operations.length, 8);
   assert.equal(report.assessment.summary.support.pass, 8); assert.equal(report.assessment.summary.history.pass, 1);
   assert.equal(report.assessment.summary.resources.pass, 8); assert.equal(report.assessment.summary.rawRepeat.pass, 3);
+  assert.equal(report.completePaths.failed, false); assert.equal(report.completePaths.operations.length, 8);
   assert.equal(report.terminal.length, 2);
   assert.notEqual(report.process.pid, report.terminal[0].process.pid);
   assert.notEqual(report.terminal[0].process.pid, report.terminal[1].process.pid);
@@ -36,6 +39,15 @@ test('complete tiny lifecycle preserves ordinary checks before bounded terminal 
   const firstStore = report.terminal[0].summary.groups[2], releasedStore = report.terminal[1].summary.groups[2];
   assert.ok(firstStore.count >= 1); assert.ok(releasedStore.count < firstStore.count, 'The runtime owning stack must be released.');
   assert.deepEqual(JSON.parse(await readFile(path.join(output, 'result.json'), 'utf8')), report);
+  const workerRoot = path.join(output, 'worker/same-process'), raw = JSON.parse(await readFile(path.join(workerRoot, 'result.json'), 'utf8'));
+  for (const mutate of [
+    (value: typeof config.oracle.complete) => { value.flows[0]!.edges[2] = 'invented'; },
+    (value: typeof config.oracle.complete) => { value.originals[0]![3] = 1; },
+    (value: typeof config.oracle.complete) => { value.sources.pop(); },
+  ]) {
+    const expected = structuredClone(config.oracle.complete); mutate(expected);
+    assert.equal((await assessComplete({ root: workerRoot, raw, expected })).failed, true);
+  }
   passed = true;
 });
 

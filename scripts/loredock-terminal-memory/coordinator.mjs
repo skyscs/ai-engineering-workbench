@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { runOwnedChild } from '../loredock-terminal-ownership/process.mjs';
 import { limitsFor } from '../loredock-terminal-ownership/limits.mjs';
 import { assessArm } from '../loredock-qualification-assessment/assess.mjs';
+import { assessComplete } from './complete.mjs';
 
 const parser = fileURLToPath(new URL('./parse-child.mjs', import.meta.url));
 async function jsonFile(file, maximum = 1024 * 1024) {
@@ -46,6 +47,7 @@ export async function runTerminalDiagnostic({ output, childScript, childArgs, or
     report.worker = { bytes: worker.bytes, sha256: worker.sha256 };
     report.assessment = (await assessArm({ root: path.join(workerRoot, 'same-process'), arm: 'same-process', raw: worker.value,
       process: { ...report.process, arm: 'same-process' }, oracle, size, corpus: corpusFactory(), metadata: metadata.value })).report;
+    report.completePaths = await assessComplete({ root: path.join(workerRoot, 'same-process'), raw: worker.value, expected: oracle.complete });
     await save();
     const stages = ['after-history', 'after-release'];
     try {
@@ -77,6 +79,6 @@ export async function runTerminalDiagnostic({ output, childScript, childArgs, or
   } catch (error) { report.errors.push({ phase: 'coordinator', ...errorText(error) }); }
   finally { for (const name of ['SIGINT', 'SIGTERM']) process.off(name, onSignal); }
   report.diagnosticComplete = report.terminal.length === 2 && report.terminal.every(row => row.state === 'pass') && report.errors.length === 0 && !report.process?.failed;
-  report.failed = !report.diagnosticComplete || report.assessment?.failed !== false;
+  report.failed = !report.diagnosticComplete || report.assessment?.failed !== false || report.completePaths?.failed !== false;
   await save(); return report;
 }

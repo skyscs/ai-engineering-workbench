@@ -299,6 +299,13 @@
       "tests": 538,
       "bytes": 215233,
       "sha256": "7046ac9ee59010c009909a0120b73b68c158499269ad2aa6e6c5e15a46589dcc"
+    },
+    {
+      "file": "check-second.log.gz",
+      "exit": 0,
+      "tests": 538,
+      "bytes": 215239,
+      "sha256": "12f22d0e9104d8fba6c2df055e39f36c1d6786dbe177cc6306aecafd4b7703ea"
     }
   ]
 }
