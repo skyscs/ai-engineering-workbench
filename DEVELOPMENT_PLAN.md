@@ -393,6 +393,12 @@ explicit reanalysis; originals and recorded history survive backward reopen. No 
 resource family or scale claim follows. Next
 [Task 102](tasks/102-loredock-final-qualification-boundary.md) resolves the compiled
 v1 versus shared-capture qualification contract before freezing a fresh family.
+[Task 102](tasks/102-loredock-final-qualification-boundary.md) rejects a schema-only
+adapter: v1 does not supply the required topic witnesses, exact shared work or native
+capture/history. The revised order implements an internal native versioned producer
+and typed complete capture before final qualification, with all existing gates intact.
+Next [Task 103](tasks/103-loredock-versioned-path-producer.md) ports the internal v2
+reader; the browser remains on v1 until the complete compiled composition qualifies.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
