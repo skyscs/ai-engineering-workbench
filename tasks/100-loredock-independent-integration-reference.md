@@ -1,6 +1,6 @@
 # Task 100 — Preserve the independent pre-integration control
 
-Status: selected by Task 099; implementation not started.
+Status: scoped for implementation, 2026-11-04; production remains unchanged.
 
 Before changing production store/analysis ownership, implement the minimal portable
 test-only reference selected in ADR 0056. Preserve exact pre-integration store and
