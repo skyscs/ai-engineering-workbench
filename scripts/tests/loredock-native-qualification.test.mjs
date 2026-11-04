@@ -29,7 +29,8 @@ async function execute(t, caseId = 0, extras = {}) {
 }
 
 test('compiled native children preserve all sixteen functional operations and seven raw comparisons', { timeout: 120000 }, async t => {
-  const { report, output, config, pass } = await execute(t);
+  const { report, output, config, pass } = await execute(t); let childFailed = false;
+  const subtest = (name, action) => t.test(name, async () => { try { await action(); } catch (error) { childFailed = true; throw error; } });
   assert.equal(report.summary.functionalFailed, false, JSON.stringify(report));
   assert.equal(report.summary.plannedOperations, 16); assert.equal(report.summary.requiredComparisons, 7);
   assert.ok(report.summary.parity.every(item => item.state === 'pass')); assert.equal(report.processes.length, 2);
@@ -47,16 +48,18 @@ test('compiled native children preserve all sixteen functional operations and se
     inputs.push(input); assessments.push(await assessNativeArm(input));
   }
   assert.equal(report.summary.failed, failures > 0); assert.equal(report.resourceQualification, false);
-  await t.test('zero resource ceiling preserves content, no-write, history and parity while failing every resource gate', async () => {
+  await subtest('zero resource ceiling preserves content, no-write, history and parity while failing every resource gate', async () => {
     const reduced = { ...config, oracle: { ...config.oracle, resources: { ...config.oracle.resources, sampledRssMiB: 0 } } };
     const values = await Promise.all(inputs.map(input => assessNativeArm({ ...input, config: reduced }))), combined = combineNativeArms(values);
     assert.equal(combined.failed, true); assert.equal(combined.functionalFailed, false); assert.ok(combined.parity.every(row => row.state === 'pass'));
     assert.equal(values.flatMap(value => value.report.observations).filter(row => row.resource.state === 'fail').length, 16);
   });
-  await t.test('missing work, nested history reads, snapshot identities and closure failures cannot disappear behind raw parity', async () => {
-    for (const mode of ['metric', 'counter', 'nested', 'source-write', 'missing-operation', 'runtime', 'snapshot', 'identity', 'cleanup', 'closure', 'child', 'watchdog']) {
-      const input = structuredClone(inputs[0]), history = input.raw.operations.at(-1);
+  await subtest('missing work, nested history reads, snapshot identities and closure failures cannot disappear behind raw parity', async () => {
+    for (const mode of ['metric', 'detached-metrics', 'counter', 'nested', 'source-write', 'missing-operation', 'runtime', 'snapshot', 'identity', 'cleanup', 'closure', 'child', 'watchdog']) {
+      const { config: trustedConfig, ...recorded } = inputs[0];
+      const input = { ...structuredClone(recorded), config: trustedConfig }, history = input.raw.operations.at(-1);
       if (mode === 'metric') delete history.metrics.spans;
+      if (mode === 'detached-metrics') { history.metrics.receiptWork--; history.metrics.totalWork--; history.metrics.work--; history.sums.receipt--; }
       if (mode === 'counter') delete history.before.originalReads;
       if (mode === 'nested') history.after.factReads++;
       if (mode === 'source-write') history.after.changedRows++;
@@ -75,7 +78,7 @@ test('compiled native children preserve all sixteen functional operations and se
     }
     assert.throws(() => validateLimits({ ...config.oracle, limits: { ...config.oracle.limits, wallMs: 5001 } }));
   });
-  pass();
+  if (!childFailed) pass();
 });
 
 test('actual compiled incomplete consumer preserves its gap and cannot satisfy a complete-path oracle', { timeout: 120000 }, async t => {
@@ -117,4 +120,6 @@ test('worker report boundary rejects symlinks, oversized regular files and malfo
   const other = path.join(directory, 'directory.json'); await mkdir(other); await assert.rejects(readJSON(other));
   await writeFile(file, ' '.repeat(1048577)); await assert.rejects(readJSON(file));
   await writeFile(file, Buffer.from([0xff])); await assert.rejects(readJSON(file));
+  for (const watchdogs of [{ preparer: 600001 }, { reader: 180001 }, { overall: 900001 }, { grace: 5001 }, { unknown: 1 }])
+    await assert.rejects(runNativeQualification({ output: path.join(directory, 'not-created'), config: configuration(0), configuration: configPath, watchdogs }));
 });

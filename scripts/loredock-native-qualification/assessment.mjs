@@ -2,11 +2,14 @@ import assert from 'node:assert/strict';
 import { assessSeries, compareSeries, operations } from '../loredock-native-assessment/assess.mjs';
 import { assessComplete } from './complete.mjs';
 import { resourceFailures } from '../loredock-capture-memory/validate.mjs';
+import { readArtifact } from '../loredock-native-assessment/artifact.mjs';
+import { parse } from '../loredock-native-assessment/schema.mjs';
 export const ceilings = Object.freeze({ work: 1000000, wallMs: 5000, projectionBytes: 524288, receiptBytes: 655360, textBytes: 65536, spans: 30, sources: 20 });
 export const resources = Object.freeze({ sampleIntervalMs: 5, maxSliceMs: 150, sampledRssMiB: 384, sampledHeapGrowthMiB: 64 });
 const integer = n => assert.ok(Number.isSafeInteger(n) && n >= 0);
 const finite = n => assert.ok(Number.isFinite(n) && n >= 0);
 const check = action => { try { action(); return { state: 'pass' }; } catch (error) { return { state: 'fail', error: { name: error.name, message: error.message } }; } };
+const checkAsync = async action => { try { await action(); return { state: 'pass' }; } catch (error) { return { state: 'fail', error: { name: error.name, message: error.message } }; } };
 export function validateLimits(oracle) {
   for (const [key, maximum] of Object.entries(ceilings)) { integer(oracle.limits[key]); assert.ok(oracle.limits[key] <= maximum); }
   for (const [key, maximum] of Object.entries(resources)) { finite(oracle.resources[key]); assert.ok(oracle.resources[key] <= maximum); }
@@ -50,12 +53,18 @@ export async function assessNativeArm({ root, arm, raw, outcome, metadata, confi
     assert.deepEqual(rows.map(row => row.name), operations); assert.ok(raw.lifecycle.some(row => row.stage === 'closure-after'));
     assert.ok(raw.lifecycle.some(row => row.stage === 'preparation-before') === (arm === 'same-process'));
   });
-  const observations = operations.map(name => {
+  const observations = await Promise.all(operations.map(async name => {
     const matching = rows.filter(row => row.name === name), row = matching[0];
-    const observation = check(() => { assert.equal(matching.length, 1); validateObservation(row, config.oracle); });
+    const observation = await checkAsync(async () => {
+      assert.equal(matching.length, 1); validateObservation(row, config.oracle);
+      if (name !== 'page-4') {
+        const output = parse(await readArtifact(root, row.output), 655360, true);
+        assert.deepEqual(row.metrics, output.metrics, 'Recorded observations must describe the exact saved service result.');
+      }
+    });
     const resource = check(() => { assert.equal(matching.length, 1); validateLimits(config.oracle); assert.deepEqual(resourceFailures(row, config.oracle), []); });
     return { name, observation, resource };
-  });
+  }));
   const functionalFailed = content.report.failed || complete.failed || lifecycle.state !== 'pass' || observations.some(row => row.observation.state !== 'pass');
   return { ...content, report: { schemaVersion: 'native-arm-assessment/1', content: content.report, complete, lifecycle, observations,
     functionalFailed, failed: functionalFailed || observations.some(row => row.resource.state !== 'pass') } };

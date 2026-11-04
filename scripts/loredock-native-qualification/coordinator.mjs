@@ -9,14 +9,15 @@ import { assessNativeArm, combineNativeArms } from './assessment.mjs';
 import { readJSON, normalized } from './io.mjs';
 
 // Trusted developer driver. Output must be a fresh owned directory; children use
-// compiled service modules. Child override/watchdog reductions exist for regression tests.
+// compiled service modules. Child overrides exist for regression tests. Bounded
+// lifecycle deadlines cover preparation separately from fixed operation limits.
 export async function runNativeQualification({ output, config, configuration, caseId = 0,
   child = fileURLToPath(new URL('./child.mjs', import.meta.url)), signal, watchdogs = {} }) {
   assert.ok(path.isAbsolute(output) && path.resolve(output) === output && path.isAbsolute(configuration) && path.isAbsolute(child));
   assert.ok(signal === undefined || signal instanceof AbortSignal); assert.ok(Number.isSafeInteger(caseId) && caseId >= 0);
   const deadlines = { preparer: 60000, reader: 60000, overall: 180000, grace: 1000, ...watchdogs };
   for (const [key, value] of Object.entries(deadlines)) assert.ok(['preparer', 'reader', 'overall', 'grace'].includes(key) && Number.isSafeInteger(value) && value > 0
-    && value <= ({ preparer: 60000, reader: 60000, overall: 180000, grace: 1000 })[key]);
+    && value <= ({ preparer: 600000, reader: 180000, overall: 900000, grace: 5000 })[key]);
   await mkdir(output);
   const report = { schemaVersion: 'native-qualification-coordinator/1', node: process.version, modelRequests: 0,
     output, caseId, resourceQualification: false, processes: [], arms: [], errors: [], summary: null };
