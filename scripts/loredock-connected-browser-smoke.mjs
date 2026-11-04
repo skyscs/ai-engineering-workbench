@@ -11,7 +11,7 @@ import { Catalog } from '../apps/loredock/dist/catalog.js';
 import { CatalogStore } from '../apps/loredock/dist/store.js';
 import { SourceGit } from '../apps/loredock/dist/git.js';
 import { CodeAnalysis } from '../apps/loredock/dist/code-analysis.js';
-import { CodePaths } from '../apps/loredock/dist/code-paths.js';
+import { CodePathsV2 } from '../apps/loredock/dist/code-paths-v2.js';
 import { createApp } from '../apps/loredock/dist/app.js';
 
 // A new functional browser check, not a rerun of any frozen measurement matrix.
@@ -20,7 +20,7 @@ const root = fileURLToPath(new URL('../', import.meta.url)), origin = 'http://12
 const output = process.env.LOREDOCK_SMOKE_OUTPUT ?? await mkdtemp(path.join(tmpdir(), 'loredock-path-browser-result-'));
 await mkdir(output, { recursive: true });
 const fixture = await prepareConnectedCase({ Catalog, CatalogStore, SourceGit, CodeAnalysis }, 'roots');
-const children = [], checks = [], requests = [];
+const children = [], checks = [], requests = [], nativeResponses = [];
 let proxy, page, paths, releaseBusy;
 async function waitFor(fn,message) {
   const deadline=Date.now()+15000;
@@ -61,7 +61,7 @@ try {
   const revisions = () => Object.fromEntries(Object.keys(fixture.corpus).map(source => [source, connectedGit(fixture.root, source, ['rev-parse', 'HEAD'])]));
   const initialRevisions = revisions();
   let blockNext = false, busyEntered = false;
-  paths = new CodePaths(analysis, { checkpoint: async () => { if (blockNext) { blockNext = false; busyEntered = true; await new Promise(resolve => { releaseBusy = resolve; }); } } });
+  paths = new CodePathsV2(analysis, { checkpoint: async () => { if (blockNext) { blockNext = false; busyEntered = true; await new Promise(resolve => { releaseBusy = resolve; }); } } });
   const app = createApp(catalog, { publicDir: path.join(root, 'apps/loredock/public'), codeAnalysis: analysis, codePaths: paths });
   const sentinel = '/__owned_probe/' + randomUUID(); let sentinelHits = 0;
   proxy = createServer(async (req, res) => {
@@ -75,7 +75,18 @@ try {
       const body = chunks.length ? Buffer.concat(chunks) : undefined;
       const response = await app.fetch(new Request(url, { method: req.method, headers, ...body ? { body } : {} }));
       requests.push({ method: req.method, path: url.pathname, query: url.search, status: response.status });
-      res.writeHead(response.status, Object.fromEntries(response.headers)); res.end(Buffer.from(await response.arrayBuffer()));
+      const bytes = Buffer.from(await response.arrayBuffer());
+      if (url.pathname.startsWith('/api/code-paths') && response.status === 200) {
+        const value = JSON.parse(bytes);
+        assert.equal(value.schemaVersion, 'loredock-code-paths/2');
+        if (value.status === 'available') {
+          assert.equal(value.identity.adapter, 'connected-paths-v2');
+          assert.equal(value.identity.accounting.version, 'shared-capture-work/1');
+          assert.equal(value.identity.topicRule.version, 'direct-java-topic-literal/1');
+        }
+        nativeResponses.push({ path: url.pathname, status: value.status, schemaVersion: value.schemaVersion, identity: value.identity });
+      }
+      res.writeHead(response.status, Object.fromEntries(response.headers)); res.end(bytes);
     } catch (error) { res.writeHead(500); res.end(String(error)); }
   });
   proxy.on('connect', (_req, socket) => socket.destroy());
@@ -128,6 +139,17 @@ try {
   assert.equal(await evaluate("document.querySelectorAll('.connected-flow').length"), 2);
   assert.equal(await evaluate("document.querySelectorAll('.connected-roots > li').length"), 4);
   await text('Static connection candidate'); await text('9 supported entry points'); await text('5 outside this page');
+  await text('Matching topic literal: parcel.created.v1');
+  assert.ok(await evaluate("[...document.querySelectorAll('.topic-witness code')].every(node=>node.textContent==='parcel.created.v1')"));
+  checks.push('Actual compiled native v2 responses carry shared accounting and direct-topic identity; candidate topic evidence is visible.');
+  await evaluate(`(()=>{const native=window.fetch;let first=true;window.restoreVersionFetch=()=>{window.fetch=native;};
+    window.fetch=async(...args)=>{const response=await native(...args);if(first&&String(args[0]).includes('/api/code-paths?')){
+      first=false;const value=await response.json();value.schemaVersion='loredock-code-paths/1';
+      return new Response(JSON.stringify(value),{status:response.status,headers:response.headers});}return response;};})()`);
+  await click('Show default paths'); await text('The connected path response is out of date. Reload LoreDock.');
+  assert.equal(await evaluate("Boolean(document.querySelector('.connected-flow,.connected-roots'))"), false);
+  await evaluate('window.restoreVersionFetch()'); await click('Retry path request'); await ready(inventoryId);
+  checks.push('A mismatched response version clears pending paths and requires an explicit retry; no v1 fallback is rendered.');
   await text('Static flow outlines'); await text('HTTP header bindings');
   await evaluate("document.querySelector('.connected-paths').scrollIntoView()"); await screenshot('paths-desktop.png');
   await page.send('Emulation.setDeviceMetricsOverride', { width: 390, height: 900, deviceScaleFactor: 1, mobile: true });
@@ -218,7 +240,7 @@ try {
     implementationCommit: execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim(),
     node: process.version, chrome: execFileSync('google-chrome', ['--version'], { encoding: 'utf8' }).trim(),
     sourceCount: 3, initialRevisions, checks, modelRequests: 0, pathReads: pathReads(),
-    transport: 'Owned loopback HTTP proxy dispatches to the compiled in-process app; no upstream forwarding or listener on port 4244.', requests };
+    transport: 'Owned loopback HTTP proxy dispatches to the compiled in-process app; no upstream forwarding or listener on port 4244.', requests, nativeResponses };
   await writeFile(path.join(output, 'result.json'), JSON.stringify(result, null, 2) + '\n'); console.log(JSON.stringify({ output, checks: checks.length, pathReads: pathReads() }));
 } catch (error) {
   if (page) {

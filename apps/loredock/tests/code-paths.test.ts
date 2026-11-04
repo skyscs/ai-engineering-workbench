@@ -16,6 +16,8 @@ import { sha256 } from '../src/extract.js';
 import { CatalogError } from '../src/types.js';
 import { compareHeaders } from '../src/http-headers.js';
 import { CodePaths, pathRequest } from '../src/code-paths.js';
+import { CodePathsV2 } from '../src/code-paths-v2.js';
+import type { CodePathsResponseV2 } from '../src/code-paths-v2-types.js';
 import { createApp } from '../src/app.js';
 import { verifySavedTree } from '../src/code-paths-metadata.js';
 import { PathWork, codePathLimits } from '../src/code-paths-work.js';
@@ -44,7 +46,7 @@ function normalized(graph: CodePathGraph) {
     flows: graph.flows.map(flow => ({ title: flow.title, nodes: flow.nodeIds.map(id => keys.get(id)), gaps: flow.gaps, evidenceIds: flow.evidenceIds })),
     evidence: graph.evidence, omissions: graph.omissions, declarationOmissions: graph.declarationOmissions };
 }
-const pinned = (value: CodePathsAvailable) => ({ buildId: value.identity.buildId, inventoryId: value.identity.inventoryId, generationId: value.generationId });
+const pinned = (value: { identity: { buildId: string; inventoryId: string }; generationId: string }) => ({ buildId: value.identity.buildId, inventoryId: value.identity.inventoryId, generationId: value.generationId });
 async function commitSources(s: State, files: Record<string, Record<string, string>>) {
   for (const [source, entries] of Object.entries(files)) {
     for (const [file, text] of Object.entries(entries)) await writeFile(path.join(s.root, 'sources', source, file), text);
@@ -251,6 +253,8 @@ test('historical paths and generation identities survive restart without read-si
   const before = s.counters(); assert.deepEqual(available(await service.read(pinned(historical))), historical); assert.deepEqual(s.counters(), before);
 });
 
+const nativeAvailable = (value: CodePathsResponseV2) => { assert.equal(value.schemaVersion, 'loredock-code-paths/2'); assert.ok(value.status === 'available'); return value; };
+
 test('protected path endpoints reject malformed inputs before scanning and return only bounded envelopes', async t => {
   const s = await setup(t), app = createApp(s.catalog, { codeAnalysis: s.analysis }), base = 'http://127.0.0.1:4244';
   const raw = (route: string, init: RequestInit = {}) => app.request(base + '/api' + route, { ...init, headers: { host: '127.0.0.1:4244', ...init.headers } });
@@ -268,24 +272,24 @@ test('protected path endpoints reject malformed inputs before scanning and retur
     assert.deepEqual(Object.keys(await response.json() as object), ['error']);
   }
   assert.equal(snapshots, 0);
-  const missing = await request(`/code-paths?buildId=${s.buildId}`); assert.equal(missing.status, 200); assert.equal((await missing.json() as CodePathsResponse).status, 'unavailable');
+  const missing = await request(`/code-paths?buildId=${s.buildId}`); assert.equal(missing.status, 200); assert.equal((await missing.json() as CodePathsResponseV2).status, 'unavailable');
   await s.analyze('facts'); const before = s.counters();
-  const response = await request(`/code-paths?buildId=${s.buildId}`), value = available(await response.json() as CodePathsResponse);
+  const response = await request(`/code-paths?buildId=${s.buildId}`), value = nativeAvailable(await response.json() as CodePathsResponseV2);
   assert.equal(response.status, 200); assert.ok(value.graph); assert.equal(response.headers.get('cache-control'), 'no-store');
   assert.deepEqual(s.counters(), before); assert.ok(Buffer.byteLength(JSON.stringify(value)) <= 512 * 1024);
   const query = new URLSearchParams({ ...pinned(value), offset: '0' });
-  const page = await request('/code-paths/roots?' + query); assert.equal(page.status, 200); assert.equal(available(await page.json() as CodePathsResponse).graph, null);
+  const page = await request('/code-paths/roots?' + query); assert.equal(page.status, 200); assert.equal(nativeAvailable(await page.json() as CodePathsResponseV2).graph, null);
   query.set('offset', '1'); assert.equal((await request('/code-paths/roots?' + query)).status, 400);
   query.set('offset', '4'); assert.equal((await request('/code-paths/roots?' + query)).status, 400);
   const foreign = new URLSearchParams({ ...pinned(value), rootId: 'b'.repeat(64) }); assert.equal((await request('/code-paths?' + foreign)).status, 400);
   s.store.run("UPDATE code_analyses SET fingerprint='incompatible' WHERE id=?", value.identity.inventoryId);
-  const incompatible = await request(`/code-paths?buildId=${s.buildId}`); assert.equal((await incompatible.json() as CodePathsResponse).status, 'unavailable');
+  const incompatible = await request(`/code-paths?buildId=${s.buildId}`); assert.equal((await incompatible.json() as CodePathsResponseV2).status, 'unavailable');
 });
 
 test('HTTP cancellation releases a busy read and leaves lightweight routes responsive', async t => {
   const s = await setup(t); await s.analyze('facts'); let enter!: () => void, release!: () => void, held = false;
   const reached = new Promise<void>(resolve => { enter = resolve; }), gate = new Promise<void>(resolve => { release = resolve; });
-  const paths = new CodePaths(s.analysis, { checkpoint: async () => { if (!held) { held = true; enter(); await gate; } } });
+  const paths = new CodePathsV2(s.analysis, { checkpoint: async () => { if (!held) { held = true; enter(); await gate; } } });
   const app = createApp(s.catalog, { codeAnalysis: s.analysis, codePaths: paths }), base = 'http://127.0.0.1:4244';
   const session = await app.request(base + '/api/session', { method: 'POST', headers: { host: '127.0.0.1:4244', origin: base, 'x-loredock-client': 'web' } });
   const headers = { host: '127.0.0.1:4244', cookie: session.headers.get('set-cookie')!.split(';')[0]! }, url = base + `/api/code-paths?buildId=${s.buildId}`;
@@ -299,7 +303,7 @@ test('HTTP cancellation releases a busy read and leaves lightweight routes respo
 
 test('a closed TCP request aborts connected work through the Node adapter', { timeout: 15000 }, async t => {
   const s = await prepareConnectedCase(services) as State;
-  let server: ReturnType<typeof serve> | undefined, paths: CodePaths | undefined, release = () => {};
+  let server: ReturnType<typeof serve> | undefined, paths: CodePathsV2 | undefined, release = () => {};
   t.after(async () => {
     release(); await paths?.stop(); if (server && 'closeAllConnections' in server) server.closeAllConnections();
     if (server) await new Promise<void>(resolve => server!.close(() => resolve()));
@@ -308,7 +312,7 @@ test('a closed TCP request aborts connected work through the Node adapter', { ti
   await s.analyze('facts'); let enter!: () => void, held = false, serverSignal: AbortSignal | undefined, report!: (code: string) => void;
   const reached = new Promise<void>(resolve => { enter = resolve; }), gate = new Promise<void>(resolve => { release = resolve; });
   const observed = new Promise<string>(resolve => { report = resolve; });
-  paths = new CodePaths(s.analysis, { checkpoint: async () => { if (!held) { held = true; enter(); await gate; } } });
+  paths = new CodePathsV2(s.analysis, { checkpoint: async () => { if (!held) { held = true; enter(); await gate; } } });
   const read = paths.read.bind(paths);
   paths.read = (input, kind, signal) => {
     serverSignal ??= signal;
@@ -333,5 +337,5 @@ test('a closed TCP request aborts connected work through the Node adapter', { ti
   const rejected = assert.rejects(response, { name: 'AbortError' }); controller.abort(); await rejected; await aborted; release();
   assert.equal(await observed, 'CANCELLED');
   const retry = await request(`/api/code-paths?buildId=${s.buildId}`, headers);
-  assert.equal(retry.status, 200); available(JSON.parse(retry.body) as CodePathsResponse);
+  assert.equal(retry.status, 200); nativeAvailable(JSON.parse(retry.body) as CodePathsResponseV2);
 });

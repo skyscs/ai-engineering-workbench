@@ -19,9 +19,11 @@ import { sourceCandidatePreview } from './source-candidates.js';
 import type { CodeAnalysis } from './code-analysis.js';
 import type { CodeAnalysisFollow } from './code-analysis-follow.js';
 import { lookupCodeSymbols } from './code-symbols.js';
-import { CodePaths, pathRequest } from './code-paths.js';
+import { pathRequest } from './code-paths.js';
+import { CodePathsV2 } from './code-paths-v2.js';
+import { OperationBudgetError } from './operation-budget.js';
 
-export function createApp(catalog: Catalog, options: { publicDir?: string; development?: boolean; answers?: Answers; codeAnalysis?: CodeAnalysis; codeFollow?: CodeAnalysisFollow; codePaths?: CodePaths } = {}) {
+export function createApp(catalog: Catalog, options: { publicDir?: string; development?: boolean; answers?: Answers; codeAnalysis?: CodeAnalysis; codeFollow?: CodeAnalysisFollow; codePaths?: CodePathsV2 } = {}) {
   const app = new Hono();
   const hosts = new Set(['127.0.0.1:4244', ...options.development ? ['127.0.0.1:5174'] : []]);
   const origins = new Set([...hosts].map(host => `http://${host}`));
@@ -96,7 +98,7 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
   app.get('/api/orientation', c => c.json(projectOrientation(catalog, c.req.query('buildId'))));
   const codeAnalysis = options.codeAnalysis;
   if (codeAnalysis) {
-    const codePaths = options.codePaths ?? new CodePaths(codeAnalysis);
+    const codePaths = options.codePaths ?? new CodePathsV2(codeAnalysis);
     app.get('/api/code-paths', async c => c.json(await codePaths.read(pathRequest(new URL(c.req.url).searchParams, 'paths'), 'paths', c.req.raw.signal)));
     app.get('/api/code-paths/roots', async c => c.json(await codePaths.read(pathRequest(new URL(c.req.url).searchParams, 'roots'), 'roots', c.req.raw.signal)));
     app.get('/api/code-symbols', async c => c.json(await lookupCodeSymbols(codeAnalysis, c.req.query('q') ?? '', c.req.query('buildId'))));
@@ -172,6 +174,12 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
   }
   app.onError((error, c) => {
     if (error instanceof CatalogError) return c.json({ error: { code: error.code, message: error.message } }, error.status);
+    if (error instanceof OperationBudgetError) {
+      const message = error.code === 'CANCELLED' ? 'The path request was cancelled.'
+        : error.code === 'CAPTURE_TIME_LIMIT' ? 'The path request reached its time limit.'
+          : error.code === 'CAPTURE_WORK_LIMIT' ? 'The path request reached its work limit.' : undefined;
+      if (message) return c.json({ error: { code: error.code, message } }, 409);
+    }
     console.error(`LoreDock request failed (${error.name}).`);
     return c.json({ error: { message: 'The local operation failed. Check the daemon and retry.' } }, 500);
   });
