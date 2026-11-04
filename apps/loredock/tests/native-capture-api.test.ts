@@ -68,7 +68,7 @@ test('capture HTTP boundaries reject authority and malformed input before native
   service.capture = (...args) => { calls++; return capture(...args); }; service.history = (...args) => { calls++; return history(...args); };
   const app = createApp(s.state.catalog, { codeAnalysis: s.state.analysis, codePaths: s.state.paths, nativeCaptures: service });
   const c = await client(app), save = '/path-captures?buildId=' + s.state.buildId, read = '/path-captures/' + 'a'.repeat(64);
-  const before = s.state.counters();
+  const before = s.state.counters(), originalsBefore = s.originals();
   for (const route of [save, read]) {
     const method = route === save ? 'POST' : 'GET';
     assert.equal((await app.request(origin + '/api' + route, { method, headers: baseHeaders })).status, 401);
@@ -93,7 +93,7 @@ test('capture HTTP boundaries reject authority and malformed input before native
   for (const query of ['?buildId=' + s.state.buildId, '?x=1&x=2', '?receiptId=' + 'a'.repeat(64)]) await error(await c.request(read + query), 400);
   await error(await c.request(read, { headers: { 'content-length': '1' } }), 400);
   await error(await c.request(read, { headers: { 'transfer-encoding': 'chunked' } }), 400);
-  assert.equal(calls, 0); assert.equal(s.originals(), 0); assert.deepEqual(s.state.counters(), before); assert.deepEqual(files(s.folder), []);
+  assert.equal(calls, 0); assert.equal(s.originals(), originalsBefore); assert.deepEqual(s.state.counters(), before); assert.deepEqual(files(s.folder), []);
   await error(await c.request('/path-captures?buildId=00000000-0000-0000-0000-000000000000', { method: 'POST' }), 400, 'INVALID_RECEIPT_SELECTION');
   assert.deepEqual(s.state.counters(), before);
 });
@@ -115,7 +115,11 @@ test('default and injected HTTP owners save exact native selections and reopen h
     assert.equal(s.originals() - originals, 10); assert.deepEqual(state.counters(), counters);
     assert.equal(JSON.stringify(value.projection), stored.projectionJson); assert.deepEqual(value.originals, stored.originals); assert.deepEqual(value.dependencies, stored.dependencies);
     assert.equal(value.dependencies.length, 4); assert.equal(value.metrics.sources, 4); assert.equal(value.metrics.spans, 10);
-    const { wallMs, ...metrics } = value.metrics; assert.ok(Number.isFinite(wallMs) && wallMs >= 0 && wallMs <= 5000);
+    // Work includes current storage-directory validation, not just the immutable record.
+    const { wallMs, receiptWork, totalWork, work, ...metrics } = value.metrics;
+    assert.ok(Number.isFinite(wallMs) && wallMs >= 0 && wallMs <= 5000);
+    assert.ok(Number.isSafeInteger(totalWork) && totalWork > 0 && totalWork <= 1000000);
+    assert.equal(receiptWork, totalWork); assert.equal(work, totalWork);
     return { text, value, comparison: { ...value, metrics } };
   };
   const original = await read(); assert.equal(original.value.stale, false); assert.equal(original.value.projection.schemaVersion, 'loredock-code-paths/2');
