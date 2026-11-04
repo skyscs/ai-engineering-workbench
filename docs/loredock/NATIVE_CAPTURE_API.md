@@ -1,6 +1,6 @@
 # Native saved-path HTTP contract
 
-Status: prospective Task 116 contract; these routes are not implemented yet.
+Implemented by Task 116. The route/input/error contract was committed before implementation.
 
 This local API slice exposes the existing authorized NativeCaptures service. It adds
 neither a receipt format nor another budget/storage owner. The public path GET routes
@@ -16,11 +16,15 @@ The POST reuses the existing strict path query parser, including duplicate/unkno
 paired generation, page/root and size validation. Keeping the flat selection in the
 query avoids a second JSON decoder and preserves the current selection without a
 translation. The body must be empty or whitespace; JSON objects, including `{}`, are
-rejected. Neither route accepts offsets, filesystem paths, work limits, fingerprints,
+rejected. The encoded selection is bounded to 1,024 bytes by the shared parser; native
+capture additionally requires canonical v4 UUIDs. Neither route accepts offsets, filesystem paths, work limits, fingerprints,
 catalog overrides or arbitrary output locations. Tokens stay in existing headers/cookies.
 
 Existing exact loopback Host/Origin, session, 16 KiB body and no-store rules apply.
-POST additionally requires the existing Origin/CSRF proof. Invalid input must fail
+POST additionally requires the existing Origin/CSRF proof. Early API rejections, including
+Host/Origin and oversized bodies, also receive `Cache-Control: no-store`. The Node Fetch
+adapter omits GET bodies, so history explicitly rejects nonzero Content-Length and any
+Transfer-Encoding before service work. Invalid input must fail
 before source/path/receipt work. Requests propagate actual abort signals. Normal startup
 injects one NativeCaptures instance using the same CodePathsV2 owner, and shutdown stops
 capture/history before paths, analysis and catalog storage.
@@ -31,6 +35,13 @@ remain available even at storage capacity. History revalidates every saved origi
 and every source dependency, including undisplayed sources; it does not derive paths or
 read current code facts. `stale` refers to recorded index/scope, while current runtime
 applicability remains unchecked. Source authorization can deny an otherwise intact file.
+
+The projection JSON, originals and dependency vector are the saved content. History
+`metrics` describe this read: elapsed time varies, and work includes validation of the
+current receipt directory. Saving other receipts can change that work count without
+changing the recorded content. History performs zero path/fact/snapshot derivation and
+takes no publication lock. Do not compare whole response bytes as an immutable receipt,
+or treat successful authorization as a new correctness assessment of the saved path.
 
 | Known native outcome | HTTP status | Public meaning |
 | --- | ---: | --- |
@@ -52,3 +63,38 @@ location, private exception message, stack or source-derived partial result is e
 Keep the complete stopped-directory backup contract: catalog UUID and its owned receipt
 files belong together. Source-only backup or compaction is not a native history export.
 No deletion, implicit eviction, file transplant, rollback relabel or repair API is added.
+
+## Verification and limits
+
+PR #119 head `2ee112f` passed push 41902894817 and pull-request 41902934334 CI,
+then merged with an identical tree at `9427c38`. All 38 qualified native core runtime
+modules remain byte-identical. Production changes are confined to the HTTP boundary,
+its new input/error/type module and explicit daemon capture ownership/shutdown order.
+No receipt schema, source authority, parser fingerprint, resource cap or producer changed.
+
+All **842 full strict tests/builds** pass. Sixty-five focused tests/subtests cover default and injected owners, actual session/CSRF,
+malformed/duplicate/oversized input before work, native selected/isolated captures,
+duplicates at capacity, complete saved originals and undisplayed source dependencies,
+two inventory replacements, restart and stale scope. History revalidates all ten originals
+without Git, SQL writes, fact/path/snapshot reads or publication locks; legacy rows and
+owned Git working trees remain unchanged. Real TCP checks reject GET bodies and propagate
+disconnection to capture and history. Known errors remain bounded; private native faults
+return the generic 500 envelope.
+
+The [normal daemon smoke](../../scripts/loredock-public-native-smoke.mjs) passes five
+functional checks using three actual compiled daemon processes with model mode off.
+HTTP creates an index, follows analysis automatically, saves a native path, reuses a
+duplicate and replaces the inventory twice. Restart returns the exact saved content and
+current path projection. Policy denies history while preserving bytes; revocation of
+the undisplayed dependency purges the file and remains denied after another restart.
+All three processes exit zero, release catalog ownership and leave the four owned sources
+unchanged. The runner refuses an occupied port before contacting any existing daemon.
+
+The [retained evidence](../fixtures/loredock-native-capture-api/README.md) includes the
+first failed focused runs. One failure exposed missing no-store on early API refusals;
+others corrected test assumptions about elapsed time, directory-validation work and
+original reads performed during fixture preparation. Ordinary fixture cleanup removed
+their temporary catalogs; logs remain. The compiled smoke retains its owned catalog,
+source repositories and raw responses. No resource family was rerun; no corporate code,
+user demo or model request was used. This is API integration evidence, not new scale,
+semantic, private-pilot or L5 acceptance.

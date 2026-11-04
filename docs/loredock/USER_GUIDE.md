@@ -409,6 +409,12 @@ new paths. A time/work limit produces a bounded request error and clears the pen
 it does not start background work or change the source index. There are no budget settings.
 These are live derivations from a saved index, not saved path receipts. Saving/reopening
 path receipts is a separate workflow that is not exposed in this screen yet.
+The protected [saved-path API](NATIVE_CAPTURE_API.md) is available for integrations.
+It saves the chosen path and its original supporting passages, and reopens them after
+reanalysis or restart without deriving replacement paths. Reopening checks access to
+every dependency, including repositories without displayed nodes. A saved result records
+the earlier analysis; its applicability to current code is not checked. API clients must
+retain the returned receipt ID until browser saved-path navigation is available.
 
 ## Follow a static flow outline
 
@@ -998,6 +1004,8 @@ require the session. No tokens belong in URLs or logs.
 | `GET /api/code-flows?buildId=...` | Versioned code links, partial flow outlines, candidate hops and original evidence from the same authorized index. |
 | `GET /api/code-paths?buildId=...` | Separate connected paths over compatible published code facts, with verified saved path coverage, original support and the first four entry points. Optional paired inventory/generation IDs pin a selected root. See the [connected-path API](CODE_PATHS_API.md); also used by **Browse connected paths**. |
 | `GET /api/code-paths/roots?buildId=...&inventoryId=...&generationId=...&offset=...` | Four entry points from the pinned generation, with complete original support and explicit unavailable cards. No graph or internal fact vectors; the complete response is bounded to 512 KiB. |
+| `POST /api/path-captures?buildId=...` | Save an authorized native path with complete originals/dependencies. Empty body; optional paired inventory/generation and root selection. Requires session/CSRF. Returns 201 for a new receipt or 200 for an exact duplicate; capacity preserves existing records. See the [capture API](NATIVE_CAPTURE_API.md). |
+| `GET /api/path-captures/:receiptId` | Reopen exact saved content with current authorization and applicability explicitly unchecked. No query/body, fact reads or rederivation. Policy can deny retained bytes; source revocation purges affected records. |
 | `GET /api/code-analysis` | At most two inventory summaries, the newest queued index and any scoped automatic-start error. |
 | `POST /api/code-analysis` | Start/replay `{requestId, buildId, policyVersion, sourceSetVersion}` for an authorized published index matching current source/policy versions. Unknown fields are rejected. |
 | `POST /api/code-analysis/:id/:action` | Explicit `pause`, `resume` or `cancel`; no arguments (an empty object is accepted). Resume validates the pinned checkpoints and current parser. |

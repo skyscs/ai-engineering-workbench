@@ -1,5 +1,27 @@
 # Development status
 
+## Task 116 — Native path capture and history are available through protected HTTP
+
+The [save/open API](loredock/NATIVE_CAPTURE_API.md) returns actual native receipts and
+recorded content through query-only POST and ID-only GET. It validates inputs before work,
+keeps early errors uncached, bounds known failures and propagates request cancellation.
+Daemon shutdown stops capture/history before its shared path owner and source storage.
+History revalidates all originals and dependencies without deriving replacement paths.
+
+Sixty-five focused checks and **842 full strict tests/builds** pass. The actual compiled
+daemon passes five scenarios across three clean process exits: save/duplicate, two
+inventory replacements, exact saved content after restart, retained policy-fenced bytes,
+and purging an undisplayed dependency's history across restart. Eight logs and 29 raw
+artifacts are [retained](fixtures/loredock-native-capture-api/README.md), including the
+first failures. All 38 qualified core modules remain byte-identical. No corporate input,
+model call, user demo mutation or exhausted resource rerun was used.
+
+PR #119 head `2ee112f` passed push 41902894817 and pull-request 41902934334 CI
+(824 tests), then merged as identical-tree `9427c38`. Task 116 still requires its own
+exact-head CI acceptance. Next [Task 117](../tasks/117-loredock-saved-path-browser.md)
+adds browser save/open and durable local links without a raw receipt-ID field. Listing,
+deletion/repair, semantic context, private pilot, L5 and Workbench remain separate.
+
 ## Task 115 — Existing public paths use the qualified native v2 producer
 
 The [public migration](loredock/PUBLIC_NATIVE_PATHS.md) wires the normal daemon, existing

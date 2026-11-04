@@ -53,6 +53,13 @@ witnesses without changing static/candidate uncertainty. Existing graph/answer/r
 consumers keep their adapter; saved native receipt workflows remain separate. See
 [ADR 0049](docs/decisions/0049-loredock-connected-path-reads.md) and the
 [native read API](docs/loredock/CODE_PATHS_API.md).
+Task 116 exposes authorized native capture/history through protected POST/GET routes.
+The daemon injects one NativeCaptures service sharing the same CodePathsV2 owner and
+stops capture/history before paths, analysis and storage. Query-only capture selection
+reuses strict path validation; history accepts only the issued content-addressed ID.
+Fixed boundary errors keep private native faults generic. Saved content is returned
+without rederivation, with current authority revalidated and applicability unchecked;
+per-read metrics remain separate. See the [capture API](docs/loredock/NATIVE_CAPTURE_API.md).
 Explicit storage accounting and offline compaction use separate maintenance commands,
 preserving logical history and normal job recovery. Compaction acquires daemon
 ownership and rewrites physical SQLite pages only when free pages exist; see
