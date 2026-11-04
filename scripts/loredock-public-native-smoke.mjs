@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { spawn, execFileSync } from 'node:child_process';
 import { createServer } from 'node:net';
 import { createWriteStream } from 'node:fs';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile, readFile, readdir } from 'node:fs/promises';
 import { once } from 'node:events';
 import { setTimeout as delay } from 'node:timers/promises';
 import path from 'node:path';
@@ -16,7 +16,7 @@ import { corpusFactory } from './loredock-native-assessment/fixture.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url)), output = process.env.LOREDOCK_PUBLIC_NATIVE_SMOKE_OUTPUT;
 assert.ok(output && path.isAbsolute(output) && path.resolve(output) === output);
 await mkdir(output); const directory = path.join(output, 'data'), origin = 'http://127.0.0.1:4244';
-const report = { schemaVersion: 'public-native-path-smoke/1', head: execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim(),
+const report = { schemaVersion: 'public-native-path-smoke/2', head: execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim(),
   node: process.version, modelRequests: 0, resourceQualification: false, processes: [], checks: [], errors: [], failed: true };
 const save = () => writeFile(path.join(output, 'result.json'), JSON.stringify(report, null, 2));
 const raw = (name, value) => writeFile(path.join(output, name + '.json'), typeof value === 'string' ? value : JSON.stringify(value, null, 2), { flag: 'wx' });
@@ -48,14 +48,16 @@ async function start(label) {
   });
   await waitFor(() => { assert.ok(!owner.ended, 'Owned daemon exited before listening.'); return owner.stdout.includes('LoreDock listening on ' + origin); }, 'Owned daemon did not listen.');
   let cookie, token;
-  const request = async (route, body) => {
+  const request = async (route, body, method = body === undefined ? 'GET' : 'POST', expectedStatus) => {
     assert.ok(!owner.ended, 'Do not contact a daemon after losing process ownership.');
-    const response = await fetch(origin + '/api' + route, { method: body === undefined ? 'GET' : 'POST',
+    const response = await fetch(origin + '/api' + route, { method,
       signal: AbortSignal.timeout(10000), headers: { origin, 'x-loredock-client': 'web', ...(cookie ? { cookie, 'x-loredock-csrf': token } : {}),
         ...body === undefined ? {} : { 'content-type': 'application/json' } }, ...body === undefined ? {} : { body: JSON.stringify(body) } });
-    const text = await response.text(); assert.ok(response.ok, text);
+    const text = await response.text();
+    if (expectedStatus === undefined) assert.ok(response.ok, text); else assert.equal(response.status, expectedStatus, text);
+    assert.equal(response.headers.get('cache-control'), 'no-store');
     if (route === '/session') { cookie = response.headers.get('set-cookie').split(';')[0]; token = JSON.parse(text).token; }
-    return { text, value: JSON.parse(text) };
+    return { text, value: JSON.parse(text), status: response.status };
   };
   await request('/session', {}); return request;
 }
@@ -86,11 +88,54 @@ try {
   assert.equal(paths.value.identity.inventoryId, inventory.id); assert.equal(paths.value.identity.accounting.version, 'shared-capture-work/1');
   assert.equal(paths.value.graph.edges.find(edge => edge.kind === 'event-delivery').topicCheck.value, 'permit.granted.v3');
   report.checks.push('Actual compiled entry starts model-free, follows a new index automatically and serves native v2 with literal support.');
+  const saveRoute = '/path-captures?buildId=' + build.id;
+  const captured = await first(saveRoute, undefined, 'POST', 201); await raw('captured', captured.text);
+  const receiptId = captured.value.receiptId, historyRoute = '/path-captures/' + receiptId;
+  assert.match(receiptId, /^[a-f0-9]{64}$/); assert.equal(captured.value.created, true);
+  const history = await first(historyRoute); await raw('first-history', history.text);
+  assert.equal(JSON.stringify(history.value.projection), paths.text);
+  assert.equal(history.value.originals.length, 10); assert.equal(history.value.dependencies.length, 4);
+  const historyContent = value => {
+    assert.equal(value.currentApplicability, 'not-checked'); assert.equal(value.stale, false);
+    assert.equal(value.metrics.pathWork, 0); assert.equal(value.metrics.publicationLocks, 0);
+    const { wallMs, ...metrics } = value.metrics; assert.ok(Number.isFinite(wallMs) && wallMs >= 0 && wallMs <= 5000);
+    return { ...value, metrics };
+  };
+  const recorded = historyContent(history.value);
+  const duplicate = await first(saveRoute, undefined, 'POST', 200); await raw('duplicate', duplicate.text);
+  assert.equal(duplicate.value.receiptId, receiptId); assert.equal(duplicate.value.created, false);
+  for (const index of [1, 2]) {
+    const replacement = await first('/code-analysis', { requestId: 'public-native-replacement-' + index,
+      buildId: build.id, policyVersion: project.policyVersion, sourceSetVersion: project.sourceSetVersion });
+    await raw('replacement-' + index, replacement.text);
+    await waitFor(async () => (await first('/code-analysis')).value.inventories.some(row => row.id === replacement.value.id && row.published), 'Replacement analysis did not publish.');
+  }
+  const replaced = await first(historyRoute); await raw('replaced-history', replaced.text);
+  assert.deepEqual(historyContent(replaced.value), recorded);
+  const currentPaths = await first('/code-paths?buildId=' + build.id); await raw('current-paths', currentPaths.text);
+  assert.notEqual(currentPaths.value.identity.inventoryId, inventory.id);
+  report.checks.push('Protected capture creates one native record; exact duplicates reuse it, and history preserves recorded content after two inventory replacements.');
   await stop('SIGTERM'); store = new CatalogStore(directory); assert.equal(store.receipts.catalogId, report.catalogId); store.close(); store = undefined;
+  const receiptFolder = path.join(directory, 'path-receipts', report.catalogId), receiptFile = path.join(receiptFolder, receiptId + '.json');
+  const receiptBytes = await readFile(receiptFile); await raw('stored-receipt', receiptBytes.toString());
+  assert.equal(JSON.parse(receiptBytes.toString()).projectionJson, paths.text);
   const second = await start('second'), repeated = await second('/code-paths?buildId=' + build.id); await raw('restarted-paths', repeated.text);
-  assert.equal(repeated.text, paths.text); await stop('SIGINT');
+  assert.equal(repeated.text, currentPaths.text);
+  const reopened = await second(historyRoute); await raw('restarted-history', reopened.text);
+  assert.deepEqual(historyContent(reopened.value), recorded); assert.deepEqual(await readFile(receiptFile), receiptBytes);
+  const policy = await second('/policy', { excludedPaths: ['ui'] }, 'PUT'); await raw('policy-update', policy.text);
+  const fenced = await second(historyRoute, undefined, 'GET', 409); await raw('policy-fenced', fenced.text);
+  assert.equal(fenced.value.error.code, 'POLICY_CHANGED'); assert.deepEqual(await readFile(receiptFile), receiptBytes);
+  const hidden = history.value.dependencies.find(dep => !history.value.originals.some(row => row.sourceId === dep.sourceId)); assert.ok(hidden);
+  await raw('revoke', (await second('/sources/' + hidden.sourceId + '/revoke', undefined, 'POST')).text);
+  const missing = await second(historyRoute, undefined, 'GET', 404); await raw('revoked-history', missing.text);
+  assert.equal(missing.value.error.code, 'RECEIPT_NOT_FOUND'); assert.deepEqual(await readdir(receiptFolder), []);
+  await stop('SIGINT');
   store = new CatalogStore(directory); assert.equal(store.receipts.catalogId, report.catalogId); store.close(); store = undefined;
-  report.checks.push('SIGTERM and SIGINT release catalog ownership; restart returns the exact native projection without fingerprint substitution.');
+  report.checks.push('SIGTERM and SIGINT release ownership; restart returns exact current paths and saved historical content without fingerprint substitution.');
+  const third = await start('revoked'), afterRevoke = await third(historyRoute, undefined, 'GET', 404); await raw('restarted-revoked-history', afterRevoke.text);
+  assert.equal(afterRevoke.value.error.code, 'RECEIPT_NOT_FOUND'); await stop('SIGTERM');
+  report.checks.push('Policy fences retained bytes; revocation of the undisplayed dependency purges history and remains unavailable after daemon restart.');
   for (const [name, revision] of Object.entries(report.revisions)) {
     const git = args => execFileSync('git', ['-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', ...args], {
       cwd: path.join(output, 'sources', name), encoding: 'utf8', timeout: 10000,

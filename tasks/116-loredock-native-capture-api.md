@@ -1,6 +1,11 @@
 # Task 116 — Expose authorized native path capture and history
 
-Status: scoped, 2026-11-04.
+Status: implemented and locally verified, 2026-11-04; exact-head CI acceptance pending.
+
+The [HTTP contract](../docs/loredock/NATIVE_CAPTURE_API.md) fixes the two
+routes, empty-body/query-only selection, native response types and known error mappings
+before implementation. Reuse the existing strict query parser to reject duplicate keys;
+do not add a second JSON request decoder or put session/CSRF tokens in URLs.
 
 After Task 115 acceptance, connect the already qualified NativeCaptures service to the
 local daemon as a separate public API slice. Use the same explicit native path owner;
@@ -38,3 +43,11 @@ private pilot, L5 and Workbench remain subsequent work. Do not add a raw receipt
 form as a substitute for the later user workflow. Finish strict and relevant actual
 compiled HTTP/startup checks, require both exact-head CI events, then scope the smallest
 usable saved-path browser workflow with clear recorded/current status and authority.
+
+Implemented: protected query-only capture and ID-only history, typed actual native results,
+fixed known errors, no-store for all API refusals and explicit capture shutdown ownership.
+Sixty-five focused checks, 842 full strict tests/builds and the five-scenario normal compiled daemon smoke pass. First
+test failures are retained. All 38 qualified native runtime modules are unchanged; no old
+resource family or model was used. See the contract's verification section and
+[evidence archive](../docs/fixtures/loredock-native-capture-api/README.md).
+Next: [Task 117](117-loredock-saved-path-browser.md).

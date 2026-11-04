@@ -218,7 +218,11 @@ migrates existing read-only endpoints and the connected-path browser to native v
 The [public migration](PUBLIC_NATIVE_PATHS.md) passes focused HTTP, actual Chrome and
 normal-daemon startup/restart checks, with unchanged qualified core runtime bytes.
 [Task 116](../../tasks/116-loredock-native-capture-api.md) connects authorized native
-capture/history APIs before a separate saved-path browser workflow. No semantic/L5 gate
+capture/history APIs. Its [HTTP integration](NATIVE_CAPTURE_API.md) preserves saved content
+through two inventory replacements and daemon restart, rechecks every original/dependency,
+and denies policy-fenced or revoked history. Qualified core runtime bytes are unchanged.
+[Task 117](../../tasks/117-loredock-saved-path-browser.md) adds the smallest usable browser
+save/open workflow without a raw receipt-ID field. No semantic/L5 gate
 is inferred from either the resource result or this public read migration.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.

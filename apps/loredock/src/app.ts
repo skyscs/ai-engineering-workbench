@@ -22,13 +22,16 @@ import { lookupCodeSymbols } from './code-symbols.js';
 import { pathRequest } from './code-paths.js';
 import { CodePathsV2 } from './code-paths-v2.js';
 import { OperationBudgetError } from './operation-budget.js';
+import { NativeCaptures } from './native-capture.js';
+import { captureSelection, historyReceiptId, nativeCaptureError } from './native-capture-api.js';
 
-export function createApp(catalog: Catalog, options: { publicDir?: string; development?: boolean; answers?: Answers; codeAnalysis?: CodeAnalysis; codeFollow?: CodeAnalysisFollow; codePaths?: CodePathsV2 } = {}) {
+export function createApp(catalog: Catalog, options: { publicDir?: string; development?: boolean; answers?: Answers; codeAnalysis?: CodeAnalysis; codeFollow?: CodeAnalysisFollow; codePaths?: CodePathsV2; nativeCaptures?: NativeCaptures } = {}) {
   const app = new Hono();
   const hosts = new Set(['127.0.0.1:4244', ...options.development ? ['127.0.0.1:5174'] : []]);
   const origins = new Set([...hosts].map(host => `http://${host}`));
   const sessions = new Map<string, { token: string; expires: number }>();
   app.use('*', async (c, next) => {
+    if (c.req.path === '/api' || c.req.path.startsWith('/api/')) c.header('Cache-Control', 'no-store');
     if (!hosts.has(c.req.header('host') ?? '')) return c.json({ error: { message: 'Use the local LoreDock URL.' } }, 403);
     const origin = c.req.header('origin');
     const navigation = c.req.method === 'GET' && c.req.path !== '/api' && !c.req.path.startsWith('/api/')
@@ -41,7 +44,6 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
   });
   app.use('/api/*', bodyLimit({ maxSize: 16384, onError: c => c.json({ error: { message: 'Request exceeds 16 KiB.' } }, 413) }));
   app.use('/api/*', async (c, next) => {
-    c.header('Cache-Control', 'no-store');
     for (const [id, session] of sessions) if (session.expires <= Date.now()) sessions.delete(id);
     if (c.req.path === '/api/health' && c.req.method === 'GET') return next();
     if (c.req.path === '/api/session' && c.req.method === 'POST') {
@@ -99,6 +101,16 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
   const codeAnalysis = options.codeAnalysis;
   if (codeAnalysis) {
     const codePaths = options.codePaths ?? new CodePathsV2(codeAnalysis);
+    const nativeCaptures = options.nativeCaptures ?? new NativeCaptures(codeAnalysis, { paths: codePaths });
+    app.post('/api/path-captures', async c => {
+      const selection = captureSelection(new URL(c.req.url).searchParams, await c.req.text());
+      const result = await nativeCaptures.capture(selection, c.req.raw.signal);
+      return c.json(result, result.created ? 201 : 200);
+    });
+    app.get('/api/path-captures/:receiptId', async c => {
+      const id = historyReceiptId(c.req.param('receiptId'), new URL(c.req.url).searchParams, c.req.raw.headers);
+      return c.json(await nativeCaptures.history(id, c.req.raw.signal));
+    });
     app.get('/api/code-paths', async c => c.json(await codePaths.read(pathRequest(new URL(c.req.url).searchParams, 'paths'), 'paths', c.req.raw.signal)));
     app.get('/api/code-paths/roots', async c => c.json(await codePaths.read(pathRequest(new URL(c.req.url).searchParams, 'roots'), 'roots', c.req.raw.signal)));
     app.get('/api/code-symbols', async c => c.json(await lookupCodeSymbols(codeAnalysis, c.req.query('q') ?? '', c.req.query('buildId'))));
@@ -174,6 +186,8 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
   }
   app.onError((error, c) => {
     if (error instanceof CatalogError) return c.json({ error: { code: error.code, message: error.message } }, error.status);
+    const native = nativeCaptureError(error);
+    if (native) return c.json({ error: native.error }, native.status);
     if (error instanceof OperationBudgetError) {
       const message = error.code === 'CANCELLED' ? 'The path request was cancelled.'
         : error.code === 'CAPTURE_TIME_LIMIT' ? 'The path request reached its time limit.'
