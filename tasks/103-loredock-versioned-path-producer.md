@@ -1,6 +1,6 @@
 # Task 103 — Implement the internal typed connected paths v2 producer
 
-Status: scoped for implementation, 2026-11-04.
+Status: implemented and locally verified, 2026-11-04; candidate remains internal.
 
 Follow the Task 102 final-qualification boundary review. Implement the smallest
 complete typed path producer with direct Java literal topic witnesses and the real
@@ -43,3 +43,11 @@ compiled-module integration. Review all production imports and both versioned
 ownership paths. Require both exact-head CI events before merge. Then separately
 scope native capture/history storage and lifecycle before final composition
 qualification. No scale or L5 claim follows from this internal producer.
+
+Scope `f8233ea` precedes the typed producer, versioned contracts, literal witnesses
+and shared catalog owner. Twelve native cases and **641 full tests/types/builds**
+pass. The compiled owned smoke verifies the complete path, original evidence,
+accounting, v1 separation and restart. Initial strict/test setup failures and all
+logs are [retained](../docs/fixtures/loredock-native-v2-producer/README.md).
+Next [Task 104](104-loredock-native-capture-ownership.md) decides storage/lifecycle
+ownership before porting native publication/history. No route or browser switch occurs.

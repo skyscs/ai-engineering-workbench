@@ -399,6 +399,12 @@ capture/history. The revised order implements an internal native versioned produ
 and typed complete capture before final qualification, with all existing gates intact.
 Next [Task 103](tasks/103-loredock-versioned-path-producer.md) ports the internal v2
 reader; the browser remains on v1 until the complete compiled composition qualifies.
+[Task 103](tasks/103-loredock-versioned-path-producer.md) completes that internal
+typed producer with native identities, literal witnesses, exact shared work and one
+catalog owner across versions. Twelve native cases, 641 tests/builds and an independent
+compiled smoke pass. Next
+[Task 104](tasks/104-loredock-native-capture-ownership.md) decides native capture
+storage, authorization/purge and recovery before publication/history implementation.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
