@@ -26,3 +26,17 @@ first failures; run strict/full checks and verify the reference without prebuilt
 daemon output. Review all source/import/hash mappings and both exact-head CI events
 before merge. Then scope the actual v1 streaming/read-scope/compact representation
 integration, retaining separate final-composition qualification.
+
+## Source finding before reference implementation
+
+`codeAnalysisFingerprint` hashes the complete `code-analysis` module, not only parser
+functions. A representation-only edit therefore changes the production fingerprint
+and generation identities. Correct Task 098's overly strong unchanged-fingerprint/
+byte-identity/rollback assumptions before integration. Preserve stored originals and
+historical bytes, explicitly fence incompatible derived inventories and cover reanalysis
+and backward reopen. Do not freeze an old fingerprint over changed source implicitly.
+
+The test reference preserves store/analysis method behavior while deliberately sharing
+the unchanged current fingerprint provider. This lets paired stopped-copy comparisons
+use identical test identities; it is not a replay of an old runtime/fingerprint. Record
+that context dependency and test it. Historical measured identities remain archived.
