@@ -54,7 +54,9 @@ test('prepared context preserves legacy bytes, compact semantics and owned no-wr
   assert(Buffer.byteLength(held.witnessJson) <= questionPreparationLimits.witnessBytes);
   assert.equal(owner.get(preview.id).status, 'consumed'); assert.throws(() => owner.review(preview.id), code('QUESTION_NOT_READY'));
   const after = fixture.counters(); for (const key of ['gitCalls', 'writeCalls', 'changedRows']) assert.equal(after[key], before[key]);
-  assert.equal(fixture.legacyRows(), legacy); assert.deepEqual(fixture.store.receipts.ids(), []);
+  assert.equal(fixture.legacyRows(), legacy);
+  const listingBudget = new services.OperationBudget();
+  try { assert.deepEqual(fixture.store.receipts.ids(listingBudget), []); } finally { listingBudget.close(); }
   const metrics = owner.metrics(); assert.equal(metrics.nativeReads, 1); assert.equal(metrics.lexical.rejectedUnits, 0);
   assert(metrics.budget.totalWork >= metrics.lexical.acceptedUnits); t.diagnostic(JSON.stringify(metrics));
   assert.equal((await validateQuestionWitness(fixture.catalog, held)).status, 'revalidated');
@@ -162,6 +164,8 @@ test('stored hashes, versions, prompt and compact corruption refuse validation w
   await assert.rejects(validateQuestionWitness(fixture.catalog, { ...original, reviewedHash: '0'.repeat(64) }), code('QUESTION_SNAPSHOT_HASH'));
   const { context, witness } = readQuestionSnapshot(original), budget = new services.OperationBudget();
   assert.throws(() => questionSnapshot(context, { ...witness, prompt: 'x'.repeat(questionPreparationLimits.witnessBytes) }, budget), code('QUESTION_WITNESS_LIMIT')); budget.close();
+  const retained = new services.OperationBudget();
+  assert.throws(() => questionSnapshot(context, { ...witness, prompt: '"'.repeat(280000) }, retained), code('QUESTION_PREVIEW_LIMIT')); retained.close();
 });
 
 test('all preexisting source and emitted application modules stay byte-identical to the accepted controls', async () => {
@@ -169,4 +173,40 @@ test('all preexisting source and emitted application modules stay byte-identical
   for (const [file, value] of Object.entries(manifest.existingFiles)) {
     const raw = await readFile(new URL(file, root)); assert.equal(raw.length, value.bytes, file); assert.equal(hash(raw), value.sha256, file);
   }
+});
+
+test('compact admission omits whole paths for missing originals and both shared size limits', async t => {
+  const { fixture, owner: create } = await setup(t), owner = create(), preview = await ready(owner), held = snapshot(owner, preview);
+  const { context, witness } = readQuestionSnapshot(held);
+  const budget = new services.OperationBudget(), encoded = decodeNativeReceipt(Buffer.from(witness.receipt), fixture.store.receipts.catalogId, budget); budget.close();
+  const rehash = input => { const { inputHash, ...value } = input; return { ...value, inputHash: hash(JSON.stringify(value)) }; };
+  const derive = value => { const limit = new services.OperationBudget(); try { return compactQuestionPath(value, encoded, limit); } finally { limit.close(); } };
+  const id = preview.compact.item.originals[0];
+  const missing = rehash({ ...context, spans: context.spans.filter(span => span.id !== id) });
+  assert.equal(derive(missing).reason, 'incomplete-original-support'); assert.equal(derive(missing).item, null);
+  const wrong = rehash({ ...context, spans: context.spans.map(span => span.id === id ? { ...span, revision: 'a'.repeat(40) } : span) });
+  assert.equal(derive(wrong).reason, 'incomplete-original-support');
+  const full = rehash({ ...context, interfaces: { ...context.interfaces, comparisons: Array(6).fill(context.interfaces.comparisons[0]) } });
+  assert.equal(derive(full).reason, 'derived-size'); assert.equal(derive(full).item, null);
+  // Internal renderer boundary only: preserve real original bytes while varying
+  // separate metadata size. This is not an alternative retrieval/owner input hook.
+  const empty = rehash({ ...context, gaps: [...context.gaps, ''] });
+  const padding = Math.floor((96 * 1024 - Buffer.byteLength(answerPrompt(empty)) - 64) / 2);
+  const near = rehash({ ...context, gaps: [...context.gaps, '"'.repeat(padding)] });
+  assert(Buffer.byteLength(answerPrompt(near)) <= 96 * 1024);
+  const oversized = derive(near); assert.equal(oversized.reason, 'prompt-size'); assert.equal(oversized.item, null);
+  assert.equal(preparedQuestionPrompt(context, null), answerPrompt(context));
+});
+
+test('a timed expiry drops access without a read, and stopping during a checkpoint releases the owner', async t => {
+  const { owner: create } = await setup(t), owner = create();
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const preview = await ready(owner), now = performance.now.bind(performance);
+  t.mock.method(performance, 'now', () => now() + questionPreparationLimits.readyMs + 1);
+  t.mock.timers.tick(questionPreparationLimits.readyMs);
+  assert.equal(owner.get(preview.id).reason, 'QUESTION_EXPIRED'); t.mock.restoreAll(); t.mock.timers.reset();
+  let enter, release; const entered = new Promise(resolve => { enter = resolve; }), gate = new Promise(resolve => { release = resolve; });
+  const active = create({ checkpoint: async info => { if (info.stage === 'lexical') { enter(); await gate; } } });
+  const started = active.start('stop', question); await entered; const stopped = active.stop(); release(); await stopped;
+  assert.equal(active.get(started.id).status, 'cancelled'); assert.equal(active.get(started.id).reason, 'SERVICE_STOPPED');
 });

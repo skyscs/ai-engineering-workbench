@@ -122,7 +122,8 @@ export class QuestionPreparations {
       const work = new CaptureWork(catalog, budget, signal, { checkpoint });
       await yieldTurn(); await checkpoint({ stage: 'lexical' }); work.check();
       lexical = new LexicalReadAccount(budget);
-      const context = store.withLexicalReads(lexical, () => retrieveAnswerContext(catalog, question, buildId));
+      const account = lexical;
+      const context = await store.withPreparedReads(() => store.withLexicalReads(account, () => retrieveAnswerContext(catalog, question, buildId)));
       const { dependencies } = work.dependencies(buildId), sourceIds = questionSourceIds(context, { dependencies });
       assertQuestionCurrent(catalog, context, sourceIds);
       let selection: SelectionObservation | null = null, receipt: string | null = null;
@@ -161,8 +162,13 @@ export class QuestionPreparations {
       // No await between the final authority fence and publishing owned immutable bytes.
       entry.snapshot = snapshot; entry.expires = performance.now() + questionPreparationLimits.readyMs;
       entry.state = { ...entry.state, status: 'ready', reviewedHash: snapshot.reviewedHash };
-      entry.timer = setTimeout(() => { if (this.shared.entry === entry) this.discard('expired', 'QUESTION_EXPIRED'); }, questionPreparationLimits.readyMs);
-      entry.timer.unref();
+      const expire = () => {
+        if (this.shared.entry !== entry) return;
+        const remaining = entry.expires! - performance.now();
+        if (remaining <= 0) this.discard('expired', 'QUESTION_EXPIRED');
+        else { entry.timer = setTimeout(expire, Math.ceil(remaining)); entry.timer.unref(); }
+      };
+      entry.timer = setTimeout(expire, questionPreparationLimits.readyMs); entry.timer.unref();
     } finally {
       budget?.close(); this.observation = { id: entry.state.id, budget: budget?.stats() ?? null, lexical: lexical?.stats() ?? null, nativeReads };
       if (paths) void paths.stop();
