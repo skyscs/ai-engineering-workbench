@@ -37,9 +37,9 @@ original count, complete source names/revisions, stale scope and current applica
 explicitly `not-checked`. No original text or raw receipt body is returned by listing.
 Opening an item still reauthorizes history through the existing API.
 
-A policy-fenced candidate contributes only to an unavailable count. A preexisting
-source-scope refusal may be handled the same way if its exact domain code is validated
-during implementation; do not broadly catch CatalogError/NativeReceiptError. Missing or
+A policy-fenced candidate (`CatalogError` code `POLICY_CHANGED`) contributes only to an
+unavailable count. Other source-scope refusals abort the page; do not broadly catch
+CatalogError/NativeReceiptError. Missing or
 corrupt originals, unexpected storage faults and malformed/foreign receipts fail the
 whole page without exposing partial summaries. A source/epoch change during the request
 aborts the complete operation, rather than being counted as an initially fenced record.
