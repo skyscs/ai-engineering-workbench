@@ -163,7 +163,12 @@ try {
   assert.equal(await evaluate("Boolean(document.querySelector('.saved-path-items'))"), false);
   await click('Refresh saved paths'); await ready(); await text('of 8 in this list.');
   report.checks.push('A newly saved record invalidates the pinned next page instead of mixing generations; explicit refresh starts a new list.');
-  const single = await captures.list({ pageSize: 1 }); listLimit = single.metrics.work + 500;
+  const single = await captures.list({ pageSize: 1 }); report.reducedBudgetCalibration = [{ offset: 0, work: single.metrics.work }];
+  for (let offset = 1; offset < single.totalStored; offset++) {
+    const value = await captures.list({ pageSize: 1, generationId: single.generationId, offset });
+    report.reducedBudgetCalibration.push({ offset, work: value.metrics.work });
+  }
+  listLimit = Math.max(...report.reducedBudgetCalibration.map(row => row.work)) + 500;
   await click('Refresh saved paths'); await text('Show one saved path');
   const beforeFallback = listCount(), polls = report.requests.filter(row => row.path === '/api/project').length;
   await waitFor(() => report.requests.filter(row => row.path === '/api/project').length > polls + 1, 'Project polling stopped.'); assert.equal(listCount(), beforeFallback);
