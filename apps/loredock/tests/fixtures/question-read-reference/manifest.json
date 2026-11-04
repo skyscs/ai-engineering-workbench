@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "question-read-reference/1",
+  "revision": "25199908923fd75fb0fdb67b1a86b3c6636298eb",
+  "modules": {
+    "store": {
+      "sourceSha256": "6851bd45f8b459ee3c690aff49d478db63e09b43290b499d92ccff8a4f3ce4d2",
+      "emittedSha256": "dead22030302a9219db3402ae79b8aa9862b15bca82767951e77782da6bb00b1",
+      "edits": [
+        {
+          "before": "import { requireReceipt, uuid } from './native-receipt-json.js';",
+          "after": "import { requireReceipt, uuid } from './native-receipt-json.js';\nimport { checkLexicalRead, recordLexicalRows, runLexicalReads, closeLexicalReads, type LexicalReadAccount } from './lexical-read-account.js';"
+        },
+        {
+          "before": "    const fresh = () => this.db.prepare(sql).get(...args) as T | undefined;\n    return this.reads ? this.reads.execute('get', sql, args, fresh) : fresh();",
+          "after": "    checkLexicalRead(this);\n    const fresh = () => this.db.prepare(sql).get(...args) as T | undefined;\n    const result = this.reads ? this.reads.execute('get', sql, args, fresh) : fresh();\n    recordLexicalRows(this, result === undefined ? 0 : 1); return result;"
+        },
+        {
+          "before": "    const fresh = () => this.db.prepare(sql).all(...args) as T[];\n    return this.reads ? this.reads.execute('all', sql, args, fresh) : fresh();",
+          "after": "    checkLexicalRead(this);\n    const fresh = () => this.db.prepare(sql).all(...args) as T[];\n    const result = this.reads ? this.reads.execute('all', sql, args, fresh) : fresh();\n    recordLexicalRows(this, result.length); return result;"
+        },
+        {
+          "before": "  async withPreparedReads<T>",
+          "after": "  withLexicalReads<T>(account: LexicalReadAccount, action: () => T): T { return runLexicalReads(this, account, action); }\n  async withPreparedReads<T>"
+        },
+        {
+          "before": "    this.analysisWrites?.close();",
+          "after": "    closeLexicalReads(this); this.analysisWrites?.close();"
+        }
+      ]
+    },
+    "catalog": {
+      "sourceSha256": "04eb7036f8294d74413d82a0243fbfda8ba2cd055f16100da184954bd891e5fe",
+      "emittedSha256": "e381ed4d02e8b03542ea2dda7fc35d765f0ff9f75e11eb1983a5637d09cd5433",
+      "edits": [
+        {
+          "before": "import { setImmediate as yieldTurn } from 'node:timers/promises';",
+          "after": "import { recordLexicalOriginal } from './lexical-read-account.js';\nimport { setImmediate as yieldTurn } from 'node:timers/promises';"
+        },
+        {
+          "before": "    return { ...evidence, metadata: JSON.parse(metadata) as Record<string, unknown> };",
+          "after": "    const result = { ...evidence, metadata: JSON.parse(metadata) as Record<string, unknown> };\n    recordLexicalOriginal(this.store, Buffer.byteLength(result.text)); return result;"
+        }
+      ]
+    },
+    "code-paths-v2": {
+      "sourceSha256": "bc4798d29630a78025bc0ef24d5d8fa860e25ef1072198c44b59562b8fefed69",
+      "emittedSha256": "4fc072e71636af4cca6b694938abe3db9a420ec90ccfa915459629d03850b9cf",
+      "edits": [
+        {
+          "before": "import { createCanonicalFactPair } from './canonical-fact-pair.js';",
+          "after": "import { createCanonicalFactPair } from './canonical-fact-pair.js';\nimport type { QuestionPathSelector } from './question-path-selection.js';"
+        },
+        {
+          "before": "interface ServiceOptions {",
+          "after": "interface ServiceOptions {\n  selectRoot?: QuestionPathSelector;"
+        },
+        {
+          "before": "    this.limits = {",
+          "after": "    if (options.selectRoot !== undefined && typeof options.selectRoot !== 'function')\n      throw new CatalogError('INVALID_SELECTION', 'Use an internal complete-resolution selector.');\n    this.limits = {"
+        },
+        {
+          "before": "    validateRequest(input, kind);",
+          "after": "    validateRequest(input, kind);\n    if (this.options.selectRoot && (kind !== 'paths' || input.rootId !== undefined || input.offset !== undefined))\n      throw new CatalogError('INVALID_SELECTION', 'Question selection cannot be combined with explicit roots or pages.');"
+        },
+        {
+          "before": "    const graph = kind === 'paths' ? await admitPaths(resolution, this.limits, work, input.rootId) : null;",
+          "after": "    const selected = this.options.selectRoot ? await this.options.selectRoot(resolution, work) : undefined;\n    if (selected && !resolution.roots.some(root => root.id === selected.rootId))\n      throw new CatalogError('INVALID_SELECTION', 'The selector must return a root from this complete resolution.');\n    const rootId = selected?.rootId ?? input.rootId;\n    const graph = kind === 'paths' ? await admitPaths(resolution, this.limits, work, rootId) : null;"
+        },
+        {
+          "before": "selection: { rootId: input.rootId ?? null, offset }",
+          "after": "selection: { rootId: rootId ?? null, offset }"
+        }
+      ]
+    }
+  }
+}
