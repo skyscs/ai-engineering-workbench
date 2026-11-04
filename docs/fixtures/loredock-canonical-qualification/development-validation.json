@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "task097-development-validation/1",
+  "scope": "b81cd73",
+  "initialTiny": "6d4e300",
+  "extendedTiny": "3e2fef5",
+  "hashCorrection": "d0cca5d",
+  "firstFailure": "The independent tiny fixture inherited its old corpus hash after adding two markers. The worker rejects before source preparation; dependent reader is blocked. No frozen resource family ran.",
+  "checks": [
+    {
+      "log": "check-first.log.gz",
+      "exitCode": 0,
+      "tests": 597
+    },
+    {
+      "log": "check-second.log.gz",
+      "exitCode": 1
+    },
+    {
+      "log": "check-third.log.gz",
+      "exitCode": 0,
+      "tests": 597
+    }
+  ],
+  "files": [
+    {
+      "file": "install-first.log.gz",
+      "original": "/home/toshiba/aew/task097-install-first.log",
+      "bytes": 326,
+      "sha256": "7d1fc25c21937a0276afe0daa8e9b5fafa584cf46673b41b6a220914ae5f8a75",
+      "archiveSha256": "f6cd626f935dd2bd51aae1fb39729db9c44e738d356b2fa41db3b614705daac3"
+    },
+    {
+      "file": "check-first.log.gz",
+      "original": "/home/toshiba/aew/task097-check-first.log",
+      "bytes": 237688,
+      "sha256": "f2b403357254a801d87712d35255bd1cf71d941876ca49e907351392994ba5eb",
+      "archiveSha256": "908cbfdd704c5679588f97acb845500b866cd71c6277135e79974a2c3b0ccee1"
+    },
+    {
+      "file": "check-second.log.gz",
+      "original": "/home/toshiba/aew/task097-check-second.log",
+      "bytes": 198906,
+      "sha256": "3bc1de690d7d8f7918a3313960253e32f02af2ff6d5235698888c46fab557a41",
+      "archiveSha256": "8bc6f8548ad1e77e06e54f22c90b6b58ce20e775a786dad402e6046e0fbacc78"
+    },
+    {
+      "file": "tiny-first-failure/identity.json.gz",
+      "original": "/tmp/canonical-qualification-omVoFQ/run/identity.json",
+      "bytes": 11336,
+      "sha256": "44f3140dd4f2f402d451e4e7be01ee964266ad5e27b133a8821033a88f2740ed",
+      "archiveSha256": "e8452077626dc0156aabe1cdd9d15cb0607ecc0966efa69e6b6782087c457301"
+    },
+    {
+      "file": "tiny-first-failure/result.json.gz",
+      "original": "/tmp/canonical-qualification-omVoFQ/run/result.json",
+      "bytes": 45593,
+      "sha256": "0c88aa3da19634a7b5077afa9b9c3f0ce84ae3fdc1855020c8b1ca6889c1e759",
+      "archiveSha256": "18513692356b6845cd8e6c96e436fd76a6cd3367ce33c8e001d6f4cf5a51b1a4"
+    },
+    {
+      "file": "tiny-first-failure/size-0/same-process/result.json.gz",
+      "original": "/tmp/canonical-qualification-omVoFQ/run/size-0/same-process/result.json",
+      "bytes": 1916,
+      "sha256": "4a6ff568b6e4f45deb5dfd2bc1c3e548287d0dae3f8ac6fc913dac87cf40c070",
+      "archiveSha256": "6843726589fca928570dcb0466f04aff9b23230bdde8eb987ed4039cdfd61eb5"
+    },
+    {
+      "file": "tiny-first-failure/size-0/same-process.exit.json.gz",
+      "original": "/tmp/canonical-qualification-omVoFQ/run/size-0/same-process.exit.json",
+      "bytes": 669,
+      "sha256": "3e2385c2974266e031ccbff1e4ea9adbd28e1cacdd5b166d08a6e8f986db4fb0",
+      "archiveSha256": "5c453b937808d01356de4ca1f6014054ce76dc70bd870683a464ca855d74f0a9"
+    },
+    {
+      "file": "tiny-first-failure/size-0/same-process.stderr.gz",
+      "original": "/tmp/canonical-qualification-omVoFQ/run/size-0/same-process.stderr",
+      "bytes": 1167,
+      "sha256": "df9629057d8a80755ca9bd17d4f6c4cd47bc785bea87c4a258618145bc096104",
+      "archiveSha256": "de31721e111389e3baa8b9e8dd9189e4ee1078d7f8979709bee898469394685a"
+    },
+    {
+      "file": "tiny-first-failure/size-0/same-process.stdout.gz",
+      "original": "/tmp/canonical-qualification-omVoFQ/run/size-0/same-process.stdout",
+      "bytes": 49,
+      "sha256": "2e6bfd60f3de86fe6f38bda6e45c751e194843766a7477272aa51677f81e313b",
+      "archiveSha256": "23f6dc2a2c52666cf483ff24c42e80d00a8696c548c46278968879debe7e1b10"
+    },
+    {
+      "file": "check-third.log.gz",
+      "original": "/home/toshiba/aew/task097-check-third.log",
+      "bytes": 237687,
+      "sha256": "7c7c85b88e0e095ece176eb55bc70bc093c885946388a3a6b87f4452a97b609a",
+      "archiveSha256": "22fde4aa9e9189e9067363f6ae456adb17bf9e5bad786ead31a95e8fcbcb0054"
+    }
+  ]
+}

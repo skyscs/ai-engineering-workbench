@@ -1,6 +1,6 @@
 # Task 096 — Share one immutable fact-free pair within a request
 
-Status: implemented and locally verified, 2026-11-04; exact-head CI precedes merge.
+Status: merged through PR #100, 2026-11-04.
 
 Implement only the candidate selected by Task 095: after full per-file validation,
 share one immutable canonical `{facts,ranges}` pair for an exactly repeated fact-free
@@ -40,3 +40,7 @@ Full checks pass 596 tests, strict types and builds. Built composition imports;
 are [retained](../docs/fixtures/loredock-canonical-facts/README.md). No resource claim
 or production change follows. Next separately qualify complete actual process
 lifecycles on a fresh frozen family after this candidate's CI/merge acceptance.
+
+Final head `9cf719b` passed push 41817625017 and pull-request 41817637896 CI
+(596 tests), then merged as identical-tree `271d1c8`. Task 097 includes that merge
+before any resource execution.
