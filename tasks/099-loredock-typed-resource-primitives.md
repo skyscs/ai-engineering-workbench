@@ -1,6 +1,6 @@
 # Task 099 — Type the qualified resource ownership primitives
 
-Status: selected by Task 098; implementation not started.
+Status: scoped for implementation, 2026-11-04; helpers remain unconnected.
 
 Implement three internal TypeScript modules under `apps/loredock/src`: a bounded
 prepared-read scope owner, the single immutable canonical fact/range pair and the
