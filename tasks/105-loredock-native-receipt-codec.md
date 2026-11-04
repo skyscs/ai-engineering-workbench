@@ -1,6 +1,6 @@
 # Task 105 — Validate the native receipt format
 
-Status: scoped for implementation, 2026-11-04.
+Status: implementation started, 2026-11-04.
 
 Implement the pure, strict native receipt codec defined by ADR 0057. Keep this
 change independent of filesystem ownership, schema migration and async capture/
