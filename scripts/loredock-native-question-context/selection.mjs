@@ -4,12 +4,16 @@ export const selectionVersion = 'exact-anchor-reachability/1';
 export class SelectionUnavailable extends Error {
   constructor(code, message, observation) { super(message); this.code = code; this.observation = observation; }
 }
-const identifierCharacter = value => value !== undefined && /[\p{L}\p{N}_$]/u.test(value);
+// Dots, slashes and hyphens belong to qualified identifiers, routes and topics.
+// Punctuation at the end of a sentence is accepted only when followed by a delimiter.
+const identifierCharacter = value => value !== undefined && /[\p{L}\p{N}_$./-]/u.test(value);
 function wholeLiteral(question, value) {
   if (!value) return false;
   let offset = -1;
   while ((offset = question.indexOf(value, offset + 1)) !== -1) {
-    if (!identifierCharacter(question[offset - 1]) && !identifierCharacter(question[offset + value.length])) return true;
+    const end = offset + value.length, suffix = question[end];
+    const sentenceEnd = suffix === '.' && !identifierCharacter(question[end + 1]);
+    if (!identifierCharacter(question[offset - 1]) && (!identifierCharacter(suffix) || sentenceEnd)) return true;
   }
   return false;
 }
