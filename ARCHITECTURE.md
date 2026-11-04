@@ -79,7 +79,10 @@ or one-record fallback; no persistent client index is added. The native closure 
 member and the other 36 modules unchanged. This does not extend the earlier resource
 qualification claim. See [saved-path discovery](docs/loredock/SAVED_PATH_DISCOVERY.md).
 
-Native question-context integration is still a design, not a current answer dependency.
+Native question-context integration is not yet a current answer dependency.
+[Task 120](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md) passes the sealed 44-case offline
+comparison with unchanged production modules. Its compact item preserves already-issued
+original support, uncertainty and the existing prompt/derived limits.
 [ADR 0058](docs/decisions/0058-loredock-native-question-context.md) requires an offline
 complete-resolution selection/support comparison before consumer changes. Current
 lexical retrieval and legacy interface validation remain intact. A future asynchronous

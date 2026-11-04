@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "native-question-context-review/1",
+  "date": "2026-11-04",
+  "reviewedExecutable": "aa8797b6342c157c1f55c0c17b35bb57934ae352",
+  "sealCommit": "a3b8b552a5fff8e79abf3b2d29c75cceb3afdc10",
+  "observedAttempts": 1,
+  "observations": 44,
+  "pass": true,
+  "familyStatus": "exhausted",
+  "productionChanged": false,
+  "modelAttempts": 0,
+  "corporateSources": false,
+  "primaryCheckout": {
+    "head": "592bbc085d9405db86461d47fda5f3382bbaccde",
+    "clean": true
+  },
+  "runtime": {
+    "nativeModules": 39,
+    "composedModules": 46,
+    "allAcceptedNativeBytesUnchanged": true
+  },
+  "validation": {
+    "full": {
+      "head": "0ee6a9950f5c3966e88c4b74cb52870bad8a3401",
+      "exit": 0,
+      "tests": 869
+    },
+    "focusedFinal": {
+      "head": "aa8797b6342c157c1f55c0c17b35bb57934ae352",
+      "exit": 0,
+      "tests": 7,
+      "ordinaryMatrixCases": 44,
+      "negativeAssessments": 10
+    },
+    "static": {
+      "exit": 0,
+      "frozenFiles": 81,
+      "originalArtifactsVerified": 382,
+      "addedStaticLogRoundtripVerified": true,
+      "finalArtifacts": 383,
+      "stoppedFilesVerified": 11094,
+      "localDocumentationLinks": 744
+    }
+  },
+  "firstFailures": [
+    "Development lexical counter included four scope charges; corrected phase classification before reserved input.",
+    "Ordinary matrix foreign-source TS duplicate created another entry point; support-only copy changed to Markdown before final freeze.",
+    "Ordinary zero-work assessment confused one returned SQL row with zero accepted units; both returned/rejected/accepted counters are retained."
+  ],
+  "review": [
+    "Exactly two copied producer edits plus deterministic imports; baseline parity on ordinary inputs.",
+    "One actual budget starts before actual lexical retrieval; returned SQL rows/original bytes and refused charges remain explicit.",
+    "Complete root selection, original identity and compact support; independent codec and declared original source bytes validate accepted outputs.",
+    "No asynchronous gap between final handoff fence and owner release.",
+    "Both global and fixture-injected mutation counters retained; source Git byte vectors unchanged during operations.",
+    "Full receipt remains an offline artifact; no user-saved-history publication or production prompt change.",
+    "Immutable held witnesses reauthorize exact originals after actual inventory eviction without native derivation."
+  ],
+  "limitations": [
+    "Agent-authored synthetic mechanical evaluation, not independent product/semantic acceptance.",
+    "Exact anchors required; broader natural-language relevance and larger graphs unproven.",
+    "Positive derived item has 559 bytes spare; overflow remains an explicit whole-item omission.",
+    "Durable preparation, trusted answer-owned witness storage, HTTP/UI integration, model evaluation and L5 remain future gates."
+  ]
+}

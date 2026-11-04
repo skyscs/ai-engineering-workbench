@@ -1,0 +1,270 @@
+{
+  "schemaVersion": "native-question-context-run-protocol/1",
+  "status": "unexecuted",
+  "parent": {
+    "head": "ae8d9f247780c12590d762bb95ce76e8f7fbedab",
+    "merge": "1fa8d15ba7afee074d7b6a520cbc1ddb81e59cee",
+    "push": 41918997795,
+    "pullRequest": 41919216678,
+    "treeEqualityVerified": true
+  },
+  "normativeFreezeCommit": "615570976d5c1a97cc4147c3f8e175bccc8fb1f5",
+  "prospectiveOperations": 44,
+  "modelAttempts": 0,
+  "resourceQualification": false,
+  "operationLimits": {
+    "wallMs": 5000,
+    "work": 1000000
+  },
+  "developmentCorpus": "Separate ordinary permit-based development inputs only; never import the frozen library corpus in ordinary CI or candidate development.",
+  "cases": [
+    {
+      "id": "question.return-flow",
+      "group": "question",
+      "variant": "base",
+      "expected": "complete-static-path"
+    },
+    {
+      "id": "question.topic-entry",
+      "group": "question",
+      "variant": "base",
+      "expected": "complete-static-path"
+    },
+    {
+      "id": "question.overlapping-topic",
+      "group": "question",
+      "variant": "ambiguous",
+      "expected": "ambiguous"
+    },
+    {
+      "id": "question.missing-consumer",
+      "group": "question",
+      "variant": "missing-consumer",
+      "expected": "partial-static-path"
+    },
+    {
+      "id": "question.dynamic-topic",
+      "group": "question",
+      "variant": "dynamic-topic",
+      "expected": "partial-static-path"
+    },
+    {
+      "id": "question.unrelated-question",
+      "group": "question",
+      "variant": "base",
+      "expected": "insufficient-context"
+    },
+    {
+      "id": "question.untrusted-source",
+      "group": "question",
+      "variant": "base",
+      "expected": "insufficient-context"
+    },
+    {
+      "id": "support.missing-original",
+      "group": "support",
+      "variant": "base"
+    },
+    {
+      "id": "budget.derived-size",
+      "group": "budget",
+      "variant": "base"
+    },
+    {
+      "id": "budget.prompt-size",
+      "group": "budget",
+      "variant": "base"
+    },
+    {
+      "id": "identity.foreign-build",
+      "group": "identity",
+      "variant": "base"
+    },
+    {
+      "id": "identity.foreign-source",
+      "group": "identity",
+      "variant": "base"
+    },
+    {
+      "id": "inventory.missing",
+      "group": "inventory",
+      "variant": "base"
+    },
+    {
+      "id": "inventory.incompatible",
+      "group": "inventory",
+      "variant": "base"
+    },
+    {
+      "id": "inventory.evicted",
+      "group": "inventory",
+      "variant": "base"
+    },
+    {
+      "id": "freshness.registry",
+      "group": "freshness",
+      "variant": "base"
+    },
+    {
+      "id": "freshness.published",
+      "group": "freshness",
+      "variant": "base"
+    },
+    {
+      "id": "policy.lexical",
+      "group": "policy",
+      "variant": "base",
+      "stage": "lexical"
+    },
+    {
+      "id": "policy.metadata",
+      "group": "policy",
+      "variant": "base",
+      "stage": "metadata"
+    },
+    {
+      "id": "policy.read",
+      "group": "policy",
+      "variant": "base",
+      "stage": "read"
+    },
+    {
+      "id": "policy.resolve",
+      "group": "policy",
+      "variant": "base",
+      "stage": "resolve"
+    },
+    {
+      "id": "policy.admit",
+      "group": "policy",
+      "variant": "base",
+      "stage": "admit"
+    },
+    {
+      "id": "policy.originals",
+      "group": "policy",
+      "variant": "base",
+      "stage": "originals"
+    },
+    {
+      "id": "policy.handoff",
+      "group": "policy",
+      "variant": "base",
+      "stage": "handoff"
+    },
+    {
+      "id": "revoke.lexical",
+      "group": "revoke",
+      "variant": "base",
+      "stage": "lexical"
+    },
+    {
+      "id": "revoke.metadata",
+      "group": "revoke",
+      "variant": "base",
+      "stage": "metadata"
+    },
+    {
+      "id": "revoke.read",
+      "group": "revoke",
+      "variant": "base",
+      "stage": "read"
+    },
+    {
+      "id": "revoke.resolve",
+      "group": "revoke",
+      "variant": "base",
+      "stage": "resolve"
+    },
+    {
+      "id": "revoke.admit",
+      "group": "revoke",
+      "variant": "base",
+      "stage": "admit"
+    },
+    {
+      "id": "revoke.originals",
+      "group": "revoke",
+      "variant": "base",
+      "stage": "originals"
+    },
+    {
+      "id": "revoke.handoff",
+      "group": "revoke",
+      "variant": "base",
+      "stage": "handoff"
+    },
+    {
+      "id": "cancel.lexical",
+      "group": "cancel",
+      "variant": "base",
+      "stage": "lexical"
+    },
+    {
+      "id": "cancel.metadata",
+      "group": "cancel",
+      "variant": "base",
+      "stage": "metadata"
+    },
+    {
+      "id": "cancel.read",
+      "group": "cancel",
+      "variant": "base",
+      "stage": "read"
+    },
+    {
+      "id": "cancel.resolve",
+      "group": "cancel",
+      "variant": "base",
+      "stage": "resolve"
+    },
+    {
+      "id": "cancel.admit",
+      "group": "cancel",
+      "variant": "base",
+      "stage": "admit"
+    },
+    {
+      "id": "cancel.originals",
+      "group": "cancel",
+      "variant": "base",
+      "stage": "originals"
+    },
+    {
+      "id": "cancel.handoff",
+      "group": "cancel",
+      "variant": "base",
+      "stage": "handoff"
+    },
+    {
+      "id": "lifecycle.busy",
+      "group": "lifecycle",
+      "variant": "base"
+    },
+    {
+      "id": "lifecycle.shutdown",
+      "group": "lifecycle",
+      "variant": "base"
+    },
+    {
+      "id": "lifecycle.work-zero",
+      "group": "lifecycle",
+      "variant": "base"
+    },
+    {
+      "id": "lifecycle.time-zero",
+      "group": "lifecycle",
+      "variant": "base"
+    },
+    {
+      "id": "witness.inventory-replaced",
+      "group": "witness",
+      "variant": "base"
+    },
+    {
+      "id": "witness.context-unchanged",
+      "group": "witness",
+      "variant": "base"
+    }
+  ]
+}

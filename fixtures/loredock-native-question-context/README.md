@@ -3,8 +3,10 @@
 Task 119 freezes this fresh ordinary six-source library system for the offline comparison
 in [Task 120](../../tasks/120-loredock-native-question-context-feasibility.md). Read the
 [contract](../../docs/loredock/NATIVE_QUESTION_CONTEXT.md) before using it.
-No candidate, baseline retrieval, parser, native resolution or model has been run against
-these inputs. Importing the data-only factory to hash its exact file vectors is authoring
+At Task 119 authoring, no candidate, baseline retrieval, parser, native resolution or model
+had run against these inputs. Task 120 has now completed the sole observed run: all 44
+required cases pass, and this family is exhausted. See the
+[result and limitations](../../docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md). Importing the data-only factory to hash its exact file vectors is authoring
 validation, not an experimental observation or a test pass.
 
 - [corpus.mjs](corpus.mjs) creates base, overlapping-root, missing-consumer and dynamic-topic

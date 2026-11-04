@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "native-question-path-candidate/1",
+  "controlSha256": "4fc072e71636af4cca6b694938abe3db9a420ec90ccfa915459629d03850b9cf",
+  "candidateSha256": "a3ab4cb457492eed3c27fcb7852213c98816a33869bfeec10c92882238729833",
+  "edits": [
+    {
+      "before": "        const graph = kind === 'paths' ? await admitPaths(resolution, this.limits, work, input.rootId) : null;",
+      "after": "        const selectedRoot = this.options.selectQuestionRoot ? await this.options.selectQuestionRoot(resolution, work) : input.rootId;\n        const graph = kind === 'paths' ? await admitPaths(resolution, this.limits, work, selectedRoot) : null;"
+    },
+    {
+      "before": "identity, coverage, graph, selection: { rootId: input.rootId ?? null, offset }",
+      "after": "identity, coverage, graph, selection: { rootId: selectedRoot ?? null, offset }"
+    }
+  ],
+  "relocations": {
+    "./code-paths-owner.js": "../../apps/loredock/dist/code-paths-owner.js",
+    "./code-paths-work.js": "../../apps/loredock/dist/code-paths-work.js",
+    "./code-paths-metadata.js": "../../apps/loredock/dist/code-paths-metadata.js",
+    "./code-paths-v2-resolve.js": "../../apps/loredock/dist/code-paths-v2-resolve.js",
+    "./code-paths-v2-admit.js": "../../apps/loredock/dist/code-paths-v2-admit.js",
+    "./system-map.js": "../../apps/loredock/dist/system-map.js",
+    "./extract.js": "../../apps/loredock/dist/extract.js",
+    "./types.js": "../../apps/loredock/dist/types.js",
+    "./code-paths-v2-work.js": "../../apps/loredock/dist/code-paths-v2-work.js",
+    "./operation-budget.js": "../../apps/loredock/dist/operation-budget.js",
+    "./literal-topic.js": "../../apps/loredock/dist/literal-topic.js",
+    "./canonical-fact-pair.js": "../../apps/loredock/dist/canonical-fact-pair.js"
+  },
+  "purpose": "Offline selection-only composition. It does not replace or qualify the production producer."
+}

@@ -457,7 +457,10 @@ PR #122 completed Task 118 at `c59a792` after push 41916361811 and pull-request
 [ADR 0058](docs/decisions/0058-loredock-native-question-context.md) freeze a fresh
 six-source mechanical relevance/support comparison, preserving production retrieval and
 model behavior. [Task 120](tasks/120-loredock-native-question-context-feasibility.md)
-develops and executes that separate comparison before any answer integration.
+completes that separate comparison with 44/44 required cases passing. The family is now
+exhausted; production answers remain unchanged. [Task 121](tasks/121-loredock-prepared-question-lifecycle.md)
+designs immutable asynchronous preparation and witness ownership before implementation.
+See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation
 bounded, review the complete diff and verify CI for the exact PR head before merging.

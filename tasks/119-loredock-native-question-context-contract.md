@@ -1,6 +1,7 @@
 # Task 119 — Specify native connected-path context for project questions
 
-Status: design and prospective inputs completed, 2026-11-04; exact-head CI pending.
+Status: accepted through PR #123 at `ae8d9f2` after push 41918997795 and pull-request
+41919216678; identical-tree merge `1fa8d15`.
 
 Return to the LoreDock-first goal: help a project question use the connected source
 context already available across repositories. This task is a source-backed design and
