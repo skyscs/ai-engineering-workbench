@@ -441,6 +441,16 @@ Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
 Broader synthesis, adapters, semantic/AI refresh and scale acceptance remain separate.
+[Tasks 111–114](docs/loredock/PLAN.md) preserve the failed resource outcomes, isolate
+bounded analysis writes, verify compiled upgrades and pass one fresh final qualification.
+Tasks 115–117 expose native reads, save/history APIs and the browser workflow. PR #121
+head `3be8a26` passed push 41910682631 and pull-request 41910691383 CI and merged with an
+identical tree at `4ab902b`.
+[Task 118](tasks/118-loredock-saved-path-discovery.md) adds bounded saved-path discovery
+with full-capacity/restart and browser validation. After its exact-head acceptance,
+[Task 119](tasks/119-loredock-native-question-context-contract.md) returns to project
+question context: audit native connection/evidence admission and specify an offline
+comparison before changing production answers. Deletion/repair is not a prerequisite.
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation
 bounded, review the complete diff and verify CI for the exact PR head before merging.

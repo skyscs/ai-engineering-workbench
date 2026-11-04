@@ -1,5 +1,28 @@
 # Development status
 
+## Task 118 — Find saved paths without keeping a bookmark
+
+The [bounded discovery workflow](loredock/SAVED_PATH_DISCOVERY.md) lists authorized saved
+records in explicit four-candidate pages. One complete budget covers native decoding,
+every original/dependency check and generation/source fencing. Policy-fenced records
+contribute only to unavailable counts. The collapsed browser list clears stale responses,
+uses existing recorded links and offers explicit one-record recovery after resource limits.
+
+All **862 strict tests/builds** pass, including 78 focused cases. Actual compiled full-capacity
+validation traverses 64 files before/after restart with exact summaries and zero
+write/derivation counters. Fourteen Chrome scenarios pass with desktop/mobile evidence.
+Sixteen logs and 255 raw artifacts are [retained](fixtures/loredock-saved-path-discovery/README.md),
+including first type/build/test/browser failures. The native closure grows to 39 modules;
+all old emitted class members and the other 36 modules remain identical. The historical
+analysis-write reference stays unchanged; its ordinary test proves source-additive compatibility.
+No old resource result is relabeled or rerun.
+
+PR #121 head `3be8a26` passed both CI events and merged with an identical tree at
+`4ab902b`. Task 118 awaits its own exact-head CI acceptance. Next
+[Task 119](../tasks/119-loredock-native-question-context-contract.md) specifies how native
+connected paths could support project questions before a bounded offline comparison.
+Production answers, semantic gates, private-pilot/L5 acceptance and Workbench remain separate.
+
 ## Task 117 — Save paths and reopen recorded originals through a local link
 
 The [browser workflow](loredock/SAVED_PATH_BROWSER.md) saves the exact displayed generation,
@@ -16,9 +39,10 @@ public daemon source/emitted modules are unchanged. No corporate input, model re
 user demo mutation or exhausted resource replay was used.
 
 PR #120 head `14fb176` passed push 41906547182 and pull-request 41906567704 CI
-(842 tests), then merged as identical-tree `7e7cd19`. Task 117 awaits its own exact-head
-CI acceptance. Next [Task 118](../tasks/118-loredock-saved-path-discovery.md) provides bounded
-authorized discovery without bookmarks. Listing is not yet implemented; deletion/repair,
+(842 tests), then merged as identical-tree `7e7cd19`. Task 117 reached main through PR #121
+after push 41910682631 and pull-request 41910691383 passed at `3be8a26` (merge `4ab902b`).
+[Task 118](../tasks/118-loredock-saved-path-discovery.md) provides bounded
+authorized discovery without bookmarks. Deletion/repair,
 semantic context, private pilot, L5 and Workbench remain separate.
 
 ## Task 116 — Native path capture and history are available through protected HTTP

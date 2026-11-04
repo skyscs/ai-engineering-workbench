@@ -1,6 +1,6 @@
 # Bounded saved-path discovery
 
-Status: prospective Task 118 contract. Implement only after Task 117 exact-head acceptance.
+Status: implemented Task 118 contract, recorded before implementation. Exact-head CI pending.
 The existing save/open links and immutable receipt format remain the foundation.
 
 ## Owned enumeration and pagination
@@ -128,3 +128,36 @@ hash-identical. Keep the archived manifest and executable reference variants unc
 do not substitute a new hash into the old qualification or label the changed module
 byte-identical. The independent compiled check separately proves every preexisting class
 member unchanged and exercises actual discovery. Preserve the first full-check failure.
+
+## Verification and remaining scope
+
+The compiled [full-capacity check](../../scripts/loredock-saved-path-capacity.mjs) creates
+64 actual native records across 32 small inventories, traverses every record exactly once
+before and after restart, compares summaries to the saved bytes and verifies every
+original read. Thirty-six successful list operations have zero source Git, SQL write,
+fact/snapshot/path derivation or publication-lock changes. The maximum observed work is
+276,675; reported wall time is 22.716816 ms and response size is 5,110 bytes. These are
+ordinary small-input observations, not a resource qualification or a general scale claim.
+An internal reduced budget rejects four candidates and permits the explicit one-record
+retry. The HTTP interface cannot set that budget.
+
+The [Chrome workflow](../../scripts/loredock-saved-path-discovery-browser.mjs) passes
+fourteen scenarios: explicit opening, empty/multiple/mixed-authority pages, stable
+navigation/focus, links, delayed responses, generation/source fences, failed refresh,
+actual busy/cancel/private errors, smaller-page recovery and hidden-source purge.
+Desktop and 390px mobile screenshots are retained and visually reviewed. Each native
+HTTP request's original reads are counted in its own async context; global window deltas
+are also retained because concurrent overview requests can read originals independently.
+
+All 36 unchanged core modules match the accepted baseline. The two extended modules
+preserve every old emitted class member; a new listing module makes the closure 39.
+The archived analysis-write reference remains unchanged and its ordinary test proves
+that removing only the newly added storage member restores the original whole-source hash.
+The complete historical resource-family results remain untouched.
+
+See the [retained evidence](../fixtures/loredock-saved-path-discovery/README.md) for first
+failures, raw response/file copies, command results and identities. Temporary fixture
+source/catalog directories are removed by normal teardown; these artifacts are not full
+database backups. No corporate/model/user-demo work was performed. Independent semantic,
+private-pilot and L5 acceptance remain open. The next bounded task is the
+[native question-context contract](../../tasks/119-loredock-native-question-context-contract.md).

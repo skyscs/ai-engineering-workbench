@@ -50,8 +50,9 @@ In **Browse connected paths**, choose **Save paths**, then **Open saved paths**.
 Bookmark the local link to reopen the exact recorded paths and original passages after
 reanalysis or restart. The page checks source access and labels current-code applicability
 as unchecked. See [saved-path usage](docs/loredock/USER_GUIDE.md#save-and-reopen-connected-paths)
-and the [API](docs/loredock/NATIVE_CAPTURE_API.md). A complete saved-path list is not yet
-available; ordinary path browsing does not create history.
+and the [API](docs/loredock/NATIVE_CAPTURE_API.md). **Browse saved paths** in the workspace
+finds existing records without bookmarks, with explicit pages and refresh. Ordinary path
+browsing does not create history.
 The [answer-stage checkpoint](docs/loredock/ANSWER_FOUNDATION.md) records internal
 retrieval and real-model evaluation results. An **opt-in cited-answer pilot** is now
 available with `LOREDOCK_ANSWERS=1 pnpm loredock`; follow the guide's

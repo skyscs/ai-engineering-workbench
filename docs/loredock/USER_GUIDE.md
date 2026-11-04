@@ -417,7 +417,7 @@ action below to retain that path view separately from the disposable code invent
    generation and selection. A page showing only entry points has no save action.
 3. After **Paths saved.**, follow **Open saved paths**. If the same selection already
    exists, the confirmation says **These paths were already saved.** and reuses its link.
-4. Bookmark that local link. It reopens the same record after browser reload, code
+4. Optionally bookmark that local link. It reopens the same record after browser reload, code
    reanalysis or daemon restart, while that catalog and its authorized sources remain.
 5. On the saved page, choose an **Original** button to read the exact saved passage.
    Expand **Recorded sources** for the complete dependency scope, including repositories
@@ -429,8 +429,25 @@ coherence are not checked. An index/source-set change is shown separately from a
 authorization. The page opens recorded content without requiring the old code inventory
 or deriving new paths. No new model connection or input field is required.
 
-Keep or bookmark the link before navigating away from its save confirmation. Records
-remain in the catalog, but a list of all saved paths is not available yet. Links contain
+To find records later, open **Browse saved paths** near the top of the workspace. It
+checks up to four records per page. Choose a linked path title to reopen it, or use
+**Next saved paths** and **Previous saved paths**. **Recorded sources** shows the complete
+dependency list and recorded revisions. The order is stable by record, not newest first;
+saved records do not have a save timestamp. Choose **Refresh saved paths** to include new
+saves. Closing the section clears its summaries and cancels pending work.
+
+The count describes the loaded list. A policy-fenced page may contain only unavailable
+records and still have a next page; their titles and source names stay hidden. A source
+removal purges dependent records. Access/index changes or a failed project refresh hide
+the list; recovery requires **Refresh saved paths**. New saves made elsewhere can invalidate
+pagination and ask for the same explicit refresh.
+
+If a four-record page reaches its work/time/size bound, choose **Show one saved path**.
+This retries the same position with one record; subsequent navigation stays at one until
+you refresh. A single record can also exceed the bound; no larger limit or automatic retry
+is applied. Storage/internal failures clear the page and do not delete or repair files.
+
+Records remain in the local catalog. Links contain
 only the record ID; they require the same local catalog/session and grant no source access.
 They are not portable exports. Keep the complete stopped data directory for backup.
 
@@ -1038,6 +1055,7 @@ require the session. No tokens belong in URLs or logs.
 | `GET /api/code-paths/roots?buildId=...&inventoryId=...&generationId=...&offset=...` | Four entry points from the pinned generation, with complete original support and explicit unavailable cards. No graph or internal fact vectors; the complete response is bounded to 512 KiB. |
 | `POST /api/path-captures?buildId=...` | Save an authorized native path with complete originals/dependencies. Empty body; optional paired inventory/generation and root selection. Requires session/CSRF. Returns 201 for a new receipt or 200 for an exact duplicate; capacity preserves existing records. See the [capture API](NATIVE_CAPTURE_API.md). |
 | `GET /api/path-captures/:receiptId` | Reopen exact saved content with current authorization and applicability explicitly unchecked. No query/body, fact reads or rederivation. Policy can deny retained bytes; source revocation purges affected records. |
+| `GET /api/path-captures` | Discover authorized saved summaries in bounded pages. Optional `pageSize=4|1`, paired generation ID/offset; no body. Revalidates every original/dependency without rederivation. See the [discovery contract](SAVED_PATH_DISCOVERY.md). |
 | `GET /api/code-analysis` | At most two inventory summaries, the newest queued index and any scoped automatic-start error. |
 | `POST /api/code-analysis` | Start/replay `{requestId, buildId, policyVersion, sourceSetVersion}` for an authorized published index matching current source/policy versions. Unknown fields are rejected. |
 | `POST /api/code-analysis/:id/:action` | Explicit `pause`, `resume` or `cancel`; no arguments (an empty object is accepted). Resume validates the pinned checkpoints and current parser. |

@@ -5,20 +5,23 @@ Implemented by Task 116. The route/input/error contract was committed before imp
 This local API slice exposes the existing authorized NativeCaptures service. It adds
 neither a receipt format nor another budget/storage owner. The public path GET routes
 remain read-only. Task 117 adds the separate [browser save/open workflow](SAVED_PATH_BROWSER.md)
-with ordinary local links; listing and explicit deletion remain separate. No raw receipt-ID
+with ordinary local links. Task 118 adds [bounded discovery](SAVED_PATH_DISCOVERY.md);
+explicit deletion remains separate. No raw receipt-ID
 input form is needed.
 
 | Method and route | Input | Successful output |
 | --- | --- | --- |
 | `POST /api/path-captures` | Empty body. Query has required `buildId`, optional paired `inventoryId`/`generationId`, and optional `rootId` with that pair. | Actual native `captured` result: `receiptId`, `created`, `metrics`. HTTP 201 for a new record, 200 for an exact duplicate. |
 | `GET /api/path-captures/:receiptId` | Lowercase 64-character hexadecimal receipt ID. No query parameters or body. | Actual native `recorded` result: `receiptId`, `projection`, `originals`, full `dependencies`, `stale`, `currentApplicability: not-checked`, and `metrics`. HTTP 200. |
+| `GET /api/path-captures` | Optional `pageSize=4\|1` and paired `generationId`/`offset`; no body. | `loredock-path-captures/1` with bounded authorized summaries, total/unavailable counts, generation and previous/next offsets. HTTP 200; at most 64 KiB. |
 
 The POST reuses the existing strict path query parser, including duplicate/unknown key,
 paired generation, page/root and size validation. Keeping the flat selection in the
 query avoids a second JSON decoder and preserves the current selection without a
 translation. The body must be empty or whitespace; JSON objects, including `{}`, are
 rejected. The encoded selection is bounded to 1,024 bytes by the shared parser; native
-capture additionally requires canonical v4 UUIDs. Neither route accepts offsets, filesystem paths, work limits, fingerprints,
+capture additionally requires canonical v4 UUIDs. Capture/history do not accept offsets;
+only listing accepts bounded page offsets. No route accepts filesystem paths, work limits, fingerprints,
 catalog overrides or arbitrary output locations. Tokens stay in existing headers/cookies.
 
 Existing exact loopback Host/Origin, session, 16 KiB body and no-store rules apply.
@@ -47,6 +50,9 @@ or treat successful authorization as a new correctness assessment of the saved p
 | Known native outcome | HTTP status | Public meaning |
 | --- | ---: | --- |
 | Invalid selection or receipt ID | 400 | Choose a valid index/paired generation or issued receipt ID. |
+| `INVALID_CAPTURE_LIST` | 400 | Choose a supported saved-path page. |
+| `CAPTURE_LIST_CHANGED` | 409 | Refresh the list after catalog/authority changes. |
+| `CAPTURE_LIST_BYTES_LIMIT` | 409 | Explicitly try one saved path at a time. |
 | `RECEIPT_NOT_FOUND` | 404 | The saved path is unavailable. |
 | `CAPTURE_BUSY`, `RECEIPT_STORAGE_BUSY` | 409 | An owned operation is active; retry explicitly after it completes. |
 | `SERVICE_STOPPED` | 409 | Saved-path operations are stopping. |
