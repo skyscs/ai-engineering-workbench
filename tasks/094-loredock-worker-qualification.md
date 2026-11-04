@@ -71,3 +71,13 @@ Next: one bounded source/representation audit of connected-path fact ownership o
 independent tiny inputs, including fact-free files, complete domains/gaps and every
 original/fence/work requirement. This selects no optimization yet and does not
 attribute the RSS crossing to a particular owner. Production remains unchanged.
+
+First pull-request CI 41815035557 at `dca0d25` fails an older compact tiny test:
+same-process repeat intervals are 161.2361 and 193.902164 ms against 150. All content
+and lifecycle gates pass and the coordinator correctly rejects resources. Push
+41815001006 passes. Preserve the failed job log and embedded assessment; ephemeral
+worker bytes were not uploaded. Correct only the ordinary compact test to require
+functional completeness, finite observations and exact resource-failure propagation,
+as the prepared/worker tiny tests already do. All resource limits, measured code
+and frozen scores stay unchanged. Full strict checks still pass 582 tests/builds;
+both events must pass for the corrected final head before merge.

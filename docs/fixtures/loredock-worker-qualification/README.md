@@ -42,6 +42,21 @@ raw outputs preserve the failing resource value and all successful independent g
 
 ## One next action
 
+First pull-request CI 41815035557 fails the older compact tiny regression at
+`dca0d25`: repeat-one and repeat-three sampled intervals reach 161.2361 and
+193.902164 ms against 150. Push 41815001006 passes. The embedded assessment retains
+all sixteen content/path/observation passes, seven raw comparisons and 14/16 resource
+passes; its overall rejection is correct. `ci-validation.json` retains the failed
+job log and embedded assessment. The CI worker's ephemeral raw bytes were not
+uploaded; report references are not a claim of retaining them.
+
+Only the ordinary compact test changes: require finite raw observations, complete
+functional/lifecycle gates and exact propagation of any resource rejection, matching
+the prepared/worker tiny tests. The explicit zero-RSS rejection case remains.
+No measured module, frozen artifact, limit or assessment changes. Full strict checks
+after the correction pass 582 tests/builds; its first log is retained. Both CI
+events must pass again for the final head.
+
 Perform one bounded source/representation audit of the connected-path request on
 independent tiny owned inputs. The current reader keeps one compact fact entry per
 validated code file through domain resolution/admission/final fences, even when the

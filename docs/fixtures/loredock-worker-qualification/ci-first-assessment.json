@@ -1,0 +1,1755 @@
+{
+  "purpose": "Independent tiny uninstrumented process regression.",
+  "createdAt": "2026-11-04T10:35:59.084Z",
+  "node": "v22.23.2",
+  "modelRequests": 0,
+  "oracle": {
+    "arms": [
+      "same-process",
+      "reopened-process"
+    ],
+    "sourceCount": 3,
+    "selectedRoot": [
+      "a-locker-client",
+      "ui/AABook.vue",
+      "book",
+      "vue-action"
+    ],
+    "isolatedRoot": [
+      "a-locker-client",
+      "ui/ZZLocate.vue",
+      "locate",
+      "vue-action"
+    ],
+    "resources": {
+      "sampleIntervalMs": 5,
+      "maxSliceMs": 150,
+      "sampledRssMiB": 384,
+      "sampledHeapGrowthMiB": 64
+    },
+    "diagnostic": {
+      "preparerWatchdogMs": 60000,
+      "readerWatchdogMs": 60000,
+      "overallWatchdogMs": 180000
+    },
+    "limits": {
+      "work": 1000000,
+      "projectionBytes": 524288,
+      "receiptBytes": 655360,
+      "textBytes": 65536,
+      "spans": 30,
+      "sources": 20,
+      "wallMs": 5000
+    },
+    "requiredCapturePhases": [
+      "operation-start",
+      "snapshot-before",
+      "snapshot-after",
+      "metadata-after",
+      "facts-after",
+      "domains-after",
+      "resolution-after",
+      "admission-after",
+      "path-final-before",
+      "path-final-after",
+      "receipt-projection",
+      "receipt-originals",
+      "receipt-publication-before",
+      "receipt-publication-after",
+      "operation-end"
+    ],
+    "sizes": [
+      {
+        "files": 14,
+        "codeFiles": 8,
+        "facts": 21,
+        "pathsPerSource": 0,
+        "bytes": 3122
+      }
+    ],
+    "profile": {
+      "samplingInterval": 32768,
+      "includeObjectsCollectedByMajorGC": true,
+      "includeObjectsCollectedByMinorGC": true,
+      "validationBytes": 33554432,
+      "treeNodes": 32768,
+      "samples": 262144,
+      "depth": 128,
+      "summaryFrames": 100,
+      "summaryBytes": 262144,
+      "preparerWatchdogMs": 60000,
+      "readerWatchdogMs": 60000,
+      "overallWatchdogMs": 180000,
+      "resourceAcceptance": false,
+      "allowUnmappedSamples": true,
+      "backendStopForcesGC": true,
+      "backendExportAllocationsIncluded": true
+    },
+    "rootCount": 5,
+    "defaultFlows": 2,
+    "defaultOriginals": 10,
+    "topic": "locker.reserved.v2",
+    "environment": "regression",
+    "uncitedSource": "not-in-this-regression",
+    "requiredNodes": [
+      [
+        "a-locker-client",
+        "ui/AABook.vue",
+        "symbol",
+        "book",
+        "vue-action"
+      ],
+      [
+        "a-locker-client",
+        "ui/reserve.ts",
+        "http-request",
+        "POST /lockers/reservations",
+        null
+      ],
+      [
+        "b-locker-api",
+        "routes.json",
+        "handler-reference",
+        "Reservations.reserve",
+        null
+      ],
+      [
+        "b-locker-api",
+        "Reservations.java",
+        "event-publish",
+        "Publish LockerReserved",
+        null
+      ],
+      [
+        "c-locker-store",
+        "LockerWriter.java",
+        "event-subscribe",
+        "Subscribe via KafkaSubscriber",
+        null
+      ],
+      [
+        "c-locker-store",
+        "LockerWriter.java",
+        "document-write",
+        "MongoCollection.replaceOne",
+        null
+      ]
+    ],
+    "operations": [
+      "first",
+      "repeat-1",
+      "repeat-2",
+      "repeat-3",
+      "selected",
+      "page-4",
+      "isolated",
+      "history"
+    ],
+    "selectedFlows": 1,
+    "selectedRequiredNodes": [
+      [
+        "a-locker-client",
+        "ui/AABook.vue",
+        "symbol",
+        "book",
+        "vue-action"
+      ],
+      [
+        "a-locker-client",
+        "ui/reserve.ts",
+        "http-request",
+        "POST /lockers/reservations",
+        null
+      ],
+      [
+        "b-locker-api",
+        "routes.json",
+        "handler-reference",
+        "Reservations.reserve",
+        null
+      ],
+      [
+        "b-locker-api",
+        "Reservations.java",
+        "event-publish",
+        "Publish LockerReserved",
+        null
+      ],
+      [
+        "c-locker-store",
+        "LockerWriter.java",
+        "event-subscribe",
+        "Subscribe via KafkaSubscriber",
+        null
+      ],
+      [
+        "c-locker-store",
+        "LockerWriter.java",
+        "document-write",
+        "MongoCollection.replaceOne",
+        null
+      ]
+    ],
+    "isolatedOriginals": 5,
+    "isolated": {
+      "reason": "unresolved-import"
+    },
+    "instrumentation": {
+      "profiler": false,
+      "phaseHooks": false,
+      "queryHooks": false,
+      "ownerHooks": false,
+      "ordinaryCounters": true,
+      "aggregateCharges": true,
+      "outerResourceSampler": true
+    },
+    "complete": {
+      "sources": [
+        "a-locker-client",
+        "b-locker-api",
+        "c-locker-store"
+      ],
+      "roots": [
+        [
+          "a-locker-client",
+          "ui/AABook.vue",
+          "book",
+          "vue-action"
+        ],
+        [
+          "a-locker-client",
+          "ui/BBHold.vue",
+          "hold",
+          "vue-action"
+        ],
+        [
+          "a-locker-client",
+          "ui/CCPin.vue",
+          "pin",
+          "vue-action"
+        ],
+        [
+          "a-locker-client",
+          "ui/DDRetry.vue",
+          "retry",
+          "vue-action"
+        ]
+      ],
+      "isolatedRoot": [
+        "a-locker-client",
+        "ui/ZZLocate.vue",
+        "locate",
+        "vue-action"
+      ],
+      "originals": [
+        [
+          "a-locker-client",
+          "ui/AABook.vue",
+          1,
+          6
+        ],
+        [
+          "a-locker-client",
+          "ui/BBHold.vue",
+          1,
+          6
+        ],
+        [
+          "a-locker-client",
+          "ui/CCPin.vue",
+          1,
+          6
+        ],
+        [
+          "a-locker-client",
+          "ui/DDRetry.vue",
+          1,
+          6
+        ],
+        [
+          "a-locker-client",
+          "ui/reserve.ts",
+          1,
+          3
+        ],
+        [
+          "b-locker-api",
+          "Reservations.java",
+          1,
+          10
+        ],
+        [
+          "b-locker-api",
+          "routes.json",
+          1,
+          1
+        ],
+        [
+          "b-locker-api",
+          "contracts/LockerReserved.json",
+          1,
+          1
+        ],
+        [
+          "c-locker-store",
+          "contracts/LockerReserved.json",
+          1,
+          1
+        ],
+        [
+          "c-locker-store",
+          "LockerWriter.java",
+          1,
+          13
+        ]
+      ],
+      "isolatedOriginals": [
+        [
+          "a-locker-client",
+          "ui/AABook.vue",
+          1,
+          6
+        ],
+        [
+          "a-locker-client",
+          "ui/BBHold.vue",
+          1,
+          6
+        ],
+        [
+          "a-locker-client",
+          "ui/CCPin.vue",
+          1,
+          6
+        ],
+        [
+          "a-locker-client",
+          "ui/DDRetry.vue",
+          1,
+          6
+        ],
+        [
+          "a-locker-client",
+          "ui/ZZLocate.vue",
+          1,
+          5
+        ]
+      ],
+      "flows": [
+        {
+          "nodes": [
+            [
+              "a-locker-client",
+              "ui/AABook.vue",
+              "symbol",
+              "book",
+              "vue-action"
+            ],
+            [
+              "a-locker-client",
+              "ui/reserve.ts",
+              "symbol",
+              "reserveLocker",
+              "function"
+            ],
+            [
+              "a-locker-client",
+              "ui/reserve.ts",
+              "http-request",
+              "POST /lockers/reservations",
+              null
+            ],
+            [
+              "b-locker-api",
+              "routes.json",
+              "route",
+              "POST /lockers/reservations",
+              null
+            ],
+            [
+              "b-locker-api",
+              "routes.json",
+              "handler-reference",
+              "Reservations.reserve",
+              null
+            ],
+            [
+              "b-locker-api",
+              "Reservations.java",
+              "symbol",
+              "Reservations.reserve",
+              "java-method"
+            ],
+            [
+              "b-locker-api",
+              "Reservations.java",
+              "event-publish",
+              "Publish LockerReserved",
+              null
+            ],
+            [
+              "c-locker-store",
+              "LockerWriter.java",
+              "event-subscribe",
+              "Subscribe via KafkaSubscriber",
+              null
+            ],
+            [
+              "c-locker-store",
+              "LockerWriter.java",
+              "symbol",
+              "LockerWriter.onMessage",
+              "java-method"
+            ],
+            [
+              "c-locker-store",
+              "LockerWriter.java",
+              "document-write",
+              "MongoCollection.replaceOne",
+              null
+            ]
+          ],
+          "edges": [
+            "calls",
+            "performs",
+            "http-target",
+            "routes-to",
+            "implements",
+            "performs",
+            "event-delivery",
+            "dispatch-candidate",
+            "performs"
+          ]
+        },
+        {
+          "nodes": [
+            [
+              "a-locker-client",
+              "ui/BBHold.vue",
+              "symbol",
+              "hold",
+              "vue-action"
+            ],
+            [
+              "a-locker-client",
+              "ui/reserve.ts",
+              "symbol",
+              "reserveLocker",
+              "function"
+            ],
+            [
+              "a-locker-client",
+              "ui/reserve.ts",
+              "http-request",
+              "POST /lockers/reservations",
+              null
+            ],
+            [
+              "b-locker-api",
+              "routes.json",
+              "route",
+              "POST /lockers/reservations",
+              null
+            ],
+            [
+              "b-locker-api",
+              "routes.json",
+              "handler-reference",
+              "Reservations.reserve",
+              null
+            ],
+            [
+              "b-locker-api",
+              "Reservations.java",
+              "symbol",
+              "Reservations.reserve",
+              "java-method"
+            ],
+            [
+              "b-locker-api",
+              "Reservations.java",
+              "event-publish",
+              "Publish LockerReserved",
+              null
+            ],
+            [
+              "c-locker-store",
+              "LockerWriter.java",
+              "event-subscribe",
+              "Subscribe via KafkaSubscriber",
+              null
+            ],
+            [
+              "c-locker-store",
+              "LockerWriter.java",
+              "symbol",
+              "LockerWriter.onMessage",
+              "java-method"
+            ],
+            [
+              "c-locker-store",
+              "LockerWriter.java",
+              "document-write",
+              "MongoCollection.replaceOne",
+              null
+            ]
+          ],
+          "edges": [
+            "calls",
+            "performs",
+            "http-target",
+            "routes-to",
+            "implements",
+            "performs",
+            "event-delivery",
+            "dispatch-candidate",
+            "performs"
+          ]
+        }
+      ]
+    }
+  },
+  "processes": [
+    {
+      "arm": "same-process",
+      "size": 0,
+      "executable": "/opt/hostedtoolcache/node/22.23.2/x64/bin/node",
+      "args": [
+        "/home/runner/work/ai-engineering-workbench/ai-engineering-workbench/apps/loredock/tests/fixtures/compact-qualification-child.mjs",
+        "/tmp/compact-qualification-Bh7Ori/run/size-0",
+        "same-process",
+        "/home/runner/work/ai-engineering-workbench/ai-engineering-workbench/apps/loredock/tests/fixtures/compact-qualification-config.ts",
+        "0"
+      ],
+      "environment": {
+        "nodeOptions": null,
+        "locale": "C"
+      },
+      "startedAt": "2026-11-04T10:35:59.087Z",
+      "pid": 21770,
+      "exit": 0,
+      "signal": null,
+      "wallMs": 3688.488887
+    },
+    {
+      "arm": "reopened-process",
+      "size": 0,
+      "executable": "/opt/hostedtoolcache/node/22.23.2/x64/bin/node",
+      "args": [
+        "/home/runner/work/ai-engineering-workbench/ai-engineering-workbench/apps/loredock/tests/fixtures/compact-qualification-child.mjs",
+        "/tmp/compact-qualification-Bh7Ori/run/size-0",
+        "reopened-process",
+        "/home/runner/work/ai-engineering-workbench/ai-engineering-workbench/apps/loredock/tests/fixtures/compact-qualification-config.ts",
+        "0"
+      ],
+      "environment": {
+        "nodeOptions": null,
+        "locale": "C"
+      },
+      "startedAt": "2026-11-04T10:36:02.873Z",
+      "pid": 22164,
+      "exit": 0,
+      "signal": null,
+      "wallMs": 1376.01836
+    }
+  ],
+  "arms": [
+    {
+      "size": 0,
+      "arm": "same-process",
+      "assessment": {
+        "arm": "same-process",
+        "lifecycle": {
+          "state": "pass"
+        },
+        "process": {
+          "arm": "same-process",
+          "size": 0,
+          "executable": "/opt/hostedtoolcache/node/22.23.2/x64/bin/node",
+          "args": [
+            "/home/runner/work/ai-engineering-workbench/ai-engineering-workbench/apps/loredock/tests/fixtures/compact-qualification-child.mjs",
+            "/tmp/compact-qualification-Bh7Ori/run/size-0",
+            "same-process",
+            "/home/runner/work/ai-engineering-workbench/ai-engineering-workbench/apps/loredock/tests/fixtures/compact-qualification-config.ts",
+            "0"
+          ],
+          "environment": {
+            "nodeOptions": null,
+            "locale": "C"
+          },
+          "startedAt": "2026-11-04T10:35:59.087Z",
+          "pid": 21770,
+          "exit": 0,
+          "signal": null,
+          "wallMs": 3688.488887
+        },
+        "workerErrors": [],
+        "currentApplicability": "not-evaluated",
+        "operations": [
+          {
+            "name": "first",
+            "dimensions": {
+              "artifact": {
+                "state": "pass"
+              },
+              "shape": {
+                "state": "pass"
+              },
+              "support": {
+                "state": "pass"
+              },
+              "usefulness": {
+                "state": "pass"
+              },
+              "history": {
+                "state": "not-applicable",
+                "reason": "not-history"
+              },
+              "rawRepeat": {
+                "state": "not-applicable",
+                "reason": "not-repeat"
+              },
+              "resources": {
+                "state": "pass"
+              }
+            },
+            "artifacts": {
+              "observation": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/001-first.json",
+                  "bytes": 564,
+                  "sha256": "04ab799f14b48db8c6b7e3e71988352f80965da0a3cd27453775331284e1ce51"
+                }
+              },
+              "receipt": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/002-first-receipt.json",
+                  "bytes": 35185,
+                  "sha256": "0babad65c2309c792c33c45c493e4de9a56459510aba7c1ad782eb6e939627f2"
+                }
+              }
+            },
+            "observationShape": {
+              "state": "pass"
+            },
+            "contentShape": {
+              "state": "pass"
+            }
+          },
+          {
+            "name": "repeat-1",
+            "dimensions": {
+              "artifact": {
+                "state": "pass"
+              },
+              "shape": {
+                "state": "pass"
+              },
+              "support": {
+                "state": "pass"
+              },
+              "usefulness": {
+                "state": "pass"
+              },
+              "history": {
+                "state": "not-applicable",
+                "reason": "not-history"
+              },
+              "rawRepeat": {
+                "state": "pass"
+              },
+              "resources": {
+                "state": "fail",
+                "reason": "resources-invalid",
+                "error": {
+                  "name": "AssertionError",
+                  "code": "ERR_ASSERTION",
+                  "message": "Recorded resources exceed limits or are unavailable.\n+ actual - expected\n\n+ [\n+   {\n+     bound: 150,\n+     name: 'maxSliceMs',\n+     value: 161.23610000000008\n+   }\n+ ]\n- []\n"
+                }
+              }
+            },
+            "artifacts": {
+              "observation": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/003-repeat-1.json",
+                  "bytes": 564,
+                  "sha256": "ee02b1cc0aa58093f7d3a0b971527bc12920184810c96cb341702a07e777fc8b"
+                }
+              },
+              "receipt": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/004-repeat-1-receipt.json",
+                  "bytes": 35185,
+                  "sha256": "0babad65c2309c792c33c45c493e4de9a56459510aba7c1ad782eb6e939627f2"
+                }
+              }
+            },
+            "observationShape": {
+              "state": "pass"
+            },
+            "contentShape": {
+              "state": "pass"
+            }
+          },
+          {
+            "name": "repeat-2",
+            "dimensions": {
+              "artifact": {
+                "state": "pass"
+              },
+              "shape": {
+                "state": "pass"
+              },
+              "support": {
+                "state": "pass"
+              },
+              "usefulness": {
+                "state": "pass"
+              },
+              "history": {
+                "state": "not-applicable",
+                "reason": "not-history"
+              },
+              "rawRepeat": {
+                "state": "pass"
+              },
+              "resources": {
+                "state": "pass"
+              }
+            },
+            "artifacts": {
+              "observation": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/005-repeat-2.json",
+                  "bytes": 564,
+                  "sha256": "3d27a481047879cb0f38631c1464485f9517317402b0ca391aa0f2dd22dac2dc"
+                }
+              },
+              "receipt": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/006-repeat-2-receipt.json",
+                  "bytes": 35185,
+                  "sha256": "0babad65c2309c792c33c45c493e4de9a56459510aba7c1ad782eb6e939627f2"
+                }
+              }
+            },
+            "observationShape": {
+              "state": "pass"
+            },
+            "contentShape": {
+              "state": "pass"
+            }
+          },
+          {
+            "name": "repeat-3",
+            "dimensions": {
+              "artifact": {
+                "state": "pass"
+              },
+              "shape": {
+                "state": "pass"
+              },
+              "support": {
+                "state": "pass"
+              },
+              "usefulness": {
+                "state": "pass"
+              },
+              "history": {
+                "state": "not-applicable",
+                "reason": "not-history"
+              },
+              "rawRepeat": {
+                "state": "pass"
+              },
+              "resources": {
+                "state": "fail",
+                "reason": "resources-invalid",
+                "error": {
+                  "name": "AssertionError",
+                  "code": "ERR_ASSERTION",
+                  "message": "Recorded resources exceed limits or are unavailable.\n+ actual - expected\n\n+ [\n+   {\n+     bound: 150,\n+     name: 'maxSliceMs',\n+     value: 193.90216400000008\n+   }\n+ ]\n- []\n"
+                }
+              }
+            },
+            "artifacts": {
+              "observation": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/007-repeat-3.json",
+                  "bytes": 564,
+                  "sha256": "04e818eb5929b9da83f982731ac074734109c2eeda10b8d896be8bec72d0c959"
+                }
+              },
+              "receipt": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/008-repeat-3-receipt.json",
+                  "bytes": 35185,
+                  "sha256": "0babad65c2309c792c33c45c493e4de9a56459510aba7c1ad782eb6e939627f2"
+                }
+              }
+            },
+            "observationShape": {
+              "state": "pass"
+            },
+            "contentShape": {
+              "state": "pass"
+            }
+          },
+          {
+            "name": "selected",
+            "dimensions": {
+              "artifact": {
+                "state": "pass"
+              },
+              "shape": {
+                "state": "pass"
+              },
+              "support": {
+                "state": "pass"
+              },
+              "usefulness": {
+                "state": "pass"
+              },
+              "history": {
+                "state": "not-applicable",
+                "reason": "not-history"
+              },
+              "rawRepeat": {
+                "state": "not-applicable",
+                "reason": "not-repeat"
+              },
+              "resources": {
+                "state": "pass"
+              }
+            },
+            "artifacts": {
+              "observation": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/009-selected.json",
+                  "bytes": 564,
+                  "sha256": "d7f55ef1f336141a41e036fa4ac91ef8942e979978e814a544c095f0231c9d86"
+                }
+              },
+              "receipt": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/010-selected-receipt.json",
+                  "bytes": 31539,
+                  "sha256": "c50338d2cdaa19f9e15ea7a83027d4bc577d6dc11c45099684254a448dd71309"
+                }
+              }
+            },
+            "observationShape": {
+              "state": "pass"
+            },
+            "contentShape": {
+              "state": "pass"
+            }
+          },
+          {
+            "name": "page-4",
+            "dimensions": {
+              "artifact": {
+                "state": "pass"
+              },
+              "shape": {
+                "state": "pass"
+              },
+              "support": {
+                "state": "pass"
+              },
+              "usefulness": {
+                "state": "pass"
+              },
+              "history": {
+                "state": "not-applicable",
+                "reason": "not-history"
+              },
+              "rawRepeat": {
+                "state": "not-applicable",
+                "reason": "not-repeat"
+              },
+              "resources": {
+                "state": "pass"
+              }
+            },
+            "artifacts": {
+              "observation": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/011-page-4.json",
+                  "bytes": 3674,
+                  "sha256": "eedc3bcf3c564f9833e5c22aee008bab4e96b2756335420c55a5cfdea67622f0"
+                }
+              }
+            },
+            "observationShape": {
+              "state": "pass"
+            },
+            "contentShape": {
+              "state": "pass"
+            }
+          },
+          {
+            "name": "isolated",
+            "dimensions": {
+              "artifact": {
+                "state": "pass"
+              },
+              "shape": {
+                "state": "pass"
+              },
+              "support": {
+                "state": "pass"
+              },
+              "usefulness": {
+                "state": "pass"
+              },
+              "history": {
+                "state": "not-applicable",
+                "reason": "not-history"
+              },
+              "rawRepeat": {
+                "state": "not-applicable",
+                "reason": "not-repeat"
+              },
+              "resources": {
+                "state": "pass"
+              }
+            },
+            "artifacts": {
+              "observation": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/012-isolated.json",
+                  "bytes": 561,
+                  "sha256": "1d7e773321153cd124c18d6294cc3d654de09d4fd53022686c7b2bfe0ac52095"
+                }
+              },
+              "receipt": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/013-isolated-receipt.json",
+                  "bytes": 13253,
+                  "sha256": "998b0838e1e21b259df29bc708623f260ffaaeb9ae3e5dae3f141a4ea79357c2"
+                }
+              }
+            },
+            "observationShape": {
+              "state": "pass"
+            },
+            "contentShape": {
+              "state": "pass"
+            }
+          },
+          {
+            "name": "history",
+            "dimensions": {
+              "artifact": {
+                "state": "pass"
+              },
+              "shape": {
+                "state": "pass"
+              },
+              "support": {
+                "state": "pass"
+              },
+              "usefulness": {
+                "state": "not-applicable",
+                "reason": "history-compares-recorded-first"
+              },
+              "history": {
+                "state": "pass"
+              },
+              "rawRepeat": {
+                "state": "not-applicable",
+                "reason": "not-repeat"
+              },
+              "resources": {
+                "state": "pass"
+              }
+            },
+            "artifacts": {
+              "observation": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/014-history.json",
+                  "bytes": 33531,
+                  "sha256": "cc29c5b1ef3ded7bc04bcde1050767495b238e96b885d43ed2da808dab038f38"
+                }
+              }
+            },
+            "observationShape": {
+              "state": "pass"
+            },
+            "contentShape": {
+              "state": "pass"
+            }
+          }
+        ],
+        "summary": {
+          "artifact": {
+            "planned": 8,
+            "pass": 8,
+            "fail": 0,
+            "blocked": 0,
+            "not-applicable": 0,
+            "required": 8
+          },
+          "shape": {
+            "planned": 8,
+            "pass": 8,
+            "fail": 0,
+            "blocked": 0,
+            "not-applicable": 0,
+            "required": 8
+          },
+          "support": {
+            "planned": 8,
+            "pass": 8,
+            "fail": 0,
+            "blocked": 0,
+            "not-applicable": 0,
+            "required": 8
+          },
+          "usefulness": {
+            "planned": 8,
+            "pass": 7,
+            "fail": 0,
+            "blocked": 0,
+            "not-applicable": 1,
+            "required": 7
+          },
+          "history": {
+            "planned": 8,
+            "pass": 1,
+            "fail": 0,
+            "blocked": 0,
+            "not-applicable": 7,
+            "required": 1
+          },
+          "rawRepeat": {
+            "planned": 8,
+            "pass": 3,
+            "fail": 0,
+            "blocked": 0,
+            "not-applicable": 5,
+            "required": 3
+          },
+          "resources": {
+            "planned": 8,
+            "pass": 6,
+            "fail": 2,
+            "blocked": 0,
+            "not-applicable": 0,
+            "required": 8
+          }
+        },
+        "failed": true
+      },
+      "completePaths": {
+        "operations": [
+          {
+            "name": "first",
+            "state": "pass"
+          },
+          {
+            "name": "repeat-1",
+            "state": "pass"
+          },
+          {
+            "name": "repeat-2",
+            "state": "pass"
+          },
+          {
+            "name": "repeat-3",
+            "state": "pass"
+          },
+          {
+            "name": "selected",
+            "state": "pass"
+          },
+          {
+            "name": "page-4",
+            "state": "pass"
+          },
+          {
+            "name": "isolated",
+            "state": "pass"
+          },
+          {
+            "name": "history",
+            "state": "pass"
+          }
+        ],
+        "failed": false
+      },
+      "observations": [
+        {
+          "name": "first",
+          "state": "pass"
+        },
+        {
+          "name": "repeat-1",
+          "state": "pass"
+        },
+        {
+          "name": "repeat-2",
+          "state": "pass"
+        },
+        {
+          "name": "repeat-3",
+          "state": "pass"
+        },
+        {
+          "name": "selected",
+          "state": "pass"
+        },
+        {
+          "name": "page-4",
+          "state": "pass"
+        },
+        {
+          "name": "isolated",
+          "state": "pass"
+        },
+        {
+          "name": "history",
+          "state": "pass"
+        }
+      ],
+      "artifactError": null
+    },
+    {
+      "size": 0,
+      "arm": "reopened-process",
+      "assessment": {
+        "arm": "reopened-process",
+        "lifecycle": {
+          "state": "pass"
+        },
+        "process": {
+          "arm": "reopened-process",
+          "size": 0,
+          "executable": "/opt/hostedtoolcache/node/22.23.2/x64/bin/node",
+          "args": [
+            "/home/runner/work/ai-engineering-workbench/ai-engineering-workbench/apps/loredock/tests/fixtures/compact-qualification-child.mjs",
+            "/tmp/compact-qualification-Bh7Ori/run/size-0",
+            "reopened-process",
+            "/home/runner/work/ai-engineering-workbench/ai-engineering-workbench/apps/loredock/tests/fixtures/compact-qualification-config.ts",
+            "0"
+          ],
+          "environment": {
+            "nodeOptions": null,
+            "locale": "C"
+          },
+          "startedAt": "2026-11-04T10:36:02.873Z",
+          "pid": 22164,
+          "exit": 0,
+          "signal": null,
+          "wallMs": 1376.01836
+        },
+        "workerErrors": [],
+        "currentApplicability": "not-evaluated",
+        "operations": [
+          {
+            "name": "first",
+            "dimensions": {
+              "artifact": {
+                "state": "pass"
+              },
+              "shape": {
+                "state": "pass"
+              },
+              "support": {
+                "state": "pass"
+              },
+              "usefulness": {
+                "state": "pass"
+              },
+              "history": {
+                "state": "not-applicable",
+                "reason": "not-history"
+              },
+              "rawRepeat": {
+                "state": "not-applicable",
+                "reason": "not-repeat"
+              },
+              "resources": {
+                "state": "pass"
+              }
+            },
+            "artifacts": {
+              "observation": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/001-first.json",
+                  "bytes": 568,
+                  "sha256": "8690189bcb686f97a181339e8e0539f9a9338c490991a0b1c864361c5a2ae30e"
+                }
+              },
+              "receipt": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/002-first-receipt.json",
+                  "bytes": 35185,
+                  "sha256": "0babad65c2309c792c33c45c493e4de9a56459510aba7c1ad782eb6e939627f2"
+                }
+              }
+            },
+            "observationShape": {
+              "state": "pass"
+            },
+            "contentShape": {
+              "state": "pass"
+            }
+          },
+          {
+            "name": "repeat-1",
+            "dimensions": {
+              "artifact": {
+                "state": "pass"
+              },
+              "shape": {
+                "state": "pass"
+              },
+              "support": {
+                "state": "pass"
+              },
+              "usefulness": {
+                "state": "pass"
+              },
+              "history": {
+                "state": "not-applicable",
+                "reason": "not-history"
+              },
+              "rawRepeat": {
+                "state": "pass"
+              },
+              "resources": {
+                "state": "pass"
+              }
+            },
+            "artifacts": {
+              "observation": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/003-repeat-1.json",
+                  "bytes": 568,
+                  "sha256": "3e5db049f7ff2ee9a8b56bbb8bd828245348a9601dd4ef94e5439cb028234f31"
+                }
+              },
+              "receipt": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/004-repeat-1-receipt.json",
+                  "bytes": 35185,
+                  "sha256": "0babad65c2309c792c33c45c493e4de9a56459510aba7c1ad782eb6e939627f2"
+                }
+              }
+            },
+            "observationShape": {
+              "state": "pass"
+            },
+            "contentShape": {
+              "state": "pass"
+            }
+          },
+          {
+            "name": "repeat-2",
+            "dimensions": {
+              "artifact": {
+                "state": "pass"
+              },
+              "shape": {
+                "state": "pass"
+              },
+              "support": {
+                "state": "pass"
+              },
+              "usefulness": {
+                "state": "pass"
+              },
+              "history": {
+                "state": "not-applicable",
+                "reason": "not-history"
+              },
+              "rawRepeat": {
+                "state": "pass"
+              },
+              "resources": {
+                "state": "pass"
+              }
+            },
+            "artifacts": {
+              "observation": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/005-repeat-2.json",
+                  "bytes": 560,
+                  "sha256": "349be44f4132f7ad98b17bada909cfa5fc0483bf36b0ea1b8fff8212840c4bbc"
+                }
+              },
+              "receipt": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/006-repeat-2-receipt.json",
+                  "bytes": 35185,
+                  "sha256": "0babad65c2309c792c33c45c493e4de9a56459510aba7c1ad782eb6e939627f2"
+                }
+              }
+            },
+            "observationShape": {
+              "state": "pass"
+            },
+            "contentShape": {
+              "state": "pass"
+            }
+          },
+          {
+            "name": "repeat-3",
+            "dimensions": {
+              "artifact": {
+                "state": "pass"
+              },
+              "shape": {
+                "state": "pass"
+              },
+              "support": {
+                "state": "pass"
+              },
+              "usefulness": {
+                "state": "pass"
+              },
+              "history": {
+                "state": "not-applicable",
+                "reason": "not-history"
+              },
+              "rawRepeat": {
+                "state": "pass"
+              },
+              "resources": {
+                "state": "pass"
+              }
+            },
+            "artifacts": {
+              "observation": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/007-repeat-3.json",
+                  "bytes": 567,
+                  "sha256": "55c01f35de3432c4b0e04b2a38e590def68ebddcbfee967baee4e4e06d3588e0"
+                }
+              },
+              "receipt": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/008-repeat-3-receipt.json",
+                  "bytes": 35185,
+                  "sha256": "0babad65c2309c792c33c45c493e4de9a56459510aba7c1ad782eb6e939627f2"
+                }
+              }
+            },
+            "observationShape": {
+              "state": "pass"
+            },
+            "contentShape": {
+              "state": "pass"
+            }
+          },
+          {
+            "name": "selected",
+            "dimensions": {
+              "artifact": {
+                "state": "pass"
+              },
+              "shape": {
+                "state": "pass"
+              },
+              "support": {
+                "state": "pass"
+              },
+              "usefulness": {
+                "state": "pass"
+              },
+              "history": {
+                "state": "not-applicable",
+                "reason": "not-history"
+              },
+              "rawRepeat": {
+                "state": "not-applicable",
+                "reason": "not-repeat"
+              },
+              "resources": {
+                "state": "pass"
+              }
+            },
+            "artifacts": {
+              "observation": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/009-selected.json",
+                  "bytes": 568,
+                  "sha256": "aa2573be33244ef3038592b6040c104bcb49d1923860b0c5178fb7e15c314e1f"
+                }
+              },
+              "receipt": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/010-selected-receipt.json",
+                  "bytes": 31539,
+                  "sha256": "c50338d2cdaa19f9e15ea7a83027d4bc577d6dc11c45099684254a448dd71309"
+                }
+              }
+            },
+            "observationShape": {
+              "state": "pass"
+            },
+            "contentShape": {
+              "state": "pass"
+            }
+          },
+          {
+            "name": "page-4",
+            "dimensions": {
+              "artifact": {
+                "state": "pass"
+              },
+              "shape": {
+                "state": "pass"
+              },
+              "support": {
+                "state": "pass"
+              },
+              "usefulness": {
+                "state": "pass"
+              },
+              "history": {
+                "state": "not-applicable",
+                "reason": "not-history"
+              },
+              "rawRepeat": {
+                "state": "not-applicable",
+                "reason": "not-repeat"
+              },
+              "resources": {
+                "state": "pass"
+              }
+            },
+            "artifacts": {
+              "observation": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/011-page-4.json",
+                  "bytes": 3674,
+                  "sha256": "b85dd8932bead79be5029682e324fdf2f60ff29b996beb851bfba7f2bb94fce0"
+                }
+              }
+            },
+            "observationShape": {
+              "state": "pass"
+            },
+            "contentShape": {
+              "state": "pass"
+            }
+          },
+          {
+            "name": "isolated",
+            "dimensions": {
+              "artifact": {
+                "state": "pass"
+              },
+              "shape": {
+                "state": "pass"
+              },
+              "support": {
+                "state": "pass"
+              },
+              "usefulness": {
+                "state": "pass"
+              },
+              "history": {
+                "state": "not-applicable",
+                "reason": "not-history"
+              },
+              "rawRepeat": {
+                "state": "not-applicable",
+                "reason": "not-repeat"
+              },
+              "resources": {
+                "state": "pass"
+              }
+            },
+            "artifacts": {
+              "observation": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/012-isolated.json",
+                  "bytes": 564,
+                  "sha256": "4614b409db42b97e90e9fd9182669f2ca88c77f59b45dd7a77e3e91312e35b50"
+                }
+              },
+              "receipt": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/013-isolated-receipt.json",
+                  "bytes": 13253,
+                  "sha256": "998b0838e1e21b259df29bc708623f260ffaaeb9ae3e5dae3f141a4ea79357c2"
+                }
+              }
+            },
+            "observationShape": {
+              "state": "pass"
+            },
+            "contentShape": {
+              "state": "pass"
+            }
+          },
+          {
+            "name": "history",
+            "dimensions": {
+              "artifact": {
+                "state": "pass"
+              },
+              "shape": {
+                "state": "pass"
+              },
+              "support": {
+                "state": "pass"
+              },
+              "usefulness": {
+                "state": "not-applicable",
+                "reason": "history-compares-recorded-first"
+              },
+              "history": {
+                "state": "pass"
+              },
+              "rawRepeat": {
+                "state": "not-applicable",
+                "reason": "not-repeat"
+              },
+              "resources": {
+                "state": "pass"
+              }
+            },
+            "artifacts": {
+              "observation": {
+                "state": "pass",
+                "reference": {
+                  "file": "raw/014-history.json",
+                  "bytes": 33530,
+                  "sha256": "31cac6a7748c06f33f67bed571a94d9b71bcd1c78d5a778cc715502251b86b8a"
+                }
+              }
+            },
+            "observationShape": {
+              "state": "pass"
+            },
+            "contentShape": {
+              "state": "pass"
+            }
+          }
+        ],
+        "summary": {
+          "artifact": {
+            "planned": 8,
+            "pass": 8,
+            "fail": 0,
+            "blocked": 0,
+            "not-applicable": 0,
+            "required": 8
+          },
+          "shape": {
+            "planned": 8,
+            "pass": 8,
+            "fail": 0,
+            "blocked": 0,
+            "not-applicable": 0,
+            "required": 8
+          },
+          "support": {
+            "planned": 8,
+            "pass": 8,
+            "fail": 0,
+            "blocked": 0,
+            "not-applicable": 0,
+            "required": 8
+          },
+          "usefulness": {
+            "planned": 8,
+            "pass": 7,
+            "fail": 0,
+            "blocked": 0,
+            "not-applicable": 1,
+            "required": 7
+          },
+          "history": {
+            "planned": 8,
+            "pass": 1,
+            "fail": 0,
+            "blocked": 0,
+            "not-applicable": 7,
+            "required": 1
+          },
+          "rawRepeat": {
+            "planned": 8,
+            "pass": 3,
+            "fail": 0,
+            "blocked": 0,
+            "not-applicable": 5,
+            "required": 3
+          },
+          "resources": {
+            "planned": 8,
+            "pass": 8,
+            "fail": 0,
+            "blocked": 0,
+            "not-applicable": 0,
+            "required": 8
+          }
+        },
+        "failed": false
+      },
+      "completePaths": {
+        "operations": [
+          {
+            "name": "first",
+            "state": "pass"
+          },
+          {
+            "name": "repeat-1",
+            "state": "pass"
+          },
+          {
+            "name": "repeat-2",
+            "state": "pass"
+          },
+          {
+            "name": "repeat-3",
+            "state": "pass"
+          },
+          {
+            "name": "selected",
+            "state": "pass"
+          },
+          {
+            "name": "page-4",
+            "state": "pass"
+          },
+          {
+            "name": "isolated",
+            "state": "pass"
+          },
+          {
+            "name": "history",
+            "state": "pass"
+          }
+        ],
+        "failed": false
+      },
+      "observations": [
+        {
+          "name": "first",
+          "state": "pass"
+        },
+        {
+          "name": "repeat-1",
+          "state": "pass"
+        },
+        {
+          "name": "repeat-2",
+          "state": "pass"
+        },
+        {
+          "name": "repeat-3",
+          "state": "pass"
+        },
+        {
+          "name": "selected",
+          "state": "pass"
+        },
+        {
+          "name": "page-4",
+          "state": "pass"
+        },
+        {
+          "name": "isolated",
+          "state": "pass"
+        },
+        {
+          "name": "history",
+          "state": "pass"
+        }
+      ],
+      "artifactError": null
+    }
+  ],
+  "parity": [
+    {
+      "size": 0,
+      "operations": [
+        {
+          "name": "first",
+          "meaning": "byte-equality-only",
+          "state": "pass"
+        },
+        {
+          "name": "repeat-1",
+          "meaning": "byte-equality-only",
+          "state": "pass"
+        },
+        {
+          "name": "repeat-2",
+          "meaning": "byte-equality-only",
+          "state": "pass"
+        },
+        {
+          "name": "repeat-3",
+          "meaning": "byte-equality-only",
+          "state": "pass"
+        },
+        {
+          "name": "selected",
+          "meaning": "byte-equality-only",
+          "state": "pass"
+        },
+        {
+          "name": "page-4",
+          "meaning": "byte-equality-only",
+          "state": "pass"
+        },
+        {
+          "name": "isolated",
+          "meaning": "byte-equality-only",
+          "state": "pass"
+        }
+      ],
+      "blocked": false
+    }
+  ],
+  "errors": [],
+  "summary": {
+    "plannedArms": 2,
+    "arms": 2,
+    "plannedOperations": 16,
+    "operations": 16,
+    "supportPassed": 16,
+    "usefulnessPassed": 14,
+    "historyPassed": 2,
+    "resourcePassed": 14,
+    "completePathsPassed": 16,
+    "observationsPassed": 16,
+    "parityPassed": 7,
+    "note": "Fresh uninstrumented qualification only. Historical failures and production consumers remain unchanged."
+  },
+  "failed": true
+}
