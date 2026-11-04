@@ -451,6 +451,13 @@ with full-capacity/restart and browser validation. After its exact-head acceptan
 [Task 119](tasks/119-loredock-native-question-context-contract.md) returns to project
 question context: audit native connection/evidence admission and specify an offline
 comparison before changing production answers. Deletion/repair is not a prerequisite.
+PR #122 completed Task 118 at `c59a792` after push 41916361811 and pull-request
+41916371049 passed (identical-tree merge `883b589`). Task 119's
+[contract](docs/loredock/NATIVE_QUESTION_CONTEXT.md) and
+[ADR 0058](docs/decisions/0058-loredock-native-question-context.md) freeze a fresh
+six-source mechanical relevance/support comparison, preserving production retrieval and
+model behavior. [Task 120](tasks/120-loredock-native-question-context-feasibility.md)
+develops and executes that separate comparison before any answer integration.
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation
 bounded, review the complete diff and verify CI for the exact PR head before merging.

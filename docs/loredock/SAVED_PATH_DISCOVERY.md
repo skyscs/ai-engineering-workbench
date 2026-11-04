@@ -1,6 +1,8 @@
 # Bounded saved-path discovery
 
-Status: implemented Task 118 contract, recorded before implementation. Exact-head CI pending.
+Status: implemented Task 118 contract, recorded before implementation. PR #122 head
+`c59a792` passed push 41916361811 and pull-request 41916371049 CI; identical-tree merge
+`883b589` accepted the change on 2026-11-04.
 The existing save/open links and immutable receipt format remain the foundation.
 
 ## Owned enumeration and pagination

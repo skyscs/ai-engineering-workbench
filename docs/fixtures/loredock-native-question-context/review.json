@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "native-question-context-review/1",
+  "scope": "Design and static input authoring only; no candidate observation.",
+  "freezeCommit": "615570976d5c1a97cc4147c3f8e175bccc8fb1f5",
+  "acceptedParent": {
+    "head": "c59a7927580c196e98a5bd4f4e3c06d275729a4b",
+    "merge": "883b5895fdd5377127a51e0404f3030f1b83544d",
+    "push": 41916361811,
+    "pullRequest": 41916371049,
+    "treeEqualityVerified": true
+  },
+  "checks": {
+    "status": "static-authoring-checks-passed",
+    "node": "v22.23.2",
+    "productionSourceHashes": 16,
+    "normativeFileHashes": 5,
+    "variants": 4,
+    "questions": 7,
+    "boundaryGroups": 8,
+    "parserRuns": 0,
+    "retrievalRuns": 0,
+    "candidateRuns": 0,
+    "modelRequests": 0
+  },
+  "localDocumentationTargets": 633,
+  "applicationPackageScriptWorkflowDiffEmpty": true,
+  "staticCommandExit": 0,
+  "staticLog": {
+    "path": "static-first.log.gz",
+    "bytes": 229,
+    "sha256": "7420673593ed0cd0b6196755bfcb8f582278c580525fa659e1ad8f1eab03d3c9",
+    "archiveSha256": "12c8673385b509b974041333038b3798a405189432f8f5a77636ed40669f5849"
+  },
+  "limitations": [
+    "No production context, retrieval, prompt, schema or runtime change.",
+    "No baseline, parser, native resolver, model or reserved comparison run.",
+    "Agent-authored inputs are not blind independent semantic evaluation."
+  ]
+}

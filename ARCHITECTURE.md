@@ -78,6 +78,14 @@ or one-record fallback; no persistent client index is added. The native closure 
 39 modules: two extended modules and one addition, with every preexisting emitted class
 member and the other 36 modules unchanged. This does not extend the earlier resource
 qualification claim. See [saved-path discovery](docs/loredock/SAVED_PATH_DISCOVERY.md).
+
+Native question-context integration is still a design, not a current answer dependency.
+[ADR 0058](docs/decisions/0058-loredock-native-question-context.md) requires an offline
+complete-resolution selection/support comparison before consumer changes. Current
+lexical retrieval and legacy interface validation remain intact. A future asynchronous
+prepared-answer owner must pin the reviewed input and retain a trusted native witness
+across inventory eviction; it cannot choose current defaults at model completion or
+automatically populate user-saved history on preview.
 Explicit storage accounting and offline compaction use separate maintenance commands,
 preserving logical history and normal job recovery. Compaction acquires daemon
 ownership and rewrites physical SQLite pages only when free pages exist; see

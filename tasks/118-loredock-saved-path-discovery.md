@@ -1,6 +1,7 @@
 # Task 118 — Discover saved paths without retaining a bookmark
 
-Status: implemented and locally verified, 2026-11-04; exact-head CI pending.
+Status: merged after exact-head CI, 2026-11-04. PR #122 head `c59a792` passed push
+41916361811 and pull-request 41916371049; identical-tree merge `883b589`.
 
 The [prospective discovery contract](../docs/loredock/SAVED_PATH_DISCOVERY.md) fixes owned
 enumeration, four-candidate pages with explicit one-item fallback, generation/source

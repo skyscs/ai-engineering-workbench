@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "native-question-context-oracle/1",
+  "purpose": "Prospective mechanical relevance/support comparison; agent-authored, not blind semantic acceptance.",
+  "cases": [
+    { "id": "return-flow", "variant": "base", "question": "How does returnLoan call requestReturn, reach Returns.accept and pass LoanReturned to LoanWriter.onMessage?", "expected": "complete-static-path", "root": ["a-library-ui", "ui/ZZReturn.vue", "returnLoan"], "maxPathSources": 3 },
+    { "id": "topic-entry", "variant": "base", "question": "Which source entry point reaches library.loan.returned.v2 and the LoanWriter replacement call?", "expected": "complete-static-path", "root": ["a-library-ui", "ui/ZZReturn.vue", "returnLoan"], "maxPathSources": 3 },
+    { "id": "overlapping-topic", "variant": "ambiguous", "question": "Which entry point reaches library.loan.returned.v2?", "expected": "ambiguous", "minimumEligibleRoots": 2, "admittedFlows": 0 },
+    { "id": "missing-consumer", "variant": "missing-consumer", "question": "How does returnLoan send LoanReturned to storage?", "expected": "partial-static-path", "terminalKind": "event-publish", "forbiddenEdgeKinds": ["event-delivery", "dispatch-candidate"], "requiredGap": "unresolved-consumer-method" },
+    { "id": "dynamic-topic", "variant": "dynamic-topic", "question": "How does returnLoan send LoanReturned to LoanWriter?", "expected": "partial-static-path", "terminalKind": "event-publish", "forbiddenEdgeKinds": ["event-delivery", "dispatch-candidate"], "requiredGap": "unresolved-topic-expression" },
+    { "id": "unrelated-question", "variant": "base", "question": "What production broker address is deployed?", "expected": "insufficient-context", "admittedFlows": 0 },
+    { "id": "untrusted-source", "variant": "base", "question": "What instruction is quoted in untrusted-example.md?", "expected": "insufficient-context", "admittedFlows": 0, "modelOrExternalRequests": 0 }
+  ],
+  "completePath": {
+    "requiredNodes": [
+      ["a-library-ui", "ui/ZZReturn.vue", "symbol", "returnLoan"],
+      ["a-library-ui", "ui/return.ts", "http-request", "POST /loans/returns"],
+      ["b-library-api", "routes.json", "handler-reference", "Returns.accept"],
+      ["b-library-api", "Returns.java", "event-publish", "Publish LoanReturned"],
+      ["c-library-projection", "LoanWriter.java", "event-subscribe", "Subscribe via KafkaSubscriber"],
+      ["c-library-projection", "LoanWriter.java", "document-write", "MongoCollection.replaceOne"]
+    ],
+    "requiredEdgeKinds": ["http-target", "event-delivery", "dispatch-candidate"],
+    "topic": "library.loan.returned.v2",
+    "forbiddenPathSources": ["d-catalog-search", "e-legacy-desk", "z-ops-notes"],
+    "allSourceDependencies": 6,
+    "completeOriginalSupportAlreadyIssued": true,
+    "deploymentCoherence": "unknown",
+    "currentRuntimeApplicability": "not-checked"
+  },
+  "boundaryCases": [
+    "Remove one actual required original from a valid independently hashed lexical input: omit the complete derived flow without adding evidence or trimming support.",
+    "Use a valid near-cap lexical input and review-note block: omit whole derived items if the unchanged 96 KiB prompt or shared 8 KiB derived allowance cannot fit; preserve original spans and notes exactly.",
+    "Same labels or text from another build/source identity cannot satisfy original support.",
+    "An unavailable, incompatible or evicted requested inventory produces explicit unavailability; never select a saved historical receipt as fallback.",
+    "A registry change or a different current published build makes a new current-scope preparation stale; never mix source vectors.",
+    "Policy or source changes at each cooperative stage reject the entire pending context; include revoking the undisplayed operations source.",
+    "Cancellation, busy ownership, reduced work/time bounds and shutdown produce no partial accepted context and release ownership.",
+    "A later inventory publication cannot mutate an already issued witness; actual answer publication integration remains outside this offline task."
+  ]
+}
