@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "task092-development-verification/1",
+  "node": "v22.23.2",
+  "pnpm": "10.15.0",
+  "tests": 569,
+  "logs": [
+    {
+      "file": "install-first.log.gz",
+      "exit": 0,
+      "bytes": 326,
+      "sha256": "ffaec3032b3594a12546214034dca2d0a75a5765e6a9789bf3b3ced9ca69afae",
+      "archiveSha256": "289ab494ca99074dc14ee648040df37027e8229bbdaad41a983672038f6f65c7"
+    },
+    {
+      "file": "check-first.log.gz",
+      "exit": 0,
+      "bytes": 227083,
+      "sha256": "9f91173deea0581738d45c2a0ccd5bd9eab3c5779dcf283d94030ce8c8c06160",
+      "archiveSha256": "cc857905f6b1f67d3e44e3353077e3b279c0fd08ef789166be3b81786bbb3215"
+    }
+  ]
+}
