@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "task095-representation-validation/1",
+  "scope": "cba22b4",
+  "auditHead": "bb706437f75ba1524150b5ffaf3c7dc22dc3fc2b",
+  "root": "/home/toshiba/aew/measurements/task095-first-audit",
+  "auditExit": 0,
+  "wallSeconds": 2.0045307199761737,
+  "fullCheck": {
+    "tests": 582,
+    "strictTypes": true,
+    "builds": true
+  },
+  "files": [
+    {
+      "file": "first-report.json.gz",
+      "original": "/home/toshiba/aew/measurements/task095-first-audit/report.json",
+      "bytes": 32112,
+      "sha256": "28e5df0cc79d9ce054f53edba3b7800966705a13dd7ebc6d9cfc1598bf7ef151",
+      "archiveSha256": "767d4613d14402552e54bb5d116ecfd350bcd45f72219f81b9f9443c3f43de70"
+    },
+    {
+      "file": "first-input.json.gz",
+      "original": "/home/toshiba/aew/measurements/task095-first-audit/input.json",
+      "bytes": 5820,
+      "sha256": "2d59e756206f3087915508304ad1b135f0e69da32642702e324b903b6df3266c",
+      "archiveSha256": "d891bb04750af3b50bf6a1650d4e2988bacb044d4ae8ffc26a6320dd51fe2f58"
+    },
+    {
+      "file": "first-receipts/17f55c1c4806478486639d96b66f566c0b7cd77d4e408b4cb8c8bac2a8875bf6.json.gz",
+      "original": "/home/toshiba/aew/measurements/task095-first-audit/receipts/17f55c1c4806478486639d96b66f566c0b7cd77d4e408b4cb8c8bac2a8875bf6.json",
+      "bytes": 35287,
+      "sha256": "c0e5aa15693d7ada1a25c530a38dfaa6c24eeb1ebc0eb0c0bff0409003defcca",
+      "archiveSha256": "85bca9a25ef36366124ee45eab4d4000906190adb6b7f0986a13571c5963afed"
+    },
+    {
+      "file": "first-receipts/1a2b72f0ee7cd03a5de2fbaa7da0bb0268bdfb909619dbac227898e86d318bc5.json.gz",
+      "original": "/home/toshiba/aew/measurements/task095-first-audit/receipts/1a2b72f0ee7cd03a5de2fbaa7da0bb0268bdfb909619dbac227898e86d318bc5.json",
+      "bytes": 13355,
+      "sha256": "357cae219b5e9e1b0e69fa6c312f8e2a43099091edda92df38c32ccacb1018c8",
+      "archiveSha256": "ae6f84edb9ccb49eaa1b2b14a40139e879980f8cb81d8889bcf19c1210289958"
+    },
+    {
+      "file": "first-receipts/625c7defc76c54fe25e65380d34aaa1ab45a77259fe3ee01b46dbb82a2f0b5aa.json.gz",
+      "original": "/home/toshiba/aew/measurements/task095-first-audit/receipts/625c7defc76c54fe25e65380d34aaa1ab45a77259fe3ee01b46dbb82a2f0b5aa.json",
+      "bytes": 31641,
+      "sha256": "fd842afea327557bbf5ace225e08822140d87de9cd40b0b69033c573986e261f",
+      "archiveSha256": "fde5cac1faef4f8fb886b9896521eb86faf298918c37ccf61ad9f9876c0992cd"
+    },
+    {
+      "file": "first.stdout.log.gz",
+      "original": "/home/toshiba/aew/task095-audit-first.stdout.log",
+      "bytes": 476,
+      "sha256": "94e3baeeb9320ded1cd594f2d95d5e39f64855bf77279edd72facd8aa1f0b81e",
+      "archiveSha256": "3fb02cb3f99ca1b608b3718b58d6f8f6622f36ba8df07453188114968e37652b"
+    },
+    {
+      "file": "first.stderr.log.gz",
+      "original": "/home/toshiba/aew/task095-audit-first.stderr.log",
+      "bytes": 171,
+      "sha256": "d2b1b4fcbb4f055456b02ec428210e63edb2aed7c4eed8893e26d7286c5d9e25",
+      "archiveSha256": "0f71fd3bc801007626a7206a13da389439203ea8af6182326c3e3f64f85dd498"
+    },
+    {
+      "file": "first.exit.json.gz",
+      "original": "/home/toshiba/aew/task095-audit-first.exit.json",
+      "bytes": 563,
+      "sha256": "54ab1601d275988c0893ee0c40907b3d1699f835bec5f18b537b07054b06d877",
+      "archiveSha256": "9c240cdcb688369de7a014d7cc58d7902111286950c98db515c1182c55630459"
+    },
+    {
+      "file": "install-first.log.gz",
+      "original": "/home/toshiba/aew/task095-install-first.log",
+      "bytes": 326,
+      "sha256": "1d5c2881e07ea93907c96c7344ece0767021c97eb7c30f88b8fad2f2dab6b52c",
+      "archiveSha256": "24969e32d4891d1e2e2eaea5d2d2af014fe685bf2f01a21277ccaddef9137b04"
+    },
+    {
+      "file": "check-first.log.gz",
+      "original": "/home/toshiba/aew/task095-check-first.log",
+      "bytes": 232024,
+      "sha256": "ecdba6d941e6afae7138f066efba4e49ca82a994c945c60dee3699b932c08e00",
+      "archiveSha256": "83f100bc78f4f5413fef2cb9a3ccf8b2e76e8c7bf94f2a02192d3a20d358b4db"
+    }
+  ],
+  "resourceAcceptance": false
+}

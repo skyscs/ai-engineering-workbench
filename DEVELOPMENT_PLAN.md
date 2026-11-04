@@ -353,6 +353,12 @@ two-process qualification: all complete content and cross-process bytes pass;
 resources fail 15/16 because reopened isolated-path RSS reaches 398.035 MiB against
 384. Next: one bounded source/representation audit of request-local facts and their
 domain/gap/original consumers on independent tiny inputs before selecting a change.
+[Task 095](tasks/095-loredock-path-representation.md) completes that audit: all five
+paired selections match exactly; 24 fact-free files hold an identical 183-byte
+fact/range shape while every file/domain remains necessary. Next test one immutable
+request-local canonical pair after full validation, bounded to 4 KiB with exact
+equality/fallback and unchanged evidence, coverage, work and fences. No optimization
+or memory attribution is implemented by the audit.
 No production promotion or reinterpretation of previous failed gates follows.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
