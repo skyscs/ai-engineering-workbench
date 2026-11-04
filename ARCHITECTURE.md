@@ -428,3 +428,10 @@ unchanged pending qualification and a separate integration decision.
 capture deadline/work budget for the next offline scale qualification. Existing local caps
 and publication fences remain, with explicit path/receipt subtotals. No public budget option
 or production adoption follows from the small-family experiment.
+
+[ADR 0056](docs/decisions/0056-loredock-qualified-composition-integration.md) follows
+Task 097's passing complete resource qualification. It separates typed transient
+ownership integration into existing connected-path v1 services from the later
+literal-topic/receipt identity migration. Preserve independent historical test
+controls and qualify the final production composition; experimental factories and
+private emitted-method overrides are not production dependencies.

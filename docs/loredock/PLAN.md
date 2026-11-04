@@ -178,6 +178,13 @@ supports one next candidate: streaming snapshot validation and manifest hashing,
 with all evidence/scope checks preserved. Independent regression and fresh
 uninstrumented capture/history qualification precede production integration;
 profiling is not resource acceptance.
+Tasks 081–097 subsequently preserve complete validation while qualifying streaming,
+compact/canonical facts and bounded prepared reads. Task 097's fresh two-process
+family passes all fixed operation gates. The
+[production integration review](QUALIFIED_COMPOSITION_INTEGRATION.md) separates
+transient ownership from literal-topic/receipt semantics and requires independent
+test controls plus final-composition qualification. Task 099 begins with typed
+internal resource primitives; no production switch or semantic acceptance follows.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.

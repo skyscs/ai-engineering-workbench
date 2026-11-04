@@ -370,6 +370,12 @@ exact cross-process comparisons pass on 9,960 files. Maximum operation RSS is
 363.961 MiB against 384. Next: a separate production integration review of the
 complete composed candidate, with typed ownership, all callers/fences, rollback and
 qualification of the final composition. No automatic promotion or L5 claim follows.
+[Task 098](tasks/098-loredock-production-integration.md) completes that source review.
+The qualified reader also changes topic semantics/identities and offline receipt
+accounting. Integrate representation into v1 separately from a versioned producer/
+receipt migration; preserve explicit historical test controls and qualify the final
+compiled composition. Next [Task 099](tasks/099-loredock-typed-resource-primitives.md)
+implements only three typed internal resource primitives without wiring services.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
