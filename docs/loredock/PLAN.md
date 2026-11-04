@@ -222,7 +222,12 @@ capture/history APIs. Its [HTTP integration](NATIVE_CAPTURE_API.md) preserves sa
 through two inventory replacements and daemon restart, rechecks every original/dependency,
 and denies policy-fenced or revoked history. Qualified core runtime bytes are unchanged.
 [Task 117](../../tasks/117-loredock-saved-path-browser.md) adds the smallest usable browser
-save/open workflow without a raw receipt-ID field. No semantic/L5 gate
+save/open workflow without a raw receipt-ID field. Its [recorded view](SAVED_PATH_BROWSER.md)
+supports local bookmarks, exact saved originals and current authorization fences without
+requiring the old inventory. Sixteen saved-browser and seventeen live-browser scenarios
+pass with unchanged native/public daemon modules.
+[Task 118](../../tasks/118-loredock-saved-path-discovery.md) adds bounded authorized
+discovery so saved records can be found without retaining a bookmark. No semantic/L5 gate
 is inferred from either the resource result or this public read migration.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.

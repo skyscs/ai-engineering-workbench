@@ -46,9 +46,12 @@ already-free SQLite pages while keeping history. See
 The next normal start upgrades older catalogs to schema 10, including catalog-owned native
 path history and the earlier shared literal-search text storage. Back up the complete stopped data directory before upgrading; existing
 citations and history are preserved. The guide explains migration and rollback.
-The protected [saved-path API](docs/loredock/NATIVE_CAPTURE_API.md) can save connected
-paths and reopen their original content after reanalysis or restart. Browser save/open
-navigation is the next slice; ordinary path browsing does not create history.
+In **Browse connected paths**, choose **Save paths**, then **Open saved paths**.
+Bookmark the local link to reopen the exact recorded paths and original passages after
+reanalysis or restart. The page checks source access and labels current-code applicability
+as unchecked. See [saved-path usage](docs/loredock/USER_GUIDE.md#save-and-reopen-connected-paths)
+and the [API](docs/loredock/NATIVE_CAPTURE_API.md). A complete saved-path list is not yet
+available; ordinary path browsing does not create history.
 The [answer-stage checkpoint](docs/loredock/ANSWER_FOUNDATION.md) records internal
 retrieval and real-model evaluation results. An **opt-in cited-answer pilot** is now
 available with `LOREDOCK_ANSWERS=1 pnpm loredock`; follow the guide's
