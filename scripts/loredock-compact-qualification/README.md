@@ -18,7 +18,7 @@ Ordinary tests run actual tiny supported preparer/reopened children and verify a
 sixteen operations plus seven exact cross-arm comparisons. Further actual-process
 cases cover parent-only resource failure, exit 7/missing preparation, cleanup
 failure with a still-valid stopped copy, watchdog termination and malformed saved
-worker JSON. No test imports the [future frozen corpus](../../fixtures/loredock-compact-qualification/README.md)
+worker JSON. No test imports the [frozen corpus](../../fixtures/loredock-compact-qualification/README.md)
 or measurement entry point. Neither snapshots nor profilers are used here.
 
 Generic integration `6c4212f` passed 551 tests, strict typechecks and builds before
@@ -32,3 +32,8 @@ LOREDOCK_COMPACT_OUTPUT=/absolute/new-owned-output timeout --signal=TERM --kill-
 
 Retain the outer stdout/stderr and exit too. The family is exhausted after that
 single execution, including any failed or incomplete result.
+
+The [retained first run](../../docs/fixtures/loredock-compact-qualification/README.md)
+passes all content and observation checks but fails five preparer RSS gates.
+The family is exhausted; this command documents the recorded execution and must
+not be used to retry it. No optimization is promoted from this failed qualification.

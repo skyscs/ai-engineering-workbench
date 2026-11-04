@@ -319,6 +319,13 @@ entry representation and proves tested byte/work/refusal equivalence. No new
 resource family or memory improvement is claimed. Next: freeze a fresh supported
 complete-path uninstrumented qualification with both preparer/reopened lifecycles,
 independent assessment and unchanged gates before any production promotion.
+[Task 089](tasks/089-loredock-compact-qualification.md) executes that fresh two-arm
+qualification once. All sixteen content/scope/observation checks and exact parity
+pass, but only 11/16 resource gates pass: the long-lived preparer exceeds RSS five
+times. The reopened arm passes all eight. No candidate is promoted. Next: one
+bounded request-local prepared-read-statement reuse candidate, first proving fresh
+execution and complete semantic/fence equivalence on independent tiny inputs.
+Existing preparation/allocation evidence supports a hypothesis, not native ownership.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

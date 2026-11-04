@@ -1,6 +1,6 @@
 # Task 089 — Complete uninstrumented compact-payload qualification
 
-Status: scoped, 2026-11-04.
+Status: executed once and locally verified, 2026-11-04; exact-head CI pending.
 
 ## Sequence and scope
 
@@ -44,3 +44,37 @@ sampled interval, 384 MiB RSS, 64 MiB heap growth and existing output limits.
   independent/private pilot acceptance. Failing it selects at most one next action.
 - Complete relevant/full checks, source/diff/reference/hash review and both final-
   head CI events before merge. No corporate code, model calls or user demo operations.
+
+## Preparation and freeze
+
+Scope `834891e`; generic integration `6c4212f` passes 551 tests, strict typechecks
+and builds. Actual tiny cases cover both lifecycles, independent resource failures,
+exit 7, cleanup, watchdogs and malformed stopped-worker JSON with fixed denominators.
+Metadata/result reads are bounded regular files. No first development test failed.
+
+Fresh observatory protocol `81d926f` freezes 20 sources, 9,880 files, 9,857 code
+files, 606,669 bytes and 21 facts, including full supported `onMessage` chains,
+exact original spans and scope. It records 406 source/built/script hashes. Clean
+measured head `5ba54e8` starts one two-arm, sixteen-operation qualification with
+the unchanged original gates. Expected corpora are constructed outside the worker.
+
+PR #92 merged as `2d99d83` after exact head `68081c2` passed push 41741875498 and
+pull-request 41741903776 CI (545 tests); its merge tree is identical.
+
+## Outcome
+
+The single run completes in 409.952 seconds. Both children exit zero; all sixteen
+source/exact-path/span/scope and independent work/no-write checks, fourteen applicable
+usefulness checks, six repeats, two histories and seven cross-arm byte comparisons
+pass. Resources pass **11/16**: the preparer fails RSS at repeat-3, selected, page-4,
+isolated and history (399.895–433.902 MiB against 384). The reopened arm passes 8/8.
+All heap-growth, time, interval, work and output gates pass. Overall qualification
+fails, outer exit is one, and the family is exhausted without retry or promotion.
+
+The [retained evidence](../docs/fixtures/loredock-compact-qualification/README.md)
+includes 39 raw files, exact identities and all first failures. Final review checks
+all 406 baseline hashes, five frozen inputs and archive/derived hashes. The next
+single action is an independent bounded request-local prepared-read-statement reuse
+candidate, justified as a hypothesis by the unchanged store and retained preparation/
+allocation evidence. It must preserve fresh execution, all validations/fences and
+complete semantics; no SQL-result or cross-request cache is authorized by this task.
