@@ -45,8 +45,14 @@ isolated data and model mode off. See [ADR 0044](docs/decisions/0044-loredock-is
 The separate connected-path read service verifies saved path trees and complete binding
 domains over that inventory. Protected reads return bounded paths and four-entry-point
 pages with generation identity, original support and cooperative request ownership.
-Existing graph/answer/review consumers stay on their current adapter; browser integration
-is separate. See [ADR 0049](docs/decisions/0049-loredock-connected-path-reads.md).
+Task 115 connects the existing HTTP/browser consumer to actual CodePathsV2 after the
+complete native resource gate. Startup, requests and shutdown share one explicit path
+owner. Native topic/accounting identities are returned directly; recognized shared-budget
+outcomes are translated at the protected HTTP boundary. The browser shows direct-topic
+witnesses without changing static/candidate uncertainty. Existing graph/answer/review
+consumers keep their adapter; saved native receipt workflows remain separate. See
+[ADR 0049](docs/decisions/0049-loredock-connected-path-reads.md) and the
+[native read API](docs/loredock/CODE_PATHS_API.md).
 Explicit storage accounting and offline compaction use separate maintenance commands,
 preserving logical history and normal job recovery. Compaction acquires daemon
 ownership and rewrites physical SQLite pages only when free pages exist; see

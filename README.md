@@ -118,6 +118,9 @@ In **System map**, expand **Browse connected paths** to read up to two paths fro
 published code inventory, page through supported entry points, choose one path and open
 its original lines. Coverage gaps and static connection candidates remain visible. This
 optional local preview makes no model calls and does not change answer or routing behavior.
+Matching direct Kafka topic literals are shown beside candidate connections; dynamic
+topic expressions remain unresolved. These paths are derived from the selected saved
+index, with explicit coverage and runtime uncertainty.
 See the [usage guide](docs/loredock/USER_GUIDE.md#browse-connected-paths).
 
 ## What v0.1 does

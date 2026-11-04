@@ -1,5 +1,24 @@
 # Development status
 
+## Task 115 — Existing public paths use the qualified native v2 producer
+
+The [public migration](loredock/PUBLIC_NATIVE_PATHS.md) wires the normal daemon, existing
+GET endpoints and browser to actual CodePathsV2. The UI shows direct matching topic
+literals, preserves static/candidate uncertainty and rejects unexpected response versions.
+Known native budget outcomes become bounded 409 errors; internal faults stay generic.
+Existing selection, pagination, original support, cancellation and scope fences remain.
+
+Twenty-eight focused tests/subtests and **824 full strict tests/builds** pass. Actual
+Chrome passes seventeen scenarios; the normal compiled daemon passes startup, automatic
+analysis, exact restart and SIGTERM/SIGINT closure on an isolated four-source catalog.
+Ten logs and fifteen artifacts are [retained](fixtures/loredock-public-native-paths/README.md),
+including first test failures. All 38 qualified core runtime modules remain identical.
+No old resource family, user demo, corporate source or model call was used. Next
+[Task 116](../tasks/116-loredock-native-capture-api.md) exposes authorized native save/open
+APIs before browser saved-history work; semantic/private-pilot/L5 and Workbench remain open.
+PR #118 head `79863fe` passed push 41899830320 and pull-request 41899898482 CI
+(817 tests), then merged as identical-tree `2b0759c`.
+
 ## Task 114 — The complete native composition passes its fresh resource gate
 
 The [sole campsite-family qualification](loredock/BOUNDED_WRITE_FINAL_QUALIFICATION.md)
