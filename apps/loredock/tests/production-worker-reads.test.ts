@@ -91,7 +91,13 @@ test('production worker reads preserve every SQL execution, inventory identity, 
   assert.deepEqual(candidate.trace.executions, baseline.trace.executions);
   assert.ok(candidate.trace.preparations.length < baseline.trace.preparations.length);
   const writes = (arm: typeof candidate) => arm.trace.preparations.filter(sql => /^(INSERT|UPDATE|DELETE)/.test(sql));
-  assert.deepEqual(writes(candidate), writes(baseline));
+  // Task 112 additionally reuses exactly these two worker writes. Full ordered SQL
+  // executions and every non-clock binding still match the independent baseline above.
+  const checkpoint = "UPDATE code_analysis_files SET status=?,reason=?,inputBytes=?,payloadBytes=?,gapCount=?,payload=?,payloadHash=?,checkpointHash=? WHERE runId=? AND fileId=? AND status='pending'";
+  const counters = 'UPDATE code_analyses SET elapsedMs=?,textBytes=textBytes+?,payloadBytes=payloadBytes+? WHERE id=?';
+  const publication = "UPDATE code_analyses SET status=?,published=1,elapsedMs=?,reason=? WHERE id=? AND status='running'";
+  assert.deepEqual(writes(baseline), [...Array.from({ length: 9 }, () => [checkpoint, counters]).flat(), publication]);
+  assert.deepEqual(writes(candidate), [checkpoint, counters, publication]);
   t.diagnostic(`Worker preparations: ${baseline.trace.preparations.length} baseline, ${candidate.trace.preparations.length} candidate; executions: ${baseline.trace.executions.length}.`);
   const changes = s.arms.map((arm, index) => Object.fromEntries(Object.entries(arm.counters()).map(([key, value]) => [key, value - before[index]![key]!])));
   assert.deepEqual(changes[1], changes[0]); assert.equal(changes[0]!.originalReads, 9); assert.equal(changes[0]!.gitCalls, 0);

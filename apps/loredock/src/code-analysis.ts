@@ -170,7 +170,7 @@ export class CodeAnalysis {
         VALUES (?,?,?,?,?,?,?,?,?,?,'running',?)`, id, requestId, payloadHash, buildId, project.policyVersion, project.sourceSetVersion,
         this.fingerprint, JSON.stringify(this.limits), sha256(JSON.stringify(units)), files.length, new Date().toISOString());
       this.store.run(`INSERT INTO code_analysis_sources SELECT ?,bs.sourceId FROM build_sources bs JOIN sources s ON s.id=bs.sourceId WHERE bs.buildId=? AND s.status='active'`, id, buildId);
-      units.forEach((unit, ordinal) => this.store.run('INSERT INTO code_analysis_files (runId,fileId,ordinal,inputHash) VALUES (?,?,?,?)', id, unit.fileId, ordinal, unit.inputHash));
+      this.store.withPreparedAnalysisWritesSync(() => units.forEach((unit, ordinal) => this.store.run('INSERT INTO code_analysis_files (runId,fileId,ordinal,inputHash) VALUES (?,?,?,?)', id, unit.fileId, ordinal, unit.inputHash)));
       return id;
     });
     this.schedule(id); return this.get(id);
@@ -200,7 +200,7 @@ export class CodeAnalysis {
   }
   private schedule(id: string) {
     if (this.worker || this.stopping) return;
-    const done = Promise.resolve().then(() => this.store.withPreparedReads(() => this.run(id))).catch(error => {
+    const done = Promise.resolve().then(() => this.store.withPreparedAnalysisWrites(() => this.store.withPreparedReads(() => this.run(id)))).catch(error => {
       if (this.row(id).status === 'running') this.store.run("UPDATE code_analyses SET status='failed',reason=? WHERE id=?", `Code analysis failed: ${error instanceof Error ? error.message.slice(0, 1024) : 'Unknown error.'}`, id);
     }).finally(() => {
       this.worker = undefined;

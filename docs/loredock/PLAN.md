@@ -202,8 +202,12 @@ ownership before a narrow candidate and different future qualification. Consumer
 migration remains blocked by the [recorded result](NATIVE_FINAL_QUALIFICATION.md).
 Task 111's [small compiled audit](NATIVE_WORKER_OWNERSHIP.md) confirms repeated preparation
 of three writes without identifying the RSS cause.
-[Task 112](../../tasks/112-loredock-bounded-analysis-writes.md) scopes bounded reuse,
-independent behavioral controls and explicit binding lifetime before fresh qualification.
+[Task 112](../../tasks/112-loredock-bounded-analysis-writes.md) implements three bounded
+write statements, with independent controls and exact execution/transaction equivalence.
+Its small compiled native smoke passes all sixteen operations and seven comparisons;
+this does not qualify large-project memory.
+[Task 113](../../tasks/113-loredock-native-compiled-upgrade.md) checks native history
+across actual older/current compiled fingerprints before a different final family.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.

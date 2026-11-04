@@ -10,6 +10,7 @@ import { spanSearchText } from './search-text.js';
 import { checkpointHash, refreshVersion } from './checkpoint.js';
 import { migrateLiteralSearch } from './literal-search-storage.js';
 import { PreparedReadScope } from './prepared-read-scope.js';
+import { PreparedAnalysisWrites } from './prepared-analysis-writes.js';
 import { NativeReceiptStore } from './native-receipt-store.js';
 import type { NativeStorageOptions } from './native-receipt-files.js';
 import { requireReceipt, uuid } from './native-receipt-json.js';
@@ -26,6 +27,7 @@ export class CatalogStore {
   readonly directory: string;
   private readonly owner: DatabaseSync;
   private readonly reads: PreparedReadScope | undefined;
+  private readonly analysisWrites: PreparedAnalysisWrites | undefined;
   readonly receipts: NativeReceiptStore;
   private closed = false;
   constructor(directory: string, receiptOptions: NativeStorageOptions = {}) {
@@ -167,6 +169,7 @@ export class CatalogStore {
       this.db.exec("UPDATE builds SET status='interrupted', reason='The daemon stopped. Resume explicitly.' WHERE status IN ('preparing','running','pause_requested');");
       this.db.exec("UPDATE code_analyses SET status='interrupted', reason='The daemon stopped. Resume code analysis explicitly.' WHERE status='running';");
       this.reads = new PreparedReadScope(this.db);
+      this.analysisWrites = new PreparedAnalysisWrites(this.db);
     } catch (error) { receipts?.close(); opened?.close(); this.owner.close(); throw error; }
   }
   one<T>(sql: string, ...args: SQLInputValue[]): T | undefined {
@@ -178,14 +181,19 @@ export class CatalogStore {
     return this.reads ? this.reads.execute('all', sql, args, fresh) : fresh();
   }
   async withPreparedReads<T>(action: () => T | Promise<T>): Promise<T> { return this.reads ? this.reads.run(action) : action(); }
-  run(sql: string, ...args: SQLInputValue[]) { return this.db.prepare(sql).run(...args); }
+  withPreparedAnalysisWritesSync<T>(action: () => T): T { return this.analysisWrites ? this.analysisWrites.runSync(action) : action(); }
+  async withPreparedAnalysisWrites<T>(action: () => T | Promise<T>): Promise<T> { return this.analysisWrites ? this.analysisWrites.run(action) : action(); }
+  run(sql: string, ...args: SQLInputValue[]) {
+    const fresh = () => this.db.prepare(sql).run(...args);
+    return this.analysisWrites ? this.analysisWrites.execute(sql, args, fresh) : fresh();
+  }
   transaction<T>(fn: () => T): T {
     this.db.exec('BEGIN IMMEDIATE;');
     try { const result = fn(); this.db.exec('COMMIT;'); return result; }
     catch (error) { this.db.exec('ROLLBACK;'); throw error; }
   }
   close() { if (this.closed) return; this.receipts.close(); this.closed = true;
-    this.reads?.close(); try { this.db.close(); } finally { this.owner.close(); } }
+    this.analysisWrites?.close(); this.reads?.close(); try { this.db.close(); } finally { this.owner.close(); } }
   project(): Project { return this.one<Project>('SELECT * FROM project WHERE id=1')!; }
   sources() { return this.all<Source>('SELECT * FROM sources ORDER BY rowid'); }
   source(id: string): Source {

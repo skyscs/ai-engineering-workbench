@@ -1,6 +1,15 @@
 # Task 112 — Bound repeated analysis write-statement ownership
 
-Status: scoped, 2026-11-04.
+Status: implemented and locally verified, 2026-11-04.
+
+The [candidate and evidence](../docs/loredock/BOUNDED_ANALYSIS_WRITES.md) retain prior
+controls before implementation, three exact scoped write statements and bounded
+binding eligibility. Nineteen focused cases/subcases and 813 full strict tests/builds
+pass. Actual compiled comparison passes all seven lifecycle/failure scenarios and all
+sixteen native operations/seven raw comparisons; each repeated SQL template falls from
+48 to 3 preparations with all 48 executions preserved. No memory qualification claim.
+Next [Task 113](113-loredock-native-compiled-upgrade.md) verifies native history across
+the actual older/current compiled fingerprints before a different resource family.
 
 The [Task 111 audit](../docs/loredock/NATIVE_WORKER_OWNERSHIP.md) observes repeated
 preparation of three exact writes: pending-unit INSERT, checkpoint UPDATE and cumulative
