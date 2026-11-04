@@ -35,6 +35,11 @@ const unchanged = (before, after, history = false) => {
   for (const key of ['gitCalls', 'writeCalls', 'changedRows', ...(history ? ['factReads', 'snapshots', 'pathReads'] : [])]) assert.equal(after[key], before[key]);
 };
 const typed = node => [node.sourceName, node.path, node.kind, node.label, node.properties.role ?? null];
+function sizes(metrics, saved, receiptBytes) {
+  assert.equal(metrics.projectionBytes, Buffer.byteLength(saved.receipt.projectionJson)); assert.equal(metrics.receiptBytes, receiptBytes.length);
+  assert.equal(metrics.textBytes, saved.receipt.originals.reduce((sum, row) => sum + Buffer.byteLength(row.text), 0));
+  assert.equal(metrics.spans, saved.receipt.originals.length); assert.equal(metrics.sources, saved.receipt.dependencies.length);
+}
 function support(saved, metadata) {
   validateSupport(saved, corpus, metadata); validateUsefulness(saved, 'first', config.oracle, config.size);
   for (const key of ['policyVersion', 'registryVersion', 'sourceSetVersion']) assert.equal(saved.projection.identity[key], metadata[key]);
@@ -56,7 +61,7 @@ async function capture(name, state, metadata, expectedCreated = true) {
   unchanged(before, state.counters()); const outputRef = await raw(name + '-output.json', result);
   const bytes = await readBounded(receiptPath(state, result.receiptId), 640 * 1024), receiptRef = await raw(name + '-receipt.json', bytes);
   const saved = decodeReceipt(bytes, state.store.receipts.catalogId), checked = captureOutput(Buffer.from(JSON.stringify(result)));
-  assert.equal(checked.receiptId, saved.receipt.receiptHash); assert.equal(checked.created, expectedCreated); support(saved, metadata);
+  assert.equal(checked.receiptId, saved.receipt.receiptHash); assert.equal(checked.created, expectedCreated); support(saved, metadata); sizes(checked.metrics, saved, bytes);
   return { result, saved, bytes, outputRef, receiptRef, metadata };
 }
 async function history(name, state, captured) {
@@ -64,6 +69,7 @@ async function history(name, state, captured) {
   const reference = await raw(name + '-history.json', value), saved = historyOutput(Buffer.from(JSON.stringify(value)));
   unchanged(before, after, true); assert.equal(after.originalReads - before.originalReads, captured.saved.receipt.originals.length);
   assert.equal(value.metrics.pathWork, 0); assert.equal(value.metrics.publicationLocks, 0); assert.equal(value.currentApplicability, 'not-checked');
+  assert.equal(value.stale, false); sizes(value.metrics, captured.saved, captured.bytes);
   assert.equal(JSON.stringify(value.projection), captured.saved.receipt.projectionJson);
   assert.deepEqual(value.originals, captured.saved.receipt.originals); assert.deepEqual(value.dependencies, captured.saved.receipt.dependencies);
   assert.equal(value.receiptId, captured.result.receiptId); support(saved, captured.metadata);
