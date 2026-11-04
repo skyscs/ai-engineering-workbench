@@ -2,9 +2,17 @@
 
 Status: implemented and locally verified, 2026-11-04.
 
+Acceptance follow-up: the first push CI rejected the unrelated ordinary offline-assessor
+test because its reopened isolated operation sampled 164.052043 ms against 150 ms.
+Retain that failure. Align this test with the existing ordinary lifecycle tests: require
+all functional gates, preserve measured resource failures and their overall propagation,
+and verify deterministic resource rejection independently. Do not change the assessor,
+reserved inputs, raw measurements or any resource limit. Rerun strict checks and require
+both successful CI events at the corrected final head before Task 114 execution.
+
 The [actual compiled transition](../docs/loredock/NATIVE_COMPILED_UPGRADE.md) passes
 all eight planned phases, six exact history reads and eleven expected refusals using
-real older/current fingerprints. Three archive tests and 816 full strict tests/builds
+real older/current fingerprints. Three archive tests and 817 full strict tests/builds
 pass. The first invalid test request and all raw evidence remain retained. Next
 [Task 114](114-loredock-bounded-write-final-qualification.md) scopes a different frozen
 resource family after exact-head acceptance. No resource gate is inferred here.

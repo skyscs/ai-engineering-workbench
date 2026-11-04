@@ -37,12 +37,22 @@ source purge complete; reopening in the old runtime preserves that outcome. Offl
 strict schema/source checks and complete typed paths/original ranges use the existing
 independent assessor and authored oracle. Actual service authorization remains mandatory.
 
-Three archive integrity/portable-load tests and **816 full strict tests/builds** pass.
+Three archive integrity/portable-load tests and **817 full strict tests/builds** pass.
 The first backward-read assertion omitted the required generation pin; its original
 partial report/receipts/histories remain unchanged. Corrected and reviewed runs pass.
-Seven command logs and 54 raw artifacts are
+Ten command logs and 54 raw artifacts are
 [retained](../fixtures/loredock-native-compiled-upgrade/README.md) with verified hashes.
 No application code or user-demo data changes in this task.
+
+Initial push CI at `6305cf2` failed an older ordinary offline-assessor test: its
+reopened isolated operation sampled 164.052043 ms against 150 ms, while all functional
+dimensions and the child lifecycle passed. The pull-request event passed independently.
+The corrected ordinary test requires functional gates, retains any actual resource
+failure and verifies its overall propagation, and injects each resource excess to prove
+rejection. Nine focused tests/subtests and the full suite pass. Assessor bytes, reserved
+families, numerical limits and original measurements are unchanged. The failed GitHub
+step log is archived; runner-local temporary raw files were not uploaded and are not
+claimed available locally. New exact-head CI is still required before acceptance.
 
 Next [Task 114](../../tasks/114-loredock-bounded-write-final-qualification.md) freezes a
 different final resource family after exact-head acceptance. Task 110 remains failed
