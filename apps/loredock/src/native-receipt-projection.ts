@@ -2,9 +2,10 @@ import { codeAnalysisLimits } from './code-analysis-types.js';
 import { codePathLimits } from './code-paths-work.js';
 import { operationAccounting } from './operation-budget.js';
 import { literalTopic, topicRule } from './literal-topic.js';
+import { compareHeaders, headerName } from './http-headers.js';
 import type { MapEvidence } from './system-map-types.js';
 import type { ReceiptProjection } from './native-receipt-types.js';
-import { array, dictionary, gitId, hash, hex, integer, nullable, oneOf, parseJson, requireReceipt,
+import { array, bytes, dictionary, gitId, hash, hex, integer, nullable, oneOf, parseJson, requireReceipt,
   same, shape, sortedUnique, string, unique, uuid, type Check, type receiptContext } from './native-receipt-json.js';
 
 const bool = oneOf(true, false), count = integer(), strings = array(string(655360), 20000);
@@ -60,7 +61,9 @@ export function decodeProjection(serialized: string, context: ReturnType<typeof 
   requireReceipt(g.buildId === identity.buildId && g.policyVersion === identity.policyVersion && g.sourceSetVersion === identity.sourceSetVersion
     && g.registryVersion === identity.registryVersion && identity.registryVersion >= identity.sourceSetVersion
     && g.stale === (identity.registryVersion !== identity.sourceSetVersion) && same(g.limits, identity.limits));
-  requireReceipt(c.sources.length <= context.limits.sources && unique(c.sources.map(row => row.sourceId)));
+  requireReceipt(c.sources.length <= context.limits.sources, 'RECEIPT_SOURCE_LIMIT');
+  requireReceipt(unique(c.sources.map(row => row.sourceId)));
+  requireReceipt(bytes(serialized) <= identity.limits.outputBytes);
   requireReceipt(c.scannedFiles === c.retainedFiles && c.scannedFiles <= identity.limits.files && c.factEntries <= identity.limits.facts
     && c.metadataEntries <= identity.limits.metadataEntries && c.metadataBytes <= identity.limits.metadataBytes);
   for (const key of Object.keys(resolution) as (keyof typeof resolution)[]) requireReceipt(c.resolution[key] === g.coverage[key]);
@@ -93,7 +96,27 @@ export function decodeProjection(serialized: string, context: ReturnType<typeof 
     requireReceipt(edge.id === hash(JSON.stringify([value.generationId, 'connected-paths-v2', 'edge', edge.kind, edge.from, edge.to, edge.environment])));
     requireReceipt(sortedUnique(edge.evidenceIds) && [...from.evidenceIds, ...to.evidenceIds].every(id => edge.evidenceIds.includes(id)));
     support(edge.evidenceIds, g.evidence, graphUsed);
-    if (edge.headerCheck) requireReceipt(edge.kind === 'http-target');
+    const endpoints = { calls: ['symbol', 'symbol'], performs: ['symbol', 'operation'], 'http-target': ['http-request', 'route'],
+      'routes-to': ['route', 'handler-reference'], implements: ['handler-reference', 'symbol'],
+      'event-delivery': ['event-publish', 'event-subscribe'], 'dispatch-candidate': ['event-subscribe', 'symbol'] };
+    const [fromKind, toKind] = endpoints[edge.kind];
+    requireReceipt(from.kind === fromKind && (toKind === 'operation'
+      ? ['http-request', 'event-publish', 'event-subscribe', 'document-write'].includes(to.kind) : to.kind === toKind));
+    requireReceipt(edge.environment === null && edge.status === (['http-target', 'event-delivery', 'dispatch-candidate'].includes(edge.kind) ? 'candidate' : 'static'));
+    if (edge.kind === 'http-target') {
+      requireReceipt(edge.headerCheck);
+      // Literal header payloads are JSON strings inside properties. Validate them
+      // before recomputing the recorded comparison; never leak parser exceptions.
+      if (from.properties.requestHeaderStatus === 'literal') {
+        let names: unknown; try { names = JSON.parse(from.properties.requestHeaderNames!); } catch { requireReceipt(false); }
+        requireReceipt(array(headerName, 16)(names) && unique((names as string[]).map(name => name.toLowerCase())));
+      }
+      if (to.properties.headerBindingStatus === 'literal') {
+        let bindings: unknown; try { bindings = JSON.parse(to.properties.headerBindings!); } catch { requireReceipt(false); }
+        requireReceipt(array(shape({ parameter: string(128, 1), name: headerName }), 16, 1)(bindings));
+      }
+      requireReceipt(same(edge.headerCheck, compareHeaders(from.properties, to.properties)));
+    } else requireReceipt(!Object.hasOwn(edge, 'headerCheck'));
     if (edge.kind === 'event-delivery') {
       const witness = edge.topicCheck; requireReceipt(witness && edge.status === 'candidate' && from.kind === 'event-publish' && to.kind === 'event-subscribe');
       for (const [item, endpoint] of [[witness.publisher, from], [witness.subscriber, to]] as const) {

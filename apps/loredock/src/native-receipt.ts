@@ -51,6 +51,10 @@ export function decodeNativeReceipt(input: Uint8Array, catalogId: string, budget
     const fileKey = JSON.stringify([item.sourceId, item.path]), prior = files.get(fileKey);
     requireReceipt(!prior || (prior.contentHash === item.contentHash && prior.blobId === item.blobId)); files.set(fileKey, item);
   }
+  for (let index = 0; index < receipt.originals.length; index++) for (const other of receipt.originals.slice(index + 1)) {
+    const item = receipt.originals[index]!;
+    requireReceipt(item.sourceId !== other.sourceId || item.path !== other.path || item.endLine < other.startLine || other.endLine < item.startLine);
+  }
   // Every node/card must be supported by originals from its own source and file,
   // with a continuous range covering the displayed code. Edge support may add
   // other files (for example a contract) and is checked by the projection decoder.

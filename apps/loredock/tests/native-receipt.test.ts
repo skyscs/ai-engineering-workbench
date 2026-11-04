@@ -5,9 +5,10 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
 import { OperationBudget } from '../src/operation-budget.js';
+import type { ReceiptLimits } from '../src/native-receipt-json.js';
 import { decodeNativeReceipt, encodeNativeReceipt, NativeReceiptError, receiptLimits } from '../src/native-receipt.js';
 import type { ReceiptProjection, NativeReceiptContent } from '../src/native-receipt-types.js';
-import { canonicalJson, catalogId, digest, recordFixture, sealProjection, serialized, sourceId } from './fixtures/native-receipt-record.js';
+import { catalogId, digest, recordFixture, sealProjection, serialized, sourceId } from './fixtures/native-receipt-record.js';
 import { Catalog } from '../src/catalog.js';
 import { CatalogStore } from '../src/store.js';
 import { SourceGit } from '../src/git.js';
@@ -17,7 +18,7 @@ import { corpusFactory } from './fixtures/memory-runner-config.js';
 // @ts-expect-error Independent owned tiny source fixture; no measured-family replay.
 import { receiptFixture } from '../../../scripts/loredock-capture-scale/fixture.mjs';
 
-const decode = (input: Uint8Array, reductions?: Partial<typeof receiptLimits>) => {
+const decode = (input: Uint8Array, reductions?: Partial<ReceiptLimits>) => {
   const budget = new OperationBudget(); try { return decodeNativeReceipt(input, catalogId, budget, reductions); } finally { budget.close(); }
 };
 function altered(content: NativeReceiptContent, change: (content: NativeReceiptContent, projection: ReceiptProjection) => void) {
@@ -56,6 +57,7 @@ test('native decoding rejects rehashed structural, nested support and dependency
     'negative counter': (_c, p) => { p.coverage.scannedFiles = -1; },
     'unsafe integer': (_c, p) => { p.coverage.scannedFiles = Number.MAX_SAFE_INTEGER + 1; },
     'increased saved limit': (_c, p) => { p.identity.limits.nodes = 161; p.graph.limits.nodes = 161; },
+    'saved output bound exceeded': (_c, p) => { p.identity.limits.outputBytes = 1; p.graph.limits.outputBytes = 1; },
     'saved limits disagree': (_c, p) => { p.graph.limits.nodes--; },
     'missing dependency': c => { c.dependencies = []; },
     'duplicate dependency': c => { c.dependencies.push(c.dependencies[0]!); },
@@ -144,11 +146,12 @@ test('actual native v2 default, selected and isolated records preserve all suppo
   const folder = await mkdtemp(path.join(tmpdir(), 'native-receipt-')), state = await receiptFixture(folder, corpusFactory(), { Catalog, CatalogStore, SourceGit, CodeAnalysis, CodePaths: CodePathsV2 }) as State;
   t.after(async () => { await state.close(); await rm(folder, { recursive: true, force: true }); }); await state.analyze();
   const first = await state.paths.read({ buildId: state.buildId }); assert.ok(first.status === 'available' && first.graph);
-  const page = await state.paths.read({ buildId: state.buildId, offset: 4 }, 'roots'); assert.ok(page.status === 'available');
+  const pins = { buildId: state.buildId, inventoryId: first.identity.inventoryId, generationId: first.generationId };
+  const page = await state.paths.read({ ...pins, offset: 4 }, 'roots'); assert.ok(page.status === 'available');
   let complete: NativeReceiptContent | undefined;
   for (const rootId of [undefined, first.roots.items[0]!.id, page.roots.items[0]!.id]) {
     const budget = new OperationBudget();
-    const projection = await state.paths.read({ buildId: state.buildId, ...(rootId ? { rootId } : {}) }, 'paths', undefined, budget);
+    const projection = await state.paths.read({ ...pins, ...(rootId ? { rootId } : {}) }, 'paths', undefined, budget);
     assert.ok(projection.status === 'available' && projection.graph);
     const evidence = Object.keys({ ...projection.graph.evidence, ...projection.roots.evidence }).sort();
     const originals = evidence.map(id => { const { snippet: _s, metadata: _m, ...item } = state.catalog.evidence(id); return item; });
@@ -161,6 +164,7 @@ test('actual native v2 default, selected and isolated records preserve all suppo
     if (rootId === undefined) complete = content;
   }
   assert.ok(complete);
+  // The codec has no ambient source access and cannot authorize a record.
   const changes: Record<string, (c: NativeReceiptContent, p: ReceiptProjection) => void> = {
     'missing witness': (_c, p) => { delete p.graph.edges.find(e => e.kind === 'event-delivery')!.topicCheck; },
     'dynamic topic': (_c, p) => { p.graph.edges.find(e => e.topicCheck)!.topicCheck!.publisher.expression = 'configuration.topic'; },
@@ -169,6 +173,10 @@ test('actual native v2 default, selected and isolated records preserve all suppo
     'wrong witness rule': (_c, p) => { Object.assign(p.graph.edges.find(e => e.topicCheck)!.topicCheck!, { rule: 'settings/1' }); },
     'extra witness field': (_c, p) => { Object.assign(p.graph.edges.find(e => e.topicCheck)!.topicCheck!.publisher, { extra: true }); },
     'runtime status': (_c, p) => { Object.assign(p.graph.edges[0]!, { status: 'observed' }); },
+    'wrong supported edge status': (_c, p) => { p.graph.edges.find(e => e.kind === 'http-target')!.status = 'static'; },
+    'wrong header comparison': (_c, p) => { p.graph.edges.find(e => e.kind === 'http-target')!.headerCheck!.detail = 'Incorrect'; },
+    'malformed nested header JSON': (_c, p) => { p.graph.nodes.find(n => n.kind === 'http-request')!.properties.requestHeaderNames = '['; },
+    'header comparison on another edge': (_c, p) => { p.graph.edges.find(e => e.kind === 'performs')!.headerCheck = { status: 'match', detail: 'Invalid' }; },
     'wrong endpoint': (_c, p) => { p.graph.edges[0]!.to = '0'.repeat(64); },
     'missing edge support': (_c, p) => { p.graph.edges.find(e => e.topicCheck)!.evidenceIds = [p.graph.edges.find(e => e.topicCheck)!.evidenceIds[0]!]; },
     'broken flow': (_c, p) => { p.graph.flows[0]!.edgeIds.reverse(); },
