@@ -115,7 +115,8 @@ test('default and injected HTTP owners save exact native selections and reopen h
     assert.equal(s.originals() - originals, 10); assert.deepEqual(state.counters(), counters);
     assert.equal(JSON.stringify(value.projection), stored.projectionJson); assert.deepEqual(value.originals, stored.originals); assert.deepEqual(value.dependencies, stored.dependencies);
     assert.equal(value.dependencies.length, 4); assert.equal(value.metrics.sources, 4); assert.equal(value.metrics.spans, 10);
-    return { text, value };
+    const { wallMs, ...metrics } = value.metrics; assert.ok(Number.isFinite(wallMs) && wallMs >= 0 && wallMs <= 5000);
+    return { text, value, comparison: { ...value, metrics } };
   };
   const original = await read(); assert.equal(original.value.stale, false); assert.equal(original.value.projection.schemaVersion, 'loredock-code-paths/2');
   const duplicate = await c.request(save, { method: 'POST' }); assert.equal(duplicate.status, 200);
@@ -133,9 +134,9 @@ test('default and injected HTTP owners save exact native selections and reopen h
   assert.equal(isolatedHistory.projection.graph.nodes.length, 1); assert.equal(isolatedHistory.projection.graph.edges.length, 0);
   for (const key of ['gitCalls', 'writeCalls', 'changedRows'] as const) assert.equal(state.counters()[key], before[key]);
   assert.equal(state.legacyRows(), legacy);
-  await state.analyze('replace-one'); await state.analyze('replace-two'); assert.equal((await read()).text, original.text);
+  await state.analyze('replace-one'); await state.analyze('replace-two'); assert.deepEqual((await read()).comparison, original.comparison);
   await s.restart(); c = await client(createApp(state.catalog, { codeAnalysis: state.analysis, codePaths: state.paths, nativeCaptures: s.service() }));
-  assert.equal((await read()).text, original.text); assert.deepEqual(readFileSync(path.join(s.folder, saved.receiptId + '.json')), storedBytes);
+  assert.deepEqual((await read()).comparison, original.comparison); assert.deepEqual(readFileSync(path.join(s.folder, saved.receiptId + '.json')), storedBytes);
   await state.addSource('new-context'); const stale = await read(); assert.equal(stale.value.stale, true); assert.deepEqual(stale.value.dependencies, original.value.dependencies);
   assert.equal(state.legacyRows(), legacy);
   for (const [name, revision] of Object.entries(state.revisions)) { assert.equal(state.git(name, ['rev-parse', 'HEAD']), revision); assert.equal(state.git(name, ['status', '--porcelain']), ''); }

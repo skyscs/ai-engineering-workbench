@@ -31,6 +31,7 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
   const origins = new Set([...hosts].map(host => `http://${host}`));
   const sessions = new Map<string, { token: string; expires: number }>();
   app.use('*', async (c, next) => {
+    if (c.req.path === '/api' || c.req.path.startsWith('/api/')) c.header('Cache-Control', 'no-store');
     if (!hosts.has(c.req.header('host') ?? '')) return c.json({ error: { message: 'Use the local LoreDock URL.' } }, 403);
     const origin = c.req.header('origin');
     const navigation = c.req.method === 'GET' && c.req.path !== '/api' && !c.req.path.startsWith('/api/')
@@ -41,11 +42,8 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
     if (!options.development) c.header('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; object-src 'none'; frame-ancestors 'none'; base-uri 'none'");
     await next();
   });
-  app.use('/api/*', bodyLimit({ maxSize: 16384, onError: c => {
-    c.header('Cache-Control', 'no-store'); return c.json({ error: { message: 'Request exceeds 16 KiB.' } }, 413);
-  } }));
+  app.use('/api/*', bodyLimit({ maxSize: 16384, onError: c => c.json({ error: { message: 'Request exceeds 16 KiB.' } }, 413) }));
   app.use('/api/*', async (c, next) => {
-    c.header('Cache-Control', 'no-store');
     for (const [id, session] of sessions) if (session.expires <= Date.now()) sessions.delete(id);
     if (c.req.path === '/api/health' && c.req.method === 'GET') return next();
     if (c.req.path === '/api/session' && c.req.method === 'POST') {
