@@ -215,7 +215,7 @@ try {
   }
   assert.equal(allowed, 2); assert.equal(unavailable, 8);
   report.checks.push('Unavailable-only pages retain next-page navigation and hide old IDs/names; mixed authority yields exactly two authorized and eight unavailable records.');
-  const hidden = store.project().sources.find(source => source.name === 'z-independent-notes'); assert.ok(hidden); catalog.revoke(hidden.id);
+  const hidden = catalog.state().sources.find(source => source.name === 'z-independent-notes'); assert.ok(hidden); catalog.revoke(hidden.id);
   await text('Project access or the published index changed.'); await click('Refresh saved paths'); await ready(); await text('No saved paths yet.');
   const beforeRevoked = listCount(); await page.send('Page.navigate', { url: savedLink }); await text('The saved path is unavailable.'); assert.equal(listCount(), beforeRevoked);
   report.checks.push('Revoking an undisplayed source purges every dependent record; the empty list and an old unavailable bookmark agree.');
