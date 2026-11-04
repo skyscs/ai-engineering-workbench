@@ -1,6 +1,6 @@
 # Task 097 — Qualify the canonical fact representation
 
-Status: single qualification passed and retained, 2026-11-04; exact-head CI precedes merge.
+Status: passed and merged through PR #101, 2026-11-04.
 
 Task 096 proves bounded request-local sharing of one immutable exact fact-free pair
 after full validation. Qualify its complete composed services using the unchanged
@@ -68,3 +68,7 @@ and every archived raw byte. No older family or failed gate changes. Next perfor
 the separate production integration review of the complete composed candidate,
 including typed ownership, all callers/fences, rollback and final-composition
 qualification. No production, private-pilot, semantic or L5 acceptance follows here.
+
+Final head `d1f7c88` passed push 41819966325 and pull-request 41820108045 CI
+(597 tests), then merged as identical-tree `592bbc0`. Task 098 records the separate
+production integration review.

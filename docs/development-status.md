@@ -1,5 +1,28 @@
 # Development status
 
+## Task 098 — Production integration separates ownership from derivation changes
+
+The [source review](loredock/QUALIFIED_COMPOSITION_INTEGRATION.md) finds that the
+qualified reader changes literal-topic matching, identities and offline capture
+accounting as well as memory ownership. ADR 0056 preserves production v1 semantics
+while planning transient representation integration separately from the versioned
+producer/receipt migration. It maps HTTP fallback/launcher ownership, symbol lookup,
+analysis lifecycle, shutdown, browser fences and unchanged answer/review consumers.
+
+Before source-bound historical comparisons change, preserve a minimal explicit
+test-only baseline with checked source/import identities. Require exact v1 output,
+protected HTTP/browser regressions, backward catalog reopen and fresh qualification
+of the actual final composition. Task 097's result remains limited to its measured
+candidate/runtime/shape. No production switch, new receipt storage or L5 claim follows.
+
+Scope `013aee6` precedes review. The next bounded
+[Task 099](../tasks/099-loredock-typed-resource-primitives.md) implements typed read
+scopes, one immutable fact/range pair and shared operation budget, initially
+unconnected to application services. This documentation-only task changes no measured
+module/input. Review verifies 481 relative document targets and the complete diff.
+PR #101 head `d1f7c88` passed push 41819966325 and pull-request 41820108045 CI
+(597 tests), then merged as identical-tree `592bbc0`.
+
 ## Task 097 — Complete canonical representation passes the frozen resource gate
 
 The [single museum-visit qualification](fixtures/loredock-canonical-qualification/README.md)
