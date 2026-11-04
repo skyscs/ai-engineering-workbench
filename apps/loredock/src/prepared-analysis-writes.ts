@@ -1,6 +1,8 @@
 import { AsyncLocalStorage } from 'node:async_hooks';
 import type { DatabaseSync, SQLInputValue, StatementSync } from 'node:sqlite';
 
+// Keep caller SQL in the fingerprinted analysis module. A changed literal falls back
+// to fresh preparation until this independent eligibility list is reviewed.
 export const analysisWriteSql = Object.freeze({
   pending: 'INSERT INTO code_analysis_files (runId,fileId,ordinal,inputHash) VALUES (?,?,?,?)',
   checkpoint: "UPDATE code_analysis_files SET status=?,reason=?,inputBytes=?,payloadBytes=?,gapCount=?,payload=?,payloadHash=?,checkpointHash=? WHERE runId=? AND fileId=? AND status='pending'",
