@@ -38,6 +38,9 @@ The unchanged limits are 5,000 ms, 1,000,000 work units, 150 ms sampled interval
 384 MiB RSS, 64 MiB heap growth, 512 KiB projections, 640 KiB receipts, 64 KiB original
 text, 30 spans and 20 sources. Resource limits may only decrease. Preparation/child
 watchdogs bound the whole process lifecycle independently of the per-operation limits.
+Defaults are 60 s for preparation/readers and 180 s overall; explicit lifecycle
+overrides are capped at 600 s, 180 s and 900 s respectively, with at most 5 s termination
+grace. These finite caps allow preparation of a larger frozen family.
 The final family must freeze those lifecycle deadlines as well as all source/compiled
 inputs before its first run.
 
@@ -66,3 +69,14 @@ rejection separately: loaded CI timing may fail a resource dimension, and that f
 must remain visible. A zero RSS ceiling always fails the resource gate. A successful
 small driver regression does not qualify a large project or establish semantic/L5
 acceptance. The next task freezes a fresh final-composition family before any large run.
+
+A retained compiled development smoke, after the normal build, is available as:
+
+```sh
+node scripts/loredock-native-qualification/smoke.mjs /tmp/native-driver-new-run
+```
+
+It refuses an existing output directory. Both development cases retain raw bytes,
+stopped snapshot metadata, process exits and all assessment dimensions. Its exit code
+represents functional verification; individual resource failures remain in the report.
+The separately frozen qualification must require the full `summary.failed` gate.
