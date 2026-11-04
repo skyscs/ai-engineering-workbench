@@ -1,6 +1,6 @@
 # Task 119 — Specify native connected-path context for project questions
 
-Status: scoped, 2026-11-04. Start after Task 118 exact-head acceptance.
+Status: design and prospective inputs completed, 2026-11-04; exact-head CI pending.
 
 Return to the LoreDock-first goal: help a project question use the connected source
 context already available across repositories. This task is a source-backed design and
@@ -34,3 +34,21 @@ Do not add storage CRUD solely as a prerequisite to this context design. Record 
 need an ADR/schema change and what remains a separate future task. Publish and review the
 design with existing documentation/link checks; only implement its explicitly scoped
 follow-up after exact-head CI acceptance.
+
+Completed in [the source audit and contract](../docs/loredock/NATIVE_QUESTION_CONTEXT.md)
+and [ADR 0058](../docs/decisions/0058-loredock-native-question-context.md). The design
+chooses one question-selected path from the complete bounded resolution, exact already-issued
+support, unchanged retrieval/notes and explicit ambiguity/overflow. Asynchronous prepared
+ownership, immutable publication witnesses and durable retention remain future integration
+requirements; no current answer endpoint or prompt is changed.
+
+[Fresh frozen inputs](../fixtures/loredock-native-question-context/README.md) contain
+six sources, four variants, seven fixed questions and eight boundary groups. Only static
+syntax/JSON/hash/link/source checks run here; no baseline retrieval, candidate or model
+observation has consumed the frozen matrix. The next bounded work is
+[Task 120](120-loredock-native-question-context-feasibility.md), with separate development
+inputs and one prospectively fixed observed comparison.
+
+The [design review record](../docs/fixtures/loredock-native-question-context/README.md)
+retains static-check output and distinguishes authoring verification from unexecuted
+retrieval/candidate measurements.

@@ -1,5 +1,31 @@
 # Development status
 
+## Task 119 — Native question-context design and prospective inputs
+
+The [source audit](loredock/NATIVE_QUESTION_CONTEXT.md) identifies the gap between current
+synchronous lexical/legacy-interface answers and the asynchronous complete native
+resolution. [ADR 0058](decisions/0058-loredock-native-question-context.md) chooses a bounded
+offline comparison before any production consumer: one question-selected path, complete
+already-issued support, unchanged originals/review notes and explicit ambiguity/omission.
+Browser defaults, saved-list order and repeated root reads are not relevance policies.
+The design records the future preparation/witness/retention decisions needed to keep
+reviewed inputs immutable across inventory updates.
+
+[Frozen inputs](../fixtures/loredock-native-question-context/README.md) cover six owned
+repositories, four fixed variants, seven questions and eight boundary groups. The base
+has 24 files / 4,615 UTF-8 bytes; the overlap variant has 25 files / 4,893 bytes. Six
+unrelated Vue roots precede the required loan-return path. Static source/syntax/JSON/
+hash/link checks verify authoring only: no retrieval, candidate, parser or model run
+has consumed the frozen matrix. Production code, prompts, configuration and old histories
+are unchanged; this is not a new semantic, resource or L5 result.
+The [static review record](fixtures/loredock-native-question-context/README.md) retains
+the source/input checks and explicitly records zero experimental/model runs.
+
+PR #122 head `c59a792` passed push 41916361811 and pull-request 41916371049
+(862 tests), then merged as identical-tree `883b589`. Task 119 awaits its own exact-head
+CI. Next [Task 120](../tasks/120-loredock-native-question-context-feasibility.md) develops
+the separate candidate/assessor and runs the frozen comparison once after protocol review.
+
 ## Task 118 — Find saved paths without keeping a bookmark
 
 The [bounded discovery workflow](loredock/SAVED_PATH_DISCOVERY.md) lists authorized saved
@@ -18,7 +44,8 @@ analysis-write reference stays unchanged; its ordinary test proves source-additi
 No old resource result is relabeled or rerun.
 
 PR #121 head `3be8a26` passed both CI events and merged with an identical tree at
-`4ab902b`. Task 118 awaits its own exact-head CI acceptance. Next
+`4ab902b`. Task 118 reached main through PR #122 after push 41916361811 and pull-request
+41916371049 passed at `c59a792` (identical-tree merge `883b589`). Next
 [Task 119](../tasks/119-loredock-native-question-context-contract.md) specifies how native
 connected paths could support project questions before a bounded offline comparison.
 Production answers, semantic gates, private-pilot/L5 acceptance and Workbench remain separate.

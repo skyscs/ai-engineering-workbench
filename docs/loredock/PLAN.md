@@ -234,7 +234,13 @@ Chrome checks pass; the native closure intentionally adds one module while prese
 every preexisting emitted class member. Next
 [Task 119](../../tasks/119-loredock-native-question-context-contract.md) specifies how
 native connected paths could support project questions before an offline comparison.
-No production answer context or model evaluation changes in that design task. No semantic/L5 gate
+Its [source-backed contract](NATIVE_QUESTION_CONTEXT.md) preserves original retrieval and
+chooses complete-resolution selection with complete issued support, explicit ambiguity
+and one operation budget. Fresh six-source variants/questions are frozen before any
+candidate observation. [Task 120](../../tasks/120-loredock-native-question-context-feasibility.md)
+performs the separate offline comparison; prepared-answer witness ownership and actual
+model exposure remain gated. No production answer context or model evaluation changes
+in the design task. No semantic/L5 gate
 is inferred from either the resource result or this public read migration.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
