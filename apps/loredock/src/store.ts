@@ -10,6 +10,9 @@ import { spanSearchText } from './search-text.js';
 import { checkpointHash, refreshVersion } from './checkpoint.js';
 import { migrateLiteralSearch } from './literal-search-storage.js';
 import { PreparedReadScope } from './prepared-read-scope.js';
+import { NativeReceiptStore } from './native-receipt-store.js';
+import type { NativeStorageOptions } from './native-receipt-files.js';
+import { requireReceipt, uuid } from './native-receipt-json.js';
 
 export const defaults = { sources: 20, paths: 10000, fileBytes: 1024 * 1024, totalBytes: 50 * 1024 * 1024, wallMs: 300000 };
 export interface Project { policyVersion: number; sourceSetVersion: number; policy: string; publishedBuildId: string | null; correctionRevision: number }
@@ -23,7 +26,9 @@ export class CatalogStore {
   readonly directory: string;
   private readonly owner: DatabaseSync;
   private readonly reads: PreparedReadScope | undefined;
-  constructor(directory: string) {
+  readonly receipts: NativeReceiptStore;
+  private closed = false;
+  constructor(directory: string, receiptOptions: NativeStorageOptions = {}) {
     if (!path.isAbsolute(directory)) throw new Error('LoreDock data directory must be absolute.');
     mkdirSync(directory, { recursive: true, mode: 0o700 });
     this.directory = realpathSync(directory);
@@ -36,12 +41,12 @@ export class CatalogStore {
     this.owner = new DatabaseSync(path.join(this.directory, '.owner.db'));
     try { this.owner.exec('PRAGMA busy_timeout=0; PRAGMA journal_mode=DELETE; BEGIN EXCLUSIVE;'); }
     catch { this.owner.close(); throw new Error('This LoreDock directory is already in use.'); }
-    let opened: DatabaseSync | undefined;
+    let opened: DatabaseSync | undefined, receipts: NativeReceiptStore | undefined;
     try {
       this.db = opened = new DatabaseSync(path.join(this.directory, 'loredock.db'));
       this.db.exec('PRAGMA foreign_keys=ON; PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL; PRAGMA secure_delete=ON;');
       const version = this.one<{ user_version: number }>('PRAGMA user_version')!.user_version;
-      if (version < 0 || version > 9) throw new Error('Unsupported LoreDock database version.');
+      if (version < 0 || version > 10) throw new Error('Unsupported LoreDock database version.');
       if (!version) this.db.exec(`BEGIN IMMEDIATE;
         CREATE TABLE project (id INTEGER PRIMARY KEY CHECK(id=1), policyVersion INTEGER NOT NULL, sourceSetVersion INTEGER NOT NULL, policy TEXT NOT NULL, publishedBuildId TEXT);
         INSERT INTO project VALUES (1,1,1,'{"excludedPaths":[]}',NULL);
@@ -146,11 +151,23 @@ export class CatalogStore {
           END;
         PRAGMA user_version=8; COMMIT;`);
       if (version < 9) this.transaction(() => migrateLiteralSearch(this.db));
+      if (version < 10) this.transaction(() => {
+        this.db.exec('CREATE TABLE catalog_identity (slot INTEGER PRIMARY KEY CHECK(slot=1), id TEXT NOT NULL UNIQUE);');
+        this.run('INSERT INTO catalog_identity VALUES (1,?)', randomUUID());
+        this.db.exec(`CREATE TRIGGER catalog_identity_update BEFORE UPDATE ON catalog_identity
+          BEGIN SELECT RAISE(ABORT,'Catalog identity is immutable.'); END;
+          CREATE TRIGGER catalog_identity_delete BEFORE DELETE ON catalog_identity
+          BEGIN SELECT RAISE(ABORT,'Catalog identity is immutable.'); END;
+          PRAGMA user_version=10;`);
+      });
+      const identities = this.all<{ slot: number; id: string }>('SELECT slot,id FROM catalog_identity LIMIT 2');
+      requireReceipt(identities.length === 1 && identities[0]!.slot === 1 && uuid(identities[0]!.id), 'CORRUPT_CATALOG_IDENTITY');
+      this.receipts = receipts = new NativeReceiptStore(this, identities[0]!.id, receiptOptions);
       this.db.exec("UPDATE answer_attempts SET status='interrupted', reason='The daemon stopped. Start an explicit new attempt; provider completion may be unknown.', usageUnknownReason=CASE WHEN dispatchedAt IS NULL THEN 'Not dispatched before restart.' ELSE 'Provider completion and usage are unknown after restart.' END WHERE status IN ('preparing','running');");
       this.db.exec("UPDATE builds SET status='interrupted', reason='The daemon stopped. Resume explicitly.' WHERE status IN ('preparing','running','pause_requested');");
       this.db.exec("UPDATE code_analyses SET status='interrupted', reason='The daemon stopped. Resume code analysis explicitly.' WHERE status='running';");
       this.reads = new PreparedReadScope(this.db);
-    } catch (error) { opened?.close(); this.owner.close(); throw error; }
+    } catch (error) { receipts?.close(); opened?.close(); this.owner.close(); throw error; }
   }
   one<T>(sql: string, ...args: SQLInputValue[]): T | undefined {
     const fresh = () => this.db.prepare(sql).get(...args) as T | undefined;
@@ -167,7 +184,8 @@ export class CatalogStore {
     try { const result = fn(); this.db.exec('COMMIT;'); return result; }
     catch (error) { this.db.exec('ROLLBACK;'); throw error; }
   }
-  close() { this.reads?.close(); try { this.db.close(); } finally { this.owner.close(); } }
+  close() { if (this.closed) return; this.receipts.close(); this.closed = true;
+    this.reads?.close(); try { this.db.close(); } finally { this.owner.close(); } }
   project(): Project { return this.one<Project>('SELECT * FROM project WHERE id=1')!; }
   sources() { return this.all<Source>('SELECT * FROM sources ORDER BY rowid'); }
   source(id: string): Source {
@@ -294,7 +312,10 @@ export class CatalogStore {
     });
   }
   purge() {
-    for (const source of this.sources().filter(source => source.purge === 'pending')) this.transaction(() => {
+    const pending = this.sources().filter(source => source.purge === 'pending');
+    requireReceipt(pending.every(source => source.status === 'revoked'), 'CORRUPT_PURGE_SCOPE');
+    if (pending.length) this.receipts.purgeSources(new Set(pending.map(source => source.id)));
+    for (const source of pending) this.transaction(() => {
       this.run('DELETE FROM code_analysis_files WHERE runId IN (SELECT runId FROM code_analysis_sources WHERE sourceId=?)', source.id);
       this.run("UPDATE code_analyses SET status='fenced',published=0,textBytes=0,payloadBytes=0,reason='An input source was revoked.' WHERE id IN (SELECT runId FROM code_analysis_sources WHERE sourceId=?)", source.id);
       this.run("UPDATE answer_attempts SET status='fenced',context=NULL,result=NULL,reason='An input source was revoked.' WHERE id IN (SELECT answerId FROM answer_sources WHERE sourceId=?)", source.id);
