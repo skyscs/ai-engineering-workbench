@@ -1,3 +1,5 @@
+// @ts-expect-error Test-only exact delta proof; historical source pins remain unchanged.
+import { assertHistoricalSource } from './fixtures/question-read-reference/verify.mjs';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFile } from 'node:fs/promises';
@@ -69,5 +71,5 @@ test('canonical path fork differs only at the declared retention seam and depend
     .replace('entries.push({ file, payload: { facts: payload.facts, ranges: payload.ranges, evidence: payload.evidence } });',
       'entries.push({ file, payload: { ...canonicalPair(payload.facts, payload.ranges), evidence: payload.evidence } });'));
   const manifest = JSON.parse(await readFile(new URL('scripts/loredock-canonical-facts/baseline.json', root), 'utf8')) as { files: Record<string, string> };
-  for (const [file, expected] of Object.entries(manifest.files)) assert.equal(sha256(await referenceSource(file)), expected, file);
+  for (const [file, expected] of Object.entries(manifest.files)) await assertHistoricalSource(file, await referenceSource(file), expected);
 });

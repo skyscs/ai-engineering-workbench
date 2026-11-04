@@ -80,6 +80,7 @@ test('compiled lexical composition preserves every context and prompt byte with 
     assert.equal(answerPrompt(actual), answerPrompt(baseline));
     assert.deepEqual(account.stats(), { ...counter.result, acceptedUnits: counter.result.sqlRows + counter.result.originalBytes, rejectedUnits: 0 });
     assert.equal(budget.stats().totalWork, account.stats().acceptedUnits); assert(account.stats().originalBytes > 0);
+    t.diagnostic(JSON.stringify({ query, inputHash: actual.inputHash, ...account.stats() }));
     // Reuse the actual capability after the lexical phase; no double billing there.
     const stats = account.stats(); await fixture.paths.read({ buildId: fixture.buildId }, 'paths', undefined, budget);
     assert.deepEqual(account.stats(), stats); assert(budget.stats().pathWork > 0);

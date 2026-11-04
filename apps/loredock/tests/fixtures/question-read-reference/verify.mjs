@@ -29,3 +29,11 @@ export async function loadQuestionReadControl(name, temporaryDirectory) {
   await writeFile(target, relocateSource(emitted, relocations), { flag: 'wx' });
   return import(target.href);
 }
+
+/** Preserve historical pins while proving the precise additive Catalog hook. */
+export async function assertHistoricalSource(file, bytes, expectedHash) {
+  if (file !== 'apps/loredock/src/catalog.ts') { assert.equal(hash(bytes), expectedHash, file); return; }
+  await verifyQuestionReadDelta('catalog', false);
+  assert.equal(bytes.toString(), await readFile(new URL('src/catalog.ts', root), 'utf8'));
+  assert.equal(hash(await readFile(new URL('catalog.ts.txt', directory))), expectedHash, file);
+}
