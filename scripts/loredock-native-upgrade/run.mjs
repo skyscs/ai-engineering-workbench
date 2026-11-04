@@ -115,7 +115,7 @@ try {
   await phase('old-reopen', async () => {
     oldState = open(data, older.services); assert.equal(oldState.analysis.get(newCapture.metadata.inventory.id).currentParser, false);
     await refusal('old-new-snapshot', () => oldState.analysis.snapshot(newCapture.metadata.inventory.id), 'PARSER_CHANGED');
-    assert.equal((await oldState.paths.read({ buildId, inventoryId: newCapture.metadata.inventory.id })).status, 'unavailable');
+    assert.equal((await oldState.paths.read({ buildId, inventoryId: newCapture.metadata.inventory.id, generationId: newCapture.saved.projection.generationId })).status, 'unavailable');
     const duplicate = await capture('old-reopened', oldState, oldCapture.metadata, false); assert.deepEqual(duplicate.bytes, oldCapture.bytes);
     await history('old-reopened-old', oldState, oldCapture); await history('old-reopened-new', oldState, newCapture);
     assert.equal(originalTables(oldState), sourcesHash); await oldState.close();
