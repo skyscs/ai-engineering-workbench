@@ -1,0 +1,130 @@
+{
+  "schemaVersion": "task103-native-v2-validation/1",
+  "scope": "f8233ea",
+  "initialImplementation": "75ae357",
+  "optionalSignalAndRegressionCommit": "8248ed8",
+  "externalCommitTestCorrection": "609c1b7",
+  "compiledSmoke": {
+    "sources": 3,
+    "nodes": 9,
+    "edges": 8,
+    "originalReferences": 6,
+    "pathWork": 446,
+    "restarted": true,
+    "v1Preserved": true,
+    "modelRequests": 0
+  },
+  "reverseOverlapPolicyTest": "ef7e973",
+  "focusedNativeTests": 12,
+  "firstFullTests": 640,
+  "finalFullTests": 641,
+  "firstFailures": [
+    {
+      "log": "types-first",
+      "reason": "Exact optional property checking rejects an explicitly undefined cancellation signal. Omit the absent field and restrict constructor budget options to internal limits/observer."
+    },
+    {
+      "log": "focused-first",
+      "reason": "A new external-write test made a no-op assignment that did not change SQLite data_version. Commit an actual build reason change and independently assert data_version changed."
+    }
+  ],
+  "laterCoverage": "Review added reverse worker overlap and live policy fencing after the first full pass; the expanded final suite passes 641 tests.",
+  "historicalMeasuredFilesChanged": false,
+  "browserAndHttpVersion": 1,
+  "nativeCaptureOrScaleAcceptance": false,
+  "files": [
+    {
+      "file": "install-first.log.gz",
+      "original": "/home/toshiba/aew/task103-install-first.log",
+      "exitCode": 0,
+      "bytes": 326,
+      "sha256": "86ef709a9828fb6348f36bd7b4221197af70f88d2fd8daa90f40259eacc69007",
+      "archiveBytes": 184,
+      "archiveSha256": "260b356b40c84c57415f98d480dffa72515d80a32d83cb1fc96d0f2631f521e6"
+    },
+    {
+      "file": "packages-first.log.gz",
+      "original": "/home/toshiba/aew/task103-packages-first.log",
+      "exitCode": 0,
+      "bytes": 597,
+      "sha256": "12e874c09d68c0c0becdfa7be9399b2999a0cfce9669c0af0e29df1e5fffb0ac",
+      "archiveBytes": 241,
+      "archiveSha256": "9364036792f5aceb93e44eba28b328e0e07b244a048b9420d6addd5f6f733e1e"
+    },
+    {
+      "file": "types-first.log.gz",
+      "original": "/home/toshiba/aew/task103-types-first.log",
+      "exitCode": 2,
+      "bytes": 909,
+      "sha256": "1b8f7b06c9411ec2b7c580b746c782cda639279cc16f35872c6b737c7a2b7136",
+      "archiveBytes": 490,
+      "archiveSha256": "54bafd884d421ca68d322c946f012db3954eca3637143ee7f648605ef2cb6f00"
+    },
+    {
+      "file": "types-second.log.gz",
+      "original": "/home/toshiba/aew/task103-types-second.log",
+      "exitCode": 0,
+      "bytes": 147,
+      "sha256": "6c62e38485d95373280c1ba21e5667a95e122a7f334a2a4371c4dbcaa45913fe",
+      "archiveBytes": 134,
+      "archiveSha256": "db75253fab15c5925e83ef330afacf2507f23f20cd2f422997f9adc84f049859"
+    },
+    {
+      "file": "focused-first.log.gz",
+      "original": "/home/toshiba/aew/task103-focused-first.log",
+      "exitCode": 1,
+      "bytes": 9618,
+      "sha256": "17b34e5626a8929bea156e04c20abe29c28827af35cc4401c6e46fd066734e84",
+      "archiveBytes": 2436,
+      "archiveSha256": "4e8055f2d0195c85ad73b4d73ec9e0275f9eead7b7951cd59b94972d1f3baae7"
+    },
+    {
+      "file": "focused-second.log.gz",
+      "original": "/home/toshiba/aew/task103-focused-second.log",
+      "exitCode": 0,
+      "bytes": 2767,
+      "sha256": "02e72312f8c619afc87adcb8e4f93b060bcae0642e4cbdf32a7e4f29524a0b21",
+      "archiveBytes": 783,
+      "archiveSha256": "48787ab8620709281c1da57fdefdd001af4c1f5f9a32ec2837b9d9d1ab2c24ae"
+    },
+    {
+      "file": "check-first.log.gz",
+      "original": "/home/toshiba/aew/task103-check-first.log",
+      "exitCode": 0,
+      "bytes": 254733,
+      "sha256": "9eb6d1a1d0ba1b38cb260625cec83661364d3355248f2ecd761f055417f4a7fb",
+      "archiveBytes": 35893,
+      "archiveSha256": "15c325daa066d08a8f09f702743bbb6cef218dd3ab1bfcd4fea6e8392dcc4d66"
+    },
+    {
+      "file": "focused-third.log.gz",
+      "original": "/home/toshiba/aew/task103-focused-third.log",
+      "exitCode": 0,
+      "bytes": 3009,
+      "sha256": "d4d10131c27346866e5a2f9c108f18348274061b7fc38a734580b7ced763a24b",
+      "archiveBytes": 843,
+      "archiveSha256": "f6fd8871c3e0cbdca7e82264036a8926237b7da3dc06d1f461a267dcee8faac7"
+    },
+    {
+      "file": "built-first.log.gz",
+      "original": "/home/toshiba/aew/task103-built-first.log",
+      "exitCode": 0,
+      "bytes": 357,
+      "sha256": "4b1094291647d2ead964db9ccd05449c0aa545de4d682e20c783622a7ba8f4a7",
+      "archiveBytes": 273,
+      "archiveSha256": "3e7133ffb91598e26ee44c5acb11f6f563db21a9f9dadf67cb7fd7c37caf0f12"
+    },
+    {
+      "file": "check-second.log.gz",
+      "original": "/home/toshiba/aew/task103-check-second.log",
+      "exitCode": 0,
+      "bytes": 255040,
+      "sha256": "984f04518eecbd52c7fea4d12da8a812ce4ad13d82c5b7203691f284858e0f24",
+      "archiveBytes": 35904,
+      "archiveSha256": "2dad837b7b7fab46affd80059f0f891066699ee4dc7240ceaeb12cf08bf3092a"
+    }
+  ],
+  "compiledSmokeCommit": "ee1b623",
+  "compiledContext": "The smoke used the first full-check build. Final production source bytes are unchanged from ee1b623; later changes add test coverage and documentation.",
+  "documentationTargets": 402
+}

@@ -1,5 +1,25 @@
 # Development status
 
+## Task 103 — Internal native v2 paths preserve qualified semantics and exact work
+
+The [typed producer](loredock/NATIVE_PATHS_V2.md) adds native v2 derivation identities,
+direct-literal topic witnesses and the real shared operation budget. Full validation,
+compact canonical facts and scoped reads use the production services. V1 and v2
+share one catalog path owner; the launcher/HTTP/browser continue to serve v1.
+
+Twelve native cases compare qualified semantic content and every work charge while
+independently checking native hashes, pins, refusals and lifecycle. Both worker
+overlap directions, real external commits, source/policy fences and restart pass.
+Final strict checks/builds pass **641 tests**; a separate compiled smoke reaches a
+document write with original support and exact repeat/restart behavior. All first
+failures and ten command logs are
+[retained](fixtures/loredock-native-v2-producer/README.md).
+
+No resource family or native receipt consumer is introduced. Next
+[Task 104](../tasks/104-loredock-native-capture-ownership.md) decides storage/purge/
+recovery ownership. PR #106 head `2771c77` passed push 41828149001 and pull-request
+41828318744 CI (629 tests), then merged as identical-tree `c51f174`.
+
 ## Task 102 — Final qualification requires the native versioned composition
 
 The [source/compiled boundary review](loredock/FINAL_QUALIFICATION_BOUNDARY.md)
