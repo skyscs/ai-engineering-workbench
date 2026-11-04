@@ -189,6 +189,9 @@ Tasks 100–107 integrate the qualified representation, native v2 producer, cata
 receipt codec/storage and [authorized capture/history](NATIVE_CAPTURE_SERVICE.md).
 Next [Task 108](../../tasks/108-loredock-native-independent-assessment.md) validates
 native outputs independently before the fresh compiled qualification and consumers.
+Task 108 completes that functional boundary;
+[Task 109](../../tasks/109-loredock-native-compiled-qualification-driver.md) supplies the
+actual compiled worker/coordinator before a new final family is frozen.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.

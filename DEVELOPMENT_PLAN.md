@@ -427,6 +427,11 @@ service, including shared budgets, complete source/original checks, guarded publ
 stop/cancellation and exact evicted history. Next
 [Task 108](tasks/108-loredock-native-independent-assessment.md) implements offline native
 assessment before the final compiled worker/coordinator and fresh qualification.
+[Task 108](tasks/108-loredock-native-independent-assessment.md) completes functional
+native assessment with separate integrity, shape, source support, usefulness and raw
+history/comparison gates. Next
+[Task 109](tasks/109-loredock-native-compiled-qualification-driver.md) drives the actual
+compiled two-process lifecycle before freezing a fresh final family.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
