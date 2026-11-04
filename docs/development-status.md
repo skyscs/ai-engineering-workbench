@@ -1,5 +1,28 @@
 # Development status
 
+## Task 122 — Actual bounded lexical reads and internal question selection
+
+[Production foundations](loredock/QUESTION_READ_SELECTION.md) now account for actual
+returned SQL rows and checked evidence UTF-8 bytes within a one-use synchronous store
+scope and the existing shared operation budget. Deferred/nested/reused scopes fail
+explicitly. Native selection sees the complete resolution before display admission,
+keeps one path owner and rejects explicit root/page conflicts or invalid selector results.
+The typed exact-anchor policy preserves the offline semantics and original eligibility.
+
+All **883 tests, strict types and builds pass**. Independent accepted source/emitted
+controls prove default, explicit and paged native output plus legacy context/hash/prompt
+parity. [Verification records](fixtures/loredock-question-read-selection/README.md) retain
+first failures, actual charge counts, archive hashes and the reviewed runtime delta.
+The three extended modules preserve all nine parser modules; old near-limit qualification
+is not transferred. Historical source pins remain intact with exact additive proofs.
+The test runner now compiles once before parallel script tests, fixing a demonstrated race.
+No production consumer, schema, answer prompt, HTTP/UI or model request changes.
+
+PR #125 passed push 41929457581 and pull-request 41929516141 at `896e484`, merging
+as identical-tree `2519990`. Task 122 awaits its own exact-head CI. Next
+[Task 123](../tasks/123-loredock-prepared-question-owner.md) owns one bounded immutable
+transient preparation before HTTP/UI coordination and durable answer promotion.
+
 ## Task 121 — Transient review, durable answer ownership
 
 [The lifecycle design](loredock/PREPARED_QUESTION_LIFECYCLE.md) and
@@ -18,7 +41,8 @@ PR #124 head `647efad` passed push 41926249765 and pull-request 41926293151 (869
 and merged as identical-tree `4bbc0c1`. Task 120's 44-case library family remains exhausted.
 [Static review](fixtures/loredock-prepared-question-lifecycle/README.md) verifies 21
 unchanged implementation sources and 739 documentation links, with no evaluation/model run.
-Task 121 awaits its own exact-head CI. [Task 122](../tasks/122-loredock-question-read-selection-seams.md)
+Task 121 passed push 41929457581 and pull-request 41929516141 at `896e484`, then
+merged as identical-tree `2519990`. [Task 122](../tasks/122-loredock-question-read-selection-seams.md)
 implements only actual scoped lexical accounting and a typed complete-resolution selector
 with public/legacy parity before any preparation-owner or answer consumer integration.
 

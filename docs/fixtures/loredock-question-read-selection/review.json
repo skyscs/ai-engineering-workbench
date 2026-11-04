@@ -1,0 +1,188 @@
+{
+  "schemaVersion": "question-read-selection-review/1",
+  "base": "25199908923fd75fb0fdb67b1a86b3c6636298eb",
+  "preservedControlsCommit": "b5d52656ecc6ae7c71a3097cdff0cfd15c657a2b",
+  "reviewedExecutable": "479d93f2e715ef70cc7b8bbebe9995e5b8f3aac8",
+  "node": "22.23.2",
+  "typescript": "5.9.3",
+  "pnpm": "10.15.0",
+  "checks": [
+    {
+      "path": "install-first.log.gz",
+      "exitCode": 0,
+      "bytes": 326,
+      "sha256": "4bda8413a69e79c3c836891cc76de4da64d58b110d5fef736518bd313c218091",
+      "archiveSha256": "f24440a84d21d695c4926d4a94a8a117f9170a3295ed0aaaf7102dddca649879"
+    },
+    {
+      "path": "build-before-first.log.gz",
+      "exitCode": 2,
+      "bytes": 797,
+      "sha256": "3b3b1b48ceb493a573208f1ace6952104db9d6597915ed4509aa42dcf8e324f1",
+      "archiveSha256": "d2423081d48c26a97ec2a0d2fd365d9606a64e9d97888b4173bf904d168d97ee"
+    },
+    {
+      "path": "packages-first.log.gz",
+      "exitCode": 0,
+      "bytes": 605,
+      "sha256": "e60ff0b6e92fae84086173e0e6d199dd7bc2205679c3c74a374fda2ff8b60bed",
+      "archiveSha256": "3436a26f62fc7a29ea3733ccf0cd5c2f596e11e7746e53f07157cc1ebd3e3285"
+    },
+    {
+      "path": "build-before-second.log.gz",
+      "exitCode": 0,
+      "bytes": 130,
+      "sha256": "aac4dde3692aae6276b5324b7b977e56083bacfdb1c4422e883fdc1320c4cfa7",
+      "archiveSha256": "2ebc86c8157a43c0f63cdbd79a74139bc83f819206b2417f5c74f3ed027561ea"
+    },
+    {
+      "path": "preserve-first.log.gz",
+      "exitCode": 0,
+      "bytes": 5000,
+      "sha256": "f8e98330275da0299cfa2e9b6ac0ffa952d0396d94374ab680f4151649cadb91",
+      "archiveSha256": "f85fb49e20b0eb5e901630f407d069d2dd57715d1384105c0122355d50d98588"
+    },
+    {
+      "path": "focused-first.log.gz",
+      "exitCode": 0,
+      "bytes": 2510,
+      "sha256": "8a77f4114e18f0c80afa27ebe7e830dc25e3404149b62f5eacd9ad0859376eb2",
+      "archiveSha256": "fcf8c8ac2993ea523a7dfc5883117b6eda148ffa4cec84576ef529eef0c7a30f"
+    },
+    {
+      "path": "types-first.log.gz",
+      "exitCode": 0,
+      "bytes": 155,
+      "sha256": "23dca811e235f379b649e069b36b690547751c78ce256b5d8b99272c8a583875",
+      "archiveSha256": "fad74075c087f9bd868f90953e65eee29fcd24ba0e519b211d5d811058af2de7"
+    },
+    {
+      "path": "types-second.log.gz",
+      "exitCode": 0,
+      "bytes": 155,
+      "sha256": "23dca811e235f379b649e069b36b690547751c78ce256b5d8b99272c8a583875",
+      "archiveSha256": "fad74075c087f9bd868f90953e65eee29fcd24ba0e519b211d5d811058af2de7"
+    },
+    {
+      "path": "compiled-first.log.gz",
+      "exitCode": 0,
+      "bytes": 3774,
+      "sha256": "698b7d1fb824aaeaa95cc63725296ef20009de9af1d376e20ebe4695f81e16e8",
+      "archiveSha256": "f9131b973bebe1b63e68b8faf3cf4d874319f3ea6fe609baeb9a40fe1feb8c31"
+    },
+    {
+      "path": "check-first.log.gz",
+      "exitCode": 1,
+      "bytes": 285145,
+      "sha256": "ed265770f924dd6926a2a3e5cdb99728750f10e0e6bbcff4c19ad3ff05c300bf",
+      "archiveSha256": "1b702f06b5219ba634996ca7b25ef1eebf8dcdeb2250f970dd724303b275fa66"
+    },
+    {
+      "path": "audit-first.log.gz",
+      "exitCode": 1,
+      "bytes": 25813,
+      "sha256": "3b1365cbc7e55dc3313490be77cceac8286867496940f1b1c54e30e8a47ce25b",
+      "archiveSha256": "568b242b0b35501451dca9903edbe3e548531cbebf73c06b62216e13f3c4d4f9"
+    },
+    {
+      "path": "focused-second.log.gz",
+      "exitCode": 1,
+      "bytes": 187,
+      "sha256": "60c19f384410fc339ce16eca19e1c73f24338f53e8c0bf1f641747eb69a75528",
+      "archiveSha256": "66190c672bf672b2f0b0c6df47c678eec9bca5ebe84c70c38aeefc35c941e1c4"
+    },
+    {
+      "path": "focused-third.log.gz",
+      "exitCode": 0,
+      "bytes": 7614,
+      "sha256": "9d5a5dd78ac3d8b3849f9dd73ab45e569821517e452798995a14ae290b8562ee",
+      "archiveSha256": "17ea500945da8e67647cd05f4effe193cc96547aeac329781fe3ee07f3f7efaf"
+    },
+    {
+      "path": "compiled-second.log.gz",
+      "exitCode": 0,
+      "bytes": 2599,
+      "sha256": "6c367429a4eda046bd21d32d4208e8a91b440210ea36a79047bd8699d9906c9e",
+      "archiveSha256": "7d9ddf57f84410a67971f5bf85946b53938ea7f8ffaff2ff48ce03f6ee289a1b"
+    },
+    {
+      "path": "audit-second.log.gz",
+      "exitCode": 0,
+      "bytes": 1089,
+      "sha256": "93fe45b08974cf752eb391c4d92c394fb37b1c11523516f65998e8c92b1f1908",
+      "archiveSha256": "9e1cb4d86774e11d5796b6fc3feeceefcc7b4818b67802319171c3807ebbfd30"
+    },
+    {
+      "path": "check-second.log.gz",
+      "exitCode": 1,
+      "bytes": 331916,
+      "sha256": "deb3403e75c95a01609e3d620afb9ac75c04822362872674fbf7fe124c289219",
+      "archiveSha256": "5b1e0744eeecec8acfd6ddec535d5d3f63c4b4d40452ce5ca8f8402b72a8cebf"
+    },
+    {
+      "path": "check-third.log.gz",
+      "exitCode": 0,
+      "bytes": 330296,
+      "sha256": "cf025eb082a2c3654b7c83bac90e50af3438861c31885abc147635e48f921e00",
+      "archiveSha256": "12fe221bdc4f2287080de3265b674678eafc2b6577267b2f6cc27acd96001118"
+    }
+  ],
+  "firstFailures": [
+    "Initial isolated daemon build lacked built @aew/ai workspace dependencies; built packages before the accepted control capture.",
+    "The first full check passed 660/663 LoreDock tests but failed three historical Catalog hash assertions; exact two-edit source proof now preserves the historical pins.",
+    "The next full check passed all 663 LoreDock tests but six script tests failed in a shared before hook because parallel tsc processes rewrote dist during module import. Root pnpm test now builds once before parallel script tests.",
+    "Initial control-authoring invocation used unavailable python (exit 127; zsh:1: command not found: python); python3 succeeded before control preservation.",
+    "The first runtime audit ran before recompiling the reviewed selector membership change and correctly refused stale emitted output.",
+    "The second focused command used the repository root instead of apps/loredock and found no test paths; the corrected third command passed all 29 tests."
+  ],
+  "validation": {
+    "strictTests": 883,
+    "focusedSourceTests": 29,
+    "compiledTests": 13,
+    "finalCompiledFollowupTests": 6,
+    "ordinaryMatrixCases": 44,
+    "independentAssessmentNegatives": 10
+  },
+  "preservedHistoricalArtifacts": true,
+  "reservedFamilyRuns": 0,
+  "modelCalls": 0,
+  "httpUiSchemaAnswerChanges": false,
+  "resourceQualification": false,
+  "cleanup": "Successful ordinary tests close services/stores and remove their owned temporary source/catalog directories. No user checkout or demo was modified.",
+  "primary": {
+    "head": "592bbc085d9405db86461d47fda5f3382bbaccde",
+    "clean": true
+  },
+  "limitations": [
+    "Exact-anchor selection only; no natural-language relevance claim.",
+    "No prepared snapshot consumer or durable witness yet.",
+    "Fresh full-composition resource and semantic gates remain required."
+  ],
+  "unchangedAuditedSources": {
+    "apps/loredock/src/answers.ts": "36b1421ba4682f17cf052bd16b0db4655ee8c23e0c3bcf3fabc41f9126f22d39",
+    "apps/loredock/src/answer-context.ts": "2553c8f0d0de75687f83f2419fb52c590880615aca1d25d0725f7e479be672cb",
+    "apps/loredock/src/answer-review.ts": "60adef0485a2ec4c329ab8a055f1136032a905ab85de349e121bd3a0a8d7a7b6",
+    "apps/loredock/src/answer-interfaces.ts": "74bdab01c1cba0f3624ad33c9d6367b801a95fb423553bff3800ea383337fa2d",
+    "apps/loredock/src/answer-prompt.ts": "7afb00937c71a6bbf3f6f3d18aceeb36f77e5b2c6f181d78c1273b0add16adc8",
+    "apps/loredock/src/code-paths-v2-work.ts": "19300e54ddb4bc9859d284d6d873f76f743e74f0c057e2c8fe08c9a86cc83800",
+    "apps/loredock/src/code-paths-work.ts": "e5f117d0e2c19876eac8a28de620f1d5abbd3d3fe298900389370bf5f86d28a7",
+    "apps/loredock/src/operation-budget.ts": "ec0d3e6dcc0894b42a97d370caabffb83143784ad170b5bb26e39b44df553296",
+    "apps/loredock/src/native-capture-work.ts": "3c5695a08035c82d88993f7b0b687f335df20ff38db2580d984128dc2ce02f23",
+    "apps/loredock/src/native-capture.ts": "b3488cc5a44ef86ea1f111a5131bcb64db548080c05d9978210bde5492f3125f",
+    "apps/loredock/src/code-analysis.ts": "82bb3992fd6ff87798d76c130bdf07b420b91789bc7a13d8eb6ee344eb4707f5",
+    "apps/loredock/src/code-analysis-follow.ts": "6bcf81dcb92d0fe254a34e4419d5f4173ad0ab2148d73790725e28e5ebfaf844",
+    "apps/loredock/src/index.ts": "69a1e84afbe4b467f1960ec4013050775d5f56755fd9871818937c01e1aaf295",
+    "apps/loredock/src/app.ts": "c8ff807c0a5ad7148f86a1c8fa83d7c36f10351953e0ec10dbdb9cab9b86caeb",
+    "apps/loredock-web/src/AnswerPanel.tsx": "bf3c43a84446b2c71c418bd73f71f7af6869d125326fbbb650359c482cbe68a7",
+    "scripts/loredock-native-question-context/prepare.mjs": "db9f3950e01962ab45f76ec3675ff5be789efae1bcfb32c63676d9b7892f7319",
+    "scripts/loredock-native-question-context/compact.mjs": "28c72b471b5e724f0602b5edbd77c8464f74fa24bae775ee369a12a38d6e75af",
+    "scripts/loredock-native-question-context/witness.mjs": "ac7c300e57cee10f61e997558d251962461633a288e063ad7f312bea8490c969"
+  },
+  "localDocumentationLinks": 727,
+  "staticCheck": {
+    "path": "static-first.log.gz",
+    "exitCode": 0,
+    "sha256": "98e20115c867e8a5ebb80822b9332f2f8ffde7ed73c0c220655ceb441fc7827e",
+    "archiveSha256": "5cc2c7f30a1f4136bef0112987e86e390dc5ff757e09afdf48c8f9803d41ac51"
+  }
+}

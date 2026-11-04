@@ -1,6 +1,7 @@
 # Task 122 — Add production seams for bounded question reads and native selection
 
-Status: scoped by Task 121; start after its exact-head acceptance.
+Status: locally verified: 883 strict tests, typechecks and builds pass. Exact-head CI pending.
+Task 121 was accepted through identical-tree merge `2519990`.
 
 Implement only the production foundation specified by
 [ADR 0059](../docs/decisions/0059-loredock-prepared-question-lifecycle.md) and the
@@ -43,3 +44,7 @@ HTTP/UI adoption, model call, corporate input or user-demo mutation belongs to t
 Do not execute Task 120's exhausted library family or any earlier exhausted model/resource
 set. Existing lexical answers, native public reads, saved history and source purge remain
 available throughout the staged integration.
+
+Implementation details and compatibility boundaries are recorded in
+[Question read selection](../docs/loredock/QUESTION_READ_SELECTION.md).
+The next bounded scope is [Task 123](123-loredock-prepared-question-owner.md).
