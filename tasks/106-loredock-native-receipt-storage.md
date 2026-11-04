@@ -1,6 +1,6 @@
 # Task 106 — Implement catalog-owned native receipt storage
 
-Status: scoped for implementation, 2026-11-04.
+Status: implementation started, 2026-11-04.
 
 Implement ADR 0057 using the strict codec from Task 105. This is the
 storage/lifecycle foundation; no async capture/history orchestration, new HTTP route,
