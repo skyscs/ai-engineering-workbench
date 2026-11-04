@@ -1,15 +1,11 @@
 import assert from 'node:assert/strict';
-import { test, before } from 'node:test';
-import { execFileSync } from 'node:child_process';
+import { test } from 'node:test';
 import { mkdtemp, rm, readFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
-before(() => { const require = createRequire(path.join(root, 'apps/loredock/package.json'));
-  execFileSync(process.execPath, [require.resolve('typescript/lib/tsc.js'), '-p', path.join(root, 'apps/loredock/tsconfig.json')], { cwd: root, timeout: 60000, stdio: 'pipe' }); });
 const node = (id, label, kind = 'symbol', properties = {}) => ({ id, label, kind, properties, evidenceIds: [id] });
 const work = () => ({ count: 0, async step() { this.count++; } });
 async function select(nodes, edges, roots, question, ids = nodes.map(row => row.id)) {

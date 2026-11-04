@@ -1,11 +1,9 @@
 import assert from 'node:assert/strict';
 import { test, before } from 'node:test';
-import { execFileSync } from 'node:child_process';
 import { mkdtemp, rm, readFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
-import { createRequire } from 'node:module';
 import { corpusFactory } from '../loredock-native-assessment/fixture.mjs';
 import { receiptFixture } from '../loredock-receipt-fixture.mjs';
 import { loadQuestionReadControl, verifyQuestionReadDelta } from '../../apps/loredock/tests/fixtures/question-read-reference/verify.mjs';
@@ -13,8 +11,6 @@ import { loadQuestionReadControl, verifyQuestionReadDelta } from '../../apps/lor
 const root = fileURLToPath(new URL('../../', import.meta.url));
 let services, LexicalReadAccount, chooseQuestionRoot, retrieveAnswerContext, answerPrompt;
 before(async () => {
-  const require = createRequire(path.join(root, 'apps/loredock/package.json'));
-  execFileSync(process.execPath, [require.resolve('typescript/lib/tsc.js'), '-p', path.join(root, 'apps/loredock/tsconfig.json')], { cwd: root, timeout: 60000, stdio: 'pipe' });
   ({ services } = await import('../loredock-native-qualification/services.mjs'));
   ({ LexicalReadAccount } = await import('../../apps/loredock/dist/lexical-read-account.js'));
   ({ chooseQuestionRoot } = await import('../../apps/loredock/dist/question-path-selection.js'));
