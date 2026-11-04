@@ -54,13 +54,13 @@ export class NativeQuestionContext {
       const context = this.options.controlledContext ? this.options.controlledContext(structuredClone(baseline)) : baseline;
       const { inputHash, ...content } = context;
       requireReceipt(hash(JSON.stringify(content)) === inputHash, 'QUESTION_CONTEXT_HASH'); current(context);
-      const { dependencies } = work.dependencies(request.buildId);
+      phase = 'scope'; const { dependencies } = work.dependencies(request.buildId);
       paths = new CodePathsV2(this.analysis, { checkpoint, selectQuestionRoot: async (resolution, pathWork) => {
         const chosen = await chooseQuestionRoot(resolution, context, pathWork); selection = chosen.observation; return chosen.rootId;
       } });
       let projection = null, encoded = null, compact = { item: null, reason: null };
       try {
-        projection = await paths.read(request, 'paths', combined, budget);
+        phase = 'native'; projection = await paths.read(request, 'paths', combined, budget);
         if (projection.status !== 'available') compact = { item: null, reason: projection.reason.code };
         else {
           await work.step('projection'); const projectionJson = JSON.stringify(projection);
