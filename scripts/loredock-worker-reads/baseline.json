@@ -1,0 +1,23 @@
+{
+  "baselineHead": "5df48e0329fac0d92ad01087f519018fe974c82c",
+  "source": "Unchanged dependencies of the explicit offline worker seam; no resource result.",
+  "files": {
+    "scripts/loredock-capture-memory/paths.mjs": "19d2c8dd84af8e5bc8e072a792469c26fa20641692b5f9c0bd4a2bb3737a9b81",
+    "scripts/loredock-capture-memory/receipt.mjs": "2180af582a915ad9f9cd8d612b895eefe0ac3c45c92d099efe4ffdf3a657aee7",
+    "scripts/loredock-capture-memory/fixture.mjs": "f1a800a50d7e1816debcf513c88f0d94830561215b561578db2d768c19b6a59a",
+    "scripts/loredock-capture-scale/resolve.mjs": "c06f6a090c7cb3be565a877a649ac305ec9b016e5f0d19b8fb53095792c9cc5e",
+    "scripts/loredock-capture-scale/admit.mjs": "c2fd01cb822fe362fea600ff7b3fa4bb718dbeb1aa422af20b398887459953d4",
+    "scripts/loredock-capture-scale/budget.mjs": "4ea01a16a7069870c7b6841624bec1dc338780356ae84a8841a6b04fc67799cc",
+    "scripts/loredock-streaming-snapshot/analysis.mjs": "10717eba32886cbe5ebf53b85183c1b4190f3e6e0e56193a1ceb2e8eef03eeaf",
+    "scripts/loredock-streaming-snapshot/services.mjs": "5220ac1baf83ee0d4b379580c4e404487d279266e939ccc61d36d52bc5808629",
+    "apps/loredock/src/code-analysis.ts": "45485d1b1e5534546d8d40504d7d04090442ce6298142222740ba9942e5764da",
+    "apps/loredock/src/code-paths-metadata.ts": "78146a6dff53d3b49659647a8509c119b6bb6ba16753600f72fd35414afbea9b",
+    "apps/loredock/src/code-paths-work.ts": "e5f117d0e2c19876eac8a28de620f1d5abbd3d3fe298900389370bf5f86d28a7",
+    "scripts/loredock-compact-payloads/paths.mjs": "5298f04eb08c2ca24649289195f0cdc292261cdf5fc0b9c6f5e3f004cce2f9be",
+    "scripts/loredock-compact-payloads/services.mjs": "6b2bc040625a7c664f7f30024d2e0c0932a2b9e8f5edc9b4c272fa4c3909810b",
+    "apps/loredock/src/store.ts": "d2faf0886743e1006bf74c2aceb9ede232ccc4e46d2fd52f47205c9d3b9f0627",
+    "apps/loredock/src/catalog.ts": "04eb7036f8294d74413d82a0243fbfda8ba2cd055f16100da184954bd891e5fe",
+    "scripts/loredock-prepared-reads/reuse.mjs": "f966c1b8a496a5842489197a85b316f42517427beed57826036e75b09739993f",
+    "scripts/loredock-prepared-reads/services.mjs": "3d7e086f7ebbc8e786b0e205b3e85547844106673ea6506d92fdcf37e3887f75"
+  }
+}
