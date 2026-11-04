@@ -79,3 +79,10 @@ No production promotion, post-hoc limit change or old-family rerun is permitted.
 The [retained evidence](../docs/fixtures/loredock-prepared-qualification/README.md)
 contains 39 raw artifacts, all process outcomes and exact baseline/input/archive
 hashes. Both final-head CI events remain required before merge.
+
+First push CI 41748535252 at `235f47d` fails the tiny test on a 256.160 ms sampled
+interval; pull-request CI 41748562559 passes. The retained coordinator report still
+passes every content/lifecycle dimension and correctly rejects resources. Correct
+the ordinary test to require finite samples and exact resource-failure propagation
+independently of functional success. No measured worker, bound or frozen outcome
+changes. Retain the first CI log; both events must pass again for the new final head.
