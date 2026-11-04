@@ -1,5 +1,25 @@
 # Development status
 
+## Task 101 — Resource ownership integrated into production connected paths v1
+
+The [production integration](fixtures/loredock-v1-resource-integration/README.md)
+streams snapshot headers, scopes prepared reads to each actual worker/path operation
+and retains compact, readonly canonical facts after full validation. The v1 resolver
+runtime, schema, work/SQL executions, originals and existing consumers remain intact.
+Independent archived controls verify exact behavior under one test identity basis.
+The real fingerprint change requires explicit reanalysis; transition/backward-reopen
+checks preserve originals and offline history without relabeling old inventories.
+
+Seventeen focused cases/subcases, **629 full tests/builds** and fifteen compiled
+browser checks pass. First failures in new test setup/assertions are retained with
+all command exits and desktop/mobile screenshots. No production change was needed
+after initial implementation, and no historical measurement was replayed.
+
+Next [Task 102](../tasks/102-loredock-final-qualification-boundary.md) resolves the
+final compiled v1 qualification contract. Scale acceptance and versioned complete
+capture remain outstanding. PR #104 head `0c9aa12` passed push 41823846350 and
+pull-request 41823957326 CI (612 tests), then merged as identical-tree `0df343e`.
+
 ## Task 100 — Independent store and analysis controls survive production edits
 
 The [portable test reference](fixtures/loredock-integration-reference/README.md)
