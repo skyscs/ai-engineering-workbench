@@ -1,6 +1,6 @@
 # Task 108 — Assess native results independently
 
-Status: scoped, 2026-11-04.
+Status: implementation started, 2026-11-04.
 
 Implement a bounded offline assessment boundary for the actual native v2 projection,
 native catalog-bound receipt and authorized recorded-history output. It must not
