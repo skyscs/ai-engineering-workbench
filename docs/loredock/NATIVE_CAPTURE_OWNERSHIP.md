@@ -1,8 +1,9 @@
 # Native capture storage and lifecycle
 
 Task 104 defined this contract for native path receipts. Task 105 implements the
-pure codec; Task 106 implements storage and schema ownership. Async capture/history
-authorization and public consumers remain subsequent work. The decision is recorded in
+pure codec; Task 106 implements storage and schema ownership. Task 107 implements
+the [authorized async service](NATIVE_CAPTURE_SERVICE.md). Independent assessment,
+final qualification and public consumers remain subsequent work. The decision is recorded in
 [ADR 0057](../decisions/0057-loredock-native-receipt-ownership.md).
 
 ## Existing boundaries
@@ -168,8 +169,8 @@ be separately scoped; no whole-build deletion eligibility is implied.
 [Task 105](../../tasks/105-loredock-native-receipt-codec.md) implements the strict
 pure codec; [Task 106](../../tasks/106-loredock-native-receipt-storage.md) adds owned
 storage/migration/purge. This keeps format validation independently reviewable before
-the schema/lifecycle transition. Then scope the async
-capture/history service and native independent decoder/assessment before the fresh
+the schema/lifecycle transition. The [async service](NATIVE_CAPTURE_SERVICE.md) now completes capture/history. Next
+implement native independent decoder/assessment before the fresh
 final-composition qualification. Keep all sixteen operation denominators, exact
 cross-process comparisons and numerical limits. No endpoint, browser migration,
 answer/review consumer, model/corporate input or L5 claim is authorized by this design.

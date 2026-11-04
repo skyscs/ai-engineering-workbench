@@ -1,6 +1,10 @@
 # Task 107 — Orchestrate native capture and authorized history
 
-Status: implementation started, 2026-11-04.
+Status: locally verified, 2026-11-04.
+
+Verification: 55 focused cases/subcases, 781 final full-check tests with strict types
+and builds, and an actual compiled capture/history/restart/eviction/policy/revocation
+smoke. [Retained evidence](../docs/fixtures/loredock-native-capture-history/README.md).
 
 Connect the native v2 producer, strict codec and catalog-owned receipt store through
 one internal asynchronous capture/history owner. This completes the application

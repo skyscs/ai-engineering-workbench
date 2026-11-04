@@ -185,6 +185,10 @@ family passes all fixed operation gates. The
 transient ownership from literal-topic/receipt semantics and requires independent
 test controls plus final-composition qualification. Task 099 begins with typed
 internal resource primitives; no production switch or semantic acceptance follows.
+Tasks 100–107 integrate the qualified representation, native v2 producer, catalog-owned
+receipt codec/storage and [authorized capture/history](NATIVE_CAPTURE_SERVICE.md).
+Next [Task 108](../../tasks/108-loredock-native-independent-assessment.md) validates
+native outputs independently before the fresh compiled qualification and consumers.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.
