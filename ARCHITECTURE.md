@@ -60,6 +60,13 @@ reuses strict path validation; history accepts only the issued content-addressed
 Fixed boundary errors keep private native faults generic. Saved content is returned
 without rederivation, with current authority revalidated and applicability unchecked;
 per-read metrics remain separate. See the [capture API](docs/loredock/NATIVE_CAPTURE_API.md).
+Task 117 adds a pinned explicit browser save and a separate recorded view addressed by
+a local receipt-ID link. Shared presentation renders paths and gaps; history originals
+come from the authorized saved response, without current path/fact/evidence requests.
+Project authority/published-index changes and refresh failures fence the view; reopening
+is explicit. Saved-link navigation remains independent of inventory retention. No new
+daemon/core, storage or schema change is involved. See the
+[saved-path workflow](docs/loredock/SAVED_PATH_BROWSER.md).
 Explicit storage accounting and offline compaction use separate maintenance commands,
 preserving logical history and normal job recovery. Compaction acquires daemon
 ownership and rewrites physical SQLite pages only when free pages exist; see

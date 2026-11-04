@@ -1,6 +1,10 @@
 # Task 117 — Save and reopen the selected connected path in the browser
 
-Status: scoped, 2026-11-04. Begin implementation after Task 116 exact-head acceptance.
+Status: implemented and locally verified, 2026-11-04; exact-head CI pending.
+
+The [interaction contract](../docs/loredock/SAVED_PATH_BROWSER.md) defines
+the pinned save, local bookmark link, recorded presentation and scope/cancellation rules
+before implementation.
 
 Add the smallest usable browser workflow over the existing protected native capture and
 history API. A user viewing a connected path can explicitly save that exact pinned
@@ -42,3 +46,10 @@ strict checks, both exact-head CI events and self-review before merge. Preserve 
 qualified native producer/codec/storage/authority/schema/fingerprint/limits; do not rerun
 exhausted resource families. Listing, deletion, repair, semantic context, private pilot,
 L5 and Workbench remain separate. Record any next task before implementation.
+
+Implemented with a pinned Save paths action, duplicate-aware confirmation, bookmarkable
+local links and a separate recorded view. History opens exact saved originals without
+new evidence/path requests and fences source/policy/index/refresh changes. Sixteen saved
+browser scenarios and seventeen existing live-browser scenarios pass; first failures are
+retained. All 842 strict tests/builds pass. Native core and public daemon modules are unchanged. Next:
+[Task 118](118-loredock-saved-path-discovery.md).

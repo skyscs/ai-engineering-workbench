@@ -12,9 +12,13 @@ import { CandidatePanel } from './CandidatePanel';
 import { CodeInventory } from './CodeInventory';
 import { SymbolMatches } from './SymbolMatches';
 import type { CodeSymbolResult } from '../../loredock/src/code-symbol-types';
+import { SavedPaths, savedPathLink } from './SavedPaths';
+
+const savedPathId = savedPathLink(window.location.search);
 
 function App() {
   const [state, setState] = useState<ProjectState>();
+  const [projectAvailable, setProjectAvailable] = useState(false), [projectError, setProjectError] = useState('');
   const [answersEnabled, setAnswersEnabled] = useState(false);
   const [codeEnabled, setCodeEnabled] = useState(false);
   useEffect(() => { void api<{ modelExecution: boolean; codeAnalysis: boolean }>('/health').then(value => { setAnswersEnabled(value.modelExecution); setCodeEnabled(value.codeAnalysis); }).catch(cause => setError((cause as Error).message)); }, []);
@@ -33,19 +37,25 @@ function App() {
   const boundary = useRef('');
   const projectRequest = useRef(0);
   const refresh = useCallback(async () => {
-    const request = ++projectRequest.current, next = await api<ProjectState>('/project');
-    if (request === projectRequest.current) setState(next);
+    const request = ++projectRequest.current;
+    try {
+      const next = await api<ProjectState>('/project');
+      if (request === projectRequest.current) { setState(next); setProjectAvailable(true); setProjectError(''); }
+    } catch (cause) {
+      if (request === projectRequest.current) { setProjectAvailable(false); setProjectError((cause as Error).message); }
+      throw cause;
+    }
   }, []);
   useEffect(() => {
-    let cancelled = false, polling = false;
+    let polling = false;
     const poll = async () => {
       if (polling) return; polling = true;
       try { await refresh(); }
-      catch (cause) { if (!cancelled) setError((cause as Error).message); }
+      catch { /* refresh records its own current project error. */ }
       finally { polling = false; }
     };
     void poll(); const timer = setInterval(() => { void poll(); }, 1000);
-    return () => { cancelled = true; projectRequest.current++; clearInterval(timer); };
+    return () => { projectRequest.current++; clearInterval(timer); };
   }, [refresh]);
   const policyVersion = state?.policyVersion;
   const sourceSetVersion = state?.sourceSetVersion;
@@ -91,9 +101,11 @@ function App() {
 
   return <main>
     <header><a className="brand" href="/">LoreDock<span>System sources</span></a><span className="local">{answersEnabled ? 'Local sources · Codex answers' : 'Local catalog · No model calls'}</span></header>
-    <section className="intro"><p className="eyebrow">KNOW YOUR SYSTEM</p><h1>Start with the sources.</h1><p>Add your repositories, index committed files, and explore the evidence in one place.</p></section>
+    {savedPathId === undefined && <section className="intro"><p className="eyebrow">KNOW YOUR SYSTEM</p><h1>Start with the sources.</h1><p>Add your repositories, index committed files, and explore the evidence in one place.</p></section>}
     {error && <div className="error" role="alert">{error}</div>}
-    {!state ? <p role="status">Connecting to the local catalog…</p> : <div className="layout">
+    {projectError && <div className="error" role="alert">{projectError}</div>}
+    {!state ? <p role="status">Connecting to the local catalog…</p> : savedPathId !== undefined ?
+      <SavedPaths receiptId={savedPathId} boundary={`${policyVersion}:${sourceSetVersion}:${published}`} projectAvailable={projectAvailable} /> : <div className="layout">
       <aside className="panel">
         <h2>Repositories <span className="count">{activeSources.length} / {state.limits.sources}</span></h2>
         <p className="muted">Use absolute paths to local Git repositories. Your working files stay untouched.</p>

@@ -579,7 +579,7 @@ footer{
 .related-pages { display: flex; flex-wrap: wrap; gap: .5rem; margin-block: 1rem; }
 .connected-paths { margin: 1.25rem 0; border: 1px solid var(--border, #cbd5e1); border-radius: .5rem; padding: 1rem; }
 .connected-paths summary { cursor: pointer; font-weight: 600; }
-.connected-path-browser { overflow-wrap: anywhere; }
+.connected-path-browser, .saved-path-view { overflow-wrap: anywhere; }
 .connected-roots { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: .75rem; }
 .connected-roots > li, .connected-flow { border: 1px solid var(--border, #cbd5e1); border-radius: .4rem; padding: .75rem; min-width: 0; }
 .connected-roots > li > button { text-align: left; width: 100%; }
@@ -589,5 +589,10 @@ footer{
 .connected-flow > ol { padding-left: 1.4rem; }
 .connected-flow > ol > li { margin-bottom: 1rem; }
 .connected-edge { border-left: 3px solid #94a3b8; padding: .5rem .75rem; margin: .75rem 0; }
-.connected-paths .citations button { max-width: 100%; white-space: normal; overflow-wrap: anywhere; text-align: left; }
+.connected-paths .citations button, .saved-path-view .citations button { max-width: 100%; white-space: normal; overflow-wrap: anywhere; text-align: left; }
 .connected-gaps { margin-top: 1rem; }
+.save-paths { margin-block: 1rem; }
+.saved-path-confirmation { border-left: 3px solid #15803d; padding-left: .75rem; }
+.saved-path-view { margin-block: 1.5rem; min-width: 0; }
+.saved-source-scope, .saved-evidence { margin-block: 1.5rem; }
+.saved-evidence pre { white-space: pre-wrap; overflow-wrap: anywhere; }

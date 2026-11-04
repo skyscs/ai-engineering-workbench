@@ -4,8 +4,9 @@ Implemented by Task 116. The route/input/error contract was committed before imp
 
 This local API slice exposes the existing authorized NativeCaptures service. It adds
 neither a receipt format nor another budget/storage owner. The public path GET routes
-remain read-only. Browser save/open navigation, listing and explicit deletion follow
-separately; no raw receipt-ID input form is part of this task.
+remain read-only. Task 117 adds the separate [browser save/open workflow](SAVED_PATH_BROWSER.md)
+with ordinary local links; listing and explicit deletion remain separate. No raw receipt-ID
+input form is needed.
 
 | Method and route | Input | Successful output |
 | --- | --- | --- |

@@ -407,14 +407,46 @@ The view uses native v2 paths and rejects responses from another version. If it 
 an out-of-date response, reload LoreDock. Older pinned generations cannot silently select
 new paths. A time/work limit produces a bounded request error and clears the pending view;
 it does not start background work or change the source index. There are no budget settings.
-These are live derivations from a saved index, not saved path receipts. Saving/reopening
-path receipts is a separate workflow that is not exposed in this screen yet.
-The protected [saved-path API](NATIVE_CAPTURE_API.md) is available for integrations.
-It saves the chosen path and its original supporting passages, and reopens them after
-reanalysis or restart without deriving replacement paths. Reopening checks access to
-every dependency, including repositories without displayed nodes. A saved result records
-the earlier analysis; its applicability to current code is not checked. API clients must
-retain the returned receipt ID until browser saved-path navigation is available.
+Ordinary browsing derives paths from the selected saved index. Use the explicit save
+action below to retain that path view separately from the disposable code inventory.
+
+## Save and reopen connected paths
+
+1. Open **Browse connected paths** and inspect the defaults or choose an entry point.
+2. Choose **Save paths** below the entry-point navigation. It saves exactly the displayed
+   generation and selection. A page showing only entry points has no save action.
+3. After **Paths saved.**, follow **Open saved paths**. If the same selection already
+   exists, the confirmation says **These paths were already saved.** and reuses its link.
+4. Bookmark that local link. It reopens the same record after browser reload, code
+   reanalysis or daemon restart, while that catalog and its authorized sources remain.
+5. On the saved page, choose an **Original** button to read the exact saved passage.
+   Expand **Recorded sources** for the complete dependency scope, including repositories
+   without displayed nodes. **Return to current browsing** opens the normal workspace.
+
+Saved paths describe the earlier source analysis. Static connections remain candidates
+where wiring is unresolved; applicability to current code, runtime behavior and deployment
+coherence are not checked. An index/source-set change is shown separately from access
+authorization. The page opens recorded content without requiring the old code inventory
+or deriving new paths. No new model connection or input field is required.
+
+Keep or bookmark the link before navigating away from its save confirmation. Records
+remain in the catalog, but a list of all saved paths is not available yet. Links contain
+only the record ID; they require the same local catalog/session and grant no source access.
+They are not portable exports. Keep the complete stopped data directory for backup.
+
+Policy/source/index changes, or a failure to refresh project access, hide the saved view
+and its originals. Choose **Reopen saved paths** when project access is available to
+check it again. Policy can block retained records; removing any dependency can purge them.
+A saved link can therefore become unavailable. It never silently switches to current
+paths. An invalid link shows a clear message without a receipt-ID form.
+
+Saving a view whose inventory was evicted gives an explicit error. Reload current paths
+and inspect them before saving a different version. Busy/errors do not retry themselves.
+**Cancel save** stops waiting, but a save may already have completed; repeating the same
+selection reuses the completed record. A previous confirmed link remains usable when a
+later attempt fails. If storage is full, existing records are retained and exact duplicates
+still work; no automatic eviction or deletion action is available in this version.
+Integrations can use the protected [saved-path API](NATIVE_CAPTURE_API.md).
 
 ## Follow a static flow outline
 
@@ -835,7 +867,7 @@ from a partial backup, so keep all directory contents together.
 
 Native record storage has a separate fixed capacity and never evicts existing history
 when full. Source removal clears dependent native copies; policy changes retain fenced
-records. These internal records currently have no new UI action. The complete directory
+records. **Save paths** and saved local links use these records. The complete directory
 still has no total quota. Literal-search migration can free reusable pages without
 shrinking the database file; offline compaction below is optional.
 

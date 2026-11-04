@@ -1,5 +1,26 @@
 # Development status
 
+## Task 117 — Save paths and reopen recorded originals through a local link
+
+The [browser workflow](loredock/SAVED_PATH_BROWSER.md) saves the exact displayed generation,
+distinguishes duplicates and opens a bookmarkable recorded view. Saved originals and the
+complete dependency scope come from the authorized history response, independently of
+current code-inventory retention. Scope changes and project-refresh failures hide content;
+explicit reopening rechecks access. An evicted pinned save cannot silently select newer paths.
+
+Sixteen saved-browser scenarios, seventeen existing live-browser scenarios and **842 full
+strict tests/builds** pass. Nine logs and 116 raw artifacts are
+[retained](fixtures/loredock-saved-path-browser/README.md), including the initial test-window
+failure and desktop/mobile screenshots. All 38 qualified native core modules and six
+public daemon source/emitted modules are unchanged. No corporate input, model request,
+user demo mutation or exhausted resource replay was used.
+
+PR #120 head `14fb176` passed push 41906547182 and pull-request 41906567704 CI
+(842 tests), then merged as identical-tree `7e7cd19`. Task 117 awaits its own exact-head
+CI acceptance. Next [Task 118](../tasks/118-loredock-saved-path-discovery.md) provides bounded
+authorized discovery without bookmarks. Listing is not yet implemented; deletion/repair,
+semantic context, private pilot, L5 and Workbench remain separate.
+
 ## Task 116 — Native path capture and history are available through protected HTTP
 
 The [save/open API](loredock/NATIVE_CAPTURE_API.md) returns actual native receipts and
