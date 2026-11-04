@@ -1,5 +1,27 @@
 # Development status
 
+## Task 120 — Question-selected native context passes the offline comparison
+
+The [sole frozen run](loredock/NATIVE_QUESTION_CONTEXT_RESULT.md) passes **44/44** cases:
+seven real-retrieval questions and 37 boundaries. It finds the seventh, relevant root
+across three useful repositories while preserving all six source dependencies, exact
+issued originals and legacy notes/comparisons. Ambiguity, missing/dynamic wiring, complete
+support/size omission, source changes, cancellation and inventory-independent witness
+validation all remain explicit. The owned library family is now exhausted.
+
+[Evidence](fixtures/loredock-native-question-context-run/README.md) retains first development
+failures and the successful one-run result, with stopped catalogs and source Git state.
+Local full validation passes 869 tests/types/builds; final focused validation passes all
+seven tests including the separate ordinary 44-case matrix. The sealed executable keeps
+all 39 accepted native modules unchanged; the complete offline composition uses 46 modules.
+No production answer, prompt, schema, model request, user demo or corporate input changed.
+Small warmed observations do not constitute a new scale/resource or semantic/L5 gate.
+
+PR #123 head `ae8d9f2` passed push 41918997795 and pull-request 41919216678 and merged
+as identical-tree `1fa8d15`. Task 120 awaits its own exact-head acceptance. Next
+[Task 121](../tasks/121-loredock-prepared-question-lifecycle.md) designs asynchronous
+preparation, immutable preview/start and trusted witness ownership before production adoption.
+
 ## Task 119 — Native question-context design and prospective inputs
 
 The [source audit](loredock/NATIVE_QUESTION_CONTEXT.md) identifies the gap between current
@@ -15,15 +37,15 @@ reviewed inputs immutable across inventory updates.
 repositories, four fixed variants, seven questions and eight boundary groups. The base
 has 24 files / 4,615 UTF-8 bytes; the overlap variant has 25 files / 4,893 bytes. Six
 unrelated Vue roots precede the required loan-return path. Static source/syntax/JSON/
-hash/link checks verify authoring only: no retrieval, candidate, parser or model run
-has consumed the frozen matrix. Production code, prompts, configuration and old histories
+hash/link checks verified authoring only; no retrieval, candidate, parser or model run
+had consumed the frozen matrix at Task 119 completion. Production code, prompts, configuration and old histories
 are unchanged; this is not a new semantic, resource or L5 result.
 The [static review record](fixtures/loredock-native-question-context/README.md) retains
 the source/input checks and explicitly records zero experimental/model runs.
 
 PR #122 head `c59a792` passed push 41916361811 and pull-request 41916371049
-(862 tests), then merged as identical-tree `883b589`. Task 119 awaits its own exact-head
-CI. Next [Task 120](../tasks/120-loredock-native-question-context-feasibility.md) develops
+(862 tests), then merged as identical-tree `883b589`. Task 119 subsequently passed both
+CI events at `ae8d9f2` and merged as identical-tree `1fa8d15`. Next [Task 120](../tasks/120-loredock-native-question-context-feasibility.md) develops
 the separate candidate/assessor and runs the frozen comparison once after protocol review.
 
 ## Task 118 — Find saved paths without keeping a bookmark
