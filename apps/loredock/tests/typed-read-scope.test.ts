@@ -34,7 +34,7 @@ function setup(typed: boolean, limits: Partial<PreparedReadLimits> = {}, file = 
 test('typed scope preserves native values, current bindings, writes and preparation counts', async () => {
   const traces = [];
   for (const typed of [false, true]) {
-    const { store, counts } = setup(typed), rows = [];
+    const { store, counts } = setup(typed), rows: unknown[] = [];
     try {
       store.db.exec('CREATE TABLE readings(id INTEGER PRIMARY KEY,value TEXT)');
       const sql = 'SELECT ? first, ? second';
@@ -90,7 +90,7 @@ test('typed scope observes external committed data/schema and preserves failure 
         assert.equal(store.one<{ value: string }>(sql)!.value, 'before');
         writer.exec("UPDATE readings SET value='after'; ALTER TABLE readings ADD COLUMN count INTEGER DEFAULT 9");
         assert.notEqual(store.one<{ data_version: number }>('PRAGMA data_version')!.data_version, version);
-        assert.deepEqual({ ...store.one(sql) }, { value: 'after', count: 9 });
+        assert.deepEqual({ ...store.one<Record<string, unknown>>(sql) }, { value: 'after', count: 9 });
         assert.throws(() => store.one('SELECT ? value', 1, 2));
         assert.equal(store.one<{ value: number }>('SELECT ? value', 3)!.value, 3);
         assert.equal(count('SELECT ? value'), 2); assert.equal(count(sql), 1);
