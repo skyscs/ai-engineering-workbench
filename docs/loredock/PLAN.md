@@ -206,8 +206,11 @@ of three writes without identifying the RSS cause.
 write statements, with independent controls and exact execution/transaction equivalence.
 Its small compiled native smoke passes all sixteen operations and seven comparisons;
 this does not qualify large-project memory.
-[Task 113](../../tasks/113-loredock-native-compiled-upgrade.md) checks native history
-across actual older/current compiled fingerprints before a different final family.
+[Task 113](../../tasks/113-loredock-native-compiled-upgrade.md) verifies native history
+across actual older/current compiled fingerprints, including backward reopening,
+policy fences and undisplayed-source revocation.
+[Task 114](../../tasks/114-loredock-bounded-write-final-qualification.md) freezes one
+different final family after acceptance; the previous failed resource result remains.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.

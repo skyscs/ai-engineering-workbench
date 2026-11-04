@@ -1,6 +1,13 @@
 # Task 113 — Verify native history across the actual compiled write-owner upgrade
 
-Status: scoped, 2026-11-04.
+Status: implemented and locally verified, 2026-11-04.
+
+The [actual compiled transition](../docs/loredock/NATIVE_COMPILED_UPGRADE.md) passes
+all eight planned phases, six exact history reads and eleven expected refusals using
+real older/current fingerprints. Three archive tests and 816 full strict tests/builds
+pass. The first invalid test request and all raw evidence remain retained. Next
+[Task 114](114-loredock-bounded-write-final-qualification.md) scopes a different frozen
+resource family after exact-head acceptance. No resource gate is inferred here.
 
 Task 112's frozen behavioral control intentionally shares the current fingerprint
 provider. Its seven comparisons and ordinary native smoke do not replay an installed

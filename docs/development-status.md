@@ -1,5 +1,23 @@
 # Development status
 
+## Task 113 — Native history survives a genuine compiled runtime upgrade
+
+The [transition regression](loredock/NATIVE_COMPILED_UPGRADE.md) preserves 37 exact older
+emitted modules and uses the current 38-module runtime without fingerprint overrides.
+All eight upgrade/authority phases pass, with six exact history reads and eleven expected
+refusals. Incompatible inventories cannot supply new capture; saved histories reopen in
+both runtimes, with explicit reanalysis producing the actual new generation. Policy
+fences reads; revoking the undisplayed dependency purges both generations before restart.
+
+Three archive integrity/portable-load tests and **816 full strict tests/builds** pass.
+The first missing-generation test request, seven logs and 54 raw artifacts are
+[retained](fixtures/loredock-native-compiled-upgrade/README.md). Application sources and
+old frozen families are unchanged; no models or corporate input. Next
+[Task 114](../tasks/114-loredock-bounded-write-final-qualification.md) freezes one different
+final resource family. Task 110 stays failed/exhausted; no resource or L5 acceptance follows.
+PR #116 head `9ce171a` passed push 41893119641 and pull-request 41893196581 CI
+(813 tests), then merged as identical-tree `cb84a4c`.
+
 ## Task 112 — Analysis reuses three bounded write statements
 
 The [internal candidate](loredock/BOUNDED_ANALYSIS_WRITES.md) owns separate synchronous
