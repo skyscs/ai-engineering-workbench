@@ -1,6 +1,6 @@
 # Task 093 — Reuse prepared reads within one inventory worker
 
-Status: scoped before implementation, 2026-11-04.
+Status: implemented and locally verified, 2026-11-04; exact-head CI precedes merge.
 
 Implement the single candidate selected by Task 092: reuse bounded prepared READ
 statements during one asynchronous inventory worker invocation. Reuse Task 090's
@@ -38,3 +38,18 @@ publication, failure handling and scheduler cleanup remain inherited unchanged.
 Task 092 merged as identical-tree `5df48e0` after exact head `851e707` passed push
 41750705428 and pull-request 41750754499 CI (569 tests). Its audit remains evidence
 for a hypothesis, not attribution of the Task 091 RSS failure.
+
+## Outcome
+
+Scope `79785f2`, implementation `d6b26c1` and test correction `8505c11` retain the
+planned boundary. The first checks expose a fixture-key type error and incorrect
+new-test expectations for existing trigger/path fencing; only tests change.
+Identical stopped copies preserve all 171 SQL executions/bindings with preparations
+reduced from 171 to 30, identical writes, nine original reads, exact durable units
+and ten-original receipt bytes. Lifecycle, failures, races and both overlap
+directions pass. No time/memory improvement is claimed.
+
+Full strict checks pass 581 tests and builds; built offline services import. All
+410 prior baseline files remain unchanged. Eight development logs, first failures
+and the verification boundary are [retained](../docs/fixtures/loredock-worker-reads/README.md).
+The next task separately freezes and executes a fresh complete qualification.

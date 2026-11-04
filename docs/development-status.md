@@ -1,5 +1,32 @@
 # Development status
 
+## Task 093 — Inventory worker prepared reads retain exact execution and ownership
+
+The [offline candidate](../scripts/loredock-worker-reads/README.md) wraps one inherited
+asynchronous worker invocation in the unchanged bounded read scope. The explicitly
+documented emitted-method seam retains the original shared ownership guard, scheduler,
+original validation, transactions, writes and publication. Production is unchanged.
+
+Independent tiny stopped copies preserve exact SQL executions/current bindings,
+inventory rows apart from elapsed duration, payloads/checkpoints, source dependencies,
+receipts and evicted history. The first complete comparison performs 171 SQL executions
+in both arms with 171 baseline versus 30 candidate preparations. This proves reuse,
+not memory improvement. Lifecycle, corruption, authorization, cleanup/resume races
+and both overlapping-scope directions are covered.
+
+The first typecheck catches an unchecked fixture key. The first behavioral run
+exposes incorrect new-test expectations for existing project triggers and path policy
+errors; the unchanged baseline also refuses resume with `CONFLICT`, fences inventory
+and returns `POLICY_CHANGED` from path admission. Corrections affect tests only.
+First outcomes remain [retained](fixtures/loredock-worker-reads/README.md). Full
+strict checks pass 581 tests and builds; built offline services import and all 410
+prior baseline files match. Both final-head CI events are required before merge.
+Next: fresh complete uninstrumented qualification.
+
+PR #96 merged as identical-tree `5df48e0` after `851e707` passed push 41750705428
+and pull-request 41750754499 CI (569 tests). See
+[Task 093](../tasks/093-loredock-worker-reads.md).
+
 ## Task 092 — Inventory replacement query audit selects one worker-scoped candidate
 
 The [independent tiny audit](loredock/INVENTORY_PREPARATION_AUDIT.md) separates
@@ -20,8 +47,9 @@ then require fresh complete uninstrumented resource qualification.
 PR #95 merged as identical-tree `70f6100` after `d97db4e` passed push 41749820794
 and pull-request 41749828294 CI. Its first CI failure and corrected functional-test
 contract are retained; the resource result remains failed. See
-[Task 092](../tasks/092-loredock-inventory-preparation.md). Both final-head CI events
-are required before merging this audit.
+[Task 092](../tasks/092-loredock-inventory-preparation.md). Its exact head `851e707`
+passed push 41750705428 and pull-request 41750754499 CI, then merged through PR #96
+as identical-tree `5df48e0`.
 
 ## Task 091 — Prepared qualification retains one history RSS failure
 

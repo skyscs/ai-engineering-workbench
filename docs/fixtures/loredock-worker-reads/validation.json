@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "task093-worker-read-verification/1",
+  "scope": "79785f2",
+  "firstBehavioralSource": "d6b26c1",
+  "firstTypecheck": "Earlier test draft with the same unchecked corpus key; before later lifecycle tests.",
+  "files": [
+    {
+      "file": "install-first.log.gz",
+      "original": "/home/toshiba/aew/task093-install-first.log",
+      "exitCode": 0,
+      "bytes": 326,
+      "sha256": "054aa1f81762b327551da12679aa9ccbdb099202b0d30633961fcc8ca0395cd0",
+      "archiveSha256": "1e8bb2757479bcbd482a6f0c628c126b744254d58823a772bb143fa103ac4c1b"
+    },
+    {
+      "file": "packages-first.log.gz",
+      "original": "/home/toshiba/aew/task093-packages-first.log",
+      "exitCode": 0,
+      "bytes": 594,
+      "sha256": "fa5810f8fc2df04f781edd9c22dfd2f187f31d1fa7e60d345939afa6976e673f",
+      "archiveSha256": "abb1bfc90cc56ceb9ba4f17508d09d73aa2623d4fe7318cce73eb65e1595c9e6"
+    },
+    {
+      "file": "types-first.log.gz",
+      "original": "/home/toshiba/aew/task093-types-first.log",
+      "exitCode": 2,
+      "bytes": 421,
+      "sha256": "078c45540cb26208e8d0b8052be6b09ab749b09a4d2ba5c5e981111451afa533",
+      "archiveSha256": "9bf2c646c25e006d1128ec1730cfd7f0c0d410b651b46ba0623cf9a4bc332a8c"
+    },
+    {
+      "file": "focused-first.log.gz",
+      "original": "/home/toshiba/aew/task093-focused-first.log",
+      "exitCode": 1,
+      "bytes": 7409,
+      "sha256": "824fd4a2e1693a73a689736108fe4cace0136a4292e2774a2d9ebf5bd307b47b",
+      "archiveSha256": "68ab11f890e3a92dc0b5e6573bc946d3c83a17f4f6457e398e2235fac8052d67"
+    },
+    {
+      "file": "types-second.log.gz",
+      "original": "/home/toshiba/aew/task093-types-second.log",
+      "exitCode": 0,
+      "bytes": 144,
+      "sha256": "62b97cdc7772800019363bc257e9e50d0b33860232e886946cbcf82e46c4be10",
+      "archiveSha256": "80a843510dd36549e00074d765c2219e6e770607ebedd6a95c45fec96bd35796"
+    },
+    {
+      "file": "focused-second.log.gz",
+      "original": "/home/toshiba/aew/task093-focused-second.log",
+      "exitCode": 0,
+      "bytes": 4643,
+      "sha256": "51772fea277604e2bbf1f305a87c80f503516625491a41f1979befaa868e38c4",
+      "archiveSha256": "539310246cd596e3fda87c3ec981783f6ee47aa1e741759c00fe4c376f6ee7c1"
+    },
+    {
+      "file": "check-first.log.gz",
+      "original": "/home/toshiba/aew/task093-check-first.log",
+      "exitCode": 0,
+      "bytes": 231388,
+      "sha256": "2ee2ce9017ab5a222f805858a64f612900bc5f15d0f232a039fa9c39ba01a29a",
+      "archiveSha256": "3cc9737b9c569c8220cb151d1d889610c364d7666bb02e1715987dba589e527f"
+    },
+    {
+      "file": "built-first.log.gz",
+      "original": "/home/toshiba/aew/task093-built-first.log",
+      "exitCode": 0,
+      "bytes": 222,
+      "sha256": "f9ebbffe5d770d7cdd54616017811e75137dc7b0a75e0f53b6e82a0dbb58e36f",
+      "archiveSha256": "1c9e78f664171a375bad56a5bc186729713141b2ee018b739776c5757ec10910"
+    }
+  ],
+  "firstFailedFixtureDirectories": [
+    "/tmp/worker-reads-aj0ZF4",
+    "/tmp/worker-reads-31wpXP",
+    "/tmp/worker-reads-O5B87r"
+  ],
+  "resourceClaim": false,
+  "fullCheck": {
+    "implementationHead": "8505c11",
+    "tests": 581,
+    "failed": 0,
+    "strictTypes": true,
+    "builds": true
+  },
+  "baselineFilesVerified": 410
+}

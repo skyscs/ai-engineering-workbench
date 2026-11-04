@@ -30,5 +30,6 @@ Independent tiny stopped copies test exact units/checkpoints/manifests and recei
 fresh SQL execution/bindings, original reads/writes, corruption/authorization,
 lifecycle boundaries, concurrent paths and scheduler races. Existing Task 090 tests
 cover the unchanged store's bounds and failure/recursive/async cleanup behavior.
+See [retained verification](../../docs/fixtures/loredock-worker-reads/README.md).
 Preparation counts show reuse only. A separate fresh frozen complete uninstrumented
 qualification is required before resources or production promotion can be accepted.
