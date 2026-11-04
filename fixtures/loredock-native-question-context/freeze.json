@@ -1,0 +1,655 @@
+{
+  "schemaVersion": "native-question-context-freeze/1",
+  "status": "unexecuted",
+  "parent": {
+    "head": "c59a7927580c196e98a5bd4f4e3c06d275729a4b",
+    "merge": "883b5895fdd5377127a51e0404f3030f1b83544d",
+    "push": 41916361811,
+    "pullRequest": 41916371049,
+    "treeEqualityVerified": true
+  },
+  "authoringNode": "v22.23.2",
+  "modelAttempts": 0,
+  "productionChanges": false,
+  "sourceAudit": {
+    "apps/loredock/src/answer-context.ts": "2553c8f0d0de75687f83f2419fb52c590880615aca1d25d0725f7e479be672cb",
+    "apps/loredock/src/answer-expansion.ts": "2af1fa98e42101108182f44c62d1608aff8af889503408c14dde9a595bc7eb2d",
+    "apps/loredock/src/answer-interfaces.ts": "74bdab01c1cba0f3624ad33c9d6367b801a95fb423553bff3800ea383337fa2d",
+    "apps/loredock/src/answer-prompt.ts": "7afb00937c71a6bbf3f6f3d18aceeb36f77e5b2c6f181d78c1273b0add16adc8",
+    "apps/loredock/src/answer-review.ts": "60adef0485a2ec4c329ab8a055f1136032a905ab85de349e121bd3a0a8d7a7b6",
+    "apps/loredock/src/answers.ts": "36b1421ba4682f17cf052bd16b0db4655ee8c23e0c3bcf3fabc41f9126f22d39",
+    "apps/loredock/src/code-paths-v2.ts": "bc4798d29630a78025bc0ef24d5d8fa860e25ef1072198c44b59562b8fefed69",
+    "apps/loredock/src/code-paths-v2-admit.ts": "327f3a55adeb3fea0a9a5193f339722ecaea3ccd13447f335b53d1dba181d60e",
+    "apps/loredock/src/code-paths-v2-resolve.ts": "4b53ffb6bdc2c86741d0f58120882b7dadf86412c19bfd8ac0235ba7f77e92de",
+    "apps/loredock/src/code-paths-v2-work.ts": "19300e54ddb4bc9859d284d6d873f76f743e74f0c057e2c8fe08c9a86cc83800",
+    "apps/loredock/src/code-paths-work.ts": "e5f117d0e2c19876eac8a28de620f1d5abbd3d3fe298900389370bf5f86d28a7",
+    "apps/loredock/src/native-capture.ts": "b3488cc5a44ef86ea1f111a5131bcb64db548080c05d9978210bde5492f3125f",
+    "apps/loredock/src/native-capture-work.ts": "3c5695a08035c82d88993f7b0b687f335df20ff38db2580d984128dc2ce02f23",
+    "apps/loredock/src/native-receipt.ts": "d6bdc6500c4958328f07f9d16c3cc268091c585d69da9521b660ede388e4228b",
+    "apps/loredock/src/native-receipt-projection.ts": "ea3c210c9918c137939189f9609be727c7edc9c1e374cc9b41e4e90cf3bb0382",
+    "apps/loredock/src/operation-budget.ts": "ec0d3e6dcc0894b42a97d370caabffb83143784ad170b5bb26e39b44df553296"
+  },
+  "frozenFiles": {
+    "fixtures/loredock-native-question-context/corpus.mjs": "0d13a787952b5b069af6319a3a09d04e4c4bd3480102a120bdc460e3abc8dd48",
+    "fixtures/loredock-native-question-context/questions.json": "bfae6470dc19ade0702a2cd1104acd5eee7b657696584b26f3e2ec10e2709e62",
+    "docs/loredock/NATIVE_QUESTION_CONTEXT.md": "58d4ccbe05402782274f742c8f77f65d65600b7ca264236b3b51b899ebce0710",
+    "docs/decisions/0058-loredock-native-question-context.md": "37d8f4dcaeb2b21a864b0d1f2e66d29111b051d73ffe8180fe4bb20da6d09be8",
+    "tasks/120-loredock-native-question-context-feasibility.md": "60fe9367111d24d382bc3f18622adbedd5fe53b03bd28f49e3b5ac6505092102"
+  },
+  "variants": {
+    "base": {
+      "sources": 6,
+      "files": 24,
+      "bytes": 4615,
+      "vectorHash": "fabe6239d8140e5255534d252457d5394ae9a0b7639c084fbb411f13be2cf6bd",
+      "filesVector": [
+        {
+          "source": "a-library-ui",
+          "path": "README.md",
+          "bytes": 195,
+          "sha256": "1eee17aa58bba05f5298ae2486069312bb85a729b9ae54096a3a39c7f87c8720"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A0Search.vue",
+          "bytes": 193,
+          "sha256": "34210d94e97c324f127cf7b275296da6f801c8b05249dbff32f6590398919482"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A1Search.vue",
+          "bytes": 193,
+          "sha256": "6ac2c43d37f40078754ec5abd88c0c751bcb48c79dee488b62da24ba6fc0b18f"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A2Search.vue",
+          "bytes": 193,
+          "sha256": "34e0f186af22fb03340d4c03386672de909200899bdcf1ef92285ab4a69c6af8"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A3Search.vue",
+          "bytes": 193,
+          "sha256": "b67f728d14c25cc7b4b5889ba1b87bd5040b85c7706d4699da36a57043062875"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A4Search.vue",
+          "bytes": 193,
+          "sha256": "11d10de229f1186409caa5be955f4adb513b8c4b903c15713a101cc2dacac44b"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A5Search.vue",
+          "bytes": 193,
+          "sha256": "274ed292dffdcebadc0d4b3bcc08d11e6ffe9ac1a52737477f82a9c905bde59e"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/ZZReturn.vue",
+          "bytes": 276,
+          "sha256": "832afd1ede8cf5c88b57dde4f7a755e5579e111e91fc6e29d8ce1d884dbe1283"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/return.ts",
+          "bytes": 191,
+          "sha256": "679095868603652ea20a33de862acf7855b8e57929612b5f67a65ee0730216d5"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/search.ts",
+          "bytes": 135,
+          "sha256": "b62d36a661cbd1f24c77a2119e7c24fd512c9f3ebd0548a4159638def5d36327"
+        },
+        {
+          "source": "b-library-api",
+          "path": "README.md",
+          "bytes": 175,
+          "sha256": "c65fd26c84bf7b4539fbbc0f11783ef8cba4a69d6268b0b510985e6ff1e79670"
+        },
+        {
+          "source": "b-library-api",
+          "path": "Returns.java",
+          "bytes": 436,
+          "sha256": "2138a62b2fc676fdd11bc07d61a1c50d0d71528acae9fb0edeb9e485099e6320"
+        },
+        {
+          "source": "b-library-api",
+          "path": "contracts/LoanReturned.json",
+          "bytes": 132,
+          "sha256": "22087a5cac41f53eb26f62f6f9988020523ac24256bc83ba4be1c30c90fc467d"
+        },
+        {
+          "source": "b-library-api",
+          "path": "routes.json",
+          "bytes": 175,
+          "sha256": "5fca289d39e359c3f3799d1623ce7b429dbd7408a10a9ed1f93f5396dd641ecd"
+        },
+        {
+          "source": "c-library-projection",
+          "path": "LoanWriter.java",
+          "bytes": 697,
+          "sha256": "725e3182725235a172971ee94fa0eb7d1cef2f7ac8768f67349d9326b3275c7a"
+        },
+        {
+          "source": "c-library-projection",
+          "path": "README.md",
+          "bytes": 191,
+          "sha256": "08a148d80b7048d1e72a2f27a593d6d4db611eaeffae0419f42315aab91e8f40"
+        },
+        {
+          "source": "c-library-projection",
+          "path": "contracts/LoanReturned.json",
+          "bytes": 132,
+          "sha256": "22087a5cac41f53eb26f62f6f9988020523ac24256bc83ba4be1c30c90fc467d"
+        },
+        {
+          "source": "d-catalog-search",
+          "path": "Lookup.java",
+          "bytes": 48,
+          "sha256": "95241b0a98c4749fb41f3bef36f57727ffb12e61773c5dc81df77b20deff8875"
+        },
+        {
+          "source": "d-catalog-search",
+          "path": "README.md",
+          "bytes": 103,
+          "sha256": "123e557a70c1ae30e99f404a3ebfab67ef0af9b7dce690b1e2423942ae91334c"
+        },
+        {
+          "source": "d-catalog-search",
+          "path": "routes.json",
+          "bytes": 110,
+          "sha256": "29127c3d6e6e8b565a5c31faa1cb3209e24316cb68c20af8395d4c8b1b1d4f20"
+        },
+        {
+          "source": "e-legacy-desk",
+          "path": "README.md",
+          "bytes": 103,
+          "sha256": "2e4f1adbad9a6c067f8db7ba0d1b1f47e8e2c17dd2c112967b0dee2f699e6348"
+        },
+        {
+          "source": "e-legacy-desk",
+          "path": "catalog.js",
+          "bytes": 88,
+          "sha256": "c32e409ab8203c5a875849135f97615db520d6fc247f12084afde77189449c61"
+        },
+        {
+          "source": "z-ops-notes",
+          "path": "README.md",
+          "bytes": 102,
+          "sha256": "ef838212be4250c6fd78479e1162b220741b0e5f7891e51c80955188102a1622"
+        },
+        {
+          "source": "z-ops-notes",
+          "path": "untrusted-example.md",
+          "bytes": 168,
+          "sha256": "556b0b7ebac0118b9d943606539c211a05d4b02cf6f8783f34cee270af8ee55d"
+        }
+      ]
+    },
+    "ambiguous": {
+      "sources": 6,
+      "files": 25,
+      "bytes": 4893,
+      "vectorHash": "57bc7e4d08b2698856518ebbf6d5e7428be5a10d89973d3432d136ebc4933302",
+      "filesVector": [
+        {
+          "source": "a-library-ui",
+          "path": "README.md",
+          "bytes": 195,
+          "sha256": "1eee17aa58bba05f5298ae2486069312bb85a729b9ae54096a3a39c7f87c8720"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A0Search.vue",
+          "bytes": 193,
+          "sha256": "34210d94e97c324f127cf7b275296da6f801c8b05249dbff32f6590398919482"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A1Search.vue",
+          "bytes": 193,
+          "sha256": "6ac2c43d37f40078754ec5abd88c0c751bcb48c79dee488b62da24ba6fc0b18f"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A2Search.vue",
+          "bytes": 193,
+          "sha256": "34e0f186af22fb03340d4c03386672de909200899bdcf1ef92285ab4a69c6af8"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A3Search.vue",
+          "bytes": 193,
+          "sha256": "b67f728d14c25cc7b4b5889ba1b87bd5040b85c7706d4699da36a57043062875"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A4Search.vue",
+          "bytes": 193,
+          "sha256": "11d10de229f1186409caa5be955f4adb513b8c4b903c15713a101cc2dacac44b"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A5Search.vue",
+          "bytes": 193,
+          "sha256": "274ed292dffdcebadc0d4b3bcc08d11e6ffe9ac1a52737477f82a9c905bde59e"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/ZYReturnAgain.vue",
+          "bytes": 278,
+          "sha256": "61aeb27b3a58cee76a707789622b85a198c7b2305c8f93d6c22e37f4653e14b9"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/ZZReturn.vue",
+          "bytes": 276,
+          "sha256": "832afd1ede8cf5c88b57dde4f7a755e5579e111e91fc6e29d8ce1d884dbe1283"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/return.ts",
+          "bytes": 191,
+          "sha256": "679095868603652ea20a33de862acf7855b8e57929612b5f67a65ee0730216d5"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/search.ts",
+          "bytes": 135,
+          "sha256": "b62d36a661cbd1f24c77a2119e7c24fd512c9f3ebd0548a4159638def5d36327"
+        },
+        {
+          "source": "b-library-api",
+          "path": "README.md",
+          "bytes": 175,
+          "sha256": "c65fd26c84bf7b4539fbbc0f11783ef8cba4a69d6268b0b510985e6ff1e79670"
+        },
+        {
+          "source": "b-library-api",
+          "path": "Returns.java",
+          "bytes": 436,
+          "sha256": "2138a62b2fc676fdd11bc07d61a1c50d0d71528acae9fb0edeb9e485099e6320"
+        },
+        {
+          "source": "b-library-api",
+          "path": "contracts/LoanReturned.json",
+          "bytes": 132,
+          "sha256": "22087a5cac41f53eb26f62f6f9988020523ac24256bc83ba4be1c30c90fc467d"
+        },
+        {
+          "source": "b-library-api",
+          "path": "routes.json",
+          "bytes": 175,
+          "sha256": "5fca289d39e359c3f3799d1623ce7b429dbd7408a10a9ed1f93f5396dd641ecd"
+        },
+        {
+          "source": "c-library-projection",
+          "path": "LoanWriter.java",
+          "bytes": 697,
+          "sha256": "725e3182725235a172971ee94fa0eb7d1cef2f7ac8768f67349d9326b3275c7a"
+        },
+        {
+          "source": "c-library-projection",
+          "path": "README.md",
+          "bytes": 191,
+          "sha256": "08a148d80b7048d1e72a2f27a593d6d4db611eaeffae0419f42315aab91e8f40"
+        },
+        {
+          "source": "c-library-projection",
+          "path": "contracts/LoanReturned.json",
+          "bytes": 132,
+          "sha256": "22087a5cac41f53eb26f62f6f9988020523ac24256bc83ba4be1c30c90fc467d"
+        },
+        {
+          "source": "d-catalog-search",
+          "path": "Lookup.java",
+          "bytes": 48,
+          "sha256": "95241b0a98c4749fb41f3bef36f57727ffb12e61773c5dc81df77b20deff8875"
+        },
+        {
+          "source": "d-catalog-search",
+          "path": "README.md",
+          "bytes": 103,
+          "sha256": "123e557a70c1ae30e99f404a3ebfab67ef0af9b7dce690b1e2423942ae91334c"
+        },
+        {
+          "source": "d-catalog-search",
+          "path": "routes.json",
+          "bytes": 110,
+          "sha256": "29127c3d6e6e8b565a5c31faa1cb3209e24316cb68c20af8395d4c8b1b1d4f20"
+        },
+        {
+          "source": "e-legacy-desk",
+          "path": "README.md",
+          "bytes": 103,
+          "sha256": "2e4f1adbad9a6c067f8db7ba0d1b1f47e8e2c17dd2c112967b0dee2f699e6348"
+        },
+        {
+          "source": "e-legacy-desk",
+          "path": "catalog.js",
+          "bytes": 88,
+          "sha256": "c32e409ab8203c5a875849135f97615db520d6fc247f12084afde77189449c61"
+        },
+        {
+          "source": "z-ops-notes",
+          "path": "README.md",
+          "bytes": 102,
+          "sha256": "ef838212be4250c6fd78479e1162b220741b0e5f7891e51c80955188102a1622"
+        },
+        {
+          "source": "z-ops-notes",
+          "path": "untrusted-example.md",
+          "bytes": 168,
+          "sha256": "556b0b7ebac0118b9d943606539c211a05d4b02cf6f8783f34cee270af8ee55d"
+        }
+      ]
+    },
+    "missing-consumer": {
+      "sources": 6,
+      "files": 24,
+      "bytes": 4616,
+      "vectorHash": "ea00e3c87448e3689fc8cd1d474442b1ce71437b59a602904441c4379614f317",
+      "filesVector": [
+        {
+          "source": "a-library-ui",
+          "path": "README.md",
+          "bytes": 195,
+          "sha256": "1eee17aa58bba05f5298ae2486069312bb85a729b9ae54096a3a39c7f87c8720"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A0Search.vue",
+          "bytes": 193,
+          "sha256": "34210d94e97c324f127cf7b275296da6f801c8b05249dbff32f6590398919482"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A1Search.vue",
+          "bytes": 193,
+          "sha256": "6ac2c43d37f40078754ec5abd88c0c751bcb48c79dee488b62da24ba6fc0b18f"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A2Search.vue",
+          "bytes": 193,
+          "sha256": "34e0f186af22fb03340d4c03386672de909200899bdcf1ef92285ab4a69c6af8"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A3Search.vue",
+          "bytes": 193,
+          "sha256": "b67f728d14c25cc7b4b5889ba1b87bd5040b85c7706d4699da36a57043062875"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A4Search.vue",
+          "bytes": 193,
+          "sha256": "11d10de229f1186409caa5be955f4adb513b8c4b903c15713a101cc2dacac44b"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A5Search.vue",
+          "bytes": 193,
+          "sha256": "274ed292dffdcebadc0d4b3bcc08d11e6ffe9ac1a52737477f82a9c905bde59e"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/ZZReturn.vue",
+          "bytes": 276,
+          "sha256": "832afd1ede8cf5c88b57dde4f7a755e5579e111e91fc6e29d8ce1d884dbe1283"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/return.ts",
+          "bytes": 191,
+          "sha256": "679095868603652ea20a33de862acf7855b8e57929612b5f67a65ee0730216d5"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/search.ts",
+          "bytes": 135,
+          "sha256": "b62d36a661cbd1f24c77a2119e7c24fd512c9f3ebd0548a4159638def5d36327"
+        },
+        {
+          "source": "b-library-api",
+          "path": "README.md",
+          "bytes": 175,
+          "sha256": "c65fd26c84bf7b4539fbbc0f11783ef8cba4a69d6268b0b510985e6ff1e79670"
+        },
+        {
+          "source": "b-library-api",
+          "path": "Returns.java",
+          "bytes": 436,
+          "sha256": "2138a62b2fc676fdd11bc07d61a1c50d0d71528acae9fb0edeb9e485099e6320"
+        },
+        {
+          "source": "b-library-api",
+          "path": "contracts/LoanReturned.json",
+          "bytes": 132,
+          "sha256": "22087a5cac41f53eb26f62f6f9988020523ac24256bc83ba4be1c30c90fc467d"
+        },
+        {
+          "source": "b-library-api",
+          "path": "routes.json",
+          "bytes": 175,
+          "sha256": "5fca289d39e359c3f3799d1623ce7b429dbd7408a10a9ed1f93f5396dd641ecd"
+        },
+        {
+          "source": "c-library-projection",
+          "path": "LoanWriter.java",
+          "bytes": 698,
+          "sha256": "e753db7a7b41576514e8e8d83e6bfa8ff8c2f5c33a3862011798abd009f77ffb"
+        },
+        {
+          "source": "c-library-projection",
+          "path": "README.md",
+          "bytes": 191,
+          "sha256": "08a148d80b7048d1e72a2f27a593d6d4db611eaeffae0419f42315aab91e8f40"
+        },
+        {
+          "source": "c-library-projection",
+          "path": "contracts/LoanReturned.json",
+          "bytes": 132,
+          "sha256": "22087a5cac41f53eb26f62f6f9988020523ac24256bc83ba4be1c30c90fc467d"
+        },
+        {
+          "source": "d-catalog-search",
+          "path": "Lookup.java",
+          "bytes": 48,
+          "sha256": "95241b0a98c4749fb41f3bef36f57727ffb12e61773c5dc81df77b20deff8875"
+        },
+        {
+          "source": "d-catalog-search",
+          "path": "README.md",
+          "bytes": 103,
+          "sha256": "123e557a70c1ae30e99f404a3ebfab67ef0af9b7dce690b1e2423942ae91334c"
+        },
+        {
+          "source": "d-catalog-search",
+          "path": "routes.json",
+          "bytes": 110,
+          "sha256": "29127c3d6e6e8b565a5c31faa1cb3209e24316cb68c20af8395d4c8b1b1d4f20"
+        },
+        {
+          "source": "e-legacy-desk",
+          "path": "README.md",
+          "bytes": 103,
+          "sha256": "2e4f1adbad9a6c067f8db7ba0d1b1f47e8e2c17dd2c112967b0dee2f699e6348"
+        },
+        {
+          "source": "e-legacy-desk",
+          "path": "catalog.js",
+          "bytes": 88,
+          "sha256": "c32e409ab8203c5a875849135f97615db520d6fc247f12084afde77189449c61"
+        },
+        {
+          "source": "z-ops-notes",
+          "path": "README.md",
+          "bytes": 102,
+          "sha256": "ef838212be4250c6fd78479e1162b220741b0e5f7891e51c80955188102a1622"
+        },
+        {
+          "source": "z-ops-notes",
+          "path": "untrusted-example.md",
+          "bytes": 168,
+          "sha256": "556b0b7ebac0118b9d943606539c211a05d4b02cf6f8783f34cee270af8ee55d"
+        }
+      ]
+    },
+    "dynamic-topic": {
+      "sources": 6,
+      "files": 24,
+      "bytes": 4603,
+      "vectorHash": "08da085447f543e4aba17609cda4cbbe3a4a15ee51c7f15d95754f23b3be824e",
+      "filesVector": [
+        {
+          "source": "a-library-ui",
+          "path": "README.md",
+          "bytes": 195,
+          "sha256": "1eee17aa58bba05f5298ae2486069312bb85a729b9ae54096a3a39c7f87c8720"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A0Search.vue",
+          "bytes": 193,
+          "sha256": "34210d94e97c324f127cf7b275296da6f801c8b05249dbff32f6590398919482"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A1Search.vue",
+          "bytes": 193,
+          "sha256": "6ac2c43d37f40078754ec5abd88c0c751bcb48c79dee488b62da24ba6fc0b18f"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A2Search.vue",
+          "bytes": 193,
+          "sha256": "34e0f186af22fb03340d4c03386672de909200899bdcf1ef92285ab4a69c6af8"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A3Search.vue",
+          "bytes": 193,
+          "sha256": "b67f728d14c25cc7b4b5889ba1b87bd5040b85c7706d4699da36a57043062875"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A4Search.vue",
+          "bytes": 193,
+          "sha256": "11d10de229f1186409caa5be955f4adb513b8c4b903c15713a101cc2dacac44b"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/A5Search.vue",
+          "bytes": 193,
+          "sha256": "274ed292dffdcebadc0d4b3bcc08d11e6ffe9ac1a52737477f82a9c905bde59e"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/ZZReturn.vue",
+          "bytes": 276,
+          "sha256": "832afd1ede8cf5c88b57dde4f7a755e5579e111e91fc6e29d8ce1d884dbe1283"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/return.ts",
+          "bytes": 191,
+          "sha256": "679095868603652ea20a33de862acf7855b8e57929612b5f67a65ee0730216d5"
+        },
+        {
+          "source": "a-library-ui",
+          "path": "ui/search.ts",
+          "bytes": 135,
+          "sha256": "b62d36a661cbd1f24c77a2119e7c24fd512c9f3ebd0548a4159638def5d36327"
+        },
+        {
+          "source": "b-library-api",
+          "path": "README.md",
+          "bytes": 175,
+          "sha256": "c65fd26c84bf7b4539fbbc0f11783ef8cba4a69d6268b0b510985e6ff1e79670"
+        },
+        {
+          "source": "b-library-api",
+          "path": "Returns.java",
+          "bytes": 424,
+          "sha256": "271d8f5356b81bd60b62123f1a06b603d6065a26dbb480b28ebb278f74562edb"
+        },
+        {
+          "source": "b-library-api",
+          "path": "contracts/LoanReturned.json",
+          "bytes": 132,
+          "sha256": "22087a5cac41f53eb26f62f6f9988020523ac24256bc83ba4be1c30c90fc467d"
+        },
+        {
+          "source": "b-library-api",
+          "path": "routes.json",
+          "bytes": 175,
+          "sha256": "5fca289d39e359c3f3799d1623ce7b429dbd7408a10a9ed1f93f5396dd641ecd"
+        },
+        {
+          "source": "c-library-projection",
+          "path": "LoanWriter.java",
+          "bytes": 697,
+          "sha256": "725e3182725235a172971ee94fa0eb7d1cef2f7ac8768f67349d9326b3275c7a"
+        },
+        {
+          "source": "c-library-projection",
+          "path": "README.md",
+          "bytes": 191,
+          "sha256": "08a148d80b7048d1e72a2f27a593d6d4db611eaeffae0419f42315aab91e8f40"
+        },
+        {
+          "source": "c-library-projection",
+          "path": "contracts/LoanReturned.json",
+          "bytes": 132,
+          "sha256": "22087a5cac41f53eb26f62f6f9988020523ac24256bc83ba4be1c30c90fc467d"
+        },
+        {
+          "source": "d-catalog-search",
+          "path": "Lookup.java",
+          "bytes": 48,
+          "sha256": "95241b0a98c4749fb41f3bef36f57727ffb12e61773c5dc81df77b20deff8875"
+        },
+        {
+          "source": "d-catalog-search",
+          "path": "README.md",
+          "bytes": 103,
+          "sha256": "123e557a70c1ae30e99f404a3ebfab67ef0af9b7dce690b1e2423942ae91334c"
+        },
+        {
+          "source": "d-catalog-search",
+          "path": "routes.json",
+          "bytes": 110,
+          "sha256": "29127c3d6e6e8b565a5c31faa1cb3209e24316cb68c20af8395d4c8b1b1d4f20"
+        },
+        {
+          "source": "e-legacy-desk",
+          "path": "README.md",
+          "bytes": 103,
+          "sha256": "2e4f1adbad9a6c067f8db7ba0d1b1f47e8e2c17dd2c112967b0dee2f699e6348"
+        },
+        {
+          "source": "e-legacy-desk",
+          "path": "catalog.js",
+          "bytes": 88,
+          "sha256": "c32e409ab8203c5a875849135f97615db520d6fc247f12084afde77189449c61"
+        },
+        {
+          "source": "z-ops-notes",
+          "path": "README.md",
+          "bytes": 102,
+          "sha256": "ef838212be4250c6fd78479e1162b220741b0e5f7891e51c80955188102a1622"
+        },
+        {
+          "source": "z-ops-notes",
+          "path": "untrusted-example.md",
+          "bytes": 168,
+          "sha256": "556b0b7ebac0118b9d943606539c211a05d4b02cf6f8783f34cee270af8ee55d"
+        }
+      ]
+    }
+  }
+}
