@@ -1,6 +1,6 @@
 # Task 097 — Qualify the canonical fact representation
 
-Status: scoped before implementation, 2026-11-04.
+Status: inputs frozen and implementation accepted; execution pending, 2026-11-04.
 
 Task 096 proves bounded request-local sharing of one immutable exact fact-free pair
 after full validation. Qualify its complete composed services using the unchanged
@@ -34,3 +34,21 @@ without a matched baseline. Passing permits a separate integration review; failu
 selects at most one evidenced next action. Independent/private pilot and L5 remain
 separate. Complete diff/hash/reference review and both final-head CI events precede
 an identical-tree merge of this task.
+
+## Preparation
+
+Scope `b81cd73` precedes initial tiny process integration `6d4e300`; its full checks
+pass 597 tests. Review adds two equal fact-free markers in `3e2fef5` to exercise
+sharing in the process fixture. The next full check rejects an inherited old input
+hash before source preparation, correctly blocking the dependent reader. First logs
+and all six failed tiny process artifacts remain retained. Correction `d0cca5d`
+binds the constructed tiny input hash; full checks pass 597 tests/types/builds.
+
+Freeze `8779651` records twenty museum sources / 9,960 files / 9,937 code files /
+570,713 UTF-8 bytes / 21 expected facts and 415 dependency hashes. Pure construction
+review verifies all typed-node files, root actions, exact original ranges and source
+scope without invoking the application parser.
+
+Task 096 exact head `9cf719b` passes push 41817625017 and pull-request 41817637896
+CI (596 tests), then merges as identical-tree `271d1c8`. This branch includes that
+merge; the probe verifies it before the single resource invocation.
