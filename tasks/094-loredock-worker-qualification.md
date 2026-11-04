@@ -1,6 +1,6 @@
 # Task 094 — Qualify worker-local prepared reads
 
-Status: executed once; resource qualification failed, 2026-11-04. Exact-head CI precedes merge.
+Status: merged through PR #98, 2026-11-04; resource qualification remains failed.
 
 Task 093 proves independent semantic/lifecycle equivalence for prepared reads scoped
 to one inventory worker. Qualify its composition with the existing path read scope,
@@ -81,3 +81,6 @@ functional completeness, finite observations and exact resource-failure propagat
 as the prepared/worker tiny tests already do. All resource limits, measured code
 and frozen scores stay unchanged. Full strict checks still pass 582 tests/builds;
 both events must pass for the corrected final head before merge.
+
+Corrected head `6d1d05c` passed push 41816165980 and pull-request 41816175564 CI
+(582 tests), then merged as identical-tree `1fb2a08`. All first failures remain.

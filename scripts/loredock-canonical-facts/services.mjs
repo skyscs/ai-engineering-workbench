@@ -1,0 +1,11 @@
+import { services as worker } from '../loredock-worker-reads/services.mjs';
+import { createPreparedReads } from '../loredock-prepared-reads/reuse.mjs';
+import { codePathLimits, PathWork } from '../../apps/loredock/dist/code-paths-work.js';
+import { bindingMetadata, bindingDomains, assertBindingMetadata } from '../../apps/loredock/dist/code-paths-metadata.js';
+import { declarationMap } from '../../apps/loredock/dist/system-map.js';
+import { compareHeaders } from '../../apps/loredock/dist/http-headers.js';
+import { sha256 } from '../../apps/loredock/dist/extract.js';
+import { CatalogError } from '../../apps/loredock/dist/types.js';
+import { createCanonicalPaths } from './paths.mjs';
+const CodePaths = createCanonicalPaths({ codePathLimits, PathWork, bindingMetadata, bindingDomains, assertBindingMetadata, declarationMap, compareHeaders, sha256, CatalogError });
+export const services = { ...worker, CodePaths: createPreparedReads({ ...worker, CodePaths }).CodePaths };

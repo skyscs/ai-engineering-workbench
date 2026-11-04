@@ -359,6 +359,10 @@ fact/range shape while every file/domain remains necessary. Next test one immuta
 request-local canonical pair after full validation, bounded to 4 KiB with exact
 equality/fallback and unchanged evidence, coverage, work and fences. No optimization
 or memory attribution is implemented by the audit.
+[Task 096](tasks/096-loredock-canonical-facts.md) implements that bounded offline
+representation. Exact-value immutability/fallback and complete tiny captures,
+history, work/read counters and fences pass with 596 full-check tests/builds.
+Next: separately freeze and execute a fresh complete two-process qualification.
 No production promotion or reinterpretation of previous failed gates follows.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
