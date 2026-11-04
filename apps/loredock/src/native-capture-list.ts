@@ -16,7 +16,7 @@ export function captureListRequest(input: CaptureListRequest) {
   requireReceipt((pageSize === 1 || pageSize === 4) && (generationId === undefined) === (input.offset === undefined)
     && (generationId === undefined || typeof generationId === 'string' && hex(generationId))
     && typeof offset === 'number' && Number.isSafeInteger(offset) && offset >= 0 && offset < 64 && offset % pageSize === 0, 'INVALID_CAPTURE_LIST');
-  return { pageSize, offset, generationId };
+  return { pageSize: pageSize as 1 | 4, offset, generationId };
 }
 
 export function captureListGeneration(catalogId: string, ids: string[],

@@ -88,7 +88,7 @@ try {
     assert.deepEqual(seen, ids); return generation;
   };
   const generation = await traverse('initial');
-  assert.equal((await captures.capture({ buildId: fixture.buildId })).duplicate, true);
+  assert.equal((await captures.capture({ buildId: fixture.buildId })).created, false);
   assert.equal((await read('after-duplicate')).generationId, generation);
   await fixture.analyze('capacity-overflow'); await assert.rejects(captures.capture({ buildId: fixture.buildId }), { code: 'CAPTURE_STORAGE_FULL' });
   assert.equal((await read('after-full')).generationId, generation);
