@@ -2,6 +2,10 @@
 
 Status: scoped, 2026-11-04. Begin implementation after Task 117 exact-head acceptance.
 
+The [prospective discovery contract](../docs/loredock/SAVED_PATH_DISCOVERY.md) fixes owned
+enumeration, four-candidate pages with explicit one-item fallback, generation/source
+fences, authorized summaries, HTTP inputs and browser behavior before implementation.
+
 Add the smallest authorized saved-path list so a user can find existing records after
 closing a tab without keeping individual links. Reuse Task 117's recorded view and
 links. No new user configuration, filesystem picker, raw ID field, model call or
