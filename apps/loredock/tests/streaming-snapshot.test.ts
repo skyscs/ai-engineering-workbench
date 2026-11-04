@@ -6,7 +6,7 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import type { Catalog } from '../src/catalog.js';
 import type { CatalogStore } from '../src/store.js';
-import { CodeAnalysis } from '../src/code-analysis.js';
+import { CodeAnalysis } from './fixtures/integration-reference/index.js';
 import type { AnalysisUnit } from '../src/code-analysis-types.js';
 import { config } from './fixtures/streaming-snapshot-config.js';
 // @ts-expect-error Independent owned setup helpers, with no frozen corpus or measurement entry point.

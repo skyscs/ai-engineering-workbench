@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFile } from 'node:fs/promises';
 import { sha256 } from '../src/extract.js';
+import { referenceSource } from './fixtures/integration-reference/index.js';
 // @ts-expect-error Offline representation helper; no frozen corpus or probe.
 import { createCanonicalPair, canonicalPairLimit } from '../../../scripts/loredock-canonical-facts/pair.mjs';
 
@@ -68,5 +69,5 @@ test('canonical path fork differs only at the declared retention seam and depend
     .replace('entries.push({ file, payload: { facts: payload.facts, ranges: payload.ranges, evidence: payload.evidence } });',
       'entries.push({ file, payload: { ...canonicalPair(payload.facts, payload.ranges), evidence: payload.evidence } });'));
   const manifest = JSON.parse(await readFile(new URL('scripts/loredock-canonical-facts/baseline.json', root), 'utf8')) as { files: Record<string, string> };
-  for (const [file, expected] of Object.entries(manifest.files)) assert.equal(sha256(await readFile(new URL(file, root))), expected, file);
+  for (const [file, expected] of Object.entries(manifest.files)) assert.equal(sha256(await referenceSource(file)), expected, file);
 });

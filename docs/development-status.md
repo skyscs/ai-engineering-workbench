@@ -1,5 +1,27 @@
 # Development status
 
+## Task 100 — Independent store and analysis controls survive production edits
+
+The [portable test reference](fixtures/loredock-integration-reference/README.md)
+preserves two exact source modules, deterministic compiled/import-relocated output,
+TypeScript identity and thirteen unchanged runtime dependencies. Four explicit test/
+configuration migrations retain all existing assertions. The source-only focused
+run passes 23 cases/subcases before daemon output exists, including import from a
+separate process without Git on PATH. Full strict checks pass **612 tests/builds**
+on first execution; five logs and all 415 unchanged measured dependencies verify.
+
+Source review corrects the integration plan: the fingerprint hashes the complete
+analysis implementation, so later representation edits change derived identities
+and require incompatibility/reanalysis/rollback coverage. The behavior reference
+shares the current fingerprint provider explicitly; it does not replay historical
+runtime identities. No original qualification or saved result changes.
+
+Next [Task 101](../tasks/101-loredock-v1-resource-integration.md) integrates v1
+representation with a preserved v1 path control, production lifecycle/HTTP/browser
+checks and later final-composition qualification. Current production remains unchanged.
+PR #103 head `1ddac18` passed push 41822159152 and pull-request 41822228450 CI
+(609 tests), then merged as identical-tree `efac695`.
+
 ## Task 099 — Typed resource primitives preserve the qualified helper behavior
 
 Three [internal TypeScript modules](fixtures/loredock-typed-resource-primitives/README.md)

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "task100-reference-validation/1",
+  "scope": "30a41a0",
+  "fingerprintCorrection": "5a2b9a2",
+  "implementation": "0183563",
+  "focusedTests": 23,
+  "focusedDaemonDistPresent": false,
+  "fullTests": 612,
+  "unchangedFrozenDependencies": 415,
+  "firstFailures": [],
+  "files": [
+    {
+      "file": "install-first.log.gz",
+      "original": "/home/toshiba/aew/task100-install-first.log",
+      "exitCode": 0,
+      "bytes": 326,
+      "sha256": "5a3c8a0f20b95736fab4511bb56640cef3e15b09756eb436e84d18c5e554f272",
+      "archiveBytes": 184,
+      "archiveSha256": "fbc739e6291b0541ab7b26122629980ed848570467d9facd475284f5046ae953"
+    },
+    {
+      "file": "focused-first.log.gz",
+      "original": "/home/toshiba/aew/task100-focused-first.log",
+      "exitCode": 0,
+      "bytes": 6152,
+      "sha256": "60d523b506808e208f25a465e33c0cbbda7dcccba973d15d3474fe12e9b5d56e",
+      "archiveBytes": 1610,
+      "archiveSha256": "0cb2cd7e663f065daed7f8927cee2d85d5b554996f261541ed7596ba15a7a750"
+    },
+    {
+      "file": "packages-first.log.gz",
+      "original": "/home/toshiba/aew/task100-packages-first.log",
+      "exitCode": 0,
+      "bytes": 603,
+      "sha256": "8c1fbe9163529ba24de2507e7256c862c1d032ad7a83363bd976c1350a51095a",
+      "archiveBytes": 243,
+      "archiveSha256": "2d15da56707908bf7a3374a93157ff29902f97e8fb90517bac9883fdb957e81f"
+    },
+    {
+      "file": "types-first.log.gz",
+      "original": "/home/toshiba/aew/task100-types-first.log",
+      "exitCode": 0,
+      "bytes": 153,
+      "sha256": "5785dfe437c799c1b62df8a9904115796ed3dfe5c927b8c43c558c572b57b63b",
+      "archiveBytes": 137,
+      "archiveSha256": "49c7e8178a30115446f1f4f519d582029e730cafb70c2fa3b29723a08f528e43"
+    },
+    {
+      "file": "check-first.log.gz",
+      "original": "/home/toshiba/aew/task100-check-first.log",
+      "exitCode": 0,
+      "bytes": 243763,
+      "sha256": "284bfaaf0899d6ada4755622f08377dd2004fd111d90b0742df96e1f679ce77c",
+      "archiveBytes": 34633,
+      "archiveSha256": "d176e67da5e5364ac718f40a0cf5833909904c6982c79833f607f9fe801498e7"
+    }
+  ]
+}

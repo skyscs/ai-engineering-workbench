@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "task100-integration-reference/1",
+  "revision": "1ddac18c1aed79df9c80f1949f37aeede5c6a721",
+  "compiler": {
+    "version": "5.9.3",
+    "options": {
+      "target": 9,
+      "module": 7,
+      "isolatedModules": true,
+      "esModuleInterop": true,
+      "removeComments": false,
+      "sourceMap": false,
+      "newLine": 1
+    },
+    "moduleSha256": "3ae902c92cc44dace175c0e69e13a4b0899f6983c6121d76b9ab8dd5795e7675"
+  },
+  "fingerprintContext": "Deliberately share the current unchanged codeAnalysisFingerprint provider, including its reads of current production implementation bytes. This is a behavioral control, not a historical runtime replay.",
+  "sources": {
+    "apps/loredock/src/store.ts": {
+      "source": "store.ts.txt",
+      "module": "store.mjs",
+      "bytes": 26834,
+      "sha256": "d2faf0886743e1006bf74c2aceb9ede232ccc4e46d2fd52f47205c9d3b9f0627",
+      "emittedSha256": "3617df4ca954a29cd1ad5598b1c2d0903d5c28f1f9a9d6e6a414ef7f0f014515",
+      "moduleSha256": "f81879b763309101d8c4dfa7a7525c4e492e103015fbf9cf5e87ab9730906299",
+      "relocations": {
+        "./types.js": "../../../src/types.js",
+        "./git.js": "../../../src/git.js",
+        "./extract.js": "../../../src/extract.js",
+        "./search-text.js": "../../../src/search-text.js",
+        "./checkpoint.js": "../../../src/checkpoint.js",
+        "./literal-search-storage.js": "../../../src/literal-search-storage.js"
+      }
+    },
+    "apps/loredock/src/code-analysis.ts": {
+      "source": "code-analysis.ts.txt",
+      "module": "code-analysis.mjs",
+      "bytes": 21586,
+      "sha256": "45485d1b1e5534546d8d40504d7d04090442ce6298142222740ba9942e5764da",
+      "emittedSha256": "103e804cd122524831fcb6d1d3861108fc2322941f53b7e58bbfa3e292270768",
+      "moduleSha256": "56cc39de1d448f8cc368b6bc58171897b2f360d1a91cd438d4e9b9f74337304c",
+      "relocations": {
+        "./types.js": "../../../src/types.js",
+        "./extract.js": "../../../src/extract.js",
+        "./map-document.js": "../../../src/map-document.js",
+        "./code-typescript.js": "../../../src/code-typescript.js",
+        "./code-java.js": "../../../src/code-java.js",
+        "./code-analysis-facts.js": "../../../src/code-analysis-facts.js",
+        "./code-analysis-types.js": "../../../src/code-analysis-types.js"
+      }
+    }
+  },
+  "dependencies": {
+    "apps/loredock/src/checkpoint.ts": "4845cc1822319491448c02c91ce11d16bb10f632c82e3691d4238dcb439554d8",
+    "apps/loredock/src/code-analysis-facts.ts": "82fb810a3fa6a790538925cb5431c1ccc08b7e096229378fe95d0e91b85d5167",
+    "apps/loredock/src/code-analysis-types.ts": "505bd871b64f3ee5be89375da6acf02cbc36966c3a10ad4c7cc4d63f8a2f8192",
+    "apps/loredock/src/code-facts.ts": "38227b1619f13457b45883dcba6dd9316c62a2fa72ef858b51a77779287a2151",
+    "apps/loredock/src/code-java.ts": "d51ff800a32a513f1e3a8eed7015d9be96817fef00c9eb1f70ff2f06b5d92389",
+    "apps/loredock/src/code-typescript.ts": "773a8ced3b8e304c7d306fa9a91e060ce7da7194ebcde5a4ccb5aa12f9c1a5ad",
+    "apps/loredock/src/extract.ts": "0909a4884ff9a82bd9eaaa6b625c7044f69eba3f3c53771b16668c2cdd3e6c2b",
+    "apps/loredock/src/git.ts": "db71527e26ea0d2c14486a0390b275c92054489624276eec5961e60015c1aab1",
+    "apps/loredock/src/http-headers.ts": "967bddace78b2c472401e4a490b08ca7cfc44eae725a537d52c7b102ebbdb1a9",
+    "apps/loredock/src/literal-search-storage.ts": "22f2349afb59b4eaa994cc70c5769c98e1adec0dc7e06ffe1fdcde108821a713",
+    "apps/loredock/src/map-document.ts": "741ddd865b8c7ac63082f67200d3e5b55d74fa1cc9ce156b84aaa328165aede7",
+    "apps/loredock/src/search-text.ts": "b283822b5903f47aed6ac3ed07191c38681beaa11e4ecebb188638719dddb91a",
+    "apps/loredock/src/types.ts": "c2224039777498e97697bacc2400a4b272d6c582f58766a244d3dc77af0339ba"
+  },
+  "externalImports": [
+    "node:child_process",
+    "node:crypto",
+    "node:fs",
+    "node:fs/promises",
+    "node:module",
+    "node:os",
+    "node:path",
+    "node:sqlite",
+    "node:timers/promises",
+    "node:util",
+    "typescript"
+  ]
+}

@@ -1,6 +1,6 @@
 # Task 099 — Type the qualified resource ownership primitives
 
-Status: implemented and locally verified, 2026-11-04; helpers remain unconnected.
+Status: merged through PR #103, 2026-11-04; helpers remain unconnected.
 
 Implement three internal TypeScript modules under `apps/loredock/src`: a bounded
 prepared-read scope owner, the single immutable canonical fact/range pair and the
@@ -47,3 +47,6 @@ Full checks pass 609 tests/types/builds; the three built modules import and all
 415 Task 097 dependencies remain unchanged. Complete diff/reference/hash review
 precedes CI. Next preserve the independent test reference before the v1 service
 integration; no resource claim or production behavior change follows here.
+
+Final head `1ddac18` passed push 41822159152 and pull-request 41822228450 CI
+(609 tests), then merged as identical-tree `efac695`.

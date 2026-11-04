@@ -76,7 +76,7 @@ or transfer a correction based only on node labels.
 | Snapshot | Exact manifest bytes for empty/mixed/escaped inputs; late corruption/count/byte/ordinal failure; iterator release; symbol lookup and both initial/final path snapshots. |
 | Publication/history | Complete originals and dependencies, concurrent external writer, final synchronous guard, idempotency and cleanup, then exact recorded bytes after inventory eviction. History must not derive replacement paths or read fact payloads. |
 | HTTP/browser | Actual protected routes and built browser: missing facts, default/selected/page/isolated paths, originals, historical index, busy/retry, ignored-cancellation late responses, source/policy changes, desktop and 390 px. Use owned fixtures, not the prepared user demo. |
-| Compatibility | No schema migration, parser fingerprint or stored inventory payload change for representation-only work. Reopen a pre-change stopped catalog; preserve legacy projection IDs/bytes, search, answers and review history. |
+| Compatibility | No schema or stored payload migration for representation-only work. `codeAnalysisFingerprint` hashes the entire analysis module, so editing it changes the fingerprint and derived generation IDs. Reopen a pre-change stopped catalog; explicitly fence incompatible inventories, permit explicit reanalysis and preserve original source, saved answers/review bytes and their historical rules. |
 
 ## Preserving meaningful historical tests
 
@@ -97,6 +97,12 @@ have hash checks. The reference must run in a shallow CI checkout without networ
 Git history, generated `dist` or access to local old worktrees. No giant source-tree
 snapshot, dynamic source rewriting in production or historical family replay.
 
+The unchanged fingerprint provider reads current production module bytes. The
+behavioral control deliberately shares that provider with the candidate so paired
+stopped-copy tests have the same identity basis. Record and verify this context
+dependency; do not describe the reference as a historical runtime/fingerprint replay.
+Separately test genuine pre-change fingerprint refusal and post-change reanalysis.
+
 Adapt ordinary comparison tests explicitly to that reference, with a recorded migration
 map from each old test to its preserved assertion/new production counterpart. Cover
 original SQL execution and unscoped preparations, streaming manifest equivalence,
@@ -113,7 +119,9 @@ old probes correctly refuse execution against changed dependencies.
    ownership boundaries without changing frozen production dependencies or wire IDs.
 2. **Representation integration.** First establish the minimal test reference above;
    then stream snapshots and integrate read scopes/compact canonical entries into
-   the existing production v1 services. Preserve exact v1 output and every caller.
+   the existing production v1 services. Preserve v1 behavior under the same test
+   identity basis and every caller. An actual fingerprint change must invalidate
+   derived generation IDs; never claim byte identity across that transition.
    Full strict checks and actual protected HTTP/browser checks are mandatory. This
    change does not import the literal-topic resolver or publish offline receipts.
 3. **Final-composition qualification and release.** Freeze fresh source-authored
@@ -135,11 +143,14 @@ No new input fields or manual cache controls are needed for the user.
 
 ## Rollback and limits
 
-Representation changes alter transient ownership only. Rollback uses the preceding
-application build against the same stopped catalog; keep the existing backup/startup
-procedure. No automatic history rewrite, inventory reparse, receipt conversion or
-background cleanup is required. Verify backward reopen on owned copies before
-release. A new derivation adapter instead needs explicit versioned history support;
+Representation changes alter transient ownership, but the current fingerprint also
+hashes the analysis implementation. Rollback uses the preceding application build
+against the same stopped catalog and may require explicit analysis because inventories
+from the newer fingerprint are incompatible or older ones were normally evicted.
+Keep the existing backup/startup procedure. No automatic history rewrite, receipt
+conversion or background cleanup is required. Verify backward reopen, explicit
+incompatibility and reanalysis on owned copies before release. A new derivation
+adapter instead needs explicit versioned history support;
 unsupported saved formats fail closed without recasting their content as v1.
 
 Keep fixed 5,000 ms / 1,000,000 work / 150 ms sampled interval / 384 MiB RSS / 64 MiB
@@ -148,3 +159,8 @@ interrupts for synchronous SQLite/parser calls. The successful marker-heavy run 
 not cover arbitrary dense facts, every OS/runtime or long-term process growth.
 Independent/private-pilot acceptance, question relevance, semantic model evaluation
 and L5/Workbench routing remain separate. Preserve all earlier rejected gates.
+
+Task 100's pre-implementation source audit corrects Task 098's initial assumption
+that transient representation edits preserve parser fingerprints and generation
+bytes. The original review remains visible in Git history; no qualification result
+or historical artifact is reinterpreted by this correction.

@@ -17,8 +17,8 @@ and manifests deliberately depend on the pre-change production source.
 Follow the [integration review](../loredock/QUALIFIED_COMPOSITION_INTEGRATION.md).
 First prove typed internal read-scope, immutable-pair and shared-budget primitives.
 Preserve an explicit portable test-only baseline before changing source-bound tests.
-Then integrate representation/ownership into existing v1 services with exact v1
-output, lifecycle, original-validation and caller equivalence. Qualify that final
+Then integrate representation/ownership into existing v1 services with exact output
+under the same test identity basis, lifecycle, original-validation and caller equivalence. Qualify that final
 compiled composition on fresh inputs before claiming production scale acceptance.
 
 Treat literal-topic derivation, new wire/receipt identities and durable receipt
@@ -34,3 +34,9 @@ of every experimental capability. Preserved reference behavior prevents comparis
 from silently becoming self-comparisons. No database migration is needed for transient
 representation; rollback preserves the stopped catalog and original historical bytes.
 Private-project semantics, dense-code scale, question selection and L5 remain open.
+
+Task 100's source audit clarifies that the current fingerprint hashes the complete
+analysis module. Representation edits change that fingerprint and derived generation
+IDs. Preserve the fence, test explicit reanalysis and rollback incompatibility, and
+do not claim byte identity across versions. The behavioral test reference deliberately
+shares the current fingerprint provider; it is not a historical runtime replay.
