@@ -40,7 +40,7 @@ export class CaptureWork {
     });
     dependencies.sort((a, b) => a.sourceId < b.sourceId ? -1 : a.sourceId > b.sourceId ? 1 : 0); return { build, dependencies };
   }
-  authorized(projection: ReceiptProjection, saved: ReceiptDependency[]) {
+  authorized(projection: Pick<ReceiptProjection, 'identity'>, saved: ReceiptDependency[]) {
     const current = this.dependencies(projection.identity.buildId);
     requireReceipt(current.build.policyVersion === projection.identity.policyVersion && current.build.sourceSetVersion === projection.identity.sourceSetVersion
       && same(current.dependencies, saved), 'RECEIPT_SCOPE_FENCED'); return current;

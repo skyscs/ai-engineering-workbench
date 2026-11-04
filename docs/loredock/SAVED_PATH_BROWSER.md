@@ -50,9 +50,9 @@ rechecks access once project state is available; late history responses cannot r
 the cleared content. Navigating away aborts the request. The UI rejects an unexpected
 history/projection version instead of attempting to relabel it.
 
-The record remains in the catalog after page closure. This first workflow uses saved
-links for later discovery; it does not claim a complete saved-path list. Listing,
-explicit deletion/repair and any answer/Workbench consumption remain separate tasks.
+The record remains in the catalog after page closure. Task 117 uses saved links for
+later discovery; Task 118 adds [bounded saved-path browsing](SAVED_PATH_DISCOVERY.md).
+Explicit deletion/repair and any answer/Workbench consumption remain separate tasks.
 
 ## Verification
 
@@ -87,6 +87,6 @@ temporary source/catalog directories; retained files are not claimed as a databa
 backup. No exhausted family, corporate code, user demo or model call was used. The result
 does not establish independent product, semantic, scale or L5 acceptance.
 
-After exact-head CI, [Task 118](../../tasks/118-loredock-saved-path-discovery.md) addresses
+[Task 118](../../tasks/118-loredock-saved-path-discovery.md) addresses
 discovery without a bookmark under a bounded authorized listing contract. Deletion,
 repair and answer/Workbench consumption remain separate.

@@ -1,6 +1,7 @@
 # Task 117 — Save and reopen the selected connected path in the browser
 
-Status: implemented and locally verified, 2026-11-04; exact-head CI pending.
+Status: merged after exact-head CI, 2026-11-04. PR #121 head `3be8a26` passed push
+41910682631 and pull-request 41910691383; identical-tree merge `4ab902b`.
 
 The [interaction contract](../docs/loredock/SAVED_PATH_BROWSER.md) defines
 the pinned save, local bookmark link, recorded presentation and scope/cancellation rules

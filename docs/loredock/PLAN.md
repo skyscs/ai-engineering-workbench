@@ -227,7 +227,14 @@ supports local bookmarks, exact saved originals and current authorization fences
 requiring the old inventory. Sixteen saved-browser and seventeen live-browser scenarios
 pass with unchanged native/public daemon modules.
 [Task 118](../../tasks/118-loredock-saved-path-discovery.md) adds bounded authorized
-discovery so saved records can be found without retaining a bookmark. No semantic/L5 gate
+discovery so saved records can be found without retaining a bookmark. Its
+[bounded list](SAVED_PATH_DISCOVERY.md) verifies every original/dependency, pins page
+generations and offers explicit one-record recovery. Actual full-capacity/restart and
+Chrome checks pass; the native closure intentionally adds one module while preserving
+every preexisting emitted class member. Next
+[Task 119](../../tasks/119-loredock-native-question-context-contract.md) specifies how
+native connected paths could support project questions before an offline comparison.
+No production answer context or model evaluation changes in that design task. No semantic/L5 gate
 is inferred from either the resource result or this public read migration.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.

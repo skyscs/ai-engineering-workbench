@@ -67,6 +67,17 @@ Project authority/published-index changes and refresh failures fence the view; r
 is explicit. Saved-link navigation remains independent of inventory retention. No new
 daemon/core, storage or schema change is involved. See the
 [saved-path workflow](docs/loredock/SAVED_PATH_BROWSER.md).
+
+Task 118 adds catalog-owned ID enumeration and bounded discovery on that same native
+operation owner. Each page inspects at most four receipts under one actual budget,
+reauthorizes every dependency/original and returns summaries only. A digest pins the
+catalog, sorted ID vector and source/index epoch; final rechecks prevent mixed pages.
+Policy-fenced records contribute only to unavailable counts. Other integrity/storage
+failures abort the page. The browser stores one transient page and uses explicit refresh
+or one-record fallback; no persistent client index is added. The native closure now has
+39 modules: two extended modules and one addition, with every preexisting emitted class
+member and the other 36 modules unchanged. This does not extend the earlier resource
+qualification claim. See [saved-path discovery](docs/loredock/SAVED_PATH_DISCOVERY.md).
 Explicit storage accounting and offline compaction use separate maintenance commands,
 preserving logical history and normal job recovery. Compaction acquires daemon
 ownership and rewrites physical SQLite pages only when free pages exist; see

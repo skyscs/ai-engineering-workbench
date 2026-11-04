@@ -1,6 +1,10 @@
 # Task 118 — Discover saved paths without retaining a bookmark
 
-Status: scoped, 2026-11-04. Begin implementation after Task 117 exact-head acceptance.
+Status: implemented and locally verified, 2026-11-04; exact-head CI pending.
+
+The [prospective discovery contract](../docs/loredock/SAVED_PATH_DISCOVERY.md) fixes owned
+enumeration, four-candidate pages with explicit one-item fallback, generation/source
+fences, authorized summaries, HTTP inputs and browser behavior before implementation.
 
 Add the smallest authorized saved-path list so a user can find existing records after
 closing a tab without keeping individual links. Reuse Task 117's recorded view and
@@ -39,3 +43,14 @@ including records whose code inventory was evicted. Review keyboard navigation, 
 clear empty/fenced/unavailable states and direct-link compatibility. Retain first failures,
 actual compiled/browser results, strict checks and both exact-head CI outcomes before
 merge. Do not rerun exhausted resource families or introduce corporate/model work.
+
+Implemented with owned enumeration, generation-pinned four/one-candidate pages and
+the collapsed browser workflow. The actual compiled full-capacity check passes across
+64 records and restart. Fourteen actual Chrome scenarios pass, including explicit
+smaller-page recovery and unavailable-only pages; initial harness failures are retained.
+Existing emitted native members remain unchanged; the runtime closure intentionally
+grows from 38 to 39 modules. All 862 strict tests/builds pass. First failures, raw
+responses and screenshots are [retained](../docs/fixtures/loredock-saved-path-discovery/README.md).
+Next, after exact-head acceptance:
+[Task 119](119-loredock-native-question-context-contract.md) returns to question context
+with a prospective integration/evaluation design. Deletion/repair remains separate.

@@ -39,7 +39,20 @@ test('analysis write reference preserves independent source, both import variant
     }
     await visit(file);
   }
-  assert.deepEqual(dependencies, manifest.dependencies); assert.deepEqual([...external].sort(), manifest.externalImports);
+  assert.deepEqual(Object.keys(dependencies).sort(), Object.keys(manifest.dependencies).sort());
+  for (const [file, originalHash] of Object.entries(manifest.dependencies)) {
+    if (file !== 'apps/loredock/src/native-receipt-store.ts') { assert.equal(dependencies[file], originalHash, file); continue; }
+    // Task 118 adds only ids(); the old reference never calls it. Preserve the
+    // archived pin and prove every other source byte, including imports, unchanged.
+    const text = await readFile(new URL(file, root), 'utf8'), source = ts.createSourceFile(file, text, ts.ScriptTarget.Latest, true);
+    const declaration = source.statements.find(row => ts.isClassDeclaration(row) && row.name?.text === 'NativeReceiptStore');
+    assert.ok(declaration && ts.isClassDeclaration(declaration));
+    const additions = declaration.members.filter(row => row.name?.getText(source) === 'ids'); assert.equal(additions.length, 1);
+    const addition = additions[0]!; assert.ok(ts.isMethodDeclaration(addition));
+    assert.equal(sha256(text.slice(0, addition.getFullStart()) + text.slice(addition.end)), originalHash);
+    assert.notEqual(dependencies[file], originalHash);
+  }
+  assert.deepEqual([...external].sort(), manifest.externalImports);
   assert.equal(Object.keys(manifest.sources).length, 2); assert.equal(Object.keys(dependencies).length, 22);
   assert.match(manifest.fingerprintContext, /current production implementation bytes/);
 });

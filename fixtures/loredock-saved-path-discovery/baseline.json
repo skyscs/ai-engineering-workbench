@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "saved-path-discovery-baseline/1",
+  "purpose": "Additive native listing control; not a resource qualification family.",
+  "head": "d17b02b8b4917e876e1410433e38f9890fa26b8e",
+  "acceptedParent": {
+    "head": "3be8a268e40b77a3d0e1903e8a89d5e3d3648019",
+    "merge": "4ab902b451a5cb6559367b766c9cc52c625498aa",
+    "push": 41910682631,
+    "pullRequest": 41910691383,
+    "conclusion": "success",
+    "treeEqualityVerified": true
+  },
+  "node": "v22.23.2",
+  "v8": "12.4.254.21-node.56",
+  "typescript": "5.9.3",
+  "qualifiedRuntimeModules": {
+    "allocation.js": "2437856c6f8b88461617015bd398eb4838ac9e4095f31c877307f23e004af1b4",
+    "canonical-fact-pair.js": "d3b0d5db077c89a347dd70f701d86fd52d21159c9a1af1176d17e01fcb22f795",
+    "catalog.js": "e381ed4d02e8b03542ea2dda7fc35d765f0ff9f75e11eb1983a5637d09cd5433",
+    "checkpoint.js": "7215a27a3be0438aa3d57d35b7b0e24d650d88137d611231ac9b4dd8aa3f12df",
+    "code-analysis-facts.js": "9b43fdc39a173e6991d77d0fc49acd53b960e302f5bf392c1858be9d65b05166",
+    "code-analysis-types.js": "044c5daac440bea79b7425cd7b0da667d8e8a30f709acf20830869285f8da1ab",
+    "code-analysis.js": "b8e8fa60a2511eefc7271a3e0a39e0cd8b65b2bfe1720f3beace385b3004c21c",
+    "code-facts.js": "a5d8f8c7ad85ffb1751cde309e3f79235b2ef7315dbbe79d05dc1517aec3e6e4",
+    "code-java.js": "3761da0b7f651a35083dfca56be2c9b267b84adeec7d6128b88dcf6be806a8b7",
+    "code-paths-metadata.js": "927935e599d6443cca08556dbeb2307b973391e797ef9d0c26bdb1fbea8d3982",
+    "code-paths-owner.js": "bb26527c52365d9d3eaa218cbdf139292398e74cb94ce250014f526532c6e373",
+    "code-paths-v2-admit.js": "b9e34d78a8f4031b05baa8f3cc0096c50f8a1aea222d9db1e20423843de3a974",
+    "code-paths-v2-resolve.js": "77ed90cfbaaf55929f26afc373b2f291da828c141f5a3bb9ff5cc876a95711a6",
+    "code-paths-v2-work.js": "1f11c1662bcfc76a016d4e81902a0dc150e02d1d98e1e46c7f8aa7a7e426a859",
+    "code-paths-v2.js": "4fc072e71636af4cca6b694938abe3db9a420ec90ccfa915459629d03850b9cf",
+    "code-paths-work.js": "96483c9679a4b4249f66e86244bdb43e8e7979565d5e5f6a3b1fcc5adecb1521",
+    "code-typescript.js": "bed4a32a30f629aec58f02ae4e0284cde053d318b39046fcde54d6640a6772b9",
+    "extract.js": "984633a62b0d083f7765aaad7c70211b5dc4fcb81e15022c80e0f477878e6090",
+    "git.js": "8938e323444586bb0ae502e7052fdd3a343f746ed38e4bb0abf140546f843de8",
+    "http-headers.js": "402d2035827c44c2087d31c5c5767e598f9c7121f94747f82e81efed5a421e53",
+    "literal-search-storage.js": "b5975acc6f0c928398ab65d894c5be48e28ce18ca31587fef247f589dd8ac24b",
+    "literal-topic.js": "808deb8f54af9504b4adae4cf4ffd62d781cb7815462da18456618ba4b7a584d",
+    "map-document.js": "418bd45adf403260ca92b9d033d769bd20136da720acfc9dc19de1ad4fc7b8c1",
+    "native-capture-work.js": "98c110a5494f5103529b10cfa7eaca6d3b8ee59d54e526eba75988ea39695b53",
+    "native-capture.js": "95eb40a62fcfb4481dc6bd6f3aeae003c74ab222395549108f1d71339fe53ca0",
+    "native-receipt-files.js": "38f7afc0baab9aa8c541e285236fd71d378519d8a51833cc3dd1416bee10919d",
+    "native-receipt-json.js": "ee9617490a85b79c2c8e37ca837076e1b7ba4656757cd1fb17ad7d5742b50862",
+    "native-receipt-projection.js": "35ea359a060a67b685887cf06c4dad9a67d3dddc0a0cdebad093f76d5df54d13",
+    "native-receipt-store.js": "291e361917cf5dc060e3474650fb98ba214bca548ccfaa815485df441a09e715",
+    "native-receipt.js": "0ece6dc2433a50eeb86f1b6750069042ae36c54b98ad5061b477950a8dd1b2a2",
+    "operation-budget.js": "8c7d16470ea6f7f270d4710ba4e1affbc11e0ab690729da6ab5c1e9082b3169f",
+    "prepared-analysis-writes.js": "15414f4ca89d848e3a9acb210822862014b0ecbb58d078ec82ab5ed0c69774e5",
+    "prepared-read-scope.js": "07c702188ab8013a138337cbd255f61b984eda3dbb67dfe5314a0a914e42f19e",
+    "search-text.js": "21de7c741e37940803505981e4e03f0390ad654cdd1ae71b76e6c1861ed8e97c",
+    "source-registration.js": "c1a59472a50961a03f5bc95169669bf98044bc08c108e26474ad2adc81aaf9dc",
+    "store.js": "dead22030302a9219db3402ae79b8aa9862b15bca82767951e77782da6bb00b1",
+    "system-map.js": "bb2b1c872817c928ec70761a36c75b055f785d6fdc642b9f8a9301bd58a9efbd",
+    "types.js": "b8b55bceba56ab305c5eb4f6a9047a27f91ed4d38ff084bdae213dae1dc319fd"
+  },
+  "files": {
+    "apps/loredock/src/native-capture.ts": "2deb363c987b5ba17fd61270ac51a92da88d24a280ba147857169fd6d8334783",
+    "apps/loredock/dist/native-capture.js": "95eb40a62fcfb4481dc6bd6f3aeae003c74ab222395549108f1d71339fe53ca0",
+    "apps/loredock/src/native-capture-work.ts": "f1a14c762db838853d15e5bd3eb13e4b2e16892477ec2eda86dbb2adab3a97ba",
+    "apps/loredock/dist/native-capture-work.js": "98c110a5494f5103529b10cfa7eaca6d3b8ee59d54e526eba75988ea39695b53",
+    "apps/loredock/src/native-receipt-store.ts": "452ac8bc6a62cf492469c867876de3c95f9bed92968fd669276f78e8b00eca4c",
+    "apps/loredock/dist/native-receipt-store.js": "291e361917cf5dc060e3474650fb98ba214bca548ccfaa815485df441a09e715"
+  },
+  "emittedMembers": {
+    "apps/loredock/dist/native-capture.js": {
+      "NativeCaptures": {
+        "analysis": "7a59bd26f363847a38c64eb8cb95d40f2b3a5f48819127dbd9120312bf5ea042",
+        "options": "a7f2e539b3c5f27725e3739bd74aede885e703745cc2ffc77a944a366daa3c0b",
+        "paths": "13d10dc95f3e4b4ed290e23ce4aa303d7cd155892de6062e494186ba40ac00f3",
+        "ownsPaths": "086f60329a2a0f5287fa61d42fadadeee9f3e1d2b6a9eda971c30896ef152fc9",
+        "stopping": "8d0d6bf8a441b3dec14601bdf6b3cace0dda4107e9c5c0ecc8906f08784f617f",
+        "stopPromise": "6bcb8905fc33596db072901e616c82650177232f016f937f277a8ba15acba1d6",
+        "active": "bf8b4c9060b56c8a894c210de300865cb56815decbe222aca637372d9c81e327",
+        "constructor": "54603bc1da95bff6757a6eb7f265c8c7461405dd15956bbb159eaa3b7d9bf6dc",
+        "run": "16276f080bf0a52bc272623488ef5e88ff2608445820a4de1432ce4c0fabe812",
+        "capture": "4df660f5a830850620ebad8dd3fa5abb8d18551cf63fd3ba5a12fdd249391184",
+        "history": "dd45d9d98acc21ab77ef5a0160334667a3955493beba7407276e253318605043",
+        "stop": "dc6dfc4863f8ea8137def20cea7947d23e6b897b80c4ae164c205e8fc01aff15"
+      }
+    },
+    "apps/loredock/dist/native-capture-work.js": {
+      "CaptureWork": {
+        "catalog": "b5dad89ce6486fe5509c381c8f60ee1ad929dac4ccd096c03c6984cddfa9d195",
+        "budget": "ec3ffd171a3acbef0706d800b8183f09916abfedd92093a1cef9f33d15e143f4",
+        "signal": "43d6ee772fa2c588519d6401b9a1972244a275fa9df6ba3e8db6fe5a750bedd5",
+        "options": "a7f2e539b3c5f27725e3739bd74aede885e703745cc2ffc77a944a366daa3c0b",
+        "context": "be39a6c2201c1a6811298036cff3e18a75e5b82e58e1dd1dfddd2de7a0401134",
+        "initial": "556e6b46a430d339cc9cb470d873e15466d859ca5517cc8cf364aefab0dd4873",
+        "checkpoints": "8775c620e9549b4f9ba31deafe5919a2b1332b3afc41d6f6da70be382061564d",
+        "constructor": "e146dbf5782207c852decaeef5b398687858e6a3eb09530c61120edc45e1246c",
+        "check": "413296be733a53be93ba681ceda5043854eb42f1aef7d7e42253d21ef293b25f",
+        "charge": "31638a86e8dacbd57e498dc1405d3afe00577f8dfcc2789b9196111c9bd16c49",
+        "step": "bb0d1bd32e79974458523b9a62e893d2eba25cbdf36798372aa6bbe48aaede3f",
+        "dependencies": "6f636906200f6684b2c1f860416e926a39c1dbcd84802c9a29f23e5ffaa5a1d7",
+        "authorized": "14bf6ad6708b9b44d53e9f378bccc039b0ed4d62343e9cbdc6c43762e3893c99",
+        "original": "d05ae649e2c15a928f98f075580a2088d97e53eaf78b4d89e5308f9c77706a78",
+        "insideFence": "4265ffb216c77c46df1052aaa901b72b23ada6a5ba4a428eff156d8324ce3e1c",
+        "metrics": "ec660a912dda7037ed1ba0570499f858349952c16ef9ee68562337f35e66852f"
+      }
+    },
+    "apps/loredock/dist/native-receipt-store.js": {
+      "NativeReceiptStore": {
+        "catalogId": "c95c98fa7e2cc793193412ffba08ca4606014c62622ddf2e9a0a21344e1c925d",
+        "options": "a7f2e539b3c5f27725e3739bd74aede885e703745cc2ffc77a944a366daa3c0b",
+        "layout": "ec7082cc283b309a53dd94ff59391c9b027728af1450fc55407a237ddecb34bd",
+        "limits": "9bacaaa2c2dc962518c408d8d76b9ad0f75089aa7c4b8334a9f21b921b8b9ea0",
+        "closed": "2fb8fb1da3c1d075d790988c80632620ff8117e8b8bb912baa7929f6299c090c",
+        "disabled": "63252a19e21249e938e960de826dc67fc032c9e5ff64239f84bea85d8b5cde05",
+        "busy": "f6e2684741b08f3404c3c8a71680d46a5d94cbd3ca45fc0db0504c51e689a3bb",
+        "constructor": "0a2b88f1fb4093b6f83688f1c65ff091253e5bca3b26ee2b854830903f5832a0",
+        "check": "4baa6120ca18d8590024e57a953b8d35de3ea1cc6f80cb583e53ea836c89264e",
+        "enter": "a4c1c4a8d9ef8e36660f28dd8b9f95e4365191a9f6926c9d5b9f069dbba72155",
+        "readFile": "169231f110b5065efba977b4aedae9e27960098fe82a165f6d1b2f5e2578c15c",
+        "maintenanceRead": "469869047654768de965f1eb925f8c853e0c385f29e2c8188b6f2703219259c6",
+        "remove": "d8dda48fb98e99c6b05ec4eb9269e0f2adb027b7e211159299de258e49291333",
+        "read": "a419b901d77c90b9353ca9bd8ffa02f28bb3d987846a8a683d97136a71d2bec6",
+        "publish": "316e6e9a622aa0567b0a145c15c6db547f0ebea1e5fe165801459bf137886874",
+        "purgeSources": "42c1db8dbf188a48c78babc7a1fb5252c067aa1a0623bf50f7b228aa046e595c",
+        "close": "526e63e606bacf5ad8bbf82585d8ace7a09060c17d7d61690adeabedf3aa1204"
+      }
+    }
+  }
+}

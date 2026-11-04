@@ -596,3 +596,8 @@ footer{
 .saved-path-view { margin-block: 1.5rem; min-width: 0; }
 .saved-source-scope, .saved-evidence { margin-block: 1.5rem; }
 .saved-evidence pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.saved-path-list { overflow-wrap: anywhere; }
+.saved-path-list > summary { cursor: pointer; font-weight: 600; }
+.saved-path-items { list-style: none; padding: 0; }
+.saved-path-items > li { border: 1px solid #dce4df; border-radius: .4rem; padding: .75rem; margin-block: 1rem; min-width: 0; }
+.saved-path-items h3 { margin-top: 0; }

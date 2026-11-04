@@ -37,6 +37,13 @@ export class NativeReceiptStore {
       requireReceipt(stat.isFile() && stat.dev === expected.dev && stat.ino === expected.ino, 'RECEIPT_FILE_CHANGED'); }
     unlinkSync(path.join(this.layout.root, name));
   }
+  ids(budget: OperationBudget) {
+    this.enter(); try {
+      requireReceipt(budget instanceof OperationBudget, 'INVALID_CAPTURE_BUDGET'); budget.check();
+      const names = this.layout.inspect(); budget.charge('receipt', names.length);
+      return names.map(name => name.slice(0, -5));
+    } finally { this.busy = false; }
+  }
   read(id: string, budget: OperationBudget, reductions?: Partial<ReceiptLimits>) {
     this.enter(); try {
       requireReceipt(budget instanceof OperationBudget, 'INVALID_CAPTURE_BUDGET'); requireReceipt(hex(id), 'INVALID_RECEIPT_ID');
