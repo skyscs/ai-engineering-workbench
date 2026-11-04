@@ -1,5 +1,24 @@
 # Development status
 
+## Task 099 — Typed resource primitives preserve the qualified helper behavior
+
+Three [internal TypeScript modules](fixtures/loredock-typed-resource-primitives/README.md)
+provide bounded prepared reads, one immutable exact fact/range pair and the shared
+operation budget. They import no experimental code and remain unconnected to current
+services. Existing wire/storage/parser identities and application behavior are unchanged.
+
+Twelve independent helper comparisons pass first execution. Strict checking initially
+finds typing errors in the new SQLite test; explicit test result types correct them,
+with first logs retained. Full checks pass **609 tests**, types and builds; all three
+built modules import and 415 prior measured dependencies match exactly. Scope
+`bc0b3b1`, implementation `c145eb9` and test correction `5f006e0` remain recorded.
+
+Next [Task 100](../tasks/100-loredock-independent-integration-reference.md) preserves
+the minimal portable independent test control before production representation
+integration. No new resource family, model request or memory claim follows here.
+PR #102 head `a28b2fe` passed push 41820895051 and pull-request 41820941854 CI
+(597 tests), then merged as identical-tree `e0878ae`.
+
 ## Task 098 — Production integration separates ownership from derivation changes
 
 The [source review](loredock/QUALIFIED_COMPOSITION_INTEGRATION.md) finds that the

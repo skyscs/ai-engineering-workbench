@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "task099-typed-primitives-validation/1",
+  "scope": "bc0b3b1",
+  "implementation": "c145eb9",
+  "testTypeCorrection": "5f006e0",
+  "firstFailure": "Strict typecheck rejects an untyped result array and an untyped SQLite row spread in the new test. Production helpers are unchanged after the first check.",
+  "focusedTests": 12,
+  "fullTests": 609,
+  "unchangedFrozenDependencies": 415,
+  "files": [
+    {
+      "file": "install-first.log.gz",
+      "original": "/home/toshiba/aew/task099-install-first.log",
+      "exitCode": 0,
+      "bytes": 326,
+      "sha256": "4dd779013cd22596ae2e3e3535c727815b1b57ea21c35c2265bc9b56aaddabfc",
+      "archiveBytes": 184,
+      "archiveSha256": "d3a1e3fb21f153a89e1c2ab8d8c02f465d76153059bf48c1a8521f6957f8c878"
+    },
+    {
+      "file": "packages-first.log.gz",
+      "original": "/home/toshiba/aew/task099-packages-first.log",
+      "exitCode": 0,
+      "bytes": 601,
+      "sha256": "dc8edee524bcdfe5a05c045ad030ad3aed29f5bc07e042c92b856a252c367e03",
+      "archiveBytes": 243,
+      "archiveSha256": "5eb8ff71ad8d263fbfe4879881be0a58335a5fd42bc52f280e7180e45aefeb72"
+    },
+    {
+      "file": "types-first.log.gz",
+      "original": "/home/toshiba/aew/task099-types-first.log",
+      "exitCode": 2,
+      "bytes": 712,
+      "sha256": "c2e01fc22e43d5a983e6866be84b551574357789d19e96481b8ef41723aee0cc",
+      "archiveBytes": 381,
+      "archiveSha256": "79cb862c1a0404a9b1efb5a0714c779dbb7ae809fa407ee379e0df01509e5841"
+    },
+    {
+      "file": "types-second.log.gz",
+      "original": "/home/toshiba/aew/task099-types-second.log",
+      "exitCode": 0,
+      "bytes": 151,
+      "sha256": "7401cb0466023637cbf685bab04d8290d5034d25238f197b82576c469d82339b",
+      "archiveBytes": 138,
+      "archiveSha256": "f7df6a7aabca8a26bbf0d3421fa0f3427a605b8f289972400119ee5f739fc814"
+    },
+    {
+      "file": "focused-first.log.gz",
+      "original": "/home/toshiba/aew/task099-focused-first.log",
+      "exitCode": 0,
+      "bytes": 3158,
+      "sha256": "b182f5fca37e8a2fbe7112fa1b0d8e254cce909850f66fa2825516a41300b8d9",
+      "archiveBytes": 952,
+      "archiveSha256": "ac901b8f9dba7b6fa26f32af4187257c919ccb29b7c42cd78fb48740810c0495"
+    },
+    {
+      "file": "check-first.log.gz",
+      "original": "/home/toshiba/aew/task099-check-first.log",
+      "exitCode": 0,
+      "bytes": 242198,
+      "sha256": "bd926a6e88866f8d1363766467f03a4fdfefd2e5b6438cecfcfd28b29cea61ac",
+      "archiveBytes": 34443,
+      "archiveSha256": "1b8232d86569e3f049a475a3a111fd9fde3f44731653c5db3291d8f74890c46f"
+    },
+    {
+      "file": "built-first.log.gz",
+      "original": "/home/toshiba/aew/task099-built-first.log",
+      "exitCode": 0,
+      "bytes": 50,
+      "sha256": "6bc9a5def20f353f529e8b614bb825250f964c87efffc4b7a842258653722395",
+      "archiveBytes": 70,
+      "archiveSha256": "3c65a78a0e4c3a6ebd3379c3e850f1795a526ad0a52d1d16888b50f4e1161ee4"
+    }
+  ]
+}

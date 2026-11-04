@@ -1,6 +1,6 @@
 # Task 099 — Type the qualified resource ownership primitives
 
-Status: scoped for implementation, 2026-11-04; helpers remain unconnected.
+Status: implemented and locally verified, 2026-11-04; helpers remain unconnected.
 
 Implement three internal TypeScript modules under `apps/loredock/src`: a bounded
 prepared-read scope owner, the single immutable canonical fact/range pair and the
@@ -33,3 +33,17 @@ Preserve first failures/logs; run strict/full checks and built-module imports. R
 the complete diff, verify frozen dependencies remain unchanged, and require both
 exact-head CI events before merge. Next is the explicitly scoped reference-preserving
 v1 representation integration, followed by final-composition qualification.
+
+## Outcome
+
+Scope `bc0b3b1` precedes implementation `c145eb9`. All three typed modules are
+independent of experiment/test imports and current service wiring. Twelve tiny
+comparisons with frozen helpers pass their first execution. Initial strict checking
+finds three typing diagnostics in the new SQLite test; correction `5f006e0` changes
+only test result declarations. All first logs remain
+[retained](../docs/fixtures/loredock-typed-resource-primitives/README.md).
+
+Full checks pass 609 tests/types/builds; the three built modules import and all
+415 Task 097 dependencies remain unchanged. Complete diff/reference/hash review
+precedes CI. Next preserve the independent test reference before the v1 service
+integration; no resource claim or production behavior change follows here.
