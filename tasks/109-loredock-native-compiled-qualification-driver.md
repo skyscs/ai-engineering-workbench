@@ -1,6 +1,9 @@
 # Task 109 — Drive complete native compiled qualification
 
-Status: scoped, 2026-11-04.
+Status: locally verified, 2026-11-04.
+
+Verification: eleven focused cases/subcases, 802 strict tests/builds, and actual compiled
+two-process complete/incomplete development runs. [Retained evidence](../docs/fixtures/loredock-native-compiled-driver/README.md).
 
 Connect the independently assessed native format to a new bounded compiled worker and
 coordinator. Do not reuse the experimental capture implementation, relabel schemas,
