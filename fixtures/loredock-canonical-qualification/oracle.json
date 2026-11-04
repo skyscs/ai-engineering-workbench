@@ -1,0 +1,559 @@
+{
+  "schemaVersion": "task097-canonical-qualification-oracle/1",
+  "authorship": "Source-authored complete positive expectations after capability review, before parser/candidate observation; not blind.",
+  "sizes": [
+    {
+      "pathsPerSource": 498,
+      "files": 9960,
+      "codeFiles": 9937,
+      "bytes": 570713,
+      "facts": 21
+    }
+  ],
+  "arms": [
+    "same-process",
+    "reopened-process"
+  ],
+  "operations": [
+    "first",
+    "repeat-1",
+    "repeat-2",
+    "repeat-3",
+    "selected",
+    "page-4",
+    "isolated",
+    "history"
+  ],
+  "topic": "museum.visit.v5",
+  "environment": "museum",
+  "defaultFlows": 2,
+  "selectedFlows": 1,
+  "rootCount": 5,
+  "defaultOriginals": 10,
+  "isolatedOriginals": 5,
+  "sourceCount": 20,
+  "uncitedSource": "d-museum-guide",
+  "selectedRoot": [
+    "a-gallery-ui",
+    "ui/AAReserve.vue",
+    "reserve",
+    "vue-action"
+  ],
+  "isolatedRoot": [
+    "a-gallery-ui",
+    "ui/ZZCheck.vue",
+    "check",
+    "vue-action"
+  ],
+  "requiredNodes": [
+    [
+      "a-gallery-ui",
+      "ui/AAReserve.vue",
+      "symbol",
+      "reserve",
+      "vue-action"
+    ],
+    [
+      "a-gallery-ui",
+      "ui/BBChange.vue",
+      "symbol",
+      "change",
+      "vue-action"
+    ],
+    [
+      "a-gallery-ui",
+      "ui/visit.ts",
+      "symbol",
+      "reserveVisit",
+      "function"
+    ],
+    [
+      "a-gallery-ui",
+      "ui/visit.ts",
+      "http-request",
+      "POST /museum/visits",
+      null
+    ],
+    [
+      "b-visit-api",
+      "http/visit.json",
+      "route",
+      "POST /museum/visits",
+      null
+    ],
+    [
+      "b-visit-api",
+      "http/visit.json",
+      "handler-reference",
+      "Visits.reserve",
+      null
+    ],
+    [
+      "b-visit-api",
+      "visits/Visits.java",
+      "symbol",
+      "Visits.reserve",
+      "java-method"
+    ],
+    [
+      "b-visit-api",
+      "visits/Visits.java",
+      "event-publish",
+      "Publish VisitReserved",
+      null
+    ],
+    [
+      "c-visit-store",
+      "store/VisitWriter.java",
+      "event-subscribe",
+      "Subscribe via KafkaSubscriber",
+      null
+    ],
+    [
+      "c-visit-store",
+      "store/VisitWriter.java",
+      "symbol",
+      "VisitWriter.onMessage",
+      "java-method"
+    ],
+    [
+      "c-visit-store",
+      "store/VisitWriter.java",
+      "document-write",
+      "MongoCollection.replaceOne",
+      null
+    ]
+  ],
+  "selectedRequiredNodes": [
+    [
+      "a-gallery-ui",
+      "ui/AAReserve.vue",
+      "symbol",
+      "reserve",
+      "vue-action"
+    ],
+    [
+      "a-gallery-ui",
+      "ui/visit.ts",
+      "symbol",
+      "reserveVisit",
+      "function"
+    ],
+    [
+      "a-gallery-ui",
+      "ui/visit.ts",
+      "http-request",
+      "POST /museum/visits",
+      null
+    ],
+    [
+      "b-visit-api",
+      "http/visit.json",
+      "route",
+      "POST /museum/visits",
+      null
+    ],
+    [
+      "b-visit-api",
+      "http/visit.json",
+      "handler-reference",
+      "Visits.reserve",
+      null
+    ],
+    [
+      "b-visit-api",
+      "visits/Visits.java",
+      "symbol",
+      "Visits.reserve",
+      "java-method"
+    ],
+    [
+      "b-visit-api",
+      "visits/Visits.java",
+      "event-publish",
+      "Publish VisitReserved",
+      null
+    ],
+    [
+      "c-visit-store",
+      "store/VisitWriter.java",
+      "event-subscribe",
+      "Subscribe via KafkaSubscriber",
+      null
+    ],
+    [
+      "c-visit-store",
+      "store/VisitWriter.java",
+      "symbol",
+      "VisitWriter.onMessage",
+      "java-method"
+    ],
+    [
+      "c-visit-store",
+      "store/VisitWriter.java",
+      "document-write",
+      "MongoCollection.replaceOne",
+      null
+    ]
+  ],
+  "isolated": {
+    "nodes": 1,
+    "edges": 0,
+    "flows": 1,
+    "terminalKind": "symbol",
+    "reason": "unresolved-import"
+  },
+  "complete": {
+    "sources": [
+      "a-gallery-ui",
+      "b-visit-api",
+      "c-visit-store",
+      "d-museum-guide",
+      "e-gallery-01",
+      "e-gallery-02",
+      "e-gallery-03",
+      "e-gallery-04",
+      "e-gallery-05",
+      "e-gallery-06",
+      "e-gallery-07",
+      "e-gallery-08",
+      "e-gallery-09",
+      "e-gallery-10",
+      "e-gallery-11",
+      "e-gallery-12",
+      "e-gallery-13",
+      "e-gallery-14",
+      "e-gallery-15",
+      "e-gallery-16"
+    ],
+    "roots": [
+      [
+        "a-gallery-ui",
+        "ui/AAReserve.vue",
+        "reserve",
+        "vue-action"
+      ],
+      [
+        "a-gallery-ui",
+        "ui/BBChange.vue",
+        "change",
+        "vue-action"
+      ],
+      [
+        "a-gallery-ui",
+        "ui/CCCancel.vue",
+        "cancel",
+        "vue-action"
+      ],
+      [
+        "a-gallery-ui",
+        "ui/DDRepeat.vue",
+        "repeat",
+        "vue-action"
+      ]
+    ],
+    "isolatedRoot": [
+      "a-gallery-ui",
+      "ui/ZZCheck.vue",
+      "check",
+      "vue-action"
+    ],
+    "flows": [
+      {
+        "nodes": [
+          [
+            "a-gallery-ui",
+            "ui/AAReserve.vue",
+            "symbol",
+            "reserve",
+            "vue-action"
+          ],
+          [
+            "a-gallery-ui",
+            "ui/visit.ts",
+            "symbol",
+            "reserveVisit",
+            "function"
+          ],
+          [
+            "a-gallery-ui",
+            "ui/visit.ts",
+            "http-request",
+            "POST /museum/visits",
+            null
+          ],
+          [
+            "b-visit-api",
+            "http/visit.json",
+            "route",
+            "POST /museum/visits",
+            null
+          ],
+          [
+            "b-visit-api",
+            "http/visit.json",
+            "handler-reference",
+            "Visits.reserve",
+            null
+          ],
+          [
+            "b-visit-api",
+            "visits/Visits.java",
+            "symbol",
+            "Visits.reserve",
+            "java-method"
+          ],
+          [
+            "b-visit-api",
+            "visits/Visits.java",
+            "event-publish",
+            "Publish VisitReserved",
+            null
+          ],
+          [
+            "c-visit-store",
+            "store/VisitWriter.java",
+            "event-subscribe",
+            "Subscribe via KafkaSubscriber",
+            null
+          ],
+          [
+            "c-visit-store",
+            "store/VisitWriter.java",
+            "symbol",
+            "VisitWriter.onMessage",
+            "java-method"
+          ],
+          [
+            "c-visit-store",
+            "store/VisitWriter.java",
+            "document-write",
+            "MongoCollection.replaceOne",
+            null
+          ]
+        ],
+        "edges": [
+          "calls",
+          "performs",
+          "http-target",
+          "routes-to",
+          "implements",
+          "performs",
+          "event-delivery",
+          "dispatch-candidate",
+          "performs"
+        ]
+      },
+      {
+        "nodes": [
+          [
+            "a-gallery-ui",
+            "ui/BBChange.vue",
+            "symbol",
+            "change",
+            "vue-action"
+          ],
+          [
+            "a-gallery-ui",
+            "ui/visit.ts",
+            "symbol",
+            "reserveVisit",
+            "function"
+          ],
+          [
+            "a-gallery-ui",
+            "ui/visit.ts",
+            "http-request",
+            "POST /museum/visits",
+            null
+          ],
+          [
+            "b-visit-api",
+            "http/visit.json",
+            "route",
+            "POST /museum/visits",
+            null
+          ],
+          [
+            "b-visit-api",
+            "http/visit.json",
+            "handler-reference",
+            "Visits.reserve",
+            null
+          ],
+          [
+            "b-visit-api",
+            "visits/Visits.java",
+            "symbol",
+            "Visits.reserve",
+            "java-method"
+          ],
+          [
+            "b-visit-api",
+            "visits/Visits.java",
+            "event-publish",
+            "Publish VisitReserved",
+            null
+          ],
+          [
+            "c-visit-store",
+            "store/VisitWriter.java",
+            "event-subscribe",
+            "Subscribe via KafkaSubscriber",
+            null
+          ],
+          [
+            "c-visit-store",
+            "store/VisitWriter.java",
+            "symbol",
+            "VisitWriter.onMessage",
+            "java-method"
+          ],
+          [
+            "c-visit-store",
+            "store/VisitWriter.java",
+            "document-write",
+            "MongoCollection.replaceOne",
+            null
+          ]
+        ],
+        "edges": [
+          "calls",
+          "performs",
+          "http-target",
+          "routes-to",
+          "implements",
+          "performs",
+          "event-delivery",
+          "dispatch-candidate",
+          "performs"
+        ]
+      }
+    ],
+    "originals": [
+      [
+        "a-gallery-ui",
+        "ui/AAReserve.vue",
+        1,
+        6
+      ],
+      [
+        "a-gallery-ui",
+        "ui/BBChange.vue",
+        1,
+        6
+      ],
+      [
+        "a-gallery-ui",
+        "ui/CCCancel.vue",
+        1,
+        6
+      ],
+      [
+        "a-gallery-ui",
+        "ui/DDRepeat.vue",
+        1,
+        6
+      ],
+      [
+        "a-gallery-ui",
+        "ui/visit.ts",
+        1,
+        7
+      ],
+      [
+        "b-visit-api",
+        "http/visit.json",
+        1,
+        13
+      ],
+      [
+        "b-visit-api",
+        "visits/Visits.java",
+        1,
+        10
+      ],
+      [
+        "b-visit-api",
+        "contracts/VisitReserved.json",
+        1,
+        10
+      ],
+      [
+        "c-visit-store",
+        "store/VisitWriter.java",
+        1,
+        13
+      ],
+      [
+        "c-visit-store",
+        "contracts/VisitReserved.json",
+        1,
+        10
+      ]
+    ],
+    "isolatedOriginals": [
+      [
+        "a-gallery-ui",
+        "ui/AAReserve.vue",
+        1,
+        6
+      ],
+      [
+        "a-gallery-ui",
+        "ui/BBChange.vue",
+        1,
+        6
+      ],
+      [
+        "a-gallery-ui",
+        "ui/CCCancel.vue",
+        1,
+        6
+      ],
+      [
+        "a-gallery-ui",
+        "ui/DDRepeat.vue",
+        1,
+        6
+      ],
+      [
+        "a-gallery-ui",
+        "ui/ZZCheck.vue",
+        1,
+        5
+      ]
+    ]
+  },
+  "limits": {
+    "wallMs": 5000,
+    "work": 1000000,
+    "projectionBytes": 524288,
+    "receiptBytes": 655360,
+    "textBytes": 65536,
+    "spans": 30,
+    "sources": 20
+  },
+  "resources": {
+    "sampleIntervalMs": 5,
+    "maxSliceMs": 150,
+    "sampledRssMiB": 384,
+    "sampledHeapGrowthMiB": 64
+  },
+  "diagnostic": {
+    "preparerWatchdogMs": 900000,
+    "readerWatchdogMs": 600000,
+    "overallWatchdogMs": 1800000
+  },
+  "instrumentation": {
+    "profiler": false,
+    "phaseHooks": false,
+    "queryHooks": false,
+    "ownerHooks": false,
+    "ordinaryCounters": true,
+    "aggregateCharges": true,
+    "outerResourceSampler": true
+  },
+  "parityExcludedProjectionFields": [],
+  "parityExcludedReceiptFields": []
+}

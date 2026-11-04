@@ -1,0 +1,154 @@
+{
+  "schemaVersion": "task097-canonical-preflight/1",
+  "method": "Pure UTF-8 construction counts and hashes; no parser or candidate execution.",
+  "size": {
+    "pathsPerSource": 498,
+    "files": 9960,
+    "codeFiles": 9937,
+    "bytes": 570713,
+    "facts": 21
+  },
+  "corpusHash": "ff23c60361a938473492dffe2552362c2fc52d6f29e791b9bb5f1b06ee79ad2c",
+  "sources": [
+    {
+      "name": "a-gallery-ui",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 29551,
+      "contentHash": "acdb3d61f6bffd646e848c465379198f9cae2d269cb991e435015f51f3f3b6c2"
+    },
+    {
+      "name": "b-visit-api",
+      "files": 498,
+      "codeFiles": 495,
+      "bytes": 28512,
+      "contentHash": "e70e865d9657b1be332735098c43052164d41530c30088cbc6035113e0a43e03"
+    },
+    {
+      "name": "c-visit-store",
+      "files": 498,
+      "codeFiles": 496,
+      "bytes": 29602,
+      "contentHash": "41fdb2b5d73d89660e923e5dac17c8f0ce8b4acb3b4fd113fbb63ef8a469f291"
+    },
+    {
+      "name": "d-museum-guide",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 29352,
+      "contentHash": "0e0a10c8b0b682edeb166964425c07c3ed38a86798fc7b0cfab337c422532503"
+    },
+    {
+      "name": "e-gallery-01",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 28356,
+      "contentHash": "20a7cb09993a8fff189fcde8a773da59cf78e7171c2cdb5a883b6cf898c1f297"
+    },
+    {
+      "name": "e-gallery-02",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 28356,
+      "contentHash": "077b8109ff87117818a977f4bb64927a4b98995ca762852ba1d9832e94ad8f3a"
+    },
+    {
+      "name": "e-gallery-03",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 28356,
+      "contentHash": "0f84588fc2ddb64fc3576c9c365a42cb902c3a0b135ed5111020ad6dcec0fa8c"
+    },
+    {
+      "name": "e-gallery-04",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 28356,
+      "contentHash": "e7372637211ab4ba3888198b4dfd7241ebffdfbcd15f2632c04cb8479b18cf6c"
+    },
+    {
+      "name": "e-gallery-05",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 28356,
+      "contentHash": "ee30acd6d29c1ac517193e9d0266c31faf308c5bfdb50631e07874df558df27b"
+    },
+    {
+      "name": "e-gallery-06",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 28356,
+      "contentHash": "64d3a4fe74f14988b27afccd41c3b83352267c42b45a0656148653ad432c76d7"
+    },
+    {
+      "name": "e-gallery-07",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 28356,
+      "contentHash": "7a7ad9be33350691a119e670945b708718370d80ca4ac4d1a7ba556b16bf810f"
+    },
+    {
+      "name": "e-gallery-08",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 28356,
+      "contentHash": "b700a019963980edb5ca563386e177e1a07dfbd3f0532539da1ca77cbba77776"
+    },
+    {
+      "name": "e-gallery-09",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 28356,
+      "contentHash": "c3e5f529741ad3d151eee92455336d1919273c455100a39faba83127225057c6"
+    },
+    {
+      "name": "e-gallery-10",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 28356,
+      "contentHash": "7303434bb3e3f0041cc5998752fa0f2f993790ab6714e06be84aa3c3f9aece3b"
+    },
+    {
+      "name": "e-gallery-11",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 28356,
+      "contentHash": "93f08694f7809da191863a64870ebea3cdabe4a2ba93af58fdbd6632ae4e9ed0"
+    },
+    {
+      "name": "e-gallery-12",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 28356,
+      "contentHash": "3f0859ba3984dad05422b7587a26207d6da65a7f284f4c027e11c7ed4eda804e"
+    },
+    {
+      "name": "e-gallery-13",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 28356,
+      "contentHash": "277c6043ef8401b12db7c6a06e744b20b4fa4abf667f096b891d4ffddb1cea4d"
+    },
+    {
+      "name": "e-gallery-14",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 28356,
+      "contentHash": "0d9f9fc00b64eccdb29a98fd20648fd89bd402a848e1ed301864b6d4f0c119d5"
+    },
+    {
+      "name": "e-gallery-15",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 28356,
+      "contentHash": "58d8100d54c663e2590ba60bc0e6b0940cf9f5bf505dd648c5e35d10bf36df7d"
+    },
+    {
+      "name": "e-gallery-16",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 28356,
+      "contentHash": "3198a51bd1d0e8f132c68cb2711df4c9b2c41feaf0835108479fcece0e0a99f5"
+    }
+  ]
+}
