@@ -1,0 +1,18 @@
+{
+  "head": "c32f75bbed9a2b0599eb04f65cc25bdff57208d1",
+  "merge": "0d65d12ea9d8ca9b6944c7af83eff2445120b2a4",
+  "pullRequest": 113,
+  "ci": {
+    "push": {
+      "id": 41883388526,
+      "head": "c32f75bbed9a2b0599eb04f65cc25bdff57208d1",
+      "conclusion": "success"
+    },
+    "pullRequest": {
+      "id": 41883797308,
+      "head": "c32f75bbed9a2b0599eb04f65cc25bdff57208d1",
+      "conclusion": "success"
+    }
+  },
+  "treeEqualityVerified": true
+}
