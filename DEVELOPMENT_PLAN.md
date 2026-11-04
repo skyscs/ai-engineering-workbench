@@ -459,7 +459,10 @@ six-source mechanical relevance/support comparison, preserving production retrie
 model behavior. [Task 120](tasks/120-loredock-native-question-context-feasibility.md)
 completes that separate comparison with 44/44 required cases passing. The family is now
 exhausted; production answers remain unchanged. [Task 121](tasks/121-loredock-prepared-question-lifecycle.md)
-designs immutable asynchronous preparation and witness ownership before implementation.
+completes the [immutable preparation/witness design](docs/loredock/PREPARED_QUESTION_LIFECYCLE.md)
+under [ADR 0059](docs/decisions/0059-loredock-prepared-question-lifecycle.md). The next bounded
+implementation is [Task 122](tasks/122-loredock-question-read-selection-seams.md): production
+scoped lexical accounting and native selection seams, preserving public/legacy behavior.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation

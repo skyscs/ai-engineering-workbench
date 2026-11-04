@@ -71,7 +71,8 @@ The local full check passes 869 tests plus types/builds at `0ee6a99`. Subsequent
 receipt/source and foreign-identity review changes pass all seven focused tests at
 `fc1fafb` and final reviewed `aa8797b`, including the separate complete 44-case ordinary
 matrix and ten corrupted-assessment controls. The accepted application closure remains
-byte-identical. Exact-head remote CI is required before merge.
+byte-identical. PR #124 passed push 41926249765 and pull-request 41926293151 at
+`647efad` (869 tests) and merged as identical-tree `4bbc0c1`.
 
 [Raw evidence and review](../fixtures/loredock-native-question-context-run/README.md)
 retain every first development failure: a lexical/scope counter classification error;

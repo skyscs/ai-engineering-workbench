@@ -242,7 +242,11 @@ passes the sole separate offline comparison: 44/44 observations, complete issued
 and useful three-source paths with all six dependencies. The library family is exhausted.
 [Results](NATIVE_QUESTION_CONTEXT_RESULT.md) do not enable model exposure.
 [Task 121](../../tasks/121-loredock-prepared-question-lifecycle.md) designs immutable
-preparation and witness ownership before production adoption. No production answer context or model evaluation changes
+preparation and witness ownership before production adoption. Its
+[lifecycle contract](PREPARED_QUESTION_LIFECYCLE.md) chooses one transient reviewed snapshot
+and atomic answer-owned durable witnesses, with old-input compatibility and explicit
+capacity/purge behavior. [Task 122](../../tasks/122-loredock-question-read-selection-seams.md)
+first implements scoped lexical accounting and typed native selection with parity. No production answer context or model evaluation changes
 in the design task. No semantic/L5 gate
 is inferred from either the resource result or this public read migration.
 No deletion policy is implemented. Keep the prepared
