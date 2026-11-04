@@ -115,3 +115,16 @@ desktop/mobile evidence and run strict checks plus both exact-head CI events. Na
 module additions change the runtime closure; record that fact rather than claiming the
 old byte-identical qualification transfers. Do not alter receipt identity, parser
 fingerprint, storage caps, purge/backup rules or fixed operation limits.
+
+## Historical regression dependency review
+
+The first full strict run exposes Task 112's exact whole-source dependency pin for
+NativeReceiptStore. Its archived old Store/Analysis reference imports this unchanged
+dependency from production; adding `ids` intentionally changes the complete file hash.
+Before correcting the ordinary regression, require a stricter additive proof: remove
+only the new `ids` class member using TypeScript source offsets, then compare the entire
+remaining raw source with the original manifest hash. Every other dependency remains
+hash-identical. Keep the archived manifest and executable reference variants unchanged;
+do not substitute a new hash into the old qualification or label the changed module
+byte-identical. The independent compiled check separately proves every preexisting class
+member unchanged and exercises actual discovery. Preserve the first full-check failure.
