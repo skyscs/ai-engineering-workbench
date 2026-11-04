@@ -2,6 +2,11 @@
 
 Status: scoped, 2026-11-04.
 
+The [prospective HTTP contract](../docs/loredock/NATIVE_CAPTURE_API.md) fixes the two
+routes, empty-body/query-only selection, native response types and known error mappings
+before implementation. Reuse the existing strict query parser to reject duplicate keys;
+do not add a second JSON request decoder or put session/CSRF tokens in URLs.
+
 After Task 115 acceptance, connect the already qualified NativeCaptures service to the
 local daemon as a separate public API slice. Use the same explicit native path owner;
 stop capture/history work before paths, analysis and catalog storage. Do not change
