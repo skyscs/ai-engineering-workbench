@@ -347,9 +347,13 @@ proof and a fresh complete resource qualification.
 [Task 093](tasks/093-loredock-worker-reads.md) implements that offline candidate
 through an explicit pinned worker-method seam, retaining the original scheduler
 and shared ownership guard. Independent stopped copies compare exact execution,
-inventory and receipt identities, with lifecycle/fence/overlap regressions. Next:
-separately freeze a fresh complete uninstrumented resource qualification; no
-production promotion or reinterpretation of previous failed gates follows.
+inventory and receipt identities, with lifecycle/fence/overlap regressions.
+[Task 094](tasks/094-loredock-worker-qualification.md) completes a fresh frozen
+two-process qualification: all complete content and cross-process bytes pass;
+resources fail 15/16 because reopened isolated-path RSS reaches 398.035 MiB against
+384. Next: one bounded source/representation audit of request-local facts and their
+domain/gap/original consumers on independent tiny inputs before selecting a change.
+No production promotion or reinterpretation of previous failed gates follows.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

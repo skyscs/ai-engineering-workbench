@@ -1,0 +1,154 @@
+{
+  "schemaVersion": "task094-worker-preflight/1",
+  "method": "Pure UTF-8 construction counts and hashes; no parser or candidate execution.",
+  "size": {
+    "pathsPerSource": 498,
+    "files": 9960,
+    "codeFiles": 9937,
+    "bytes": 516882,
+    "facts": 21
+  },
+  "corpusHash": "fb8f7eae6115f172a3492a871441db32aa30096e666d8e9cd3e303a0e63c748e",
+  "sources": [
+    {
+      "name": "a-vault-console",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 29047,
+      "contentHash": "28f8cfc674e36116472fc310095c1f9f70044c4b9fbcb01d7087b568f39cdb82"
+    },
+    {
+      "name": "b-seal-api",
+      "files": 498,
+      "codeFiles": 495,
+      "bytes": 26044,
+      "contentHash": "db25855b572d2278eb47a465e9f3d76ae64a24ca23e8014f81574d2ff25b0565"
+    },
+    {
+      "name": "c-seal-ledger",
+      "files": 498,
+      "codeFiles": 496,
+      "bytes": 27598,
+      "contentHash": "29de83fe0733a5586f9dfde5e08d0d8aebf1ec67061fe761b27d559ca411c2e2"
+    },
+    {
+      "name": "d-facility-guide",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 28353,
+      "contentHash": "21853e30bc83674d2cee09a29d5d226eb9625093516b2e760ca24c861c1a4510"
+    },
+    {
+      "name": "e-vault-01",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 25365,
+      "contentHash": "1b862f1dae9ae9396fe0dd593e1f384059c386fec4e799a6ff339f7c98e71eec"
+    },
+    {
+      "name": "e-vault-02",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 25365,
+      "contentHash": "9ea9c9b0902cde5352bae746c5c2bf6fe42d922c5fb6a45c429f3731fa4ee5a1"
+    },
+    {
+      "name": "e-vault-03",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 25365,
+      "contentHash": "3377309ae3683d95a57dbd862830a63e8b45bb9d213816438d65642a1da70056"
+    },
+    {
+      "name": "e-vault-04",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 25365,
+      "contentHash": "fcbff7dd50276973b04cc558d083743cfc1a56cbf5dba323f1c2bb47f06500e5"
+    },
+    {
+      "name": "e-vault-05",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 25365,
+      "contentHash": "5a8f3e013c4ad8db971a5c38ee21bf5efc1d218500e779a0f610135a7c37ac21"
+    },
+    {
+      "name": "e-vault-06",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 25365,
+      "contentHash": "bf66c398d2c8e8a13eae9e1d6b2b0e1c254478b2b33b718e3abe09a9e0682434"
+    },
+    {
+      "name": "e-vault-07",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 25365,
+      "contentHash": "945cc5229b2024d6ce3e7f523dd268396930377995d6be3216a6856279002f99"
+    },
+    {
+      "name": "e-vault-08",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 25365,
+      "contentHash": "51d6fd3afa9d09f382a176453a13f2669c093afe08266a4b4ef33a2170cf8195"
+    },
+    {
+      "name": "e-vault-09",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 25365,
+      "contentHash": "bf6eb48e1742ae3ff43c4c0cbdced726013a5a67c5cc261156195927bf864d71"
+    },
+    {
+      "name": "e-vault-10",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 25365,
+      "contentHash": "8b5ae5f438c369cd71b9ef79fad4a8c72d59c8ff5df86e038b7010707d67879f"
+    },
+    {
+      "name": "e-vault-11",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 25365,
+      "contentHash": "64983121ad97f70bfcd4f8f20ceb1ea4ef4d8644f6c83b5719375af1111c40c2"
+    },
+    {
+      "name": "e-vault-12",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 25365,
+      "contentHash": "127631de56d382101155cbd9be12987a058ce1b512c83285dafe254d389fca4e"
+    },
+    {
+      "name": "e-vault-13",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 25365,
+      "contentHash": "9bf20f8e3d974fa3ff42841d0a4661d41c32c33649319557a5f338615ddacef3"
+    },
+    {
+      "name": "e-vault-14",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 25365,
+      "contentHash": "b8bf7ec5f7e157f76ee46f10337ca3cebc8c5e2ca79b8dc764175454bf5dc63f"
+    },
+    {
+      "name": "e-vault-15",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 25365,
+      "contentHash": "c9ad5cfa4acf828e506b8f153565e4685cb2a10d7a17bf524b5c855959299eca"
+    },
+    {
+      "name": "e-vault-16",
+      "files": 498,
+      "codeFiles": 497,
+      "bytes": 25365,
+      "contentHash": "320096365cabbaa5347fb796739c211ab7bb748a28d45a224f7faeac520b4512"
+    }
+  ]
+}

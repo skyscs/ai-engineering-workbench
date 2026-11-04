@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "task094-ci-first-result/1",
+  "head": "dca0d2588615be2a69d4316ca5f50d608a5bb58d",
+  "push": {
+    "run": 41815001006,
+    "conclusion": "success"
+  },
+  "pullRequest": {
+    "run": 41815035557,
+    "conclusion": "failure"
+  },
+  "method": "First failed job log and its embedded coordinator assessment. Ephemeral worker artifact bytes were not uploaded; references in this report are not retained raw artifacts.",
+  "failures": [
+    {
+      "arm": "same-process",
+      "operation": "repeat-1",
+      "dimension": "resources",
+      "result": {
+        "state": "fail",
+        "reason": "resources-invalid",
+        "error": {
+          "name": "AssertionError",
+          "code": "ERR_ASSERTION",
+          "message": "Recorded resources exceed limits or are unavailable.\n+ actual - expected\n\n+ [\n+   {\n+     bound: 150,\n+     name: 'maxSliceMs',\n+     value: 161.23610000000008\n+   }\n+ ]\n- []\n"
+        }
+      }
+    },
+    {
+      "arm": "same-process",
+      "operation": "repeat-3",
+      "dimension": "resources",
+      "result": {
+        "state": "fail",
+        "reason": "resources-invalid",
+        "error": {
+          "name": "AssertionError",
+          "code": "ERR_ASSERTION",
+          "message": "Recorded resources exceed limits or are unavailable.\n+ actual - expected\n\n+ [\n+   {\n+     bound: 150,\n+     name: 'maxSliceMs',\n+     value: 193.90216400000008\n+   }\n+ ]\n- []\n"
+        }
+      }
+    }
+  ],
+  "files": [
+    {
+      "file": "ci-pr-first-failed.log.gz",
+      "bytes": 525379,
+      "sha256": "79d73218f95302dad5adab558063315968533979e0c768df544117c99b9a2209",
+      "archiveSha256": "ae7c4cee6a96017833dfc5c6ec43893b5dca9a5be7e550ecb990f89d71562199"
+    },
+    {
+      "file": "ci-first-assessment.json",
+      "bytes": 46272,
+      "sha256": "249d7738dd054e6c138e253aa6ad76928a483a1ef70307c03988bc5ab7df85c9"
+    },
+    {
+      "file": "check-ci-repair.log.gz",
+      "bytes": 232041,
+      "sha256": "da8efea76d33a4875359226638f416377ecff1d0641d34fe664f664988d7598d",
+      "archiveSha256": "4226b2d740fb47804468c2b17fd54cd97da63fb37a515ab9452b2f54861fb2e0",
+      "exitCode": 0
+    }
+  ]
+}

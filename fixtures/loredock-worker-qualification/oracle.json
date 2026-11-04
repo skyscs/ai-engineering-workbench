@@ -1,0 +1,559 @@
+{
+  "schemaVersion": "task094-worker-qualification-oracle/1",
+  "authorship": "Source-authored complete positive expectations after capability review, before parser/candidate observation; not blind.",
+  "sizes": [
+    {
+      "pathsPerSource": 498,
+      "files": 9960,
+      "codeFiles": 9937,
+      "bytes": 516882,
+      "facts": 21
+    }
+  ],
+  "arms": [
+    "same-process",
+    "reopened-process"
+  ],
+  "operations": [
+    "first",
+    "repeat-1",
+    "repeat-2",
+    "repeat-3",
+    "selected",
+    "page-4",
+    "isolated",
+    "history"
+  ],
+  "topic": "vault.seal.v3",
+  "environment": "facility",
+  "defaultFlows": 2,
+  "selectedFlows": 1,
+  "rootCount": 5,
+  "defaultOriginals": 10,
+  "isolatedOriginals": 5,
+  "sourceCount": 20,
+  "uncitedSource": "d-facility-guide",
+  "selectedRoot": [
+    "a-vault-console",
+    "console/AARequest.vue",
+    "request",
+    "vue-action"
+  ],
+  "isolatedRoot": [
+    "a-vault-console",
+    "console/ZZInspect.vue",
+    "inspect",
+    "vue-action"
+  ],
+  "requiredNodes": [
+    [
+      "a-vault-console",
+      "console/AARequest.vue",
+      "symbol",
+      "request",
+      "vue-action"
+    ],
+    [
+      "a-vault-console",
+      "console/BBRepeat.vue",
+      "symbol",
+      "repeat",
+      "vue-action"
+    ],
+    [
+      "a-vault-console",
+      "console/seal.ts",
+      "symbol",
+      "requestSeal",
+      "function"
+    ],
+    [
+      "a-vault-console",
+      "console/seal.ts",
+      "http-request",
+      "POST /vault/seals",
+      null
+    ],
+    [
+      "b-seal-api",
+      "http/seal.json",
+      "route",
+      "POST /vault/seals",
+      null
+    ],
+    [
+      "b-seal-api",
+      "http/seal.json",
+      "handler-reference",
+      "SealRequests.request",
+      null
+    ],
+    [
+      "b-seal-api",
+      "seal/SealRequests.java",
+      "symbol",
+      "SealRequests.request",
+      "java-method"
+    ],
+    [
+      "b-seal-api",
+      "seal/SealRequests.java",
+      "event-publish",
+      "Publish SealRequested",
+      null
+    ],
+    [
+      "c-seal-ledger",
+      "ledger/SealLedger.java",
+      "event-subscribe",
+      "Subscribe via KafkaSubscriber",
+      null
+    ],
+    [
+      "c-seal-ledger",
+      "ledger/SealLedger.java",
+      "symbol",
+      "SealLedger.onMessage",
+      "java-method"
+    ],
+    [
+      "c-seal-ledger",
+      "ledger/SealLedger.java",
+      "document-write",
+      "MongoCollection.replaceOne",
+      null
+    ]
+  ],
+  "selectedRequiredNodes": [
+    [
+      "a-vault-console",
+      "console/AARequest.vue",
+      "symbol",
+      "request",
+      "vue-action"
+    ],
+    [
+      "a-vault-console",
+      "console/seal.ts",
+      "symbol",
+      "requestSeal",
+      "function"
+    ],
+    [
+      "a-vault-console",
+      "console/seal.ts",
+      "http-request",
+      "POST /vault/seals",
+      null
+    ],
+    [
+      "b-seal-api",
+      "http/seal.json",
+      "route",
+      "POST /vault/seals",
+      null
+    ],
+    [
+      "b-seal-api",
+      "http/seal.json",
+      "handler-reference",
+      "SealRequests.request",
+      null
+    ],
+    [
+      "b-seal-api",
+      "seal/SealRequests.java",
+      "symbol",
+      "SealRequests.request",
+      "java-method"
+    ],
+    [
+      "b-seal-api",
+      "seal/SealRequests.java",
+      "event-publish",
+      "Publish SealRequested",
+      null
+    ],
+    [
+      "c-seal-ledger",
+      "ledger/SealLedger.java",
+      "event-subscribe",
+      "Subscribe via KafkaSubscriber",
+      null
+    ],
+    [
+      "c-seal-ledger",
+      "ledger/SealLedger.java",
+      "symbol",
+      "SealLedger.onMessage",
+      "java-method"
+    ],
+    [
+      "c-seal-ledger",
+      "ledger/SealLedger.java",
+      "document-write",
+      "MongoCollection.replaceOne",
+      null
+    ]
+  ],
+  "isolated": {
+    "nodes": 1,
+    "edges": 0,
+    "flows": 1,
+    "terminalKind": "symbol",
+    "reason": "unresolved-import"
+  },
+  "complete": {
+    "sources": [
+      "a-vault-console",
+      "b-seal-api",
+      "c-seal-ledger",
+      "d-facility-guide",
+      "e-vault-01",
+      "e-vault-02",
+      "e-vault-03",
+      "e-vault-04",
+      "e-vault-05",
+      "e-vault-06",
+      "e-vault-07",
+      "e-vault-08",
+      "e-vault-09",
+      "e-vault-10",
+      "e-vault-11",
+      "e-vault-12",
+      "e-vault-13",
+      "e-vault-14",
+      "e-vault-15",
+      "e-vault-16"
+    ],
+    "roots": [
+      [
+        "a-vault-console",
+        "console/AARequest.vue",
+        "request",
+        "vue-action"
+      ],
+      [
+        "a-vault-console",
+        "console/BBRepeat.vue",
+        "repeat",
+        "vue-action"
+      ],
+      [
+        "a-vault-console",
+        "console/CCSchedule.vue",
+        "schedule",
+        "vue-action"
+      ],
+      [
+        "a-vault-console",
+        "console/DDEmergency.vue",
+        "emergency",
+        "vue-action"
+      ]
+    ],
+    "isolatedRoot": [
+      "a-vault-console",
+      "console/ZZInspect.vue",
+      "inspect",
+      "vue-action"
+    ],
+    "flows": [
+      {
+        "nodes": [
+          [
+            "a-vault-console",
+            "console/AARequest.vue",
+            "symbol",
+            "request",
+            "vue-action"
+          ],
+          [
+            "a-vault-console",
+            "console/seal.ts",
+            "symbol",
+            "requestSeal",
+            "function"
+          ],
+          [
+            "a-vault-console",
+            "console/seal.ts",
+            "http-request",
+            "POST /vault/seals",
+            null
+          ],
+          [
+            "b-seal-api",
+            "http/seal.json",
+            "route",
+            "POST /vault/seals",
+            null
+          ],
+          [
+            "b-seal-api",
+            "http/seal.json",
+            "handler-reference",
+            "SealRequests.request",
+            null
+          ],
+          [
+            "b-seal-api",
+            "seal/SealRequests.java",
+            "symbol",
+            "SealRequests.request",
+            "java-method"
+          ],
+          [
+            "b-seal-api",
+            "seal/SealRequests.java",
+            "event-publish",
+            "Publish SealRequested",
+            null
+          ],
+          [
+            "c-seal-ledger",
+            "ledger/SealLedger.java",
+            "event-subscribe",
+            "Subscribe via KafkaSubscriber",
+            null
+          ],
+          [
+            "c-seal-ledger",
+            "ledger/SealLedger.java",
+            "symbol",
+            "SealLedger.onMessage",
+            "java-method"
+          ],
+          [
+            "c-seal-ledger",
+            "ledger/SealLedger.java",
+            "document-write",
+            "MongoCollection.replaceOne",
+            null
+          ]
+        ],
+        "edges": [
+          "calls",
+          "performs",
+          "http-target",
+          "routes-to",
+          "implements",
+          "performs",
+          "event-delivery",
+          "dispatch-candidate",
+          "performs"
+        ]
+      },
+      {
+        "nodes": [
+          [
+            "a-vault-console",
+            "console/BBRepeat.vue",
+            "symbol",
+            "repeat",
+            "vue-action"
+          ],
+          [
+            "a-vault-console",
+            "console/seal.ts",
+            "symbol",
+            "requestSeal",
+            "function"
+          ],
+          [
+            "a-vault-console",
+            "console/seal.ts",
+            "http-request",
+            "POST /vault/seals",
+            null
+          ],
+          [
+            "b-seal-api",
+            "http/seal.json",
+            "route",
+            "POST /vault/seals",
+            null
+          ],
+          [
+            "b-seal-api",
+            "http/seal.json",
+            "handler-reference",
+            "SealRequests.request",
+            null
+          ],
+          [
+            "b-seal-api",
+            "seal/SealRequests.java",
+            "symbol",
+            "SealRequests.request",
+            "java-method"
+          ],
+          [
+            "b-seal-api",
+            "seal/SealRequests.java",
+            "event-publish",
+            "Publish SealRequested",
+            null
+          ],
+          [
+            "c-seal-ledger",
+            "ledger/SealLedger.java",
+            "event-subscribe",
+            "Subscribe via KafkaSubscriber",
+            null
+          ],
+          [
+            "c-seal-ledger",
+            "ledger/SealLedger.java",
+            "symbol",
+            "SealLedger.onMessage",
+            "java-method"
+          ],
+          [
+            "c-seal-ledger",
+            "ledger/SealLedger.java",
+            "document-write",
+            "MongoCollection.replaceOne",
+            null
+          ]
+        ],
+        "edges": [
+          "calls",
+          "performs",
+          "http-target",
+          "routes-to",
+          "implements",
+          "performs",
+          "event-delivery",
+          "dispatch-candidate",
+          "performs"
+        ]
+      }
+    ],
+    "originals": [
+      [
+        "a-vault-console",
+        "console/AARequest.vue",
+        1,
+        6
+      ],
+      [
+        "a-vault-console",
+        "console/BBRepeat.vue",
+        1,
+        6
+      ],
+      [
+        "a-vault-console",
+        "console/CCSchedule.vue",
+        1,
+        6
+      ],
+      [
+        "a-vault-console",
+        "console/DDEmergency.vue",
+        1,
+        6
+      ],
+      [
+        "a-vault-console",
+        "console/seal.ts",
+        1,
+        7
+      ],
+      [
+        "b-seal-api",
+        "http/seal.json",
+        1,
+        13
+      ],
+      [
+        "b-seal-api",
+        "seal/SealRequests.java",
+        1,
+        10
+      ],
+      [
+        "b-seal-api",
+        "contracts/SealRequested.json",
+        1,
+        10
+      ],
+      [
+        "c-seal-ledger",
+        "ledger/SealLedger.java",
+        1,
+        13
+      ],
+      [
+        "c-seal-ledger",
+        "contracts/SealRequested.json",
+        1,
+        10
+      ]
+    ],
+    "isolatedOriginals": [
+      [
+        "a-vault-console",
+        "console/AARequest.vue",
+        1,
+        6
+      ],
+      [
+        "a-vault-console",
+        "console/BBRepeat.vue",
+        1,
+        6
+      ],
+      [
+        "a-vault-console",
+        "console/CCSchedule.vue",
+        1,
+        6
+      ],
+      [
+        "a-vault-console",
+        "console/DDEmergency.vue",
+        1,
+        6
+      ],
+      [
+        "a-vault-console",
+        "console/ZZInspect.vue",
+        1,
+        5
+      ]
+    ]
+  },
+  "limits": {
+    "wallMs": 5000,
+    "work": 1000000,
+    "projectionBytes": 524288,
+    "receiptBytes": 655360,
+    "textBytes": 65536,
+    "spans": 30,
+    "sources": 20
+  },
+  "resources": {
+    "sampleIntervalMs": 5,
+    "maxSliceMs": 150,
+    "sampledRssMiB": 384,
+    "sampledHeapGrowthMiB": 64
+  },
+  "diagnostic": {
+    "preparerWatchdogMs": 900000,
+    "readerWatchdogMs": 600000,
+    "overallWatchdogMs": 1800000
+  },
+  "instrumentation": {
+    "profiler": false,
+    "phaseHooks": false,
+    "queryHooks": false,
+    "ownerHooks": false,
+    "ordinaryCounters": true,
+    "aggregateCharges": true,
+    "outerResourceSampler": true
+  },
+  "parityExcludedProjectionFields": [],
+  "parityExcludedReceiptFields": []
+}
