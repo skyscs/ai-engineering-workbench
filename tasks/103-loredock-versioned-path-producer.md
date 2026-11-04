@@ -1,6 +1,6 @@
 # Task 103 — Implement the internal typed connected paths v2 producer
 
-Status: scoped for implementation, 2026-11-04.
+Status: implementation started, 2026-11-04; candidate remains internal.
 
 Follow the Task 102 final-qualification boundary review. Implement the smallest
 complete typed path producer with direct Java literal topic witnesses and the real
