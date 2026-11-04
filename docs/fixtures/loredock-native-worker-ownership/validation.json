@@ -1,0 +1,116 @@
+{
+  "schemaVersion": "task111-native-worker-audit-validation/1",
+  "scopeCommit": "0d5483ebc2182cd86eb9593f87ad1af26bf52f63",
+  "diagnosticHead": "c41b029fe6e59b3520e722dcaba82b90aa1845a4",
+  "node": "v22.23.2",
+  "pnpm": "10.15.0",
+  "focusedTests": 3,
+  "fullTests": 805,
+  "commands": [
+    {
+      "command": "install-first",
+      "exitCode": 0,
+      "file": "commands/install-first.log.gz",
+      "rawBytes": 326,
+      "rawSha256": "3b60664789398af4d71ff80657e4cd1161fb2416eac3216afe8d67e3290256f9",
+      "archiveSha256": "9b5aa98abd7970de792a0255b1785cb68a4527d15423f560cdd340eb83e1cb5c"
+    },
+    {
+      "command": "build-first",
+      "exitCode": 0,
+      "file": "commands/build-first.log.gz",
+      "rawBytes": 2363,
+      "rawSha256": "e8841863b4d27dfa5472bd3e96c49c7f84ef832a94b5590925d0bf2e76dde550",
+      "archiveSha256": "1022862b01c241d43a12d87a059b0ecc13b53eb9a0d44c802fa615bc6a8ff606"
+    },
+    {
+      "command": "focused-first",
+      "exitCode": 0,
+      "file": "commands/focused-first.log.gz",
+      "rawBytes": 1019,
+      "rawSha256": "eb9af0eb3dbb6901a78aadbbf1393a8cbd2e4d99ae491a3f9c9afb48b387dc91",
+      "archiveSha256": "c53f69195d10ae885a9cf861d471c8613d248edae3761f31cded1d5fe7810293"
+    },
+    {
+      "command": "diagnostic-first",
+      "exitCode": 0,
+      "file": "commands/diagnostic-first.log.gz",
+      "rawBytes": 898,
+      "rawSha256": "003e04ccaa2f3a1ef6d21d2d4f75d65d4095072a5b423134f2b74c095ed65f9c",
+      "archiveSha256": "78f664f84f9d653102564d5276e5a19c95e1d9de475f36ab54f5c70fd7abd97e"
+    },
+    {
+      "command": "check-first",
+      "exitCode": 0,
+      "file": "commands/check-first.log.gz",
+      "rawBytes": 303054,
+      "rawSha256": "287ea4adafddfdadfe4b29a31fa7f75f31e654cb3058a639c1cabc867284e63d",
+      "archiveSha256": "150be129cc5ca262a9f28ced76c1b13105ed4fde06467f51a34cdd32e7128457"
+    }
+  ],
+  "artifacts": [
+    {
+      "source": "capture-output.json",
+      "file": "raw/capture-output.json.gz",
+      "rawBytes": 489,
+      "rawSha256": "aa235e967ae944c2a498ea10bedecfb258f8fd2d2c3ad6627cabe546cc08fd41",
+      "archiveSha256": "86b12c4b78dc8b686955a9490ab48748168f359a48e88430c0a35a7366f3aac5"
+    },
+    {
+      "source": "history-output.json",
+      "file": "raw/history-output.json.gz",
+      "rawBytes": 44686,
+      "rawSha256": "19876890b1a1ca51756eac3925d606e3d44f1d7a047e5b7341a040981f02af9b",
+      "archiveSha256": "5a309d9fcf3a1b2f84a38faa6d08a35c694ef5de0c48b74e23b0a2d8601eb200"
+    },
+    {
+      "source": "input.json",
+      "file": "raw/input.json.gz",
+      "rawBytes": 7093,
+      "rawSha256": "6462f980f1f80f3b4e37582ca6d308155cfb35efed26f7d8bc34a40bd605cc1e",
+      "archiveSha256": "a7c641271a466e8435d5d82d2a79ac979e3bcbcea457056b904f801cffa8a64c"
+    },
+    {
+      "source": "receipt.json",
+      "file": "raw/receipt.json.gz",
+      "rawBytes": 35575,
+      "rawSha256": "d53ac6c996b13e45087d1e4718594722209377c51824fa08c7b35ba62757c5c6",
+      "archiveSha256": "8b1608a10a84e945a43d045c58c039626523461898ad99c36e27ed4afe284275"
+    },
+    {
+      "source": "report.json",
+      "file": "raw/report.json.gz",
+      "rawBytes": 60069,
+      "rawSha256": "90105690b47f0f9461ed5d9a8d9e77eb4027a0148ef8637d93db9101f5ec930f",
+      "archiveSha256": "0caa022187cad84884074237da7d22d000ea0f1672b5397c99da8974281799a0"
+    }
+  ],
+  "reviewedModules": {
+    "scripts/loredock-native-worker-audit/queries.mjs": "79528191189325cab940861665bbc03c8003ea140d23c853fcd89953415c8b1c",
+    "scripts/loredock-native-worker-audit/run.mjs": "ddf13a297e523144285be11ccf3c7282e6f9bca9d71ed826268f4c049a4d7789",
+    "scripts/tests/loredock-native-worker-audit.test.mjs": "9b82b80e81f2392006daeabeebeac2443d83d0af9be4b5ca11d89f12a5abd0e6"
+  },
+  "input": {
+    "sources": 4,
+    "files": 47,
+    "codeFiles": 40,
+    "bytes": 5201,
+    "sha256": "3d01d961a1165113b91894e343b3643252c60d0ca526c6badadea1b66469c24c"
+  },
+  "diagnosticFailed": false,
+  "diagnosticErrors": [],
+  "sqlIdentities": 47,
+  "sqlBytes": 7581,
+  "stages": 7,
+  "productionSourcesChanged": false,
+  "reservedFamilyExecuted": false,
+  "resourceQualification": false,
+  "firstFailures": [],
+  "modelRequests": 0,
+  "limitations": [
+    "SQL instrumentation affects allocation/timing; no memory score or causal RSS attribution.",
+    "Iterator invocation counts exclude deferred per-row errors.",
+    "Small owned diagnostic, not dense-project, whole-lifetime, semantic, user or L5 acceptance.",
+    "Original owned run retains SQLite and synthetic Git/source directories; this bundle contains input, raw native results, report and logs."
+  ]
+}

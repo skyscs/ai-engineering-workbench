@@ -1,5 +1,22 @@
 # Development status
 
+## Task 111 — Native replacement audit identifies three repeated writes
+
+The [bounded compiled diagnostic](loredock/NATIVE_WORKER_OWNERSHIP.md) observes forty
+preparations for each pending INSERT/checkpoint UPDATE/counter UPDATE on forty code
+inputs. It retains 47 SQL identities and 7,581 SQL bytes, with no bindings or per-call
+records. Both replacements publish explicit coverage; evicted history returns exact
+saved originals/dependencies and source bytes remain unchanged. No RSS cause is inferred.
+
+Three focused cases and **805 full strict tests/builds** pass. All five command logs
+and five first diagnostic artifacts are [retained](fixtures/loredock-native-worker-ownership/README.md).
+Production code and all exhausted families are unchanged; no model/corporate input.
+Next [Task 112](../tasks/112-loredock-bounded-analysis-writes.md) scopes exactly three
+write statements with bounded binding retention, independent controls and unchanged
+transactions/source validation. Consumer migration still requires a new resource gate.
+PR #114 head `0d5483e` passed push 41888194002 and pull-request 41888242331 CI
+(802 tests), then merged as identical-tree `99f36ec`.
+
 ## Task 110 — Final native composition retains one failed memory row
 
 The [single reserved attempt](loredock/NATIVE_FINAL_QUALIFICATION.md) passes all sixteen

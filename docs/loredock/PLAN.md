@@ -200,6 +200,10 @@ reopened-history RSS at 399.58984375 MiB against 384 MiB. The family is exhauste
 [Task 111](../../tasks/111-loredock-native-worker-ownership-audit.md) audits replacement
 ownership before a narrow candidate and different future qualification. Consumer
 migration remains blocked by the [recorded result](NATIVE_FINAL_QUALIFICATION.md).
+Task 111's [small compiled audit](NATIVE_WORKER_OWNERSHIP.md) confirms repeated preparation
+of three writes without identifying the RSS cause.
+[Task 112](../../tasks/112-loredock-bounded-analysis-writes.md) scopes bounded reuse,
+independent behavioral controls and explicit binding lifetime before fresh qualification.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.
