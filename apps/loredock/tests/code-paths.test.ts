@@ -17,6 +17,7 @@ import { CatalogError } from '../src/types.js';
 import { compareHeaders } from '../src/http-headers.js';
 import { CodePaths, pathRequest } from '../src/code-paths.js';
 import { CodePathsV2 } from '../src/code-paths-v2.js';
+import { OperationBudgetError } from '../src/operation-budget.js';
 import type { CodePathsResponseV2 } from '../src/code-paths-v2-types.js';
 import { createApp } from '../src/app.js';
 import { verifySavedTree } from '../src/code-paths-metadata.js';
@@ -316,7 +317,7 @@ test('a closed TCP request aborts connected work through the Node adapter', { ti
   const read = paths.read.bind(paths);
   paths.read = (input, kind, signal) => {
     serverSignal ??= signal;
-    return read(input, kind, signal).catch(error => { report(error instanceof CatalogError ? error.code : 'UNEXPECTED'); throw error; });
+    return read(input, kind, signal).catch(error => { report(error instanceof CatalogError || error instanceof OperationBudgetError ? error.code : 'UNEXPECTED'); throw error; });
   };
   const app = createApp(s.catalog, { codeAnalysis: s.analysis, codePaths: paths });
   server = serve({ fetch: app.fetch, hostname: '127.0.0.1', port: 0 }); await once(server, 'listening');

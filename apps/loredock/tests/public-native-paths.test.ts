@@ -49,6 +49,8 @@ const available = (value: CodePathsResponseV2): CodePathsAvailableV2 => { assert
 
 test('public defaults expose native identities, literal support and pinned selections without writes or receipts', async t => {
   const s = await setup(t), request = await client(createApp(s.catalog, { codeAnalysis: s.analysis }));
+  const receiptPaths = async () => (await readdir(s.store.directory, { recursive: true })).filter(file => file.startsWith('path-receipts')).sort();
+  const receiptsBefore = await receiptPaths();
   const before = s.counters(), response = await request('/code-paths?buildId=' + s.buildId);
   assert.equal(response.status, 200); assert.equal(response.headers.get('cache-control'), 'no-store');
   const value = available(await response.json() as CodePathsResponseV2);
@@ -78,7 +80,7 @@ test('public defaults expose native identities, literal support and pinned selec
   const stale = await request('/code-paths?' + new URLSearchParams({ ...pins, generationId: old.generationId }));
   assert.equal(stale.status, 400); assert.equal((await stale.json() as { error: { code: string } }).error.code, 'INVALID_GENERATION');
   for (const key of ['gitCalls', 'writeCalls', 'changedRows'] as const) assert.equal(s.counters()[key], before[key]);
-  assert.deepEqual(await readdir(path.join(s.store.directory, 'path-receipts', s.store.receipts.catalogId)), []);
+  assert.deepEqual(await receiptPaths(), receiptsBefore);
 });
 
 test('public native paths retain an unresolved dynamic topic instead of a delivery candidate', async t => {
