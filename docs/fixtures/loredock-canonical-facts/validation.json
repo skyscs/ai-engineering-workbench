@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "task096-canonical-fact-verification/1",
+  "scope": "e8f13e2",
+  "implementation": "3c3264d",
+  "fullCheck": {
+    "tests": 596,
+    "failed": 0,
+    "strictTypes": true,
+    "builds": true
+  },
+  "files": [
+    {
+      "file": "install-first.log.gz",
+      "original": "/home/toshiba/aew/task096-install-first.log",
+      "exitCode": 0,
+      "bytes": 326,
+      "sha256": "153daef568282fe31cbb8f78fe71508665dacc77f7885d42a6c63214c3e9a005",
+      "archiveSha256": "9f67f42a158ee9b8c89947f6003fc451af3bfa59b6e6a94ee21118084cc043a8"
+    },
+    {
+      "file": "packages-first.log.gz",
+      "original": "/home/toshiba/aew/task096-packages-first.log",
+      "exitCode": 0,
+      "bytes": 597,
+      "sha256": "364e43f25646a0624d91b1c3c75bb5b02a99673fd5164e11082bfff4b309b474",
+      "archiveSha256": "f7f32c2e7617b6935f9f313ecd10643fe2b54750d02074a515f4b11a38756301"
+    },
+    {
+      "file": "types-first.log.gz",
+      "original": "/home/toshiba/aew/task096-types-first.log",
+      "exitCode": 0,
+      "bytes": 147,
+      "sha256": "b7a0c039f413f06ba1513153f0ce9ad05308a320a5769185800c4ce9a7e92138",
+      "archiveSha256": "bec710124527b171c06b3bdee53af1859ff813a5bac667a33ef4bd194167e1a9"
+    },
+    {
+      "file": "focused-first.log.gz",
+      "original": "/home/toshiba/aew/task096-focused-first.log",
+      "exitCode": 0,
+      "bytes": 3401,
+      "sha256": "8aec41a76e99192d5d5d12a980acf12ebcc0d869d848735891c511cbbdbbdc44",
+      "archiveSha256": "97d869b37c1028e4515c49fc7977ccde1a353992eb4b8bc49b64cf0468fd8a78"
+    },
+    {
+      "file": "check-first.log.gz",
+      "original": "/home/toshiba/aew/task096-check-first.log",
+      "exitCode": 0,
+      "bytes": 237072,
+      "sha256": "334ebe4d30f1d1585927091e6595bf58395b8aaea17e6a100f340dcd30c25df1",
+      "archiveSha256": "9f45fa13b0feb3831927fa923827919f1414676a683e2cf9378faade2e633644"
+    },
+    {
+      "file": "built-first.log.gz",
+      "original": "/home/toshiba/aew/task096-built-first.log",
+      "exitCode": 0,
+      "bytes": 225,
+      "sha256": "134263f7f2a38bff080e426634c0c0235470af5972d3fe1dfcfcb68c604a70e4",
+      "archiveSha256": "6929aaedbc864163faeecb3646b998b91ed8bc320b93d83bd4f71d42b2fc7f7c"
+    }
+  ],
+  "resourceClaim": false
+}

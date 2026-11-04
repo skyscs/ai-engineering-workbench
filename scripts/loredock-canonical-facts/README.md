@@ -26,3 +26,5 @@ factory name/import, request-local pair creation and entry construction differ.
 Independent tiny semantics and helper identity/immutability/fallback cases precede
 any separately frozen resource qualification. No memory saving or production
 promotion follows merely from sharing equal objects.
+
+See [retained verification](../../docs/fixtures/loredock-canonical-facts/README.md).

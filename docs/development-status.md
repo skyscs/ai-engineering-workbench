@@ -1,5 +1,28 @@
 # Development status
 
+## Task 096 — One immutable fact-free pair preserves exact path behavior
+
+The [offline candidate](../scripts/loredock-canonical-facts/README.md) shares one
+exact repeated fact/range shape after full validation, within a 4 KiB serialized
+bound. It copies/freezes canonical values, retains every file/evidence/domain/gap,
+and falls back for different/oversized/unsupported forms. All state belongs to one
+request; production and previously measured modules are unchanged.
+
+Five helper/source cases and nine integration cases/subcases pass first execution.
+Domain-boundary observation confirms actual sharing with distinct per-file evidence.
+Complete captures/pages/history, work/read/preparation counts and negative/lifecycle/
+publication fences match the composed baseline. Full checks pass 596 tests/builds,
+built services import, and nineteen immediate / 412 prior measured dependencies
+match. Six first logs remain [retained](fixtures/loredock-canonical-facts/README.md).
+This is semantic verification, not resource acceptance. Next separately freeze a
+fresh complete two-process qualification after both exact-head CI events and merge.
+
+PR #98 head `6d1d05c` passed push 41816165980 and pull-request 41816175564 CI and
+merged as identical-tree `1fb2a08`. PR #99 head `4f121de` passed push 41816321796
+and pull-request 41816395264 CI, then merged as identical-tree `4760650`. Both ran
+582 tests; first CI/resource failures remain retained. See
+[Task 096](../tasks/096-loredock-canonical-facts.md).
+
 ## Task 095 — Path representation audit selects one bounded canonical pair
 
 The [independent tiny audit](loredock/PATH_REPRESENTATION_AUDIT.md) succeeds on its
@@ -23,7 +46,9 @@ full resource qualification remain mandatory; Task 094 stays failed.
 Scope `cba22b4` and entry `bb70643` precede observation. Full strict checks pass
 582 tests/builds; ten first artifacts are
 [retained](fixtures/loredock-path-representation/README.md). Both exact-head CI
-events precede merge. See [Task 095](../tasks/095-loredock-path-representation.md).
+events passed for `4f121de` (push 41816321796 / pull-request 41816395264), followed
+by identical-tree PR #99 merge `4760650`. See
+[Task 095](../tasks/095-loredock-path-representation.md).
 
 ## Task 094 — Worker qualification preserves content but fails one path RSS gate
 

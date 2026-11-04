@@ -1,6 +1,6 @@
 # Task 095 — Audit connected-path fact representation
 
-Status: audit completed and locally verified, 2026-11-04; exact-head CI precedes merge.
+Status: merged through PR #99, 2026-11-04.
 
 Task 094 fails reopened isolated-path RSS before replacement analyses. Audit the
 current request's full-domain retained fact representation on independent tiny owned
@@ -50,3 +50,8 @@ oversized or unsupported shapes fall back. Keep all files, evidence, domains,
 coverage, gaps, work and fences; no optimization is implemented here and no native
 memory attribution or resource improvement is claimed. Independent proof and fresh
 full qualification remain necessary.
+
+Final head `4f121de` includes Task 094's CI-test correction. Push 41816321796 and
+pull-request 41816395264 pass (582 tests), followed by identical-tree merge
+`4760650` after PR #98's accepted merge. The audit entry and its first observations
+remain unchanged. Task 096 implements the selected candidate separately.
