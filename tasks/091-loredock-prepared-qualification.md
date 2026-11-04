@@ -1,6 +1,6 @@
 # Task 091 — Qualify complete request-local prepared reads
 
-Status: prepared and locally verified; frozen execution pending, 2026-11-04.
+Status: executed once and locally verified; resource qualification failed; exact-head CI pending, 2026-11-04.
 
 Task 090 proves independent semantic/fence equivalence for bounded request-local
 prepared read statements over the unchanged streaming/compact services. Resource
@@ -60,3 +60,22 @@ script hashes are verified before execution; all prior families remain unchanged
 PR #94's exact head `4da9ec7` passed push 41746256819 and pull-request 41746331277
 CI (568 tests) and merged as identical-tree `e694df7`. This branch includes that
 merge. The measured probe records and verifies this acceptance before one run.
+
+## Outcome
+
+Clean head `fcb592c` executes the frozen family once in 386.019 seconds. Both workers
+exit zero and close normally. All sixteen content/path/span/scope and independent
+observation gates, fourteen useful paths, six repeats, two histories and seven
+cross-arm comparisons pass. Resources pass **15/16**: reopened history begins at
+387.031 MiB RSS, over the unchanged 384 MiB limit. All other resource dimensions
+pass. The overall result and outer exit correctly fail; the family is exhausted.
+
+Retained endpoints place that RSS crossing during the two replacement inventories,
+before history (318.793 → 356.934 → 387.031 MiB), while heap used also grows. They
+do not identify allocation ownership. Next: one focused source/query-count audit
+of inventory replacement on independent tiny inputs before choosing another change.
+No production promotion, post-hoc limit change or old-family rerun is permitted.
+
+The [retained evidence](../docs/fixtures/loredock-prepared-qualification/README.md)
+contains 39 raw artifacts, all process outcomes and exact baseline/input/archive
+hashes. Both final-head CI events remain required before merge.

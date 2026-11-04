@@ -28,3 +28,9 @@ Execute exactly once. The corpus is exhausted after that execution, including an
 failed or incomplete result. Original bounds apply to both processes and all eight
 operations; content success alone does not qualify resources. No production switch
 or independent/private pilot acceptance follows from this agent-authored test.
+
+The [first recorded execution](../../docs/fixtures/loredock-prepared-qualification/README.md)
+passes complete content/parity but fails reopened-history RSS (387.031 MiB against
+384). It is exhausted and must not be retried. All other fifteen resource operations
+pass; no production promotion follows. Next audit inventory-replacement preparation
+on independent tiny inputs before selecting another candidate.

@@ -1,5 +1,24 @@
 # Development status
 
+## Task 091 — Prepared qualification retains one history RSS failure
+
+The [single fresh two-process run](fixtures/loredock-prepared-qualification/README.md)
+passes all sixteen content/path/span/scope and observation checks, fourteen useful
+paths, six repeats, two histories and seven exact cross-arm comparisons. Resources
+pass **15/16**: reopened history starts at 387.031 MiB RSS against 384. All other
+dimensions pass; both children close normally. Overall qualification remains failed.
+
+Retained endpoints place the crossing during replacement inventories before history,
+with heap used growing too. They identify an interval, not native/SQLite ownership.
+Next: one source/query-count audit of replacement preparation on independent tiny
+inputs before selecting another candidate. All first bytes/gates remain; no retry,
+relaxed bound or production promotion. Full checks pass 569 tests, strict types and
+builds; review verifies 410 baseline files, five frozen inputs and all archives.
+
+PR #94 merged as identical-tree `e694df7` after `4da9ec7` passed push 41746256819
+and pull-request 41746331277 CI. See [Task 091](../tasks/091-loredock-prepared-qualification.md).
+Both final-head CI events remain required for this task.
+
 ## Task 090 — Prepared-read reuse preserves complete semantics on independent inputs
 
 The [opt-in candidate](../scripts/loredock-prepared-reads/README.md) retains at most

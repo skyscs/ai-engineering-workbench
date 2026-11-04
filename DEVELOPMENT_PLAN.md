@@ -332,6 +332,12 @@ tests preserve fresh values, exact bytes/work and all tested refusals/fences whi
 reducing preparation calls. No resource claim or production promotion follows.
 Next: freeze and execute a fresh compatible complete uninstrumented qualification
 for both required lifecycles, keeping every original content/resource gate.
+[Task 091](tasks/091-loredock-prepared-qualification.md) executes that frozen
+qualification once. Complete content, support, scope, history and raw parity pass;
+resources pass 15/16. Reopened history starts over RSS after two inventory replacements.
+Keep the failed gate and all bounds. Next: one focused source/query-count audit of
+replacement preparation on independent tiny inputs before choosing another change.
+The endpoints do not identify an allocation owner; no production promotion follows.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
