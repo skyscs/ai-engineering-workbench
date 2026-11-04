@@ -2,6 +2,10 @@
 
 Status: scoped, 2026-11-04. Begin implementation after Task 116 exact-head acceptance.
 
+The [prospective interaction contract](../docs/loredock/SAVED_PATH_BROWSER.md) defines
+the pinned save, local bookmark link, recorded presentation and scope/cancellation rules
+before implementation.
+
 Add the smallest usable browser workflow over the existing protected native capture and
 history API. A user viewing a connected path can explicitly save that exact pinned
 selection and open its recorded content from the returned confirmation. No raw receipt-ID
