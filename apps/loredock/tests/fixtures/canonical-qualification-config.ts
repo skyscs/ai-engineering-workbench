@@ -24,6 +24,6 @@ export async function configuration(size: number) {
     bytes: values.reduce((sum, text) => sum + Buffer.byteLength(text), 0) };
   const CodePaths = createCanonicalPaths({ codePathLimits, PathWork, bindingMetadata, bindingDomains,
     assertBindingMetadata, declarationMap, compareHeaders, sha256, CatalogError });
-  return { ...config, corpusFactory, size: measuredSize, oracle: { ...config.oracle, sizes: [measuredSize] },
+  return { ...config, corpusFactory, expectedCorpusHash: sha256(JSON.stringify(corpus)), size: measuredSize, oracle: { ...config.oracle, sizes: [measuredSize] },
     services: { ...config.services, CodePaths: createPreparedReads({ ...config.services, CodePaths }).CodePaths } };
 }
