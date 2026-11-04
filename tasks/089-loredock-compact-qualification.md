@@ -1,6 +1,6 @@
 # Task 089 — Complete uninstrumented compact-payload qualification
 
-Status: executed once and locally verified, 2026-11-04; exact-head CI pending.
+Status: verified and merged through PR #93 as `8322f2f`, 2026-11-04; resource qualification failed.
 
 ## Sequence and scope
 
@@ -78,3 +78,7 @@ single action is an independent bounded request-local prepared-read-statement re
 candidate, justified as a hypothesis by the unchanged store and retained preparation/
 allocation evidence. It must preserve fresh execution, all validations/fences and
 complete semantics; no SQL-result or cross-request cache is authorized by this task.
+
+Exact final head `53eab82` passed push 41745235679 and pull-request 41745280834 CI
+(551 tests). Merge `8322f2f` has the identical tree. Task 090 scopes the independent
+prepared-read candidate while preserving the failed qualification unchanged.

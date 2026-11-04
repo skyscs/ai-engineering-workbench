@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "task090-verification/1",
+  "node": "v22.23.2",
+  "pnpm": "10.15.0",
+  "resourceAcceptance": "Not executed or claimed.",
+  "logs": [
+    {
+      "file": "install-first.log.gz",
+      "exit": 0,
+      "bytes": 917,
+      "sha256": "6fbbb177054e51969992120dacf15e267499b4385fd2cee4dff7924243f13630",
+      "archiveSha256": "1fd3d0a53eba071084816a0fad670758181e25d9c321163ca8d2c8bf2e621c9c"
+    },
+    {
+      "file": "build-packages-first.log.gz",
+      "exit": 0,
+      "bytes": 596,
+      "sha256": "a426890870ae04dca06dab0e3e71970679980ea73d8842c8f844d9f744bb7650",
+      "archiveSha256": "97aa3a745b8ae08aa7844fab1d272e67b96600f9c8efa324552dfa8fe9ee41c4"
+    },
+    {
+      "file": "scope-first.log.gz",
+      "exit": 0,
+      "bytes": 1659,
+      "sha256": "1de22726c7c0f10093b7783cd7437b7b34a4c42b85efbc5a691f684b467c47a8",
+      "archiveSha256": "add80521fb0635dba11b1f3e4e38567e197604f4ab466fc1377eddbdbc2ea47f"
+    },
+    {
+      "file": "integration-first.log.gz",
+      "exit": 0,
+      "bytes": 1778,
+      "sha256": "ec3f0e64cb9e399d2997de59290dce0130268b68eab1e337f6312e784710cb24",
+      "archiveSha256": "743fa4bac322fed499324ea58d73dd24cdae12c89a92bd27b528056e848c5b9f"
+    },
+    {
+      "file": "typecheck-first.log.gz",
+      "exit": 0,
+      "bytes": 146,
+      "sha256": "83a65e9c54de07e77406290698a40db56ce77f4fc1220523fc03f7bfc003d8a9",
+      "archiveSha256": "5987a64b96e4247b9ab25ccfa4486287fcb6e5b1038ab0587ea9dec8ec245186"
+    },
+    {
+      "file": "check-first.log.gz",
+      "exit": 0,
+      "bytes": 226461,
+      "sha256": "38ece0527cbcab6e1a1d4cf0f7106fbeecbe3fd029522446bae18291cf5b8cae",
+      "archiveSha256": "7d2ddda5368986a8f7b0e17a767c14cb0a4a81a93555d1a184145b8beaee0e32"
+    }
+  ]
+}

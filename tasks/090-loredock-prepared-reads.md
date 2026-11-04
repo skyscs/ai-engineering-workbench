@@ -1,6 +1,6 @@
 # Task 090 — Bound prepared read statements to one path request
 
-Status: scoped before implementation, 2026-11-04.
+Status: implemented and locally verified, 2026-11-04; exact-head CI pending.
 
 ## Evidence and scope
 
@@ -43,3 +43,24 @@ Clearing references does not promise SQLite finalization or RSS reclamation.
 - No new resource family, profiler, heap snapshot, forced collection, model call,
   corporate code or demo operation. A separate fresh frozen full qualification
   remains necessary before resource claims or production integration.
+
+## Implementation and verification
+
+Scope `95fc2ba` precedes implementation. `scripts/loredock-prepared-reads/reuse.mjs`
+adds isolated bounded scope/statement ownership; `services.mjs` composes unchanged
+streaming/compact services. No old module or production source changes. Fifteen
+dependency hashes bind the reviewed original paths, receipt, store and validation.
+
+All 568 tests, strict typechecks and builds pass. Eight SQLite scope cases include
+missing/null/binary bindings, external commits/data_version/schema changes and native
+row shapes. Nine complete integration cases/subcases preserve exact bytes/work/read
+counts and refusal/fence behavior, including overlap, stop and publication. Ordinary
+tiny captures perform fewer preparations; no performance or memory claim follows.
+The six retained command logs have no failed development attempt. Built services
+import successfully; full diff, source, dependency and artifact hashes are reviewed.
+See [retained verification](../docs/fixtures/loredock-prepared-reads/README.md).
+
+PR #93 merged as identical-tree `8322f2f` after exact head `53eab82` passed push
+41745235679 and pull-request 41745280834 CI. Both final-head events remain required
+for this task. Next: separately freeze a fresh compatible complete uninstrumented
+two-lifecycle qualification under the unchanged resource/content gates.
