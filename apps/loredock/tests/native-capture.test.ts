@@ -108,11 +108,23 @@ test('source and policy changes at every capture phase fence output before publi
   });
 });
 
-test('history rechecks revocation and cancellation after every yield without returning copied text', async t => {
+test('history rechecks revocation after every yield without returning copied text', async t => {
   for (const stage of ['start', 'projection', 'originals', 'handoff'] as const) await t.test(stage, async sub => {
     const s = await setup(sub), initial = s.service(), saved = await initial.capture({ buildId: s.state.buildId });
     const service = s.service({ checkpoint(info) { if (info.stage === stage) s.state.catalog.revoke(s.state.store.sources().find(row => row.name === 'z-unshown-notes')!.id); } });
     await assert.rejects(service.history(saved.receiptId), { code: 'RECEIPT_FENCED' }); assert.deepEqual(files(s.folder), []);
+  });
+});
+
+test('history cancellation at every cooperative phase preserves the record and releases ownership', async t => {
+  const s = await setup(t), original = s.service(), saved = await original.capture({ buildId: s.state.buildId });
+  const recorded = readFileSync(path.join(s.folder, saved.receiptId + '.json'));
+  for (const stage of ['start', 'projection', 'originals', 'handoff'] as const) await t.test(stage, async () => {
+    const controller = new AbortController();
+    const interrupted = s.service({ checkpoint(info) { if (info.stage === stage) controller.abort(); } });
+    await assert.rejects(interrupted.history(saved.receiptId, controller.signal), { code: 'CANCELLED' });
+    assert.deepEqual(readFileSync(path.join(s.folder, saved.receiptId + '.json')), recorded);
+    assert.equal((await original.history(saved.receiptId)).receiptId, saved.receiptId);
   });
 });
 
