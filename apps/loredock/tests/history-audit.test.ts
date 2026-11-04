@@ -118,7 +118,7 @@ test('history handles empty catalogs and rejects missing, foreign, unsupported, 
   assert.throws(()=>auditHistory('relative'),/absolute/);assert.throws(()=>auditHistory(directory),/not found/);assert.deepEqual(await readdir(directory),[]);
   await writeFile(path.join(directory,'workbench.db'),'owned sentinel');assert.throws(()=>auditHistory(directory),/Workbench/);await rm(path.join(directory,'workbench.db'));
   const store=new CatalogStore(directory);assert.equal(auditHistory(directory).generations.total,0);store.db.exec('PRAGMA user_version=11');store.close();
-  const file=path.join(directory,'loredock.db'),before=await readFile(file);assert.throws(()=>auditHistory(directory),/schema 8 or 9/);assert.deepEqual(await readFile(file),before);
+  const file=path.join(directory,'loredock.db'),before=await readFile(file);assert.throws(()=>auditHistory(directory),/schema 8, 9 or 10/);assert.deepEqual(await readFile(file),before);
   await symlink(file,path.join(directory,'.owner.db-wal'));assert.throws(()=>auditHistory(directory),/regular files/);
   for(const args of [[],['--data-dir','relative'],['--data-dir',directory,'--delete']])assert.throws(()=>historyArguments(args),/Usage/);
   assert.equal(historyArguments(['--data-dir',directory]),directory);

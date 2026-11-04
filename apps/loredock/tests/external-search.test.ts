@@ -75,13 +75,19 @@ test('schema 8 migration preserves every token, rowid, rank setting, original, h
   const settings = state.store.all('SELECT * FROM search_config ORDER BY k'), inventory = state.analysis.get(run.id), review = corrections.history(note.id);
   await state.reopen(); const after = literalIndexSnapshot(state.store);
   assert.equal(state.store.one<{user_version: number}>('PRAGMA user_version')!.user_version, 10);
-  for (const key of ['vocabulary','documents','documentSizes','totals','nonLiteralRecords']) assert.deepEqual(after[key], before[key], key);
+  for (const key of ['vocabulary','documents','documentSizes','totals']) assert.deepEqual(after[key], before[key], key);
+  // Schema 10 adds one private identity; preserve every pre-existing logical row
+  // comparison from the unchanged frozen snapshot helper.
+  assert.deepEqual(after.nonLiteralRecords.filter((row: {table: string}) => row.table !== 'catalog_identity'), before.nonLiteralRecords);
+  assert.equal(after.nonLiteralRecords.filter((row: {table: string}) => row.table === 'catalog_identity').length, 1);
+  const catalogIdentity = state.store.receipts.catalogId;
+  assert.deepEqual(state.store.all('SELECT slot,id FROM catalog_identity'), [{slot: 1, id: catalogIdentity}]);
   assert.deepEqual(state.store.all('SELECT * FROM search_config ORDER BY k'), settings);
   assert.deepEqual(readQueries(state.catalog, [state.first, state.second]), reads);
   assert.deepEqual(originals.map(row => state.catalog.evidence(row.id)), originals);
   assert.deepEqual(state.analysis.get(run.id), inventory); assert.deepEqual(new Corrections(state.catalog).history(note.id), review);
   assert.equal(state.store.one("SELECT name FROM sqlite_schema WHERE name='search_content'"), undefined); validate(state.store);
-  await state.reopen(); assert.deepEqual(readQueries(state.catalog, [state.first, state.second]), reads);
+  await state.reopen(); assert.equal(state.store.receipts.catalogId, catalogIdentity); assert.deepEqual(readQueries(state.catalog, [state.first, state.second]), reads);
   const build = state.store.build(await state.index('refresh')); assert.equal(build.refresh!.reusedFiles, build.coverage.indexed); validate(state.store);
   const source = state.store.sources().find(source => source.name === 'portal')!;
   state.catalog.revoke(source.id); validate(state.store);

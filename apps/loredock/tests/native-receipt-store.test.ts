@@ -157,7 +157,8 @@ test('source SQL failure keeps purge pending after native deletion, and corrupti
 
 test('schema identity migration is atomic, durable, private and rejected by a schema-9 owner', async t => {
   const directory = await mkdtemp(path.join(tmpdir(), 'native-migration-')); t.after(() => rm(directory, { recursive: true, force: true }));
-  const legacy = new ReferenceStore(directory), p = legacy.project(), pending = legacy.start('legacy-pending', p.sourceSetVersion, p.policyVersion); legacy.close();
+  const legacy = new ReferenceStore(directory); source(legacy);
+  const p = legacy.project(), pending = legacy.start('legacy-pending', p.sourceSetVersion, p.policyVersion); legacy.close();
   const run = CatalogStore.prototype.run;
   CatalogStore.prototype.run = function (sql, ...args) { if (sql.startsWith('INSERT INTO catalog_identity')) throw new Error('Injected identity migration failure.'); return run.call(this, sql, ...args); };
   try { assert.throws(() => new CatalogStore(directory), /Injected identity migration failure/); } finally { CatalogStore.prototype.run = run; }
