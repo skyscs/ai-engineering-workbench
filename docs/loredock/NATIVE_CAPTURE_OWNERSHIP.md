@@ -1,7 +1,8 @@
 # Native capture storage and lifecycle
 
-Task 104 defines the implementation contract for native path receipts. It adds no
-storage or consumer yet. The decision is recorded in
+Task 104 defined this contract for native path receipts. Task 105 implements the
+pure codec; Task 106 implements storage and schema ownership. Async capture/history
+authorization and public consumers remain subsequent work. The decision is recorded in
 [ADR 0057](../decisions/0057-loredock-native-receipt-ownership.md).
 
 ## Existing boundaries
@@ -41,7 +42,8 @@ Native storage failure cannot be swallowed by an optional observer or late servi
 The fixed layout is `path-receipts/<catalog UUID>/` under the canonical LoreDock data
 directory. Directory components must be owned regular directories, not symlinks;
 foreign UUID subdirectories, unexpected entries and unsupported formats refuse.
-There is no arbitrary input/output path or file-import API. The catalog owner is the
+An empty store creates no receipt directories until its first publication. There is
+no arbitrary input/output path or file-import API. The catalog owner is the
 process lock; one native capture/history owner per store serializes async operations.
 
 Migration itself is atomic, but filesystem initialization can fail after that commit.
@@ -78,6 +80,12 @@ reduce them. A distinct record at capacity returns `CAPTURE_STORAGE_FULL`. Reope
 an exact already-published ID does not require another slot. Do not evict, overwrite
 or prune history. Later deletion needs a concrete user-selected action and separate
 consumer acceptance; tests may remove only their own fixtures.
+
+Startup and purge validate every completed record. Individual reads/publications
+inspect the bounded layout and validate the records they use; there is no background
+tamper monitor or claim that unrelated post-startup corruption is detected immediately.
+Startup/purge use a fresh bounded validation budget for each of at most 64 records;
+they are maintenance operations, not a reset of a capture/history caller deadline.
 
 Open files without following symlinks and without blocking on non-regular input,
 then validate the descriptor type/length and read a bounded amount. Reject growth,

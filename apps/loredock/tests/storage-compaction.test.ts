@@ -106,7 +106,7 @@ test('a separate database writer blocks compaction without recovery, retries or 
 test('compaction refuses unsupported, missing and symlinked data before creating or upgrading a catalog', async t => {
   const directory = await mkdtemp(path.join(tmpdir(), 'loredock-compact-invalid-')); t.after(() => rm(directory, {recursive: true, force: true}));
   assert.throws(() => compactStorage(directory), /existing/); assert.deepEqual(await readdir(directory), []);
-  const store = new CatalogStore(directory); store.db.exec('PRAGMA user_version=10'); store.close();
+  const store = new CatalogStore(directory); store.db.exec('PRAGMA user_version=11'); store.close();
   const database = path.join(directory, 'loredock.db'), before = await readFile(database);
   assert.throws(() => compactStorage(directory), /schema 8/); assert.deepEqual(await readFile(database), before);
   for (const name of ['loredock.db-journal', '.owner.db-wal', '.owner.db-shm']) {

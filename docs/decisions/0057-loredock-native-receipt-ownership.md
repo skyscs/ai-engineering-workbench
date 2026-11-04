@@ -2,8 +2,9 @@
 
 ## Status
 
-Accepted for bounded implementation planning, Task 104, 2026-11-04. No schema,
-receipt store or application behavior changes are implemented by this decision.
+Accepted, Task 104, 2026-11-04. The decision itself was source review only.
+Tasks 105–106 implement the pure codec and catalog-owned schema/storage foundation;
+async authorized capture/history and consumers remain separately gated.
 
 ## Context
 

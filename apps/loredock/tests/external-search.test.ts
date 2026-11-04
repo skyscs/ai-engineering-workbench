@@ -74,14 +74,20 @@ test('schema 8 migration preserves every token, rowid, rank setting, original, h
   const originals = state.store.all<{id: string}>('SELECT id FROM spans').map(row => state.catalog.evidence(row.id));
   const settings = state.store.all('SELECT * FROM search_config ORDER BY k'), inventory = state.analysis.get(run.id), review = corrections.history(note.id);
   await state.reopen(); const after = literalIndexSnapshot(state.store);
-  assert.equal(state.store.one<{user_version: number}>('PRAGMA user_version')!.user_version, 9);
-  for (const key of ['vocabulary','documents','documentSizes','totals','nonLiteralRecords']) assert.deepEqual(after[key], before[key], key);
+  assert.equal(state.store.one<{user_version: number}>('PRAGMA user_version')!.user_version, 10);
+  for (const key of ['vocabulary','documents','documentSizes','totals']) assert.deepEqual(after[key], before[key], key);
+  // Schema 10 adds one private identity; preserve every pre-existing logical row
+  // comparison from the unchanged frozen snapshot helper.
+  assert.deepEqual(after.nonLiteralRecords.filter((row: {table: string}) => row.table !== 'catalog_identity'), before.nonLiteralRecords);
+  assert.equal(after.nonLiteralRecords.filter((row: {table: string}) => row.table === 'catalog_identity').length, 1);
+  const catalogIdentity = state.store.receipts.catalogId;
+  assert.deepEqual(state.store.all<{slot: number; id: string}>('SELECT slot,id FROM catalog_identity').map(row => [row.slot, row.id]), [[1, catalogIdentity]]);
   assert.deepEqual(state.store.all('SELECT * FROM search_config ORDER BY k'), settings);
   assert.deepEqual(readQueries(state.catalog, [state.first, state.second]), reads);
   assert.deepEqual(originals.map(row => state.catalog.evidence(row.id)), originals);
   assert.deepEqual(state.analysis.get(run.id), inventory); assert.deepEqual(new Corrections(state.catalog).history(note.id), review);
   assert.equal(state.store.one("SELECT name FROM sqlite_schema WHERE name='search_content'"), undefined); validate(state.store);
-  await state.reopen(); assert.deepEqual(readQueries(state.catalog, [state.first, state.second]), reads);
+  await state.reopen(); assert.equal(state.store.receipts.catalogId, catalogIdentity); assert.deepEqual(readQueries(state.catalog, [state.first, state.second]), reads);
   const build = state.store.build(await state.index('refresh')); assert.equal(build.refresh!.reusedFiles, build.coverage.indexed); validate(state.store);
   const source = state.store.sources().find(source => source.name === 'portal')!;
   state.catalog.revoke(source.id); validate(state.store);
@@ -141,7 +147,7 @@ test('invalid legacy content/layout and mid-conversion errors preserve schema 8,
   });
 });
 
-test('empty legacy migration and fresh schema 9 both admit new indexing', async t => {
+test('empty legacy migration and fresh schema 10 both admit new indexing', async t => {
   const fixture = await createLoreDockFixture(); t.after(() => rm(fixture.root, {recursive: true, force: true}));
   for (const legacy of [false, true]) {
     const directory = path.join(fixture.root, `empty-${legacy}`); let store = new CatalogStore(directory);

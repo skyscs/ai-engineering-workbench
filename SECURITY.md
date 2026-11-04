@@ -60,7 +60,15 @@ uses isolated retained data, releases preparer ownership before daemon startup a
 answer/development mode off despite inherited LoreDock settings. Signals target owned
 work/processes; an occupied port does not authorize stopping another application. See
 [ADR 0044](docs/decisions/0044-loredock-isolated-synthetic-demo.md).
-The explicit storage-report command opens only an existing schema-8 or schema-9 catalog read-only,
+Schema 10 assigns an immutable catalog identity and owns native receipt files under
+`path-receipts/<catalog UUID>/`. Startup validates bounded completed records and removes
+only recognized incomplete pending work. Source revocation removes dependent native
+copies before purge completes; failure retains pending state. Policy changes retain
+fenced history. The internal storage/codec has no HTTP consumer and does not itself
+authorize source text; later capture/history must reopen current scope and originals.
+Complete stopped-directory backup includes native files; source-only maintenance
+reports exclude their bytes/dependencies. See [native ownership](docs/loredock/NATIVE_CAPTURE_OWNERSHIP.md).
+The explicit storage-report command opens only an existing schema-8, schema-9 or schema-10 catalog read-only,
 without daemon ownership, migrations or recovery. It exports aggregate counts/bytes,
 not source text, paths or connection settings. Fixed database/sidecar paths must be regular
 files. Read-only SQLite can maintain shared-memory bookkeeping; this is not a forensic
