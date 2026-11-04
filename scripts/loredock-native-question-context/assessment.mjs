@@ -45,7 +45,7 @@ function metrics(operation) {
   for (const sample of m.samples) for (const key of ['elapsedMs', 'rss', 'heapUsed']) assert(Number.isFinite(sample[key]) && sample[key] >= 0);
   if (m.budget) { assert(m.budget.totalWork <= 1000000); assert.equal(m.budget.totalWork, m.budget.pathWork + m.budget.receiptWork);
     assert.equal(m.budget.totalWork, Object.values(m.phases).reduce((sum, value) => sum + value, 0));
-    assert.equal(m.lexical.sqlRows + m.lexical.originalBytes, m.phases.lexical ?? 0);
+    assert.equal(m.lexical.sqlRows + m.lexical.originalBytes - m.lexical.rejectedUnits, m.phases.lexical ?? 0);
     if (!operation.error) assert(m.budget.wallMs < 5000); }
   for (const key of ['gitCalls', 'writeCalls', 'changedRows', 'sqlMutations'])
     assert.equal(operation.after[key] - operation.before[key], operation.injected[key] ?? 0, 'Unexpected operation mutation: ' + key);

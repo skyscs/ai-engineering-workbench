@@ -20,7 +20,7 @@ export class NativeQuestionContext {
     const controller = new AbortController(), combined = signal ? AbortSignal.any([signal, controller.signal]) : controller.signal;
     let finish, paths, budget; const done = new Promise(resolve => { finish = resolve; });
     owners.add(store); this.active = { controller, done };
-    const began = performance.now(), samples = [], phases = {}, lexical = { sqlRows: 0, originalBytes: 0, originalReads: 0 };
+    const began = performance.now(), samples = [], phases = {}, lexical = { sqlRows: 0, originalBytes: 0, originalReads: 0, rejectedUnits: 0 };
     let nativeReads = 0;
     let phase = 'start', last = began, maxIntervalMs = 0, selection = null;
     const sample = () => { const now = performance.now(); maxIntervalMs = Math.max(maxIntervalMs, now - last); last = now;
@@ -41,13 +41,15 @@ export class NativeQuestionContext {
       // The row charge runs after each completed SQL call; nested original reads count too.
       const methods = { all: store.all, one: store.one, evidence: catalog.evidence };
       let baseline;
+      const lexicalCharge = units => { const before = budget.stats().receiptWork;
+        try { budget.charge('receipt', units); } catch (error) { lexical.rejectedUnits += units - (budget.stats().receiptWork - before); throw error; } };
       try {
         for (const method of ['all', 'one']) store[method] = function (...args) {
           const result = methods[method].apply(this, args), rows = method === 'all' ? result.length : result ? 1 : 0;
-          lexical.sqlRows += rows; budget.charge('receipt', rows); return result;
+          lexical.sqlRows += rows; lexicalCharge(rows); return result;
         };
         catalog.evidence = function (...args) { const row = methods.evidence.apply(this, args), count = bytes(row.text);
-          lexical.originalReads++; lexical.originalBytes += count; budget.charge('receipt', count); return row; };
+          lexical.originalReads++; lexical.originalBytes += count; lexicalCharge(count); return row; };
         baseline = retrieveAnswerContext(catalog, question, request.buildId);
       } finally { store.all = methods.all; store.one = methods.one; catalog.evidence = methods.evidence; }
       work.check(); current(baseline);

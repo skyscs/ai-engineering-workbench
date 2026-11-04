@@ -80,7 +80,7 @@ export async function runMatrix(directory, corpusFactory, oracle, ledger) {
         const question = oracle.cases[0].question;
         let corpus = item.group === 'budget' ? paddingCorpus(base, item.id.slice(7)) : base;
         const firstTs = Object.keys(base[firstSource]).find(file => file.endsWith('.ts'));
-        if (item.id === 'identity.foreign-source') corpus = { ...base, [hiddenSource]: { ...base[hiddenSource], 'foreign/same.ts': base[firstSource][firstTs] } };
+        if (item.id === 'identity.foreign-source') corpus = { ...base, [hiddenSource]: { ...base[hiddenSource], 'foreign/same.md': base[firstSource][firstTs] } };
         if (item.id === 'inventory.incompatible') {
           const prior = await loadPriorRuntime(); value.priorFingerprint = prior.manifest.fingerprint;
           prepared = await initialize(item.id + '-fixture', corpus, { services: prior.services });
@@ -106,7 +106,7 @@ export async function runMatrix(directory, corpusFactory, oracle, ledger) {
           controlled = rehash({ ...current, spans: current.spans.map(row => row.sourceName === firstSource && row.path === firstTs ? inputSpan(value.foreignOriginal) : row) });
         } else if (item.id === 'identity.foreign-source') {
           const current = retrieveAnswerContext(state.catalog, question, buildId);
-          const row = state.store.one("SELECT s.id FROM spans s JOIN files f ON f.id=s.fileId WHERE f.buildId=? AND f.path='foreign/same.ts' ORDER BY s.startLine LIMIT 1", buildId);
+          const row = state.store.one("SELECT s.id FROM spans s JOIN files f ON f.id=s.fileId WHERE f.buildId=? AND f.path='foreign/same.md' ORDER BY s.startLine LIMIT 1", buildId);
           value.foreignOriginal = state.catalog.evidence(row.id);
           controlled = rehash({ ...current, spans: current.spans.filter(row => row.id !== value.foreignOriginal.id)
             .map(row => row.sourceName === firstSource && row.path === firstTs ? inputSpan(value.foreignOriginal) : row) });
