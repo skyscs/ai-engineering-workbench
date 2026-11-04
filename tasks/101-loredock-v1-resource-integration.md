@@ -1,6 +1,6 @@
 # Task 101 — Integrate resource ownership into connected paths v1
 
-Status: selected after Task 100; implementation not started.
+Status: scoped for implementation, 2026-11-04.
 
 Use the typed Task 099 primitives and portable Task 100 behavioral reference to
 integrate only transient representation into production services. Keep the existing
