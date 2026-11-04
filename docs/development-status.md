@@ -1,5 +1,24 @@
 # Development status
 
+## Task 090 — Prepared-read reuse preserves complete semantics on independent inputs
+
+The [opt-in candidate](../scripts/loredock-prepared-reads/README.md) retains at most
+64 statements / 64 KiB of SQL within one asynchronous path read. Every query runs
+again; original rows, authorization, validation, work and final fences remain.
+Unrelated/nested/expired callbacks cannot share its retained statements. Writes,
+direct iterators, receipt work and production consumers remain unchanged.
+
+All 568 tests, strict typechecks and builds pass, including eight SQLite scope cases
+and nine complete integration cases/subcases. Exact bytes/work/read counters match;
+tiny captures use fewer preparations. This is not evidence of lower RSS. First logs,
+source review and fifteen dependency hashes are [retained](fixtures/loredock-prepared-reads/README.md).
+Next: separately freeze a fresh complete uninstrumented qualification for both
+process lifecycles under unchanged gates. No prior family is rerun.
+
+PR #93 merged as `8322f2f` after `53eab82` passed push 41745235679 and pull-request
+41745280834 CI with an identical tree. See [Task 090](../tasks/090-loredock-prepared-reads.md).
+Both exact-head CI events remain required before this candidate's merge.
+
 ## Task 089 — Compact qualification retains a failed long-lived RSS gate
 
 The [single fresh two-process run](fixtures/loredock-compact-qualification/README.md)

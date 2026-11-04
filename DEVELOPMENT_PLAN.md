@@ -326,6 +326,12 @@ times. The reopened arm passes all eight. No candidate is promoted. Next: one
 bounded request-local prepared-read-statement reuse candidate, first proving fresh
 execution and complete semantic/fence equivalence on independent tiny inputs.
 Existing preparation/allocation evidence supports a hypothesis, not native ownership.
+[Task 090](tasks/090-loredock-prepared-reads.md) implements bounded prepared-statement
+reuse within one asynchronous path read. Independent SQLite and complete capture
+tests preserve fresh values, exact bytes/work and all tested refusals/fences while
+reducing preparation calls. No resource claim or production promotion follows.
+Next: freeze and execute a fresh compatible complete uninstrumented qualification
+for both required lifecycles, keeping every original content/resource gate.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
