@@ -1,0 +1,541 @@
+{
+  "schemaVersion": "native-final-ferry-oracle/1",
+  "arms": [
+    "same-process",
+    "reopened-process"
+  ],
+  "operations": [
+    "first",
+    "repeat-1",
+    "repeat-2",
+    "repeat-3",
+    "selected",
+    "page-4",
+    "isolated",
+    "history"
+  ],
+  "plannedOperations": 16,
+  "requiredComparisons": 7,
+  "content": {
+    "rootCount": 5,
+    "sourceCount": 20,
+    "selectedRoot": [
+      "a-ferry-console",
+      "ui/AABook.vue",
+      "book",
+      "vue-action"
+    ],
+    "isolatedRoot": [
+      "a-ferry-console",
+      "ui/ZZLocate.vue",
+      "locate",
+      "vue-action"
+    ],
+    "defaultFlows": 2,
+    "selectedFlows": 1,
+    "defaultOriginals": 10,
+    "isolatedOriginals": 5,
+    "isolated": {
+      "reason": "unresolved-import"
+    },
+    "uncitedSource": "context-17",
+    "topic": "ferry.ticket.v4",
+    "environment": "ferry-native",
+    "terminalKind": "document-write",
+    "expectDelivery": true,
+    "requiredNodes": [
+      [
+        "a-ferry-console",
+        "ui/AABook.vue",
+        "symbol",
+        "book",
+        "vue-action"
+      ],
+      [
+        "a-ferry-console",
+        "ui/issue.ts",
+        "symbol",
+        "issueTicket",
+        "function"
+      ],
+      [
+        "a-ferry-console",
+        "ui/issue.ts",
+        "http-request",
+        "POST /ferry/tickets",
+        null
+      ],
+      [
+        "b-ferry-ticketing",
+        "routes.json",
+        "route",
+        "POST /ferry/tickets",
+        null
+      ],
+      [
+        "b-ferry-ticketing",
+        "routes.json",
+        "handler-reference",
+        "Tickets.issue",
+        null
+      ],
+      [
+        "b-ferry-ticketing",
+        "Tickets.java",
+        "symbol",
+        "Tickets.issue",
+        "java-method"
+      ],
+      [
+        "b-ferry-ticketing",
+        "Tickets.java",
+        "event-publish",
+        "Publish TicketIssued",
+        null
+      ],
+      [
+        "c-ferry-manifest",
+        "ManifestWriter.java",
+        "event-subscribe",
+        "Subscribe via KafkaSubscriber",
+        null
+      ],
+      [
+        "c-ferry-manifest",
+        "ManifestWriter.java",
+        "symbol",
+        "ManifestWriter.onMessage",
+        "java-method"
+      ],
+      [
+        "c-ferry-manifest",
+        "ManifestWriter.java",
+        "document-write",
+        "MongoCollection.replaceOne",
+        null
+      ]
+    ],
+    "selectedRequiredNodes": [
+      [
+        "a-ferry-console",
+        "ui/AABook.vue",
+        "symbol",
+        "book",
+        "vue-action"
+      ],
+      [
+        "a-ferry-console",
+        "ui/issue.ts",
+        "symbol",
+        "issueTicket",
+        "function"
+      ],
+      [
+        "a-ferry-console",
+        "ui/issue.ts",
+        "http-request",
+        "POST /ferry/tickets",
+        null
+      ],
+      [
+        "b-ferry-ticketing",
+        "routes.json",
+        "route",
+        "POST /ferry/tickets",
+        null
+      ],
+      [
+        "b-ferry-ticketing",
+        "routes.json",
+        "handler-reference",
+        "Tickets.issue",
+        null
+      ],
+      [
+        "b-ferry-ticketing",
+        "Tickets.java",
+        "symbol",
+        "Tickets.issue",
+        "java-method"
+      ],
+      [
+        "b-ferry-ticketing",
+        "Tickets.java",
+        "event-publish",
+        "Publish TicketIssued",
+        null
+      ],
+      [
+        "c-ferry-manifest",
+        "ManifestWriter.java",
+        "event-subscribe",
+        "Subscribe via KafkaSubscriber",
+        null
+      ],
+      [
+        "c-ferry-manifest",
+        "ManifestWriter.java",
+        "symbol",
+        "ManifestWriter.onMessage",
+        "java-method"
+      ],
+      [
+        "c-ferry-manifest",
+        "ManifestWriter.java",
+        "document-write",
+        "MongoCollection.replaceOne",
+        null
+      ]
+    ],
+    "limits": {
+      "work": 1000000,
+      "wallMs": 5000,
+      "projectionBytes": 524288,
+      "receiptBytes": 655360,
+      "textBytes": 65536,
+      "spans": 30,
+      "sources": 20
+    },
+    "resources": {
+      "sampleIntervalMs": 5,
+      "maxSliceMs": 150,
+      "sampledRssMiB": 384,
+      "sampledHeapGrowthMiB": 64
+    }
+  },
+  "complete": {
+    "sources": [
+      "a-ferry-console",
+      "b-ferry-ticketing",
+      "c-ferry-manifest",
+      "context-01",
+      "context-02",
+      "context-03",
+      "context-04",
+      "context-05",
+      "context-06",
+      "context-07",
+      "context-08",
+      "context-09",
+      "context-10",
+      "context-11",
+      "context-12",
+      "context-13",
+      "context-14",
+      "context-15",
+      "context-16",
+      "context-17"
+    ],
+    "roots": [
+      [
+        "a-ferry-console",
+        "ui/AABook.vue",
+        "book",
+        "vue-action"
+      ],
+      [
+        "a-ferry-console",
+        "ui/BBReserve.vue",
+        "reserve",
+        "vue-action"
+      ],
+      [
+        "a-ferry-console",
+        "ui/CCConfirm.vue",
+        "confirm",
+        "vue-action"
+      ],
+      [
+        "a-ferry-console",
+        "ui/DDRetry.vue",
+        "retry",
+        "vue-action"
+      ]
+    ],
+    "isolatedRoot": [
+      "a-ferry-console",
+      "ui/ZZLocate.vue",
+      "locate",
+      "vue-action"
+    ],
+    "flows": [
+      {
+        "nodes": [
+          [
+            "a-ferry-console",
+            "ui/AABook.vue",
+            "symbol",
+            "book",
+            "vue-action"
+          ],
+          [
+            "a-ferry-console",
+            "ui/issue.ts",
+            "symbol",
+            "issueTicket",
+            "function"
+          ],
+          [
+            "a-ferry-console",
+            "ui/issue.ts",
+            "http-request",
+            "POST /ferry/tickets",
+            null
+          ],
+          [
+            "b-ferry-ticketing",
+            "routes.json",
+            "route",
+            "POST /ferry/tickets",
+            null
+          ],
+          [
+            "b-ferry-ticketing",
+            "routes.json",
+            "handler-reference",
+            "Tickets.issue",
+            null
+          ],
+          [
+            "b-ferry-ticketing",
+            "Tickets.java",
+            "symbol",
+            "Tickets.issue",
+            "java-method"
+          ],
+          [
+            "b-ferry-ticketing",
+            "Tickets.java",
+            "event-publish",
+            "Publish TicketIssued",
+            null
+          ],
+          [
+            "c-ferry-manifest",
+            "ManifestWriter.java",
+            "event-subscribe",
+            "Subscribe via KafkaSubscriber",
+            null
+          ],
+          [
+            "c-ferry-manifest",
+            "ManifestWriter.java",
+            "symbol",
+            "ManifestWriter.onMessage",
+            "java-method"
+          ],
+          [
+            "c-ferry-manifest",
+            "ManifestWriter.java",
+            "document-write",
+            "MongoCollection.replaceOne",
+            null
+          ]
+        ],
+        "edges": [
+          "calls",
+          "performs",
+          "http-target",
+          "routes-to",
+          "implements",
+          "performs",
+          "event-delivery",
+          "dispatch-candidate",
+          "performs"
+        ]
+      },
+      {
+        "nodes": [
+          [
+            "a-ferry-console",
+            "ui/BBReserve.vue",
+            "symbol",
+            "reserve",
+            "vue-action"
+          ],
+          [
+            "a-ferry-console",
+            "ui/issue.ts",
+            "symbol",
+            "issueTicket",
+            "function"
+          ],
+          [
+            "a-ferry-console",
+            "ui/issue.ts",
+            "http-request",
+            "POST /ferry/tickets",
+            null
+          ],
+          [
+            "b-ferry-ticketing",
+            "routes.json",
+            "route",
+            "POST /ferry/tickets",
+            null
+          ],
+          [
+            "b-ferry-ticketing",
+            "routes.json",
+            "handler-reference",
+            "Tickets.issue",
+            null
+          ],
+          [
+            "b-ferry-ticketing",
+            "Tickets.java",
+            "symbol",
+            "Tickets.issue",
+            "java-method"
+          ],
+          [
+            "b-ferry-ticketing",
+            "Tickets.java",
+            "event-publish",
+            "Publish TicketIssued",
+            null
+          ],
+          [
+            "c-ferry-manifest",
+            "ManifestWriter.java",
+            "event-subscribe",
+            "Subscribe via KafkaSubscriber",
+            null
+          ],
+          [
+            "c-ferry-manifest",
+            "ManifestWriter.java",
+            "symbol",
+            "ManifestWriter.onMessage",
+            "java-method"
+          ],
+          [
+            "c-ferry-manifest",
+            "ManifestWriter.java",
+            "document-write",
+            "MongoCollection.replaceOne",
+            null
+          ]
+        ],
+        "edges": [
+          "calls",
+          "performs",
+          "http-target",
+          "routes-to",
+          "implements",
+          "performs",
+          "event-delivery",
+          "dispatch-candidate",
+          "performs"
+        ]
+      }
+    ],
+    "originals": [
+      [
+        "a-ferry-console",
+        "ui/AABook.vue",
+        1,
+        6
+      ],
+      [
+        "a-ferry-console",
+        "ui/BBReserve.vue",
+        1,
+        6
+      ],
+      [
+        "a-ferry-console",
+        "ui/CCConfirm.vue",
+        1,
+        6
+      ],
+      [
+        "a-ferry-console",
+        "ui/DDRetry.vue",
+        1,
+        6
+      ],
+      [
+        "a-ferry-console",
+        "ui/issue.ts",
+        1,
+        3
+      ],
+      [
+        "b-ferry-ticketing",
+        "routes.json",
+        1,
+        1
+      ],
+      [
+        "b-ferry-ticketing",
+        "Tickets.java",
+        1,
+        10
+      ],
+      [
+        "b-ferry-ticketing",
+        "contracts/TicketIssued.json",
+        1,
+        1
+      ],
+      [
+        "c-ferry-manifest",
+        "ManifestWriter.java",
+        1,
+        13
+      ],
+      [
+        "c-ferry-manifest",
+        "contracts/TicketIssued.json",
+        1,
+        1
+      ]
+    ],
+    "isolatedOriginals": [
+      [
+        "a-ferry-console",
+        "ui/AABook.vue",
+        1,
+        6
+      ],
+      [
+        "a-ferry-console",
+        "ui/BBReserve.vue",
+        1,
+        6
+      ],
+      [
+        "a-ferry-console",
+        "ui/CCConfirm.vue",
+        1,
+        6
+      ],
+      [
+        "a-ferry-console",
+        "ui/DDRetry.vue",
+        1,
+        6
+      ],
+      [
+        "a-ferry-console",
+        "ui/ZZLocate.vue",
+        1,
+        5
+      ]
+    ]
+  },
+  "watchdogs": {
+    "preparer": 600000,
+    "reader": 180000,
+    "overall": 900000,
+    "grace": 5000
+  },
+  "size": {
+    "files": 9980,
+    "codeFiles": 9957,
+    "facts": 21,
+    "pathsPerSource": 499,
+    "bytes": 530808
+  }
+}
