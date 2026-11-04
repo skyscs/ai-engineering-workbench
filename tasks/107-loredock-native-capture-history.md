@@ -1,6 +1,6 @@
 # Task 107 — Orchestrate native capture and authorized history
 
-Status: scoped for implementation, 2026-11-04.
+Status: implementation started, 2026-11-04.
 
 Connect the native v2 producer, strict codec and catalog-owned receipt store through
 one internal asynchronous capture/history owner. This completes the application
@@ -21,7 +21,9 @@ Check exact build, policy, revision, source/file/span support and full serialize
 output. After asynchronous preparation, hold the final source BEGIN IMMEDIATE guard
 without awaits through publication. Recheck the shared budget, scope/metadata epoch
 and published inventory; successful capture must not mutate source-catalog rows.
-Use the owned store's duplicate/capacity/cleanup behavior without bypasses.
+Use the owned store's duplicate/capacity/cleanup behavior without bypasses. Keep
+source-guard completion and the final budget check inside publication rollback
+ownership, so a release failure cannot silently strand a newly created result.
 
 Read history by a recorded hash under the current catalog identity and current source
 authorization. Return only the exact saved projection, original and dependency set;
