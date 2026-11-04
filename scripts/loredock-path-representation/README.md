@@ -17,4 +17,5 @@ The entry requires a clean committed tree and an owned absolute
 from `apps/loredock`, under a 60-second external watchdog/five-second kill grace.
 Retain the first report/input/receipts/stdout/stderr/exit, including failures.
 Bounds and interpretation are fixed in [Task 095](../../tasks/095-loredock-path-representation.md).
-No frozen resource family or measured module is imported or modified.
+No frozen resource family or executable probe is imported. Existing measured service
+modules are reused unchanged.

@@ -1,5 +1,30 @@
 # Development status
 
+## Task 095 — Path representation audit selects one bounded canonical pair
+
+The [independent tiny audit](loredock/PATH_REPRESENTATION_AUDIT.md) succeeds on its
+first invocation in 2.005 seconds. Three sources / 38 files / 32 code files preserve
+all five paired default/repeat/selected/page/isolated results, stable work/read
+counts and zero Git/catalog writes. Every read still validates all 32 code files;
+display selection does not narrow the binding domain.
+
+Eight files supply 21 facts. The other 24 hold 24 gaps, 24 per-file originals and
+144 empty fact/range containers, with one identical 183-byte representation. Existing
+phase hooks show 32 entries through final fences and 35 resolver evidence references.
+The source audit traces domain closures, gap/coverage consumers and original/final
+validation. Serialized counts are not heap/RSS ownership or resource acceptance.
+
+Next test one immutable exact fact-free fact/range pair per request, only after
+full validation and within a 4 KiB bound. Keep all per-file evidence, domains, gaps,
+consumed identities, work and fences; differing/oversized/unsupported forms fall
+back. No optimization is implemented yet. Independent semantic proof and fresh
+full resource qualification remain mandatory; Task 094 stays failed.
+
+Scope `cba22b4` and entry `bb70643` precede observation. Full strict checks pass
+582 tests/builds; ten first artifacts are
+[retained](fixtures/loredock-path-representation/README.md). Both exact-head CI
+events precede merge. See [Task 095](../tasks/095-loredock-path-representation.md).
+
 ## Task 094 — Worker qualification preserves content but fails one path RSS gate
 
 The [single frozen vault-seal run](fixtures/loredock-worker-qualification/README.md)
