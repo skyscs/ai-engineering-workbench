@@ -1,7 +1,8 @@
 # Native capture storage and lifecycle
 
-Task 104 defines the implementation contract for native path receipts. It adds no
-storage or consumer yet. The decision is recorded in
+Task 104 defined this contract for native path receipts. Task 105 implements the
+pure codec; Task 106 implements storage and schema ownership. Async capture/history
+authorization and public consumers remain subsequent work. The decision is recorded in
 [ADR 0057](../decisions/0057-loredock-native-receipt-ownership.md).
 
 ## Existing boundaries

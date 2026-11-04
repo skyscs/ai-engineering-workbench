@@ -1,6 +1,6 @@
 # Task 106 — Implement catalog-owned native receipt storage
 
-Status: implementation started, 2026-11-04.
+Status: implemented and locally verified, 2026-11-04.
 
 Implement ADR 0057 using the strict codec from Task 105. This is the
 storage/lifecycle foundation; no async capture/history orchestration, new HTTP route,
@@ -37,3 +37,25 @@ Preserve first failures/logs, run focused and full strict checks/builds plus a c
 owned lifecycle check, review all imports/data boundaries and require both exact-head
 CI events before merge. Then scope native capture/history orchestration and final
 independent assessment. No performance, full-system semantic or L5 claim follows here.
+
+## Result
+
+CatalogStore owns the native store and immutable schema-10 identity. Fixed lazy
+UUID-bound directories, bounded descriptor reads/enumeration, guarded non-overwriting
+publication, startup recovery, capacity refusal and cleanup failures are implemented.
+Native revocation cleanup precedes source purge completion; policy retains fenced
+bytes. Legacy source maintenance supports 8/9/10 and explicitly excludes native files.
+Upgrade/backup/rollback documentation covers the new boundary without adding inputs.
+
+[Verification evidence](../docs/fixtures/loredock-native-receipt-storage/README.md)
+retains ten command logs and all first test-adaptation failures. Forty-nine focused
+cases/subcases and **741 full strict tests/builds** pass; the compiled owned smoke
+preserves a 23,808-byte record through restart/replacements and removes it on revocation.
+All nine parser fingerprint source modules and historical measured artifacts remain
+unchanged. Source-schema comparisons retain every old logical-row assertion, checking
+the new identity separately rather than changing the frozen snapshot helper.
+
+PR #109 head `bd17029` passed push 41839002719 and pull-request 41839010902 CI
+(720 tests), then merged as identical-tree `fdbc303`, verified and incorporated.
+Next [Task 107](107-loredock-native-capture-history.md) implements the authorized async
+capture/history service before independent assessment and final qualification.

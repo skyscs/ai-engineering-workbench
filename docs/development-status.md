@@ -1,5 +1,26 @@
 # Development status
 
+## Task 106 — Native receipt storage participates in source purge and recovery
+
+CatalogStore now owns [bounded immutable native files](loredock/NATIVE_CAPTURE_OWNERSHIP.md)
+and schema 10's private durable identity. Publication preserves existing records and
+source-catalog rows; startup recovers recognized pending work, and source revocation
+clears dependent files before purge can complete. Policy retains fenced records.
+Migration/maintenance/backup behavior is documented, with no new user configuration.
+
+Forty-nine focused cases/subcases and **741 full strict tests/builds** pass. The compiled
+smoke publishes/reopens a 23,808-byte record, preserves it after inventory replacements
+and policy fencing, then removes it on revocation. Ten logs and initial test-adaptation
+failures are [retained](fixtures/loredock-native-receipt-storage/README.md). Nine analysis
+fingerprint sources, old logical-row assertions and historical measured inputs remain
+preserved. Source-only diagnostics explicitly exclude native files/dependencies.
+
+Next [Task 107](../tasks/107-loredock-native-capture-history.md) connects async capture
+and authorized history. Storage integrity alone grants no source access; independent
+assessment and full final qualification still precede consumer migration.
+PR #109 head `bd17029` passed push 41839002719 and pull-request 41839010902 CI
+(720 tests), then merged as identical-tree `fdbc303`.
+
 ## Task 105 — Native receipts have a strict format boundary
 
 The [pure codec](loredock/NATIVE_RECEIPT_FORMAT.md) validates native identities,

@@ -416,6 +416,12 @@ before the unchanged complete final-composition qualification gates.
 smoke pass. All first failures remain retained. Next
 [Task 106](tasks/106-loredock-native-receipt-storage.md) implements the already scoped
 schema identity and catalog-owned publication/purge/recovery foundation.
+[Task 106](tasks/106-loredock-native-receipt-storage.md) completes schema-10 identity,
+owned native files and mandatory purge/recovery with 49 focused cases, 741 full-check
+tests/builds and a compiled publication/restart/revocation smoke. Next
+[Task 107](tasks/107-loredock-native-capture-history.md) connects the actual async
+capture/history authorization boundary before independent assessment and the unchanged
+final compiled qualification gates.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

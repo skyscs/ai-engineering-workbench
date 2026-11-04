@@ -1,0 +1,141 @@
+{
+  "scopeCommit": "8808a0f",
+  "initialImplementation": "7a3e9ed",
+  "lifecycleTests": "1f03a37",
+  "legacyComparisonCorrection": "b045586",
+  "reviewedImplementation": "6e895ab",
+  "acceptedParent": "fdbc303b359702b3bbdf61fedb9a56fc08de6391",
+  "node": "22.23.2",
+  "pnpm": "10.15.0",
+  "focusedTests": 49,
+  "fullTests": 741,
+  "commands": [
+    {
+      "command": "install-first",
+      "exitCode": 0,
+      "file": "install-first.log.gz",
+      "rawBytes": 326,
+      "rawSha256": "0f50aafe118eb8029a3c5a20a093d23b382b1b18fd0955ad961fbc1d68669474",
+      "archiveSha256": "f4695782fbcaee38f9814c5a6fa1c6e517bffb98b72d8adb8f4a9985c67bc60a"
+    },
+    {
+      "command": "packages-first",
+      "exitCode": 0,
+      "file": "packages-first.log.gz",
+      "rawBytes": 597,
+      "rawSha256": "00c5c022c7f7b0270c7c929fa5313574aa25c2f89a6ec68e08cd9a31e5ef14f5",
+      "archiveSha256": "047cb2723da09843d4a69fc587a175dc6708a147ace9a9c9d2b5f8ae96cba2f7"
+    },
+    {
+      "command": "types-first",
+      "exitCode": 0,
+      "file": "types-first.log.gz",
+      "rawBytes": 147,
+      "rawSha256": "a8fd21430545c12367ce1971defbbc9faa0c003d107840160dcdd5aa833b1703",
+      "archiveSha256": "9ef113fd13b676ade5c13cc0222cc0e6cf722547fa0e06e12d30314e0559901e"
+    },
+    {
+      "command": "types-second",
+      "exitCode": 0,
+      "file": "types-second.log.gz",
+      "rawBytes": 147,
+      "rawSha256": "a8fd21430545c12367ce1971defbbc9faa0c003d107840160dcdd5aa833b1703",
+      "archiveSha256": "9ef113fd13b676ade5c13cc0222cc0e6cf722547fa0e06e12d30314e0559901e"
+    },
+    {
+      "command": "types-third",
+      "exitCode": 0,
+      "file": "types-third.log.gz",
+      "rawBytes": 147,
+      "rawSha256": "a8fd21430545c12367ce1971defbbc9faa0c003d107840160dcdd5aa833b1703",
+      "archiveSha256": "9ef113fd13b676ade5c13cc0222cc0e6cf722547fa0e06e12d30314e0559901e"
+    },
+    {
+      "command": "focused-first",
+      "exitCode": 1,
+      "file": "focused-first.log.gz",
+      "rawBytes": 22263,
+      "rawSha256": "7fa8cf74c42ebfe014c4b8ab35fd33ad08d0d6567d8f6182de106fdc78aee49d",
+      "archiveSha256": "096b10fa0140e6905e93bafd270c86ed521f4044f70f0aeb1cb29c286906cfc5"
+    },
+    {
+      "command": "focused-second",
+      "exitCode": 1,
+      "file": "focused-second.log.gz",
+      "rawBytes": 13193,
+      "rawSha256": "ed0aea3d8cf7717922a46b0040fa96544650b6f2dc0ecfafcc201dcda6cda76b",
+      "archiveSha256": "dfe8790c41bcec5b267dcfddce00fb899af99eecc4d07afc38c2e203479552c8"
+    },
+    {
+      "command": "focused-third",
+      "exitCode": 0,
+      "file": "focused-third.log.gz",
+      "rawBytes": 12697,
+      "rawSha256": "412e4ab75aceffbf1713b2fbb0d21a7712cb72dede29de7f1104db094463256f",
+      "archiveSha256": "c63c1b9d9e3a5ef6d90ad443dbff8b85fa0cfb46b137d9e3fa9909e877f2e4a5"
+    },
+    {
+      "command": "check-first",
+      "exitCode": 0,
+      "file": "check-first.log.gz",
+      "rawBytes": 283355,
+      "rawSha256": "cfb8ed59fbf32b58004707d74a8b75acf97020dc089a5510393978cd3670c0c1",
+      "archiveSha256": "3fe015276eeaa8481485965cf270044100a3e07aed4c1cb81b65bd7ae8186afb"
+    },
+    {
+      "command": "built-first",
+      "exitCode": 0,
+      "file": "built-first.log.gz",
+      "rawBytes": 530,
+      "rawSha256": "4a9258e54211923a32584dc0e3e57d4c8bba4fd89578c6d0b53d0300fd2cf682",
+      "archiveSha256": "e7f61860f8d6a2745dcb35af4293495921afe0343b0b7f3c4d4d2394f854c0bc"
+    }
+  ],
+  "unchangedFingerprintSources": {
+    "apps/loredock/src/code-typescript.ts": "773a8ced3b8e304c7d306fa9a91e060ce7da7194ebcde5a4ccb5aa12f9c1a5ad",
+    "apps/loredock/src/code-java.ts": "d51ff800a32a513f1e3a8eed7015d9be96817fef00c9eb1f70ff2f06b5d92389",
+    "apps/loredock/src/code-facts.ts": "38227b1619f13457b45883dcba6dd9316c62a2fa72ef858b51a77779287a2151",
+    "apps/loredock/src/http-headers.ts": "967bddace78b2c472401e4a490b08ca7cfc44eae725a537d52c7b102ebbdb1a9",
+    "apps/loredock/src/code-analysis.ts": "c4f19848c5ee24255106c51a76b05b2bcc80e345414e345e6cd466b2c5c3834b",
+    "apps/loredock/src/code-analysis-facts.ts": "82fb810a3fa6a790538925cb5431c1ccc08b7e096229378fe95d0e91b85d5167",
+    "apps/loredock/src/code-analysis-types.ts": "505bd871b64f3ee5be89375da6acf02cbc36966c3a10ad4c7cc4d63f8a2f8192",
+    "apps/loredock/src/map-document.ts": "741ddd865b8c7ac63082f67200d3e5b55d74fa1cc9ce156b84aaa328165aede7",
+    "apps/loredock/src/extract.ts": "0909a4884ff9a82bd9eaaa6b625c7044f69eba3f3c53771b16668c2cdd3e6c2b"
+  },
+  "firstFailures": [
+    "First focused run: the existing literal migration comparison included the newly added catalog_identity table; compare all original rows unchanged and separately assert the one durable identity. The frozen snapshot helper remains unchanged.",
+    "First focused run: history expected the old schema-support error string; update the assertion for 8/9/10.",
+    "First focused run: the new legacy startup test lacked the required owned source row before creating a pending build; add it.",
+    "Second focused run: the new identity-row assertion compared SQLite null-prototype rows with plain objects; compare their exact slot/id values instead."
+  ],
+  "compiledSmoke": {
+    "sources": 3,
+    "nodes": 9,
+    "edges": 8,
+    "originals": 6,
+    "bytes": 23808,
+    "pathWork": 446,
+    "receiptWork": 84646,
+    "restart": true,
+    "inventoryReplacements": 2,
+    "policyRetainsBytes": true,
+    "sourceRevocationPurges": true,
+    "captureHistoryServiceImplemented": false
+  },
+  "measurementExecuted": false,
+  "historicalMeasuredFilesChanged": false,
+  "sourceCaptureWrites": false,
+  "limits": {
+    "records": 64,
+    "recordBytes": 655360,
+    "pendingFiles": 1
+  },
+  "limitations": [
+    "Internal storage read validates integrity but does not authorize original text; Task 107 supplies the authorized service.",
+    "Startup and purge validate the bounded complete store; individual operations validate their used records, with no background corruption monitor.",
+    "Partial backup omission cannot always be detected; complete stopped-directory backup is required.",
+    "Existing source-SQLite diagnostics exclude native file bytes and dependencies. No whole-directory quota or performance claim."
+  ],
+  "databaseVersion": 10,
+  "schemaVersion": "task106-native-storage-validation/1"
+}
