@@ -83,7 +83,7 @@ try {
     '--proxy-server=http://127.0.0.1:' + proxy.address().port, '--proxy-bypass-list=<-loopback>', '--remote-debugging-port=0',
     '--user-data-dir=' + path.join(output, 'browser'), 'about:blank'], { cwd: root, detached: true, stdio: ['ignore', 'pipe', 'pipe'] });
   browser = { child, ended: false, output: '' };
-  browser.closed = new Promise((resolve, reject) => { child.on('error', reject); child.on('close', code => { browser.ended = true; browser.exit = code; resolve(); }); });
+  browser.closed = new Promise((resolve, reject) => { child.on('error', reject); child.on('close', (code, signal) => { browser.ended = true; browser.exit = code; browser.signal = signal; resolve(); }); });
   for (const stream of [child.stdout, child.stderr]) stream.on('data', chunk => { browser.output = (browser.output + chunk).slice(-16384); });
   await waitFor(() => /DevTools listening on (ws:\/\/\S+)/.test(browser.output), 'Chrome did not start.');
   const endpoint = new URL(browser.output.match(/DevTools listening on (ws:\/\/\S+)/)[1]);
@@ -218,8 +218,11 @@ try {
 } finally {
   releaseBusy?.(); page?.close();
   const closeBrowser = async () => { if (!browser) return; if (!browser.ended) process.kill(-browser.child.pid, 'SIGTERM');
-    const timer = setTimeout(() => { if (!browser.ended) { try { process.kill(-browser.child.pid, 'SIGKILL'); } catch (error) { if (error.code !== 'ESRCH') report.errors.push({ phase: 'browser-kill', message: error.message }); } } }, 3000);
-    try { await browser.closed; await raw('chrome.log', browser.output); report.browserExit = browser.exit; } finally { clearTimeout(timer); } };
+    const timer = setTimeout(() => { if (!browser.ended) { report.browserForcedKill = true;
+      try { process.kill(-browser.child.pid, 'SIGKILL'); } catch (error) { if (error.code !== 'ESRCH') report.errors.push({ phase: 'browser-kill', message: error.message }); } } }, 3000);
+    try { await browser.closed; await raw('chrome.log', browser.output); report.browserExit = browser.exit; report.browserSignal = browser.signal;
+      assert.equal(browser.exit, 0); assert.equal(browser.signal, null); assert.ok(!report.browserForcedKill);
+    } finally { clearTimeout(timer); } };
   for (const [phase, close] of [['browser', closeBrowser], ['proxy', () => proxy && new Promise(resolve => { proxy.close(resolve); proxy.closeAllConnections(); })],
     ['captures', () => captures?.stop()], ['fixture', () => fixture?.close()]]) {
     try { await close(); } catch (error) { report.errors.push({ phase, message: error.stack }); }
