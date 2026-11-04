@@ -15,6 +15,10 @@ artifact or measured family changes. Next
 [Task 103](../tasks/103-loredock-versioned-path-producer.md) implements the internal
 v2 producer with shared work and catalog ownership; browser/HTTP consumers remain v1.
 
+PR #105 head `4beccc3` passed push 41826915557 and pull-request 41826963577 CI
+(629 tests), then merged as identical-tree `b4fea4e`, verified before this review
+result was finalized. All 408 local documentation targets and 21 source hashes verify.
+
 ## Task 101 — Resource ownership integrated into production connected paths v1
 
 The [production integration](fixtures/loredock-v1-resource-integration/README.md)
