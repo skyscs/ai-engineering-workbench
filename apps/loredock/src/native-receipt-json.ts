@@ -42,7 +42,7 @@ export const unique = (values: string[]) => new Set(values).size === values.leng
 export const same = (a: unknown, b: unknown) => canonical(a) === canonical(b);
 
 /** Bounded JSON only. No custom serializers, undefined values or lossy Unicode. */
-export function canonical(value: unknown, maximum = receiptLimits.receiptBytes, depthLimit = receiptLimits.depth, budget?: OperationBudget): string {
+export function canonical(value: unknown, maximum: number = receiptLimits.receiptBytes, depthLimit: number = receiptLimits.depth, budget?: OperationBudget): string {
   const parts: string[] = []; let size = 0;
   const add = (part: string) => { size += bytes(part); requireReceipt(size <= maximum, 'RECEIPT_BYTES_LIMIT'); parts.push(part); };
   const visit = (item: unknown, depth: number) => {
