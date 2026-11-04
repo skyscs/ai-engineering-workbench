@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { execFileSync, spawn } from 'node:child_process';
 import { createServer } from 'node:http';
+import { AsyncLocalStorage } from 'node:async_hooks';
 import { randomUUID } from 'node:crypto';
 import { mkdir, writeFile, readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
@@ -25,6 +26,7 @@ const report = { schemaVersion: 'loredock-saved-path-discovery-browser/1', head:
   node: process.version, chrome: execFileSync('google-chrome', ['--version'], { encoding: 'utf8' }).trim(),
   modelRequests: 0, resourceQualification: false, checks: [], requests: [], operations: [], errors: [], failed: true };
 let fixture, captures, proxy, browser, page, releaseBusy, blockNext = false, blocked = false, failNext = false, originalReads = 0, listLimit;
+const nativeReads = new AsyncLocalStorage();
 const raw = (name, value) => writeFile(path.join(output, name), value, { flag: 'wx' });
 async function waitFor(fn, message) {
   const deadline = Date.now() + 15000;
@@ -45,7 +47,9 @@ try {
   fixture = await receiptFixture(output, corpusFactory(), { Catalog, CatalogStore, SourceGit, CodeAnalysis, CodePaths: CodePathsV2 });
   await fixture.analyze(); report.revisions = fixture.revisions;
   const { catalog, analysis, paths, store, buildId } = fixture;
-  const evidence = catalog.evidence.bind(catalog); catalog.evidence = id => { originalReads++; return evidence(id); };
+  const evidence = catalog.evidence.bind(catalog); catalog.evidence = id => {
+    originalReads++; const operation = nativeReads.getStore(); if (operation) operation.originals++; return evidence(id);
+  };
   captures = new NativeCaptures(analysis, { paths, async checkpoint() {
     if (failNext) { failNext = false; throw new NativeReceiptError('DISABLED_RECEIPT_STORAGE', '/private/internal-detail'); }
     if (blockNext) { blockNext = false; blocked = true; await new Promise(resolve => { releaseBusy = resolve; }); }
@@ -67,18 +71,18 @@ try {
       for await (const chunk of req) { size += chunk.length; assert.ok(size <= 16384); chunks.push(chunk); }
       const headers = new Headers(); for (const [name, value] of Object.entries(req.headers)) if (value !== undefined) headers.set(name, Array.isArray(value) ? value.join(',') : value);
       const body = chunks.length ? Buffer.concat(chunks) : undefined;
-      const before = fixture.counters(), originalsBefore = originalReads;
-      const response = await app.fetch(new Request(url, { method: req.method, headers, signal: controller.signal, ...body ? { body } : {} }));
+      const before = fixture.counters(), originalsBefore = originalReads, operation = { originals: 0 };
+      const response = await nativeReads.run(operation, () => app.fetch(new Request(url, { method: req.method, headers, signal: controller.signal, ...body ? { body } : {} })));
       const bytes = Buffer.from(await response.arrayBuffer());
+      const after = fixture.counters(), originalDelta = originalReads - originalsBefore;
       report.requests.push({ method: req.method, path: url.pathname, query: url.search, status: response.status });
       if (url.pathname.startsWith('/api/path-captures')) {
         const name = 'response-' + String(++responseNumber).padStart(3, '0') + '.json'; await raw(name, bytes);
-        const after = fixture.counters(), originalDelta = originalReads - originalsBefore;
         report.operations.push({ file: name, method: req.method, path: url.pathname, query: url.search, status: response.status,
-          ...response.ok ? {} : { code: JSON.parse(bytes).error?.code }, before, after, originalDelta });
+          ...response.ok ? {} : { code: JSON.parse(bytes).error?.code }, before, after, originalDelta, operationOriginals: operation.originals });
         if (req.method === 'GET' && response.status === 200) {
           const value = JSON.parse(bytes); assert.equal(after.writeCalls, before.writeCalls); assert.equal(after.changedRows, before.changedRows);
-          assert.equal(originalDelta, url.pathname === '/api/path-captures' ? value.items.reduce((sum, row) => sum + row.originalCount, 0) : value.originals.length);
+          assert.equal(operation.originals, url.pathname === '/api/path-captures' ? value.items.reduce((sum, row) => sum + row.originalCount, 0) : value.originals.length);
           assert.equal(value.metrics.pathWork, 0); assert.equal(value.metrics.publicationLocks, 0);
         }
       }
