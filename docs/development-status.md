@@ -25,6 +25,13 @@ PR #97 merged as identical-tree `06028d7` after exact head `74b4a2f` passed push
 [Task 094](../tasks/094-loredock-worker-qualification.md); both final-head CI events
 remain required before this result is merged.
 
+First PR CI 41815035557 fails the older compact tiny test's absolute interval
+expectation (161.2361 / 193.902164 ms against 150); push 41815001006 passes. Its
+complete functional assessment and correct resource rejection remain retained.
+The ordinary test now separates functional completeness from finite resource
+observations and requires exact failure propagation. Limits and frozen results
+remain unchanged; full checks pass 582 tests/builds before final-head CI repeats.
+
 ## Task 093 — Inventory worker prepared reads retain exact execution and ownership
 
 The [offline candidate](../scripts/loredock-worker-reads/README.md) wraps one inherited
