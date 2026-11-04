@@ -13,6 +13,8 @@ and shutdown. Retain request validation, host/origin/session checks, no-store re
 publication/generation pins, policy/revocation fences and per-catalog concurrency.
 Keep the app factory's test/default ownership coherent and close every actual owner in
 tests. HTTP callers cannot supply budgets, parser identities or filesystem locations.
+Translate the actual shared-budget cancellation/time/work outcomes at the HTTP boundary
+into bounded 409 errors; internal capability/observer failures remain generic 500 errors.
 Do not alter source-only backup/native history contracts or create saved receipts on GET.
 
 Update browser types to the actual v2 response. Preserve root pagination/selection,
