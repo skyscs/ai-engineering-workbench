@@ -23,7 +23,7 @@ import { pathRequest } from './code-paths.js';
 import { CodePathsV2 } from './code-paths-v2.js';
 import { OperationBudgetError } from './operation-budget.js';
 import { NativeCaptures } from './native-capture.js';
-import { captureSelection, historyReceiptId, nativeCaptureError } from './native-capture-api.js';
+import { captureSelection, historyReceiptId, nativeCaptureError, captureListSelection } from './native-capture-api.js';
 
 export function createApp(catalog: Catalog, options: { publicDir?: string; development?: boolean; answers?: Answers; codeAnalysis?: CodeAnalysis; codeFollow?: CodeAnalysisFollow; codePaths?: CodePathsV2; nativeCaptures?: NativeCaptures } = {}) {
   const app = new Hono();
@@ -102,6 +102,10 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
   if (codeAnalysis) {
     const codePaths = options.codePaths ?? new CodePathsV2(codeAnalysis);
     const nativeCaptures = options.nativeCaptures ?? new NativeCaptures(codeAnalysis, { paths: codePaths });
+    app.get('/api/path-captures', async c => {
+      const selection = captureListSelection(new URL(c.req.url).searchParams, c.req.raw.headers);
+      return c.json(await nativeCaptures.list(selection, c.req.raw.signal));
+    });
     app.post('/api/path-captures', async c => {
       const selection = captureSelection(new URL(c.req.url).searchParams, await c.req.text());
       const result = await nativeCaptures.capture(selection, c.req.raw.signal);
