@@ -381,6 +381,12 @@ with twelve direct behavioral comparisons and 609 full-check tests/builds. All 4
 measured dependencies remain unchanged. Next
 [Task 100](tasks/100-loredock-independent-integration-reference.md) preserves the
 minimal portable independent store/analysis test control before production wiring.
+[Task 100](tasks/100-loredock-independent-integration-reference.md) preserves that
+control and passes 612 full-check tests/builds. Source review corrects the earlier
+fingerprint assumption: analysis implementation changes invalidate derived inventories
+and generation IDs, requiring explicit reanalysis/rollback tests. Next
+[Task 101](tasks/101-loredock-v1-resource-integration.md) integrates representation
+into v1 while preserving independent controls and existing semantic boundaries.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
