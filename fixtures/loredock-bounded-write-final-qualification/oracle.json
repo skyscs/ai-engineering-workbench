@@ -1,0 +1,541 @@
+{
+  "schemaVersion": "bounded-write-final-campsite-oracle/1",
+  "arms": [
+    "same-process",
+    "reopened-process"
+  ],
+  "operations": [
+    "first",
+    "repeat-1",
+    "repeat-2",
+    "repeat-3",
+    "selected",
+    "page-4",
+    "isolated",
+    "history"
+  ],
+  "plannedOperations": 16,
+  "requiredComparisons": 7,
+  "content": {
+    "rootCount": 5,
+    "sourceCount": 20,
+    "selectedRoot": [
+      "a-camp-console",
+      "ui/AABook.vue",
+      "book",
+      "vue-action"
+    ],
+    "isolatedRoot": [
+      "a-camp-console",
+      "ui/ZZLocate.vue",
+      "locate",
+      "vue-action"
+    ],
+    "defaultFlows": 2,
+    "selectedFlows": 1,
+    "defaultOriginals": 10,
+    "isolatedOriginals": 5,
+    "isolated": {
+      "reason": "unresolved-import"
+    },
+    "uncitedSource": "context-17",
+    "topic": "camp.site.v5",
+    "environment": "camp-native",
+    "terminalKind": "document-write",
+    "expectDelivery": true,
+    "requiredNodes": [
+      [
+        "a-camp-console",
+        "ui/AABook.vue",
+        "symbol",
+        "book",
+        "vue-action"
+      ],
+      [
+        "a-camp-console",
+        "ui/reserve.ts",
+        "symbol",
+        "reserveSite",
+        "function"
+      ],
+      [
+        "a-camp-console",
+        "ui/reserve.ts",
+        "http-request",
+        "POST /campground/bookings",
+        null
+      ],
+      [
+        "b-camp-bookings",
+        "routes.json",
+        "route",
+        "POST /campground/bookings",
+        null
+      ],
+      [
+        "b-camp-bookings",
+        "routes.json",
+        "handler-reference",
+        "Bookings.reserve",
+        null
+      ],
+      [
+        "b-camp-bookings",
+        "Bookings.java",
+        "symbol",
+        "Bookings.reserve",
+        "java-method"
+      ],
+      [
+        "b-camp-bookings",
+        "Bookings.java",
+        "event-publish",
+        "Publish SiteBooked",
+        null
+      ],
+      [
+        "c-camp-occupancy",
+        "OccupancyWriter.java",
+        "event-subscribe",
+        "Subscribe via KafkaSubscriber",
+        null
+      ],
+      [
+        "c-camp-occupancy",
+        "OccupancyWriter.java",
+        "symbol",
+        "OccupancyWriter.onMessage",
+        "java-method"
+      ],
+      [
+        "c-camp-occupancy",
+        "OccupancyWriter.java",
+        "document-write",
+        "MongoCollection.replaceOne",
+        null
+      ]
+    ],
+    "selectedRequiredNodes": [
+      [
+        "a-camp-console",
+        "ui/AABook.vue",
+        "symbol",
+        "book",
+        "vue-action"
+      ],
+      [
+        "a-camp-console",
+        "ui/reserve.ts",
+        "symbol",
+        "reserveSite",
+        "function"
+      ],
+      [
+        "a-camp-console",
+        "ui/reserve.ts",
+        "http-request",
+        "POST /campground/bookings",
+        null
+      ],
+      [
+        "b-camp-bookings",
+        "routes.json",
+        "route",
+        "POST /campground/bookings",
+        null
+      ],
+      [
+        "b-camp-bookings",
+        "routes.json",
+        "handler-reference",
+        "Bookings.reserve",
+        null
+      ],
+      [
+        "b-camp-bookings",
+        "Bookings.java",
+        "symbol",
+        "Bookings.reserve",
+        "java-method"
+      ],
+      [
+        "b-camp-bookings",
+        "Bookings.java",
+        "event-publish",
+        "Publish SiteBooked",
+        null
+      ],
+      [
+        "c-camp-occupancy",
+        "OccupancyWriter.java",
+        "event-subscribe",
+        "Subscribe via KafkaSubscriber",
+        null
+      ],
+      [
+        "c-camp-occupancy",
+        "OccupancyWriter.java",
+        "symbol",
+        "OccupancyWriter.onMessage",
+        "java-method"
+      ],
+      [
+        "c-camp-occupancy",
+        "OccupancyWriter.java",
+        "document-write",
+        "MongoCollection.replaceOne",
+        null
+      ]
+    ],
+    "limits": {
+      "work": 1000000,
+      "wallMs": 5000,
+      "projectionBytes": 524288,
+      "receiptBytes": 655360,
+      "textBytes": 65536,
+      "spans": 30,
+      "sources": 20
+    },
+    "resources": {
+      "sampleIntervalMs": 5,
+      "maxSliceMs": 150,
+      "sampledRssMiB": 384,
+      "sampledHeapGrowthMiB": 64
+    }
+  },
+  "complete": {
+    "sources": [
+      "a-camp-console",
+      "b-camp-bookings",
+      "c-camp-occupancy",
+      "context-01",
+      "context-02",
+      "context-03",
+      "context-04",
+      "context-05",
+      "context-06",
+      "context-07",
+      "context-08",
+      "context-09",
+      "context-10",
+      "context-11",
+      "context-12",
+      "context-13",
+      "context-14",
+      "context-15",
+      "context-16",
+      "context-17"
+    ],
+    "roots": [
+      [
+        "a-camp-console",
+        "ui/AABook.vue",
+        "book",
+        "vue-action"
+      ],
+      [
+        "a-camp-console",
+        "ui/BBExtend.vue",
+        "extend",
+        "vue-action"
+      ],
+      [
+        "a-camp-console",
+        "ui/CCConfirm.vue",
+        "confirm",
+        "vue-action"
+      ],
+      [
+        "a-camp-console",
+        "ui/DDRetry.vue",
+        "retry",
+        "vue-action"
+      ]
+    ],
+    "isolatedRoot": [
+      "a-camp-console",
+      "ui/ZZLocate.vue",
+      "locate",
+      "vue-action"
+    ],
+    "flows": [
+      {
+        "nodes": [
+          [
+            "a-camp-console",
+            "ui/AABook.vue",
+            "symbol",
+            "book",
+            "vue-action"
+          ],
+          [
+            "a-camp-console",
+            "ui/reserve.ts",
+            "symbol",
+            "reserveSite",
+            "function"
+          ],
+          [
+            "a-camp-console",
+            "ui/reserve.ts",
+            "http-request",
+            "POST /campground/bookings",
+            null
+          ],
+          [
+            "b-camp-bookings",
+            "routes.json",
+            "route",
+            "POST /campground/bookings",
+            null
+          ],
+          [
+            "b-camp-bookings",
+            "routes.json",
+            "handler-reference",
+            "Bookings.reserve",
+            null
+          ],
+          [
+            "b-camp-bookings",
+            "Bookings.java",
+            "symbol",
+            "Bookings.reserve",
+            "java-method"
+          ],
+          [
+            "b-camp-bookings",
+            "Bookings.java",
+            "event-publish",
+            "Publish SiteBooked",
+            null
+          ],
+          [
+            "c-camp-occupancy",
+            "OccupancyWriter.java",
+            "event-subscribe",
+            "Subscribe via KafkaSubscriber",
+            null
+          ],
+          [
+            "c-camp-occupancy",
+            "OccupancyWriter.java",
+            "symbol",
+            "OccupancyWriter.onMessage",
+            "java-method"
+          ],
+          [
+            "c-camp-occupancy",
+            "OccupancyWriter.java",
+            "document-write",
+            "MongoCollection.replaceOne",
+            null
+          ]
+        ],
+        "edges": [
+          "calls",
+          "performs",
+          "http-target",
+          "routes-to",
+          "implements",
+          "performs",
+          "event-delivery",
+          "dispatch-candidate",
+          "performs"
+        ]
+      },
+      {
+        "nodes": [
+          [
+            "a-camp-console",
+            "ui/BBExtend.vue",
+            "symbol",
+            "extend",
+            "vue-action"
+          ],
+          [
+            "a-camp-console",
+            "ui/reserve.ts",
+            "symbol",
+            "reserveSite",
+            "function"
+          ],
+          [
+            "a-camp-console",
+            "ui/reserve.ts",
+            "http-request",
+            "POST /campground/bookings",
+            null
+          ],
+          [
+            "b-camp-bookings",
+            "routes.json",
+            "route",
+            "POST /campground/bookings",
+            null
+          ],
+          [
+            "b-camp-bookings",
+            "routes.json",
+            "handler-reference",
+            "Bookings.reserve",
+            null
+          ],
+          [
+            "b-camp-bookings",
+            "Bookings.java",
+            "symbol",
+            "Bookings.reserve",
+            "java-method"
+          ],
+          [
+            "b-camp-bookings",
+            "Bookings.java",
+            "event-publish",
+            "Publish SiteBooked",
+            null
+          ],
+          [
+            "c-camp-occupancy",
+            "OccupancyWriter.java",
+            "event-subscribe",
+            "Subscribe via KafkaSubscriber",
+            null
+          ],
+          [
+            "c-camp-occupancy",
+            "OccupancyWriter.java",
+            "symbol",
+            "OccupancyWriter.onMessage",
+            "java-method"
+          ],
+          [
+            "c-camp-occupancy",
+            "OccupancyWriter.java",
+            "document-write",
+            "MongoCollection.replaceOne",
+            null
+          ]
+        ],
+        "edges": [
+          "calls",
+          "performs",
+          "http-target",
+          "routes-to",
+          "implements",
+          "performs",
+          "event-delivery",
+          "dispatch-candidate",
+          "performs"
+        ]
+      }
+    ],
+    "originals": [
+      [
+        "a-camp-console",
+        "ui/AABook.vue",
+        1,
+        6
+      ],
+      [
+        "a-camp-console",
+        "ui/BBExtend.vue",
+        1,
+        6
+      ],
+      [
+        "a-camp-console",
+        "ui/CCConfirm.vue",
+        1,
+        6
+      ],
+      [
+        "a-camp-console",
+        "ui/DDRetry.vue",
+        1,
+        6
+      ],
+      [
+        "a-camp-console",
+        "ui/reserve.ts",
+        1,
+        3
+      ],
+      [
+        "b-camp-bookings",
+        "routes.json",
+        1,
+        1
+      ],
+      [
+        "b-camp-bookings",
+        "Bookings.java",
+        1,
+        10
+      ],
+      [
+        "b-camp-bookings",
+        "contracts/SiteBooked.json",
+        1,
+        1
+      ],
+      [
+        "c-camp-occupancy",
+        "OccupancyWriter.java",
+        1,
+        13
+      ],
+      [
+        "c-camp-occupancy",
+        "contracts/SiteBooked.json",
+        1,
+        1
+      ]
+    ],
+    "isolatedOriginals": [
+      [
+        "a-camp-console",
+        "ui/AABook.vue",
+        1,
+        6
+      ],
+      [
+        "a-camp-console",
+        "ui/BBExtend.vue",
+        1,
+        6
+      ],
+      [
+        "a-camp-console",
+        "ui/CCConfirm.vue",
+        1,
+        6
+      ],
+      [
+        "a-camp-console",
+        "ui/DDRetry.vue",
+        1,
+        6
+      ],
+      [
+        "a-camp-console",
+        "ui/ZZLocate.vue",
+        1,
+        5
+      ]
+    ]
+  },
+  "watchdogs": {
+    "preparer": 600000,
+    "reader": 180000,
+    "overall": 900000,
+    "grace": 5000
+  },
+  "size": {
+    "files": 10000,
+    "codeFiles": 9977,
+    "facts": 21,
+    "pathsPerSource": 500,
+    "bytes": 490457
+  }
+}
