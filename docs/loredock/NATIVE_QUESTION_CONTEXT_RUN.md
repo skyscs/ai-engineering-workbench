@@ -117,3 +117,54 @@ inputs and can fix its first harness failures with retained logs. Ordinary CI mu
 import the frozen library factory to score the reserved matrix. A frozen question failure
 or interrupted attempt rejects promotion and leads to new prospective scope; no tuning
 and rerun of the same observed matrix. No model budget or production consumer is enabled.
+
+## Concrete candidate and boundary setup
+
+The offline producer retains exactly two reviewed selection edits in the accepted emitted
+producer, plus deterministic static import relocation. Its baseline mode is compared byte
+for byte with the public producer on the separate ordinary permit fixture. Selection uses
+whole literal boundaries (qualified identifier/topic and route continuations cannot match
+a prefix), complete reverse reachability and the unchanged 1,000-visited-node ceiling.
+The compact item factors node locators through already-issued exact originals, stores
+node/edge tuples with explicit columns and retains all properties, reasons, statuses,
+header/topic witnesses, gaps, omissions, coverage and limits. Original IDs remain the only
+citation IDs. Exact overlapping legacy HTTP clues are reported, never treated as another
+independent source or silently removed.
+
+Baseline adapters count every actual returned SQL row and every reopened UTF-8 original
+byte. They also retain rejected charge units: for example a zero-work refusal may occur
+when the first SQL row returns, before that unit can be accepted by the shared budget.
+Accepted lexical charges equal observed rows plus original bytes minus rejected units.
+No rejected work is relabeled as accepted or removed from the raw counters. Final handoff
+and owner release have no asynchronous gap. All source originals, including non-path
+README and note support, are reauthorized before the last synchronous fence.
+
+The [boundary builder](../../scripts/loredock-native-question-context/boundary-inputs.mjs)
+is frozen with the final executable before the matrix. It adds separate owned files only:
+five `budgetReferenceN` HTTP declarations and corresponding JSON routes for the aggregate
+derived budget; or 24 numbered Markdown passages, each with 1,980 quote characters, for
+complete-prompt sizing. Quotes count once in original UTF-8 text and twice in encoded JSON.
+Actual corrections are saved against the first eight existing legacy edges with a bounded
+1,920-byte unverified statement; the actual note selector retains the fitting subset.
+Padding admission starts from actual baseline originals without padding, then considers
+whole padding originals ordered by path/line. Keep each iff 30 spans, 64 KiB source text
+and the actual 96 KiB v9 prompt fit, recomputing actual legacy comparisons and saved-note
+overlap. No note, original or comparison is truncated or evicted to fit native data.
+Every attempted subset size and actual saved note remains in the raw controlled record.
+These deliberately controlled contexts are separate from the seven real-retrieval cases.
+
+The foreign-source control copies the first UI TypeScript file's exact text into a Markdown
+file in the undisplayed source. It replaces that issued original with the actual separately
+indexed identity. Markdown prevents this support-only control from creating another code
+entry point. The foreign-build control indexes a genuinely newer build and substitutes the
+previous original. Missing support removes the actual first UI TypeScript original. These
+are explicit boundary inputs, not changes to frozen source files or positive retrieval.
+Incompatible inventory uses the preserved Task 113 compiled runtime and its real parser
+fingerprint; eviction uses two ordinary replacement publications. Witness checks retain
+exact issued bytes and reauthorize originals without analysis snapshots, facts or paths.
+
+A separate complete ordinary permit matrix exercises every driver branch, including a
+negative independent-assessment check for lost denominators, work/mutation counters,
+changed support/qualifications/dependencies, external attempts and history rederivation.
+All first development failures remain retained. The final frozen library attempt is still
+a distinct one-run experiment; development success cannot substitute for its outcome.

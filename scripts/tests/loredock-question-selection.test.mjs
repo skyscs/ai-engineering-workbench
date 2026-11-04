@@ -60,3 +60,29 @@ test('compiled ordinary permit preparation preserves retrieval, support, cancell
   const { runDevelopment } = await import('../loredock-native-question-context/development.mjs');
   const checks = await runDevelopment(path.join(directory, 'run')); assert.equal(checks.length, 7); passed = true;
 });
+
+test('ordinary 44-case matrix retains identities, unchanged witnesses and refuses corrupted assessments', { timeout: 180000 }, async t => {
+  const directory = await mkdtemp(path.join(tmpdir(), 'question-matrix-')); let passed = false;
+  t.after(async () => { if (passed) await rm(directory, { recursive: true, force: true }); else t.diagnostic('Retained ordinary matrix: ' + directory); });
+  const { runOrdinaryMatrix, ordinaryMatrixInputs } = await import('../loredock-native-question-context/development-matrix.mjs');
+  const { assessMatrix } = await import('../loredock-native-question-context/assessment.mjs');
+  const result = await runOrdinaryMatrix(path.join(directory, 'run'));
+  assert.equal(result.assessment.prospective, 44); assert.equal(result.assessment.observed, 44);
+  assert.equal(result.assessment.pass, true, JSON.stringify(result.assessment.cases.filter(row => row.state !== 'pass')));
+  const raw = JSON.parse(await readFile(path.join(directory, 'run/matrix-raw.json'), 'utf8'));
+  const ledger = JSON.parse(await readFile(path.join(root, 'fixtures/loredock-native-question-context-run/protocol.json'), 'utf8'));
+  const { oracle } = ordinaryMatrixInputs();
+  for (const mutation of ['missing-case', 'work', 'write', 'support', 'reason', 'witness', 'dependency', 'external']) {
+    const records = structuredClone(raw.records), op = records[0].operation;
+    if (mutation === 'missing-case') records.pop();
+    if (mutation === 'work') op.metrics.budget.totalWork--;
+    if (mutation === 'write') op.after.changedRows++;
+    if (mutation === 'support') op.result.compact.item.originals.pop();
+    if (mutation === 'reason') op.result.compact.item.edges[0][4] = 'Invented qualification.';
+    if (mutation === 'witness') records.find(row => row.id === 'witness.inventory-replaced').witnessAfter.factReads++;
+    if (mutation === 'dependency') op.result.dependencies.pop();
+    if (mutation === 'external') op.networkAttempts++;
+    const assessment = assessMatrix(ledger, records, oracle); assert.equal(assessment.pass, false, mutation); assert.equal(assessment.prospective, 44);
+  }
+  passed = true;
+});
