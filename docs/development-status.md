@@ -1,5 +1,30 @@
 # Development status
 
+## Task 094 — Worker qualification preserves content but fails one path RSS gate
+
+The [single frozen vault-seal run](fixtures/loredock-worker-qualification/README.md)
+contains twenty sources / 9,960 files / 9,937 code files. Both child processes exit
+zero and close normally; all sixteen content/path/span/scope and no-write/work/hook
+observations, fourteen useful cases, six repeats, two histories and seven exact
+cross-process comparisons pass. Resource acceptance remains failed: **15/16**.
+Reopened isolated-path RSS reaches **398.03515625 MiB**, above 384; other operation
+resource dimensions pass. History passes on this family, but no causal improvement
+or allocation attribution follows. The first replacement endpoint also remains
+above 384, even though the second finishes below it. No gate or limit changes.
+
+Scope `4da42c4`, tiny integration `f8282b4` and full strict checks (582 tests/builds)
+precede freeze `3d04283` and measured entry `f22e5a8`. The only run exits one in
+392.228 seconds. Thirty-nine raw artifacts, outer logs, derived readback and both
+first development logs remain retained; all hashes and 412 baseline files verify.
+Next: a bounded source/representation audit of connected-path fact ownership,
+including fact-free files and all domain/gap/original consumers, before selecting
+another candidate. No production promotion or old-family rerun is authorized.
+
+PR #97 merged as identical-tree `06028d7` after exact head `74b4a2f` passed push
+41813105877 and pull-request 41813113863 CI (581 tests). See
+[Task 094](../tasks/094-loredock-worker-qualification.md); both final-head CI events
+remain required before this result is merged.
+
 ## Task 093 — Inventory worker prepared reads retain exact execution and ownership
 
 The [offline candidate](../scripts/loredock-worker-reads/README.md) wraps one inherited
@@ -20,8 +45,9 @@ errors; the unchanged baseline also refuses resume with `CONFLICT`, fences inven
 and returns `POLICY_CHANGED` from path admission. Corrections affect tests only.
 First outcomes remain [retained](fixtures/loredock-worker-reads/README.md). Full
 strict checks pass 581 tests and builds; built offline services import and all 410
-prior baseline files match. Both final-head CI events are required before merge.
-Next: fresh complete uninstrumented qualification.
+prior baseline files match. Exact head `74b4a2f` passed push 41813105877 and
+pull-request 41813113863 CI, then merged through PR #97 as identical-tree `06028d7`.
+The next qualification is recorded in Task 094.
 
 PR #96 merged as identical-tree `5df48e0` after `851e707` passed push 41750705428
 and pull-request 41750754499 CI (569 tests). See

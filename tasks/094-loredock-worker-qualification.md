@@ -1,6 +1,6 @@
 # Task 094 — Qualify worker-local prepared reads
 
-Status: inputs frozen and implementation accepted; execution pending, 2026-11-04.
+Status: executed once; resource qualification failed, 2026-11-04. Exact-head CI precedes merge.
 
 Task 093 proves independent semantic/lifecycle equivalence for prepared reads scoped
 to one inventory worker. Qualify its composition with the existing path read scope,
@@ -53,3 +53,21 @@ without invoking an application parser on the family.
 Task 093 final head `74b4a2f` passed push 41813105877 and pull-request 41813113863
 CI (581 tests), then merged as identical-tree `06028d7`. This branch includes that
 merge; the measured probe verifies and records it before its only execution.
+
+## Outcome
+
+Clean measured head `f22e5a8` completes both workers with normal close/exit zero;
+the outer coordinator correctly exits one after 392.228 seconds. All sixteen
+content/path/span/scope and independent observation gates, fourteen useful cases,
+six repeats, two histories and seven raw cross-process comparisons pass.
+
+Resources pass **15/16**. Reopened `isolated` reaches **398.03515625 MiB RSS**
+against 384; all other operation dimensions pass. History now passes, but this is
+a different frozen family and no causal percentage improvement is established.
+All 39 raw artifacts, outer outcomes, exact hashes and first logs are
+[retained](../docs/fixtures/loredock-worker-qualification/README.md). No retry follows.
+
+Next: one bounded source/representation audit of connected-path fact ownership on
+independent tiny inputs, including fact-free files, complete domains/gaps and every
+original/fence/work requirement. This selects no optimization yet and does not
+attribute the RSS crossing to a particular owner. Production remains unchanged.
