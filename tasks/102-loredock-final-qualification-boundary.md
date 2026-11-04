@@ -35,3 +35,7 @@ final composition qualification. All sixteen operation gates and fixed bounds re
 [Task 103](103-loredock-versioned-path-producer.md) scopes the producer; the browser
 and current consumers remain v1. No dependency installation, application observation,
 model call or resource family is needed for this source-only decision.
+
+PR #105 head `4beccc3` passed push 41826915557 and pull-request 41826963577 CI
+(629 tests), then merged as identical-tree `b4fea4e`, verified before this review
+result was finalized. All 408 local documentation targets and 21 source hashes verify.
