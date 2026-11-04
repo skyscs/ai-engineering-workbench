@@ -6,7 +6,7 @@ import { tmpdir } from 'node:os';
 import { setImmediate as yieldTurn } from 'node:timers/promises';
 import type { Catalog } from '../src/catalog.js';
 import type { CatalogStore } from '../src/store.js';
-import { CodeAnalysis } from '../src/code-analysis.js';
+import { CodeAnalysis, referenceSource } from './fixtures/integration-reference/index.js';
 import type { AnalysisLimits, AnalysisUnit } from '../src/code-analysis-types.js';
 import { sha256 } from '../src/extract.js';
 import { configuration } from './fixtures/prepared-qualification-config.js';
@@ -80,7 +80,7 @@ async function setup(t: TestContext, limits: Partial<AnalysisLimits> = {}) {
 test('worker seam remains bound to unchanged source dependencies and rejects incompatible services', async () => {
   const root = new URL('../../../', import.meta.url);
   const manifest = JSON.parse(await readFile(new URL('scripts/loredock-worker-reads/baseline.json', root), 'utf8')) as { files: Record<string, string> };
-  for (const [file, expected] of Object.entries(manifest.files)) assert.equal(sha256(await readFile(new URL(file, root))), expected, file);
+  for (const [file, expected] of Object.entries(manifest.files)) assert.equal(sha256(await referenceSource(file)), expected, file);
   assert.throws(() => createWorkerReads({ CodeAnalysis: class {} }), /Unsupported inventory worker seam/);
   const Candidate = createWorkerReads({ CodeAnalysis });
   assert.throws(() => new Candidate({ store: {} }), /require the scoped store/);

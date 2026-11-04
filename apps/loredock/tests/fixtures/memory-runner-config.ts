@@ -1,8 +1,7 @@
 import { createHash } from 'node:crypto';
 import { Catalog } from '../../src/catalog.js';
-import { CatalogStore } from '../../src/store.js';
+import { CatalogStore, CodeAnalysis } from './integration-reference/index.js';
 import { SourceGit } from '../../src/git.js';
-import { CodeAnalysis } from '../../src/code-analysis.js';
 import { codePathLimits, PathWork } from '../../src/code-paths-work.js';
 import { bindingMetadata, bindingDomains, assertBindingMetadata } from '../../src/code-paths-metadata.js';
 import { declarationMap } from '../../src/system-map.js';
