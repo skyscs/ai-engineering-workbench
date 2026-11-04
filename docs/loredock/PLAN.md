@@ -192,6 +192,9 @@ native outputs independently before the fresh compiled qualification and consume
 Task 108 completes that functional boundary;
 [Task 109](../../tasks/109-loredock-native-compiled-qualification-driver.md) supplies the
 actual compiled worker/coordinator before a new final family is frozen.
+Task 109 completes the driver on small owned inputs;
+[Task 110](../../tasks/110-loredock-native-final-composition-qualification.md) retains
+the fixed complete-operation gates for the fresh final compiled composition.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.

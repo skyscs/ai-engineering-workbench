@@ -1,5 +1,26 @@
 # Development status
 
+## Task 109 — Complete native compiled operations have a two-process driver
+
+The [driver](../scripts/loredock-native-qualification/README.md) uses actual compiled
+services, one stopped catalog UUID/snapshot and independently checked runtime hashes.
+Each process performs eight complete operations with exact paths/originals, source
+support, aggregate counters, history, lifecycle and resource dimensions; seven raw
+comparisons must match. Missing inputs and failures keep fixed denominators.
+
+Eleven focused cases/subcases and **802 strict tests/builds** pass. Both complete and
+incomplete small compiled cases pass all sixteen operations and seven comparisons;
+their observed resource dimensions also pass. Ten command logs, initial oracle/test
+failures and raw evidence are [retained](fixtures/loredock-native-compiled-driver/README.md),
+with the one deleted failed-test fixture explicitly disclosed. Production sources and
+all historical families are unchanged; no models or corporate input.
+
+Next [Task 110](../tasks/110-loredock-native-final-composition-qualification.md) freezes
+one fresh final compiled family before its only attempt. The small functional driver
+runs do not establish dense-project, lifetime memory, semantic or L5 acceptance.
+PR #112 head `802cdd1` passed push 41880344665 and pull-request 41880431467 CI
+(791 tests), then merged as identical-tree `92f11fb`.
+
 ## Task 108 — Native results have an independent offline assessment boundary
 
 The [offline assessor](../scripts/loredock-native-assessment/README.md) validates native

@@ -432,6 +432,11 @@ native assessment with separate integrity, shape, source support, usefulness and
 history/comparison gates. Next
 [Task 109](tasks/109-loredock-native-compiled-qualification-driver.md) drives the actual
 compiled two-process lifecycle before freezing a fresh final family.
+[Task 109](tasks/109-loredock-native-compiled-qualification-driver.md) completes that
+driver with exact stopped snapshots/runtime identities, independent complete paths,
+raw parity and resource/counter/lifecycle gates. Next
+[Task 110](tasks/110-loredock-native-final-composition-qualification.md) freezes and
+runs the single fresh final compiled native family before consumer integration.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
