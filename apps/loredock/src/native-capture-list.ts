@@ -12,11 +12,11 @@ export interface CaptureListItem {
 
 export function captureListRequest(input: CaptureListRequest) {
   requireReceipt(record(input) && Object.keys(input).every(key => ['pageSize', 'generationId', 'offset'].includes(key)), 'INVALID_CAPTURE_LIST');
-  const pageSize = input.pageSize ?? 4, offset = input.offset ?? 0;
-  requireReceipt((pageSize === 1 || pageSize === 4) && (input.generationId === undefined) === (input.offset === undefined)
-    && (input.generationId === undefined || hex(input.generationId))
-    && Number.isSafeInteger(offset) && offset >= 0 && offset < 64 && offset % pageSize === 0, 'INVALID_CAPTURE_LIST');
-  return { pageSize, offset, generationId: input.generationId };
+  const pageSize = input.pageSize ?? 4, offset = input.offset ?? 0, generationId = input.generationId;
+  requireReceipt((pageSize === 1 || pageSize === 4) && (generationId === undefined) === (input.offset === undefined)
+    && (generationId === undefined || typeof generationId === 'string' && hex(generationId))
+    && typeof offset === 'number' && Number.isSafeInteger(offset) && offset >= 0 && offset < 64 && offset % pageSize === 0, 'INVALID_CAPTURE_LIST');
+  return { pageSize, offset, generationId };
 }
 
 export function captureListGeneration(catalogId: string, ids: string[],
