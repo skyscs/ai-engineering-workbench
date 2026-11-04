@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test, type TestContext } from 'node:test';
 import { mkdtemp, rm } from 'node:fs/promises';
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, unlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
@@ -171,4 +171,58 @@ test('source guard release failure removes a newly linked result, preserves a du
   failures = 2; await assert.rejects(service.capture({ buildId: s.state.buildId }), { code: 'CAPTURE_GUARD_RELEASE_FAILED' });
   original('ROLLBACK'); await assert.rejects(service.history(saved.receiptId), { code: 'SERVICE_STOPPED' });
   await assert.rejects(s.service().history(saved.receiptId), { code: 'CLOSED_RECEIPT_STORAGE' });
+});
+
+test('history reopens original support outside the displayed path and refuses corrupt current source bytes', async t => {
+  const s = await setup(t), service = s.service(), first = await service.capture({ buildId: s.state.buildId });
+  const history = await service.history(first.receiptId), pins = { buildId: s.state.buildId,
+    inventoryId: history.projection.identity.inventoryId, generationId: history.projection.generationId };
+  const page = await s.state.paths.read({ ...pins, offset: 4 }, 'roots'); assert.ok(page.status === 'available');
+  const isolated = await service.capture({ ...pins, rootId: page.roots.items[0]!.id }), saved = await service.history(isolated.receiptId);
+  const hidden = saved.originals.find(row => !Object.hasOwn(saved.projection.graph.evidence, row.id)); assert.ok(hidden);
+  const file = s.state.store.one<{ id: string; raw: Uint8Array }>('SELECT f.id,f.raw FROM files f JOIN spans s ON s.fileId=f.id WHERE s.id=?', hidden.id)!;
+  const changed = Buffer.from(file.raw); changed[0] = changed[0]! ^ 1;
+  s.state.store.run('UPDATE files SET raw=? WHERE id=?', changed, file.id);
+  await assert.rejects(service.history(isolated.receiptId), { code: 'CORRUPT_EVIDENCE' });
+  s.state.store.run('UPDATE files SET raw=? WHERE id=?', file.raw, file.id);
+  assert.deepEqual((await service.history(isolated.receiptId)).originals, saved.originals);
+});
+
+test('complete capture preserves exact aggregate limits and its deadline across preparation', async t => {
+  const s = await setup(t), service = s.service(), first = await service.capture({ buildId: s.state.buildId });
+  // Reset only this owned test output; source rows, pins and bytes remain identical.
+  unlinkSync(path.join(s.folder, first.receiptId + '.json'));
+  const short = new OperationBudget({ limits: { work: first.metrics.totalWork } }); short.charge('receipt');
+  await assert.rejects(service.capture({ buildId: s.state.buildId }, undefined, short), { code: 'CAPTURE_WORK_LIMIT' }); short.close();
+  assert.deepEqual(files(s.folder), []);
+  const exact = new OperationBudget({ limits: { work: first.metrics.totalWork } });
+  const saved = await service.capture({ buildId: s.state.buildId }, undefined, exact);
+  assert.equal(saved.receiptId, first.receiptId); assert.equal(saved.metrics.totalWork, first.metrics.totalWork); exact.check(); exact.close();
+  const before = s.state.counters(), slow = s.service({ budget: { limits: { wallMs: 50 } }, async checkpoint(info) { if (info.stage === 'start') await delay(60); } });
+  await assert.rejects(slow.capture({ buildId: s.state.buildId }), { code: 'CAPTURE_TIME_LIMIT' });
+  assert.equal(s.state.counters().pathReads, before.pathReads); assert.deepEqual(files(s.folder), [saved.receiptId + '.json']);
+});
+
+test('capacity and publication failures preserve accepted records; failed cleanup recovers exact authorized history', async t => {
+  await t.test('capacity', async sub => {
+    const s = await setup(sub, { limits: { records: 1 } }), service = s.service(), first = await service.capture({ buildId: s.state.buildId });
+    const history = await service.history(first.receiptId), pins = { buildId: s.state.buildId,
+      inventoryId: history.projection.identity.inventoryId, generationId: history.projection.generationId };
+    await assert.rejects(service.capture({ ...pins, rootId: history.projection.roots.items[0]!.id }), { code: 'CAPTURE_STORAGE_FULL' });
+    assert.deepEqual(files(s.folder), [first.receiptId + '.json']); assert.equal((await service.capture({ buildId: s.state.buildId })).created, false);
+  });
+  await t.test('publication and recovery', async sub => {
+    let failure: 'publish' | 'cleanup' | undefined;
+    const s = await setup(sub, { observe(stage) {
+      if (failure && stage === 'linked') { if (failure === 'publish') failure = undefined; throw new Error('Injected publication failure.'); }
+      if (failure === 'cleanup' && stage === 'before-unlink') throw new Error('Injected cleanup failure.');
+    } }), service = s.service();
+    failure = 'publish'; await assert.rejects(service.capture({ buildId: s.state.buildId }), /Injected publication failure/); assert.deepEqual(files(s.folder), []);
+    failure = 'cleanup'; await assert.rejects(service.capture({ buildId: s.state.buildId }), { code: 'RECEIPT_CLEANUP_FAILED' });
+    const name = files(s.folder).find(name => name.endsWith('.json'))!; assert.ok(name); assert.ok(files(s.folder).includes('.pending'));
+    await assert.rejects(service.history(name.slice(0, -5)), { code: 'DISABLED_RECEIPT_STORAGE' });
+    const before = readFileSync(path.join(s.folder, name)); failure = undefined; await service.stop(); await s.state.restart();
+    const recovered = await s.service().history(name.slice(0, -5)); assert.equal(recovered.status, 'recorded');
+    assert.deepEqual(files(s.folder), [name]); assert.deepEqual(readFileSync(path.join(s.folder, name)), before);
+  });
 });
