@@ -1,8 +1,9 @@
-# Internal native connected paths v2
+# Native connected paths v2
 
-Task 103 implements a typed internal producer for later complete capture. The
-launcher, HTTP routes and browser continue to use v1. No receipt storage, endpoint,
-answer/review consumer or model execution is added by this step.
+Task 103 introduced the typed internal producer for complete capture. After the fresh
+Task 114 qualification, Task 115 connects the launcher, existing HTTP routes and browser
+to this producer directly. Native saved-receipt APIs/UI and answer/review integration
+remain separate. See the [public read contract](CODE_PATHS_API.md).
 
 The [reader](../../apps/loredock/src/code-paths-v2.ts) uses
 `loredock-code-paths/2`, `loredock-connected-display/2` and `connected-paths-v2`.
@@ -40,7 +41,9 @@ support, coverage, omissions and every work charge. Native hashes, exact repeats
 generation-bound pages/selections are checked separately.
 
 See [retained verification](../fixtures/loredock-native-v2-producer/README.md).
-This functional integration establishes no complete capture/history or resource-scale
-acceptance. [Task 104](../../tasks/104-loredock-native-capture-ownership.md) decides
-storage and lifecycle ownership before publication/history is ported. The browser
-migration still follows a fresh qualification of that final compiled composition.
+Task 103 alone did not establish complete capture/history or resource acceptance.
+[Task 104](../../tasks/104-loredock-native-capture-ownership.md) defined storage/lifecycle
+ownership; subsequent native capture, upgrade and independent assessment work led to
+the [Task 114 qualification](BOUNDED_WRITE_FINAL_QUALIFICATION.md). The public read
+migration preserves those producer bytes and bounds. Dense-code/lifetime, semantic/user,
+private-project/L5 and Workbench acceptance remain separate.

@@ -8,7 +8,7 @@ import { CatalogStore } from './store.js';
 import { Answers } from './answers.js';
 import { CodeAnalysis } from './code-analysis.js';
 import { CodeAnalysisFollow } from './code-analysis-follow.js';
-import { CodePaths } from './code-paths.js';
+import { CodePathsV2 } from './code-paths-v2.js';
 
 function defaultDirectory() {
   if (process.platform === 'darwin') return path.join(homedir(), 'Library', 'Application Support', 'loredock');
@@ -18,7 +18,7 @@ function defaultDirectory() {
 const store = new CatalogStore(process.env.LOREDOCK_DATA_DIR ?? defaultDirectory());
 const catalog = new Catalog(store);
 const codeAnalysis = new CodeAnalysis(catalog), codeFollow = new CodeAnalysisFollow(codeAnalysis);
-const codePaths = new CodePaths(codeAnalysis);
+const codePaths = new CodePathsV2(codeAnalysis);
 codeFollow.start();
 // Cited answers are optional; indexing and map browsing need no Codex connection.
 const answers = process.env.LOREDOCK_ANSWERS === '1' ? new Answers(catalog) : undefined;

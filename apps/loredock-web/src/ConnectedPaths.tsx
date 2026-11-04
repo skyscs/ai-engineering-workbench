@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { AnalysisState, AnalysisSummary } from '../../loredock/src/code-analysis-types';
-import type { CodePathsAvailable, CodePathsResponse } from '../../loredock/src/code-paths-types';
+import type { CodePathsAvailableV2 as CodePathsAvailable, CodePathsResponseV2 as CodePathsResponse } from '../../loredock/src/code-paths-v2-types';
 import type { MapEvidence } from '../../loredock/src/system-map-types';
 import { api } from './api';
 
@@ -40,6 +40,7 @@ function PathBrowser({ buildId, staleIndex, sourceNames, openEvidence, clearEvid
       const valid = () => alive && request === sequence;
       try {
         const response = await api<CodePathsResponse>(`/code-paths${selection.offset === undefined ? '' : '/roots'}?${params}`, 'GET', undefined, controller.signal);
+        if (response.schemaVersion !== 'loredock-code-paths/2') throw new Error('The connected path response is out of date. Reload LoreDock.');
         if (valid()) {
           // A publication can race the unpinned read. Wait for inventory polling to select it.
           if (response.status === 'available' && response.identity.inventoryId !== inventoryId) {
@@ -128,6 +129,7 @@ function PathBrowser({ buildId, staleIndex, sourceNames, openEvidence, clearEvid
             return <li key={id}>
               {edge && <div className="connected-edge"><strong>{edge.status === 'candidate' ? 'Static connection candidate' : 'Static source connection'}</strong>
                 <p>{edge.reason}</p>{edge.gaps.length > 0 && <ul>{edge.gaps.map((gap, i) => <li key={i}>{gap}</li>)}</ul>}
+                {edge.topicCheck && <p className="topic-witness">Matching topic literal: <code>{edge.topicCheck.value}</code></p>}
                 {citations(edge.evidenceIds, available.graph!.evidence)}</div>}
               <strong>{node.label}</strong><p>{node.sourceName} / <code>{node.path}</code>:{node.startLine} · {node.kind}</p>
               {citations(node.evidenceIds, available.graph!.evidence)}

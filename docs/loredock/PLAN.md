@@ -215,7 +215,11 @@ passes all sixteen complete operations and seven raw comparisons, including ever
 resource gate (maximum RSS 340.2734375 MiB against 384 MiB). The previous failed result
 remains unchanged. After exact-head CI, [Task 115](../../tasks/115-loredock-public-native-paths.md)
 migrates existing read-only endpoints and the connected-path browser to native v2.
-Saved-capture/history APIs and UI follow separately; no semantic/L5 gate is inferred.
+The [public migration](PUBLIC_NATIVE_PATHS.md) passes focused HTTP, actual Chrome and
+normal-daemon startup/restart checks, with unchanged qualified core runtime bytes.
+[Task 116](../../tasks/116-loredock-native-capture-api.md) connects authorized native
+capture/history APIs before a separate saved-path browser workflow. No semantic/L5 gate
+is inferred from either the resource result or this public read migration.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.

@@ -1,6 +1,13 @@
 # Task 115 — Use native v2 paths in the existing public browser
 
-Status: scoped, 2026-11-04.
+Status: implemented and locally verified, 2026-11-04.
+
+The [public migration](../docs/loredock/PUBLIC_NATIVE_PATHS.md) serves native v2 through
+existing endpoints and browser navigation, with literal-topic evidence and bounded HTTP
+budget outcomes. Twenty-eight focused tests/subtests, 824 strict tests/builds, seventeen
+Chrome scenarios and three actual-daemon startup/restart checks pass. Core runtime bytes
+are unchanged; no resource family was replayed. First failures/evidence are retained.
+After exact-head CI, [Task 116](116-loredock-native-capture-api.md) connects save/open APIs.
 
 After Task 114's final resource result and exact-head CI acceptance, migrate the existing
 read-only connected-path consumer to the accepted actual CodePathsV2 producer. Keep the
@@ -13,6 +20,8 @@ and shutdown. Retain request validation, host/origin/session checks, no-store re
 publication/generation pins, policy/revocation fences and per-catalog concurrency.
 Keep the app factory's test/default ownership coherent and close every actual owner in
 tests. HTTP callers cannot supply budgets, parser identities or filesystem locations.
+Translate the actual shared-budget cancellation/time/work outcomes at the HTTP boundary
+into bounded 409 errors; internal capability/observer failures remain generic 500 errors.
 Do not alter source-only backup/native history contracts or create saved receipts on GET.
 
 Update browser types to the actual v2 response. Preserve root pagination/selection,

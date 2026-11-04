@@ -372,6 +372,10 @@ reads the selected index's compatible published code inventory and shows up to t
 
 1. Read a path's numbered source steps. **Static connection candidate** marks a
    possible cross-source hop; it does not prove runtime wiring or execution order.
+   **Matching topic literal** shows an identical direct Java topic string at a supported
+   Kafka publisher and subscriber. Open their originals to inspect it. Dynamic or
+   different topic expressions remain unresolved; matching strings do not prove a shared
+   broker, runtime delivery or deployment configuration.
 2. Click **Original: …** to open the exact saved source lines. The evidence heading
    receives focus. Existing correction controls stay in **Static flow outlines**;
    this new preview does not feed answers or accept link corrections.
@@ -398,6 +402,13 @@ There is no automatic retry loop. Collapsing the section stops its polling and c
 originals opened from it. Source, policy, selected/published index, inventory and navigation
 changes fence responses that arrive late. Runtime behavior, deployment coherence and
 unsupported syntax remain unknown. See the [read contract](CODE_PATHS_API.md).
+
+The view uses native v2 paths and rejects responses from another version. If it reports
+an out-of-date response, reload LoreDock. Older pinned generations cannot silently select
+new paths. A time/work limit produces a bounded request error and clears the pending view;
+it does not start background work or change the source index. There are no budget settings.
+These are live derivations from a saved index, not saved path receipts. Saving/reopening
+path receipts is a separate workflow that is not exposed in this screen yet.
 
 ## Follow a static flow outline
 
