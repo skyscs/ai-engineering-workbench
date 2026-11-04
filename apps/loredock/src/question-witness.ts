@@ -29,18 +29,23 @@ export function authorizeQuestionScope(work: CaptureWork, context: AnswerContext
   requireReceipt(current.build.policyVersion === context.policyVersion && current.build.sourceSetVersion === context.sourceSetVersion
     && same(current.dependencies, witness.dependencies), 'QUESTION_SCOPE_FENCED');
 }
+export const retainedQuestionBytes = (contextJson: string, witnessJson: string, reviewedHash: string) =>
+  bytes(JSON.stringify({ contextJson, witnessJson, reviewedHash })) + questionPreparationLimits.metadataBytes;
+
 export function questionSnapshot(context: AnswerContext, witness: QuestionWitness, budget: OperationBudget): QuestionSnapshot {
   const contextJson = JSON.stringify(context), witnessJson = JSON.stringify(witness);
   budget.charge('receipt', bytes(contextJson) + bytes(witnessJson));
   requireReceipt(bytes(witnessJson) <= questionPreparationLimits.witnessBytes, 'QUESTION_WITNESS_LIMIT');
-  const retainedBytes = bytes(JSON.stringify({ contextJson, witnessJson }));
+  const reviewedHash = hash(JSON.stringify([questionPreparationVersion, contextJson, witnessJson]));
+  // Reserve scalar slot/tombstone metadata in addition to all retained content.
+  const retainedBytes = retainedQuestionBytes(contextJson, witnessJson, reviewedHash);
   requireReceipt(retainedBytes <= questionPreparationLimits.retainedBytes, 'QUESTION_PREVIEW_LIMIT');
-  return Object.freeze({ contextJson, witnessJson, retainedBytes,
-    reviewedHash: hash(JSON.stringify([questionPreparationVersion, contextJson, witnessJson])) });
+  return Object.freeze({ contextJson, witnessJson, retainedBytes, reviewedHash });
 }
 export function readQuestionSnapshot(snapshot: QuestionSnapshot) {
-  requireReceipt(bytes(snapshot.witnessJson) <= questionPreparationLimits.witnessBytes
-    && bytes(JSON.stringify({ contextJson: snapshot.contextJson, witnessJson: snapshot.witnessJson })) <= questionPreparationLimits.retainedBytes, 'QUESTION_PREVIEW_LIMIT');
+  const retainedBytes = retainedQuestionBytes(snapshot.contextJson, snapshot.witnessJson, snapshot.reviewedHash);
+  requireReceipt(bytes(snapshot.witnessJson) <= questionPreparationLimits.witnessBytes && retainedBytes === snapshot.retainedBytes
+    && retainedBytes <= questionPreparationLimits.retainedBytes, 'QUESTION_PREVIEW_LIMIT');
   requireReceipt(hash(JSON.stringify([questionPreparationVersion, snapshot.contextJson, snapshot.witnessJson])) === snapshot.reviewedHash, 'QUESTION_SNAPSHOT_HASH');
   const context = JSON.parse(snapshot.contextJson) as AnswerContext, witness = JSON.parse(snapshot.witnessJson) as QuestionWitness;
   requireReceipt(witness.schemaVersion === questionWitnessVersion && witness.compositionVersion === questionPreparationVersion

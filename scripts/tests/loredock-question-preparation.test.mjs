@@ -7,8 +7,9 @@ import { createHash } from 'node:crypto';
 import { services } from '../loredock-native-qualification/services.mjs';
 import { corpusFactory } from '../loredock-native-assessment/fixture.mjs';
 import { receiptFixture } from '../loredock-receipt-fixture.mjs';
+import { paddingCorpus } from '../loredock-native-question-context/boundary-inputs.mjs';
 import { QuestionPreparations } from '../../apps/loredock/dist/question-preparation.js';
-import { validateQuestionWitness, readQuestionSnapshot, questionSnapshot } from '../../apps/loredock/dist/question-witness.js';
+import { validateQuestionWitness, readQuestionSnapshot, questionSnapshot, retainedQuestionBytes } from '../../apps/loredock/dist/question-witness.js';
 import { compactQuestionPath, preparedQuestionPrompt } from '../../apps/loredock/dist/question-context.js';
 import { questionPreparationLimits, questionCompactVersion, questionPreparationVersion } from '../../apps/loredock/dist/question-preparation-types.js';
 import { retrieveAnswerContext } from '../../apps/loredock/dist/answer-context.js';
@@ -21,7 +22,12 @@ const question = 'How does apply reach PermitWriter.onMessage through permit.gra
 async function setup(t, variant = 'complete') {
   const parent = await mkdtemp(path.join(tmpdir(), 'prepared-question-')), corpus = corpusFactory(variant === 'partial');
   if (variant !== 'ambiguous') for (const name of ['BBRenew', 'CCRetry', 'DDConfirm']) delete corpus['a-permit-ui'][`ui/${name}.vue`];
-  const fixture = await receiptFixture(parent, corpus, services), owners = [];
+  if (variant === 'display-omission') {
+    const route = '/permits/' + 'x'.repeat(520);
+    corpus['a-permit-ui']['ui/request.ts'] = corpus['a-permit-ui']['ui/request.ts'].replace('/permits/grants', route);
+    corpus['b-permit-api']['routes.json'] = corpus['b-permit-api']['routes.json'].replace('/permits/grants', route);
+  }
+  const fixture = await receiptFixture(parent, variant === 'derived-size' ? paddingCorpus(corpus, variant) : corpus, services), owners = [];
   t.after(async () => { for (const owner of owners) await owner.stop(); await fixture.close(); await rm(parent, { recursive: true, force: true }); });
   if (variant !== 'no-inventory') await fixture.analyze();
   const owner = options => { const result = new QuestionPreparations(fixture.analysis, options); owners.push(result); return result; };
@@ -108,9 +114,10 @@ test('promotion preserves Ready on rollback, consumes on success and coordinates
 });
 
 test('source callbacks discard immediately; review and source-build changes fence before ready access', async t => {
-  for (const mutation of ['source', 'review', 'build']) {
+  for (const mutation of ['source', 'review', 'build', 'policy']) {
     const { fixture, owner: create } = await setup(t), owner = create(), preview = await ready(owner);
     if (mutation === 'source') fixture.catalog.revoke(fixture.store.sources()[0].id);
+    if (mutation === 'policy') fixture.catalog.updatePolicy(['private']);
     if (mutation === 'review') fixture.store.run('UPDATE project SET correctionRevision=correctionRevision+1');
     if (mutation === 'build') await fixture.index('replacement-source-index');
     assert.equal(owner.get(preview.id).status, 'fenced'); assert.throws(() => owner.review(preview.id), code('QUESTION_NOT_READY'));
@@ -148,7 +155,9 @@ test('busy analysis, cancelled phases, reduced work and late SQL writes cannot p
     id = owner.start('cancel-' + stage, question).id; await owner.idle(); assert(reached, stage); assert.equal(owner.get(id).status, 'cancelled');
   }
   const zero = create({ budget: { limits: { work: 0 } } }), start = zero.start('zero', question); await zero.idle();
-  assert.equal(zero.get(start.id).reason, 'CAPTURE_WORK_LIMIT');
+  assert.equal(zero.get(start.id).reason, 'CAPTURE_WORK_LIMIT'); assert.equal(zero.metrics().lexical.rejectedUnits, 1);
+  const timed = create({ budget: { limits: { wallMs: 0 } } }), timedStart = timed.start('time', question); await timed.idle();
+  assert.equal(timed.get(timedStart.id).reason, 'CAPTURE_TIME_LIMIT');
   const changed = create({ checkpoint: info => { if (info.stage === 'handoff') fixture.store.run('UPDATE project SET correctionRevision=correctionRevision+1'); } });
   const late = changed.start('late', question); await changed.idle(); assert.equal(changed.get(late.id).status, 'failed');
   assert.equal(changed.get(late.id).reason, 'RECEIPT_FENCED');
@@ -158,7 +167,8 @@ test('stored hashes, versions, prompt and compact corruption refuse validation w
   const { fixture, owner: create } = await setup(t), owner = create(), preview = await ready(owner), original = snapshot(owner, preview);
   for (const mutate of [w => { w.schemaVersion = 'unknown'; }, w => { w.prompt += 'Invented'; }, w => { w.compact.item.nodes[0][1] = 'Invented'; }]) {
     const witness = JSON.parse(original.witnessJson); mutate(witness); const witnessJson = JSON.stringify(witness);
-    const altered = { ...original, witnessJson, reviewedHash: hash(JSON.stringify([questionPreparationVersion, original.contextJson, witnessJson])) };
+    const reviewedHash = hash(JSON.stringify([questionPreparationVersion, original.contextJson, witnessJson]));
+    const altered = { ...original, witnessJson, reviewedHash, retainedBytes: retainedQuestionBytes(original.contextJson, witnessJson, reviewedHash) };
     await assert.rejects(validateQuestionWitness(fixture.catalog, altered));
   }
   await assert.rejects(validateQuestionWitness(fixture.catalog, { ...original, reviewedHash: '0'.repeat(64) }), code('QUESTION_SNAPSHOT_HASH'));
@@ -209,4 +219,31 @@ test('a timed expiry drops access without a read, and stopping during a checkpoi
   const active = create({ checkpoint: async info => { if (info.stage === 'lexical') { enter(); await gate; } } });
   const started = active.start('stop', question); await entered; const stopped = active.stop(); release(); await stopped;
   assert.equal(active.get(started.id).status, 'cancelled'); assert.equal(active.get(started.id).reason, 'SERVICE_STOPPED');
+});
+
+test('actual retrieval with six legacy clues omits the whole native item and still retains its witness', async t => {
+  const { fixture, owner: create } = await setup(t, 'derived-size'), owner = create();
+  const preview = await ready(owner, 'sized', question + ' What budget references exist?');
+  assert.equal(preview.context.interfaces.comparisons.length, 6);
+  assert.equal(preview.compact.reason, 'derived-size'); assert.equal(preview.compact.item, null);
+  const held = snapshot(owner, preview), { witness } = readQuestionSnapshot(held);
+  assert(witness.receipt); assert.equal(witness.prompt, answerPrompt(preview.context));
+  assert.equal((await validateQuestionWitness(fixture.catalog, held)).status, 'revalidated');
+});
+
+test('restart drops transient IDs while the same issued bytes can still be reauthorized independently', async t => {
+  const { fixture, owner: create } = await setup(t), owner = create(), first = await ready(owner), held = snapshot(owner, first);
+  const next = await ready(owner, 'pending-restart'); await owner.stop(); await fixture.restart();
+  const restarted = create(); assert.throws(() => restarted.get(next.id), code('QUESTION_NOT_FOUND'));
+  assert.equal((await validateQuestionWitness(fixture.catalog, held)).reviewedHash, held.reviewedHash);
+  assert.equal((await ready(restarted, 'fresh')).status, 'ready');
+});
+
+test('an actual oversized path label preserves source context with an explicit whole-path display omission', async t => {
+  const { fixture, owner: create } = await setup(t, 'display-omission'), owner = create(), preview = await ready(owner);
+  assert.equal(preview.compact.reason, 'no-complete-path'); assert.equal(preview.compact.item, null);
+  const held = snapshot(owner, preview), { witness } = readQuestionSnapshot(held);
+  const projection = JSON.parse(JSON.parse(witness.receipt).projectionJson);
+  assert.equal(projection.graph.flows.length, 0); assert(projection.graph.omissions['whole-path-property-limit'] > 0);
+  assert.equal((await validateQuestionWitness(fixture.catalog, held)).status, 'revalidated');
 });

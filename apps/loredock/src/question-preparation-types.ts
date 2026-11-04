@@ -9,7 +9,7 @@ export const questionPreparationVersion = 'loredock-prepared-question/1';
 export const questionCompactVersion = 'native-question-item/1';
 export const questionPromptVersion = 'loredock-prepared-answer-v1';
 export const questionWitnessVersion = 'loredock-prepared-witness/1';
-export const questionPreparationLimits = Object.freeze({ readyMs: 10 * 60 * 1000, retainedBytes: 1024 * 1024, witnessBytes: 768 * 1024 });
+export const questionPreparationLimits = Object.freeze({ readyMs: 10 * 60 * 1000, metadataBytes: 1024, retainedBytes: 1024 * 1024, witnessBytes: 768 * 1024 });
 export interface CompactTopicWitness {
   rule: string; value: string;
   publisher: { expression: string; evidenceIds: number[] };
