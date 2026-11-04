@@ -1,6 +1,6 @@
 # Task 104 — Decide native capture storage and lifecycle ownership
 
-Status: source/architecture review started, 2026-11-04.
+Status: source/architecture review completed, 2026-11-04.
 
 Task 103 supplies the internal native v2 path producer and exact shared work budget.
 Before porting capture publication/history, decide who owns native receipt bytes,
@@ -35,3 +35,21 @@ gates. No product implementation, new resource family, model call or corporate d
 is in scope. Review existing source and links, preserve historical artifacts and
 require both exact-head CI events before merge. Continue with the scoped implementation
 after acceptance without requesting renewed user approval.
+
+## Result
+
+[ADR 0057](../docs/decisions/0057-loredock-native-receipt-ownership.md) and the
+[native ownership contract](../docs/loredock/NATIVE_CAPTURE_OWNERSHIP.md) select fixed
+immutable files owned by CatalogStore, schema-10 catalog identity, finite record/
+byte bounds, guarded publication, startup cleanup and revocation-before-purge completion.
+Policy fencing retains history; capacity never silently deletes it. Corrupt/foreign
+files and cleanup failures remain explicit and preserve pending purge.
+
+The review separates [pure codec implementation](105-loredock-native-receipt-codec.md)
+from [storage/migration ownership](106-loredock-native-receipt-storage.md), then native
+capture/history and independent assessment. All final qualification gates remain.
+[Source evidence](../docs/fixtures/loredock-native-capture-ownership/review.json)
+records the inspected boundaries. No product execution, schema or measured input changes.
+
+PR #107 head `1ae2abb` passed push 41831131688 and pull-request 41831258378 CI
+(641 tests), then merged as identical-tree `3627d0d`, verified before this review closed.

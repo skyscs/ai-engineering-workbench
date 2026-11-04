@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "task104-native-ownership-review/1",
+  "reviewScope": "8948996",
+  "sourceCommit": "1ae2abb57a4c0d4034de1953e37a7c0391d8cfb5",
+  "acceptedParent": "3627d0df7b03539e7cf5c36472be9dd5999b8ff3",
+  "sourceFiles": {
+    "apps/loredock/src/store.ts": "b6c4cab56aba064c4d5b6f679deba4d3d4d42bfbd969804468f6d842fc49e765",
+    "apps/loredock/src/catalog.ts": "04eb7036f8294d74413d82a0243fbfda8ba2cd055f16100da184954bd891e5fe",
+    "apps/loredock/src/index.ts": "5761062474066e8fea10c62d2d1afb6c0ab6fa192f8b0e4a98c932651fd13fd2",
+    "apps/loredock/src/code-paths-v2.ts": "bc4798d29630a78025bc0ef24d5d8fa860e25ef1072198c44b59562b8fefed69",
+    "apps/loredock/src/code-paths-v2-types.ts": "51f78ca131597f53656e33626e9b982d76fa0e269517d3370f0d6c497effe996",
+    "apps/loredock/src/code-paths-v2-resolve.ts": "4b53ffb6bdc2c86741d0f58120882b7dadf86412c19bfd8ac0235ba7f77e92de",
+    "apps/loredock/src/code-paths-v2-admit.ts": "327f3a55adeb3fea0a9a5193f339722ecaea3ccd13447f335b53d1dba181d60e",
+    "apps/loredock/src/operation-budget.ts": "ec0d3e6dcc0894b42a97d370caabffb83143784ad170b5bb26e39b44df553296",
+    "apps/loredock/src/code-analysis-facts.ts": "82fb810a3fa6a790538925cb5431c1ccc08b7e096229378fe95d0e91b85d5167",
+    "scripts/loredock-capture-memory/receipt.mjs": "2180af582a915ad9f9cd8d612b895eefe0ac3c45c92d099efe4ffdf3a657aee7",
+    "scripts/loredock-storage.mjs": "03406266729fee4f3a0896cdf1282041fe2d45ae7a5474c7ce106c3bfe4a5c1e",
+    "scripts/loredock-history.mjs": "053600ab77766e6f6a6179a1552b00032217be7bc6708b39d92cf5ce3e1bfa44",
+    "scripts/loredock-compact.mjs": "acf85427ca68298f23613fad979d4c65924bde559d913222f8264affd3df1098",
+    "SECURITY.md": "a6528770da39a85e1c9e9dc52b5ed8f2191eff7886079fdf40550040384762cf",
+    "WORKFLOW.md": "19b1e4298434e368a28d9e5b06a5c41eb5dc54378d94d9c3599a5be460149811",
+    "docs/loredock/USER_GUIDE.md": "095a3a472185efeaab5e2508fbb0ae86112b16439768d3200afa55bd6b7afd32",
+    "docs/loredock/RETENTION_DESIGN.md": "6d8e8ec74a351f1d71da5cefb1002ea03fb2e8f627cd42a54903235c4ef6ad92",
+    "docs/decisions/0045-loredock-offline-storage-maintenance.md": "6aa199d089df77f256093714096315695853a2a1dff2d4bf8e8c2e1d95ed0a73"
+  },
+  "decision": "Catalog-owned immutable files with schema-10 identity, bounded capacity and mandatory native cleanup before source purge completion. Pure codec precedes storage integration.",
+  "measurementExecuted": false,
+  "productChanged": false,
+  "historicalArtifactsChanged": false,
+  "limitations": [
+    "Source-only review; no schema migration, runtime, storage or qualification executed.",
+    "Partial backups are unsupported; source-only restoration can omit receipts without a detectable manifest.",
+    "Native capture/history, independent assessment, compiled qualification and consumer migration remain separate."
+  ]
+}

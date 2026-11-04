@@ -405,6 +405,12 @@ catalog owner across versions. Twelve native cases, 641 tests/builds and an inde
 compiled smoke pass. Next
 [Task 104](tasks/104-loredock-native-capture-ownership.md) decides native capture
 storage, authorization/purge and recovery before publication/history implementation.
+[Task 104](tasks/104-loredock-native-capture-ownership.md) selects catalog-owned,
+UUID-bound immutable receipts with bounded capacity and mandatory purge/recovery.
+Next [Task 105](tasks/105-loredock-native-receipt-codec.md) implements the pure strict
+codec, then [Task 106](tasks/106-loredock-native-receipt-storage.md) wires storage and
+schema-10 ownership. Native async capture/history and independent assessment follow
+before the unchanged complete final-composition qualification gates.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

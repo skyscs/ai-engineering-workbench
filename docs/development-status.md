@@ -1,5 +1,25 @@
 # Development status
 
+## Task 104 — Native receipts belong to the catalog lifecycle
+
+The [ownership contract](loredock/NATIVE_CAPTURE_OWNERSHIP.md) selects UUID-bound,
+immutable files under the existing exclusive catalog owner. Schema 10 fences older
+applications from bypassing native purge. The fixed store allows 64 records of at
+most 640 KiB plus one bounded pending file; capacity refuses new distinct records
+without evicting history. Policy changes retain fenced bytes; source revocation
+removes dependent receipts before source purge can complete. Unknown/corrupt files
+and cleanup failures remain explicit and preserve pending state.
+
+[Source review evidence](fixtures/loredock-native-capture-ownership/review.json)
+records existing startup, ownership, purge, publication and maintenance boundaries.
+No schema/product/runtime or measured artifact changes. Next implement the
+[pure codec](../tasks/105-loredock-native-receipt-codec.md), then
+[storage/lifecycle](../tasks/106-loredock-native-receipt-storage.md); async native
+capture/history and strict assessment still precede final qualification and consumers.
+
+PR #107 head `1ae2abb` passed push 41831131688 and pull-request 41831258378 CI
+(641 tests), then merged as identical-tree `3627d0d`.
+
 ## Task 103 — Internal native v2 paths preserve qualified semantics and exact work
 
 The [typed producer](loredock/NATIVE_PATHS_V2.md) adds native v2 derivation identities,
