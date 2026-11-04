@@ -1,0 +1,58 @@
+import assert from 'node:assert/strict';
+import { mkdtemp, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
+import { Catalog } from '../apps/loredock/dist/catalog.js';
+import { CatalogStore } from '../apps/loredock/dist/store.js';
+import { SourceGit } from '../apps/loredock/dist/git.js';
+import { CodeAnalysis } from '../apps/loredock/dist/code-analysis.js';
+import { encodeNativeReceipt, decodeNativeReceipt } from '../apps/loredock/dist/native-receipt.js';
+import { randomUUID } from 'node:crypto';
+import { CodePathsV2 } from '../apps/loredock/dist/code-paths-v2.js';
+import { OperationBudget } from '../apps/loredock/dist/operation-budget.js';
+import { receiptFixture } from './loredock-capture-scale/fixture.mjs';
+
+// Functional compiled-module check on fresh owned inputs; no frozen resource family.
+const contract = JSON.stringify({ name: 'Notice', version: 1, transport: 'Kafka', fields: { key: 'string' } });
+const corpus = {
+  console: { 'README.md': '# Native compiled smoke\n', 'send.ts': 'export function notify() { return fetch("/notices", { method: "POST" }); }\n' },
+  producer: { 'README.md': '# Producer\n', 'routes.json': JSON.stringify({ routes: [{ method: 'POST', path: '/notices', handler: 'Notices.send' }] }),
+    'contracts/Notice.json': contract,
+    'Notices.java': 'record Notice(String key) {}\ninterface EventPublisher { void publish(String topic, String key, Notice event); }\nclass Notices { EventPublisher publisher; void send(String key) { var notice = new Notice(key); publisher.publish("notice.created", key, notice); } }\n' },
+  consumer: { 'README.md': '# Consumer\n', 'contracts/Notice.json': contract,
+    'Writer.java': 'record Notice(String key) {}\ninterface MongoCollection { void replaceOne(String selector, Notice document, boolean upsert); }\ninterface KafkaSubscriber { void subscribe(String topic, String group, Writer handler); }\nclass Writer { MongoCollection collection; void start(KafkaSubscriber subscriber, String group) { subscriber.subscribe("notice.created", group, this); } void onMessage(Notice notice) { collection.replaceOne(notice.key(), notice, true); } }\n' },
+};
+const folder = await mkdtemp(path.join(tmpdir(), 'native-codec-built-'));
+let state;
+try {
+  state = await receiptFixture(folder, corpus, { Catalog, CatalogStore, SourceGit, CodeAnalysis, CodePaths: CodePathsV2 });
+  await state.analyze(); const before = state.counters(), budget = new OperationBudget(), catalogId = randomUUID();
+  let encoded, metrics;
+  try {
+    const projection = await state.paths.read({ buildId: state.buildId }, 'paths', undefined, budget);
+    assert.equal(projection.graph.edges.find(edge => edge.kind === 'event-delivery').topicCheck.value, 'notice.created');
+    const ids = Object.keys({ ...projection.graph.evidence, ...projection.roots.evidence }).sort();
+    const originals = ids.map(id => { const { snippet, metadata, ...item } = state.catalog.evidence(id); return item; });
+    const dependencies = state.store.buildSources(state.buildId).map(({ sourceId, name, revision, tree, status, omitted }) =>
+      ({ sourceId, name, revision, tree, status, omitted })).sort((a, b) => a.sourceId < b.sourceId ? -1 : 1);
+    encoded = encodeNativeReceipt({ schemaVersion: 'loredock-code-path-receipt/1', catalogId,
+      projectionJson: JSON.stringify(projection), originals, dependencies }, catalogId, budget);
+    assert.deepEqual(encoded.projection, projection); metrics = budget.stats();
+    assert.ok(metrics.pathWork > 0 && metrics.receiptWork > 0);
+  } finally { budget.close(); }
+  for (const key of ['gitCalls', 'writeCalls', 'changedRows']) assert.equal(state.counters()[key], before[key]);
+  await state.restart(); await state.analyze('codec-replacement-one'); await state.analyze('codec-replacement-two');
+  const beforeDecode = state.counters(), readBudget = new OperationBudget();
+  try {
+    const decoded = decodeNativeReceipt(Buffer.from(encoded.serialized), catalogId, readBudget);
+    assert.deepEqual(decoded, encoded);
+    assert.equal(readBudget.stats().pathWork, 0);
+    for (const key of ['gitCalls', 'writeCalls', 'changedRows', 'factReads', 'snapshots', 'pathReads'])
+      assert.equal(state.counters()[key], beforeDecode[key]);
+  } finally { readBudget.close(); }
+  console.log(JSON.stringify({ schemaVersion: 'native-receipt-codec-built-smoke/1', node: process.version, modelRequests: 0,
+    sources: 3, nodes: encoded.projection.graph.nodes.length, edges: encoded.projection.graph.edges.length,
+    originals: encoded.receipt.originals.length, bytes: Buffer.byteLength(encoded.serialized),
+    pathWork: metrics.pathWork, receiptWork: metrics.receiptWork, restarted: true, inventoryReplacements: 2,
+    nativeStorageImplemented: false, authorizationImplemented: false }));
+} finally { await state?.close(); await rm(folder, { recursive: true, force: true }); }

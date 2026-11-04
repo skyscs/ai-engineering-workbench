@@ -1,0 +1,135 @@
+{
+  "schemaVersion": "task105-native-receipt-codec-validation/1",
+  "scopeCommit": "d88cac4",
+  "initialImplementation": "c5b759a",
+  "independentTests": "d3cac6f",
+  "edgeValidation": "31c0113",
+  "environmentCorrection": "7ff9436",
+  "acceptedParent": "636efc322e68b0747c46b9a2d0adc13809402e0d",
+  "node": "22.23.2",
+  "pnpm": "10.15.0",
+  "typescript": "5.9.3",
+  "focusedTests": 79,
+  "fullTests": 720,
+  "commands": [
+    {
+      "command": "install-first",
+      "exitCode": 0,
+      "file": "install-first.log.gz",
+      "rawBytes": 326,
+      "rawSha256": "f0f8d113252bf1c487a806de0373c7f5144926ace4af6c4155bdbcff86a14976",
+      "archiveSha256": "8abfd659db46ce85ace84368e0f84b02e99cee759f245dd31f72958392229237"
+    },
+    {
+      "command": "packages-first",
+      "exitCode": 0,
+      "file": "packages-first.log.gz",
+      "rawBytes": 595,
+      "rawSha256": "edafb661b4c1cdafc96f7f86af6ef28c836d4828628d0a21ceab909b5753e4da",
+      "archiveSha256": "461723ec905198c0678cb33340bdfdeb75a3213cc9073003fb7707761079a283"
+    },
+    {
+      "command": "types-first",
+      "exitCode": 2,
+      "file": "types-first.log.gz",
+      "rawBytes": 922,
+      "rawSha256": "cb807a1acf51066fa90471cabe7c92567591178063b1e17b5606f6ebb794652a",
+      "archiveSha256": "d640c1000bb826f2bdaefee44b4aeedd16393f6a7fc9323eb0e41a92aeac30bc"
+    },
+    {
+      "command": "types-second",
+      "exitCode": 2,
+      "file": "types-second.log.gz",
+      "rawBytes": 1306,
+      "rawSha256": "c5bfcdc7943fb27dd5c7fd0ac9723e966b858a846eeb16ab83c4863ccb65407e",
+      "archiveSha256": "0d310e7957a9520656b52df7b8a7be40fb4029c6678a4ffd874e7ee14abb7373"
+    },
+    {
+      "command": "types-third",
+      "exitCode": 0,
+      "file": "types-third.log.gz",
+      "rawBytes": 145,
+      "rawSha256": "7e54eef32a97283894561c4391163b36ce87acca9413239237b2fe8f7a65aad3",
+      "archiveSha256": "d3763d6fd652c105c40bd7f00ff51b6ebe2c2e1e50d316c1d2f1e40f14618841"
+    },
+    {
+      "command": "focused-first",
+      "exitCode": 1,
+      "file": "focused-first.log.gz",
+      "rawBytes": 10915,
+      "rawSha256": "cc943d6031ba88a4277c4b65b143cdeb2e67b5a501e6e082632270c9936d1472",
+      "archiveSha256": "063b56bf279fc2cb71c02567cbbc6d6fa0003fe68e8f5c9a3d95ddf4ee8e7ab2"
+    },
+    {
+      "command": "focused-second",
+      "exitCode": 0,
+      "file": "focused-second.log.gz",
+      "rawBytes": 10773,
+      "rawSha256": "75402705fb1fc066207f85cefdd3a5ce13913fa69879299b8afdce83439514b8",
+      "archiveSha256": "6f465964c8d5f13ea683ada4465c52a11038568d1ceebb7e21c51187a086d54f"
+    },
+    {
+      "command": "focused-third",
+      "exitCode": 1,
+      "file": "focused-third.log.gz",
+      "rawBytes": 10664,
+      "rawSha256": "68cab948c565b1592957a5d7680d43554d18aba86768dfae7f3ff7569e38af81",
+      "archiveSha256": "b7cb93c22f7469dd2953f040f2f795b345c5224e770596357c025e19cbffd64a"
+    },
+    {
+      "command": "focused-fourth",
+      "exitCode": 0,
+      "file": "focused-fourth.log.gz",
+      "rawBytes": 11692,
+      "rawSha256": "842934b66940d2742dd6e4d584d7718b51916918ff84929943e66178c8d006d8",
+      "archiveSha256": "72b71f4a36d63a2893348f88c4101509b9ab1099ef418961c9ee4b35f509d37c"
+    },
+    {
+      "command": "check-first",
+      "exitCode": 1,
+      "file": "check-first.log.gz",
+      "rawBytes": 233302,
+      "rawSha256": "472cde04e2f71a08b20714ac7fc239e5ac0fc169f0a0a155a3d834144d47e280",
+      "archiveSha256": "9db6b0d8ba70169f0e3c5042c6abbeb2ec90447fa72d883e9ba930c1d68d9b87"
+    },
+    {
+      "command": "check-second",
+      "exitCode": 0,
+      "file": "check-second.log.gz",
+      "rawBytes": 276149,
+      "rawSha256": "ce53226029ee8293505ea77d6b19eadefdbe2176a580d4f191837eb6bd9cf40d",
+      "archiveSha256": "08be5b4c155877c6d580b67f65f99bd03ccec7b32a844ce826b92915bc8f2ab7"
+    },
+    {
+      "command": "built-first",
+      "exitCode": 0,
+      "file": "built-first.log.gz",
+      "rawBytes": 465,
+      "rawSha256": "8623cbc0479d3f6149a34a5a03c9d0a2c8a3a042f6da636f2d987943210795f1",
+      "archiveSha256": "6c339a2ad53aeba936ae37053b3ea205a368925a24b6fd7f6fa249999725af37"
+    }
+  ],
+  "firstFailures": [
+    "Initial strict check inferred a literal 40 default parameter; its annotation now accepts numeric reductions.",
+    "Second strict check found the new test helper similarly used readonly literal limit types; it now uses ReceiptLimits.",
+    "First focused run omitted the required generation/inventory pins on the new root-page test request. The test now passes actual producer pins.",
+    "Third focused run and the first full check rejected the actual event contract environment. Native event-delivery supports a declared environment; the validator now preserves that value while noncontract edges remain null. A positive declared-environment and negative noncontract-environment assertion cover the correction."
+  ],
+  "compiledSmoke": {
+    "sources": 3,
+    "nodes": 9,
+    "edges": 8,
+    "originals": 6,
+    "bytes": 23808,
+    "pathWork": 446,
+    "receiptWork": 42323,
+    "restart": true,
+    "inventoryReplacements": 2,
+    "sourceFactOrPathReadsDuringDecode": false,
+    "nativeStorageImplemented": false,
+    "authorizationImplemented": false
+  },
+  "measurementExecuted": false,
+  "historicalInputsChanged": false,
+  "browserOrHttpChanged": false
+}

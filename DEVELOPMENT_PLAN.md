@@ -411,6 +411,11 @@ Next [Task 105](tasks/105-loredock-native-receipt-codec.md) implements the pure 
 codec, then [Task 106](tasks/106-loredock-native-receipt-storage.md) wires storage and
 schema-10 ownership. Native async capture/history and independent assessment follow
 before the unchanged complete final-composition qualification gates.
+[Task 105](tasks/105-loredock-native-receipt-codec.md) completes the strict pure codec:
+79 focused cases/subcases, 720 full-check tests/builds and a compiled restart/eviction
+smoke pass. All first failures remain retained. Next
+[Task 106](tasks/106-loredock-native-receipt-storage.md) implements the already scoped
+schema identity and catalog-owned publication/purge/recovery foundation.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
