@@ -4,7 +4,7 @@ import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
-import { setTimeout as delay, setImmediate as yieldTurn } from 'node:timers/promises';
+import { setTimeout as delay } from 'node:timers/promises';
 import { Catalog } from '../src/catalog.js';
 import { CatalogStore } from '../src/store.js';
 import { SourceGit } from '../src/git.js';
@@ -191,7 +191,9 @@ test('native v2 keeps all original and metadata fences through nested reads, wor
   let wrote = false;
   const external = new DatabaseSync(path.join(s.root, 'data/loredock.db'));
   const changed = new CodePathsV2(s.analysis, { checkpoint: ({ stage }) => { if (stage === 'admit' && !wrote) {
-    wrote = true; external.prepare('UPDATE project SET policyVersion=policyVersion WHERE id=1').run();
+    wrote = true; const version = s.store.one<{ data_version: number }>('PRAGMA data_version')!.data_version;
+    external.prepare('UPDATE builds SET reason=? WHERE id=?').run('Independent committed metadata change.', s.buildId);
+    assert.notEqual(s.store.one<{ data_version: number }>('PRAGMA data_version')!.data_version, version);
   } } });
   try { await assert.rejects(changed.read({ buildId: s.buildId }), { code: 'METADATA_CHANGED' }); assert.ok(wrote); }
   finally { external.close(); await changed.stop(); }
