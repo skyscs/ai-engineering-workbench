@@ -4,6 +4,7 @@ import type { Catalog } from './catalog.js';
 import { CatalogError } from './types.js';
 import { gitBlobHash, sha256 } from './extract.js';
 import { readMapDocument } from './map-document.js';
+import { analysisWriteSql } from './prepared-analysis-writes.js';
 import { typescriptFacts } from './code-typescript.js';
 import { javaFacts } from './code-java.js';
 import { codeAnalysisFingerprint, factRanges, verifyFactRanges } from './code-analysis-facts.js';
@@ -170,7 +171,7 @@ export class CodeAnalysis {
         VALUES (?,?,?,?,?,?,?,?,?,?,'running',?)`, id, requestId, payloadHash, buildId, project.policyVersion, project.sourceSetVersion,
         this.fingerprint, JSON.stringify(this.limits), sha256(JSON.stringify(units)), files.length, new Date().toISOString());
       this.store.run(`INSERT INTO code_analysis_sources SELECT ?,bs.sourceId FROM build_sources bs JOIN sources s ON s.id=bs.sourceId WHERE bs.buildId=? AND s.status='active'`, id, buildId);
-      units.forEach((unit, ordinal) => this.store.run('INSERT INTO code_analysis_files (runId,fileId,ordinal,inputHash) VALUES (?,?,?,?)', id, unit.fileId, ordinal, unit.inputHash));
+      this.store.withPreparedAnalysisWritesSync(() => units.forEach((unit, ordinal) => this.store.run(analysisWriteSql.pending, id, unit.fileId, ordinal, unit.inputHash)));
       return id;
     });
     this.schedule(id); return this.get(id);
@@ -200,7 +201,7 @@ export class CodeAnalysis {
   }
   private schedule(id: string) {
     if (this.worker || this.stopping) return;
-    const done = Promise.resolve().then(() => this.store.withPreparedReads(() => this.run(id))).catch(error => {
+    const done = Promise.resolve().then(() => this.store.withPreparedAnalysisWrites(() => this.store.withPreparedReads(() => this.run(id)))).catch(error => {
       if (this.row(id).status === 'running') this.store.run("UPDATE code_analyses SET status='failed',reason=? WHERE id=?", `Code analysis failed: ${error instanceof Error ? error.message.slice(0, 1024) : 'Unknown error.'}`, id);
     }).finally(() => {
       this.worker = undefined;
@@ -271,9 +272,9 @@ export class CodeAnalysis {
   }
   /** Caller owns the transaction: file state and cumulative counters publish together. */
   private save(unit: AnalysisUnit, elapsedMs: number) {
-    const saved = this.store.run(`UPDATE code_analysis_files SET status=?,reason=?,inputBytes=?,payloadBytes=?,gapCount=?,payload=?,payloadHash=?,checkpointHash=? WHERE runId=? AND fileId=? AND status='pending'`,
+    const saved = this.store.run(analysisWriteSql.checkpoint,
       unit.status, unit.reason, unit.inputBytes, unit.payloadBytes, unit.gapCount, unit.payload, unit.payloadHash, checkpointHash(unit), unit.runId, unit.fileId);
     checked(saved.changes === 1);
-    this.store.run('UPDATE code_analyses SET elapsedMs=?,textBytes=textBytes+?,payloadBytes=payloadBytes+? WHERE id=?', elapsedMs, unit.inputBytes, unit.payloadBytes, unit.runId);
+    this.store.run(analysisWriteSql.counters, elapsedMs, unit.inputBytes, unit.payloadBytes, unit.runId);
   }
 }
