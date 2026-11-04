@@ -25,7 +25,7 @@ const observer = { enabled: true, attach: () => () => {}, phase(name, counts) {
   current.phases.push({ name, counts });
 } };
 const group = () => ({ files: 0, facts: 0, gaps: 0, evidenceRefs: 0, factsBytes: 0, rangesBytes: 0, evidenceBytes: 0,
-  compactBytes: 0, fullBytes: 0, emptyContainers: 0, gapSignatures: {} });
+  compactBytes: 0, fullBytes: 0, emptyContainers: 0, gapSignatures: {}, emptyShapeSignatures: {} });
 save();
 try {
   assert.equal(execFileSync('git', ['status', '--porcelain'], { cwd: root, encoding: 'utf8' }), '', 'Commit the audit before execution.');
@@ -57,6 +57,12 @@ try {
     target.emptyContainers += [facts.symbols, facts.operations, facts.calls, facts.records, ranges.symbols, ranges.operations]
       .filter(value => Object.keys(value).length === 0).length;
     const signature = hash(JSON.stringify(facts.gaps)); target.gapSignatures[signature] = (target.gapSignatures[signature] ?? 0) + 1;
+    if (!count) {
+      const serialized = JSON.stringify({ facts, ranges }), shape = hash(serialized);
+      const entry = target.emptyShapeSignatures[shape] ?? { bytes: Buffer.byteLength(serialized), files: 0 };
+      entry.files++; target.emptyShapeSignatures[shape] = entry;
+      assert.ok(Object.keys(target.emptyShapeSignatures).length <= 32);
+    }
     assert.ok(Object.keys(target.gapSignatures).length <= 32); return payload;
   };
   async function operation(paths, selection, kind) {
