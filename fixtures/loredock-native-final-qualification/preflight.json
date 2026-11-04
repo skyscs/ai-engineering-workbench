@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "native-final-ferry-preflight/1",
+  "size": {
+    "files": 9980,
+    "codeFiles": 9957,
+    "facts": 21,
+    "pathsPerSource": 499,
+    "bytes": 530808
+  },
+  "corpusHash": "4abab8238b6b0cca5b2eb6804d9880e1f2f6c3d414f32d0efba309e2f090c802",
+  "servicesExecuted": false,
+  "factCountBasis": "Authored expected supported constructs: nine symbols (five Vue actions, one exported function, three Java methods), four operations, five calls and three record facts. This is source-contract review, not a reserved-family run.",
+  "expectedFactBreakdown": {
+    "symbols": 9,
+    "operations": 4,
+    "calls": 5,
+    "records": 3
+  }
+}

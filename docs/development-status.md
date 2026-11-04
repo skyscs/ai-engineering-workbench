@@ -1,5 +1,22 @@
 # Development status
 
+## Task 110 — Final native composition retains one failed memory row
+
+The [single reserved attempt](loredock/NATIVE_FINAL_QUALIFICATION.md) passes all sixteen
+functional/accounting/lifecycle operations and seven raw comparisons. Fifteen resource
+rows pass; reopened history records **399.58984375 MiB RSS** against **384 MiB**.
+Both workers exit zero, the qualification exits one, and the family is exhausted.
+Raw artifacts and six command logs are [retained](fixtures/loredock-native-final-qualification/README.md).
+All 802 strict tests/builds pass; no application code, user demo or historical input changes.
+
+Existing endpoints place the RSS increase before history, during inventory replacement,
+without establishing its cause. Next [Task 111](../tasks/111-loredock-native-worker-ownership-audit.md)
+audits actual transient owners and preparation/execution on a small diagnostic input.
+Consumer migration, dense-code/lifetime qualification, semantic/L5 and the Workbench
+bridge remain gated separately. No models or corporate sources were used.
+PR #113 head `c32f75b` passed push 41883388526 and pull-request 41883797308 CI
+(802 tests), then merged as identical-tree `0d65d12`.
+
 ## Task 109 — Complete native compiled operations have a two-process driver
 
 The [driver](../scripts/loredock-native-qualification/README.md) uses actual compiled
