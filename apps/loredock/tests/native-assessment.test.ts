@@ -17,6 +17,8 @@ import { assessSeries, compareSeries, operations } from '../../../scripts/loredo
 import { decodeReceipt, decodeProjection, canonical, hash } from '../../../scripts/loredock-native-assessment/codec.mjs';
 // @ts-expect-error Bounded stopped-artifact reader.
 import { readArtifact } from '../../../scripts/loredock-native-assessment/artifact.mjs';
+// @ts-expect-error Independently checked literal witnesses.
+import { directTopic } from '../../../scripts/loredock-native-assessment/projection.mjs';
 type Value = Record<string, any>;
 const services = { Catalog, CatalogStore, SourceGit, CodeAnalysis, CodePaths: CodePathsV2, NativeCaptures };
 const dimension = (value: Value, name: string, key: string) => value.report.operations.find((row: Value) => row.name === name).dimensions[key];
@@ -104,6 +106,21 @@ test('native assessment accepts actual independent inputs and preserves separate
     const comparison = compareSeries(invalid, invalid); assert.equal(comparison.required, 7); assert.equal(comparison.failed, true);
     assert.ok(comparison.parity.every((row: Value) => row.state === 'pass' && row.meaning === 'byte-equality-only'));
   });
+  await t.test('consistent rehashed policy identities still fail separately pinned source authority', async () => {
+    const receipt = structuredClone(original), p = JSON.parse(receipt.projectionJson);
+    p.identity.policyVersion++; p.graph.policyVersion++;
+    const bytes = reseal(receipt, p), changed = JSON.parse(bytes.toString());
+    let input = await replacement(positive, 'first', 'receipt', bytes);
+    const output = JSON.parse(await readFile(path.join(input.root, row(input, 'first').output.file), 'utf8'));
+    output.receiptId = changed.receiptHash; output.metrics.receiptBytes = bytes.length;
+    output.metrics.projectionBytes = Buffer.byteLength(changed.projectionJson);
+    input = await replacement(input, 'first', 'output', JSON.stringify(output));
+    const result = await assessSeries(input);
+    assert.equal(dimension(result, 'first', 'shape').state, 'pass');
+    assert.equal(dimension(result, 'first', 'support').state, 'fail');
+    assert.equal(dimension(result, 'first', 'usefulness').state, 'blocked');
+    assert.equal(result.report.failed, true);
+  });
   await t.test('damaged outputs or false source/usefulness expectations preserve intact receipt comparisons and history', async () => {
     const broken = await assessSeries(await replacement(positive, 'first', 'output', '{'));
     assert.equal(broken.report.failed, true); assert.equal(dimension(broken, 'first', 'shape').state, 'fail');
@@ -147,6 +164,13 @@ test('native assessment accepts actual independent inputs and preserves separate
     }
   });
   passed = true;
+});
+
+test('offline topic witnesses reject trailing newlines, escapes and overlong UTF-8 values', () => {
+  assert.equal(directTopic('"permit.granted.v3"'), 'permit.granted.v3');
+  assert.equal(directTopic('"' + '😀'.repeat(64) + '"'), '😀'.repeat(64));
+  for (const value of ['"permit.granted.v3"\n', '"permit.granted.v3"\r\n', '"a\\nb"', '""', 'settings.topic', '"' + '😀'.repeat(65) + '"'])
+    assert.throws(() => directTopic(value));
 });
 
 test('native artifact reads reject unsafe references, non-files, symlinks and growth or truncation after stat', async t => {

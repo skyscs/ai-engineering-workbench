@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { analysisLimits, bounds, bytes, canonical, choice, counts, dict, eq, evidence, fields, gitId, hash, hex,
+import { analysisLimits, bounds, bytes, choice, counts, dict, eq, evidence, fields, hash, hex,
   ids, limits, list, locator, number, optionalNull, parse, pathLimits, resolution, sorted, strings, text, unique, uuid, versions } from './schema.mjs';
 
 const endpoint = value => fields(value, { expression: text(512), evidenceIds: ids });
@@ -35,6 +35,11 @@ function shape(value, kind) {
       next: optionalNull(number()), outsidePage: number(), unavailableEntries: number(4), items: list(root, 4), evidence: dict(evidence, 30) }) });
 }
 const headerName = value => { text(128, 1)(value); assert.match(value, /^[!#$%&'*+.^_`|~0-9A-Za-z-]+$/); };
+export function directTopic(expression) {
+  text(512, 3)(expression); const match = /^"[^"\\\r\n]+"$/u.exec(expression);
+  assert.ok(match && match[0] === expression, 'Topic witness must be one complete direct literal.');
+  const literal = expression.slice(1, -1); assert.ok(bytes(literal) <= 256); return literal;
+}
 function checkHeaders(edge, request, route) {
   assert.ok(edge.headerCheck, 'HTTP candidate requires a header comparison.');
   let names, bindings;
@@ -101,7 +106,7 @@ export function decodeProjection(serialized, kind = 'paths') {
     if (item.kind === 'event-delivery') {
       assert.ok(item.topicCheck);
       for (const [endpoint, source] of [[item.topicCheck.publisher, from], [item.topicCheck.subscriber, to]]) {
-        assert.match(endpoint.expression, /^"[^"\\\r\n]+"$/); const literal = endpoint.expression.slice(1, -1); assert.ok(bytes(literal) <= 256);
+        const literal = directTopic(endpoint.expression);
         eq(literal, item.topicCheck.value); eq(endpoint.expression, source.properties.topicExpression); eq(endpoint.evidenceIds, [...source.evidenceIds].sort());
       }
     } else { eq(item.environment, null); assert.ok(!Object.hasOwn(item, 'topicCheck')); }

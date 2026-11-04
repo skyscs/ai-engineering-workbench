@@ -54,7 +54,10 @@ export async function assessSeries({ root, rows, metadata, corpus, oracle, size 
     d.shape = shapeChecks.some(item => item.state === 'fail') ? shapeChecks.find(item => item.state === 'fail')
       : d.artifact.state !== 'pass' ? blocked('artifact-unavailable') : shapeChecks.length ? pass() : blocked('artifact-unavailable');
     if (saved) {
-      d.support = check(() => validateSupport(saved, corpus, metadata));
+      d.support = check(() => {
+        validateSupport(saved, corpus, metadata);
+        for (const key of ['policyVersion', 'registryVersion', 'sourceSetVersion']) eq(saved.projection.identity[key], metadata[key]);
+      });
       if (name !== 'history') d.usefulness = d.support.state === 'pass' ? check(() => validateUsefulness(saved, name, oracle, size)) : blocked('support-invalid');
       else {
         const first = shapes.get('first');

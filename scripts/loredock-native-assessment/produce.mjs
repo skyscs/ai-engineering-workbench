@@ -13,7 +13,9 @@ export async function produce(root, services, incomplete = false) {
   try {
     const inventoryId = await state.analyze(), snapshot = state.analysis.snapshot(inventoryId);
     const metadata = { catalogId: state.store.receipts.catalogId, buildId: state.buildId, inventory: snapshot.summary,
-      manifestHash: snapshot.manifestHash, sources: state.store.buildSources(state.buildId), revisions: state.revisions };
+      manifestHash: snapshot.manifestHash, sources: state.store.buildSources(state.buildId), revisions: state.revisions,
+      policyVersion: snapshot.policyVersion, registryVersion: snapshot.registryVersion,
+      sourceSetVersion: state.catalog.readBuildHeader(state.buildId).sourceSetVersion };
     captures = new services.NativeCaptures(state.analysis, { paths: state.paths });
     const rows = [], audits = [];
     const artifact = async (name, bytes) => { const file = `raw/${name}.json`; await writeFile(path.join(root, file), bytes);
