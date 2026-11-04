@@ -1,6 +1,13 @@
 # Task 110 — Qualify the final compiled native composition
 
-Status: preparation started, 2026-11-04.
+Status: sole reserved attempt completed; resource gate failed, 2026-11-04.
+
+The [recorded result](../docs/loredock/NATIVE_FINAL_QUALIFICATION.md) preserves all
+sixteen functional operations and seven raw comparisons. Reopened history exceeds RSS
+at 399.58984375 MiB versus 384 MiB; fifteen resource rows pass. Full strict checks pass
+802 tests/builds. Frozen inputs and first raw artifacts remain immutable and exhausted.
+Next [Task 111](111-loredock-native-worker-ownership-audit.md) audits replacement ownership
+on a fresh small input. Consumer migration remains gated.
 
 Freeze one fresh synthetic family for the actual compiled native composition delivered
 through Task 109. This follows the Task 102 integration boundary; prior experimental

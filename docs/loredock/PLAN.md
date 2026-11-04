@@ -194,7 +194,12 @@ Task 108 completes that functional boundary;
 actual compiled worker/coordinator before a new final family is frozen.
 Task 109 completes the driver on small owned inputs;
 [Task 110](../../tasks/110-loredock-native-final-composition-qualification.md) retains
-the fixed complete-operation gates for the fresh final compiled composition.
+the fixed complete-operation gates for the fresh final compiled composition. Its sole
+attempt passes all sixteen functional operations and seven raw comparisons but fails
+reopened-history RSS at 399.58984375 MiB against 384 MiB. The family is exhausted;
+[Task 111](../../tasks/111-loredock-native-worker-ownership-audit.md) audits replacement
+ownership before a narrow candidate and different future qualification. Consumer
+migration remains blocked by the [recorded result](NATIVE_FINAL_QUALIFICATION.md).
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.
