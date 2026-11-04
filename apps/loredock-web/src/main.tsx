@@ -13,6 +13,7 @@ import { CodeInventory } from './CodeInventory';
 import { SymbolMatches } from './SymbolMatches';
 import type { CodeSymbolResult } from '../../loredock/src/code-symbol-types';
 import { SavedPaths, savedPathLink } from './SavedPaths';
+import { SavedPathList } from './SavedPathList';
 
 const savedPathId = savedPathLink(window.location.search);
 
@@ -127,6 +128,7 @@ function App() {
         </details>
       </aside>
       <section className="workspace">
+        {codeEnabled && <SavedPathList boundary={`${policyVersion}:${sourceSetVersion}:${published}`} projectAvailable={projectAvailable} />}
         <div className="panel">
           <div className="section-heading"><div><h2>Source index</h2><p className="muted">Each index keeps its own committed revisions.</p></div>
             <button className="primary" disabled={busy || !activeSources.length || Boolean(unfinished)} onClick={() => void act(async () => {

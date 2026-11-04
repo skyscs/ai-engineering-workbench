@@ -217,8 +217,9 @@ test('a real disconnected HTTP list aborts the native owner and permits explicit
   const s = await setup(t); await s.seed(); const gate = barrier(), reached = barrier(); let held = false, serverSignal: AbortSignal | undefined, report!: (code: string) => void;
   const observed = new Promise<string>(resolve => { report = resolve; });
   const service = s.service({ async checkpoint(info) { if (!held && info.stage === 'originals') { held = true; reached.release(); await gate.promise; } } });
-  const list = service.list.bind(service); service.list = (input, signal, budget) => { serverSignal = signal; return list(input, signal, budget).catch(error => {
-    report(error instanceof NativeReceiptError || error instanceof OperationBudgetError ? error.code : 'UNEXPECTED'); throw error;
+  const list = service.list.bind(service); service.list = (input, signal, budget) => { const first = serverSignal === undefined; if (first) serverSignal = signal;
+    return list(input, signal, budget).catch(error => {
+    if (first) report(error instanceof NativeReceiptError || error instanceof OperationBudgetError ? error.code : 'UNEXPECTED'); throw error;
   }); };
   const app = createApp(s.state.catalog, { codeAnalysis: s.state.analysis, nativeCaptures: service });
   const server = serve({ fetch: app.fetch, hostname: '127.0.0.1', port: 0 });
