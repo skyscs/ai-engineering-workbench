@@ -1,5 +1,6 @@
 import type { CodeAnalysis } from './code-analysis.js';
-import type { AnalysisFileSummary, AnalysisPayload } from './code-analysis-types.js';
+import type { AnalysisFileSummary } from './code-analysis-types.js';
+import type { CanonicalFactPair } from './canonical-fact-pair.js';
 import type { FlowEdge, FlowNode } from './code-flow-types.js';
 import type { MapEvidence } from './system-map-types.js';
 import type { BuildSourceRow, FileRow } from './store.js';
@@ -16,7 +17,7 @@ export interface PathMetadata {
   digest: string; bytes: number; entries: number; sources: Map<string, PathSource>; files: Map<string, SavedPath>;
 }
 export interface JoinedPathMetadata extends PathMetadata { units: Map<string, AnalysisFileSummary> }
-export interface PathFactEntry { file: SavedPath; payload: AnalysisPayload }
+export interface PathFactEntry { file: SavedPath; payload: CanonicalFactPair & { evidence: MapEvidence[] } }
 export interface BindingDomain {
   kind: 'java-source' | 'import-paths'; complete: boolean; reasons: Record<string, number>; candidateFiles: number; paths?: string[];
 }

@@ -10,6 +10,7 @@ import { admitPaths } from './code-paths-admit.js';
 import { declarationMap } from './system-map.js';
 import { sha256 } from './extract.js';
 import { CatalogError } from './types.js';
+import { createCanonicalFactPair } from './canonical-fact-pair.js';
 
 export type PathReadKind = 'paths' | 'roots';
 interface ServiceOptions { limits?: Partial<CodePathLimits>; checkpoint?: PathWorkOptions['checkpoint'] }
@@ -59,6 +60,9 @@ export class CodePaths {
     Object.freeze(this.limits);
   }
   async read(input: CodePathRequest, kind: PathReadKind = 'paths', signal?: AbortSignal): Promise<CodePathsResponse> {
+    return this.analysis.catalog.store.withPreparedReads(() => this.readOwned(input, kind, signal));
+  }
+  private async readOwned(input: CodePathRequest, kind: PathReadKind, signal?: AbortSignal): Promise<CodePathsResponse> {
     validateRequest(input, kind);
     if (this.stopping) throw new CatalogError('SERVICE_STOPPED', 'Connected path reads are stopping.', 409);
     if (signal?.aborted) throw new CatalogError('CANCELLED', 'Connected path read cancelled.', 409);
@@ -92,12 +96,13 @@ export class CodePaths {
     work.check();
     if (snapshot.summary.candidates > this.limits.files) throw new CatalogError('RESOLUTION_LIMIT', 'Connected file bound exceeded.', 409);
     const metadata = await bindingMetadata(catalog, analysis, snapshot, work, this.limits);
-    const entries: PathFactEntry[] = [], consumed: string[][] = []; let factEntries = 0;
+    const entries: PathFactEntry[] = [], consumed: string[][] = [], canonicalPair = createCanonicalFactPair(); let factEntries = 0;
     for (const fileId of snapshot.fileIds) {
       await work.step('read'); const payload = analysis.file(inventory.id, fileId), file = metadata.files.get(fileId)!;
       factEntries += payload.facts.symbols.length + payload.facts.operations.length + payload.facts.calls.length + Object.keys(payload.facts.records).length;
       if (factEntries > this.limits.facts) throw new CatalogError('RESOLUTION_LIMIT', 'Connected fact bound exceeded.', 409);
-      entries.push({ file, payload }); consumed.push([fileId, payload.contentHash, payload.inputHash]);
+      consumed.push([fileId, payload.contentHash, payload.inputHash]);
+      entries.push({ file, payload: { ...canonicalPair(payload.facts, payload.ranges), evidence: payload.evidence } });
     }
     const domains = await bindingDomains(metadata, entries, work);
     await work.step('resolve', 0, true);
