@@ -1,5 +1,24 @@
 # Development status
 
+## Task 114 — The complete native composition passes its fresh resource gate
+
+The [sole campsite-family qualification](loredock/BOUNDED_WRITE_FINAL_QUALIFICATION.md)
+passes all sixteen complete operations and seven byte-exact cross-process comparisons.
+Twenty owned sources contain 10,000 files and 21 supported facts. Every source/path,
+history, accounting/no-write, lifecycle and resource gate passes. Maximum RSS is
+340.2734375 MiB against 384 MiB; reopened history after two replacements uses
+328.6171875 MiB and revalidates ten originals with no nested derivation or publication lock.
+
+Inputs froze at `67f858d`; measured head `7fcc73d` exits zero after 386.009 seconds.
+Seven command logs and 49 raw artifacts are [retained](fixtures/loredock-bounded-write-final-qualification/README.md).
+All 817 strict tests/builds pass. No application code, prior family or user demo changed;
+no models/corporate input. This family is exhausted and does not establish dense-code,
+whole-lifetime or semantic/user acceptance. After exact-head CI,
+[Task 115](../tasks/115-loredock-public-native-paths.md) migrates the existing public
+read-only path browser; saved-history workflows, private pilot, L5 and Workbench stay separate.
+PR #117 head `4505398` passed push 41896978135 and pull-request 41896986992 CI
+(817 tests), then merged as identical-tree `52ad814`.
+
 ## Task 113 — Native history survives a genuine compiled runtime upgrade
 
 The [transition regression](loredock/NATIVE_COMPILED_UPGRADE.md) preserves 37 exact older

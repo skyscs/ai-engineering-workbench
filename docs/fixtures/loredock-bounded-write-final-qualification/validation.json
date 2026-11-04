@@ -1,0 +1,524 @@
+{
+  "schemaVersion": "task114-bounded-write-final-validation/1",
+  "scopeCommit": "40b8114",
+  "authoredInputs": "f26a55a",
+  "freezeCommit": "67f858d532fad4acdf5da74e6041de1a80a6c15a",
+  "measuredCommit": "7fcc73d1822b51dae0c92e67cbcbc6088bdedad2",
+  "acceptedParent": {
+    "head": "450539890283d990f742ffab8d90de995607cc48",
+    "merge": "52ad81443ec4d4a8c3d2f5a49c294cf3027e12d5",
+    "pullRequest": 117,
+    "ci": {
+      "push": {
+        "id": 41896978135,
+        "head": "450539890283d990f742ffab8d90de995607cc48",
+        "conclusion": "success"
+      },
+      "pullRequest": {
+        "id": 41896986992,
+        "head": "450539890283d990f742ffab8d90de995607cc48",
+        "conclusion": "success"
+      }
+    },
+    "treeEqualityVerified": true
+  },
+  "node": {
+    "version": "v22.23.2",
+    "v8": "12.4.254.21-node.56",
+    "sha256": "3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327"
+  },
+  "typescript": {
+    "version": "5.9.3",
+    "sha256": "3ae902c92cc44dace175c0e69e13a4b0899f6983c6121d76b9ab8dd5795e7675"
+  },
+  "pnpm": "10.15.0",
+  "runtimeModules": 38,
+  "baselineFiles": 720,
+  "frozenInputs": {
+    "fixtures/loredock-bounded-write-final-qualification/README.md": "65c01655bb44756856ef7acbd93e3cd604c4809f0073c63f43095e3b96eb5886",
+    "fixtures/loredock-bounded-write-final-qualification/corpus.mjs": "431353a12950406832ab71781d86fa93c7e8fee6cf07c08de7302b7017549969",
+    "fixtures/loredock-bounded-write-final-qualification/oracle.json": "e26fdc7c0c0cd4d7981cdc68feac45498d11ec39cec9dd62a63cec43ba9eddfd",
+    "fixtures/loredock-bounded-write-final-qualification/preflight.json": "2b7deeea64fb2869efeb93523d0542531a5fb594c184c57a789133be23c51f49",
+    "fixtures/loredock-bounded-write-final-qualification/baseline.json": "f1eb2e3fb92e67182a7f40c9bb734bc4febd4afad3d7097c6e608a360ff792c9",
+    "scripts/loredock-bounded-write-final-qualification/config.mjs": "2df68f65da112e96796b8d1870006305ad2f0486b97b60ec4040c481ccc31278"
+  },
+  "fullTests": 817,
+  "reservedAttempts": 1,
+  "outer": {
+    "command": [
+      "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+      "scripts/loredock-bounded-write-final-qualification/probe.mjs"
+    ],
+    "cwd": "/home/toshiba/aew/worktrees/task114-write-final",
+    "startedAt": "2026-11-04T19:34:34.917434+00:00",
+    "reservedAttempt": 1,
+    "exitCode": 0,
+    "elapsedSeconds": 386.0090244449966
+  },
+  "summary": {
+    "schemaVersion": "native-qualification-assessment/1",
+    "plannedOperations": 16,
+    "requiredComparisons": 7,
+    "functionalFailed": false,
+    "failed": false,
+    "parity": [
+      {
+        "name": "first",
+        "meaning": "byte-equality-only",
+        "state": "pass"
+      },
+      {
+        "name": "repeat-1",
+        "meaning": "byte-equality-only",
+        "state": "pass"
+      },
+      {
+        "name": "repeat-2",
+        "meaning": "byte-equality-only",
+        "state": "pass"
+      },
+      {
+        "name": "repeat-3",
+        "meaning": "byte-equality-only",
+        "state": "pass"
+      },
+      {
+        "name": "selected",
+        "meaning": "byte-equality-only",
+        "state": "pass"
+      },
+      {
+        "name": "page-4",
+        "meaning": "byte-equality-only",
+        "state": "pass"
+      },
+      {
+        "name": "isolated",
+        "meaning": "byte-equality-only",
+        "state": "pass"
+      }
+    ]
+  },
+  "failed": false,
+  "commands": [
+    {
+      "command": "install-first",
+      "exitCode": 0,
+      "source": "/home/toshiba/aew/task114-install-first.log",
+      "file": "commands/install-first.log.gz",
+      "rawBytes": 326,
+      "rawSha256": "0f50aafe118eb8029a3c5a20a093d23b382b1b18fd0955ad961fbc1d68669474",
+      "archiveSha256": "f4695782fbcaee38f9814c5a6fa1c6e517bffb98b72d8adb8f4a9985c67bc60a"
+    },
+    {
+      "command": "build-first",
+      "exitCode": null,
+      "source": "/home/toshiba/aew/task114-build-first.log",
+      "file": "commands/build-first.log.gz",
+      "rawBytes": 2351,
+      "rawSha256": "99e561370cb8c69890759cc12f840067554b99aea9e3148c5ee9043503eb080f",
+      "archiveSha256": "a939895f7329a4b2c333efaecc1d4ceeac302713b1e678fd2801668b3b54bd22",
+      "outcome": "Build log ends in successful completion; the original exec session outcome was not retained after context recovery. The later full pnpm check independently completed with exit zero."
+    },
+    {
+      "command": "preflight-first",
+      "exitCode": 0,
+      "source": "/home/toshiba/aew/task114-preflight-first.log",
+      "file": "commands/preflight-first.log.gz",
+      "rawBytes": 661,
+      "rawSha256": "2b7deeea64fb2869efeb93523d0542531a5fb594c184c57a789133be23c51f49",
+      "archiveSha256": "0c886218755583fdd2a95c21c35cbc8f47949828f5992860803e951d05e14cc6"
+    },
+    {
+      "command": "oracle-review",
+      "exitCode": 0,
+      "source": "/home/toshiba/aew/task114-oracle-review.log",
+      "file": "commands/oracle-review.log.gz",
+      "rawBytes": 293,
+      "rawSha256": "75f9ce3789e853007a5ba28be103712c03b93d71ce4c20159c1017dbeb5c2998",
+      "archiveSha256": "327dddd4daa90979add0a74b4d799ca98bf4914dd17b17f360067a8cb74588ac"
+    },
+    {
+      "command": "check-first",
+      "exitCode": 0,
+      "source": "/home/toshiba/aew/task114-check-first.log",
+      "file": "commands/check-first.log.gz",
+      "rawBytes": 307914,
+      "rawSha256": "cf2f28b9e71e66051e85186e8259bd8a4ceaf2a5583ecbadae28dfe06529919c",
+      "archiveSha256": "2029033159777590c5bd3c56893a91a9ecdd2bc3915b28ce347296c088319615"
+    },
+    {
+      "command": "freeze-first",
+      "exitCode": 0,
+      "source": "/home/toshiba/aew/task114-freeze-first.log",
+      "file": "commands/freeze-first.log.gz",
+      "rawBytes": 344,
+      "rawSha256": "aafed26a1a99341d9e6f68a9cdc1aaece2fb79d3ca5924b3b1edb82e0c851fd2",
+      "archiveSha256": "9d9b382c0256dd557b2d526d8c1d3c1a47a9287eb6f64b35fb95b2e34f79c06f"
+    },
+    {
+      "command": "entry-syntax",
+      "exitCode": 0,
+      "source": "/home/toshiba/aew/task114-entry-syntax.log",
+      "file": "commands/entry-syntax.log.gz",
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archiveSha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    }
+  ],
+  "artifacts": [
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/identity.json",
+      "file": "raw/identity.json.gz",
+      "rawBytes": 93352,
+      "rawSha256": "c25cbf15a98b8c2e356e219931fc703dcc85dcfc4e7e5122238863c85446f84e",
+      "archiveSha256": "70809b71aa6b51dbe89d2ffc83abdfd8795519e2026d2e05ce28e8e9240bcc09"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/result.json",
+      "file": "raw/result.json.gz",
+      "rawBytes": 1191,
+      "rawSha256": "56e931d022960313bbfacfdb449e0048a280ca78a428d2776ee88b4e74e6fc5b",
+      "archiveSha256": "bb5679e5a2e5427499fcc454e685121a81c152c0ede07dba336d82d2e6a78755"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/metadata.json",
+      "file": "raw/run/metadata.json.gz",
+      "rawBytes": 17853,
+      "rawSha256": "06c69d0bc0be80641fed1a8ef4f555779e0cac730fe71b740445ea22df195d4d",
+      "archiveSha256": "64310863655c279ebb7eb19970432a0c48b46e18477f2e0ecaef852fbc5b2060"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/reopened-process/data/path-receipts/2048262f-504d-4c4d-bdcb-b0a375576c5a/1e5994ba3827b76367773ec6d2c7b8be452f638f53cf8fd9015c6cee2bb2d7c5.json",
+      "file": "raw/run/reopened-process/data/path-receipts/2048262f-504d-4c4d-bdcb-b0a375576c5a/1e5994ba3827b76367773ec6d2c7b8be452f638f53cf8fd9015c6cee2bb2d7c5.json.gz",
+      "rawBytes": 39069,
+      "rawSha256": "82f5e71340c56953cd015970058287d55a35a1c9ded2c37f0e616ac6f4ba2ef2",
+      "archiveSha256": "9892c6c350b69d84a7521551cce711fba21db3279334668711cde2ca87df7021"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/reopened-process/data/path-receipts/2048262f-504d-4c4d-bdcb-b0a375576c5a/4942fa97ffd7310386461cca6d6e98de3532fd5f2eb5866403d1d19c2e24704d.json",
+      "file": "raw/run/reopened-process/data/path-receipts/2048262f-504d-4c4d-bdcb-b0a375576c5a/4942fa97ffd7310386461cca6d6e98de3532fd5f2eb5866403d1d19c2e24704d.json.gz",
+      "rawBytes": 20900,
+      "rawSha256": "7bc4a859652e82ff55bc80870caf6547c14ef909d5770249bf97c0baf846ffda",
+      "archiveSha256": "75bb933927d48bb6a1f20c56671883e784950b649eab2031e64ed6c4d142c2bc"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/reopened-process/data/path-receipts/2048262f-504d-4c4d-bdcb-b0a375576c5a/cf291c579e565997fcdc665a16123eceb7b477d3feb8e922bac2b73ad5989137.json",
+      "file": "raw/run/reopened-process/data/path-receipts/2048262f-504d-4c4d-bdcb-b0a375576c5a/cf291c579e565997fcdc665a16123eceb7b477d3feb8e922bac2b73ad5989137.json.gz",
+      "rawBytes": 42721,
+      "rawSha256": "cf2c917b833e9b6127962bf634dc813ef8dd4c849afa6d4d5c02a1a748e5cb74",
+      "archiveSha256": "a9c556adb883a8d5935036ff5d3be5ed258ffbcd706b64b81d8ecadfbcc14723"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/reopened-process/raw/first-output.json",
+      "file": "raw/run/reopened-process/raw/first-output.json.gz",
+      "rawBytes": 395,
+      "rawSha256": "f8bf8d33e9192e38b025a682021bf5663f9ae61af6a0845efcaaa7faa71f5990",
+      "archiveSha256": "5243008d185461c259fdfd6990d8d0f8851c40e3b1ba58469bee1e2d2c45c600"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/reopened-process/raw/first-receipt.json",
+      "file": "raw/run/reopened-process/raw/first-receipt.json.gz",
+      "rawBytes": 42721,
+      "rawSha256": "cf2c917b833e9b6127962bf634dc813ef8dd4c849afa6d4d5c02a1a748e5cb74",
+      "archiveSha256": "a9c556adb883a8d5935036ff5d3be5ed258ffbcd706b64b81d8ecadfbcc14723"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/reopened-process/raw/history-output.json",
+      "file": "raw/run/reopened-process/raw/history-output.json.gz",
+      "rawBytes": 40565,
+      "rawSha256": "d9bd8af996dd00539345e53d41ec51d5cf9a6cc59bd9cb7e58a215b858a8a7ea",
+      "archiveSha256": "63020b7a113e835ec96d2935da5bf14adaaf646419a77dfceb14c8ceba7b5202"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/reopened-process/raw/isolated-output.json",
+      "file": "raw/run/reopened-process/raw/isolated-output.json.gz",
+      "rawBytes": 392,
+      "rawSha256": "e5715d2c156b7aae2522ed6dd508b9540e497d35a22b0c6cccc35762cb9feb61",
+      "archiveSha256": "0762597e6d74a6f24f269615ccf8d4c3447bb4e49cb11809b5d058010714c204"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/reopened-process/raw/isolated-receipt.json",
+      "file": "raw/run/reopened-process/raw/isolated-receipt.json.gz",
+      "rawBytes": 20900,
+      "rawSha256": "7bc4a859652e82ff55bc80870caf6547c14ef909d5770249bf97c0baf846ffda",
+      "archiveSha256": "75bb933927d48bb6a1f20c56671883e784950b649eab2031e64ed6c4d142c2bc"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/reopened-process/raw/page-4-output.json",
+      "file": "raw/run/reopened-process/raw/page-4-output.json.gz",
+      "rawBytes": 7134,
+      "rawSha256": "42532189ce2e74f5e52e0325eb28a4cb2cae6688180513cd1de8c98b2789c905",
+      "archiveSha256": "b73a38407f2e35e1ce46c9d2a5abae73cef75814d9eab4ea5c02585ebfd4bf2e"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/reopened-process/raw/repeat-1-output.json",
+      "file": "raw/run/reopened-process/raw/repeat-1-output.json.gz",
+      "rawBytes": 388,
+      "rawSha256": "bdbf60ce0b7b7f6d312ba56d338473b44c1883194c9e4e3439192de14b90cd82",
+      "archiveSha256": "5c79f1d143281457d52f9d739b44aa387fdd85280ccaca1a1031e96ff7c411d7"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/reopened-process/raw/repeat-1-receipt.json",
+      "file": "raw/run/reopened-process/raw/repeat-1-receipt.json.gz",
+      "rawBytes": 42721,
+      "rawSha256": "cf2c917b833e9b6127962bf634dc813ef8dd4c849afa6d4d5c02a1a748e5cb74",
+      "archiveSha256": "a9c556adb883a8d5935036ff5d3be5ed258ffbcd706b64b81d8ecadfbcc14723"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/reopened-process/raw/repeat-2-output.json",
+      "file": "raw/run/reopened-process/raw/repeat-2-output.json.gz",
+      "rawBytes": 389,
+      "rawSha256": "146135e95bfec40c2b23346d62d0fc84411ea44d7f4e0231a92e5aa4eef36df0",
+      "archiveSha256": "b7d9b9eebe4496b612a7d4e9581ffd74a162e9c14cdd59483a920ecee2f2970b"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/reopened-process/raw/repeat-2-receipt.json",
+      "file": "raw/run/reopened-process/raw/repeat-2-receipt.json.gz",
+      "rawBytes": 42721,
+      "rawSha256": "cf2c917b833e9b6127962bf634dc813ef8dd4c849afa6d4d5c02a1a748e5cb74",
+      "archiveSha256": "a9c556adb883a8d5935036ff5d3be5ed258ffbcd706b64b81d8ecadfbcc14723"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/reopened-process/raw/repeat-3-output.json",
+      "file": "raw/run/reopened-process/raw/repeat-3-output.json.gz",
+      "rawBytes": 395,
+      "rawSha256": "ee4912a1ee915ef33fcdf28d699a04bf33e7ff16ebaada8cc1822690c5e65657",
+      "archiveSha256": "c7252506ae485cfe66cfe83f23d18d8a0b335644615abc5868160fdc037d5a3f"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/reopened-process/raw/repeat-3-receipt.json",
+      "file": "raw/run/reopened-process/raw/repeat-3-receipt.json.gz",
+      "rawBytes": 42721,
+      "rawSha256": "cf2c917b833e9b6127962bf634dc813ef8dd4c849afa6d4d5c02a1a748e5cb74",
+      "archiveSha256": "a9c556adb883a8d5935036ff5d3be5ed258ffbcd706b64b81d8ecadfbcc14723"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/reopened-process/raw/selected-output.json",
+      "file": "raw/run/reopened-process/raw/selected-output.json.gz",
+      "rawBytes": 395,
+      "rawSha256": "3b0202df9e8f14a1c5b7e9a0d3152f92bccb1b4f57862bc9e77f9e84e1d08b50",
+      "archiveSha256": "24f0b36178f46483e9ceed4aff17f73df01ee523087740f7ad0fd474e9d0e13a"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/reopened-process/raw/selected-receipt.json",
+      "file": "raw/run/reopened-process/raw/selected-receipt.json.gz",
+      "rawBytes": 39069,
+      "rawSha256": "82f5e71340c56953cd015970058287d55a35a1c9ded2c37f0e616ac6f4ba2ef2",
+      "archiveSha256": "9892c6c350b69d84a7521551cce711fba21db3279334668711cde2ca87df7021"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/reopened-process/result.json",
+      "file": "raw/run/reopened-process/result.json.gz",
+      "rawBytes": 21430,
+      "rawSha256": "74537fd7aa22301930c725b09fc902a655843921b09b521b11b02211bc96aece",
+      "archiveSha256": "f0035a6b0e2f5fa2244fd10757cfc93e531c61c07a81a0d2e9bdfb81e4208c95"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/reopened-process.exit.json",
+      "file": "raw/run/reopened-process.exit.json.gz",
+      "rawBytes": 550,
+      "rawSha256": "0354779635d3e658650cf5c99300d79a81b018a5f33663698a1f57529465583b",
+      "archiveSha256": "19551482f1e10a7dbffa73c5c71c998d08ab0d372200eee07661364b46edee26"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/reopened-process.stderr",
+      "file": "raw/run/reopened-process.stderr.gz",
+      "rawBytes": 171,
+      "rawSha256": "e647e8e6c3caf72be15d0fcef7ea7b9cac03dca0be9044ea8bf9c582d3850516",
+      "archiveSha256": "b72de73d42981ce0a05de9f0840e6f9fe4a04e7257e6f1f966463336ad8035e6"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/reopened-process.stdout",
+      "file": "raw/run/reopened-process.stdout.gz",
+      "rawBytes": 53,
+      "rawSha256": "a70a82e723f464fdd6cf7f0f16184d39b54857b9a4c5222d0c713c54d4e8eae5",
+      "archiveSha256": "7576250e9e7c799cf22866aa171813b84ffa68003ba5bc9d8c97a51e607a275e"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/result.json",
+      "file": "raw/run/result.json.gz",
+      "rawBytes": 23785,
+      "rawSha256": "2a3c66b5757954b39288935b22f8bd1b113333697a0a8c78c468826c489f392d",
+      "archiveSha256": "b805031609c47efaa7ca66287c819ca58f4e1c37be9fa61b8e49c7ad783e708e"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/same-process/data/path-receipts/2048262f-504d-4c4d-bdcb-b0a375576c5a/1e5994ba3827b76367773ec6d2c7b8be452f638f53cf8fd9015c6cee2bb2d7c5.json",
+      "file": "raw/run/same-process/data/path-receipts/2048262f-504d-4c4d-bdcb-b0a375576c5a/1e5994ba3827b76367773ec6d2c7b8be452f638f53cf8fd9015c6cee2bb2d7c5.json.gz",
+      "rawBytes": 39069,
+      "rawSha256": "82f5e71340c56953cd015970058287d55a35a1c9ded2c37f0e616ac6f4ba2ef2",
+      "archiveSha256": "9892c6c350b69d84a7521551cce711fba21db3279334668711cde2ca87df7021"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/same-process/data/path-receipts/2048262f-504d-4c4d-bdcb-b0a375576c5a/4942fa97ffd7310386461cca6d6e98de3532fd5f2eb5866403d1d19c2e24704d.json",
+      "file": "raw/run/same-process/data/path-receipts/2048262f-504d-4c4d-bdcb-b0a375576c5a/4942fa97ffd7310386461cca6d6e98de3532fd5f2eb5866403d1d19c2e24704d.json.gz",
+      "rawBytes": 20900,
+      "rawSha256": "7bc4a859652e82ff55bc80870caf6547c14ef909d5770249bf97c0baf846ffda",
+      "archiveSha256": "75bb933927d48bb6a1f20c56671883e784950b649eab2031e64ed6c4d142c2bc"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/same-process/data/path-receipts/2048262f-504d-4c4d-bdcb-b0a375576c5a/cf291c579e565997fcdc665a16123eceb7b477d3feb8e922bac2b73ad5989137.json",
+      "file": "raw/run/same-process/data/path-receipts/2048262f-504d-4c4d-bdcb-b0a375576c5a/cf291c579e565997fcdc665a16123eceb7b477d3feb8e922bac2b73ad5989137.json.gz",
+      "rawBytes": 42721,
+      "rawSha256": "cf2c917b833e9b6127962bf634dc813ef8dd4c849afa6d4d5c02a1a748e5cb74",
+      "archiveSha256": "a9c556adb883a8d5935036ff5d3be5ed258ffbcd706b64b81d8ecadfbcc14723"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/same-process/raw/first-output.json",
+      "file": "raw/run/same-process/raw/first-output.json.gz",
+      "rawBytes": 394,
+      "rawSha256": "de952a673adb7409b110cb2b210584b522a9544de891aa0e3ed854662dc1c9d0",
+      "archiveSha256": "55025a856706578c796c414ee2a3301d6b95b558fdd8726e6cfec9f01af6a205"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/same-process/raw/first-receipt.json",
+      "file": "raw/run/same-process/raw/first-receipt.json.gz",
+      "rawBytes": 42721,
+      "rawSha256": "cf2c917b833e9b6127962bf634dc813ef8dd4c849afa6d4d5c02a1a748e5cb74",
+      "archiveSha256": "a9c556adb883a8d5935036ff5d3be5ed258ffbcd706b64b81d8ecadfbcc14723"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/same-process/raw/history-output.json",
+      "file": "raw/run/same-process/raw/history-output.json.gz",
+      "rawBytes": 40565,
+      "rawSha256": "4112b3d7daa3d0934a23ca8e8e7ec0de07eb5a3a2fa0708cdb2fe8a8ce005af5",
+      "archiveSha256": "fd07c97a7dcc1a907e873d16427f78b528e634391e35b8ea12bd237934add5cf"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/same-process/raw/isolated-output.json",
+      "file": "raw/run/same-process/raw/isolated-output.json.gz",
+      "rawBytes": 392,
+      "rawSha256": "fec0965ff34c5e93fa41619b50e533d45a1a4ffc76388ec30a44a72141aa3b73",
+      "archiveSha256": "d4aec3c6452d6c34c0f39b18f97c78a6b7cd0a188e8a9689ea72c65dbb5d7653"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/same-process/raw/isolated-receipt.json",
+      "file": "raw/run/same-process/raw/isolated-receipt.json.gz",
+      "rawBytes": 20900,
+      "rawSha256": "7bc4a859652e82ff55bc80870caf6547c14ef909d5770249bf97c0baf846ffda",
+      "archiveSha256": "75bb933927d48bb6a1f20c56671883e784950b649eab2031e64ed6c4d142c2bc"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/same-process/raw/page-4-output.json",
+      "file": "raw/run/same-process/raw/page-4-output.json.gz",
+      "rawBytes": 7134,
+      "rawSha256": "42532189ce2e74f5e52e0325eb28a4cb2cae6688180513cd1de8c98b2789c905",
+      "archiveSha256": "b73a38407f2e35e1ce46c9d2a5abae73cef75814d9eab4ea5c02585ebfd4bf2e"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/same-process/raw/repeat-1-output.json",
+      "file": "raw/run/same-process/raw/repeat-1-output.json.gz",
+      "rawBytes": 396,
+      "rawSha256": "bc4abdcfa59b54211a3afe9ea95b583eb399e35188b70732a7a088ecd493543f",
+      "archiveSha256": "a805846ffc707acab3e4c86c7fa0ff60c4f712c52cd93ac91098c10fc770e9e0"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/same-process/raw/repeat-1-receipt.json",
+      "file": "raw/run/same-process/raw/repeat-1-receipt.json.gz",
+      "rawBytes": 42721,
+      "rawSha256": "cf2c917b833e9b6127962bf634dc813ef8dd4c849afa6d4d5c02a1a748e5cb74",
+      "archiveSha256": "a9c556adb883a8d5935036ff5d3be5ed258ffbcd706b64b81d8ecadfbcc14723"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/same-process/raw/repeat-2-output.json",
+      "file": "raw/run/same-process/raw/repeat-2-output.json.gz",
+      "rawBytes": 396,
+      "rawSha256": "536c87c9bac6786ab1a19633ec1cd2beaaefee1053709f54a360180af489184a",
+      "archiveSha256": "add8e018cfc35e5566033a553f44bf69d0e115109e29ee6d261eeec1541524c1"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/same-process/raw/repeat-2-receipt.json",
+      "file": "raw/run/same-process/raw/repeat-2-receipt.json.gz",
+      "rawBytes": 42721,
+      "rawSha256": "cf2c917b833e9b6127962bf634dc813ef8dd4c849afa6d4d5c02a1a748e5cb74",
+      "archiveSha256": "a9c556adb883a8d5935036ff5d3be5ed258ffbcd706b64b81d8ecadfbcc14723"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/same-process/raw/repeat-3-output.json",
+      "file": "raw/run/same-process/raw/repeat-3-output.json.gz",
+      "rawBytes": 396,
+      "rawSha256": "fdba41e6126ece9401986be354fb2bd20c837cc93035ac08261da31075647615",
+      "archiveSha256": "f08de2cf1e8538441ab2bbad2fe67df129a4d1c44889537912d9600267450d7a"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/same-process/raw/repeat-3-receipt.json",
+      "file": "raw/run/same-process/raw/repeat-3-receipt.json.gz",
+      "rawBytes": 42721,
+      "rawSha256": "cf2c917b833e9b6127962bf634dc813ef8dd4c849afa6d4d5c02a1a748e5cb74",
+      "archiveSha256": "a9c556adb883a8d5935036ff5d3be5ed258ffbcd706b64b81d8ecadfbcc14723"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/same-process/raw/selected-output.json",
+      "file": "raw/run/same-process/raw/selected-output.json.gz",
+      "rawBytes": 395,
+      "rawSha256": "27b6cc9748535f8a7d532d0c2c65eab4554b31d9ce96e5ff2c2a4d8a0c44625a",
+      "archiveSha256": "9fc34f6dee08f9115810fce29f29dff577f68bb767ff59aa3c14c15800813b95"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/same-process/raw/selected-receipt.json",
+      "file": "raw/run/same-process/raw/selected-receipt.json.gz",
+      "rawBytes": 39069,
+      "rawSha256": "82f5e71340c56953cd015970058287d55a35a1c9ded2c37f0e616ac6f4ba2ef2",
+      "archiveSha256": "9892c6c350b69d84a7521551cce711fba21db3279334668711cde2ca87df7021"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/same-process/result.json",
+      "file": "raw/run/same-process/result.json.gz",
+      "rawBytes": 22423,
+      "rawSha256": "e477eae71924d82c126298f63385763b76c5717ea5bd12d118e2da585fabe89a",
+      "archiveSha256": "ff2672c4b2279d70196405a7286c33c384177a7c9005f5970061db769547cb71"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/same-process.exit.json",
+      "file": "raw/run/same-process.exit.json.gz",
+      "rawBytes": 543,
+      "rawSha256": "afa628100b9dae0157e57ef61c049a2569fa140167ff8b423752aaea57720c31",
+      "archiveSha256": "9e64994ff7a5912e11e5e58245b8da056fff35e7d9d598729ccbd14c1a5efddb"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/same-process.stderr",
+      "file": "raw/run/same-process.stderr.gz",
+      "rawBytes": 171,
+      "rawSha256": "94f211f7b1f9855e3c65f16d1bed8b31b608f21f3a3ca81c708300dc9ae7f44b",
+      "archiveSha256": "3663d89b2d3a7b11ee5f2d12c45b0b057613cce2949a1a50a7710a49e4bacc68"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first/run/same-process.stdout",
+      "file": "raw/run/same-process.stdout.gz",
+      "rawBytes": 49,
+      "rawSha256": "8bfe63876d5ae3fe17e021ea0e437193740972ac8fac2cf0240b67c182017d70",
+      "archiveSha256": "679cb3cdae9e0e5250158a021854483f7972922ce59f98f437f9e993cd9dd4fa"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first.stdout",
+      "file": "raw/outer.stdout.gz",
+      "rawBytes": 807,
+      "rawSha256": "e1dbed92a68357fa23e20d54b349b9d9848f31fcbcfa3b787199d8fc364f8702",
+      "archiveSha256": "dfd31c60587ce5d8e93d5adc1349cd46bb2a7c9c90a627f2cfa85ef396b77f37"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first.stderr",
+      "file": "raw/outer.stderr.gz",
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archiveSha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/home/toshiba/aew/measurements/task114-bounded-write-first.exit.json",
+      "file": "raw/outer.exit.json.gz",
+      "rawBytes": 348,
+      "rawSha256": "d1c6b86147c9e10ec04184b7177a39e48235310a6468553b8decb0a79c9e8451",
+      "archiveSha256": "b9c455af1d9750b78780212b563ab27a2dda0c763af4508f05d6a32402bf1a86"
+    }
+  ],
+  "resourceQualification": true,
+  "productionSourcesChanged": false,
+  "previousFamiliesChangedOrReplayed": false,
+  "modelRequests": 0,
+  "limitations": [
+    "Marker-heavy owned synthetic workload; no dense-code, other-OS or whole-lifetime qualification.",
+    "Authored source contract, not independent human semantic acceptance.",
+    "Native allocation cause is not established by these sampled measurements.",
+    "No private pilot, L5, user acceptance or Workbench bridge claim."
+  ]
+}

@@ -210,7 +210,12 @@ this does not qualify large-project memory.
 across actual older/current compiled fingerprints, including backward reopening,
 policy fences and undisplayed-source revocation.
 [Task 114](../../tasks/114-loredock-bounded-write-final-qualification.md) freezes one
-different final family after acceptance; the previous failed resource result remains.
+different final family after acceptance. Its [sole run](BOUNDED_WRITE_FINAL_QUALIFICATION.md)
+passes all sixteen complete operations and seven raw comparisons, including every
+resource gate (maximum RSS 340.2734375 MiB against 384 MiB). The previous failed result
+remains unchanged. After exact-head CI, [Task 115](../../tasks/115-loredock-public-native-paths.md)
+migrates existing read-only endpoints and the connected-path browser to native v2.
+Saved-capture/history APIs and UI follow separately; no semantic/L5 gate is inferred.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.
 No corporate sources or real-model reruns are required.

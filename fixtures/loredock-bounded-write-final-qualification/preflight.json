@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "bounded-write-final-campsite-preflight/1",
+  "size": {
+    "files": 10000,
+    "codeFiles": 9977,
+    "facts": 21,
+    "pathsPerSource": 500,
+    "bytes": 490457
+  },
+  "corpusHash": "0e36dfe15c19eaaa25e43d125b82be61ed155e679a1b5b3586de33b04d83a24e",
+  "servicesExecuted": false,
+  "factCountBasis": "Authored supported constructs: nine symbols (five Vue actions, one exported function, three Java methods), four operations, five calls and three record facts. Pure text/count review only; no reserved parser or service execution.",
+  "expectedFactBreakdown": {
+    "symbols": 9,
+    "operations": 4,
+    "calls": 5,
+    "records": 3
+  }
+}
