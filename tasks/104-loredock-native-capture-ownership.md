@@ -1,6 +1,6 @@
 # Task 104 — Decide native capture storage and lifecycle ownership
 
-Status: scoped for source/architecture review, 2026-11-04.
+Status: source/architecture review started, 2026-11-04.
 
 Task 103 supplies the internal native v2 path producer and exact shared work budget.
 Before porting capture publication/history, decide who owns native receipt bytes,
