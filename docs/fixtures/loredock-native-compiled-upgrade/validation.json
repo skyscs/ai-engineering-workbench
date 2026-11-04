@@ -16,7 +16,7 @@
   "node": "v22.23.2",
   "pnpm": "10.15.0",
   "archiveTests": 3,
-  "fullTests": 816,
+  "fullTests": 817,
   "upgradePhases": 8,
   "exactHistories": 6,
   "expectedRefusals": 11,
@@ -80,6 +80,30 @@
       "rawBytes": 556,
       "rawSha256": "d1cd45e5a5fe53cac550d9eb1041211dd9890593ebf58c62cb5d4cc44046a816",
       "archiveSha256": "3a5dfe094f7af18319b5f6e4a85afd61df5ab3120cbbdf4291c63f16d77fe69a"
+    },
+    {
+      "command": "ci-push-first-failed",
+      "exitCode": 1,
+      "file": "commands/ci-push-first-failed.log.gz",
+      "rawBytes": 529699,
+      "rawSha256": "cebea5b7de0ecdad664115e7ec95ae35b73c03313305e43ff405e9750e0ac227",
+      "archiveSha256": "4f3f5846a2a7d6ee3f04eb3ea5ffc3f9c0194116b276944f3601017b067eec21"
+    },
+    {
+      "command": "ci-focused-first",
+      "exitCode": 0,
+      "file": "commands/ci-focused-first.log.gz",
+      "rawBytes": 2566,
+      "rawSha256": "e8017c21f5c1febae7ee962420297e147fd552f5bce6ece42a5a8c3877404f28",
+      "archiveSha256": "346170727e3a0a1f2fd9bd72e0f91b9e1032467aecd767ebc0d851db06272854"
+    },
+    {
+      "command": "ci-check-first",
+      "exitCode": 0,
+      "file": "commands/ci-check-first.log.gz",
+      "rawBytes": 307913,
+      "rawSha256": "0d0389b5478652f0e44b71c621d18314bf5ee7873f236836a3874c77bb7b6078",
+      "archiveSha256": "cb296970703786b8a1f00a8fd344ba59352c9d964b45bdcf33922e311c0af10e"
     }
   ],
   "artifacts": [
@@ -480,5 +504,19 @@
     "Eight upgrade phases are distinct from the sixteen-operation resource qualification; no resource family is replayed.",
     "Original owned SQLite and synthetic source/Git directories remain outside this documentation bundle.",
     "Semantic/user acceptance, dense-project/lifetime bounds, private pilot and L5 remain separate."
-  ]
+  ],
+  "ciFirstFailure": {
+    "head": "6305cf2a8bdc0f1a3189fd95cd3ee2fb25a71ff4",
+    "push": 41895305333,
+    "conclusion": "failure",
+    "pullRequest": 41895444160,
+    "pullRequestConclusion": "success",
+    "operation": "reopened-process isolated",
+    "maxSliceMs": 164.05204300000014,
+    "boundMs": 150,
+    "cause": "Ordinary offline-assessor test incorrectly required absolute sampled resource success. Functional dimensions and child lifecycle passed.",
+    "retention": "Original GitHub failed-step log includes the reported assessment and resource failure. Runner-local temporary raw files were not uploaded; they are not claimed retained locally."
+  },
+  "ciCorrectionCommit": "a5a3328",
+  "ciFocusedTests": 9
 }

@@ -12,7 +12,7 @@ both successful CI events at the corrected final head before Task 114 execution.
 
 The [actual compiled transition](../docs/loredock/NATIVE_COMPILED_UPGRADE.md) passes
 all eight planned phases, six exact history reads and eleven expected refusals using
-real older/current fingerprints. Three archive tests and 816 full strict tests/builds
+real older/current fingerprints. Three archive tests and 817 full strict tests/builds
 pass. The first invalid test request and all raw evidence remain retained. Next
 [Task 114](114-loredock-bounded-write-final-qualification.md) scopes a different frozen
 resource family after exact-head acceptance. No resource gate is inferred here.

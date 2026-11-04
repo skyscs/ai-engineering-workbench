@@ -9,14 +9,19 @@ refusals. Incompatible inventories cannot supply new capture; saved histories re
 both runtimes, with explicit reanalysis producing the actual new generation. Policy
 fences reads; revoking the undisplayed dependency purges both generations before restart.
 
-Three archive integrity/portable-load tests and **816 full strict tests/builds** pass.
-The first missing-generation test request, seven logs and 54 raw artifacts are
+Three archive integrity/portable-load tests and **817 full strict tests/builds** pass.
+The first missing-generation test request, ten logs and 54 raw artifacts are
 [retained](fixtures/loredock-native-compiled-upgrade/README.md). Application sources and
 old frozen families are unchanged; no models or corporate input. Next
 [Task 114](../tasks/114-loredock-bounded-write-final-qualification.md) freezes one different
 final resource family. Task 110 stays failed/exhausted; no resource or L5 acceptance follows.
 PR #116 head `9ce171a` passed push 41893119641 and pull-request 41893196581 CI
 (813 tests), then merged as identical-tree `cb84a4c`.
+Initial PR #117 push CI failed an older ordinary assessor test at 164.052043 ms against
+150 ms; the independent pull-request event passed. The retained failure led to an
+ordinary-test correction preserving resource rejection/overall propagation and checking
+each injected excess. Nine focused tests/subtests and 817 strict tests pass; reserved
+inputs, assessor bytes and limits are unchanged. Corrected exact-head CI is required.
 
 ## Task 112 — Analysis reuses three bounded write statements
 
