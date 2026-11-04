@@ -1,0 +1,18 @@
+{
+  "head": "450539890283d990f742ffab8d90de995607cc48",
+  "merge": "52ad81443ec4d4a8c3d2f5a49c294cf3027e12d5",
+  "pullRequest": 117,
+  "ci": {
+    "push": {
+      "id": 41896978135,
+      "head": "450539890283d990f742ffab8d90de995607cc48",
+      "conclusion": "success"
+    },
+    "pullRequest": {
+      "id": 41896986992,
+      "head": "450539890283d990f742ffab8d90de995607cc48",
+      "conclusion": "success"
+    }
+  },
+  "treeEqualityVerified": true
+}
