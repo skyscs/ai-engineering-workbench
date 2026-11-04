@@ -107,11 +107,13 @@ export async function runMatrix(directory, corpusFactory, oracle, ledger) {
           value.foreignOriginal = state.catalog.evidence(previous.spans.find(row => row.sourceName === firstSource && row.path === firstTs).id);
           buildId = await index(state, 'foreign-build'); await analyze(state, buildId, 'foreign-build-facts'); request = { buildId };
           const current = retrieveAnswerContext(state.catalog, question, buildId);
+          value.replacedOriginal = state.catalog.evidence(current.spans.find(row => row.sourceName === firstSource && row.path === firstTs).id);
           controlled = rehash({ ...current, spans: current.spans.map(row => row.sourceName === firstSource && row.path === firstTs ? inputSpan(value.foreignOriginal) : row) });
         } else if (item.id === 'identity.foreign-source') {
           const current = retrieveAnswerContext(state.catalog, question, buildId);
           const row = state.store.one("SELECT s.id FROM spans s JOIN files f ON f.id=s.fileId WHERE f.buildId=? AND f.path='foreign/same.md' ORDER BY s.startLine LIMIT 1", buildId);
           value.foreignOriginal = state.catalog.evidence(row.id);
+          value.replacedOriginal = state.catalog.evidence(current.spans.find(row => row.sourceName === firstSource && row.path === firstTs).id);
           controlled = rehash({ ...current, spans: current.spans.filter(row => row.id !== value.foreignOriginal.id)
             .map(row => row.sourceName === firstSource && row.path === firstTs ? inputSpan(value.foreignOriginal) : row) });
           controlled = rehash({ ...controlled, textBytes: controlled.spans.reduce((sum, row) => sum + Buffer.byteLength(row.text), 0) });

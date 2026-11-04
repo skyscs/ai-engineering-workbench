@@ -113,7 +113,10 @@ export function assessBoundary(raw, id) {
       else assert(result.compact.promptBytes > 98304); }
     else if (id === 'support.missing-original') { assert.equal(result?.compact.item, null); assert.equal(result?.compact.reason, 'incomplete-original-support'); }
     else if (id.startsWith('identity.')) { assert(!result?.compact.item); assert(op.error?.code === 'QUESTION_ORIGINAL_MISMATCH'
-      || op.error?.code === 'QUESTION_STALE' || result?.compact.reason === 'incomplete-original-support'); assert(raw.foreignOriginal); }
+      || op.error?.code === 'QUESTION_STALE' || result?.compact.reason === 'incomplete-original-support');
+      assert(raw.foreignOriginal && raw.replacedOriginal); assert.notEqual(raw.foreignOriginal.id, raw.replacedOriginal.id);
+      for (const key of ['text', 'spanHash', 'contentHash']) assert.equal(raw.foreignOriginal[key], raw.replacedOriginal[key]);
+      const identity = id.endsWith('foreign-build') ? 'buildId' : 'sourceId'; assert.notEqual(raw.foreignOriginal[identity], raw.replacedOriginal[identity]); }
     else if (id.startsWith('inventory.')) { assert(!op.error); assert.equal(result.compact.reason, 'INVENTORY_UNAVAILABLE');
       assert.equal(result.compact.item, null); assert.equal(op.after.factReads, op.before.factReads);
       if (id.endsWith('incompatible')) assert(raw.priorFingerprint && raw.priorFingerprint !== raw.currentFingerprint); }
