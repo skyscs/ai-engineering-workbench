@@ -1,6 +1,6 @@
 # Task 091 — Qualify complete request-local prepared reads
 
-Status: scoped before implementation, 2026-11-04.
+Status: prepared and locally verified; frozen execution pending, 2026-11-04.
 
 Task 090 proves independent semantic/fence equivalence for bounded request-local
 prepared read statements over the unchanged streaming/compact services. Resource
@@ -42,3 +42,21 @@ artifact/exit/failure. Content success cannot waive any resource failure.
   scope a separate production integration review; passing agent-authored synthetic
   checks does not establish independent/private pilot acceptance or L5 readiness.
 - No production source, corporate code, model call or user demo operation is in scope.
+
+## Preparation
+
+Scope `8697167`; actual tiny integration `1119339` passes all sixteen operations,
+six repeats, two histories and seven cross-arm comparisons through the unchanged
+worker/coordinator. Full checks pass 569 tests, strict typechecks and builds. The
+first install/check logs are retained without a failed development attempt.
+
+Freeze `bfc620d` records the new greenhouse calibration corpus: twenty sources,
+9,840 files, 9,817 code files, 575,712 UTF-8 bytes and 21 expected facts. Source review
+verifies supported `onMessage` dispatch candidates, exact typed ordered paths,
+all original ranges and twenty-source dependencies. Pure construction preflight
+observes no application parser. Five frozen inputs and 410 existing source/built/
+script hashes are verified before execution; all prior families remain unchanged.
+
+PR #94's exact head `4da9ec7` passed push 41746256819 and pull-request 41746331277
+CI (568 tests) and merged as identical-tree `e694df7`. This branch includes that
+merge. The measured probe records and verifies this acceptance before one run.
