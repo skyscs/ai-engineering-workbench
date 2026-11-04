@@ -124,18 +124,20 @@ old probes correctly refuse execution against changed dependencies.
    derived generation IDs; never claim byte identity across that transition.
    Full strict checks and actual protected HTTP/browser checks are mandatory. This
    change does not import the literal-topic resolver or publish offline receipts.
-3. **Final-composition qualification and release.** Freeze fresh source-authored
-   inputs and explicit v1/composed expectations before application observation.
-   Exercise the actual compiled production services in both required processes,
-   keeping all operation/resource/support gates and first artifacts. A test-only
-   adapter may compose the unchanged offline receipt format only when its exact
-   identity translation is declared and checked; it cannot be reported as a native
-   production receipt. Passing Task 097 alone does not satisfy this boundary.
-4. **Versioned literal-topic/receipt integration.** Separately port the typed rule,
-   witness, resolver/admission and capture boundary under new identities, preserving
-   all conservative losses. Requalify that final composition before switching the
-   browser. Decide durable storage/purge/recovery before any receipt endpoint or
-   answer/review consumer. Follow the existing consumer order and independent gates.
+3. **Internal versioned producer and capture.** Task 102's
+   [boundary review](FINAL_QUALIFICATION_BOUNDARY.md) rejects the proposed v1
+   identity-translation adapter: v1 lacks the literal witness and shared accounting,
+   and its derived IDs cannot be transparently renamed. Port the typed rule, witness,
+   resolver/admission and shared budget under native v2 identities first. Keep the
+   browser on v1. Separately decide capture storage ownership/purge/recovery and port
+   the complete typed publisher/history before any receipt endpoint or consumer.
+4. **Final-composition qualification and release.** Prove the actual compiled typed
+   composition on independent tiny inputs, including strict native-version assessment.
+   Then freeze fresh source-authored inputs/oracles before application observation;
+   retain all sixteen operation/support/resource gates, seven cross-process byte
+   comparisons and first artifacts. Only a passing final composition permits the
+   separately scoped browser migration. Task 097 alone does not satisfy this boundary.
+   Follow the existing consumer order and independent gates.
 
 Each implementation step needs its own bounded task/acceptance contract before
 edits. Do not broaden Task 099 into service wiring merely because the helpers pass.

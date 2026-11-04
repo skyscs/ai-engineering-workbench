@@ -40,3 +40,11 @@ analysis module. Representation edits change that fingerprint and derived genera
 IDs. Preserve the fence, test explicit reanalysis and rollback incompatibility, and
 do not claim byte identity across versions. The behavioral test reference deliberately
 shares the current fingerprint provider; it is not a historical runtime replay.
+
+Task 102's [compiled-boundary review](../loredock/FINAL_QUALIFICATION_BOUNDARY.md)
+rejects the conditional v1-to-experiment identity adapter: topic witnesses, exact
+shared charges, derived IDs and publication/history are absent or different in v1.
+Implement the internal native versioned producer and complete typed capture before
+the final compiled resource qualification; keep the browser on v1 until that gate
+passes. No path-only substitute, relaxed threshold or old-result reinterpretation
+is accepted. Task 103 scopes the internal producer without exposing a new consumer.

@@ -1,5 +1,20 @@
 # Development status
 
+## Task 102 — Final qualification requires the native versioned composition
+
+The [source/compiled boundary review](loredock/FINAL_QUALIFICATION_BOUNDARY.md)
+rejects v1 schema renaming as a route to complete-capture qualification. The actual
+reader lacks direct-literal witnesses and the shared budget, checkpoint totals omit
+the final tail, identities affect graph/root selection and v1 has no native publisher/
+history operation. Twenty-one source and twelve existing compiled modules are hashed.
+
+The plan/ADR now put the internal typed versioned producer and complete capture
+before final qualification. All sixteen operation denominators, seven exact process
+comparisons, support requirements and numerical gates remain. No product, historical
+artifact or measured family changes. Next
+[Task 103](../tasks/103-loredock-versioned-path-producer.md) implements the internal
+v2 producer with shared work and catalog ownership; browser/HTTP consumers remain v1.
+
 ## Task 101 — Resource ownership integrated into production connected paths v1
 
 The [production integration](fixtures/loredock-v1-resource-integration/README.md)
