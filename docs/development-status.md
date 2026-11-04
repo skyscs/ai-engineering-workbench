@@ -1,5 +1,25 @@
 # Development status
 
+## Task 112 — Analysis reuses three bounded write statements
+
+The [internal candidate](loredock/BOUNDED_ANALYSIS_WRITES.md) owns separate synchronous
+admission and asynchronous worker scopes with exact SQL eligibility, three statements,
+4 KiB SQL and 144 KiB admitted binding bytes per statement. It preserves every write,
+transaction, original validation and error; execution errors and scope expiry release
+owned references. Executable SQL stays within the existing fingerprint boundary, so
+real upgrades still require explicit reanalysis. No immediate native-release claim.
+
+Nineteen focused cases/subcases and **813 full strict tests/builds** pass. Independent
+source and actual compiled controls preserve seven lifecycle/failure scenarios. Each
+repeated template performs the same 48 writes with preparations reduced from 48 to 3.
+The separate native compiled smoke passes all sixteen operations and seven raw comparisons.
+First failures and raw results are [retained](fixtures/loredock-bounded-analysis-writes/README.md).
+This does not qualify large-project memory or repair Task 110. Next
+[Task 113](../tasks/113-loredock-native-compiled-upgrade.md) verifies native saved history
+across the genuine prior/current compiled fingerprints before fresh resource qualification.
+PR #115 head `d356a8c` passed push 41889556318 and pull-request 41889584190 CI
+(805 tests), then merged as identical-tree `52be0ed`.
+
 ## Task 111 — Native replacement audit identifies three repeated writes
 
 The [bounded compiled diagnostic](loredock/NATIVE_WORKER_OWNERSHIP.md) observes forty
