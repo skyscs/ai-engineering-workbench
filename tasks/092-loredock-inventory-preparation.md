@@ -1,6 +1,6 @@
 # Task 092 — Audit inventory replacement preparation
 
-Status: audited and locally verified, 2026-11-04; exact-head CI pending.
+Status: audit completed and locally verified, 2026-11-04; merge requires both exact-head CI events.
 
 Task 091 passes complete content but fails reopened-history RSS. The failing worker
 already exceeds RSS before history, after its two inventory replacements. Endpoints
@@ -57,3 +57,9 @@ Full checks pass 569 tests, strict typechecks and builds; the corrected actual a
 passes. All first outcomes and exact inputs/receipt/counts are
 [retained](../docs/fixtures/loredock-inventory-preparation/README.md). Complete source,
 diff, reference and hash review precedes exact-head CI and merge.
+
+PR #95 subsequently merged as identical-tree `70f6100` after corrected exact head
+`d97db4e` passed push 41749820794 and pull-request 41749828294 CI (569 tests).
+Its tiny CI test now separates functional success from resource rejection; no
+measured implementation or frozen resource outcome changed. This branch includes
+that accepted merge, and all 410 baseline files still match the audit's inputs.

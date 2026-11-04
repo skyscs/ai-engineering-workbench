@@ -17,8 +17,11 @@ Full checks pass 569 tests, strict types and builds. No resource family is rerun
 optimization implemented. Next prove that one worker-scoped candidate independently,
 then require fresh complete uninstrumented resource qualification.
 
-See [Task 092](../tasks/092-loredock-inventory-preparation.md); final-head CI and merge
-are pending. Task 091's failed resource result remains unchanged.
+PR #95 merged as identical-tree `70f6100` after `d97db4e` passed push 41749820794
+and pull-request 41749828294 CI. Its first CI failure and corrected functional-test
+contract are retained; the resource result remains failed. See
+[Task 092](../tasks/092-loredock-inventory-preparation.md). Both final-head CI events
+are required before merging this audit.
 
 ## Task 091 — Prepared qualification retains one history RSS failure
 

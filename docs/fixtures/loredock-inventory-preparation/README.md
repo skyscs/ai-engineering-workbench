@@ -35,3 +35,8 @@ The [source/count decision](../../loredock/INVENTORY_PREPARATION_AUDIT.md) selec
 next candidate: reuse prepared read statements for one asynchronous inventory worker,
 keeping fresh execution, original validation, writes and lifecycle semantics. No
 optimization is implemented here, and the source of residual RSS remains unknown.
+
+PR #95 subsequently passed both corrected exact-head CI events (41749820794 /
+41749828294 at `d97db4e`) and merged as identical-tree `70f6100`. Its ordinary test
+separates functional and resource outcomes without changing the measured code or
+failed large qualification. This audit still requires its own final-head CI events.
