@@ -3,7 +3,7 @@ import path from 'node:path';
 import type { CatalogStore } from './store.js';
 import { OperationBudget } from './operation-budget.js';
 import { decodeNativeReceipt } from './native-receipt.js';
-import { hex, requireReceipt, uuid } from './native-receipt-json.js';
+import { hex, receiptContext, requireReceipt, uuid, type ReceiptLimits } from './native-receipt-json.js';
 import { ReceiptLayout, readBounded, storageHook, storageLimits, missing, NativeStorageCleanupError, type NativeStorageOptions } from './native-receipt-files.js';
 
 /** Owned by CatalogStore. These internal byte operations do not authorize source text. */
@@ -20,9 +20,10 @@ export class NativeReceiptStore {
   }
   private check() { requireReceipt(!this.closed, 'CLOSED_RECEIPT_STORAGE'); requireReceipt(!this.disabled, 'DISABLED_RECEIPT_STORAGE'); }
   private enter() { this.check(); requireReceipt(!this.busy, 'RECEIPT_STORAGE_BUSY'); this.busy = true; }
-  private readFile(name: string, budget: OperationBudget) {
-    budget.check(); const raw = readBounded(path.join(this.layout.root, name), this.limits.bytes, this.options);
-    const decoded = decodeNativeReceipt(raw, this.catalogId, budget, { receiptBytes: this.limits.bytes });
+  private readFile(name: string, budget: OperationBudget, reductions: Partial<ReceiptLimits> = {}) {
+    budget.check(); const maximum = Math.min(this.limits.bytes, reductions.receiptBytes ?? this.limits.bytes);
+    const raw = readBounded(path.join(this.layout.root, name), maximum, this.options);
+    const decoded = decodeNativeReceipt(raw, this.catalogId, budget, { ...reductions, receiptBytes: maximum });
     requireReceipt(name === decoded.receipt.receiptHash + '.json'); budget.check(); return decoded;
   }
   private maintenanceRead(name: string) {
@@ -36,25 +37,32 @@ export class NativeReceiptStore {
       requireReceipt(stat.isFile() && stat.dev === expected.dev && stat.ino === expected.ino, 'RECEIPT_FILE_CHANGED'); }
     unlinkSync(path.join(this.layout.root, name));
   }
-  read(id: string, budget: OperationBudget) {
+  read(id: string, budget: OperationBudget, reductions?: Partial<ReceiptLimits>) {
     this.enter(); try {
       requireReceipt(budget instanceof OperationBudget, 'INVALID_CAPTURE_BUDGET'); requireReceipt(hex(id), 'INVALID_RECEIPT_ID');
+      const { limits } = receiptContext(budget, reductions);
       budget.check(); const names = this.layout.inspect(); budget.charge('receipt', names.length);
-      requireReceipt(names.includes(id + '.json'), 'RECEIPT_NOT_FOUND'); return this.readFile(id + '.json', budget);
+      requireReceipt(names.includes(id + '.json'), 'RECEIPT_NOT_FOUND'); return this.readFile(id + '.json', budget, limits);
     } finally { this.busy = false; }
   }
-  publish(input: Uint8Array, budget: OperationBudget, guard: () => unknown) {
+  publish(input: Uint8Array, budget: OperationBudget, guard: () => unknown, complete?: () => unknown) {
     this.enter(); let pending = false, created = false, fd: number | undefined, name = '', owned: { dev: number; ino: number } | undefined;
     const check = () => { this.check(); requireReceipt(budget instanceof OperationBudget, 'INVALID_CAPTURE_BUDGET');
       budget.check(); requireReceipt(typeof guard === 'function', 'INVALID_RECEIPT_GUARD');
       const result = guard(); requireReceipt(!(result !== null && (typeof result === 'object' || typeof result === 'function') && 'then' in result && result.then), 'INVALID_RECEIPT_GUARD');
       this.check(); budget.check(); };
+    // Releasing the source transaction belongs to the same rollback boundary as
+    // publication. A late guard/deadline failure removes only our newly linked file.
+    const finish = () => { check();
+      requireReceipt(complete === undefined || typeof complete === 'function', 'INVALID_RECEIPT_GUARD');
+      const result = complete?.(); requireReceipt(!(result !== null && (typeof result === 'object' || typeof result === 'function') && 'then' in result && result.then), 'INVALID_RECEIPT_GUARD');
+      check(); };
     try {
       check(); const decoded = decodeNativeReceipt(input, this.catalogId, budget, { receiptBytes: this.limits.bytes }); name = decoded.receipt.receiptHash + '.json';
       const size = Buffer.byteLength(decoded.serialized);
       const names = this.layout.inspect(); budget.charge('receipt', names.length); check();
       if (names.includes(name)) {
-        requireReceipt(this.readFile(name, budget).serialized === decoded.serialized); check();
+        requireReceipt(this.readFile(name, budget).serialized === decoded.serialized); finish();
         return { receiptHash: decoded.receipt.receiptHash, created: false, bytes: size };
       }
       requireReceipt(names.length < this.limits.records, 'CAPTURE_STORAGE_FULL'); this.layout.create(); check();
@@ -66,7 +74,7 @@ export class NativeReceiptStore {
       catch (error) { if ((error as NodeJS.ErrnoException).code !== 'EEXIST') throw error;
         requireReceipt(this.readFile(name, budget).serialized === decoded.serialized); }
       storageHook(this.options, 'linked', name); check(); this.layout.inspect(true);
-      this.remove('.pending', owned); pending = false; this.layout.sync(); check();
+      this.remove('.pending', owned); pending = false; this.layout.sync(); finish();
       return { receiptHash: decoded.receipt.receiptHash, created, bytes: size };
     } catch (error) {
       try {

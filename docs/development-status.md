@@ -1,5 +1,27 @@
 # Development status
 
+## Task 107 — Complete native capture and authorized history
+
+The [internal service](loredock/NATIVE_CAPTURE_SERVICE.md) shares one actual operation
+budget through path derivation, original validation and guarded publication. History
+rechecks all saved sources and originals, including undisplayed support, and returns
+exact recorded content after eviction/restart without fact/path derivation. Cancellation,
+stop, shared ownership, policy fencing and revocation are covered. Source-guard release
+and final deadline checks remain inside the rollback boundary for newly created files.
+
+The final strict check passes **781 tests** and builds; 55 focused storage/service
+cases pass before five further history-cancellation cases are added in final review.
+The compiled smoke preserves a 23,808-byte record through restart and two inventory
+replacements, denies policy-fenced text and purges on revocation. Ten logs and source
+hashes are [retained](fixtures/loredock-native-capture-history/README.md); no failures,
+model calls, fingerprint changes or frozen-family reruns occurred.
+
+Next [Task 108](../tasks/108-loredock-native-independent-assessment.md) implements
+independent offline assessment of actual native outputs. Final compiled qualification
+and public consumers follow separately; no resource, semantic or L5 claim follows.
+PR #110 head `7a3a170` passed push 41843208484 and pull-request 41843220253 CI
+(741 tests), then merged as identical-tree `e638163`.
+
 ## Task 106 — Native receipt storage participates in source purge and recovery
 
 CatalogStore now owns [bounded immutable native files](loredock/NATIVE_CAPTURE_OWNERSHIP.md)

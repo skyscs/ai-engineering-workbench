@@ -422,6 +422,11 @@ tests/builds and a compiled publication/restart/revocation smoke. Next
 [Task 107](tasks/107-loredock-native-capture-history.md) connects the actual async
 capture/history authorization boundary before independent assessment and the unchanged
 final compiled qualification gates.
+[Task 107](tasks/107-loredock-native-capture-history.md) completes the internal authorized
+service, including shared budgets, complete source/original checks, guarded publication,
+stop/cancellation and exact evicted history. Next
+[Task 108](tasks/108-loredock-native-independent-assessment.md) implements offline native
+assessment before the final compiled worker/coordinator and fresh qualification.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
