@@ -145,7 +145,7 @@ five `budgetReferenceN` HTTP declarations and corresponding JSON routes for the 
 derived budget; or 24 numbered Markdown passages, each with 1,980 quote characters, for
 complete-prompt sizing. Quotes count once in original UTF-8 text and twice in encoded JSON.
 Actual corrections are saved against the first eight existing legacy edges with a bounded
-1,920-byte unverified statement; the actual note selector retains the fitting subset.
+1,921-byte unverified statement; the actual note selector retains the fitting subset.
 Padding admission starts from actual baseline originals without padding, then considers
 whole padding originals ordered by path/line. Keep each iff 30 spans, 64 KiB source text
 and the actual 96 KiB v9 prompt fit, recomputing actual legacy comparisons and saved-note
@@ -168,3 +168,9 @@ negative independent-assessment check for lost denominators, work/mutation count
 changed support/qualifications/dependencies, external attempts and history rederivation.
 All first development failures remain retained. The final frozen library attempt is still
 a distinct one-run experiment; development success cannot substitute for its outcome.
+
+The assessor also uses the existing independent native receipt codec and original-source
+validator. Every accepted question path is checked against separately retained setup
+revisions, file bytes, blob IDs and full dependency metadata. Baseline originals are
+compared directly with the declared source text. Before/after source file hashes include
+Git state; read counters alone are not a substitute for unchanged owned source files.

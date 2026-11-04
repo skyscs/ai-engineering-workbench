@@ -24,6 +24,8 @@ async function observed(state, candidate, question, request, { signal, hook } = 
   const exec = state.store.db.exec, connect = net.Socket.prototype.connect, fetch = globalThis.fetch;
   state.store.db.exec = function (sql, ...args) { if (!/^\s*(SELECT|PRAGMA)\b/i.test(sql)) sqlMutations++; return exec.call(this, sql, ...args); };
   const counters = () => ({ ...state.counters(), sqlMutations });
+  const sourceFolder = path.join(path.dirname(state.store.directory), 'sources');
+  const sourceHashesBefore = await dataHashes(sourceFolder);
   const before = counters(), legacyBefore = state.legacy(); let result = null, error = null;
   const injectedAction = async action => {
     const start = counters(); await injectionScope.run({ fixtureMutation: true }, action); const changes = delta(counters(), start);
@@ -37,7 +39,7 @@ async function observed(state, candidate, question, request, { signal, hook } = 
   finally { state.store.db.exec = exec; net.Socket.prototype.connect = connect; globalThis.fetch = fetch; candidate.options.checkpoint = originalCheckpoint; }
   const metrics = candidate.observation;
   return { result, error, metrics, nativeReads: metrics?.nativeReads ?? 0, before, after: counters(), injected, injections,
-    legacyBefore, legacyAfter: state.legacy(), networkAttempts };
+    legacyBefore, legacyAfter: state.legacy(), networkAttempts, sourceHashesBefore, sourceHashesAfter: await dataHashes(sourceFolder) };
 }
 async function analyze(state, buildId, name) { const id = state.analysis.start(name, buildId).id; await state.analysis.idle(); return id; }
 const index = async (state, name) => { const p = state.catalog.state(), id = state.catalog.start(name, p.sourceSetVersion, p.policyVersion).id; await state.catalog.idle(); return id; };
@@ -49,10 +51,12 @@ export async function runMatrix(directory, corpusFactory, oracle, ledger) {
   const initialize = async (name, corpus, options) => {
     const prepared = await prepareState(path.join(directory, name), corpus, options);
     const { state, buildId, inventoryId } = prepared;
-    await raw(name + '-setup', { catalogId: state.store.receipts.catalogId, buildId, inventoryId, revisions: prepared.revisions,
+    prepared.metadata = { catalogId: state.store.receipts.catalogId, buildId, inventoryId, revisions: prepared.revisions,
       files: state.store.one('SELECT count(*) n FROM files WHERE buildId=?', buildId).n,
       sources: state.store.buildSources(buildId), inventory: inventoryId ? state.analysis.get(inventoryId) : null,
-      sourceHashes: await dataHashes(path.join(prepared.root, 'sources')) });
+      sourceHashes: await dataHashes(path.join(prepared.root, 'sources')),
+      manifestHash: inventoryId ? state.analysis.snapshot(inventoryId).manifestHash : null };
+    prepared.corpus = corpus; await raw(name + '-setup', prepared.metadata);
     return prepared;
   };
   try {
@@ -65,7 +69,7 @@ export async function runMatrix(directory, corpusFactory, oracle, ledger) {
         const question = oracle.cases.find(row => 'question.' + row.id === item.id), prepared = preparedVariants.get(item.variant);
         if (prepared.error) { await record({ id: item.id, setupError: prepared.error }); continue; }
         const { state, buildId } = prepared, candidate = new NativeQuestionContext(state.analysis);
-        const value = { id: item.id };
+        const value = { id: item.id, sourceInput: { corpus: prepared.corpus, metadata: prepared.metadata } };
         try {
           // The baseline/default are independent warmed controls, never candidate choices.
           try { value.baseline = retrieveAnswerContext(state.catalog, question.question, buildId); } catch (error) { value.baselineError = errorRecord(error); }

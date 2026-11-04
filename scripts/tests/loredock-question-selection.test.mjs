@@ -72,7 +72,7 @@ test('ordinary 44-case matrix retains identities, unchanged witnesses and refuse
   const raw = JSON.parse(await readFile(path.join(directory, 'run/matrix-raw.json'), 'utf8'));
   const ledger = JSON.parse(await readFile(path.join(root, 'fixtures/loredock-native-question-context-run/protocol.json'), 'utf8'));
   const { oracle } = ordinaryMatrixInputs();
-  for (const mutation of ['missing-case', 'work', 'write', 'support', 'reason', 'witness', 'dependency', 'external']) {
+  for (const mutation of ['missing-case', 'work', 'write', 'support', 'reason', 'witness', 'dependency', 'external', 'source-text', 'source-write']) {
     const records = structuredClone(raw.records), op = records[0].operation;
     if (mutation === 'missing-case') records.pop();
     if (mutation === 'work') op.metrics.budget.totalWork--;
@@ -82,6 +82,8 @@ test('ordinary 44-case matrix retains identities, unchanged witnesses and refuse
     if (mutation === 'witness') records.find(row => row.id === 'witness.inventory-replaced').witnessAfter.factReads++;
     if (mutation === 'dependency') op.result.dependencies.pop();
     if (mutation === 'external') op.networkAttempts++;
+    if (mutation === 'source-text') records[0].sourceInput.corpus['a-permit-ui']['ui/request.ts'] += '// Altered source.\n';
+    if (mutation === 'source-write') delete op.sourceHashesAfter[Object.keys(op.sourceHashesAfter)[0]];
     const assessment = assessMatrix(ledger, records, oracle); assert.equal(assessment.pass, false, mutation); assert.equal(assessment.prospective, 44);
   }
   passed = true;

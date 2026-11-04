@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
+import { decodeReceipt } from '../loredock-native-assessment/codec.mjs';
+import { validateSupport } from '../loredock-qualification-assessment/content.mjs';
 const hash = text => createHash('sha256').update(text).digest('hex');
 const bytes = value => Buffer.byteLength(typeof value === 'string' ? value : JSON.stringify(value));
 const check = action => { try { action(); return { state: 'pass' }; } catch (error) { return { state: 'fail', message: error.message }; } };
@@ -10,7 +12,7 @@ const pick = row => Object.fromEntries(originalKeys.map(key => [key, row[key]]))
 // candidate selector, compactor, preparation owner or oracle-dependent fixture builder.
 export function assertCompact(result) {
   const { context, compact, projection } = result, item = compact.item; assert(item);
-  const receipt = JSON.parse(result.receipt), graph = projection.graph;
+  const { receipt } = decodeReceipt(Buffer.from(result.receipt), result.catalogId), graph = projection.graph;
   assert.equal(receipt.projectionJson, JSON.stringify(projection)); assert.equal(receipt.catalogId, result.catalogId);
   assert.equal(item.receiptHash, receipt.receiptHash); assert.equal(item.projectionId, projection.projectionId);
   assert.equal(item.lexicalInputHash, context.inputHash); assert.equal(hash(JSON.stringify(item)), compact.itemHash);
@@ -50,7 +52,8 @@ function metrics(operation) {
   for (const key of ['gitCalls', 'writeCalls', 'changedRows', 'sqlMutations'])
     assert.equal(operation.after[key] - operation.before[key], operation.injected[key] ?? 0, 'Unexpected operation mutation: ' + key);
   assert.equal(operation.legacyAfter, operation.legacyBefore); assert.equal(operation.networkAttempts, 0);
-  assert(operation.nativeReads <= 1);
+  assert(operation.nativeReads <= 1); assert.equal(operation.nativeReads, m.nativeReads);
+  assert.deepEqual(operation.sourceHashesAfter, operation.sourceHashesBefore);
 }
 const tuple = node => [node.sourceName, node.path, node.kind, node.label];
 function requiredGraph(graph, expected) {
@@ -64,7 +67,15 @@ export function assessQuestion(raw, question, expected) {
   const integrity = check(() => { assert(!operation.error, JSON.stringify(operation.error)); metrics(operation);
     const result = operation.result; assert.deepEqual(result.context, raw.baseline); assert.deepEqual(result.baseline, raw.baseline);
     const { inputHash, ...content } = result.context; assert.equal(hash(JSON.stringify(content)), inputHash);
-    if (result.compact.item) assertCompact(result);
+    if (result.compact.item) { assertCompact(result);
+      validateSupport(decodeReceipt(Buffer.from(result.receipt), result.catalogId), raw.sourceInput.corpus, raw.sourceInput.metadata); }
+    for (const span of result.context.spans) {
+      const source = raw.sourceInput.corpus[span.sourceName]?.[span.path]; assert.equal(typeof source, 'string');
+      assert.equal(span.contentHash, hash(source)); assert.equal(span.revision, raw.sourceInput.metadata.revisions[span.sourceName]);
+      assert.equal(span.text, source.replaceAll('\r\n', '\n').split('\n').slice(span.startLine - 1, span.endLine).join('\n'));
+      assert.equal(span.spanHash, hash(span.text));
+      assert.equal(span.sourceId, raw.sourceInput.metadata.sources.find(row => row.name === span.sourceName)?.sourceId);
+    }
     assert.equal(result.dependencies.length, expected.allSourceDependencies);
     assert.equal(result.context.deploymentCoherence, 'unknown'); });
   const relevance = check(() => {
