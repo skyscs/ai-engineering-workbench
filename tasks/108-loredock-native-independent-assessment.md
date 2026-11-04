@@ -1,6 +1,9 @@
 # Task 108 — Assess native results independently
 
-Status: implementation started, 2026-11-04.
+Status: locally verified, 2026-11-04.
+
+Verification: ten focused cases/subcases, 791 strict tests/builds, and a compiled
+complete/incomplete native lifecycle smoke. [Retained evidence](../docs/fixtures/loredock-native-independent-assessment/README.md).
 
 Implement a bounded offline assessment boundary for the actual native v2 projection,
 native catalog-bound receipt and authorized recorded-history output. It must not

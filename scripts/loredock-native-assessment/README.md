@@ -25,7 +25,8 @@ membership, same-file original ranges and dependency vectors have explicit check
 
 The unchanged historical `content.mjs` helpers compare original text, full-file SHA-256,
 Git blob IDs and source pins with independently expected source files, and apply the
-fixture's required nodes, terminal kind, omissions and literal topic. Their pure
+fixture's required nodes, terminal kind, omissions and literal topic. Source policy,
+registry and build source-set versions are compared with separately pinned metadata. Their pure
 legacy codec/hash imports do not invoke a decoder or application service. The new
 native decoder does not use the production codec as an oracle. This is separate
 implementation and authored expected data, not independent human review.

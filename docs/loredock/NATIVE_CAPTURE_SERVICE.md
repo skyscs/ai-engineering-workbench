@@ -58,5 +58,6 @@ its final scope/epoch/budget checks and output occur in one synchronous continua
 Counters describe logical charged work, not CPU instructions or memory attribution.
 This functional verification is not final composition/resource qualification, dense
 project acceptance, runtime coherence, independent semantic acceptance or L5 readiness.
-Independent native assessment precedes the fresh compiled qualification. All sixteen
+The [independent native assessor](../../scripts/loredock-native-assessment/README.md)
+now checks functional outputs. The fresh compiled qualification follows separately. All sixteen
 complete operations, seven cross-process comparisons and numerical gates remain.

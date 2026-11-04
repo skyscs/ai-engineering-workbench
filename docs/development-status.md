@@ -1,5 +1,27 @@
 # Development status
 
+## Task 108 — Native results have an independent offline assessment boundary
+
+The [offline assessor](../scripts/loredock-native-assessment/README.md) validates native
+schemas/identities, full original support and complete dependencies against separately
+pinned sources. Integrity, shape, source support, usefulness, exact history and raw
+comparison remain separate; missing inputs cannot shrink required denominators. The
+assessor imports no production decoder/service and grants no source authorization.
+
+Ten focused cases/subcases and **791 strict tests/builds** pass. The compiled service
+produces complete and incomplete four-source cases, each with eight functional operations
+and exact history after eviction/restart. The incomplete consumer fails the complete
+oracle while preserving its explicit gap. Nine command logs and all raw compiled
+artifacts are [retained](fixtures/loredock-native-independent-assessment/README.md).
+Production sources, old helpers and measured families are unchanged; no model calls.
+
+Next [Task 109](../tasks/109-loredock-native-compiled-qualification-driver.md) adds the
+native compiled worker/coordinator and complete path/lifecycle/resource assessment
+before a fresh final family is frozen. These functional cases do not establish resource,
+cross-process, semantic or L5 acceptance. Separate implementation is not human review.
+PR #111 head `3db5c42` passed push 41850505087 and pull-request 41850544928 CI
+(781 tests), then merged as identical-tree `7901b5e`.
+
 ## Task 107 — Complete native capture and authorized history
 
 The [internal service](loredock/NATIVE_CAPTURE_SERVICE.md) shares one actual operation
