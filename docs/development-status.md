@@ -14,6 +14,8 @@ Production code and all exhausted families are unchanged; no model/corporate inp
 Next [Task 112](../tasks/112-loredock-bounded-analysis-writes.md) scopes exactly three
 write statements with bounded binding retention, independent controls and unchanged
 transactions/source validation. Consumer migration still requires a new resource gate.
+PR #114 head `0d5483e` passed push 41888194002 and pull-request 41888242331 CI
+(802 tests), then merged as identical-tree `99f36ec`.
 
 ## Task 110 — Final native composition retains one failed memory row
 
