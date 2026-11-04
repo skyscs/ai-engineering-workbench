@@ -21,6 +21,7 @@ export class NativeQuestionContext {
     let finish, paths, budget; const done = new Promise(resolve => { finish = resolve; });
     owners.add(store); this.active = { controller, done };
     const began = performance.now(), samples = [], phases = {}, lexical = { sqlRows: 0, originalBytes: 0, originalReads: 0 };
+    let nativeReads = 0;
     let phase = 'start', last = began, maxIntervalMs = 0, selection = null;
     const sample = () => { const now = performance.now(); maxIntervalMs = Math.max(maxIntervalMs, now - last); last = now;
       const { rss, heapUsed } = process.memoryUsage(); samples.push({ elapsedMs: now - began, rss, heapUsed }); };
@@ -60,7 +61,7 @@ export class NativeQuestionContext {
       } });
       let projection = null, encoded = null, compact = { item: null, reason: null };
       try {
-        phase = 'native'; projection = await paths.read(request, 'paths', combined, budget);
+        phase = 'native'; nativeReads++; projection = await paths.read(request, 'paths', combined, budget);
         if (projection.status !== 'available') compact = { item: null, reason: projection.reason.code };
         else {
           await work.step('projection'); const projectionJson = JSON.stringify(projection);
@@ -97,7 +98,7 @@ export class NativeQuestionContext {
           receiptHash: encoded?.receipt.receiptHash ?? null, itemHash: compact.itemHash ?? null, question: context.question, dependencies })) };
     } finally {
       clearInterval(timer); sample(); budget?.close();
-      this.observation = { outerWallMs: performance.now() - began, maxIntervalMs, samples, lexical, phases, budget: budget?.stats() ?? null,
+      this.observation = { nativeReads, outerWallMs: performance.now() - began, maxIntervalMs, samples, lexical, phases, budget: budget?.stats() ?? null,
         maxRss: Math.max(...samples.map(row => row.rss)), maxHeapUsed: Math.max(...samples.map(row => row.heapUsed)) };
       // read() has already released the actual path owner, including on exceptional exits.
       // stop() is synchronous up to that completed owner's wait; no caller can reuse this instance early.
