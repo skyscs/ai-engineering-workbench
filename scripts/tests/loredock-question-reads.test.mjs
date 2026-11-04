@@ -97,7 +97,7 @@ test('current catalog keeps archived store compatibility and evidence failures p
   assert(oldContext.spans.length > 0);
   for (const span of oldContext.spans) assert.equal(old.catalog.evidence(span.id).text, span.text);
   assert.throws(() => old.catalog.evidence('missing'), code('NOT_FOUND'));
-  const { store, catalog } = fixture, id = retrieveAnswerContext(catalog, question, fixture.buildId).spans[0].id;
+  const { store, catalog } = fixture, id = retrieveAnswerContext(catalog, question, fixture.buildId).spans.find(span => Buffer.byteLength(span.text) > 100).id;
   const original = catalog.evidence(id), budget = new services.OperationBudget(), account = new LexicalReadAccount(budget);
   store.withLexicalReads(account, () => { assert.equal(catalog.evidence(id).text, original.text); assert.throws(() => catalog.evidence('missing'), code('NOT_FOUND')); });
   assert.equal(account.stats().originalReads, 1); assert.equal(account.stats().originalBytes, Buffer.byteLength(original.text));
