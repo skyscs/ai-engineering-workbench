@@ -376,6 +376,11 @@ accounting. Integrate representation into v1 separately from a versioned produce
 receipt migration; preserve explicit historical test controls and qualify the final
 compiled composition. Next [Task 099](tasks/099-loredock-typed-resource-primitives.md)
 implements only three typed internal resource primitives without wiring services.
+[Task 099](tasks/099-loredock-typed-resource-primitives.md) implements those helpers
+with twelve direct behavioral comparisons and 609 full-check tests/builds. All 415
+measured dependencies remain unchanged. Next
+[Task 100](tasks/100-loredock-independent-integration-reference.md) preserves the
+minimal portable independent store/analysis test control before production wiring.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
