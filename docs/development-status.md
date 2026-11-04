@@ -16,6 +16,8 @@ a design; no application, schema, prompt, runtime or UI change is implemented he
 
 PR #124 head `647efad` passed push 41926249765 and pull-request 41926293151 (869 tests)
 and merged as identical-tree `4bbc0c1`. Task 120's 44-case library family remains exhausted.
+[Static review](fixtures/loredock-prepared-question-lifecycle/README.md) verifies 21
+unchanged implementation sources and 739 documentation links, with no evaluation/model run.
 Task 121 awaits its own exact-head CI. [Task 122](../tasks/122-loredock-question-read-selection-seams.md)
 implements only actual scoped lexical accounting and a typed complete-resolution selector
 with public/legacy parity before any preparation-owner or answer consumer integration.

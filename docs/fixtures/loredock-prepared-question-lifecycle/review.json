@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "prepared-question-lifecycle-source-audit/1",
+  "date": "2026-11-04",
+  "acceptedParent": {
+    "pr": 124,
+    "head": "647efade506e3fc02433a57cb4eac738476a0d91",
+    "merge": "4bbc0c1cad81615427526501a9721a7ba6e874dd",
+    "push": 41926249765,
+    "pullRequest": 41926293151,
+    "tests": 869,
+    "treeEqualityVerified": true
+  },
+  "sourceAudit": {
+    "apps/loredock/src/answers.ts": "36b1421ba4682f17cf052bd16b0db4655ee8c23e0c3bcf3fabc41f9126f22d39",
+    "apps/loredock/src/answer-context.ts": "2553c8f0d0de75687f83f2419fb52c590880615aca1d25d0725f7e479be672cb",
+    "apps/loredock/src/answer-review.ts": "60adef0485a2ec4c329ab8a055f1136032a905ab85de349e121bd3a0a8d7a7b6",
+    "apps/loredock/src/answer-interfaces.ts": "74bdab01c1cba0f3624ad33c9d6367b801a95fb423553bff3800ea383337fa2d",
+    "apps/loredock/src/answer-prompt.ts": "7afb00937c71a6bbf3f6f3d18aceeb36f77e5b2c6f181d78c1273b0add16adc8",
+    "apps/loredock/src/catalog.ts": "04eb7036f8294d74413d82a0243fbfda8ba2cd055f16100da184954bd891e5fe",
+    "apps/loredock/src/store.ts": "6851bd45f8b459ee3c690aff49d478db63e09b43290b499d92ccff8a4f3ce4d2",
+    "apps/loredock/src/code-paths-v2.ts": "bc4798d29630a78025bc0ef24d5d8fa860e25ef1072198c44b59562b8fefed69",
+    "apps/loredock/src/code-paths-v2-work.ts": "19300e54ddb4bc9859d284d6d873f76f743e74f0c057e2c8fe08c9a86cc83800",
+    "apps/loredock/src/code-paths-work.ts": "e5f117d0e2c19876eac8a28de620f1d5abbd3d3fe298900389370bf5f86d28a7",
+    "apps/loredock/src/operation-budget.ts": "ec0d3e6dcc0894b42a97d370caabffb83143784ad170b5bb26e39b44df553296",
+    "apps/loredock/src/native-capture-work.ts": "3c5695a08035c82d88993f7b0b687f335df20ff38db2580d984128dc2ce02f23",
+    "apps/loredock/src/native-capture.ts": "b3488cc5a44ef86ea1f111a5131bcb64db548080c05d9978210bde5492f3125f",
+    "apps/loredock/src/code-analysis.ts": "82bb3992fd6ff87798d76c130bdf07b420b91789bc7a13d8eb6ee344eb4707f5",
+    "apps/loredock/src/code-analysis-follow.ts": "6bcf81dcb92d0fe254a34e4419d5f4173ad0ab2148d73790725e28e5ebfaf844",
+    "apps/loredock/src/index.ts": "69a1e84afbe4b467f1960ec4013050775d5f56755fd9871818937c01e1aaf295",
+    "apps/loredock/src/app.ts": "c8ff807c0a5ad7148f86a1c8fa83d7c36f10351953e0ec10dbdb9cab9b86caeb",
+    "apps/loredock-web/src/AnswerPanel.tsx": "bf3c43a84446b2c71c418bd73f71f7af6869d125326fbbb650359c482cbe68a7",
+    "scripts/loredock-native-question-context/prepare.mjs": "db9f3950e01962ab45f76ec3675ff5be789efae1bcfb32c63676d9b7892f7319",
+    "scripts/loredock-native-question-context/compact.mjs": "28c72b471b5e724f0602b5edbd77c8464f74fa24bae775ee369a12a38d6e75af",
+    "scripts/loredock-native-question-context/witness.mjs": "ac7c300e57cee10f61e997558d251962461633a288e063ad7f312bea8490c969"
+  },
+  "localDocumentationLinks": 739,
+  "productionChanges": false,
+  "schemaImplemented": false,
+  "reservedEvaluationsRun": 0,
+  "modelAttempts": 0,
+  "corporateSources": false,
+  "review": [
+    "Ephemeral one-slot preview avoids user-saved-path capacity and durable orphan previews.",
+    "Start promotes trusted pre-serialized bytes atomically; actual witness validation precedes runtime preparation/dispatch.",
+    "Source/published-build/review fences differ from allowed code-inventory eviction.",
+    "Scoped actual lexical accounting replaces fixture method wrapping; native phases cannot be double charged.",
+    "Active background analysis and current whole-lexical work costs are explicit integration risks.",
+    "Unknown/missing native witnesses cannot fall through to legacy answer validation.",
+    "Publication epochs exclude their own authorized writes; consumers stop before producers.",
+    "Quotas/TTL and schema 11 are prospective contracts only; old bytes and old failed gates remain unchanged."
+  ],
+  "nextTask": 122,
+  "staticLog": {
+    "file": "static-first.log.gz",
+    "exit": 0,
+    "bytes": 141,
+    "sha256": "34fbac868739cba4d3134f7f9ad890b5a6ad63540468c0d81a509933cab7fdc3",
+    "archiveSha256": "f20ed520ba9e5f0abb466edc97355d8d128975b2cb5502a057e2896242558c18"
+  },
+  "documents": {
+    "docs/loredock/PREPARED_QUESTION_LIFECYCLE.md": "2e553d5a7180ba1f4e1652507e487738470e34ace32acc12323994d821ee2fd7",
+    "docs/decisions/0059-loredock-prepared-question-lifecycle.md": "8670f8e4dd90ab1da8f9fc20aab65e5143d34e962fc9453183a638d96f900590",
+    "tasks/121-loredock-prepared-question-lifecycle.md": "e97a887d29225f5791382b92c9206c7819af713ff71bfe164487915c2c01749a",
+    "tasks/122-loredock-question-read-selection-seams.md": "ef0c35e2d0e16ceecfdd20dc863880ad549737f00f5e866dd11ae4fa015878aa"
+  }
+}

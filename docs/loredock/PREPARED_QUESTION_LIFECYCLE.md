@@ -102,6 +102,11 @@ compact serialization, prompt sizing and handoff. The existing 30 spans / 64 KiB
 text, six derived items / 8 KiB and 96 KiB complete prompt remain unchanged. Preserve
 original order, source vector, selected engineer notes and legacy comparison priority.
 The ready record is produced synchronously after the last asynchronous hook and all fences.
+The old lexical path also derives legacy clues from up to 100 documents. Charging that
+previously unmetered work may reject larger real contexts even when the native read alone
+fits. The tiny offline pass does not resolve this risk: qualify the complete production
+composition before enablement, preserving failure and phase costs without cap resets,
+hidden retries or an unmeasured source-only substitute.
 
 Production lexical accounting needs an internal scope tied to the exact CatalogStore and
 supplied budget. Count actual one/all returned rows and actual Catalog.evidence UTF-8 bytes
