@@ -66,6 +66,7 @@ export function auditHistory(directory) {
         coverage:'SQL foreign keys, current pointer and reported build metadata only; embedded JSON, FTS postings and transitive dependencies are not validated.'},
       generations:{total,reported:items.length,omitted:total-items.length,complete:total===items.length,limit:historyLimits.generations,items},
       limits:[
+        'Native receipt files, copied originals and receipt dependencies are excluded from this source-SQLite report.',
         'Direct references and logical payload counts do not establish deletion eligibility or reclaimable disk space.',
         'Literal and question FTS statistics span generations. Removing historical documents can change current ranking and selected context.',
         'Payload byte counters overlap SQLite allocation; do not add them to page/disk totals.',

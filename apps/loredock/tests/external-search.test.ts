@@ -74,7 +74,7 @@ test('schema 8 migration preserves every token, rowid, rank setting, original, h
   const originals = state.store.all<{id: string}>('SELECT id FROM spans').map(row => state.catalog.evidence(row.id));
   const settings = state.store.all('SELECT * FROM search_config ORDER BY k'), inventory = state.analysis.get(run.id), review = corrections.history(note.id);
   await state.reopen(); const after = literalIndexSnapshot(state.store);
-  assert.equal(state.store.one<{user_version: number}>('PRAGMA user_version')!.user_version, 9);
+  assert.equal(state.store.one<{user_version: number}>('PRAGMA user_version')!.user_version, 10);
   for (const key of ['vocabulary','documents','documentSizes','totals','nonLiteralRecords']) assert.deepEqual(after[key], before[key], key);
   assert.deepEqual(state.store.all('SELECT * FROM search_config ORDER BY k'), settings);
   assert.deepEqual(readQueries(state.catalog, [state.first, state.second]), reads);
@@ -141,7 +141,7 @@ test('invalid legacy content/layout and mid-conversion errors preserve schema 8,
   });
 });
 
-test('empty legacy migration and fresh schema 9 both admit new indexing', async t => {
+test('empty legacy migration and fresh schema 10 both admit new indexing', async t => {
   const fixture = await createLoreDockFixture(); t.after(() => rm(fixture.root, {recursive: true, force: true}));
   for (const legacy of [false, true]) {
     const directory = path.join(fixture.root, `empty-${legacy}`); let store = new CatalogStore(directory);

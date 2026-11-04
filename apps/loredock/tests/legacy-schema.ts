@@ -1,8 +1,14 @@
 import type { CatalogStore } from '../src/store.js';
 import type { DatabaseSync } from 'node:sqlite';
 
+/** Remove schema-10 additions only in empty-native-store owned legacy fixtures. */
+export function removeNativeReceiptSchema(db: DatabaseSync) {
+  db.exec('DROP TABLE IF EXISTS catalog_identity; PRAGMA user_version=9;');
+}
+
 /** Recreate schema-8 literal storage only in owned migration fixtures. */
 export function removeExternalSearchSchema(db: DatabaseSync) {
+  removeNativeReceiptSchema(db);
   const settings = db.prepare("SELECT k,v FROM search_config WHERE k<>'version' ORDER BY k").all();
   db.exec(`BEGIN IMMEDIATE;
     CREATE TABLE legacy_test_content AS SELECT rowid,spanId,text FROM search;

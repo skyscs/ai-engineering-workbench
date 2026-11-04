@@ -39,7 +39,7 @@ export function readStorageSnapshot(directory, read) {
     db.exec('PRAGMA query_only=ON; PRAGMA trusted_schema=OFF; PRAGMA temp_store=MEMORY; PRAGMA busy_timeout=1000; BEGIN;');
     const one = sql => db.prepare(sql).get();
     const version = one('PRAGMA user_version').user_version;
-    if (version !== 8 && version !== 9) throw new Error('Storage accounting requires LoreDock database schema 8 or 9; no migration was attempted.');
+    if (version !== 8 && version !== 9 && version !== 10) throw new Error('Storage accounting requires LoreDock database schema 8, 9 or 10; no migration was attempted.');
     const project = one('SELECT publishedBuildId FROM project WHERE id=1');
     if (!project) throw new Error('The LoreDock project record is missing.');
     const result = read(db, version);
@@ -72,8 +72,8 @@ export function auditStorage(directory) {
       payloads: {
         originals: payload('files', ['raw']), fileMetadata: payload('files', ['metadata']),
         spans: payload('spans', ['text']), literalSearch: {...literalText,
-          contentStorage: version === 9 ? 'shared-original-spans' : 'copied',
-          copiedTextBytes: version === 9 ? 0 : literalText.bytes},
+          contentStorage: version >= 9 ? 'shared-original-spans' : 'copied',
+          copiedTextBytes: version >= 9 ? 0 : literalText.bytes},
         questionSearch: payload('question_search', ['text']),
         codeFacts: payload('code_analysis_files', ['payload']), answerContexts: payload('answer_attempts', ['context']),
         answerResults: payload('answer_attempts', ['result']), engineerNotes: payload('corrections', ['statement','environment','target'])
@@ -105,7 +105,8 @@ export function auditStorage(directory) {
       'Payload bytes are selected UTF-8/BLOB contents inside SQLite allocation. Do not add them to page or disk totals.',
       'Literal-search bytes are logical searchable text; copiedTextBytes excludes shared original spans. Mapping and postings are counted in SQLite allocation.',
       'Payload row counts include records with null content; bytes count only retained content.',
-      'History has no automatic retention limit. This report does not delete, compact, checkpoint, migrate or restart work.',
+      'Native receipt files and their dependency scope are excluded; these are source-SQLite counters only.',
+      'Source history has no automatic retention limit. This report does not delete, compact, checkpoint, migrate or restart work.',
       'A read-only SQLite connection may maintain shared-memory bookkeeping; this is not a forensic disk acquisition.'
     ]};
   function checkNumbers(value) {

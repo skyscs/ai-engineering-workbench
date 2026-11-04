@@ -39,10 +39,10 @@ export function readBounded(file: string, maximum: number, options: NativeStorag
     return buffer.subarray(0, used);
   } finally { closeSync(fd); }
 }
-function entries(folder: string, maximum: number) {
+function entries(folder: string, maximum: number, accept: (name: string) => boolean, errorCode: string) {
   const directory = opendirSync(folder, { bufferSize: 1 }), names: string[] = [];
   try { let item; while ((item = directory.readSync()) !== null) {
-    requireReceipt(names.length < maximum, 'RECEIPT_DIRECTORY_LIMIT'); names.push(item.name);
+    requireReceipt(accept(item.name), errorCode); requireReceipt(names.length < maximum, 'RECEIPT_DIRECTORY_LIMIT'); names.push(item.name);
   } } finally { directory.closeSync(); }
   return names;
 }
@@ -59,13 +59,13 @@ export class ReceiptLayout {
   }
   inspect(allowPending = false) {
     if (!exists(this.parent)) { requireReceipt(!this.identity, 'RECEIPT_DIRECTORY_CHANGED'); return []; }
-    directory(this.parent); const children = entries(this.parent, 1);
+    directory(this.parent); const children = entries(this.parent, 1, name => name === this.catalogId, 'FOREIGN_RECEIPT_DIRECTORY');
     requireReceipt(children.every(name => name === this.catalogId), 'FOREIGN_RECEIPT_DIRECTORY');
     if (!children.length) { requireReceipt(!this.identity, 'RECEIPT_DIRECTORY_CHANGED'); return []; }
     const stat = directory(this.root);
     if (this.identity) requireReceipt(stat.dev === this.identity.dev && stat.ino === this.identity.ino, 'RECEIPT_DIRECTORY_CHANGED');
     else this.identity = { dev: stat.dev, ino: stat.ino };
-    const names = entries(this.root, this.limits.records + 1); let records = 0;
+    const names = entries(this.root, this.limits.records + 1, name => /^[a-f0-9]{64}\.json$/.test(name) || (allowPending && name === '.pending'), 'UNEXPECTED_RECEIPT_FILE'); let records = 0;
     for (const name of names) {
       requireReceipt(/^[a-f0-9]{64}\.json$/.test(name) || (allowPending && name === '.pending'), 'UNEXPECTED_RECEIPT_FILE');
       regularSize(path.join(this.root, name), this.limits.bytes); if (name !== '.pending') records++;
