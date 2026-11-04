@@ -1,0 +1,522 @@
+{
+  "schemaVersion": "task113-native-upgrade-validation/1",
+  "scopeCommit": "9ce171aec65d0869332e464b126e26d7b8d0c7c0",
+  "archiveCommit": "36ff942",
+  "initialRegression": "b29cba1",
+  "pinCorrection": "84daa32",
+  "reviewedHead": "0d1a7ac6bdf189c8c2848d800ac4f429f1c2c0d8",
+  "acceptedParent": {
+    "head": "9ce171aec65d0869332e464b126e26d7b8d0c7c0",
+    "merge": "cb84a4cf4e1f642f02ddebad1c87c1228680b3a2",
+    "push": 41893119641,
+    "pullRequest": 41893196581,
+    "conclusion": "success",
+    "treeEqualityVerified": true
+  },
+  "node": "v22.23.2",
+  "pnpm": "10.15.0",
+  "archiveTests": 3,
+  "fullTests": 817,
+  "upgradePhases": 8,
+  "exactHistories": 6,
+  "expectedRefusals": 11,
+  "priorFingerprint": "582e7b79b510b091ed2b73494b485f495aa8eecd7c6033c7c5588adf0622acdc",
+  "currentFingerprint": "67ff7f67edc7abe7c4739e23764d33a91454556f32e82d1e67b84b6640d9fef2",
+  "priorModules": 37,
+  "currentModules": 38,
+  "commands": [
+    {
+      "command": "install-first",
+      "exitCode": 0,
+      "file": "commands/install-first.log.gz",
+      "rawBytes": 326,
+      "rawSha256": "20ca2a9ae46aff80e3b2019e48b3082cc03fe67b8cf5d2b9bdb7cff6fff100be",
+      "archiveSha256": "0eee18f3640c198ad12fe0eff51af8dab2736c2c968313ae5b787c5555750730"
+    },
+    {
+      "command": "build-first",
+      "exitCode": 0,
+      "file": "commands/build-first.log.gz",
+      "rawBytes": 2354,
+      "rawSha256": "aa8b97fc115ab90d82cfb09eeb4eb2f5457462da83a846ac7bb9a2d9b50c8ac2",
+      "archiveSha256": "b7cb3f8cc9d6b64dee8355293f95c18eb51d7561b8a38b1a34b00bc11a5f8f39"
+    },
+    {
+      "command": "archive-first",
+      "exitCode": 0,
+      "file": "commands/archive-first.log.gz",
+      "rawBytes": 1076,
+      "rawSha256": "bbde258c1e23293d7f0ef5ae6e33397766a5115e8fe7c8608cd2b65301b8d2c5",
+      "archiveSha256": "b74386d356781f1e7b11792ba5d47aaeec7252c1836b9c6221af3d68f8afdc76"
+    },
+    {
+      "command": "upgrade-first",
+      "exitCode": 1,
+      "file": "commands/upgrade-first.log.gz",
+      "rawBytes": 3883,
+      "rawSha256": "4d798da467fc886eb28d596eff1fea020481d18b8569aee63fad2b8783ebc31f",
+      "archiveSha256": "61435357279c4c2a26ea1ff9cff2a0bd0ba6d47e821b88ab8e06cfe3ede19261"
+    },
+    {
+      "command": "upgrade-second",
+      "exitCode": 0,
+      "file": "commands/upgrade-second.log.gz",
+      "rawBytes": 556,
+      "rawSha256": "a83245ccc4d1893ccb3532645bd1b7a2e74e89b37a788b29b1d45498598e80db",
+      "archiveSha256": "1ea4fddbe37368d18aa03a9242a5e6e8327e76ed179311f0aae3463ab85c1eed"
+    },
+    {
+      "command": "check-first",
+      "exitCode": 0,
+      "file": "commands/check-first.log.gz",
+      "rawBytes": 307525,
+      "rawSha256": "5cb27d0d58025f1c2f7ece199266b82fd835cabf52196883e2edee91a492bf00",
+      "archiveSha256": "8aa1486b6028ace331d508b9833fb041ad2a17ba6078a50a8a66f2cf235564ff"
+    },
+    {
+      "command": "upgrade-final",
+      "exitCode": 0,
+      "file": "commands/upgrade-final.log.gz",
+      "rawBytes": 556,
+      "rawSha256": "d1cd45e5a5fe53cac550d9eb1041211dd9890593ebf58c62cb5d4cc44046a816",
+      "archiveSha256": "3a5dfe094f7af18319b5f6e4a85afd61df5ab3120cbbdf4291c63f16d77fe69a"
+    },
+    {
+      "command": "ci-push-first-failed",
+      "exitCode": 1,
+      "file": "commands/ci-push-first-failed.log.gz",
+      "rawBytes": 529699,
+      "rawSha256": "cebea5b7de0ecdad664115e7ec95ae35b73c03313305e43ff405e9750e0ac227",
+      "archiveSha256": "4f3f5846a2a7d6ee3f04eb3ea5ffc3f9c0194116b276944f3601017b067eec21"
+    },
+    {
+      "command": "ci-focused-first",
+      "exitCode": 0,
+      "file": "commands/ci-focused-first.log.gz",
+      "rawBytes": 2566,
+      "rawSha256": "e8017c21f5c1febae7ee962420297e147fd552f5bce6ece42a5a8c3877404f28",
+      "archiveSha256": "346170727e3a0a1f2fd9bd72e0f91b9e1032467aecd767ebc0d851db06272854"
+    },
+    {
+      "command": "ci-check-first",
+      "exitCode": 0,
+      "file": "commands/ci-check-first.log.gz",
+      "rawBytes": 307913,
+      "rawSha256": "0d0389b5478652f0e44b71c621d18314bf5ee7873f236836a3874c77bb7b6078",
+      "archiveSha256": "cb296970703786b8a1f00a8fd344ba59352c9d964b45bdcf33922e311c0af10e"
+    }
+  ],
+  "artifacts": [
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-first/current-after-reanalysis-old-history.json",
+      "file": "raw/first/current-after-reanalysis-old-history.json.gz",
+      "rawBytes": 33703,
+      "rawSha256": "440809e1fc634b46bdbebe74e32a8c3c0a0d2547c8a2059b476f743c690fb737",
+      "archiveSha256": "4ea44ed8cc9a3733f420a5bc6a1522292fe2aa07b5a8ed1623074e6111518811"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-first/current-before-reanalysis-history.json",
+      "file": "raw/first/current-before-reanalysis-history.json.gz",
+      "rawBytes": 33704,
+      "rawSha256": "118de15d560fd59856f40321f5424fe20e24c00627cb3190b73ff46c45f6ae9e",
+      "archiveSha256": "85f6e125fcc81128f3581e0d26ddaeff3f234df1fa7cd0efb8da65c08f84e912"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-first/current-metadata.json",
+      "file": "raw/first/current-metadata.json.gz",
+      "rawBytes": 2849,
+      "rawSha256": "8a223581aa7b7d44776ba30b8cbf24a3ed065a35b8b8d572442955caaea139d9",
+      "archiveSha256": "37c20833317c7302ce3f2c0a4c6ab11a368d58f6a5c9e5d9144106d426ccfa07"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-first/current-new-history.json",
+      "file": "raw/first/current-new-history.json.gz",
+      "rawBytes": 33703,
+      "rawSha256": "1e9247248f9fe81ec1583d09be17f8a5a59e2188a166114cce07ba778dc75b76",
+      "archiveSha256": "f4177efe729d0570c8d833f5ce157d9a82f157dc0a1dbf7dbf5ef8b3b68b049c"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-first/current-output.json",
+      "file": "raw/first/current-output.json.gz",
+      "rawBytes": 390,
+      "rawSha256": "3453a896433e3b0717555899ea45bd295505bb48780e389cebffae4cb6580207",
+      "archiveSha256": "44944740eee082175876f0f46037e947a5ca03554bce9605d73637dd068b91d5"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-first/current-receipt.json",
+      "file": "raw/first/current-receipt.json.gz",
+      "rawBytes": 35472,
+      "rawSha256": "aeeda34874948ff89233e8d117fcf6d0df7a3d812f5094d80cb82014991ba30c",
+      "archiveSha256": "6f15750ad02d5ab4b99b1ab5ec8de1ab2d501f1fd213b316c0ac98018aee87fe"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-first/data/path-receipts/5407698f-f76f-44e8-89e8-32c02d1778ee/2a0d12a35369d363c0ca4cd32cb9d177af8345615396ece90bb9dd1a9ae459f4.json",
+      "file": "raw/first/data/path-receipts/5407698f-f76f-44e8-89e8-32c02d1778ee/2a0d12a35369d363c0ca4cd32cb9d177af8345615396ece90bb9dd1a9ae459f4.json.gz",
+      "rawBytes": 35472,
+      "rawSha256": "aeeda34874948ff89233e8d117fcf6d0df7a3d812f5094d80cb82014991ba30c",
+      "archiveSha256": "6f15750ad02d5ab4b99b1ab5ec8de1ab2d501f1fd213b316c0ac98018aee87fe"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-first/data/path-receipts/5407698f-f76f-44e8-89e8-32c02d1778ee/c2dc278a746c7a470f00cb71c393426abdd13d87c8d4d5fd5e5c7ecc7bbd096d.json",
+      "file": "raw/first/data/path-receipts/5407698f-f76f-44e8-89e8-32c02d1778ee/c2dc278a746c7a470f00cb71c393426abdd13d87c8d4d5fd5e5c7ecc7bbd096d.json.gz",
+      "rawBytes": 35472,
+      "rawSha256": "641f678ba139ea509da2b675d224459e9460929c49f952f05b86bb5ae0c2b879",
+      "archiveSha256": "b8ed4cd434bb4b8efa68fcbf3d8b4e88381ea782e986ce726253b170fba2645a"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-first/input.json",
+      "file": "raw/first/input.json.gz",
+      "rawBytes": 3741,
+      "rawSha256": "077f5ca2170892ee969494467ca669c26d8b7d625c1dfacfc1cbf3313c438d7f",
+      "archiveSha256": "9387f2b414297118934a6141d6d8dcdcb2c23806cd8242e404d4e4f1bb00335b"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-first/old-metadata.json",
+      "file": "raw/first/old-metadata.json.gz",
+      "rawBytes": 2848,
+      "rawSha256": "98502919f7cd301a23cae6ec20af7e1a77a1fec402493fe8b32102b2c58bbc5f",
+      "archiveSha256": "2c2c63188f9f367f94207e3d2c9d9b356c4cd9b01eb153740ed6e13a02532406"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-first/old-original-history.json",
+      "file": "raw/first/old-original-history.json.gz",
+      "rawBytes": 33703,
+      "rawSha256": "b56f97f64f6f85f6961f2ab7b05f0a2097694b7edf76498cf01e110b14421de4",
+      "archiveSha256": "f5331eedf7b3762b2a3e866b7ba81f999860989d7450a3ca7c5058bacc988a84"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-first/old-output.json",
+      "file": "raw/first/old-output.json.gz",
+      "rawBytes": 391,
+      "rawSha256": "169948a275649747e40248281967cf0793676b65bb44c42272a8c3f2391fdc2e",
+      "archiveSha256": "fd824f9ea54265817cdcda92a0be6d390f2ab839ea77b31abca5c69ca2ecda97"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-first/old-receipt.json",
+      "file": "raw/first/old-receipt.json.gz",
+      "rawBytes": 35472,
+      "rawSha256": "641f678ba139ea509da2b675d224459e9460929c49f952f05b86bb5ae0c2b879",
+      "archiveSha256": "b8ed4cd434bb4b8efa68fcbf3d8b4e88381ea782e986ce726253b170fba2645a"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-first/result.json",
+      "file": "raw/first/result.json.gz",
+      "rawBytes": 20742,
+      "rawSha256": "1c860dde865f1339c2bdc22ae18b03c087808545492ad12484d72f4f2bb1b3ec",
+      "archiveSha256": "3cce70b97a20c9abe830fd0aebf03c07eaaafc4bf7868ac1644e43deab6c0779"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-second/current-after-reanalysis-old-history.json",
+      "file": "raw/second/current-after-reanalysis-old-history.json.gz",
+      "rawBytes": 33703,
+      "rawSha256": "8b726d421e369258a3d9c292c9f4477618d9380ddc78c16f498d1d3847d47cf1",
+      "archiveSha256": "24ff048d3e4e67141de12068ec61e4c3c48c6218a866b01330f2dfe33315b15b"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-second/current-before-reanalysis-history.json",
+      "file": "raw/second/current-before-reanalysis-history.json.gz",
+      "rawBytes": 33703,
+      "rawSha256": "8e164e56cc4a312da85d0efb09a10a2609dd95519e0e50e56f66181b6a3aecc3",
+      "archiveSha256": "09f975acd13a0f586401d8d7ca75acb502c783e6ef6c5dd6b8f4f485841c00ce"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-second/current-metadata.json",
+      "file": "raw/second/current-metadata.json.gz",
+      "rawBytes": 2857,
+      "rawSha256": "95e799d6c2501c0cf39a6b890cb90388db0a365905be51f77fc9f6c253c12ee7",
+      "archiveSha256": "5a80b3148032ebbf6f650f0603098dc28b158dca9d62459b2c990471a429ddea"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-second/current-new-history.json",
+      "file": "raw/second/current-new-history.json.gz",
+      "rawBytes": 33704,
+      "rawSha256": "a33a44318951f7bbde9038b238cc8f2615bc7b3f7ab03bde1baaa9d8f3069632",
+      "archiveSha256": "5f6da5e29ae23de0d98e8effa56f7097641549f0270251225f4a55b9cddc4bff"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-second/current-output.json",
+      "file": "raw/second/current-output.json.gz",
+      "rawBytes": 390,
+      "rawSha256": "00a8f88b78bc32da33a393c2f7c93390cfb5db20849ec6d3391dceb437862d23",
+      "archiveSha256": "76c9ace222059e00dbc0241b4c83f09677ae3e401a133d74b4e2190fe0f47002"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-second/current-receipt.json",
+      "file": "raw/second/current-receipt.json.gz",
+      "rawBytes": 35472,
+      "rawSha256": "fd84d2778a5ba18085fd4d7f05cd34e2907bdc30dd814b5d06c6a8c40821c5f1",
+      "archiveSha256": "4185fe30b1e9a739b662463f9c9414bc00f446473c174b4cebd0f51caea40943"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-second/data/path-receipts/bf4f7315-c989-4fbb-845f-6055e888dcab/1f8c98c9d4630613c3a484b9cebdebcfbe164d3301f1c209baacb253b9a5db9f.json",
+      "file": "raw/second/data/path-receipts/bf4f7315-c989-4fbb-845f-6055e888dcab/1f8c98c9d4630613c3a484b9cebdebcfbe164d3301f1c209baacb253b9a5db9f.json.gz",
+      "rawBytes": 35472,
+      "rawSha256": "79e355b345760f5a3a54220a17ef36f3649042f6e4489233a8942c71dcf6074a",
+      "archiveSha256": "1bcfa6ce25d745ad98ec3067efda454c86d5284e5c325f80fe773a6062b33020"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-second/data/path-receipts/bf4f7315-c989-4fbb-845f-6055e888dcab/a225d40d4b4c9082afd0862c087a2b11ba56fbb8c45593c31e96549001b7067b.json",
+      "file": "raw/second/data/path-receipts/bf4f7315-c989-4fbb-845f-6055e888dcab/a225d40d4b4c9082afd0862c087a2b11ba56fbb8c45593c31e96549001b7067b.json.gz",
+      "rawBytes": 35472,
+      "rawSha256": "fd84d2778a5ba18085fd4d7f05cd34e2907bdc30dd814b5d06c6a8c40821c5f1",
+      "archiveSha256": "4185fe30b1e9a739b662463f9c9414bc00f446473c174b4cebd0f51caea40943"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-second/input.json",
+      "file": "raw/second/input.json.gz",
+      "rawBytes": 3741,
+      "rawSha256": "077f5ca2170892ee969494467ca669c26d8b7d625c1dfacfc1cbf3313c438d7f",
+      "archiveSha256": "9387f2b414297118934a6141d6d8dcdcb2c23806cd8242e404d4e4f1bb00335b"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-second/old-metadata.json",
+      "file": "raw/second/old-metadata.json.gz",
+      "rawBytes": 2857,
+      "rawSha256": "9f4bbdf45d4ee0d2d5228318e0dc3ea43886c95a4e22d6619acc9b2f829337d2",
+      "archiveSha256": "d42616729ab7ae1474ade2d2329caeaecd86fc72a705db064ab682ccbde93bbb"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-second/old-original-history.json",
+      "file": "raw/second/old-original-history.json.gz",
+      "rawBytes": 33703,
+      "rawSha256": "34dd7203160d1b1838d236898e8a75146b73c2c2e53f234fdcffc830b985b6a9",
+      "archiveSha256": "b53fe354c1f66df25df15a0d9c6ee69dc18836f62685dbc58c2bdd0470cf3834"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-second/old-output.json",
+      "file": "raw/second/old-output.json.gz",
+      "rawBytes": 390,
+      "rawSha256": "17330e004bd42d66b3db4ea1796317a3d6f42daa3835bc9e1d96177ddc79a259",
+      "archiveSha256": "7ec2ab1001d37d37ea94b48ee0977f2aa4680f2163f7f61abea54e672380fede"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-second/old-receipt.json",
+      "file": "raw/second/old-receipt.json.gz",
+      "rawBytes": 35472,
+      "rawSha256": "79e355b345760f5a3a54220a17ef36f3649042f6e4489233a8942c71dcf6074a",
+      "archiveSha256": "1bcfa6ce25d745ad98ec3067efda454c86d5284e5c325f80fe773a6062b33020"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-second/old-reopened-new-history.json",
+      "file": "raw/second/old-reopened-new-history.json.gz",
+      "rawBytes": 33703,
+      "rawSha256": "524ad8ab811c72a9e751beea4e648f3216f58d6e060231770830275ca9845a12",
+      "archiveSha256": "575a8226f7a5ab3d68da557d89e5c8d244e221747a45c63f3c1bd467a4ce6df5"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-second/old-reopened-old-history.json",
+      "file": "raw/second/old-reopened-old-history.json.gz",
+      "rawBytes": 33703,
+      "rawSha256": "38d2a8dc9cc64ab5fffa51e413a2388fa33cc2c87e9b4b34d71f884b5dad8b10",
+      "archiveSha256": "e37836c81800d8261d7e6648a11100102598f5da84d66c7732da8142f3f75d82"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-second/old-reopened-output.json",
+      "file": "raw/second/old-reopened-output.json.gz",
+      "rawBytes": 392,
+      "rawSha256": "0325fa3097929de6f111b18db36859fed5c4927b6fb5b255155c694d85b9675d",
+      "archiveSha256": "660ffd27b6a6ba773e9da7a2327ed9055b65e6c2ef985f55658aa815b20c0a7b"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-second/old-reopened-receipt.json",
+      "file": "raw/second/old-reopened-receipt.json.gz",
+      "rawBytes": 35472,
+      "rawSha256": "79e355b345760f5a3a54220a17ef36f3649042f6e4489233a8942c71dcf6074a",
+      "archiveSha256": "1bcfa6ce25d745ad98ec3067efda454c86d5284e5c325f80fe773a6062b33020"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-second/policy/path-receipts/bf4f7315-c989-4fbb-845f-6055e888dcab/1f8c98c9d4630613c3a484b9cebdebcfbe164d3301f1c209baacb253b9a5db9f.json",
+      "file": "raw/second/policy/path-receipts/bf4f7315-c989-4fbb-845f-6055e888dcab/1f8c98c9d4630613c3a484b9cebdebcfbe164d3301f1c209baacb253b9a5db9f.json.gz",
+      "rawBytes": 35472,
+      "rawSha256": "79e355b345760f5a3a54220a17ef36f3649042f6e4489233a8942c71dcf6074a",
+      "archiveSha256": "1bcfa6ce25d745ad98ec3067efda454c86d5284e5c325f80fe773a6062b33020"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-second/policy/path-receipts/bf4f7315-c989-4fbb-845f-6055e888dcab/a225d40d4b4c9082afd0862c087a2b11ba56fbb8c45593c31e96549001b7067b.json",
+      "file": "raw/second/policy/path-receipts/bf4f7315-c989-4fbb-845f-6055e888dcab/a225d40d4b4c9082afd0862c087a2b11ba56fbb8c45593c31e96549001b7067b.json.gz",
+      "rawBytes": 35472,
+      "rawSha256": "fd84d2778a5ba18085fd4d7f05cd34e2907bdc30dd814b5d06c6a8c40821c5f1",
+      "archiveSha256": "4185fe30b1e9a739b662463f9c9414bc00f446473c174b4cebd0f51caea40943"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-second/result.json",
+      "file": "raw/second/result.json.gz",
+      "rawBytes": 31147,
+      "rawSha256": "fa473d987db1e8b0ce8fa49c55720b96ce40e9d049301d0258b6be3180b51293",
+      "archiveSha256": "dff52750121b81587d9647cf62a041efd42b7a4dbefc1d7ea66568eeb0635a43"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-final/current-after-reanalysis-old-history.json",
+      "file": "raw/final/current-after-reanalysis-old-history.json.gz",
+      "rawBytes": 33704,
+      "rawSha256": "f2fe29c88ed2285ccffa7c480bea4cee4f78812cd616930ba44045a8a4a29782",
+      "archiveSha256": "c57f77640fbc424ce34e87fdbfecba60c3d5ae5a860207e93a945328e4f0509b"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-final/current-before-reanalysis-history.json",
+      "file": "raw/final/current-before-reanalysis-history.json.gz",
+      "rawBytes": 33703,
+      "rawSha256": "dbf98251a1d488447612e6cd8601d47764c01de1b36112328b47f75f69dbdbdf",
+      "archiveSha256": "e697d91b8ab5935d48d191da13e90117a9cf9c23e44d422bf1e076f50ad30da5"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-final/current-metadata.json",
+      "file": "raw/final/current-metadata.json.gz",
+      "rawBytes": 2848,
+      "rawSha256": "72c875028ebb9bac63ac7401f58e2912f37f70b7aa91023dac9697a679fd0cf8",
+      "archiveSha256": "1d381846e040404bba356a797576e6b3ea24bf42a51cf3ad3129a08612999fdc"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-final/current-new-history.json",
+      "file": "raw/final/current-new-history.json.gz",
+      "rawBytes": 33703,
+      "rawSha256": "8691af2a3b00a6498c7bb7d31a2ae8747db5f0b8e60577717c6cebe67e5b0f2f",
+      "archiveSha256": "01f4ed616acb2f82eb78a0aaef8f8276fb54481a4e35add0278174385ab2e974"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-final/current-output.json",
+      "file": "raw/final/current-output.json.gz",
+      "rawBytes": 391,
+      "rawSha256": "bfcd08d810ee9582dccda9b64004e2d273685c2668a9ad27200613316b4ade26",
+      "archiveSha256": "17394b48ab0d49efa13b210a57a38df5832ee2206f4635b5c21a5ebea02fa21e"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-final/current-receipt.json",
+      "file": "raw/final/current-receipt.json.gz",
+      "rawBytes": 35472,
+      "rawSha256": "80f8e1349c5edab53665f637f893e048cedf187c3cd8aabdcb7f72f2056fd35a",
+      "archiveSha256": "fb7889223c037d362e472c4a82e7667457b6073e0525f9e7657e04bed44e6be2"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-final/data/path-receipts/2e8dcf11-3175-4d43-95ab-c7569c4df720/7d195c79237d4d27ccf96dcb970d32eae4712e8f12b5013d2e56b42be587ee4e.json",
+      "file": "raw/final/data/path-receipts/2e8dcf11-3175-4d43-95ab-c7569c4df720/7d195c79237d4d27ccf96dcb970d32eae4712e8f12b5013d2e56b42be587ee4e.json.gz",
+      "rawBytes": 35472,
+      "rawSha256": "80f8e1349c5edab53665f637f893e048cedf187c3cd8aabdcb7f72f2056fd35a",
+      "archiveSha256": "fb7889223c037d362e472c4a82e7667457b6073e0525f9e7657e04bed44e6be2"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-final/data/path-receipts/2e8dcf11-3175-4d43-95ab-c7569c4df720/eb24e1c82b4af9c500372284e24c349cf7e0ae91109708c7c059e77cfbb87fc8.json",
+      "file": "raw/final/data/path-receipts/2e8dcf11-3175-4d43-95ab-c7569c4df720/eb24e1c82b4af9c500372284e24c349cf7e0ae91109708c7c059e77cfbb87fc8.json.gz",
+      "rawBytes": 35472,
+      "rawSha256": "0f11b25d65b4ed75a036c49dc43a0cbc880ac6d139fe057f58fa2d6fc370d85a",
+      "archiveSha256": "b3ede207441abd60d5cfb111819b3472021950ee64133df9b82bdff6f905b78a"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-final/input.json",
+      "file": "raw/final/input.json.gz",
+      "rawBytes": 3741,
+      "rawSha256": "077f5ca2170892ee969494467ca669c26d8b7d625c1dfacfc1cbf3313c438d7f",
+      "archiveSha256": "9387f2b414297118934a6141d6d8dcdcb2c23806cd8242e404d4e4f1bb00335b"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-final/old-metadata.json",
+      "file": "raw/final/old-metadata.json.gz",
+      "rawBytes": 2848,
+      "rawSha256": "c0734d519b271560ccbdeb169ad6595a254f9226e6520fbe21811879903c7c9f",
+      "archiveSha256": "5e67aea67e4a96d5c2f819b6ed1a143f89a9fae952d0c386dbce51e0443e1bb9"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-final/old-original-history.json",
+      "file": "raw/final/old-original-history.json.gz",
+      "rawBytes": 33702,
+      "rawSha256": "796a8c8bf878a94a94c24526805a2d7b71e76268e77e36489872a69121010a7d",
+      "archiveSha256": "a85272a8d46f3162d4c355fb9267e18129b1093637fd954d439498370811c8a0"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-final/old-output.json",
+      "file": "raw/final/old-output.json.gz",
+      "rawBytes": 390,
+      "rawSha256": "f4156db3f7c8edfbfd384a4c45830d62c080874f6d5d9c3e6348c9c7ca09eec5",
+      "archiveSha256": "83c57a4fcb856bf1e718731cab9d90f85d964d784d4f4764efb36748e0cd0d7f"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-final/old-receipt.json",
+      "file": "raw/final/old-receipt.json.gz",
+      "rawBytes": 35472,
+      "rawSha256": "0f11b25d65b4ed75a036c49dc43a0cbc880ac6d139fe057f58fa2d6fc370d85a",
+      "archiveSha256": "b3ede207441abd60d5cfb111819b3472021950ee64133df9b82bdff6f905b78a"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-final/old-reopened-new-history.json",
+      "file": "raw/final/old-reopened-new-history.json.gz",
+      "rawBytes": 33703,
+      "rawSha256": "ce47297787137901936b0ffc1150e38befa3fad5a1ea1921340f6515d6a112e9",
+      "archiveSha256": "f5f1227f037b29d60afb49b03c9d9e1515f08557d16077ecf338170f59c134f2"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-final/old-reopened-old-history.json",
+      "file": "raw/final/old-reopened-old-history.json.gz",
+      "rawBytes": 33703,
+      "rawSha256": "eeb1bcfcf3535f50b2bee7e56d870ba47adf8ca4cafc3b47ce0c53ac08641fbc",
+      "archiveSha256": "381ae6addb4471d83762a12f58bf23f778be68ed3d520547eeb59939c989a8bd"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-final/old-reopened-output.json",
+      "file": "raw/final/old-reopened-output.json.gz",
+      "rawBytes": 392,
+      "rawSha256": "a2fb7243f17ce1c8565816b277946762fb4ede236d32be603c3f7234bba4f6f2",
+      "archiveSha256": "44fdcd405ff8f85cff1729a95ad925feb5a7bf042391d1ef9b00db0ae9eef18d"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-final/old-reopened-receipt.json",
+      "file": "raw/final/old-reopened-receipt.json.gz",
+      "rawBytes": 35472,
+      "rawSha256": "0f11b25d65b4ed75a036c49dc43a0cbc880ac6d139fe057f58fa2d6fc370d85a",
+      "archiveSha256": "b3ede207441abd60d5cfb111819b3472021950ee64133df9b82bdff6f905b78a"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-final/policy/path-receipts/2e8dcf11-3175-4d43-95ab-c7569c4df720/7d195c79237d4d27ccf96dcb970d32eae4712e8f12b5013d2e56b42be587ee4e.json",
+      "file": "raw/final/policy/path-receipts/2e8dcf11-3175-4d43-95ab-c7569c4df720/7d195c79237d4d27ccf96dcb970d32eae4712e8f12b5013d2e56b42be587ee4e.json.gz",
+      "rawBytes": 35472,
+      "rawSha256": "80f8e1349c5edab53665f637f893e048cedf187c3cd8aabdcb7f72f2056fd35a",
+      "archiveSha256": "fb7889223c037d362e472c4a82e7667457b6073e0525f9e7657e04bed44e6be2"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-final/policy/path-receipts/2e8dcf11-3175-4d43-95ab-c7569c4df720/eb24e1c82b4af9c500372284e24c349cf7e0ae91109708c7c059e77cfbb87fc8.json",
+      "file": "raw/final/policy/path-receipts/2e8dcf11-3175-4d43-95ab-c7569c4df720/eb24e1c82b4af9c500372284e24c349cf7e0ae91109708c7c059e77cfbb87fc8.json.gz",
+      "rawBytes": 35472,
+      "rawSha256": "0f11b25d65b4ed75a036c49dc43a0cbc880ac6d139fe057f58fa2d6fc370d85a",
+      "archiveSha256": "b3ede207441abd60d5cfb111819b3472021950ee64133df9b82bdff6f905b78a"
+    },
+    {
+      "source": "/home/toshiba/aew/task113-upgrade-final/result.json",
+      "file": "raw/final/result.json.gz",
+      "rawBytes": 31149,
+      "rawSha256": "db4c0a9e54075633b50186acce491831364c47ea17cceb23224d9d92c0a72547",
+      "archiveSha256": "aca88f2f590d72977cce8f55b46801967c1cc01f4cb94208a732d8e001324281"
+    }
+  ],
+  "reviewedModules": {
+    "apps/loredock/tests/fixtures/native-before-analysis-writes/load.mjs": "d5fd1976378fc6101b8c571c3b902ff9e554a36b50332385c91e793a65406ad2",
+    "scripts/tests/loredock-native-upgrade.test.mjs": "4546968ba41c13071d33422b0a4b3b0950684bb9b5be4e0726b3bf2a0de8c8fd",
+    "scripts/loredock-native-upgrade/run.mjs": "ddf567e02c5ceb1f847fa63a30fae88ac6e6d71c2ab4f497d9e137d4a2309d0c"
+  },
+  "firstFailures": [
+    "The first committed backward-read assertion supplied an inventory ID without the required matching generation ID. The request failed validation after the first three phases passed. Fix only the regression input; retain the original partial result, receipts, histories and command log."
+  ],
+  "productionSourcesChanged": false,
+  "historicalInputsChanged": false,
+  "reservedFamilyExecuted": false,
+  "resourceQualification": false,
+  "modelRequests": 0,
+  "limitations": [
+    "Pinned Node/V8 and installed TypeScript payload; not a full OS/native-library bundle.",
+    "Eight upgrade phases are distinct from the sixteen-operation resource qualification; no resource family is replayed.",
+    "Original owned SQLite and synthetic source/Git directories remain outside this documentation bundle.",
+    "Semantic/user acceptance, dense-project/lifetime bounds, private pilot and L5 remain separate."
+  ],
+  "ciFirstFailure": {
+    "head": "6305cf2a8bdc0f1a3189fd95cd3ee2fb25a71ff4",
+    "push": 41895305333,
+    "conclusion": "failure",
+    "pullRequest": 41895444160,
+    "pullRequestConclusion": "success",
+    "operation": "reopened-process isolated",
+    "maxSliceMs": 164.05204300000014,
+    "boundMs": 150,
+    "cause": "Ordinary offline-assessor test incorrectly required absolute sampled resource success. Functional dimensions and child lifecycle passed.",
+    "retention": "Original GitHub failed-step log includes the reported assessment and resource failure. Runner-local temporary raw files were not uploaded; they are not claimed retained locally."
+  },
+  "ciCorrectionCommit": "a5a3328",
+  "ciFocusedTests": 9
+}

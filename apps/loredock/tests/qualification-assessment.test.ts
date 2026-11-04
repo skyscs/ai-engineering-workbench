@@ -12,6 +12,8 @@ import { assessArm, assessQualification } from '../../../scripts/loredock-qualif
 import { canonical, hash, decodeReceipt } from '../../../scripts/loredock-qualification-assessment/codec.mjs';
 // @ts-expect-error Bounded owned-artifact reader.
 import { readArtifact } from '../../../scripts/loredock-qualification-assessment/artifact.mjs';
+// @ts-expect-error Unchanged observation contract; no reserved corpus or resource run.
+import { validateObservation } from '../../../scripts/loredock-streaming-qualification/validate.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const child = fileURLToPath(new URL('../../../scripts/loredock-streaming-qualification/child.mjs', import.meta.url));
@@ -49,7 +51,7 @@ function receiptBytes(value: RecordValue) {
 test('offline assessment separates independent gates across real tiny child artifacts', { timeout: 180000 }, async t => {
   const folder = await mkdtemp(path.join(tmpdir(), 'qualification-assessment-')); let passed = false;
   t.after(async () => { if (passed) await rm(folder, { recursive: true, force: true }); else t.diagnostic(`Retained assessment regression: ${folder}`); });
-  const inputs: RecordValue[] = [];
+  const inputs: RecordValue[] = [], historyResources: RecordValue[] = [];
   for (const caseId of [0, 1]) {
     const run = path.join(folder, String(caseId)); await mkdir(run);
     const config = await configuration(caseId), assessed = [];
@@ -61,8 +63,25 @@ test('offline assessment separates independent gates across real tiny child arti
         size: config.size, oracle: config.oracle, corpus: config.corpusFactory() };
       const value = await assessArm(input); assessed.push(value);
       await writeFile(path.join(run, arm + '.assessment.json'), JSON.stringify(value.report, null, 2));
-      assert.equal(value.report.failed, false, JSON.stringify(value.report, null, 2));
-      if (caseId === 0) inputs.push(input);
+      assert.equal(value.report.lifecycle.state, 'pass');
+      let resourceFailures = 0;
+      for (const operation of raw.operations) {
+        validateObservation(operation, arm, config.oracle);
+        for (const key of ['wallMs', 'maxSliceMs', 'peakRssMiB', 'heapGrowthMiB'])
+          assert.ok(Number.isFinite(operation[key]) && operation[key] >= 0, `Invalid ${key} observation.`);
+      }
+      for (const operation of value.report.operations) for (const [name, result] of Object.entries(operation.dimensions)) {
+        const state = (result as RecordValue).state;
+        if (name === 'resources') {
+          assert.ok(['pass', 'fail'].includes(state)); if (state === 'fail') resourceFailures++;
+        } else assert.ok(['pass', 'not-applicable'].includes(state), JSON.stringify({ name, result }));
+      }
+      // Ordinary CI verifies scoring and lifecycle; preserve actual resource rejections.
+      assert.equal(value.report.summary.resources.required, 8);
+      assert.equal(value.report.summary.resources.fail, resourceFailures);
+      assert.equal(value.report.summary.resources.pass, 8 - resourceFailures);
+      assert.equal(value.report.failed, resourceFailures > 0);
+      if (caseId === 0) { inputs.push(input); historyResources.push(dimension(value, 'history', 'resources')); }
       else {
         const positive = await configuration(0), rejected = await assessArm({ ...input, oracle: positive.oracle });
         assert.equal(rejected.report.failed, true);
@@ -71,7 +90,9 @@ test('offline assessment separates independent gates across real tiny child arti
         assert.equal(dimension(rejected, 'history', 'history').state, 'pass');
       }
     }
-    assert.equal(assessQualification(assessed).failed, false);
+    const combined = assessQualification(assessed);
+    assert.equal(combined.parity.length, 7); assert.ok(combined.parity.every((item: RecordValue) => item.state === 'pass'));
+    assert.equal(combined.failed, assessed.some(value => value.report.failed));
   }
   const first = inputs[0]!, other = inputs[1]!;
   await t.test('a damaged operation envelope preserves its independently valid receipt', async () => {
@@ -94,7 +115,7 @@ test('offline assessment separates independent gates across real tiny child arti
       assert.equal(dimension(assessed, 'first', kind === 'usefulness' ? 'support' : 'usefulness').state, kind === 'usefulness' ? 'pass' : 'blocked');
       assert.equal(dimension(assessed, 'repeat-1', 'rawRepeat').state, 'pass');
       assert.equal(dimension(assessed, 'history', 'history').state, 'pass');
-      assert.equal(dimension(assessed, 'history', 'resources').state, 'pass');
+      assert.deepEqual(dimension(assessed, 'history', 'resources'), historyResources[0]);
       assert.ok(comparison.parity.every((item: RecordValue) => item.state === 'pass'));
       assert.equal(assessed.report.currentApplicability, 'not-evaluated');
     }
@@ -116,7 +137,7 @@ test('offline assessment separates independent gates across real tiny child arti
       assert.equal(assessed.report.failed, true);
       assert.equal(dimension(assessed, 'history', 'history').reason, 'first-receipt-shape-unavailable');
       assert.equal(dimension(assessed, 'repeat-1', 'support').state, 'pass');
-      assert.equal(dimension(assessed, 'history', 'resources').state, 'pass');
+      assert.deepEqual(dimension(assessed, 'history', 'resources'), historyResources[0]);
       assert.equal(dimension(assessed, 'repeat-1', 'rawRepeat').state, ['missing', 'hash'].includes(kind) ? 'blocked' : 'fail');
       if (!['missing', 'hash'].includes(kind)) {
         // Identical opaque invalid receipts may pass byte equality, never shape or the overall gate.
@@ -135,8 +156,23 @@ test('offline assessment separates independent gates across real tiny child arti
       const assessed = await assessArm(await replacement(first, 'history', 'artifact', JSON.stringify(wrapper)));
       assert.equal(dimension(assessed, 'history', 'shape').state, 'pass');
       assert.equal(dimension(assessed, 'history', 'history').state, 'fail');
-      assert.equal(dimension(assessed, 'history', 'resources').state, 'pass');
+      assert.deepEqual(dimension(assessed, 'history', 'resources'), historyResources[0]);
       assert.equal(assessed.report.failed, true);
+    }
+  });
+  await t.test('each sampled resource excess remains a failed overall gate despite valid content', async () => {
+    for (const [key, maximum] of Object.entries({ wallMs: first.oracle.limits.wallMs,
+      maxSliceMs: first.oracle.resources.maxSliceMs, peakRssMiB: first.oracle.resources.sampledRssMiB,
+      heapGrowthMiB: first.oracle.resources.sampledHeapGrowthMiB })) {
+      const input = structuredClone(first); row(input, 'history')[key] = Number(maximum) + 1;
+      const assessed = await assessArm(input), resource = dimension(assessed, 'history', 'resources');
+      assert.equal(resource.state, 'fail'); assert.ok(resource.error.message.includes(key));
+      assert.equal(dimension(assessed, 'history', 'shape').state, 'pass');
+      assert.equal(dimension(assessed, 'history', 'support').state, 'pass');
+      assert.equal(dimension(assessed, 'history', 'history').state, 'pass');
+      assert.equal(assessed.report.failed, true);
+      const combined = assessQualification([assessed, await assessArm(other)]);
+      assert.equal(combined.failed, true); assert.ok(combined.parity.every((item: RecordValue) => item.state === 'pass'));
     }
   });
   await t.test('resource and lifecycle errors cannot hide behind content success', async () => {
