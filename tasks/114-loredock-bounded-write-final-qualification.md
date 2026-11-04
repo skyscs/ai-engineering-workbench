@@ -1,6 +1,13 @@
 # Task 114 — Qualify the complete native composition after bounded writes
 
-Status: scoped, 2026-11-04.
+Status: sole reserved attempt completed; all gates passed, 2026-11-04.
+
+The [recorded qualification](../docs/loredock/BOUNDED_WRITE_FINAL_QUALIFICATION.md) passes
+all sixteen complete operations and seven raw comparisons. Maximum RSS is 340.2734375
+MiB against 384 MiB. Both workers and the outer process exit zero; all original evidence
+is archived. Full strict checks pass 817 tests/builds. This family is exhausted. After
+exact-head CI, [Task 115](115-loredock-public-native-paths.md) migrates the existing
+read-only endpoints/browser to native v2 paths; saved-history UI remains separate.
 
 After Task 113's real compiled-upgrade regression and exact-head acceptance, freeze one
 new owned resource family for the current complete native composition. Task 110 remains
