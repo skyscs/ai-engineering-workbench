@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "task091-ci-first-failure/1",
+  "head": "235f47df0ac6896c3c13b8b6bf9554ab0580a143",
+  "run": 41748535252,
+  "event": "push",
+  "conclusion": "failure",
+  "retained": "Full failed job log includes the coordinator report and raw artifact hashes; ephemeral worker bytes were not uploaded by this workflow.",
+  "files": [
+    {
+      "file": "ci-push-first-failed.log.gz",
+      "bytes": 515410,
+      "sha256": "33c05d5fe16c948230aa6cf784e6af2c91083c909d3f62fa96c5954967f4b4aa",
+      "archiveSha256": "398cb74f4d8c089972b69aa4e9a7e1bd63025bc2e3528fddff91c671a6824630"
+    },
+    {
+      "file": "check-ci-repair.log.gz",
+      "exit": 0,
+      "bytes": 227072,
+      "sha256": "25a29af597185d614abc003826945d5cb418f89449ed9459f7ab49a8c555650b",
+      "archiveSha256": "232ca33c091fd4d49622a6bd7e44ee82ee619c445ef156258f6d9156770309fe"
+    },
+    {
+      "file": "focused-ci-repair.log.gz",
+      "exit": 0,
+      "bytes": 543,
+      "sha256": "d0d2b49ebf88930d3e93656499605d25dd85142a8ed4e41143fb7036ef2e1d70",
+      "archiveSha256": "242e1d4094599b7cf769250d766eec212e9af6e1addaa3e252c4eee0d1e11700"
+    },
+    {
+      "file": "typecheck-ci-repair.log.gz",
+      "exit": 0,
+      "bytes": 154,
+      "sha256": "93fddb46736f347fdace9762dd04c11634a1d788b7517b247d3421ad571875fb",
+      "archiveSha256": "817764127aec93f4c761a64a172add817a0266bae35ea0477b9ffaf21c315588"
+    }
+  ]
+}

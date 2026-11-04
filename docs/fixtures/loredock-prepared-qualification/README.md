@@ -80,9 +80,9 @@ older families and the absence of a matched baseline control prohibit causal
 percentage memory or speed claims. The passing preparer does not waive the reader.
 
 Next perform **one focused source/query-count audit of inventory replacement** using
-independent tiny inputs. Trace `CodeAnalysis.start`'s full original/build validation,
-manifest construction and publication/eviction, and the worker's per-file parsing,
-validation and SQL preparation. Attribute counts to start, asynchronous work and
+independent tiny inputs. Trace `CodeAnalysis.start`'s build/coverage validation,
+manifest construction and eviction, and the worker's full original validation,
+per-file parsing, publication and SQL preparation. Attribute counts to start, asynchronous work and
 history before selecting any further optimization. Preserve current authorization,
 checkpoint, cancellation and history semantics; do not move replacement work out of
 the lifecycle, force GC, relax RSS or rerun this exhausted family.
@@ -90,3 +90,25 @@ the lifecycle, force GC, relax RSS or rerun this exhausted family.
 Final source/diff/reference/hash review verifies the unchanged measured code, all
 410 baseline files, five frozen inputs and retained archive/derived identities.
 No production source, corporate data, model call or user demo was involved.
+
+## First CI failure and functional-test correction
+
+Head `235f47d` passes pull-request CI 41748562559 but fails push CI 41748535252:
+the new tiny integration's first same-process operation samples a 256.160 ms
+interval against 150. All content/lifecycle/observation/parity dimensions pass;
+the coordinator correctly records resource failure and overall rejection. The
+functional test incorrectly requires every resource gate to pass on shared CI.
+
+The full failed job log, including its coordinator report and artifact references,
+is retained as `ci-push-first-failed.log.gz` with `ci-validation.json`. The workflow
+did not upload the ephemeral worker bytes; only the recorded log/report/hashes are
+available for that CI failure. It is not a retry or replacement of the frozen run.
+
+The corrected tiny test requires every content/lifecycle/observation gate, finite
+nonnegative samples, exact parity and correct propagation/counting of any resource
+failure. It does not require scheduler-sensitive resource acceptance in CI and
+does not alter any threshold, worker, assessor or frozen result. Resource acceptance
+still belongs to the separate uninstrumented qualification, which remains failed
+at 15/16. Full checks pass 569 tests; the final finite-sample assertions also pass
+the focused actual-process test and strict package typecheck. Their first logs are
+retained in `ci-validation.json`. Both CI events must pass for the corrected head.
