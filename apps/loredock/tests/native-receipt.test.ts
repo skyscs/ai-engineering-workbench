@@ -146,6 +146,7 @@ test('actual native v2 default, selected and isolated records preserve all suppo
   const folder = await mkdtemp(path.join(tmpdir(), 'native-receipt-')), state = await receiptFixture(folder, corpusFactory(), { Catalog, CatalogStore, SourceGit, CodeAnalysis, CodePaths: CodePathsV2 }) as State;
   t.after(async () => { await state.close(); await rm(folder, { recursive: true, force: true }); }); await state.analyze();
   const first = await state.paths.read({ buildId: state.buildId }); assert.ok(first.status === 'available' && first.graph);
+  assert.equal(first.graph.edges.find(edge => edge.kind === 'event-delivery')!.environment, 'regression');
   const pins = { buildId: state.buildId, inventoryId: first.identity.inventoryId, generationId: first.generationId };
   const page = await state.paths.read({ ...pins, offset: 4 }, 'roots'); assert.ok(page.status === 'available');
   let complete: NativeReceiptContent | undefined;
@@ -173,6 +174,7 @@ test('actual native v2 default, selected and isolated records preserve all suppo
     'wrong witness rule': (_c, p) => { Object.assign(p.graph.edges.find(e => e.topicCheck)!.topicCheck!, { rule: 'settings/1' }); },
     'extra witness field': (_c, p) => { Object.assign(p.graph.edges.find(e => e.topicCheck)!.topicCheck!.publisher, { extra: true }); },
     'runtime status': (_c, p) => { Object.assign(p.graph.edges[0]!, { status: 'observed' }); },
+    'environment on a noncontract edge': (_c, p) => { p.graph.edges.find(e => e.kind === 'performs')!.environment = 'regression'; },
     'wrong supported edge status': (_c, p) => { p.graph.edges.find(e => e.kind === 'http-target')!.status = 'static'; },
     'wrong header comparison': (_c, p) => { p.graph.edges.find(e => e.kind === 'http-target')!.headerCheck!.detail = 'Incorrect'; },
     'malformed nested header JSON': (_c, p) => { p.graph.nodes.find(n => n.kind === 'http-request')!.properties.requestHeaderNames = '['; },

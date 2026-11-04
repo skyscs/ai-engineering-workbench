@@ -102,7 +102,7 @@ export function decodeProjection(serialized: string, context: ReturnType<typeof 
     const [fromKind, toKind] = endpoints[edge.kind];
     requireReceipt(from.kind === fromKind && (toKind === 'operation'
       ? ['http-request', 'event-publish', 'event-subscribe', 'document-write'].includes(to.kind) : to.kind === toKind));
-    requireReceipt(edge.environment === null && edge.status === (['http-target', 'event-delivery', 'dispatch-candidate'].includes(edge.kind) ? 'candidate' : 'static'));
+    requireReceipt((edge.kind === 'event-delivery' || edge.environment === null) && edge.status === (['http-target', 'event-delivery', 'dispatch-candidate'].includes(edge.kind) ? 'candidate' : 'static'));
     if (edge.kind === 'http-target') {
       requireReceipt(edge.headerCheck);
       // Literal header payloads are JSON strings inside properties. Validate them
