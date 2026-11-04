@@ -64,7 +64,7 @@
         },
         {
           "before": "    const graph = kind === 'paths' ? await admitPaths(resolution, this.limits, work, input.rootId) : null;",
-          "after": "    const selected = this.options.selectRoot ? await this.options.selectRoot(resolution, work) : undefined;\n    if (selected && !resolution.roots.some(root => root.id === selected.rootId))\n      throw new CatalogError('INVALID_SELECTION', 'The selector must return a root from this complete resolution.');\n    const rootId = selected?.rootId ?? input.rootId;\n    const graph = kind === 'paths' ? await admitPaths(resolution, this.limits, work, rootId) : null;"
+          "after": "    const selected = this.options.selectRoot ? await this.options.selectRoot(resolution, work) : undefined;\n    if (this.options.selectRoot) {\n      let found = false;\n      if (selected) for (const root of resolution.roots) {\n        await work.step('admit'); if (root.id === selected.rootId) { found = true; break; }\n      }\n      if (!found) throw new CatalogError('INVALID_SELECTION', 'The selector must return a root from this complete resolution.');\n    }\n    const rootId = selected?.rootId ?? input.rootId;\n    const graph = kind === 'paths' ? await admitPaths(resolution, this.limits, work, rootId) : null;"
         },
         {
           "before": "selection: { rootId: input.rootId ?? null, offset }",

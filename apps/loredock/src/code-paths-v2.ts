@@ -15,9 +15,11 @@ import { SharedPathWork } from './code-paths-v2-work.js';
 import { OperationBudget, operationAccounting } from './operation-budget.js';
 import { topicRule } from './literal-topic.js';
 import { createCanonicalFactPair } from './canonical-fact-pair.js';
+import type { QuestionPathSelector } from './question-path-selection.js';
 
 export type PathReadKind = 'paths' | 'roots';
 interface ServiceOptions {
+  selectRoot?: QuestionPathSelector;
   limits?: Partial<CodePathLimits>; checkpoint?: PathWorkOptions['checkpoint'];
   budget?: Pick<NonNullable<ConstructorParameters<typeof OperationBudget>[0]>, 'limits' | 'observe'>;
 }
@@ -44,6 +46,8 @@ export class CodePathsV2 {
   private stopping = false;
   private active: { controller: AbortController; done: Promise<void> } | null = null;
   constructor(private readonly analysis: CodeAnalysis, private readonly options: ServiceOptions = {}) {
+    if (options.selectRoot !== undefined && typeof options.selectRoot !== 'function')
+      throw new CatalogError('INVALID_SELECTION', 'Use an internal complete-resolution selector.');
     this.limits = { ...codePathLimits, ...options.limits };
     for (const [key, value] of Object.entries(this.limits)) if (!Number.isSafeInteger(value) || value < 0 || value > codePathLimits[key as keyof CodePathLimits]
       || !Object.hasOwn(codePathLimits, key)) throw new CatalogError('INVALID_LIMIT', 'Internal connected-path limits may only decrease.');
@@ -60,6 +64,8 @@ export class CodePathsV2 {
   private async readOwned(input: CodePathRequest, kind: PathReadKind, signal: AbortSignal | undefined, budget: OperationBudget): Promise<CodePathsResponse> {
     budget.check();
     validateRequest(input, kind);
+    if (this.options.selectRoot && (kind !== 'paths' || input.rootId !== undefined || input.offset !== undefined))
+      throw new CatalogError('INVALID_SELECTION', 'Question selection cannot be combined with explicit roots or pages.');
     if (this.stopping) throw new CatalogError('SERVICE_STOPPED', 'Connected path reads are stopping.', 409);
     if (signal?.aborted) throw new CatalogError('CANCELLED', 'Connected path read cancelled.', 409);
     const catalog = this.analysis.catalog;
@@ -112,7 +118,16 @@ export class CodePathsV2 {
     if (input.generationId && input.generationId !== generationId) throw new CatalogError('INVALID_GENERATION', 'This path generation changed. Reload its default paths.');
     const resolution = await resolvePathFacts(catalog, buildId, { entries, candidateDocuments: snapshot.summary.candidates, domains,
       generationId, declaration, limits: this.limits, work });
-    const graph = kind === 'paths' ? await admitPaths(resolution, this.limits, work, input.rootId) : null;
+    const selected = this.options.selectRoot ? await this.options.selectRoot(resolution, work) : undefined;
+    if (this.options.selectRoot) {
+      let found = false;
+      if (selected) for (const root of resolution.roots) {
+        await work.step('admit'); if (root.id === selected.rootId) { found = true; break; }
+      }
+      if (!found) throw new CatalogError('INVALID_SELECTION', 'The selector must return a root from this complete resolution.');
+    }
+    const rootId = selected?.rootId ?? input.rootId;
+    const graph = kind === 'paths' ? await admitPaths(resolution, this.limits, work, rootId) : null;
     const coverage: CodePathCoverage = { scannedFiles: entries.length, retainedFiles: snapshot.fileIds.length, scanComplete: true, factEntries,
       consumedHash: sha256(JSON.stringify(consumed)), inventoryCounts: snapshot.summary.counts, metadataEntries: metadata.entries,
       metadataBytes: metadata.bytes, sources: domains.summaries, incompleteBindings: 0, bindingReasons: {},
@@ -125,7 +140,7 @@ export class CodePathsV2 {
     const offset = input.offset ?? 0, total = resolution.roots.length;
     if (offset !== 0 && offset >= total) throw new CatalogError('INVALID_PAGE', 'Choose an available four-entry-point page.');
     const envelope: CodePathsAvailable = { schemaVersion: 'loredock-code-paths/2', status: 'available', kind, generationId, projectionId: '0'.repeat(64),
-      identity, coverage, graph, selection: { rootId: input.rootId ?? null, offset }, partial: true, deploymentCoherence: 'unknown',
+      identity, coverage, graph, selection: { rootId: rootId ?? null, offset }, partial: true, deploymentCoherence: 'unknown',
       roots: { offset, limit: 4, total, previous: offset ? offset - 4 : null, next: offset + 4 < total ? offset + 4 : null,
         outsidePage: total - Math.min(4, total - offset), unavailableEntries: 0, items: [], evidence: {} } };
     await this.rootPage(envelope, resolution, work);

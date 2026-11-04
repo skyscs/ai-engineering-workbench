@@ -1,3 +1,4 @@
+import { recordLexicalOriginal } from './lexical-read-account.js';
 import { setImmediate as yieldTurn } from 'node:timers/promises';
 import path from 'node:path';
 import { SourceRegistration } from './source-registration.js';
@@ -199,7 +200,8 @@ export class Catalog {
     const lines = new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(row.raw).replaceAll('\r\n', '\n').split('\n');
     if (row.startLine < 1 || row.endLine < row.startLine || row.endLine > lines.length || lines.slice(row.startLine - 1, row.endLine).join('\n') !== row.text) throw new CatalogError('CORRUPT_EVIDENCE', 'Stored evidence does not match its source range.', 409);
     const { raw: _raw, sourceStatus: _status, metadata, ...evidence } = row;
-    return { ...evidence, metadata: JSON.parse(metadata) as Record<string, unknown> };
+    const result = { ...evidence, metadata: JSON.parse(metadata) as Record<string, unknown> };
+    recordLexicalOriginal(this.store, Buffer.byteLength(result.text)); return result;
   }
   files(id: string) {
     const build = this.store.buildRow(id);
