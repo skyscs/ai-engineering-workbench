@@ -1,6 +1,6 @@
 # Task 109 — Drive complete native compiled qualification
 
-Status: scoped, 2026-11-04.
+Status: implementation started, 2026-11-04.
 
 Connect the independently assessed native format to a new bounded compiled worker and
 coordinator. Do not reuse the experimental capture implementation, relabel schemas,
