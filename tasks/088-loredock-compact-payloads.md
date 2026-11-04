@@ -1,6 +1,6 @@
 # Task 088 — Compact validated request-local payload entries
 
-Status: implemented and locally verified, 2026-11-04; exact-head CI pending.
+Status: verified and merged through PR #92 as `2d99d83`, 2026-11-04.
 
 ## Evidence and scope
 
@@ -64,3 +64,7 @@ task does not claim lower heap/RSS or production readiness.
 PR #91 merged as `6a4f588` after exact head `a8dacff` passed push 41740890855 and
 pull-request 41740907626 CI (538 tests); the merge tree is identical. Both CI events
 for this task's final head remain required before merge.
+
+Exact final head `68081c2` passed push 41741875498 and pull-request 41741903776 CI
+(545 tests). Merge `2d99d83` has the identical tree. Task 089 begins the separately
+frozen uninstrumented qualification without changing this implementation.

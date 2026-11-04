@@ -1,5 +1,27 @@
 # Development status
 
+## Task 089 — Compact qualification retains a failed long-lived RSS gate
+
+The [single fresh two-process run](fixtures/loredock-compact-qualification/README.md)
+passes all sixteen original-source/exact-path/span/scope and independent observation
+checks, fourteen useful paths, six repeats, two histories and seven exact cross-arm
+comparisons. Resources pass 11/16: the reopened arm passes 8/8; the preparer fails
+RSS on five later operations, peaking at 433.902 MiB. All other resource dimensions
+pass. The outer result correctly fails; streaming/compaction remain unqualified.
+
+Both children close normally. All 39 raw files, process exits, original observations
+and failed gates are retained without retry or changed bounds. The next single
+candidate is bounded request-local prepared-read-statement reuse, first tested for
+fresh values, exact bytes/work and unchanged refusals on independent tiny inputs.
+The evidence is a transient-allocation hypothesis, not SQLite/native attribution.
+
+Full checks pass 550 then 551 tests, strict typechecks and builds. Six actual-process
+regressions cover independent gates and failed/blocked lifecycle boundaries; source/
+diff/link/hash review verifies unchanged measured modules and all 406 baseline files.
+PR #92 merged as `2d99d83` after `68081c2` passed push 41741875498 and pull-request
+41741903776 CI with an identical tree. See [Task 089](../tasks/089-loredock-compact-qualification.md).
+Both exact-head CI events remain required before this task's merge.
+
 ## Task 088 — Request-local compact payload candidate verified
 
 The [opt-in reader](../scripts/loredock-compact-payloads/README.md) completes original

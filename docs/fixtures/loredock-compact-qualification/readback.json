@@ -1,0 +1,1615 @@
+{
+  "schemaVersion": "task089-reviewed-readback/1",
+  "freezeCommit": "81d926f",
+  "measuredCommit": "5ba54e8",
+  "resultSha256": "a2d57ca40091e7efda2314e59c019b75af0760b3605db6804e03e319fdfd5d26",
+  "failed": true,
+  "summary": {
+    "plannedArms": 2,
+    "arms": 2,
+    "plannedOperations": 16,
+    "operations": 16,
+    "supportPassed": 16,
+    "usefulnessPassed": 14,
+    "historyPassed": 2,
+    "resourcePassed": 11,
+    "completePathsPassed": 16,
+    "observationsPassed": 16,
+    "parityPassed": 7,
+    "note": "Fresh uninstrumented qualification only. Historical failures and production consumers remain unchanged."
+  },
+  "processes": [
+    {
+      "arm": "same-process",
+      "size": 494,
+      "executable": "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+      "args": [
+        "/home/toshiba/aew/worktrees/task089-compact-qualification/scripts/loredock-streaming-qualification/child.mjs",
+        "/home/toshiba/aew/measurements/task089-first-run/size-494",
+        "same-process",
+        "/home/toshiba/aew/worktrees/task089-compact-qualification/scripts/loredock-compact-qualification/config.mjs",
+        "494"
+      ],
+      "environment": {
+        "nodeOptions": null,
+        "locale": "C"
+      },
+      "startedAt": "2026-11-03T23:58:04.555Z",
+      "pid": 2550059,
+      "exit": 0,
+      "signal": null,
+      "wallMs": 325193.625122
+    },
+    {
+      "arm": "reopened-process",
+      "size": 494,
+      "executable": "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+      "args": [
+        "/home/toshiba/aew/worktrees/task089-compact-qualification/scripts/loredock-streaming-qualification/child.mjs",
+        "/home/toshiba/aew/measurements/task089-first-run/size-494",
+        "reopened-process",
+        "/home/toshiba/aew/worktrees/task089-compact-qualification/scripts/loredock-compact-qualification/config.mjs",
+        "494"
+      ],
+      "environment": {
+        "nodeOptions": null,
+        "locale": "C"
+      },
+      "startedAt": "2026-11-04T00:03:29.865Z",
+      "pid": 2581403,
+      "exit": 0,
+      "signal": null,
+      "wallMs": 84467.50406399998
+    }
+  ],
+  "arms": [
+    {
+      "arm": "same-process",
+      "summary": {
+        "artifact": {
+          "planned": 8,
+          "pass": 8,
+          "fail": 0,
+          "blocked": 0,
+          "not-applicable": 0,
+          "required": 8
+        },
+        "shape": {
+          "planned": 8,
+          "pass": 8,
+          "fail": 0,
+          "blocked": 0,
+          "not-applicable": 0,
+          "required": 8
+        },
+        "support": {
+          "planned": 8,
+          "pass": 8,
+          "fail": 0,
+          "blocked": 0,
+          "not-applicable": 0,
+          "required": 8
+        },
+        "usefulness": {
+          "planned": 8,
+          "pass": 7,
+          "fail": 0,
+          "blocked": 0,
+          "not-applicable": 1,
+          "required": 7
+        },
+        "history": {
+          "planned": 8,
+          "pass": 1,
+          "fail": 0,
+          "blocked": 0,
+          "not-applicable": 7,
+          "required": 1
+        },
+        "rawRepeat": {
+          "planned": 8,
+          "pass": 3,
+          "fail": 0,
+          "blocked": 0,
+          "not-applicable": 5,
+          "required": 3
+        },
+        "resources": {
+          "planned": 8,
+          "pass": 3,
+          "fail": 5,
+          "blocked": 0,
+          "not-applicable": 0,
+          "required": 8
+        }
+      },
+      "completePaths": {
+        "operations": [
+          {
+            "name": "first",
+            "state": "pass"
+          },
+          {
+            "name": "repeat-1",
+            "state": "pass"
+          },
+          {
+            "name": "repeat-2",
+            "state": "pass"
+          },
+          {
+            "name": "repeat-3",
+            "state": "pass"
+          },
+          {
+            "name": "selected",
+            "state": "pass"
+          },
+          {
+            "name": "page-4",
+            "state": "pass"
+          },
+          {
+            "name": "isolated",
+            "state": "pass"
+          },
+          {
+            "name": "history",
+            "state": "pass"
+          }
+        ],
+        "failed": false
+      },
+      "observations": [
+        {
+          "name": "first",
+          "state": "pass"
+        },
+        {
+          "name": "repeat-1",
+          "state": "pass"
+        },
+        {
+          "name": "repeat-2",
+          "state": "pass"
+        },
+        {
+          "name": "repeat-3",
+          "state": "pass"
+        },
+        {
+          "name": "selected",
+          "state": "pass"
+        },
+        {
+          "name": "page-4",
+          "state": "pass"
+        },
+        {
+          "name": "isolated",
+          "state": "pass"
+        },
+        {
+          "name": "history",
+          "state": "pass"
+        }
+      ],
+      "operations": [
+        {
+          "name": "first",
+          "wallMs": 3207.6665360000043,
+          "maxSliceMs": 66.55415999999968,
+          "peakRssMiB": 250.55859375,
+          "heapGrowthMiB": 45.65965270996094,
+          "metrics": {
+            "accountingVersion": "shared-capture-work/1",
+            "pathWork": 287217,
+            "receiptWork": 85693,
+            "totalWork": 372910,
+            "wallMs": 3207.3033049999794,
+            "work": 372910,
+            "checkpoints": 14,
+            "projectionBytes": 28523,
+            "receiptBytes": 43962,
+            "textBytes": 3298,
+            "spans": 10,
+            "sources": 20,
+            "publicationLocks": 1
+          },
+          "sums": {
+            "path": 287217,
+            "receipt": 85693
+          },
+          "before": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 0,
+            "snapshots": 1,
+            "pathReads": 0,
+            "originalReads": 0,
+            "changedRows": 0
+          },
+          "after": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 9857,
+            "snapshots": 4,
+            "pathReads": 1,
+            "originalReads": 9870,
+            "changedRows": 0
+          },
+          "baselineMemory": {
+            "rss": 226238464,
+            "heapTotal": 69517312,
+            "heapUsed": 45102888,
+            "external": 5470468,
+            "arrayBuffers": 3125482
+          }
+        },
+        {
+          "name": "repeat-1",
+          "wallMs": 3144.0383389999915,
+          "maxSliceMs": 63.652588999975706,
+          "peakRssMiB": 320.65234375,
+          "heapGrowthMiB": 47.16846466064453,
+          "metrics": {
+            "accountingVersion": "shared-capture-work/1",
+            "pathWork": 287217,
+            "receiptWork": 85693,
+            "totalWork": 372910,
+            "wallMs": 3143.92409700001,
+            "work": 372910,
+            "checkpoints": 14,
+            "projectionBytes": 28523,
+            "receiptBytes": 43962,
+            "textBytes": 3298,
+            "spans": 10,
+            "sources": 20,
+            "publicationLocks": 1
+          },
+          "sums": {
+            "path": 287217,
+            "receipt": 85693
+          },
+          "before": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 9857,
+            "snapshots": 4,
+            "pathReads": 1,
+            "originalReads": 9870,
+            "changedRows": 0
+          },
+          "after": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 19714,
+            "snapshots": 7,
+            "pathReads": 2,
+            "originalReads": 19740,
+            "changedRows": 0
+          },
+          "baselineMemory": {
+            "rss": 262729728,
+            "heapTotal": 114753536,
+            "heapUsed": 91080272,
+            "external": 2640222,
+            "arrayBuffers": 295236
+          }
+        },
+        {
+          "name": "repeat-2",
+          "wallMs": 3183.5601090000127,
+          "maxSliceMs": 65.14417899999535,
+          "peakRssMiB": 370.10546875,
+          "heapGrowthMiB": 47.65508270263672,
+          "metrics": {
+            "accountingVersion": "shared-capture-work/1",
+            "pathWork": 287217,
+            "receiptWork": 85693,
+            "totalWork": 372910,
+            "wallMs": 3183.3327759999956,
+            "work": 372910,
+            "checkpoints": 14,
+            "projectionBytes": 28523,
+            "receiptBytes": 43962,
+            "textBytes": 3298,
+            "spans": 10,
+            "sources": 20,
+            "publicationLocks": 1
+          },
+          "sums": {
+            "path": 287217,
+            "receipt": 85693
+          },
+          "before": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 19714,
+            "snapshots": 7,
+            "pathReads": 2,
+            "originalReads": 19740,
+            "changedRows": 0
+          },
+          "after": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 29571,
+            "snapshots": 10,
+            "pathReads": 3,
+            "originalReads": 29610,
+            "changedRows": 0
+          },
+          "baselineMemory": {
+            "rss": 336228352,
+            "heapTotal": 164601856,
+            "heapUsed": 140027696,
+            "external": 3067592,
+            "arrayBuffers": 722606
+          }
+        },
+        {
+          "name": "repeat-3",
+          "wallMs": 3160.3596240000043,
+          "maxSliceMs": 65.14907200000016,
+          "peakRssMiB": 399.89453125,
+          "heapGrowthMiB": 32.76074981689453,
+          "metrics": {
+            "accountingVersion": "shared-capture-work/1",
+            "pathWork": 287217,
+            "receiptWork": 85693,
+            "totalWork": 372910,
+            "wallMs": 3160.2538420000055,
+            "work": 372910,
+            "checkpoints": 14,
+            "projectionBytes": 28523,
+            "receiptBytes": 43962,
+            "textBytes": 3298,
+            "spans": 10,
+            "sources": 20,
+            "publicationLocks": 1
+          },
+          "sums": {
+            "path": 287217,
+            "receipt": 85693
+          },
+          "before": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 29571,
+            "snapshots": 10,
+            "pathReads": 3,
+            "originalReads": 29610,
+            "changedRows": 0
+          },
+          "after": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 39428,
+            "snapshots": 13,
+            "pathReads": 4,
+            "originalReads": 39480,
+            "changedRows": 0
+          },
+          "baselineMemory": {
+            "rss": 388083712,
+            "heapTotal": 214974464,
+            "heapUsed": 189419384,
+            "external": 3561103,
+            "arrayBuffers": 1216117
+          }
+        },
+        {
+          "name": "selected",
+          "wallMs": 3131.926786999975,
+          "maxSliceMs": 63.13054300000658,
+          "peakRssMiB": 418.46484375,
+          "heapGrowthMiB": 62.92749786376953,
+          "metrics": {
+            "accountingVersion": "shared-capture-work/1",
+            "pathWork": 287198,
+            "receiptWork": 78523,
+            "totalWork": 365721,
+            "wallMs": 3131.8027430000075,
+            "work": 365721,
+            "checkpoints": 14,
+            "projectionBytes": 25033,
+            "receiptBytes": 40286,
+            "textBytes": 3298,
+            "spans": 10,
+            "sources": 20,
+            "publicationLocks": 1
+          },
+          "sums": {
+            "path": 287198,
+            "receipt": 78523
+          },
+          "before": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 39428,
+            "snapshots": 13,
+            "pathReads": 4,
+            "originalReads": 39480,
+            "changedRows": 0
+          },
+          "after": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 49285,
+            "snapshots": 16,
+            "pathReads": 5,
+            "originalReads": 49350,
+            "changedRows": 0
+          },
+          "baselineMemory": {
+            "rss": 414199808,
+            "heapTotal": 130375680,
+            "heapUsed": 78729296,
+            "external": 2587480,
+            "arrayBuffers": 242494
+          }
+        },
+        {
+          "name": "page-4",
+          "wallMs": 3089.8158410000033,
+          "maxSliceMs": 68.80125499999849,
+          "peakRssMiB": 402.9453125,
+          "heapGrowthMiB": 56.519920349121094,
+          "metrics": {
+            "accountingVersion": "shared-capture-work/1",
+            "pathWork": 287132,
+            "receiptWork": 0,
+            "totalWork": 287132,
+            "wallMs": 3089.647592000023
+          },
+          "sums": {
+            "path": 287132,
+            "receipt": 0
+          },
+          "before": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 49285,
+            "snapshots": 16,
+            "pathReads": 5,
+            "originalReads": 49350,
+            "changedRows": 0
+          },
+          "after": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 59142,
+            "snapshots": 18,
+            "pathReads": 6,
+            "originalReads": 59210,
+            "changedRows": 0
+          },
+          "baselineMemory": {
+            "rss": 417366016,
+            "heapTotal": 165494784,
+            "heapUsed": 128883552,
+            "external": 3037868,
+            "arrayBuffers": 692882
+          }
+        },
+        {
+          "name": "isolated",
+          "wallMs": 3227.577607000014,
+          "maxSliceMs": 62.11858700000448,
+          "peakRssMiB": 418.73046875,
+          "heapGrowthMiB": 58.353118896484375,
+          "metrics": {
+            "accountingVersion": "shared-capture-work/1",
+            "pathWork": 287180,
+            "receiptWork": 44390,
+            "totalWork": 331570,
+            "wallMs": 3227.4667550000013,
+            "work": 331570,
+            "checkpoints": 9,
+            "projectionBytes": 11762,
+            "receiptBytes": 21355,
+            "textBytes": 1396,
+            "spans": 5,
+            "sources": 20,
+            "publicationLocks": 1
+          },
+          "sums": {
+            "path": 287180,
+            "receipt": 44390
+          },
+          "before": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 59142,
+            "snapshots": 18,
+            "pathReads": 6,
+            "originalReads": 59210,
+            "changedRows": 0
+          },
+          "after": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 68999,
+            "snapshots": 21,
+            "pathReads": 7,
+            "originalReads": 69075,
+            "changedRows": 0
+          },
+          "baselineMemory": {
+            "rss": 420614144,
+            "heapTotal": 214351872,
+            "heapUsed": 180491576,
+            "external": 3456799,
+            "arrayBuffers": 1111813
+          }
+        },
+        {
+          "name": "history",
+          "wallMs": 4.247444000036921,
+          "maxSliceMs": 4.24501600000076,
+          "peakRssMiB": 433.90234375,
+          "heapGrowthMiB": 2.1820831298828125,
+          "metrics": {
+            "accountingVersion": "shared-capture-work/1",
+            "pathWork": 0,
+            "receiptWork": 75833,
+            "totalWork": 75833,
+            "wallMs": 4.100861000013538,
+            "work": 75833,
+            "checkpoints": 11,
+            "projectionBytes": 28523,
+            "receiptBytes": 43962,
+            "textBytes": 3298,
+            "spans": 10,
+            "sources": 20,
+            "publicationLocks": 0
+          },
+          "sums": {
+            "path": 0,
+            "receipt": 75833
+          },
+          "before": {
+            "gitCalls": 0,
+            "writeCalls": 59150,
+            "factReads": 68999,
+            "snapshots": 21,
+            "pathReads": 7,
+            "originalReads": 88789,
+            "changedRows": 69064
+          },
+          "after": {
+            "gitCalls": 0,
+            "writeCalls": 59150,
+            "factReads": 68999,
+            "snapshots": 21,
+            "pathReads": 7,
+            "originalReads": 88799,
+            "changedRows": 69064
+          },
+          "baselineMemory": {
+            "rss": 454979584,
+            "heapTotal": 76488704,
+            "heapUsed": 44590432,
+            "external": 2468041,
+            "arrayBuffers": 123055
+          }
+        }
+      ],
+      "lifecycle": [
+        {
+          "stage": "preparation-before",
+          "atMs": 262.997333,
+          "rss": 118812672,
+          "heapTotal": 49008640,
+          "heapUsed": 34774104,
+          "external": 2379580,
+          "arrayBuffers": 42999
+        },
+        {
+          "stage": "index-after",
+          "atMs": 210408.836845,
+          "rss": 189198336,
+          "heapTotal": 76333056,
+          "heapUsed": 44971760,
+          "external": 2695843,
+          "arrayBuffers": 361808,
+          "build": {
+            "id": "fe0b79d1-022f-4a34-aced-13bcfac1e77e",
+            "requestId": "memory-initial",
+            "payloadHash": "f59d524db9f361403348bfb3df93f4c7206603373632c9f79623a62d3b1b62f9",
+            "status": "completed",
+            "policyVersion": 1,
+            "sourceSetVersion": 21,
+            "policy": "{\"excludedPaths\":[]}",
+            "createdAt": "2026-11-03T23:58:06.633Z",
+            "reason": null,
+            "published": 1,
+            "extractorVersion": "text-v1",
+            "baselineBuildId": null,
+            "refreshVersion": "git-reuse-v1",
+            "allocation": "{\"version\":\"source-shares-v1\",\"paths\":10000,\"bytes\":52428800}"
+          }
+        },
+        {
+          "stage": "preparation-after",
+          "atMs": 210409.916205,
+          "rss": 189198336,
+          "heapTotal": 76333056,
+          "heapUsed": 44998600,
+          "external": 2696243,
+          "arrayBuffers": 362208,
+          "wallMs": 210146.857345
+        },
+        {
+          "stage": "memory-initial-facts-before",
+          "atMs": 210410.779886,
+          "rss": 189198336,
+          "heapTotal": 76333056,
+          "heapUsed": 45015792,
+          "external": 2696643,
+          "arrayBuffers": 362608
+        },
+        {
+          "stage": "memory-initial-facts-after",
+          "atMs": 241863.126702,
+          "rss": 223879168,
+          "heapTotal": 76595200,
+          "heapUsed": 39726904,
+          "external": 2387208,
+          "arrayBuffers": 53173,
+          "wallMs": 31452.34156900001,
+          "summary": {
+            "id": "cbde2e7a-7899-4081-8077-f6093a05ca47",
+            "buildId": "fe0b79d1-022f-4a34-aced-13bcfac1e77e",
+            "status": "partial",
+            "published": true,
+            "createdAt": "2026-11-04T00:01:35.041Z",
+            "reason": "Source or code coverage gaps remain.",
+            "candidates": 9857,
+            "counts": {
+              "parsed": 9857
+            },
+            "gaps": 9849,
+            "filesWithGaps": 9849,
+            "examined": 9857,
+            "textBytes": 603427,
+            "payloadBytes": 9570088,
+            "elapsedMs": 31251.92102800001,
+            "limits": {
+              "documents": 10000,
+              "fileBytes": 32768,
+              "fileSpans": 8,
+              "textBytes": 52428800,
+              "filePayloadBytes": 131072,
+              "payloadBytes": 16777216,
+              "wallMs": 300000
+            },
+            "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+            "currentParser": true,
+            "staleIndex": false
+          }
+        },
+        {
+          "stage": "preparation-close-before",
+          "atMs": 241957.9919,
+          "rss": 223879168,
+          "heapTotal": 76857344,
+          "heapUsed": 48731512,
+          "external": 2375478,
+          "arrayBuffers": 41443
+        },
+        {
+          "stage": "preparation-close-after",
+          "atMs": 241963.366982,
+          "rss": 223879168,
+          "heapTotal": 76857344,
+          "heapUsed": 48740176,
+          "external": 2375478,
+          "arrayBuffers": 41443
+        },
+        {
+          "stage": "snapshot-validation-before",
+          "atMs": 242096.919329,
+          "rss": 225976320,
+          "heapTotal": 69517312,
+          "heapUsed": 34768648,
+          "external": 19671415,
+          "arrayBuffers": 17326429
+        },
+        {
+          "stage": "snapshot-validation-after",
+          "atMs": 242116.774045,
+          "rss": 226107392,
+          "heapTotal": 69255168,
+          "heapUsed": 33889560,
+          "external": 31566689,
+          "arrayBuffers": 29221703
+        },
+        {
+          "stage": "opening-before",
+          "atMs": 242116.838168,
+          "rss": 226107392,
+          "heapTotal": 69255168,
+          "heapUsed": 33894896,
+          "external": 31566689,
+          "arrayBuffers": 29221703
+        },
+        {
+          "stage": "opening-after",
+          "atMs": 242118.048448,
+          "rss": 226238464,
+          "heapTotal": 69255168,
+          "heapUsed": 33971312,
+          "external": 31566689,
+          "arrayBuffers": 29221703
+        },
+        {
+          "stage": "opening-validation-after",
+          "atMs": 242177.069209,
+          "rss": 226238464,
+          "heapTotal": 69517312,
+          "heapUsed": 45035912,
+          "external": 31566689,
+          "arrayBuffers": 3105607
+        },
+        {
+          "stage": "memory-replacement-one-before",
+          "atMs": 264339.911629,
+          "rss": 439070720,
+          "heapTotal": 264888320,
+          "heapUsed": 226605728,
+          "external": 3994805,
+          "arrayBuffers": 1649819
+        },
+        {
+          "stage": "memory-replacement-one-after",
+          "atMs": 294895.566851,
+          "rss": 454938624,
+          "heapTotal": 113188864,
+          "heapUsed": 42164488,
+          "external": 2397305,
+          "arrayBuffers": 52319,
+          "wallMs": 30555.649161000038,
+          "summary": {
+            "id": "b6ef7f43-83df-48e1-8038-0502865f08f5",
+            "buildId": "fe0b79d1-022f-4a34-aced-13bcfac1e77e",
+            "status": "partial",
+            "published": true,
+            "createdAt": "2026-11-04T00:02:28.965Z",
+            "reason": "Source or code coverage gaps remain.",
+            "candidates": 9857,
+            "counts": {
+              "parsed": 9857
+            },
+            "gaps": 9849,
+            "filesWithGaps": 9849,
+            "examined": 9857,
+            "textBytes": 603427,
+            "payloadBytes": 9570088,
+            "elapsedMs": 30371.042666000023,
+            "limits": {
+              "documents": 10000,
+              "fileBytes": 32768,
+              "fileSpans": 8,
+              "textBytes": 52428800,
+              "filePayloadBytes": 131072,
+              "payloadBytes": 16777216,
+              "wallMs": 300000
+            },
+            "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+            "currentParser": true,
+            "staleIndex": false
+          }
+        },
+        {
+          "stage": "memory-replacement-two-before",
+          "atMs": 294896.270407,
+          "rss": 454938624,
+          "heapTotal": 113188864,
+          "heapUsed": 42256504,
+          "external": 2432142,
+          "arrayBuffers": 87156
+        },
+        {
+          "stage": "memory-replacement-two-after",
+          "atMs": 325148.168895,
+          "rss": 454979584,
+          "heapTotal": 76488704,
+          "heapUsed": 44470672,
+          "external": 2431745,
+          "arrayBuffers": 86759,
+          "wallMs": 30251.889599999995,
+          "summary": {
+            "id": "0c17c748-b41e-4090-bc20-7226b274f2fc",
+            "buildId": "fe0b79d1-022f-4a34-aced-13bcfac1e77e",
+            "status": "partial",
+            "published": true,
+            "createdAt": "2026-11-04T00:02:59.549Z",
+            "reason": "Source or code coverage gaps remain.",
+            "candidates": 9857,
+            "counts": {
+              "parsed": 9857
+            },
+            "gaps": 9849,
+            "filesWithGaps": 9849,
+            "examined": 9857,
+            "textBytes": 603427,
+            "payloadBytes": 9570088,
+            "elapsedMs": 30019.132174000028,
+            "limits": {
+              "documents": 10000,
+              "fileBytes": 32768,
+              "fileSpans": 8,
+              "textBytes": 52428800,
+              "filePayloadBytes": 131072,
+              "payloadBytes": 16777216,
+              "wallMs": 300000
+            },
+            "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+            "currentParser": true,
+            "staleIndex": false
+          }
+        },
+        {
+          "stage": "closure-before",
+          "atMs": 325154.782455,
+          "rss": 454979584,
+          "heapTotal": 76488704,
+          "heapUsed": 47098728,
+          "external": 2603955,
+          "arrayBuffers": 258969
+        },
+        {
+          "stage": "closure-after",
+          "atMs": 325164.890294,
+          "rss": 454979584,
+          "heapTotal": 76488704,
+          "heapUsed": 47104952,
+          "external": 2603955,
+          "arrayBuffers": 258969
+        }
+      ]
+    },
+    {
+      "arm": "reopened-process",
+      "summary": {
+        "artifact": {
+          "planned": 8,
+          "pass": 8,
+          "fail": 0,
+          "blocked": 0,
+          "not-applicable": 0,
+          "required": 8
+        },
+        "shape": {
+          "planned": 8,
+          "pass": 8,
+          "fail": 0,
+          "blocked": 0,
+          "not-applicable": 0,
+          "required": 8
+        },
+        "support": {
+          "planned": 8,
+          "pass": 8,
+          "fail": 0,
+          "blocked": 0,
+          "not-applicable": 0,
+          "required": 8
+        },
+        "usefulness": {
+          "planned": 8,
+          "pass": 7,
+          "fail": 0,
+          "blocked": 0,
+          "not-applicable": 1,
+          "required": 7
+        },
+        "history": {
+          "planned": 8,
+          "pass": 1,
+          "fail": 0,
+          "blocked": 0,
+          "not-applicable": 7,
+          "required": 1
+        },
+        "rawRepeat": {
+          "planned": 8,
+          "pass": 3,
+          "fail": 0,
+          "blocked": 0,
+          "not-applicable": 5,
+          "required": 3
+        },
+        "resources": {
+          "planned": 8,
+          "pass": 8,
+          "fail": 0,
+          "blocked": 0,
+          "not-applicable": 0,
+          "required": 8
+        }
+      },
+      "completePaths": {
+        "operations": [
+          {
+            "name": "first",
+            "state": "pass"
+          },
+          {
+            "name": "repeat-1",
+            "state": "pass"
+          },
+          {
+            "name": "repeat-2",
+            "state": "pass"
+          },
+          {
+            "name": "repeat-3",
+            "state": "pass"
+          },
+          {
+            "name": "selected",
+            "state": "pass"
+          },
+          {
+            "name": "page-4",
+            "state": "pass"
+          },
+          {
+            "name": "isolated",
+            "state": "pass"
+          },
+          {
+            "name": "history",
+            "state": "pass"
+          }
+        ],
+        "failed": false
+      },
+      "observations": [
+        {
+          "name": "first",
+          "state": "pass"
+        },
+        {
+          "name": "repeat-1",
+          "state": "pass"
+        },
+        {
+          "name": "repeat-2",
+          "state": "pass"
+        },
+        {
+          "name": "repeat-3",
+          "state": "pass"
+        },
+        {
+          "name": "selected",
+          "state": "pass"
+        },
+        {
+          "name": "page-4",
+          "state": "pass"
+        },
+        {
+          "name": "isolated",
+          "state": "pass"
+        },
+        {
+          "name": "history",
+          "state": "pass"
+        }
+      ],
+      "operations": [
+        {
+          "name": "first",
+          "wallMs": 3309.026593,
+          "maxSliceMs": 63.90940599999999,
+          "peakRssMiB": 241.39453125,
+          "heapGrowthMiB": 59.41590118408203,
+          "metrics": {
+            "accountingVersion": "shared-capture-work/1",
+            "pathWork": 287217,
+            "receiptWork": 85693,
+            "totalWork": 372910,
+            "wallMs": 3308.659052,
+            "work": 372910,
+            "checkpoints": 14,
+            "projectionBytes": 28523,
+            "receiptBytes": 43962,
+            "textBytes": 3298,
+            "spans": 10,
+            "sources": 20,
+            "publicationLocks": 1
+          },
+          "sums": {
+            "path": 287217,
+            "receipt": 85693
+          },
+          "before": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 0,
+            "snapshots": 1,
+            "pathReads": 0,
+            "originalReads": 0,
+            "changedRows": 0
+          },
+          "after": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 9857,
+            "snapshots": 4,
+            "pathReads": 1,
+            "originalReads": 9870,
+            "changedRows": 0
+          },
+          "baselineMemory": {
+            "rss": 156585984,
+            "heapTotal": 53202944,
+            "heapUsed": 35914872,
+            "external": 2370028,
+            "arrayBuffers": 33407
+          }
+        },
+        {
+          "name": "repeat-1",
+          "wallMs": 3272.4344669999996,
+          "maxSliceMs": 63.75720200000069,
+          "peakRssMiB": 290.59375,
+          "heapGrowthMiB": 43.285743713378906,
+          "metrics": {
+            "accountingVersion": "shared-capture-work/1",
+            "pathWork": 287217,
+            "receiptWork": 85693,
+            "totalWork": 372910,
+            "wallMs": 3272.3025380000004,
+            "work": 372910,
+            "checkpoints": 14,
+            "projectionBytes": 28523,
+            "receiptBytes": 43962,
+            "textBytes": 3298,
+            "spans": 10,
+            "sources": 20,
+            "publicationLocks": 1
+          },
+          "sums": {
+            "path": 287217,
+            "receipt": 85693
+          },
+          "before": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 9857,
+            "snapshots": 4,
+            "pathReads": 1,
+            "originalReads": 9870,
+            "changedRows": 0
+          },
+          "after": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 19714,
+            "snapshots": 7,
+            "pathReads": 2,
+            "originalReads": 19740,
+            "changedRows": 0
+          },
+          "baselineMemory": {
+            "rss": 253251584,
+            "heapTotal": 119648256,
+            "heapUsed": 84705576,
+            "external": 2596074,
+            "arrayBuffers": 257405
+          }
+        },
+        {
+          "name": "repeat-2",
+          "wallMs": 3254.2446979999995,
+          "maxSliceMs": 65.92263000000094,
+          "peakRssMiB": 288.12109375,
+          "heapGrowthMiB": 13.193313598632812,
+          "metrics": {
+            "accountingVersion": "shared-capture-work/1",
+            "pathWork": 287217,
+            "receiptWork": 85693,
+            "totalWork": 372910,
+            "wallMs": 3253.983069000001,
+            "work": 372910,
+            "checkpoints": 14,
+            "projectionBytes": 28523,
+            "receiptBytes": 43962,
+            "textBytes": 3298,
+            "spans": 10,
+            "sources": 20,
+            "publicationLocks": 1
+          },
+          "sums": {
+            "path": 287217,
+            "receipt": 85693
+          },
+          "before": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 19714,
+            "snapshots": 7,
+            "pathReads": 2,
+            "originalReads": 19740,
+            "changedRows": 0
+          },
+          "after": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 29571,
+            "snapshots": 10,
+            "pathReads": 3,
+            "originalReads": 29610,
+            "changedRows": 0
+          },
+          "baselineMemory": {
+            "rss": 285184000,
+            "heapTotal": 125464576,
+            "heapUsed": 87706328,
+            "external": 2559314,
+            "arrayBuffers": 220645
+          }
+        },
+        {
+          "name": "repeat-3",
+          "wallMs": 3209.318804999999,
+          "maxSliceMs": 64.01495199999954,
+          "peakRssMiB": 292.1171875,
+          "heapGrowthMiB": 15.784904479980469,
+          "metrics": {
+            "accountingVersion": "shared-capture-work/1",
+            "pathWork": 287217,
+            "receiptWork": 85693,
+            "totalWork": 372910,
+            "wallMs": 3209.190243000001,
+            "work": 372910,
+            "checkpoints": 14,
+            "projectionBytes": 28523,
+            "receiptBytes": 43962,
+            "textBytes": 3298,
+            "spans": 10,
+            "sources": 20,
+            "publicationLocks": 1
+          },
+          "sums": {
+            "path": 287217,
+            "receipt": 85693
+          },
+          "before": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 29571,
+            "snapshots": 10,
+            "pathReads": 3,
+            "originalReads": 29610,
+            "changedRows": 0
+          },
+          "after": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 39428,
+            "snapshots": 13,
+            "pathReads": 4,
+            "originalReads": 39480,
+            "changedRows": 0
+          },
+          "baselineMemory": {
+            "rss": 282488832,
+            "heapTotal": 117837824,
+            "heapUsed": 83317560,
+            "external": 3004628,
+            "arrayBuffers": 665959
+          }
+        },
+        {
+          "name": "selected",
+          "wallMs": 3220.8394229999994,
+          "maxSliceMs": 65.1176970000015,
+          "peakRssMiB": 290.58984375,
+          "heapGrowthMiB": 47.176063537597656,
+          "metrics": {
+            "accountingVersion": "shared-capture-work/1",
+            "pathWork": 287198,
+            "receiptWork": 78523,
+            "totalWork": 365721,
+            "wallMs": 3220.693483000001,
+            "work": 365721,
+            "checkpoints": 14,
+            "projectionBytes": 25033,
+            "receiptBytes": 40286,
+            "textBytes": 3298,
+            "spans": 10,
+            "sources": 20,
+            "publicationLocks": 1
+          },
+          "sums": {
+            "path": 287198,
+            "receipt": 78523
+          },
+          "before": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 39428,
+            "snapshots": 13,
+            "pathReads": 4,
+            "originalReads": 39480,
+            "changedRows": 0
+          },
+          "after": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 49285,
+            "snapshots": 16,
+            "pathReads": 5,
+            "originalReads": 49350,
+            "changedRows": 0
+          },
+          "baselineMemory": {
+            "rss": 285765632,
+            "heapTotal": 118726656,
+            "heapUsed": 94595968,
+            "external": 2998425,
+            "arrayBuffers": 659756
+          }
+        },
+        {
+          "name": "page-4",
+          "wallMs": 3236.4092640000017,
+          "maxSliceMs": 69.3575439999986,
+          "peakRssMiB": 339.5390625,
+          "heapGrowthMiB": 36.55552673339844,
+          "metrics": {
+            "accountingVersion": "shared-capture-work/1",
+            "pathWork": 287132,
+            "receiptWork": 0,
+            "totalWork": 287132,
+            "wallMs": 3236.224821
+          },
+          "sums": {
+            "path": 287132,
+            "receipt": 0
+          },
+          "before": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 49285,
+            "snapshots": 16,
+            "pathReads": 5,
+            "originalReads": 49350,
+            "changedRows": 0
+          },
+          "after": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 59142,
+            "snapshots": 18,
+            "pathReads": 6,
+            "originalReads": 59210,
+            "changedRows": 0
+          },
+          "baselineMemory": {
+            "rss": 304705536,
+            "heapTotal": 168419328,
+            "heapUsed": 143455992,
+            "external": 3448813,
+            "arrayBuffers": 1110144
+          }
+        },
+        {
+          "name": "isolated",
+          "wallMs": 3237.285254999999,
+          "maxSliceMs": 67.36755800000174,
+          "peakRssMiB": 319.45703125,
+          "heapGrowthMiB": 10.81817626953125,
+          "metrics": {
+            "accountingVersion": "shared-capture-work/1",
+            "pathWork": 287180,
+            "receiptWork": 44390,
+            "totalWork": 331570,
+            "wallMs": 3237.1459560000003,
+            "work": 331570,
+            "checkpoints": 9,
+            "projectionBytes": 11762,
+            "receiptBytes": 21355,
+            "textBytes": 1396,
+            "spans": 5,
+            "sources": 20,
+            "publicationLocks": 1
+          },
+          "sums": {
+            "path": 287180,
+            "receipt": 44390
+          },
+          "before": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 59142,
+            "snapshots": 18,
+            "pathReads": 6,
+            "originalReads": 59210,
+            "changedRows": 0
+          },
+          "after": {
+            "gitCalls": 0,
+            "writeCalls": 0,
+            "factReads": 68999,
+            "snapshots": 21,
+            "pathReads": 7,
+            "originalReads": 69075,
+            "changedRows": 0
+          },
+          "baselineMemory": {
+            "rss": 331878400,
+            "heapTotal": 140038144,
+            "heapUsed": 86458288,
+            "external": 2433175,
+            "arrayBuffers": 94506
+          }
+        },
+        {
+          "name": "history",
+          "wallMs": 4.7807620000094175,
+          "maxSliceMs": 4.779187000007369,
+          "peakRssMiB": 357.125,
+          "heapGrowthMiB": 2.3272933959960938,
+          "metrics": {
+            "accountingVersion": "shared-capture-work/1",
+            "pathWork": 0,
+            "receiptWork": 75833,
+            "totalWork": 75833,
+            "wallMs": 4.61088199999358,
+            "work": 75833,
+            "checkpoints": 11,
+            "projectionBytes": 28523,
+            "receiptBytes": 43962,
+            "textBytes": 3298,
+            "spans": 10,
+            "sources": 20,
+            "publicationLocks": 0
+          },
+          "sums": {
+            "path": 0,
+            "receipt": 75833
+          },
+          "before": {
+            "gitCalls": 0,
+            "writeCalls": 59150,
+            "factReads": 68999,
+            "snapshots": 21,
+            "pathReads": 7,
+            "originalReads": 88789,
+            "changedRows": 69064
+          },
+          "after": {
+            "gitCalls": 0,
+            "writeCalls": 59150,
+            "factReads": 68999,
+            "snapshots": 21,
+            "pathReads": 7,
+            "originalReads": 88799,
+            "changedRows": 69064
+          },
+          "baselineMemory": {
+            "rss": 374472704,
+            "heapTotal": 108732416,
+            "heapUsed": 39766024,
+            "external": 2395372,
+            "arrayBuffers": 60272
+          }
+        }
+      ],
+      "lifecycle": [
+        {
+          "stage": "snapshot-validation-before",
+          "atMs": 261.965715,
+          "rss": 112975872,
+          "heapTotal": 50057216,
+          "heapUsed": 34858960,
+          "external": 2394350,
+          "arrayBuffers": 57769
+        },
+        {
+          "stage": "snapshot-validation-after",
+          "atMs": 286.769117,
+          "rss": 128372736,
+          "heapTotal": 50057216,
+          "heapUsed": 36872624,
+          "external": 31591278,
+          "arrayBuffers": 29254657
+        },
+        {
+          "stage": "opening-before",
+          "atMs": 286.816152,
+          "rss": 128372736,
+          "heapTotal": 50057216,
+          "heapUsed": 36873656,
+          "external": 31591278,
+          "arrayBuffers": 29254657
+        },
+        {
+          "stage": "opening-after",
+          "atMs": 296.225226,
+          "rss": 139644928,
+          "heapTotal": 50057216,
+          "heapUsed": 37041104,
+          "external": 40772121,
+          "arrayBuffers": 38435500
+        },
+        {
+          "stage": "opening-validation-after",
+          "atMs": 363.941559,
+          "rss": 156585984,
+          "heapTotal": 53202944,
+          "heapUsed": 35886344,
+          "external": 2369628,
+          "arrayBuffers": 33007
+        },
+        {
+          "stage": "memory-replacement-one-before",
+          "atMs": 23122.353312,
+          "rss": 333279232,
+          "heapTotal": 116482048,
+          "heapUsed": 80293800,
+          "external": 2922987,
+          "arrayBuffers": 584318
+        },
+        {
+          "stage": "memory-replacement-one-after",
+          "atMs": 53699.014038,
+          "rss": 351657984,
+          "heapTotal": 130113536,
+          "heapUsed": 105681008,
+          "external": 2973524,
+          "arrayBuffers": 634855,
+          "wallMs": 30576.651676999998,
+          "summary": {
+            "id": "0ae7f5ef-d1ea-4e21-944b-495923656e13",
+            "buildId": "fe0b79d1-022f-4a34-aced-13bcfac1e77e",
+            "status": "partial",
+            "published": true,
+            "createdAt": "2026-11-04T00:03:53.058Z",
+            "reason": "Source or code coverage gaps remain.",
+            "candidates": 9857,
+            "counts": {
+              "parsed": 9857
+            },
+            "gaps": 9849,
+            "filesWithGaps": 9849,
+            "examined": 9857,
+            "textBytes": 603427,
+            "payloadBytes": 9570088,
+            "elapsedMs": 30389.227229,
+            "limits": {
+              "documents": 10000,
+              "fileBytes": 32768,
+              "fileSpans": 8,
+              "textBytes": 52428800,
+              "filePayloadBytes": 131072,
+              "payloadBytes": 16777216,
+              "wallMs": 300000
+            },
+            "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+            "currentParser": true,
+            "staleIndex": false
+          }
+        },
+        {
+          "stage": "memory-replacement-two-before",
+          "atMs": 53699.821934,
+          "rss": 351657984,
+          "heapTotal": 130113536,
+          "heapUsed": 105728656,
+          "external": 2990660,
+          "arrayBuffers": 651991
+        },
+        {
+          "stage": "memory-replacement-two-after",
+          "atMs": 84429.300135,
+          "rss": 374472704,
+          "heapTotal": 108732416,
+          "heapUsed": 39704360,
+          "external": 2376783,
+          "arrayBuffers": 41683,
+          "wallMs": 30729.469326,
+          "summary": {
+            "id": "6971162d-202f-4fbd-945c-7bef6da5953c",
+            "buildId": "fe0b79d1-022f-4a34-aced-13bcfac1e77e",
+            "status": "partial",
+            "published": true,
+            "createdAt": "2026-11-04T00:04:23.674Z",
+            "reason": "Source or code coverage gaps remain.",
+            "candidates": 9857,
+            "counts": {
+              "parsed": 9857
+            },
+            "gaps": 9849,
+            "filesWithGaps": 9849,
+            "examined": 9857,
+            "textBytes": 603427,
+            "payloadBytes": 9570088,
+            "elapsedMs": 30484.12648600001,
+            "limits": {
+              "documents": 10000,
+              "fileBytes": 32768,
+              "fileSpans": 8,
+              "textBytes": 52428800,
+              "filePayloadBytes": 131072,
+              "payloadBytes": 16777216,
+              "wallMs": 300000
+            },
+            "fingerprint": "4c7fa6c899ddef2629d18285edacb377425f7298723f71354ea068560377bcbc",
+            "currentParser": true,
+            "staleIndex": false
+          }
+        },
+        {
+          "stage": "closure-before",
+          "atMs": 84437.311007,
+          "rss": 374472704,
+          "heapTotal": 108732416,
+          "heapUsed": 42385832,
+          "external": 2513574,
+          "arrayBuffers": 178474
+        },
+        {
+          "stage": "closure-after",
+          "atMs": 84442.719602,
+          "rss": 374472704,
+          "heapTotal": 108732416,
+          "heapUsed": 42395392,
+          "external": 2513574,
+          "arrayBuffers": 178474
+        }
+      ]
+    }
+  ],
+  "parity": [
+    {
+      "size": 494,
+      "operations": [
+        {
+          "name": "first",
+          "meaning": "byte-equality-only",
+          "state": "pass"
+        },
+        {
+          "name": "repeat-1",
+          "meaning": "byte-equality-only",
+          "state": "pass"
+        },
+        {
+          "name": "repeat-2",
+          "meaning": "byte-equality-only",
+          "state": "pass"
+        },
+        {
+          "name": "repeat-3",
+          "meaning": "byte-equality-only",
+          "state": "pass"
+        },
+        {
+          "name": "selected",
+          "meaning": "byte-equality-only",
+          "state": "pass"
+        },
+        {
+          "name": "page-4",
+          "meaning": "byte-equality-only",
+          "state": "pass"
+        },
+        {
+          "name": "isolated",
+          "meaning": "byte-equality-only",
+          "state": "pass"
+        }
+      ],
+      "blocked": false
+    }
+  ]
+}

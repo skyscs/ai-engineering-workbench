@@ -1,0 +1,125 @@
+{
+  "method": "Readback of unchanged retained Task 079 first-operation counters only; no rerun or resource rescoring.",
+  "sourceArchive": "docs/fixtures/loredock-memory-attribution/raw.jsonl.gz",
+  "archiveSha256": "bef99496d78c3b77bd5967aeac702840ebdaa95ba47a84539195ded0632721f8",
+  "workerSha256": "b312532ba33fbb60198be615f1c24643f2c54728ce2640f9b59a8deea96cd58e",
+  "operation": "first",
+  "prepareCalls": 137650,
+  "queryIdentities": 28,
+  "queryCounts": [
+    {
+      "sha256": "165dccbcfe543d78ee68e2cae5b673b4d7a0e6fc8396738be8a4701facbaf3e3",
+      "calls": 6740
+    },
+    {
+      "sha256": "8415d69bd6c6d1c0eb3de4f9bc8133784c71337f16892424a35c67110058ea46",
+      "calls": 6740
+    },
+    {
+      "sha256": "6be8e4f458d7492fac62713e8af194e1585848124c739786b5c40852ab76d4df",
+      "calls": 37065
+    },
+    {
+      "sha256": "f4d10aec5df5608ef36b410ddca3d655142c9855fa668040501c6aae4caa9ecd",
+      "calls": 20101
+    },
+    {
+      "sha256": "da547f2b9ac8b48cb6917e2cd30a4e473d9f95b2df1c9471435369c7f593a8fa",
+      "calls": 5
+    },
+    {
+      "sha256": "8467372d984ffd8eb751ba7c3897c6a599b94779e637eeb71851a7cfd253a9e5",
+      "calls": 80
+    },
+    {
+      "sha256": "a59f4cc1732213c15e8bbed8b7e5d9667f51ef88ff3a2b9bfb0f107cd13179e6",
+      "calls": 1
+    },
+    {
+      "sha256": "ca3e47e8fa468808c05f3d5e04a45e2f2f79455344d91bba041ae07f70ad04c4",
+      "calls": 10143
+    },
+    {
+      "sha256": "dd75386dea73957fabfb4d4d65fb1352fbfe87cb94679007f5f6ff52be514747",
+      "calls": 4
+    },
+    {
+      "sha256": "1151a8a0825eb89c451d60bfcb40f4271b790614dfaaff17069d06ebb73ef46c",
+      "calls": 4
+    },
+    {
+      "sha256": "af2746a529c31cc7a60d6e3677b1ffe594944252c3fff100d2416a26ddab94c1",
+      "calls": 3
+    },
+    {
+      "sha256": "266334abd04f3eab5ea036f294919a6651a3f0a88766c87a984794ce7064d5c9",
+      "calls": 6652
+    },
+    {
+      "sha256": "0161a5715be55a1d9f1d0ef12d800acfcfbe46fa1a8303d3230ef2ff1448c530",
+      "calls": 2
+    },
+    {
+      "sha256": "313b1f234898ec0d4ba85e8f61e3fb3befae9976deaf24ae8b2ced33ae451a32",
+      "calls": 2
+    },
+    {
+      "sha256": "3e6af634cbaf7e9c54d41965e12fe30300c0b6fe235c3c21ab700a8d0bc4e147",
+      "calls": 2
+    },
+    {
+      "sha256": "0a96795c384e5907f47c8ff8c8230906a997cbcaafe7635f3d2440818f4efd33",
+      "calls": 156
+    },
+    {
+      "sha256": "6ef9b33bca8c59d9bf9880a418290d1074a4f8f0112ecdfe9cb7d393a2219212",
+      "calls": 199
+    },
+    {
+      "sha256": "2afb451b2ed1abcaa1d484038eabc34be807c7da0f9f9d3574d80d8655acbd72",
+      "calls": 9937
+    },
+    {
+      "sha256": "d5f94c3d8e10ae0045641a00ab05be21a548c263d7b09de723ce9760924d2c55",
+      "calls": 9937
+    },
+    {
+      "sha256": "d63e3a5d060755f43e98f509c1b4e21c5161d46d2c8140d44c9baecb1491815a",
+      "calls": 9940
+    },
+    {
+      "sha256": "14d0a71437aa7dccc8d4b4da7f529cfb0d6580f11aee922cc87b3557c4cf9c70",
+      "calls": 9950
+    },
+    {
+      "sha256": "3c71394a2bee7eafa4471431735ee6b8cdb035dc1c5b28f62fb01474639ac455",
+      "calls": 9940
+    },
+    {
+      "sha256": "92f8711908dda326f307e7e20a941fde8c3ee2e0824fe53a051ebbdfef8e8667",
+      "calls": 40
+    },
+    {
+      "sha256": "4e56e939237737b9cbe0af427065438cd24e54bd2bb573d67e3d9942ebf266ea",
+      "calls": 2
+    },
+    {
+      "sha256": "a469c9c74f5e525655f422a81bfb45cbe227b07d3c8db6adf2fb4c6d381a3dd7",
+      "calls": 2
+    },
+    {
+      "sha256": "00153ba1c3511e729ee8a0d82d134ed029d7930debfd39cba84b0ccc38b49b39",
+      "calls": 1
+    },
+    {
+      "sha256": "e2c1ef45ed92868fe788491e8ba2c70bf16a0272aae453e988602f2eeaed31b2",
+      "calls": 1
+    },
+    {
+      "sha256": "080a392e45f7ece09eabcdb3bc1e4e4e2aaabadac165d00cd4c87985c3e5fd64",
+      "calls": 1
+    }
+  ],
+  "currentStoreSha256": "d2faf0886743e1006bf74c2aceb9ede232ccc4e46d2fd52f47205c9d3b9f0627",
+  "interpretation": "Repeated preparation supports a bounded reuse hypothesis, not attribution of RSS to SQLite or proof of a leak."
+}
