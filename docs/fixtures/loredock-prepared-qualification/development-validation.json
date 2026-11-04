@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "task091-development-verification/1",
+  "node": "v22.23.2",
+  "pnpm": "10.15.0",
+  "resourceAcceptance": "Separate frozen execution only.",
+  "logs": [
+    {
+      "file": "install-first.log.gz",
+      "exit": 0,
+      "bytes": 326,
+      "sha256": "6659d454736a3d59579e86185ab5dee83302e2e17b3408858048bd1fe12b0b6c",
+      "archiveSha256": "8ba4ad20d9f96aac116bf93d0a6a3ff31b3e5d15c58a3e6cf0c39ed0b58bc4ab"
+    },
+    {
+      "file": "check-first.log.gz",
+      "exit": 0,
+      "bytes": 227090,
+      "sha256": "1075c407ba30493a143f9426f0e3c6a74ed615c05bf09674dca788e0ed2df176",
+      "archiveSha256": "19d4a2c4f249ba2b6025cdcfe6fec17dad60f4706f405f9a103773bbfada0380"
+    }
+  ]
+}

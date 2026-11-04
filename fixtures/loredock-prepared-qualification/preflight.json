@@ -1,0 +1,154 @@
+{
+  "schemaVersion": "task091-prepared-preflight/1",
+  "method": "Pure UTF-8 construction counts and hashes; no parser or candidate execution.",
+  "size": {
+    "pathsPerSource": 492,
+    "files": 9840,
+    "codeFiles": 9817,
+    "bytes": 575712,
+    "facts": 21
+  },
+  "corpusHash": "72e1dcdd363bdc92cde932eec25f23e6f27432402977ef37f51a9626ae02577b",
+  "sources": [
+    {
+      "name": "a-greenhouse-panel",
+      "files": 492,
+      "codeFiles": 491,
+      "bytes": 31261,
+      "contentHash": "eb70e7b83fd1b44d88cebadf62c30bc3bfeab9fb6490a628bf5d65061e4a4fb3"
+    },
+    {
+      "name": "b-calibration-api",
+      "files": 492,
+      "codeFiles": 489,
+      "bytes": 30194,
+      "contentHash": "585865314551f75c34e1de472a22eaa21b7910f3c00dd3c00b777ed3a4dd3ad9"
+    },
+    {
+      "name": "c-sensor-journal",
+      "files": 492,
+      "codeFiles": 490,
+      "bytes": 29791,
+      "contentHash": "5b8efd024661bfe706744ca5b74902b7536e573f84c2019a47df5c6398f1be45"
+    },
+    {
+      "name": "d-growing-guide",
+      "files": 492,
+      "codeFiles": 491,
+      "bytes": 28498,
+      "contentHash": "2f39ee4365cc2cc9affa83f23edc789388584316f8b3aa23ddb15f5bdbcc7d4b"
+    },
+    {
+      "name": "e-greenhouse-01",
+      "files": 492,
+      "codeFiles": 491,
+      "bytes": 28498,
+      "contentHash": "ac0fdeabb2320565c57b3875ac430550268f88b69138c941db9ee82057d186e2"
+    },
+    {
+      "name": "e-greenhouse-02",
+      "files": 492,
+      "codeFiles": 491,
+      "bytes": 28498,
+      "contentHash": "b27bd160b2bd1488214e3f9216d9fbc19c5e5bfa8f267b0b20ccb187ff5de534"
+    },
+    {
+      "name": "e-greenhouse-03",
+      "files": 492,
+      "codeFiles": 491,
+      "bytes": 28498,
+      "contentHash": "754a16909be30b39baa4fa84c0ddfc0b75423669d4b79b29899550ada27bc6ca"
+    },
+    {
+      "name": "e-greenhouse-04",
+      "files": 492,
+      "codeFiles": 491,
+      "bytes": 28498,
+      "contentHash": "bff08ab5f295bcce6fa4e4713ab77d1937a5752e7cc1e1a8afc5f9a34fec965c"
+    },
+    {
+      "name": "e-greenhouse-05",
+      "files": 492,
+      "codeFiles": 491,
+      "bytes": 28498,
+      "contentHash": "b2687b3fa331f8588fac3594eee7a63f4b620aebd1e7f28701b5df1c48e2e5b5"
+    },
+    {
+      "name": "e-greenhouse-06",
+      "files": 492,
+      "codeFiles": 491,
+      "bytes": 28498,
+      "contentHash": "b55cb74f758257fba40148487c97e32e57d38e0408b82924a8af422de188d893"
+    },
+    {
+      "name": "e-greenhouse-07",
+      "files": 492,
+      "codeFiles": 491,
+      "bytes": 28498,
+      "contentHash": "a981631e5ddf8da98847b7a04fe1e530949b90fce163d6634e9fb198cb3ab364"
+    },
+    {
+      "name": "e-greenhouse-08",
+      "files": 492,
+      "codeFiles": 491,
+      "bytes": 28498,
+      "contentHash": "f9cb871af0a8f5731937ba9f3fe70ce499c05223c5a5d8a0daae5d3f1106d181"
+    },
+    {
+      "name": "e-greenhouse-09",
+      "files": 492,
+      "codeFiles": 491,
+      "bytes": 28498,
+      "contentHash": "ab02dcd3d5f7707db7d6c974a3b50e72118ad4ea7a6f6e537a3283fa0d0979cf"
+    },
+    {
+      "name": "e-greenhouse-10",
+      "files": 492,
+      "codeFiles": 491,
+      "bytes": 28498,
+      "contentHash": "34fbec919892b257d1a0999ee02d17e0ca10276e901b4ab9da3b47a70f8dfeb8"
+    },
+    {
+      "name": "e-greenhouse-11",
+      "files": 492,
+      "codeFiles": 491,
+      "bytes": 28498,
+      "contentHash": "2758a09aced8cae1407c60905bbe96a5de5aabb6d364058f398806c72b6e8204"
+    },
+    {
+      "name": "e-greenhouse-12",
+      "files": 492,
+      "codeFiles": 491,
+      "bytes": 28498,
+      "contentHash": "7f3c70ad528462a2966c6782bb44e57bf82b79bb1661a5919cd4cd406731c1e2"
+    },
+    {
+      "name": "e-greenhouse-13",
+      "files": 492,
+      "codeFiles": 491,
+      "bytes": 28498,
+      "contentHash": "6aea61790221d2675d407bd06c7c1902db9866c79368df12449fa9913cb7f852"
+    },
+    {
+      "name": "e-greenhouse-14",
+      "files": 492,
+      "codeFiles": 491,
+      "bytes": 28498,
+      "contentHash": "be860ad34b848cb0c70429f0d705c266b6c416247ca5e92f02cd9d936989cc87"
+    },
+    {
+      "name": "e-greenhouse-15",
+      "files": 492,
+      "codeFiles": 491,
+      "bytes": 28498,
+      "contentHash": "b18d27716020f3efd9e5315932d9b1f63558b440dbc6bdfbae35cd4fb9bcf539"
+    },
+    {
+      "name": "e-greenhouse-16",
+      "files": 492,
+      "codeFiles": 491,
+      "bytes": 28498,
+      "contentHash": "4492703eac737fe0f1e2c392f147871340acb613a689e1bbdaad87d264082bfc"
+    }
+  ]
+}

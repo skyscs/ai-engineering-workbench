@@ -1,6 +1,6 @@
 # Task 090 — Bound prepared read statements to one path request
 
-Status: implemented and locally verified, 2026-11-04; exact-head CI pending.
+Status: verified and merged through PR #94 as `e694df7`, 2026-11-04.
 
 ## Evidence and scope
 
@@ -64,3 +64,7 @@ PR #93 merged as identical-tree `8322f2f` after exact head `53eab82` passed push
 41745235679 and pull-request 41745280834 CI. Both final-head events remain required
 for this task. Next: separately freeze a fresh compatible complete uninstrumented
 two-lifecycle qualification under the unchanged resource/content gates.
+
+Exact final head `4da9ec7` passed push 41746256819 and pull-request 41746331277 CI
+(568 tests). Merge `e694df7` has the identical tree. Task 091 qualifies the unchanged
+candidate on separately frozen inputs; this task itself makes no resource claim.

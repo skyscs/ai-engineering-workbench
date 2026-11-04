@@ -1,0 +1,559 @@
+{
+  "schemaVersion": "task091-prepared-qualification-oracle/1",
+  "authorship": "Source-authored complete positive expectations after capability review, before parser/candidate observation; not blind.",
+  "sizes": [
+    {
+      "pathsPerSource": 492,
+      "files": 9840,
+      "codeFiles": 9817,
+      "bytes": 575712,
+      "facts": 21
+    }
+  ],
+  "arms": [
+    "same-process",
+    "reopened-process"
+  ],
+  "operations": [
+    "first",
+    "repeat-1",
+    "repeat-2",
+    "repeat-3",
+    "selected",
+    "page-4",
+    "isolated",
+    "history"
+  ],
+  "topic": "sensor.calibration.v4",
+  "environment": "greenhouse",
+  "defaultFlows": 2,
+  "selectedFlows": 1,
+  "rootCount": 5,
+  "defaultOriginals": 10,
+  "isolatedOriginals": 5,
+  "sourceCount": 20,
+  "uncitedSource": "d-growing-guide",
+  "selectedRoot": [
+    "a-greenhouse-panel",
+    "panel/AAStart.vue",
+    "start",
+    "vue-action"
+  ],
+  "isolatedRoot": [
+    "a-greenhouse-panel",
+    "panel/ZZInspect.vue",
+    "inspect",
+    "vue-action"
+  ],
+  "requiredNodes": [
+    [
+      "a-greenhouse-panel",
+      "panel/AAStart.vue",
+      "symbol",
+      "start",
+      "vue-action"
+    ],
+    [
+      "a-greenhouse-panel",
+      "panel/BBQueue.vue",
+      "symbol",
+      "queue",
+      "vue-action"
+    ],
+    [
+      "a-greenhouse-panel",
+      "panel/calibration.ts",
+      "symbol",
+      "startCalibration",
+      "function"
+    ],
+    [
+      "a-greenhouse-panel",
+      "panel/calibration.ts",
+      "http-request",
+      "POST /greenhouse/calibration",
+      null
+    ],
+    [
+      "b-calibration-api",
+      "http/calibration.json",
+      "route",
+      "POST /greenhouse/calibration",
+      null
+    ],
+    [
+      "b-calibration-api",
+      "http/calibration.json",
+      "handler-reference",
+      "Calibration.start",
+      null
+    ],
+    [
+      "b-calibration-api",
+      "calibration/Calibration.java",
+      "symbol",
+      "Calibration.start",
+      "java-method"
+    ],
+    [
+      "b-calibration-api",
+      "calibration/Calibration.java",
+      "event-publish",
+      "Publish CalibrationRequested",
+      null
+    ],
+    [
+      "c-sensor-journal",
+      "journal/CalibrationWriter.java",
+      "event-subscribe",
+      "Subscribe via KafkaSubscriber",
+      null
+    ],
+    [
+      "c-sensor-journal",
+      "journal/CalibrationWriter.java",
+      "symbol",
+      "CalibrationWriter.onMessage",
+      "java-method"
+    ],
+    [
+      "c-sensor-journal",
+      "journal/CalibrationWriter.java",
+      "document-write",
+      "MongoCollection.replaceOne",
+      null
+    ]
+  ],
+  "selectedRequiredNodes": [
+    [
+      "a-greenhouse-panel",
+      "panel/AAStart.vue",
+      "symbol",
+      "start",
+      "vue-action"
+    ],
+    [
+      "a-greenhouse-panel",
+      "panel/calibration.ts",
+      "symbol",
+      "startCalibration",
+      "function"
+    ],
+    [
+      "a-greenhouse-panel",
+      "panel/calibration.ts",
+      "http-request",
+      "POST /greenhouse/calibration",
+      null
+    ],
+    [
+      "b-calibration-api",
+      "http/calibration.json",
+      "route",
+      "POST /greenhouse/calibration",
+      null
+    ],
+    [
+      "b-calibration-api",
+      "http/calibration.json",
+      "handler-reference",
+      "Calibration.start",
+      null
+    ],
+    [
+      "b-calibration-api",
+      "calibration/Calibration.java",
+      "symbol",
+      "Calibration.start",
+      "java-method"
+    ],
+    [
+      "b-calibration-api",
+      "calibration/Calibration.java",
+      "event-publish",
+      "Publish CalibrationRequested",
+      null
+    ],
+    [
+      "c-sensor-journal",
+      "journal/CalibrationWriter.java",
+      "event-subscribe",
+      "Subscribe via KafkaSubscriber",
+      null
+    ],
+    [
+      "c-sensor-journal",
+      "journal/CalibrationWriter.java",
+      "symbol",
+      "CalibrationWriter.onMessage",
+      "java-method"
+    ],
+    [
+      "c-sensor-journal",
+      "journal/CalibrationWriter.java",
+      "document-write",
+      "MongoCollection.replaceOne",
+      null
+    ]
+  ],
+  "isolated": {
+    "nodes": 1,
+    "edges": 0,
+    "flows": 1,
+    "terminalKind": "symbol",
+    "reason": "unresolved-import"
+  },
+  "complete": {
+    "sources": [
+      "a-greenhouse-panel",
+      "b-calibration-api",
+      "c-sensor-journal",
+      "d-growing-guide",
+      "e-greenhouse-01",
+      "e-greenhouse-02",
+      "e-greenhouse-03",
+      "e-greenhouse-04",
+      "e-greenhouse-05",
+      "e-greenhouse-06",
+      "e-greenhouse-07",
+      "e-greenhouse-08",
+      "e-greenhouse-09",
+      "e-greenhouse-10",
+      "e-greenhouse-11",
+      "e-greenhouse-12",
+      "e-greenhouse-13",
+      "e-greenhouse-14",
+      "e-greenhouse-15",
+      "e-greenhouse-16"
+    ],
+    "roots": [
+      [
+        "a-greenhouse-panel",
+        "panel/AAStart.vue",
+        "start",
+        "vue-action"
+      ],
+      [
+        "a-greenhouse-panel",
+        "panel/BBQueue.vue",
+        "queue",
+        "vue-action"
+      ],
+      [
+        "a-greenhouse-panel",
+        "panel/CCReset.vue",
+        "reset",
+        "vue-action"
+      ],
+      [
+        "a-greenhouse-panel",
+        "panel/DDVerify.vue",
+        "verify",
+        "vue-action"
+      ]
+    ],
+    "isolatedRoot": [
+      "a-greenhouse-panel",
+      "panel/ZZInspect.vue",
+      "inspect",
+      "vue-action"
+    ],
+    "flows": [
+      {
+        "nodes": [
+          [
+            "a-greenhouse-panel",
+            "panel/AAStart.vue",
+            "symbol",
+            "start",
+            "vue-action"
+          ],
+          [
+            "a-greenhouse-panel",
+            "panel/calibration.ts",
+            "symbol",
+            "startCalibration",
+            "function"
+          ],
+          [
+            "a-greenhouse-panel",
+            "panel/calibration.ts",
+            "http-request",
+            "POST /greenhouse/calibration",
+            null
+          ],
+          [
+            "b-calibration-api",
+            "http/calibration.json",
+            "route",
+            "POST /greenhouse/calibration",
+            null
+          ],
+          [
+            "b-calibration-api",
+            "http/calibration.json",
+            "handler-reference",
+            "Calibration.start",
+            null
+          ],
+          [
+            "b-calibration-api",
+            "calibration/Calibration.java",
+            "symbol",
+            "Calibration.start",
+            "java-method"
+          ],
+          [
+            "b-calibration-api",
+            "calibration/Calibration.java",
+            "event-publish",
+            "Publish CalibrationRequested",
+            null
+          ],
+          [
+            "c-sensor-journal",
+            "journal/CalibrationWriter.java",
+            "event-subscribe",
+            "Subscribe via KafkaSubscriber",
+            null
+          ],
+          [
+            "c-sensor-journal",
+            "journal/CalibrationWriter.java",
+            "symbol",
+            "CalibrationWriter.onMessage",
+            "java-method"
+          ],
+          [
+            "c-sensor-journal",
+            "journal/CalibrationWriter.java",
+            "document-write",
+            "MongoCollection.replaceOne",
+            null
+          ]
+        ],
+        "edges": [
+          "calls",
+          "performs",
+          "http-target",
+          "routes-to",
+          "implements",
+          "performs",
+          "event-delivery",
+          "dispatch-candidate",
+          "performs"
+        ]
+      },
+      {
+        "nodes": [
+          [
+            "a-greenhouse-panel",
+            "panel/BBQueue.vue",
+            "symbol",
+            "queue",
+            "vue-action"
+          ],
+          [
+            "a-greenhouse-panel",
+            "panel/calibration.ts",
+            "symbol",
+            "startCalibration",
+            "function"
+          ],
+          [
+            "a-greenhouse-panel",
+            "panel/calibration.ts",
+            "http-request",
+            "POST /greenhouse/calibration",
+            null
+          ],
+          [
+            "b-calibration-api",
+            "http/calibration.json",
+            "route",
+            "POST /greenhouse/calibration",
+            null
+          ],
+          [
+            "b-calibration-api",
+            "http/calibration.json",
+            "handler-reference",
+            "Calibration.start",
+            null
+          ],
+          [
+            "b-calibration-api",
+            "calibration/Calibration.java",
+            "symbol",
+            "Calibration.start",
+            "java-method"
+          ],
+          [
+            "b-calibration-api",
+            "calibration/Calibration.java",
+            "event-publish",
+            "Publish CalibrationRequested",
+            null
+          ],
+          [
+            "c-sensor-journal",
+            "journal/CalibrationWriter.java",
+            "event-subscribe",
+            "Subscribe via KafkaSubscriber",
+            null
+          ],
+          [
+            "c-sensor-journal",
+            "journal/CalibrationWriter.java",
+            "symbol",
+            "CalibrationWriter.onMessage",
+            "java-method"
+          ],
+          [
+            "c-sensor-journal",
+            "journal/CalibrationWriter.java",
+            "document-write",
+            "MongoCollection.replaceOne",
+            null
+          ]
+        ],
+        "edges": [
+          "calls",
+          "performs",
+          "http-target",
+          "routes-to",
+          "implements",
+          "performs",
+          "event-delivery",
+          "dispatch-candidate",
+          "performs"
+        ]
+      }
+    ],
+    "originals": [
+      [
+        "a-greenhouse-panel",
+        "panel/AAStart.vue",
+        1,
+        6
+      ],
+      [
+        "a-greenhouse-panel",
+        "panel/BBQueue.vue",
+        1,
+        6
+      ],
+      [
+        "a-greenhouse-panel",
+        "panel/CCReset.vue",
+        1,
+        6
+      ],
+      [
+        "a-greenhouse-panel",
+        "panel/DDVerify.vue",
+        1,
+        6
+      ],
+      [
+        "a-greenhouse-panel",
+        "panel/calibration.ts",
+        1,
+        7
+      ],
+      [
+        "b-calibration-api",
+        "http/calibration.json",
+        1,
+        13
+      ],
+      [
+        "b-calibration-api",
+        "calibration/Calibration.java",
+        1,
+        10
+      ],
+      [
+        "b-calibration-api",
+        "contracts/CalibrationRequested.json",
+        1,
+        10
+      ],
+      [
+        "c-sensor-journal",
+        "journal/CalibrationWriter.java",
+        1,
+        13
+      ],
+      [
+        "c-sensor-journal",
+        "contracts/CalibrationRequested.json",
+        1,
+        10
+      ]
+    ],
+    "isolatedOriginals": [
+      [
+        "a-greenhouse-panel",
+        "panel/AAStart.vue",
+        1,
+        6
+      ],
+      [
+        "a-greenhouse-panel",
+        "panel/BBQueue.vue",
+        1,
+        6
+      ],
+      [
+        "a-greenhouse-panel",
+        "panel/CCReset.vue",
+        1,
+        6
+      ],
+      [
+        "a-greenhouse-panel",
+        "panel/DDVerify.vue",
+        1,
+        6
+      ],
+      [
+        "a-greenhouse-panel",
+        "panel/ZZInspect.vue",
+        1,
+        5
+      ]
+    ]
+  },
+  "limits": {
+    "wallMs": 5000,
+    "work": 1000000,
+    "projectionBytes": 524288,
+    "receiptBytes": 655360,
+    "textBytes": 65536,
+    "spans": 30,
+    "sources": 20
+  },
+  "resources": {
+    "sampleIntervalMs": 5,
+    "maxSliceMs": 150,
+    "sampledRssMiB": 384,
+    "sampledHeapGrowthMiB": 64
+  },
+  "diagnostic": {
+    "preparerWatchdogMs": 900000,
+    "readerWatchdogMs": 600000,
+    "overallWatchdogMs": 1800000
+  },
+  "instrumentation": {
+    "profiler": false,
+    "phaseHooks": false,
+    "queryHooks": false,
+    "ownerHooks": false,
+    "ordinaryCounters": true,
+    "aggregateCharges": true,
+    "outerResourceSampler": true
+  },
+  "parityExcludedProjectionFields": [],
+  "parityExcludedReceiptFields": []
+}
