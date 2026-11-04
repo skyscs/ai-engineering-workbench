@@ -100,9 +100,9 @@ try {
   const historyCount = () => report.requests.filter(row => row.method === 'GET' && row.path.startsWith('/api/path-captures/')).length;
   const saveCount = () => report.requests.filter(row => row.method === 'POST' && row.path === '/api/path-captures').length;
   const screenshot = async name => raw(name, Buffer.from((await page.send('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
-  const hold = pattern => evaluate(`(()=>{const native=window.fetch;let first=true,release;const gate=new Promise(resolve=>release=resolve);
+  const hold = (pattern, signalled = false) => evaluate(`(()=>{const native=window.fetch;let first=true,release;const gate=new Promise(resolve=>release=resolve);
     window.held=false;window.delivered=false;window.releaseHeld=release;window.restoreFetch=()=>{window.fetch=native;};
-    window.fetch=async(...args)=>{const hold=first&&String(args[0]).includes(${JSON.stringify(pattern)});if(hold)first=false;
+    window.fetch=async(...args)=>{const hold=first&&String(args[0]).includes(${JSON.stringify(pattern)})&&(!${signalled}||Boolean(args[1]?.signal));if(hold)first=false;
       const response=await native(...args);if(!hold)return response;const bytes=await response.arrayBuffer();window.held=true;await gate;window.delivered=true;
       return new Response(bytes,{status:response.status,headers:response.headers});};})()`);
   const held = () => wait('window.held===true', 'Response was not held.');
@@ -148,6 +148,15 @@ try {
   failNext = true; await click('Save paths'); await text('The local operation failed.'); assert.equal(await evaluate("document.body.innerText.includes('/private/internal-detail')"), false);
   await click('Save paths'); await text('These paths were already saved.');
   report.checks.push('Real busy/cancelled operations release ownership; explicit retry works and private faults stay generic without erasing an earlier confirmation.');
+  await hold('/api/code-analysis', true); await held();
+  await fixture.analyze('stale-save-one'); const newerInventory = await fixture.analyze('stale-save-two');
+  assert.equal(await evaluate("document.querySelector('.connected-path-browser').dataset.inventoryId"), pins.get('inventoryId'));
+  await click('Save paths'); await text('No compatible path can be saved. Inspect Code coverage.');
+  const refused = report.operations.at(-1); assert.equal(refused.code, 'RECEIPT_UNAVAILABLE');
+  assert.equal(new URLSearchParams(refused.query).get('inventoryId'), pins.get('inventoryId'));
+  assert.deepEqual(await readFile(path.join(receiptFolder, id + '.json')), bytes); assert.equal((await readdir(receiptFolder)).length, 2);
+  await release(); await wait(`document.querySelector('.connected-path-browser')?.dataset.inventoryId===${JSON.stringify(newerInventory)}`, 'Current inventory did not refresh.');
+  report.checks.push('Saving an evicted displayed generation fails explicitly; it never substitutes a newer default or rewrites accepted records.');
   await page.send('Page.navigate', { url: defaultLink }); await historyReady(); await text('Applicability to current code has not been checked.');
   assert.equal(await evaluate('document.activeElement.id'), 'saved-path-heading'); assert.equal(await evaluate("document.querySelectorAll('.connected-flow').length"), 2);
   assert.equal(await evaluate("Boolean(document.querySelector('.connected-roots,.save-paths,.code-inventory'))"), false);
