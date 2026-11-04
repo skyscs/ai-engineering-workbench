@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "analysis-write-reference/1",
+  "revision": "d356a8c03e8605cada35a2c46db1b5f7b21fcf65",
+  "compiler": {
+    "version": "5.9.3",
+    "options": {
+      "target": 9,
+      "module": 7,
+      "isolatedModules": true,
+      "esModuleInterop": true,
+      "removeComments": false,
+      "sourceMap": false,
+      "newLine": 1
+    },
+    "moduleSha256": "3ae902c92cc44dace175c0e69e13a4b0899f6983c6121d76b9ab8dd5795e7675"
+  },
+  "sources": {
+    "apps/loredock/src/store.ts": {
+      "source": "store.ts.txt",
+      "module": "store.mjs",
+      "compiledModule": "store.compiled.mjs",
+      "bytes": 28981,
+      "sha256": "00547be5408a121980d3ee22a28cb3e15eee673f662327f738db24c0bc9ccb7e",
+      "emittedSha256": "949d798a911ee2a12d26397695ad6d15ca815ba44aaab2ca0ec6b3b8818c3514",
+      "moduleSha256": "16c5cd664564e4217bc0a333999900b35c1147e3d8ebe8752da167c54aeb449c",
+      "compiledModuleSha256": "3da1b678e86d84df61b30c977622d66993516e4bdec1edf2bfec41e0dd4c344d",
+      "relocations": {
+        "./types.js": "../../../src/types.js",
+        "./git.js": "../../../src/git.js",
+        "./extract.js": "../../../src/extract.js",
+        "./search-text.js": "../../../src/search-text.js",
+        "./checkpoint.js": "../../../src/checkpoint.js",
+        "./literal-search-storage.js": "../../../src/literal-search-storage.js",
+        "./prepared-read-scope.js": "../../../src/prepared-read-scope.js",
+        "./native-receipt-store.js": "../../../src/native-receipt-store.js",
+        "./native-receipt-json.js": "../../../src/native-receipt-json.js"
+      },
+      "compiledRelocations": {
+        "./types.js": "../../../dist/types.js",
+        "./git.js": "../../../dist/git.js",
+        "./extract.js": "../../../dist/extract.js",
+        "./search-text.js": "../../../dist/search-text.js",
+        "./checkpoint.js": "../../../dist/checkpoint.js",
+        "./literal-search-storage.js": "../../../dist/literal-search-storage.js",
+        "./prepared-read-scope.js": "../../../dist/prepared-read-scope.js",
+        "./native-receipt-store.js": "../../../dist/native-receipt-store.js",
+        "./native-receipt-json.js": "../../../dist/native-receipt-json.js"
+      }
+    },
+    "apps/loredock/src/code-analysis.ts": {
+      "source": "code-analysis.ts.txt",
+      "module": "code-analysis.mjs",
+      "compiledModule": "code-analysis.compiled.mjs",
+      "bytes": 21884,
+      "sha256": "c4f19848c5ee24255106c51a76b05b2bcc80e345414e345e6cd466b2c5c3834b",
+      "emittedSha256": "4fc3edcd1c49e12291cb6aac89ca6c894f3c090bc628fd55dff97c7da4fd8d44",
+      "moduleSha256": "79992152c4d4d0d90d7cb1215098f046230eb63bb535fb59ffa4efc9d54c4c45",
+      "compiledModuleSha256": "03854c6673ef7bcba4125cd1aae16313a022cb72f074bd496370bbfdb7935f95",
+      "relocations": {
+        "./types.js": "../../../src/types.js",
+        "./extract.js": "../../../src/extract.js",
+        "./map-document.js": "../../../src/map-document.js",
+        "./code-typescript.js": "../../../src/code-typescript.js",
+        "./code-java.js": "../../../src/code-java.js",
+        "./code-analysis-facts.js": "../../../src/code-analysis-facts.js",
+        "./code-analysis-types.js": "../../../src/code-analysis-types.js"
+      },
+      "compiledRelocations": {
+        "./types.js": "../../../dist/types.js",
+        "./extract.js": "../../../dist/extract.js",
+        "./map-document.js": "../../../dist/map-document.js",
+        "./code-typescript.js": "../../../dist/code-typescript.js",
+        "./code-java.js": "../../../dist/code-java.js",
+        "./code-analysis-facts.js": "../../../dist/code-analysis-facts.js",
+        "./code-analysis-types.js": "../../../dist/code-analysis-types.js"
+      }
+    }
+  },
+  "dependencies": {
+    "apps/loredock/src/types.ts": "c2224039777498e97697bacc2400a4b272d6c582f58766a244d3dc77af0339ba",
+    "apps/loredock/src/git.ts": "db71527e26ea0d2c14486a0390b275c92054489624276eec5961e60015c1aab1",
+    "apps/loredock/src/extract.ts": "0909a4884ff9a82bd9eaaa6b625c7044f69eba3f3c53771b16668c2cdd3e6c2b",
+    "apps/loredock/src/search-text.ts": "b283822b5903f47aed6ac3ed07191c38681beaa11e4ecebb188638719dddb91a",
+    "apps/loredock/src/checkpoint.ts": "4845cc1822319491448c02c91ce11d16bb10f632c82e3691d4238dcb439554d8",
+    "apps/loredock/src/literal-search-storage.ts": "22f2349afb59b4eaa994cc70c5769c98e1adec0dc7e06ffe1fdcde108821a713",
+    "apps/loredock/src/prepared-read-scope.ts": "ef921f3b25c2751306087a7a55f5d9b07b9fac2553cef2726a5972454f4e02a2",
+    "apps/loredock/src/native-receipt-store.ts": "452ac8bc6a62cf492469c867876de3c95f9bed92968fd669276f78e8b00eca4c",
+    "apps/loredock/src/operation-budget.ts": "ec0d3e6dcc0894b42a97d370caabffb83143784ad170b5bb26e39b44df553296",
+    "apps/loredock/src/native-receipt.ts": "d6bdc6500c4958328f07f9d16c3cc268091c585d69da9521b660ede388e4228b",
+    "apps/loredock/src/native-receipt-projection.ts": "ea3c210c9918c137939189f9609be727c7edc9c1e374cc9b41e4e90cf3bb0382",
+    "apps/loredock/src/code-analysis-types.ts": "505bd871b64f3ee5be89375da6acf02cbc36966c3a10ad4c7cc4d63f8a2f8192",
+    "apps/loredock/src/code-paths-work.ts": "e5f117d0e2c19876eac8a28de620f1d5abbd3d3fe298900389370bf5f86d28a7",
+    "apps/loredock/src/literal-topic.ts": "6d97c221f526708adb28ad5b49e57df83a05924b6659dff878dca20377fd8e8b",
+    "apps/loredock/src/http-headers.ts": "967bddace78b2c472401e4a490b08ca7cfc44eae725a537d52c7b102ebbdb1a9",
+    "apps/loredock/src/native-receipt-json.ts": "2466ad49769794885871d5eae1fcec8471f79630c82e0cf4c7393647cc35ea4c",
+    "apps/loredock/src/native-receipt-files.ts": "e1f6aaa9eb0c3eeb668c76007fec9edc1e688ead760227ae231d080e36471b93",
+    "apps/loredock/src/map-document.ts": "741ddd865b8c7ac63082f67200d3e5b55d74fa1cc9ce156b84aaa328165aede7",
+    "apps/loredock/src/code-typescript.ts": "773a8ced3b8e304c7d306fa9a91e060ce7da7194ebcde5a4ccb5aa12f9c1a5ad",
+    "apps/loredock/src/code-facts.ts": "38227b1619f13457b45883dcba6dd9316c62a2fa72ef858b51a77779287a2151",
+    "apps/loredock/src/code-java.ts": "d51ff800a32a513f1e3a8eed7015d9be96817fef00c9eb1f70ff2f06b5d92389",
+    "apps/loredock/src/code-analysis-facts.ts": "82fb810a3fa6a790538925cb5431c1ccc08b7e096229378fe95d0e91b85d5167"
+  },
+  "externalImports": [
+    "node:async_hooks",
+    "node:child_process",
+    "node:crypto",
+    "node:fs",
+    "node:fs/promises",
+    "node:module",
+    "node:os",
+    "node:path",
+    "node:sqlite",
+    "node:timers/promises",
+    "node:util",
+    "typescript"
+  ],
+  "fingerprintContext": "Behavioral control uses current production implementation bytes through the current fingerprint provider; not historical runtime identity."
+}
