@@ -1,6 +1,6 @@
 # Task 091 — Qualify complete request-local prepared reads
 
-Status: executed once and locally verified; resource qualification failed; exact-head CI pending, 2026-11-04.
+Status: verified and merged through PR #95 as `70f6100`, 2026-11-04; resource qualification failed.
 
 Task 090 proves independent semantic/fence equivalence for bounded request-local
 prepared read statements over the unchanged streaming/compact services. Resource
@@ -86,3 +86,7 @@ passes every content/lifecycle dimension and correctly rejects resources. Correc
 the ordinary test to require finite samples and exact resource-failure propagation
 independently of functional success. No measured worker, bound or frozen outcome
 changes. Retain the first CI log; both events must pass again for the new final head.
+
+Corrected final head `d97db4e` passes push 41749820794 and pull-request 41749828294
+CI (569 tests). Merge `70f6100` has the identical tree. All first CI/frozen failures
+remain; Task 092 audits the replacement phase on separate independent tiny inputs.

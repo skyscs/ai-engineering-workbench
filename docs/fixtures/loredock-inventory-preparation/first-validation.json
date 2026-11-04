@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "task092-first-failure/1",
+  "head": "db769653b4b733d50cbad0de9bf1b3812a11beff",
+  "reason": "The independent tiny fixture has three sources, not the assumed four. Preflight failed before database/source preparation; no query stages executed.",
+  "files": [
+    {
+      "file": "first-report.json.gz",
+      "bytes": 942,
+      "sha256": "9311699502eb651c1b9da153c0a2e2e922ea1736e58bb994bfcb2bff4e57f23e",
+      "archiveSha256": "c1b50857c711d5d9f9421171ea042eb86e2932e966aeabe7e066ac3bad65ad1e"
+    },
+    {
+      "file": "first.stdout.log.gz",
+      "bytes": 793,
+      "sha256": "7d2bbd7ca52515904161199d384d49688a53b6db4eea00e749b160ee68547616",
+      "archiveSha256": "8fd85d4874629eafac81554357e5ed07c16a6cd3ffb71251b66acf68e680b6bb"
+    },
+    {
+      "file": "first.stderr.log.gz",
+      "bytes": 171,
+      "sha256": "9ab364d0b57431f7b027eda62b2f3ba23dad99e911d417e4c24651c2e611d637",
+      "archiveSha256": "6fc10e4124a1eee6950c8bacb64673d2a2e78b3a0297cdf83d612758b9465373"
+    },
+    {
+      "file": "first.exit.json.gz",
+      "bytes": 513,
+      "sha256": "ac8f6fcd46ddf6553d47c76537e6eee6eb3db9faa1040c799ff050333324ba91",
+      "archiveSha256": "f6ba2e6b1b52bd8d5688c3138a23d517ac537d78f395c38d31d8a6f29a7c3312"
+    }
+  ]
+}
