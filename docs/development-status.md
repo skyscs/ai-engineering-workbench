@@ -1,5 +1,27 @@
 # Development status
 
+## Task 121 — Transient review, durable answer ownership
+
+[The lifecycle design](loredock/PREPARED_QUESTION_LIFECYCLE.md) and
+[ADR 0059](decisions/0059-loredock-prepared-question-lifecycle.md) keep one owned transient
+preview and atomically promote its exact bytes to a separate answer-owned witness on
+explicit Generate. The user keeps the existing question → context → answer flow. There
+are no new repository/root/generation selectors or implicit saved-path-history entries.
+
+The source audit identifies production gaps that the offline pass cannot bypass: scoped
+actual lexical accounting, ownership before awaits, background-analysis contention,
+immutable request binding, witness retention/purge, legacy/new input discrimination and
+shutdown/publication epoch order. Prospective schema 11 and fixed witness quotas remain
+a design; no application, schema, prompt, runtime or UI change is implemented here.
+
+PR #124 head `647efad` passed push 41926249765 and pull-request 41926293151 (869 tests)
+and merged as identical-tree `4bbc0c1`. Task 120's 44-case library family remains exhausted.
+[Static review](fixtures/loredock-prepared-question-lifecycle/README.md) verifies 21
+unchanged implementation sources and 739 documentation links, with no evaluation/model run.
+Task 121 awaits its own exact-head CI. [Task 122](../tasks/122-loredock-question-read-selection-seams.md)
+implements only actual scoped lexical accounting and a typed complete-resolution selector
+with public/legacy parity before any preparation-owner or answer consumer integration.
+
 ## Task 120 — Question-selected native context passes the offline comparison
 
 The [sole frozen run](loredock/NATIVE_QUESTION_CONTEXT_RESULT.md) passes **44/44** cases:
@@ -18,7 +40,8 @@ No production answer, prompt, schema, model request, user demo or corporate inpu
 Small warmed observations do not constitute a new scale/resource or semantic/L5 gate.
 
 PR #123 head `ae8d9f2` passed push 41918997795 and pull-request 41919216678 and merged
-as identical-tree `1fa8d15`. Task 120 awaits its own exact-head acceptance. Next
+as identical-tree `1fa8d15`. Task 120 subsequently passed both CI events at `647efad`
+and merged as identical-tree `4bbc0c1`. Next
 [Task 121](../tasks/121-loredock-prepared-question-lifecycle.md) designs asynchronous
 preparation, immutable preview/start and trusted witness ownership before production adoption.
 

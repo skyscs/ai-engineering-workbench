@@ -89,6 +89,11 @@ lexical retrieval and legacy interface validation remain intact. A future asynch
 prepared-answer owner must pin the reviewed input and retain a trusted native witness
 across inventory eviction; it cannot choose current defaults at model completion or
 automatically populate user-saved history on preview.
+[ADR 0059](docs/decisions/0059-loredock-prepared-question-lifecycle.md) specifies one transient
+reviewed snapshot, synchronous atomic promotion to answer-owned witness storage and
+versioned validation of the issued input. Prospective schema 11, quotas and new prompt
+adapters remain unimplemented. Actual read-accounting and selection seams precede owner,
+HTTP/UI and model integration; see the [lifecycle](docs/loredock/PREPARED_QUESTION_LIFECYCLE.md).
 Explicit storage accounting and offline compaction use separate maintenance commands,
 preserving logical history and normal job recovery. Compaction acquires daemon
 ownership and rewrites physical SQLite pages only when free pages exist; see

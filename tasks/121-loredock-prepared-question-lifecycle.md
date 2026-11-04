@@ -1,7 +1,7 @@
 # Task 121 — Design immutable native question preparation and witness ownership
 
-Status: scoped after Task 120's passing offline comparison. Start after Task 120's
-exact-head acceptance. This is a source-backed architecture/lifecycle task, not production
+Status: design completed, exact-head CI pending. Task 120 / PR #124 passed both CI
+events at `647efad` and merged as identical-tree `4bbc0c1`. This is a source-backed architecture/lifecycle task, not production
 implementation or a new model/evaluation run.
 
 The [sole Task 120 comparison](../docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md) passes
@@ -37,3 +37,10 @@ No application/schema/prompt/runtime change, source indexing, corporate input, m
 or replay of an exhausted family belongs to this task. Keep Task 120 raw evidence and
 all earlier failed semantic/resource gates intact. Agent-authored mechanical acceptance
 and merging do not establish independent product or LoreDock knowledge-ready acceptance.
+
+Completed in the [lifecycle contract](../docs/loredock/PREPARED_QUESTION_LIFECYCLE.md)
+and [ADR 0059](../docs/decisions/0059-loredock-prepared-question-lifecycle.md). The selected
+model keeps one transient reviewed snapshot and promotes it atomically to answer-owned
+versioned storage on explicit Generate. Production read/selection capabilities are the
+next bounded implementation, [Task 122](122-loredock-question-read-selection-seams.md).
+No current production behavior or schema is changed by this design.

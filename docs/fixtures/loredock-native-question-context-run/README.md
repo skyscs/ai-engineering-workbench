@@ -29,5 +29,6 @@ or forced termination. All artifact compression is lossless; source data is not 
 
 The [review record](review.json) records commits, validation and scope. Local full validation
 passes 869 tests/types/builds at `0ee6a99`; final focused validation passes at `aa8797b`.
-The seal is committed at `a3b8b55` before the one observed run. Exact-head push/PR CI remains
-a merge prerequisite and is recorded in the PR and the next accepted handoff.
+The seal is committed at `a3b8b55` before the one observed run. PR #124 subsequently passed
+push 41926249765 and pull-request 41926293151 at `647efad` (869 tests), then merged as
+identical-tree `4bbc0c1`. The archived raw bytes and executable seal remain unchanged.
