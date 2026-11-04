@@ -3,6 +3,8 @@ import type { AnalysisState, AnalysisSummary } from '../../loredock/src/code-ana
 import type { CodePathsAvailableV2 as CodePathsAvailable, CodePathsResponseV2 as CodePathsResponse } from '../../loredock/src/code-paths-v2-types';
 import type { MapEvidence } from '../../loredock/src/system-map-types';
 import { api } from './api';
+import { PathCitations, PathCoverage, PathFlows } from './PathPresentation';
+import { SavePaths } from './SavePaths';
 
 type Props = { buildId: string; staleIndex: boolean; sourceNames: Record<string, string>; openEvidence(id: string): void; clearEvidence(): void };
 type Selection = { inventoryId?: string; generationId?: string; rootId?: string; offset?: number };
@@ -82,9 +84,7 @@ function PathBrowser({ buildId, staleIndex, sourceNames, openEvidence, clearEvid
   function navigate(selection: Selection) { focusAfterRead.current = true; read.current(selection); }
   function original(id: string) { ownedEvidence.current = true; openEvidence(id); }
   function citations(ids: string[], evidence: Record<string, MapEvidence>) {
-    return <div className="citations">{ids.map(id => { const ref = evidence[id]; return ref && <button key={id} className="quiet" onClick={() => original(id)}>
-      Original: {ref.sourceName} / {ref.path}:{ref.startLine}–{ref.endLine}
-    </button>; })}</div>;
+    return <PathCitations ids={ids} evidence={evidence} openOriginal={original} />;
   }
   const pin = (value: CodePathsAvailable): Selection => ({ inventoryId: value.identity.inventoryId, generationId: value.generationId });
   return <section className="connected-path-browser" aria-labelledby="connected-path-heading" aria-busy={loading}
@@ -120,37 +120,12 @@ function PathBrowser({ buildId, staleIndex, sourceNames, openEvidence, clearEvid
         <button className="quiet" onClick={() => navigate(pin(available))}>Show default paths</button>
       </nav>
       {available.graph ? <>
+        <SavePaths key={available.projectionId} value={available} />
         <p>{available.graph.flows.length} paths shown · {Math.max(0, available.roots.total - available.graph.coverage.selectedRoots.length)} entry points outside the selected paths</p>
         {!available.graph.flows.length && <p>No complete supported path fits this selection. Inspect the coverage and omissions below.</p>}
-        {available.graph.flows.map(flow => <article className="connected-flow" key={flow.id}>
-          <h4>{flow.title}</h4>
-          <ol>{flow.nodeIds.map((id, index) => { const node = available.graph!.nodes.find(item => item.id === id)!;
-            const edge = index > 0 ? available.graph!.edges.find(item => item.id === flow.edgeIds[index - 1]) : undefined;
-            return <li key={id}>
-              {edge && <div className="connected-edge"><strong>{edge.status === 'candidate' ? 'Static connection candidate' : 'Static source connection'}</strong>
-                <p>{edge.reason}</p>{edge.gaps.length > 0 && <ul>{edge.gaps.map((gap, i) => <li key={i}>{gap}</li>)}</ul>}
-                {edge.topicCheck && <p className="topic-witness">Matching topic literal: <code>{edge.topicCheck.value}</code></p>}
-                {citations(edge.evidenceIds, available.graph!.evidence)}</div>}
-              <strong>{node.label}</strong><p>{node.sourceName} / <code>{node.path}</code>:{node.startLine} · {node.kind}</p>
-              {citations(node.evidenceIds, available.graph!.evidence)}
-            </li>;
-          })}</ol>
-          {flow.gaps.length > 0 && <details><summary>Path limitations</summary><ul>{flow.gaps.map((gap, i) => <li key={i}>{gap}</li>)}</ul></details>}
-        </article>)}
+        <PathFlows graph={available.graph} openOriginal={original} />
       </> : <p>Choose an entry point to inspect its path. Changing pages clears the previous path.</p>}
-      <details className="connected-gaps"><summary>Path coverage and omissions</summary>
-        <p>{available.coverage.incompleteBindings} incomplete bindings · {available.roots.unavailableEntries} entry points unavailable on this page</p>
-        <dl>{Object.entries(available.coverage.inventoryCounts).map(([reason, count]) => <div key={reason}><dt>Code files: {reason}</dt><dd>{count}</dd></div>)}</dl>
-        {available.coverage.sources.map(source => <p key={source.sourceId}>
-          {sourceNames[source.sourceId] ?? 'Indexed source'}: {source.knownPaths} saved paths · {source.filesWithGaps} code files with syntax gaps · {source.omittedPaths} omitted paths
-          {' · '}{source.opaquePaths} opaque paths · {source.treeVerified ? 'saved tree verified' : 'saved tree incomplete'}
-        </p>)}
-        <ul>{available.graph?.gaps.map((gap, i) => <li key={i}>{gap}</li>)}</ul>
-        {([['Binding gaps', available.coverage.bindingReasons], ['Resolution omissions', available.coverage.omissions],
-          ['Declaration omissions', available.coverage.declarationOmissions], ['Path omissions', available.graph?.omissions ?? {}]] as const).map(([label, counts]) =>
-          <div key={label}><h4>{label}</h4>{Object.entries(counts).length ? <ul>{Object.entries(counts).map(([reason, count]) => <li key={reason}>{reason}: {count}</li>)}</ul> : <p>No counted omissions at this stage.</p>}</div>)}
-        <p className="muted">Saved index {buildId.slice(0, 8)} · inventory {available.identity.inventoryId.slice(0, 8)}. Counts cover supported syntax only.</p>
-      </details>
+      <PathCoverage value={available} sourceNames={sourceNames} />
     </>}
   </section>;
 }
