@@ -364,6 +364,12 @@ representation. Exact-value immutability/fallback and complete tiny captures,
 history, work/read counters and fences pass with 596 full-check tests/builds.
 Next: separately freeze and execute a fresh complete two-process qualification.
 No production promotion or reinterpretation of previous failed gates follows.
+[Task 097](tasks/097-loredock-canonical-qualification.md) completes that fresh
+qualification once: all sixteen content/scope/observation/resource gates and seven
+exact cross-process comparisons pass on 9,960 files. Maximum operation RSS is
+363.961 MiB against 384. Next: a separate production integration review of the
+complete composed candidate, with typed ownership, all callers/fences, rollback and
+qualification of the final composition. No automatic promotion or L5 claim follows.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

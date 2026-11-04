@@ -1,5 +1,32 @@
 # Development status
 
+## Task 097 — Complete canonical representation passes the frozen resource gate
+
+The [single museum-visit qualification](fixtures/loredock-canonical-qualification/README.md)
+passes all sixteen complete content/path/span/scope, independent work/no-write/hook
+and resource gates on twenty sources / 9,960 files / 9,937 code files. Fourteen
+useful selections, six repeats, two evicted histories and seven exact cross-process
+comparisons pass. Both child processes exit zero and close normally. Maximum
+operation RSS is **363.9609375 MiB** against 384; maximum wall duration 2,090.286 ms,
+sampled interval 72.207 ms and heap growth 49.981 MiB remain within unchanged limits.
+
+Scope `b81cd73`, independent tiny process checks (597 tests/types/builds), freeze
+`8779651` and measured entry `1035cb9` precede the sole 394.354-second invocation.
+An inherited tiny-fixture hash failure and its correction remain retained along
+with all 39 raw resource artifacts, outer logs and original assessments. Every
+archive, five frozen inputs and 415 source/built dependency hashes verify.
+
+Next: separately review integration of the composed streaming/compact/prepared/
+canonical candidate into typed production ownership and all existing callers,
+including lifecycle/freshness/work fences, rollback and final-composition checks.
+This source-authored marker-heavy qualification does not establish dense-project
+scale, private-project semantics, a causal saving or L5 readiness. Production and
+earlier failed gates remain unchanged. See
+[Task 097](../tasks/097-loredock-canonical-qualification.md).
+
+PR #100 exact head `9cf719b` passed push 41817625017 and pull-request 41817637896
+CI (596 tests), then merged as identical-tree `271d1c8`, included before this run.
+
 ## Task 096 — One immutable fact-free pair preserves exact path behavior
 
 The [offline candidate](../scripts/loredock-canonical-facts/README.md) shares one

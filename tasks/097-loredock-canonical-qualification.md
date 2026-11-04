@@ -1,6 +1,6 @@
 # Task 097 — Qualify the canonical fact representation
 
-Status: inputs frozen and implementation accepted; execution pending, 2026-11-04.
+Status: single qualification passed and retained, 2026-11-04; exact-head CI precedes merge.
 
 Task 096 proves bounded request-local sharing of one immutable exact fact-free pair
 after full validation. Qualify its complete composed services using the unchanged
@@ -52,3 +52,19 @@ scope without invoking the application parser.
 Task 096 exact head `9cf719b` passes push 41817625017 and pull-request 41817637896
 CI (596 tests), then merges as identical-tree `271d1c8`. This branch includes that
 merge; the probe verifies it before the single resource invocation.
+
+## Outcome
+
+Measured head `1035cb9` executes once in 394.354 seconds, exit zero. Both actual
+processes close normally. All sixteen complete content/path/span/scope, independent
+observation and resource gates pass, with fourteen useful selections, six repeats,
+two evicted histories and seven exact cross-process comparisons. Maximum operation
+RSS is 363.9609375 MiB against 384; wall 2,090.286 ms, interval 72.207 ms and heap
+growth 49.981 MiB remain within unchanged limits. All first artifacts and failed
+tiny development outcomes are [retained](../docs/fixtures/loredock-canonical-qualification/README.md).
+
+Complete diff/reference/hash review verifies 415 dependencies, five frozen inputs
+and every archived raw byte. No older family or failed gate changes. Next perform
+the separate production integration review of the complete composed candidate,
+including typed ownership, all callers/fences, rollback and final-composition
+qualification. No production, private-pilot, semantic or L5 acceptance follows here.
