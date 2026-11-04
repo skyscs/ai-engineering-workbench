@@ -17,7 +17,10 @@ import { topicRule } from './literal-topic.js';
 import { createCanonicalFactPair } from './canonical-fact-pair.js';
 
 export type PathReadKind = 'paths' | 'roots';
-interface ServiceOptions { limits?: Partial<CodePathLimits>; checkpoint?: PathWorkOptions['checkpoint']; budget?: ConstructorParameters<typeof OperationBudget>[0] }
+interface ServiceOptions {
+  limits?: Partial<CodePathLimits>; checkpoint?: PathWorkOptions['checkpoint'];
+  budget?: Pick<NonNullable<ConstructorParameters<typeof OperationBudget>[0]>, 'limits' | 'observe'>;
+}
 const uuid = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
 const hash = /^[a-f0-9]{64}$/;
 const byteSize = (value: unknown) => Buffer.byteLength(JSON.stringify(value));
@@ -50,7 +53,7 @@ export class CodePathsV2 {
     if (suppliedBudget !== undefined && !(suppliedBudget instanceof OperationBudget))
       throw new CatalogError('INVALID_CAPTURE_BUDGET', 'Use the internal operation budget.');
     const owned = suppliedBudget === undefined;
-    const budget = suppliedBudget ?? new OperationBudget({ ...this.options.budget, signal, wallCeiling: this.limits.wallMs });
+    const budget = suppliedBudget ?? new OperationBudget({ ...this.options.budget, ...signal ? { signal } : {}, wallCeiling: this.limits.wallMs });
     try { return await this.analysis.catalog.store.withPreparedReads(() => this.readOwned(input, kind, signal, budget)); }
     finally { if (owned) budget.close(); }
   }
