@@ -1,5 +1,26 @@
 # Development status
 
+## Task 105 — Native receipts have a strict format boundary
+
+The [pure codec](loredock/NATIVE_RECEIPT_FORMAT.md) validates native identities,
+complete path/original/dependency support, literal witnesses, header comparisons and
+fixed byte/depth bounds under the caller's actual operation budget. It preserves
+exact projection and original bytes. It performs no source authorization, I/O,
+analysis derivation or current application/schema change.
+
+Independent records and real native v2 selections pass 79 cases/subcases; full strict
+checks/tests/build pass **720 tests**. The compiled smoke preserves a 23,808-byte
+receipt after restart and two inventory replacements, with no source/fact/path reads
+during decode. First failures and twelve command logs are
+[retained](fixtures/loredock-native-receipt-codec/README.md), including the correction
+that retains declared environments on event-contract edges.
+
+Next [Task 106](../tasks/106-loredock-native-receipt-storage.md) implements schema-10
+identity and catalog-owned storage/purge/recovery. Native capture/history, independent
+assessment and complete final qualification still precede consumer migration.
+PR #108 head `d8334b0` passed push 41836097395 and pull-request 41836133917 CI
+(641 tests), then merged as identical-tree `636efc3`.
+
 ## Task 104 — Native receipts belong to the catalog lifecycle
 
 The [ownership contract](loredock/NATIVE_CAPTURE_OWNERSHIP.md) selects UUID-bound,

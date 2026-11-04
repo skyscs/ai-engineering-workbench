@@ -1,6 +1,6 @@
 # Task 105 — Validate the native receipt format
 
-Status: implementation started, 2026-11-04.
+Status: implemented and locally verified, 2026-11-04.
 
 Implement the pure, strict native receipt codec defined by ADR 0057. Keep this
 change independent of filesystem ownership, schema migration and async capture/
@@ -34,3 +34,22 @@ mask missing nested validation. Preserve first failures and historical fixtures.
 Run focused tests, strict types/full checks/build and a compiled codec smoke. Record
 limitations and the complete diff, require both exact-head CI events before merge,
 then continue Task 106 storage/lifecycle without asking for renewed approval.
+
+## Result
+
+Four internal TypeScript modules implement bounded canonical JSON, typed native
+receipt content, strict projection validation and the detached encoder/decoder.
+The [format contract](../docs/loredock/NATIVE_RECEIPT_FORMAT.md) distinguishes integrity
+from authorization and opaque/full-source identities that cannot be rederived here.
+No current application entry point, catalog schema or historical measured input changes.
+
+Independent records and real native v2 output pass 79 focused cases/subcases; complete
+strict checks/tests/build pass **720 tests**. A compiled owned smoke preserves all
+23,808 bytes through restart and two inventory replacements, without source/fact/path
+reads during decode. First type/test failures, the declared event-environment correction
+and all twelve command logs are [retained](../docs/fixtures/loredock-native-receipt-codec/README.md).
+
+PR #108 head `d8334b0` passed push 41836097395 and pull-request 41836133917 CI
+(641 tests), then merged as identical-tree `636efc3`, verified and incorporated.
+Next [Task 106](106-loredock-native-receipt-storage.md) adds catalog-owned storage,
+schema identity and purge/recovery before native async capture/history orchestration.
