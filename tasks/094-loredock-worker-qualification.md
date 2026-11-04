@@ -1,6 +1,6 @@
 # Task 094 — Qualify worker-local prepared reads
 
-Status: scoped before implementation, 2026-11-04.
+Status: inputs frozen and implementation accepted; execution pending, 2026-11-04.
 
 Task 093 proves independent semantic/lifecycle equivalence for prepared reads scoped
 to one inventory worker. Qualify its composition with the existing path read scope,
@@ -40,3 +40,16 @@ pilot and L5 acceptance remain separate from synthetic agent verification.
 
 Review the complete diff and verify local strict checks plus both final-head CI
 events before an identical-tree merge of this task.
+
+## Preparation
+
+Scope `4da42c4` precedes tiny process integration `f8282b4`. Full checks pass 582
+tests, strict typechecks and builds, with first logs retained. Freeze `3d04283`
+records 20 sources / 9,960 files / 9,937 code files / 516,882 UTF-8 bytes / 21 facts,
+complete source-authored path/span/scope expectations and 412 source/built hashes.
+Pure construction review checks every original line range and typed-node file
+without invoking an application parser on the family.
+
+Task 093 final head `74b4a2f` passed push 41813105877 and pull-request 41813113863
+CI (581 tests), then merged as identical-tree `06028d7`. This branch includes that
+merge; the measured probe verifies and records it before its only execution.

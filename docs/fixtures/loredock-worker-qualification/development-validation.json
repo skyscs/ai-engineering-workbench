@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "task094-development-validation/1",
+  "scope": "4da42c4",
+  "tinyImplementation": "f8282b4",
+  "fullCheck": {
+    "tests": 582,
+    "strictTypes": true,
+    "builds": true
+  },
+  "files": [
+    {
+      "file": "install-first.log.gz",
+      "original": "/home/toshiba/aew/task094-install-first.log",
+      "exitCode": 0,
+      "bytes": 326,
+      "sha256": "1d5c2881e07ea93907c96c7344ece0767021c97eb7c30f88b8fad2f2dab6b52c",
+      "archiveSha256": "24969e32d4891d1e2e2eaea5d2d2af014fe685bf2f01a21277ccaddef9137b04"
+    },
+    {
+      "file": "check-first.log.gz",
+      "original": "/home/toshiba/aew/task094-check-first.log",
+      "exitCode": 0,
+      "bytes": 232048,
+      "sha256": "77eaa94a764c61114426c0c34aedff82f184554e138231d353850907edc719bb",
+      "archiveSha256": "ebffe3075c023a6a7c180962c82a6385c53920c7fb28b6e39bdbe9796b920cde"
+    }
+  ]
+}

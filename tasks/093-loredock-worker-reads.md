@@ -1,6 +1,6 @@
 # Task 093 — Reuse prepared reads within one inventory worker
 
-Status: implemented and locally verified, 2026-11-04; exact-head CI precedes merge.
+Status: merged through PR #97, 2026-11-04.
 
 Implement the single candidate selected by Task 092: reuse bounded prepared READ
 statements during one asynchronous inventory worker invocation. Reuse Task 090's
@@ -53,3 +53,8 @@ Full strict checks pass 581 tests and builds; built offline services import. All
 410 prior baseline files remain unchanged. Eight development logs, first failures
 and the verification boundary are [retained](../docs/fixtures/loredock-worker-reads/README.md).
 The next task separately freezes and executes a fresh complete qualification.
+
+Exact final head `74b4a2f` passed push 41813105877 and pull-request 41813113863 CI
+(581 tests) and merged as identical-tree `06028d7`. The first merge API attempt
+returned HTTP 502 without merging; a subsequent state check and explicit SHA-bound
+REST merge succeeded. No code or qualification result changed.
