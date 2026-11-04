@@ -1,3 +1,5 @@
+// @ts-expect-error Test-only exact delta proof; historical source pins remain unchanged.
+import { assertHistoricalSource } from './fixtures/question-read-reference/verify.mjs';
 import assert from 'node:assert/strict';
 import { test, type TestContext } from 'node:test';
 import { mkdtemp, mkdir, readFile, rm } from 'node:fs/promises';
@@ -80,7 +82,7 @@ async function setup(t: TestContext, limits: Partial<AnalysisLimits> = {}) {
 test('worker seam remains bound to unchanged source dependencies and rejects incompatible services', async () => {
   const root = new URL('../../../', import.meta.url);
   const manifest = JSON.parse(await readFile(new URL('scripts/loredock-worker-reads/baseline.json', root), 'utf8')) as { files: Record<string, string> };
-  for (const [file, expected] of Object.entries(manifest.files)) assert.equal(sha256(await referenceSource(file)), expected, file);
+  for (const [file, expected] of Object.entries(manifest.files)) await assertHistoricalSource(file, await referenceSource(file), expected);
   assert.throws(() => createWorkerReads({ CodeAnalysis: class {} }), /Unsupported inventory worker seam/);
   const Candidate = createWorkerReads({ CodeAnalysis });
   assert.throws(() => new Candidate({ store: {} }), /require the scoped store/);

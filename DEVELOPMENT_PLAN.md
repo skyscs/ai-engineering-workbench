@@ -460,9 +460,10 @@ model behavior. [Task 120](tasks/120-loredock-native-question-context-feasibilit
 completes that separate comparison with 44/44 required cases passing. The family is now
 exhausted; production answers remain unchanged. [Task 121](tasks/121-loredock-prepared-question-lifecycle.md)
 completes the [immutable preparation/witness design](docs/loredock/PREPARED_QUESTION_LIFECYCLE.md)
-under [ADR 0059](docs/decisions/0059-loredock-prepared-question-lifecycle.md). The next bounded
-implementation is [Task 122](tasks/122-loredock-question-read-selection-seams.md): production
+under [ADR 0059](docs/decisions/0059-loredock-prepared-question-lifecycle.md). [Task 122](tasks/122-loredock-question-read-selection-seams.md) adds production
 scoped lexical accounting and native selection seams, preserving public/legacy behavior.
+Next [Task 123](tasks/123-loredock-prepared-question-owner.md) owns one bounded transient
+prepared snapshot, before HTTP/UI adoption or durable answer promotion.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation

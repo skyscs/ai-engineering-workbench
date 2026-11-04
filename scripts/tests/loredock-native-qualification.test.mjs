@@ -1,24 +1,18 @@
 import assert from 'node:assert/strict';
-import { before, test } from 'node:test';
-import { execFileSync } from 'node:child_process';
+import { test } from 'node:test';
 import { mkdtemp, readFile, rm, writeFile, mkdir, symlink } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { runNativeQualification } from '../loredock-native-qualification/coordinator.mjs';
 import { configuration } from '../loredock-native-qualification/development.mjs';
 import { assessNativeArm, combineNativeArms, validateLimits } from '../loredock-native-qualification/assessment.mjs';
 import { readJSON } from '../loredock-native-qualification/io.mjs';
 
-const root = fileURLToPath(new URL('../../', import.meta.url)), configPath = fileURLToPath(new URL('../loredock-native-qualification/development.mjs', import.meta.url));
+const configPath = fileURLToPath(new URL('../loredock-native-qualification/development.mjs', import.meta.url));
 const badChild = fileURLToPath(new URL('./fixtures/native-driver-child.mjs', import.meta.url));
-// The normal check runs tests before the application build. Compile this actual
-// entry point once; children must not install a tsx loader or source-service facade.
-before(() => {
-  const require = createRequire(path.join(root, 'apps/loredock/package.json'));
-  execFileSync(process.execPath, [require.resolve('typescript/lib/tsc.js'), '-p', path.join(root, 'apps/loredock/tsconfig.json')], { cwd: root, timeout: 60000, stdio: 'pipe' });
-});
+// pnpm test builds the actual daemon once before starting parallel script tests.
+// Children still use compiled modules without a tsx loader or source facade.
 async function execute(t, caseId = 0, extras = {}) {
   const parent = await mkdtemp(path.join(tmpdir(), 'native-driver-')); let passed = false;
   t.after(async () => { if (passed) await rm(parent, { recursive: true, force: true }); else t.diagnostic(`Retained native driver regression: ${parent}`); });

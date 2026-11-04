@@ -246,8 +246,10 @@ preparation and witness ownership before production adoption. Its
 [lifecycle contract](PREPARED_QUESTION_LIFECYCLE.md) chooses one transient reviewed snapshot
 and atomic answer-owned durable witnesses, with old-input compatibility and explicit
 capacity/purge behavior. [Task 122](../../tasks/122-loredock-question-read-selection-seams.md)
-first implements scoped lexical accounting and typed native selection with parity. No production answer context or model evaluation changes
-in the design task. No semantic/L5 gate
+implements scoped lexical accounting and typed native selection with public/legacy parity.
+Next [Task 123](../../tasks/123-loredock-prepared-question-owner.md) owns one bounded
+transient prepared snapshot. HTTP/UI adoption and durable answer promotion follow separately.
+Production answer inputs and model evaluation remain unchanged. No semantic/L5 gate
 is inferred from either the resource result or this public read migration.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.

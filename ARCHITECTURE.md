@@ -92,7 +92,9 @@ automatically populate user-saved history on preview.
 [ADR 0059](docs/decisions/0059-loredock-prepared-question-lifecycle.md) specifies one transient
 reviewed snapshot, synchronous atomic promotion to answer-owned witness storage and
 versioned validation of the issued input. Prospective schema 11, quotas and new prompt
-adapters remain unimplemented. Actual read-accounting and selection seams precede owner,
+adapters remain unimplemented. Task 122 adds actual synchronous per-store lexical accounting and typed complete-resolution
+selection within the existing shared budget/owner, preserving unselected outputs. These
+[internal seams](docs/loredock/QUESTION_READ_SELECTION.md) precede prepared ownership,
 HTTP/UI and model integration; see the [lifecycle](docs/loredock/PREPARED_QUESTION_LIFECYCLE.md).
 Explicit storage accounting and offline compaction use separate maintenance commands,
 preserving logical history and normal job recovery. Compaction acquires daemon

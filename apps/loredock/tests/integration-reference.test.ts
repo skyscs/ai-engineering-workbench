@@ -1,3 +1,5 @@
+// @ts-expect-error Test-only exact delta proof; historical source pins remain unchanged.
+import { assertHistoricalSource } from './fixtures/question-read-reference/verify.mjs';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFile, mkdtemp, mkdir, rm } from 'node:fs/promises';
@@ -55,7 +57,7 @@ test('portable reference preserves original sources, deterministic imports and r
   assert.match(manifest.fingerprintContext, /current production implementation bytes/);
   for (const name of ['loredock-worker-reads', 'loredock-canonical-facts']) {
     const baseline = JSON.parse(await readFile(new URL(`scripts/${name}/baseline.json`, root), 'utf8')) as { files: Record<string, string> };
-    for (const [file, expected] of Object.entries(baseline.files)) assert.equal(sha256(await referenceSource(file)), expected, file);
+    for (const [file, expected] of Object.entries(baseline.files)) await assertHistoricalSource(file, await referenceSource(file), expected);
   }
 });
 

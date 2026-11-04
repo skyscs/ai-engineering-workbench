@@ -14,6 +14,7 @@ import { PreparedAnalysisWrites } from './prepared-analysis-writes.js';
 import { NativeReceiptStore } from './native-receipt-store.js';
 import type { NativeStorageOptions } from './native-receipt-files.js';
 import { requireReceipt, uuid } from './native-receipt-json.js';
+import { checkLexicalRead, recordLexicalRows, runLexicalReads, closeLexicalReads, type LexicalReadAccount } from './lexical-read-account.js';
 
 export const defaults = { sources: 20, paths: 10000, fileBytes: 1024 * 1024, totalBytes: 50 * 1024 * 1024, wallMs: 300000 };
 export interface Project { policyVersion: number; sourceSetVersion: number; policy: string; publishedBuildId: string | null; correctionRevision: number }
@@ -173,13 +174,18 @@ export class CatalogStore {
     } catch (error) { receipts?.close(); opened?.close(); this.owner.close(); throw error; }
   }
   one<T>(sql: string, ...args: SQLInputValue[]): T | undefined {
+    checkLexicalRead(this);
     const fresh = () => this.db.prepare(sql).get(...args) as T | undefined;
-    return this.reads ? this.reads.execute('get', sql, args, fresh) : fresh();
+    const result = this.reads ? this.reads.execute('get', sql, args, fresh) : fresh();
+    recordLexicalRows(this, result === undefined ? 0 : 1); return result;
   }
   all<T>(sql: string, ...args: SQLInputValue[]): T[] {
+    checkLexicalRead(this);
     const fresh = () => this.db.prepare(sql).all(...args) as T[];
-    return this.reads ? this.reads.execute('all', sql, args, fresh) : fresh();
+    const result = this.reads ? this.reads.execute('all', sql, args, fresh) : fresh();
+    recordLexicalRows(this, result.length); return result;
   }
+  withLexicalReads<T>(account: LexicalReadAccount, action: () => T): T { return runLexicalReads(this, account, action); }
   async withPreparedReads<T>(action: () => T | Promise<T>): Promise<T> { return this.reads ? this.reads.run(action) : action(); }
   withPreparedAnalysisWritesSync<T>(action: () => T): T { return this.analysisWrites ? this.analysisWrites.runSync(action) : action(); }
   async withPreparedAnalysisWrites<T>(action: () => T | Promise<T>): Promise<T> { return this.analysisWrites ? this.analysisWrites.run(action) : action(); }
@@ -193,7 +199,7 @@ export class CatalogStore {
     catch (error) { this.db.exec('ROLLBACK;'); throw error; }
   }
   close() { if (this.closed) return; this.receipts.close(); this.closed = true;
-    this.analysisWrites?.close(); this.reads?.close(); try { this.db.close(); } finally { this.owner.close(); } }
+    closeLexicalReads(this); this.analysisWrites?.close(); this.reads?.close(); try { this.db.close(); } finally { this.owner.close(); } }
   project(): Project { return this.one<Project>('SELECT * FROM project WHERE id=1')!; }
   sources() { return this.all<Source>('SELECT * FROM sources ORDER BY rowid'); }
   source(id: string): Source {

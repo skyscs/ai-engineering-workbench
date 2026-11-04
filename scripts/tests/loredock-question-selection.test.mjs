@@ -1,20 +1,25 @@
 import assert from 'node:assert/strict';
-import { test, before } from 'node:test';
-import { execFileSync } from 'node:child_process';
+import { test } from 'node:test';
 import { mkdtemp, rm, readFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
-before(() => { const require = createRequire(path.join(root, 'apps/loredock/package.json'));
-  execFileSync(process.execPath, [require.resolve('typescript/lib/tsc.js'), '-p', path.join(root, 'apps/loredock/tsconfig.json')], { cwd: root, timeout: 60000, stdio: 'pipe' }); });
 const node = (id, label, kind = 'symbol', properties = {}) => ({ id, label, kind, properties, evidenceIds: [id] });
 const work = () => ({ count: 0, async step() { this.count++; } });
 async function select(nodes, edges, roots, question, ids = nodes.map(row => row.id)) {
   const { chooseQuestionRoot } = await import('../loredock-native-question-context/selection.mjs');
-  return chooseQuestionRoot({ nodes, edges, roots: roots.map(id => ({ id })) }, { question, spans: ids.map(id => ({ id })) }, work());
+  const { chooseQuestionRoot: production } = await import('../../apps/loredock/dist/question-path-selection.js');
+  const resolution = { nodes, edges, roots: roots.map(id => ({ id })) }, context = { question, spans: ids.map(id => ({ id })) };
+  const before = JSON.stringify({ resolution, context }), oldWork = work(), newWork = work();
+  const outcome = async (select, charge) => { try { return { value: await select(resolution, context, charge) }; }
+    catch (error) { return { error, comparable: { code: error.code, message: error.message, observation: error.observation } }; } };
+  const old = await outcome(chooseQuestionRoot, oldWork), current = await outcome(production, newWork);
+  assert.deepEqual(current.value, old.value); assert.deepEqual(current.comparable, old.comparable);
+  assert.equal(newWork.count, oldWork.count); assert.equal(JSON.stringify({ resolution, context }), before);
+  if (current.error) throw current.error;
+  return current.value;
 }
 
 test('complete selection reaches a root outside the display page and terminates on cycles', async () => {
@@ -48,7 +53,8 @@ test('candidate delta is exactly two retained edits and deterministic static imp
   const { runtimeImports, relocateSource } = await import('../../apps/loredock/tests/fixtures/integration-reference/compile.mjs');
   const manifest = JSON.parse(await readFile(path.join(root, 'scripts/loredock-native-question-context/candidate-manifest.json'), 'utf8'));
   const control = await readFile(path.join(root, 'fixtures/loredock-native-question-context-run/control/code-paths-v2.js.txt'), 'utf8');
-  assert.equal(await readFile(path.join(root, 'apps/loredock/dist/code-paths-v2.js'), 'utf8'), control);
+  const { verifyQuestionReadDelta } = await import('../../apps/loredock/tests/fixtures/question-read-reference/verify.mjs');
+  assert.equal(await verifyQuestionReadDelta('code-paths-v2'), control);
   let expected = control; assert.equal(manifest.edits.length, 2);
   for (const { before, after } of manifest.edits) { assert.equal(expected.split(before).length, 2); expected = expected.replace(before, after); }
   assert.deepEqual(Object.keys(manifest.relocations).sort(), runtimeImports(expected).filter(row => row.name.startsWith('.')).map(row => row.name).sort());

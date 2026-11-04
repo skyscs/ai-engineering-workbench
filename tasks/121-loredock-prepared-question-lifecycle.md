@@ -1,6 +1,7 @@
 # Task 121 — Design immutable native question preparation and witness ownership
 
-Status: design completed, exact-head CI pending. Task 120 / PR #124 passed both CI
+Status: accepted through PR #125 at `896e484`; push 41929457581 and pull-request
+41929516141 passed, followed by identical-tree merge `2519990`. Task 120 / PR #124 passed both CI
 events at `647efad` and merged as identical-tree `4bbc0c1`. This is a source-backed architecture/lifecycle task, not production
 implementation or a new model/evaluation run.
 
