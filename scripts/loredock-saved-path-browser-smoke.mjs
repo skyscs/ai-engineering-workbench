@@ -148,10 +148,14 @@ try {
   failNext = true; await click('Save paths'); await text('The local operation failed.'); assert.equal(await evaluate("document.body.innerText.includes('/private/internal-detail')"), false);
   await click('Save paths'); await text('These paths were already saved.');
   report.checks.push('Real busy/cancelled operations release ownership; explicit retry works and private faults stay generic without erasing an earlier confirmation.');
-  const beforeHistoryRequests = report.requests.length, beforeHistory = fixture.counters();
   await page.send('Page.navigate', { url: defaultLink }); await historyReady(); await text('Applicability to current code has not been checked.');
   assert.equal(await evaluate('document.activeElement.id'), 'saved-path-heading'); assert.equal(await evaluate("document.querySelectorAll('.connected-flow').length"), 2);
   assert.equal(await evaluate("Boolean(document.querySelector('.connected-roots,.save-paths,.code-inventory'))"), false);
+  // Previous-page inventory polls may finish during navigation; measure the settled page
+  // separately from the per-history request counters already recorded by the transport.
+  const beforeHistoryRequests = report.requests.length, beforeHistory = fixture.counters();
+  const historyPolls = report.requests.filter(row => row.path === '/api/project').length;
+  await waitFor(() => report.requests.filter(row => row.path === '/api/project').length > historyPolls + 1, 'Saved-page project polling stopped.');
   assert.deepEqual(fixture.counters(), beforeHistory);
   assert.ok(!report.requests.slice(beforeHistoryRequests).some(row => /^\/api\/(code-paths|code-analysis|evidence)/.test(row.path)));
   await evaluate("document.querySelector('.saved-source-scope').open=true"); await text('z-independent-notes');
@@ -164,6 +168,9 @@ try {
   assert.equal(await evaluate('document.documentElement.scrollWidth<=innerWidth'), true); await screenshot('history-mobile.png');
   await page.send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 1000, deviceScaleFactor: 1, mobile: false });
   report.checks.push('Direct links render exact recorded paths, all source dependencies and saved originals with focus, no rederivation/API original reads and responsive layouts.');
+  await page.send('Page.navigate', { url: selectedLink }); await historyReady(); assert.equal(await evaluate("document.querySelectorAll('.connected-flow').length"), 1);
+  await page.send('Page.navigate', { url: defaultLink }); await historyReady();
+  report.checks.push('The selected-root bookmark reopens only its recorded path, while the default bookmark retains both paths.');
   await fixture.analyze('replacement-one'); await fixture.analyze('replacement-two'); assert.ok(!analysis.list().some(row => row.id === pins.get('inventoryId')));
   await page.send('Page.reload'); await historyReady(); assert.deepEqual(await readFile(path.join(receiptFolder, id + '.json')), bytes);
   report.checks.push('A bookmarked link reopens after reload and actual inventory eviction without replacing saved content.');
