@@ -1,4 +1,4 @@
-import type { Catalog } from './catalog.js';
+import { activePathCatalogs as activeCatalogs } from './code-paths-owner.js';
 import type { CodeAnalysis } from './code-analysis.js';
 import type { AnalysisSummary } from './code-analysis-types.js';
 import type { CodePathRequest, CodePathLimits, CodePathIdentity, CodePathCoverage, CodePathsAvailable, CodePathsResponse, CodePathsUnavailable } from './code-paths-types.js';
@@ -14,7 +14,6 @@ import { createCanonicalFactPair } from './canonical-fact-pair.js';
 
 export type PathReadKind = 'paths' | 'roots';
 interface ServiceOptions { limits?: Partial<CodePathLimits>; checkpoint?: PathWorkOptions['checkpoint'] }
-const activeCatalogs = new WeakSet<Catalog>();
 const uuid = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
 const hash = /^[a-f0-9]{64}$/;
 const byteSize = (value: unknown) => Buffer.byteLength(JSON.stringify(value));
