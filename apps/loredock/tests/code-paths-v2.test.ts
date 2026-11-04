@@ -214,6 +214,27 @@ test('native v2 keeps all original and metadata fences through nested reads, wor
   await assert.rejects(revoked.read({ buildId: s.buildId }), { code: 'ANALYSIS_FENCED' }); await revoked.stop();
 });
 
+test('a worker overlapping v2 uses fresh reads and policy changes fence an active candidate', async t => {
+  const s = await setup(t); let release!: () => void, enter!: () => void, held = false;
+  const gate = new Promise<void>(resolve => { release = resolve; }), reached = new Promise<void>(resolve => { enter = resolve; });
+  const paths = new CodePathsV2(s.analysis, { checkpoint: async ({ stage }) => {
+    if (stage === 'read' && !held) { held = true; enter(); await gate; }
+  } });
+  const active = paths.read({ buildId: s.buildId }); await reached;
+  try {
+    const run = s.analysis.start('worker-over-v2', s.buildId); await s.analysis.idle();
+    assert.ok(s.analysis.get(run.id).published);
+  } finally { release(); }
+  await assert.rejects(active, { code: 'METADATA_CHANGED' }); await paths.stop();
+  available(await s.paths.read({ buildId: s.buildId }));
+  let changed = false;
+  const policy = new CodePathsV2(s.analysis, { checkpoint: ({ stage }) => { if (stage === 'read' && !changed) {
+    changed = true; s.catalog.updatePolicy(['excluded-after-start']);
+  } } });
+  await assert.rejects(policy.read({ buildId: s.buildId }), { code: 'ANALYSIS_FENCED' }); assert.ok(changed); await policy.stop();
+  await assert.rejects(s.paths.read({ buildId: s.buildId }), { code: 'POLICY_CHANGED' });
+});
+
 for (const mode of ['different', 'dynamic', 'escaped', 'overlength', 'absent', 'ambiguous'] as const) test(`native v2 preserves conservative ${mode} topic/target behavior`, async t => {
   const s = await setup(t, corpus => {
     const api = corpus['b-locker-api']!, sink = corpus['c-locker-store']!;
