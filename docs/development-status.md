@@ -1,5 +1,25 @@
 # Development status
 
+## Task 092 — Inventory replacement query audit selects one worker-scoped candidate
+
+The [independent tiny audit](loredock/INVENTORY_PREPARATION_AUDIT.md) separates
+synchronous admission, asynchronous workers and evicted history. Each worker prepares
+520 SELECTs across ten identities while handling 32 code files. Writes, full original
+validation, parsing and checkpoint/publication ownership are traced separately.
+These counts support testing reuse of prepared reads within one worker invocation;
+they do not identify the cause of RSS or establish a memory saving.
+
+The first harness invocation assumes four sources and fails before preparation.
+The corrected three-source expectation uses identical input bytes; all first outcomes
+remain [retained](fixtures/loredock-inventory-preparation/README.md). The complete
+audit exits zero and preserves exact evicted history with no nested fact/path work.
+Full checks pass 569 tests, strict types and builds. No resource family is rerun or
+optimization implemented. Next prove that one worker-scoped candidate independently,
+then require fresh complete uninstrumented resource qualification.
+
+See [Task 092](../tasks/092-loredock-inventory-preparation.md); final-head CI and merge
+are pending. Task 091's failed resource result remains unchanged.
+
 ## Task 091 — Prepared qualification retains one history RSS failure
 
 The [single fresh two-process run](fixtures/loredock-prepared-qualification/README.md)

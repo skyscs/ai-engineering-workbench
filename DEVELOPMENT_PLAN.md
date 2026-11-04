@@ -338,6 +338,12 @@ resources pass 15/16. Reopened history starts over RSS after two inventory repla
 Keep the failed gate and all bounds. Next: one focused source/query-count audit of
 replacement preparation on independent tiny inputs before choosing another change.
 The endpoints do not identify an allocation owner; no production promotion follows.
+[Task 092](tasks/092-loredock-inventory-preparation.md) completes that independent
+source/count audit. Each tiny replacement worker prepares 520 reads across ten SQL
+identities; complete original validation and writes remain necessary. Next test
+bounded prepared-read reuse within one asynchronous inventory worker, preserving
+all lifecycle/freshness/fence behavior. This hypothesis requires independent semantic
+proof and a fresh complete resource qualification; no optimization is implemented yet.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

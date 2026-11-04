@@ -1,0 +1,111 @@
+{
+  "method": "Direct sums of first complete tiny audit counters. No resource score or allocation attribution.",
+  "input": {
+    "sources": 3,
+    "files": 38,
+    "bytes": 4338,
+    "codeFiles": 32,
+    "sha256": "b5226c2ffbd1ab5659ac4b8d011dfab9270926905ad04d0ceb5074f5d4da83a2"
+  },
+  "queryIdentities": 42,
+  "sqlBytes": 7504,
+  "totalPreparations": 2060,
+  "stages": [
+    {
+      "name": "reference-capture",
+      "preparations": 435,
+      "identities": 28,
+      "callsByKind": {
+        "SELECT": 347,
+        "PRAGMA": 88
+      },
+      "identitiesByKind": {
+        "SELECT": 27,
+        "PRAGMA": 1
+      }
+    },
+    {
+      "name": "replacement-one-start",
+      "preparations": 54,
+      "identities": 17,
+      "callsByKind": {
+        "SELECT": 19,
+        "DELETE": 1,
+        "INSERT": 34
+      },
+      "identitiesByKind": {
+        "SELECT": 13,
+        "DELETE": 1,
+        "INSERT": 3
+      }
+    },
+    {
+      "name": "replacement-one-worker",
+      "preparations": 585,
+      "identities": 13,
+      "callsByKind": {
+        "SELECT": 520,
+        "UPDATE": 65
+      },
+      "identitiesByKind": {
+        "SELECT": 10,
+        "UPDATE": 3
+      }
+    },
+    {
+      "name": "replacement-two-start",
+      "preparations": 54,
+      "identities": 17,
+      "callsByKind": {
+        "SELECT": 19,
+        "DELETE": 1,
+        "INSERT": 34
+      },
+      "identitiesByKind": {
+        "SELECT": 13,
+        "DELETE": 1,
+        "INSERT": 3
+      }
+    },
+    {
+      "name": "replacement-two-worker",
+      "preparations": 585,
+      "identities": 13,
+      "callsByKind": {
+        "SELECT": 520,
+        "UPDATE": 65
+      },
+      "identitiesByKind": {
+        "SELECT": 10,
+        "UPDATE": 3
+      }
+    },
+    {
+      "name": "evicted-history",
+      "preparations": 347,
+      "identities": 7,
+      "callsByKind": {
+        "SELECT": 271,
+        "PRAGMA": 76
+      },
+      "identitiesByKind": {
+        "SELECT": 6,
+        "PRAGMA": 1
+      }
+    }
+  ],
+  "history": {
+    "receiptId": "198a7a17550ab3318824c34e86a46a8b89f10988113ffcb6317d57c8575a69c0",
+    "receiptSha256": "1cba6c6f7455b73348e5ba81acefd3cfd036aa4c6a3f54a2eb912aab33af7437",
+    "pathWork": 0,
+    "reads": {
+      "gitCalls": 0,
+      "writeCalls": 0,
+      "factReads": 0,
+      "snapshots": 0,
+      "pathReads": 0,
+      "originalReads": 10,
+      "changedRows": 0
+    }
+  }
+}

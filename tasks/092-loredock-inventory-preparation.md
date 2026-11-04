@@ -1,6 +1,6 @@
 # Task 092 — Audit inventory replacement preparation
 
-Status: scoped before execution, 2026-11-04.
+Status: audited and locally verified, 2026-11-04; exact-head CI pending.
 
 Task 091 passes complete content but fails reopened-history RSS. The failing worker
 already exceeds RSS before history, after its two inventory replacements. Endpoints
@@ -33,3 +33,27 @@ proof and fresh uninstrumented qualification required before any promotion.
   is run or edited. No forced GC, heap snapshot or profiler is used.
 - Source/diff/hash/reference review, appropriate/full checks and both final-head CI
   events precede an identical-tree merge. Do not implement an optimization here.
+
+## Outcome
+
+Scope `6540991` precedes entry `db76965`. The first invocation fails preflight on a
+four-source assumption; the independent fixture has three. No database/preparation
+or query stage runs. Its report/stdout/stderr/exit are retained. Correction `ea5dc16`
+uses the actual three-source expectation without changing the input hash or bounds.
+
+The complete tiny audit exits zero: 38 files / 32 code files / 4,338 bytes, six
+stages, 2,060 preparations across 42 identities / 7,504 SQL bytes. Each replacement
+worker performs 520 SELECT preparations across ten identities and 65 UPDATEs across
+three. Both replacements publish, evict initial facts and preserve exact history
+with zero nested path/fact/snapshot work. Instrumented endpoints are not resources.
+
+The [source audit](../docs/loredock/INVENTORY_PREPARATION_AUDIT.md) clarifies that
+start validates build/coverage; complete original validation belongs to per-file
+worker processing. It selects one next candidate: scope prepared reads to one
+asynchronous inventory worker invocation, preserving fresh execution and every
+authorization/original/checkpoint/lifecycle boundary. No optimization is implemented.
+
+Full checks pass 569 tests, strict typechecks and builds; the corrected actual audit
+passes. All first outcomes and exact inputs/receipt/counts are
+[retained](../docs/fixtures/loredock-inventory-preparation/README.md). Complete source,
+diff, reference and hash review precedes exact-head CI and merge.

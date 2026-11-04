@@ -22,3 +22,8 @@ The observer records SQL templates/counts, never parameters or returned rows.
 Its memory/timing endpoints are intrusive diagnostics, not resource acceptance.
 The audit changes no production or previously measured module and selects no
 optimization until the first source/count readback is reviewed.
+
+The [retained first outcomes](../../docs/fixtures/loredock-inventory-preparation/README.md)
+include the source-count preflight error and the corrected complete audit. The
+[reviewed decision](../../docs/loredock/INVENTORY_PREPARATION_AUDIT.md) selects a
+separate worker-scoped prepared-read candidate; this audit implements no optimization.

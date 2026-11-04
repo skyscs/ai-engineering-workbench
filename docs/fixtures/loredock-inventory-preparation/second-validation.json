@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "task092-complete-audit/1",
+  "head": "ea5dc16",
+  "root": "/home/toshiba/aew/measurements/task092-second-audit",
+  "files": [
+    {
+      "file": "second-report.json.gz",
+      "original": "/home/toshiba/aew/measurements/task092-second-audit/report.json",
+      "bytes": 32538,
+      "sha256": "2f97ea95e2b3cbdf4b9ef3de91bc1ff2a88406d37490ee6e9e07bd720912da22",
+      "archiveSha256": "be77a225231a8275e0d85a24d5e2ba7c064ced0a90fea6ec0549d84aff670143"
+    },
+    {
+      "file": "second-input.json.gz",
+      "original": "/home/toshiba/aew/measurements/task092-second-audit/input.json",
+      "bytes": 5484,
+      "sha256": "df9f8c3891b3c9c34844d5cffe58156b43f56e74c7532525da9d72991f70090a",
+      "archiveSha256": "7fcb920b61ce02db94b03c45a821b11ed305626b8e732ff987736bd19bb1a2eb"
+    },
+    {
+      "file": "second.stdout.log.gz",
+      "original": "/home/toshiba/aew/task092-audit-second.stdout.log",
+      "bytes": 574,
+      "sha256": "d00a554e9dd9383d01565a2d803513dd9afd8097b670e355ee818153261ec0b1",
+      "archiveSha256": "56fab47815745df3e96aefa432884bd822b4ee5dd6650e976f852479ac35158e"
+    },
+    {
+      "file": "second.stderr.log.gz",
+      "original": "/home/toshiba/aew/task092-audit-second.stderr.log",
+      "bytes": 171,
+      "sha256": "685eab73c361360e9af6160d671023062da120bec019c16a86bcb27729d509c0",
+      "archiveSha256": "dbd20496f73f9daaaaeda84da89e4f35b13cd114f4c1fe2c030e112cc68d85f6"
+    },
+    {
+      "file": "second.exit.json.gz",
+      "original": "/home/toshiba/aew/task092-audit-second.exit.json",
+      "bytes": 515,
+      "sha256": "c2fe1cadaeb7f683798ae7b54df52fcf8e305f1221c0c58a1ec2564dc691108c",
+      "archiveSha256": "0a060dc64bab4b18a343830cd66395914356b3940fe97d8fa08462da9c872159"
+    },
+    {
+      "file": "second-receipt.json.gz",
+      "original": "/home/toshiba/aew/measurements/task092-second-audit/receipts/198a7a17550ab3318824c34e86a46a8b89f10988113ffcb6317d57c8575a69c0.json",
+      "bytes": 35287,
+      "sha256": "1cba6c6f7455b73348e5ba81acefd3cfd036aa4c6a3f54a2eb912aab33af7437",
+      "archiveSha256": "9922a7e6a956266dd1fea4804d68455383d72a683edef2fd0ca54164f9bcd6b5"
+    }
+  ],
+  "derived": [
+    {
+      "file": "readback.json",
+      "bytes": 2386,
+      "sha256": "3c11599673056043a20f4ce19fc36733eee04a0653e61ec275a077e5b70ad5f5"
+    }
+  ]
+}
