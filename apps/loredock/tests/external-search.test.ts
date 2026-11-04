@@ -81,7 +81,7 @@ test('schema 8 migration preserves every token, rowid, rank setting, original, h
   assert.deepEqual(after.nonLiteralRecords.filter((row: {table: string}) => row.table !== 'catalog_identity'), before.nonLiteralRecords);
   assert.equal(after.nonLiteralRecords.filter((row: {table: string}) => row.table === 'catalog_identity').length, 1);
   const catalogIdentity = state.store.receipts.catalogId;
-  assert.deepEqual(state.store.all('SELECT slot,id FROM catalog_identity'), [{slot: 1, id: catalogIdentity}]);
+  assert.deepEqual(state.store.all<{slot: number; id: string}>('SELECT slot,id FROM catalog_identity').map(row => [row.slot, row.id]), [[1, catalogIdentity]]);
   assert.deepEqual(state.store.all('SELECT * FROM search_config ORDER BY k'), settings);
   assert.deepEqual(readQueries(state.catalog, [state.first, state.second]), reads);
   assert.deepEqual(originals.map(row => state.catalog.evidence(row.id)), originals);

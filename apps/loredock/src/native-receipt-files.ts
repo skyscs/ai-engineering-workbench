@@ -1,6 +1,6 @@
 import { constants, openSync, closeSync, fstatSync, lstatSync, readSync, opendirSync, mkdirSync, fsyncSync } from 'node:fs';
 import path from 'node:path';
-import { NativeReceiptError, requireReceipt, uuid } from './native-receipt-json.js';
+import { NativeReceiptError, record, requireReceipt, uuid } from './native-receipt-json.js';
 
 export const nativeStorageLimits = Object.freeze({ records: 64, bytes: 640 * 1024 });
 export type StorageStage = 'read-sized' | 'pending-written' | 'linked' | 'before-unlink' | 'before-sync';
@@ -9,6 +9,8 @@ export interface NativeStorageOptions {
   observe?: (stage: StorageStage, name: string) => unknown;
 }
 export function storageLimits(options: NativeStorageOptions) {
+  requireReceipt(record(options) && Object.keys(options).every(key => ['limits', 'observe'].includes(key))
+    && (options.limits === undefined || record(options.limits)), 'INVALID_RECEIPT_STORAGE_LIMIT');
   const limits = { ...nativeStorageLimits, ...options.limits };
   for (const [key, value] of Object.entries(limits)) requireReceipt(Object.hasOwn(nativeStorageLimits, key)
     && Number.isSafeInteger(value) && value >= 0 && value <= nativeStorageLimits[key as keyof typeof nativeStorageLimits], 'INVALID_RECEIPT_STORAGE_LIMIT');

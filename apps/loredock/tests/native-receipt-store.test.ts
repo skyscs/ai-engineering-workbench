@@ -187,3 +187,50 @@ test('complete stopped backup and source-only maintenance preserve identity and 
   const restored = new CatalogStore(copy); try { assert.equal(restored.receipts.catalogId, id); assert.equal(read(restored, saved.receiptHash).serialized, originalBytes.toString()); } finally { restored.close(); }
   s.reopen(); assert.equal(s.store.receipts.catalogId, id);
 });
+
+test('cleanup refuses a substituted inode and a closed/cancelled budget cannot publish', async t => {
+  let swap = false, moved = '';
+  const s = await setup(t, { observe(stage, name) { if (swap && stage === 'linked') {
+    swap = false; const file = path.join(s.folder, name); moved = path.join(s.directory, 'owned-interrupted-result'); renameSync(file, moved);
+    writeFileSync(file, 'preserve substituted bytes'); throw new Error('Injected replacement.');
+  } } });
+  const original = publish(s.store, content(s.store)); swap = true;
+  assert.throws(() => publish(s.store, content(s.store, 'replaced')), { code: 'RECEIPT_CLEANUP_FAILED' });
+  const replaced = readdirSync(s.folder).find(name => name !== original.receiptHash + '.json')!;
+  assert.equal(readFileSync(path.join(s.folder, replaced), 'utf8'), 'preserve substituted bytes');
+  assert.equal(existsSync(moved), true); assert.throws(() => read(s.store, original.receiptHash), { code: 'DISABLED_RECEIPT_STORAGE' });
+  unlinkSync(path.join(s.folder, replaced)); s.reopen();
+  const closed = new OperationBudget(); closed.close();
+  assert.throws(() => s.store.receipts.publish(serialized(content(s.store)), closed, () => undefined), { code: 'CLOSED_CAPTURE_BUDGET' });
+  const controller = new AbortController(), cancelled = new OperationBudget({ signal: controller.signal }); controller.abort();
+  assert.throws(() => s.store.receipts.publish(serialized(content(s.store)), cancelled, () => undefined), { code: 'CANCELLED' }); cancelled.close();
+  assert.throws(() => s.store.receipts.read(original.receiptHash, {} as OperationBudget), { code: 'INVALID_CAPTURE_BUDGET' });
+  assert.deepEqual(readdirSync(s.folder), [original.receiptHash + '.json']);
+});
+
+test('startup filesystem failure keeps the committed identity but does not run pending source recovery', async t => {
+  const directory = await mkdtemp(path.join(tmpdir(), 'native-startup-failure-')); t.after(() => rm(directory, { recursive: true, force: true }));
+  const old = new ReferenceStore(directory); source(old); const p = old.project(), pending = old.start('pending', p.sourceSetVersion, p.policyVersion); old.close();
+  writeFileSync(path.join(directory, 'path-receipts'), 'owned layout obstruction');
+  assert.throws(() => new CatalogStore(directory), { code: 'UNSAFE_RECEIPT_DIRECTORY' });
+  const db = new DatabaseSync(path.join(directory, 'loredock.db')); let id: string;
+  try {
+    assert.equal(db.prepare('PRAGMA user_version').get()!.user_version, 10); id = db.prepare('SELECT id FROM catalog_identity').get()!.id as string;
+    assert.equal(db.prepare('SELECT status FROM builds WHERE id=?').get(pending.id)!.status, 'preparing');
+  } finally { db.close(); }
+  unlinkSync(path.join(directory, 'path-receipts')); const store = new CatalogStore(directory);
+  assert.equal(store.receipts.catalogId, id); assert.equal(store.buildRow(pending.id).status, 'interrupted');
+  store.db.exec('DROP TRIGGER catalog_identity_update'); store.run("UPDATE catalog_identity SET id='invalid'"); store.close();
+  assert.throws(() => new CatalogStore(directory), { code: 'CORRUPT_CATALOG_IDENTITY' });
+});
+
+test('storage constructors only reduce fixed bounds and capacity zero creates no native files', async t => {
+  const s = await setup(t, { limits: { records: 0 } });
+  assert.throws(() => publish(s.store, content(s.store)), { code: 'CAPTURE_STORAGE_FULL' });
+  assert.equal(existsSync(path.join(s.directory, 'path-receipts')), false); s.store.close();
+  for (const options of [{ limits: { records: 65 } }, { limits: { records: -1 } }, { limits: { bytes: 640 * 1024 + 1 } },
+    { limits: { bytes: 0.5 } }, { limits: null }, { unknown: true }])
+    assert.throws(() => new CatalogStore(s.directory, options as NativeStorageOptions), { code: 'INVALID_RECEIPT_STORAGE_LIMIT' });
+  s.reopen({ limits: { bytes: 0 } }); assert.throws(() => publish(s.store, content(s.store)), { code: 'RECEIPT_BYTES_LIMIT' });
+  s.reopen(); assert.equal(publish(s.store, content(s.store)).created, true);
+});

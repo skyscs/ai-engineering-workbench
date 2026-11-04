@@ -76,10 +76,13 @@ action selecting the exact removal. This document grants no authority to delete 
 ## Read-only generation dependency inventory
 
 Implemented advanced command: `pnpm loredock:history --data-dir /absolute/loredock-data`.
-Its contract accepts existing schemas 8 and 9 with one read-only transaction,
+Its contract accepts existing schemas 8, 9 and 10 with one read-only transaction,
 regular-file/sidecar checks and no CatalogStore construction. Do not acquire daemon
 ownership, recover work, create/migrate/checkpoint a database, invoke Git/models or parse
-connection secrets. Keep the existing aggregate storage report's contract unchanged.
+connection secrets. Keep the existing aggregate storage report's source-SQLite boundary unchanged.
+Both reports explicitly exclude native receipt file bytes and dependency scope;
+[their ownership contract](NATIVE_CAPTURE_OWNERSHIP.md) defines separate capacity
+and mandatory revocation cleanup, without authorizing age-based history pruning.
 
 Return a versioned report with capture time and database schema, the total build count,
 and bounded generation rows in deterministic database order. Each row contains only:

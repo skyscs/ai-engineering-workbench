@@ -781,7 +781,8 @@ be a trusted local input; this is not a sandbox for running hostile Git installa
 ## Local storage and backup
 
 On Linux, the default directory is `${XDG_DATA_HOME:-~/.local/share}/loredock`.
-It contains `loredock.db`, SQLite sidecars and `.owner.db`. This directory stores
+It contains `loredock.db`, SQLite sidecars and `.owner.db`, plus `path-receipts/`
+when native records exist. This directory stores
 LoreDock source snapshots and metadata; it is separate from Workbench and Codex data.
 To choose an explicit absolute directory:
 
@@ -799,19 +800,27 @@ Each build stores its admitted bytes independently. There is no cross-build
 deduplication or automatic history-retention limit yet; the 50 MiB cap is per build,
 not a total data-directory cap. Monitor local storage during repeated large indexes.
 
-The next normal start with this version upgrades an older catalog to schema 9. Literal
-search then reads its text from the saved original spans instead of keeping another copy;
-saved citations, history, notes and code inventories retain their identities. Back up the
-complete stopped data directory before upgrading and leave free disk space for both old
-and new indexes plus temporary/WAL files. Startup performs a one-time full index scan and
-rebuild, so a large history can take longer to open. No additional input is required.
+The next normal start with this version upgrades an older catalog to schema 10.
+It adds a stable catalog identity for owned records while preserving saved citations,
+history, notes and code inventories. Catalogs older than schema 9 also convert literal
+search to use saved original spans instead of keeping another text copy; that step
+performs a full scan and index rebuild. A schema-9 catalog does not repeat that rebuild.
+Back up the complete stopped directory before upgrading and leave space for temporary
+files. No additional input is required.
 
-If conversion fails, preserve the directory and error message; do not change the schema
-version or delete database sidecars. Schema-8 conversion is atomic and failure leaves its
-logical records intact. To return to an older application after a successful upgrade,
-restore the complete pre-upgrade backup while LoreDock is stopped. Older builds cannot
-open schema 9. The upgrade frees pages for reuse but does not automatically shrink the
-database file; offline compaction below is optional.
+If startup fails, preserve the directory and error message. Individual database
+migration steps are atomic, but later storage initialization can fail after schema 10
+has committed. Do not change schema versions or delete database sidecars to force
+startup. To return to a schema-9 application, restore the complete pre-upgrade backup
+while stopped; older applications refuse schema 10. Never transplant only native
+records or restore only part of the directory. Some missing records cannot be detected
+from a partial backup, so keep all directory contents together.
+
+Native record storage has a separate fixed capacity and never evicts existing history
+when full. Source removal clears dependent native copies; policy changes retain fenced
+records. These internal records currently have no new UI action. The complete directory
+still has no total quota. Literal-search migration can free reusable pages without
+shrinking the database file; offline compaction below is optional.
 
 For a detailed local storage report, use the existing LoreDock data directory:
 
@@ -820,7 +829,7 @@ pnpm --silent loredock:storage --data-dir /absolute/path/to/loredock-data
 ```
 
 This advanced maintenance command prints JSON and makes no logical changes. It needs
-Node 22 and an existing schema-8 or schema-9 catalog; it never creates or upgrades a database. It
+Node 22 and an existing schema-8, schema-9 or schema-10 catalog; it never creates or upgrades a database. It
 can run while LoreDock is open and does not interrupt jobs or acquire daemon ownership.
 Large histories require a full scan, so run it when needed rather than polling it.
 The report contains counts and byte sizes only, without repository paths, source text,
@@ -828,15 +837,15 @@ questions or connection configuration. Redirect stdout to a file to retain the r
 
 `sqlite.allocatedBytes` includes tables, indexes and free pages; `freePageBytes` is reusable
 space inside that allocation. `disk` measures only the listed database/sidecar file
-lengths, separately from the SQLite snapshot. It excludes repositories, backups and other
-directory contents. Payload sizes are already inside SQLite allocation: do not add them
+lengths, separately from the SQLite snapshot. It excludes native receipt files, repositories, backups and other
+directory contents; reported dependencies also exclude native receipts. Payload sizes are already inside SQLite allocation: do not add them
 to the disk total. Audit version 2 reports `payloads.literalSearch.bytes` as logical
 searchable text; `contentStorage: "shared-original-spans"` and `copiedTextBytes: 0` mean
-schema 9 has no separate literal text copy. Its mapping and postings remain included in
+schemas 9 and 10 have no separate literal text copy. Its mapping and postings remain included in
 `sqlite.allocations.literalSearch`. Schema 8 reports `contentStorage: "copied"` with its
 copied text bytes. Compaction version 2 embeds the same audit format before and after.
 Duplicate estimates and overlapping dependency counts do not identify
-safe-to-delete history or promise reclaimable space. No cleanup runs automatically.
+safe-to-delete history or promise reclaimable space. No history pruning runs automatically.
 See [storage measurements and next steps](../fixtures/loredock-storage-audit/README.md).
 
 To see how individual index generations contribute to retained history, use:

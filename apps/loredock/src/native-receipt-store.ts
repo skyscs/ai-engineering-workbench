@@ -51,10 +51,11 @@ export class NativeReceiptStore {
       this.check(); budget.check(); };
     try {
       check(); const decoded = decodeNativeReceipt(input, this.catalogId, budget, { receiptBytes: this.limits.bytes }); name = decoded.receipt.receiptHash + '.json';
+      const size = Buffer.byteLength(decoded.serialized);
       const names = this.layout.inspect(); budget.charge('receipt', names.length); check();
       if (names.includes(name)) {
         requireReceipt(this.readFile(name, budget).serialized === decoded.serialized); check();
-        return { receiptHash: decoded.receipt.receiptHash, created: false, bytes: input.byteLength };
+        return { receiptHash: decoded.receipt.receiptHash, created: false, bytes: size };
       }
       requireReceipt(names.length < this.limits.records, 'CAPTURE_STORAGE_FULL'); this.layout.create(); check();
       fd = openSync(path.join(this.layout.root, '.pending'), constants.O_WRONLY | constants.O_CREAT | constants.O_EXCL | constants.O_NOFOLLOW, 0o600); pending = true;
@@ -66,7 +67,7 @@ export class NativeReceiptStore {
         requireReceipt(this.readFile(name, budget).serialized === decoded.serialized); }
       storageHook(this.options, 'linked', name); check(); this.layout.inspect(true);
       this.remove('.pending', owned); pending = false; this.layout.sync(); check();
-      return { receiptHash: decoded.receipt.receiptHash, created, bytes: input.byteLength };
+      return { receiptHash: decoded.receipt.receiptHash, created, bytes: size };
     } catch (error) {
       try {
         if (fd !== undefined) { closeSync(fd); fd = undefined; }
