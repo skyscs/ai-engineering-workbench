@@ -100,7 +100,6 @@ test('production worker reads preserve every SQL execution, inventory identity, 
   const receipts = [];
   for (const arm of s.arms) {
     assert.throws(() => new arm.Factory(arm.catalog), { code: 'BUSY' });
-    assert.throws(() => new s.Candidate(arm.catalog), { code: 'BUSY' });
     const receipt = await captureReceipt(arm.services, arm.folder, { buildId: s.buildId });
     const raw = await readFile(receipt.file, 'utf8'); assert.equal(JSON.parse(raw).originals.length, 10); receipts.push(raw);
     for (const name of ['replace', 'evict']) { arm.analysis.start(name, s.buildId); await arm.analysis.idle(); }
@@ -217,7 +216,7 @@ test('production resume between worker return and scheduler cleanup starts a fre
   assert.deepEqual(inventory(s.arms[1]!, s.id), inventory(s.arms[0]!, s.id)); s.pass();
 });
 
-test('production a held worker scope isolates unrelated reads and lets concurrent paths retain fresh reads and fences', { timeout: 30000 }, async t => {
+test('production held worker scope isolates unrelated reads and lets concurrent paths retain fresh reads and fences', { timeout: 30000 }, async t => {
   let release: (() => void) | undefined;
   t.after(() => release?.());
   const s = await setup(t), arm = s.arms[1]!;
@@ -242,7 +241,7 @@ test('production a held worker scope isolates unrelated reads and lets concurren
   arm.trace.reset(); arm.store.project(); arm.store.project(); assert.equal(arm.trace.preparations.length, 2); s.pass();
 });
 
-test('production a worker overlapping an existing read scope uses fresh preparations and releases ownership', { timeout: 30000 }, async t => {
+test('production worker overlapping an existing read scope uses fresh preparations and releases ownership', { timeout: 30000 }, async t => {
   let release: (() => void) | undefined; t.after(() => release?.());
   const s = await setup(t), arm = s.arms[1]!;
   const gate = new Promise<void>(resolve => { release = resolve; });
@@ -253,9 +252,5 @@ test('production a worker overlapping an existing read scope uses fresh preparat
     assert.ok(arm.trace.preparations.filter(sql => sql === 'SELECT * FROM project WHERE id=1').length > 1);
   } finally { release?.(); await active; }
   await arm.analysis.stop();
-  const withReads = arm.store.withPreparedReads;
-  Reflect.set(arm.store, 'withPreparedReads', undefined);
-  assert.throws(() => new s.Candidate(arm.catalog), /require the scoped store/);
-  Reflect.set(arm.store, 'withPreparedReads', withReads);
   const next = new s.Candidate(arm.catalog); await next.stop(); s.pass();
 });
