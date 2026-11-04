@@ -78,7 +78,8 @@ export class NativeCaptures {
           return { status: 'captured' as const, receiptId: saved.receiptHash, created: saved.created, metrics };
         } catch (error) {
           if (locked) try { release(); } catch (cleanupError) {
-            const failure = new NativeReceiptError('CAPTURE_GUARD_RELEASE_FAILED', 'Capture failed and the source guard could not be released.');
+            this.stopping = true; store.receipts.close();
+            const failure = new NativeReceiptError('CAPTURE_GUARD_RELEASE_FAILED', 'Capture failed and the source guard could not be released. Close and reopen the catalog.');
             failure.cause = new AggregateError([error, cleanupError]); throw failure;
           }
           throw error;
