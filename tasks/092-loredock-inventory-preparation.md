@@ -1,6 +1,6 @@
 # Task 092 — Audit inventory replacement preparation
 
-Status: audit completed and locally verified, 2026-11-04; merge requires both exact-head CI events.
+Status: merged through PR #96, 2026-11-04.
 
 Task 091 passes complete content but fails reopened-history RSS. The failing worker
 already exceeds RSS before history, after its two inventory replacements. Endpoints
@@ -63,3 +63,7 @@ PR #95 subsequently merged as identical-tree `70f6100` after corrected exact hea
 Its tiny CI test now separates functional success from resource rejection; no
 measured implementation or frozen resource outcome changed. This branch includes
 that accepted merge, and all 410 baseline files still match the audit's inputs.
+
+Exact head `851e707` passed push 41750705428 and pull-request 41750754499 CI
+(569 tests), then merged as identical-tree `5df48e0`. Task 093 implements the
+selected offline candidate; this audit and its measured entry remain unchanged.

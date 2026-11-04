@@ -343,7 +343,13 @@ source/count audit. Each tiny replacement worker prepares 520 reads across ten S
 identities; complete original validation and writes remain necessary. Next test
 bounded prepared-read reuse within one asynchronous inventory worker, preserving
 all lifecycle/freshness/fence behavior. This hypothesis requires independent semantic
-proof and a fresh complete resource qualification; no optimization is implemented yet.
+proof and a fresh complete resource qualification.
+[Task 093](tasks/093-loredock-worker-reads.md) implements that offline candidate
+through an explicit pinned worker-method seam, retaining the original scheduler
+and shared ownership guard. Independent stopped copies compare exact execution,
+inventory and receipt identities, with lifecycle/fence/overlap regressions. Next:
+separately freeze a fresh complete uninstrumented resource qualification; no
+production promotion or reinterpretation of previous failed gates follows.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.
