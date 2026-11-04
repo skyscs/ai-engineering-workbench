@@ -11,10 +11,10 @@ const downstream = [
   [ui, 'ui/request.ts', 'http-request', 'POST /permits/grants', null],
   [api, 'routes.json', 'route', 'POST /permits/grants', null],
   [api, 'routes.json', 'handler-reference', 'Grants.issue', null],
-  [api, 'Grants.java', 'symbol', 'Grants.issue', 'method'],
+  [api, 'Grants.java', 'symbol', 'Grants.issue', 'java-method'],
   [api, 'Grants.java', 'event-publish', 'Publish PermitGranted', null],
   [store, 'PermitWriter.java', 'event-subscribe', 'Subscribe via KafkaSubscriber', null],
-  [store, 'PermitWriter.java', 'symbol', 'PermitWriter.onMessage', 'method'],
+  [store, 'PermitWriter.java', 'symbol', 'PermitWriter.onMessage', 'java-method'],
   [store, 'PermitWriter.java', 'document-write', 'MongoCollection.replaceOne', null],
 ];
 const edges = ['calls', 'performs', 'http-target', 'routes-to', 'implements', 'performs', 'event-delivery', 'dispatch-candidate', 'performs'];
