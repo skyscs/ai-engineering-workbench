@@ -15,13 +15,15 @@ export function validateLimits(oracle) {
 export function validateObservation(row, oracle) {
   validateLimits(oracle); assert.ok(!row.blocked && !row.error && !row.observerError);
   for (const key of ['wallMs', 'maxSliceMs', 'peakRssMiB', 'heapGrowthMiB']) finite(row[key]);
+  for (const key of ['rss', 'heapTotal', 'heapUsed', 'external', 'arrayBuffers']) integer(row.baselineMemory[key]);
+  assert.ok(row.peakRssMiB * 1048576 >= row.baselineMemory.rss);
   for (const key of ['gitCalls', 'writeCalls', 'changedRows', 'factReads', 'snapshots', 'pathReads', 'originalReads']) {
     integer(row.before[key]); integer(row.after[key]); assert.ok(row.after[key] >= row.before[key]);
   }
   for (const key of ['gitCalls', 'writeCalls', 'changedRows']) assert.equal(row.before[key], row.after[key]);
   assert.match(row.legacyBefore, /^[a-f0-9]{64}$/); assert.equal(row.legacyBefore, row.legacyAfter);
   integer(row.sums.path); integer(row.sums.receipt);
-  for (const key of ['totalWork', 'pathWork', 'receiptWork']) integer(row.metrics[key]); finite(row.metrics.wallMs);
+  for (const key of ['totalWork', 'pathWork', 'receiptWork']) integer(row.metrics[key]); finite(row.metrics.wallMs); assert.ok(row.wallMs >= row.metrics.wallMs);
   assert.equal(row.metrics.accountingVersion, 'shared-capture-work/1');
   assert.equal(row.metrics.totalWork, row.sums.path + row.sums.receipt); assert.equal(row.metrics.pathWork, row.sums.path); assert.equal(row.metrics.receiptWork, row.sums.receipt);
   assert.ok(row.metrics.totalWork <= oracle.limits.work && row.metrics.wallMs < oracle.limits.wallMs);
@@ -44,7 +46,7 @@ export async function assessNativeArm({ root, arm, raw, outcome, metadata, confi
     validateLimits(config.oracle); assert.ok(outcome && outcome.exit === 0 && outcome.signal === null && !outcome.timeout && !outcome.blocked && !outcome.spawnError);
     assert.equal(outcome.arm, arm); assert.equal(raw.arm, arm); assert.equal(raw.schemaVersion, 'native-qualification-worker/1'); assert.deepEqual(raw.execArgv, []);
     integer(raw.pid); assert.ok(raw.pid > 0); assert.equal(raw.pid, outcome.pid); assert.deepEqual(raw.errors, []);
-    assert.deepEqual(raw.size, config.size); assert.deepEqual(raw.initialHashes, metadata.initialHashes); assert.equal(raw.evicted, metadata.inventory.id);
+    assert.deepEqual(raw.size, config.size); assert.deepEqual(raw.runtime, metadata.runtime); assert.equal(raw.node, metadata.runtime.node); assert.deepEqual(raw.initialHashes, metadata.initialHashes); assert.equal(raw.evicted, metadata.inventory.id);
     assert.deepEqual(rows.map(row => row.name), operations); assert.ok(raw.lifecycle.some(row => row.stage === 'closure-after'));
     assert.ok(raw.lifecycle.some(row => row.stage === 'preparation-before') === (arm === 'same-process'));
   });

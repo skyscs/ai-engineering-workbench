@@ -5,13 +5,14 @@ import { prepareSources, dataHashes, copyStoppedData, hash } from '../loredock-c
 import { openNativeState } from './state.mjs';
 import { assertSourceRowsEqual } from '../loredock-memory-runner/source-rows.mjs';
 import { readBounded, readJSON, normalized } from './io.mjs';
+import { runtimeIdentity } from './runtime.mjs';
 
 // Trusted offline configuration; never imports a reserved corpus or experimental capture.
 export async function runNativeWorker({ root, arm, config, services }) {
   assert.ok(path.isAbsolute(root)); assert.ok(['same-process', 'reopened-process'].includes(arm));
   const folder = path.join(root, arm), directory = path.join(folder, 'data'); await mkdir(path.join(folder, 'raw'), { recursive: true });
   const report = { schemaVersion: 'native-qualification-worker/1', arm, pid: process.pid, node: process.version, execArgv: process.execArgv,
-    size: config.size, lifecycle: [], operations: [], errors: [] };
+    size: config.size, runtime: await runtimeIdentity(), lifecycle: [], operations: [], errors: [] };
   let state, metadata;
   const save = () => writeFile(path.join(folder, 'result.json'), JSON.stringify(report, null, 2));
   const point = stage => report.lifecycle.push({ stage, ...process.memoryUsage() });
@@ -45,6 +46,7 @@ export async function runNativeWorker({ root, arm, config, services }) {
     metadata = { catalogId: state.store.receipts.catalogId, buildId: build.id, revisions, inventory, manifestHash: snapshot.manifestHash, sources,
       policyVersion: snapshot.policyVersion, registryVersion: snapshot.registryVersion, sourceSetVersion: header.sourceSetVersion };
     point('preparation-close-before'); await state.close(); state = undefined; point('preparation-close-after');
+    metadata.runtime = report.runtime;
     metadata.initialHashes = await copyStoppedData(directory, path.join(root, 'initial-data'));
     assert.ok(!Object.keys(metadata.initialHashes).some(name => name.startsWith('path-receipts/')));
     await copyStoppedData(path.join(root, 'initial-data'), path.join(root, 'reopened-process', 'data'));
@@ -81,6 +83,7 @@ export async function runNativeWorker({ root, arm, config, services }) {
     && JSON.stringify([item.sourceName, item.path, item.label, item.role]) === JSON.stringify(expected)); assert.equal(matches.length, 1); return matches[0].id; };
   try {
     if (arm === 'same-process') await prepare(); else metadata = await readJSON(path.join(root, 'metadata.json'));
+    assert.deepEqual(report.runtime, metadata.runtime);
     report.initialHashes = await dataHashes(directory); assert.deepEqual(report.initialHashes, metadata.initialHashes);
     point('opening-before'); state = openNativeState(directory, services); point('opening-after');
     assert.equal(state.store.receipts.catalogId, metadata.catalogId); assert.equal(state.analysis.snapshot(metadata.inventory.id).manifestHash, metadata.manifestHash);
