@@ -61,7 +61,7 @@ async function setup(t: TestContext, limits: Partial<AnalysisLimits> = {}) {
   });
   const seedDir = path.join(root, 'seed'), seedReceipts = path.join(root, 'seed-receipts'); await mkdir(seedReceipts);
   const seed = openState(seedDir, seedReceipts, services(Base)) as State; states.push(seed);
-  const corpus = config.corpusFactory(); corpus['a-locker-client']['ui/worker-marker.ts'] = 'export const marker = "independent worker read fixture";\n';
+  const corpus = config.corpusFactory(); corpus['a-locker-client']!['ui/worker-marker.ts'] = 'export const marker = "independent worker read fixture";\n';
   await prepareSources(root, corpus, seed);
   const project = seed.catalog.state(), build = seed.catalog.start('worker-index', project.sourceSetVersion, project.policyVersion);
   await seed.catalog.idle(); const initial = seed.analysis.start('worker-initial', build.id); await seed.analysis.idle();
@@ -89,11 +89,14 @@ test('worker seam remains bound to unchanged source dependencies and rejects inc
 test('worker reads preserve every SQL execution, inventory identity, receipt and evicted history', async t => {
   const s = await setup(t);
   for (const arm of s.arms) {
+    assert.equal(arm.analysis.start('worker-pending', s.buildId).id, s.id);
+    assert.throws(() => arm.analysis.start('invalid/request', s.buildId), { code: 'INVALID_REQUEST' });
     arm.trace.reset(); const resumed = arm.analysis.control(s.id, 'resume'); assert.equal(resumed.status, 'running');
   }
   // Both workers have only been queued; admission remains synchronous and outside the scope.
   assert.deepEqual(s.arms[0]!.trace.preparations, s.arms[1]!.trace.preparations);
   assert.deepEqual(s.arms[0]!.trace.executions, s.arms[1]!.trace.executions);
+  const before = s.arms.map(arm => arm.counters());
   for (const arm of s.arms) arm.trace.reset();
   await Promise.all(s.arms.map(arm => arm.analysis.idle()));
   const [baseline, candidate] = s.arms as [typeof s.arms[number], typeof s.arms[number]];
@@ -102,6 +105,8 @@ test('worker reads preserve every SQL execution, inventory identity, receipt and
   const writes = (arm: typeof candidate) => arm.trace.preparations.filter(sql => /^(INSERT|UPDATE|DELETE)/.test(sql));
   assert.deepEqual(writes(candidate), writes(baseline));
   t.diagnostic(`Worker preparations: ${baseline.trace.preparations.length} baseline, ${candidate.trace.preparations.length} candidate; executions: ${baseline.trace.executions.length}.`);
+  const changes = s.arms.map((arm, index) => Object.fromEntries(Object.entries(arm.counters()).map(([key, value]) => [key, value - before[index]![key]!])));
+  assert.deepEqual(changes[1], changes[0]); assert.equal(changes[0]!.originalReads, 9); assert.equal(changes[0]!.gitCalls, 0);
   assert.deepEqual(inventory(candidate, s.id), inventory(baseline, s.id));
   assert.ok(candidate.analysis.get(s.id).published); assert.equal(candidate.analysis.get(s.id).counts.parsed, 9);
   const receipts = [];
@@ -123,6 +128,8 @@ test('pause, resume, cancel and stop preserve synchronous controls and release w
   const s = await setup(t);
   for (const arm of s.arms) {
     assert.equal(arm.analysis.control(s.id, 'resume').status, 'running'); await yieldTurn();
+    // A cooperative yield does not hold the worker's per-file transaction open.
+    arm.store.transaction(() => arm.store.project());
     assert.equal(arm.analysis.control(s.id, 'pause').status, 'paused'); await arm.analysis.idle();
     assert.equal(arm.analysis.get(s.id).counts.parsed, 1);
     const first = arm.store.one<AnalysisUnit>("SELECT * FROM code_analysis_files WHERE runId=? AND status='parsed'", s.id)!;
@@ -155,8 +162,9 @@ test('worker scopes keep original corruption, checkpoint validation and authoriz
       ["UPDATE code_analyses SET fingerprint='broken' WHERE id=?", [s.id], 'PARSER_CHANGED'],
       ['UPDATE files SET raw=? WHERE id=?', [Buffer.from('broken'), unit.fileId], 'CORRUPT_CODE_CHECKPOINT'],
       ["UPDATE spans SET hash='broken' WHERE fileId=?", [unit.fileId], 'CORRUPT_EVIDENCE'],
-      ['UPDATE project SET policyVersion=policyVersion+1', [], 'ANALYSIS_FENCED'],
-      ['UPDATE project SET sourceSetVersion=sourceSetVersion+1', [], 'ANALYSIS_FENCED'],
+      // Both project changes trigger inventory fencing before resume admission.
+      ['UPDATE project SET policyVersion=policyVersion+1', [], 'CONFLICT'],
+      ['UPDATE project SET sourceSetVersion=sourceSetVersion+1', [], 'CONFLICT'],
     ] as const) {
       arm.store.db.exec('SAVEPOINT worker_corruption');
       try { arm.store.run(sql, ...args); assert.throws(() => arm.analysis.control(s.id, 'resume'), { code }); }
@@ -191,7 +199,7 @@ test('worker failures and live authorization changes retain scheduler cleanup an
       if (change === 'failure') arm.catalog.readBuildHeader = () => { throw new Error('Deliberate worker read failure.'); };
       else arm.store.run(`UPDATE project SET ${change === 'policy' ? 'policyVersion=policyVersion+1' : 'sourceSetVersion=sourceSetVersion+1'}`);
       await arm.analysis.idle(); arm.catalog.readBuildHeader = readBuildHeader;
-      assert.equal(arm.analysis.get(s.id).status, change === 'registry' ? 'fenced' : 'failed');
+      assert.equal(arm.analysis.get(s.id).status, change === 'failure' ? 'failed' : 'fenced');
       if (change === 'failure') assert.equal(arm.analysis.get(s.id).reason, 'Code analysis failed: Deliberate worker read failure.');
       arm.trace.reset(); arm.store.project(); arm.store.project(); assert.equal(arm.trace.preparations.length, 2);
       await arm.analysis.stop(); const next = new arm.Factory(arm.catalog); await next.stop();
@@ -222,16 +230,17 @@ test('resume between worker return and scheduler cleanup starts a fresh invocati
 });
 
 test('a held worker scope isolates unrelated reads and lets concurrent paths retain fresh reads and fences', { timeout: 30000 }, async t => {
+  let release: (() => void) | undefined;
+  t.after(() => release?.());
   const s = await setup(t), arm = s.arms[1]!;
   const expected = await arm.paths.read({ buildId: s.buildId });
-  let entered!: () => void, release!: () => void, held = false;
+  let entered!: () => void, held = false;
   const started = new Promise<void>(resolve => { entered = resolve; }), gate = new Promise<void>(resolve => { release = resolve; });
   const withReads = arm.store.withPreparedReads.bind(arm.store);
   arm.store.withPreparedReads = fn => withReads(async () => {
     if (!held) { held = true; entered(); await gate; }
     return fn();
   });
-  t.after(release);
   arm.analysis.control(s.id, 'resume'); await started;
   try {
     arm.trace.reset(); arm.store.project(); arm.store.project(); assert.equal(arm.trace.preparations.length, 2);
@@ -239,8 +248,26 @@ test('a held worker scope isolates unrelated reads and lets concurrent paths ret
     const projectReads = arm.trace.preparations.filter(sql => sql === 'SELECT * FROM project WHERE id=1');
     assert.ok(projectReads.length > 2, 'The overlapping path falls back to fresh prepares.');
     arm.store.run('UPDATE project SET policyVersion=policyVersion+1');
-    await assert.rejects(arm.paths.read({ buildId: s.buildId }), { code: 'ANALYSIS_FENCED' });
-  } finally { release(); }
-  await arm.analysis.idle(); assert.equal(arm.analysis.get(s.id).status, 'failed');
+    await assert.rejects(arm.paths.read({ buildId: s.buildId }), { code: 'POLICY_CHANGED' });
+  } finally { release?.(); }
+  await arm.analysis.idle(); assert.equal(arm.analysis.get(s.id).status, 'fenced');
   arm.trace.reset(); arm.store.project(); arm.store.project(); assert.equal(arm.trace.preparations.length, 2); s.pass();
+});
+
+test('a worker overlapping an existing read scope uses fresh preparations and releases ownership', { timeout: 30000 }, async t => {
+  let release: (() => void) | undefined; t.after(() => release?.());
+  const s = await setup(t), arm = s.arms[1]!;
+  const gate = new Promise<void>(resolve => { release = resolve; });
+  const active = arm.store.withPreparedReads(async () => { arm.store.project(); await gate; arm.store.project(); });
+  try {
+    arm.analysis.control(s.id, 'resume'); arm.trace.reset(); await arm.analysis.idle();
+    assert.ok(arm.analysis.get(s.id).published);
+    assert.ok(arm.trace.preparations.filter(sql => sql === 'SELECT * FROM project WHERE id=1').length > 1);
+  } finally { release?.(); await active; }
+  await arm.analysis.stop();
+  const withReads = arm.store.withPreparedReads;
+  Reflect.set(arm.store, 'withPreparedReads', undefined);
+  assert.throws(() => new s.Candidate(arm.catalog), /require the scoped store/);
+  Reflect.set(arm.store, 'withPreparedReads', withReads);
+  const next = new s.Candidate(arm.catalog); await next.stop(); s.pass();
 });
