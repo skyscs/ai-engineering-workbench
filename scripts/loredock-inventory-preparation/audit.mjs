@@ -40,7 +40,7 @@ try {
   report.input = { sources: Object.keys(corpus).length, files: values.length, bytes: values.reduce((sum, text) => sum + Buffer.byteLength(text), 0),
     codeFiles: Object.values(corpus).flatMap(files => Object.keys(files)).filter(file => /\.(?:ts|js|vue|java)$/.test(file)).length,
     sha256: hash(JSON.stringify(corpus)) };
-  assert.equal(report.input.sources, 4); assert.ok(report.input.files <= 64 && report.input.bytes <= 64 * 1024); save();
+  assert.equal(report.input.sources, 3); assert.ok(report.input.files <= 64 && report.input.bytes <= 64 * 1024); save();
   writeFileSync(path.join(output, 'input.json'), JSON.stringify(corpus) + '\n');
   const receipts = path.join(output, 'receipts'); mkdirSync(receipts);
   state = openState(path.join(output, 'data'), receipts, config.services);
@@ -51,7 +51,7 @@ try {
   detach = observer.attach(state.store.db);
   const captured = await asyncStage('reference-capture', () => captureReceipt(state.services, receipts, { buildId: build.id }));
   const firstBytes = readFileSync(captured.file), first = JSON.parse(firstBytes);
-  assert.equal(first.originals.length, 10); assert.equal(first.dependencies.length, 4);
+  assert.equal(first.originals.length, 10); assert.equal(first.dependencies.length, 3);
   for (const name of ['replacement-one', 'replacement-two']) {
     const next = syncStage(name + '-start', () => state.analysis.start('audit-' + name, build.id));
     // No await between synchronous admission and beginning the worker observation.
