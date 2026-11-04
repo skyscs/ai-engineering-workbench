@@ -9,6 +9,7 @@ import { extractorVersion, sha256, spans } from './extract.js';
 import { spanSearchText } from './search-text.js';
 import { checkpointHash, refreshVersion } from './checkpoint.js';
 import { migrateLiteralSearch } from './literal-search-storage.js';
+import { PreparedReadScope } from './prepared-read-scope.js';
 
 export const defaults = { sources: 20, paths: 10000, fileBytes: 1024 * 1024, totalBytes: 50 * 1024 * 1024, wallMs: 300000 };
 export interface Project { policyVersion: number; sourceSetVersion: number; policy: string; publishedBuildId: string | null; correctionRevision: number }
@@ -21,6 +22,7 @@ export class CatalogStore {
   readonly db: DatabaseSync;
   readonly directory: string;
   private readonly owner: DatabaseSync;
+  private readonly reads: PreparedReadScope | undefined;
   constructor(directory: string) {
     if (!path.isAbsolute(directory)) throw new Error('LoreDock data directory must be absolute.');
     mkdirSync(directory, { recursive: true, mode: 0o700 });
@@ -147,17 +149,25 @@ export class CatalogStore {
       this.db.exec("UPDATE answer_attempts SET status='interrupted', reason='The daemon stopped. Start an explicit new attempt; provider completion may be unknown.', usageUnknownReason=CASE WHEN dispatchedAt IS NULL THEN 'Not dispatched before restart.' ELSE 'Provider completion and usage are unknown after restart.' END WHERE status IN ('preparing','running');");
       this.db.exec("UPDATE builds SET status='interrupted', reason='The daemon stopped. Resume explicitly.' WHERE status IN ('preparing','running','pause_requested');");
       this.db.exec("UPDATE code_analyses SET status='interrupted', reason='The daemon stopped. Resume code analysis explicitly.' WHERE status='running';");
+      this.reads = new PreparedReadScope(this.db);
     } catch (error) { opened?.close(); this.owner.close(); throw error; }
   }
-  one<T>(sql: string, ...args: SQLInputValue[]): T | undefined { return this.db.prepare(sql).get(...args) as T | undefined; }
-  all<T>(sql: string, ...args: SQLInputValue[]): T[] { return this.db.prepare(sql).all(...args) as T[]; }
+  one<T>(sql: string, ...args: SQLInputValue[]): T | undefined {
+    const fresh = () => this.db.prepare(sql).get(...args) as T | undefined;
+    return this.reads ? this.reads.execute('get', sql, args, fresh) : fresh();
+  }
+  all<T>(sql: string, ...args: SQLInputValue[]): T[] {
+    const fresh = () => this.db.prepare(sql).all(...args) as T[];
+    return this.reads ? this.reads.execute('all', sql, args, fresh) : fresh();
+  }
+  async withPreparedReads<T>(action: () => T | Promise<T>): Promise<T> { return this.reads ? this.reads.run(action) : action(); }
   run(sql: string, ...args: SQLInputValue[]) { return this.db.prepare(sql).run(...args); }
   transaction<T>(fn: () => T): T {
     this.db.exec('BEGIN IMMEDIATE;');
     try { const result = fn(); this.db.exec('COMMIT;'); return result; }
     catch (error) { this.db.exec('ROLLBACK;'); throw error; }
   }
-  close() { try { this.db.close(); } finally { this.owner.close(); } }
+  close() { this.reads?.close(); try { this.db.close(); } finally { this.owner.close(); } }
   project(): Project { return this.one<Project>('SELECT * FROM project WHERE id=1')!; }
   sources() { return this.all<Source>('SELECT * FROM sources ORDER BY rowid'); }
   source(id: string): Source {

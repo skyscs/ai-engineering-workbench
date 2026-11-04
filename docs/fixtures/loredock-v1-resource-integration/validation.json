@@ -1,0 +1,163 @@
+{
+  "schemaVersion": "task101-production-v1-validation/1",
+  "scope": "030cc89",
+  "preservedV1Control": "25f372d",
+  "productionImplementation": "e3644d2",
+  "regressions": "a51205e",
+  "browserCommit": "51f08f02b5443c0cb995ea4d9694d973386edae9",
+  "focusedTests": 17,
+  "fullTests": 629,
+  "browserChecks": 15,
+  "browserPathReads": 28,
+  "firstFailures": [
+    {
+      "log": "types-first",
+      "reason": "Missing readFile import in the new worker comparison; test import corrected."
+    },
+    {
+      "log": "focused-first",
+      "reason": "Two copied experimental-factory assertions incorrectly crossed separate reference/production ownership guards or expected factory validation from a typed production constructor. Own-class ownership assertions remain."
+    },
+    {
+      "log": "types-third",
+      "reason": "New test read a root label before narrowing its available/unavailable union."
+    },
+    {
+      "log": "focused-second",
+      "reason": "New test assumed the isolated root was on page 4 and omitted creating its owned receipt directory; test setup corrected."
+    }
+  ],
+  "historicalMeasuredFilesChanged": false,
+  "productionScaleAcceptance": false,
+  "files": [
+    {
+      "file": "install-first.log.gz",
+      "original": "/home/toshiba/aew/task101-install-first.log",
+      "exitCode": 0,
+      "bytes": 326,
+      "sha256": "02bf11a7bfc0b8eee0bc97657ac7aa5c9b4ca634aeb99c2998598dc37bebbca9",
+      "archiveBytes": 184,
+      "archiveSha256": "0e671ebd8e12495418c90730aedbb43071d1649b58df952ed2426bb2af486258"
+    },
+    {
+      "file": "packages-first.log.gz",
+      "original": "/home/toshiba/aew/task101-packages-first.log",
+      "exitCode": 0,
+      "bytes": 605,
+      "sha256": "e9c95291a363a4cd98530642c8f0c373e0b63f834d26cc57cfef9fdf77396861",
+      "archiveBytes": 246,
+      "archiveSha256": "de31b412b66c2d72664a77dd2a61a8a54d547cce05db3a537706c388c0277bba"
+    },
+    {
+      "file": "types-first.log.gz",
+      "original": "/home/toshiba/aew/task101-types-first.log",
+      "exitCode": 2,
+      "bytes": 452,
+      "sha256": "0f977665bcff968398eb9f3250035fa3394f5b0552521060885c147726104cc8",
+      "archiveBytes": 279,
+      "archiveSha256": "7d9f85b5041460a045a26c0f8f8ca03dab6b17f2363ac304384eff60815db47a"
+    },
+    {
+      "file": "types-second.log.gz",
+      "original": "/home/toshiba/aew/task101-types-second.log",
+      "exitCode": 0,
+      "bytes": 155,
+      "sha256": "7cea2b702cc94cc76274b689cf840b04c776ce4ea32905092f65dcb0f1171fcb",
+      "archiveBytes": 139,
+      "archiveSha256": "1aeccd3d17a7a7318fdac814f5c4c3cdb659fb69074daa21f0ee5d78224b7b77"
+    },
+    {
+      "file": "focused-first.log.gz",
+      "original": "/home/toshiba/aew/task101-focused-first.log",
+      "exitCode": 1,
+      "bytes": 15710,
+      "sha256": "4ad924ac11e30e7c688dbc65bbe252d5240b361bedc319b9f793d6f587920f56",
+      "archiveBytes": 3658,
+      "archiveSha256": "a2c87eeea4035a686132e36bf15cc545f52699003159d9656372b343bb1ff898"
+    },
+    {
+      "file": "types-third.log.gz",
+      "original": "/home/toshiba/aew/task101-types-third.log",
+      "exitCode": 2,
+      "bytes": 579,
+      "sha256": "579ac741e0294dc500d4d7d1e46949a8729565ae5543412f3c8bf048415552e0",
+      "archiveBytes": 336,
+      "archiveSha256": "8516ff3c7542ce0335903ec5f9dff37249e7422af9d0ce40a43694e0026ab0f4"
+    },
+    {
+      "file": "focused-second.log.gz",
+      "original": "/home/toshiba/aew/task101-focused-second.log",
+      "exitCode": 1,
+      "bytes": 6902,
+      "sha256": "eb504c8d800e535ed755074691c9ff23de03c6cfa849e71e165a31570e2845d2",
+      "archiveBytes": 1850,
+      "archiveSha256": "81d73b4055a9a39a51abebe99cb724003e2ffd632e0d2e4a57792bb71d5752c5"
+    },
+    {
+      "file": "types-fourth.log.gz",
+      "original": "/home/toshiba/aew/task101-types-fourth.log",
+      "exitCode": 0,
+      "bytes": 155,
+      "sha256": "7cea2b702cc94cc76274b689cf840b04c776ce4ea32905092f65dcb0f1171fcb",
+      "archiveBytes": 139,
+      "archiveSha256": "1aeccd3d17a7a7318fdac814f5c4c3cdb659fb69074daa21f0ee5d78224b7b77"
+    },
+    {
+      "file": "focused-third.log.gz",
+      "original": "/home/toshiba/aew/task101-focused-third.log",
+      "exitCode": 0,
+      "bytes": 4886,
+      "sha256": "6a043bc1a181f0b6150581994d208859f12dc52bb760f41c2564f8f051856fb8",
+      "archiveBytes": 1252,
+      "archiveSha256": "7cd1950ba48bc026b8ad4bafb2044c73fe7b00de594195d886beee35c38e26cf"
+    },
+    {
+      "file": "check-first.log.gz",
+      "original": "/home/toshiba/aew/task101-check-first.log",
+      "exitCode": 0,
+      "bytes": 250765,
+      "sha256": "43c714240a2d59cf6a080f29d15d93d4c467901151c0860d303a3a5750fa8fae",
+      "archiveBytes": 35481,
+      "archiveSha256": "4797db2e13697f0e6d997b0a762dc5afe728c30eb11ddc6b6aa4e3eda00ad51a"
+    },
+    {
+      "file": "browser-first.stdout.log.gz",
+      "original": "/home/toshiba/aew/task101-browser-first.stdout.log",
+      "exitCode": 0,
+      "bytes": 93,
+      "sha256": "6a9c90590262d54516d92292fcd67c0c809647ceee0a3e933046de5dc928e207",
+      "archiveBytes": 106,
+      "archiveSha256": "8dfc3375176215fc75e4eabbb571696788da9c4e37d6b3d903f948076259c07a"
+    },
+    {
+      "file": "browser-first.stderr.log.gz",
+      "original": "/home/toshiba/aew/task101-browser-first.stderr.log",
+      "exitCode": 0,
+      "bytes": 171,
+      "sha256": "d19a7e4477372b587dc15db54adb3a8bd9ac601960274912156dbff622574a1a",
+      "archiveBytes": 152,
+      "archiveSha256": "1049f37103a15b7e436212c1f4bc0ec1eadfd808864cba341d37293513f48d29"
+    },
+    {
+      "file": "browser-result.json",
+      "original": "/home/toshiba/aew/measurements/task101-browser-first/result.json",
+      "exitCode": 0,
+      "bytes": 27119,
+      "sha256": "8256034ef85edc383f264c75426262a5a2d9fb87b908e9b4f7e87974d46a2690"
+    },
+    {
+      "file": "paths-desktop.png",
+      "original": "/home/toshiba/aew/measurements/task101-browser-first/paths-desktop.png",
+      "exitCode": 0,
+      "bytes": 96772,
+      "sha256": "baa782c452d2998f720d2178f58d51ccbdecb53271ced3af6cf4f66aff8cd161"
+    },
+    {
+      "file": "paths-mobile.png",
+      "original": "/home/toshiba/aew/measurements/task101-browser-first/paths-mobile.png",
+      "exitCode": 0,
+      "bytes": 64630,
+      "sha256": "d18dec0f65281582084bdadad7c4498c0b5849c8369106cc9c8d9bbe68290b28"
+    }
+  ]
+}

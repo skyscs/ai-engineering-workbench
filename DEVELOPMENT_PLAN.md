@@ -387,6 +387,12 @@ fingerprint assumption: analysis implementation changes invalidate derived inven
 and generation IDs, requiring explicit reanalysis/rollback tests. Next
 [Task 101](tasks/101-loredock-v1-resource-integration.md) integrates representation
 into v1 while preserving independent controls and existing semantic boundaries.
+[Task 101](tasks/101-loredock-v1-resource-integration.md) completes that integration:
+629 tests/builds and fifteen compiled-browser checks pass. Old fingerprints require
+explicit reanalysis; originals and recorded history survive backward reopen. No new
+resource family or scale claim follows. Next
+[Task 102](tasks/102-loredock-final-qualification-boundary.md) resolves the compiled
+v1 versus shared-capture qualification contract before freezing a fresh family.
 Preserve all failed evaluations;
 independent/private-pilot acceptance still precedes the bridge.
 Source recall, agent scoring and merging do not establish L5 readiness.

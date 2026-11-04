@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "task101-v1-path-reference/1",
+  "revision": "0c9aa12cb27ceec444c62c9c95d2cfce25ec2216",
+  "source": "apps/loredock/src/code-paths.ts",
+  "sourceSha256": "dc1f0b32e1524dc93f535ac73043d950c3b59df8435cd6608d2943fbcce13329",
+  "emittedSha256": "f34861a519defe6646fbcd478b23f994d629514e20ba25d0f37b7cec57bdca3b",
+  "moduleSha256": "0fba40013f590cb5fc08f8b2a5a628a5b1ed5f96e131986e3f55b06ac21a2f2c",
+  "relocations": {
+    "./code-paths-work.js": "../../../src/code-paths-work.js",
+    "./code-paths-metadata.js": "../../../src/code-paths-metadata.js",
+    "./code-paths-resolve.js": "../../../src/code-paths-resolve.js",
+    "./code-paths-admit.js": "../../../src/code-paths-admit.js",
+    "./system-map.js": "../../../src/system-map.js",
+    "./extract.js": "../../../src/extract.js",
+    "./types.js": "../../../src/types.js"
+  },
+  "dependencies": {
+    "apps/loredock/src/code-paths-work.ts": {
+      "sourceSha256": "e5f117d0e2c19876eac8a28de620f1d5abbd3d3fe298900389370bf5f86d28a7",
+      "emittedSha256": "96483c9679a4b4249f66e86244bdb43e8e7979565d5e5f6a3b1fcc5adecb1521"
+    },
+    "apps/loredock/src/types.ts": {
+      "sourceSha256": "c2224039777498e97697bacc2400a4b272d6c582f58766a244d3dc77af0339ba",
+      "emittedSha256": "b8b55bceba56ab305c5eb4f6a9047a27f91ed4d38ff084bdae213dae1dc319fd"
+    },
+    "apps/loredock/src/code-paths-metadata.ts": {
+      "sourceSha256": "78146a6dff53d3b49659647a8509c119b6bb6ba16753600f72fd35414afbea9b",
+      "emittedSha256": "927935e599d6443cca08556dbeb2307b973391e797ef9d0c26bdb1fbea8d3982"
+    },
+    "apps/loredock/src/code-paths-resolve.ts": {
+      "sourceSha256": "d4c46ce19a963e6f6a2c7d37de5e3c1e1870454af5a6f0aba0404e63a1866332",
+      "emittedSha256": "6477c4172a396517a2e0a0b07c001cfe861d9a4661b2aad925df246ff043068f"
+    },
+    "apps/loredock/src/extract.ts": {
+      "sourceSha256": "0909a4884ff9a82bd9eaaa6b625c7044f69eba3f3c53771b16668c2cdd3e6c2b",
+      "emittedSha256": "984633a62b0d083f7765aaad7c70211b5dc4fcb81e15022c80e0f477878e6090"
+    },
+    "apps/loredock/src/git.ts": {
+      "sourceSha256": "db71527e26ea0d2c14486a0390b275c92054489624276eec5961e60015c1aab1",
+      "emittedSha256": "8938e323444586bb0ae502e7052fdd3a343f746ed38e4bb0abf140546f843de8"
+    },
+    "apps/loredock/src/http-headers.ts": {
+      "sourceSha256": "967bddace78b2c472401e4a490b08ca7cfc44eae725a537d52c7b102ebbdb1a9",
+      "emittedSha256": "402d2035827c44c2087d31c5c5767e598f9c7121f94747f82e81efed5a421e53"
+    },
+    "apps/loredock/src/code-paths-admit.ts": {
+      "sourceSha256": "77b069bc96de261c38b16803b6c7c40e1c4c7a58b3e6d7aa87d3ad056bf5ef8b",
+      "emittedSha256": "4116aae149982e47efc71c3ce7dc6caf2905cf3aec4d3b939d7518cc7006f48b"
+    },
+    "apps/loredock/src/system-map.ts": {
+      "sourceSha256": "1ebb790be8568cfd97bab092cdb5e454f684405617258d2db6c16e8766c212b8",
+      "emittedSha256": "bb2b1c872817c928ec70761a36c75b055f785d6fdc642b9f8a9301bd58a9efbd"
+    },
+    "apps/loredock/src/map-document.ts": {
+      "sourceSha256": "741ddd865b8c7ac63082f67200d3e5b55d74fa1cc9ce156b84aaa328165aede7",
+      "emittedSha256": "418bd45adf403260ca92b9d033d769bd20136da720acfc9dc19de1ad4fc7b8c1"
+    }
+  },
+  "sourceFingerprint": {
+    "node": "22.23.2",
+    "inputs": [
+      [
+        "code-typescript",
+        "773a8ced3b8e304c7d306fa9a91e060ce7da7194ebcde5a4ccb5aa12f9c1a5ad"
+      ],
+      [
+        "code-java",
+        "d51ff800a32a513f1e3a8eed7015d9be96817fef00c9eb1f70ff2f06b5d92389"
+      ],
+      [
+        "code-facts",
+        "38227b1619f13457b45883dcba6dd9316c62a2fa72ef858b51a77779287a2151"
+      ],
+      [
+        "http-headers",
+        "967bddace78b2c472401e4a490b08ca7cfc44eae725a537d52c7b102ebbdb1a9"
+      ],
+      [
+        "code-analysis",
+        "45485d1b1e5534546d8d40504d7d04090442ce6298142222740ba9942e5764da"
+      ],
+      [
+        "code-analysis-facts",
+        "82fb810a3fa6a790538925cb5431c1ccc08b7e096229378fe95d0e91b85d5167"
+      ],
+      [
+        "code-analysis-types",
+        "505bd871b64f3ee5be89375da6acf02cbc36966c3a10ad4c7cc4d63f8a2f8192"
+      ],
+      [
+        "map-document",
+        "741ddd865b8c7ac63082f67200d3e5b55d74fa1cc9ce156b84aaa328165aede7"
+      ],
+      [
+        "extract",
+        "0909a4884ff9a82bd9eaaa6b625c7044f69eba3f3c53771b16668c2cdd3e6c2b"
+      ],
+      [
+        "typescript",
+        "3ae902c92cc44dace175c0e69e13a4b0899f6983c6121d76b9ab8dd5795e7675"
+      ]
+    ],
+    "value": "c596a1dd73ed7bd7946d5f72b74a841668bf098945114b9dfeaaa36347361ccb"
+  },
+  "note": "Runtime dependency emission must remain exact; source-only type changes are separately reviewable. Fingerprint describes the pre-change source test runtime, not built user data."
+}

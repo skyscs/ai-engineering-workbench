@@ -1,7 +1,8 @@
 // Resolve complete qualified binding domains before applying display caps.
 import path from 'node:path';
 import type { Catalog } from './catalog.js';
-import type { CodeFacts, CallFact, OperationFact, SymbolFact } from './code-facts.js';
+import type { CallFact } from './code-facts.js';
+import type { CanonicalFactPair } from './canonical-fact-pair.js';
 import type { FlowNode, FlowEdge } from './code-flow-types.js';
 import type { MapNode, MapEdge, MapEvidence, DeclarationMap } from './system-map-types.js';
 import type { CodePathLimits } from './code-paths-types.js';
@@ -10,9 +11,9 @@ import type { SavedPath, PathFactEntry, PathResolution, PathBinding, BindingDoma
 import { CatalogError } from './types.js';
 import { sha256 } from './extract.js';
 import { compareHeaders, type HeaderCheck } from './http-headers.js';
-interface Parsed { file: SavedPath; facts: CodeFacts; refs: MapEvidence[] }
-interface SymbolEntry { node: FlowNode; fact: SymbolFact; document: Parsed; calls: CallFact[] }
-interface OperationEntry { node: FlowNode; fact: OperationFact; owner: SymbolEntry }
+interface Parsed { file: SavedPath; facts: CanonicalFactPair['facts']; refs: MapEvidence[] }
+interface SymbolEntry { node: FlowNode; fact: CanonicalFactPair['facts']['symbols'][number]; document: Parsed; calls: CallFact[] }
+interface OperationEntry { node: FlowNode; fact: CanonicalFactPair['facts']['operations'][number]; owner: SymbolEntry }
 interface ResolutionInput { entries: PathFactEntry[]; candidateDocuments: number; domains: BindingDomains;
   generationId: string; declaration: DeclarationMap; limits: CodePathLimits; work: PathWork }
 

@@ -1,6 +1,6 @@
 # Task 101 — Integrate resource ownership into connected paths v1
 
-Status: selected after Task 100; implementation not started.
+Status: implemented and locally verified, 2026-11-04; final compiled scale acceptance remains separate.
 
 Use the typed Task 099 primitives and portable Task 100 behavioral reference to
 integrate only transient representation into production services. Keep the existing
@@ -42,3 +42,13 @@ complete diff and preserved references, then require both exact-head CI events.
 No production scale acceptance follows until a separately frozen qualification of
 the final compiled composition passes unchanged gates. No model/corporate input,
 new receipt storage, automatic routing or L5 claim is in scope.
+
+Implementation `e3644d2` connects the typed helpers to production without changing
+the v1 resolver runtime. Seventeen focused production cases/subcases and 629 full
+tests/builds pass; the built browser passes fifteen checks with owned input. All
+first failures, command exits and screenshots are
+[retained](../docs/fixtures/loredock-v1-resource-integration/README.md).
+The historical source-fingerprint transition requires explicit reanalysis and preserves
+originals/history across backward reopen. No frozen resource family was re-executed.
+Next [Task 102](102-loredock-final-qualification-boundary.md) checks whether a sound
+final compiled v1 qualification can use the proposed offline capture adapter.

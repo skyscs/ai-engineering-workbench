@@ -1,4 +1,4 @@
-import { randomUUID } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { setImmediate as yieldTurn } from 'node:timers/promises';
 import type { Catalog } from './catalog.js';
 import { CatalogError } from './types.js';
@@ -85,19 +85,27 @@ export class CodeAnalysis {
   snapshot(id: string) {
     const row = this.row(id); this.authorize(row);
     if (!row.published) throw new CatalogError('NOT_READY', 'Finish code analysis before querying its facts.', 409);
-    const units = this.store.all<Omit<AnalysisUnit, 'payload'> & { storedBytes: number | null }>(`SELECT runId,fileId,ordinal,inputHash,status,reason,inputBytes,payloadBytes,gapCount,payloadHash,checkpointHash,
-      length(CAST(payload AS BLOB)) storedBytes FROM code_analysis_files WHERE runId=? ORDER BY ordinal LIMIT ?`, id, codeAnalysisLimits.documents + 1);
-    checked(units.length === row.candidates && units.length <= codeAnalysisLimits.documents
-      && units.every((unit, index) => unit.ordinal === index && unit.status !== 'pending' && checkpointHash(unit) === unit.checkpointHash
+    const manifest = createHash('sha256').update('['), fileIds: string[] = [];
+    let count = 0, textBytes = 0, payloadBytes = 0;
+    const statement = this.store.db.prepare(`SELECT runId,fileId,ordinal,inputHash,status,reason,inputBytes,payloadBytes,gapCount,payloadHash,checkpointHash,
+      length(CAST(payload AS BLOB)) storedBytes FROM code_analysis_files WHERE runId=? ORDER BY ordinal LIMIT ?`);
+    for (const value of statement.iterate(id, codeAnalysisLimits.documents + 1)) {
+      const unit = value as unknown as Omit<AnalysisUnit, 'payload'> & { storedBytes: number | null };
+      checked(count < codeAnalysisLimits.documents && unit.ordinal === count && unit.status !== 'pending' && checkpointHash(unit) === unit.checkpointHash
         && Number.isSafeInteger(unit.inputBytes) && unit.inputBytes >= 0 && Number.isSafeInteger(unit.payloadBytes) && unit.payloadBytes >= 0
         && Number.isSafeInteger(unit.gapCount) && unit.gapCount >= 0
         && (unit.status === 'parsed' ? unit.storedBytes === unit.payloadBytes && unit.payloadBytes <= this.limits.filePayloadBytes
-          : unit.storedBytes === null && unit.payloadBytes === 0 && unit.payloadHash === null))
-      && sha256(JSON.stringify(units.map(({ fileId, inputHash }) => ({ fileId, inputHash })))) === row.manifestHash
-      && units.reduce((sum, unit) => sum + unit.inputBytes, 0) === row.textBytes && row.textBytes <= this.limits.textBytes
-      && units.reduce((sum, unit) => sum + unit.payloadBytes, 0) === row.payloadBytes && row.payloadBytes <= this.limits.payloadBytes);
+          : unit.storedBytes === null && unit.payloadBytes === 0 && unit.payloadHash === null));
+      if (count) manifest.update(',');
+      manifest.update(JSON.stringify({ fileId: unit.fileId, inputHash: unit.inputHash }));
+      count++; textBytes += unit.inputBytes; payloadBytes += unit.payloadBytes;
+      if (unit.status === 'parsed') fileIds.push(unit.fileId);
+    }
+    checked(count === row.candidates && manifest.update(']').digest('hex') === row.manifestHash
+      && textBytes === row.textBytes && row.textBytes <= this.limits.textBytes
+      && payloadBytes === row.payloadBytes && row.payloadBytes <= this.limits.payloadBytes);
     return { summary: this.get(id), policyVersion: row.policyVersion, registryVersion: row.registryVersion,
-      manifestHash: row.manifestHash, fileIds: units.filter(unit => unit.status === 'parsed').map(unit => unit.fileId) };
+      manifestHash: row.manifestHash, fileIds };
   }
   files(id: string, offset = 0) {
     const row = this.row(id); this.authorize(row);
@@ -192,7 +200,7 @@ export class CodeAnalysis {
   }
   private schedule(id: string) {
     if (this.worker || this.stopping) return;
-    const done = Promise.resolve().then(() => this.run(id)).catch(error => {
+    const done = Promise.resolve().then(() => this.store.withPreparedReads(() => this.run(id))).catch(error => {
       if (this.row(id).status === 'running') this.store.run("UPDATE code_analyses SET status='failed',reason=? WHERE id=?", `Code analysis failed: ${error instanceof Error ? error.message.slice(0, 1024) : 'Unknown error.'}`, id);
     }).finally(() => {
       this.worker = undefined;
