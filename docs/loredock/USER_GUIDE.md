@@ -120,6 +120,13 @@ that work automatically. A failed attempt also needs an explicit retry. **Analyz
 again**, inside the details for completed results, creates a new inventory. Parser/runtime
 changes require a new inventory instead of relabeling saved facts.
 
+An application update can also change the analysis implementation's compatibility
+fingerprint. If existing facts become incompatible after an update, select the saved
+index, open **Code coverage** and choose **Analyze code**. Your committed source
+evidence and recorded answers remain stored; connected paths become available again
+when compatible analysis finishes. Rolling back the application can require the same
+explicit step for that version. No cache setting or configuration reset is needed.
+
 The selected **Index version** also selects code coverage. At most two inventories retain
 their file facts; an older one can be evicted when a new attempt starts. Source indexes,
 answers and engineer corrections have their separate retention rules. New registrations,
