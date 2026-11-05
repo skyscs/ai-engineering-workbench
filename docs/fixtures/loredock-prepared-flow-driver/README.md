@@ -1,6 +1,6 @@
 # Prepared-flow driver development checkpoint
 
-Task 128 is in progress. The complete resource driver, browser/accounting/fault lanes,
+Task 128 is in progress. The complete resource driver, browser/full-accounting/fault lanes,
 final executable seal and reserved-family run are not complete. This checkpoint is
 ordinary development evidence only; it makes no resource or semantic qualification claim.
 
@@ -29,7 +29,7 @@ Both earlier development failures remain preserved in full:
 A fourth, explicitly injected driver failure exits 1 after index/review; the real daemon
 closes successfully and all four Git roots, catalog bytes, HTTP and process records
 remain. The ordinary successful run exits 0. The first three outputs plus the deliberate
-failure are retained as complete stopped trees in the four archives; the originals also
+failure are retained as complete stopped trees in the first four archives; the originals also
 remain under the workspace root. [records.json](records.json) binds every archived file
 and raw log. These are synthetic development inputs, not the reserved kiln family.
 
@@ -40,3 +40,17 @@ have had zero candidate reads; all actual model attempts remain zero.
 Next implement independent source assessment, process/browser sampling, aggregate actual
 budget accounting and the full lifecycle/fault matrix on ordinary inputs. Only a complete
 reviewed executable seal permits the separately frozen family to run.
+
+The fourth successful development version also independently checks every issued original
+against generated source bytes, commit/tree identity and line ranges, plus native support
+and qualifications without importing a candidate parser/validator. Its diagnostic budget
+observer forwards actual charge/check/close methods and aggregates accepted/rejected work.
+A one-row answer list uses one actual budget and 158,428 units; its output is byte-equivalent
+to the uninstrumented actual-entry response, and all budgets close. Instrumented timing
+and memory do not qualify resources. This is a small ordinary observation, not extrapolated
+capacity evidence. The additional complete tree/log are retained alongside the first runs.
+
+Polling now uses the UI's 250 ms preparation and one-second answer cadence. Remaining work
+includes capacity and complete-worker accounting, browser/process-tree samples, the full
+fault matrix, executable seal and reserved-family execution. No model run is authorized by
+this checkpoint's successful mechanical checks.

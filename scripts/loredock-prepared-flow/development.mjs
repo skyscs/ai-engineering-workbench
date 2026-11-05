@@ -6,6 +6,7 @@ import { DatabaseSync } from 'node:sqlite';
 import { corpusFactory } from '../loredock-native-assessment/fixture.mjs';
 import { materialize, launch, client, save, inventory, normalized, journal } from './io.mjs';
 import { indexSources, prepare, generate } from './flow.mjs';
+import { assessPreview } from './assess.mjs';
 
 const output = process.argv[2], failAfterIndex = process.argv[3] === '--fail-after-index';
 assert(process.argv.length === (failAfterIndex ? 4 : 3), 'Use an output directory and optional --fail-after-index.');
@@ -28,6 +29,9 @@ try {
   daemon = await launch({ directory: path.join(output, 'production-first'), data }); api = await client(path.join(output, 'http-first'));
   const indexed = await indexSources(api, sources.paths), first = await prepare(api, question);
   assert(first.review.compact.item); assert.equal(first.review.context.sources.length, 4);
+  const assessed = assessPreview(first.review, { corpus, sources, expected: { prepared: 'native-required',
+    native: { sources: ['a-permit-ui', 'b-permit-api', 'c-permit-store'], requiredEdgeKinds: ['http-target', 'event-delivery', 'dispatch-candidate'], topic: 'permit.granted.v3' } } });
+  await save(path.join(output, 'source-assessment.json'), assessed);
   report.phases.push({ name: 'actual-entry-index-analysis-review', readyMs: daemon.readyMs, indexed, prepared: first });
   if (failAfterIndex) throw new Error('Owned development failure after index/review.');
   await stop(); await save(path.join(output, 'stopped-before-answer.json'), await inventory(data));
@@ -59,7 +63,16 @@ try {
   assert.equal((await api.request('/prepared-answers', 'POST', published.input)).value.id, saved.id);
   const expired = await api.request('/question-preparations/' + second.review.id, 'GET', undefined, { allowError: true });
   assert.equal(expired.status, 409); assert.equal(expired.value.error.code, 'QUESTION_NOT_FOUND');
+  const beforeAccounting = (await api.request('/answers')).value;
   report.phases.push({ name: 'actual-entry-history-and-request-replay', answerId: saved.id, transientMissing: true });
+  await stop();
+  daemon = await launch({ directory: path.join(output, 'accounting'), data, controlled: true, accounting: true }); api = await client(path.join(output, 'http-accounting'));
+  await daemon.command('accounting-start', { scope: 'one-row-list' });
+  const afterAccounting = (await api.request('/answers')).value, accounting = await daemon.command('accounting-end');
+  assert.deepEqual(afterAccounting, beforeAccounting); assert(accounting.totalWork > 0); assert.deepEqual(accounting.unclosedBudgets, []);
+  for (const budget of accounting.budgets) assert.equal(Object.values(budget.charges).reduce((sum, row) => sum + row.accepted, 0), budget.final.totalWork);
+  await save(path.join(output, 'accounting.json'), accounting);
+  report.phases.push({ name: 'actual-list-budget-accounting-and-parity', totalWork: accounting.totalWork, budgets: accounting.budgets.length });
   await stop();
   const retained = await inventory(data), retainedSources = await inventory(path.join(output, 'sources'));
   assert(retained['loredock.db']); assert(Object.keys(retainedSources).some(file => file.endsWith('/.git/HEAD')));

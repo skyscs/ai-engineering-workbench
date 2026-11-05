@@ -11,11 +11,11 @@ export const hash = value => createHash('sha256').update(value).digest('hex');
 export const normalized = error => ({ name: error.name, code: error.code ?? null, message: error.message, stack: error.stack,
   ...error instanceof AggregateError ? { errors: error.errors.map(normalized) } : {} });
 export const save = (file, value) => writeFile(file, JSON.stringify(value, null, 2) + '\n', { flag: 'wx' });
-export async function until(callback, message, milliseconds = 15000) {
+export async function until(callback, message, milliseconds = 15000, intervalMs = 25) {
   const deadline = performance.now() + milliseconds;
   while (performance.now() < deadline) {
     const value = await callback(); if (value) return value;
-    await new Promise(resolve => setTimeout(resolve, 25));
+    await new Promise(resolve => setTimeout(resolve, intervalMs));
   }
   throw new Error(message);
 }
@@ -60,12 +60,13 @@ export async function materialize(directory, corpus) {
   }
   return { revisions, originals, paths: Object.keys(corpus).map(name => path.join(directory, name)) };
 }
-export async function launch({ directory, data, controlled = false, fault = false }) {
+export async function launch({ directory, data, controlled = false, fault = false, accounting = false }) {
+  assert(!accounting || controlled, 'Accounting requires the explicit diagnostic bootstrap.');
   await mkdir(directory); const descriptors = ['stdout', 'stderr'].map(name => openSync(path.join(directory, name + '.log'), 'wx', 0o600));
   const entry = controlled ? 'scripts/loredock-prepared-flow/launcher.mjs' : 'apps/loredock/dist/index.js';
   const args = ['--import', path.join(repository, 'scripts/loredock-prepared-flow/monitor.mjs'), path.join(repository, entry)];
   const env = { PATH: process.env.PATH, LC_ALL: 'C', LOREDOCK_DATA_DIR: data, LOREDOCK_ANSWERS: '1', LOREDOCK_PREPARED_ANSWERS: '1',
-    AEW_FLOW_OUTPUT: directory, ...fault ? { AEW_FLOW_FAULTS: '1' } : {} };
+    AEW_FLOW_OUTPUT: directory, ...fault ? { AEW_FLOW_FAULTS: '1' } : {}, ...accounting ? { AEW_FLOW_ACCOUNTING: '1' } : {} };
   const began = performance.now(), child = spawn(process.execPath, args, { cwd: repository, env, detached: true, stdio: ['ignore', ...descriptors, 'ipc'] });
   for (const descriptor of descriptors) closeSync(descriptor);
   const pending = new Map(); let id = 0, ended = false, spawnError;
@@ -86,7 +87,7 @@ export async function launch({ directory, data, controlled = false, fault = fals
     try { const result = await exit; await save(path.join(directory, 'exit.json'), result); return result; } finally { clearTimeout(timer); }
   })();
   try {
-    await save(path.join(directory, 'process.json'), { executable: process.execPath, args, env, pid: child.pid, controlled, fault });
+    await save(path.join(directory, 'process.json'), { executable: process.execPath, args, env, pid: child.pid, controlled, fault, accounting });
     await until(async () => {
       if (ended) throw new Error('Owned daemon exited before listening: ' + JSON.stringify(await exit));
       return (await readFile(path.join(directory, 'stdout.log'), 'utf8')).includes('LoreDock listening on http://127.0.0.1:4244');

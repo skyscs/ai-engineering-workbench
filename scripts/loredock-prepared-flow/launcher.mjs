@@ -18,6 +18,7 @@ const directory = process.env.AEW_FLOW_OUTPUT;
 if (!path.isAbsolute(directory ?? '') || !path.isAbsolute(process.env.LOREDOCK_DATA_DIR ?? '')
   || process.env.LOREDOCK_ANSWERS !== '1' || process.env.LOREDOCK_PREPARED_ANSWERS !== '1') throw new Error('Explicit owned prepared-flow settings are required.');
 const stats = { prepares: 0, calls: 0, closed: 0 };
+const accounting = process.env.AEW_FLOW_ACCOUNTING === '1' ? await import('./accounting.mjs') : null;
 const gates = new Map();
 const wait = name => gates.get(name)?.promise;
 const runtime = {
@@ -59,6 +60,10 @@ process.on('message', message => {
   try {
     let result;
     if (message.name === 'stats') result = { ...stats };
+    else if (message.name === 'accounting-start' || message.name === 'accounting-end') {
+      if (!accounting) throw new Error('Accounting is disabled in the resource bootstrap.');
+      result = message.name === 'accounting-start' ? (accounting.beginScope(message.parameters.scope), { started: message.parameters.scope }) : accounting.endScope();
+    }
     else {
       if (process.env.AEW_FLOW_FAULTS !== '1') throw new Error('Fault controls are disabled in the resource bootstrap.');
       const name = message.parameters.gate;

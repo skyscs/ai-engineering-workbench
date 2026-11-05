@@ -11,7 +11,7 @@ export async function indexSources(api, paths) {
     const value = (await api.request('/builds/' + build.id)).value;
     if (['preparing', 'running'].includes(value.status)) return false;
     assert.equal(value.status, 'completed', JSON.stringify(value)); assert(value.published); return value;
-  }, 'Source indexing did not complete.', 300000);
+  }, 'Source indexing did not complete.', 300000, 1000);
   const indexMs = performance.now() - started, analysisStarted = performance.now();
   const analysis = await until(async () => {
     const state = (await api.request('/code-analysis')).value;
@@ -19,7 +19,7 @@ export async function indexSources(api, paths) {
     const value = state.inventories.find(row => row.buildId === ready.id);
     if (!value || value.status === 'running') return false;
     assert.equal(value.status, 'completed', JSON.stringify(value)); assert(value.published && value.currentParser); return value;
-  }, 'Automatic code analysis did not complete.', 300000);
+  }, 'Automatic code analysis did not complete.', 300000, 1000);
   return { build: ready, analysis, indexMs, analysisMs: performance.now() - analysisStarted };
 }
 export async function prepare(api, question) {
@@ -29,7 +29,7 @@ export async function prepare(api, question) {
     const current = (await api.request('/question-preparations/' + first.id)).value;
     if (current.status === 'preparing') return false;
     assert.equal(current.status, 'ready', JSON.stringify(current)); return current;
-  }, 'Question preparation did not complete.', 6000);
+  }, 'Question preparation did not complete.', 6000, 250);
   const review = await api.request('/question-preparations/' + state.id + '/review');
   assert.equal(review.value.reviewedHash, state.reviewedHash);
   return { review: review.value, elapsedMs: performance.now() - started, bytes: review.bytes };
@@ -41,6 +41,6 @@ export async function generate(api, reviewed) {
     const current = (await api.request('/answers/' + first.value.id)).value;
     if (['preparing', 'running'].includes(current.status)) return false;
     assert.equal(current.status, 'succeeded', `${current.status}: ${current.reason}`); return current;
-  }, 'Controlled answer did not publish.', 20000);
+  }, 'Controlled answer did not publish.', 20000, 1000);
   return { input, answer };
 }
