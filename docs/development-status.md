@@ -2,10 +2,10 @@
 
 ## Task 128 — Complete-flow resource driver (in progress)
 
-Latest accepted checkpoint: [PR #150](https://github.com/skyscs/ai-engineering-workbench/pull/150)
-at merge `be1b78c`. Reusable source/oracle setup now preserves the actual no-analysis
-catalog and public engineer note. Nine ordinary prerequisites pass; the required native
-positive still fails. Both final-head CI events are required before accepting this slice.
+Latest accepted checkpoint: [PR #151](https://github.com/skyscs/ai-engineering-workbench/pull/151)
+at merge `150c7ba`. Browser measurements now bind original API bytes and full-page
+paint/task observations. Actual 20/64-row controls retain RSS and sampling-gap failures;
+both final-head CI events are required before accepting this slice.
 The reserved family has zero candidate reads; no model runs.
 Known ordinary failures include partial analysis of constant-only padding, a missing
 required native positive at the derived-size limit, aggregate list work, browser RSS and
@@ -332,8 +332,27 @@ unknown setup/lifecycle errors stop. Eleven copied catalogs contain zero answers
 integrity/foreign-key checks; 80 Git identities, 33 required review quotes and 194 HTTP
 responses are independently verified. The expected driver exit 1 leaves no survivors.
 Installation, production builds, the focused pre-index input guard and original seal pass
-locally. Both full final-head CI events remain required; complete ordered integration,
-remaining resource assessment and the final execution seal are still pending.
+locally. This checkpoint is accepted through [PR #151](https://github.com/skyscs/ai-engineering-workbench/pull/151):
+push 42044188990 and pull_request 42044443439 pass 985 tests at `4350c0d`; merge
+`150c7ba` has the identical tree. Complete ordered integration, remaining resource
+assessment and the final execution seal are still pending.
+
+The next [browser measurement slice](fixtures/loredock-prepared-flow-browser-measurements/README.md)
+retains original decoded UTF-8 API bodies, identity-bound hashes and explicit session
+redaction alongside existing parsed objects. Passive full-page observations cover long
+tasks, click feedback and DOM-update paint. Independent assessment reconstructs CDP
+requests and applies HTTP, process-tree, cadence, concurrency and idle-window checks.
+Actual 20/64-row production reopens show Ready and saved context for 30 seconds each,
+without new admission or dispatch. All 331 browser API bodies, 71 reused input files,
+four protected-client bodies and two complete copied catalogs pass retention checks.
+Both cases fail summed RSS (1,359,691,776 / 1,363,238,912 bytes against 1 GiB) and maximum
+sample gap (102.648503 / 101.958016 ms against 100). Request/paint checks pass; zero
+observed long tasks does not mean zero main-thread CPU. The initial assessor omitted the
+cadence check; its code/results remain preserved. Corrected offline reassessment adds only
+that failure with zero new browser/application runs. Five focused controls, builds, syntax
+and the original seal pass. Four screenshots were inspected. Both complete final-head CI
+events remain required. The complete matrix, remaining global/storage/work/lifetime
+assessment and final execution seal are still pending; no resource/model eligibility follows.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request

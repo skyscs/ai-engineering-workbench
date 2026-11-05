@@ -1,0 +1,290 @@
+{
+  "schemaVersion": "prepared-flow-browser-measurements-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "trees": [
+    {
+      "path": "browser-measurements-first.tar.gz",
+      "sha256": "b23cfd90a6434b97282f57f69868ed25aa4743e6b2ac3459f5250dbbb8a86bdd",
+      "inventory": "browser-measurements-first.inventory.json.gz",
+      "inventorySha256": "1398b3e2d80cff32844396321455adc698d9d7b53d11d5fa5165dbbbcc930663",
+      "entries": 799,
+      "source": "/home/toshiba/aew/task128-browser-measurements-first",
+      "excludedFromArchive": [
+        "run/history-20/browser/profile (temporary Chrome profile/cache; original retained locally)",
+        "run/history-64/browser/profile (temporary Chrome profile/cache; original retained locally)"
+      ]
+    },
+    {
+      "path": "browser-measurements-first-inputs.tar.gz",
+      "sha256": "eda20bd180bb920dff4867a8a307f2e74ad261d0b66b71be299b3c63fa956342",
+      "inventory": "browser-measurements-first-inputs.inventory.json.gz",
+      "inventorySha256": "bfd043222dcab7447cd120d4e0f77fe05eeb2bb0795fc4aebe255521a0e53500",
+      "entries": 5,
+      "source": "/home/toshiba/aew/task128-browser-measurements-first-inputs"
+    },
+    {
+      "path": "browser-measurements-reassessment-first.tar.gz",
+      "sha256": "9f78880674d672b6b983014e3055395da829db29860a35873fb7ae4219e49ba1",
+      "inventory": "browser-measurements-reassessment-first.inventory.json.gz",
+      "inventorySha256": "71986033d4b6afd8c99333311d9ba3959ea03ccb428dd645ab3c814ca1b03933",
+      "entries": 7,
+      "source": "/home/toshiba/aew/task128-browser-measurements-reassessment-first"
+    },
+    {
+      "path": "browser-measurements-retention.tar.gz",
+      "sha256": "1662d3bef0a96c2686f435c9332e594f9f1c9a38e0af32753465ad95142ae75c",
+      "inventory": "browser-measurements-retention.inventory.json.gz",
+      "inventorySha256": "fc343552254e33a4cb3a66ec9797667e317029cbfcb37922055ef2f117083c23",
+      "entries": 9,
+      "source": "/home/toshiba/aew/task128-browser-measurements-retention"
+    },
+    {
+      "path": "browser-measurements-reused-sources.tar.gz",
+      "sha256": "140bcae3f1a2fd6d9a1dc501092c44af655648353a9d3692720b08ac1f9f1e0a",
+      "inventory": "browser-measurements-reused-sources.inventory.json.gz",
+      "inventorySha256": "c68846679d392de9a54eeb9e8933cffd29517386f840d500379d8b2c2cec4882",
+      "entries": 63,
+      "source": "/home/toshiba/aew/task128-ordered-history-second/run/sources"
+    },
+    {
+      "path": "browser-measurements-reused-checkpoint-20.tar.gz",
+      "sha256": "2775850f7c8977f108b8de3d92c613df1577e849db5370d6492d473b47148184",
+      "inventory": "browser-measurements-reused-checkpoint-20.inventory.json.gz",
+      "inventorySha256": "a3b6c92b3628d53e1ead4436669ab908462b475825cbe871760993a6e1e4d6a1",
+      "entries": 4,
+      "source": "/home/toshiba/aew/task128-ordered-history-second/run/capacity/checkpoint-20"
+    },
+    {
+      "path": "browser-measurements-reused-checkpoint-64.tar.gz",
+      "sha256": "d6bd132bc1c6e28aaffbec3a4a39a32f000a6c6f5d2a579bd8087704eaf517ad",
+      "inventory": "browser-measurements-reused-checkpoint-64.inventory.json.gz",
+      "inventorySha256": "69e7fa4c4791f52683fdc34cb7f103388a5df2b78f7e4c16abdd5f256f1746b8",
+      "entries": 4,
+      "source": "/home/toshiba/aew/task128-ordered-history-second/run/capacity/checkpoint-64"
+    },
+    {
+      "path": "browser-measurements-test-first-1.tar.gz",
+      "sha256": "b1010ead2c6a8816dcbe906c748023a550913f77a0179ff9bcf0319cd34cb91d",
+      "inventory": "browser-measurements-test-first-1.inventory.json.gz",
+      "inventorySha256": "54e733dd09abcff7966b1d851729e9634846743b78c5291c3aff62c14c77f0a7",
+      "entries": 9,
+      "source": "/tmp/loredock-browser-evidence-MI8p6E"
+    },
+    {
+      "path": "browser-measurements-test-second-1.tar.gz",
+      "sha256": "93f07e9c393c824eb22c2f53edb698de6d57efeb516dfd880715ecc237eee044",
+      "inventory": "browser-measurements-test-second-1.inventory.json.gz",
+      "inventorySha256": "54e733dd09abcff7966b1d851729e9634846743b78c5291c3aff62c14c77f0a7",
+      "entries": 9,
+      "source": "/tmp/loredock-browser-evidence-Nk6nxt"
+    },
+    {
+      "path": "browser-measurements-inputs.tar.gz",
+      "sha256": "fdd5f3c25b71c8a65262b3896adcf01310495043090c8eff51e9b64dcc1f2b87",
+      "inventory": "browser-measurements-inputs.inventory.json.gz",
+      "inventorySha256": "57ba87eca3f59fe8005fc2cf4d8f8cb2757bf31dde2f66941e134e1a40fe22b5",
+      "entries": 11,
+      "source": "/home/toshiba/aew/task128-browser-measurements-inputs"
+    },
+    {
+      "path": "browser-measurements-static-inputs.tar.gz",
+      "sha256": "46228fa983b5b7abde3f3cae51eacfe8881804920a562f104700efd308216991",
+      "inventory": "browser-measurements-static-inputs.inventory.json.gz",
+      "inventorySha256": "46b1f0cab157ee3320f38604b087da9bdb8be7e45de8d096b24fe080e0ab35a2",
+      "entries": 1,
+      "source": "/home/toshiba/aew/task128-browser-measurements-static-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "browser-measurements-first.log.gz",
+      "archiveSha256": "6046d380ccbc425f60a213785b815450d10ac3ffcd9e96a4ae25c2d20695306e",
+      "rawBytes": 5945,
+      "rawSha256": "bb38859ec3412dd4baf74891cd09af9b7445e18f1a503301861133b5d91a4fe1"
+    },
+    {
+      "path": "browser-measurements-reassessment-first.log.gz",
+      "archiveSha256": "3d889a662894ae65d5d270569ce300c0da2225948cca8dd2a8ecd0d35c08c726",
+      "rawBytes": 911,
+      "rawSha256": "9b85c84dec2409ee7b9f0bbed625fc10badd3ccd3b4ba9030966726b38c91aff"
+    },
+    {
+      "path": "browser-measurements-install.log.gz",
+      "archiveSha256": "9d4506466a49b4ee94924ae862f5ce1d00613da288ff7e0366936369639f1893",
+      "rawBytes": 326,
+      "rawSha256": "7fc8cb82c2787b0c9a7359882eb8d57d688ca81d789a23dd495aab97a43bd679"
+    },
+    {
+      "path": "browser-measurements-build.log.gz",
+      "archiveSha256": "90a0e404ea271d860f3feeb65b066d78a8bc4c2183073e0ebd4b15601b515860",
+      "rawBytes": 2360,
+      "rawSha256": "02816ec04a5bf5cedda57a5d58f25bdb87577bdd1936d46783598105d8e84502"
+    },
+    {
+      "path": "browser-measurements-tests-first.log.gz",
+      "archiveSha256": "4bbe6be6346249e7df58cd4d6230860d09ad06f8a0698ad651c109691a9855ac",
+      "rawBytes": 1462,
+      "rawSha256": "db75becbbe7738a42bf6b3aeb9a6feb74d2ce6846a5a78a15056c4f28297c641"
+    },
+    {
+      "path": "browser-measurements-tests-second.log.gz",
+      "archiveSha256": "ffa2b02ae897b82e40614db9ff00e6354e1453a721d2a85bf3bf0c21d1dd8ba3",
+      "rawBytes": 1462,
+      "rawSha256": "6890c50c66a663af38da9ccb4f93d916e44a043a7413e3f3407ab31cd1890717"
+    },
+    {
+      "path": "browser-measurements-retention.log.gz",
+      "archiveSha256": "07a05bf68fe2e688f67b29df42204a88d33e47b3988724e9abf7f023ff42bf66",
+      "rawBytes": 1908,
+      "rawSha256": "996e165af3da14ec3f89648ba17895191dd5ef66103221bc6ccf5bd2065c3306"
+    },
+    {
+      "path": "browser-measurements-reassessment-check.log.gz",
+      "archiveSha256": "664398f018f7f6fc258c60e3b511c3aa466a42e92f0e4355840dec489c0504f4",
+      "rawBytes": 533,
+      "rawSha256": "4c5f05117d4de280d6f103d8a7b5bd5ec77b853abd45e2df8f717d0bbe8593e2"
+    },
+    {
+      "path": "browser-measurements-seal-check.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "oracle-cases-ci-push.log.gz",
+      "archiveSha256": "dac5863746ecaa553fed411c5cf67f0ad1c8d9f23cf4ba7c6f52ad0d2debb90e",
+      "rawBytes": 740048,
+      "rawSha256": "96174fbe70fd5f1cc5b44905c8519f8d625e40b00ae1ea4ff301bdee479e2168"
+    },
+    {
+      "path": "oracle-cases-ci-pr.log.gz",
+      "archiveSha256": "2b1a7bd5529cc0286b33ffcec26efab29606df24007b307612db32a5bd9c7b7b",
+      "rawBytes": 705486,
+      "rawSha256": "d9237f9f038fe774f4373535d9d8f19d06131609359cd7fadc1626ca0d4ba334"
+    },
+    {
+      "path": "browser-measurements-static-first.log.gz",
+      "archiveSha256": "b4f549751b13d3bff752e2af80ef3274a7898bff4b8f3c67ce63c4eadc3e9ca0",
+      "rawBytes": 208,
+      "rawSha256": "3bec4e6360bcf9a1c3c238123128ebe15f7c7ca8a8d9a6e4be858b2ef762be4b"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "history-20-desktop.png",
+      "bytes": 110719,
+      "sha256": "8275c4f6b8f6ca772d4dd03eff949ba451dcab038d8a2d9f51068196f23702d9"
+    },
+    {
+      "path": "history-20-mobile.png",
+      "bytes": 85379,
+      "sha256": "8f210aba2fd0b2c3eed2810c8b02f20d35e04cf1ea77096c518f0fc789f762d3"
+    },
+    {
+      "path": "history-64-desktop.png",
+      "bytes": 110724,
+      "sha256": "034946113c6a61758eb40d4efeb14b28a216d0d5bf790bc5a22209ee3ab28f41"
+    },
+    {
+      "path": "history-64-mobile.png",
+      "bytes": 85385,
+      "sha256": "0c604a50a50e0f1805b85dfcd3756714f3dec0831ee906462eaec6ce2cf4b1fc"
+    }
+  ],
+  "acceptedOracles": {
+    "pr": 151,
+    "head": "4350c0d58c856198f79fc82a1b4844f13cc790a6",
+    "merge": "150c7babcc90669383ee6fb2353ac502ebe98ee2",
+    "push": 42044188990,
+    "pull_request": 42044443439,
+    "testsPerEvent": 985
+  },
+  "retention": {
+    "resourceQualification": false,
+    "modelCalls": 0,
+    "reservedFamilyReads": 0,
+    "catalogs": [
+      {
+        "source": "/home/toshiba/aew/task128-browser-measurements-first/run/history-20/data",
+        "copy": "/home/toshiba/aew/task128-browser-measurements-retention/history-20/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "successfulAttempts": 20,
+        "witnessStorage": [
+          20,
+          0,
+          1326720
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-browser-measurements-first/run/history-64/data",
+        "copy": "/home/toshiba/aew/task128-browser-measurements-retention/history-64/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "successfulAttempts": 64,
+        "witnessStorage": [
+          64,
+          0,
+          4245504
+        ]
+      }
+    ],
+    "httpBodies": 2,
+    "httpRedactedSessions": 2,
+    "browserBodies": 331,
+    "browserRedactedSessions": 2,
+    "reusedInputFiles": 71,
+    "screenshots": [
+      {
+        "path": "/home/toshiba/aew/task128-browser-measurements-first/run/history-20/browser/desktop.png",
+        "bytes": 110719,
+        "sha256": "8275c4f6b8f6ca772d4dd03eff949ba451dcab038d8a2d9f51068196f23702d9"
+      },
+      {
+        "path": "/home/toshiba/aew/task128-browser-measurements-first/run/history-20/browser/mobile.png",
+        "bytes": 85379,
+        "sha256": "8f210aba2fd0b2c3eed2810c8b02f20d35e04cf1ea77096c518f0fc789f762d3"
+      },
+      {
+        "path": "/home/toshiba/aew/task128-browser-measurements-first/run/history-64/browser/desktop.png",
+        "bytes": 110724,
+        "sha256": "034946113c6a61758eb40d4efeb14b28a216d0d5bf790bc5a22209ee3ab28f41"
+      },
+      {
+        "path": "/home/toshiba/aew/task128-browser-measurements-first/run/history-64/browser/mobile.png",
+        "bytes": 85385,
+        "sha256": "0c604a50a50e0f1805b85dfcd3756714f3dec0831ee906462eaec6ce2cf4b1fc"
+      }
+    ],
+    "rawInputsUnchanged": true,
+    "entries": 1231
+  },
+  "reassessmentCheck": {
+    "cases": [
+      {
+        "rows": 20,
+        "onlyAddedCheck": {
+          "metric": "browserSampleGapMs",
+          "value": 102.64850300000006,
+          "limit": 100,
+          "passed": false
+        },
+        "originalFailurePreserved": true
+      },
+      {
+        "rows": 64,
+        "onlyAddedCheck": {
+          "metric": "browserSampleGapMs",
+          "value": 101.95801599999686,
+          "limit": 100,
+          "passed": false
+        },
+        "originalFailurePreserved": true
+      }
+    ],
+    "newBrowserRuns": 0,
+    "resourceQualification": false
+  }
+}
