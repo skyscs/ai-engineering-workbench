@@ -1,4 +1,4 @@
-// Fixed R01-R15 assembly over caller-supplied ordinary inputs. No fallback, retries or model runtime.
+// Fixed R01-R15 assembly over caller-supplied inputs. No fallback, retries or model runtime.
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
@@ -20,7 +20,9 @@ import { oracleCase } from './oracle-case.mjs';
 import { accountWorker } from './worker-accounting-case.mjs';
 import { assessLifetimes } from './lifetime-assess.mjs';
 
-export function matrixCases({ ownerOutput, catalogRoots, workingRows, inputFor, oracleInputFor, oracles, sourceName, noteTarget, references, engineerNote }) {
+export function matrixCases({ ownerOutput, catalogRoots, workingRows, inputFor, oracleInputFor, oracles, sourceName, noteTarget, references, engineerNote,
+  reservedFamily = null }) {
+  assert(reservedFamily === null || reservedFamily === 'kiln-prepared-flow-127');
   assert.equal(oracles.length, 10); assert.equal(oracleSetup(oracles[6]), 'catalog-only');
   const freshSetups = matrixFreshSetups(oracles.map(row => row.id));
   const inputs = new Map(), cold = new Map(), warm = new Map();
@@ -210,7 +212,9 @@ export function matrixCases({ ownerOutput, catalogRoots, workingRows, inputFor, 
       : c.missing.length || coverage.length ? 'incomplete' : 'passed';
     const result = { id, status, safeToContinue: c.safe, steps: c.steps, handoffs: c.handoffs,
       failures: c.failures, incomplete: [...c.missing, ...coverage], errors: c.errors, failedSetups: c.failedSetups,
-      controlledCalls: evidence?.controlledCalls ?? null, modelCalls: 0, reservedFamilyReads: 0, resourceQualification: false };
+      controlledCalls: evidence?.controlledCalls ?? null, modelCalls: 0, reservedFamilyReads: reservedFamily ? null : 0,
+      ...(reservedFamily ? { reservedFamily, familyConsumed: true, sourceReadAccounting: 'not-counted; see materialized sources and HTTP journals' } : {}),
+      resourceQualification: false };
     await save(path.join(directory, 'case-assessment.json'), result);
     return { status, safeToContinue: c.safe, artifacts: ['case-assessment.json', ...(evidence ? ['evidence-assessment.json'] : [])],
       details: { steps: c.steps.length, failures: c.failures.length, incomplete: result.incomplete.length,
