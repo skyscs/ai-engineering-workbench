@@ -61,3 +61,7 @@ published, then executes actual validation and requires zero preflight calls. Al
 compiled script tests pass after this test-only fix. Production code is unchanged. Pull-request CI 41946364449 independently failed the same assertion. A cancellation request
 raced with its completion and was refused. Both failed CI logs and the post-fix script
 log are retained, bringing the archive to 14. New final-head CI events are required.
+
+Final acceptance: push 41947342761 and pull-request 41947350906 passed all 929 tests,
+strict types and builds at `9c21c17`; PR #129 merged as identical-tree `b0c89df`. The
+original failed runs and their correction remain part of this record.

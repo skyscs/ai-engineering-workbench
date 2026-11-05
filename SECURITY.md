@@ -76,7 +76,12 @@ metadata, consume record capacity; retained text is separately capped at 768 KiB
 and 48 MiB total. The internal prepared-answer adapter validates the exact saved witness
 and every original before preflight, dispatch and publication; native inventory eviction
 cannot substitute current facts or a different path. It shares operation ownership across
-answer/configuration consumers. No prepared HTTP/browser entry or default is enabled.
+answer/configuration consumers. Prepared HTTP/browser entry requires both the answer
+pilot and the separate `LOREDOCK_PREPARED_ANSWERS=1` experiment switch. Session/origin/CSRF
+protection applies to all new operations; exact scalar fields exclude client prompts,
+receipts, context and budget/runtime overrides. Review output is bounded to 1 MiB and
+excludes raw witnesses. Browser invalidation fences late context/history responses.
+The ordinary pilot default is unchanged.
 See [prepared admission](docs/loredock/PREPARED_ANSWER_ADMISSION.md) and the
 [durable contract](docs/loredock/ANSWER_WITNESS_STORAGE.md).
 The explicit storage-report command opens only an existing schema-8, schema-9, schema-10 or schema-11 catalog read-only,

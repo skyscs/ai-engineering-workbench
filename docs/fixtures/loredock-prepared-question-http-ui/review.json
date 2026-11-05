@@ -1,0 +1,358 @@
+{
+  "schemaVersion": "prepared-question-http-ui-review/1",
+  "base": "b0c89dffc87020281e51aaf678a165ad727ef62c",
+  "preservedControlsCommit": "2404754",
+  "fullCheckExecutable": "c92349a0ffb5bacef07d34ba2b5066825ccf0c17",
+  "reviewedExecutable": "edc1457cb1361010999775dd8f01eba2efa706a0",
+  "node": "22.23.2",
+  "typescript": "5.9.3",
+  "pnpm": "10.15.0",
+  "checks": [
+    {
+      "path": "install-first.log.gz",
+      "exitCode": 0,
+      "bytes": 326,
+      "sha256": "d33a31177af26011a1a8e9ebad05ff0837de6b5120ff0b46b8c8ad8cd1692f6c",
+      "archiveSha256": "99002b715de90bd712d050a631bae1048f8765ee03338789914ec9c4331dd598"
+    },
+    {
+      "path": "build-before-first.log.gz",
+      "exitCode": 0,
+      "bytes": 2365,
+      "sha256": "47dbc000eabdc504edaa207d884f3a9f17efd723cca8c8beb4ddb0f5f0db3a56",
+      "archiveSha256": "38ec75e2a079a2d201329eb4cafaf9363febd63adc54c836eab67868a98b7e41"
+    },
+    {
+      "path": "types-first.log.gz",
+      "exitCode": 0,
+      "bytes": 157,
+      "sha256": "57df7312ae9e7b1f7ffd5c2958f911449d8fd7a4a76fb98e6f0b646968d6ac31",
+      "archiveSha256": "16b7f7a97d8310e15dd6a07c0101f4617f9b68d4709d7e24de12e5be5f072b09"
+    },
+    {
+      "path": "web-types-first.log.gz",
+      "exitCode": 1,
+      "bytes": 2413,
+      "sha256": "4a01355a08e9be3f95464224e58eb33114197abade78a7225125e3210e55eebc",
+      "archiveSha256": "a0af2e1f13112e2930b8d6141654d5a7053684e4c2e17179d7bb69d75efbb469"
+    },
+    {
+      "path": "web-types-second.log.gz",
+      "exitCode": 0,
+      "bytes": 138,
+      "sha256": "6852e76eb565a87a5d4e2b8754db209efadf58240fd8e755350e1872186ce860",
+      "archiveSha256": "9107fa69e5f62e4d7ec21f0581705c3039da0c37677aacfd4d2eafcbca9f8392"
+    },
+    {
+      "path": "build-first.log.gz",
+      "exitCode": 0,
+      "bytes": 132,
+      "sha256": "730dec843da6b88a3341a3e0e12e9a26821aa3b27cbc27ef3ce157b12e69fba8",
+      "archiveSha256": "a8fa71b66a863cfeeaa5b4bf0733f2cf191ed0651d400bf3409c4ee246fc97e1"
+    },
+    {
+      "path": "focused-first.log.gz",
+      "exitCode": 0,
+      "bytes": 6943,
+      "sha256": "6eda3b9940cde3275f48d08f684f1c7e50140f44a78e173ac0a5dcd866d70bb2",
+      "archiveSha256": "fffb8cea12858e2ed595e26c9797c4163be15e801f235b177d4c576a52278831"
+    },
+    {
+      "path": "web-build-first.log.gz",
+      "exitCode": 0,
+      "bytes": 522,
+      "sha256": "298ee211cb285949114d0669d274e5ce16a5a6a563bdec1d7c85834dca1612ef",
+      "archiveSha256": "fb1a14ce9a479afba74383ffb5b1042dcf78911a342f32bb158a3f42260483cb"
+    },
+    {
+      "path": "browser-first.log.gz",
+      "exitCode": 0,
+      "bytes": 710,
+      "sha256": "be7a091d0119ee65d267a2cb05ea0051c3e51f106455fd7e8a949528f91fceba",
+      "archiveSha256": "90ff8db4b0f562029b0a7f183be559281be065d003429e5a422407fbd1efb970"
+    },
+    {
+      "path": "check-first.log.gz",
+      "exitCode": 0,
+      "bytes": 346078,
+      "sha256": "64a9243fbf90da0cbf8c354e43bd857692c597a24455f759c2849325d10b8434",
+      "archiveSha256": "cb1f0e44d54ef5e77ed0b4f0ac2bbe26644ff80b879a1788f96eeb4a3969c163"
+    },
+    {
+      "path": "browser-final.log.gz",
+      "exitCode": 0,
+      "bytes": 744,
+      "sha256": "98f21856bd9fba9eceb691662e8c194832744f5b442abe4e5b5afe87f09e9f4b",
+      "archiveSha256": "f9c589d436667d4e80fd906977cba693704bf58b0c757195bd1d6066bf9d9683"
+    },
+    {
+      "path": "browser-legacy.log.gz",
+      "exitCode": 0,
+      "bytes": 906,
+      "sha256": "c48b58e61855a4fd1bc349d4dbf1073ad02b2d4b4ac0db3490acdc494b39c20a",
+      "archiveSha256": "fe5b1ba423032aabadd0e3c0a65c8af126457b03f2194d1c17204655e7a15cdb"
+    },
+    {
+      "path": "audit-first.log.gz",
+      "exitCode": 0,
+      "bytes": 2821,
+      "sha256": "8e01ab4b07381d60dbae040123e7ede80edd2dcdf2b119e6186f8290211c9a03",
+      "archiveSha256": "a509a51ff6a23a434baa6372a8cc98ec17da5f44b2084a96c2fe3454a01f31a0"
+    },
+    {
+      "path": "web-build-final.log.gz",
+      "exitCode": 0,
+      "bytes": 522,
+      "sha256": "195205371d17ec9b5a1c97025f1c35d53fa295daac91ec6f95ef02dfb60755c8",
+      "archiveSha256": "941e9f783e3099981cf2fdfff09399073be70a9c349fbc22de8dba0e8d15644a"
+    },
+    {
+      "path": "browser-reviewed.log.gz",
+      "exitCode": 0,
+      "bytes": 747,
+      "sha256": "0bfe8066208e53de4e7e9046000752c56f1836b26eae43440f17392ff5adc09b",
+      "archiveSha256": "035d16238bcd620add3ac4e2156867ae2e6150f0a0dcf22f42872aebf574aabf"
+    },
+    {
+      "path": "web-build-release.log.gz",
+      "exitCode": 0,
+      "bytes": 522,
+      "sha256": "d27c183c038e221d4479839b249404346db60f268901b453ff5b546d376e6436",
+      "archiveSha256": "25f8248ed0e3716b26e6db3d0f37f2914539774a122371ff25039f19ddaefbeb"
+    },
+    {
+      "path": "browser-release.log.gz",
+      "exitCode": 0,
+      "bytes": 746,
+      "sha256": "5229c6ca4efde7ffd877609a3a46f9c5d0ffd1e1ffdff0fe1fc77cb422a6389f",
+      "archiveSha256": "1978c3926c417e042d9085773beec3047cc610f1d000cf760bb6b45c8510c606"
+    },
+    {
+      "path": "audit-final.log.gz",
+      "exitCode": 0,
+      "bytes": 2821,
+      "sha256": "90ea629f6a6b5536508baa61d4ce0d1c625ab7dfaff90559cac89903d0ee8fbd",
+      "archiveSha256": "d5716a337a5e61cf219134d1e31eecd9963f54965595589b4e6cd26216ef9fc4"
+    },
+    {
+      "path": "web-build-accepted.log.gz",
+      "exitCode": 0,
+      "bytes": 522,
+      "sha256": "03f7bac8002d4e4b3de46fef9169478bee2b43ab564a60e67c84a78f0782984d",
+      "archiveSha256": "bb80c53363bcd37426751a12c22eeb220e958158a527d81b47f27d1698d5b626"
+    },
+    {
+      "path": "browser-accepted.log.gz",
+      "exitCode": 0,
+      "bytes": 747,
+      "sha256": "bdc61d3eabb9e93af37d6e20f9eb8dcb2fdbf8306d9471ad7cd4ea05df6cd9a0",
+      "archiveSha256": "ca05182b88b8b998108f250584f4f712bf643520a6e4f52830d35aa714e77950"
+    },
+    {
+      "path": "audit-accepted.log.gz",
+      "exitCode": 0,
+      "bytes": 2821,
+      "sha256": "2f75a5807cef018fcce3d10490cabc8e0dad5228a009719113e22b9dfaba93a4",
+      "archiveSha256": "73b15d46c938c072cba842e0b192d63044fc445fda9d11913a40d53b5cc07984"
+    }
+  ],
+  "browserArchives": [
+    {
+      "path": "browser-first.tar.gz",
+      "sha256": "dd102ccb1d60489117f808a880976f6ce147d86215c8a2cb9d361df6a3c924c6",
+      "files": {
+        "browser-result.json": {
+          "bytes": 484,
+          "sha256": "d20e028e078455397ddc09c038edd3ba889e70519f51af8a6fb313b153c4c35b"
+        },
+        "desktop.png": {
+          "bytes": 131010,
+          "sha256": "6b215d687ab1c268f4591bf67c6f0eaf2420c23c88ad55a521926c931b794090"
+        },
+        "issued-context.json": {
+          "bytes": 11055,
+          "sha256": "e94fb773d4bdad296f43621d549cfa1d2d1cead3bafbc03f962a0b396d17173f"
+        },
+        "mobile.png": {
+          "bytes": 68714,
+          "sha256": "0a5983bde88846032110b332e0ebc96f8dc18abada58eceaa703299b20aa186a"
+        }
+      }
+    },
+    {
+      "path": "browser-final.tar.gz",
+      "sha256": "88e409649f90ae1718535671afa2ea773f371fae72728f1ac011d76f327abde3",
+      "files": {
+        "browser-result.json": {
+          "bytes": 518,
+          "sha256": "9a5bfece8c324260cdc67cf4192b11023093edb8efcab65ebb3052306b347f1a"
+        },
+        "desktop.png": {
+          "bytes": 131070,
+          "sha256": "1dc44fb7c1903ec188cbdd585791b4705e7d0d3ff1f390650b445e4daf8a18b2"
+        },
+        "issued-context.json": {
+          "bytes": 11055,
+          "sha256": "799917dda58ab3907f4f3b979085f49926da6a42893f18f5336edffe09993404"
+        },
+        "mobile.png": {
+          "bytes": 68805,
+          "sha256": "2a378e24f3551dbd91ad46c781ca3b4935fc98c8b492b62ac9fc9e5076c1df44"
+        }
+      }
+    },
+    {
+      "path": "browser-reviewed.tar.gz",
+      "sha256": "50fc58283f916d5c6cdca778f2af114f27b04c37b8d74e6238f7c70838eb267b",
+      "files": {
+        "browser-result.json": {
+          "bytes": 518,
+          "sha256": "9a5bfece8c324260cdc67cf4192b11023093edb8efcab65ebb3052306b347f1a"
+        },
+        "desktop.png": {
+          "bytes": 130243,
+          "sha256": "679ad0380d0441b4dfdb95da2e640e640e1b7564b0fac2db0309d34bfe9c692b"
+        },
+        "issued-context.json": {
+          "bytes": 11055,
+          "sha256": "c1c6d21d9aabed16bf2d83d58ad128cb46667f2065ab643ba1a09e7bd1e7c5a7"
+        },
+        "mobile.png": {
+          "bytes": 68750,
+          "sha256": "8b56e8d957514b5620dbf158acaf054351937c81a9c1b11a68aba0a0f824566a"
+        }
+      }
+    },
+    {
+      "path": "browser-release.tar.gz",
+      "sha256": "b4353432f64f7f5cca4484808657da7877613dee8bcdd1be670f926fe41c578a",
+      "files": {
+        "browser-result.json": {
+          "bytes": 518,
+          "sha256": "9a5bfece8c324260cdc67cf4192b11023093edb8efcab65ebb3052306b347f1a"
+        },
+        "desktop.png": {
+          "bytes": 130231,
+          "sha256": "7b702cbf514411d87f9e8235b63cb7a49fc122fd810bcfc4b9518ce927e84e4c"
+        },
+        "issued-context.json": {
+          "bytes": 11055,
+          "sha256": "aeaedc5d8f048603d1ae0f3293c1466cd58695f30243004eb3a7c015338257e2"
+        },
+        "mobile.png": {
+          "bytes": 68743,
+          "sha256": "ac7eb5b4c22ece7c3031dcbfa35a79ea4563f2f0252e076704c6cf62a3592257"
+        }
+      }
+    },
+    {
+      "path": "browser-accepted.tar.gz",
+      "sha256": "efcc8233992c9dc209abe123b36b80b7aabbde557d23a76c88b4fca9b51ac170",
+      "files": {
+        "browser-result.json": {
+          "bytes": 518,
+          "sha256": "9a5bfece8c324260cdc67cf4192b11023093edb8efcab65ebb3052306b347f1a"
+        },
+        "desktop.png": {
+          "bytes": 129510,
+          "sha256": "c664cbd28332378f1e9c19e4f2cc7f9cb4c6d3a1b70d9c115af0087f7c020791"
+        },
+        "issued-context.json": {
+          "bytes": 11055,
+          "sha256": "dc20a0e95c905865ef8b95dc4547100e38e459df9d17088d22f67d2a85e1f342"
+        },
+        "mobile.png": {
+          "bytes": 68177,
+          "sha256": "866d9dc85c650bbe326f4e0ae9cc2a0befff9f4fc8a73a48c16bf18e8a015c7f"
+        }
+      }
+    },
+    {
+      "path": "browser-legacy.tar.gz",
+      "sha256": "8b49967e8fccd9f30cdf5ad31dc6c42372253a8736f78d03921fa10d48dcd385",
+      "files": {
+        "answer-review-context.json": {
+          "bytes": 15074,
+          "sha256": "e5ff2fcde1dff3d900334dd3920e73a5f8700e0ccdc3c325a259605f5b552cca"
+        },
+        "browser-result.json": {
+          "bytes": 679,
+          "sha256": "03005457b97816d944c70dc7af6468dd37eff524d80131f0ec1c7c6ca8e4ba92"
+        },
+        "desktop.png": {
+          "bytes": 127324,
+          "sha256": "6e622ec7b5fe9f0f4fc11bed70f5c6f8554d21035510e885c3c4b2e08668a7d4"
+        },
+        "mobile.png": {
+          "bytes": 67030,
+          "sha256": "cfe48c5d585545ca5affed7c8b4d865a0269081f18c173ab662a62fc987af9a1"
+        }
+      }
+    }
+  ],
+  "firstFailures": [
+    "The first web typecheck reported three missing useRef initial arguments and thirteen resulting undefined-assignment errors under React 19 types. Refs now explicitly include undefined and initialize it. The corrected typecheck, complete check and every browser run pass. No failed output was discarded."
+  ],
+  "reviewRefinements": [
+    "Final history fetches clear earlier content on errors and refresh on summary changes or recovered status polling. Late output usage and cleanup reasons can update without another status transition.",
+    "Browser checks exposed no functional failure. Review removed a deliberate wait for a disabled empty-question button, added a held-response question-edit case, avoided duplicate header detail, and clarified omitted-path and request-replay wording. Saved input no longer implies that a failed/preflight attempt dispatched a model.",
+    "The full 938-test check ran at c92349a. Subsequent changes refine only UI copy/detail duplication and matching smoke text; strict production web builds, the complete prepared browser smoke and source/emitted audit ran again at the final executable. Backend, schema, parser and provider code remain unchanged after the full check."
+  ],
+  "tests": {
+    "focusedCompiled": 26,
+    "newHttpTests": 9,
+    "full": 938,
+    "fullBreakdown": {
+      "git": 17,
+      "ai": 18,
+      "storage": 43,
+      "loredock": 664,
+      "daemon": 57,
+      "scripts": 139
+    }
+  },
+  "browser": {
+    "preparedRuns": 5,
+    "controlledCallsPerPreparedRun": 3,
+    "legacyRuns": 1,
+    "controlledCallsInLegacyRun": 4,
+    "modelCalls": 0,
+    "mobileWidth": 390,
+    "failures": 0,
+    "finalResult": "browser-result.json",
+    "scope": "Real protected HTTP and built UI in Chrome CDP on ordinary owned permit sources; controlled runtime only. Includes native/source-only input, exact prompt, lost admission replay, late cancellation/review/question/history, restart, source purge and disabled legacy preview."
+  },
+  "runtimeReview": {
+    "unchangedApplicationAndBrowserFiles": 183,
+    "unchangedPreparedServiceModules": 64,
+    "daemonWorkspaceImportModules": 82,
+    "frozenFiles": 80,
+    "oldQualificationTransferred": false,
+    "externalScope": "Resolved entry-point hashes and unchanged lockfile; external package internals are not claimed as a recursively audited closure."
+  },
+  "compatibility": {
+    "defaultAnswerMode": "legacy",
+    "preparedModeRequiresBothSwitches": true,
+    "schema": 11,
+    "providerPolicyUnchanged": true,
+    "parserUnchanged": true,
+    "reviewBodyBytes": 1048576
+  },
+  "fixtureRetention": "Ordinary receiptFixture teardown removes temporary repositories/catalogs even after failure. Browser outputs are archived in full. No claim of retained source/catalog trees or resource/semantic qualification.",
+  "priorAcceptance": {
+    "pr": 129,
+    "head": "9c21c17652ad6c7771b2c8843e6a98e1f8eaf44f",
+    "push": 41947342761,
+    "pullRequest": 41947350906,
+    "merge": "b0c89dffc87020281e51aaf678a165ad727ef62c"
+  },
+  "primaryCheckout": {
+    "head": "592bbc085d9405db86461d47fda5f3382bbaccde",
+    "clean": true
+  },
+  "corporateSources": 0,
+  "modelCalls": 0,
+  "reservedFamilyRuns": 0,
+  "ciStatus": "Both final-head CI events are required before acceptance.",
+  "localDocumentationLinks": 794
+}

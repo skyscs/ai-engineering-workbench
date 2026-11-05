@@ -59,6 +59,11 @@ available with `LOREDOCK_ANSWERS=1 pnpm loredock`; follow the guide's
 [answer setup](docs/loredock/USER_GUIDE.md#ask-a-question-opt-in-pilot). The bounded answer
 slice is [owner-accepted](docs/loredock/L2_ACCEPTANCE.md). Default startup remains
 model-free; cited answers use an explicitly selected connection.
+An experimental prepared-context flow is available with both `LOREDOCK_ANSWERS=1` and
+`LOREDOCK_PREPARED_ANSWERS=1`. It binds Generate to the exact reviewed source/code context,
+with cancellation, expiry and durable request replay. See
+[prepared-context usage](docs/loredock/USER_GUIDE.md#try-prepared-context-experimental).
+It remains separate from the ordinary pilot pending fresh resource and model-quality gates.
 Answer previews show how many indexed repositories supply passages and can use explicit
 repository names as bounded context hints. Matching engineer disputes/clarifications are
 included separately from source

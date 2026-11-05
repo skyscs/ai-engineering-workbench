@@ -108,7 +108,12 @@ purge/recovery. Task 125 adds [prepared-answer admission](docs/loredock/PREPARED
 shared answer/configuration ownership and three bounded validation boundaries. A trusted
 synchronous handoff dispatches the exact saved prompt and publishes only original-cited
 results. Usage precedes final validation; consumers stop before dependencies. Parsers,
-schema, provider policy and legacy answer bytes remain unchanged. HTTP/UI adoption follows.
+schema, provider policy and legacy answer bytes remain unchanged. Task 126 adds
+[protected experimental HTTP/browser adoption](docs/loredock/PREPARED_QUESTION_API.md)
+behind `LOREDOCK_PREPARED_ANSWERS=1` alongside the answer pilot. Scalar admission cannot
+replace server-owned context. Browser operation identities fence late responses; uncertain
+admission retries the same request, and compact history retains original-only links.
+The default answer pilot stays unchanged pending fresh full-composition qualification.
 Explicit storage accounting and offline compaction use separate maintenance commands,
 preserving logical history and normal job recovery. Compaction acquires daemon
 ownership and rewrites physical SQLite pages only when free pages exist; see
