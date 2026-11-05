@@ -88,9 +88,11 @@ export async function launch({ directory, data, controlled = false, fault = fals
   });
   let stopPromise;
   const stop = () => stopPromise ??= (async () => {
+    const shutdownStarted = performance.now(), alreadyExited = ended;
     if (!ended) try { process.kill(-child.pid, 'SIGTERM'); } catch (error) { if (error.code !== 'ESRCH') throw error; }
     const timer = setTimeout(() => { if (!ended) try { process.kill(-child.pid, 'SIGKILL'); } catch (error) { if (error.code !== 'ESRCH') throw error; } }, 10000);
-    try { const result = await exit; await save(path.join(directory, 'exit.json'), result); return result; }
+    try { const result = { ...await exit, shutdownMs: performance.now() - shutdownStarted, alreadyExited };
+      await save(path.join(directory, 'exit.json'), result); return result; }
     finally { clearTimeout(timer); controls?.close(); }
   })();
   try {

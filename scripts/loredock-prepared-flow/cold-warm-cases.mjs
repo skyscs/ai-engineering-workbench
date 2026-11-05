@@ -92,6 +92,7 @@ export async function warmCatalog({ directory, checkpoint, question, assessment 
       await until(async () => (await daemon.command('stats')).closed === repetition, 'Warm worker did not drain.');
       const runtime = await daemon.command('stats');
       assert.deepEqual(runtime, { prepares: repetition, calls: repetition, closed: repetition });
+      const drainedElapsedMs = performance.now() - began;
       assert.deepEqual(saved.value, published.answer); assert.equal(list.value.attempts.length, repetition);
       const sourceAssessment = assessPreview(prepared.review, assessment);
       const request = JSON.parse(await readFile(path.join(daemon.directory, 'request-' + repetition + '.json'), 'utf8'));
@@ -99,10 +100,11 @@ export async function warmCatalog({ directory, checkpoint, question, assessment 
       assert.deepEqual(request.schema.properties.claims.items.properties.evidenceIds.items.enum, issued);
       assert.equal(request.model, 'gpt-5.6-terra'); assert.equal(request.effort, 'medium');
       for (const claim of saved.value.answer.claims) for (const id of claim.evidenceIds) assert(issued.includes(id));
-      const observation = { repetition, elapsedMs, prepared, published, saved, list, sourceAssessment, request, runtime };
+      const observation = { repetition, elapsedMs, drainedElapsedMs, scopeEnd: 'history-and-runtime-closed',
+        prepared, published, saved, list, sourceAssessment, request, runtime };
       report.repetitions.push(observation);
       await save(path.join(directory, 'repetition-' + repetition + '.json'), observation);
-      log.append({ event: 'repetition-finished', repetition, elapsedMs });
+      log.append({ event: 'repetition-finished', repetition, elapsedMs, drainedElapsedMs });
     }
   } catch (error) { report.errors.push(normalized(error)); }
   finally {

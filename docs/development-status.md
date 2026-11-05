@@ -402,8 +402,27 @@ Independent inspection verifies two copied catalogs, 574 reused files and 498 HT
 browser controls pass. The first test's wrong failed/incomplete expectation and the first
 seal command's wrong path are retained; corrected verification passes without rerunning
 the application control or changing its assessor. Installation/builds and the original
-seal pass. Both full final-head CI events remain required. Previous resource/source failures,
-operation/lifetime coverage, complete matrix integration and the execution seal stay pending.
+seal pass. Accepted through [PR #155](https://github.com/skyscs/ai-engineering-workbench/pull/155):
+push 42057430191 and pull_request 42057782652 pass 1,004 tests at `d664b0c`; merge `39713a9`
+has the identical tree. Previous resource/source failures, operation/lifetime coverage,
+complete matrix integration and the execution seal stay pending.
+
+The next [lifetime bounds](fixtures/loredock-prepared-flow-lifetime-bounds/README.md)
+retain normal daemon shutdown, index-through-analysis and warm history-through-runtime-close
+intervals. Independent assessment uses these enclosing intervals conservatively: a small
+enclosing duration bounds contained work; an oversized interval leaves individual duration
+unknown instead of inventing a per-operation violation. Diagnostic timing is never used.
+One cold and three warm ordinary flows plus a separate first-flow diagnostic pass sixteen
+lifetime checks. Warm complete intervals are 1,400.703523 / 1,367.517591 / 1,365.923308 ms.
+The diagnostic preserves exact request/witness parity and ten closed budgets totaling
+2,570,082 units. Raw daemon gaps still fail at 317.842111 / 286.088359 ms against 100;
+the owner retains exit 1 with no errors or survivors. Four copied catalogs, four clean
+Git identities, 60 HTTP responses and all 191 raw entries pass independent retention.
+Four new lifetime and three existing daemon controls pass after correcting one test's
+missing-check count; its first source/log remain, with no assessor change or app rerun.
+Installation/builds and the original seal pass. Both full final-head CI events remain
+required. These normal-path bounds do not cover every fault/history operation or complete
+the ordered matrix and execution seal. Whole resource/model eligibility remains closed.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request

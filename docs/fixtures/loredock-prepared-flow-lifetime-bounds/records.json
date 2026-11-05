@@ -1,0 +1,183 @@
+{
+  "schemaVersion": "prepared-flow-lifetime-bounds-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "trees": [
+    {
+      "path": "lifetime-bounds-first.tar.gz",
+      "sha256": "e768338b2a306df305fc7dc04deca966a1da591a54417103f5991bdf4cffc1a7",
+      "inventory": "lifetime-bounds-first.inventory.json.gz",
+      "inventorySha256": "fffe53db5f5c91113a12f9e39d6fd1b27398c99893a1611946c685624d9eae27",
+      "entries": 191,
+      "source": "/home/toshiba/aew/task128-lifetime-bounds-first"
+    },
+    {
+      "path": "lifetime-bounds-retention.tar.gz",
+      "sha256": "36d075007357bf8e25f6e22e1c17c594db079651838f1ca2bac5806390bf56f1",
+      "inventory": "lifetime-bounds-retention.inventory.json.gz",
+      "inventorySha256": "01d7d248701a7745414d57c22a1a58fefc050d17223062bca62b9372368d8a9d",
+      "entries": 17,
+      "source": "/home/toshiba/aew/task128-lifetime-bounds-retention"
+    },
+    {
+      "path": "lifetime-bounds-first-inputs.tar.gz",
+      "sha256": "7957faf3378f531412b7f47855ca0b6360642305c49481c8a420894d1b4019c5",
+      "inventory": "lifetime-bounds-first-inputs.inventory.json.gz",
+      "inventorySha256": "b0acae51ed4a567fbeeb12bff2f62b8a4710ad94f028d9074b8e476d11a87e95",
+      "entries": 6,
+      "source": "/home/toshiba/aew/task128-lifetime-bounds-first-inputs"
+    },
+    {
+      "path": "lifetime-bounds-inputs.tar.gz",
+      "sha256": "6652ecd7e83bff1c685643d638447d381af6ded39ae730a5705fb2c480c30221",
+      "inventory": "lifetime-bounds-inputs.inventory.json.gz",
+      "inventorySha256": "6c0d92e1ca470b15c6541ff196102e6ad7488e68ccaaf47fb4c0d161dbbaf4ec",
+      "entries": 17,
+      "source": "/home/toshiba/aew/task128-lifetime-bounds-inputs"
+    },
+    {
+      "path": "lifetime-bounds-static-inputs.tar.gz",
+      "sha256": "bb569e9246d9edffe165a01613ed719558fc8dc6d3b778e9a574518b1d5c2cba",
+      "inventory": "lifetime-bounds-static-inputs.inventory.json.gz",
+      "inventorySha256": "0b47ddec3494dad522ef6be80c9c85a455738b6cb03284a2ffb1c113e74863b9",
+      "entries": 1,
+      "source": "/home/toshiba/aew/task128-lifetime-bounds-static-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "lifetime-bounds-first.log.gz",
+      "archiveSha256": "3af2ac5130155040d44ea08214d2fc971840552686151bf144db98899ebf77b1",
+      "rawBytes": 3449,
+      "rawSha256": "0da3bf75fe5339b088e7c9eea5d3bdce1a4f871f4bc750f41861310e6c655f1e"
+    },
+    {
+      "path": "lifetime-bounds-install.log.gz",
+      "archiveSha256": "cbbbd03bb421afb56ac31ad3aa5fd92472c5f10a25493935deb420d26a752742",
+      "rawBytes": 326,
+      "rawSha256": "3dd33f1140a8315fdda65517180e139e3c88d3e30c3764bd7b8cc155b6a45e07"
+    },
+    {
+      "path": "lifetime-bounds-build.log.gz",
+      "archiveSha256": "8bb5dda2a1c3a353f1bb9a931943cd56029b386b7553d6b797b66f8c11d3be27",
+      "rawBytes": 2355,
+      "rawSha256": "1f9550f10b5d92f54fd38aa0e4bb1b093170b7da26f95d659e343359d3976b61"
+    },
+    {
+      "path": "lifetime-bounds-tests-first.log.gz",
+      "archiveSha256": "59c56555b7c5f05e59f4b66b9edfb87c2e51e8fbfa98d91fd60d08b2fceda79a",
+      "rawBytes": 2839,
+      "rawSha256": "b91c2111a0849e8e6ea3d5206390ec7ab69debc37e2baff5b78799f2d5bcf20c"
+    },
+    {
+      "path": "lifetime-bounds-tests-second.log.gz",
+      "archiveSha256": "41bbd547c857326cef52ed1afa22daadc79cb72d2982366a5cb405dd6e0406db",
+      "rawBytes": 1985,
+      "rawSha256": "0c95253dc0667684f4d8f76ae9bc3ab0bf827720f9afb814f0249f5c3f34067e"
+    },
+    {
+      "path": "lifetime-bounds-retention.log.gz",
+      "archiveSha256": "51f85149b6d2bfaaf6d032a266b9622871ffe9944d1f6031568e18aba034a893",
+      "rawBytes": 1624,
+      "rawSha256": "1aa6af00baaf8b492c05127d9021faca42087e01cad667437bd0058ea9a747cb"
+    },
+    {
+      "path": "lifetime-bounds-seal-check.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "http-outcomes-ci-push.log.gz",
+      "archiveSha256": "1a91cc4d64ed1d8b6d671c3be4546d3e41e7d34f77e11be429870b1bea2ca190",
+      "rawBytes": 715104,
+      "rawSha256": "309fcb615d8297815f071bd555c69db588b908e85ac82216c3d89eeb8a8f0a22"
+    },
+    {
+      "path": "http-outcomes-ci-pr.log.gz",
+      "archiveSha256": "1bbda4269ff4f8d4be462a441f7e822e240d39ade2b54621ac9f0edad26111d9",
+      "rawBytes": 716636,
+      "rawSha256": "cd373199ab5cf4b5acc593b94251aaf56f164a27f65ce2978f189b2eba696579"
+    },
+    {
+      "path": "http-outcomes-merge-audit.log.gz",
+      "archiveSha256": "cb5bfcabe528c1149aea1dca0255441a48941aedd3c0eb36ed71a74e77bfb8b0",
+      "rawBytes": 767,
+      "rawSha256": "2bbc5906264bc6be8f9b298947a47d668608a4159ef2dda24beae8dd82de4dd4"
+    },
+    {
+      "path": "lifetime-bounds-static-first.log.gz",
+      "archiveSha256": "bd74831b65c552f22803525893655c9f3e2e2bf6722b051620800424dedf0e75",
+      "rawBytes": 207,
+      "rawSha256": "f9b2b11a8318a25efaa39db5c868145968b307ddd57ae8d1724a2b213bf7fc9e"
+    }
+  ],
+  "acceptedHttpOutcomes": {
+    "pr": 155,
+    "head": "d664b0ce09dc775f4d1438b43d4286eb1d29ce5e",
+    "merge": "39713a906369f224f831817d64e17b892f65b584",
+    "push": 42057430191,
+    "pull_request": 42057782652,
+    "testsPerEvent": 1004
+  },
+  "retention": {
+    "resourceQualification": false,
+    "modelCalls": 0,
+    "reservedFamilyReads": 0,
+    "catalogs": [
+      {
+        "source": "/home/toshiba/aew/task128-lifetime-bounds-first/run/accounting/data",
+        "copy": "/home/toshiba/aew/task128-lifetime-bounds-retention/accounting/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "succeeded",
+            1
+          ]
+        ],
+        "witnessRows": 1
+      },
+      {
+        "source": "/home/toshiba/aew/task128-lifetime-bounds-first/run/cold/checkpoint",
+        "copy": "/home/toshiba/aew/task128-lifetime-bounds-retention/cold/checkpoint",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [],
+        "witnessRows": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-lifetime-bounds-first/run/cold/data",
+        "copy": "/home/toshiba/aew/task128-lifetime-bounds-retention/cold/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [],
+        "witnessRows": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-lifetime-bounds-first/run/warm/data",
+        "copy": "/home/toshiba/aew/task128-lifetime-bounds-retention/warm/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "succeeded",
+            3
+          ]
+        ],
+        "witnessRows": 3
+      }
+    ],
+    "httpBodies": 57,
+    "redactedSessions": 3,
+    "sourceGitIdentities": 4,
+    "lifetimeChecks": 16,
+    "enclosingBoundsOnly": true,
+    "rawInputsUnchanged": true,
+    "entries": 191,
+    "actualBudgets": 10,
+    "totalWork": 2570082,
+    "rawRequestAndStoredByteParity": true
+  }
+}
