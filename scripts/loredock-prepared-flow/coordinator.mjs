@@ -1,4 +1,4 @@
-// Ordinary orchestration development only. A final sealed qualification entry is separate.
+// Fixed ordering and exclusive consumption for ordinary and separately sealed entries.
 import assert from 'node:assert/strict';
 import { constants, openSync, closeSync, fsyncSync, writeFileSync } from 'node:fs';
 import { mkdir, readFile, realpath, open } from 'node:fs/promises';
@@ -31,8 +31,19 @@ async function artifact(directory, relative) {
 }
 
 export async function coordinateOrdinary({ directory, claimPath, family, cases }) {
-  // Reject missing handlers or an altered order before consuming anything.
   assert(typeof family === 'string' && /^ordinary-[a-z0-9-]+$/.test(family), 'This entry cannot execute a reserved family.');
+  return coordinate({ directory, claimPath, family, cases });
+}
+
+export async function coordinateReserved({ directory, claimPath, family, cases, manifestPath }) {
+  assert.equal(family, 'kiln-prepared-flow-127');
+  const { verifyExecution } = await import('./execution-verify.mjs');
+  const seal = await verifyExecution({ directory, claimPath, family, manifestPath });
+  return coordinate({ directory, claimPath, family, cases, seal });
+}
+
+async function coordinate({ directory, claimPath, family, cases, seal = null }) {
+  // Reject missing handlers or an altered order before consuming anything.
   assert(Array.isArray(cases)); assert.deepEqual(cases.map(row => row.id), resourceCaseOrder);
   for (const [index, row] of cases.entries()) {
     assert.equal(typeof row.run, 'function'); assert.equal(typeof row.independentAfterFailure, 'boolean');
@@ -46,8 +57,9 @@ export async function coordinateOrdinary({ directory, claimPath, family, cases }
   await mkdir(directory);
   assert.equal(await realpath(directory), directory);
   assert.equal(await realpath(path.dirname(claimPath)), path.dirname(claimPath));
-  const identity = { schemaVersion: 'prepared-flow-ordinary-sequence/1', family, directory,
+  const identity = { schemaVersion: seal ? 'prepared-flow-reserved-sequence/1' : 'prepared-flow-ordinary-sequence/1', family, directory,
     protocolSha256: hash(rawProtocol), order: resourceCaseOrder, qualification: false,
+    ...(seal ? { executionSeal: seal, familyConsumed: true } : {}),
     activityAccounting: 'not-observed-by-coordinator', modelCalls: null, reservedFamilyReads: null };
   // An empty/partial marker is consumed too: O_EXCL refuses all later attempts.
   const marker = openSync(claimPath, constants.O_WRONLY | constants.O_CREAT | constants.O_EXCL | constants.O_NOFOLLOW, 0o600);

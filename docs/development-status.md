@@ -2,12 +2,14 @@
 
 ## Task 128 — Complete-flow resource driver (in progress)
 
-Latest accepted checkpoint: [PR #158](https://github.com/skyscs/ai-engineering-workbench/pull/158)
-at merge `d61149a`. The first ordinary ordered matrix exercises all fifteen groups:
+Latest accepted checkpoint: [PR #159](https://github.com/skyscs/ai-engineering-workbench/pull/159)
+at merge `3fc1b46`. The first ordinary ordered matrix exercises all fifteen groups:
 eleven fail and four remain incomplete. Independent retention verifies all 55 created
 catalogs and unchanged raw inputs. Supplemental offline content/lifetime bindings are
 accepted after both exact-head CI events passed 1,016 tests. Execution adapter corrections
-now pass ordinary controls and await final-head CI; the final entry/seal remain outstanding. Earlier
+are accepted after ordinary controls and both exact-head CI events pass 1,023 tests.
+The [final execution boundary](fixtures/loredock-prepared-flow-execution-seal/README.md)
+now has data-only and actual-owner tests; its committed manifest and validation remain outstanding. Earlier
 resource/required-positive failures remain unresolved.
 The reserved family has zero candidate reads; no model runs.
 Known ordinary failures include partial analysis of constant-only padding, a missing

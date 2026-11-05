@@ -12,7 +12,8 @@ limits and application bytes remain authoritative and unchanged.
 The ordinary assembly must not be pointed directly at the reserved family. The following
 corrections are now implemented and exercised in the
 [ordinary adapter controls](../fixtures/loredock-prepared-flow-execution-boundary/README.md).
-Final-head CI acceptance and the separate committed execution seal remain required:
+PR #159 accepts these controls after both exact-head CI events pass 1,023 tests.
+The separate committed execution seal remains required:
 
 1. Cold/warm/diagnostic source assessment carries the supplied required-original
    reference map. The original twelve-file control lacked a required reference list;
@@ -39,6 +40,11 @@ repair the application inside Task 128. Preserve every earlier first result and 
 separate ordinary development observations for adapter checks.
 
 ## One final entry and consumption boundary
+
+The [final boundary implementation](../fixtures/loredock-prepared-flow-execution-seal/README.md)
+now supplies the exact data binding, reserved entry, static import audit and executable
+manifest creator/verifier. It has ordinary/data-only tests; final manifest commitment
+and validation still precede any reserved candidate observation.
 
 Reuse the existing ordered coordinator, case helpers and owner. Separate ordinary and
 reserved entry points explicitly; the ordinary family guard must remain intact. The

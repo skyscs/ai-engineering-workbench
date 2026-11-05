@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "prepared-flow-execution-seal-evidence/1",
+  "acceptedAdapter": {
+    "pr": 159,
+    "head": "1a1f5d5bee2d13ba688585a03199f59aef1b449e",
+    "merge": "3fc1b46335370014b2edc22921e3750e5b080010",
+    "push": 42085788089,
+    "pull_request": 42086047939,
+    "testsPerEvent": 1023,
+    "completeLogsVerifiedBeforeMerge": true,
+    "identicalTreeVerified": true
+  },
+  "logs": [
+    {
+      "path": "accepted-adapter-ci-push.log.gz",
+      "bytes": 96408,
+      "sha256": "13d92d4640086d0910c0a2f239a7a7b9de0cc3702ccd70840319898a700cb6ad",
+      "uncompressedBytes": 726159,
+      "uncompressedSha256": "65e544194f8f8acee5f215b3ac7630bab6f69b4f620e4d442495e2887f1ecacd"
+    },
+    {
+      "path": "accepted-adapter-ci-pr.log.gz",
+      "bytes": 98891,
+      "sha256": "2307340d34d01f20ed17f95fd2b01d546c86fc5e72ec8d1a3704d68fd155ea4a",
+      "uncompressedBytes": 729099,
+      "uncompressedSha256": "8c7f09a0de56f3bb134f59bf5b680d9899cb96125e4d3b2f3a7d87025e60b8a4"
+    }
+  ]
+}
