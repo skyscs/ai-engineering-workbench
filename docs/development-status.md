@@ -1,5 +1,27 @@
 # Development status
 
+## Task 135 — Owned compiler isolation design
+
+Task 134 is accepted through [PR #167](https://github.com/skyscs/ai-engineering-workbench/pull/167):
+both exact-head CI events pass 1,046 tests at `482b166`, before identical-tree merge
+`8dfa00f`. Complete logs were inspected before merge. All browser resource failures
+remain recorded; this task does not rerun an application or change product code.
+
+[ADR 0062](decisions/0062-loredock-owned-file-parser.md) selects one explicitly owned
+file-parser thread, initially disconnected from production. The
+[source audit](loredock/COMPILER_ISOLATION.md) finds two eager compiler paths, synchronous
+fingerprint reads, legacy comparison reconstruction during answer validation, strict
+synchronous lexical scopes and transaction callbacks that cannot await. It defines
+late-result fences, unchanged legacy semantics, honest parser reanalysis and bounded
+ownership/cleanup. The current observer measures only the parent heap; new whole-heap
+coverage must be established before resource acceptance, without relaxing ceilings.
+
+After both exact-head checks and merge, [Task 136](../tasks/136-loredock-file-parser-adapter.md)
+implements and tests the unwired adapter. Async consumer migration, production adoption,
+ordinary near-limit controls and fresh qualification follow as separate bounded tasks.
+Startup, near-limit heap and browser memory remain unresolved. This design grants no
+product/default activation or independent semantic acceptance.
+
 ## Task 134 — Browser memory attribution (failed resource controls retained)
 
 Task 133 is accepted through [PR #166](https://github.com/skyscs/ai-engineering-workbench/pull/166):

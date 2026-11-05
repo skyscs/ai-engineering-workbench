@@ -1,6 +1,9 @@
 # Task 135 — Design owned compiler isolation
 
-Status: scoped after Task 134; begin after both exact-head CI events and identical-tree merge.
+Status: source audit and design complete; awaiting both exact-head CI events and merge.
+See [ADR 0062](../docs/decisions/0062-loredock-owned-file-parser.md), the
+[source audit](../docs/loredock/COMPILER_ISOLATION.md) and the narrowly scoped
+[Task 136 adapter](136-loredock-file-parser-adapter.md). No application execution.
 
 ## Evidence and objective
 
