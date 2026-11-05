@@ -1,7 +1,7 @@
 # Task 129 — Diagnose preparation over terminal partial inventories
 
-Status: scoped after the first failed Task 128 reserved gate; begin after its result PR
-passes both exact-head CI events and merges with an identical tree.
+Status: first ordinary diagnosis complete; result awaiting exact-head CI and merge.
+See the [four-control result](../docs/fixtures/loredock-partial-inventory-diagnosis/README.md).
 
 Task 128 processed every eligible code file but published `partial` inventories because
 coverage gaps remained. Its frozen driver required `completed` and therefore never sent

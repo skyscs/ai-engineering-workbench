@@ -52,5 +52,58 @@ allow the next fresh control, but is never repaired or retried.
 The external owner has five declared catalog roots, including the Catalog-only stopped
 checkpoint. Sources, full catalogs, HTTP bytes and first errors remain retained. Three
 focused tests cover input isolation, terminal/coverage separation and rejection of
-running, stale, incompatible or unfinished observations. The actual controls have not
-yet run at this plan checkpoint.
+running, stale, incompatible or unfinished observations. The executable plan was
+committed at `ba97dd7` before the first run; no executable changes followed it.
+
+## First actual result
+
+All four controls pass their functional diagnosis on their first execution. Each
+produces one public preparation containing all eight required original references,
+within eleven issued original spans from four sources.
+
+| Control | Observed analysis | Native outcome | Raw maximum timer gap |
+| --- | --- | --- | --- |
+| completed | Five code files parsed; published completed, zero gaps | Useful required path; repeat review unchanged | 314.364279 ms, failed |
+| constant | Six code files parsed; published partial, one `unsupported-typescript-profile` gap | Same useful required path; repeat review unchanged | 332.903393 ms, failed |
+| dynamic-request | Six code files parsed; published partial, one `dynamic-or-unsupported-http-request` gap | Same useful required path; repeat review unchanged | 309.311866 ms, failed |
+| no-analysis | Actual Catalog-only checkpoint and production reopen; no compatible inventory | Required originals; `INVENTORY_UNAVAILABLE`, no native item | 282.751807 ms, failed |
+
+The three native items retain `partial`, static-analysis, unverified and unknown
+deployment qualifications. The source indexes are complete; that does not imply
+complete analysis coverage. All four observed maximum gaps are their first timer
+intervals, above the unchanged 100 ms limit. Observed daemon RSS and heap pass their
+individual bounds. These controls do not establish whole-product resource acceptance.
+
+The external owner completes in 6,239.516 ms with zero errors or survivors and a
+sampled owned-storage peak of 2,348,063 bytes. Independent review checks five complete
+stopped catalog copies, sixteen clean Git identities, fifty original source files,
+32 required-original matches and sixty raw HTTP responses. All three repeated review
+pairs match exactly. Catalog integrity and foreign keys pass; attempts and witnesses
+are zero. There are four preparation POSTs, zero answer admissions and zero model
+calls. All 380 original raw entries remain unchanged. Independence here means a
+separate checker over retained bytes, not external or blind product acceptance.
+
+## Decision
+
+The existing public API already accepts these terminal partial inventories and
+returns the required useful path. Task 128 stopped at its stricter completed-only
+evaluation prerequisite; that failure did not demonstrate public API refusal.
+No product change is justified for the two observed coverage gaps. This conclusion
+does not cover failed/unattempted files, missing required paths, arbitrary partial
+inventories or the unobserved active-analysis timing boundary.
+
+A future prospective gate should distinguish terminal processing from coverage,
+while independently requiring the useful originals/path and retaining all gaps and
+numeric limits. The consumed gate and its result remain unchanged. The smallest
+next step is [Task 130](../../../tasks/130-loredock-cold-start-pause.md): attribute the
+observed first-interval pause before choosing a startup fix. Dependency loading is
+a possible cause, not yet a measured attribution. Near-limit heap, list work,
+browser RSS and native-output size failures remain separate open work.
+
+## Retained evidence
+
+[records.json](records.json) binds the complete first run, pre-run executable/input
+snapshot, independent stopped copies, review helpers, passive metrics and check logs
+to archive hashes and per-file inventories. The original session tokens are redacted
+by the existing HTTP recorder; request/response payloads and issued original text
+remain available. No qualification rerun or model eligibility is implied.

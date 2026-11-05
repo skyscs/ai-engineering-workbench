@@ -480,7 +480,10 @@ The single Task 128 [reserved result](docs/fixtures/loredock-prepared-flow-resul
 fails after the committed execution seal is accepted through PR #160. The family is
 consumed; semantic continuation and adoption remain closed. After result acceptance,
 [Task 129](tasks/129-loredock-partial-inventory-diagnosis.md) diagnoses terminal partial
-inventory preparation on ordinary inputs before proposing the smallest next change.
+inventory preparation on ordinary inputs. Its four first controls pass: the current
+public API retains useful original-backed paths over the two observed partial variants.
+No product change is justified for those gaps. [Task 130](tasks/130-loredock-cold-start-pause.md)
+next attributes the measured first-interval pause before selecting a minimal repair.
 Real startup/heap failures and earlier browser/list/native-positive failures remain
 separate unresolved work; repaired qualification needs a new prospective family.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).

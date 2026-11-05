@@ -1,6 +1,6 @@
 # Development status
 
-## Task 129 — Ordinary partial-inventory preparation diagnosis (in progress)
+## Task 129 — Ordinary partial-inventory preparation diagnosis (result retained)
 
 The failed Task 128 result is accepted through [PR #161](https://github.com/skyscs/ai-engineering-workbench/pull/161):
 both exact-head CI events pass 1,029 tests at `1dfb79e`, and merge `6150630` has the
@@ -11,8 +11,21 @@ with a failed gate; the kiln family remains consumed, with no semantic continuat
 [four-control ordinary diagnosis](fixtures/loredock-partial-inventory-diagnosis/README.md)
 and three focused boundary tests. Published partial coverage is distinguished from
 terminal processing and compatible native input; exact originals remain independently
-required. The actual public API observations are pending. No application/default change
-or model call is part of this task.
+required. All four first public API controls pass: both terminal partial variants retain
+the required useful native path, and the Catalog-only control reports an explicit native
+omission while keeping the required originals. Five complete catalog copies, sixteen
+Git identities, fifty original files, 32 original matches and sixty HTTP responses pass
+independent checks; all 380 raw entries remain unchanged. No application/default change
+or model call is part of this task. Running-analysis rejection is source-reviewed, not
+an observed active-analysis timing boundary in these small controls.
+
+Every daemon still exceeds the unchanged 100 ms raw timer-gap limit in its first
+interval (approximately 283–333 ms). Functional diagnosis does not qualify resources.
+The current public API needs no change for the two observed partial variants; the
+consumed gate's stricter prerequisite remains a retained failure. After this result's
+exact-head checks and merge, [Task 130](../tasks/130-loredock-cold-start-pause.md)
+attributes that startup pause before selecting a minimal repair. Other resource and
+native-positive failures remain open; defaults and model eligibility remain unchanged.
 
 ## Task 128 — First reserved gate failed (accepted)
 
