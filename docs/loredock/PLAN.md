@@ -249,9 +249,12 @@ capacity/purge behavior. [Task 122](../../tasks/122-loredock-question-read-selec
 implements scoped lexical accounting and typed native selection with public/legacy parity.
 [Task 123](../../tasks/123-loredock-prepared-question-owner.md) owns one bounded
 transient prepared snapshot. [Task 124](../../tasks/124-loredock-answer-owned-witness-storage.md)
-adds atomic durable ownership. Next [Task 125](../../tasks/125-loredock-prepared-answer-admission.md)
-integrates prepared answer admission/publication before HTTP/UI adoption.
-Production answer inputs and model evaluation remain unchanged. No semantic/L5 gate
+adds atomic durable ownership. [Task 125](../../tasks/125-loredock-prepared-answer-admission.md)
+integrates internal prepared answer admission/publication with exact input and shared
+ownership. Next [Task 126](../../tasks/126-loredock-prepared-question-http-ui.md) connects
+protected HTTP and the review flow behind a server experiment switch. Public answer
+inputs and model evaluation remain unchanged. Fresh complete resource and semantic
+gates precede changing the pilot default. No semantic/L5 gate
 is inferred from either the resource result or this public read migration.
 No deletion policy is implemented. Keep the prepared
 demo and pending owner feedback separate; broader question-context work remains open.

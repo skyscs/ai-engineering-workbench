@@ -464,8 +464,12 @@ under [ADR 0059](docs/decisions/0059-loredock-prepared-question-lifecycle.md). [
 scoped lexical accounting and native selection seams, preserving public/legacy behavior.
 [Task 123](tasks/123-loredock-prepared-question-owner.md) owns one bounded transient
 prepared snapshot. [Task 124](tasks/124-loredock-answer-owned-witness-storage.md)
-adds atomic durable ownership. Next [Task 125](tasks/125-loredock-prepared-answer-admission.md)
-integrates prepared answer admission/publication before HTTP/UI adoption.
+adds atomic durable ownership, accepted through identical-tree merge `c1f6c37` after both
+CI events at `a9c9cde`. [Task 125](tasks/125-loredock-prepared-answer-admission.md)
+integrates internal prepared answer admission/publication with exact input and shared
+ownership. Next [Task 126](tasks/126-loredock-prepared-question-http-ui.md) connects
+protected HTTP and the review flow behind a server experiment switch. Fresh complete
+resource and semantic gates remain required before changing the answer pilot default.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation

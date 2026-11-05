@@ -1,5 +1,28 @@
 # Development status
 
+## Task 125 — Exact prepared-answer admission and publication
+
+[The internal adapter](loredock/PREPARED_ANSWER_ADMISSION.md) now promotes the exact
+reviewed snapshot atomically, reserves actual answer/configuration ownership across
+instances and dispatches the saved prompt with original-only citations. Three bounded
+validation boundaries share real budgets with witness loading. Synchronous handoffs
+prevent a gap between the final authority check and runtime dispatch/publication.
+Usage survives cancelled or rejected late output, and consumers drain before dependencies.
+
+All **929 tests, strict types and builds pass**, including 17 new compiled adapter tests.
+[Verification records](fixtures/loredock-prepared-answer-admission/README.md) preserve
+first failures, 11 raw logs and the actual runtime delta. Native inventory eviction,
+source/policy/review/build/original changes, restart/idempotency, quota rollback, cleanup
+and accepted legacy byte behavior are covered. All 154 unaffected application files,
+64 package files and 80 frozen artifacts stay unchanged. The 64-module service comparison
+union includes actual AI/core imports; it has no transferred resource/model qualification.
+
+PR #128 passed both CI events at `a9c9cde` and merged as identical-tree `c1f6c37`.
+Task 125 requires both final-head CI events before acceptance. Next
+[Task 126](../tasks/126-loredock-prepared-question-http-ui.md) connects protected HTTP
+and the existing simple review flow behind a server experiment switch. Public/default
+answer behavior is unchanged; fresh complete resource and semantic gates remain open.
+
 ## Task 124 — Atomic answer-owned witness storage
 
 [Schema 11](loredock/ANSWER_WITNESS_STORAGE.md) now stores exact prepared context/witness
@@ -18,7 +41,8 @@ UTF-8 caps, 64 retained/purged history slots, backup/compaction and schema-8–1
 reporting are covered. All parser/preparation modules and frozen experiments remain intact.
 
 PR #127 passed both CI events at `f86f32d` and merged as identical-tree `da7122b`.
-Task 124 requires both final-head CI events before acceptance. Next
+Task 124 passed push 41942652014 and pull-request 41942739940 at `a9c9cde`,
+then merged as identical-tree `c1f6c37`. Next
 [Task 125](../tasks/125-loredock-prepared-answer-admission.md) integrates actual prepared
 answer admission, shared ownership and witness validation before dispatch/publication.
 Public adoption and fresh complete-composition resource/semantic gates follow separately.
