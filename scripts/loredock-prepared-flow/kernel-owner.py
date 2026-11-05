@@ -79,10 +79,15 @@ class Owner:
         self.driver = None
         self.known = {}
         self.interruption = None
+        self.catalog_roots = tuple(getattr(args, "catalog_root", []))
+        self.catalog_limit = getattr(args, "catalog_bytes", 536870912)
         self.report = {"schemaVersion": "prepared-flow-kernel-owner/1", "reason": None,
                        "errors": [], "driverExit": None, "owned": [], "reaped": [],
                        "survivors": [], "peakSampledStorageBytes": 0, "subreaper": False,
+                       "catalogRoots": list(self.catalog_roots), "observedCatalogRoots": [],
+                       "peakSampledCatalogBytes": {root: 0 for root in self.catalog_roots},
                        "limits": {"wallMs": args.wall_ms, "storageBytes": args.storage_bytes,
+                                  "catalogBytes": self.catalog_limit,
                                   "graceMs": args.grace_ms, "forcedExitWaitMs": 5000},
                        "resourceQualification": False}
 
@@ -166,11 +171,12 @@ class Owner:
 
     def storage(self):
         total, entries, raced = 0, 0, 0
+        catalogs = {root: {"bytes": 0, "observed": False} for root in self.catalog_roots}
         flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC
-        pending = [os.open(self.args.output, flags)]
+        pending = [(os.open(self.args.output, flags), "", None)]
         try:
             while pending:
-                directory = pending.pop()
+                directory, relative, catalog = pending.pop()
                 try:
                     iterator = os.scandir(directory)
                     with iterator:
@@ -181,25 +187,39 @@ class Owner:
                             try:
                                 value = entry.stat(follow_symlinks=False)
                                 if stat.S_ISDIR(value.st_mode):
-                                    pending.append(os.open(entry.name, flags, dir_fd=directory))
+                                    child = relative + "/" + entry.name if relative else entry.name
+                                    descriptor = os.open(entry.name, flags, dir_fd=directory)
+                                    selected = catalog
+                                    if child in catalogs:
+                                        selected = child
+                                        catalogs[child]["observed"] = True
+                                    pending.append((descriptor, child, selected))
                                 else:
                                     total += value.st_size
+                                    if catalog is not None:
+                                        catalogs[catalog]["bytes"] += value.st_size
                             except OSError as error:
                                 if error.errno not in (errno.ENOENT, errno.ENOTDIR, errno.ELOOP):
                                     raise
                                 raced += 1
                             if self.interruption or time.monotonic() - self.began >= self.args.wall_ms / 1000:
-                                return {"bytes": total, "entries": entries, "racedEntries": raced, "complete": False}
+                                return {"bytes": total, "entries": entries, "racedEntries": raced, "complete": False, "catalogs": catalogs}
                 finally:
                     os.close(directory)
         finally:
-            for directory in pending:
+            for directory, _, _ in pending:
                 os.close(directory)
-        return {"bytes": total, "entries": entries, "racedEntries": raced, "complete": True}
+        return {"bytes": total, "entries": entries, "racedEntries": raced, "complete": True, "catalogs": catalogs}
 
     def sample(self):
         value = self.storage()
         self.report["peakSampledStorageBytes"] = max(self.report["peakSampledStorageBytes"], value["bytes"])
+        for root, observation in value["catalogs"].items():
+            self.report["peakSampledCatalogBytes"][root] = max(self.report["peakSampledCatalogBytes"][root], observation["bytes"])
+            if observation["observed"] and root not in self.report["observedCatalogRoots"]:
+                self.report["observedCatalogRoots"].append(root)
+            if observation["bytes"] >= self.catalog_limit:
+                self.report["reason"] = "catalog-storage-ceiling"
         self.samples.append(value)
         if value["bytes"] >= self.args.storage_bytes:
             self.report["reason"] = "storage-ceiling"
@@ -330,6 +350,8 @@ def arguments():
     parser.add_argument("--cwd", type=Path, default=Path(__file__).resolve().parents[2])
     parser.add_argument("--wall-ms", type=int, default=2400000)
     parser.add_argument("--storage-bytes", type=int, default=2147483648)
+    parser.add_argument("--catalog-root", action="append", default=[], help="Declared non-overlapping catalog directory relative to output, under run/.")
+    parser.add_argument("--catalog-bytes", type=int, default=536870912)
     parser.add_argument("--grace-ms", type=int, default=10000)
     parser.add_argument("driver_args", nargs=argparse.REMAINDER)
     args = parser.parse_args()
@@ -341,9 +363,17 @@ def arguments():
             parser.error("Choose canonical absolute paths.")
     if not args.node.is_file() or not os.access(args.node, os.X_OK) or not args.script.is_file() or not args.cwd.is_dir():
         parser.error("The executable, script and working directory must exist.")
-    for value, maximum in ((args.wall_ms, 2400000), (args.storage_bytes, 2147483648), (args.grace_ms, 10000)):
+    for value, maximum in ((args.wall_ms, 2400000), (args.storage_bytes, 2147483648), (args.catalog_bytes, 536870912), (args.grace_ms, 10000)):
         if not 0 < value <= maximum:
             parser.error("Positive limits must not exceed the frozen ceilings.")
+    if len(args.catalog_root) > 64 or len(set(args.catalog_root)) != len(args.catalog_root):
+        parser.error("Declare at most 64 distinct catalog roots.")
+    for root in args.catalog_root:
+        relative = Path(root)
+        if relative.is_absolute() or relative.as_posix() != root or ".." in relative.parts or len(relative.parts) < 2 or relative.parts[0] != "run":
+            parser.error("Catalog roots must be canonical relative directories below run/.")
+        if any(root != other and root.startswith(other + "/") for other in args.catalog_root):
+            parser.error("Declared catalog roots must not overlap.")
     if args.driver_args[:1] == ["--"]:
         args.driver_args.pop(0)
     args.output.mkdir(mode=0o700)
