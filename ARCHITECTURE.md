@@ -91,23 +91,28 @@ across inventory eviction; it cannot choose current defaults at model completion
 automatically populate user-saved history on preview.
 [ADR 0059](docs/decisions/0059-loredock-prepared-question-lifecycle.md) specifies one transient
 reviewed snapshot, synchronous atomic promotion to answer-owned witness storage and
-versioned validation of the issued input. Prospective schema 11, quotas and new prompt
-adapters remain unimplemented. Task 122 adds actual synchronous per-store lexical accounting and typed complete-resolution
+versioned validation of the issued input. Task 124 implements schema 11 and witness quotas; prepared answer dispatch and public
+adoption remain separate. Task 122 adds actual synchronous per-store lexical accounting and typed complete-resolution
 selection within the existing shared budget/owner, preserving unselected outputs. These
 [internal seams](docs/loredock/QUESTION_READ_SELECTION.md) precede prepared ownership,
 HTTP/UI and model integration; see the [lifecycle](docs/loredock/PREPARED_QUESTION_LIFECYCLE.md).
 Task 123 adds an internal [prepared-question owner](docs/loredock/PREPARED_QUESTION_OWNER.md):
 one bounded transient snapshot, monotonic expiry, cancellation, synchronous promotion
 capabilities and exact original-based witness validation after inventory eviction. It adds
-no application consumer or persistence. Durable ownership precedes answer/HTTP/UI adoption.
+no application consumer or persistence. Task 124 adds an internal
+[answer-owned witness store](docs/loredock/ANSWER_WITNESS_STORAGE.md), atomic attempt/source/
+witness admission, immutable byte/version binding, separate quotas and transactional source
+purge/recovery. Legacy answer readers refuse unsupported prepared input. All original
+parser/preparation modules stay unchanged; answer dispatch and HTTP/UI integration follow.
 Explicit storage accounting and offline compaction use separate maintenance commands,
 preserving logical history and normal job recovery. Compaction acquires daemon
 ownership and rewrites physical SQLite pages only when free pages exist; see
 [ADR 0045](docs/decisions/0045-loredock-offline-storage-maintenance.md).
 Schema 9 uses original spans as external literal-search content, with a stable integer
 mapping, atomic legacy migration and explicit transactional writes/purge. Question search
-and parser facts are unchanged. Maintenance accepts schemas 8 and 9; version-2 reports
-distinguish logical text from its stored copy. See
+and parser facts are unchanged. Maintenance accepts schemas 8 through 11; storage/compaction version 3 and history
+version 2 additionally report answer witness retention and ownership without text. Logical
+search text remains distinct from its stored copy. See
 [ADR 0046](docs/decisions/0046-loredock-external-literal-search.md).
 The separate history diagnostic shares the maintenance read-only snapshot boundary and
 reports bounded generation payload/dependency counts without application recovery or

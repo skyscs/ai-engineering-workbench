@@ -9,11 +9,12 @@ import { CatalogStore } from '../src/store.js';
 import { CodeAnalysis } from '../src/code-analysis.js';
 import { CatalogStore as ReferenceStore, CodeAnalysis as ReferenceAnalysis } from './fixtures/analysis-write-reference/index.js';
 // @ts-expect-error Shared independent source/compiled comparison, never a reserved resource family.
-import { compareAnalysisWrites } from '../../../scripts/loredock-analysis-write-candidate/compare.mjs';
+import { loadAnalysisComparison } from './fixtures/answer-witness-reference/analysis-comparison.mjs';
 
 test('scoped analysis writes preserve independent fresh-write behavior and exact executions across lifecycle/failure cases', async t => {
   const folder = await mkdtemp(path.join(tmpdir(), 'analysis-write-comparison-')); let passed = false;
   t.after(async () => { if (passed) await rm(folder, { recursive: true, force: true }); else t.diagnostic(`Retained analysis write comparison: ${folder}`); });
+  const compareAnalysisWrites = await loadAnalysisComparison(folder);
   const report = await compareAnalysisWrites(path.join(folder, 'run'), { Catalog, SourceGit, CatalogStore: ReferenceStore, CodeAnalysis: ReferenceAnalysis },
     { Catalog, SourceGit, CatalogStore, CodeAnalysis }) as { failed: boolean; scenarios: { passed: boolean }[]; errors: unknown[] };
   assert.equal(report.failed, false, JSON.stringify(report.errors)); assert.equal(report.scenarios.length, 7);

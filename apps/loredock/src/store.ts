@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto';
+import { migrateAnswerWitnessStorage } from './answer-witness-schema.js';
 import { existsSync, lstatSync, mkdirSync, realpathSync } from 'node:fs';
 import path from 'node:path';
 import { DatabaseSync, type SQLInputValue } from 'node:sqlite';
@@ -49,7 +50,7 @@ export class CatalogStore {
       this.db = opened = new DatabaseSync(path.join(this.directory, 'loredock.db'));
       this.db.exec('PRAGMA foreign_keys=ON; PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL; PRAGMA secure_delete=ON;');
       const version = this.one<{ user_version: number }>('PRAGMA user_version')!.user_version;
-      if (version < 0 || version > 10) throw new Error('Unsupported LoreDock database version.');
+      if (version < 0 || version > 11) throw new Error('Unsupported LoreDock database version.');
       if (!version) this.db.exec(`BEGIN IMMEDIATE;
         CREATE TABLE project (id INTEGER PRIMARY KEY CHECK(id=1), policyVersion INTEGER NOT NULL, sourceSetVersion INTEGER NOT NULL, policy TEXT NOT NULL, publishedBuildId TEXT);
         INSERT INTO project VALUES (1,1,1,'{"excludedPaths":[]}',NULL);
@@ -163,6 +164,7 @@ export class CatalogStore {
           BEGIN SELECT RAISE(ABORT,'Catalog identity is immutable.'); END;
           PRAGMA user_version=10;`);
       });
+      if (version < 11) this.transaction(() => migrateAnswerWitnessStorage(this.db));
       const identities = this.all<{ slot: number; id: string }>('SELECT slot,id FROM catalog_identity LIMIT 2');
       requireReceipt(identities.length === 1 && identities[0]!.slot === 1 && uuid(identities[0]!.id), 'CORRUPT_CATALOG_IDENTITY');
       this.receipts = receipts = new NativeReceiptStore(this, identities[0]!.id, receiptOptions);
@@ -332,6 +334,7 @@ export class CatalogStore {
     for (const source of pending) this.transaction(() => {
       this.run('DELETE FROM code_analysis_files WHERE runId IN (SELECT runId FROM code_analysis_sources WHERE sourceId=?)', source.id);
       this.run("UPDATE code_analyses SET status='fenced',published=0,textBytes=0,payloadBytes=0,reason='An input source was revoked.' WHERE id IN (SELECT runId FROM code_analysis_sources WHERE sourceId=?)", source.id);
+      this.run('UPDATE answer_witnesses SET witness=NULL,witnessBytes=0,purged=1 WHERE purged=0 AND answerId IN (SELECT answerId FROM answer_sources WHERE sourceId=?)', source.id);
       this.run("UPDATE answer_attempts SET status='fenced',context=NULL,result=NULL,reason='An input source was revoked.' WHERE id IN (SELECT answerId FROM answer_sources WHERE sourceId=?)", source.id);
       this.run('UPDATE corrections SET statement=NULL,environment=NULL,target=NULL,purged=1 WHERE purged=0 AND id IN (SELECT correctionId FROM correction_sources WHERE sourceId=?)', source.id);
       // External FTS reads original content to remove postings. Delete it before spans.

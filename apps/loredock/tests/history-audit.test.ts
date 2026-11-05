@@ -12,7 +12,7 @@ import {CodeAnalysis} from '../src/code-analysis.js';
 import {Corrections} from '../src/corrections.js';
 import {Reconciliation} from '../src/reconciliation.js';
 import {codeFlows} from '../src/code-flows.js';
-import {removeExternalSearchSchema,removeNativeReceiptSchema} from './legacy-schema.js';
+import {removeAnswerWitnessSchema, removeExternalSearchSchema,removeNativeReceiptSchema} from './legacy-schema.js';
 // @ts-expect-error Read-only diagnostic commands are plain JavaScript.
 import {auditHistory,historyArguments,historyLimits} from '../../../scripts/loredock-history.mjs';
 // @ts-expect-error Owned fixture generation is plain JavaScript.
@@ -46,7 +46,7 @@ test('history reports a refresh chain, real reapplication, withdrawn review, all
   for(const id of ['succeeded','failed','running']) for(const source of s.store.sources()) s.store.run('INSERT INTO answer_sources VALUES (?,?)',id,source.id);
   const p=s.store.project(),pending=s.store.start('pending',p.sourceSetVersion,p.policyVersion);
   const report=auditHistory(s.directory),[a,b,c,d]=report.generations.items;
-  assert.equal(report.schemaVersion,'loredock-history-audit/1');assert.equal(report.referenceChecks.status,'passed');
+  assert.equal(report.schemaVersion,'loredock-history-audit/2');assert.equal(report.referenceChecks.status,'passed');
   assert.equal(report.generations.total,4);assert.equal(report.generations.omitted,0);
   assert.deepEqual(report.generations.items.map((row:{id:string})=>row.id),[first,second,third,pending.id]);
   assert.deepEqual([a.baselineBuildId,b.baselineBuildId,c.baselineBuildId,d.baselineBuildId],[null,first,second,third]);
@@ -69,15 +69,15 @@ test('history reports a refresh chain, real reapplication, withdrawn review, all
   s.catalog.updatePolicy(['config']);assert.deepEqual(auditHistory(s.directory).generations.items.map((row:{files:unknown;spans:unknown})=>[row.files,row.spans]),payload);
 });
 
-test('actual history CLI preserves closed schema-8/9/10 bytes and pending/paused recovery state',async t=>{
-  for(const version of [8,9,10]) await t.test(`schema ${version}`,async sub=>{
+test('actual history CLI preserves closed schema-8/9/10/11 bytes and pending/paused recovery state',async t=>{
+  for(const version of [8,9,10,11]) await t.test(`schema ${version}`,async sub=>{
     const s=await setup(sub),build=await s.index('first'),run=s.analysis.start('code',build);await s.analysis.idle();
     s.store.run("UPDATE code_analyses SET status='paused' WHERE id=?",run.id);
     const p=s.store.project(),pending=s.store.start('pending',p.sourceSetVersion,p.policyVersion);
     const file=s.store.one<{id:string}>('SELECT id FROM files WHERE raw IS NOT NULL LIMIT 1')!;
     const marker=Buffer.from('private-雪\u0000é');s.store.run('UPDATE files SET raw=? WHERE id=?',marker,file.id);
     const expected=s.store.all<{raw:Uint8Array|null}>('SELECT raw FROM files').reduce((sum,row)=>sum+(row.raw?.byteLength??0),0);
-    if(version===8)removeExternalSearchSchema(s.store.db);else if(version===9)removeNativeReceiptSchema(s.store.db);await s.close();
+    if(version===8)removeExternalSearchSchema(s.store.db);else if(version===9)removeNativeReceiptSchema(s.store.db);else if(version===10)removeAnswerWitnessSchema(s.store.db);await s.close();
     const names=['loredock.db','.owner.db'],before=await Promise.all(names.map(name=>readFile(path.join(s.directory,name))));
     const report=JSON.parse(execFileSync(process.execPath,[path.resolve('../../scripts/loredock-history.mjs'),'--data-dir',s.directory],{encoding:'utf8'}));
     assert.equal(report.databaseVersion,version);assert.equal(report.generations.items[0].files.rawBytes,expected);
@@ -117,8 +117,8 @@ test('history handles empty catalogs and rejects missing, foreign, unsupported, 
   const directory=await mkdtemp(path.join(tmpdir(),'loredock-history-invalid-'));t.after(()=>rm(directory,{recursive:true,force:true}));
   assert.throws(()=>auditHistory('relative'),/absolute/);assert.throws(()=>auditHistory(directory),/not found/);assert.deepEqual(await readdir(directory),[]);
   await writeFile(path.join(directory,'workbench.db'),'owned sentinel');assert.throws(()=>auditHistory(directory),/Workbench/);await rm(path.join(directory,'workbench.db'));
-  const store=new CatalogStore(directory);assert.equal(auditHistory(directory).generations.total,0);store.db.exec('PRAGMA user_version=11');store.close();
-  const file=path.join(directory,'loredock.db'),before=await readFile(file);assert.throws(()=>auditHistory(directory),/schema 8, 9 or 10/);assert.deepEqual(await readFile(file),before);
+  const store=new CatalogStore(directory);assert.equal(auditHistory(directory).generations.total,0);store.db.exec('PRAGMA user_version=12');store.close();
+  const file=path.join(directory,'loredock.db'),before=await readFile(file);assert.throws(()=>auditHistory(directory),/schema 8, 9, 10 or 11/);assert.deepEqual(await readFile(file),before);
   await symlink(file,path.join(directory,'.owner.db-wal'));assert.throws(()=>auditHistory(directory),/regular files/);
   for(const args of [[],['--data-dir','relative'],['--data-dir',directory,'--delete']])assert.throws(()=>historyArguments(args),/Usage/);
   assert.equal(historyArguments(['--data-dir',directory]),directory);

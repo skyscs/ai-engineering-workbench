@@ -2,7 +2,8 @@
 
 Task 123 adds an internal immutable question preparation service. Local validation passes
 **898 tests, strict types and builds**; the final focused compiled suite passes **15/15**.
-Both final-head CI events remain required before merging.
+PR #127 passed both final-head CI events at `f86f32d`: push 41939154381 and
+pull-request 41939193560. It merged as identical-tree `da7122b`.
 
 [Review](review.json) records the executable, preserved controls, every raw log hash,
 first failures, cleanup and limits. All 18 logs are losslessly compressed with zero gzip

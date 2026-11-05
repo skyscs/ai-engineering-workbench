@@ -866,19 +866,21 @@ Each build stores its admitted bytes independently. There is no cross-build
 deduplication or automatic history-retention limit yet; the 50 MiB cap is per build,
 not a total data-directory cap. Monitor local storage during repeated large indexes.
 
-The next normal start with this version upgrades an older catalog to schema 10.
-It adds a stable catalog identity for owned records while preserving saved citations,
-history, notes and code inventories. Catalogs older than schema 9 also convert literal
+The next normal start with this version upgrades an older catalog to schema 11.
+It adds internal answer-owned context storage while preserving saved citations, history,
+notes, code inventories and native files. This storage foundation does not yet change
+Find context or Generate. Catalogs older than schema 10 also receive a stable catalog
+identity for owned records. Catalogs older than schema 9 also convert literal
 search to use saved original spans instead of keeping another text copy; that step
 performs a full scan and index rebuild. A schema-9 catalog does not repeat that rebuild.
 Back up the complete stopped directory before upgrading and leave space for temporary
 files. No additional input is required.
 
 If startup fails, preserve the directory and error message. Individual database
-migration steps are atomic, but later storage initialization can fail after schema 10
+migration steps are atomic, but later storage initialization can fail after schema 11
 has committed. Do not change schema versions or delete database sidecars to force
-startup. To return to a schema-9 application, restore the complete pre-upgrade backup
-while stopped; older applications refuse schema 10. Never transplant only native
+startup. To return to a schema-10 or earlier application, restore the complete pre-upgrade backup
+while stopped; older applications refuse schema 11. Never transplant only native
 records or restore only part of the directory. Some missing records cannot be detected
 from a partial backup, so keep all directory contents together.
 
@@ -895,7 +897,7 @@ pnpm --silent loredock:storage --data-dir /absolute/path/to/loredock-data
 ```
 
 This advanced maintenance command prints JSON and makes no logical changes. It needs
-Node 22 and an existing schema-8, schema-9 or schema-10 catalog; it never creates or upgrades a database. It
+Node 22 and an existing schema-8, schema-9, schema-10 or schema-11 catalog; it never creates or upgrades a database. It
 can run while LoreDock is open and does not interrupt jobs or acquire daemon ownership.
 Large histories require a full scan, so run it when needed rather than polling it.
 The report contains counts and byte sizes only, without repository paths, source text,
@@ -905,11 +907,15 @@ questions or connection configuration. Redirect stdout to a file to retain the r
 space inside that allocation. `disk` measures only the listed database/sidecar file
 lengths, separately from the SQLite snapshot. It excludes native receipt files, repositories, backups and other
 directory contents; reported dependencies also exclude native receipts. Payload sizes are already inside SQLite allocation: do not add them
-to the disk total. Audit version 2 reports `payloads.literalSearch.bytes` as logical
+to the disk total. Audit version 3 reports `payloads.literalSearch.bytes` as logical
 searchable text; `contentStorage: "shared-original-spans"` and `copiedTextBytes: 0` mean
-schemas 9 and 10 have no separate literal text copy. Its mapping and postings remain included in
+schemas 9 through 11 have no separate literal text copy. Its mapping and postings remain included in
 `sqlite.allocations.literalSearch`. Schema 8 reports `contentStorage: "copied"` with its
-copied text bytes. Compaction version 2 embeds the same audit format before and after.
+copied text bytes. Compaction version 3 embeds the same audit format before and after.
+`payloads.answerWitnesses` reports retained UTF-8 bytes and retained/purged row counts.
+All 64 answer-owned rows, including purged metadata, consume their separate fixed record
+capacity; terminal attempts retain content. These future prepared-answer inputs do not
+consume saved-path slots. No automatic answer deletion is implemented.
 Duplicate estimates and overlapping dependency counts do not identify
 safe-to-delete history or promise reclaimable space. No history pruning runs automatically.
 See [storage measurements and next steps](../fixtures/loredock-storage-audit/README.md).
@@ -921,6 +927,7 @@ pnpm --silent loredock:history --data-dir /absolute/path/to/loredock-data
 ```
 
 This read-only command supports the same schemas and can run while LoreDock is open.
+History report version 2 adds per-generation answer-witness counts and bytes.
 It reports opaque build IDs, dates/status, the current pointer, direct baselines, file/
 span/search/code counts, logical bytes and dependencies from answers, review versions,
 code runs, later updates and reused files. Failed answers, withdrawn notes and purged
@@ -931,7 +938,8 @@ and connection settings are omitted. It does not recover or resume unfinished wo
 a 4 MiB JSON limit. Check `total`, `reported`, `omitted` and `complete`: an omitted current
 or older index is still retained and can have dependencies. Incoming counts include
 references from generations outside the displayed detail. `referenceChecks` covers SQL
-foreign keys, the current pointer and displayed build metadata; it does not validate
+foreign keys, prepared witness ownership/purge shape, the current pointer and displayed
+build metadata; it does not validate
 embedded citation JSON, FTS postings or complete transitive dependencies. `inconsistent`
 means a detected issue needs investigation, not that a record can be deleted.
 

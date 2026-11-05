@@ -1,5 +1,28 @@
 # Development status
 
+## Task 124 — Atomic answer-owned witness storage
+
+[Schema 11](loredock/ANSWER_WITNESS_STORAGE.md) now stores exact prepared context/witness
+bindings with an explicit input kind, one atomic attempt/dependency/witness transaction,
+immutable history, separate byte/record quotas and source-authorized purge/recovery.
+Legacy rows retain every original byte; the legacy Answers reader refuses prepared input
+until its adapter exists. Read authorization precedes witness retrieval. No new model,
+HTTP/UI or preparation consumer is enabled.
+
+All **912 tests, strict types and builds pass**. [Verification records](fixtures/loredock-answer-witness-storage/README.md)
+retain first failures, 18 logs, two stopped ordinary failure trees and the reviewed runtime
+changes. Genuine archived schema-10 state migrates intact; older daemons refuse schema 11.
+Process exits at all three insertion boundaries leave no partial answer. Full dependency
+purge includes graph-absent sources, and pending SQL purge retries after restart. Exact
+UTF-8 caps, 64 retained/purged history slots, backup/compaction and schema-8–11 read-only
+reporting are covered. All parser/preparation modules and frozen experiments remain intact.
+
+PR #127 passed both CI events at `f86f32d` and merged as identical-tree `da7122b`.
+Task 124 requires both final-head CI events before acceptance. Next
+[Task 125](../tasks/125-loredock-prepared-answer-admission.md) integrates actual prepared
+answer admission, shared ownership and witness validation before dispatch/publication.
+Public adoption and fresh complete-composition resource/semantic gates follow separately.
+
 ## Task 123 — Immutable bounded prepared question ownership
 
 [The internal owner](loredock/PREPARED_QUESTION_OWNER.md) now reserves one transient
@@ -17,7 +40,8 @@ source/emitted/control files and all nine parser modules remain unchanged. The n
 answer dispatch, schema, model request or demo changes are enabled.
 
 Task 122 passed both CI events at `c5c1e4f` and merged as identical-tree `7320aae`.
-Task 123 requires both final-head CI events before acceptance. Next
+Task 123 passed push 41939154381 and pull-request 41939193560 at `f86f32d`, then
+merged as identical-tree `da7122b`. Next
 [Task 124](../tasks/124-loredock-answer-owned-witness-storage.md) persists answer-owned
 witnesses atomically, including schema, purge, quota and recovery, before answer admission
 and public adoption can use the exact reviewed context.

@@ -22,6 +22,7 @@ function allocationGroup(table) {
   if (table === 'search' || table.startsWith('search_') || table === 'literal_search_documents') return 'literalSearch';
   if (table === 'question_search' || table.startsWith('question_search_')) return 'questionSearch';
   if (table.startsWith('code_')) return 'codeInventory';
+  if (table === 'answer_witnesses') return 'answerWitnesses';
   if (table === 'answer_attempts' || table === 'answer_sources') return 'answers';
   if (table.startsWith('correction')) return 'engineerReview';
   return 'catalogAndOtherMetadata';
@@ -39,7 +40,7 @@ export function readStorageSnapshot(directory, read) {
     db.exec('PRAGMA query_only=ON; PRAGMA trusted_schema=OFF; PRAGMA temp_store=MEMORY; PRAGMA busy_timeout=1000; BEGIN;');
     const one = sql => db.prepare(sql).get();
     const version = one('PRAGMA user_version').user_version;
-    if (version !== 8 && version !== 9 && version !== 10) throw new Error('Storage accounting requires LoreDock database schema 8, 9 or 10; no migration was attempted.');
+    if (version !== 8 && version !== 9 && version !== 10 && version !== 11) throw new Error('Storage accounting requires LoreDock database schema 8, 9, 10 or 11; no migration was attempted.');
     const project = one('SELECT publishedBuildId FROM project WHERE id=1');
     if (!project) throw new Error('The LoreDock project record is missing.');
     const result = read(db, version);
@@ -66,7 +67,7 @@ export function auditStorage(directory) {
     const accountedBytes = Object.values(allocations).reduce((sum, bytes) => sum + bytes, 0);
     const literalText = payload('search', ['text']);
     return {
-      schemaVersion: 'loredock-storage-audit/2', capturedAt: new Date().toISOString(), databaseVersion: version,
+      schemaVersion: 'loredock-storage-audit/3', capturedAt: new Date().toISOString(), databaseVersion: version,
       sqlite: {pageSize, pages, freePages, allocatedBytes: pages * pageSize, freePageBytes: freePages * pageSize,
         allocations, unassignedBytes: pages * pageSize - freePages * pageSize - accountedBytes},
       payloads: {
@@ -76,7 +77,11 @@ export function auditStorage(directory) {
           copiedTextBytes: version >= 9 ? 0 : literalText.bytes},
         questionSearch: payload('question_search', ['text']),
         codeFacts: payload('code_analysis_files', ['payload']), answerContexts: payload('answer_attempts', ['context']),
-        answerResults: payload('answer_attempts', ['result']), engineerNotes: payload('corrections', ['statement','environment','target'])
+        answerResults: payload('answer_attempts', ['result']),
+        answerWitnesses: version >= 11 ? {...payload('answer_witnesses', ['witness']),
+          ...one('SELECT count(CASE WHEN purged=0 THEN 1 END) AS retained, count(CASE WHEN purged=1 THEN 1 END) AS purged FROM answer_witnesses')}
+          : {rows:0,bytes:0,retained:0,purged:0},
+        engineerNotes: payload('corrections', ['statement','environment','target'])
       },
       generations: one(`SELECT count(*) AS total, count(CASE WHEN published=1 THEN 1 END) AS published,
         count(CASE WHEN status IN ('preparing','running','pause_requested','paused','interrupted') THEN 1 END) AS unfinished,
@@ -105,6 +110,7 @@ export function auditStorage(directory) {
       'Payload bytes are selected UTF-8/BLOB contents inside SQLite allocation. Do not add them to page or disk totals.',
       'Literal-search bytes are logical searchable text; copiedTextBytes excludes shared original spans. Mapping and postings are counted in SQLite allocation.',
       'Payload row counts include records with null content; bytes count only retained content.',
+      'All answer witness rows, including purged tombstones, count toward 64 records; retained UTF-8 witness text is capped separately at 48 MiB. These counters do not validate witness content.',
       'Native receipt files and their dependency scope are excluded; these are source-SQLite counters only.',
       'Source history has no automatic retention limit. This report does not delete, compact, checkpoint, migrate or restart work.',
       'A read-only SQLite connection may maintain shared-memory bookkeeping; this is not a forensic disk acquisition.'

@@ -10,6 +10,7 @@ import { answerPrompt, answerPromptVersion } from './answer-prompt.js';
 export { answerPrompt, answerPromptVersion } from './answer-prompt.js';
 export type AnswerStatus = 'preparing' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'interrupted' | 'fenced';
 interface AttemptRow {
+  inputKind?: string;
   id: string; requestId: string; payloadHash: string; question: string; buildId: string; policyVersion: number; registryVersion: number;
   status: AnswerStatus; context: string | null; inputHash: string; connection: string; runtime: string | null;
   model: string; effort: 'medium'; promptVersion: string; schemaVersion: string; result: string | null; usage: string | null;
@@ -51,6 +52,7 @@ export class Answers {
   private row(id: string): AttemptRow {
     const row = this.catalog.store.one<AttemptRow>('SELECT * FROM answer_attempts WHERE id=?', id);
     if (!row) throw new CatalogError('NOT_FOUND', 'Answer attempt not found.', 404);
+    if (row.inputKind !== undefined && row.inputKind !== 'legacy') throw new CatalogError('ANSWER_INPUT_UNSUPPORTED', 'This answer requires the prepared-input adapter.', 409);
     return row;
   }
   private authorized(row: AttemptRow) {
