@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { hash } from '../loredock-prepared-flow/io.mjs';
-import { assessPreparedContent, assessWitnessRows } from '../loredock-prepared-flow/content-assess.mjs';
+import { assessPreparedContent, assessWitnessRows, bindPreparedReview } from '../loredock-prepared-flow/content-assess.mjs';
 
 function fixture({ text = 'Owned café "quotation".', prompt = 'Owned prompt.', compact } = {}) {
   const body = { spans: [{ id: 'original-1', text }], textBytes: Buffer.byteLength(text), interfaces: { comparisons: [] } };
@@ -47,4 +47,38 @@ test('purged witnesses still count toward capacity and inconsistent or duplicate
   assert.throws(() => assessWitnessRows([{ ...tombstones[0], witnessJson: 'Retained text.' }], 1));
   const content = fixture(); assert.throws(() => assessWitnessRows([{ answerId: 'owned', purged: 0, ...content,
     contextHash: hash(content.contextJson), witnessBytes: Buffer.byteLength(content.witnessJson) + 1 }], 1));
+});
+
+function bindingInput(options) {
+  const content = fixture(options), witness = JSON.parse(content.witnessJson);
+  return { row: { ...content, answerId: 'answer-1', purged: 0, contextHash: hash(content.contextJson),
+    witnessBytes: Buffer.byteLength(content.witnessJson) }, review: { id: 'review-1', status: 'ready', reviewedHash: content.reviewedHash,
+    context: JSON.parse(content.contextJson), compact: witness.compact, selection: witness.selection, promptVersion: witness.promptVersion } };
+}
+test('exact review binding proves content identity without inventing a unique owner', () => {
+  const { row, review } = bindingInput();
+  const result = bindPreparedReview([{ ...row, answerId: 'answer-2' }, row], review);
+  assert.equal(result.status, 'passed'); assert.deepEqual(result.retainedAnswerIds, ['answer-1', 'answer-2']);
+  assert.equal(result.transientOwnershipProven, false); assert.equal(result.resourceQualification, false);
+  assert.equal(result.sourceUsefulnessQualified, false); assert.equal(result.content.reviewedHash, review.reviewedHash);
+});
+test('unmatched and purged previews remain unmeasured instead of borrowing another witness', () => {
+  const { row, review } = bindingInput();
+  for (const rows of [[], [{ ...row, reviewedHash: '0'.repeat(64) }], [{ ...row, purged: 1 }]]) {
+    const result = bindPreparedReview(rows, review);
+    assert.equal(result.status, 'incomplete'); assert.equal(result.content, null); assert.deepEqual(result.retainedAnswerIds, []);
+  }
+});
+test('matching an echoed identity does not bypass witness or public-review integrity', () => {
+  const { row, review } = bindingInput();
+  for (const changed of [{ ...review, context: {} }, { ...review, compact: {} }, { ...review, selection: {} },
+    { ...review, promptVersion: 'unknown' }, { ...review, status: 'preparing' }])
+    assert.throws(() => bindPreparedReview([row], changed));
+  assert.throws(() => bindPreparedReview([{ ...row, witnessJson: row.witnessJson + ' ' }], review));
+  assert.throws(() => bindPreparedReview([row, row], review));
+});
+test('exact content binding preserves a measured limit violation', () => {
+  const { row, review } = bindingInput({ prompt: 'x'.repeat(98305) });
+  const result = bindPreparedReview([row], review);
+  assert.equal(result.status, 'failed'); assert(result.content.checks.some(check => !check.passed));
 });

@@ -65,7 +65,31 @@ export function assessWitnessRows(rows, expectedRows) {
     rows: rows.length, purged, totalBytes, observations, checks, resourceQualification: false };
 }
 
-export async function inspectWitnessCatalog({ directory, checkpoint, expectedRows, reviews = [] }) {
+export function bindPreparedReview(rows, review) {
+  assert(Array.isArray(rows)); assert.equal(review.status, 'ready');
+  assert.match(review.reviewedHash, /^[a-f0-9]{64}$/);
+  const matches = rows.filter(row => row.purged === 0 && row.reviewedHash === review.reviewedHash);
+  const result = { reviewId: review.id, reviewedHash: review.reviewedHash, resourceQualification: false,
+    transientOwnershipProven: false, sourceUsefulnessQualified: false };
+  if (!matches.length) return { ...result, status: 'incomplete', reason: 'No exact nonpurged witness in the declared comparison catalog.',
+    retainedAnswerIds: [], content: null };
+  assert.equal(new Set(matches.map(row => row.answerId)).size, matches.length);
+  let content;
+  for (const row of matches) {
+    assert.equal(hash(row.contextJson), row.contextHash); assert.equal(bytes(row.witnessJson), row.witnessBytes);
+    const measured = assessPreparedContent(row), witness = JSON.parse(row.witnessJson);
+    assert.equal(row.contextJson, JSON.stringify(review.context));
+    assert.deepEqual(witness.compact, review.compact); assert.deepEqual(witness.selection, review.selection);
+    assert.equal(witness.promptVersion, review.promptVersion);
+    if (content) assert.deepEqual(measured, content);
+    content = measured;
+  }
+  return { ...result, status: content.status, retainedAnswerIds: matches.map(row => row.answerId).sort(),
+    contextAndWitnessIdentity: true, content };
+}
+
+export async function inspectWitnessCatalog({ directory, checkpoint, expectedRows, reviews = [], allowUnmatchedReviews = false }) {
+  assert.equal(typeof allowUnmatchedReviews, 'boolean');
   await mkdir(directory);
   const report = { errors: [], resourceQualification: false }, data = path.join(directory, 'data');
   try {
@@ -80,13 +104,9 @@ export async function inspectWitnessCatalog({ directory, checkpoint, expectedRow
       const rows = database.prepare('SELECT w.answerId,w.purged,w.contextHash,w.reviewedHash,w.witness AS witnessJson,w.witnessBytes,a.context AS contextJson FROM answer_witnesses w JOIN answer_attempts a ON a.id=w.answerId ORDER BY w.answerId').all();
       report.assessment = assessWitnessRows(rows, expectedRows);
       report.boundReviews = reviews.map(({ name, review }) => {
-        const matched = rows.find(row => !row.purged && row.reviewedHash === review.reviewedHash);
-        assert(matched, 'No retained witness matches this exact reviewed identity: ' + name);
-        assert.equal(matched.contextJson, JSON.stringify(review.context));
-        const witness = JSON.parse(matched.witnessJson);
-        assert.deepEqual(witness.compact, review.compact); assert.deepEqual(witness.selection, review.selection);
-        assert.equal(witness.promptVersion, review.promptVersion);
-        return { name, reviewedHash: review.reviewedHash, retainedAnswerId: matched.answerId, contextAndWitnessIdentity: true };
+        const binding = bindPreparedReview(rows, review);
+        assert(allowUnmatchedReviews || binding.status !== 'incomplete', 'No retained witness matches this exact reviewed identity: ' + name);
+        return { name, ...binding };
       });
     } finally { database.close(); }
   } catch (error) { report.errors.push(normalized(error)); }
