@@ -68,7 +68,9 @@ export async function coordinateOrdinary({ directory, claimPath, family, cases }
         log.append({ event: 'case-started', id: entry.id }); syncDirectory(directory);
         try {
           const result = await entry.run({ directory: output });
-          assert(result && ['passed', 'failed', 'incomplete'].includes(result.status));
+          assert(result && ['passed', 'failed', 'incomplete', 'not-run'].includes(result.status));
+          if (result.status === 'not-run') assert(typeof result.details?.reason === 'string' && result.details.reason.length > 0,
+            'A handler that cannot run must retain its prerequisite reason.');
           assert.equal(typeof result.safeToContinue, 'boolean');
           assert(result.status !== 'passed' || result.safeToContinue, 'A passed case cannot declare an unsafe continuation.');
           assert(Array.isArray(result.artifacts) && result.artifacts.length > 0 && result.artifacts.length <= 64);

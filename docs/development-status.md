@@ -2,15 +2,16 @@
 
 ## Task 128 — Complete-flow resource driver (in progress)
 
-Latest accepted checkpoint: [PR #152](https://github.com/skyscs/ai-engineering-workbench/pull/152)
-at merge `935daef`. The next owner/storage slice measures declared live catalogs and
-final output bytes. Its actual 20/64-row reopen subset passes; both final-head CI events
-remain required, and earlier resource/required-positive failures remain unresolved.
+Latest accepted checkpoint: [PR #156](https://github.com/skyscs/ai-engineering-workbench/pull/156)
+at merge `c14f061`. The first ordinary ordered matrix now exercises all fifteen groups:
+eleven fail and four remain incomplete. Independent retention verifies all 55 created
+catalogs and unchanged raw inputs; both final-head CI events remain required before
+accepting this integration. Earlier resource/required-positive failures remain unresolved.
 The reserved family has zero candidate reads; no model runs.
 Known ordinary failures include partial analysis of constant-only padding, a missing
 required native positive at the derived-size limit, aggregate list work, browser RSS and
-raw daemon timer gaps. Complete ordered case integration, the remaining resource checks
-and the committed executable/environment/output seal are still required. The retained
+raw daemon timer gaps. The remaining operation/content bindings and the committed
+executable/environment/output seal are still required. The retained
 checkpoint history follows; none of its functional or subset passes grants qualification.
 
 The ordinary driver checkpoint is accepted through [PR #132](https://github.com/skyscs/ai-engineering-workbench/pull/132),
@@ -420,9 +421,28 @@ the owner retains exit 1 with no errors or survivors. Four copied catalogs, four
 Git identities, 60 HTTP responses and all 191 raw entries pass independent retention.
 Four new lifetime and three existing daemon controls pass after correcting one test's
 missing-check count; its first source/log remain, with no assessor change or app rerun.
-Installation/builds and the original seal pass. Both full final-head CI events remain
-required. These normal-path bounds do not cover every fault/history operation or complete
+Installation/builds and the original seal pass. Accepted through
+[PR #156](https://github.com/skyscs/ai-engineering-workbench/pull/156): push 42059862005
+and pull_request 42060068631 pass 1,008 tests at `a408457`; merge `c14f061` has the identical
+tree. These normal-path bounds do not cover every fault/history operation or complete
 the ordered matrix and execution seal. Whole resource/model eligibility remains closed.
+
+The [first ordinary ordered matrix](fixtures/loredock-prepared-flow-matrix-integration/README.md)
+executes all fifteen groups: eleven failed, four incomplete, 75 controlled runtime calls,
+zero models and zero reserved-family reads. The 10,000-file input parses all 9,977 code
+files but retains a partial inventory; its cold checkpoint and dependent operations are
+unavailable. The separate small input completes three warm flows and 64 admissions.
+Both browser windows, a real ten-minute expiry, cancellation, replay, restart, eviction,
+fences, purge recovery, original faults, ten source prerequisites and accounting run in
+fixed order. Heap, browser RSS/cadence, daemon timer, list work and the D01 required native
+positive remain failed. Operation/content and private-boundary evidence remain incomplete.
+The external owner finishes in 1,067,919.32760505 ms with driver exit 1, no errors and no
+survivors. All 63 possible roots are declared; 55 exist. Independent inspection verifies
+55 copied catalogs, 104 Git identities, 10,233 source files, 1,700 protected responses,
+3,469 browser bodies and all 33,062 unchanged raw entries. Twelve focused controls,
+installation/builds and the original seal pass; both final-head CI events remain pending.
+The [work note](loredock/PREPARED_FLOW_INTEGRATION.md) retains the remaining coverage and
+execution-seal requirements. The first run is consumed and cannot be retried into a pass.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request

@@ -1,0 +1,25 @@
+{
+  "pr": 156,
+  "head": "a408457d109af0d3ba66fa5272a52c4c661ed14d",
+  "merge": "c14f06177e0d0602cf52a5c016f486dd2659802f",
+  "push": 42059862005,
+  "pull_request": 42060068631,
+  "testsPerEvent": 1008,
+  "treeVerifiedIdentical": true,
+  "logs": [
+    {
+      "event": "push",
+      "path": "lifetime-bounds-ci-push.log.gz",
+      "rawBytes": 717469,
+      "rawSha256": "3525eeaf27e332de441f9df899de7fe583b86d9c65be035b64230688aa0e1a1e",
+      "archiveSha256": "06242ca91ed467b98c45abb065c73399b24c3445c5467b76666c06afb0f388a2"
+    },
+    {
+      "event": "pr",
+      "path": "lifetime-bounds-ci-pr.log.gz",
+      "rawBytes": 718744,
+      "rawSha256": "9da44574f41c6e49e31372a1578612a8f12df01d57c52a25cd378cdaaf931c26",
+      "archiveSha256": "de25b16e485959542a9ba3fe47e348bbc57b414b9927cf2aa12dbb99a5e5822b"
+    }
+  ]
+}

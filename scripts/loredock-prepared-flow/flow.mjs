@@ -2,6 +2,15 @@ import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { until } from './io.mjs';
 
+export function requireCompletedAnalysis(value) {
+  if (value.status === 'partial' && value.published === true && value.currentParser === true) {
+    throw Object.assign(new Error('A partial inventory does not satisfy the completed-analysis prerequisite: ' + JSON.stringify(value)),
+      { code: 'INCOMPLETE_CODE_ANALYSIS' });
+  }
+  assert.equal(value.status, 'completed', JSON.stringify(value)); assert(value.published && value.currentParser);
+  return value;
+}
+
 export async function indexSources(api, paths) {
   for (const source of paths) await api.request('/sources', 'POST', { path: source });
   const project = (await api.request('/project')).value;
@@ -18,7 +27,7 @@ export async function indexSources(api, paths) {
     assert.equal(state.automaticError, null, JSON.stringify(state.automaticError));
     const value = state.inventories.find(row => row.buildId === ready.id);
     if (!value || value.status === 'running') return false;
-    assert.equal(value.status, 'completed', JSON.stringify(value)); assert(value.published && value.currentParser); return value;
+    return requireCompletedAnalysis(value);
   }, 'Automatic code analysis did not complete.', 300000, 1000);
   const completed = performance.now();
   return { build: ready, analysis, indexMs, analysisMs: completed - analysisStarted, indexThroughAnalysisMs: completed - started };
