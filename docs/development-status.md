@@ -2,10 +2,10 @@
 
 ## Task 128 — Complete-flow resource driver (in progress)
 
-Latest accepted checkpoint: [PR #149](https://github.com/skyscs/ai-engineering-workbench/pull/149)
-at merge `db95966`. Complete-worker accounting now compares one diagnostic replay to
-the first recorded warm result. Functional/work checks pass, existing timer failures
-remain, and both final-head CI events are required before accepting this next slice.
+Latest accepted checkpoint: [PR #150](https://github.com/skyscs/ai-engineering-workbench/pull/150)
+at merge `be1b78c`. Reusable source/oracle setup now preserves the actual no-analysis
+catalog and public engineer note. Nine ordinary prerequisites pass; the required native
+positive still fails. Both final-head CI events are required before accepting this slice.
 The reserved family has zero candidate reads; no model runs.
 Known ordinary failures include partial analysis of constant-only padding, a missing
 required native positive at the derived-size limit, aggregate list work, browser RSS and
@@ -314,8 +314,26 @@ The ordinary cold/three-warm/one-diagnostic control retains two normal timer fai
 complete copied catalogs, four Git sources and all 60 HTTP bodies pass independent
 inspection. An initial offline retention expectation error is preserved; correcting it
 requires no application rerun. Installation, builds, four focused tests and the original
-seal pass locally. Both full final-head CI events remain required; this diagnostic work
-pass does not cancel earlier list/browser/timer failures or grant resource qualification.
+seal pass locally. This checkpoint is accepted through [PR #150](https://github.com/skyscs/ai-engineering-workbench/pull/150):
+push 42042208634 and pull_request 42042306502 pass 984 tests at `cebd014`; merge
+`be1b78c` has the identical tree. Its diagnostic work pass does not cancel earlier
+list/browser/timer failures or grant resource qualification.
+
+The next [reusable oracle cases](fixtures/loredock-prepared-flow-oracle-cases/README.md)
+accept materialized sources and exact evidence expectations, checking bytes and required
+quotes before candidate indexing. Actual Catalog-only setup preserves a complete stopped
+checkpoint, then production reopen keeps its original build and absent code analysis.
+The supplied engineer-note target must match one real HTTP comparison and both original
+header quotes before the public correction API records human/unverified provenance.
+Exactly ten ordinary preparations complete; nine prerequisite assessments pass, while
+the required full native path remains omitted at 8,368 derived bytes against 8,192.
+That failed positive remains failed. Known independent assessment assertions may continue;
+unknown setup/lifecycle errors stop. Eleven copied catalogs contain zero answers and pass
+integrity/foreign-key checks; 80 Git identities, 33 required review quotes and 194 HTTP
+responses are independently verified. The expected driver exit 1 leaves no survivors.
+Installation, production builds, the focused pre-index input guard and original seal pass
+locally. Both full final-head CI events remain required; complete ordered integration,
+remaining resource assessment and the final execution seal are still pending.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request

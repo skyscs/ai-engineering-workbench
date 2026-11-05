@@ -1,0 +1,216 @@
+{
+  "schemaVersion": "prepared-flow-oracle-cases-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "trees": [
+    {
+      "path": "oracle-cases-first.tar.gz",
+      "sha256": "cddc8ebe48f95a060068828c06ee642b02673a85871e845907230b6d569da49b",
+      "inventory": "oracle-cases-first.inventory.json.gz",
+      "inventorySha256": "d9557842c1f65c5ef9d32c624adc512984de1fefc4161cc85e6b3b7a0b1efebe",
+      "entries": 1508,
+      "source": "/home/toshiba/aew/task128-oracle-cases-first"
+    },
+    {
+      "path": "oracle-cases-retention.tar.gz",
+      "sha256": "6621276e7230a71e746bfec6620a98b2b05624b5fef36bb2aff9fc5d5754e2e5",
+      "inventory": "oracle-cases-retention.inventory.json.gz",
+      "inventorySha256": "608ed2ec0e10eaecb7757663db9d0d173d3ec91b2bfbc9fb9f2d3fa194167af6",
+      "entries": 45,
+      "source": "/home/toshiba/aew/task128-oracle-cases-retention"
+    },
+    {
+      "path": "oracle-cases-test-1.tar.gz",
+      "sha256": "4fb308d2fc1e44e353777fe059d958a532973debe06db16e292c6f6e3da841b4",
+      "inventory": "oracle-cases-test-1.inventory.json.gz",
+      "inventorySha256": "0f90a62fe9c131b084d27ed8ba4978eab86a0319d1360c91b049ee9712476dab",
+      "entries": 15,
+      "source": "/tmp/loredock-oracle-inputs-PyULQd"
+    },
+    {
+      "path": "oracle-cases-inputs.tar.gz",
+      "sha256": "3ea955f9875617d0d052735f29568f2976db0a1566ea3af5ea00c5a2798db27b",
+      "inventory": "oracle-cases-inputs.inventory.json.gz",
+      "inventorySha256": "2631f9758159253eb0a96b5b58167c82aa453ef2f48850f9e95c807039056e31",
+      "entries": 8,
+      "source": "/home/toshiba/aew/task128-oracle-cases-inputs"
+    },
+    {
+      "path": "oracle-cases-static-inputs.tar.gz",
+      "sha256": "3005ea13150a3f8917ce902488d1cb31cfa92992397aec1a9f108917d6797ca1",
+      "inventory": "oracle-cases-static-inputs.inventory.json.gz",
+      "inventorySha256": "ac95bc8160845c4129c0c41d551eef1969942620bcb436a9917fc99065a15548",
+      "entries": 1,
+      "source": "/home/toshiba/aew/task128-oracle-cases-static-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "oracle-cases-first.log.gz",
+      "archiveSha256": "17b7dcf9a3df9c66c489ef57665f263c536a1df0ed62da04ec7a36367c03b97a",
+      "rawBytes": 34644,
+      "rawSha256": "781aa5d36a03b221a67a20c0147a049c22c86fddb7ce53a75c1eb79995b6881d"
+    },
+    {
+      "path": "oracle-cases-install.log.gz",
+      "archiveSha256": "260b356b40c84c57415f98d480dffa72515d80a32d83cb1fc96d0f2631f521e6",
+      "rawBytes": 326,
+      "rawSha256": "86ef709a9828fb6348f36bd7b4221197af70f88d2fd8daa90f40259eacc69007"
+    },
+    {
+      "path": "oracle-cases-build.log.gz",
+      "archiveSha256": "585e3731e8a5b460e018dedb4f2a9005c864173b094c8eda9dffd306062d2cf4",
+      "rawBytes": 2352,
+      "rawSha256": "478524a2907154bb43e75725e201562ec4e062566dc853ffdfd6307465988b09"
+    },
+    {
+      "path": "oracle-cases-tests.log.gz",
+      "archiveSha256": "e0479b16d653d6073eb2538c7941781d5af76c8fad592040d29dd77730a7b13b",
+      "rawBytes": 599,
+      "rawSha256": "f125ea228c2c7a11d83d7531677cb98d4ea88ef2bfa6868992f3fb4c29a074da"
+    },
+    {
+      "path": "oracle-cases-retention.log.gz",
+      "archiveSha256": "e2fcd1221d65b3debb8d88ebf1303f9dfa7dc1779cba990fb67bebf7ba3df7f9",
+      "rawBytes": 3663,
+      "rawSha256": "724a00e4dbdcff63a915939412d5ed173ae57937aa98bb84886e30a310b081b7"
+    },
+    {
+      "path": "oracle-cases-seal-check.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "worker-accounting-case-ci-push.log.gz",
+      "archiveSha256": "6533dbdc2e2b06f26feaeebd7a8f1d54781dc1e6f61af341554f44e64f9de844",
+      "rawBytes": 703444,
+      "rawSha256": "3584e144d8745e319d5bcd01d70c5891603079ef0bad35c901f3772f743aee1f"
+    },
+    {
+      "path": "worker-accounting-case-ci-pr.log.gz",
+      "archiveSha256": "5b6c4b7b6381acaa8aa84627d0b39d304fc2e1ca125ae004fa4562652ba77379",
+      "rawBytes": 704816,
+      "rawSha256": "1bfdd2dda30f4aa3396f1d80c0f3de137b1585e272d9a86876a55efca1521e06"
+    },
+    {
+      "path": "oracle-cases-static-first.log.gz",
+      "archiveSha256": "14a7f77242dc2aaad9a0e5a6890850213886b7b17b8c79aa5134022bf392fc36",
+      "rawBytes": 207,
+      "rawSha256": "48e99d34cecde9aa7a5c0e3381918c3a91a6d06c32f6e1a62977ff3952944896"
+    }
+  ],
+  "acceptedWorkerAccounting": {
+    "pr": 150,
+    "head": "cebd01477b36fec6964ed5d2f37b376fc4236e2d",
+    "merge": "be1b78c59d1396ee3da82fdfaa98c28d371ab534",
+    "push": 42042208634,
+    "pull_request": 42042306502,
+    "testsPerEvent": 984
+  },
+  "retention": {
+    "resourceQualification": false,
+    "modelCalls": 0,
+    "reservedFamilyReads": 0,
+    "catalogs": [
+      {
+        "source": "/home/toshiba/aew/task128-oracle-cases-first/run/D01-complete-path/case/data",
+        "copy": "/home/toshiba/aew/task128-oracle-cases-retention/D01-complete-path/case/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answers": 0,
+        "analyses": 1
+      },
+      {
+        "source": "/home/toshiba/aew/task128-oracle-cases-first/run/D02-ambiguous-actions/case/data",
+        "copy": "/home/toshiba/aew/task128-oracle-cases-retention/D02-ambiguous-actions/case/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answers": 0,
+        "analyses": 1
+      },
+      {
+        "source": "/home/toshiba/aew/task128-oracle-cases-first/run/D03-consumer-gap/case/data",
+        "copy": "/home/toshiba/aew/task128-oracle-cases-retention/D03-consumer-gap/case/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answers": 0,
+        "analyses": 1
+      },
+      {
+        "source": "/home/toshiba/aew/task128-oracle-cases-first/run/D04-dynamic-topic/case/data",
+        "copy": "/home/toshiba/aew/task128-oracle-cases-retention/D04-dynamic-topic/case/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answers": 0,
+        "analyses": 1
+      },
+      {
+        "source": "/home/toshiba/aew/task128-oracle-cases-first/run/D05-empty-handler/case/data",
+        "copy": "/home/toshiba/aew/task128-oracle-cases-retention/D05-empty-handler/case/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answers": 0,
+        "analyses": 1
+      },
+      {
+        "source": "/home/toshiba/aew/task128-oracle-cases-first/run/D06-header-mismatch/case/data",
+        "copy": "/home/toshiba/aew/task128-oracle-cases-retention/D06-header-mismatch/case/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answers": 0,
+        "analyses": 1
+      },
+      {
+        "source": "/home/toshiba/aew/task128-oracle-cases-first/run/D07-no-analysis/case/catalog-only-checkpoint",
+        "copy": "/home/toshiba/aew/task128-oracle-cases-retention/D07-no-analysis/case/catalog-only-checkpoint",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answers": 0,
+        "analyses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-oracle-cases-first/run/D07-no-analysis/case/data",
+        "copy": "/home/toshiba/aew/task128-oracle-cases-retention/D07-no-analysis/case/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answers": 0,
+        "analyses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-oracle-cases-first/run/D08-unknown-deployment/case/data",
+        "copy": "/home/toshiba/aew/task128-oracle-cases-retention/D08-unknown-deployment/case/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answers": 0,
+        "analyses": 1
+      },
+      {
+        "source": "/home/toshiba/aew/task128-oracle-cases-first/run/D09-human-note/case/data",
+        "copy": "/home/toshiba/aew/task128-oracle-cases-retention/D09-human-note/case/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answers": 0,
+        "analyses": 1
+      },
+      {
+        "source": "/home/toshiba/aew/task128-oracle-cases-first/run/D10-untrusted-source/case/data",
+        "copy": "/home/toshiba/aew/task128-oracle-cases-retention/D10-untrusted-source/case/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answers": 0,
+        "analyses": 1
+      }
+    ],
+    "httpBodies": 184,
+    "redactedSessions": 10,
+    "sourceGitIdentities": 80,
+    "preparations": 10,
+    "requiredQuotes": 33,
+    "rawInputsUnchanged": true,
+    "entries": 1508,
+    "passedPrerequisites": 9,
+    "failedRequiredPositives": 1
+  }
+}
