@@ -1,0 +1,380 @@
+{
+  "schemaVersion": "loredock-file-parser-development/1",
+  "resourceQualification": false,
+  "realModelCalls": 0,
+  "controlledModelCalls": 0,
+  "applicationCatalogs": 0,
+  "observedCommit": "5036ad57dbe39cd9dd66de7b44ba624ec11510e8",
+  "trees": [
+    {
+      "path": "parser-first.tar.gz",
+      "sha256": "1e93eaf2c421c268537541611c38c06f9d3cf1c052c9d25fef96d6ead9c98f70",
+      "inventory": "parser-first.inventory.json.gz",
+      "inventorySha256": "68dcac1a287228ead87d2d7f966cc97196ae7a4e786dbfcf2435249077234092",
+      "entries": 262,
+      "source": "/home/toshiba/aew/task136-parser-first"
+    },
+    {
+      "path": "typecheck-first-inputs.tar.gz",
+      "sha256": "c5981e042ffa1629c16dfd048dd77f0f403b34cb4cd609c1bbb260964aa3fb9b",
+      "inventory": "typecheck-first-inputs.inventory.json.gz",
+      "inventorySha256": "69b4a066522acf53c0b39d63e233218f84042f27b0d84dffd74a56e68d33d445",
+      "entries": 6,
+      "source": "/home/toshiba/aew/task136-first-typecheck-inputs"
+    },
+    {
+      "path": "source-loading-first-inputs.tar.gz",
+      "sha256": "2ff8529bce53e66a910ae26d64d9c7e41ba282e5552c53022efeb4f008b5f27c",
+      "inventory": "source-loading-first-inputs.inventory.json.gz",
+      "inventorySha256": "ac6f395272dbbbaeebb36f39271f036676f8c87bc46cbc7948d2cfdb7dbab61c",
+      "entries": 6,
+      "source": "/home/toshiba/aew/task136-first-source-loading-inputs"
+    },
+    {
+      "path": "review-inputs.tar.gz",
+      "sha256": "51e63c164e8498796c190716df361e2e65fd152a7279b80978dbdd1a10aa9937",
+      "inventory": "review-inputs.inventory.json.gz",
+      "inventorySha256": "29ea82937bcfded3a1a1200863797993ecf642ea00432568e5c07941a6732c54",
+      "entries": 11,
+      "source": "/home/toshiba/aew/task136-parser-review-inputs"
+    },
+    {
+      "path": "deadline-first-inputs.tar.gz",
+      "sha256": "4f9f01c9f3c24759e89f035b8d5fd494411f6814969192008fa748e27202013e",
+      "inventory": "deadline-first-inputs.inventory.json.gz",
+      "inventorySha256": "03d9d3f928054d830e6b5d24014e8a719f05c847d9f4aee270b98ce17b5a69ad",
+      "entries": 3,
+      "source": "/home/toshiba/aew/task136-late-deadline-first-inputs"
+    },
+    {
+      "path": "deadline-final-inputs.tar.gz",
+      "sha256": "d8be84b68a43fa4ce63b28b7a56be4a60c89f2f543070a4fbd574e6d12248ffe",
+      "inventory": "deadline-final-inputs.inventory.json.gz",
+      "inventorySha256": "bcb5a048b7cf5cde853a3b8af82bd0efe4581a4683eb7fd10c597328235224c5",
+      "entries": 6,
+      "source": "/home/toshiba/aew/task136-parser-deadline-final-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "task136-adapter-bootstrap-tests.log.gz",
+      "archiveSha256": "8e91077bcb72023e6760803ac81c498b3e962aa302b50ebd4ed7e12e3531174e",
+      "rawBytes": 2538,
+      "rawSha256": "d9f03eb92f7b19ae3aa2570a184b3d1de6e4c9475c41353320630393685653d7"
+    },
+    {
+      "path": "task136-adapter-coverage-final.log.gz",
+      "archiveSha256": "52742e07f94198633c4ab57c447879705e7419f78c192b3467f65f28106184be",
+      "rawBytes": 2982,
+      "rawSha256": "f0a83615be76c85bb902f83738118fcf066e0dcd907d0eb60a6eb1b5d93d32e7"
+    },
+    {
+      "path": "task136-adapter-tests-final.log.gz",
+      "archiveSha256": "810e1ad381dc2b70dc1b848078980e8c00c192cfbfa79f63e5d0312a5f71c30d",
+      "rawBytes": 2537,
+      "rawSha256": "ee2c655dd5e8e5869bbe243b024a1d05a1271b85adb63dd401dc6d1c2d012b69"
+    },
+    {
+      "path": "task136-adapter-tests-first.log.gz",
+      "archiveSha256": "1a1b043509f9d4d41a436a8b1a4e3d3a6c20e3be61b540acf12b5ea8e522e9e2",
+      "rawBytes": 2307,
+      "rawSha256": "3a94f400e6c493e9edb1b2d5418bcfe6c240386efe0a8bd9f10541ed54dae420"
+    },
+    {
+      "path": "task136-build-bootstrap.log.gz",
+      "archiveSha256": "80d11ac7bbbd75e478595a9edb4a570ff05386a4653f7377665f157da50e7095",
+      "rawBytes": 118,
+      "rawSha256": "1583301b8d263d851ab1d886b14b33b14ac238203166c424f7914e2831910839"
+    },
+    {
+      "path": "task136-build-first.log.gz",
+      "archiveSha256": "c74866eaea5188e6a94555a7f656ce27939d6f400c19c4b2f6abce9193b27c16",
+      "rawBytes": 2351,
+      "rawSha256": "0c4f783a774f8b2b1e8749aa8cf757302a42af2d5dc66bae7554ff3c9ab22f3d"
+    },
+    {
+      "path": "task136-built-tests-first.log.gz",
+      "archiveSha256": "87acb49d223b0cbbc3f384886bf40035459a08c1ecf633f41d8a3ab5e22a5dd0",
+      "rawBytes": 579,
+      "rawSha256": "aaf7bbf5c4daaa29adaa8e6433ba8bba4a1914daf9d8d20f9833e26b6ad0cb90"
+    },
+    {
+      "path": "task136-full-check-first.log.gz",
+      "archiveSha256": "97ce5d424b95c53247065d5995106d7d8c449dfd0e5e8aa3710e654963150143",
+      "rawBytes": 381217,
+      "rawSha256": "b3bb27b08b7ec6a7792a458b9e3f92a8c3bd8a777df1762b090749f2ef3d7028"
+    },
+    {
+      "path": "task136-install-first.log.gz",
+      "archiveSha256": "61724a675c8137c06fe4fb7c6278f3c2ecb6a8b9fc904af10ecd1268af94f499",
+      "rawBytes": 326,
+      "rawSha256": "e16310149507bcaf116a0e207c38976905453c5a492e4779281df3836ad3bc24"
+    },
+    {
+      "path": "task136-minimum-built-tests-final.log.gz",
+      "archiveSha256": "99bdc98de3269636ec0732f992eddbaa9d11d10cf7616ac363d31606ddd9b6b6",
+      "rawBytes": 548,
+      "rawSha256": "f6a32c734e120f783d56570af98e4d72ddc2268ab2554f2b41b64925e16dd3d8"
+    },
+    {
+      "path": "task136-minimum-built-tests-first.log.gz",
+      "archiveSha256": "5116f2cb150eb00f7e6e1e809de02fef72c5408c3caa476a3e8dacac8b8e8763",
+      "rawBytes": 549,
+      "rawSha256": "2f2e9a24476a10db5ce190e946e9233c0795f36e716427ca9c4e412be87b5df5"
+    },
+    {
+      "path": "task136-minimum-coverage-final.log.gz",
+      "archiveSha256": "d6f4e4ce5e969252c8369bbeb0b3d943f83bf572de6fe942de0421d7438fab29",
+      "rawBytes": 2802,
+      "rawSha256": "62d3509ab0e8ebe1064ffa77e99fe8192e4d5b4e8c774fc676c4b203cb1f346c"
+    },
+    {
+      "path": "task136-minimum-source-tests-corrected.log.gz",
+      "archiveSha256": "d6b5b57ce9876348f6d5d983459b142b8eda2709272a70fb63156702b699faf2",
+      "rawBytes": 2387,
+      "rawSha256": "f890eee2bfdd5a0cabe3ec479e055f4ea83b9b518f5f3826435f3d8a12b235fb"
+    },
+    {
+      "path": "task136-minimum-source-tests-final.log.gz",
+      "archiveSha256": "d7e1096038c34e5cae8618ac6ec6028d6163c0351fe577ee14b19e629ed385c5",
+      "rawBytes": 2600,
+      "rawSha256": "d56a168200bf7d03556c08c74a4da79d92266844e8df8c5011ea729c496c6b00"
+    },
+    {
+      "path": "task136-minimum-source-tests-first.log.gz",
+      "archiveSha256": "8d8002d4a741acf5ea75112a9c887d3f0a172b9239d497f0fd320a13e48d170a",
+      "rawBytes": 3089,
+      "rawSha256": "a7f4927e05e50fa52bd1d5550759d88bbf9ab1d956b9b3ecb103c8f65972477b"
+    },
+    {
+      "path": "task136-parser-archive-first.log.gz",
+      "archiveSha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "limitation": "Captured before the archive writer completed; the final writer output is retained separately."
+    },
+    {
+      "path": "task136-parser-assessment-first.log.gz",
+      "archiveSha256": "ccccdfb2dbb4f77252eb4d48f224d8d9c5627b01b5792c408222746ee9be4e3d",
+      "rawBytes": 1711,
+      "rawSha256": "064ffcfc16730eb8e0ba2e4e2e6748a8489e1e5788cabed4b45d011148323700"
+    },
+    {
+      "path": "task136-parser-first-launch.log.gz",
+      "archiveSha256": "a71b5a774aac615ae15d6dfc2adab3afa8be6c7b63f9d3a3eb0f8be693cef709",
+      "rawBytes": 151,
+      "rawSha256": "83c29fe337991b3298792a0c4da3fb4fe8e5d87d24adad69dc10e80703b086e8"
+    },
+    {
+      "path": "task136-source-minimum-loading-first.log.gz",
+      "archiveSha256": "9dc2d2bd0fbf4ee7ba0cfebc5c82add5eb6993af03760093dc305f7b3100e6ef",
+      "rawBytes": 316,
+      "rawSha256": "302a38dee8962f0572c67a12f30b58dec03951010ce6aead2e077a939fa84e46"
+    },
+    {
+      "path": "task136-typecheck-corrected.log.gz",
+      "archiveSha256": "392338eeebc53838b9e7628ebb8d3f6b94c8520e75d1b23d0e2f1e11ef4af200",
+      "rawBytes": 143,
+      "rawSha256": "f2f7a9e6aa14cddbe63c925f8433b3912fd0b2d17ed7661e34af03d03bc398d3"
+    },
+    {
+      "path": "task136-typecheck-final.log.gz",
+      "archiveSha256": "392338eeebc53838b9e7628ebb8d3f6b94c8520e75d1b23d0e2f1e11ef4af200",
+      "rawBytes": 143,
+      "rawSha256": "f2f7a9e6aa14cddbe63c925f8433b3912fd0b2d17ed7661e34af03d03bc398d3"
+    },
+    {
+      "path": "task136-typecheck-first.log.gz",
+      "archiveSha256": "7fae8ad4e2c7346d4883ad39111e2152e771f1e582d1ce42263c1a6fc9dafd60",
+      "rawBytes": 4438,
+      "rawSha256": "37f4ad6c679f28f7cbf5f94a14ec2d4277a1a5568688e0fbc2523237d8af0297"
+    },
+    {
+      "path": "task135-design-ci-push.log.gz",
+      "archiveSha256": "f445a54ce4816fc9a7d983f0230a6450a3ff96f72efc666c28395413bdf93290",
+      "rawBytes": 593397,
+      "rawSha256": "d33e4f786d36e6e72aee01247be47eafc32a5bf72ab0753ca1f876cf6beade1b"
+    },
+    {
+      "path": "task135-design-ci-pr.log.gz",
+      "archiveSha256": "d1cce6ace239233b51138a980049d6d12bee5bbb91550bcdb5267840fade9017",
+      "rawBytes": 594345,
+      "rawSha256": "c5c62bec0ebdc2264c22881b5dc898ddd336db49bc2da191b6df55c852ff81c8"
+    },
+    {
+      "path": "task136-parser-archive-completed.log.gz",
+      "archiveSha256": "86b6dc1d1b1aeb91198a72cb81e4a94ee0cb1a7ba3c0f92dbe3c96a3e7bd69a3",
+      "rawBytes": 79,
+      "rawSha256": "11eed355453d65eeac744372fa7abdaec3c188d2d5dffcb651b11ac30b47f084"
+    },
+    {
+      "path": "task136-deadline-build.log.gz",
+      "archiveSha256": "80d11ac7bbbd75e478595a9edb4a570ff05386a4653f7377665f157da50e7095",
+      "rawBytes": 118,
+      "rawSha256": "1583301b8d263d851ab1d886b14b33b14ac238203166c424f7914e2831910839"
+    },
+    {
+      "path": "task136-deadline-built-final.log.gz",
+      "archiveSha256": "3c941e653f60f36848ebb1a197466174019534cd804850818189f06a3c9c74bc",
+      "rawBytes": 579,
+      "rawSha256": "fb7748d3623596e4af8bf341e573f1c20984b64dd3f8a245817e3094d10408e3"
+    },
+    {
+      "path": "task136-deadline-complete-minimum.log.gz",
+      "archiveSha256": "273c77e61cf6b1435931bbdd1f95bee6ef9d090027485aa1d89f4079788f04fb",
+      "rawBytes": 3218,
+      "rawSha256": "3c842625694fcb0b43ddb0ca512931b4d8fa71fc1614be166bde4ea9f86dfd53"
+    },
+    {
+      "path": "task136-deadline-complete-source.log.gz",
+      "archiveSha256": "f799e831b4d19e1665e7a21d2c38de2a70803c22dee5239eae5ba79d9556d695",
+      "rawBytes": 3430,
+      "rawSha256": "f87dacb3bcf5fb3ed32ff76e2d8203bc02d56ab2b49d6898f83b9cf735bb6528"
+    },
+    {
+      "path": "task136-deadline-complete-typecheck.log.gz",
+      "archiveSha256": "392338eeebc53838b9e7628ebb8d3f6b94c8520e75d1b23d0e2f1e11ef4af200",
+      "rawBytes": 143,
+      "rawSha256": "f2f7a9e6aa14cddbe63c925f8433b3912fd0b2d17ed7661e34af03d03bc398d3"
+    },
+    {
+      "path": "task136-deadline-minimum-built-final.log.gz",
+      "archiveSha256": "f9cd180c9b0d7c38bb7e63b6a3cb7d52d522d1fd567cda3eb6bc114ea13768c9",
+      "rawBytes": 549,
+      "rawSha256": "2dae4ac151e347df5be5d15eddc3f0a93ae6e6bdd74952ab5da233239a25ee75"
+    },
+    {
+      "path": "task136-deadline-minimum-final.log.gz",
+      "archiveSha256": "565cbbf1704140da8d14719a0ea266022ccaa9b8789f7c7ad0c1109328154201",
+      "rawBytes": 3002,
+      "rawSha256": "558bb9d0f7a1474599e8961a3130c015173ca02cd6f9dbef53f4fe1c98f9187a"
+    },
+    {
+      "path": "task136-deadline-source-final.log.gz",
+      "archiveSha256": "5867a7025b2f2b79dd5ba4000ca5543334a66bc1c17f7398c7c3c63c88d973f9",
+      "rawBytes": 3196,
+      "rawSha256": "4ed7afe7c0162faf787829f39cb9afb2ccb83ede4919215e1b3d0e52ca2507b1"
+    },
+    {
+      "path": "task136-deadline-typecheck-final.log.gz",
+      "archiveSha256": "392338eeebc53838b9e7628ebb8d3f6b94c8520e75d1b23d0e2f1e11ef4af200",
+      "rawBytes": 143,
+      "rawSha256": "f2f7a9e6aa14cddbe63c925f8433b3912fd0b2d17ed7661e34af03d03bc398d3"
+    },
+    {
+      "path": "task136-late-deadline-regression-first.log.gz",
+      "archiveSha256": "4bfc72aa0859cbc2454417115fdc2614d8d46495df0497bd181c14a25ce24347",
+      "rawBytes": 848,
+      "rawSha256": "490e5e9867ff3323d21e446a3ba0f88d285ffa2a8ab2a2d99ac8e0507c5ac220"
+    },
+    {
+      "path": "task136-parser-static-first.log.gz",
+      "archiveSha256": "b5137e195a560a60822526fc160e4741d897f6a6151ed6512a1f213769ca8a26",
+      "rawBytes": 224,
+      "rawSha256": "bddd2079bfc122a3ad9dcbd92b8f412faa176244a055cdc00f7e5764d693db67"
+    }
+  ],
+  "assessment": {
+    "resourceQualification": false,
+    "facts": [
+      {
+        "path": "src/client.ts",
+        "symbols": 1,
+        "operations": 1,
+        "gaps": 0
+      },
+      {
+        "path": "src/client.js",
+        "symbols": 1,
+        "operations": 0,
+        "gaps": 0
+      },
+      {
+        "path": "src/Checkout.vue",
+        "symbols": 1,
+        "operations": 1,
+        "gaps": 1
+      },
+      {
+        "path": "src/Orders.java",
+        "symbols": 1,
+        "operations": 0,
+        "gaps": 0
+      },
+      {
+        "path": "src/unicode.ts",
+        "symbols": 1,
+        "operations": 1,
+        "gaps": 0
+      },
+      {
+        "path": "src/broken.ts",
+        "symbols": 0,
+        "operations": 0,
+        "gaps": 1
+      },
+      {
+        "path": "src/Unsupported.vue",
+        "symbols": 0,
+        "operations": 0,
+        "gaps": 1
+      },
+      {
+        "path": "src/Escapes.java",
+        "symbols": 0,
+        "operations": 0,
+        "gaps": 1
+      }
+    ],
+    "sourceParity": true,
+    "rangesParity": true,
+    "elapsedMs": 239.02713700000004,
+    "processCpu": {
+      "user": 177851,
+      "system": 38681
+    },
+    "samples": 25,
+    "workerSamples": 14,
+    "rejectedHeapSamples": 2,
+    "pendingSampleTicks": 8,
+    "parentHeapMaximum": 6357104,
+    "workerHeapMaximum": 24686144,
+    "observedHeapMaximaSum": 31043248,
+    "processRssMaximum": 133906432,
+    "processHighWaterRssMaximum": 144556032,
+    "mainIntervalMaximumMs": 10.966159000000005,
+    "createdToFirstCompletionMs": 21.979112999999998,
+    "workerLastCompletionToExitMs": 4.470380000000006,
+    "workerRequestCompletionMaximumMs": 74.70356,
+    "limitation": "External statistics complete asynchronously. Sampled maxima are not simultaneous or continuous peaks. Startup coverage is incomplete; no heap or production-startup qualification."
+  },
+  "rawEntriesUnchanged": 262,
+  "postObservationCorrection": {
+    "head": "cc93e8e0e4b9fbe95de15dad1e824a5fd07ae1ee",
+    "reason": "Recheck absolute deadlines after identity initialization and around reply validation; do not rely only on timers.",
+    "resourceQualification": false,
+    "resourceObservationRerun": false,
+    "implementationDelta": {
+      "apps/loredock/src/file-parser-owner.ts": {
+        "before": {
+          "bytes": 9262,
+          "sha256": "fd157d5149d53b6518a2a5da8dbf9aaece9ab4cb8a70b2235276d8afe1a85071"
+        },
+        "after": {
+          "bytes": 9605,
+          "sha256": "c297047974c219dd74b43738afd586ab1eec1913475798ae61e2c2f9f4811427"
+        }
+      },
+      "apps/loredock/dist/file-parser-owner.js": {
+        "before": {
+          "bytes": 8739,
+          "sha256": "427fb3c368138fb2e925499a4b60e50c8de475cbe3179a8dbca48d016b708e91"
+        },
+        "after": {
+          "bytes": 9122,
+          "sha256": "e02ce1a1242aa1e2395d316941f6a21f530b0fd3e267b140bf2f085eddce1cc1"
+        }
+      }
+    }
+  }
+}

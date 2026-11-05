@@ -1,5 +1,35 @@
 # Development status
 
+## Task 136 — Unwired owned file-parser adapter
+
+Task 135 is accepted through [PR #168](https://github.com/skyscs/ai-engineering-workbench/pull/168):
+both complete exact-head CI logs pass 1,046 tests at `4c9b59b`, before identical-tree
+merge `e09e923`. The new adapter does not change any existing production source/parser,
+entry import, inventory fingerprint, schema, default or model policy.
+
+One explicit owner, one request and no queue/automatic restart enforce bounded work.
+Strict frames bind generation/request/input/implementation and validate original fact
+ranges. Cancellation and shutdown join actual exit; timeout retains incomplete ownership.
+Fourteen source-worker tests and two built tests pass on Node 22.23.2 and minimum 22.13.0.
+The first candidate's full local check passes 1,059 tests. Final review adds positive-event,
+syntax-limit and delayed-timer regressions, and an absolute-deadline guard around identity
+initialization/reply validation. First typecheck, source-loader and late-deadline failures
+are retained; the final owner passes focused tests, strict types and build.
+
+The [first ordinary observation](fixtures/loredock-file-parser/README.md) at `5036ad5`
+precedes the deadline correction, returns eight exact fact/range results and exits without
+survivors. Main intervals reach
+10.966 ms; observed parent/worker heap maxima sum to 31,043,248 bytes. Two heap requests
+reject, eight sample ticks wait for a prior request, and completion delay reaches
+74.704 ms. Missing startup/busy coverage prevents memory qualification. No old production
+startup failure is repaired by this disconnected adapter; all 139 old emitted modules
+remain exact. No application catalog, corporate source or model call is involved.
+
+After exact-head checks and merge, [Task 137](../tasks/137-loredock-async-legacy-consumers.md)
+migrates legacy graph consumers, synchronous transaction fences and shared accounting
+before production adoption. Startup, near-limit heap and browser RSS remain separate
+unresolved gates; the consumed qualification families remain closed.
+
 ## Task 135 — Owned compiler isolation design
 
 Task 134 is accepted through [PR #167](https://github.com/skyscs/ai-engineering-workbench/pull/167):
