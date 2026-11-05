@@ -11,14 +11,16 @@ Usage survives cancelled or rejected late output, and consumers drain before dep
 
 All **929 tests, strict types and builds pass**, including 17 new compiled adapter tests.
 [Verification records](fixtures/loredock-prepared-answer-admission/README.md) preserve
-first failures, 11 raw logs and the actual runtime delta. Native inventory eviction,
+first failures, 14 raw logs and the actual runtime delta. Native inventory eviction,
 source/policy/review/build/original changes, restart/idempotency, quota rollback, cleanup
 and accepted legacy byte behavior are covered. All 154 unaffected application files,
 64 package files and 80 frozen artifacts stay unchanged. The 64-module service comparison
 union includes actual AI/core imports; it has no transferred resource/model qualification.
 
 PR #128 passed both CI events at `a9c9cde` and merged as identical-tree `c1f6c37`.
-Task 125 requires both final-head CI events before acceptance. Next
+The first Task 125 push CI exposed a test ordering assumption during an asynchronous
+index rebuild; explicit worker scheduling fixes it without production changes, and all
+130 script tests pass. Both new final-head CI events are required before acceptance. Next
 [Task 126](../tasks/126-loredock-prepared-question-http-ui.md) connects protected HTTP
 and the existing simple review flow behind a server experiment switch. Public/default
 answer behavior is unchanged; fresh complete resource and semantic gates remain open.

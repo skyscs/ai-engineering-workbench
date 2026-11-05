@@ -2,7 +2,7 @@
   "schemaVersion": "prepared-answer-admission-review/1",
   "base": "c1f6c37cacca27a4d803c18ebf3ae3988ce75966",
   "preservedControlsCommit": "4fb8c2e",
-  "reviewedExecutable": "809b0c0b863d3cffc9b3774fed94a8287e3651e4",
+  "reviewedExecutable": "82478312d239d97c8f7e0b3b29a4c0d983a8d52d",
   "node": "22.23.2",
   "typescript": "5.9.3",
   "pnpm": "10.15.0",
@@ -83,13 +83,35 @@
       "bytes": 1295,
       "sha256": "0dc4a46081b4f7ddbf6745b90a1afe6b331617c6a3f2e5ab2efd589c62180457",
       "archiveSha256": "18215a182ca5cd7ef50ac13bae72cb16b33fa78ef5b5b4e5df157a0d7531bd41"
+    },
+    {
+      "path": "ci-push-first.log.gz",
+      "exitCode": 1,
+      "bytes": 664315,
+      "sha256": "cf65129c1824095b1e8720a64c572c99220dc6572558f626c8946c2b1aa20789",
+      "archiveSha256": "67f7802c2de4d931dd2a858d1db15d04537736ddd83f5feb8fa05b83709e1325"
+    },
+    {
+      "path": "scripts-after-ci.log.gz",
+      "exitCode": 0,
+      "bytes": 35965,
+      "sha256": "6ad82efc40777b64db46c3166b5d12d041628fdec5c329382cc444a46a61a62e",
+      "archiveSha256": "2517421748f4597d49e367c3d8510e0d722642c40e2e16ba15bc22e4f71f7c07"
+    },
+    {
+      "path": "ci-pr-first.log.gz",
+      "exitCode": 1,
+      "bytes": 665787,
+      "sha256": "c40bce5545b31257c59f7cd78a62509c8328e5bd65392215569d712157e31818",
+      "archiveSha256": "75864151070173aa610559c34c3955d057e6baf626675be164d75ce8f2789ff5"
     }
   ],
   "firstFailures": [
     "The first focused run passed 36/43. Four successful-answer expectations failed because the controlled runtime supplied a statement in unknowns, whose unchanged schema requires a question ending in ?. The fixture now uses a valid question.",
     "Two first focused failures used CommonJS require.resolve for an ESM-only @aew/ai export while loading the accepted Answers control. The test loader now uses ESM import.meta.resolve from inside the application package; preserved original control bytes are unchanged.",
     "One first focused corruption case named a nonexistent answer_witness_content trigger. It now drops the actual answer_witness_purge guard only in its disposable corruption fixture.",
-    "The first runtime audit treated the direct emitted Answers imports as the complete construction closure. Type-only Catalog imports are absent from emitted JS, so several unchanged constructor dependencies were missing and misclassified. The corrected audit unions actual native service/legacy comparison roots, preparation and Answers; it separately declares the entry-point delta and does not claim the whole HTTP/browser closure."
+    "The first runtime audit treated the direct emitted Answers imports as the complete construction closure. Type-only Catalog imports are absent from emitted JS, so several unchanged constructor dependencies were missing and misclassified. The corrected audit unions actual native service/legacy comparison roots, preparation and Answers; it separately declares the entry-point delta and does not claim the whole HTTP/browser closure.",
+    "Push CI 41946324582 at c5d7a8a failed one ordering assertion: the asynchronous index rebuild could finish after runtime preflight legitimately began. Production correctly refused stale publication. The test now explicitly holds the scheduled owned worker until the replacement build completes, then runs the real validator and requires zero preflight calls. Production code is unchanged; all 130 compiled script tests pass after the test-only fix. Pull-request CI 41946364449 independently failed the same assertion. A cancellation request raced with completion and was refused because the run had already finished; both original failed CI logs are retained."
   ],
   "tests": {
     "legacyFocused": 19,
@@ -103,7 +125,8 @@
       "daemon": 57,
       "scripts": 130
     },
-    "newCompiledPreparedAnswerTests": 17
+    "newCompiledPreparedAnswerTests": 17,
+    "scriptsAfterCiFix": 130
   },
   "ordinaryObservation": {
     "loadedWork": 158428,
@@ -130,5 +153,17 @@
   "reservedFamilyRuns": 0,
   "publicPreparedInputEnabled": false,
   "ciStatus": "Both final-head events required before acceptance.",
-  "localDocumentationLinks": 685
+  "localDocumentationLinks": 685,
+  "productionExecutable": "809b0c0b863d3cffc9b3774fed94a8287e3651e4",
+  "ciFirstHead": {
+    "head": "c5d7a8aaa4e948b3fd4d3e8a8852a73b389df406",
+    "push": {
+      "run": 41946324582,
+      "conclusion": "failure"
+    },
+    "pullRequest": {
+      "run": 41946364449,
+      "conclusion": "failure"
+    }
+  }
 }

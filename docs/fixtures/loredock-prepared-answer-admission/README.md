@@ -7,7 +7,9 @@ resource and semantic qualification before default adoption.
 
 Accepted base: `c1f6c37cacca27a4d803c18ebf3ae3988ce75966` (PR #128).
 Controls preceded implementation in `4fb8c2e`; reviewed executable:
-`809b0c0b863d3cffc9b3774fed94a8287e3651e4`.
+`82478312d239d97c8f7e0b3b29a4c0d983a8d52d`.
+Production code and the initial full local check remain at `809b0c0`; the later executable
+commit changes only deterministic test scheduling after CI exposed an ordering assumption.
 Node 22.23.2, V8 12.4.254.21-node.56, TypeScript 5.9.3 and pnpm 10.15.0.
 
 - [Review](review.json): checks, hashes, first failures, scope and limitations.
@@ -51,3 +53,11 @@ pull-request CI must pass at the final PR head before acceptance.
 
 See the [adapter contract](../../loredock/PREPARED_ANSWER_ADMISSION.md) and
 [next public integration scope](../../../tasks/126-loredock-prepared-question-http-ui.md).
+
+Push CI 41946324582 at `c5d7a8a` failed one test-ordering assertion: a real asynchronous
+index rebuild could finish after preflight legitimately began. The worker still refused
+stale publication. The corrected test holds the scheduled worker until the new build is
+published, then executes actual validation and requires zero preflight calls. All 130
+compiled script tests pass after this test-only fix. Production code is unchanged. Pull-request CI 41946364449 independently failed the same assertion. A cancellation request
+raced with its completion and was refused. Both failed CI logs and the post-fix script
+log are retained, bringing the archive to 14. New final-head CI events are required.
