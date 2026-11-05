@@ -11,7 +11,8 @@ import { decodeNativeReceipt } from './native-receipt.js';
 import { bytes, hash, same, requireReceipt, record, shape, string, hex, uuid, array } from './native-receipt-json.js';
 import { selectionVersion } from './question-path-selection.js';
 import { compactQuestionPath, inputSpan, preparedQuestionPrompt } from './question-context.js';
-import { questionPreparationLimits, questionPreparationVersion, questionPromptVersion, questionWitnessVersion,
+import { compactVersionForPrompt, supportedQuestionPrompt } from './question-native-format.js';
+import { questionPreparationLimits, questionPreparationVersion, questionWitnessVersion,
   type QuestionSnapshot, type QuestionWitness } from './question-preparation-types.js';
 
 export function questionSourceIds(context: AnswerContext, witness: Pick<QuestionWitness, 'dependencies'>) {
@@ -55,7 +56,8 @@ export function readQuestionSnapshot(snapshot: QuestionSnapshot) {
     selection: value => value === null || record(value), dependencies: array(record, 20), sourceIds: array(uuid, 20),
     prompt: value => typeof value === 'string', promptHash: hex })(witness), 'QUESTION_WITNESS_CONTENT');
   requireReceipt(witness.schemaVersion === questionWitnessVersion && witness.compositionVersion === questionPreparationVersion
-    && witness.promptVersion === questionPromptVersion && witness.lexicalInputHash === context.inputHash, 'QUESTION_WITNESS_VERSION');
+    && supportedQuestionPrompt(witness.promptVersion) && witness.lexicalInputHash === context.inputHash, 'QUESTION_WITNESS_VERSION');
+  requireReceipt(!witness.compact.item || witness.compact.item.schemaVersion === compactVersionForPrompt(witness.promptVersion), 'QUESTION_COMPACT_VERSION');
   const { inputHash, ...content } = context;
   requireReceipt(context.retrievalVersion === retrievalVersion && hash(JSON.stringify(content)) === inputHash, 'QUESTION_CONTEXT_HASH');
   requireReceipt(context.spans.length <= answerLimits.spans && context.textBytes === context.spans.reduce((sum, row) => sum + bytes(row.text), 0)
@@ -97,7 +99,7 @@ export async function validateQuestionWitness(catalog: Catalog, snapshot: Questi
       work.authorized(encoded.projection, encoded.receipt.dependencies);
       requireReceipt(encoded.projection.identity.buildId === context.buildId && same(encoded.receipt.dependencies, witness.dependencies), 'QUESTION_RECEIPT_BINDING');
       for (const original of encoded.receipt.originals) { await work.step('originals'); requireReceipt(same(work.original(original.id), original)); }
-      requireReceipt(same(compactQuestionPath(context, encoded, budget), witness.compact), 'QUESTION_COMPACT_MISMATCH');
+      requireReceipt(same(compactQuestionPath(context, encoded, budget, compactVersionForPrompt(witness.promptVersion)), witness.compact), 'QUESTION_COMPACT_MISMATCH');
     } else requireReceipt(witness.compact.item === null && typeof witness.compact.reason === 'string', 'QUESTION_MISSING_RECEIPT');
     for (const span of context.spans) {
       await work.step('originals'); const original = work.original(span.id);

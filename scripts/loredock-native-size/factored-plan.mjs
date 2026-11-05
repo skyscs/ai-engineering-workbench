@@ -1,0 +1,10 @@
+export const plan = Object.freeze({ version: 'ordinary-native-factoring/2',
+  order: ['production-v2-review', 'controlled-v2-save', 'production-v2-restart-browser-replay-purge',
+    'production-v1-history-reopen-replay', 'copied-v1-v2-full-witness-validation'],
+  catalogRoots: ['run/production-data', 'run/checkpoint-v2', 'run/restart-data', 'run/v1-reopen/data',
+    'run/diagnostic-v1', 'run/diagnostic-v2'],
+  derivedBytes: 8192, expectedCombinedBytes: 8081, expectedOriginals: 8,
+  controlledRuntimeCalls: 1, realModelCalls: 0, reservedFamilyReads: 0,
+  repeatPolicy: 'One first observation; preserve failures and stopped copies without retries.',
+  browserPurpose: 'Ready and saved header-gap display, not resource qualification.',
+  resourceQualification: false });

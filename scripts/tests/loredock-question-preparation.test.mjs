@@ -12,7 +12,8 @@ import { paddingCorpus } from '../loredock-native-question-context/boundary-inpu
 import { QuestionPreparations } from '../../apps/loredock/dist/question-preparation.js';
 import { validateQuestionWitness, readQuestionSnapshot, questionSnapshot, retainedQuestionBytes } from '../../apps/loredock/dist/question-witness.js';
 import { compactQuestionPath, preparedQuestionPrompt } from '../../apps/loredock/dist/question-context.js';
-import { questionPreparationLimits, questionCompactVersion, questionPreparationVersion } from '../../apps/loredock/dist/question-preparation-types.js';
+import { questionPreparationLimits, questionCompactVersion, legacyQuestionCompactVersion, questionPreparationVersion } from '../../apps/loredock/dist/question-preparation-types.js';
+import { expandNativeQuestion } from '../../apps/loredock/dist/question-native-format.js';
 import { retrieveAnswerContext } from '../../apps/loredock/dist/answer-context.js';
 import { answerPrompt } from '../../apps/loredock/dist/answer-prompt.js';
 import { decodeNativeReceipt } from '../../apps/loredock/dist/native-receipt.js';
@@ -52,9 +53,11 @@ test('prepared context preserves legacy bytes, compact semantics and owned no-wr
   const fresh = owner.review(preview.id); assert.equal(fresh.context.question, question); assert(fresh.compact.item.nodes.length > 0);
   const held = snapshot(owner, fresh), { context, witness } = readQuestionSnapshot(held);
   const budget = new services.OperationBudget(), encoded = decodeNativeReceipt(Buffer.from(witness.receipt), fixture.store.receipts.catalogId, budget);
-  const old = controlCompact(context, encoded, budget), current = compactQuestionPath(context, encoded, budget); budget.close();
-  assert.deepEqual(current.item, { ...old.item, schemaVersion: questionCompactVersion });
-  assert.equal(witness.prompt, experimentalPrompt(context, old.item).replace('offline-native-question-item/1', questionCompactVersion));
+  const old = controlCompact(context, encoded, budget), current = compactQuestionPath(context, encoded, budget);
+  const v1 = compactQuestionPath(context, encoded, budget, legacyQuestionCompactVersion); budget.close();
+  assert.deepEqual(v1.item, { ...old.item, schemaVersion: legacyQuestionCompactVersion });
+  assert.deepEqual(expandNativeQuestion(current.item, context), v1.item);
+  assert.equal(preparedQuestionPrompt(context, v1.item), experimentalPrompt(context, old.item).replace('offline-native-question-item/1', legacyQuestionCompactVersion));
   assert.equal(witness.prompt, preparedQuestionPrompt(context, current.item));
   assert(held.retainedBytes <= questionPreparationLimits.retainedBytes);
   assert(Buffer.byteLength(held.witnessJson) <= questionPreparationLimits.witnessBytes);
@@ -196,7 +199,8 @@ test('compact admission omits whole paths for missing originals and both shared 
   assert.equal(derive(missing).reason, 'incomplete-original-support'); assert.equal(derive(missing).item, null);
   const wrong = rehash({ ...context, spans: context.spans.map(span => span.id === id ? { ...span, revision: 'a'.repeat(40) } : span) });
   assert.equal(derive(wrong).reason, 'incomplete-original-support');
-  const full = rehash({ ...context, interfaces: { ...context.interfaces, comparisons: Array(6).fill(context.interfaces.comparisons[0]) } });
+  const full = rehash({ ...context, interfaces: { ...context.interfaces, comparisons: Array.from({ length: 6 }, (_, index) => ({
+    ...context.interfaces.comparisons[0], id: hash('distinct-comparison-' + index) })) } });
   assert.equal(derive(full).reason, 'derived-size'); assert.equal(derive(full).item, null);
   // Internal renderer boundary only: preserve real original bytes while varying
   // separate metadata size. This is not an alternative retrieval/owner input hook.

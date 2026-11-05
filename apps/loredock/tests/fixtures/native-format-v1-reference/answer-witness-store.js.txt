@@ -1,0 +1,133 @@
+import { questionPreparationVersion, questionPromptVersion } from './question-preparation-types.js';
+import { answerSchemaVersion } from './answer-context.js';
+import { CatalogError } from './types.js';
+import { OperationBudget } from './operation-budget.js';
+import { CaptureWork } from './native-capture-work.js';
+import { bytes, hash, same, uuid, hex, requireReceipt } from './native-receipt-json.js';
+import { decodeNativeReceipt } from './native-receipt.js';
+import { compactQuestionPath, preparedQuestionPrompt } from './question-context.js';
+import { readQuestionSnapshot, retainedQuestionBytes, assertQuestionCurrent, authorizeQuestionScope } from './question-witness.js';
+import { answerWitnessLimits, answerWitnessVersion, preparedAnswerInputKind } from './answer-witness-schema.js';
+export const preparedAnswerRequestHash = (preparationId, reviewedHash) => hash(JSON.stringify({ preparationId, reviewedHash }));
+function fail(code, message) { throw new CatalogError(code, message, 409); }
+/** Validate the frozen structure only; original authority is rechecked by the answer worker. */
+function decode(snapshot, budget) {
+    try {
+        const result = readQuestionSnapshot(snapshot), { context, witness } = result;
+        budget.charge('receipt', bytes(snapshot.contextJson) + bytes(snapshot.witnessJson));
+        if (witness.receipt !== null) {
+            const receipt = decodeNativeReceipt(Buffer.from(witness.receipt), witness.catalogId, budget);
+            requireReceipt(receipt.projection.identity.buildId === context.buildId
+                && receipt.projection.identity.policyVersion === context.policyVersion
+                && receipt.projection.identity.registryVersion === context.registryVersion
+                && receipt.projection.identity.sourceSetVersion === context.sourceSetVersion
+                && same(receipt.receipt.dependencies, witness.dependencies), 'QUESTION_RECEIPT_BINDING');
+            requireReceipt(same(compactQuestionPath(context, receipt, budget), witness.compact), 'QUESTION_COMPACT_MISMATCH');
+        }
+        requireReceipt(preparedQuestionPrompt(context, witness.compact.item) === witness.prompt, 'QUESTION_PROMPT_MISMATCH');
+        return result;
+    }
+    catch (error) {
+        if (error && typeof error === 'object' && 'code' in error && typeof error.code === 'string' && error.code.startsWith('CAPTURE_'))
+            throw error;
+        const failure = new CatalogError('ANSWER_WITNESS_INVALID', 'Saved prepared input is invalid or unsupported.', 409);
+        failure.cause = error;
+        throw failure;
+    }
+}
+/** Internal synchronous storage. It neither consumes preparations nor dispatches a model. */
+export class AnswerWitnessStore {
+    catalog;
+    constructor(catalog) {
+        this.catalog = catalog;
+    }
+    stats() {
+        const result = this.catalog.store.one(`
+      SELECT count(*) AS records, count(CASE WHEN purged=0 THEN 1 END) AS retained,
+        count(CASE WHEN purged=1 THEN 1 END) AS purged, coalesce(sum(length(CAST(witness AS BLOB))),0) AS bytes,
+        count(CASE WHEN witnessBytes<>coalesce(length(CAST(witness AS BLOB)),0)
+          OR purged NOT IN (0,1) OR length(CAST(witness AS BLOB))>786432
+          OR (purged=0 AND (witness IS NULL OR typeof(witness)<>'text')) OR (purged=1 AND witness IS NOT NULL) THEN 1 END) AS invalid
+      FROM answer_witnesses`);
+        if (result.invalid || result.records > answerWitnessLimits.records || result.bytes > answerWitnessLimits.totalBytes)
+            fail('ANSWER_WITNESS_INVALID', 'Saved witness accounting is inconsistent.');
+        const { invalid: _, ...stats } = result;
+        return stats;
+    }
+    create(input, snapshot) {
+        if (!uuid(input.id) || !uuid(input.preparationId) || !/^[A-Za-z0-9_-]{1,100}$/.test(input.requestId)
+            || !hex(snapshot.reviewedHash) || typeof input.model !== 'string' || !/^[A-Za-z0-9_.-]{1,100}$/.test(input.model)
+            || input.effort !== 'medium' || typeof input.connection?.executable !== 'string' || typeof input.connection.configHome !== 'string'
+            || !(input.connection.profile === null || typeof input.connection.profile === 'string') || bytes(JSON.stringify(input.connection)) > 8192)
+            fail('INVALID_REQUEST', 'Use bounded, owned prepared answer inputs.');
+        const store = this.catalog.store, budget = new OperationBudget();
+        try {
+            return store.transaction(() => {
+                const { context, witness } = decode(snapshot, budget);
+                requireReceipt(witness.catalogId === store.receipts.catalogId, 'RECEIPT_CATALOG_MISMATCH');
+                assertQuestionCurrent(this.catalog, context, witness.sourceIds);
+                const work = new CaptureWork(this.catalog, budget, new AbortController().signal, {});
+                authorizeQuestionScope(work, context, witness);
+                work.check();
+                const size = bytes(snapshot.witnessJson), stats = this.stats();
+                if (stats.records >= answerWitnessLimits.records || size > answerWitnessLimits.bytes || stats.bytes + size > answerWitnessLimits.totalBytes)
+                    fail('ANSWER_WITNESS_LIMIT', 'Answer witness storage is full. No existing answer was removed.');
+                const payloadHash = preparedAnswerRequestHash(input.preparationId, snapshot.reviewedHash);
+                store.run(`INSERT INTO answer_attempts
+        (id,requestId,payloadHash,question,buildId,policyVersion,registryVersion,status,context,inputHash,connection,
+          model,effort,promptVersion,schemaVersion,createdAt,usageUnknownReason,inputKind)
+        VALUES (?,?,?,?,?,?,?,'preparing',?,?,?,?,?,?,?,?,'Not dispatched yet.',?)`, input.id, input.requestId, payloadHash, context.question, context.buildId, context.policyVersion, context.registryVersion, snapshot.contextJson, context.inputHash, JSON.stringify(input.connection), input.model, input.effort, witness.promptVersion, answerSchemaVersion, new Date().toISOString(), preparedAnswerInputKind);
+                for (const sourceId of witness.sourceIds)
+                    store.run('INSERT INTO answer_sources VALUES (?,?)', input.id, sourceId);
+                store.run(`INSERT INTO answer_witnesses
+        (answerId,preparationId,schemaVersion,compositionVersion,promptVersion,contextHash,reviewedHash,witness,witnessBytes)
+        VALUES (?,?,?,?,?,?,?,?,?)`, input.id, input.preparationId, answerWitnessVersion, witness.compositionVersion, witness.promptVersion, hash(snapshot.contextJson), snapshot.reviewedHash, snapshot.witnessJson, size);
+                // The read-only authority epoch ends before our own writes. Transaction success owns them.
+                return { id: input.id, payloadHash };
+            });
+        }
+        finally {
+            budget.close();
+        }
+    }
+    read(id, supplied) {
+        requireReceipt(supplied === undefined || supplied instanceof OperationBudget, 'INVALID_CAPTURE_BUDGET');
+        const budget = supplied ?? new OperationBudget();
+        try {
+            budget.check();
+            const store = this.catalog.store, row = store.one('SELECT * FROM answer_attempts WHERE id=?', id);
+            if (!row)
+                throw new CatalogError('NOT_FOUND', 'Answer attempt not found.', 404);
+            if (row.inputKind !== preparedAnswerInputKind)
+                fail('ANSWER_INPUT_UNSUPPORTED', 'This answer does not use supported prepared input.');
+            if (row.policyVersion !== store.project().policyVersion
+                || store.one("SELECT 1 FROM answer_sources d JOIN sources s ON s.id=d.sourceId WHERE d.answerId=? AND s.status!='active' LIMIT 1", id))
+                fail('ANSWER_INPUT_FENCED', 'Source authorization changed. Saved input is unavailable.');
+            const saved = store.one('SELECT * FROM answer_witnesses WHERE answerId=?', id);
+            if (!saved)
+                fail('ANSWER_WITNESS_MISSING', 'This prepared answer is missing its required witness.');
+            if (saved.purged || row.context === null || saved.witness === null)
+                fail('ANSWER_INPUT_FENCED', 'Saved input was purged.');
+            if (saved.schemaVersion !== answerWitnessVersion || saved.compositionVersion !== questionPreparationVersion
+                || saved.promptVersion !== questionPromptVersion || !uuid(saved.preparationId) || !hex(saved.reviewedHash)
+                || saved.contextHash !== hash(row.context) || saved.witnessBytes !== bytes(saved.witness)
+                || row.payloadHash !== preparedAnswerRequestHash(saved.preparationId, saved.reviewedHash))
+                fail('ANSWER_WITNESS_INVALID', 'Saved prepared input is invalid or unsupported.');
+            const snapshot = Object.freeze({ contextJson: row.context, witnessJson: saved.witness, reviewedHash: saved.reviewedHash,
+                retainedBytes: retainedQuestionBytes(row.context, saved.witness, saved.reviewedHash) });
+            const { context, witness } = decode(snapshot, budget);
+            const sourceIds = store.all('SELECT sourceId FROM answer_sources WHERE answerId=? ORDER BY sourceId', id).map(source => source.sourceId);
+            requireReceipt(witness.catalogId === store.receipts.catalogId && context.question === row.question && context.buildId === row.buildId
+                && context.policyVersion === row.policyVersion && context.registryVersion === row.registryVersion && context.inputHash === row.inputHash
+                && witness.promptVersion === row.promptVersion && row.schemaVersion === answerSchemaVersion && same(sourceIds, witness.sourceIds), 'ANSWER_WITNESS_BINDING');
+            const work = new CaptureWork(this.catalog, budget, new AbortController().signal, {});
+            authorizeQuestionScope(work, context, witness);
+            work.check();
+            return snapshot;
+        }
+        finally {
+            if (supplied === undefined)
+                budget.close();
+        }
+    }
+}

@@ -1,7 +1,8 @@
 import type { TextConnection } from '@aew/ai';
 import type { Catalog } from './catalog.js';
 import type { QuestionSnapshot } from './question-preparation-types.js';
-import { questionPreparationVersion, questionPromptVersion } from './question-preparation-types.js';
+import { questionPreparationVersion } from './question-preparation-types.js';
+import { compactVersionForPrompt, supportedQuestionPrompt } from './question-native-format.js';
 import { answerSchemaVersion } from './answer-context.js';
 import { CatalogError } from './types.js';
 import { OperationBudget } from './operation-budget.js';
@@ -38,7 +39,7 @@ function decode(snapshot: QuestionSnapshot, budget: OperationBudget) {
         && receipt.projection.identity.registryVersion === context.registryVersion
         && receipt.projection.identity.sourceSetVersion === context.sourceSetVersion
         && same(receipt.receipt.dependencies, witness.dependencies), 'QUESTION_RECEIPT_BINDING');
-      requireReceipt(same(compactQuestionPath(context, receipt, budget), witness.compact), 'QUESTION_COMPACT_MISMATCH');
+      requireReceipt(same(compactQuestionPath(context, receipt, budget, compactVersionForPrompt(witness.promptVersion)), witness.compact), 'QUESTION_COMPACT_MISMATCH');
     }
     requireReceipt(preparedQuestionPrompt(context, witness.compact.item) === witness.prompt, 'QUESTION_PROMPT_MISMATCH');
     return result;
@@ -112,7 +113,8 @@ export class AnswerWitnessStore {
       if (!saved) fail('ANSWER_WITNESS_MISSING', 'This prepared answer is missing its required witness.');
       if (saved.purged || row.context === null || saved.witness === null) fail('ANSWER_INPUT_FENCED', 'Saved input was purged.');
       if (saved.schemaVersion !== answerWitnessVersion || saved.compositionVersion !== questionPreparationVersion
-        || saved.promptVersion !== questionPromptVersion || !uuid(saved.preparationId) || !hex(saved.reviewedHash)
+        || !supportedQuestionPrompt(saved.promptVersion) || saved.promptVersion !== row.promptVersion
+        || !uuid(saved.preparationId) || !hex(saved.reviewedHash)
         || saved.contextHash !== hash(row.context) || saved.witnessBytes !== bytes(saved.witness)
         || row.payloadHash !== preparedAnswerRequestHash(saved.preparationId, saved.reviewedHash))
         fail('ANSWER_WITNESS_INVALID', 'Saved prepared input is invalid or unsupported.');
