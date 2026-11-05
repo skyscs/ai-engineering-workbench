@@ -10,7 +10,7 @@ until its adapter exists. Read authorization precedes witness retrieval. No new 
 HTTP/UI or preparation consumer is enabled.
 
 All **912 tests, strict types and builds pass**. [Verification records](fixtures/loredock-answer-witness-storage/README.md)
-retain first failures, 16 logs, two stopped ordinary failure trees and the reviewed runtime
+retain first failures, 18 logs, two stopped ordinary failure trees and the reviewed runtime
 changes. Genuine archived schema-10 state migrates intact; older daemons refuse schema 11.
 Process exits at all three insertion boundaries leave no partial answer. Full dependency
 purge includes graph-absent sources, and pending SQL purge retries after restart. Exact

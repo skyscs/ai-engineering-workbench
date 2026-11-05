@@ -119,6 +119,20 @@
       "bytes": 1034,
       "sha256": "222cd6c38ae031b10c4b1f4ca66b2fc39c018c8cfb6508b37110321bcff51780",
       "archiveSha256": "bd4904b414c0583c2f8fab80e5b0bcccabf3eeb45648a22ae1dce58429ecc7d3"
+    },
+    {
+      "path": "static-second.log.gz",
+      "exitCode": 1,
+      "bytes": 289,
+      "sha256": "86d31edb58a170493533de02b068434a8337b63cb82e332b38aeda8de1cc1b9e",
+      "archiveSha256": "f598223a2b97c27938a358325aaf99cbbea4c6e99feeec217d6e00d2555dbc03"
+    },
+    {
+      "path": "static-third.log.gz",
+      "exitCode": 0,
+      "bytes": 130,
+      "sha256": "4b4b71ebb919ab80c111db76b7920208ae10841ca69cea7ebf87a11dc8ed305d",
+      "archiveSha256": "d1ce848eca51a9520c36bda4a4c5c5fef68ddc3e01b08e90c169416a564dfaa9"
     }
   ],
   "retainedOrdinaryFailures": [
@@ -1112,7 +1126,9 @@
     "The second focused run passed 12/13. Object-rest projection had a normal prototype while the unchanged SQLite row had a null prototype; byte-for-byte JSON comparison now verifies all old fields without a prototype mismatch.",
     "The first full check passed 662/664 LoreDock tests. The historical analysis-write comparison correctly detected the new witness purge SQL; the schema-8 migration comparison correctly detected the new witness table and legacy default column.",
     "The first parity follow-up repeated those two failures because the preceding authoring command ran in apps/loredock instead of the repository root and failed FileNotFoundError for apps/loredock/tests/analysis-write-parity.test.ts. The corrected edits were applied before the passing second parity run. The authoring stderr is retained in the conversation tool output.",
-    "The separate normal comparison adapter pins the old harness hash and requires precisely one additional witness-purge execution during revocation. Raw traces keep the new SQL; all other executions and inventory states must match. The frozen harness and old expected hashes are unchanged."
+    "The separate normal comparison adapter pins the old harness hash and requires precisely one additional witness-purge execution during revocation. Raw traces keep the new SQL; all other executions and inventory states must match. The frozen harness and old expected hashes are unchanged.",
+    "The first documentation/language audit stopped at existing multilingual input data in answer-context.test.ts. The corrected audit checks all documentation and only added code/test lines; existing language tokenization fixtures remain unchanged. The initial audit stderr is retained in the conversation tool output.",
+    "The second documentation audit treated an inline-code Markdown example relative/path.md as a real link. The final audit excludes fenced and inline code examples while validating actual local links."
   ],
   "validation": {
     "strictTests": 912,
@@ -1161,5 +1177,6 @@
     "Internal storage only; answer dispatch/coordination and HTTP/UI integration remain separate.",
     "Purged tombstones retain record slots; explicit history deletion is not implemented.",
     "Full fresh composition resource and semantic gates remain required."
-  ]
+  ],
+  "localDocumentationLinks": 768
 }

@@ -10,7 +10,7 @@ focused failures were incorrect fixture state, a capture result field and a null
 comparison. The first full check detected two historical comparisons needing explicit
 schema deltas. A wrong authoring working directory left the first follow-up unchanged.
 The corrected comparisons preserve the original harness, source pins and old raw records.
-All 16 logs are losslessly compressed. Two failed ordinary comparison trees retain all
+All 18 logs are losslessly compressed. Two failed ordinary comparison trees retain all
 242 files / 12,349,438 bytes, including stopped databases, Git sources and raw query traces.
 Successful fixtures and other failed transient fixtures are removed by their teardown.
 
