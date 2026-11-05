@@ -146,7 +146,7 @@ export async function client(directory) {
       events.append({ event: 'response', id, status: response.status, bytes: Buffer.byteLength(raw), elapsedMs,
         removedBodyFields: route === '/session' ? ['token'] : [], removedHeaders: ['set-cookie'] });
       if (!allowError) assert(response.ok, `${method} ${route}: ${response.status} ${raw}`);
-      return { value, status: response.status, bytes: Buffer.byteLength(raw), rawSha256: hash(raw), elapsedMs };
+      return { id, value, status: response.status, bytes: Buffer.byteLength(raw), rawSha256: hash(raw), elapsedMs };
     } catch (error) { events.append({ event: 'failure', id, error: normalized(error) }); throw error; }
   }
   try { await request('/session', 'POST'); } catch (error) { events.close(); throw error; }

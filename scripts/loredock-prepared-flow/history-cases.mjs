@@ -166,7 +166,7 @@ export function reopenHistory({ checkpoint, directory }) {
   return copyCase({ checkpoint, directory }, async ({ api }) => {
     const list = await api.request('/answers'); assert.equal(list.rawSha256, checkpoint.list.rawSha256);
     const missing = await api.request('/question-preparations/' + checkpoint.readyId, 'GET', undefined, { allowError: true });
-    assert.equal(missing.value.error.code, 'QUESTION_NOT_FOUND');
+    assert.equal(missing.status, 409); assert.equal(missing.value.error.code, 'QUESTION_NOT_FOUND');
     const answers = [];
     for (const admitted of checkpoint.admissions) {
       const response = await api.request('/answers/' + admitted.id);
@@ -175,7 +175,7 @@ export function reopenHistory({ checkpoint, directory }) {
     }
     const replay = await api.request('/prepared-answers', 'POST', checkpoint.admissions[0].input);
     assert.equal(replay.rawSha256, checkpoint.admissions[0].rawSha256);
-    return { list, answers, transientLost: true, replaySha256: replay.rawSha256 };
+    return { list, answers, transientLost: true, missingTransient: missing, replaySha256: replay.rawSha256 };
   });
 }
 

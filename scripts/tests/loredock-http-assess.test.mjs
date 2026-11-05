@@ -49,6 +49,65 @@ test('fault and accounting observations cannot qualify resource timing', async (
   }
 });
 
+function negative(kind = 'transient') {
+  const quota = kind === 'quota', route = quota ? '/prepared-answers' : '/question-preparations/' + id;
+  const errorCode = quota ? 'ANSWER_WITNESS_LIMIT' : 'QUESTION_NOT_FOUND';
+  const example = input(route, Buffer.from(JSON.stringify({ error: { code: errorCode } })), 10);
+  example.events[0].method = quota ? 'POST' : 'GET'; example.events[1].status = 409;
+  example.expectedNonSuccess = [{ id: '00001', route, method: example.events[0].method, status: 409, errorCode }];
+  return example;
+}
+test('history quota and missing-transient outcomes require an exact declared request and keep byte/time checks', async () => {
+  for (const kind of ['transient', 'quota']) {
+    const example = negative(kind), accepted = await assessHttpRecords(example);
+    assert.equal(accepted.status, 'passed'); assert.deepEqual(accepted.matchedExpectedOutcomes, ['00001']);
+    assert.equal(accepted.observations[0].expectedOutcome, true); assert.equal(accepted.resourceQualification, false);
+    assert.equal((await assessHttpRecords({ ...example, expectedNonSuccess: [] })).status, 'failed');
+    if (kind === 'transient') {
+      example.events[1].elapsedMs = 250.01;
+      assert.equal((await assessHttpRecords(example)).status, 'failed');
+    }
+    const raw = Buffer.from(JSON.stringify({ error: { code: example.expectedNonSuccess[0].errorCode }, text: 'x'.repeat(1310720) }));
+    example.readBody = async () => raw; example.events[1].bytes = raw.length;
+    assert.equal((await assessHttpRecords(example)).status, 'failed');
+  }
+});
+test('expected error declarations cannot mask another request, wrong code/status/method/route or a missing outcome', async () => {
+  for (const [mutate, status] of [
+    [value => { value.events[1].status = 200; }, 'failed'],
+    [value => { value.events[1].status = 500; }, 'failed'],
+    [value => { value.events[0].method = 'POST'; }, 'incomplete'],
+    [value => { value.events[0].route = '/answers'; }, 'failed'],
+    [value => { const raw = Buffer.from('{"error":{"code":"WRONG_CODE"}}'); value.readBody = async () => raw; value.events[1].bytes = raw.length; }, 'failed'],
+  ]) {
+    const example = negative(); mutate(example);
+    const result = await assessHttpRecords(example);
+    assert.equal(result.status, status); assert(result.failures.some(row => row.reason === 'expected-outcome-mismatch'));
+  }
+  const wrongId = negative(); wrongId.expectedNonSuccess[0].id = '00002';
+  const missing = await assessHttpRecords(wrongId);
+  assert.equal(missing.status, 'incomplete'); assert(missing.failures.some(row => row.reason === 'non-success-response'));
+  assert(missing.incomplete.some(row => row.reason === 'missing-expected-outcome'));
+  const repeated = negative(); repeated.events.push(...repeated.events.map(row => ({ ...row, id: '00002' })));
+  assert.equal((await assessHttpRecords(repeated)).status, 'failed');
+  const failed = negative(); failed.events.push({ event: 'failure', id: '00001', error: { message: 'Retained client failure.' } });
+  assert.equal((await assessHttpRecords(failed)).status, 'failed');
+});
+test('broad, duplicate and unsupported negative declarations are rejected before reading response bodies', async () => {
+  for (const mutate of [
+    value => { value.expectedNonSuccess.push(value.expectedNonSuccess[0]); },
+    value => { value.expectedNonSuccess[0].allowError = true; },
+    value => { value.expectedNonSuccess[0].status = 500; },
+    value => { value.expectedNonSuccess[0].errorCode = 'INTERNAL_ERROR'; },
+    value => { value.expectedNonSuccess[0].route = '/question-preparations/*'; },
+    value => { delete value.expectedNonSuccess[0].id; },
+  ]) {
+    const example = negative(); mutate(example); let reads = 0;
+    example.readBody = async () => { reads++; throw new Error('Unexpected body read.'); };
+    await assert.rejects(assessHttpRecords(example)); assert.equal(reads, 0);
+  }
+});
+
 test('retained files bind the lane, require complete raw evidence and preserve session redaction', async t => {
   const root = await mkdtemp(path.join(tmpdir(), 'loredock-http-assess-'));
   t.diagnostic('Retained HTTP-assessor test: ' + root);
