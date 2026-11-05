@@ -1,0 +1,327 @@
+{
+  "schemaVersion": "prepared-flow-ordered-history-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "tests": 957,
+  "trees": [
+    {
+      "path": "ordered-history-first.tar.gz",
+      "sha256": "ebf43672d7f27608c51a2b51daed12d0f902522a6ec59c609dc2b28132c5fe88",
+      "inventory": "ordered-history-first.inventory.json.gz",
+      "inventorySha256": "9805d82d5fa6397074cf792778b81e6931defb215a50732a1402a0b2a3449dd1",
+      "entries": 836,
+      "source": "/home/toshiba/aew/task128-ordered-history-first",
+      "limitation": "The first run remains failed because read-only SQLite inspection created WAL/SHM files after checkpoint hashing."
+    },
+    {
+      "path": "ordered-history-second.tar.gz",
+      "sha256": "ae5dcd87b75f18befe42f4d0b41f103896599f416dfff428aac5a0f9b03d32f0",
+      "inventory": "ordered-history-second.inventory.json.gz",
+      "inventorySha256": "6462fbfecee3a764fcba7a27ce30545bec683e7cda474f62faf9d27cb4ad322c",
+      "entries": 1510,
+      "source": "/home/toshiba/aew/task128-ordered-history-second",
+      "excludedFromArchive": [
+        "run/browser-20/browser/profile (temporary Chrome profile/cache; original retained locally)",
+        "run/browser-64/browser/profile (temporary Chrome profile/cache; original retained locally)"
+      ],
+      "limitation": "Functional ordinary control only. Both list-work totals and browser RSS exceed prospective ceilings; one browser startup sample is incomplete."
+    },
+    {
+      "path": "ordered-retention.tar.gz",
+      "sha256": "5f1ccb0eac38671ba64a7496787104e9e50f3346752836f387835e624cba750b",
+      "inventory": "ordered-retention.inventory.json.gz",
+      "inventorySha256": "29283bb3125b1cf4fb8daf648b42e3ec4bd6ed879df534f8fe70919edc344a8d",
+      "entries": 53,
+      "source": "/home/toshiba/aew/task128-ordered-retention"
+    },
+    {
+      "path": "ordered-first-inputs.tar.gz",
+      "sha256": "5e9ddf58b1227ebd7c33c938def33b7dff31ecace117bca13ada3b72070b32f8",
+      "inventory": "ordered-first-inputs.inventory.json.gz",
+      "inventorySha256": "02be1fb53322c78cbe93def1ea6072623e3f5a043f08e6f8fc12dd327ae2f570",
+      "entries": 3,
+      "source": "/home/toshiba/aew/task128-ordered-first-inputs"
+    },
+    {
+      "path": "ordered-checkpoint-focused-checkpoint-1.tar.gz",
+      "sha256": "a63f3904d6c0238b81ea4dd21dfd9b0993549170fd5b176275dd8284658b5563",
+      "inventory": "ordered-checkpoint-focused-checkpoint-1.inventory.json.gz",
+      "inventorySha256": "ad7aa50d08370487afdaca3bc1e57b64dafb92606bc95bbba764bfd0d9de9e17",
+      "entries": 6,
+      "source": "/tmp/loredock-history-checkpoint-rHAeeC"
+    },
+    {
+      "path": "ordered-check-first-owner-1.tar.gz",
+      "sha256": "f1440aa4903494fdbbbb234c75994d3dc1bc4675bf8318d57b14205a087570cf",
+      "inventory": "ordered-check-first-owner-1.inventory.json.gz",
+      "inventorySha256": "feaeebef7bbb9f78fb2fa35d565879f7f75de49e31314ae946bd7d21d1ff9088",
+      "entries": 8,
+      "source": "/tmp/loredock-kernel-adoption-1UY9p1"
+    },
+    {
+      "path": "ordered-check-first-owner-2.tar.gz",
+      "sha256": "236a6f5d32d5080b7e810148121bd9827b614a6aad412644dcaa283ef0031a58",
+      "inventory": "ordered-check-first-owner-2.inventory.json.gz",
+      "inventorySha256": "c0dca7e72e26b8914777ca902630ef40384de6bb2325b2d5fbad39292fe47f37",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-iJ56wp"
+    },
+    {
+      "path": "ordered-check-first-owner-3.tar.gz",
+      "sha256": "2979c5384656810ab7737ee06ec818b898cc2d7944837f3c9e265dc459bb5334",
+      "inventory": "ordered-check-first-owner-3.inventory.json.gz",
+      "inventorySha256": "d28ba9f07dfa8fdaf3a22d0d3627cd06cc39b7d6d5a69bec25770ddb637ced2a",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-iPbZSB"
+    },
+    {
+      "path": "ordered-check-first-owner-4.tar.gz",
+      "sha256": "ce1cef41ecae74acc5666700ef03e5b6365a43655a8e8d3a19c3213d8eb2e6a0",
+      "inventory": "ordered-check-first-owner-4.inventory.json.gz",
+      "inventorySha256": "330053debb65bd178192931a94f9e5ee9370afa8d735edb706ca56bc0db980bf",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-Gg25eN"
+    },
+    {
+      "path": "ordered-check-first-owner-5.tar.gz",
+      "sha256": "5192fa0b05926cf833959a3047967c14359f547e724ce15a0aa9378ff2207b50",
+      "inventory": "ordered-check-first-owner-5.inventory.json.gz",
+      "inventorySha256": "d16b551b90135139ba4da66434dc6f684bed8678a5cbff854e38e446b09aa560",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-a0TGS8"
+    },
+    {
+      "path": "ordered-check-first-owner-6.tar.gz",
+      "sha256": "33745b999b194616dd24b20899381bd6dc2bf0cd154e369594d7bbc995d7add4",
+      "inventory": "ordered-check-first-owner-6.inventory.json.gz",
+      "inventorySha256": "d841458b2dd2223e6fd5389ffa1ce406f053631ebdc6c9523aa58dd8ecbfb87e",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-RPPxHZ"
+    },
+    {
+      "path": "ordered-check-first-checkpoint-1.tar.gz",
+      "sha256": "b57301e0b71127cdb22a78a0a3810ddf9d22f03d8b032662277bd962640836c2",
+      "inventory": "ordered-check-first-checkpoint-1.inventory.json.gz",
+      "inventorySha256": "ad7aa50d08370487afdaca3bc1e57b64dafb92606bc95bbba764bfd0d9de9e17",
+      "entries": 6,
+      "source": "/tmp/loredock-history-checkpoint-ug805R"
+    },
+    {
+      "path": "ordered-inputs.tar.gz",
+      "sha256": "038c1e132d66b986b6f65932d1ef93922ce6ab14f939716fd67757cf3c2bcacc",
+      "inventory": "ordered-inputs.inventory.json.gz",
+      "inventorySha256": "2ff7be54da6311a18d62ad90073c04afebc9ce5c6f3b658c8a730619a5982dbc",
+      "entries": 7,
+      "source": "/home/toshiba/aew/task128-ordered-inputs"
+    },
+    {
+      "path": "ordered-static-review.tar.gz",
+      "sha256": "22dc4aaf421693768363ad06364e85a65bc92e344dd6c385371d56d562722fa2",
+      "inventory": "ordered-static-review.inventory.json.gz",
+      "inventorySha256": "23346ec72464f9130568ce3f065581b5a816f40d9e52ebaf99b0a2573e94a8b2",
+      "entries": 1,
+      "source": "/home/toshiba/aew/task128-ordered-static-review"
+    }
+  ],
+  "logs": [
+    {
+      "path": "ordered-history-first.log.gz",
+      "archiveSha256": "683cb20a08d7181092d3b91a80a989ffb1974aada9c328bcdb2a1421d684c4b5",
+      "rawBytes": 2919,
+      "rawSha256": "6bc42dbbfea9c616b26d5b96f0a3e5ee3048827cffee91b035deae86253ee7d3"
+    },
+    {
+      "path": "ordered-history-second.log.gz",
+      "archiveSha256": "3b723713cb1031c7c26c907cbdc79d942a9b56afe9018d797080b0e9e955c14c",
+      "rawBytes": 13062,
+      "rawSha256": "8fb9ccb31b2a6ff7826488055e56a7748f7e840db83da49ed6ece8a85a581adc"
+    },
+    {
+      "path": "ordered-install.log.gz",
+      "archiveSha256": "7394ce232529ec101cb3d563e557d7e85b16c3fe4e420511032f53ce14516f3c",
+      "rawBytes": 326,
+      "rawSha256": "1beed3f82366e43f3a2f39f0573e2d4638f89edb8043bb8392ce032c5c8205b3"
+    },
+    {
+      "path": "ordered-build.log.gz",
+      "archiveSha256": "f1a611a9a5891051f1aca200cf4a73136d214d5c566b7a98541cc2aa671745eb",
+      "rawBytes": 2356,
+      "rawSha256": "9b6cf1952d0031537fb18e32b1005b92954e7508113bc5aa3e1f5a08c93105e4"
+    },
+    {
+      "path": "ordered-checkpoint-focused.log.gz",
+      "archiveSha256": "0b3ad3f582d0bca83d15cc71b2e888735809ab22720e6059fdf6c37002577206",
+      "rawBytes": 615,
+      "rawSha256": "9062b92fbfe28c5a2abdb632c0147150bfbea00cabf79ca2485239e78757e49d"
+    },
+    {
+      "path": "ordered-retention.log.gz",
+      "archiveSha256": "3361e44a301e9321c668b7ff4ef5a8f180931f4609dfff079d1e305013b7015c",
+      "rawBytes": 2903,
+      "rawSha256": "cecf883685ad8e9d9a2150f1722f0a68c28713a182a3c3c199fd1bb10ec4b623"
+    },
+    {
+      "path": "ordered-check-first.log.gz",
+      "archiveSha256": "95c1c0925ef622cf13e26ded0d3145ddc4e0fed24393f205e089e1edc4e20402",
+      "rawBytes": 351080,
+      "rawSha256": "c53c4d5be20a450ee930511aa28286c41d129077f3866760c29a6d5714ebdde0"
+    },
+    {
+      "path": "ordered-seal-check.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "matrix-ci-push.log.gz",
+      "archiveSha256": "0efbccf4e04974de2cedbf49eea3ee62fe44be3382e97bb322a286d5a2fab756",
+      "rawBytes": 684585,
+      "rawSha256": "36e61fc8070b8e29041719690b5808cf7824da195f16e36d89f9396d12b14790"
+    },
+    {
+      "path": "matrix-ci-pr.log.gz",
+      "archiveSha256": "0daabd5a761f2a2332cec4a85c27cbc98674299a2c8f531a435a825a0994316f",
+      "rawBytes": 685920,
+      "rawSha256": "2cfa5569ab2afa1841cbc37faf87d76c604d6434a9e08cba5911a2726103518d"
+    },
+    {
+      "path": "ordered-static-first.log.gz",
+      "archiveSha256": "49dc7c1eeda73d2216e3207ffcd8ede71521d99af52549053839f2ebb16f2ab1",
+      "rawBytes": 209,
+      "rawSha256": "7ea325911b85f02b50d15239c13ec0190f81066e416017815475256b8070b924"
+    }
+  ],
+  "acceptedMatrixControls": {
+    "pr": 136,
+    "head": "cbff65f6d55320c5473974f073cb840aec5a4acb",
+    "merge": "f78e2419f8125b07f227723465a508e3d14862d8",
+    "push": 42004546086,
+    "pull_request": 42004565275,
+    "testsPerEvent": 956
+  },
+  "retention": [
+    {
+      "case": "ordered-history-first",
+      "sourceHashesUnchanged": true,
+      "rawTreeUnchangedByInspection": true,
+      "databases": [
+        {
+          "directory": "capacity/checkpoint-20",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "witnesses": 20,
+          "purged": 0,
+          "witnessBytes": 1326720
+        },
+        {
+          "directory": "capacity/checkpoint-64",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "witnesses": 64,
+          "purged": 0,
+          "witnessBytes": 4245504
+        },
+        {
+          "directory": "capacity/data",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "witnesses": 64,
+          "purged": 0,
+          "witnessBytes": 4245504
+        }
+      ],
+      "httpResponsesVerified": 602,
+      "ownedSurvivors": []
+    },
+    {
+      "case": "ordered-history-second",
+      "sourceHashesUnchanged": true,
+      "rawTreeUnchangedByInspection": true,
+      "databases": [
+        {
+          "directory": "accounting-20/data",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "witnesses": 20,
+          "purged": 0,
+          "witnessBytes": 1326720
+        },
+        {
+          "directory": "accounting-64/data",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "witnesses": 64,
+          "purged": 0,
+          "witnessBytes": 4245504
+        },
+        {
+          "directory": "browser-20/data",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "witnesses": 20,
+          "purged": 0,
+          "witnessBytes": 1326720
+        },
+        {
+          "directory": "browser-64/data",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "witnesses": 64,
+          "purged": 0,
+          "witnessBytes": 4245504
+        },
+        {
+          "directory": "capacity/checkpoint-20",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "witnesses": 20,
+          "purged": 0,
+          "witnessBytes": 1326720
+        },
+        {
+          "directory": "capacity/checkpoint-64",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "witnesses": 64,
+          "purged": 0,
+          "witnessBytes": 4245504
+        },
+        {
+          "directory": "capacity/data",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "witnesses": 64,
+          "purged": 0,
+          "witnessBytes": 4245504
+        },
+        {
+          "directory": "restart-20/data",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "witnesses": 20,
+          "purged": 0,
+          "witnessBytes": 1326720
+        },
+        {
+          "directory": "restart-64/data",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "witnesses": 64,
+          "purged": 0,
+          "witnessBytes": 4245504
+        },
+        {
+          "directory": "revocation-64/data",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "witnesses": 64,
+          "purged": 64,
+          "witnessBytes": 0
+        }
+      ],
+      "httpResponsesVerified": 762,
+      "ownedSurvivors": []
+    }
+  ]
+}

@@ -54,7 +54,25 @@ child edges and a sampled peak of 1,354,678,272 bytes, still above the prospecti
 limit. This is ordinary diagnostic evidence, not resource acceptance. Final ordered
 case assembly, complete lifetime attribution and the executable seal remain required.
 The full local check passes 956 tests, strict typechecks, production builds and the
-unchanged application/input seal. The new checkpoint awaits both exact-head CI events.
+unchanged application/input seal. This checkpoint is accepted through
+[PR #136](https://github.com/skyscs/ai-engineering-workbench/pull/136): push 42004546086
+and pull_request 42004565275 pass at exact head `cbff65f`; merge `f78e241` has the
+identical tree.
+
+The next [ordered history controls](fixtures/loredock-prepared-flow-history/README.md)
+separate 64 real admissions from later 20/64-row browser, restart, revocation and
+accounting observations. Each later case uses its own verified complete stopped copy.
+All 84 reopened answer responses match their original raw bytes, quota refusal preserves
+Ready, replay does not dispatch, and source revocation purges all 64 witnesses. Both
+twenty-row list requests still cost 3,168,560 actual units, above the unchanged 1,000,000
+aggregate limit. Browser sampled RSS remains above 1 GiB, and one startup sample is
+explicitly incomplete. These functional controls are not resource acceptance.
+The first new history run is retained as failed: read-only SQLite inspection created
+WAL/SHM files after checkpoint hashing. Inspection now precedes copying and sealing;
+a regression test reproduces the side effect. Thirteen copied catalogs pass integrity
+and foreign-key checks, and 1,364 retained HTTP response bodies match recorded byte sizes.
+The full local check passes 957 tests, strict typechecks, production builds and the
+unchanged application/input seal. Both exact-head CI events remain required for this slice.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request
