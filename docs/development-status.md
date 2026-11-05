@@ -2,6 +2,14 @@
 
 ## Task 128 — Complete-flow resource driver (in progress)
 
+The ordinary driver checkpoint is accepted through [PR #132](https://github.com/skyscs/ai-engineering-workbench/pull/132),
+merged at `f595307` after push 41964013784 and pull_request 41964018496 passed 948 tests
+at exact head `3469467`. The merge tree is identical. The next slice has already begun:
+[two retained kernel-ownership probes](fixtures/loredock-prepared-flow-owner/README.md)
+verify adoption and pidfd termination of an orphan that changed process group before
+its first observation. Implementation and full validation of the replacement owner remain
+pending; the broader Task 128 gate is still in progress.
+
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request
 replay and restart/history. A deliberate driver failure preserves all source/catalog
