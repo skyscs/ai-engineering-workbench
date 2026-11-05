@@ -1,0 +1,186 @@
+{
+  "schemaVersion": "retained-native-size-diagnosis/1",
+  "base": "4d856e4543822bcc2ba10622301b72f033ec411d",
+  "firstCode": "a688a03e10808c37f63a6fe9c178e0c513f1081f",
+  "applicationRuns": 0,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "resourceQualification": false,
+  "trees": [
+    {
+      "path": "native-size-first.tar.gz",
+      "sha256": "89642faabb963ab5d2c334619b771ef1b887df948fc371a3b79bf50690f8c923",
+      "inventory": "native-size-first.inventory.json.gz",
+      "inventorySha256": "4cc75cbadeb95d38786c9935dce11e6dd5472325c72ca5feed3253857eefd4f7",
+      "entries": 162,
+      "source": "/home/toshiba/aew/task132-native-size-first"
+    },
+    {
+      "path": "native-size-review-inputs.tar.gz",
+      "sha256": "fa3db728753bf0754b06ac295f01671bfe791bccf98fb7bfb4c49e07ec47ed94",
+      "inventory": "native-size-review-inputs.inventory.json.gz",
+      "inventorySha256": "8c4eb3e059c3ab6861ff86ef666184958fa3385f5c918eaaaf533ba4ba6311ef",
+      "entries": 4,
+      "source": "/home/toshiba/aew/task132-native-size-review-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "native-size-first.log.gz",
+      "archiveSha256": "6b831f0ab68b84589b2074d1f7280098f8f921de2434d8ba1348c0455226546e",
+      "rawBytes": 4437,
+      "rawSha256": "fe7f029c2638b0a02f84e8dcf0e9a53fd13bd3fe7985e8a889a2601c1b3090bc"
+    },
+    {
+      "path": "native-size-syntax.log.gz",
+      "archiveSha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "accepted-history-ci-push.log.gz",
+      "archiveSha256": "edca3651e94541e2a57e08365b8b18f9aca18f907437d46548c522aad59a653b",
+      "rawBytes": 589355,
+      "rawSha256": "a751d986042adc7a8f41c6d9bb9093b6146c3db86eb74e2dd4465999c8e325cf"
+    },
+    {
+      "path": "accepted-history-ci-pr.log.gz",
+      "archiveSha256": "1cac28fb73d81b18f4574d8cb6c0fae7548256ae6cef6833b67abac91ee6d1ad",
+      "rawBytes": 589466,
+      "rawSha256": "111be3453ebf93f76497fc53085f8f74bee7bad47c7be58e371ec528049060d1"
+    }
+  ],
+  "retention": {
+    "originalEntries": 152,
+    "copiedEntriesBeforeSqlite": 152,
+    "originalUnchanged": true,
+    "acceptedInventory": "docs/fixtures/loredock-prepared-flow-matrix-integration/matrix-first.inventory.json.gz",
+    "acceptedInventorySha256": "05caa2350e6cc0f927e00801b8127a550a06fadf61cd84faf8a0b2b942910219",
+    "gitSources": 8,
+    "sourceFiles": 22,
+    "originalSpans": 18,
+    "requiredOriginals": 8,
+    "copiedCatalogIntegrity": "ok",
+    "answers": 0,
+    "witnesses": 0,
+    "serializerUnchangedSince": "848cf97",
+    "serializerSha256": "b5166481dc163309e116655a289faf27c6d08ac3901fbdbaa475c48b8f599277",
+    "codeCommit": "a688a03e10808c37f63a6fe9c178e0c513f1081f",
+    "command": [
+      "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+      "/home/toshiba/aew/worktrees/task132-native-size/scripts/loredock-native-size/retained.mjs",
+      "/home/toshiba/aew/task132-native-size-first/retained-ordinary/case/result.json",
+      "/home/toshiba/aew/task132-native-size-first/diagnosis.json"
+    ],
+    "exit": 0,
+    "applicationRuns": 0,
+    "modelCalls": 0,
+    "reservedFamilyReads": 0,
+    "resourceQualification": false
+  },
+  "diagnosis": {
+    "schemaVersion": "retained-native-size-diagnosis/1",
+    "input": {
+      "path": "/home/toshiba/aew/task132-native-size-first/retained-ordinary/case/result.json",
+      "bytes": 31200,
+      "sha256": "cd34c86ea2ba5fb3399c108b29b293d8fae2213ba930eea0f090314f16ee9852"
+    },
+    "recorded": {
+      "nativeBytes": 7099,
+      "legacyBytes": 1268,
+      "joiningBytes": 1,
+      "combinedBytes": 8368,
+      "limit": 8192,
+      "excess": 176,
+      "completeNativeItemRetained": false,
+      "originalPositivePassed": false
+    },
+    "comparisonRows": [
+      {
+        "index": 0,
+        "id": "e95e4d4f7ea6f796dfcac96c23ddf0c1b5e65a24b46e23e6984a5bf1b732ab08",
+        "bytes": 634,
+        "fieldBytes": {
+          "id": 72,
+          "kind": 21,
+          "status": 21,
+          "from": 138,
+          "to": 143,
+          "headerCheck": 144,
+          "evidenceIds": 94
+        },
+        "headerBytes": 129
+      },
+      {
+        "index": 1,
+        "id": "4d46d679cd290a300f8bd4c19b13425f482090bbc28dd273ef4efd12904663f4",
+        "bytes": 631,
+        "fieldBytes": {
+          "id": 72,
+          "kind": 21,
+          "status": 21,
+          "from": 140,
+          "to": 137,
+          "headerCheck": 145,
+          "evidenceIds": 94
+        },
+        "headerBytes": 130
+      }
+    ],
+    "references": [
+      {
+        "legacyIndex": 1,
+        "nativeEdge": 2,
+        "headerBytes": 130,
+        "referenceBytes": 18,
+        "savedBytes": 112,
+        "preservedHeader": {
+          "status": "gap",
+          "detail": "Route bindings tenant \u2190 X-Grant-Tenant have no matching literal client header among X-Permit-Tenant."
+        }
+      }
+    ],
+    "lexicalBindingSaving": 86,
+    "duplicateClueSaving": 89,
+    "alternatives": [
+      {
+        "name": "Reference identical legacy headers",
+        "savedBytes": 112,
+        "projectedBytes": 8256,
+        "projectedHeadroom": -64,
+        "completeItemObserved": false
+      },
+      {
+        "name": "Obtain lexical binding from enclosing context",
+        "savedBytes": 86,
+        "projectedBytes": 8282,
+        "projectedHeadroom": -90,
+        "completeItemObserved": false
+      },
+      {
+        "name": "Both header and lexical factoring",
+        "savedBytes": 198,
+        "projectedBytes": 8170,
+        "projectedHeadroom": 22,
+        "completeItemObserved": false
+      },
+      {
+        "name": "Header, lexical and duplicate-clue tuple factoring",
+        "savedBytes": 287,
+        "projectedBytes": 8081,
+        "projectedHeadroom": 111,
+        "completeItemObserved": false
+      }
+    ],
+    "limitations": [
+      "The discarded complete native item and receipt were transient and are absent from this retained review.",
+      "Savings describe known repeated components under the unchanged serializer, not a reconstructed complete item or an observed product repair.",
+      "A new wire format and prompt require explicit versioning, old saved-witness compatibility and fresh prospective controls.",
+      "No parser, model, resource or whole-flow acceptance follows from this offline calculation."
+    ],
+    "applicationRuns": 0,
+    "modelCalls": 0,
+    "reservedFamilyReads": 0,
+    "resourceQualification": false
+  }
+}
