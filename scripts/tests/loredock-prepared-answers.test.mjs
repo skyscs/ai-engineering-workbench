@@ -13,6 +13,7 @@ import { AnswerWitnessStore } from '../../apps/loredock/dist/answer-witness-stor
 import { validateQuestionWitness } from '../../apps/loredock/dist/question-witness.js';
 import { citedAnswerSchema } from '../../apps/loredock/dist/answer-context.js';
 import { answerPrompt } from '../../apps/loredock/dist/answer-prompt.js';
+import { OperationBudget } from '../../apps/loredock/dist/operation-budget.js';
 import { beforePreparedAnswer, loadPreparedAnswerControl } from '../../apps/loredock/tests/fixtures/prepared-answer-reference/verify.mjs';
 
 const question = 'How does apply reach PermitWriter.onMessage through permit.granted.v3?';
@@ -60,6 +61,89 @@ async function setup(t, native = true) {
   return { fixture, owner, runtime, answers, preview, prepare, start, create, parent, consumers, owners, runtimes };
 }
 function noNativeReads(before, after) { for (const key of ['gitCalls', 'factReads', 'snapshots', 'pathReads']) assert.equal(after[key], before[key], key); }
+
+test('history lists twenty useful prepared summaries with one aggregate budget and exact detail parity', async t => {
+  const s = await setup(t), first = s.start(); await s.answers.idle();
+  const storage = new AnswerWitnessStore(s.fixture.catalog), snapshot = storage.read(first.id);
+  for (let i = 1; i < 20; i++) {
+    const id = randomUUID(); storage.create({ id, requestId: id, preparationId: s.preview.id,
+      connection: s.answers.configuration(), model: 'gpt-5.6-terra', effort: 'medium' }, snapshot);
+    s.fixture.store.run("UPDATE answer_attempts SET status='failed' WHERE id=?", id);
+  }
+  const expected = s.fixture.store.all('SELECT id FROM answer_attempts ORDER BY rowid DESC LIMIT 20').map(row => s.answers.get(row.id, false));
+  const budgets = [], close = OperationBudget.prototype.close;
+  t.mock.method(OperationBudget.prototype, 'close', function () { close.call(this); budgets.push(this.stats()); });
+  t.mock.method(AnswerWitnessStore.prototype, 'read', () => { throw new Error('A list must not materialize full input.'); });
+  const before = s.fixture.counters(), state = s.answers.state();
+  assert.equal(state.attempts.length, 20); assert.equal(state.publishedAnswerId, first.id);
+  assert.deepEqual(state.attempts.map(({ inputValidation, ...row }) => {
+    assert.equal(inputValidation, 'metadata-only'); return row;
+  }), expected);
+  assert.equal(budgets.length, 1); assert(budgets[0].totalWork > 0 && budgets[0].totalWork <= 1000000);
+  noNativeReads(before, s.fixture.counters()); assert.equal(s.runtime.calls, 1);
+});
+
+test('metadata summaries disclose their narrower validation while full reads still reject payload corruption', async t => {
+  const s = await setup(t), first = s.start(); await s.answers.idle();
+  const before = s.answers.state();
+  s.fixture.store.db.exec('DROP TRIGGER answer_witness_purge');
+  s.fixture.store.run("UPDATE answer_witnesses SET witness='{}',witnessBytes=2");
+  assert.deepEqual(s.answers.state(), before);
+  assert.equal(before.attempts[0].inputValidation, 'metadata-only');
+  assert.throws(() => s.answers.get(first.id), code('ANSWER_WITNESS_INVALID'));
+  assert.throws(() => s.start(), code('ANSWER_WITNESS_INVALID')); assert.equal(s.runtime.calls, 1);
+});
+
+test('summary metadata fails explicitly for missing, unsupported, rebound or inconsistent retained inputs', async t => {
+  for (const mutation of ['missing', 'version', 'binding', 'context', 'dependency']) {
+    const s = await setup(t), first = s.start(); await s.answers.idle();
+    if (mutation === 'missing') { s.fixture.store.db.exec('DROP TRIGGER answer_witness_delete'); s.fixture.store.run('DELETE FROM answer_witnesses'); }
+    if (mutation === 'version' || mutation === 'binding') {
+      s.fixture.store.db.exec('DROP TRIGGER answer_witness_identity');
+      if (mutation === 'version') s.fixture.store.run("UPDATE answer_witnesses SET schemaVersion='unknown'");
+      else s.fixture.store.run('UPDATE answer_witnesses SET preparationId=?', randomUUID());
+    }
+    if (mutation === 'context') { s.fixture.store.db.exec('DROP TRIGGER prepared_answer_context'); s.fixture.store.run("UPDATE answer_attempts SET context='{}'"); }
+    if (mutation === 'dependency') { s.fixture.store.db.exec('DROP TRIGGER prepared_sources_delete'); s.fixture.store.run('DELETE FROM answer_sources WHERE answerId=?', first.id); }
+    assert.throws(() => s.answers.state(), code(mutation === 'missing' ? 'ANSWER_WITNESS_MISSING' : 'ANSWER_WITNESS_INVALID'), mutation);
+    assert.equal(s.runtime.calls, 1);
+  }
+});
+
+test('summary authority and freshness follow review, build, policy and omitted-source changes', async t => {
+  for (const mutation of ['review', 'build', 'policy', 'source']) {
+    const s = await setup(t), first = s.start(); await s.answers.idle();
+    if (mutation === 'review') s.fixture.store.run('UPDATE project SET correctionRevision=correctionRevision+1');
+    if (mutation === 'build') await s.fixture.index('new-build');
+    if (mutation === 'policy') s.fixture.catalog.updatePolicy(['private']);
+    if (mutation === 'source') {
+      const selected = new Set(s.preview.context.spans.map(row => row.sourceId));
+      const omitted = s.fixture.store.all('SELECT sourceId FROM answer_sources WHERE answerId=?', first.id).find(row => !selected.has(row.sourceId));
+      assert(omitted); s.fixture.catalog.revoke(omitted.sourceId);
+    }
+    const { inputValidation, ...row } = s.answers.state().attempts[0];
+    assert.equal(inputValidation, 'metadata-only'); assert.deepEqual(row, s.answers.get(first.id, false));
+    if (mutation === 'review') assert.equal(row.reviewState, 'changed');
+    if (mutation === 'build') assert.equal(row.stale, true);
+    if (mutation === 'source' || mutation === 'policy') {
+      assert.equal(row.status, 'fenced'); assert.equal(row.reviewState, 'unavailable');
+      assert.equal(s.answers.state().publishedAnswerId, null);
+    }
+  }
+});
+
+test('one history page refuses oversized context before selecting its text and closes its budget', async t => {
+  const s = await setup(t), first = s.start(); await s.answers.idle();
+  s.fixture.store.db.exec('DROP TRIGGER prepared_answer_context');
+  s.fixture.store.run('UPDATE answer_attempts SET context=? WHERE id=?', ' '.repeat(1000001), first.id);
+  const one = s.fixture.store.one.bind(s.fixture.store), budgets = [], close = OperationBudget.prototype.close;
+  t.mock.method(s.fixture.store, 'one', (sql, ...args) => {
+    assert(!/^SELECT context FROM/.test(sql), 'Oversized context must not enter JavaScript.'); return one(sql, ...args);
+  });
+  t.mock.method(OperationBudget.prototype, 'close', function () { close.call(this); budgets.push(this.stats()); });
+  assert.throws(() => s.answers.state(), code('CAPTURE_WORK_LIMIT')); assert.equal(budgets.length, 1);
+  assert(budgets[0].totalWork < 1000000);
+});
 
 for (const native of [true, false]) test(`prepared ${native ? 'native' : 'source-only'} answers dispatch exact saved input and original-only citations`, async t => {
   const { fixture, owner, runtime, answers, preview, start } = await setup(t, native), before = fixture.counters();

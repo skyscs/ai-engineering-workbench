@@ -1,0 +1,179 @@
+{
+  "schemaVersion": "ordinary-history-summary/1",
+  "base": "12b1392870b7aa30a30e4f58c22030270b48de1a",
+  "firstCode": "7765ba2",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "trees": [
+    {
+      "path": "history-first.tar.gz",
+      "sha256": "cf4709b77e2e1f111b0eb971a0e2f5ecc01931cf7bc5a1734db45af7ae82efef",
+      "inventory": "history-first.inventory.json.gz",
+      "inventorySha256": "91a07ea4f33daa55f928ae9b7d2618db2d69e2028587e24fd949ca3efcceeac7",
+      "entries": 1064,
+      "source": "/home/toshiba/aew/task131-history-first"
+    },
+    {
+      "path": "history-first-inputs.tar.gz",
+      "sha256": "b4b89f48df855abb811108bf464ae379a5f6f7e1a10fdf2d7b05e72e12732228",
+      "inventory": "history-first-inputs.inventory.json.gz",
+      "inventorySha256": "6995e03e66cd4aad73fd3e5fc22300c0d4c7d6e9e6290a96a48a8869c5c6121f",
+      "entries": 224,
+      "source": "/home/toshiba/aew/task131-history-first-inputs"
+    },
+    {
+      "path": "history-retention.tar.gz",
+      "sha256": "fc4029c79038139dba822a581f0e59b62dfcba6361360d02703f0eb65fe33c1e",
+      "inventory": "history-retention.inventory.json.gz",
+      "inventorySha256": "043404a9e9c1f657240da46d9b8dc4008d303065f7f1aee4205d976ef5ae1abe",
+      "entries": 34,
+      "source": "/home/toshiba/aew/task131-history-retention"
+    },
+    {
+      "path": "history-review-inputs.tar.gz",
+      "sha256": "ac2a38cb1c9878253391a1e7dd9957146a49f1f6bcade26e8e02507cc57f2c8c",
+      "inventory": "history-review-inputs.inventory.json.gz",
+      "inventorySha256": "df0d32b9680659dba46eeeb1bf6ab9d548046e46067a6862e85fe7eb201d4623",
+      "entries": 9,
+      "source": "/home/toshiba/aew/task131-history-review-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "history-build-first.log.gz",
+      "archiveSha256": "db511be018520796f3b20c7a0114fd2c101841d7b62db58f982719009f6135c8",
+      "rawBytes": 2355,
+      "rawSha256": "e6fe62e7804c0014b6ed07aeb5b8f6bc0c44ff35779e629793a5dd74c58f68c8"
+    },
+    {
+      "path": "history-tests-first.log.gz",
+      "archiveSha256": "4b881bba0eb47a99ab8c6335949ef81df6bde109473f978f925bc52593af6a4c",
+      "rawBytes": 5768,
+      "rawSha256": "1bf18b9db8dc45c553e1c04557a51af4f836de96df74824d793ee6680cf56b23"
+    },
+    {
+      "path": "history-typecheck-first.log.gz",
+      "archiveSha256": "a5eaf058814b1aefa72708a59df5e697e3044557e8dc0590c62552ce5b7c320f",
+      "rawBytes": 147,
+      "rawSha256": "88f5c163cfdf735812ff07920e689923123105c3a5a9562cbb271f20702998a6"
+    },
+    {
+      "path": "history-legacy-tests-first.log.gz",
+      "archiveSha256": "eecbacae23e2faefafed539ade14f5b09f9600e1fd565a97acbf0ec7f7a8e5e0",
+      "rawBytes": 6274,
+      "rawSha256": "b8d8bef8c929bed6ef767b05992744590705337c1f8091142df3a55168dfdd04"
+    },
+    {
+      "path": "history-first.log.gz",
+      "archiveSha256": "66c884cc3244f788b49165a55abe0bf0e1d7d7ecb5702c09993147a8b2172c7d",
+      "rawBytes": 4444,
+      "rawSha256": "27b70b5c8016b601a7d9a653b64735e67e2951bc2bbfe479c1ade62e353b52d6"
+    },
+    {
+      "path": "history-script-tests-first.log.gz",
+      "archiveSha256": "b9166ea313daa2181fe4ad795efc036f670d8a4c10db34121071559db5df0ee7",
+      "rawBytes": 66740,
+      "rawSha256": "3a24defc94baa4ec4512f2e91ed37827a949770af959d3784d2ca7ef50ee8eb8"
+    },
+    {
+      "path": "history-retention.log.gz",
+      "archiveSha256": "abf648806fd72b7d649019883c4a9e48346251d34413c0076af9dfa2d11757f2",
+      "rawBytes": 1639,
+      "rawSha256": "b170103db93dd571873fc8fac92a79bb88b72c70bc129f0dff7c68dca5f203b7"
+    },
+    {
+      "path": "accepted-cold-start-ci-push.log.gz",
+      "archiveSha256": "eeb03f03bef875f331bbd9c25a4a979de295a3d7455d704a17e34b2f95434947",
+      "rawBytes": 587225,
+      "rawSha256": "30bd43a61f532975bb8c0413eeff7cc91a1dfccf5d860b7743ce8ba34918281e"
+    },
+    {
+      "path": "accepted-cold-start-ci-pr.log.gz",
+      "archiveSha256": "f35febec84f8003017d4145671528adf5244e704d61144d0094261faca08479b",
+      "rawBytes": 588359,
+      "rawSha256": "35f81f902d6deeffea692e70390b1fc9ab5e0661ee05228e22a076be63b4d7de"
+    }
+  ],
+  "retention": {
+    "catalogs": [
+      {
+        "relative": "run/capacity/data",
+        "rows": 64,
+        "purged": 0,
+        "integrity": "ok"
+      },
+      {
+        "relative": "run/capacity/checkpoint-20",
+        "rows": 20,
+        "purged": 0,
+        "integrity": "ok"
+      },
+      {
+        "relative": "run/capacity/checkpoint-64",
+        "rows": 64,
+        "purged": 0,
+        "integrity": "ok"
+      },
+      {
+        "relative": "run/restart-20/data",
+        "rows": 20,
+        "purged": 0,
+        "integrity": "ok"
+      },
+      {
+        "relative": "run/restart-64/data",
+        "rows": 64,
+        "purged": 0,
+        "integrity": "ok"
+      },
+      {
+        "relative": "run/revocation-64/data",
+        "rows": 64,
+        "purged": 64,
+        "integrity": "ok"
+      },
+      {
+        "relative": "run/accounting-20/data",
+        "rows": 20,
+        "purged": 0,
+        "integrity": "ok"
+      },
+      {
+        "relative": "run/accounting-64/data",
+        "rows": 64,
+        "purged": 0,
+        "integrity": "ok"
+      }
+    ],
+    "sourceFiles": 12,
+    "gitIdentities": 4,
+    "originalChecks": 3476,
+    "httpResponses": 767,
+    "sessionRedactions": 7,
+    "listControls": [
+      {
+        "storedRows": 20,
+        "returnedRows": 20,
+        "fullDetails": 20,
+        "productionWallMs": 29.70830099999148,
+        "aggregateWork": 257241,
+        "closedBudgets": 1
+      },
+      {
+        "storedRows": 64,
+        "returnedRows": 20,
+        "fullDetails": 64,
+        "productionWallMs": 20.914291000008234,
+        "aggregateWork": 257241,
+        "closedBudgets": 1
+      }
+    ],
+    "controlledCalls": 64,
+    "modelCalls": 0,
+    "reservedFamilyReads": 0,
+    "resourceQualification": false,
+    "rawEntries": 1064,
+    "rawUnchanged": true
+  }
+}

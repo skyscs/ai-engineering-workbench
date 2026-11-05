@@ -776,7 +776,9 @@ qualification are still pending. Enabling the switch itself makes no model call.
 6. Saved results say **Saved prepared context** and retain their original compact context,
    qualifications, gaps and omission reason. New source indexes mark history stale;
    replacing native code analysis does not remove the saved input. Removing a dependency
-   purges its answer/context text. Unsupported or corrupt history is an explicit error.
+   purges its answer/context text. The history list shows status and review freshness;
+   opening a saved answer also validates its complete saved input. Damaged input can
+   therefore produce an explicit error when opened even if its status appeared in the list.
 
 Only one preparation, answer or connection change can own the operation slot at a time.
 A cancelled runtime may need to finish cleanup before another operation can start.

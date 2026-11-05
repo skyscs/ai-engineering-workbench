@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto';
+import { answerSummaries } from './answer-history.js';
 import { QuestionPreparations, reserveQuestionAnswer, reserveQuestionConfiguration } from './question-preparation.js';
 import { AnswerWitnessStore, preparedAnswerRequestHash } from './answer-witness-store.js';
 import { preparedAnswerInputKind } from './answer-witness-schema.js';
@@ -23,6 +24,7 @@ interface AttemptRow {
   usageUnknownReason: string | null; reason: string | null; createdAt: string; dispatchedAt: string | null; completedAt: string | null;
 }
 export interface AnswerAttempt {
+  inputValidation?: 'metadata-only';
   inputKind?: typeof preparedAnswerInputKind; nativeContext?: NativeQuestionCompact | null;
   id: string; question: string; buildId: string; status: AnswerStatus; stale: boolean;
   reviewState: 'current' | 'changed' | 'not-recorded' | 'unavailable';
@@ -93,7 +95,7 @@ export class Answers {
       createdAt: row.createdAt, dispatchedAt: row.dispatchedAt };
   }
   state() {
-    const attempts = this.catalog.store.all<{ id: string }>('SELECT id FROM answer_attempts ORDER BY rowid DESC LIMIT 20').map(row => this.get(row.id, false));
+    const attempts = answerSummaries(this.catalog);
     const published = this.catalog.store.one<{ id: string }>(`SELECT a.id FROM answer_attempts a WHERE a.status='succeeded'
       AND a.policyVersion=? AND NOT EXISTS(SELECT 1 FROM answer_sources deps JOIN sources s ON s.id=deps.sourceId WHERE deps.answerId=a.id AND s.status!='active')
       ORDER BY a.rowid DESC LIMIT 1`, this.catalog.store.project().policyVersion);
