@@ -10,6 +10,7 @@ import json
 import os
 from pathlib import Path
 import re
+import socket
 import stat
 import subprocess
 import sys
@@ -79,7 +80,9 @@ def inventory(roots):
         if stat.S_ISLNK(value.st_mode):
             target = path.resolve()
             allowed = (str(target).startswith(str(REPOSITORY) + '/') or
-                       any(str(target).startswith(prefix) for prefix in ['/usr/', '/opt/google/chrome/', '/etc/fonts/', '/etc/alternatives/']))
+                       any(str(target).startswith(prefix) for prefix in ['/usr/', '/opt/google/chrome/', '/etc/fonts/', '/etc/alternatives/']) or
+                       str(target) == '/etc/python3.14/sitecustomize.py')
+            # The distro's standard-library link is inventoried, but -S prevents its execution.
             assert allowed, 'Unexpected external link target: ' + str(path)
             exists = target.exists()
             result[key] = {'kind': 'symlink', 'target': os.readlink(path), 'resolved': str(target), 'exists': exists}
@@ -262,6 +265,8 @@ def verify(manifest_path):
         assert value == manifest[key], 'Sealed metadata changed: ' + key
     prior = absence_audit(manifest['plan'])
     assert prior == manifest['priorObservationAudit'], 'Prior-observation audit changed; review before any consumption.'
+    with socket.socket() as listener:
+        listener.bind(('127.0.0.1', 4244))
     return {'verified': True, 'manifestSha256': sha(raw), 'inventorySha256': sha(index_raw),
             'entries': len(actual), 'candidateReads': 0}, manifest
 

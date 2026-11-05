@@ -74,3 +74,9 @@ The [records](records.json) retain accepted PR #159 CI logs: both push and pull_
 passed 1,023 tests at exact head `1a1f5d5`; complete logs/counts were checked before merge
 `3fc1b46`, whose tree is identical. Final manifest creation, static verification and
 exact-head CI results will be added before any reserved execution.
+
+The first data-only manifest creation stopped before writing either manifest artifact:
+the distribution's `sitecustomize.py` link resolves to `/etc/python3.14/sitecustomize.py`.
+That exact public system path is now included in the byte inventory; isolated `-S`
+execution still never loads it. The first failure log and original code commit remain
+retained. This was a seal-authoring failure with no application or reserved-source run.
