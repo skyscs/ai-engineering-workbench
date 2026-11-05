@@ -6,6 +6,7 @@ import { createApp } from './app.js';
 import { Catalog } from './catalog.js';
 import { CatalogStore } from './store.js';
 import { Answers } from './answers.js';
+import { QuestionPreparations } from './question-preparation.js';
 import { CodeAnalysis } from './code-analysis.js';
 import { CodeAnalysisFollow } from './code-analysis-follow.js';
 import { CodePathsV2 } from './code-paths-v2.js';
@@ -23,7 +24,8 @@ const codePaths = new CodePathsV2(codeAnalysis);
 const nativeCaptures = new NativeCaptures(codeAnalysis, { paths: codePaths });
 codeFollow.start();
 // Cited answers are optional; indexing and map browsing need no Codex connection.
-const answers = process.env.LOREDOCK_ANSWERS === '1' ? new Answers(catalog) : undefined;
+const preparations = process.env.LOREDOCK_ANSWERS === '1' ? new QuestionPreparations(codeAnalysis) : undefined;
+const answers = preparations ? new Answers(catalog, undefined, preparations) : undefined;
 const app = createApp(catalog, { publicDir: fileURLToPath(new URL('../public/', import.meta.url)), development: process.env.LOREDOCK_DEVELOPMENT === '1', codeAnalysis, codeFollow, codePaths, nativeCaptures, ...answers ? { answers } : {} });
 const server = serve({ fetch: app.fetch, hostname: '127.0.0.1', port: 4244 });
 server.on('listening', () => console.log('LoreDock listening on http://127.0.0.1:4244'));
@@ -31,7 +33,8 @@ let closing = false;
 async function shutdown() {
   if (closing) return; closing = true;
   server.close();
-  codeFollow.stop(); await nativeCaptures.stop(); await codePaths.stop(); await codeAnalysis.stop(); await answers?.stop(); await catalog.stop(); store.close();
+  codeFollow.stop(); await answers?.stop(); await preparations?.stop();
+  await nativeCaptures.stop(); await codePaths.stop(); await codeAnalysis.stop(); await catalog.stop(); store.close();
 }
 server.on('error', error => { console.error(`LoreDock could not listen (${(error as NodeJS.ErrnoException).code ?? 'UNKNOWN'}). Check port 4244.`); void shutdown().finally(() => { process.exitCode = 1; }); });
 process.once('SIGINT', () => { void shutdown(); });

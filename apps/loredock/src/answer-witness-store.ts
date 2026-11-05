@@ -97,25 +97,27 @@ export class AnswerWitnessStore {
       return { id: input.id, payloadHash };
     }); } finally { budget.close(); }
   }
-  read(id: string): QuestionSnapshot {
-    const store = this.catalog.store, row = store.one<StoredAttempt>('SELECT * FROM answer_attempts WHERE id=?', id);
-    if (!row) throw new CatalogError('NOT_FOUND', 'Answer attempt not found.', 404);
-    if (row.inputKind !== preparedAnswerInputKind) fail('ANSWER_INPUT_UNSUPPORTED', 'This answer does not use supported prepared input.');
-    if (row.policyVersion !== store.project().policyVersion
-      || store.one("SELECT 1 FROM answer_sources d JOIN sources s ON s.id=d.sourceId WHERE d.answerId=? AND s.status!='active' LIMIT 1", id))
-      fail('ANSWER_INPUT_FENCED', 'Source authorization changed. Saved input is unavailable.');
-    const saved = store.one<WitnessRow>('SELECT * FROM answer_witnesses WHERE answerId=?', id);
-    if (!saved) fail('ANSWER_WITNESS_MISSING', 'This prepared answer is missing its required witness.');
-    if (saved.purged || row.context === null || saved.witness === null) fail('ANSWER_INPUT_FENCED', 'Saved input was purged.');
-    if (saved.schemaVersion !== answerWitnessVersion || saved.compositionVersion !== questionPreparationVersion
-      || saved.promptVersion !== questionPromptVersion || !uuid(saved.preparationId) || !hex(saved.reviewedHash)
-      || saved.contextHash !== hash(row.context) || saved.witnessBytes !== bytes(saved.witness)
-      || row.payloadHash !== preparedAnswerRequestHash(saved.preparationId, saved.reviewedHash))
-      fail('ANSWER_WITNESS_INVALID', 'Saved prepared input is invalid or unsupported.');
-    const snapshot = Object.freeze({ contextJson: row.context, witnessJson: saved.witness, reviewedHash: saved.reviewedHash,
-      retainedBytes: retainedQuestionBytes(row.context, saved.witness, saved.reviewedHash) });
-    const budget = new OperationBudget();
+  read(id: string, supplied?: OperationBudget): QuestionSnapshot {
+    requireReceipt(supplied === undefined || supplied instanceof OperationBudget, 'INVALID_CAPTURE_BUDGET');
+    const budget = supplied ?? new OperationBudget();
     try {
+      budget.check();
+      const store = this.catalog.store, row = store.one<StoredAttempt>('SELECT * FROM answer_attempts WHERE id=?', id);
+      if (!row) throw new CatalogError('NOT_FOUND', 'Answer attempt not found.', 404);
+      if (row.inputKind !== preparedAnswerInputKind) fail('ANSWER_INPUT_UNSUPPORTED', 'This answer does not use supported prepared input.');
+      if (row.policyVersion !== store.project().policyVersion
+        || store.one("SELECT 1 FROM answer_sources d JOIN sources s ON s.id=d.sourceId WHERE d.answerId=? AND s.status!='active' LIMIT 1", id))
+        fail('ANSWER_INPUT_FENCED', 'Source authorization changed. Saved input is unavailable.');
+      const saved = store.one<WitnessRow>('SELECT * FROM answer_witnesses WHERE answerId=?', id);
+      if (!saved) fail('ANSWER_WITNESS_MISSING', 'This prepared answer is missing its required witness.');
+      if (saved.purged || row.context === null || saved.witness === null) fail('ANSWER_INPUT_FENCED', 'Saved input was purged.');
+      if (saved.schemaVersion !== answerWitnessVersion || saved.compositionVersion !== questionPreparationVersion
+        || saved.promptVersion !== questionPromptVersion || !uuid(saved.preparationId) || !hex(saved.reviewedHash)
+        || saved.contextHash !== hash(row.context) || saved.witnessBytes !== bytes(saved.witness)
+        || row.payloadHash !== preparedAnswerRequestHash(saved.preparationId, saved.reviewedHash))
+        fail('ANSWER_WITNESS_INVALID', 'Saved prepared input is invalid or unsupported.');
+      const snapshot = Object.freeze({ contextJson: row.context, witnessJson: saved.witness, reviewedHash: saved.reviewedHash,
+        retainedBytes: retainedQuestionBytes(row.context, saved.witness, saved.reviewedHash) });
       const { context, witness } = decode(snapshot, budget);
       const sourceIds = store.all<{ sourceId: string }>('SELECT sourceId FROM answer_sources WHERE answerId=? ORDER BY sourceId', id).map(source => source.sourceId);
       requireReceipt(witness.catalogId === store.receipts.catalogId && context.question === row.question && context.buildId === row.buildId
@@ -123,6 +125,6 @@ export class AnswerWitnessStore {
         && witness.promptVersion === row.promptVersion && row.schemaVersion === answerSchemaVersion && same(sourceIds, witness.sourceIds), 'ANSWER_WITNESS_BINDING');
       const work = new CaptureWork(this.catalog, budget, new AbortController().signal, {});
       authorizeQuestionScope(work, context, witness); work.check(); return snapshot;
-    } finally { budget.close(); }
+    } finally { if (supplied === undefined) budget.close(); }
   }
 }

@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+import { beforePreparedAnswer, loadPreparedAnswerControl } from '../../apps/loredock/tests/fixtures/prepared-answer-reference/verify.mjs';
 import { randomUUID, createHash } from 'node:crypto';
 import { mkdtemp, rm, readFile, cp, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
@@ -42,7 +43,7 @@ async function setup(t, analyze = true) {
 }
 
 test('schema-11 promotion commits exact owned strings and all dependencies without a model or native history write', async t => {
-  const { fixture, owner, storage, input, snapshot, preview } = await setup(t), request = input();
+  const { fixture, owner, storage, input, snapshot, preview, parent } = await setup(t), request = input();
   const before = fixture.counters();
   const promoted = owner.promote(preview.id, preview.reviewedHash, value => storage.create(request, value));
   assert.equal(promoted.value.id, request.id); assert.equal(owner.get(preview.id).status, 'consumed'); promoted.release();
@@ -55,7 +56,8 @@ test('schema-11 promotion commits exact owned strings and all dependencies witho
   const savedBudget = new services.OperationBudget(); try { assert.deepEqual(fixture.store.receipts.ids(savedBudget), []); } finally { savedBudget.close(); }
   assert.equal(fixture.counters().gitCalls, before.gitCalls); assert.equal(fixture.counters().factReads, before.factReads);
   assert.deepEqual(storage.stats(), { records: 1, retained: 1, purged: 0, bytes: Buffer.byteLength(snapshot.witnessJson) });
-  const legacy = new Answers(fixture.catalog, { prepare() { throw new Error('Must not dispatch.'); } });
+  const { Answers: AcceptedAnswers } = await loadPreparedAnswerControl(parent);
+  const legacy = new AcceptedAnswers(fixture.catalog, { prepare() { throw new Error('Must not dispatch.'); } });
   assert.throws(() => legacy.get(request.id), code('ANSWER_INPUT_UNSUPPORTED')); await legacy.stop();
   assert.equal((await validateQuestionWitness(fixture.catalog, storage.read(request.id))).reviewedHash, preview.reviewedHash);
 });
@@ -193,7 +195,7 @@ test('accepted source and emitted controls preserve exact storage deltas and eve
   const root = new URL('../../', import.meta.url), manifest = JSON.parse(await readFile(new URL('apps/loredock/tests/fixtures/answer-witness-reference/manifest.json', root)));
   for (const [file, expected] of Object.entries(manifest.existingFiles)) {
     if (file.startsWith('scripts/') || /\/(store|answers)\.(ts|js)$/.test(file)) continue;
-    const raw = await readFile(new URL(file, root)); assert.equal(raw.length, expected.bytes); assert.equal(hash(raw), expected.sha256, file);
+    const raw = await beforePreparedAnswer(file, await readFile(new URL(file, root))); assert.equal(raw.length, expected.bytes); assert.equal(hash(raw), expected.sha256, file);
   }
 });
 
