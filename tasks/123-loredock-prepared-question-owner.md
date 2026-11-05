@@ -1,6 +1,7 @@
 # Task 123 — Own one bounded prepared question snapshot
 
-Status: scoped by Task 122; start after its exact-head acceptance.
+Status: implemented and locally verified (898 tests, strict types and builds); exact-head CI pending.
+Task 122 was accepted through identical-tree merge `7320aae`.
 
 Implement the internal transient owner from [ADR 0059](../docs/decisions/0059-loredock-prepared-question-lifecycle.md)
 and the [lifecycle contract](../docs/loredock/PREPARED_QUESTION_LIFECYCLE.md), using the
@@ -50,3 +51,7 @@ No source policy/indexing change, durable schema migration, answer attempt/publi
 model call, new user input, saved native receipt, corporate input or user-demo mutation.
 Small ordinary checks do not qualify complete-composition capacity or semantic quality;
 fresh prospective gates remain required before native generation becomes the pilot default.
+
+The [owner contract](../docs/loredock/PREPARED_QUESTION_OWNER.md) records implemented
+bounds and compatibility. [Task 124](124-loredock-answer-owned-witness-storage.md)
+adds durable ownership before answer admission/publication and HTTP/UI integration.

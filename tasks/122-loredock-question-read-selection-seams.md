@@ -1,6 +1,7 @@
 # Task 122 — Add production seams for bounded question reads and native selection
 
-Status: locally verified: 883 strict tests, typechecks and builds pass. Exact-head CI pending.
+Status: accepted through PR #126 at `c5c1e4f`; push 41933384392 and pull-request
+41933512176 passed all 883 tests, types and builds. Identical-tree merge: `7320aae`.
 Task 121 was accepted through identical-tree merge `2519990`.
 
 Implement only the production foundation specified by

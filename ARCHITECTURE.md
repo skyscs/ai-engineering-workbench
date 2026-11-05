@@ -96,6 +96,10 @@ adapters remain unimplemented. Task 122 adds actual synchronous per-store lexica
 selection within the existing shared budget/owner, preserving unselected outputs. These
 [internal seams](docs/loredock/QUESTION_READ_SELECTION.md) precede prepared ownership,
 HTTP/UI and model integration; see the [lifecycle](docs/loredock/PREPARED_QUESTION_LIFECYCLE.md).
+Task 123 adds an internal [prepared-question owner](docs/loredock/PREPARED_QUESTION_OWNER.md):
+one bounded transient snapshot, monotonic expiry, cancellation, synchronous promotion
+capabilities and exact original-based witness validation after inventory eviction. It adds
+no application consumer or persistence. Durable ownership precedes answer/HTTP/UI adoption.
 Explicit storage accounting and offline compaction use separate maintenance commands,
 preserving logical history and normal job recovery. Compaction acquires daemon
 ownership and rewrites physical SQLite pages only when free pages exist; see

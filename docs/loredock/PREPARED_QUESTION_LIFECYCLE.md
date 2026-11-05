@@ -230,5 +230,8 @@ Shutdown stops preparation/answer consumers before paths, analysis and CatalogSt
    Task 120 library or earlier model/resource families. Independent acceptance remains
    separate, and the Workbench bridge still waits for the knowledge-ready gate.
 
-[Task 122](../../tasks/122-loredock-question-read-selection-seams.md) is the only newly
-assigned implementation slice. Later task contracts must be committed before their code.
+[Task 122](../../tasks/122-loredock-question-read-selection-seams.md) delivered the internal
+seams. [Task 123](../../tasks/123-loredock-prepared-question-owner.md) implements the
+transient owner; [Task 124](../../tasks/124-loredock-answer-owned-witness-storage.md) scopes
+durable ownership before answer admission and HTTP/UI integration. Later task contracts
+must be committed before their code.
