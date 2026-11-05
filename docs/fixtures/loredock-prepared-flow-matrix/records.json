@@ -1,0 +1,239 @@
+{
+  "schemaVersion": "prepared-flow-matrix-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "tests": 956,
+  "trees": [
+    {
+      "path": "source-only-first.tar.gz",
+      "sha256": "8715a03ac73a0dfcaa189f74d6c0512495aa718e2d95f0ad9972beab45178929",
+      "inventory": "source-only-first.inventory.json.gz",
+      "inventorySha256": "9eceb40afc151b196cab0d0ed4f3247b51d9b55a797bd3b823d499ad694b86c5",
+      "entries": 89,
+      "source": "/home/toshiba/aew/task128-source-only-first",
+      "limitation": "The incorrect expected ordinary quote fails this original run; the corrected reference is a separate retained run."
+    },
+    {
+      "path": "source-only-second.tar.gz",
+      "sha256": "d101b590ed7534efb4aa0d87f9b4d4aef40c07703cfdda542ac390eb054049d7",
+      "inventory": "source-only-second.inventory.json.gz",
+      "inventorySha256": "df78de11f5713b0e3ebba569f8f1c1c65971d6319e6b14a0a2cd724677fb1d84",
+      "entries": 92,
+      "source": "/home/toshiba/aew/task128-source-only-second"
+    },
+    {
+      "path": "browser-thread-tree-first.tar.gz",
+      "sha256": "5ab045c41662477100268e358c5bb868bd0a77163f3737e83c1f69465aff5e15",
+      "inventory": "browser-thread-tree-first.inventory.json.gz",
+      "inventorySha256": "dabd34b09d2b5b1be6327c82fe22507bd12d204a25936909dfd70569dca74d0b",
+      "entries": 175,
+      "source": "/home/toshiba/aew/task128-browser-thread-tree-first",
+      "excludedFromArchive": [
+        "run/browser/profile (temporary Chrome profile/cache; original retained locally)"
+      ],
+      "limitation": "Functional browser observation overlapped ordinary repository checks; not a resource qualification run."
+    },
+    {
+      "path": "matrix-retention.tar.gz",
+      "sha256": "98e1dff0dd93b52a98d712154b9c7afbaa15ac7e72b52a74f2185d225eaeb57a",
+      "inventory": "matrix-retention.inventory.json.gz",
+      "inventorySha256": "903b7926e2376adf323a6bbf28d9e3d9a8abe0b6d40fe6c14d4883c373716133",
+      "entries": 13,
+      "source": "/home/toshiba/aew/task128-matrix-retention"
+    },
+    {
+      "path": "matrix-check-owner-1.tar.gz",
+      "sha256": "08c5bd1911bc9add21bcbc80482c832b9a44edd0f3c8291b5ed55c1702d2a350",
+      "inventory": "matrix-check-owner-1.inventory.json.gz",
+      "inventorySha256": "b6c9f6d3e2d8c1dd0050c5040b50c1177dfc889dedfb5e020364f790d3023967",
+      "entries": 8,
+      "source": "/tmp/loredock-kernel-adoption-1w5fES"
+    },
+    {
+      "path": "matrix-check-owner-2.tar.gz",
+      "sha256": "8e57bcf821370428160e074c9f3feaf2e8d5feade279913c3002bf190808e46f",
+      "inventory": "matrix-check-owner-2.inventory.json.gz",
+      "inventorySha256": "80ce8190208ef35eedf35fe333acef0809027b609a0b4b59db521be404e5fa02",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-lB2D1T"
+    },
+    {
+      "path": "matrix-check-owner-3.tar.gz",
+      "sha256": "abc7e4a66070f1f84256f0c5b1b58bf03eda7a8f267b10ba80912b0f5b609973",
+      "inventory": "matrix-check-owner-3.inventory.json.gz",
+      "inventorySha256": "9be341ffacf84382507b12e8a0f2896e07ace118229b08fedb6e8ad3ee300433",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-wRsKFv"
+    },
+    {
+      "path": "matrix-check-owner-4.tar.gz",
+      "sha256": "087fa24049f504600e0290fe15522d02c535249639ac4cbb77d5b4aeb879cccb",
+      "inventory": "matrix-check-owner-4.inventory.json.gz",
+      "inventorySha256": "37af111e1c25cf66022f036a9c39693228174591a25aa56161e6f060c9e9b987",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-qmHRws"
+    },
+    {
+      "path": "matrix-check-owner-5.tar.gz",
+      "sha256": "3c776faee5fdfd0500892418836699d3eaba08472f7630d7ca28da928cd38a17",
+      "inventory": "matrix-check-owner-5.inventory.json.gz",
+      "inventorySha256": "576a6a8ce6f619c68a68cceb2bcde81fc8da31321eb781d5b9bbf37f3e23eced",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-ApwOR9"
+    },
+    {
+      "path": "matrix-check-owner-6.tar.gz",
+      "sha256": "aa79a1101a9416b627f9a71969a098076744b5f08b1d4b9e75dafb4cad1b24f0",
+      "inventory": "matrix-check-owner-6.inventory.json.gz",
+      "inventorySha256": "0c690a69bc5bf51d57071a7399791ff9f8c554800d4bd9e019a89d2a98f9bdba",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-PbZXCY"
+    },
+    {
+      "path": "matrix-inputs.tar.gz",
+      "sha256": "327fed0fd311adee3df467fd9cffbcf0da37d86f988fc2882ba514740537e5c1",
+      "inventory": "matrix-inputs.inventory.json.gz",
+      "inventorySha256": "8074b33ff7537bf613b625a176fd669a77cc74309b54d8c20751de1913c4ad53",
+      "entries": 8,
+      "source": "/home/toshiba/aew/task128-matrix-inputs"
+    },
+    {
+      "path": "matrix-static-review.tar.gz",
+      "sha256": "f4740193c9b99fc4be2a7fe8561886d4e16ed5c7ae1c8c75801b68c3df934202",
+      "inventory": "matrix-static-review.inventory.json.gz",
+      "inventorySha256": "436a22552059c825f5c45d871c81e2d4c88f275c411eb914ed18f15d02c82242",
+      "entries": 1,
+      "source": "/home/toshiba/aew/task128-matrix-static-review"
+    }
+  ],
+  "logs": [
+    {
+      "path": "source-only-first.log.gz",
+      "archiveSha256": "8c45c0731c70d7ec242b4b3b481b83dae7a64f2199fb240c564b04907e542e20",
+      "rawBytes": 2660,
+      "rawSha256": "dcfcc40ee2205f21b86297d8d8b23b1f6e3d07392389f29936c9e4fc7e54a3b9"
+    },
+    {
+      "path": "source-only-second.log.gz",
+      "archiveSha256": "c03ff33fdd17d66e62a2cbab14906624a53caa4b5f82c8ecb137bbec6c8a3b7f",
+      "rawBytes": 2537,
+      "rawSha256": "746e96c92dac8fd807714d14569bcf2c20e9aa8a97988e47735c5730b38423e2"
+    },
+    {
+      "path": "browser-thread-tree-first.log.gz",
+      "archiveSha256": "ba16184c65e3546a53271251c8cb1ba89d2cdec2feeed90d3bf958acab938d2b",
+      "rawBytes": 7249,
+      "rawSha256": "9d729f40a17b20626a3e6065d1129f97f963f6214255a549b2d4b947078f2fc4"
+    },
+    {
+      "path": "matrix-install.log.gz",
+      "archiveSha256": "f4695782fbcaee38f9814c5a6fa1c6e517bffb98b72d8adb8f4a9985c67bc60a",
+      "rawBytes": 326,
+      "rawSha256": "0f50aafe118eb8029a3c5a20a093d23b382b1b18fd0955ad961fbc1d68669474"
+    },
+    {
+      "path": "matrix-build.log.gz",
+      "archiveSha256": "27a273e9938234232d3e51680161ee26e97fed2ddffab0abe51e864043548b04",
+      "rawBytes": 2355,
+      "rawSha256": "eb26a8d7590ff551dd9ae8b029560fd61ed759513c17e46e02dcfeae3bee8d2c"
+    },
+    {
+      "path": "matrix-process-tree-focused.log.gz",
+      "archiveSha256": "be82d4e44dd0b1a17770076826428fe31868416e368757b4adce4aa47715bb25",
+      "rawBytes": 328,
+      "rawSha256": "2a429f1cc8b49875714fddc332f83d72ecc623118b73bc0f21fa8db924867889"
+    },
+    {
+      "path": "matrix-retention.log.gz",
+      "archiveSha256": "3f10cbdc1d84db2b3f0624c0582f18e6ee33981d827b6acb4451c428b642986c",
+      "rawBytes": 1045,
+      "rawSha256": "e11912178310e063ffec322accfbaebe0f3cefe501b3ee2ef8a61f55138a5e39"
+    },
+    {
+      "path": "matrix-check-first.log.gz",
+      "archiveSha256": "2c757297d0b82a1ea7f3e72cf1cdf94ff2fe3d322bb69a4ca1f4398efb1da5da",
+      "rawBytes": 350567,
+      "rawSha256": "0a4d684bace8c1a871df37f4df5cf1f42f6b6e38974fd47dbd6ce2a6c1714a74"
+    },
+    {
+      "path": "matrix-seal-check.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "preflight-ci-push-final.log.gz",
+      "archiveSha256": "f0829d6063b621a58281b79797cc3008ef7badac1859a09b23ee4a91693f52ff",
+      "rawBytes": 683860,
+      "rawSha256": "1d5ef50f5b0d69c8a7042bb19f8d754268c27c73c2086c60c28587fb9af313db"
+    },
+    {
+      "path": "preflight-ci-pr-final.log.gz",
+      "archiveSha256": "b9027c70a2a28e1205b2afb4273105d9b9b1d28577fc3ebb7d37d7c04a2a5d87",
+      "rawBytes": 685243,
+      "rawSha256": "be98c208f8da1c72f0844f973665434ba64a6575cd730a8813a3aef7b3071f5e"
+    },
+    {
+      "path": "matrix-static-first.log.gz",
+      "archiveSha256": "4a95f05b0f7c1f487ad6909ab62895e79d7e14d4398d2711fed2238d6364e87d",
+      "rawBytes": 208,
+      "rawSha256": "cb55391ede165fd83db23ace212610992c84eebd35a7a88a53cd5771dd98c7ef"
+    }
+  ],
+  "acceptedPreflight": {
+    "pr": 135,
+    "head": "a78887afc5a06163df15a0851e298185aaeb00b5",
+    "merge": "20c86d35dea722362ebf80dc90e816fd4b11fe0e",
+    "push": 42001496141,
+    "pull_request": 42001504264,
+    "testsPerEvent": 955
+  },
+  "retention": [
+    {
+      "case": "source-only-first",
+      "sourceHashesUnchanged": true,
+      "rawTreeUnchangedByInspection": true,
+      "catalogIntegrity": "ok",
+      "foreignKeys": [],
+      "answers": [],
+      "analyses": 0,
+      "ownerErrors": [],
+      "ownedSurvivors": []
+    },
+    {
+      "case": "source-only-second",
+      "sourceHashesUnchanged": true,
+      "rawTreeUnchangedByInspection": true,
+      "catalogIntegrity": "ok",
+      "foreignKeys": [],
+      "answers": [],
+      "analyses": 0,
+      "ownerErrors": [],
+      "ownedSurvivors": []
+    },
+    {
+      "case": "browser-thread-tree-first",
+      "sourceHashesUnchanged": true,
+      "rawTreeUnchangedByInspection": true,
+      "catalogIntegrity": "ok",
+      "foreignKeys": [],
+      "answers": [
+        [
+          "succeeded"
+        ]
+      ],
+      "analyses": 1,
+      "ownerErrors": [],
+      "ownedSurvivors": [],
+      "browser": {
+        "samples": 39,
+        "incompleteSamples": 0,
+        "nonleaderEdges": 37,
+        "maximumSampledRssBytes": 1354678272,
+        "clockTicksPerSecond": 100,
+        "resourceQualification": false
+      }
+    }
+  ]
+}

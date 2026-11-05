@@ -5,6 +5,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { journal, until, save, normalized } from './io.mjs';
 import { registerOwnedProcess } from './ownership.mjs';
+import { sampleProcessTree } from './process-tree.mjs';
 
 export function sanitized(value) {
   if (Array.isArray(value)) return value.map(sanitized);
@@ -32,21 +33,6 @@ async function connect(url, onEvent) {
     pending.set(id, { resolve, reject, timer }); socket.send(JSON.stringify({ id, method, params }));
   }) };
 }
-async function processTree(pid) {
-  const rows = [], pending = [pid], seen = new Set();
-  while (pending.length) {
-    const current = pending.pop(); if (seen.has(current)) continue; seen.add(current);
-    try {
-      const status = await readFile(`/proc/${current}/status`, 'utf8');
-      rows.push({ pid: current, rssBytes: Number(status.match(/^VmRSS:\s+(\d+)/m)?.[1] ?? 0) * 1024,
-        highWaterRssBytes: Number(status.match(/^VmHWM:\s+(\d+)/m)?.[1] ?? 0) * 1024 });
-      const children = await readFile(`/proc/${current}/task/${current}/children`, 'utf8');
-      pending.push(...children.trim().split(/\s+/).filter(Boolean).map(Number));
-    } catch (error) { if (error.code !== 'ENOENT' && error.code !== 'ESRCH') throw error; rows.push({ pid: current, exitedDuringSample: true }); }
-  }
-  return { at: performance.now(), rows, rssBytes: rows.reduce((sum, row) => sum + (row.rssBytes ?? 0), 0) };
-}
-
 // Real built UI, with passive browser observations. Fault interception belongs to a separate lane.
 export async function browser({ directory, executable = '/usr/bin/google-chrome' }) {
   await mkdir(directory);
@@ -58,6 +44,7 @@ export async function browser({ directory, executable = '/usr/bin/google-chrome'
     XDG_CONFIG_HOME: path.join(directory, 'xdg-config'), XDG_CACHE_HOME: path.join(directory, 'xdg-cache') };
   const child = spawn(executable, args, { env, detached: true, stdio: ['ignore', ...descriptors] }); descriptors.forEach(closeSync);
   let ended = false, protocol, memoryTimer, inSample, sampleError, maxRssBytes = 0, maxPending = 0, stopped, closing = false;
+  let rootStartedTicks, memorySamples = 0, incompleteMemorySamples = 0;
   const requests = new Map(), responseTasks = new Set(), errors = [], listeners = new Set();
   const exit = new Promise(resolve => {
     child.once('error', error => { errors.push(normalized(error)); });
@@ -65,7 +52,11 @@ export async function browser({ directory, executable = '/usr/bin/google-chrome'
   });
   async function sample() {
     if (inSample) return;
-    inSample = processTree(child.pid).then(row => { maxRssBytes = Math.max(maxRssBytes, row.rssBytes); memory.append(row); }).catch(error => { sampleError = normalized(error); });
+    inSample = sampleProcessTree(child.pid, rootStartedTicks).then(row => {
+      rootStartedTicks ??= row.rows.find(value => value.pid === child.pid)?.startedTicks;
+      memorySamples++; if (!row.complete) incompleteMemorySamples++;
+      maxRssBytes = Math.max(maxRssBytes, row.rssBytes); memory.append(row);
+    }).catch(error => { sampleError = normalized(error); });
     try { await inSample; } finally { inSample = null; }
   }
   const stop = () => stopped ??= (async () => {
@@ -79,8 +70,9 @@ export async function browser({ directory, executable = '/usr/bin/google-chrome'
     let outcome;
     try { outcome = await exit; } finally { clearTimeout(timer); }
     clearInterval(memoryTimer); if (inSample) await inSample;
-    await save(path.join(directory, 'exit.json'), { ...outcome, maxRssBytes, maxPending, sampleError: sampleError ?? null, errors });
-    events.close(); memory.close(); return { ...outcome, maxRssBytes, maxPending, sampleError: sampleError ?? null, errors };
+    const result = { ...outcome, maxRssBytes, maxPending, memorySamples, incompleteMemorySamples, sampleError: sampleError ?? null, errors };
+    await save(path.join(directory, 'exit.json'), result);
+    events.close(); memory.close(); return result;
   })();
   try {
     await registerOwnedProcess(child, directory, 'browser');
