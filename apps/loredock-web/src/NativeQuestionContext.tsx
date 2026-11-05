@@ -1,5 +1,6 @@
 import type { NativeQuestionCompact } from '../../loredock/src/question-preparation-types';
-import type { InputSpan } from '../../loredock/src/answer-context';
+import type { AnswerContext } from '../../loredock/src/answer-context';
+import { expandNativeQuestion } from '../../loredock/src/question-native-format';
 
 const omissions: Record<string, string> = {
   INVENTORY_UNAVAILABLE: 'Code analysis is not available for this index.',
@@ -11,10 +12,10 @@ const omissions: Record<string, string> = {
   'derived-size': 'The path does not fit alongside the existing interface comparisons.',
   'prompt-size': 'The path does not fit within the answer input limit.',
 };
-export function NativeQuestionContext({ value, spans, openEvidence }: {
-  value: NativeQuestionCompact; spans: InputSpan[]; openEvidence(id: string): void;
+export function NativeQuestionContext({ value, context, openEvidence }: {
+  value: NativeQuestionCompact; context: AnswerContext; openEvidence(id: string): void;
 }) {
-  const item = value.item;
+  const item = value.item ? expandNativeQuestion(value.item, context) : null, spans = context.spans;
   if (!item) return <div className="notice native-question-context"><strong>No additional code path</strong>
     <p>{omissions[value.reason ?? ''] ?? 'No supported code path was included.'} The rest of the reviewed context is unchanged.</p></div>;
   const evidence = (ids: string[]) => ids.flatMap(id => { const span = spans.find(row => row.id === id);

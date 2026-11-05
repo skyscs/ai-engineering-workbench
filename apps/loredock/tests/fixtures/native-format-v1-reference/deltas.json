@@ -1,0 +1,261 @@
+{
+  "base": "d43cb05611fe41dea1107404cb6448441d18a0c5",
+  "files": {
+    "apps/loredock/src/question-preparation-types.ts": {
+      "beforeSha256": "5436657229c5b396391cda30f988fc0cc022b990f6b57b5f6c05a0505211c3a8",
+      "afterSha256": "f9ea7e80457ac32112622f7d237ffb46fc0c4920f1456c61e1b1f9ca9cad2dad",
+      "edits": [
+        {
+          "start": 8,
+          "delete": 2,
+          "insert": [
+            "export const legacyQuestionCompactVersion = 'native-question-item/1';\n",
+            "export const questionCompactVersion = 'native-question-item/2';\n",
+            "export const legacyQuestionPromptVersion = 'loredock-prepared-answer-v1';\n",
+            "export const questionPromptVersion = 'loredock-prepared-answer-v2';\n",
+            "export type QuestionPromptVersion = typeof legacyQuestionPromptVersion | typeof questionPromptVersion;\n",
+            "export type QuestionCompactVersion = typeof legacyQuestionCompactVersion | typeof questionCompactVersion;\n"
+          ]
+        },
+        {
+          "start": 18,
+          "delete": 3,
+          "insert": [
+            "export type CompactEdge<Header = HeaderCheck> = [FlowEdge['kind'], number, number, FlowEdge['status'], string, string | null, string[], number[], Header | null, CompactTopicWitness | null];\n",
+            "export interface NativeQuestionItemV1 {\n",
+            "  schemaVersion: typeof legacyQuestionCompactVersion; provenance: 'static-analysis'; verification: 'unverified'; currentApplicability: 'not-checked';\n"
+          ]
+        },
+        {
+          "start": 27,
+          "delete": 0,
+          "insert": [
+            "export interface LegacyHeaderReference { legacyHeader: number }\n",
+            "export interface NativeQuestionItemV2 extends Omit<NativeQuestionItemV1, 'schemaVersion' | 'lexicalInputHash' | 'edges' | 'duplicateClues'> {\n",
+            "  schemaVersion: typeof questionCompactVersion;\n",
+            "  edges: CompactEdge<HeaderCheck | LegacyHeaderReference>[];\n",
+            "  duplicateClues: [legacyComparisonIndex: number, nativeEdgeIndex: number][];\n",
+            "}\n",
+            "export type NativeQuestionItem = NativeQuestionItemV1 | NativeQuestionItemV2;\n"
+          ]
+        },
+        {
+          "start": 34,
+          "delete": 1,
+          "insert": [
+            "  promptVersion: QuestionPromptVersion; catalogId: string; lexicalInputHash: string;\n"
+          ]
+        },
+        {
+          "start": 47,
+          "delete": 1,
+          "insert": [
+            "  context: AnswerContext; compact: NativeQuestionCompact; selection: SelectionObservation | null; promptVersion: QuestionPromptVersion;\n"
+          ]
+        }
+      ]
+    },
+    "apps/loredock/src/question-context.ts": {
+      "beforeSha256": "b5166481dc163309e116655a289faf27c6d08ac3901fbdbaa475c48b8f599277",
+      "afterSha256": "e9df343b60c695a9cd6cbdffeb34321444170b338b128a5c284bad50b72dff39",
+      "edits": [
+        {
+          "start": 4,
+          "delete": 0,
+          "insert": [
+            "import { factorNativeQuestion } from './question-native-format.js';\n"
+          ]
+        },
+        {
+          "start": 9,
+          "delete": 1,
+          "insert": [
+            "import { questionCompactVersion, legacyQuestionCompactVersion, type QuestionCompactVersion, type NativeQuestionItem,\n",
+            "  type NativeQuestionItemV1, type NativeQuestionCompact, type CompactNode, type CompactEdge } from './question-preparation-types.js';\n"
+          ]
+        },
+        {
+          "start": 20,
+          "delete": 1,
+          "insert": [
+            "const instructionsV2 = instructions + `Version 2 takes its lexical input hash from INPUT_JSON.inputHash.\n",
+            "duplicateClues tuples are [legacyComparisonIndex, nativeEdgeIndex]. A headerCheck\n",
+            "containing only legacyHeader refers to INPUT_JSON.interfaces.comparisons[index].headerCheck.\n",
+            "Read that complete status and explanation without alteration. Unmatched header checks\n",
+            "remain inline. These references preserve the same original support, not new evidence.\n",
+            "`;\n",
+            "export const preparedQuestionPrompt = (context: AnswerContext, item: NativeQuestionItem | null) => {\n",
+            "  requireReceipt(!item || item.schemaVersion === legacyQuestionCompactVersion || item.schemaVersion === questionCompactVersion, 'QUESTION_COMPACT_VERSION');\n",
+            "  return answerPrompt(context) + (item ? (item.schemaVersion === legacyQuestionCompactVersion ? instructions : instructionsV2) + JSON.stringify(item) : '');\n",
+            "};\n"
+          ]
+        },
+        {
+          "start": 36,
+          "delete": 1,
+          "insert": [
+            "export function compactQuestionPath(context: AnswerContext, encoded: DecodedNativeReceipt, budget: OperationBudget,\n",
+            "  version: QuestionCompactVersion = questionCompactVersion): NativeQuestionCompact {\n",
+            "  requireReceipt(version === legacyQuestionCompactVersion || version === questionCompactVersion, 'QUESTION_COMPACT_VERSION');\n"
+          ]
+        },
+        {
+          "start": 61,
+          "delete": 1,
+          "insert": [
+            "  const semantic: NativeQuestionItemV1 = { schemaVersion: legacyQuestionCompactVersion, provenance: 'static-analysis', verification: 'unverified', currentApplicability: 'not-checked',\n"
+          ]
+        },
+        {
+          "start": 70,
+          "delete": 0,
+          "insert": [
+            "  const item = version === legacyQuestionCompactVersion ? semantic : factorNativeQuestion(semantic, context, units => budget.charge('receipt', units));\n"
+          ]
+        },
+        {
+          "start": 73,
+          "delete": 1,
+          "insert": [
+            "    return { item: null, reason: 'derived-size', attemptedBytes: bytes(serialized), derivedBytes, duplicateClues: item.duplicateClues };\n"
+          ]
+        },
+        {
+          "start": 75,
+          "delete": 1,
+          "insert": [
+            "  if (promptBytes > answerPromptBytes) return { item: null, reason: 'prompt-size', attemptedBytes: bytes(serialized), derivedBytes, promptBytes, duplicateClues: item.duplicateClues };\n"
+          ]
+        }
+      ]
+    },
+    "apps/loredock/src/question-witness.ts": {
+      "beforeSha256": "8d5c6990239ac60220d438c488e5d5f9992cc59f830e03bfa2dce641df678c18",
+      "afterSha256": "66093cda1525c842dbaa043316dfad8c0eb7aebf53dbeab0c1b37e666f1f498f",
+      "edits": [
+        {
+          "start": 13,
+          "delete": 1,
+          "insert": [
+            "import { compactVersionForPrompt, supportedQuestionPrompt } from './question-native-format.js';\n",
+            "import { questionPreparationLimits, questionPreparationVersion, questionWitnessVersion,\n"
+          ]
+        },
+        {
+          "start": 57,
+          "delete": 1,
+          "insert": [
+            "    && supportedQuestionPrompt(witness.promptVersion) && witness.lexicalInputHash === context.inputHash, 'QUESTION_WITNESS_VERSION');\n",
+            "  requireReceipt(!witness.compact.item || witness.compact.item.schemaVersion === compactVersionForPrompt(witness.promptVersion), 'QUESTION_COMPACT_VERSION');\n"
+          ]
+        },
+        {
+          "start": 99,
+          "delete": 1,
+          "insert": [
+            "      requireReceipt(same(compactQuestionPath(context, encoded, budget, compactVersionForPrompt(witness.promptVersion)), witness.compact), 'QUESTION_COMPACT_MISMATCH');\n"
+          ]
+        }
+      ]
+    },
+    "apps/loredock/src/answer-witness-store.ts": {
+      "beforeSha256": "847767f04b619be33c5d3182bfc03cf92ffa84be6a67968654bab8f640030665",
+      "afterSha256": "28d0048a5d9b300769aa6f8683d050f20a74e0ce888d3f8b8265ac1dcbe33ef5",
+      "edits": [
+        {
+          "start": 3,
+          "delete": 1,
+          "insert": [
+            "import { questionPreparationVersion } from './question-preparation-types.js';\n",
+            "import { compactVersionForPrompt, supportedQuestionPrompt } from './question-native-format.js';\n"
+          ]
+        },
+        {
+          "start": 40,
+          "delete": 1,
+          "insert": [
+            "      requireReceipt(same(compactQuestionPath(context, receipt, budget, compactVersionForPrompt(witness.promptVersion)), witness.compact), 'QUESTION_COMPACT_MISMATCH');\n"
+          ]
+        },
+        {
+          "start": 114,
+          "delete": 1,
+          "insert": [
+            "        || !supportedQuestionPrompt(saved.promptVersion) || saved.promptVersion !== row.promptVersion\n",
+            "        || !uuid(saved.preparationId) || !hex(saved.reviewedHash)\n"
+          ]
+        }
+      ]
+    },
+    "apps/loredock/src/answer-history.ts": {
+      "beforeSha256": "1dd3f3a859a2a4f50b8c038d91ed081c7ca500490da7eaaac8f3a999733dd0d4",
+      "afterSha256": "81fa74372bbce0fbb54b9a3345c24ebf22ec5c2c7c80d96966aeecb26b4815c9",
+      "edits": [
+        {
+          "start": 5,
+          "delete": 1,
+          "insert": [
+            "import { questionPreparationVersion } from './question-preparation-types.js';\n",
+            "import { supportedQuestionPrompt } from './question-native-format.js';\n"
+          ]
+        },
+        {
+          "start": 51,
+          "delete": 1,
+          "insert": [
+            "        || !supportedQuestionPrompt(saved.promptVersion) || row.promptVersion !== saved.promptVersion\n"
+          ]
+        }
+      ]
+    },
+    "apps/loredock-web/src/NativeQuestionContext.tsx": {
+      "beforeSha256": "4293e1b9ccf66caffe3d407c26967e1bde4ed961c06bfd906ea8b4d649be433e",
+      "afterSha256": "d697357e61e3c9eb16d0bc9187c373e1eed2731145242f477a10a33d3402dc3b",
+      "edits": [
+        {
+          "start": 1,
+          "delete": 1,
+          "insert": [
+            "import type { AnswerContext } from '../../loredock/src/answer-context';\n",
+            "import { expandNativeQuestion } from '../../loredock/src/question-native-format';\n"
+          ]
+        },
+        {
+          "start": 13,
+          "delete": 2,
+          "insert": [
+            "export function NativeQuestionContext({ value, context, openEvidence }: {\n",
+            "  value: NativeQuestionCompact; context: AnswerContext; openEvidence(id: string): void;\n"
+          ]
+        },
+        {
+          "start": 16,
+          "delete": 1,
+          "insert": [
+            "  const item = value.item ? expandNativeQuestion(value.item, context) : null, spans = context.spans;\n"
+          ]
+        }
+      ]
+    },
+    "apps/loredock-web/src/AnswerPanel.tsx": {
+      "beforeSha256": "572c07ec04d46f471b66a5d4bf7c4c38c64437a5ae8deae7754298ac72d61667",
+      "afterSha256": "64e90f741f3b1ad4592397dba3c36b58e8864eaccb177fd10fd44443e6f0e0d4",
+      "edits": [
+        {
+          "start": 97,
+          "delete": 1,
+          "insert": [
+            "      {preparedEnabled && prepared.preview && <NativeQuestionContext value={prepared.preview.compact} context={context} openEvidence={openEvidence} />}\n"
+          ]
+        },
+        {
+          "start": 119,
+          "delete": 1,
+          "insert": [
+            "      {displayed.context && displayed.nativeContext && <NativeQuestionContext value={displayed.nativeContext} context={displayed.context} openEvidence={openEvidence} />}\n"
+          ]
+        }
+      ]
+    }
+  }
+}

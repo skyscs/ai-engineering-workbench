@@ -3,7 +3,8 @@ import type { AnswerAttempt } from './answers.js';
 import { answerSchemaVersion, retrievalVersion, type AnswerContext } from './answer-context.js';
 import { answerWitnessLimits, answerWitnessVersion, preparedAnswerInputKind } from './answer-witness-schema.js';
 import { preparedAnswerRequestHash } from './answer-witness-store.js';
-import { questionPreparationVersion, questionPromptVersion } from './question-preparation-types.js';
+import { questionPreparationVersion } from './question-preparation-types.js';
+import { supportedQuestionPrompt } from './question-native-format.js';
 import { OperationBudget } from './operation-budget.js';
 import { CaptureWork } from './native-capture-work.js';
 import { bytes, hash, hex, uuid, same } from './native-receipt-json.js';
@@ -49,7 +50,7 @@ function summary(catalog: Catalog, id: string, work: CaptureWork): AnswerAttempt
       if (saved.purged || !saved.present || raw === null)
         throw new CatalogError('ANSWER_INPUT_FENCED', 'Saved input was purged.', 409);
       if (saved.schemaVersion !== answerWitnessVersion || saved.compositionVersion !== questionPreparationVersion
-        || saved.promptVersion !== questionPromptVersion || row.promptVersion !== questionPromptVersion
+        || !supportedQuestionPrompt(saved.promptVersion) || row.promptVersion !== saved.promptVersion
         || row.schemaVersion !== answerSchemaVersion || !uuid(saved.preparationId) || !hex(saved.reviewedHash)
         || !Number.isSafeInteger(saved.witnessBytes) || saved.witnessBytes < 1 || saved.witnessBytes > answerWitnessLimits.bytes
         || saved.contextHash !== hash(raw) || row.payloadHash !== preparedAnswerRequestHash(saved.preparationId, saved.reviewedHash)) invalid();

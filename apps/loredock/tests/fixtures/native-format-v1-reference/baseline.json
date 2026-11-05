@@ -1,0 +1,18 @@
+{
+  "code": "9890186",
+  "family": "ordinary-native-factoring-01",
+  "files": {
+    "complete-v1-item.json": {
+      "bytes": 7099,
+      "sha256": "60e41d5cb7c58b7aeeabe9ffe841dc7ec52bae074f0dc98dd862355a6bc6099a"
+    },
+    "complete-v1-snapshot.json": {
+      "bytes": 94458,
+      "sha256": "bed7e8cea5fe793d2e3020906ce5326ee227d821d01939cd866ef9679a4c2a04"
+    }
+  },
+  "publicContextAndHashParity": true,
+  "applicationChanged": false,
+  "modelCalls": 0,
+  "resourceQualification": false
+}

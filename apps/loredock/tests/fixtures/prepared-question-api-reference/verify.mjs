@@ -4,6 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { emitSource } from '../integration-reference/compile.mjs';
 import { beforeCompilerLoading } from '../compiler-loading-reference/verify.mjs';
 import { beforeHistorySummary } from '../history-summary-reference/verify.mjs';
+import { beforeNativeFormat } from '../native-format-v1-reference/verify.mjs';
 const directory = new URL('./', import.meta.url), root = new URL('../../../../../', import.meta.url);
 const hash = value => createHash('sha256').update(value).digest('hex');
 export async function verifyQuestionApiDelta(name, compiled = true) {
@@ -14,7 +15,7 @@ export async function verifyQuestionApiDelta(name, compiled = true) {
   const lines = source.match(/.*\n|.+$/g) ?? [];
   for (const edit of [...delta.edits].reverse()) lines.splice(edit.start, edit.delete, ...edit.insert);
   const expected = lines.join(''); assert.equal(hash(expected), delta.afterSha256);
-  assert.equal(await readFile(new URL(delta.file, root), 'utf8'), expected);
+  assert.equal((await beforeNativeFormat(delta.file, await readFile(new URL(delta.file, root)))).toString(), expected);
   if (browser) return { source };
   const emitted = await readFile(new URL(name + '.js.txt', directory), 'utf8');
   assert.equal(hash(emitted), manifest.modules[name].emittedSha256); assert.equal(emitSource(source, name + '.ts'), emitted);
@@ -24,7 +25,7 @@ export async function verifyQuestionApiDelta(name, compiled = true) {
 export async function beforeQuestionApi(file, raw, compiled = true) {
   const match = /^apps\/loredock\/(src|dist)\/(app|index)\.(ts|js)$/.exec(file);
   const browser = file === 'apps/loredock-web/src/AnswerPanel.tsx';
-  if (!match && !browser) return beforeCompilerLoading(file, await beforeHistorySummary(file, raw));
+  if (!match && !browser) return beforeCompilerLoading(file, await beforeHistorySummary(file, await beforeNativeFormat(file, raw)));
   const value = await verifyQuestionApiDelta(browser ? 'AnswerPanel' : match[2], compiled);
   assert.equal(raw.toString(), await readFile(new URL(file, root), 'utf8'));
   return Buffer.from(browser || match[1] === 'src' ? value.source : value.emitted);

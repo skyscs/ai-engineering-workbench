@@ -1,5 +1,13 @@
 # One owned prepared question snapshot
 
+Task 133 adds [versioned format v2](../decisions/0061-loredock-native-question-format-v2.md)
+to the integrated owner described below. New preparations use `native-question-item/2`
+and `loredock-prepared-answer-v2`; saved v1 data selects its exact old serializer and
+prompt. Lossless references share matching immutable legacy headers and lexical binding.
+The composition, selection, witness schema and all limits remain unchanged. The Task 123
+description and original version table below record the initial internal implementation;
+HTTP/answer integration is described in [the current API contract](PREPARED_QUESTION_API.md).
+
 Task 123 implements the internal transient service specified by
 [ADR 0059](../decisions/0059-loredock-prepared-question-lifecycle.md), on top of the
 [production read/selection seams](QUESTION_READ_SELECTION.md). It is not wired into

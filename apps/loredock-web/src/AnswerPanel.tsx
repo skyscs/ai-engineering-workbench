@@ -95,7 +95,7 @@ export function AnswerPanel({ buildId, boundary: sourceBoundary, correctionRevis
       </details>
       {context.review && <AnswerReview review={context.review} spans={context.spans} openEvidence={openEvidence} />}
       {context.interfaces && <AnswerInterfaces value={context.interfaces} spans={context.spans} openEvidence={openEvidence} />}
-      {preparedEnabled && prepared.preview && <NativeQuestionContext value={prepared.preview.compact} spans={context.spans} openEvidence={openEvidence} />}
+      {preparedEnabled && prepared.preview && <NativeQuestionContext value={prepared.preview.compact} context={context} openEvidence={openEvidence} />}
       <p className="muted">One attempt, up to two minutes. Failed or cancelled attempts keep the last successful answer. {preparedEnabled
         ? 'Find context again to create a new attempt, which can consume additional usage.'
         : 'A retry is a new request and can consume more usage.'}</p>
@@ -117,7 +117,7 @@ export function AnswerPanel({ buildId, boundary: sourceBoundary, correctionRevis
       {displayed.context?.review && <AnswerReview review={displayed.context.review} spans={displayed.context.spans} openEvidence={openEvidence} />}
       {displayed.context?.interfaces && <AnswerInterfaces value={displayed.context.interfaces} spans={displayed.context.spans} openEvidence={openEvidence} />}
       {displayed.inputKind === 'prepared-question/1' && <p className="muted">Saved prepared context · exact reviewed input for this attempt.</p>}
-      {displayed.context && displayed.nativeContext && <NativeQuestionContext value={displayed.nativeContext} spans={displayed.context.spans} openEvidence={openEvidence} />}
+      {displayed.context && displayed.nativeContext && <NativeQuestionContext value={displayed.nativeContext} context={displayed.context} openEvidence={openEvidence} />}
       {displayed.context && !displayed.context.interfaces && <p className="muted">This older answer did not record interface comparisons. Its original context is unchanged.</p>}
       {displayed.reason && <p className="notice">{displayed.reason}</p>}
       {displayed.answer?.claims.map((claim, index) => <div className={`claim ${claim.kind}`} key={index}>
