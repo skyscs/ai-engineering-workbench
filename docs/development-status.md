@@ -1,5 +1,27 @@
 # Development status
 
+## Task 123 — Immutable bounded prepared question ownership
+
+[The internal owner](loredock/PREPARED_QUESTION_OWNER.md) now reserves one transient
+preparation before work starts, uses actual bounded lexical/native reads and retains
+immutable context/witness bytes behind a reviewed hash. Cancellation, competing owners,
+monotonic expiry, replacement, shutdown and source/build/review changes have explicit
+outcomes. The exact issued witness revalidates after native inventory eviction without
+new native fact/path reads. Existing source/legacy prompt bytes remain unchanged.
+
+All **898 tests, strict types and builds pass**; 15 focused compiled tests cover the
+lifecycle and actual composition. [Verification records](fixtures/loredock-prepared-question-owner/README.md)
+retain first failures, raw logs, control hashes and actual accounting. All 154 prior
+source/emitted/control files and all nine parser modules remain unchanged. The new
+52-module service composition has no transferred resource qualification. No HTTP/UI,
+answer dispatch, schema, model request or demo changes are enabled.
+
+Task 122 passed both CI events at `c5c1e4f` and merged as identical-tree `7320aae`.
+Task 123 requires both final-head CI events before acceptance. Next
+[Task 124](../tasks/124-loredock-answer-owned-witness-storage.md) persists answer-owned
+witnesses atomically, including schema, purge, quota and recovery, before answer admission
+and public adoption can use the exact reviewed context.
+
 ## Task 122 — Actual bounded lexical reads and internal question selection
 
 [Production foundations](loredock/QUESTION_READ_SELECTION.md) now account for actual
@@ -19,7 +41,8 @@ The test runner now compiles once before parallel script tests, fixing a demonst
 No production consumer, schema, answer prompt, HTTP/UI or model request changes.
 
 PR #125 passed push 41929457581 and pull-request 41929516141 at `896e484`, merging
-as identical-tree `2519990`. Task 122 awaits its own exact-head CI. Next
+as identical-tree `2519990`. Task 122 passed both events at `c5c1e4f` (push 41933384392, pull-request 41933512176)
+and merged as identical-tree `7320aae`. Next
 [Task 123](../tasks/123-loredock-prepared-question-owner.md) owns one bounded immutable
 transient preparation before HTTP/UI coordination and durable answer promotion.
 

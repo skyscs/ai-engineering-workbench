@@ -45,5 +45,6 @@ Successful tests stop owned services and remove temporary source/catalog directo
 the committed fixture generators and logs remain. The primary checkout stays clean at
 `592bbc0`; no user demo, corporate source, credential, schema, prompt, HTTP/UI or model
 connection is changed. Task 121 / PR #125 passed both events at `896e484` and merged as
-identical-tree `2519990`. This slice awaits its own exact-head CI; next is the
+identical-tree `2519990`. PR #126 passed push 41933384392 and pull-request 41933512176 at `c5c1e4f` (883 tests),
+then merged as identical-tree `7320aae`; next is the
 [bounded preparation owner](../../../tasks/123-loredock-prepared-question-owner.md).

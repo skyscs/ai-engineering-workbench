@@ -462,8 +462,9 @@ exhausted; production answers remain unchanged. [Task 121](tasks/121-loredock-pr
 completes the [immutable preparation/witness design](docs/loredock/PREPARED_QUESTION_LIFECYCLE.md)
 under [ADR 0059](docs/decisions/0059-loredock-prepared-question-lifecycle.md). [Task 122](tasks/122-loredock-question-read-selection-seams.md) adds production
 scoped lexical accounting and native selection seams, preserving public/legacy behavior.
-Next [Task 123](tasks/123-loredock-prepared-question-owner.md) owns one bounded transient
-prepared snapshot, before HTTP/UI adoption or durable answer promotion.
+[Task 123](tasks/123-loredock-prepared-question-owner.md) owns one bounded transient
+prepared snapshot. Next [Task 124](tasks/124-loredock-answer-owned-witness-storage.md)
+adds atomic durable ownership before answer admission and HTTP/UI adoption.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation

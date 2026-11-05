@@ -1,0 +1,189 @@
+{
+  "schemaVersion": "prepared-question-owner-review/1",
+  "base": "7320aae048a7cba06e4835b70477f9f21ffff771",
+  "preservedControlsCommit": "4d4350a5ef8263a9e6979ef32aaebddf86185422",
+  "reviewedExecutable": "5f7219d6a40ac05a80e9f8b3e20d6f47a92c6db1",
+  "node": "22.23.2",
+  "typescript": "5.9.3",
+  "pnpm": "10.15.0",
+  "checks": [
+    {
+      "path": "install-first.log.gz",
+      "exitCode": 0,
+      "bytes": 326,
+      "sha256": "3dd33f1140a8315fdda65517180e139e3c88d3e30c3764bd7b8cc155b6a45e07",
+      "archiveSha256": "cbbbd03bb421afb56ac31ad3aa5fd92472c5f10a25493935deb420d26a752742"
+    },
+    {
+      "path": "packages-first.log.gz",
+      "exitCode": 0,
+      "bytes": 605,
+      "sha256": "cf733ed2a6264131a78c9460fde421112768da3b698cc19f1d2d3c32aab808a6",
+      "archiveSha256": "86b00358952083e8b1010cdc8cd3b7cddd20a4e4c2ffeac61d7783545a768105"
+    },
+    {
+      "path": "build-before-first.log.gz",
+      "exitCode": 0,
+      "bytes": 130,
+      "sha256": "379b51dcdd1e5689e099a855236b7cc46f91d623efcfbe601953b9a1f905a66b",
+      "archiveSha256": "cc420db130071f3c74f3e08cb89ecd12c199cd7832d03646a56c4cc2d9a92e74"
+    },
+    {
+      "path": "types-first.log.gz",
+      "exitCode": 2,
+      "bytes": 1559,
+      "sha256": "394cf3ae482bc5b5f7f93aa20f47f7c3981e92af5e257a0cb4aeaca5248fdd67",
+      "archiveSha256": "3602e3702aabb50cfa5034c77727962611dfd57b1ecd17aefc4b50b67fd2d4d4"
+    },
+    {
+      "path": "types-second.log.gz",
+      "exitCode": 0,
+      "bytes": 155,
+      "sha256": "64a9ba0fcee842665017bd298740f15dd0abf88197d9ba7ab8da2df18963c12e",
+      "archiveSha256": "d50de6963f447b6f4138cb09637761d58c8da317e6bb9273a549f5b387fbd917"
+    },
+    {
+      "path": "build-first.log.gz",
+      "exitCode": 0,
+      "bytes": 130,
+      "sha256": "379b51dcdd1e5689e099a855236b7cc46f91d623efcfbe601953b9a1f905a66b",
+      "archiveSha256": "cc420db130071f3c74f3e08cb89ecd12c199cd7832d03646a56c4cc2d9a92e74"
+    },
+    {
+      "path": "focused-first.log.gz",
+      "exitCode": 1,
+      "bytes": 3816,
+      "sha256": "b42d6a68cb1c75b40e09c07dab9e319f6d06d8a71b79ca81fbe66ec4fba79048",
+      "archiveSha256": "56d32a322a0e86060a11a1c6502996e7376a95012c930dfb28a82912d8326176"
+    },
+    {
+      "path": "build-second.log.gz",
+      "exitCode": 0,
+      "bytes": 130,
+      "sha256": "379b51dcdd1e5689e099a855236b7cc46f91d623efcfbe601953b9a1f905a66b",
+      "archiveSha256": "cc420db130071f3c74f3e08cb89ecd12c199cd7832d03646a56c4cc2d9a92e74"
+    },
+    {
+      "path": "focused-second.log.gz",
+      "exitCode": 1,
+      "bytes": 4614,
+      "sha256": "d333ea83489cbcf85f5e91a3ae1061a51b1ce3e57ec8ced8eb00f3262cf820b3",
+      "archiveSha256": "5380697f8aab0d7a1546cdf7ee40e27062dd0f76addad98267e0753699766458"
+    },
+    {
+      "path": "focused-third.log.gz",
+      "exitCode": 0,
+      "bytes": 3906,
+      "sha256": "6d150e93634b7ebd27facfc5f4c88450989cf265d39d7c9bfdb560c7f57bc5a9",
+      "archiveSha256": "f6e15bd62502dc33ee442e4fed33c380e6b0e504fa392b62c3beac57455ead2f"
+    },
+    {
+      "path": "focused-fourth.log.gz",
+      "exitCode": 0,
+      "bytes": 4436,
+      "sha256": "b54e41a66fed9d4673f2aa3b2610d9ac733fec4c71585bf02e12c1d7e74d7e3e",
+      "archiveSha256": "dbcc74216b01e419a6a639a2790ee7d916532ff68aa2c1ef52b2d1274f63319a"
+    },
+    {
+      "path": "build-third.log.gz",
+      "exitCode": 0,
+      "bytes": 130,
+      "sha256": "379b51dcdd1e5689e099a855236b7cc46f91d623efcfbe601953b9a1f905a66b",
+      "archiveSha256": "cc420db130071f3c74f3e08cb89ecd12c199cd7832d03646a56c4cc2d9a92e74"
+    },
+    {
+      "path": "focused-fifth.log.gz",
+      "exitCode": 1,
+      "bytes": 5426,
+      "sha256": "81d354172ffb715a437307a5ad2db608fa894ae65ceaf2efc01b83f11976305c",
+      "archiveSha256": "e76ed44fbb766c0175e05c3aa0bf7bd35c425a229955899b2cc1f65a7403d8d9"
+    },
+    {
+      "path": "build-fourth.log.gz",
+      "exitCode": 0,
+      "bytes": 130,
+      "sha256": "379b51dcdd1e5689e099a855236b7cc46f91d623efcfbe601953b9a1f905a66b",
+      "archiveSha256": "cc420db130071f3c74f3e08cb89ecd12c199cd7832d03646a56c4cc2d9a92e74"
+    },
+    {
+      "path": "focused-sixth.log.gz",
+      "exitCode": 0,
+      "bytes": 4717,
+      "sha256": "34d63968bc498ba7f64d1b66e9a9b5dcfe3e4df3e42d0171ddfd3fbad77398f1",
+      "archiveSha256": "6ce0b7675282837b3307af70078fd6b120512654faa4d556391e3cc0ac2c81ae"
+    },
+    {
+      "path": "check-first.log.gz",
+      "exitCode": 0,
+      "bytes": 334941,
+      "sha256": "495f2ca497a5a21cfbbb31ba511ed407b7edd1d7341e38e4eec6cc561417c301",
+      "archiveSha256": "a69ee8d17982d6ae0160b3843829d6264b35c1671202cbca7c1a054465412e00"
+    },
+    {
+      "path": "audit-first.log.gz",
+      "exitCode": 0,
+      "bytes": 893,
+      "sha256": "7bafdae2ca507e1760b50b69637dbecb9cf43fc29c2d1b07c0f31b55d9d0187d",
+      "archiveSha256": "b1901b46cca19afb3725e4e2bd497b536ab587d5d6ffa41b64de97154fcffa2a"
+    },
+    {
+      "path": "audit-second.log.gz",
+      "exitCode": 0,
+      "bytes": 932,
+      "sha256": "4e3793096774facdbdfc1c37da8700a1c206b390c3731de62c0a3c78039f9518",
+      "archiveSha256": "e165d42249575bc57aa29298a83cf737bfeb45f4362c15303de5277d6beeed25"
+    }
+  ],
+  "firstFailures": [
+    "The first strict type check failed six errors: arrow-function never narrowing in the owner and the receipt build ID location. A named never-returning function and identity.buildId fixed them.",
+    "The first focused run passed 9/10; the saved-receipt assertion omitted the actual required OperationBudget argument to ids(). The assertion now supplies and closes a real budget.",
+    "The second focused run passed 11/12; fixed quote padding did not reach the prompt threshold. The pure renderer unit now computes padding from the rendered base size and leaves 64 bytes below the unchanged cap.",
+    "The fifth focused run passed 14/15; a huge URL was rejected by the parser before reaching the intended display-property boundary. The ordinary fixture now uses 80 unused String parameters to exercise the actual property omission."
+  ],
+  "validation": {
+    "strictTests": 898,
+    "focusedTests": 15,
+    "fullCheckExitCode": 0
+  },
+  "ordinaryPreparationObservation": {
+    "id": "5b5f19dd-c830-48bf-b4fa-a11c0fa57d8c",
+    "budget": {
+      "accountingVersion": "shared-capture-work/1",
+      "pathWork": 662,
+      "receiptWork": 302705,
+      "totalWork": 303367,
+      "wallMs": 39.606377000000066
+    },
+    "lexical": {
+      "sqlRows": 185,
+      "originalBytes": 6249,
+      "originalReads": 25,
+      "acceptedUnits": 6434,
+      "rejectedUnits": 0
+    },
+    "nativeReads": 1
+  },
+  "modelCalls": 0,
+  "reservedFamilyRuns": 0,
+  "httpUiSchemaAnswerChanges": false,
+  "resourceQualification": false,
+  "cleanup": "Ordinary fixture teardown closes services and stores and deletes owned temporary source/catalog directories, including on failed tests. Raw logs and committed fixture generators are retained. No user checkout or demo was modified.",
+  "primary": {
+    "head": "592bbc085d9405db86461d47fda5f3382bbaccde",
+    "clean": true
+  },
+  "limitations": [
+    "Internal owner only; answer/configuration consumers are not wired yet.",
+    "No durable answer witness or public prepared route exists yet.",
+    "The 1 MiB bound covers serialized retained content, not JavaScript heap overhead.",
+    "Exact anchors are not general natural-language relevance.",
+    "Fresh full-composition resource and semantic gates remain required."
+  ],
+  "localDocumentationLinks": 754,
+  "selfReview": [
+    "Ready reservation precedes every await; cancellation retains the active reservation until completion.",
+    "Synchronous promotion receives trusted immutable strings; actual transactional durability is deferred to Task 124.",
+    "No old source or public behavior change; exact pre-code controls and existing parity suites pass.",
+    "The static owner import closure is distinguished from the complete actual service composition."
+  ]
+}
