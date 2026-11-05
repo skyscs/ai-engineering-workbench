@@ -420,9 +420,18 @@ the owner retains exit 1 with no errors or survivors. Four copied catalogs, four
 Git identities, 60 HTTP responses and all 191 raw entries pass independent retention.
 Four new lifetime and three existing daemon controls pass after correcting one test's
 missing-check count; its first source/log remain, with no assessor change or app rerun.
-Installation/builds and the original seal pass. Both full final-head CI events remain
-required. These normal-path bounds do not cover every fault/history operation or complete
+Installation/builds and the original seal pass. Accepted through
+[PR #156](https://github.com/skyscs/ai-engineering-workbench/pull/156): push 42059862005
+and pull_request 42060068631 pass 1,008 tests at `a408457`; merge `c14f061` has the identical
+tree. These normal-path bounds do not cover every fault/history operation or complete
 the ordered matrix and execution seal. Whole resource/model eligibility remains closed.
+
+The [matrix integration work note](loredock/PREPARED_FLOW_INTEGRATION.md) maps all fifteen
+frozen cases to existing implementations and specifies pending artifact, prerequisite,
+assessment and execution-seal bindings. It preserves the strict completed-analysis
+prerequisite, unknown private-validator boundaries and incomplete operation/content
+coverage. The [integration checkpoint](fixtures/loredock-prepared-flow-matrix-integration/README.md)
+retains the preceding accepted CI logs. No matrix or reserved-family run has occurred.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request
