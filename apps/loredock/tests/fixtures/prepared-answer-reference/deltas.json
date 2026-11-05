@@ -1,0 +1,325 @@
+{
+  "schemaVersion": "prepared-answer-reviewed-deltas/1",
+  "modules": {
+    "answers": {
+      "beforeSha256": "79c6a8668064b416c03742ba0c41a6947c6621854d4a78afc1473d2da99d35b6",
+      "afterSha256": "817842dbc10f4dcc830760e4dfd9dc344e73595cc5b8d6a4d32eed6a06570cca",
+      "edits": [
+        {
+          "start": 1,
+          "delete": 0,
+          "insert": [
+            "import { QuestionPreparations, reserveQuestionAnswer, reserveQuestionConfiguration } from './question-preparation.js';\n",
+            "import { AnswerWitnessStore, preparedAnswerRequestHash } from './answer-witness-store.js';\n",
+            "import { preparedAnswerInputKind } from './answer-witness-schema.js';\n",
+            "import type { NativeQuestionCompact, QuestionWitness } from './question-preparation-types.js';\n",
+            "import { runPreparedAnswer } from './prepared-answer.js';\n",
+            "import { uuid, hex } from './native-receipt-json.js';\n"
+          ]
+        },
+        {
+          "start": 19,
+          "delete": 0,
+          "insert": [
+            "  inputKind?: typeof preparedAnswerInputKind; nativeContext?: NativeQuestionCompact | null;\n"
+          ]
+        },
+        {
+          "start": 32,
+          "delete": 1,
+          "insert": [
+            "  constructor(readonly catalog: Catalog, private readonly runtime: TextRuntime = new CodexTextRuntime(), private readonly preparations?: QuestionPreparations) {\n",
+            "    if (preparations && !preparations.ownsStore(catalog.store)) throw new CatalogError('INVALID_PREPARATION_OWNER', 'Use this catalog\u2019s preparation owner.', 409);\n"
+          ]
+        },
+        {
+          "start": 44,
+          "delete": 6,
+          "insert": [
+            "    if (this.stopping) throw new CatalogError('SERVICE_STOPPED', 'Answer service is stopping.', 409);\n",
+            "    const lease = reserveQuestionConfiguration(this.catalog.store);\n",
+            "    try {\n",
+            "      let connection: TextConnection;\n",
+            "      try { connection = { executable: await realpath(input.executable), configHome: await realpath(input.configHome), profile: input.profile }; }\n",
+            "      catch { throw new CatalogError('INVALID_CONFIGURATION', 'The executable or configuration path does not exist.'); }\n",
+            "      lease.check();\n",
+            "      if (this.stopping) throw new CatalogError('SERVICE_STOPPED', 'Answer service is stopping.', 409);\n",
+            "      if (this.worker) throw new CatalogError('BUSY', 'An answer started while configuration was being checked.', 409);\n",
+            "      this.catalog.store.run('INSERT INTO answer_settings VALUES (1,?) ON CONFLICT(id) DO UPDATE SET connection=excluded.connection', JSON.stringify(connection));\n",
+            "      return connection;\n",
+            "    } finally { lease.release(); }\n"
+          ]
+        },
+        {
+          "start": 51,
+          "delete": 0,
+          "insert": [
+            "\n"
+          ]
+        },
+        {
+          "start": 54,
+          "delete": 1,
+          "insert": [
+            "    if (row.inputKind !== undefined && row.inputKind !== 'legacy' && row.inputKind !== preparedAnswerInputKind) throw new CatalogError('ANSWER_INPUT_UNSUPPORTED', 'This answer uses an unsupported input kind.', 409);\n"
+          ]
+        },
+        {
+          "start": 62,
+          "delete": 3,
+          "insert": [
+            "    const row = this.row(id), authorized = this.authorized(row), native = row.inputKind === preparedAnswerInputKind;\n",
+            "    const snapshot = native && authorized ? new AnswerWitnessStore(this.catalog).read(id) : null;\n",
+            "    const witness = snapshot ? JSON.parse(snapshot.witnessJson) as QuestionWitness : null;\n",
+            "    const context = authorized && row.context ? JSON.parse(snapshot?.contextJson ?? row.context) as AnswerContext : null;\n",
+            "    return { ...native ? { inputKind: preparedAnswerInputKind, nativeContext: includeContent && witness ? witness.compact : null } : {},\n",
+            "      id: row.id, question: row.question, buildId: row.buildId, status: authorized ? row.status : 'fenced',\n"
+          ]
+        },
+        {
+          "start": 93,
+          "delete": 11,
+          "insert": [
+            "    const release = reserveQuestionAnswer(this.catalog.store);\n",
+            "    try {\n",
+            "      const context = this.preview(question, buildId);\n",
+            "      if (context.inputHash !== inputHash) throw new CatalogError('INPUT_CHANGED', 'Review the current context before asking.', 409);\n",
+            "      const id = randomUUID();\n",
+            "      this.catalog.store.transaction(() => {\n",
+            "        this.catalog.store.run(`INSERT INTO answer_attempts\n",
+            "          (id,requestId,payloadHash,question,buildId,policyVersion,registryVersion,status,context,inputHash,connection,model,effort,promptVersion,schemaVersion,createdAt,usageUnknownReason)\n",
+            "          VALUES (?,?,?,?,?,?,?,'preparing',?,?,?,'gpt-5.6-terra','medium',?,?,?,'Not dispatched yet.')`,\n",
+            "        id, requestId, payloadHash, context.question, buildId, context.policyVersion, context.registryVersion, JSON.stringify(context), inputHash, JSON.stringify(connection), answerPromptVersion, answerSchemaVersion, new Date().toISOString());\n",
+            "        for (const sourceId of new Set([...context.sources.map(source => source.sourceId), ...(context.review?.sourceIds ?? [])])) {\n",
+            "          this.catalog.store.run('INSERT INTO answer_sources VALUES (?,?)', id, sourceId);\n",
+            "        }\n",
+            "      });\n",
+            "      this.launch(id, release); return this.get(id);\n",
+            "    } catch (error) { if (!this.worker) release(); throw error; }\n",
+            "  }\n",
+            "  startPrepared(requestId: string, preparationId: string, reviewedHash: string): AnswerAttempt {\n",
+            "    if (typeof requestId !== 'string' || !/^[A-Za-z0-9_-]{1,100}$/.test(requestId) || !uuid(preparationId) || !hex(reviewedHash))\n",
+            "      throw new CatalogError('INVALID_REQUEST', 'A request ID and owned reviewed preparation are required.');\n",
+            "    const payloadHash = preparedAnswerRequestHash(preparationId, reviewedHash);\n",
+            "    const previous = this.catalog.store.one<AttemptRow>('SELECT * FROM answer_attempts WHERE requestId=?', requestId);\n",
+            "    if (previous) {\n",
+            "      if (previous.inputKind !== preparedAnswerInputKind || previous.payloadHash !== payloadHash) throw new CatalogError('CONFLICT', 'This request ID has different inputs.', 409);\n",
+            "      return this.get(previous.id);\n",
+            "    }\n",
+            "    if (this.stopping || this.worker) throw new CatalogError('BUSY', 'Another answer is active. Wait or cancel it first.', 409);\n",
+            "    const connection = this.configuration();\n",
+            "    if (!connection) throw new CatalogError('CONFIGURATION_REQUIRED', 'Choose your Codex configuration before asking a question.');\n",
+            "    if (!this.preparations) throw new CatalogError('ANSWER_PREPARATION_UNAVAILABLE', 'Question preparation is unavailable.', 409);\n",
+            "    const id = randomUUID(), storage = new AnswerWitnessStore(this.catalog);\n",
+            "    const promoted = this.preparations.promote(preparationId, reviewedHash, snapshot => storage.create({ id, requestId,\n",
+            "      preparationId, connection, model: 'gpt-5.6-terra', effort: 'medium' }, snapshot));\n",
+            "    this.launch(id, promoted.release); return this.get(id);\n",
+            "  }\n",
+            "  private launch(id: string, release: () => void) {\n",
+            "    const controller = new AbortController();\n",
+            "    // The local worker and shared reservation exist before any synchronous runtime fake.\n",
+            "    const done = Promise.resolve().then(() => this.run(id, controller.signal)).finally(() => {\n",
+            "      if (this.worker?.id === id) this.worker = undefined; release();\n"
+          ]
+        },
+        {
+          "start": 105,
+          "delete": 3,
+          "insert": []
+        },
+        {
+          "start": 109,
+          "delete": 1,
+          "insert": [
+            "    // idle()/stop() retain the rejection; do not leave background rejection unobserved.\n",
+            "    void done.catch(() => undefined);\n"
+          ]
+        },
+        {
+          "start": 111,
+          "delete": 0,
+          "insert": [
+            "\n"
+          ]
+        },
+        {
+          "start": 126,
+          "delete": 0,
+          "insert": [
+            "    if (this.row(id).inputKind === preparedAnswerInputKind) return runPreparedAnswer(this.catalog, this.runtime, id, parentSignal);\n"
+          ]
+        }
+      ]
+    },
+    "question-preparation": {
+      "beforeSha256": "70cfbed263cf5999cd625d9f3da3a6f03c7405e8f1f0fd67544c1cbedf36e12f",
+      "afterSha256": "588fceb83bd16ef5233c5a0e37d3aa24c94b0381c287725153f174928b6fa0b7",
+      "edits": [
+        {
+          "start": 35,
+          "delete": 0,
+          "insert": [
+            "function sharedOwner(store: CatalogStore) {\n",
+            "  let shared = owners.get(store); if (!shared) { shared = { stopped: false }; owners.set(store, shared); } return shared;\n",
+            "}\n",
+            "function checkIdle(store: CatalogStore, shared: Shared) {\n",
+            "  if (shared.stopped) fail('SERVICE_STOPPED', 'Question preparation is stopping.');\n",
+            "  if (shared.active || shared.answer || shared.configuration\n",
+            "    || store.one(\"SELECT 1 FROM answer_attempts WHERE status IN ('preparing','running') LIMIT 1\"))\n",
+            "    fail('QUESTION_BUSY', 'Finish or cancel the current question operation first.');\n",
+            "}\n",
+            "/** Every answer instance shares these reservations, even without a preparation consumer. */\n",
+            "export function reserveQuestionAnswer(store: CatalogStore) {\n",
+            "  const shared = sharedOwner(store); checkIdle(store, shared); const token = Symbol('question-answer'); shared.answer = token;\n",
+            "  return () => { if (shared.answer === token) delete shared.answer; };\n",
+            "}\n",
+            "export function reserveQuestionConfiguration(store: CatalogStore) {\n",
+            "  const shared = sharedOwner(store); checkIdle(store, shared); const token = Symbol('question-configuration'); shared.configuration = token;\n",
+            "  return { release: () => { if (shared.configuration === token) delete shared.configuration; },\n",
+            "    check: () => { if (shared.stopped || shared.configuration !== token) fail('QUESTION_LEASE_EXPIRED', 'This configuration reservation ended.'); } };\n",
+            "}\n"
+          ]
+        },
+        {
+          "start": 43,
+          "delete": 2,
+          "insert": [
+            "    this.shared = sharedOwner(store);\n"
+          ]
+        },
+        {
+          "start": 56,
+          "delete": 6,
+          "insert": [
+            "  private busy() { checkIdle(this.analysis.catalog.store, this.shared); }\n",
+            "  ownsStore(store: CatalogStore) { return this.analysis.catalog.store === store; }\n"
+          ]
+        },
+        {
+          "start": 183,
+          "delete": 5,
+          "insert": [
+            "  reserveConfiguration() { return reserveQuestionConfiguration(this.analysis.catalog.store); }\n"
+          ]
+        }
+      ]
+    },
+    "question-witness": {
+      "beforeSha256": "71abcc0aab8ff7484f43d81e54a8e5e3d3c2a117daaf700d0393d19730697cff",
+      "afterSha256": "8d5c6990239ac60220d438c488e5d5f9992cc59f830e03bfa2dce641df678c18",
+      "edits": [
+        {
+          "start": 77,
+          "delete": 0,
+          "insert": [
+            "export interface QuestionValidationOptions {\n",
+            "  budget?: OperationBudget;\n",
+            "  finalize?: (input: { context: AnswerContext; witness: QuestionWitness; budget: OperationBudget; check: () => void }) => unknown;\n",
+            "}\n",
+            "\n"
+          ]
+        },
+        {
+          "start": 78,
+          "delete": 2,
+          "insert": [
+            "export async function validateQuestionWitness(catalog: Catalog, snapshot: QuestionSnapshot, signal = new AbortController().signal, options: QuestionValidationOptions = {}) {\n",
+            "  requireReceipt(options.budget === undefined || options.budget instanceof OperationBudget, 'INVALID_CAPTURE_BUDGET');\n",
+            "  requireReceipt(signal instanceof AbortSignal && (options.finalize === undefined || typeof options.finalize === 'function'), 'INVALID_WITNESS_VALIDATION');\n",
+            "  const budget = options.budget ?? new OperationBudget({ signal });\n"
+          ]
+        },
+        {
+          "start": 105,
+          "delete": 2,
+          "insert": [
+            "    work.check();\n",
+            "    // A trusted consumer commits or starts its owned promise synchronously at this fence.\n",
+            "    // Its own writes end the read-only epoch; do not check that epoch afterward.\n",
+            "    const result = options.finalize?.({ context, witness, budget, check: () => work.check() });\n",
+            "    if (result !== null && (typeof result === 'object' || typeof result === 'function') && 'then' in result) {\n",
+            "      if (result instanceof Promise) void result.catch(() => undefined);\n",
+            "      requireReceipt(false, 'ASYNC_WITNESS_FINALIZER');\n",
+            "    }\n",
+            "    return { status: 'revalidated' as const, reviewedHash: snapshot.reviewedHash, budget: budget.stats(), lexical: lexical.stats() };\n",
+            "  } finally { if (options.budget === undefined) budget.close(); }\n"
+          ]
+        }
+      ]
+    },
+    "answer-witness-store": {
+      "beforeSha256": "997c8eb024645df097fc6c0f166c1c7b2eb419408ddc881adbe9574024c1000f",
+      "afterSha256": "847767f04b619be33c5d3182bfc03cf92ffa84be6a67968654bab8f640030665",
+      "edits": [
+        {
+          "start": 99,
+          "delete": 18,
+          "insert": [
+            "  read(id: string, supplied?: OperationBudget): QuestionSnapshot {\n",
+            "    requireReceipt(supplied === undefined || supplied instanceof OperationBudget, 'INVALID_CAPTURE_BUDGET');\n",
+            "    const budget = supplied ?? new OperationBudget();\n"
+          ]
+        },
+        {
+          "start": 118,
+          "delete": 0,
+          "insert": [
+            "      budget.check();\n",
+            "      const store = this.catalog.store, row = store.one<StoredAttempt>('SELECT * FROM answer_attempts WHERE id=?', id);\n",
+            "      if (!row) throw new CatalogError('NOT_FOUND', 'Answer attempt not found.', 404);\n",
+            "      if (row.inputKind !== preparedAnswerInputKind) fail('ANSWER_INPUT_UNSUPPORTED', 'This answer does not use supported prepared input.');\n",
+            "      if (row.policyVersion !== store.project().policyVersion\n",
+            "        || store.one(\"SELECT 1 FROM answer_sources d JOIN sources s ON s.id=d.sourceId WHERE d.answerId=? AND s.status!='active' LIMIT 1\", id))\n",
+            "        fail('ANSWER_INPUT_FENCED', 'Source authorization changed. Saved input is unavailable.');\n",
+            "      const saved = store.one<WitnessRow>('SELECT * FROM answer_witnesses WHERE answerId=?', id);\n",
+            "      if (!saved) fail('ANSWER_WITNESS_MISSING', 'This prepared answer is missing its required witness.');\n",
+            "      if (saved.purged || row.context === null || saved.witness === null) fail('ANSWER_INPUT_FENCED', 'Saved input was purged.');\n",
+            "      if (saved.schemaVersion !== answerWitnessVersion || saved.compositionVersion !== questionPreparationVersion\n",
+            "        || saved.promptVersion !== questionPromptVersion || !uuid(saved.preparationId) || !hex(saved.reviewedHash)\n",
+            "        || saved.contextHash !== hash(row.context) || saved.witnessBytes !== bytes(saved.witness)\n",
+            "        || row.payloadHash !== preparedAnswerRequestHash(saved.preparationId, saved.reviewedHash))\n",
+            "        fail('ANSWER_WITNESS_INVALID', 'Saved prepared input is invalid or unsupported.');\n",
+            "      const snapshot = Object.freeze({ contextJson: row.context, witnessJson: saved.witness, reviewedHash: saved.reviewedHash,\n",
+            "        retainedBytes: retainedQuestionBytes(row.context, saved.witness, saved.reviewedHash) });\n"
+          ]
+        },
+        {
+          "start": 125,
+          "delete": 1,
+          "insert": [
+            "    } finally { if (supplied === undefined) budget.close(); }\n"
+          ]
+        }
+      ]
+    },
+    "index": {
+      "beforeSha256": "69a1e84afbe4b467f1960ec4013050775d5f56755fd9871818937c01e1aaf295",
+      "afterSha256": "833eab5107644457fb35ebcd41e5fbc6d10689f517bb9909b090957c48c07f65",
+      "edits": [
+        {
+          "start": 8,
+          "delete": 0,
+          "insert": [
+            "import { QuestionPreparations } from './question-preparation.js';\n"
+          ]
+        },
+        {
+          "start": 25,
+          "delete": 1,
+          "insert": [
+            "const preparations = process.env.LOREDOCK_ANSWERS === '1' ? new QuestionPreparations(codeAnalysis) : undefined;\n",
+            "const answers = preparations ? new Answers(catalog, undefined, preparations) : undefined;\n"
+          ]
+        },
+        {
+          "start": 33,
+          "delete": 1,
+          "insert": [
+            "  codeFollow.stop(); await answers?.stop(); await preparations?.stop();\n",
+            "  await nativeCaptures.stop(); await codePaths.stop(); await codeAnalysis.stop(); await catalog.stop(); store.close();\n"
+          ]
+        }
+      ]
+    }
+  }
+}

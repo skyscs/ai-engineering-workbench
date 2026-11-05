@@ -79,20 +79,22 @@ or one-record fallback; no persistent client index is added. The native closure 
 member and the other 36 modules unchanged. This does not extend the earlier resource
 qualification claim. See [saved-path discovery](docs/loredock/SAVED_PATH_DISCOVERY.md).
 
-Native question-context integration is not yet a current answer dependency.
+Native question-context integration is an internal prepared-answer dependency; public
+answer inputs still use the explicit legacy path.
 [Task 120](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md) passes the sealed 44-case offline
 comparison with unchanged production modules. Its compact item preserves already-issued
 original support, uncertainty and the existing prompt/derived limits.
 [ADR 0058](docs/decisions/0058-loredock-native-question-context.md) requires an offline
 complete-resolution selection/support comparison before consumer changes. Current
-lexical retrieval and legacy interface validation remain intact. A future asynchronous
-prepared-answer owner must pin the reviewed input and retain a trusted native witness
+lexical retrieval and legacy interface validation remain intact. The asynchronous
+prepared-answer owner pins the reviewed input and retains a trusted native witness
 across inventory eviction; it cannot choose current defaults at model completion or
 automatically populate user-saved history on preview.
 [ADR 0059](docs/decisions/0059-loredock-prepared-question-lifecycle.md) specifies one transient
 reviewed snapshot, synchronous atomic promotion to answer-owned witness storage and
-versioned validation of the issued input. Task 124 implements schema 11 and witness quotas; prepared answer dispatch and public
-adoption remain separate. Task 122 adds actual synchronous per-store lexical accounting and typed complete-resolution
+versioned validation of the issued input. Task 124 implements schema 11 and witness quotas;
+Task 125 connects internal prepared dispatch/publication. Public adoption remains separate.
+Task 122 adds actual synchronous per-store lexical accounting and typed complete-resolution
 selection within the existing shared budget/owner, preserving unselected outputs. These
 [internal seams](docs/loredock/QUESTION_READ_SELECTION.md) precede prepared ownership,
 HTTP/UI and model integration; see the [lifecycle](docs/loredock/PREPARED_QUESTION_LIFECYCLE.md).
@@ -102,8 +104,11 @@ capabilities and exact original-based witness validation after inventory evictio
 no application consumer or persistence. Task 124 adds an internal
 [answer-owned witness store](docs/loredock/ANSWER_WITNESS_STORAGE.md), atomic attempt/source/
 witness admission, immutable byte/version binding, separate quotas and transactional source
-purge/recovery. Legacy answer readers refuse unsupported prepared input. All original
-parser/preparation modules stay unchanged; answer dispatch and HTTP/UI integration follow.
+purge/recovery. Task 125 adds [prepared-answer admission](docs/loredock/PREPARED_ANSWER_ADMISSION.md),
+shared answer/configuration ownership and three bounded validation boundaries. A trusted
+synchronous handoff dispatches the exact saved prompt and publishes only original-cited
+results. Usage precedes final validation; consumers stop before dependencies. Parsers,
+schema, provider policy and legacy answer bytes remain unchanged. HTTP/UI adoption follows.
 Explicit storage accounting and offline compaction use separate maintenance commands,
 preserving logical history and normal job recovery. Compaction acquires daemon
 ownership and rewrites physical SQLite pages only when free pages exist; see

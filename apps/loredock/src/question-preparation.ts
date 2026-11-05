@@ -33,6 +33,25 @@ function fail(code: string, message: string): never { throw new CatalogError(cod
 const errorCode = (error: unknown) => error && typeof error === 'object' && 'code' in error
   && typeof error.code === 'string' && /^[A-Z][A-Z0-9_]{0,63}$/.test(error.code) ? error.code : 'QUESTION_FAILED';
 const isThenable = (value: unknown) => value !== null && (typeof value === 'object' || typeof value === 'function') && 'then' in value;
+function sharedOwner(store: CatalogStore) {
+  let shared = owners.get(store); if (!shared) { shared = { stopped: false }; owners.set(store, shared); } return shared;
+}
+function checkIdle(store: CatalogStore, shared: Shared) {
+  if (shared.stopped) fail('SERVICE_STOPPED', 'Question preparation is stopping.');
+  if (shared.active || shared.answer || shared.configuration
+    || store.one("SELECT 1 FROM answer_attempts WHERE status IN ('preparing','running') LIMIT 1"))
+    fail('QUESTION_BUSY', 'Finish or cancel the current question operation first.');
+}
+/** Every answer instance shares these reservations, even without a preparation consumer. */
+export function reserveQuestionAnswer(store: CatalogStore) {
+  const shared = sharedOwner(store); checkIdle(store, shared); const token = Symbol('question-answer'); shared.answer = token;
+  return () => { if (shared.answer === token) delete shared.answer; };
+}
+export function reserveQuestionConfiguration(store: CatalogStore) {
+  const shared = sharedOwner(store); checkIdle(store, shared); const token = Symbol('question-configuration'); shared.configuration = token;
+  return { release: () => { if (shared.configuration === token) delete shared.configuration; },
+    check: () => { if (shared.stopped || shared.configuration !== token) fail('QUESTION_LEASE_EXPIRED', 'This configuration reservation ended.'); } };
+}
 
 /** Internal only: one transient slot per exact store; no queue, saved receipt or model. */
 export class QuestionPreparations {
@@ -41,8 +60,7 @@ export class QuestionPreparations {
   private observation: { id: string; budget: ReturnType<OperationBudget['stats']> | null; lexical: ReturnType<LexicalReadAccount['stats']> | null; nativeReads: number } | null = null;
   constructor(private readonly analysis: CodeAnalysis, private readonly options: PreparationOptions = {}) {
     const store = analysis.catalog.store;
-    let shared = owners.get(store); if (!shared) { shared = { stopped: false }; owners.set(store, shared); }
-    this.shared = shared;
+    this.shared = sharedOwner(store);
     this.unsubscribe = analysis.catalog.onBoundaryChange(() => this.discard('fenced', 'QUESTION_SCOPE_FENCED'));
   }
   private discard(status: 'cancelled' | 'expired' | 'fenced' | 'failed' | 'consumed', reason: string | null) {
@@ -54,12 +72,8 @@ export class QuestionPreparations {
     entry.state = { ...entry.state, status, reason, reviewedHash: null };
     shared.terminal = entry; delete shared.entry;
   }
-  private busy() {
-    if (this.shared.stopped) fail('SERVICE_STOPPED', 'Question preparation is stopping.');
-    if (this.shared.active || this.shared.answer || this.shared.configuration
-      || this.analysis.catalog.store.one("SELECT 1 FROM answer_attempts WHERE status IN ('preparing','running') LIMIT 1"))
-      fail('QUESTION_BUSY', 'Finish or cancel the current question operation first.');
-  }
+  private busy() { checkIdle(this.analysis.catalog.store, this.shared); }
+  ownsStore(store: CatalogStore) { return this.analysis.catalog.store === store; }
   private find(id: string): Entry {
     const entry = this.shared.entry?.state.id === id ? this.shared.entry : this.shared.terminal?.state.id === id ? this.shared.terminal : undefined;
     if (!entry) fail('QUESTION_NOT_FOUND', 'This preparation is unavailable. Find context again.');
@@ -181,11 +195,7 @@ export class QuestionPreparations {
   }
   async idle() { await this.shared.active?.done; }
   metrics() { return this.observation ? structuredClone(this.observation) : null; }
-  reserveConfiguration() {
-    this.busy(); const token = Symbol('question-configuration'); this.shared.configuration = token;
-    return { release: () => { if (this.shared.configuration === token) delete this.shared.configuration; },
-      check: () => { if (this.shared.stopped || this.shared.configuration !== token) fail('QUESTION_LEASE_EXPIRED', 'This configuration reservation ended.'); } };
-  }
+  reserveConfiguration() { return reserveQuestionConfiguration(this.analysis.catalog.store); }
   /** A future answer adapter supplies its synchronous transaction; rollback retains Ready. */
   promote<T>(id: string, reviewedHash: string, commit: (snapshot: QuestionSnapshot) => T): { value: T; release: () => void } {
     this.busy(); const { snapshot } = this.ready(id, reviewedHash), token = Symbol('question-answer');

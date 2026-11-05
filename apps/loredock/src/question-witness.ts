@@ -75,9 +75,16 @@ export function readQuestionSnapshot(snapshot: QuestionSnapshot) {
   return { context, witness };
 }
 
+export interface QuestionValidationOptions {
+  budget?: OperationBudget;
+  finalize?: (input: { context: AnswerContext; witness: QuestionWitness; budget: OperationBudget; check: () => void }) => unknown;
+}
+
 /** Trusted server-held bytes only. No current native analysis, path or inventory lookup. */
-export async function validateQuestionWitness(catalog: Catalog, snapshot: QuestionSnapshot, signal = new AbortController().signal) {
-  const budget = new OperationBudget({ signal });
+export async function validateQuestionWitness(catalog: Catalog, snapshot: QuestionSnapshot, signal = new AbortController().signal, options: QuestionValidationOptions = {}) {
+  requireReceipt(options.budget === undefined || options.budget instanceof OperationBudget, 'INVALID_CAPTURE_BUDGET');
+  requireReceipt(signal instanceof AbortSignal && (options.finalize === undefined || typeof options.finalize === 'function'), 'INVALID_WITNESS_VALIDATION');
+  const budget = options.budget ?? new OperationBudget({ signal });
   try {
     const work = new CaptureWork(catalog, budget, signal, {}), { context, witness } = readQuestionSnapshot(snapshot);
     budget.charge('receipt', bytes(snapshot.contextJson) + bytes(snapshot.witnessJson)
@@ -103,6 +110,14 @@ export async function validateQuestionWitness(catalog: Catalog, snapshot: Questi
     requireReceipt(prompt === witness.prompt, 'QUESTION_PROMPT_MISMATCH');
     await work.step('handoff'); assertQuestionCurrent(catalog, context, witness.sourceIds);
     authorizeQuestionScope(work, context, witness);
-    work.check(); return { status: 'revalidated' as const, reviewedHash: snapshot.reviewedHash, budget: budget.stats(), lexical: lexical.stats() };
-  } finally { budget.close(); }
+    work.check();
+    // A trusted consumer commits or starts its owned promise synchronously at this fence.
+    // Its own writes end the read-only epoch; do not check that epoch afterward.
+    const result = options.finalize?.({ context, witness, budget, check: () => work.check() });
+    if (result !== null && (typeof result === 'object' || typeof result === 'function') && 'then' in result) {
+      if (result instanceof Promise) void result.catch(() => undefined);
+      requireReceipt(false, 'ASYNC_WITNESS_FINALIZER');
+    }
+    return { status: 'revalidated' as const, reviewedHash: snapshot.reviewedHash, budget: budget.stats(), lexical: lexical.stats() };
+  } finally { if (options.budget === undefined) budget.close(); }
 }

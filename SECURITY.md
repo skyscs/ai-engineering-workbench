@@ -73,7 +73,11 @@ context/request binding and complete source dependencies. Admission inserts all 
 one synchronous transaction. Revocation purges witness and answer text together; pending
 purge failures remain fenced and retry at startup. All 64 witness rows, including purged
 metadata, consume record capacity; retained text is separately capped at 768 KiB per row
-and 48 MiB total. No prepared consumer or model dispatch is enabled yet. See the
+and 48 MiB total. The internal prepared-answer adapter validates the exact saved witness
+and every original before preflight, dispatch and publication; native inventory eviction
+cannot substitute current facts or a different path. It shares operation ownership across
+answer/configuration consumers. No prepared HTTP/browser entry or default is enabled.
+See [prepared admission](docs/loredock/PREPARED_ANSWER_ADMISSION.md) and the
 [durable contract](docs/loredock/ANSWER_WITNESS_STORAGE.md).
 The explicit storage-report command opens only an existing schema-8, schema-9, schema-10 or schema-11 catalog read-only,
 without daemon ownership, migrations or recovery. It exports aggregate counts/bytes,

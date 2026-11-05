@@ -1,6 +1,7 @@
 # Task 125 — Admit and publish answers from the exact prepared input
 
-Status: scoped by Task 124; start after its exact-head acceptance.
+Status: implemented and locally verified (929 tests, strict types and builds); exact-head CI pending.
+Task 124 passed both CI events at `a9c9cde` and merged as identical-tree `c1f6c37`.
 
 Integrate the internal preparation owner and durable witness store into a bounded answer
 adapter under [ADR 0059](../docs/decisions/0059-loredock-prepared-question-lifecycle.md).
@@ -47,3 +48,7 @@ Public preparation routes/browser adoption and real model qualification remain s
 
 No corporate code, paid model call, new user selector, default native-answer activation,
 source-policy expansion, user-demo mutation or automatic history deletion.
+
+Implementation and limits: [prepared admission](../docs/loredock/PREPARED_ANSWER_ADMISSION.md).
+Verification: [raw records and review](../docs/fixtures/loredock-prepared-answer-admission/README.md).
+Next: [protected HTTP and review flow](126-loredock-prepared-question-http-ui.md).

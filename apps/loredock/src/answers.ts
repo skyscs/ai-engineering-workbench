@@ -1,4 +1,10 @@
 import { randomUUID } from 'node:crypto';
+import { QuestionPreparations, reserveQuestionAnswer, reserveQuestionConfiguration } from './question-preparation.js';
+import { AnswerWitnessStore, preparedAnswerRequestHash } from './answer-witness-store.js';
+import { preparedAnswerInputKind } from './answer-witness-schema.js';
+import type { NativeQuestionCompact, QuestionWitness } from './question-preparation-types.js';
+import { runPreparedAnswer } from './prepared-answer.js';
+import { uuid, hex } from './native-receipt-json.js';
 import { realpath } from 'node:fs/promises';
 import { CodexTextRuntime, RuntimeError, textCliVersion, type TextConnection, type TextRuntime, type TextRuntimeIdentity, type TextUsage } from '@aew/ai';
 import { Catalog } from './catalog.js';
@@ -17,6 +23,7 @@ interface AttemptRow {
   usageUnknownReason: string | null; reason: string | null; createdAt: string; dispatchedAt: string | null; completedAt: string | null;
 }
 export interface AnswerAttempt {
+  inputKind?: typeof preparedAnswerInputKind; nativeContext?: NativeQuestionCompact | null;
   id: string; question: string; buildId: string; status: AnswerStatus; stale: boolean;
   reviewState: 'current' | 'changed' | 'not-recorded' | 'unavailable';
   context: AnswerContext | null; answer: CitedAnswer | null; runtime: TextRuntimeIdentity | null;
@@ -30,7 +37,8 @@ export class Answers {
   private worker: { id: string; controller: AbortController; done: Promise<void> } | undefined;
   private readonly unsubscribe: () => void;
   private stopping = false;
-  constructor(readonly catalog: Catalog, private readonly runtime: TextRuntime = new CodexTextRuntime()) {
+  constructor(readonly catalog: Catalog, private readonly runtime: TextRuntime = new CodexTextRuntime(), private readonly preparations?: QuestionPreparations) {
+    if (preparations && !preparations.ownsStore(catalog.store)) throw new CatalogError('INVALID_PREPARATION_OWNER', 'Use this catalog’s preparation owner.', 409);
     this.unsubscribe = catalog.onBoundaryChange(() => this.invalidate());
   }
   configuration(): TextConnection | null {
@@ -42,17 +50,24 @@ export class Answers {
     if (typeof input?.executable !== 'string' || typeof input?.configHome !== 'string'
       || !input.executable.startsWith('/') || !input.configHome.startsWith('/')
       || (input.profile !== null && (typeof input.profile !== 'string' || !/^[A-Za-z0-9_-]{1,128}$/.test(input.profile)))) throw new CatalogError('INVALID_CONFIGURATION', 'Choose absolute executable and configuration paths.');
-    let connection: TextConnection;
-    try { connection = { executable: await realpath(input.executable), configHome: await realpath(input.configHome), profile: input.profile }; }
-    catch { throw new CatalogError('INVALID_CONFIGURATION', 'The executable or configuration path does not exist.'); }
-    if (this.worker) throw new CatalogError('BUSY', 'An answer started while configuration was being checked.', 409);
-    this.catalog.store.run('INSERT INTO answer_settings VALUES (1,?) ON CONFLICT(id) DO UPDATE SET connection=excluded.connection', JSON.stringify(connection));
-    return connection;
+    if (this.stopping) throw new CatalogError('SERVICE_STOPPED', 'Answer service is stopping.', 409);
+    const lease = reserveQuestionConfiguration(this.catalog.store);
+    try {
+      let connection: TextConnection;
+      try { connection = { executable: await realpath(input.executable), configHome: await realpath(input.configHome), profile: input.profile }; }
+      catch { throw new CatalogError('INVALID_CONFIGURATION', 'The executable or configuration path does not exist.'); }
+      lease.check();
+      if (this.stopping) throw new CatalogError('SERVICE_STOPPED', 'Answer service is stopping.', 409);
+      if (this.worker) throw new CatalogError('BUSY', 'An answer started while configuration was being checked.', 409);
+      this.catalog.store.run('INSERT INTO answer_settings VALUES (1,?) ON CONFLICT(id) DO UPDATE SET connection=excluded.connection', JSON.stringify(connection));
+      return connection;
+    } finally { lease.release(); }
   }
+
   private row(id: string): AttemptRow {
     const row = this.catalog.store.one<AttemptRow>('SELECT * FROM answer_attempts WHERE id=?', id);
     if (!row) throw new CatalogError('NOT_FOUND', 'Answer attempt not found.', 404);
-    if (row.inputKind !== undefined && row.inputKind !== 'legacy') throw new CatalogError('ANSWER_INPUT_UNSUPPORTED', 'This answer requires the prepared-input adapter.', 409);
+    if (row.inputKind !== undefined && row.inputKind !== 'legacy' && row.inputKind !== preparedAnswerInputKind) throw new CatalogError('ANSWER_INPUT_UNSUPPORTED', 'This answer uses an unsupported input kind.', 409);
     return row;
   }
   private authorized(row: AttemptRow) {
@@ -60,9 +75,12 @@ export class Answers {
       && !this.catalog.store.one("SELECT 1 FROM answer_sources a JOIN sources s ON s.id=a.sourceId WHERE a.answerId=? AND s.status!='active'", row.id);
   }
   get(id: string, includeContent = true): AnswerAttempt {
-    const row = this.row(id), authorized = this.authorized(row);
-    const context = authorized && row.context ? JSON.parse(row.context) as AnswerContext : null;
-    return { id: row.id, question: row.question, buildId: row.buildId, status: authorized ? row.status : 'fenced',
+    const row = this.row(id), authorized = this.authorized(row), native = row.inputKind === preparedAnswerInputKind;
+    const snapshot = native && authorized ? new AnswerWitnessStore(this.catalog).read(id) : null;
+    const witness = snapshot ? JSON.parse(snapshot.witnessJson) as QuestionWitness : null;
+    const context = authorized && row.context ? JSON.parse(snapshot?.contextJson ?? row.context) as AnswerContext : null;
+    return { ...native ? { inputKind: preparedAnswerInputKind, nativeContext: includeContent && witness ? witness.compact : null } : {},
+      id: row.id, question: row.question, buildId: row.buildId, status: authorized ? row.status : 'fenced',
       stale: row.registryVersion !== this.catalog.store.project().sourceSetVersion || row.buildId !== this.catalog.store.project().publishedBuildId,
       reviewState: !authorized ? 'unavailable' : !context?.review ? 'not-recorded'
         : context.review.revision === this.catalog.store.project().correctionRevision ? 'current' : 'changed',
@@ -91,24 +109,52 @@ export class Answers {
     const previous = this.catalog.store.one<AttemptRow>('SELECT * FROM answer_attempts WHERE requestId=?', requestId);
     if (previous) { if (previous.payloadHash !== payloadHash) throw new CatalogError('CONFLICT', 'This request ID has different inputs.', 409); return this.get(previous.id); }
     if (this.stopping || this.worker) throw new CatalogError('BUSY', 'Another answer is active. Wait or cancel it first.', 409);
-    const context = this.preview(question, buildId);
-    if (context.inputHash !== inputHash) throw new CatalogError('INPUT_CHANGED', 'Review the current context before asking.', 409);
-    const id = randomUUID();
-    this.catalog.store.transaction(() => {
-      this.catalog.store.run(`INSERT INTO answer_attempts
-        (id,requestId,payloadHash,question,buildId,policyVersion,registryVersion,status,context,inputHash,connection,model,effort,promptVersion,schemaVersion,createdAt,usageUnknownReason)
-        VALUES (?,?,?,?,?,?,?,'preparing',?,?,?,'gpt-5.6-terra','medium',?,?,?,'Not dispatched yet.')`,
-      id, requestId, payloadHash, context.question, buildId, context.policyVersion, context.registryVersion, JSON.stringify(context), inputHash, JSON.stringify(connection), answerPromptVersion, answerSchemaVersion, new Date().toISOString());
-      for (const sourceId of new Set([...context.sources.map(source => source.sourceId), ...(context.review?.sourceIds ?? [])])) {
-        this.catalog.store.run('INSERT INTO answer_sources VALUES (?,?)', id, sourceId);
-      }
-    });
-    const controller = new AbortController();
-    // Defer prepare until the worker reservation exists, including synchronous fakes.
-    const done = Promise.resolve().then(() => this.run(id, controller.signal)).finally(() => { if (this.worker?.id === id) this.worker = undefined; });
-    this.worker = { id, controller, done };
-    return this.get(id);
+    const release = reserveQuestionAnswer(this.catalog.store);
+    try {
+      const context = this.preview(question, buildId);
+      if (context.inputHash !== inputHash) throw new CatalogError('INPUT_CHANGED', 'Review the current context before asking.', 409);
+      const id = randomUUID();
+      this.catalog.store.transaction(() => {
+        this.catalog.store.run(`INSERT INTO answer_attempts
+          (id,requestId,payloadHash,question,buildId,policyVersion,registryVersion,status,context,inputHash,connection,model,effort,promptVersion,schemaVersion,createdAt,usageUnknownReason)
+          VALUES (?,?,?,?,?,?,?,'preparing',?,?,?,'gpt-5.6-terra','medium',?,?,?,'Not dispatched yet.')`,
+        id, requestId, payloadHash, context.question, buildId, context.policyVersion, context.registryVersion, JSON.stringify(context), inputHash, JSON.stringify(connection), answerPromptVersion, answerSchemaVersion, new Date().toISOString());
+        for (const sourceId of new Set([...context.sources.map(source => source.sourceId), ...(context.review?.sourceIds ?? [])])) {
+          this.catalog.store.run('INSERT INTO answer_sources VALUES (?,?)', id, sourceId);
+        }
+      });
+      this.launch(id, release); return this.get(id);
+    } catch (error) { if (!this.worker) release(); throw error; }
   }
+  startPrepared(requestId: string, preparationId: string, reviewedHash: string): AnswerAttempt {
+    if (typeof requestId !== 'string' || !/^[A-Za-z0-9_-]{1,100}$/.test(requestId) || !uuid(preparationId) || !hex(reviewedHash))
+      throw new CatalogError('INVALID_REQUEST', 'A request ID and owned reviewed preparation are required.');
+    const payloadHash = preparedAnswerRequestHash(preparationId, reviewedHash);
+    const previous = this.catalog.store.one<AttemptRow>('SELECT * FROM answer_attempts WHERE requestId=?', requestId);
+    if (previous) {
+      if (previous.inputKind !== preparedAnswerInputKind || previous.payloadHash !== payloadHash) throw new CatalogError('CONFLICT', 'This request ID has different inputs.', 409);
+      return this.get(previous.id);
+    }
+    if (this.stopping || this.worker) throw new CatalogError('BUSY', 'Another answer is active. Wait or cancel it first.', 409);
+    const connection = this.configuration();
+    if (!connection) throw new CatalogError('CONFIGURATION_REQUIRED', 'Choose your Codex configuration before asking a question.');
+    if (!this.preparations) throw new CatalogError('ANSWER_PREPARATION_UNAVAILABLE', 'Question preparation is unavailable.', 409);
+    const id = randomUUID(), storage = new AnswerWitnessStore(this.catalog);
+    const promoted = this.preparations.promote(preparationId, reviewedHash, snapshot => storage.create({ id, requestId,
+      preparationId, connection, model: 'gpt-5.6-terra', effort: 'medium' }, snapshot));
+    this.launch(id, promoted.release); return this.get(id);
+  }
+  private launch(id: string, release: () => void) {
+    const controller = new AbortController();
+    // The local worker and shared reservation exist before any synchronous runtime fake.
+    const done = Promise.resolve().then(() => this.run(id, controller.signal)).finally(() => {
+      if (this.worker?.id === id) this.worker = undefined; release();
+    });
+    this.worker = { id, controller, done };
+    // idle()/stop() retain the rejection; do not leave background rejection unobserved.
+    void done.catch(() => undefined);
+  }
+
   cancel(id: string) {
     const row = this.row(id);
     if (pending(row.status)) this.catalog.store.run("UPDATE answer_attempts SET status='cancelled',reason='Cancelled by the user.',completedAt=? WHERE id=?", new Date().toISOString(), id);
@@ -124,6 +170,7 @@ export class Answers {
     }
   }
   private async run(id: string, parentSignal: AbortSignal) {
+    if (this.row(id).inputKind === preparedAnswerInputKind) return runPreparedAnswer(this.catalog, this.runtime, id, parentSignal);
     const controller = new AbortController(), abort = () => controller.abort();
     parentSignal.addEventListener('abort', abort, { once: true }); if (parentSignal.aborted) abort();
     const timer = setTimeout(abort, 120000);

@@ -1,0 +1,169 @@
+{
+  "schemaVersion": "prepared-answer-admission-review/1",
+  "base": "c1f6c37cacca27a4d803c18ebf3ae3988ce75966",
+  "preservedControlsCommit": "4fb8c2e",
+  "reviewedExecutable": "82478312d239d97c8f7e0b3b29a4c0d983a8d52d",
+  "node": "22.23.2",
+  "typescript": "5.9.3",
+  "pnpm": "10.15.0",
+  "checks": [
+    {
+      "path": "install-first.log.gz",
+      "exitCode": 0,
+      "bytes": 326,
+      "sha256": "86ef709a9828fb6348f36bd7b4221197af70f88d2fd8daa90f40259eacc69007",
+      "archiveSha256": "260b356b40c84c57415f98d480dffa72515d80a32d83cb1fc96d0f2631f521e6"
+    },
+    {
+      "path": "packages-first.log.gz",
+      "exitCode": 0,
+      "bytes": 607,
+      "sha256": "f31ded5a12061dfba94495bf93c8c886df2e9240ecbe7e92dfd637f744f20a57",
+      "archiveSha256": "25016da08f7a0285f038f906dbc35b4936677a57558954bd99b81962f5e59458"
+    },
+    {
+      "path": "build-before-first.log.gz",
+      "exitCode": 0,
+      "bytes": 132,
+      "sha256": "0cdf8610208d5c006885a7d064a8004fad8cfe09b78362b3d2e47dd2d5e6b262",
+      "archiveSha256": "8289cda11477fa622247fa145c304300a01d7a472a421ea1ed85b3f94d18907b"
+    },
+    {
+      "path": "types-first.log.gz",
+      "exitCode": 0,
+      "bytes": 157,
+      "sha256": "2c4996d15e1b7aec644b358bc22f15e36ae8003e44f3f00cea6c18c85455b168",
+      "archiveSha256": "4defbc4796dc6f8d4a8d95b2024cc8ac3b6a6dc7e6355f911bb47202391a6e4d"
+    },
+    {
+      "path": "build-first.log.gz",
+      "exitCode": 0,
+      "bytes": 132,
+      "sha256": "0cdf8610208d5c006885a7d064a8004fad8cfe09b78362b3d2e47dd2d5e6b262",
+      "archiveSha256": "8289cda11477fa622247fa145c304300a01d7a472a421ea1ed85b3f94d18907b"
+    },
+    {
+      "path": "legacy-first.log.gz",
+      "exitCode": 0,
+      "bytes": 5250,
+      "sha256": "75ca21d0078b36fbd57fa90feced601773659737f6756e8dd625aeaa3b31ad3b",
+      "archiveSha256": "b84d2e8f5422032b8831e5e815661b90c87850e6fcf7e500bb6ed285761aebf8"
+    },
+    {
+      "path": "focused-first.log.gz",
+      "exitCode": 1,
+      "bytes": 18441,
+      "sha256": "edf26ccabd63613468e6e6be8ec14f98cb1d1eeb90b62fe1dd19840f4a990d64",
+      "archiveSha256": "fda48e2b1c9677f5de84dcf34b689c512da8c28a29a8fab8e3707592fdfb07da"
+    },
+    {
+      "path": "focused-second.log.gz",
+      "exitCode": 0,
+      "bytes": 12318,
+      "sha256": "63a6afdb6c94c90b79ae59ad0b66780bb3facc05876097ae9ddcd3b8ef7995a6",
+      "archiveSha256": "76f4ec8e2dc29bb81e5e8a34a056058d3e03fc17deef19cf15e7c4db96eaf703"
+    },
+    {
+      "path": "check-first.log.gz",
+      "exitCode": 0,
+      "bytes": 343588,
+      "sha256": "59a64c8d4770aeeb44e7305281f508ede44e4418844971aa6fcaf3e8e1ee6b76",
+      "archiveSha256": "28f266d508f4583029def54e660054bc76e448d9f04b28ad1fed61f22e0920af"
+    },
+    {
+      "path": "audit-first.log.gz",
+      "exitCode": 1,
+      "bytes": 1447,
+      "sha256": "069891722241dfe168ba1ee46ec72330f32b53aeebc21841280a0de35659251e",
+      "archiveSha256": "4d56977c589af87c961ac6398ba49e91e9e6fa077d67245456a912b24a3393e9"
+    },
+    {
+      "path": "audit-second.log.gz",
+      "exitCode": 0,
+      "bytes": 1295,
+      "sha256": "0dc4a46081b4f7ddbf6745b90a1afe6b331617c6a3f2e5ab2efd589c62180457",
+      "archiveSha256": "18215a182ca5cd7ef50ac13bae72cb16b33fa78ef5b5b4e5df157a0d7531bd41"
+    },
+    {
+      "path": "ci-push-first.log.gz",
+      "exitCode": 1,
+      "bytes": 664315,
+      "sha256": "cf65129c1824095b1e8720a64c572c99220dc6572558f626c8946c2b1aa20789",
+      "archiveSha256": "67f7802c2de4d931dd2a858d1db15d04537736ddd83f5feb8fa05b83709e1325"
+    },
+    {
+      "path": "scripts-after-ci.log.gz",
+      "exitCode": 0,
+      "bytes": 35965,
+      "sha256": "6ad82efc40777b64db46c3166b5d12d041628fdec5c329382cc444a46a61a62e",
+      "archiveSha256": "2517421748f4597d49e367c3d8510e0d722642c40e2e16ba15bc22e4f71f7c07"
+    },
+    {
+      "path": "ci-pr-first.log.gz",
+      "exitCode": 1,
+      "bytes": 665787,
+      "sha256": "c40bce5545b31257c59f7cd78a62509c8328e5bd65392215569d712157e31818",
+      "archiveSha256": "75864151070173aa610559c34c3955d057e6baf626675be164d75ce8f2789ff5"
+    }
+  ],
+  "firstFailures": [
+    "The first focused run passed 36/43. Four successful-answer expectations failed because the controlled runtime supplied a statement in unknowns, whose unchanged schema requires a question ending in ?. The fixture now uses a valid question.",
+    "Two first focused failures used CommonJS require.resolve for an ESM-only @aew/ai export while loading the accepted Answers control. The test loader now uses ESM import.meta.resolve from inside the application package; preserved original control bytes are unchanged.",
+    "One first focused corruption case named a nonexistent answer_witness_content trigger. It now drops the actual answer_witness_purge guard only in its disposable corruption fixture.",
+    "The first runtime audit treated the direct emitted Answers imports as the complete construction closure. Type-only Catalog imports are absent from emitted JS, so several unchanged constructor dependencies were missing and misclassified. The corrected audit unions actual native service/legacy comparison roots, preparation and Answers; it separately declares the entry-point delta and does not claim the whole HTTP/browser closure.",
+    "Push CI 41946324582 at c5d7a8a failed one ordering assertion: the asynchronous index rebuild could finish after runtime preflight legitimately began. Production correctly refused stale publication. The test now explicitly holds the scheduled owned worker until the replacement build completes, then runs the real validator and requires zero preflight calls. Production code is unchanged; all 130 compiled script tests pass after the test-only fix. Pull-request CI 41946364449 independently failed the same assertion. A cancellation request raced with completion and was refused because the run had already finished; both original failed CI logs are retained."
+  ],
+  "tests": {
+    "legacyFocused": 19,
+    "combinedFocused": 43,
+    "finalFull": 929,
+    "fullBreakdown": {
+      "git": 17,
+      "ai": 18,
+      "storage": 43,
+      "loredock": 664,
+      "daemon": 57,
+      "scripts": 130
+    },
+    "newCompiledPreparedAnswerTests": 17,
+    "scriptsAfterCiFix": 130
+  },
+  "ordinaryObservation": {
+    "loadedWork": 158428,
+    "combinedValidationWork": 437184,
+    "qualification": false,
+    "description": "One warmed ordinary permit snapshot loaded and revalidated with a shared actual budget; not a model, capacity, total worker or full-composition qualification."
+  },
+  "reviewFindings": [
+    "Worker reservation precedes every async callback. Same-store answer/configuration ownership covers instances without preparation injection; post-await lease checks prevent configuration writes after stop.",
+    "Matching prepared retry checks persisted request identity before configuration and transient owner state. Successful, cancelled/failed and interrupted history never re-dispatches automatically.",
+    "Admission transaction failure or 64-row capacity refusal retains otherwise current Ready. Full dependency source purge and immutable terminal witness bytes remain enforced by unchanged schema 11.",
+    "Each preflight/dispatch/publication boundary shares one actual budget across storage read and revalidation; synchronous finalizers close the authority handoff gap. Publication uses the same budget for original-only cited validation and never checks an old epoch after its own SQL.",
+    "Usage is recorded before final validation and survives late cancellation/fencing or rejected citations. Native inventory eviction succeeds without native fact/path/Git rereads; source/build/review/policy/original changes refuse dispatch/publication.",
+    "Accepted legacy response comparison excludes only generated IDs/timestamps. Prompt/schema/context bytes, field absence and other response bytes remain exact. Existing 19 focused legacy tests and all full checks pass.",
+    "All 154 unaffected application source/emitted files, 64 package files, 80 frozen artifacts, 41 native-core modules and 48 legacy-comparison modules remain unchanged. The new service comparison union contains 64 modules including actual AI/core imports; no prior qualification is transferred."
+  ],
+  "fixtureRetention": "Ordinary receiptFixture teardown deletes temporary repositories/catalogs even when an assertion fails. Raw test logs are retained; no claim that failed temporary source/catalog trees remain available. No exhausted/reserved family was executed.",
+  "primaryCheckout": {
+    "head": "592bbc085d9405db86461d47fda5f3382bbaccde",
+    "clean": true
+  },
+  "modelCalls": 0,
+  "corporateSources": 0,
+  "reservedFamilyRuns": 0,
+  "publicPreparedInputEnabled": false,
+  "ciStatus": "Both final-head events required before acceptance.",
+  "localDocumentationLinks": 685,
+  "productionExecutable": "809b0c0b863d3cffc9b3774fed94a8287e3651e4",
+  "ciFirstHead": {
+    "head": "c5d7a8aaa4e948b3fd4d3e8a8852a73b389df406",
+    "push": {
+      "run": 41946324582,
+      "conclusion": "failure"
+    },
+    "pullRequest": {
+      "run": 41946364449,
+      "conclusion": "failure"
+    }
+  }
+}

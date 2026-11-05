@@ -1,6 +1,7 @@
 # Task 124 — Persist answer-owned prepared witnesses atomically
 
-Status: implemented and locally verified (912 tests, strict types and builds); exact-head CI pending.
+Status: accepted through PR #128, identical-tree merge `c1f6c37`; push 41942652014 and
+pull-request 41942739940 passed at `a9c9cde` (912 tests, strict types and builds).
 Task 123 was accepted through identical-tree merge `da7122b`.
 
 Implement the storage/recovery foundation of [ADR 0059](../docs/decisions/0059-loredock-prepared-question-lifecycle.md)
