@@ -52,6 +52,30 @@ The unchanged application/input seal validates without a candidate read of the r
 family. These ordinary driver observations supplement that check; the incomplete
 build-start case remains an exit-1 result.
 
+## CI review correction
+
+The first PR #135 push check (41998815851) passes at `49e8d36`, but pull_request
+41999296250 fails an existing independent tiny terminal-memory integration test.
+Its `repeat-3` sample records **405.999008 ms** against the unchanged **150 ms**
+slice limit. All eight artifact/shape/support checks, seven useful cases, saved history,
+raw repeats and both terminal exports/parsers pass. The diagnostic correctly reports
+one resource failure and `failed: true`; the first CI failure is preserved.
+
+That functional integration test now checks complete functional/terminal behavior
+separately from resource observations on the shared CI runner. Every resource failure
+must still set the diagnostic's `failed` flag. The test prints that failed report and
+retains its temporary tree even when its functional assertions pass. Its companion
+zero-RSS-limit test continues to require all eight resource failures. No assessor,
+measurement, resource threshold or application behavior changes. This does not turn
+the original resource failure into a pass or qualify any hardware/resource gate.
+
+The full failed CI log and extracted diagnostic report are retained. The remote runner's
+temporary heap/catalog files were not uploaded by the existing CI workflow and cannot be
+recovered from that log; their hashes/references are recorded, not claimed as full raw
+artifact retention. New local observations retain their original complete output trees.
+The correction passes all three targeted terminal tests and the complete 955-test
+local check, strict typechecks, builds and the original application/input seal.
+
 The preceding cancellation slice is accepted through
 [PR #134](https://github.com/skyscs/ai-engineering-workbench/pull/134): push 41996528951 and
 pull_request 41996827429 pass 955 tests at exact head

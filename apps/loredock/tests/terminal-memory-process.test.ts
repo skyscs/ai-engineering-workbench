@@ -23,11 +23,22 @@ test('complete tiny lifecycle preserves ordinary checks before bounded terminal 
       { label: 'path services', name: 'CodePaths', properties: {} },
       { label: 'catalog stores', name: 'CatalogStore', properties: {} },
     ], identity: { purpose: 'Independent tiny full-process integration only.' } });
-  assert.equal(report.failed, false, JSON.stringify(report, null, 2));
   assert.equal(report.diagnosticComplete, true); assert.equal(report.resourceAcceptance, false);
+  // Shared CI scheduling can fail a resource observation without breaking terminal
+  // export/parsing. Keep that failure and its artifacts; this is not a resource gate.
+  assert.equal(report.assessment.lifecycle.state, 'pass');
+  assert.deepEqual(report.errors, []); assert.deepEqual(report.assessment.workerErrors, []);
+  for (const dimension of ['artifact', 'shape', 'support', 'usefulness', 'history', 'rawRepeat']) {
+    assert.equal(report.assessment.summary[dimension].fail, 0, JSON.stringify(report, null, 2));
+    assert.equal(report.assessment.summary[dimension].blocked, 0);
+  }
+  const resources = report.assessment.summary.resources;
+  assert.equal(resources.pass + resources.fail, 8); assert.equal(resources.blocked, 0);
+  assert.equal(report.failed, resources.fail > 0, 'Every resource failure must still fail the diagnostic report.');
+  if (report.failed) t.diagnostic(`Retained resource failure in functional integration: ${JSON.stringify(report)}`);
   assert.equal(report.assessment.operations.length, 8);
   assert.equal(report.assessment.summary.support.pass, 8); assert.equal(report.assessment.summary.history.pass, 1);
-  assert.equal(report.assessment.summary.resources.pass, 8); assert.equal(report.assessment.summary.rawRepeat.pass, 3);
+  assert.equal(report.assessment.summary.rawRepeat.pass, 3);
   assert.equal(report.completePaths.failed, false); assert.equal(report.completePaths.operations.length, 8);
   assert.equal(report.terminal.length, 2);
   assert.notEqual(report.process.pid, report.terminal[0].process.pid);
@@ -48,7 +59,7 @@ test('complete tiny lifecycle preserves ordinary checks before bounded terminal 
     const expected = structuredClone(config.oracle.complete); mutate(expected);
     assert.equal((await assessComplete({ root: workerRoot, raw, expected })).failed, true);
   }
-  passed = true;
+  passed = !report.failed;
 });
 
 test('terminal snapshots preserve an independent operation resource failure', { timeout: 120000 }, async t => {

@@ -34,6 +34,13 @@ the real worker rejects the old input before preflight, retains its witness and 
 without dispatch. Six copied stopped catalogs pass integrity/foreign-key checks.
 The local full check passes 955 tests, types/builds and the unchanged application/input
 seal. Both exact-head CI events and merge remain pending for this preflight slice.
+The first PR #135 push check passes; its PR check fails an older functional terminal
+integration on a 405.999008 ms sample against 150 ms. That resource failure is preserved.
+The functional test now checks terminal/content behavior separately while requiring
+resource failures to remain failed in the diagnostic report. No threshold or assessor
+changes. All three targeted terminal tests and the corrected full 955-test local check
+pass, with types/builds and the original application seal. Both final-head CI events
+remain required before merge.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request
