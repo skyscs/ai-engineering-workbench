@@ -138,10 +138,10 @@ try {
   await input('A different question while context is arriving'); await evaluate('window.releaseEdit(); window.fetch=window.originalFetch;');
   await enabled('Find context'); assert.equal(await evaluate("document.querySelector('.question-context')===null"), true, 'Late response restored the previous question.');
 
-  await find('Where are the repository README documents?'); await text('Source passages only');
+  await find('Where are the repository README documents?'); await text('No additional code path');
   await click('Generate answer'); await waitFor(() => published() && published() !== first, 'Source-only answer did not publish.'); await fixture.answers.idle();
   const sourceOnly = published(); assert.equal(fixture.answers.get(sourceOnly).nativeContext.item, null); assert.equal(fixture.runtime.calls, 2);
-  await text('Source passages only');
+  await text('No additional code path');
 
   await find(preparedQuestion); fixture.runtime.block = true; fixture.runtime.hold = deferred(); fixture.runtime.entered = deferred();
   await click('Generate answer'); await fixture.runtime.entered.promise; await text('Generating answer…'); await click('Cancel answer');

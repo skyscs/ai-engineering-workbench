@@ -15,8 +15,8 @@ export function NativeQuestionContext({ value, spans, openEvidence }: {
   value: NativeQuestionCompact; spans: InputSpan[]; openEvidence(id: string): void;
 }) {
   const item = value.item;
-  if (!item) return <div className="notice native-question-context"><strong>Source passages only</strong>
-    <p>{omissions[value.reason ?? ''] ?? 'No supported code path was included.'} The reviewed source passages remain the answer input.</p></div>;
+  if (!item) return <div className="notice native-question-context"><strong>No additional code path</strong>
+    <p>{omissions[value.reason ?? ''] ?? 'No supported code path was included.'} The rest of the reviewed context is unchanged.</p></div>;
   const evidence = (ids: string[]) => ids.flatMap(id => { const span = spans.find(row => row.id === id);
     return span ? [<button className="quiet" key={id} onClick={() => openEvidence(id)}>{span.sourceName} / {span.path}:{span.startLine}–{span.endLine}</button>] : []; });
   return <details className="native-question-context">
@@ -26,7 +26,7 @@ export function NativeQuestionContext({ value, spans, openEvidence }: {
     <ol>{item.flow.edgeIndexes.map(index => { const edge = item.edges[index]; return edge && <li key={index}>
       <strong>{item.nodes[edge[1]]?.[1]} → {item.nodes[edge[2]]?.[1]}</strong>
       <p>{edge[0]} · {edge[3]} · {edge[4]}{edge[5] ? ` · ${edge[5]}` : ''}</p>
-      {edge[8] && <p>{edge[8].detail}</p>}
+      {edge[8] && !edge[4].includes(edge[8].detail) && <p>{edge[8].detail}</p>}
       {edge[9] && <p>Static topic: {edge[9].value}. Runtime delivery is not established.</p>}
       <ul>{edge[6].map((gap, position) => <li key={position}>{gap}</li>)}</ul>
       <div className="citations">{evidence(edge[7].map(i => item.originals[i]!).filter(Boolean))}</div>
