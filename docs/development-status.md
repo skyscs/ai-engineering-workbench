@@ -369,8 +369,24 @@ catalog peaks are 1,961,984 / 5,492,736 bytes; sampled/final output totals are 9
 subset passes while full qualification remains false. Two copied catalogs, 71 reused
 files and all 92 HTTP bodies pass independent retention checks. Eight owner, four assessor
 and four browser-lifetime controls pass, along with installation/builds and the original
-seal. Both full final-head CI events remain required. Remaining operation/content checks,
-complete matrix integration and the final executable/environment/output seal are pending.
+seal. This checkpoint is accepted through
+[PR #153](https://github.com/skyscs/ai-engineering-workbench/pull/153): push 42050157252
+and pull_request 42050986144 pass 996 tests at `fb8e03b`; merge `909ca29` has the identical tree.
+
+The next [content assessment](fixtures/loredock-prepared-flow-content-assessment/README.md)
+checks exact retained UTF-8 bytes and identities independently of candidate codecs.
+Four copied catalogs contain 87 nonpurged witnesses and 64 purged tombstones. Every
+nonpurged row has 66,336 witness bytes, 91,335 serialized preparation bytes with reserve,
+23,232 prompt bytes, 7,519 derived bytes and 2,259 original bytes across 11 spans; these
+content bounds pass. The 64-row witness total is 4,245,504 bytes. Purged rows retain zero
+content but still occupy capacity. One cold and three warm reviews match the durable
+snapshot hash exactly; this binds content, not transient-to-answer ownership. Independent
+inspection verifies all four copied catalogs, 18 earlier input hashes and unchanged raw
+inputs. Five focused controls, installation/builds and the original seal pass. Both full
+final-head CI events remain required. No new candidate preparation, answer or model runs.
+Serialized bytes do not measure heap or qualify useful native content. Existing failed
+resource/source outcomes, remaining operation checks, complete ordered matrix and the
+final executable/environment/output seal remain pending; model eligibility stays closed.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request
