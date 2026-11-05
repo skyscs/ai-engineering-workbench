@@ -1,5 +1,26 @@
 # Development status
 
+## Task 132 — Ordinary native-size attribution (diagnosis retained)
+
+Task 131 is accepted through [PR #164](https://github.com/skyscs/ai-engineering-workbench/pull/164):
+both complete exact-head CI logs pass 1,039 tests at `d5227e8`, verified before
+identical-tree merge `4d856e4`.
+
+The [offline diagnosis](fixtures/loredock-native-size-diagnosis/README.md) reads only
+the retained ordinary D01 case. Its 152 entries match the accepted archive inventory;
+eight Git sources, 22 files, 18 issued spans and eight required quotes are verified on
+a complete copy. The original positive remains failed: 7,099 native bytes plus 1,268
+legacy bytes and one separator exceed 8,192 by 176. The discarded native item/receipt
+were transient, so no complete per-field reconstruction is claimed.
+
+Known header, lexical-binding and duplicate-clue repetitions offer a conditional
+287-byte saving (projected total 8,081; only 111 bytes headroom). Exact component round
+trips pass without application execution, new preparations or models. Changing the
+wire meaning needs versioned validation, prompts and old-history support, including
+the new summary reader. [Task 133](../tasks/133-loredock-native-context-factoring.md)
+scopes that separate implementation and fresh prospective complete controls. Task 132
+changes no application byte, default or threshold and grants no qualification.
+
 ## Task 131 — Bounded prepared history summaries (result retained)
 
 Task 130 is accepted through [PR #163](https://github.com/skyscs/ai-engineering-workbench/pull/163):
@@ -21,7 +42,8 @@ useful twenty-row list uses 257,241 units under one closed budget, versus the pr
 byte-identical on reopen; source revocation fences and purges all 64 answers. Independent
 review checks eight complete catalogs, 3,476 original spans, 767 HTTP responses and
 1,064 unchanged raw entries. Strict typecheck/build, 44 focused tests and 238 script
-tests pass. Exact-head CI acceptance remains pending.
+tests pass. Both complete exact-head CI logs pass 1,039 tests; PR #164 is merged with
+an identical tree. Full first output and all 138 compiled modules remain unchanged.
 
 [Task 132](../tasks/132-loredock-native-context-size.md) next attributes the retained
 ordinary native-size excess. Startup, near-limit heap, browser RSS and fresh complete

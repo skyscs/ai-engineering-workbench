@@ -490,7 +490,11 @@ introduces an explicit metadata-only summary boundary with one page budget. Its 
 ordinary controls reduce twenty-row list work from 3,168,560 to 257,241 units at both
 history sizes, preserving full detail and source fencing. After CI acceptance,
 [Task 132](tasks/132-loredock-native-context-size.md) diagnoses the retained ordinary
-native-size failure before selecting a lossless representation change.
+native-size failure: 7,099 native bytes plus 1,268 legacy bytes and one separator.
+Three repeated components offer a conditional 287-byte saving; the missing complete
+historical item prevents claiming a repair from arithmetic alone.
+[Task 133](tasks/133-loredock-native-context-factoring.md) scopes a versioned format
+with exact v1 compatibility and fresh complete controls before any acceptance.
 Real startup/heap failures and earlier browser/native-positive failures remain
 separate unresolved work; repaired qualification needs a new prospective family.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
