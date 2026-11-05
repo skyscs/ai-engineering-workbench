@@ -1,0 +1,344 @@
+{
+  "schemaVersion": "prepared-flow-preflight-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "tests": 955,
+  "trees": [
+    {
+      "path": "preflight-observation-first.tar.gz",
+      "sha256": "1839aafeadc027329194792371682f82c80cd95b379e05c968a5a5cdf0e8c15c",
+      "inventory": "preflight-observation-first.inventory.json.gz",
+      "inventorySha256": "5c87089f611aeddc69be7618b56c313e81fd64d82eb7dd659decf6d866df4d5c",
+      "entries": 163,
+      "source": "/home/toshiba/aew/task128-preflight-observation-first",
+      "limitation": "The public build-start case remains incomplete and the driver exits 1. The separately recorded published-build fault does not rewrite this outcome."
+    },
+    {
+      "path": "published-build-fault-first.tar.gz",
+      "sha256": "33660407aa277f289c973d878f5273fc08de0cd9e6fd6a78c32eca08bf38c740",
+      "inventory": "published-build-fault-first.inventory.json.gz",
+      "inventorySha256": "cd5e318ea3c5ff3a12c86075045429a28ee3f587bf806f131d1617da361a4684",
+      "entries": 122,
+      "source": "/home/toshiba/aew/task128-published-build-fault-first"
+    },
+    {
+      "path": "preflight-retention.tar.gz",
+      "sha256": "940daa4a02cd73825fe9d7e321336d7ecbad763cc91285a15620f598ce49421a",
+      "inventory": "preflight-retention.inventory.json.gz",
+      "inventorySha256": "e46e22d1d502789458dd1204ba1fd9c0c90f3dc8fad475b5e5259be55185b6a7",
+      "entries": 25,
+      "source": "/home/toshiba/aew/task128-preflight-retention"
+    },
+    {
+      "path": "preflight-check-owner-1.tar.gz",
+      "sha256": "2d8ee0f283a108e073a90b7b7f6ffb1e3896a1e761948c628539a41ce10cdc69",
+      "inventory": "preflight-check-owner-1.inventory.json.gz",
+      "inventorySha256": "4cf24d6426168afd3346000db5f2c5ee879141aa540b9f92b4023ea7ae8b6aa4",
+      "entries": 8,
+      "source": "/tmp/loredock-kernel-adoption-RSsHIJ"
+    },
+    {
+      "path": "preflight-check-owner-2.tar.gz",
+      "sha256": "9321203a1e3a72acd95bf40ddc86cce55f9af16a95274e4100386728e5e4826e",
+      "inventory": "preflight-check-owner-2.inventory.json.gz",
+      "inventorySha256": "1decf576a3c6a5d75e5be7ea74b37f567ab25367bbe8440ad8499a39bc9377ca",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-ixZbnA"
+    },
+    {
+      "path": "preflight-check-owner-3.tar.gz",
+      "sha256": "c832dec332e5de51d2b1d354b5c20118e5c9762e50e9f9a893008e5dad8f2adc",
+      "inventory": "preflight-check-owner-3.inventory.json.gz",
+      "inventorySha256": "4b11fe0588f51cfd9fef501d10d4c865bf8190fe436ff814d3e488ecf75b9b50",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-jCJWzI"
+    },
+    {
+      "path": "preflight-check-owner-4.tar.gz",
+      "sha256": "d9cd15480c52b3f2470c0c93a85f8674ac46f66a560b8dd869c6c0415be2a0a8",
+      "inventory": "preflight-check-owner-4.inventory.json.gz",
+      "inventorySha256": "4a34714dd20dbf9afe81a42b9f752edeff4fa32384938c1000c406081cd3c050",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-nM3Kcr"
+    },
+    {
+      "path": "preflight-check-owner-5.tar.gz",
+      "sha256": "af3aa16494c0951e396eb132c281f858cec044dd7eb1def11b38b599c8a3d805",
+      "inventory": "preflight-check-owner-5.inventory.json.gz",
+      "inventorySha256": "082481b7b80e4ba1213569671df738f4953dcf6af33b4ae8ee74c7a6e55f8384",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-kVGpaO"
+    },
+    {
+      "path": "preflight-check-owner-6.tar.gz",
+      "sha256": "e986faa5dfc2faf83fa942d8876b5460b3ca88e641cc766ccba668786e434381",
+      "inventory": "preflight-check-owner-6.inventory.json.gz",
+      "inventorySha256": "68a98f9bb51ecf8b7a73495bbdae3d5be6257235cb5e60f8f0a527344d680df5",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-2WRx6y"
+    },
+    {
+      "path": "preflight-inputs.tar.gz",
+      "sha256": "213edb56cfd3937bc5699f811e61ca9889c8f412e64f3756f5e049e0578b0d06",
+      "inventory": "preflight-inputs.inventory.json.gz",
+      "inventorySha256": "39c4097ad21178b369a0fcb6e98d6f0da8e139a8f7f44c258b9122a5387aec0e",
+      "entries": 5,
+      "source": "/home/toshiba/aew/task128-preflight-inputs"
+    },
+    {
+      "path": "preflight-static-review.tar.gz",
+      "sha256": "cc8ee3b0b833b0d23ac04ecd5ee3258ffece0a6c9cc6d4c3d5fe9dce959ea7b2",
+      "inventory": "preflight-static-review.inventory.json.gz",
+      "inventorySha256": "ee2a654e60b10a481ec8f9e6f4b7975e7fb27705bf165bdd27b4836374727b19",
+      "entries": 2,
+      "limitation": "Initial validation output precedes addition of this validation archive itself."
+    },
+    {
+      "path": "preflight-check-fixed-owner-1.tar.gz",
+      "sha256": "05e19ab28e8614a9ad2ccf525b2a5a69a12564df33e1e2c5cfe71c29b233ef7a",
+      "inventory": "preflight-check-fixed-owner-1.inventory.json.gz",
+      "inventorySha256": "f5f0d4c4f9ec7395e851624f3b06892b7d934dc8f0fda3f39a8afdc711318421",
+      "entries": 8,
+      "source": "/tmp/loredock-kernel-adoption-6A7r74"
+    },
+    {
+      "path": "preflight-check-fixed-owner-2.tar.gz",
+      "sha256": "d5ac7a40c1446f35ecd5a01f778c91b0b44d6d1fce8acfd19fad0b47e200c5e7",
+      "inventory": "preflight-check-fixed-owner-2.inventory.json.gz",
+      "inventorySha256": "958e5e0563db38196a07cdb4ac0a52f598e6755e945c0ca3cddd9bcf199bfe0f",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-4uCEz4"
+    },
+    {
+      "path": "preflight-check-fixed-owner-3.tar.gz",
+      "sha256": "b857cea75a2a05e84da40050929de5e712605dd7f94fed6c5c9f773401870bbf",
+      "inventory": "preflight-check-fixed-owner-3.inventory.json.gz",
+      "inventorySha256": "60b32e6b2807b91ff3798562465e6493f94d0912fa30319c1b73e40cd2d7b263",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-mlEeKl"
+    },
+    {
+      "path": "preflight-check-fixed-owner-4.tar.gz",
+      "sha256": "6b3f0fb997ac4f12d4641cb7a76bcaea4df28ea2e4e50118ca771f360220905d",
+      "inventory": "preflight-check-fixed-owner-4.inventory.json.gz",
+      "inventorySha256": "e48311541b7590bbd0171f1c135e4d2fca3d645438e551fcad90eaa86158c5dc",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-Y46R2b"
+    },
+    {
+      "path": "preflight-check-fixed-owner-5.tar.gz",
+      "sha256": "bee3281b766e58fd6cb575e2ebcbaf7092e2652365ad02c5e0b901225e91ad84",
+      "inventory": "preflight-check-fixed-owner-5.inventory.json.gz",
+      "inventorySha256": "20f81e9ebb793c7ea582132824132fb0e08cc9cf11efe20826063310d2c5159d",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-TxBtX2"
+    },
+    {
+      "path": "preflight-check-fixed-owner-6.tar.gz",
+      "sha256": "2dd84f541872a52c1b6f0093977b4bf90c5c99562b2a85cd0a2c67bae2bd2009",
+      "inventory": "preflight-check-fixed-owner-6.inventory.json.gz",
+      "inventorySha256": "9983b45adab767b3204ecc90417dff1f8783da71664eff8450660d52b8b59341",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-hLCDze"
+    },
+    {
+      "path": "preflight-test-fix-inputs.tar.gz",
+      "sha256": "644fcc0edfd2c56133cb9e21d8d71981cbbbc376cbedbdfecca6b7e222ac9adb",
+      "inventory": "preflight-test-fix-inputs.inventory.json.gz",
+      "inventorySha256": "0b375521f964833908553edfb9b26d11278951cb9adbdb34d4560e068d070f83",
+      "entries": 4,
+      "source": "/home/toshiba/aew/task128-preflight-test-fix-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "preflight-observation-first.log.gz",
+      "archiveSha256": "c4a8e155bf588a985a8eec1b8660652b3da90bd0350c2a0e43bc0cc6b4bb6436",
+      "rawBytes": 3284,
+      "rawSha256": "527a844b78f67c1dfa7b44193b13d7a400786ae94e38c3f4352da2c95a9b9712"
+    },
+    {
+      "path": "published-build-fault-first.log.gz",
+      "archiveSha256": "47717ac00dacb1067b31b84a300e965027e005a597a158ebbfb4b4498bd838c2",
+      "rawBytes": 3179,
+      "rawSha256": "ac29dfd0091df0eafe9160ff93f2cdac10cc728dc2b41b7c659d131b47f029b0"
+    },
+    {
+      "path": "preflight-check-first.log.gz",
+      "archiveSha256": "54c283819474778daeaad3e318429c088ad7f9df958279f12eec79a94cb017dd",
+      "rawBytes": 350400,
+      "rawSha256": "5802b6115a0fb51dece91f21e4980c5d6a9d411e63936e6a739fe2994e9ef765"
+    },
+    {
+      "path": "preflight-install.log.gz",
+      "archiveSha256": "f4695782fbcaee38f9814c5a6fa1c6e517bffb98b72d8adb8f4a9985c67bc60a",
+      "rawBytes": 326,
+      "rawSha256": "0f50aafe118eb8029a3c5a20a093d23b382b1b18fd0955ad961fbc1d68669474"
+    },
+    {
+      "path": "preflight-build.log.gz",
+      "archiveSha256": "cce105f32a9312cd9e645e6b022e44dfad1e687168368e0b1f5219d21f3d224f",
+      "rawBytes": 2360,
+      "rawSha256": "553384a67f95ab11457e0f3215506fe0368e182439b72fbe71268d2ed16c4a98"
+    },
+    {
+      "path": "preflight-seal-check.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "preflight-retention.log.gz",
+      "archiveSha256": "c924c0671c06cb63ab4ea9f9f5ab31a9c5d1c86d6218d68bb103962f56d46f22",
+      "rawBytes": 1463,
+      "rawSha256": "6efea51a2ad7f3558a50e2b509f46242568518a0d04fd212c08e6eac668baa4f"
+    },
+    {
+      "path": "boundary-ci-push.log.gz",
+      "archiveSha256": "733515b4d77b02e838eb02cc20a532eb886ab241cd7f57ceb2f81b82ef20224e",
+      "rawBytes": 684009,
+      "rawSha256": "c7fb03827325e48f935a9b4cd4542554a59212718961d1795cc645917c165307"
+    },
+    {
+      "path": "boundary-ci-pr.log.gz",
+      "archiveSha256": "47fedc6e72cf9b2eda5257ded561db718a6a8859ae388122c57d3162eb371d07",
+      "rawBytes": 685426,
+      "rawSha256": "58c2f58234d75c82f5ca2a0575d0cc1284dcc8e3dd71500260f5730b8a220a53"
+    },
+    {
+      "path": "preflight-ci-push-first.log.gz",
+      "archiveSha256": "e40c4e2a5d01fe78609e1cd31cd29fc08ba46221ca2979a366f01ae10dc58e06",
+      "rawBytes": 683811,
+      "rawSha256": "bfc8fc0b0e22695e95a74ceff850ac504b4e3bb2914049dec518e580f1b0ce3f"
+    },
+    {
+      "path": "preflight-ci-pr-first.log.gz",
+      "archiveSha256": "21779d980151f0ffb2c89b548127b5b526312805bbccabba4d9b506716a52327",
+      "rawBytes": 804478,
+      "rawSha256": "b815cf885104fcfc08890976db5db9fdf994dfa93d6d16a930afb32bb105100a"
+    },
+    {
+      "path": "preflight-terminal-focused.log.gz",
+      "archiveSha256": "bcbbfc65851e1f364b8939d99bd40d1e0167b295e2b9fc5e33c509af0261a732",
+      "rawBytes": 1003,
+      "rawSha256": "93628aa0e8a635d8907eee1e710d4dd49bb4f40f83a59b2750c9a0b1921dd7de"
+    },
+    {
+      "path": "preflight-check-after-test-fix.log.gz",
+      "archiveSha256": "29ff374d65775c83574d088de28590d205b6de7c29b492c0945a430ab4594050",
+      "rawBytes": 350359,
+      "rawSha256": "e4da48438ef929c088315458e070766f3ba5166eb111acba1a36596d11fed3bb"
+    },
+    {
+      "path": "preflight-seal-after-test-fix.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "preflight-static-after-test-fix.log.gz",
+      "archiveSha256": "f45a79dc87a70f5537d000c5e4988389dbf3985dd4c9dea7b5e4b2a6c5b7d021",
+      "rawBytes": 207,
+      "rawSha256": "75390209dc680a21ca2b17252bdfc48fc89da40bfa54853847b89cd0742796df"
+    }
+  ],
+  "acceptedCancellation": {
+    "pr": 134,
+    "head": "f07132df0af5effbafb785b5de36751d05aff9e4",
+    "merge": "eedc69eff34a87af133d7ae618628e3762014840",
+    "push": 41996528951,
+    "pull_request": 41996827429,
+    "testsPerEvent": 955
+  },
+  "retention": [
+    {
+      "case": "preflight-observation-first",
+      "sourceHashesUnchanged": true,
+      "rawTreeUnchangedByInspection": true,
+      "databases": [
+        {
+          "directory": "base-data",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "answers": []
+        },
+        {
+          "directory": "build/data",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "answers": [
+            [
+              "failed",
+              null
+            ]
+          ]
+        },
+        {
+          "directory": "policy/data",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "answers": [
+            [
+              "fenced",
+              null
+            ]
+          ]
+        },
+        {
+          "directory": "review/data",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "answers": [
+            [
+              "failed",
+              null
+            ]
+          ]
+        }
+      ],
+      "ownerErrors": [],
+      "ownedSurvivors": []
+    },
+    {
+      "case": "published-build-fault-first",
+      "sourceHashesUnchanged": true,
+      "rawTreeUnchangedByInspection": true,
+      "databases": [
+        {
+          "directory": "base-data",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "answers": []
+        },
+        {
+          "directory": "fault-data",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "answers": [
+            [
+              "failed",
+              null
+            ]
+          ]
+        }
+      ],
+      "ownerErrors": [],
+      "ownedSurvivors": []
+    }
+  ],
+  "ciReviewCorrection": {
+    "initialHead": "49e8d36c3e4929efa8dcba0c2e1aced9e5f9b8ff",
+    "pushPassed": 41998815851,
+    "pullRequestFailed": 41999296250,
+    "operation": "repeat-3",
+    "sampleMs": 405.999008,
+    "unchangedLimitMs": 150,
+    "resourceResultRemainsFailed": true,
+    "remoteTemporaryRawArtifactsAvailable": false,
+    "testChange": "Separate functional terminal integration from retained resource failures.",
+    "targetedTestsPassed": 3,
+    "correctedLocalFullTestsPassed": 955,
+    "assessorAndThresholdChanges": false
+  }
+}
