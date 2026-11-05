@@ -1,6 +1,20 @@
 # Development status
 
-## Task 128 — First reserved gate failed; result acceptance pending
+## Task 129 — Ordinary partial-inventory preparation diagnosis (in progress)
+
+The failed Task 128 result is accepted through [PR #161](https://github.com/skyscs/ai-engineering-workbench/pull/161):
+both exact-head CI events pass 1,029 tests at `1dfb79e`, and merge `6150630` has the
+identical tree. Complete logs/counts were verified before merge. Task 128 is complete
+with a failed gate; the kiln family remains consumed, with no semantic continuation.
+
+[Task 129](../tasks/129-loredock-partial-inventory-diagnosis.md) now has a
+[four-control ordinary diagnosis](fixtures/loredock-partial-inventory-diagnosis/README.md)
+and three focused boundary tests. Published partial coverage is distinguished from
+terminal processing and compatible native input; exact originals remain independently
+required. The actual public API observations are pending. No application/default change
+or model call is part of this task.
+
+## Task 128 — First reserved gate failed (accepted)
 
 Latest accepted checkpoint: [PR #160](https://github.com/skyscs/ai-engineering-workbench/pull/160)
 at identical-tree merge `6374e9e`, after both exact-head CI events pass 1,029 tests.
@@ -17,8 +31,7 @@ There are no warm/history/browser/expiry/fence resource results to infer from ab
 checkpoints. The owner stops without errors or survivors; independent checks preserve
 15 catalogs, 240 Git identities, 12,640 original files, 631 responses and 28,599 raw entries.
 
-The result PR must pass both exact-head CI events before Task 128 completion is accepted.
-Then [Task 129](../tasks/129-loredock-partial-inventory-diagnosis.md) diagnoses public
+PR #161 accepts the result after both exact-head CI events pass. [Task 129](../tasks/129-loredock-partial-inventory-diagnosis.md) diagnoses public
 preparation over ordinary terminal partial inventories. The frozen prerequisite failure
 does not establish public API refusal: no preparation request was made in those cases.
 Earlier ordinary native-positive, list-work and browser failures also remain unresolved.
