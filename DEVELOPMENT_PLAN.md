@@ -507,8 +507,15 @@ The current browser environment therefore fails the existing ceiling independent
 of loading LoreDock. Diagnostic PSS and process roles do not replace that gate or prove
 an application leak. Future browser qualification needs an explicit environment/contract
 decision; no limit is relaxed and no default is activated.
-After exact-head checks and merge, [Task 135](tasks/135-loredock-compiler-isolation-design.md)
-designs owned compiler isolation for the separately measured daemon startup pause.
+[Task 135](tasks/135-loredock-compiler-isolation-design.md) audits both eager parser
+paths and selects a staged owned file-parser thread in
+[ADR 0062](docs/decisions/0062-loredock-owned-file-parser.md). Synchronous legacy
+projections, answer validation, lexical accounting and transaction boundaries must
+migrate before adoption; moving only durable analysis would leave startup blocking.
+After exact-head checks and merge, [Task 136](tasks/136-loredock-file-parser-adapter.md)
+implements an unwired adapter with bounded ownership and exact parser parity.
+Whole-heap observer coverage, production integration and resource acceptance remain
+future gates; no measured failure or limit is waived by the design.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation
