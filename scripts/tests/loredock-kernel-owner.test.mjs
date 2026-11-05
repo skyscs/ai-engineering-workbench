@@ -64,10 +64,11 @@ await writeFile(root+'/forged-process.json',JSON.stringify({pid:${options.unrela
 ${mode === 'normal' ? `await symlink(${JSON.stringify(path.join(root, 'outside'))},root+'/outside-link');` : `const child=spawn(process.execPath,['-e',${JSON.stringify(intermediate)}],{stdio:'ignore',detached:true});child.unref();
 while(true){try{await readFile(root+'/leaf-ready.json');break;}catch(error){if(error.code!=='ENOENT')throw error;await new Promise(r=>setTimeout(r,10));}}`}
 await writeFile(root+'/ready','ready');
-${mode === 'failure' ? 'process.exit(7);' : mode === 'normal' ? '' : `${mode === 'storage' ? "await writeFile(root+'/retained-large.bin',Buffer.alloc(65536,65));" : ''}setInterval(()=>{},1000);`}
+${mode === 'failure' ? 'process.exit(7);' : mode === 'normal' ? '' : `${mode === 'storage' ? "await writeFile(root+'/retained-large.bin',Buffer.alloc(65536,65));" : mode === 'catalog-storage' ? "await mkdir(root+'/catalog');await writeFile(root+'/catalog/loredock.db',Buffer.alloc(65536,65));" : ''}setInterval(()=>{},1000);`}
 `);
   const args = ['-I', '-S', modulePath, '--node', process.execPath, '--script', script, '--output', output, '--cwd', cwd,
     '--grace-ms', '200', '--wall-ms', String(mode === 'hang' ? 5000 : 15000), '--storage-bytes', String(['normal', 'storage'].includes(mode) ? 32768 : 2147483648)];
+  if (mode === 'catalog-storage') args.push('--catalog-root', 'run/catalog', '--catalog-bytes', '32768');
   const owned = processToFiles('python3', args, root);
   let ended = false; owned.exit.then(() => { ended = true; }, () => { ended = true; });
   t.after(async () => { if (!ended) { owned.child.kill('SIGTERM'); await owned.exit; } });
@@ -108,4 +109,26 @@ test('storage ceiling preserves the oversized file while stopping descendants', 
 });
 test('external interruption drains and reaps the kernel-owned process tree', async t => {
   const { result } = await exercise(t, 'interrupt'); assert.equal(result.reason, 'owner-SIGTERM');
+});
+
+test('declared catalog ceiling stops descendants without treating the whole output as a catalog', async t => {
+  const { result, output } = await exercise(t, 'catalog-storage');
+  assert.equal(result.reason, 'catalog-storage-ceiling');
+  assert.deepEqual(result.catalogRoots, ['run/catalog']); assert.deepEqual(result.observedCatalogRoots, ['run/catalog']);
+  assert.equal(result.peakSampledCatalogBytes['run/catalog'], 65536);
+  assert(result.peakSampledStorageBytes < result.limits.storageBytes);
+  assert.equal((await readFile(path.join(output, 'run/catalog/loredock.db'))).length, 65536);
+});
+
+test('catalog declarations reject escape, duplicate and overlapping roots before creating output', async t => {
+  const root = await mkdtemp(path.join(tmpdir(), 'loredock-kernel-catalog-declarations-'));
+  t.diagnostic('Retained catalog-declaration test: ' + root);
+  const script = path.join(root, 'driver.mjs'); await writeFile(script, 'throw new Error("Must not execute.");');
+  for (const [index, roots] of [['../outside'], ['/outside'], ['run/one', 'run/one'], ['run/one', 'run/one/nested']].entries()) {
+    const directory = path.join(root, 'case-' + index), output = path.join(directory, 'output'); await mkdir(directory);
+    const run = processToFiles('python3', ['-I', '-S', modulePath, '--node', process.execPath, '--script', script,
+      '--output', output, '--cwd', cwd, ...roots.flatMap(value => ['--catalog-root', value])], directory);
+    assert.deepEqual(await run.exit, { code: 2, signal: null });
+    assert.equal(await exists(path.join(output, 'command.json')), false);
+  }
 });

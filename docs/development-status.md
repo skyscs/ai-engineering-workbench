@@ -2,10 +2,10 @@
 
 ## Task 128 — Complete-flow resource driver (in progress)
 
-Latest accepted checkpoint: [PR #151](https://github.com/skyscs/ai-engineering-workbench/pull/151)
-at merge `150c7ba`. Browser measurements now bind original API bytes and full-page
-paint/task observations. Actual 20/64-row controls retain RSS and sampling-gap failures;
-both final-head CI events are required before accepting this slice.
+Latest accepted checkpoint: [PR #152](https://github.com/skyscs/ai-engineering-workbench/pull/152)
+at merge `935daef`. The next owner/storage slice measures declared live catalogs and
+final output bytes. Its actual 20/64-row reopen subset passes; both final-head CI events
+remain required, and earlier resource/required-positive failures remain unresolved.
 The reserved family has zero candidate reads; no model runs.
 Known ordinary failures include partial analysis of constant-only padding, a missing
 required native positive at the derived-size limit, aggregate list work, browser RSS and
@@ -350,9 +350,27 @@ sample gap (102.648503 / 101.958016 ms against 100). Request/paint checks pass; 
 observed long tasks does not mean zero main-thread CPU. The initial assessor omitted the
 cadence check; its code/results remain preserved. Corrected offline reassessment adds only
 that failure with zero new browser/application runs. Five focused controls, builds, syntax
-and the original seal pass. Four screenshots were inspected. Both complete final-head CI
-events remain required. The complete matrix, remaining global/storage/work/lifetime
+and the original seal pass. Four screenshots were inspected. This checkpoint is accepted
+through [PR #152](https://github.com/skyscs/ai-engineering-workbench/pull/152): push
+42046811345 and pull_request 42046866562 pass 990 tests at `1c5816c`; merge `935daef`
+has the identical tree. The complete matrix, remaining global/storage/work/lifetime
 assessment and final execution seal are still pending; no resource/model eligibility follows.
+
+The next [owner/storage assessment](fixtures/loredock-prepared-flow-resource-assessment/README.md)
+adds prospective non-overlapping catalog-root declarations to the external owner. Its
+existing no-follow walk counts each live catalog independently, including WAL/SHM/native
+files, and stops owned work at the frozen catalog ceiling without removing evidence.
+Process signals remain authorized only by kernel ancestry. The independent assessor checks
+completion, frozen limits, complete samples, declared-root peaks, suite time and final
+retained bytes; missing legacy measurements and unobserved/raced roots cannot pass.
+Actual production reopens of 20/64-row catalogs preserve all 84 answers/replays. Their
+catalog peaks are 1,961,984 / 5,492,736 bytes; sampled/final output totals are 9,488,809 /
+9,490,621 bytes over 1,995.089658 ms, with clean ownership teardown. The owner/storage
+subset passes while full qualification remains false. Two copied catalogs, 71 reused
+files and all 92 HTTP bodies pass independent retention checks. Eight owner, four assessor
+and four browser-lifetime controls pass, along with installation/builds and the original
+seal. Both full final-head CI events remain required. Remaining operation/content checks,
+complete matrix integration and the final executable/environment/output seal are pending.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request
