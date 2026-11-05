@@ -1,5 +1,16 @@
 # Development status
 
+## Task 128 — Complete-flow resource driver (in progress)
+
+The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
+passes real daemon index/analysis/review, exact controlled prompt/schema, durable request
+replay and restart/history. A deliberate driver failure preserves all source/catalog
+bytes; both earlier harness errors are retained and explained. The actual application
+and Task 127 input seals are unchanged. No reserved family or model has run.
+
+The browser/accounting/fault matrix and final execution seal are still required before
+qualification. This development pass is not a resource/semantic gate or pilot adoption.
+
 ## Task 127 — Prospective complete-flow qualification inputs
 
 The [contract](loredock/PREPARED_FLOW_QUALIFICATION.md) freezes the actual daemon/browser
@@ -24,7 +35,8 @@ single attempts with explicit personal-runtime identity, usage stop rules and no
 Author scoring is not independent L5 acceptance. Failed gates exhaust the continuation.
 
 All 938 ordinary tests, strict types and builds pass; static checks verify the frozen
-inputs without executing the family. Final-head CI is pending.
+inputs without executing the family. Push 41954324724 and pull-request 41954360437
+passed at `ee7951c`; PR #131 merged with an identical tree at `4fd9e1d`.
 Verification records: [logs and review](fixtures/loredock-prepared-flow-contract/README.md).
 Next [Task 128](../tasks/128-loredock-prepared-flow-resource-qualification.md) develops on
 ordinary permit inputs, seals its executable/environment and runs the model-free gate
