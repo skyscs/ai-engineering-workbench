@@ -7,9 +7,14 @@ import { browser } from './browser.mjs';
 import { holdResponse } from './response-fault.mjs';
 import { stoppedHistoryCheckpoint } from './history-cases.mjs';
 
-async function networkCase({ directory, checkpoint, question }, execute) {
+export async function networkCase({ directory, checkpoint, question }, execute, { history = false } = {}) {
   for (const value of [directory, checkpoint.data]) assert(path.isAbsolute(value) && path.resolve(value) === value);
   assert(typeof question === 'string' && question.trim());
+  if (history) {
+    assert.equal(checkpoint.kind, 'browser-replay-history'); assert.equal(checkpoint.lane, 'fault');
+    assert.equal(checkpoint.saved.value.status, 'succeeded'); assert.equal(checkpoint.storage.rows, 1);
+    assert.equal(checkpoint.storage.purged, 0);
+  }
   await mkdir(directory);
   const data = path.join(directory, 'data'), log = journal(path.join(directory, 'journal.jsonl'));
   const report = { errors: [], lane: 'fault', modelCalls: 0, resourceQualification: false, timingQualified: false };
@@ -35,7 +40,12 @@ async function networkCase({ directory, checkpoint, question }, execute) {
     daemon = await launch({ directory: path.join(directory, 'controlled'), data, controlled: true, fault: true });
     api = await client(path.join(directory, 'http'));
     assert.deepEqual(await daemon.command('stats'), { prepares: 0, calls: 0, closed: 0 });
-    assert.equal((await api.request('/answers')).value.attempts.length, 0);
+    const state = (await api.request('/answers')).value;
+    assert.equal(state.attempts.length, history ? 1 : 0);
+    if (history) {
+      assert.equal(state.attempts[0].id, checkpoint.saved.value.id);
+      assert.equal((await api.request('/answers/' + checkpoint.saved.value.id)).rawSha256, checkpoint.saved.rawSha256);
+    }
     await api.request('/answers/configuration', 'PUT', { executable: process.execPath, configHome: directory, profile: null });
     page = await browser({ directory: path.join(directory, 'browser') });
     await page.evaluate("document.querySelector('.answer-panel').scrollIntoView()");
