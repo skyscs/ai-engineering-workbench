@@ -6,7 +6,7 @@ import { decodeParserReply, encodeParserFrame, fileParserDigest, fileParserLimit
 
 export interface ParserOperation { deadline: number; signal?: AbortSignal }
 interface Pending { resolve: (value?: CodeFacts) => void; reject: (error: FileParserError) => void;
-  release: () => void; request?: ParseRequest }
+  check: () => void; release: () => void; request?: ParseRequest }
 type State = 'new' | 'starting' | 'ready' | 'busy' | 'stopping' | 'closed';
 /** Internal dependency seam for lifecycle tests. Production supplies a fixed installed factory. */
 export interface ParserDependencies {
@@ -47,25 +47,28 @@ export class FileParserOwner {
     requireParser(!options.signal?.aborted, 'PARSER_CANCELLED');
   }
   private waiting<T extends void | CodeFacts>(options: ParserOperation, request?: ParseRequest): Promise<T> {
+    const { deadline, signal } = options;
     return new Promise<T>((resolve, reject) => {
       const abort = () => this.fail(new FileParserError('PARSER_CANCELLED'));
-      const timer = setTimeout(() => this.fail(new FileParserError('PARSER_DEADLINE')), Math.max(0, options.deadline - performance.now()));
-      options.signal?.addEventListener('abort', abort, { once: true });
+      const timer = setTimeout(() => this.fail(new FileParserError('PARSER_DEADLINE')), Math.max(0, deadline - performance.now()));
+      signal?.addEventListener('abort', abort, { once: true });
       this.pending = { resolve: value => resolve(value as T), reject,
-        release: () => { clearTimeout(timer); options.signal?.removeEventListener('abort', abort); }, ...(request ? { request } : {}) };
+        check: () => { requireParser(!signal?.aborted, 'PARSER_CANCELLED'); requireParser(performance.now() < deadline, 'PARSER_DEADLINE'); },
+        release: () => { clearTimeout(timer); signal?.removeEventListener('abort', abort); }, ...(request ? { request } : {}) };
     });
   }
   async start(options: ParserOperation): Promise<void> {
     requireParser(this.state === 'new', 'PARSER_STATE'); this.operation(options);
     this.state = 'starting'; const ready = this.waiting<void>(options);
     this.initializing = this.initialize();
-    void this.initializing.catch(() => this.fail(new FileParserError('PARSER_START_FAILED')));
+    void this.initializing.catch(error => this.fail(error instanceof FileParserError ? error : new FileParserError('PARSER_START_FAILED')));
     return ready;
   }
   private async initialize() {
     const identity = await this.dependencies.identify(this.initialization.signal);
     requireParser(/^[a-f0-9]{64}$/.test(identity), 'PARSER_IDENTITY');
     if (this.state !== 'starting') return;
+    this.pending!.check();
     this.identity = identity;
     const worker = this.dependencies.spawn(this.generation); this.worker = worker; this.threadId = worker.threadId;
     this.exit = new Promise(resolve => worker.once('exit', code => {
@@ -90,16 +93,19 @@ export class FileParserOwner {
   private message = (frame: unknown) => {
     if (this.state === 'stopping' || this.state === 'closed') return;
     try {
-      const reply = decodeParserReply(frame), pending = this.pending;
-      requireParser(reply.generation === this.generation && reply.identity === this.identity && pending);
+      const pending = this.pending; requireParser(pending); pending.check();
+      const reply = decodeParserReply(frame);
+      requireParser(reply.generation === this.generation && reply.identity === this.identity);
       if (reply.type === 'ready') {
         requireParser(this.state === 'starting' && !pending.request);
+        pending.check();
         pending.release(); this.pending = undefined; this.state = 'ready'; pending.resolve(); return;
       }
       const request = pending.request;
       requireParser(this.state === 'busy' && request && reply.id === request.id && reply.digest === request.digest);
       if (reply.type === 'error') throw new FileParserError(reply.code);
       validateParserFacts(reply.facts, request.content);
+      pending.check();
       pending.release(); this.pending = undefined; this.state = 'ready'; pending.resolve(reply.facts);
     } catch (error) { this.fail(error instanceof FileParserError ? error : new FileParserError('PARSER_PROTOCOL')); }
   };

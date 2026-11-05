@@ -67,6 +67,19 @@ test('source worker loading ignores a configuration in the caller working direct
   } finally { process.chdir(previous); await parser.stop(); await rm(directory, { recursive: true, force: true }); }
 });
 
+test('literal event support and syntax limits keep their exact parser meaning', async t => {
+  const parser = new OwnedFileParser(); t.after(() => parser.stop()); await parser.start(operation());
+  const publisher = 'record Dispatch(String key) {}\ninterface EventPublisher { void publish(String topic, String key, Dispatch event); }\nclass Producer { EventPublisher publisher; void send(String key) { var event = new Dispatch(key); publisher.publish("dispatch", key, event); } }';
+  const expected = javaFacts(publisher), actual = await parser.parse('Producer.java', publisher, operation());
+  assert.equal(JSON.stringify(actual), JSON.stringify(expected));
+  assert.ok(actual.operations.some(item => item.kind === 'event-publish' && item.properties.topicExpression === '"dispatch"'));
+  assert.deepEqual(factRanges(publisher, actual), factRanges(publisher, expected));
+  const nested = 'export function nested() {' + 'if (true) {'.repeat(110) + '}'.repeat(111);
+  const limited = await parser.parse('nested.ts', nested, operation());
+  assert.equal(JSON.stringify(limited), JSON.stringify(typescriptFacts(nested, 'nested.ts')));
+  assert.ok(limited.gaps.includes('typescript-syntax-limit'));
+});
+
 const fixture = `
 const { parentPort: port, workerData: data } = require('node:worker_threads');
 const binding = { version: 'loredock-file-parser/1', generation: data.generation, identity: '${identity}' };
@@ -121,6 +134,29 @@ test('a parse deadline and explicit stop during parsing both join the active thr
     if (stop) await parser.stop();
     await rejected; await parser.stop(); assert.equal(exits.length, 1); assert.equal(parser.snapshot().owned, false);
   }
+});
+
+test('an expired reply is rejected even before its deadline timer gets a turn', async t => {
+  for (const afterValidation of [false, true]) {
+    const { parser, exits } = controlled('reply'); t.after(() => parser.stop()); await parser.start(operation());
+    const deadline = performance.now() + 10000;
+    const pending = parser.parse('empty.ts', '', { deadline });
+    // Model elapsed wall time before reception or during decoding/validation.
+    let checks = 0;
+    t.mock.method(performance, 'now', () => afterValidation && checks++ === 0 ? deadline - 1 : deadline + 1);
+    await assert.rejects(pending, code('PARSER_DEADLINE'));
+    assert.equal(exits.length, 1); assert.equal(parser.snapshot().owned, false); t.mock.restoreAll();
+  }
+});
+
+test('expired identity initialization cannot create a worker while its timer is delayed', async t => {
+  let finish!: (identity: string) => void, spawns = 0;
+  const parser = new FileParserOwner({ identify: () => new Promise(resolve => { finish = resolve; }),
+    spawn: () => { spawns++; throw new Error('Unexpected spawn'); } });
+  t.after(() => parser.stop()); const deadline = performance.now() + 10000;
+  const starting = parser.start({ deadline }), rejected = assert.rejects(starting, code('PARSER_DEADLINE'));
+  t.mock.method(performance, 'now', () => deadline + 1); finish(identity);
+  await rejected; assert.equal(spawns, 0); assert.equal(parser.snapshot().state, 'closed');
 });
 
 test('abort during identity initialization prevents a late worker from being created', async () => {
