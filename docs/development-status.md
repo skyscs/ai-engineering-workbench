@@ -89,7 +89,23 @@ integrity/foreign-key checks, with zero answers and exactly the declared analysi
 No application, frozen oracle, source input or threshold is changed to rescue the positive.
 All seven focused assessor/observer tests and the corrected full 958-test check pass,
 including strict typechecks, builds and the unchanged application/input seal. Both
-exact-head CI events remain required for this oracle checkpoint.
+exact-head CI events pass for [PR #138](https://github.com/skyscs/ai-engineering-workbench/pull/138):
+push 42008587392 and pull_request 42008788188 at `5bfad57`; merge `16f1c07` has the
+identical tree. The ordinary required-positive failure remains recorded and unresolved.
+
+The [browser lifetime collector](fixtures/loredock-prepared-flow-browser-lifetime/README.md)
+now owns the browser through a dedicated kernel child-subreaper. Early orphaning stays
+inside that browser's ancestry; actual reaped-child exits, CPU and OS memory counters
+are retained. Passive tree sampling includes the collector's own overhead. The original
+external watchdog alone owns global wall/storage limits. Four subprocess controls cover
+normal/failing browser exits, a TERM-resistant orphan, launcher death and pre-launch
+parent mismatch. Actual Chrome completion and deliberate driver failure retain sources
+and four independently checked complete catalogs, with no owned survivors. Final normal
+sampled RSS remains above 1 GiB, and the failed-driver observation retains one incomplete
+sample. No continuous memory bound or product resource acceptance is claimed.
+The final four focused controls and full 962-test local check pass, with strict types,
+production builds and the unchanged application/input seal. Both exact-head CI events
+remain required for this lifetime checkpoint.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request

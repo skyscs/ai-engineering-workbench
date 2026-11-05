@@ -3,7 +3,7 @@ import { spawn } from 'node:child_process';
 import { openSync, closeSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { journal, until, save, normalized } from './io.mjs';
+import { journal, until, save, normalized, repository } from './io.mjs';
 import { registerOwnedProcess } from './ownership.mjs';
 import { sampleProcessTree } from './process-tree.mjs';
 
@@ -37,12 +37,15 @@ async function connect(url, onEvent) {
 export async function browser({ directory, executable = '/usr/bin/google-chrome' }) {
   await mkdir(directory);
   const events = journal(path.join(directory, 'events.jsonl')), memory = journal(path.join(directory, 'process-tree.jsonl'));
-  const descriptors = ['stdout', 'stderr'].map(name => openSync(path.join(directory, name + '.log'), 'wx', 0o600));
+  const descriptors = ['stdout', 'stderr'].map(name => openSync(path.join(directory, 'collector-' + name + '.log'), 'wx', 0o600));
   const args = ['--headless', '--no-sandbox', '--disable-gpu', '--disable-background-networking', '--remote-debugging-port=0',
     `--user-data-dir=${path.join(directory, 'profile')}`, 'about:blank'];
   const env = { PATH: process.env.PATH, LC_ALL: 'C', ...process.env.HOME ? { HOME: process.env.HOME } : {},
     XDG_CONFIG_HOME: path.join(directory, 'xdg-config'), XDG_CACHE_HOME: path.join(directory, 'xdg-cache') };
-  const child = spawn(executable, args, { env, detached: true, stdio: ['ignore', ...descriptors] }); descriptors.forEach(closeSync);
+  const lifetimeDirectory = path.join(directory, 'lifetime');
+  const collectorArgs = ['-I', '-S', '-B', path.join(repository, 'scripts/loredock-prepared-flow/browser-lifetime.py'),
+    '--executable', executable, '--output', lifetimeDirectory, '--parent-pid', String(process.pid), '--', ...args];
+  const child = spawn('python3', collectorArgs, { env, detached: true, stdio: ['ignore', ...descriptors] }); descriptors.forEach(closeSync);
   let ended = false, protocol, memoryTimer, inSample, sampleError, maxRssBytes = 0, maxPending = 0, stopped, closing = false;
   let rootStartedTicks, memorySamples = 0, incompleteMemorySamples = 0;
   const requests = new Map(), responseTasks = new Set(), errors = [], listeners = new Set();
@@ -65,22 +68,37 @@ export async function browser({ directory, executable = '/usr/bin/google-chrome'
     catch (error) { errors.push(normalized(error)); }
     if (protocol && !ended) try { await protocol.send('Browser.close'); } catch (error) { events.append({ event: 'browser-close', error: normalized(error) }); }
     protocol?.close();
+    // Let a normal browser exit reach its collector before requesting forced cleanup.
+    if (!ended) {
+      let timer;
+      try { await Promise.race([exit, new Promise(resolve => { timer = setTimeout(resolve, 1000); })]); }
+      finally { clearTimeout(timer); }
+    }
     if (!ended) try { process.kill(-child.pid, 'SIGTERM'); } catch (error) { if (error.code !== 'ESRCH') errors.push(normalized(error)); }
-    const timer = setTimeout(() => { if (!ended) try { process.kill(-child.pid, 'SIGKILL'); } catch (error) { if (error.code !== 'ESRCH') errors.push(normalized(error)); } }, 5000);
+    const timer = setTimeout(() => { if (!ended) try { process.kill(-child.pid, 'SIGKILL'); } catch (error) { if (error.code !== 'ESRCH') errors.push(normalized(error)); } }, 16000);
     let outcome;
     try { outcome = await exit; } finally { clearTimeout(timer); }
     clearInterval(memoryTimer); if (inSample) await inSample;
-    const result = { ...outcome, maxRssBytes, maxPending, memorySamples, incompleteMemorySamples, sampleError: sampleError ?? null, errors };
+    let lifetime;
+    try {
+      lifetime = JSON.parse(await readFile(path.join(lifetimeDirectory, 'result.json'), 'utf8'));
+      assert.deepEqual(lifetime.errors, []); assert.deepEqual(lifetime.survivors, []);
+      assert.equal(lifetime.reason, 'completed'); assert.equal(lifetime.driverExit.exit, 0);
+    } catch (error) { errors.push(normalized(error)); }
+    const result = { ...outcome, maxRssBytes, maxPending, memorySamples, incompleteMemorySamples, sampleError: sampleError ?? null, errors,
+      lifetime: lifetime ?? null, memoryScope: 'Browser lifetime collector and its kernel-owned descendants; collector overhead is included.' };
     await save(path.join(directory, 'exit.json'), result);
     events.close(); memory.close(); return result;
   })();
   try {
     await registerOwnedProcess(child, directory, 'browser');
-    await save(path.join(directory, 'process.json'), { executable, args, env, pid: child.pid, removedJournalFields: ['cookie', 'set-cookie', 'x-loredock-csrf', 'token'] });
+    await save(path.join(directory, 'process.json'), { executable, args, env, pid: child.pid,
+      collector: { executable: 'python3', args: collectorArgs }, removedJournalFields: ['cookie', 'set-cookie', 'x-loredock-csrf', 'token'] });
     await sample(); memoryTimer = setInterval(() => { void sample(); }, 100); memoryTimer.unref();
     const endpoint = await until(async () => {
       if (ended) throw new Error('Browser exited before debugging endpoint.');
-      return (await readFile(path.join(directory, 'stderr.log'), 'utf8')).match(/DevTools listening on (ws:\/\/\S+)/)?.[1];
+      try { return (await readFile(path.join(lifetimeDirectory, 'stderr.log'), 'utf8')).match(/DevTools listening on (ws:\/\/\S+)/)?.[1]; }
+      catch (error) { if (error.code !== 'ENOENT') throw error; return false; }
     }, 'Browser debugging endpoint unavailable.');
     const host = new URL(endpoint).host, targets = await (await fetch(`http://${host}/json/list`)).json();
     protocol = await connect(targets.find(row => row.type === 'page').webSocketDebuggerUrl, message => {
