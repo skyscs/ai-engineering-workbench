@@ -20,7 +20,8 @@ export async function indexSources(api, paths) {
     if (!value || value.status === 'running') return false;
     assert.equal(value.status, 'completed', JSON.stringify(value)); assert(value.published && value.currentParser); return value;
   }, 'Automatic code analysis did not complete.', 300000, 1000);
-  return { build: ready, analysis, indexMs, analysisMs: performance.now() - analysisStarted };
+  const completed = performance.now();
+  return { build: ready, analysis, indexMs, analysisMs: completed - analysisStarted, indexThroughAnalysisMs: completed - started };
 }
 export async function prepare(api, question) {
   const project = (await api.request('/project')).value, started = performance.now();
