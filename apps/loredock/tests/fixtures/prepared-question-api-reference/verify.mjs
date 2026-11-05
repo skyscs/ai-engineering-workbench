@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { emitSource } from '../integration-reference/compile.mjs';
 import { beforeCompilerLoading } from '../compiler-loading-reference/verify.mjs';
+import { beforeHistorySummary } from '../history-summary-reference/verify.mjs';
 const directory = new URL('./', import.meta.url), root = new URL('../../../../../', import.meta.url);
 const hash = value => createHash('sha256').update(value).digest('hex');
 export async function verifyQuestionApiDelta(name, compiled = true) {
@@ -23,7 +24,7 @@ export async function verifyQuestionApiDelta(name, compiled = true) {
 export async function beforeQuestionApi(file, raw, compiled = true) {
   const match = /^apps\/loredock\/(src|dist)\/(app|index)\.(ts|js)$/.exec(file);
   const browser = file === 'apps/loredock-web/src/AnswerPanel.tsx';
-  if (!match && !browser) return beforeCompilerLoading(file, raw);
+  if (!match && !browser) return beforeCompilerLoading(file, await beforeHistorySummary(file, raw));
   const value = await verifyQuestionApiDelta(browser ? 'AnswerPanel' : match[2], compiled);
   assert.equal(raw.toString(), await readFile(new URL(file, root), 'utf8'));
   return Buffer.from(browser || match[1] === 'src' ? value.source : value.emitted);
