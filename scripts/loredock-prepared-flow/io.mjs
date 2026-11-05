@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { spawn, execFileSync } from 'node:child_process';
 import { openSync, closeSync, writeSync, fsyncSync } from 'node:fs';
-import { mkdir, writeFile, readFile, readdir, lstat } from 'node:fs/promises';
+import { mkdir, writeFile, readFile, readdir, lstat, readlink } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -24,12 +24,15 @@ export function journal(file) {
   return { append(value) { assert(!closed); writeSync(descriptor, JSON.stringify({ at: new Date().toISOString(), ...value }) + '\n'); fsyncSync(descriptor); },
     close() { if (!closed) { closed = true; fsyncSync(descriptor); closeSync(descriptor); } } };
 }
-export async function inventory(directory) {
+export async function inventory(directory, { recordSymlinks = false } = {}) {
   const result = {};
   async function visit(relative) {
     for (const name of (await readdir(path.join(directory, relative))).sort()) {
       const file = path.join(relative, name), stat = await lstat(path.join(directory, file));
-      assert(!stat.isSymbolicLink(), 'Owned artifact tree contains a symlink: ' + file);
+      if (stat.isSymbolicLink()) {
+        assert(recordSymlinks, 'Owned artifact tree contains a symlink: ' + file);
+        const target = await readlink(path.join(directory, file)); result[file] = { kind: 'symlink', target, sha256: hash(target) }; continue;
+      }
       if (stat.isDirectory()) await visit(file);
       else {
         assert(stat.isFile(), 'Owned artifact is not a regular file: ' + file);

@@ -54,6 +54,96 @@
       "rawBytes": 38362,
       "rawSha256": "4744d60a3b757fd9744fa93d95690b4ff0d9e5c9263d4c6921549f3d75edc06b",
       "archiveSha256": "7a680c285b992d38c0aa9b97a57226b33c97c0e33c0f699067b1acef73d391f4"
+    },
+    {
+      "path": "browser-first.log.gz",
+      "rawBytes": 1050,
+      "rawSha256": "5b7f1731edbefcc1f5745580dedd42cafdd8cedfe12a0fafa8b6e9570fbd8a33",
+      "archiveSha256": "b7b80809d9a33259e9ca88a4dbb525b31cbe20eb4a0e14ea674817f248af6646"
+    },
+    {
+      "path": "browser-second.log.gz",
+      "rawBytes": 451,
+      "rawSha256": "66b98e81d4bb8b3c2fbc841e14db33822821b35b8292a7a519ee812ae95311f6",
+      "archiveSha256": "18029a3f574ca62515527a6a1c77830a5a2f8dc668bd693e2b0e2271748e2bb1"
+    },
+    {
+      "path": "browser-third.log.gz",
+      "rawBytes": 451,
+      "rawSha256": "369677dfa07870f535105e04236389b12e7fcf160f2932ecabde1e9ac84cab9d",
+      "archiveSha256": "1b709ad6fbf0a04e497a6a3caa872fd38fbc94946ca1c9ee5b5e57e274620585"
+    },
+    {
+      "path": "capacity-first.log.gz",
+      "rawBytes": 1044,
+      "rawSha256": "173e86c54f8c65c08aa0a880d4dbb3a712713d193b438873561d907bb98ac922",
+      "archiveSha256": "60a68079fab0a2d620348990f8662872248336d0255ff09c8526786001802bb7"
+    },
+    {
+      "path": "capacity-second.log.gz",
+      "rawBytes": 1043,
+      "rawSha256": "260e927258ab7668683a41c340e8993b8173f2ad1cd26c6165e58da42d9d3dfb",
+      "archiveSha256": "c5f7bb1ff122680488c1861c42a10564adfead6ad95f7a67c205c8ce818e5f87"
+    },
+    {
+      "path": "driver-tests.log.gz",
+      "rawBytes": 829,
+      "rawSha256": "198ca789cf7d66e63052053017040cab765e49284bf7ee17aa44e0fdda124339",
+      "archiveSha256": "ba7c8303c6e04aaa43c20b7a42a34d766d3384a758fe53bae60bc4db79d51570"
+    },
+    {
+      "path": "driver-tests-final.log.gz",
+      "rawBytes": 828,
+      "rawSha256": "833393f351ebddc9b28c830455d89c7a9cd650683ab98dec081605dc06857871",
+      "archiveSha256": "082ef9afbbb8e0f3629ed1c13a3e155f645cb10a27423274196371fa9fc7d88b"
+    },
+    {
+      "path": "static-input-check.log.gz",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4"
+    },
+    {
+      "path": "development-fifth.log.gz",
+      "rawBytes": 38355,
+      "rawSha256": "efe3acb54cceb93dc2195105567344a7172de8b4c5ca1692907abf6b6429edea",
+      "archiveSha256": "3228ac17d1ffcf3c32ffa22ee06d9c2ca5b38e54ab94526573d8b953c7072b0b"
+    },
+    {
+      "path": "browser-fourth.log.gz",
+      "rawBytes": 451,
+      "rawSha256": "e765052bf7b2662532842f2b77c20f836dbf7f122372a795cbbb61ef34db94ea",
+      "archiveSha256": "4826c304637522f7aebe6315f7980297f4f6c8300e5e63fafd294b0e3cfb88ff"
+    },
+    {
+      "path": "browser-fifth.log.gz",
+      "rawBytes": 451,
+      "rawSha256": "71686aa63a31fbfc9af4a2e20968508042cff6e010250be93a2e562b6b05fa88",
+      "archiveSha256": "23bab8f581c26e069d3c68d40b90a7960bc08c2888cd083cf9e5e9111e53448d"
+    },
+    {
+      "path": "check-first.log.gz",
+      "rawBytes": 346870,
+      "rawSha256": "21838da090ab428e6b3ad7bab18cd69774e212720d38b14573f0e40ce84752fe",
+      "archiveSha256": "5a5460f7577624f96d05500f3c4820be392d88954547dc31a2ef167db13c27e3"
+    },
+    {
+      "path": "scripts-final.log.gz",
+      "rawBytes": 39429,
+      "rawSha256": "546d2306c9eb231ec14fde023669d14481e87a61e02e9acbbf97f958332d14a7",
+      "archiveSha256": "9c35b519577592fcc6710f5427d9d48e140e693bacceb50287e43d7589bfefb6"
+    },
+    {
+      "path": "driver-tests-redaction.log.gz",
+      "rawBytes": 1058,
+      "rawSha256": "3ef3d11431d7f4d21d287fc0f5d0688915d7e4e666d89209e9d633c2b6b6a964",
+      "archiveSha256": "cdc669e3f3480fb7f3e836f48f316892d67a96d6296b21974f08ebb09cb6610c"
+    },
+    {
+      "path": "artifact-check-first.log.gz",
+      "rawBytes": 263,
+      "rawSha256": "579ecd9e4c8caa43fdd02bb185d7a32d48d8ab9ca75c7ce5e0d9921de4b57aee",
+      "archiveSha256": "a9c56736f48e7357511ef33eed70c324051729ccf5711a0433d835d29ace438f"
     }
   ],
   "retainedTrees": [
@@ -2637,6 +2727,104 @@
         "actual-list-budget-accounting-and-parity",
         "retained-output"
       ]
+    },
+    {
+      "path": "browser-first.tar.gz",
+      "sha256": "5612399a575a85c401531016276615117beb5ff724d157d174a21551171d82b9",
+      "inventory": "browser-first.inventory.json.gz",
+      "inventorySha256": "c3098d38e903fa78ec658c590eb0e9b49ca27c1d664aca95e245332d73035137",
+      "retainedFiles": 135,
+      "redactions": [
+        {
+          "path": "browser/events.jsonl",
+          "field": "Network.*.headersText session header values",
+          "changedEvents": 1,
+          "rawSha256": "10673a03c391abb402bccb956e33562141a22e15d9453026f35f5ee12a929023",
+          "retainedSha256": "aa4dc183bc592c2a16bfaef06f46fff83866eb06295034f1c90644d664769260"
+        }
+      ],
+      "excludedFromArchive": [
+        "Temporary browser/profile session/cache tree; original remains local. Complete source/catalog, process, HTTP, browser observation and screenshot evidence is retained."
+      ],
+      "driverFailure": "Final inventory rejected an owned Chrome SingletonCookie symlink; result.json was not written. Raw exit/stderr and stopped data remain."
+    },
+    {
+      "path": "browser-second.tar.gz",
+      "sha256": "450e880780cb2b9b15558f35f42fdeae3e1d43315fb7051c2367250e0496b9ee",
+      "inventory": "browser-second.inventory.json.gz",
+      "inventorySha256": "a085be46f5d059567c418e309aafd1b0066131c179b2f582f80476fbf4a5fd40",
+      "retainedFiles": 137,
+      "redactions": [
+        {
+          "path": "browser/events.jsonl",
+          "field": "Network.*.headersText session header values",
+          "changedEvents": 1,
+          "rawSha256": "0e19fdef906b50b44dac1a75d213450b839dbc11e624ee2a4a439a981bba99cc",
+          "retainedSha256": "1471d0816c12c6bb8f5b8244d7f920d9d715bba93098c93d3c0110eed8d99bf2"
+        }
+      ],
+      "excludedFromArchive": [
+        "Temporary browser/profile session/cache tree; original remains local. Complete source/catalog, process, HTTP, browser observation and screenshot evidence is retained."
+      ]
+    },
+    {
+      "path": "browser-third.tar.gz",
+      "sha256": "59f2938abc49da2180c9fa0239d5c6e7544ca2035fce32c24445a804e7792bdc",
+      "inventory": "browser-third.inventory.json.gz",
+      "inventorySha256": "01c05283e87bda48651cac8165afffbb22487747912dead5f2d447734dccf165",
+      "retainedFiles": 137,
+      "redactions": [],
+      "excludedFromArchive": [
+        "Temporary browser/profile session/cache tree; original remains local. Complete source/catalog, process, HTTP, browser observation and screenshot evidence is retained."
+      ]
+    },
+    {
+      "path": "capacity-first.tar.gz",
+      "sha256": "a9799bf45cdd2a53258bca7f6e2f1fa02baee3dd9d7cc26c10466ba20043402f",
+      "inventory": "capacity-first.inventory.json.gz",
+      "inventorySha256": "e654ab79048cef24fc80d54d804afc8c76ca844bc825984dbfb9c33d1177f9d6",
+      "retainedFiles": 764,
+      "redactions": [],
+      "limitation": "Only hashes of the pre-purge catalog were saved; the complete final purged catalog and all HTTP/provider output remain. The second development run adds the full stopped pre-purge directory."
+    },
+    {
+      "path": "capacity-second.tar.gz",
+      "sha256": "779823c4024d8f417bcb9c3c45b1ed2e5624371b22d3d3767c28349e79238e54",
+      "inventory": "capacity-second.inventory.json.gz",
+      "inventorySha256": "de4ee06f50f8278bed4d306a26f5b220757b10805b0dd25acaeb24976a03877f",
+      "retainedFiles": 768,
+      "redactions": []
+    },
+    {
+      "path": "development-fifth.tar.gz",
+      "sha256": "33d2f234dbef4f8e0fb0d04fcf5e56fa4ef67cd253e07552da8634db65b5dae1",
+      "inventory": "development-fifth.inventory.json.gz",
+      "inventorySha256": "24e20b62c9c0dc7e7513e2e219004d3033a3f3da9afc20b30615fd775f657ad1",
+      "retainedFiles": 135,
+      "redactions": []
+    },
+    {
+      "path": "browser-fourth.tar.gz",
+      "sha256": "896dc26f7719e00f361acbd7402bc1252bc94889baa91815410edc1afae19c92",
+      "inventory": "browser-fourth.inventory.json.gz",
+      "inventorySha256": "65df6b385004809cc64eb12adf511804538fbac806516047fd33e959baa024a6",
+      "retainedFiles": 168,
+      "redactions": [],
+      "excludedFromArchive": [
+        "Temporary browser/profile session/cache tree; original remains local. Complete source/catalog, process, HTTP, browser observation and screenshot evidence is retained."
+      ],
+      "limitation": "Functional verification concurrent with the final compiled script tests; not an uncontended resource comparison."
+    },
+    {
+      "path": "browser-fifth.tar.gz",
+      "sha256": "7c8cba109da2eb7cebf43070e7fe98776676275bec87b66d8156e809c9ab8d66",
+      "inventory": "browser-fifth.inventory.json.gz",
+      "inventorySha256": "16f3cacc4d49960a082e01f86ae39a1abfd76f721cfd4426a887baa24bc58128",
+      "retainedFiles": 167,
+      "redactions": [],
+      "excludedFromArchive": [
+        "Temporary browser/profile session/cache tree; original remains local. Complete source/catalog, process, HTTP, browser observation and screenshot evidence is retained."
+      ]
     }
   ],
   "reservedFamilyReads": 0,
@@ -2647,5 +2835,36 @@
     "totalWork": 158428,
     "byteParity": true,
     "resourceQualification": false
+  },
+  "ordinaryCapacity": {
+    "attempts": 64,
+    "controlledCalls": 64,
+    "refusedAttempt": 65,
+    "sameRequestReplay": true,
+    "rowsAfterPurge": 64,
+    "purgedBytes": 0,
+    "prePurgeBytes": 4245504,
+    "twentyRowActualWork": 3168560,
+    "fullPrePurgeSnapshotRetainedInSecondRun": true,
+    "resourceQualification": false
+  },
+  "ordinaryBrowser": {
+    "thirdRunExit": 0,
+    "sampledProcessTreeRssBytes": 1222893568,
+    "maxPending": 6,
+    "desktopWidth": 1280,
+    "mobileWidth": 390,
+    "overflow": false,
+    "resourceQualification": false,
+    "qualificationLimitNotChanged": 1073741824,
+    "fifthRunSampledProcessTreeRssBytes": 1217323008
+  },
+  "bootstrapCorrection": {
+    "firstExactEsmServerRuns": [
+      "development-fifth",
+      "browser-fifth"
+    ],
+    "previousRuns": "The earlier controlled bootstrap resolved the same Hono package through its CommonJS entry. Preserve these as ordinary functional observations, not exact complete-composition qualification.",
+    "esmServerEntrySha256": "5db5948a966995c348aadd00721a45e60ebbad3328a7540e213b3842c84b060e"
   }
 }

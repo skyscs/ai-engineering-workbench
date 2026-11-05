@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { OperationBudget } from '../../apps/loredock/dist/operation-budget.js';
 
 const original = Object.fromEntries(['check', 'charge', 'close'].map(name => [name, OperationBudget.prototype[name]]));
-const known = new WeakMap(); let records = [], scope = null, nextId = 0;
+const known = new WeakMap(), names = new Set(); const records = []; let scope = null, nextId = 0;
 function record(budget) {
   let row = known.get(budget);
   if (!row) {
@@ -27,7 +27,8 @@ for (const name of ['check', 'charge', 'close']) OperationBudget.prototype[name]
 };
 export function beginScope(name) {
   assert.equal(scope, null, 'Finish the current diagnostic scope first.');
-  assert.equal(typeof name, 'string'); assert(name.length > 0 && name.length < 200); scope = name;
+  assert.equal(typeof name, 'string'); assert(name.length > 0 && name.length < 200);
+  assert(!names.has(name), 'Diagnostic scope names cannot be reused.'); names.add(name); scope = name;
 }
 export function endScope() {
   assert(scope); const selected = records.filter(row => row.scope === scope);

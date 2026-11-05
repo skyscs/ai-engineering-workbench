@@ -8,8 +8,12 @@ replay and restart/history. A deliberate driver failure preserves all source/cat
 bytes; both earlier harness errors are retained and explained. The actual application
 and Task 127 input seals are unchanged. No reserved family or model has run.
 
-The browser/accounting/fault matrix and final execution seal are still required before
-qualification. This development pass is not a resource/semantic gate or pilot adoption.
+Ordinary browser and 64-row exercises now pass their functional checks, including quota,
+replay, reopen and complete dependency purge. They also identify prospective gate failures:
+a twenty-row list costs 3,168,560 actual units, summed Chrome RSS exceeds 1 GiB, and cold
+initialization has a timer gap above 100 ms. The limits stay unchanged. The full frozen
+matrix and final execution seal remain required; this is not resource/semantic acceptance
+or pilot adoption. All failed harness outputs and retention/redaction corrections are recorded.
 
 ## Task 127 — Prospective complete-flow qualification inputs
 

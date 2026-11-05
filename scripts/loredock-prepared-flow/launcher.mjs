@@ -2,7 +2,8 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { writeFile } from 'node:fs/promises';
-import { createRequire } from 'node:module';
+// The pinned application dependency's import entry, identical to index.js (not its CommonJS alternative).
+import { serve } from '../../apps/loredock/node_modules/@hono/node-server/dist/index.mjs';
 import { Catalog } from '../../apps/loredock/dist/catalog.js';
 import { CatalogStore } from '../../apps/loredock/dist/store.js';
 import { Answers } from '../../apps/loredock/dist/answers.js';
@@ -13,7 +14,6 @@ import { CodePathsV2 } from '../../apps/loredock/dist/code-paths-v2.js';
 import { NativeCaptures } from '../../apps/loredock/dist/native-capture.js';
 import { createApp } from '../../apps/loredock/dist/app.js';
 
-const { serve } = createRequire(new URL('../../apps/loredock/package.json', import.meta.url))('@hono/node-server');
 const directory = process.env.AEW_FLOW_OUTPUT;
 if (!path.isAbsolute(directory ?? '') || !path.isAbsolute(process.env.LOREDOCK_DATA_DIR ?? '')
   || process.env.LOREDOCK_ANSWERS !== '1' || process.env.LOREDOCK_PREPARED_ANSWERS !== '1') throw new Error('Explicit owned prepared-flow settings are required.');
