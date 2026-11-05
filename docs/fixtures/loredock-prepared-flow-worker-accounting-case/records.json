@@ -1,0 +1,183 @@
+{
+  "schemaVersion": "prepared-flow-worker-accounting-case-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "trees": [
+    {
+      "path": "worker-accounting-case-first.tar.gz",
+      "sha256": "4a62f76e0599a1686b8950f8aa7e69ed0457456b4faab05b03d0a08b627c5b28",
+      "inventory": "worker-accounting-case-first.inventory.json.gz",
+      "inventorySha256": "93c11d854e9f9b112f8527269b81c26c4889c9c767692d774022a21a5bd89eeb",
+      "entries": 190,
+      "source": "/home/toshiba/aew/task128-worker-accounting-case-first"
+    },
+    {
+      "path": "worker-accounting-case-retention.tar.gz",
+      "sha256": "1c95622799c84daeb62db71b6c2dec7b839cf377bc74d2a16e3af64d34de0721",
+      "inventory": "worker-accounting-case-retention.inventory.json.gz",
+      "inventorySha256": "8b0b8749aba12de93f3cf5d86f9fac9d6de7cac400a17473718f182a34ebb7e9",
+      "entries": 0,
+      "source": "/home/toshiba/aew/task128-worker-accounting-case-retention"
+    },
+    {
+      "path": "worker-accounting-case-retention-second.tar.gz",
+      "sha256": "5ff9a5d89d6feb1c9c2628e676e98fd4ebe842051095bc4b3a88d1434cf9fff0",
+      "inventory": "worker-accounting-case-retention-second.inventory.json.gz",
+      "inventorySha256": "5a1aea942e56a2222b98d8a5624759feea69f2477a05ac44136242ff6bda3a0a",
+      "entries": 17,
+      "source": "/home/toshiba/aew/task128-worker-accounting-case-retention-second"
+    },
+    {
+      "path": "worker-accounting-case-test-1.tar.gz",
+      "sha256": "b24cf1e711de6fc08291f3bccc2bd017659a1520bf01ce868691c0501f346e70",
+      "inventory": "worker-accounting-case-test-1.inventory.json.gz",
+      "inventorySha256": "0625a37aa62221953fc670bda563f24ab9e8cc7aef141579486ab97185d4c46c",
+      "entries": 6,
+      "source": "/tmp/loredock-worker-accounting-checkpoint-CaQfxs"
+    },
+    {
+      "path": "worker-accounting-case-inputs.tar.gz",
+      "sha256": "794ff76f4fd3227950f8ffde27b15dac1940978e08afd4116d68b960b7c6524a",
+      "inventory": "worker-accounting-case-inputs.inventory.json.gz",
+      "inventorySha256": "185c5aa6b599d795ba95b0d869c4a35ecdab8563b396226f846e24655b371ad1",
+      "entries": 8,
+      "source": "/home/toshiba/aew/task128-worker-accounting-case-inputs"
+    },
+    {
+      "path": "worker-accounting-case-static-inputs.tar.gz",
+      "sha256": "d8220dc4418185ac42d25be8fb777de58c47472a08eaabce01ab49dcca3e2ff7",
+      "inventory": "worker-accounting-case-static-inputs.inventory.json.gz",
+      "inventorySha256": "f9b9edc49de77b6f2086de44120e30800f50b68407ea5957d0d892b9643de3e2",
+      "entries": 1,
+      "source": "/home/toshiba/aew/task128-worker-accounting-case-static-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "worker-accounting-case-first.log.gz",
+      "archiveSha256": "5ad215dccdcec504665b8147bf50dbd5293f7cc0d111528e95ac1b21f88de104",
+      "rawBytes": 3120,
+      "rawSha256": "11c8141a838c26e91db87d3dd222d9d8bbdbc7459216d644d3ae6a0220879ef2"
+    },
+    {
+      "path": "worker-accounting-case-install.log.gz",
+      "archiveSha256": "24969e32d4891d1e2e2eaea5d2d2af014fe685bf2f01a21277ccaddef9137b04",
+      "rawBytes": 326,
+      "rawSha256": "1d5c2881e07ea93907c96c7344ece0767021c97eb7c30f88b8fad2f2dab6b52c"
+    },
+    {
+      "path": "worker-accounting-case-build.log.gz",
+      "archiveSha256": "3c40663a6cc183cce297b91857f8c5c781a8988c1dfeba68a7f35e2b7b47f648",
+      "rawBytes": 2362,
+      "rawSha256": "6357f3c26661ea34f48fc6a7054ea530e3c3361b2c946a85a9538a10a04294ff"
+    },
+    {
+      "path": "worker-accounting-case-tests.log.gz",
+      "archiveSha256": "258f19bd59310537763926df2941e3f3cee5955d331d23c39abd3881f734a4b9",
+      "rawBytes": 1503,
+      "rawSha256": "21af83d258476a593f2beb2c761a5d2b2da33a4f25a0301efbff60f0504302b8"
+    },
+    {
+      "path": "worker-accounting-case-retention.log.gz",
+      "archiveSha256": "8909f4c0615dbd69792c11ef571802274fa9cf27a73befce371862890f4c4e61",
+      "rawBytes": 445,
+      "rawSha256": "0f3ad5b5871c0b46e9b19f4374f4fdc3356e2ff558bbda797e3a7e8128c7ee6a"
+    },
+    {
+      "path": "worker-accounting-case-retention-second.log.gz",
+      "archiveSha256": "20a28c1e487666429c11ec4ba4d3effef1de2e9bcb62dad0f644b72727810ec8",
+      "rawBytes": 1653,
+      "rawSha256": "69c737cfc2c374dbb88ae6ba90fbb6cd4f6124872571d719726b62306358bd74"
+    },
+    {
+      "path": "worker-accounting-case-seal-check.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "catalog-faults-ci-push.log.gz",
+      "archiveSha256": "37d3fd1edcca9207ab0c43bb220514d3cc076402ec5e614505463d4c5f6ffafd",
+      "rawBytes": 702460,
+      "rawSha256": "b0ee636a4abdd09a3e105c4c8812fd9009a858f154c9093db50eb4377c3ca5e3"
+    },
+    {
+      "path": "catalog-faults-ci-pr.log.gz",
+      "archiveSha256": "fe651fe1d1cf1ff045f4bf457c7e900d681b7ffbc7d3198885ec69ad003584d5",
+      "rawBytes": 703517,
+      "rawSha256": "29c3f589a201e816044c21e68ec3303cdfa604b3f5278b433fcc9ee125113048"
+    },
+    {
+      "path": "worker-accounting-case-static-first.log.gz",
+      "archiveSha256": "61257baa9abf1e9f0d5bc95f9d3f6ef143a58ff8076c871aec810a27ea8acdea",
+      "rawBytes": 206,
+      "rawSha256": "40e6285059cb587dffd2a79c0d7a4e8145b8fc379c39a5567c4386ca5b98182a"
+    }
+  ],
+  "acceptedCatalogFaults": {
+    "pr": 149,
+    "head": "49ac8f230fccbe7466e1ac1219f3b3cc347e678d",
+    "merge": "db959660be645881c6204a19abb8de6419b67f48",
+    "push": 42039637778,
+    "pull_request": 42040517301,
+    "testsPerEvent": 983
+  },
+  "retention": {
+    "resourceQualification": false,
+    "modelCalls": 0,
+    "reservedFamilyReads": 0,
+    "catalogs": [
+      {
+        "source": "/home/toshiba/aew/task128-worker-accounting-case-first/run/accounting/data",
+        "copy": "/home/toshiba/aew/task128-worker-accounting-case-retention-second/accounting/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "succeeded",
+            1
+          ]
+        ],
+        "witnessRows": 1
+      },
+      {
+        "source": "/home/toshiba/aew/task128-worker-accounting-case-first/run/cold/checkpoint",
+        "copy": "/home/toshiba/aew/task128-worker-accounting-case-retention-second/cold/checkpoint",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [],
+        "witnessRows": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-worker-accounting-case-first/run/cold/data",
+        "copy": "/home/toshiba/aew/task128-worker-accounting-case-retention-second/cold/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [],
+        "witnessRows": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-worker-accounting-case-first/run/warm/data",
+        "copy": "/home/toshiba/aew/task128-worker-accounting-case-retention-second/warm/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "succeeded",
+            3
+          ]
+        ],
+        "witnessRows": 3
+      }
+    ],
+    "httpBodies": 57,
+    "redactedSessions": 3,
+    "sourceGitIdentities": 4,
+    "rawInputsUnchanged": true,
+    "entries": 190,
+    "actualBudgets": 10,
+    "totalWork": 2570082,
+    "rawRequestAndStoredByteParity": true
+  }
+}

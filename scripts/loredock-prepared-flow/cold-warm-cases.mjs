@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdir, cp, readFile } from 'node:fs/promises';
 import { DatabaseSync } from 'node:sqlite';
 import path from 'node:path';
-import { launch, client, save, inventory, normalized, until, journal } from './io.mjs';
+import { launch, client, save, inventory, normalized, until, journal, hash } from './io.mjs';
 import { indexSources, prepare, generate } from './flow.mjs';
 import { assessPreview } from './assess.mjs';
 import { stoppedHistoryCheckpoint } from './history-cases.mjs';
@@ -118,6 +118,9 @@ export async function warmCatalog({ directory, checkpoint, question, assessment 
             assert.equal(stored.context, JSON.stringify(row.prepared.review.context));
             assert.equal(stored.reviewedHash, row.prepared.review.reviewedHash);
             assert.equal(JSON.parse(stored.witness).prompt, row.request.prompt);
+            // Bind stopped bytes for the later diagnostic replay; no extra reference generation.
+            row.stored = { contextSha256: hash(stored.context), witnessSha256: hash(stored.witness),
+              witnessBytes: Buffer.byteLength(stored.witness), reviewedHash: stored.reviewedHash };
           }
         } finally { database.close(); }
         report.exactWitnessPromptParity = true;
