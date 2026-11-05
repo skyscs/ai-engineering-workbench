@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "cold-start-accepted-diagnosis/1",
+  "pr": 162,
+  "head": "f3615e6b4330110c06f724f9e8a62d2b70ea38c1",
+  "merge": "aaec8fd329e3c01b9cb97c1171c4681af1fe3c88",
+  "push": 42100640590,
+  "pull_request": 42100693151,
+  "testsPerEvent": 1032,
+  "completeLogsVerifiedBeforeMerge": true,
+  "identicalTreeVerified": true,
+  "logs": [
+    {
+      "path": "accepted-diagnosis-ci-push.log.gz",
+      "sha256": "d2ad7204a72cde7b9361d5bcd5d63d891173f5d0c8895e5f80e1716fb01f7474",
+      "rawBytes": 735284,
+      "rawSha256": "2d2907cadd0f01c1e915d2c503186dc865a4db47499278a6c1953dfbf201a16f"
+    },
+    {
+      "path": "accepted-diagnosis-ci-pr.log.gz",
+      "sha256": "00fe6c23a4784973d68a2f21f94ef49c0887c0de15f8c26b3b967744dd4f7c14",
+      "rawBytes": 733264,
+      "rawSha256": "692c71fe56a2da3bb9b8b1b07b9e55c5d3d0262b76ea978d8e1e94279a036c84"
+    }
+  ]
+}

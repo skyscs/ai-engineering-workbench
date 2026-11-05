@@ -1,5 +1,18 @@
 # Development status
 
+## Task 130 — Daemon cold-start attribution (in progress)
+
+Task 129 is accepted through [PR #162](https://github.com/skyscs/ai-engineering-workbench/pull/162):
+both exact-head CI events pass 1,032 tests at `f3615e6`, with complete logs verified
+before identical-tree merge `aaec8fd`. The four ordinary functional controls pass,
+while every first timer interval still fails the unchanged 100 ms limit.
+
+[Task 130](../tasks/130-loredock-cold-start-pause.md) declares a
+[bounded ordinary attribution](fixtures/loredock-cold-start/README.md): actual
+production context preparation first, then five separate component processes.
+The same installed TypeScript compiler is compared through ESM and CommonJS loading.
+No measurements or product fix are claimed at this pre-run checkpoint.
+
 ## Task 129 — Ordinary partial-inventory preparation diagnosis (result retained)
 
 The failed Task 128 result is accepted through [PR #161](https://github.com/skyscs/ai-engineering-workbench/pull/161):
