@@ -32,15 +32,29 @@ is retained as incomplete because it fails before publication. A separate determ
 catalog fault switches between two actual completed builds after durable admission;
 the real worker rejects the old input before preflight, retains its witness and replays
 without dispatch. Six copied stopped catalogs pass integrity/foreign-key checks.
-The local full check passes 955 tests, types/builds and the unchanged application/input
-seal. Both exact-head CI events and merge remain pending for this preflight slice.
 The first PR #135 push check passes; its PR check fails an older functional terminal
 integration on a 405.999008 ms sample against 150 ms. That resource failure is preserved.
 The functional test now checks terminal/content behavior separately while requiring
 resource failures to remain failed in the diagnostic report. No threshold or assessor
 changes. All three targeted terminal tests and the corrected full 955-test local check
-pass, with types/builds and the original application seal. Both final-head CI events
-remain required before merge.
+pass, with types/builds and the original application seal. The corrected preflight slice
+is accepted through [PR #135](https://github.com/skyscs/ai-engineering-workbench/pull/135):
+push 42001496141 and pull_request 42001504264 pass 955 tests at exact head `a78887a`;
+merge `20c86d3` has the identical tree. The earlier failure remains recorded separately.
+
+The [matrix assembly controls](fixtures/loredock-prepared-flow-matrix/README.md) now
+exercise the explicitly declared Catalog-only setup followed by the actual production
+entry. An existing published index remains without native analysis while source-only
+Ready contains twelve original spans and an explicit unavailable omission. The first
+ordinary attempt had an incorrect expected source quote and remains a retained failure.
+Passive browser memory observation now traverses children of every thread, records
+process identity and raw CPU ticks, and marks sampling races explicitly. A real worker
+thread test exposes the former leader-only omission. A Chrome control records 37 such
+child edges and a sampled peak of 1,354,678,272 bytes, still above the prospective 1 GiB
+limit. This is ordinary diagnostic evidence, not resource acceptance. Final ordered
+case assembly, complete lifetime attribution and the executable seal remain required.
+The full local check passes 956 tests, strict typechecks, production builds and the
+unchanged application/input seal. The new checkpoint awaits both exact-head CI events.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request
