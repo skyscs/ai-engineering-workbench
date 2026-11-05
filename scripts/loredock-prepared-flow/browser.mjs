@@ -3,20 +3,12 @@ import { spawn } from 'node:child_process';
 import { openSync, closeSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { journal, until, save, normalized, repository } from './io.mjs';
+import { journal, until, save, normalized, repository, hash } from './io.mjs';
 import { registerOwnedProcess } from './ownership.mjs';
 import { sampleProcessTree } from './process-tree.mjs';
+import { sanitized, browserBody } from './browser-evidence.mjs';
+export { sanitized } from './browser-evidence.mjs';
 
-export function sanitized(value) {
-  if (Array.isArray(value)) return value.map(sanitized);
-  if (!value || typeof value !== 'object') return value;
-  if (typeof value.name === 'string' && /^(cookie|set-cookie|x-loredock-csrf)$/i.test(value.name) && Object.hasOwn(value, 'value'))
-    return { ...value, value: '[removed-session-material]' };
-  return Object.fromEntries(Object.entries(value).map(([key, child]) => [key,
-    /^(cookie|set-cookie|x-loredock-csrf|token)$/i.test(key) ? '[removed-session-material]'
-      : key === 'headersText' && typeof child === 'string' ? child.replace(/^(set-cookie|cookie|x-loredock-csrf):[^\r\n]*/gim, '$1: [removed-session-material]')
-        : sanitized(child)]));
-}
 async function connect(url, onEvent) {
   const socket = new WebSocket(url); let next = 0;
   const pending = new Map();
@@ -66,6 +58,11 @@ export async function browser({ directory, executable = '/usr/bin/google-chrome'
     closing = true;
     try { await until(() => requests.size === 0 && responseTasks.size === 0, 'Browser response journal did not drain.', 5000); }
     catch (error) { errors.push(normalized(error)); }
+    if (protocol && !ended) try {
+      const observation = await protocol.send('Runtime.evaluate', { expression: 'window.preparedFlowObservation', returnByValue: true });
+      assert(!observation.exceptionDetails && observation.result.value);
+      await save(path.join(directory, 'observation.json'), observation.result.value);
+    } catch (error) { errors.push(normalized(error)); }
     if (protocol && !ended) try { await protocol.send('Browser.close'); } catch (error) { events.append({ event: 'browser-close', error: normalized(error) }); }
     protocol?.close();
     // Let a normal browser exit reach its collector before requesting forced cleanup.
@@ -109,10 +106,10 @@ export async function browser({ directory, executable = '/usr/bin/google-chrome'
         const id = message.params.requestId, url = requests.get(id); requests.delete(id);
         if (url?.startsWith('http://127.0.0.1:4244/api/') && message.method === 'Network.loadingFinished') {
           const task = protocol.send('Network.getResponseBody', { requestId: id }).then(async body => {
-            const raw = body.base64Encoded ? Buffer.from(body.body, 'base64').toString('utf8') : body.body;
-            assert(Buffer.byteLength(raw) <= 2 * 1024 * 1024, 'Browser API body exceeds retention cap.');
-            const value = JSON.parse(raw);
-            await save(path.join(directory, 'response-' + id.replaceAll('.', '-') + '.json'), sanitized(value));
+            const evidence = browserBody(body, url), file = 'raw-response-' + hash(id) + '.json';
+            await writeFile(path.join(directory, file), evidence.retained, { flag: 'wx' });
+            await save(path.join(directory, 'response-' + id.replaceAll('.', '-') + '.json'), evidence.value);
+            events.append({ event: 'api-body', requestId: id, file, ...evidence.metadata });
           }).catch(error => { errors.push(normalized(error)); }).finally(() => responseTasks.delete(task));
           responseTasks.add(task);
         }
@@ -120,8 +117,18 @@ export async function browser({ directory, executable = '/usr/bin/google-chrome'
       for (const listener of listeners) listener(message);
     });
     await protocol.send('Page.enable'); await protocol.send('Network.enable'); await protocol.send('Runtime.enable');
-    await protocol.send('Page.addScriptToEvaluateOnNewDocument', { source: `window.preparedFlowObservation={longTasks:[],paints:[]};
-      new PerformanceObserver(list=>{for(const item of list.getEntries())window.preparedFlowObservation.longTasks.push({startTime:item.startTime,duration:item.duration});}).observe({type:'longtask',buffered:true});` });
+    await protocol.send('Page.addScriptToEvaluateOnNewDocument', { source: `window.preparedFlowObservation={longTasks:[],paints:[],updates:[],actions:[],pendingPaints:0};
+      (()=>{const observation=window.preparedFlowObservation; let pendingUpdate=false;
+        function painted(kind,started) { observation.pendingPaints++; requestAnimationFrame(()=>requestAnimationFrame(()=>{
+          observation[kind].push({started,painted:performance.now(),duration:performance.now()-started,visible:document.visibilityState==='visible'});
+          observation.pendingPaints--; if(kind==='updates')pendingUpdate=false;
+        })); }
+        new MutationObserver(()=>{if(!pendingUpdate){pendingUpdate=true;painted('updates',performance.now());}})
+          .observe(document,{subtree:true,childList:true,characterData:true,attributes:true});
+        document.addEventListener('click',()=>painted('actions',performance.now()),true);
+        new PerformanceObserver(list=>{for(const item of list.getEntries())observation.longTasks.push({startTime:item.startTime,duration:item.duration});})
+          .observe({type:'longtask',buffered:true});
+      })();` });
     const evaluate = async expression => {
       const value = await protocol.send('Runtime.evaluate', { expression, awaitPromise: true, returnByValue: true });
       assert(!value.exceptionDetails, value.exceptionDetails?.exception?.description); return value.result.value;
@@ -153,11 +160,12 @@ export async function browser({ directory, executable = '/usr/bin/google-chrome'
         const began = performance.now(); listeners.add(listener); events.append({ event: 'idle-window-start', name, now: began, milliseconds });
         try { await new Promise(resolve => setTimeout(resolve, milliseconds)); }
         finally { listeners.delete(listener); }
-        const elapsedMs = performance.now() - began, endObservation = await evaluate('window.preparedFlowObservation');
+        const elapsedMs = performance.now() - began;
+        events.append({ event: 'idle-window-end', name, now: performance.now() });
+        const endObservation = await evaluate('window.preparedFlowObservation');
         const result = { name, elapsedMs, apiRequests, requestsPerSecond: apiRequests / (elapsedMs / 1000), routes, maxConcurrentRequests: concurrent,
           pendingAtEnd: [...pending.values()], responses, longTasks: endObservation.longTasks.slice(startObservation.longTasks.length),
           paints: endObservation.paints, sampledProcessTreeRssBytes: maxRssBytes, resourceQualified: false };
-        events.append({ event: 'idle-window-end', name, now: performance.now() });
         await save(path.join(directory, name + '-window.json'), result); return result;
       },
       async prepare(question) {
