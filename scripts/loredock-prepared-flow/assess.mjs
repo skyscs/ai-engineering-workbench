@@ -53,7 +53,11 @@ export function assessPreview(review, { corpus, sources, expected, references = 
     const kinds = item.edges.map(edge => edge[0]);
     for (const kind of expected.native?.requiredEdgeKinds ?? []) assert(kinds.includes(kind), 'Missing native edge: ' + kind);
     for (const kind of expected.native?.forbiddenEdgeKinds ?? []) assert(!kinds.includes(kind), 'Forbidden native edge: ' + kind);
-    if (expected.native?.requiredGap) assert(item.gaps.includes(expected.native.requiredGap) || item.flow.gaps.includes(expected.native.requiredGap));
+    if (expected.native?.requiredGap) {
+      const gap = expected.native.requiredGap, omitted = item.omissions?.[gap];
+      assert(item.gaps.includes(gap) || item.flow.gaps.includes(gap) || Number.isSafeInteger(omitted) && omitted > 0,
+        'Missing required gap or positive omission count: ' + gap);
+    }
     const evidence = indexes => indexes.map(index => { assert(Number.isSafeInteger(index) && index >= 0 && index < item.originals.length); return byId.get(item.originals[index]); });
     for (const node of item.nodes) {
       const originals = evidence(node[5]); assert(originals.length);

@@ -41,6 +41,26 @@ test('an omitted native item cannot pass a required useful positive', () => {
   assert.throws(() => assessPreview(original.review, original.input), /Required useful native path was omitted/);
 });
 
+test('coded native gaps require the exact positive omission count, not unrelated or zero counts', () => {
+  const fixture = originalFixture();
+  fixture.input.expected = { ...fixture.input.expected, prepared: 'partial-native-required', native: { requiredGap: 'unresolved-consumer-method' } };
+  fixture.review.compact = { reason: null, item: {
+    provenance: 'static-analysis', verification: 'unverified', deploymentCoherence: 'unknown', currentApplicability: 'not-checked',
+    partial: true, lexicalInputHash: fixture.review.context.inputHash, originals: ['original-a'],
+    nodes: [['symbol', 'owned', 2, 2, {}, [0]]], edges: [], gaps: [], flow: { gaps: [] },
+    omissions: { 'unresolved-consumer-method': 1 }, duplicateClues: [],
+  } };
+  assert.equal(assessPreview(fixture.review, fixture.input).native, true);
+  for (const omissions of [{}, { 'unresolved-consumer-method': 0 }, { 'unresolved-consumer-method': -1 },
+    { 'unresolved-consumer-method': '1' }, { 'unresolved-topic-expression': 1 }]) {
+    const changed = structuredClone(fixture.review); changed.compact.item.omissions = omissions;
+    assert.throws(() => assessPreview(changed, fixture.input), /Missing required gap/);
+  }
+  const dynamic = structuredClone(fixture.input); dynamic.expected.native.requiredGap = 'unresolved-topic-expression';
+  const changed = structuredClone(fixture.review); changed.compact.item.omissions = { 'unresolved-topic-expression': 1 };
+  assert.equal(assessPreview(changed, dynamic).native, true);
+});
+
 test('diagnostic accounting forwards actual accepted and rejected work across separate budgets', () => {
   beginScope('ordinary-unit-accounting');
   const first = new OperationBudget({ limits: { work: 3 } }), second = new OperationBudget();
