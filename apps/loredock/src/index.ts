@@ -17,6 +17,9 @@ function defaultDirectory() {
   if (process.platform === 'win32') return path.join(process.env.LOCALAPPDATA ?? path.join(homedir(), 'AppData', 'Local'), 'loredock');
   return path.join(process.env.XDG_DATA_HOME ?? path.join(homedir(), '.local', 'share'), 'loredock');
 }
+const preparedQuestionsEnabled = process.env.LOREDOCK_PREPARED_ANSWERS === '1';
+if (preparedQuestionsEnabled && process.env.LOREDOCK_ANSWERS !== '1')
+  throw new Error('LOREDOCK_PREPARED_ANSWERS=1 requires LOREDOCK_ANSWERS=1.');
 const store = new CatalogStore(process.env.LOREDOCK_DATA_DIR ?? defaultDirectory());
 const catalog = new Catalog(store);
 const codeAnalysis = new CodeAnalysis(catalog), codeFollow = new CodeAnalysisFollow(codeAnalysis);
@@ -26,7 +29,7 @@ codeFollow.start();
 // Cited answers are optional; indexing and map browsing need no Codex connection.
 const preparations = process.env.LOREDOCK_ANSWERS === '1' ? new QuestionPreparations(codeAnalysis) : undefined;
 const answers = preparations ? new Answers(catalog, undefined, preparations) : undefined;
-const app = createApp(catalog, { publicDir: fileURLToPath(new URL('../public/', import.meta.url)), development: process.env.LOREDOCK_DEVELOPMENT === '1', codeAnalysis, codeFollow, codePaths, nativeCaptures, ...answers ? { answers } : {} });
+const app = createApp(catalog, { publicDir: fileURLToPath(new URL('../public/', import.meta.url)), development: process.env.LOREDOCK_DEVELOPMENT === '1', codeAnalysis, codeFollow, codePaths, nativeCaptures, ...answers ? { answers } : {}, ...preparedQuestionsEnabled && preparations ? { preparations } : {} });
 const server = serve({ fetch: app.fetch, hostname: '127.0.0.1', port: 4244 });
 server.on('listening', () => console.log('LoreDock listening on http://127.0.0.1:4244'));
 let closing = false;

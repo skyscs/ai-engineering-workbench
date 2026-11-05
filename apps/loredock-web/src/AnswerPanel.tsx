@@ -4,38 +4,45 @@ import type { AnswerContext } from '../../loredock/src/answer-context';
 import { api } from './api';
 import { AnswerReview } from './AnswerReview';
 import { AnswerInterfaces } from './AnswerInterfaces';
+import { usePreparedQuestion } from './usePreparedQuestion';
+import { NativeQuestionContext } from './NativeQuestionContext';
 
-type State = ReturnType<Answers['state']>;
+type State = ReturnType<Answers['state']> & { preparedQuestions?: true };
 export function AnswerPanel({ buildId, boundary: sourceBoundary, correctionRevision, openEvidence }: {
   buildId: string; boundary: string; correctionRevision: number; openEvidence(id: string): void;
 }) {
-  const boundary = `${sourceBoundary}:${correctionRevision}`;
+  const boundary = `${sourceBoundary}:${correctionRevision}:${buildId}`;
   const [state, setState] = useState<State>();
   const [question, setQuestion] = useState('');
+  const preparedEnabled = state?.preparedQuestions === true;
+  const prepared = usePreparedQuestion(`${boundary}:${question}`, preparedEnabled);
   const [preview, setPreview] = useState<{ boundary: string; context: AnswerContext }>();
   const [selected, setSelected] = useState('');
   const [answer, setAnswer] = useState<{ boundary: string; attempt: AnswerAttempt }>();
+  const [historyRevision, setHistoryRevision] = useState(0);
   const [error, setError] = useState(''), [busy, setBusy] = useState(false);
   const [executable, setExecutable] = useState<string | null>(null), [configHome, setConfigHome] = useState<string | null>(null), [profile, setProfile] = useState<string | null>(null);
   const request = useRef<{ requestId: string; question: string; buildId: string; inputHash: string } | undefined>(undefined);
   const currentBoundary = useRef(boundary); currentBoundary.current = boundary;
   useEffect(() => {
-    let stopped = false;
-    const refresh = async () => { try { const next = await api<State>('/answers'); if (!stopped) setState(next); } catch (cause) { if (!stopped) setError((cause as Error).message); } };
+    let stopped = false, failed = false;
+    const refresh = async () => { try { const next = await api<State>('/answers'); if (!stopped) {
+      setState(next); if (failed) setHistoryRevision(value => value + 1); failed = false;
+    } } catch (cause) { if (!stopped) { failed = true; setAnswer(undefined); setError((cause as Error).message); } } };
     void refresh(); const timer = setInterval(() => { void refresh(); }, 1000);
     return () => { stopped = true; clearInterval(timer); };
   }, []);
   useEffect(() => { request.current = undefined; setPreview(undefined); }, [boundary]);
   const answerId = selected || state?.publishedAnswerId || '';
-  const answerStatus = state?.attempts.find(attempt => attempt.id === answerId)?.status;
-  const reviewState = state?.attempts.find(attempt => attempt.id === answerId)?.reviewState;
+  const answerVersion = JSON.stringify(state?.attempts.find(attempt => attempt.id === answerId));
   useEffect(() => {
     let stopped = false;
+    setAnswer(undefined);
     if (!answerId) { setAnswer(undefined); return; }
-    void api<AnswerAttempt>(`/answers/${answerId}`).then(attempt => { if (!stopped) setAnswer({ boundary, attempt }); }).catch(cause => { if (!stopped) setError((cause as Error).message); });
+    void api<AnswerAttempt>(`/answers/${answerId}`).then(attempt => { if (!stopped) setAnswer({ boundary, attempt }); }).catch(cause => { if (!stopped) { setAnswer(undefined); setError((cause as Error).message); } });
     return () => { stopped = true; };
-  }, [answerId, answerStatus, reviewState, boundary]);
-  const context = preview?.boundary === boundary ? preview.context : undefined;
+  }, [answerId, answerVersion, historyRevision, boundary]);
+  const context = preparedEnabled ? prepared.preview?.context : preview?.boundary === boundary ? preview.context : undefined;
   const displayed = answer?.boundary === boundary && answer.attempt.id === answerId ? answer.attempt : undefined;
   const active = state?.attempts.find(attempt => ['preparing', 'running'].includes(attempt.status));
   const last = state?.attempts[0];
@@ -44,13 +51,16 @@ export function AnswerPanel({ buildId, boundary: sourceBoundary, correctionRevis
     try { await fn(); setState(await api<State>('/answers')); } catch (cause) { setError((cause as Error).message); } finally { setBusy(false); }
   }
   function prepare(event: FormEvent) {
-    event.preventDefault(); void action(async () => {
+    event.preventDefault();
+    if (preparedEnabled) { setError(''); void prepared.find(question, buildId); return; }
+    void action(async () => {
       const expected = currentBoundary.current;
       const context = await api<AnswerContext>('/answers/preview', 'POST', { question, buildId });
       if (expected === currentBoundary.current) setPreview({ boundary: expected, context });
     });
   }
   function generate() { void action(async () => {
+    if (preparedEnabled) { const result = await prepared.generate(); if (result) setSelected(result.id); return; }
     if (!context) return;
     request.current ??= { requestId: crypto.randomUUID(), question: context.question, buildId: context.buildId, inputHash: context.inputHash };
     await api('/answers', 'POST', request.current); request.current = undefined; setSelected('');
@@ -59,6 +69,8 @@ export function AnswerPanel({ buildId, boundary: sourceBoundary, correctionRevis
     <h2>Ask about your system</h2>
     <p className="muted">First review the context found for your question. Generating an answer sends that text through your selected Codex connection.</p>
     {error && <p className="error" role="alert">{error}</p>}
+    {preparedEnabled && <p className="notice">Experimental prepared context · uses the current published index. Review the exact context before generating.</p>}
+    {preparedEnabled && prepared.notice && <p className="notice" role="status">{prepared.notice}</p>}
     <details open={state ? !state.connection : false}><summary>Codex setup {state?.connection ? '· saved' : '· required for answers'}</summary>
       <p>Use a configuration signed into the intended personal or work account. LoreDock does not verify account identity or copy credentials.</p>
       <form onSubmit={event => { event.preventDefault(); void action(async () => { await api('/answers/configuration', 'PUT', { executable: executable ?? state?.connection?.executable, configHome: configHome ?? state?.connection?.configHome, profile: (profile ?? state?.connection?.profile) || null }); }); }}>
@@ -66,13 +78,14 @@ export function AnswerPanel({ buildId, boundary: sourceBoundary, correctionRevis
         <label htmlFor="answer-executable">Codex executable</label><input id="answer-executable" value={executable ?? state?.connection?.executable ?? ''} onChange={event => setExecutable(event.target.value)} placeholder="/absolute/path/to/codex" required />
         <label htmlFor="answer-profile">Named CLI profile (optional)</label><input id="answer-profile" value={profile ?? state?.connection?.profile ?? ''} onChange={event => setProfile(event.target.value)} />
         <p className="muted">Pilot runtime: {state?.cliVersion ?? 'Checking version…'} · gpt-5.6-terra · medium. No shell, network tools or delegation.</p>
-        <button disabled={busy || Boolean(active)}>Save Codex setup</button>
+        <button disabled={busy || prepared.finding || Boolean(active)}>Save Codex setup</button>
       </form>
     </details>
     <form onSubmit={prepare}>
       <label htmlFor="project-question">Your question</label><textarea id="project-question" value={question} maxLength={2000} rows={3} placeholder="How does an order reach the database?" onChange={event => { setQuestion(event.target.value); setPreview(undefined); request.current = undefined; }} required disabled={busy || Boolean(active)} />
-      <button disabled={busy || Boolean(active) || !buildId || !question.trim()}>Find context</button>
+      <button disabled={!state || busy || prepared.finding || Boolean(active) || !buildId || !question.trim()}>Find context</button>
     </form>
+    {preparedEnabled && prepared.finding && <div className="progress" role="status">Finding context… <button onClick={() => void prepared.cancel()}>Cancel context</button></div>}
     {context && <div className="question-context">
       <p className="muted">Passages from {new Set(context.spans.map(span => span.sourceId)).size} of {context.sources.length} authorized indexed repositories. This is evidence coverage, not a measure of system understanding.</p>
       <p role="status">{context.spans.length} source passages · {context.textBytes.toLocaleString()} UTF-8 bytes · deployment environment unknown</p>
@@ -82,9 +95,13 @@ export function AnswerPanel({ buildId, boundary: sourceBoundary, correctionRevis
       </details>
       {context.review && <AnswerReview review={context.review} spans={context.spans} openEvidence={openEvidence} />}
       {context.interfaces && <AnswerInterfaces value={context.interfaces} spans={context.spans} openEvidence={openEvidence} />}
-      <p className="muted">One attempt, up to two minutes. Failed or cancelled attempts keep the last successful answer. A retry is a new request and can consume more usage.</p>
-      <button className="primary" disabled={busy || Boolean(active) || !state?.connection} onClick={generate}>Generate answer</button>
+      {preparedEnabled && prepared.preview && <NativeQuestionContext value={prepared.preview.compact} spans={context.spans} openEvidence={openEvidence} />}
+      <p className="muted">One attempt, up to two minutes. Failed or cancelled attempts keep the last successful answer. {preparedEnabled
+        ? 'Find context again to create a new attempt, which can consume additional usage.'
+        : 'A retry is a new request and can consume more usage.'}</p>
+      <button className="primary" disabled={busy || Boolean(active) || !state?.connection} onClick={generate}>{preparedEnabled && prepared.pending ? 'Retry request' : 'Generate answer'}</button>
     </div>}
+    {preparedEnabled && prepared.pending && <p className="notice">The request may already have been accepted. Retry request checks the same attempt and does not start a second generation.</p>}
     {active && <div className="progress" role="status"><strong>{active.status === 'preparing' ? 'Checking Codex setup…' : 'Generating answer…'}</strong>
       <button disabled={busy} onClick={() => void action(async () => { await api(`/answers/${active.id}/cancel`, 'POST'); })}>Cancel answer</button></div>}
     {last && ['failed', 'cancelled', 'interrupted', 'fenced'].includes(last.status) && <p className="notice" role="status">Latest attempt: {last.status}. {last.reason} The last authorized successful answer stays available below.</p>}
@@ -99,6 +116,8 @@ export function AnswerPanel({ buildId, boundary: sourceBoundary, correctionRevis
       {displayed.reviewState === 'not-recorded' && <p className="notice">This older answer did not record engineer review. Generate a new answer to include current notes.</p>}
       {displayed.context?.review && <AnswerReview review={displayed.context.review} spans={displayed.context.spans} openEvidence={openEvidence} />}
       {displayed.context?.interfaces && <AnswerInterfaces value={displayed.context.interfaces} spans={displayed.context.spans} openEvidence={openEvidence} />}
+      {displayed.inputKind === 'prepared-question/1' && <p className="muted">Saved prepared context · exact reviewed input for this attempt.</p>}
+      {displayed.context && displayed.nativeContext && <NativeQuestionContext value={displayed.nativeContext} spans={displayed.context.spans} openEvidence={openEvidence} />}
       {displayed.context && !displayed.context.interfaces && <p className="muted">This older answer did not record interface comparisons. Its original context is unchanged.</p>}
       {displayed.reason && <p className="notice">{displayed.reason}</p>}
       {displayed.answer?.claims.map((claim, index) => <div className={`claim ${claim.kind}`} key={index}>

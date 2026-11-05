@@ -8,6 +8,8 @@ import { serveStatic } from '@hono/node-server/serve-static';
 import { Catalog } from './catalog.js';
 import { CatalogError } from './types.js';
 import type { Answers } from './answers.js';
+import type { QuestionPreparations } from './question-preparation.js';
+import { preparationInput, preparationId, preparedAnswerInput, questionFields, serializedQuestionReview, preparedQuestionError } from './prepared-question-api.js';
 import type { TextConnection } from '@aew/ai';
 import { declarationMap } from './system-map.js';
 import { codeFlows } from './code-flows.js';
@@ -25,7 +27,10 @@ import { OperationBudgetError } from './operation-budget.js';
 import { NativeCaptures } from './native-capture.js';
 import { captureSelection, historyReceiptId, nativeCaptureError, captureListSelection } from './native-capture-api.js';
 
-export function createApp(catalog: Catalog, options: { publicDir?: string; development?: boolean; answers?: Answers; codeAnalysis?: CodeAnalysis; codeFollow?: CodeAnalysisFollow; codePaths?: CodePathsV2; nativeCaptures?: NativeCaptures } = {}) {
+export function createApp(catalog: Catalog, options: { publicDir?: string; development?: boolean; answers?: Answers; preparations?: QuestionPreparations; codeAnalysis?: CodeAnalysis; codeFollow?: CodeAnalysisFollow; codePaths?: CodePathsV2; nativeCaptures?: NativeCaptures } = {}) {
+  const preparations = options.preparations;
+  if (preparations && (!options.answers || options.answers.catalog !== catalog || !preparations.ownsStore(catalog.store)))
+    throw new CatalogError('INVALID_PREPARATION_OWNER', 'Prepared questions require this catalog’s answer and preparation services.', 409);
   const app = new Hono();
   const hosts = new Set(['127.0.0.1:4244', ...options.development ? ['127.0.0.1:5174'] : []]);
   const origins = new Set([...hosts].map(host => `http://${host}`));
@@ -167,7 +172,22 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
   app.post('/api/corrections/reapply', async c => c.json(reconciliation.reapply(await body(c.req)), 201));
   const answers = options.answers;
   if (answers) {
-    app.get('/api/answers', c => c.json(answers.state()));
+    app.get('/api/answers', c => c.json({ ...answers.state(), ...preparations ? { preparedQuestions: true } : {} }));
+    if (preparations) {
+      app.post('/api/question-preparations', async c => {
+        const input = preparationInput(await body(c.req), catalog.store.project().publishedBuildId);
+        return c.json(preparations.start(input.requestId, input.question), 202);
+      });
+      app.get('/api/question-preparations/:id', c => c.json(preparations.get(preparationId(c.req.param('id')))));
+      app.get('/api/question-preparations/:id/review', c => c.body(serializedQuestionReview(preparations.review(preparationId(c.req.param('id')))), 200, { 'Content-Type': 'application/json' }));
+      app.post('/api/question-preparations/:id/cancel', async c => {
+        questionFields(await body(c.req), []); return c.json(preparations.cancel(preparationId(c.req.param('id'))));
+      });
+      app.post('/api/prepared-answers', async c => {
+        const input = preparedAnswerInput(await body(c.req));
+        return c.json(answers.startPrepared(input.requestId, input.preparationId, input.reviewedHash), 202);
+      });
+    }
     app.put('/api/answers/configuration', async c => c.json(await answers.configure(await body(c.req) as unknown as TextConnection)));
     app.post('/api/answers/preview', async c => {
       const input = await body(c.req);
@@ -190,6 +210,10 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
   }
   app.onError((error, c) => {
     if (error instanceof CatalogError) return c.json({ error: { code: error.code, message: error.message } }, error.status);
+    if (preparations && /^\/api\/(?:answers|prepared-answers|question-preparations)(?:\/|$)/.test(c.req.path)) {
+      const question = preparedQuestionError(error);
+      if (question) return c.json({ error: { code: question.code, message: question.message } }, question.status);
+    }
     const native = nativeCaptureError(error);
     if (native) return c.json({ error: native.error }, native.status);
     if (error instanceof OperationBudgetError) {

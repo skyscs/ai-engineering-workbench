@@ -467,9 +467,11 @@ prepared snapshot. [Task 124](tasks/124-loredock-answer-owned-witness-storage.md
 adds atomic durable ownership, accepted through identical-tree merge `c1f6c37` after both
 CI events at `a9c9cde`. [Task 125](tasks/125-loredock-prepared-answer-admission.md)
 integrates internal prepared answer admission/publication with exact input and shared
-ownership. Next [Task 126](tasks/126-loredock-prepared-question-http-ui.md) connects
-protected HTTP and the review flow behind a server experiment switch. Fresh complete
-resource and semantic gates remain required before changing the answer pilot default.
+ownership, accepted through identical-tree merge `b0c89df` after both CI events at
+`9c21c17`. [Task 126](tasks/126-loredock-prepared-question-http-ui.md) connects protected
+HTTP and the review flow behind a server experiment switch. Next
+[Task 127](tasks/127-loredock-prepared-flow-qualification-contract.md) freezes fresh complete
+resource and semantic qualification before changing the answer pilot default.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation

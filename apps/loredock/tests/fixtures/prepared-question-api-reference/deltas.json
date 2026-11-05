@@ -1,0 +1,239 @@
+{
+  "schemaVersion": "prepared-question-api-deltas/1",
+  "modules": {
+    "app": {
+      "file": "apps/loredock/src/app.ts",
+      "beforeSha256": "c8ff807c0a5ad7148f86a1c8fa83d7c36f10351953e0ec10dbdb9cab9b86caeb",
+      "afterSha256": "c38d264820f0b73b66ad407797038df72028d9f6bd359f498091cdccd1ae902e",
+      "edits": [
+        {
+          "start": 10,
+          "delete": 0,
+          "insert": [
+            "import type { QuestionPreparations } from './question-preparation.js';\n",
+            "import { preparationInput, preparationId, preparedAnswerInput, questionFields, serializedQuestionReview, preparedQuestionError } from './prepared-question-api.js';\n"
+          ]
+        },
+        {
+          "start": 27,
+          "delete": 1,
+          "insert": [
+            "export function createApp(catalog: Catalog, options: { publicDir?: string; development?: boolean; answers?: Answers; preparations?: QuestionPreparations; codeAnalysis?: CodeAnalysis; codeFollow?: CodeAnalysisFollow; codePaths?: CodePathsV2; nativeCaptures?: NativeCaptures } = {}) {\n",
+            "  const preparations = options.preparations;\n",
+            "  if (preparations && (!options.answers || options.answers.catalog !== catalog || !preparations.ownsStore(catalog.store)))\n",
+            "    throw new CatalogError('INVALID_PREPARATION_OWNER', 'Prepared questions require this catalog\u2019s answer and preparation services.', 409);\n"
+          ]
+        },
+        {
+          "start": 169,
+          "delete": 1,
+          "insert": [
+            "    app.get('/api/answers', c => c.json({ ...answers.state(), ...preparations ? { preparedQuestions: true } : {} }));\n",
+            "    if (preparations) {\n",
+            "      app.post('/api/question-preparations', async c => {\n",
+            "        const input = preparationInput(await body(c.req), catalog.store.project().publishedBuildId);\n",
+            "        return c.json(preparations.start(input.requestId, input.question), 202);\n",
+            "      });\n",
+            "      app.get('/api/question-preparations/:id', c => c.json(preparations.get(preparationId(c.req.param('id')))));\n",
+            "      app.get('/api/question-preparations/:id/review', c => c.body(serializedQuestionReview(preparations.review(preparationId(c.req.param('id')))), 200, { 'Content-Type': 'application/json' }));\n",
+            "      app.post('/api/question-preparations/:id/cancel', async c => {\n",
+            "        questionFields(await body(c.req), []); return c.json(preparations.cancel(preparationId(c.req.param('id'))));\n",
+            "      });\n",
+            "      app.post('/api/prepared-answers', async c => {\n",
+            "        const input = preparedAnswerInput(await body(c.req));\n",
+            "        return c.json(answers.startPrepared(input.requestId, input.preparationId, input.reviewedHash), 202);\n",
+            "      });\n",
+            "    }\n"
+          ]
+        },
+        {
+          "start": 192,
+          "delete": 0,
+          "insert": [
+            "    if (preparations && /^\\/api\\/(?:answers|prepared-answers|question-preparations)(?:\\/|$)/.test(c.req.path)) {\n",
+            "      const question = preparedQuestionError(error);\n",
+            "      if (question) return c.json({ error: { code: question.code, message: question.message } }, question.status);\n",
+            "    }\n"
+          ]
+        }
+      ]
+    },
+    "index": {
+      "file": "apps/loredock/src/index.ts",
+      "beforeSha256": "833eab5107644457fb35ebcd41e5fbc6d10689f517bb9909b090957c48c07f65",
+      "afterSha256": "aa3ec2e3aecc2d89d8ffef76caba96c77255120c00c81689c4965dc30dfd515c",
+      "edits": [
+        {
+          "start": 19,
+          "delete": 0,
+          "insert": [
+            "const preparedQuestionsEnabled = process.env.LOREDOCK_PREPARED_ANSWERS === '1';\n",
+            "if (preparedQuestionsEnabled && process.env.LOREDOCK_ANSWERS !== '1')\n",
+            "  throw new Error('LOREDOCK_PREPARED_ANSWERS=1 requires LOREDOCK_ANSWERS=1.');\n"
+          ]
+        },
+        {
+          "start": 28,
+          "delete": 1,
+          "insert": [
+            "const app = createApp(catalog, { publicDir: fileURLToPath(new URL('../public/', import.meta.url)), development: process.env.LOREDOCK_DEVELOPMENT === '1', codeAnalysis, codeFollow, codePaths, nativeCaptures, ...answers ? { answers } : {}, ...preparedQuestionsEnabled && preparations ? { preparations } : {} });\n"
+          ]
+        }
+      ]
+    },
+    "AnswerPanel": {
+      "file": "apps/loredock-web/src/AnswerPanel.tsx",
+      "beforeSha256": "bf3c43a84446b2c71c418bd73f71f7af6869d125326fbbb650359c482cbe68a7",
+      "afterSha256": "572c07ec04d46f471b66a5d4bf7c4c38c64437a5ae8deae7754298ac72d61667",
+      "edits": [
+        {
+          "start": 6,
+          "delete": 0,
+          "insert": [
+            "import { usePreparedQuestion } from './usePreparedQuestion';\n",
+            "import { NativeQuestionContext } from './NativeQuestionContext';\n"
+          ]
+        },
+        {
+          "start": 7,
+          "delete": 1,
+          "insert": [
+            "type State = ReturnType<Answers['state']> & { preparedQuestions?: true };\n"
+          ]
+        },
+        {
+          "start": 11,
+          "delete": 1,
+          "insert": [
+            "  const boundary = `${sourceBoundary}:${correctionRevision}:${buildId}`;\n"
+          ]
+        },
+        {
+          "start": 14,
+          "delete": 0,
+          "insert": [
+            "  const preparedEnabled = state?.preparedQuestions === true;\n",
+            "  const prepared = usePreparedQuestion(`${boundary}:${question}`, preparedEnabled);\n"
+          ]
+        },
+        {
+          "start": 17,
+          "delete": 0,
+          "insert": [
+            "  const [historyRevision, setHistoryRevision] = useState(0);\n"
+          ]
+        },
+        {
+          "start": 22,
+          "delete": 2,
+          "insert": [
+            "    let stopped = false, failed = false;\n",
+            "    const refresh = async () => { try { const next = await api<State>('/answers'); if (!stopped) {\n",
+            "      setState(next); if (failed) setHistoryRevision(value => value + 1); failed = false;\n",
+            "    } } catch (cause) { if (!stopped) { failed = true; setAnswer(undefined); setError((cause as Error).message); } } };\n"
+          ]
+        },
+        {
+          "start": 29,
+          "delete": 2,
+          "insert": [
+            "  const answerVersion = JSON.stringify(state?.attempts.find(attempt => attempt.id === answerId));\n"
+          ]
+        },
+        {
+          "start": 33,
+          "delete": 0,
+          "insert": [
+            "    setAnswer(undefined);\n"
+          ]
+        },
+        {
+          "start": 34,
+          "delete": 1,
+          "insert": [
+            "    void api<AnswerAttempt>(`/answers/${answerId}`).then(attempt => { if (!stopped) setAnswer({ boundary, attempt }); }).catch(cause => { if (!stopped) { setAnswer(undefined); setError((cause as Error).message); } });\n"
+          ]
+        },
+        {
+          "start": 36,
+          "delete": 2,
+          "insert": [
+            "  }, [answerId, answerVersion, historyRevision, boundary]);\n",
+            "  const context = preparedEnabled ? prepared.preview?.context : preview?.boundary === boundary ? preview.context : undefined;\n"
+          ]
+        },
+        {
+          "start": 46,
+          "delete": 1,
+          "insert": [
+            "    event.preventDefault();\n",
+            "    if (preparedEnabled) { setError(''); void prepared.find(question, buildId); return; }\n",
+            "    void action(async () => {\n"
+          ]
+        },
+        {
+          "start": 53,
+          "delete": 0,
+          "insert": [
+            "    if (preparedEnabled) { const result = await prepared.generate(); if (result) setSelected(result.id); return; }\n"
+          ]
+        },
+        {
+          "start": 61,
+          "delete": 0,
+          "insert": [
+            "    {preparedEnabled && <p className=\"notice\">Experimental prepared context \u00b7 uses the current published index. Review the exact context before generating.</p>}\n",
+            "    {preparedEnabled && prepared.notice && <p className=\"notice\" role=\"status\">{prepared.notice}</p>}\n"
+          ]
+        },
+        {
+          "start": 68,
+          "delete": 1,
+          "insert": [
+            "        <button disabled={busy || prepared.finding || Boolean(active)}>Save Codex setup</button>\n"
+          ]
+        },
+        {
+          "start": 73,
+          "delete": 1,
+          "insert": [
+            "      <button disabled={!state || busy || prepared.finding || Boolean(active) || !buildId || !question.trim()}>Find context</button>\n"
+          ]
+        },
+        {
+          "start": 75,
+          "delete": 0,
+          "insert": [
+            "    {preparedEnabled && prepared.finding && <div className=\"progress\" role=\"status\">Finding context\u2026 <button onClick={() => void prepared.cancel()}>Cancel context</button></div>}\n"
+          ]
+        },
+        {
+          "start": 84,
+          "delete": 2,
+          "insert": [
+            "      {preparedEnabled && prepared.preview && <NativeQuestionContext value={prepared.preview.compact} spans={context.spans} openEvidence={openEvidence} />}\n",
+            "      <p className=\"muted\">One attempt, up to two minutes. Failed or cancelled attempts keep the last successful answer. {preparedEnabled\n",
+            "        ? 'Find context again to create a new attempt, which can consume additional usage.'\n",
+            "        : 'A retry is a new request and can consume more usage.'}</p>\n",
+            "      <button className=\"primary\" disabled={busy || Boolean(active) || !state?.connection} onClick={generate}>{preparedEnabled && prepared.pending ? 'Retry request' : 'Generate answer'}</button>\n"
+          ]
+        },
+        {
+          "start": 87,
+          "delete": 0,
+          "insert": [
+            "    {preparedEnabled && prepared.pending && <p className=\"notice\">The request may already have been accepted. Retry request checks the same attempt and does not start a second generation.</p>}\n"
+          ]
+        },
+        {
+          "start": 101,
+          "delete": 0,
+          "insert": [
+            "      {displayed.inputKind === 'prepared-question/1' && <p className=\"muted\">Saved prepared context \u00b7 exact reviewed input for this attempt.</p>}\n",
+            "      {displayed.context && displayed.nativeContext && <NativeQuestionContext value={displayed.nativeContext} spans={displayed.context.spans} openEvidence={openEvidence} />}\n"
+          ]
+        }
+      ]
+    }
+  }
+}

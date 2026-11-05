@@ -1,6 +1,9 @@
 # Task 126 — Connect prepared questions to protected HTTP and the review flow
 
-Status: scoped by Task 125; start after its exact-head acceptance.
+Status: implemented and locally verified (938 tests, strict types, builds and actual
+prepared/legacy Chrome smoke); exact-head CI pending.
+Task 125 passed both events at `9c21c17` and merged as identical-tree `b0c89df`.
+The [public contract](../docs/loredock/PREPARED_QUESTION_API.md) is frozen before implementation.
 
 Connect the internal preparation/answer lifecycle to one coherent experimental user
 flow. Preserve the ordinary answer pilot until fresh complete-composition resource and
@@ -40,3 +43,7 @@ and [the adapter contract](../docs/loredock/PREPARED_ANSWER_ADMISSION.md).
 
 No corporate repositories, real model call, production/default activation, automatic
 history deletion, new account selector or mutation of the user's prepared demo.
+
+Usage: [experimental prepared context](../docs/loredock/USER_GUIDE.md#try-prepared-context-experimental).
+Verification: [raw records and review](../docs/fixtures/loredock-prepared-question-http-ui/README.md).
+Next: [complete-flow qualification contract](127-loredock-prepared-flow-qualification-contract.md).

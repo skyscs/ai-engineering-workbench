@@ -1,9 +1,10 @@
 # Prepared answer admission and publication
 
 Task 125 connects the transient owner and durable schema-11 witness to the existing
-answer service. This is an internal adapter. The current browser and HTTP answer start
-still use their explicit legacy input; no native-answer default or new model policy is
-enabled. [ADR 0059](../decisions/0059-loredock-prepared-question-lifecycle.md) remains the
+answer service. Task 126 now exposes it through a separately enabled
+[prepared-question experiment](PREPARED_QUESTION_API.md). The ordinary browser and HTTP
+answer start retain their explicit legacy input; no native-answer default or new model
+policy is enabled. [ADR 0059](../decisions/0059-loredock-prepared-question-lifecycle.md) remains the
 lifecycle contract, with [storage](ANSWER_WITNESS_STORAGE.md) and
 [preparation](PREPARED_QUESTION_OWNER.md) retaining their existing formats and limits.
 

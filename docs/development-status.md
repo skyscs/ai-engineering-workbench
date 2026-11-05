@@ -1,5 +1,34 @@
 # Development status
 
+## Task 126 — Protected prepared-question HTTP and browser flow
+
+The [experimental public flow](loredock/PREPARED_QUESTION_API.md) now uses one question →
+Find context → review → Generate path, enabled only with both answer/prepared switches.
+Protected scalar routes bind generation to server-owned reviewed input, reject client
+context/runtime overrides and leave ordinary pilot routes intact. Browser generations
+fence late responses after editing, review/source changes and cancellation. A lost
+admission response retries the same request; saved input retains original-only links.
+
+All **938 tests, strict types and builds pass**. Nine new compiled HTTP tests cover
+security, disabled mode, exact dispatch/replay, cancellation, expiry, quota, source/review
+fences and restart. Actual Chrome checks cover native and omitted-path review, a lost
+admission response, late start/review/question/history responses, cancellation usage,
+restart, legacy mode and 390px layout. The existing legacy answer browser smoke also
+passes. Later UI copy refinements passed production builds and the complete prepared
+browser smoke again. No real model call, corporate source or exhausted-family replay.
+
+[Verification records](fixtures/loredock-prepared-question-http-ui/README.md) preserve
+first typecheck errors, logs, screenshots and actual runtime hashes. Exact deltas cover
+three existing modules; 183 prior application/browser files and the 64-module prepared
+service composition stay unchanged. The daemon workspace import graph has 82 modules;
+external entry points and compiled browser assets are separately bound. No resource or
+semantic qualification transfers to the public composition.
+
+PR #129 passed both final-head events at `9c21c17` and merged as identical-tree `b0c89df`.
+Task 126 requires both final-head CI events before acceptance. Next
+[Task 127](../tasks/127-loredock-prepared-flow-qualification-contract.md) freezes a fresh
+prospective complete-flow resource/semantic contract before separately scoped execution.
+
 ## Task 125 — Exact prepared-answer admission and publication
 
 [The internal adapter](loredock/PREPARED_ANSWER_ADMISSION.md) now promotes the exact
@@ -20,7 +49,8 @@ union includes actual AI/core imports; it has no transferred resource/model qual
 PR #128 passed both CI events at `a9c9cde` and merged as identical-tree `c1f6c37`.
 The first Task 125 push CI exposed a test ordering assumption during an asynchronous
 index rebuild; explicit worker scheduling fixes it without production changes, and all
-130 script tests pass. Both new final-head CI events are required before acceptance. Next
+130 script tests pass. Push 41947342761 and pull-request 41947350906 subsequently passed
+at `9c21c17`; PR #129 merged as identical-tree `b0c89df`. Next
 [Task 126](../tasks/126-loredock-prepared-question-http-ui.md) connects protected HTTP
 and the existing simple review flow behind a server experiment switch. Public/default
 answer behavior is unchanged; fresh complete resource and semantic gates remain open.

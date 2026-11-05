@@ -650,10 +650,12 @@ See [reapplication evidence](../fixtures/loredock-reconciliation/README.md) and
 
 Stop the existing LoreDock process and start the answer pilot with the same data
 directory. Back up the stopped directory before upgrading. Current startup migrates
-older LoreDock data to schema 7, retaining evidence, answers and engineer correction
+older LoreDock data to schema 11, retaining evidence, answers and engineer correction
 history. Schema 3 introduced answer attempts/settings, schema 4 correction history,
 schema 5 refresh lineage/counters, schema 6 immutable review-reapplication provenance
-and schema 7 bulk-registration receipts with saved source allocations.
+and schema 7 bulk-registration receipts with saved source allocations. Later schemas add
+shared search storage, native path history and answer-owned prepared witnesses; see
+[local storage and backup](#local-storage-and-backup).
 
 ```sh
 LOREDOCK_ANSWERS=1 pnpm loredock
@@ -722,7 +724,7 @@ If the complete prompt would exceed 96 KiB, whole comparisons are omitted until 
 source passages and engineer notes are never removed to make room. If the base context
 is still too large, **Find context** asks you to narrow the question or source scope
 before any runtime preparation. Missing comparisons do not establish absent interfaces.
-New answers use prompt v9, with unchanged retrieval v7 and answer schema v3. Real-model
+The ordinary pilot uses prompt v9, with unchanged retrieval v7 and answer schema v3. Real-model
 quality qualification for v9 is pending; the prior failed evaluations remain failures.
 
 **Cancel answer** prevents late publication and stops the owned process. Failed or
@@ -737,6 +739,58 @@ interruption, and the CLI can perform internal transport requests within the tim
 Answers identify their saved index; newer indexes/registry changes are marked. Changing
 source policy fences old answers. Removing a source fences and purges dependent context
 and answer text, including answers that consumed it but did not cite it.
+
+### Try prepared context (experimental)
+
+Stop LoreDock, keep the same data directory and restart with both switches:
+
+```sh
+LOREDOCK_ANSWERS=1 LOREDOCK_PREPARED_ANSWERS=1 pnpm loredock
+```
+
+Keep your existing `LOREDOCK_DATA_DIR` setting if you use a custom location. Refresh the
+browser after restarting. The panel now says **Experimental prepared context**. This
+mode is separate from the ordinary pilot; full-composition resource and model-quality
+qualification are still pending. Enabling the switch itself makes no model call.
+
+1. Select the current published index. Let code analysis finish, or pause it explicitly,
+   before finding context. Historical indexes are rejected for a new prepared question.
+2. Enter your question and click **Find context**. You can do this before saving Codex
+   setup. **Finding context…** and **Cancel context** appear while the server works.
+   Editing the question or changing sources/index/review discards the old preview.
+3. Review the same source passages, engineer notes and interface comparisons as above.
+   **Related code context · static and unverified** adds a supported partial code path
+   when selection is unambiguous and all required originals already fit the context.
+   Open its original passage buttons; deployment and runtime behavior remain unverified.
+   **No additional code path** explains missing analysis, ambiguous/unsupported selection,
+   incomplete source support or a size limit. The rest of the reviewed context stays intact.
+4. Save Codex setup if needed and click **Generate answer**. The server sends the exact
+   reviewed input. The preview is usable for ten minutes and is consumed by one admitted
+   attempt. Expiry, source/index/review changes and cancellation require **Find context**
+   again. There is no automatic replacement path or fallback to a different preview.
+5. If the network loses the admission response, **Retry request** checks the same saved
+   attempt. It does **not** start a second generation. To intentionally create a new
+   attempt after completion/failure/cancellation, use **Find context** again; that new
+   generation can consume additional usage. A quota/configuration refusal before admission
+   keeps otherwise current context ready while you resolve the problem.
+6. Saved results say **Saved prepared context** and retain their original compact context,
+   qualifications, gaps and omission reason. New source indexes mark history stale;
+   replacing native code analysis does not remove the saved input. Removing a dependency
+   purges its answer/context text. Unsupported or corrupt history is an explicit error.
+
+Only one preparation, answer or connection change can own the operation slot at a time.
+A cancelled runtime may need to finish cleanup before another operation can start.
+If witness capacity is full, existing answers are retained: all 64 records, including
+purged metadata, count toward capacity. Do not delete individual SQLite rows or files.
+See [storage limits](ANSWER_WITNESS_STORAGE.md) before choosing a separate data directory.
+
+This is a bounded context aid, not complete understanding of every repository. Exact
+supported names/routes/topics help selection; lexical retrieval and the thirty-passage
+source cap still apply. No semantic-quality or general incident-routing claim follows
+from successful browser checks. The [public contract](PREPARED_QUESTION_API.md) records
+route and lifecycle details.
+
+### Connection failures
 
 If setup fails, the history preserves the reason before any answer is published:
 
@@ -1076,13 +1130,21 @@ require the session. No tokens belong in URLs or logs.
 | `POST /api/corrections` | Save/replay a dispute, clarification or withdrawal with issued target ID, projection hash and expected review versions. |
 | `GET /api/correction-reconciliation?buildId=...&fromBuildId=...` | Bounded earlier-review preview; default previous index, optional authorized recorded ancestor. |
 | `POST /api/corrections/reapply` | Explicitly apply an eligible original version with preview hash and current review revision; exact replay preserves provenance. |
-| `GET /api/answers` | Saved connection, recent attempt metadata and latest authorized answer ID (pilot only). |
+| `GET /api/answers` | Saved connection, recent attempt metadata and latest authorized answer ID (pilot only). Adds `preparedQuestions: true` only when the prepared experiment is enabled. |
 | `PUT /api/answers/configuration` | Save `{executable, configHome, profile}`; use `null` for no named profile. |
 | `POST /api/answers/preview` | Retrieve `{question, buildId?}` without invoking a model. |
 | `POST /api/answers` | Start/replay `{requestId, question, buildId, inputHash}` from a reviewed preview. |
 | `GET /api/answers/:id` | Authorized saved context, result, identity and usage. |
 | `POST /api/answers/:id/cancel` | Cancel one attempt and fence late completion. |
+| `POST /api/question-preparations` | Experimental: exact `{requestId, question, buildId}` for the current published index; returns preparation state, 202. No model call. |
+| `GET /api/question-preparations/:id` | Experimental scalar state, including expiry/fencing; no context payload. |
+| `GET /api/question-preparations/:id/review` | Experimental Ready base/compact context and reviewed hash; no raw witness or prompt, at most 1 MiB. |
+| `POST /api/question-preparations/:id/cancel` | Experimental: empty `{}` body, cancel the owned preparation. |
+| `POST /api/prepared-answers` | Experimental: exact `{requestId, preparationId, reviewedHash}`; atomically admit or replay the original attempt, 202. No caller context or runtime overrides. |
 
 Answer routes exist only when the pilot is enabled. The server reconstructs and verifies
 context; clients cannot submit their own evidence set. Reusing a request ID with changed
-inputs or a changed connection is a conflict, not a retry.
+inputs or a changed connection is a conflict on the legacy route. Prepared replay binds
+the preparation ID/reviewed hash and precedes current connection or transient-owner checks;
+it returns the original authorized attempt without another dispatch. New preparation and
+prepared-answer routes require both switches and the same session/origin/CSRF protection.

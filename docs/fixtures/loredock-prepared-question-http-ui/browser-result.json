@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "prepared-question-browser/1",
+  "modelCalls": 0,
+  "controlledRuntimeCalls": 3,
+  "exactPrompt": true,
+  "lostAdmissionReplay": true,
+  "originalCitation": true,
+  "escapedProse": true,
+  "cancelledPreparation": true,
+  "lateStartCancelled": true,
+  "lateReviewFenced": true,
+  "lateQuestionEditFenced": true,
+  "sourceOnly": true,
+  "lateCancelledUsage": true,
+  "restartHistory": true,
+  "lateRevokedHistoryFenced": true,
+  "disabledLegacyPreview": true,
+  "mobileWidth": 390,
+  "errors": []
+}

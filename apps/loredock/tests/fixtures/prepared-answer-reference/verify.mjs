@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { beforeQuestionApi } from '../prepared-question-api-reference/verify.mjs';
 import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
@@ -15,13 +16,17 @@ export async function verifyPreparedAnswerDelta(name, compiled = true) {
   const lines = source.match(/.*\n|.+$/g) ?? [];
   for (const edit of [...delta.edits].reverse()) lines.splice(edit.start, edit.delete, ...edit.insert);
   const expected = lines.join(''); assert.equal(hash(expected), delta.afterSha256);
-  assert.equal(await readFile(new URL('src/' + name + '.ts', root), 'utf8'), expected);
-  if (compiled) assert.equal(await readFile(new URL('dist/' + name + '.js', root), 'utf8'), emitSource(expected, name + '.ts'));
+  const currentSource = await readFile(new URL('src/' + name + '.ts', root));
+  assert.equal((await beforeQuestionApi('apps/loredock/src/' + name + '.ts', currentSource, compiled)).toString(), expected);
+  if (compiled) {
+    const currentEmitted = await readFile(new URL('dist/' + name + '.js', root));
+    assert.equal((await beforeQuestionApi('apps/loredock/dist/' + name + '.js', currentEmitted)).toString(), emitSource(expected, name + '.ts'));
+  }
   return { source, emitted };
 }
 export async function beforePreparedAnswer(file, raw, compiled = true) {
   const match = /^apps\/loredock\/(src|dist)\/(answers|question-preparation|question-witness|answer-witness-store|index)\.(ts|js)$/.exec(file);
-  if (!match) return raw;
+  if (!match) return beforeQuestionApi(file, raw, compiled);
   const value = await verifyPreparedAnswerDelta(match[2], compiled);
   assert.equal(raw.toString(), await readFile(new URL(match[1] + '/' + match[2] + '.' + match[3], root), 'utf8'));
   return Buffer.from(match[1] === 'src' ? value.source : value.emitted);

@@ -1,6 +1,7 @@
 # Task 125 — Admit and publish answers from the exact prepared input
 
-Status: implemented and locally verified (929 tests, strict types and builds); exact-head CI pending.
+Status: accepted through PR #129, identical-tree merge `b0c89df`; push 41947342761 and
+pull-request 41947350906 passed at `9c21c17` (929 tests, strict types and builds).
 Task 124 passed both CI events at `a9c9cde` and merged as identical-tree `c1f6c37`.
 
 Integrate the internal preparation owner and durable witness store into a bounded answer
