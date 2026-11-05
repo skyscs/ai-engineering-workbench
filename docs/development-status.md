@@ -2,9 +2,10 @@
 
 ## Task 128 — Complete-flow resource driver (in progress)
 
-Latest accepted checkpoint: [PR #148](https://github.com/skyscs/ai-engineering-workbench/pull/148)
-at merge `2db1787`. The next catalog-fault cases pass actual 64-row purge recovery and
-missing/corrupt-original refusal; both final-head CI events remain required.
+Latest accepted checkpoint: [PR #149](https://github.com/skyscs/ai-engineering-workbench/pull/149)
+at merge `db95966`. Complete-worker accounting now compares one diagnostic replay to
+the first recorded warm result. Functional/work checks pass, existing timer failures
+remain, and both final-head CI events are required before accepting this next slice.
 The reserved family has zero candidate reads; no model runs.
 Known ordinary failures include partial analysis of constant-only padding, a missing
 required native positive at the derived-size limit, aggregate list work, browser RSS and
@@ -296,8 +297,25 @@ copied catalogs pass integrity/foreign-key checks; 134 reused files bind to prio
 all 160 protected-client bodies remain and input/pending checkpoints stay unchanged.
 Both refusal cases report prepare/run/close counts 1/0/1. Production builds, syntax,
 retention and the original seal pass locally; both complete final-head CI events remain
-required. These are fault controls, not resource acceptance. Full ordered integration,
-remaining resource assessment and the final execution seal are still pending.
+required. This checkpoint is now accepted through [PR #149](https://github.com/skyscs/ai-engineering-workbench/pull/149):
+push 42039637778 and pull_request 42040517301 pass 983 tests at `49ac8f2`; merge
+`db95966` has the identical tree. These are fault controls, not resource acceptance.
+Full ordered integration, remaining resource assessment and the final execution seal
+are still pending.
+
+The next [complete-worker accounting case](fixtures/loredock-prepared-flow-worker-accounting-case/README.md)
+replays the first already recorded warm result on a verified empty catalog. It adds no
+extra R15 resource reference generation. Exact review/answer/list content, raw provider
+request and stored context/witness bytes match after only declared UUID/time comparison
+differences. Ten actual budgets total 2,570,082 accepted/requested units; each closes once,
+all work ceilings pass, and the final audit has no late, unscoped or unclosed work.
+The ordinary cold/three-warm/one-diagnostic control retains two normal timer failures
+(331.476347 and 286.206904 ms against 100), exits 1 and leaves no owned survivors. Four
+complete copied catalogs, four Git sources and all 60 HTTP bodies pass independent
+inspection. An initial offline retention expectation error is preserved; correcting it
+requires no application rerun. Installation, builds, four focused tests and the original
+seal pass locally. Both full final-head CI events remain required; this diagnostic work
+pass does not cancel earlier list/browser/timer failures or grant resource qualification.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request
