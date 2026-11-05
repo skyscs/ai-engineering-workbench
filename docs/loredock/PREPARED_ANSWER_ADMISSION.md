@@ -70,7 +70,17 @@ Prepared attempts expose `inputKind: "prepared-question/1"` and authorized compa
 as `nativeContext`, including omission reasons. Their base context is the exact saved
 JSON. Summary responses omit content. Unauthorized history returns no context, compact
 item or answer; source purge removes both derivative text stores while retaining quota
-tombstones. Corrupt or unsupported authorized history fails explicitly.
+tombstones. Full detail reads reject corrupt or unsupported authorized history.
+
+Task 131 gives `GET /api/answers` a bounded summary path under
+[ADR 0060](../decisions/0060-loredock-answer-history-summaries.md). Prepared list rows
+declare `inputValidation: "metadata-only"`: the page checks authority, supported
+metadata, request/context bindings, source membership and review freshness without
+loading saved result or witness payloads. One shared budget covers all twenty rows.
+Invalid summary metadata fails explicitly; payload-only corruption can remain visible
+as an ordinary status row until opening that answer performs the full validation.
+`Answers.get`, including its content-omitting compatibility mode, retains its complete
+validation. No list response authorizes dispatch or supplies content to a model.
 
 Legacy attempts retain their existing fields, optional absence, context/hash/prompt and
 execution body. The controlled comparison loads the preserved accepted Answers module,

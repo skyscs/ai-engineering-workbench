@@ -1,5 +1,32 @@
 # Development status
 
+## Task 131 — Bounded prepared history summaries (result retained)
+
+Task 130 is accepted through [PR #163](https://github.com/skyscs/ai-engineering-workbench/pull/163):
+both complete exact-head CI logs pass 1,034 tests at `ce61fec`, verified before
+identical-tree merge `12b1392`.
+
+[Task 131](../tasks/131-loredock-prepared-history-list-work.md) implements the
+[explicit summary contract](decisions/0060-loredock-answer-history-summaries.md).
+One budget covers the twenty-row page, which checks authority and retained metadata
+without materializing complete witness/result payloads. Prepared summaries declare
+`inputValidation: "metadata-only"`; complete reads, admission and dispatch remain exact.
+Unsupported or corrupt metadata still fails; payload-only corruption may be detected
+when opening the answer. No schema, model policy or defaults change.
+
+The [first ordinary result](fixtures/loredock-history-summary/README.md) passes all six
+cases with 64 controlled calls and zero real models. At 20 and 64 stored answers, the
+useful twenty-row list uses 257,241 units under one closed budget, versus the prior
+3,168,560 units. Production HTTP takes 29.708 and 20.914 ms. Full saved responses remain
+byte-identical on reopen; source revocation fences and purges all 64 answers. Independent
+review checks eight complete catalogs, 3,476 original spans, 767 HTTP responses and
+1,064 unchanged raw entries. Strict typecheck/build, 44 focused tests and 238 script
+tests pass. Exact-head CI acceptance remains pending.
+
+[Task 132](../tasks/132-loredock-native-context-size.md) next attributes the retained
+ordinary native-size excess. Startup, near-limit heap, browser RSS and fresh complete
+qualification remain unresolved; the consumed kiln family stays closed.
+
 ## Task 130 — Direct compiler loading (result retained)
 
 Task 129 is accepted through [PR #162](https://github.com/skyscs/ai-engineering-workbench/pull/162):
@@ -25,7 +52,8 @@ historical manifest. Eleven focused historical checks pass. Nine further local s
 failures expose older byte pins and ESM-only dependency observers; their failures are
 retained, and all 71 affected checks pass with explicit CommonJS identity accounting.
 The consumed Task 128 auditor remains unchanged and is explicitly insufficient for
-the new application's external compiler edge. Final-head CI acceptance is pending.
+the new application's external compiler edge. Final-head CI passes 1,034 tests in
+each event; complete logs were verified before PR #163 merged with an identical tree.
 
 The parser fingerprint changes with the implementation; existing inventories require
 explicit reanalysis. The historical Task 128 application seal no longer describes the

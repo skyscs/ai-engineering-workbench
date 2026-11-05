@@ -1,7 +1,14 @@
 # Task 131 — Bound prepared-answer history list work
 
-Status: scoped after Task 130; begin after its PR passes both exact-head CI events
-and merges with an identical tree.
+Status: implemented; first ordinary observation retained; exact-head CI and merge pending.
+
+Task 130 was accepted through PR #163 after both complete exact-head CI logs passed
+1,034 tests each; merge `12b1392` has the identical tree. The
+[summary contract](../docs/decisions/0060-loredock-answer-history-summaries.md) precedes
+implementation. The [first result](../docs/fixtures/loredock-history-summary/README.md)
+returns twenty useful rows at both history sizes, using 257,241 aggregate work units
+and 29.708/20.914 ms production HTTP time. Full history, authority and corruption checks
+remain covered. [Task 132](132-loredock-native-context-size.md) is the next scoped step.
 
 ## Evidence and objective
 

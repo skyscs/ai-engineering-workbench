@@ -486,8 +486,12 @@ No product change is justified for those gaps. [Task 130](tasks/130-loredock-col
 attributes the measured first-interval pause and removes redundant ESM compiler-loading
 work. The corrected ordinary completed control improves from 320 to 202 ms, still
 failing 100 ms; useful context remains intact. [Task 131](tasks/131-loredock-prepared-history-list-work.md)
-next addresses the separately observed prepared-history list work excess.
-Real startup/heap failures and earlier browser/list/native-positive failures remain
+introduces an explicit metadata-only summary boundary with one page budget. Its first
+ordinary controls reduce twenty-row list work from 3,168,560 to 257,241 units at both
+history sizes, preserving full detail and source fencing. After CI acceptance,
+[Task 132](tasks/132-loredock-native-context-size.md) diagnoses the retained ordinary
+native-size failure before selecting a lossless representation change.
+Real startup/heap failures and earlier browser/native-positive failures remain
 separate unresolved work; repaired qualification needs a new prospective family.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
