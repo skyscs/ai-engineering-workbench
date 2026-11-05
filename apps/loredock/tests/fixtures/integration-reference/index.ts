@@ -1,4 +1,6 @@
 import { readFile } from 'node:fs/promises';
+// @ts-expect-error Test-only exact compiler loading delta; historical source pins remain unchanged.
+import { beforeCompilerLoading } from '../compiler-loading-reference/verify.mjs';
 import type { CodeAnalysis as CurrentAnalysis } from '../../../src/code-analysis.js';
 import type { CatalogStore as CurrentStore } from '../../../src/store.js';
 // @ts-expect-error Preserved test-only compiled source; manifest verification checks its exact origin.
@@ -17,6 +19,7 @@ const archived: Record<string, string> = {
   'apps/loredock/src/code-analysis.ts': 'code-analysis.ts.txt',
 };
 export async function referenceSource(file: string): Promise<Buffer> {
-  return readFile(Object.hasOwn(archived, file) ? new URL(archived[file]!, import.meta.url)
+  const bytes = await readFile(Object.hasOwn(archived, file) ? new URL(archived[file]!, import.meta.url)
     : new URL('../../../../../' + file, import.meta.url));
+  return beforeCompilerLoading(file, bytes) as Promise<Buffer>;
 }

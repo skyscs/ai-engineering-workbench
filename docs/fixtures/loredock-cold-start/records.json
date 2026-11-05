@@ -1,0 +1,434 @@
+{
+  "schemaVersion": "ordinary-cold-start-attribution/1",
+  "base": "aaec8fd329e3c01b9cb97c1171c4681af1fe3c88",
+  "resourceQualification": false,
+  "modelEligibility": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "trees": [
+    {
+      "path": "cold-first.tar.gz",
+      "sha256": "c3d6dba1beeb39db54adfce43e5b7386d6ce34ed2da49cbab081a01a7c8b9226",
+      "inventory": "cold-first.inventory.json.gz",
+      "inventorySha256": "0fc90cb06bc3cd1a0003e9c76cfcd593e161b9ed976458d465ccd955bc93e814",
+      "entries": 135,
+      "source": "/home/toshiba/aew/task130-cold-first"
+    },
+    {
+      "path": "cold-first-inputs.tar.gz",
+      "sha256": "b9d8559033c95b400b169f3d3d2a87d27123197a1c8d1e0d3c888b577824d319",
+      "inventory": "cold-first-inputs.inventory.json.gz",
+      "inventorySha256": "9b053d8bf2d0450debe6f811bce1ba86a46a07f4d76a8ce728a156496c25bb23",
+      "entries": 227,
+      "source": "/home/toshiba/aew/task130-cold-first-inputs"
+    },
+    {
+      "path": "cold-comparison-first.tar.gz",
+      "sha256": "e7f24b3e3c8a3ce0c8f47056f6c42186ac962897b362dd79f98c5ee8494d519d",
+      "inventory": "cold-comparison-first.inventory.json.gz",
+      "inventorySha256": "ee7c9139c44bd928331227e1b6fb499087b18af94e3a298a6569b381a9d37167",
+      "entries": 205,
+      "source": "/home/toshiba/aew/task130-cold-comparison-first"
+    },
+    {
+      "path": "cold-comparison-first-inputs.tar.gz",
+      "sha256": "9071892272afd6b0b2f3841bc8a19cd46b5842c6d9a9f58e04dbffbfa3ac2fc7",
+      "inventory": "cold-comparison-first-inputs.inventory.json.gz",
+      "inventorySha256": "25e827d8d8a0ce7ea694184a8190609f4d44a4bb92d1424f45557548f39d4648",
+      "entries": 228,
+      "source": "/home/toshiba/aew/task130-cold-comparison-first-inputs"
+    },
+    {
+      "path": "cold-explicit-first.tar.gz",
+      "sha256": "7c578d8bb6c30e33ec0b04ea1eb305f055227eeb63e67e71dda908a16472311d",
+      "inventory": "cold-explicit-first.inventory.json.gz",
+      "inventorySha256": "e08df21867b278d44db2cf276839e23f3bf85c7f528c4795fa8c578a8c115e9f",
+      "entries": 206,
+      "source": "/home/toshiba/aew/task130-cold-explicit-first"
+    },
+    {
+      "path": "cold-explicit-first-inputs.tar.gz",
+      "sha256": "95a98c42729fa53eba4a866aa90323cd9f059fd1a6075f0e6318a6f80c07c2e1",
+      "inventory": "cold-explicit-first-inputs.inventory.json.gz",
+      "inventorySha256": "0c2d38eae3f45e0790b50297b55c237876caa7365d84563ba5b09e923718aa9f",
+      "entries": 228,
+      "source": "/home/toshiba/aew/task130-cold-explicit-first-inputs"
+    },
+    {
+      "path": "cold-retention.tar.gz",
+      "sha256": "1be851c55dd9b6f7bf3f54fef8af80420dde91c12c01a90a3f7435378d6a9369",
+      "inventory": "cold-retention.inventory.json.gz",
+      "inventorySha256": "937490cf9396ddf35d3893abf39681cdc61d5c5eb4b5fbac51d46c1be340f4c8",
+      "entries": 24,
+      "source": "/home/toshiba/aew/task130-cold-retention"
+    },
+    {
+      "path": "cold-review-inputs.tar.gz",
+      "sha256": "58f7462f3d9f1a4e33fcc80080abda41e7c41461fef2bbf38bc0a11fa421815a",
+      "inventory": "cold-review-inputs.inventory.json.gz",
+      "inventorySha256": "f1cb0d4c3a6739a0475c9f63aadfa56ab3c8794b4ae3b439ea8250bc440c0e57",
+      "entries": 8,
+      "source": "/home/toshiba/aew/task130-cold-review-inputs"
+    },
+    {
+      "path": "cold-static-inputs.tar.gz",
+      "sha256": "d0081681f70557a303179a73e504e08b34cde59bd8342673cc3fa86dc0ce9274",
+      "inventory": "cold-static-inputs.inventory.json.gz",
+      "inventorySha256": "fbe7c0bc70292db6a2feacbf9b604af85574f08ad371ee0ed24cbdc8dc1f1af5",
+      "entries": 2,
+      "source": "/home/toshiba/aew/task130-cold-static-inputs"
+    },
+    {
+      "path": "cold-reference-inputs.tar.gz",
+      "sha256": "392381e0311c78ac1f1b530ab64eada56b82e6fd26b2220b9c7bcdaa26f32591",
+      "inventory": "cold-reference-inputs.inventory.json.gz",
+      "inventorySha256": "e11ce4f1d67a5eb6fedbe74d9017fe641c1ed6f644444ab1e6a1f034b6864000",
+      "entries": 14,
+      "source": "/home/toshiba/aew/task130-cold-reference-inputs"
+    },
+    {
+      "path": "cold-script-first-native-1.tar.gz",
+      "sha256": "6f0c5b16faff10823d241bea53a395e8e2d51e51065c1087e9f44cbfe501b320",
+      "inventory": "cold-script-first-native-1.inventory.json.gz",
+      "inventorySha256": "33db6f11baef78f71bb2891e7f2a7da86b7f59c756f06717e29d1b43d81a1081",
+      "entries": 4,
+      "source": "/tmp/native-driver-8jxLI9",
+      "limitation": "First ordinary regression failure; retained without rerunning or replacing this directory."
+    },
+    {
+      "path": "cold-script-first-native-2.tar.gz",
+      "sha256": "8a4976f3f83fca559e6f31f22adb38dd8df5f3040cbdca1cb17db9d2afcc75fa",
+      "inventory": "cold-script-first-native-2.inventory.json.gz",
+      "inventorySha256": "b50cc4ddb9cdb3d31f190eaec92081f09eedb4b6536bf6584f7ad9fba5e41536",
+      "entries": 4,
+      "source": "/tmp/native-driver-9uomvS",
+      "limitation": "First ordinary regression failure; retained without rerunning or replacing this directory."
+    },
+    {
+      "path": "cold-script-first-native-3.tar.gz",
+      "sha256": "cfc6d2343e10cf4ad0b69fa164d9b57cf3b29643f00f9d858bed7301a9a03838",
+      "inventory": "cold-script-first-native-3.inventory.json.gz",
+      "inventorySha256": "78364f2700eefb9c05b0942446a8a0a4cb857c56894008c699232a39c3c76456",
+      "entries": 4,
+      "source": "/tmp/native-driver-CvshfG",
+      "limitation": "First ordinary regression failure; retained without rerunning or replacing this directory."
+    },
+    {
+      "path": "cold-script-first-native-4.tar.gz",
+      "sha256": "3c13323e8d99cd1872ed1ceff0a999b562da8d96f907cadaeb90881494a848b4",
+      "inventory": "cold-script-first-native-4.inventory.json.gz",
+      "inventorySha256": "0be1b300354c04ef03c28994cd38b1762d540f87ce8d6b896e8738f42de720c1",
+      "entries": 4,
+      "source": "/tmp/native-driver-MA5oPj",
+      "limitation": "First ordinary regression failure; retained without rerunning or replacing this directory."
+    }
+  ],
+  "logs": [
+    {
+      "path": "cold-install.log.gz",
+      "archiveSha256": "0f4bc3f45ce780fa3d35b81e55833d25be234cda266f5cc9a05b3cac805abf8b",
+      "rawBytes": 326,
+      "rawSha256": "65b3deace1c509fc11a8efc5af86563aadd9b3fe855f2634ca1e459d49955fa2"
+    },
+    {
+      "path": "cold-build.log.gz",
+      "archiveSha256": "e77acffef90e5d318ec24b0191ab246afb72359ea90f392563d05a82ef5f3f86",
+      "rawBytes": 2350,
+      "rawSha256": "0e50e67826f2c98c8c813336d60c3d9f43e7a200f0bf556d154e7fe463e7bb90"
+    },
+    {
+      "path": "cold-input-seal.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "cold-first.log.gz",
+      "archiveSha256": "9b437360f3e13170d0263abf53d0fc1035e7b6be96f45d96d12d6647d215a46e",
+      "rawBytes": 3352,
+      "rawSha256": "73dd43b40b32481b1a635b5a2d3ccf91caa3fad466db3dcaf58032c515ebe5bb"
+    },
+    {
+      "path": "cold-comparison-first.log.gz",
+      "archiveSha256": "d302957c9efb9d8e8466263ec0c880c1e7f026a644f27e48a0ae5f5447250d89",
+      "rawBytes": 4899,
+      "rawSha256": "39adda1980e8206ce3a3c95f1a788e9d4d474439f3615e0b395989116ad11950"
+    },
+    {
+      "path": "cold-explicit-first.log.gz",
+      "archiveSha256": "6909421524c29fb1f616e2e4a9fa50b2aba9d5220cd67de506e038fdebded79b",
+      "rawBytes": 4626,
+      "rawSha256": "1f708b1c3a296bc169af8e13eb0818dae15ddbe167d1baa5eb2d1e97af83022d"
+    },
+    {
+      "path": "cold-typecheck-first.log.gz",
+      "archiveSha256": "be810160e4f67d3c65b2cb174f630b2e482dbaaef9762365fe1904a6b8c6453c",
+      "rawBytes": 142,
+      "rawSha256": "00ef552617370cdcee8718732b8c28749290ae202c6290d3f1dc2f11d8e1ef49"
+    },
+    {
+      "path": "cold-typecheck-second.log.gz",
+      "archiveSha256": "be810160e4f67d3c65b2cb174f630b2e482dbaaef9762365fe1904a6b8c6453c",
+      "rawBytes": 142,
+      "rawSha256": "00ef552617370cdcee8718732b8c28749290ae202c6290d3f1dc2f11d8e1ef49"
+    },
+    {
+      "path": "cold-typecheck-third.log.gz",
+      "archiveSha256": "be810160e4f67d3c65b2cb174f630b2e482dbaaef9762365fe1904a6b8c6453c",
+      "rawBytes": 142,
+      "rawSha256": "00ef552617370cdcee8718732b8c28749290ae202c6290d3f1dc2f11d8e1ef49"
+    },
+    {
+      "path": "cold-repair-build.log.gz",
+      "archiveSha256": "b2d1e5b25e4d2c99c1068adc33bc1bef29dbfc38e2c9de54c79dd516d5dfc594",
+      "rawBytes": 117,
+      "rawSha256": "f0878c7e62d3918e41c90ffd6e0c314ff30e77da357409318cc2ca55f2a9446a"
+    },
+    {
+      "path": "cold-explicit-build.log.gz",
+      "archiveSha256": "b2d1e5b25e4d2c99c1068adc33bc1bef29dbfc38e2c9de54c79dd516d5dfc594",
+      "rawBytes": 117,
+      "rawSha256": "f0878c7e62d3918e41c90ffd6e0c314ff30e77da357409318cc2ca55f2a9446a"
+    },
+    {
+      "path": "cold-explicit-build-final.log.gz",
+      "archiveSha256": "b2d1e5b25e4d2c99c1068adc33bc1bef29dbfc38e2c9de54c79dd516d5dfc594",
+      "rawBytes": 117,
+      "rawSha256": "f0878c7e62d3918e41c90ffd6e0c314ff30e77da357409318cc2ca55f2a9446a"
+    },
+    {
+      "path": "cold-explicit-build-ordered.log.gz",
+      "archiveSha256": "b2d1e5b25e4d2c99c1068adc33bc1bef29dbfc38e2c9de54c79dd516d5dfc594",
+      "rawBytes": 117,
+      "rawSha256": "f0878c7e62d3918e41c90ffd6e0c314ff30e77da357409318cc2ca55f2a9446a"
+    },
+    {
+      "path": "cold-tests-first.log.gz",
+      "archiveSha256": "d39513c3397c8f10ab4e0ab32435badfff74863775bfb87e67cdf07b64f63b6c",
+      "rawBytes": 4570,
+      "rawSha256": "0499eba30eac745a03c8db159561cf9d135f35457979c329b855ca1f55787a72"
+    },
+    {
+      "path": "cold-tests-second.log.gz",
+      "archiveSha256": "98ef737971f8df3f9678bced1665afda462f664fc4fc2ab8736c0580b2df8d31",
+      "rawBytes": 4570,
+      "rawSha256": "a32387e0525a83bd5ea5756d678e6bc718222dfc258e64f881d9de6aeaa2be08"
+    },
+    {
+      "path": "cold-tests-third.log.gz",
+      "archiveSha256": "117d4c71a2e24d08f83f7f3d6ff3acc70a81fde8340f2df21b548c9290da9103",
+      "rawBytes": 7862,
+      "rawSha256": "fb20405754dbe6e76486093715f68931bb070a0e323516cd3c800906de49111c"
+    },
+    {
+      "path": "cold-retain-first.log.gz",
+      "archiveSha256": "b625dfd419a450299e18f7e41e8d02e7c58f61f0e6797a8eaeacba0f85b1a401",
+      "rawBytes": 800,
+      "rawSha256": "5becb2d438e530cd868ea67a2783f26c5b15cf55f5c1da434b74207840cedeff"
+    },
+    {
+      "path": "cold-parity-first.log.gz",
+      "archiveSha256": "513e8c498e096f933c1698b319b5845325d6ae89b469e152666832f9b005c80a",
+      "rawBytes": 69,
+      "rawSha256": "af8c89424e6161004c8cab3b7b179f68d16df0a95708f17d2d51b7e451e892fb"
+    },
+    {
+      "path": "cold-static-first.log.gz",
+      "archiveSha256": "a6b775479a320014849b07997c691b65409839e01d29e16af555269770b08e40",
+      "rawBytes": 803,
+      "rawSha256": "f77241c2016777506cd60e7c8f41d0e7fa679ea4809e6a7cf5a86c52a90b7143"
+    },
+    {
+      "path": "cold-static-second.log.gz",
+      "archiveSha256": "bc98c3885367ec5e926801fe52a63e51f25ea3268bc17b4190d2a9ad55871373",
+      "rawBytes": 294,
+      "rawSha256": "da749f8a10146e6fb2593794567027ec986e94fe3aa9ef18256c8c7924b08eca"
+    },
+    {
+      "path": "cold-archive-first.log.gz",
+      "archiveSha256": "918f564807f626d6729df5edf1d33e2e33b892b48bf14d45aa9ff87f2ab4c971",
+      "rawBytes": 84,
+      "rawSha256": "bcba396292a64d263db612d783295d7a000afb087c1c62d443611a9eb8498482"
+    },
+    {
+      "path": "cold-ci-initial-push-job.log.gz",
+      "archiveSha256": "18fce02aff6499fed7946211bc5624ecdc42bb75b3b89f00c995d05b69fdb93c",
+      "rawBytes": 451911,
+      "rawSha256": "0ada2298e0b8fe3aec8cea0002d36cd24f9b3a6270aca5340a6f1417c014385c"
+    },
+    {
+      "path": "cold-ci-initial-pr-job.log.gz",
+      "archiveSha256": "d602272f5f7fa87956c62aa0db2529059cc4d2c70865edb711aef93ad9ba6f30",
+      "rawBytes": 451197,
+      "rawSha256": "adfe121923f86532b5722c6e7086939e4e354d3ddc1c3199e60f7ff875294eba"
+    },
+    {
+      "path": "cold-reference-first.log.gz",
+      "archiveSha256": "0c9b2632bd2b447230daf2f68af5b7b94a853a1fd34bc05ad229742dc195b17d",
+      "rawBytes": 6630,
+      "rawSha256": "dcff70a585b1bb0a8015ad78aff3d495d6bcfc74d0d0087214985698994679c0"
+    },
+    {
+      "path": "cold-reference-second.log.gz",
+      "archiveSha256": "4e826b28df7abb1109249a2d76e9cf04de3e25b3fa1aa46bb76e2c9506746f14",
+      "rawBytes": 3589,
+      "rawSha256": "2f237f657076b77584a0332ec36ccd41df99839ecef0924e47a75ceea1f94c7f"
+    },
+    {
+      "path": "cold-reference-typecheck.log.gz",
+      "archiveSha256": "be810160e4f67d3c65b2cb174f630b2e482dbaaef9762365fe1904a6b8c6453c",
+      "rawBytes": 142,
+      "rawSha256": "00ef552617370cdcee8718732b8c28749290ae202c6290d3f1dc2f11d8e1ef49"
+    },
+    {
+      "path": "cold-script-tests-first.log.gz",
+      "archiveSha256": "35c47e919cb8f391f1e08e92880f1526118d73ab09a86983a5bc5ce876246321",
+      "rawBytes": 110887,
+      "rawSha256": "e20015ddb29b58cba3e80b08771877d027c988c3529bd9a75f10953c9ff92e12"
+    },
+    {
+      "path": "cold-script-tests-second.log.gz",
+      "archiveSha256": "26bc21bb9192bb215cc0a789b48468d59a2e1f818284faaea2ab502cc98c9aae",
+      "rawBytes": 19900,
+      "rawSha256": "a6c0d484b1e3d8a9069b0cece772e6c1cb6c5d47c380d959e81496b5a920fccc"
+    }
+  ],
+  "retention": {
+    "catalogs": [
+      {
+        "copy": "/home/toshiba/aew/task130-cold-retention/cold-first/run/production/case/data",
+        "integrity": "ok",
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "copy": "/home/toshiba/aew/task130-cold-retention/cold-comparison-first/run/completed/case/data",
+        "integrity": "ok",
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "copy": "/home/toshiba/aew/task130-cold-retention/cold-comparison-first/run/constant/case/data",
+        "integrity": "ok",
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "copy": "/home/toshiba/aew/task130-cold-retention/cold-explicit-first/run/completed/case/data",
+        "integrity": "ok",
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "copy": "/home/toshiba/aew/task130-cold-retention/cold-explicit-first/run/constant/case/data",
+        "integrity": "ok",
+        "attempts": 0,
+        "witnesses": 0
+      }
+    ],
+    "runs": [
+      {
+        "label": "cold-first",
+        "rawEntries": 135,
+        "rawInputsUnchanged": true
+      },
+      {
+        "label": "cold-comparison-first",
+        "rawEntries": 205,
+        "rawInputsUnchanged": true
+      },
+      {
+        "label": "cold-explicit-first",
+        "rawEntries": 206,
+        "rawInputsUnchanged": true
+      }
+    ],
+    "gitIdentities": 20,
+    "sourceFiles": 62,
+    "originalChecks": 40,
+    "httpResponses": 103,
+    "sessionRedactions": 5,
+    "preparations": 5,
+    "admissions": 0,
+    "stableRepeatedReviews": 5,
+    "componentChecks": 5,
+    "modelCalls": 0,
+    "reservedFamilyReads": 0,
+    "resourceQualification": false,
+    "workspaceModuleDeltas": [
+      [
+        "apps/loredock/dist/code-typescript.js"
+      ],
+      [
+        "apps/loredock/dist/code-typescript.js"
+      ]
+    ]
+  },
+  "parity": {
+    "compiledParserFunctionIdentical": true,
+    "comparisons": [
+      {
+        "control": "completed",
+        "source": "a-permit-ui",
+        "file": "ui/request.ts",
+        "factsSha256": "20239a5ec110214f4612b91e523b319808c49ab7d759680f7ad503cb345471ed"
+      },
+      {
+        "control": "completed",
+        "source": "a-permit-ui",
+        "file": "ui/AAApply.vue",
+        "factsSha256": "3f957754b947d9b0032399876186e4b8103f50f06d03ab5d3df9c8e7d40d1d13"
+      },
+      {
+        "control": "completed",
+        "source": "a-permit-ui",
+        "file": "ui/ZZLocate.vue",
+        "factsSha256": "65e3843715321ac240ff62d3047217da409217be5cdd162009b042b514cfb11d"
+      },
+      {
+        "control": "constant",
+        "source": "a-permit-ui",
+        "file": "ui/request.ts",
+        "factsSha256": "20239a5ec110214f4612b91e523b319808c49ab7d759680f7ad503cb345471ed"
+      },
+      {
+        "control": "constant",
+        "source": "a-permit-ui",
+        "file": "ui/AAApply.vue",
+        "factsSha256": "3f957754b947d9b0032399876186e4b8103f50f06d03ab5d3df9c8e7d40d1d13"
+      },
+      {
+        "control": "constant",
+        "source": "a-permit-ui",
+        "file": "ui/ZZLocate.vue",
+        "factsSha256": "65e3843715321ac240ff62d3047217da409217be5cdd162009b042b514cfb11d"
+      },
+      {
+        "control": "constant",
+        "source": "z-independent-notes",
+        "file": "diagnostics/flag.ts",
+        "factsSha256": "50dccdd711e53a8584b38c0d6f2be7626c8f59963ca46ac9e98d6b04b1a7e797"
+      }
+    ],
+    "resourceQualification": false,
+    "limitation": "Ordinary parser parity and unchanged compiled dependency bytes; not semantic or resource qualification."
+  },
+  "initialCI": {
+    "head": "c60b8142a2a57e5e42a4ca705c89e6741a84c555",
+    "push": 42104317222,
+    "pull_request": 42104365030,
+    "conclusion": "failure",
+    "applicationTestsPerEvent": 664,
+    "applicationPassPerEvent": 660,
+    "applicationFailuresPerEvent": 4,
+    "laterSuitesRun": false,
+    "completeJobLogsRetained": true,
+    "initialLogDownloadError": "gh run --log could not connect to results-receiver.actions.githubusercontent.com; job-log API downloads completed."
+  },
+  "correctedChecks": {
+    "focusedHistorical": 11,
+    "focusedScripts": 71,
+    "expectedFullCI": 1034,
+    "applicationChangedAfterCorrectedProductionObservation": false
+  }
+}

@@ -5,6 +5,8 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
+import { createRequire } from 'node:module';
+import { directCompilerDependency } from '../loredock-cold-start/compiler-import.mjs';
 import { assertLaunchBoundary } from '../loredock-prepared-flow/execution-verify.mjs';
 import { inputFor, definition, executionPlan } from '../loredock-prepared-flow/execution-inputs.mjs';
 import { coordinateOrdinary } from '../loredock-prepared-flow/coordinator.mjs';
@@ -61,13 +63,20 @@ test('the ordinary coordinator still rejects the reserved family before writing 
   await assert.rejects(readFile(path.join(directory, 'claim')), error => error.code === 'ENOENT');
 });
 
-test('static import audit resolves the real production ESM server and all workspace dependencies without candidate execution', () => {
+test('historical ESM audit and explicit current compiler resolution preserve static dependency identity without execution', async () => {
   const audit = JSON.parse(execFileSync(process.execPath, ['--experimental-import-meta-resolve',
     'scripts/loredock-prepared-flow/import-audit.mjs'], { cwd: root, encoding: 'utf8' }));
   assert.equal(audit.candidateModulesEvaluated, 0); assert(audit.honoEntry.endsWith('/@hono/node-server/dist/index.mjs'));
   assert(Object.keys(audit.modules).some(file => file.endsWith('/apps/loredock/dist/question-preparation.js')));
   assert(Object.keys(audit.modules).some(file => file.endsWith('/scripts/loredock-prepared-flow/matrix-cases.mjs')));
-  assert(audit.externalEntries.some(file => file.endsWith('/typescript/lib/typescript.js')));
+  // The consumed ESM-only auditor remains unchanged; it cannot discover the new CommonJS edge.
+  assert.equal(audit.externalEntries.some(file => file.endsWith('/typescript/lib/typescript.js')), false);
+  const file = path.join(root, 'apps/loredock/dist/code-typescript.js'), code = await readFile(file, 'utf8');
+  const specifier = directCompilerDependency(code), compiler = createRequire(file).resolve(specifier);
+  assert(compiler.endsWith('/typescript/lib/typescript.js'));
+  assert.equal(await realpath(compiler), await realpath(path.join(root, 'apps/loredock/node_modules/typescript/lib/typescript.js')));
+  for (const bad of [code.replace("('typescript')", "('other')"), code.replace('const ts =', '// const ts ='),
+    code + '\nconst alias = createRequire;\n']) assert.throws(() => directCompilerDependency(bad));
 });
 
 test('seal inventory detects changed bytes, extra files and changed symlink targets without following an input file descriptor', async t => {

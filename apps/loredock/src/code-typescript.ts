@@ -1,10 +1,13 @@
-import ts from 'typescript';
+// Load the CommonJS compiler directly; ESM namespace discovery adds cold-start work.
+import { createRequire } from 'node:module';
+import type * as TypeScript from 'typescript';
 import { emptyFacts, type CodeFacts, type SymbolFact } from './code-facts.js';
 import { headerLimits, requestHeaderProperties } from './http-headers.js';
 
+const ts: typeof TypeScript = createRequire(import.meta.url)('typescript');
 const identifier = /^[A-Za-z_$][\w$]*$/;
-const literal = (node: ts.Node | undefined): string | undefined => node && ts.isStringLiteralLike(node) ? node.text : undefined;
-const propertyName = (node: ts.PropertyName): string | undefined => ts.isIdentifier(node) || ts.isStringLiteral(node) ? node.text : undefined;
+const literal = (node: TypeScript.Node | undefined): string | undefined => node && ts.isStringLiteralLike(node) ? node.text : undefined;
+const propertyName = (node: TypeScript.PropertyName): string | undefined => ts.isIdentifier(node) || ts.isStringLiteral(node) ? node.text : undefined;
 
 /** Parse text only: no program, tsconfig, package resolution, plugins or source execution. */
 export function typescriptFacts(content: string, filePath: string): CodeFacts {
@@ -19,16 +22,16 @@ export function typescriptFacts(content: string, filePath: string): CodeFacts {
     const source = ts.createSourceFile(filePath, sourceText, ts.ScriptTarget.Latest, true,
       filePath.endsWith('.js') ? ts.ScriptKind.JS : ts.ScriptKind.TS);
     // createSourceFile's syntax diagnostics are present in the locked compiler 5.9.3.
-    const diagnostics = (source as ts.SourceFile & { parseDiagnostics: readonly ts.Diagnostic[] }).parseDiagnostics;
+    const diagnostics = (source as TypeScript.SourceFile & { parseDiagnostics: readonly TypeScript.Diagnostic[] }).parseDiagnostics;
     if (diagnostics.length) { result.gaps.push('invalid-typescript-syntax'); return result; }
-    const all: ts.Node[] = [], stack: { node: ts.Node; depth: number }[] = [{ node: source, depth: 0 }];
+    const all: TypeScript.Node[] = [], stack: { node: TypeScript.Node; depth: number }[] = [{ node: source, depth: 0 }];
     while (stack.length) {
       const { node, depth } = stack.pop()!;
       if (all.length >= 12000 || depth > 96) { result.gaps.push('typescript-syntax-limit'); return result; }
       all.push(node); ts.forEachChild(node, child => { stack.push({ node: child, depth: depth + 1 }); });
     }
     const bindings = new Map<string, number>(), assigned = new Set<string>();
-    function bind(name: ts.BindingName) {
+    function bind(name: TypeScript.BindingName) {
       if (ts.isIdentifier(name)) bindings.set(name.text, (bindings.get(name.text) ?? 0) + 1);
       else for (const element of name.elements) if (ts.isBindingElement(element)) bind(element.name);
     }
@@ -53,7 +56,7 @@ export function typescriptFacts(content: string, filePath: string): CodeFacts {
           { imported: element.propertyName?.text ?? element.name.text, module: statement.moduleSpecifier.text });
       }
     }
-    type Body = ts.Block | ts.ConciseBody;
+    type Body = TypeScript.Block | TypeScript.ConciseBody;
     const functions: { symbol: SymbolFact; body: Body; dojo?: string }[] = [];
     for (const statement of source.statements) {
       if (ts.isFunctionDeclaration(statement) && statement.name && statement.body) {
@@ -114,7 +117,7 @@ export function typescriptFacts(content: string, filePath: string): CodeFacts {
         if (!functions.length) result.gaps.push('unsupported-amd-shape');
       }
     }
-    function requestUrl(node: ts.Expression): Record<string, string> | undefined {
+    function requestUrl(node: TypeScript.Expression): Record<string, string> | undefined {
       let value = literal(node), baseExpression = 'same-origin';
       if (ts.isTemplateExpression(node) && !node.head.text && node.templateSpans.length === 1) {
         const span = node.templateSpans[0]!;
@@ -126,10 +129,10 @@ export function typescriptFacts(content: string, filePath: string): CodeFacts {
       if (!value.startsWith('/') || value.startsWith('//')) return;
       return { path: value, baseExpression };
     }
-    function requestHeaders(options: ts.Expression | undefined): Record<string, string> {
+    function requestHeaders(options: TypeScript.Expression | undefined): Record<string, string> {
       if (!options) return requestHeaderProperties([]);
       if (!ts.isObjectLiteralExpression(options)) return requestHeaderProperties();
-      let headers: ts.Expression | undefined;
+      let headers: TypeScript.Expression | undefined;
       for (const prop of options.properties) {
         if (!ts.isPropertyAssignment(prop) || !propertyName(prop.name) || propertyName(prop.name) === '__proto__') return requestHeaderProperties();
         if (propertyName(prop.name) === 'headers') {
@@ -151,7 +154,7 @@ export function typescriptFacts(content: string, filePath: string): CodeFacts {
     }
     for (const entry of functions.slice(0, 100)) {
       result.symbols.push(entry.symbol);
-      const work: ts.Node[] = [entry.body];
+      const work: TypeScript.Node[] = [entry.body];
       while (work.length) {
         const node = work.pop()!;
         if (node !== entry.body && ts.isFunctionLike(node)) { result.gaps.push('nested-function-not-followed'); continue; }

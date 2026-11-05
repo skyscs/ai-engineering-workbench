@@ -4,6 +4,8 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import ts from 'typescript';
 import { sha256 } from '../src/extract.js';
+// @ts-expect-error Test-only exact compiler loading delta; historical dependency pins remain unchanged.
+import { beforeCompilerLoading } from './fixtures/compiler-loading-reference/verify.mjs';
 // @ts-expect-error Existing deterministic test-only compiler/import relocation helper.
 import { compilerOptions, emitSource, runtimeImports, relocateSource } from './fixtures/integration-reference/compile.mjs';
 
@@ -22,7 +24,8 @@ test('analysis write reference preserves independent source, both import variant
   const visited = new Set<string>(), external = new Set<string>(), dependencies: Record<string, string> = {};
   async function visit(file: string) {
     if (visited.has(file)) return; visited.add(file);
-    const record = manifest.sources[file], raw = await readFile(record ? new URL(record.source, directory) : new URL(file, root));
+    const record = manifest.sources[file];
+    const raw = await beforeCompilerLoading(file, await readFile(record ? new URL(record.source, directory) : new URL(file, root))) as Buffer;
     if (!record) dependencies[file] = sha256(raw);
     for (const { name } of runtimeImports(emitSource(raw.toString(), file)) as { name: string }[]) {
       if (name.startsWith('.')) await visit(path.posix.normalize(path.posix.join(path.posix.dirname(file), name.replace(/\.js$/, '.ts'))));

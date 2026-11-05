@@ -1,5 +1,39 @@
 # Development status
 
+## Task 130 — Direct compiler loading (result retained)
+
+Task 129 is accepted through [PR #162](https://github.com/skyscs/ai-engineering-workbench/pull/162):
+both exact-head CI events pass 1,032 tests at `f3615e6`, with complete logs verified
+before identical-tree merge `aaec8fd`. The four ordinary functional controls pass,
+while every first timer interval still fails the unchanged 100 ms limit.
+
+[Task 130](../tasks/130-loredock-cold-start-pause.md) declares a
+[bounded ordinary attribution](fixtures/loredock-cold-start/README.md): actual
+production context preparation first, then five separate component processes.
+The same installed TypeScript compiler is compared through ESM and CommonJS loading.
+The first observations attribute a substantial cost to ESM loading of the CommonJS
+compiler. Explicit `createRequire` retains the same compiler and identical compiled
+parser body. Corrected production controls retain useful context; the completed
+control reduces its first raw gap from 320.039 to 202.277 ms and sampled heap from
+53,555,392 to 35,534,904 bytes. The 100 ms limit still fails. The initial import-equals
+revision broke `tsx` source execution; its failure is retained, and the corrected
+source/production implementation passes 31 focused tests and strict typecheck/build.
+Five complete catalog copies and 546 unchanged raw entries preserve all observations.
+Initial PR #163 CI fails four historical source pins in each event. Exact old source
+and emitted bytes now support strictly verified loading deltas without rewriting any
+historical manifest. Eleven focused historical checks pass. Nine further local script
+failures expose older byte pins and ESM-only dependency observers; their failures are
+retained, and all 71 affected checks pass with explicit CommonJS identity accounting.
+The consumed Task 128 auditor remains unchanged and is explicitly insufficient for
+the new application's external compiler edge. Final-head CI acceptance is pending.
+
+The parser fingerprint changes with the implementation; existing inventories require
+explicit reanalysis. The historical Task 128 application seal no longer describes the
+new application, and none of its frozen files are rewritten. Defaults, schema and
+model eligibility stay unchanged. After exact-head acceptance,
+[Task 131](../tasks/131-loredock-prepared-history-list-work.md) addresses measured
+prepared-history list work through a separately reviewed bounded summary contract.
+
 ## Task 129 — Ordinary partial-inventory preparation diagnosis (result retained)
 
 The failed Task 128 result is accepted through [PR #161](https://github.com/skyscs/ai-engineering-workbench/pull/161):

@@ -1,7 +1,8 @@
 # Task 130 — Attribute and reduce the daemon cold-start pause
 
-Status: scoped after Task 129; begin after its result PR passes both exact-head CI
-events and merges with an identical tree.
+Status: ordinary attribution and minimal loading improvement complete; result awaiting
+exact-head CI and merge. See the [retained result](../docs/fixtures/loredock-cold-start/README.md).
+The raw startup-gap limit remains failed.
 
 ## Evidence and objective
 
