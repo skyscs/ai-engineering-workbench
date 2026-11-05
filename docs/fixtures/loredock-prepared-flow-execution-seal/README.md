@@ -3,7 +3,9 @@
 This is the final execution boundary for Task 128, after accepted
 [adapter controls](../loredock-prepared-flow-execution-boundary/README.md).
 It is not a resource result or permission to execute a model. The reserved
-`kiln-prepared-flow-127` family remains unconsumed while the manifest is prepared.
+`kiln-prepared-flow-127` family remains unconsumed pending final-head CI acceptance.
+The [manifest](manifest.json) and [complete byte inventory](manifest.inventory.json.gz)
+are committed and verified without candidate execution.
 
 ## Exact entry and consumption
 
@@ -72,8 +74,28 @@ production build and verification-only original seal pass.
 
 The [records](records.json) retain accepted PR #159 CI logs: both push and pull_request
 passed 1,023 tests at exact head `1a1f5d5`; complete logs/counts were checked before merge
-`3fc1b46`, whose tree is identical. Final manifest creation, static verification and
-exact-head CI results will be added before any reserved execution.
+`3fc1b46`, whose tree is identical. The final code is committed at `c100df1`; manifest
+commit `28b5be1` binds 17,254 inventory records (13,780 files, 1,861 links and 1,613
+directories), 118 workspace graph modules and six resolved external entries. The
+3,789,709,746 file bytes count sealed paths, including repeated hardlinks, rather than
+unique physical storage. The prior-observation audit covers 161 owned roots and 96
+source records, with no reserved materialization or claim found. The committed manifest
+verification passes. Three ordinary control archives retain 18 entries, including the
+real isolated owner and the file/link mutation controls.
+
+After both final-head CI events pass and the identical-tree merge is accepted, execute
+the following once from this worktree. The verifier refuses a changed host, occupied
+application port, uncommitted manifest, existing output or any consumption claim:
+
+```sh
+/usr/bin/python3 -I -S -B scripts/loredock-prepared-flow/execution-seal.py run \
+  /home/toshiba/aew/worktrees/task128-execution-seal/docs/fixtures/loredock-prepared-flow-execution-seal/manifest.json
+```
+
+The owner destination is `/home/toshiba/aew/task128-kiln-first`; its shared marker is
+`/home/toshiba/aew/task128-kiln-first.claim.json`. Do not remove, rewrite or retry either.
+The first reserved results belong in a separate retained result fixture, including all
+failed, incomplete and not-run cases. This seal does not grant resource/model eligibility.
 
 The first data-only manifest creation stopped before writing either manifest artifact:
 the distribution's `sitecustomize.py` link resolves to `/etc/python3.14/sitecustomize.py`.

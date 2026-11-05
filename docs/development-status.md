@@ -9,7 +9,8 @@ catalogs and unchanged raw inputs. Supplemental offline content/lifetime binding
 accepted after both exact-head CI events passed 1,016 tests. Execution adapter corrections
 are accepted after ordinary controls and both exact-head CI events pass 1,023 tests.
 The [final execution boundary](fixtures/loredock-prepared-flow-execution-seal/README.md)
-now has data-only and actual-owner tests; its committed manifest and validation remain outstanding. Earlier
+now passes six data-only/actual-owner tests. Its committed executable/environment manifest
+verifies 17,254 inventory records without candidate reads; final-head CI is pending. Earlier
 resource/required-positive failures remain unresolved.
 The reserved family has zero candidate reads; no model runs.
 Known ordinary failures include partial analysis of constant-only padding, a missing

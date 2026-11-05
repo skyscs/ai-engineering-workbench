@@ -24,6 +24,238 @@
       "sha256": "2307340d34d01f20ed17f95fd2b01d546c86fc5e72ec8d1a3704d68fd155ea4a",
       "uncompressedBytes": 729099,
       "uncompressedSha256": "8c7f09a0de56f3bb134f59bf5b680d9899cb96125e4d3b2f3a7d87025e60b8a4"
+    },
+    {
+      "path": "execution-seal-install.log.gz",
+      "bytes": 184,
+      "sha256": "f24440a84d21d695c4926d4a94a8a117f9170a3295ed0aaaf7102dddca649879",
+      "uncompressedBytes": 326,
+      "uncompressedSha256": "4bda8413a69e79c3c836891cc76de4da64d58b110d5fef736518bd313c218091"
+    },
+    {
+      "path": "execution-seal-build.log.gz",
+      "bytes": 688,
+      "sha256": "26ace578d0abfc55c74a4a7590befd75fb09639b46f76b4caa410da67d41582f",
+      "uncompressedBytes": 2354,
+      "uncompressedSha256": "4c1d168db705285a1fa307a7e36af473f353d070e14787209af8f0c26d2bb134"
+    },
+    {
+      "path": "execution-seal-input-seal.log.gz",
+      "bytes": 560,
+      "sha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "uncompressedBytes": 1379,
+      "uncompressedSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "execution-seal-tests-first.log.gz",
+      "bytes": 1764,
+      "sha256": "4c411a7bc9627100029e9a665e16dc7d6ac0dcaab89f17f2a64c36208ff42979",
+      "uncompressedBytes": 6575,
+      "uncompressedSha256": "5eb30a7456ef9ad631ac5b16d70af35b61416d42602ce1beda897d4d7ccac66f"
+    },
+    {
+      "path": "execution-seal-tests-second.log.gz",
+      "bytes": 679,
+      "sha256": "1458da2e15031c7567d1a4862517528fcd8fc88b0f65f4fc83c2b34a08c3f520",
+      "uncompressedBytes": 1970,
+      "uncompressedSha256": "9c43b85cf06adedc70c632bd7792bbc437636a9ea4ec19ce478950bdb489adac"
+    },
+    {
+      "path": "execution-seal-matrix-plan-tests.log.gz",
+      "bytes": 375,
+      "sha256": "db7e7bcfa348504585b5a2650272e393c42e41e983b3cab72e6e3b4d702d0274",
+      "uncompressedBytes": 903,
+      "uncompressedSha256": "fddf245e6957194c60c3f84edaa1ad64c61ae459b242c7986ba333f9bd7d89e9"
+    },
+    {
+      "path": "execution-seal-create-first.log.gz",
+      "bytes": 340,
+      "sha256": "d4cfe719627792116cde4c76c257c491290bbfa34c1fe5c7266cb0df75788590",
+      "uncompressedBytes": 973,
+      "uncompressedSha256": "00b6c82bc2abe28dee94768098b9fc1e77d77e0e36ecd9921f9645a7173eebc5"
+    },
+    {
+      "path": "execution-seal-create-second.log.gz",
+      "bytes": 214,
+      "sha256": "0baec541bdcdd7474a4b485e1180de00acdf4e847ae745cbc7ab6688afa311ba",
+      "uncompressedBytes": 272,
+      "uncompressedSha256": "d6ea9cc16b6455ce58cd4c5a0f1fd5050660ba214cf3883518e1d97ddf53b323"
+    },
+    {
+      "path": "execution-seal-verify-first.log.gz",
+      "bytes": 187,
+      "sha256": "7c8bc4edb89c2717a9a1ec7a7a29bda4bd192918e102b67544041b3a1f66ad73",
+      "uncompressedBytes": 231,
+      "uncompressedSha256": "20cd5a7c83e0391187829df014e9aabe1f092f6821d535da42d89e439cfb7930"
+    },
+    {
+      "path": "execution-seal-retain.log.gz",
+      "bytes": 96,
+      "sha256": "696723bee5af4a35c2b111fb386d59aa3d440a38c7d5ab91930afb221ee1fab5",
+      "uncompressedBytes": 110,
+      "uncompressedSha256": "9bee841e9ebd62a4df87a377afe1ed49c40821b4e1ed2de277ae3b9a626c358e"
+    },
+    {
+      "path": "execution-seal-static-first.log.gz",
+      "bytes": 176,
+      "sha256": "d8fd2ffcdf1800c86e8cba4eb6aa1f543aef7a5966ec7b39d9d41383c1fb9b96",
+      "uncompressedBytes": 232,
+      "uncompressedSha256": "5ae31112e18725239d058a517d2ff3d384ac1212a5d5cb2898c676daaa9f9bbe"
     }
-  ]
+  ],
+  "controls": [
+    {
+      "path": "ordinary-control-1.tar.gz",
+      "source": "/tmp/loredock-seal-inventory-eyo0Dg",
+      "prefix": "loredock-seal-inventory-eyo0Dg",
+      "bytes": 846,
+      "sha256": "2c1dbe0ce4388795913ca97a14e2937140e9229d1cf3ee2a4962aee52af78141",
+      "inventory": {
+        "extra": {
+          "kind": "file",
+          "bytes": 5,
+          "sha256": "c8dee78f8c7b466c881847accc196998bad00e2b96c5ef913dfbe454d3807c96"
+        },
+        "link": {
+          "kind": "symlink",
+          "target": "/tmp/loredock-seal-inventory-eyo0Dg/two"
+        },
+        "one": {
+          "kind": "file",
+          "bytes": 11,
+          "sha256": "64ba0173c6828620567a6c09ffcaa346de533166486b0eb9c570b31bf88cd840"
+        },
+        "test.py": {
+          "kind": "file",
+          "bytes": 891,
+          "sha256": "78efbe4ea682b6171e6e40ce69804702f2f6fe9b550dc1bc9099545a480e86f7"
+        },
+        "two": {
+          "kind": "file",
+          "bytes": 11,
+          "sha256": "672cda1fd7e2550977b67dc9ef971eabf9cf0086f338f1ad5e9d395d11ae2ec9"
+        }
+      }
+    },
+    {
+      "path": "ordinary-control-2.tar.gz",
+      "source": "/tmp/loredock-seal-inventory-q0dt82",
+      "prefix": "loredock-seal-inventory-q0dt82",
+      "bytes": 852,
+      "sha256": "04a9028a755594f870d442b5bb31d48a7e179ef30a1f73aec321f4b2f540962f",
+      "inventory": {
+        "extra": {
+          "kind": "file",
+          "bytes": 5,
+          "sha256": "c8dee78f8c7b466c881847accc196998bad00e2b96c5ef913dfbe454d3807c96"
+        },
+        "link": {
+          "kind": "symlink",
+          "target": "/tmp/loredock-seal-inventory-q0dt82/two"
+        },
+        "one": {
+          "kind": "file",
+          "bytes": 11,
+          "sha256": "64ba0173c6828620567a6c09ffcaa346de533166486b0eb9c570b31bf88cd840"
+        },
+        "test.py": {
+          "kind": "file",
+          "bytes": 891,
+          "sha256": "78efbe4ea682b6171e6e40ce69804702f2f6fe9b550dc1bc9099545a480e86f7"
+        },
+        "two": {
+          "kind": "file",
+          "bytes": 11,
+          "sha256": "672cda1fd7e2550977b67dc9ef971eabf9cf0086f338f1ad5e9d395d11ae2ec9"
+        }
+      }
+    },
+    {
+      "path": "ordinary-control-3.tar.gz",
+      "source": "/tmp/loredock-seal-owner-RweYB0",
+      "prefix": "loredock-seal-owner-RweYB0",
+      "bytes": 2141,
+      "sha256": "a17e1ab26a69b024fec6491e68009d9015c9967f812cf91b4a5367599c9c1325",
+      "inventory": {
+        "ordinary.mjs": {
+          "kind": "file",
+          "bytes": 1887,
+          "sha256": "10ae192650f67de94383d4d63925b404ed393361be59ac74c19b90c46bea3528"
+        },
+        "output/boundary.json": {
+          "kind": "file",
+          "bytes": 58,
+          "sha256": "08f8a1d90c5d87764e3c8049d2cb81898015626cc88ff8e69509e1a5b8bf0968"
+        },
+        "output/command.json": {
+          "kind": "file",
+          "bytes": 423,
+          "sha256": "44ec7caa6b2c4bd4fc3c67e6e3ba217d19759436023cbcb875c936bc8f227c83"
+        },
+        "output/owner.jsonl": {
+          "kind": "file",
+          "bytes": 881,
+          "sha256": "48e11654f07ba0b543895be016aa0011353738758728a28e1066010a5211330b"
+        },
+        "output/result.json": {
+          "kind": "file",
+          "bytes": 1013,
+          "sha256": "3271bc659f84b38e0e34efa0786bc7bef6677a1acbb41f4ac4272133b977dbf7"
+        },
+        "output/stderr.log": {
+          "kind": "file",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "output/stdout.log": {
+          "kind": "file",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "output/storage.jsonl": {
+          "kind": "file",
+          "bytes": 228,
+          "sha256": "f2cf5b5922e7b098b4bb1632ec4b7389dced42450cb7d6b7f6ee30193e93dd5e"
+        }
+      }
+    }
+  ],
+  "seal": {
+    "path": "manifest.json",
+    "sha256": "88b72e16a3f3b93a99f5beca172cce5ee4ad84ea0471064a43b83d9da38d109a",
+    "sourceCommit": "c100df1dfa9255e2b099f31aed489d6b9be804e6",
+    "inventoryPath": "manifest.inventory.json.gz",
+    "inventorySha256": "4eb77dd73e3a2bcadd09383cc62081f2345f6077aaf6cbecd8b19f2c0fb6542f",
+    "entries": 17254,
+    "files": 13780,
+    "links": 1861,
+    "directories": 1613,
+    "fileBytes": 3789709746,
+    "workspaceGraphModules": 118,
+    "externalEntries": 6,
+    "priorRoots": 161,
+    "priorSourceRecords": 96
+  },
+  "validation": {
+    "newTests": 6,
+    "existingCoordinatorTests": 9,
+    "existingAdapterTests": 7,
+    "existingMatrixTests": 3,
+    "firstManifestCreation": "Failed before writing either artifact on the distro sitecustomize link; first code commit and log retained.",
+    "firstCodeCommit": "58d5ccb445592b71686f259c5c1bbe48520e518f",
+    "successfulCreation": "create-second",
+    "committedManifestVerification": "verify-first",
+    "candidateReads": 0,
+    "modelCalls": 0
+  },
+  "helper": {
+    "path": "retention-helper.py.gz",
+    "sha256": "94f7458b5d246b466982f85b66eff24e1eab84beace926f6e9aca5b85e1ad818",
+    "uncompressedSha256": "27b653848dddc1d02413ee3d2b3b91d939fe164813e2c38808a57c23e6f51ea0"
+  },
+  "staticHelper": {
+    "path": "static-helper.py.gz",
+    "sha256": "baa8cb67ca12b4660389d53568fd195b6a0197c5367e7ed4fa76e47bacd64c53",
+    "uncompressedSha256": "202a2099a89fa3152c7025bb3076ffd84ee2a5164a93c5ace3efcca9fb9ae995"
+  }
 }

@@ -43,8 +43,9 @@ separate ordinary development observations for adapter checks.
 
 The [final boundary implementation](../fixtures/loredock-prepared-flow-execution-seal/README.md)
 now supplies the exact data binding, reserved entry, static import audit and executable
-manifest creator/verifier. It has ordinary/data-only tests; final manifest commitment
-and validation still precede any reserved candidate observation.
+manifest creator/verifier. Six new ordinary/data-only tests pass. The manifest and its
+17,254-record inventory are committed and verify without candidate reads. Both final-head
+CI events and identical-tree merge acceptance still precede the single reserved sequence.
 
 Reuse the existing ordered coordinator, case helpers and owner. Separate ordinary and
 reserved entry points explicitly; the ordinary family guard must remain intact. The
