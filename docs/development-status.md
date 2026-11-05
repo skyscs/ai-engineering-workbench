@@ -382,11 +382,28 @@ content bounds pass. The 64-row witness total is 4,245,504 bytes. Purged rows re
 content but still occupy capacity. One cold and three warm reviews match the durable
 snapshot hash exactly; this binds content, not transient-to-answer ownership. Independent
 inspection verifies all four copied catalogs, 18 earlier input hashes and unchanged raw
-inputs. Five focused controls, installation/builds and the original seal pass. Both full
-final-head CI events remain required. No new candidate preparation, answer or model runs.
+inputs. Five focused controls, installation/builds and the original seal pass. Accepted
+through [PR #154](https://github.com/skyscs/ai-engineering-workbench/pull/154): push
+42055463301 and pull_request 42055504104 pass 1,001 tests at `4ac2068`; merge `2db2707`
+has the identical tree. No new candidate preparation, answer or model runs.
 Serialized bytes do not measure heap or qualify useful native content. Existing failed
 resource/source outcomes, remaining operation checks, complete ordered matrix and the
 final executable/environment/output seal remain pending; model eligibility stays closed.
+
+The next [HTTP outcome slice](fixtures/loredock-prepared-flow-http-outcomes/README.md)
+requires exact request ID, method, route, 409 status and error code for the normal history
+quota and missing-transient controls. It retains applicable byte/time checks; broad,
+duplicate, missing and mismatched declarations cannot pass. Protected-client metadata now
+exposes the existing journal request ID, and the history reopen retains its missing
+preparation response. Two actual production reopens preserve all 84 saved answers/replays;
+their two expected 409s and the earlier quota's fixed request pass the HTTP subset.
+Independent inspection verifies two copied catalogs, 574 reused files and 498 HTTP bodies
+(495 exact and three redacted sessions). No new answer or model runs. Nine HTTP and five
+browser controls pass. The first test's wrong failed/incomplete expectation and the first
+seal command's wrong path are retained; corrected verification passes without rerunning
+the application control or changing its assessor. Installation/builds and the original
+seal pass. Both full final-head CI events remain required. Previous resource/source failures,
+operation/lifetime coverage, complete matrix integration and the execution seal stay pending.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request
