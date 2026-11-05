@@ -45,3 +45,33 @@ resource visibility. Deferring work after listen or hiding it in an unmeasured w
 is insufficient. A product comparison must retain its first ordinary result, including
 any remaining failure. The consumed Task 128 gate stays unchanged; future qualification
 requires new prospective inputs. Defaults, schema and model eligibility do not change.
+
+## First attribution and declared repair comparison
+
+The first observation at `e07c5e9` completes normally with no owner errors or survivors.
+Actual production preparation retains the required useful originals/path but fails
+the raw timer limit at 320.039 ms. Fresh component observations are:
+
+| Component | Import duration | Maximum raw interval |
+| --- | --- | --- |
+| Empty control | 0.001 ms | 10.629 ms |
+| TypeScript through ESM | 229.343 ms | 231.337 ms |
+| Same TypeScript through `createRequire` | 110.998 ms | 112.953 ms |
+| Actual code adapter | 226.533 ms | 228.458 ms |
+| Actual HTTP app | 250.186 ms | 252.601 ms |
+
+The two compiler cases have the same installed file identity. Their first observations
+support a direct CommonJS load as the smallest justified improvement; they do not
+establish that it meets 100 ms. The application change uses TypeScript's import-equals
+syntax, which emits `createRequire` under the existing NodeNext build. It changes no
+parser calls, dependency version, initialization timing or limits. The parser fingerprint
+intentionally changes with implementation bytes; existing inventories become incompatible
+until explicitly reanalyzed. No schema or saved original/history migration occurs.
+
+Before observing this repair, declare exactly two fresh ordinary production controls:
+the same completed baseline and the constant-only partial variant from Task 129.
+Each must retain all eight required originals, a useful native path, immutable review
+and truthful coverage. Preserve complete passive measurements and stopped catalogs,
+including failures. No component replay or model call is part of this comparison.
+The previous application's frozen seal is historical after this product change;
+its files, consumed inputs, driver, manifest and first raw result are not rewritten.

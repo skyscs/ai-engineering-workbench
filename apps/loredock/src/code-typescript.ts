@@ -1,4 +1,5 @@
-import ts from 'typescript';
+// Load the CommonJS compiler directly; ESM namespace discovery adds cold-start work.
+import ts = require('typescript');
 import { emptyFacts, type CodeFacts, type SymbolFact } from './code-facts.js';
 import { headerLimits, requestHeaderProperties } from './http-headers.js';
 
