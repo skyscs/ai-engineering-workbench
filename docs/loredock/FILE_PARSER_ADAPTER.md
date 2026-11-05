@@ -15,8 +15,9 @@ at future integration. Encoding, identity initialization and startup use that sa
 An independent cleanup bound of two seconds reports failure without releasing a live
 thread's ownership. `snapshot()` distinguishes `stopping`/owned from actual closed exit.
 
-Only a fixed installed entry is selected. Built execution has empty `execArgv`; source
-development explicitly imports the installed `tsx` loader. Both use an empty worker
+Only a fixed installed entry is selected. Both modes have empty `execArgv`; source
+development uses a native ESM bootstrap to register the installed `tsx` loader with
+configuration discovery disabled before importing the fixed TypeScript entry. Both use an empty worker
 environment and private captured stdio, preventing accidental inheritance of test or
 diagnostic preloads and environment credentials. Output is drained and byte-counted;
 more than 4 KiB fails the generation. Source text and worker error messages are not logged;
@@ -31,7 +32,10 @@ no AST or source handle crosses the boundary. Protocol/worker failure ends the g
 without fallback, automatic restart or converting infrastructure failure into syntax gaps.
 
 The adapter has its own installed-byte identity, including owner, entry, codec, identity
-helper, unchanged parser dependencies, compiler and Node version. Streams hash one
+helper, unchanged parser dependencies, compiler and Node version. Source mode also
+binds its bootstrap and `tsx` API entry; it is not a complete seal of all loader or
+transpiler dependencies. Source compatibility tests use the locked installed toolchain;
+production observation uses emitted JavaScript without that loader. Streams hash one
 installed file at a time and support initialization cancellation. The production analysis
 fingerprint is unchanged because no production caller uses this adapter yet.
 

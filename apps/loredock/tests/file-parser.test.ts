@@ -1,4 +1,7 @@
 import assert from 'node:assert/strict';
+import { mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
 import { setImmediate as turn } from 'node:timers/promises';
 import { test } from 'node:test';
 import { Worker } from 'node:worker_threads';
@@ -51,6 +54,17 @@ test('request framing retains exact escaped text and refuses unsafe paths, extra
     assert.throws(() => decodeParseRequest(encodeParserFrame({ ...request, ...patch }, fileParserLimits.requestBytes)), FileParserError);
   }
   assert.throws(() => decodeParseRequest(new ArrayBuffer(fileParserLimits.requestBytes + 1)), code('PARSER_FRAME_LIMIT'));
+});
+
+test('source worker loading ignores a configuration in the caller working directory', async () => {
+  const directory = await mkdtemp(path.join(tmpdir(), 'file parser config ')), previous = process.cwd();
+  const parser = new OwnedFileParser();
+  try {
+    await writeFile(path.join(directory, 'tsconfig.json'), JSON.stringify({ extends: './missing-project-configuration.json' }));
+    process.chdir(directory); await parser.start(operation());
+    const content = 'export function load() { return fetch("/orders"); }';
+    assert.equal(JSON.stringify(await parser.parse('client.ts', content, operation())), JSON.stringify(typescriptFacts(content, 'client.ts')));
+  } finally { process.chdir(previous); await parser.stop(); await rm(directory, { recursive: true, force: true }); }
 });
 
 const fixture = `

@@ -6,9 +6,9 @@ import { FileParserOwner } from './file-parser-owner.js';
 export class OwnedFileParser extends FileParserOwner {
   constructor() {
     super({ identify: fileParserIdentity, spawn: generation => {
-      const source = import.meta.url.endsWith('.ts');
-      return new Worker(new URL(source ? './file-parser-worker.ts' : './file-parser-worker.js', import.meta.url), {
-        workerData: { generation }, execArgv: source ? ['--import', import.meta.resolve('tsx')] : [],
+      const source = new URL(import.meta.url).pathname.endsWith('.ts');
+      return new Worker(new URL(source ? '../runtime/file-parser-source.mjs' : './file-parser-worker.js', import.meta.url), {
+        workerData: { generation }, execArgv: [],
         env: {}, stdout: true, stderr: true,
       });
     } });
