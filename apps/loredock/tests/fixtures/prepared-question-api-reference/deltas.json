@@ -84,7 +84,7 @@
     "AnswerPanel": {
       "file": "apps/loredock-web/src/AnswerPanel.tsx",
       "beforeSha256": "bf3c43a84446b2c71c418bd73f71f7af6869d125326fbbb650359c482cbe68a7",
-      "afterSha256": "f0a6bfb617d1b00db2ce7c735d053a91afad4dd70ed088f40ed1455ca86207b1",
+      "afterSha256": "572c07ec04d46f471b66a5d4bf7c4c38c64437a5ae8deae7754298ac72d61667",
       "edits": [
         {
           "start": 6,
@@ -229,7 +229,7 @@
           "start": 101,
           "delete": 0,
           "insert": [
-            "      {displayed.inputKind === 'prepared-question/1' && <p className=\"muted\">Saved prepared context \u00b7 the answer used this exact reviewed input.</p>}\n",
+            "      {displayed.inputKind === 'prepared-question/1' && <p className=\"muted\">Saved prepared context \u00b7 exact reviewed input for this attempt.</p>}\n",
             "      {displayed.context && displayed.nativeContext && <NativeQuestionContext value={displayed.nativeContext} spans={displayed.context.spans} openEvidence={openEvidence} />}\n"
           ]
         }

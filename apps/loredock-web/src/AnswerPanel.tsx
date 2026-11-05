@@ -116,7 +116,7 @@ export function AnswerPanel({ buildId, boundary: sourceBoundary, correctionRevis
       {displayed.reviewState === 'not-recorded' && <p className="notice">This older answer did not record engineer review. Generate a new answer to include current notes.</p>}
       {displayed.context?.review && <AnswerReview review={displayed.context.review} spans={displayed.context.spans} openEvidence={openEvidence} />}
       {displayed.context?.interfaces && <AnswerInterfaces value={displayed.context.interfaces} spans={displayed.context.spans} openEvidence={openEvidence} />}
-      {displayed.inputKind === 'prepared-question/1' && <p className="muted">Saved prepared context · the answer used this exact reviewed input.</p>}
+      {displayed.inputKind === 'prepared-question/1' && <p className="muted">Saved prepared context · exact reviewed input for this attempt.</p>}
       {displayed.context && displayed.nativeContext && <NativeQuestionContext value={displayed.nativeContext} spans={displayed.context.spans} openEvidence={openEvidence} />}
       {displayed.context && !displayed.context.interfaces && <p className="muted">This older answer did not record interface comparisons. Its original context is unchanged.</p>}
       {displayed.reason && <p className="notice">{displayed.reason}</p>}
