@@ -62,8 +62,8 @@ the raw timer limit at 320.039 ms. Fresh component observations are:
 
 The two compiler cases have the same installed file identity. Their first observations
 support a direct CommonJS load as the smallest justified improvement; they do not
-establish that it meets 100 ms. The application change uses TypeScript's import-equals
-syntax, which emits `createRequire` under the existing NodeNext build. It changes no
+establish that it meets 100 ms. The application change uses explicit `createRequire`
+and a type-only namespace import, supported by both NodeNext and `tsx`. It changes no
 parser calls, dependency version, initialization timing or limits. The parser fingerprint
 intentionally changes with implementation bytes; existing inventories become incompatible
 until explicitly reanalyzed. No schema or saved original/history migration occurs.
@@ -75,3 +75,17 @@ and truthful coverage. Preserve complete passive measurements and stopped catalo
 including failures. No component replay or model call is part of this comparison.
 The previous application's frozen seal is historical after this product change;
 its files, consumed inputs, driver, manifest and first raw result are not rewritten.
+
+The first repair at `4d66a05` used import-equals syntax. Its compiled production
+comparison passed both useful-context controls, with raw startup gaps of 198.315
+and 199.075 ms, still failing 100 ms. Focused source tests then exposed that `tsx`
+emits an unavailable `require` for that syntax. All four test files failed to load;
+the development/source mode was therefore broken despite the compiled result.
+An attempted edit used the wrong working-directory-relative path and changed no
+code; the accidentally repeated checks retained the same four failures separately.
+
+The corrected explicit load preserves the compiler and parser calls while supporting
+source execution. Declare a separate first two-control production observation for
+this corrected revision, using the same ordinary comparison and unchanged limits.
+This is a new development revision, not a replay or replacement of any earlier
+result. Both earlier production observations and failed source checks remain retained.
