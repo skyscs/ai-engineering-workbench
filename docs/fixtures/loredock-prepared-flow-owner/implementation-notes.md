@@ -1,4 +1,8 @@
-# Next Task 128 slice: kernel-owned orphan cleanup
+# Kernel-owned orphan cleanup: original implementation plan
+
+This design was recorded before implementation. The [current result](README.md) now
+records the implemented owner and ordinary subprocess/application exercises. The text
+below preserves the motivation and acceptance criteria of that bounded slice.
 
 The accepted-checkpoint owner discovers process groups by periodic observation. It cannot
 prove cleanup for a descendant that forks, changes session/group and becomes orphaned

@@ -4,11 +4,16 @@
 
 The ordinary driver checkpoint is accepted through [PR #132](https://github.com/skyscs/ai-engineering-workbench/pull/132),
 merged at `f595307` after push 41964013784 and pull_request 41964018496 passed 948 tests
-at exact head `3469467`. The merge tree is identical. The next slice has already begun:
-[two retained kernel-ownership probes](fixtures/loredock-prepared-flow-owner/README.md)
-verify adoption and pidfd termination of an orphan that changed process group before
-its first observation. Implementation and full validation of the replacement owner remain
-pending; the broader Task 128 gate is still in progress.
+at exact head `3469467`. The merge tree is identical. The next bounded slice implements
+a [kernel-owned external supervisor](fixtures/loredock-prepared-flow-owner/README.md).
+Six subprocess tests verify orphan adoption, pidfd termination, unrelated-process
+isolation, limits and interruption. Actual core/browser completion, deliberate driver
+failure and external interruption leave no owned survivors and retain complete stopped
+catalogs and sources; copied-catalog integrity checks pass. The broader Task 128 gate
+is still in progress; no reserved input has been observed by a candidate.
+The local full check passes 954 tests, strict typechecks and production builds;
+the unchanged application/input seal also passes. Both final-head CI events and merge
+remain pending for this replacement-owner slice.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request
@@ -27,7 +32,7 @@ Additional ordinary checks cover fourteen lifecycle cases, five browser network 
 real ten-minute expiry and complete-worker accounting (eight budgets / 2,253,226 units,
 exact prompt/schema/witness parity). An external owner and ten focused tests retain
 failed processes and storage evidence. The full check passes 948 tests. First-preflight
-and deterministic in-preparation controls, complete orphan ownership and the final frozen
+and deterministic in-preparation controls and the final frozen
 matrix/seal are still pending; [runtime review](fixtures/loredock-prepared-flow-driver/runtime-review.md)
 records those limits. No gate result or adoption is implied by this development checkpoint.
 

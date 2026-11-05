@@ -1,0 +1,418 @@
+{
+  "schemaVersion": "prepared-flow-kernel-owner-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "base": "f59530782fd63c289c0daa50ae850cd19eed33f4",
+  "tests": {
+    "focused": 6,
+    "full": 954,
+    "fullCheckPassed": true
+  },
+  "trees": [
+    {
+      "path": "kernel-core-first.tar.gz",
+      "sha256": "c1b19104341b6fbeae8a8ab447fc7640a7361f073fa0afeb5b9c4460d3f9f744",
+      "inventory": "kernel-core-first.inventory.json.gz",
+      "inventorySha256": "1b937228bd9c6b65836d8af32c56099e9cb115da06d58253867a5c79394c1c28",
+      "entries": 144,
+      "source": "/home/toshiba/aew/task128-kernel-core-first",
+      "limitation": "Earlier owner revision before descriptor-based no-follow storage traversal; executable bytes were not sealed for this ordinary observation."
+    },
+    {
+      "path": "kernel-browser-first.tar.gz",
+      "sha256": "a62ade1a83888976453e5bbd30f3be2f286a1c513c95dc1df9964ed54a1d1dc0",
+      "inventory": "kernel-browser-first.inventory.json.gz",
+      "inventorySha256": "73af22375957c561c0b9c9f91448a1d9f67cd6bfa683fda1fea80fbe7080c51a",
+      "entries": 175,
+      "source": "/home/toshiba/aew/task128-kernel-browser-first",
+      "excludedFromArchive": [
+        "run/browser/profile (temporary Chrome profile/cache; original retained locally)"
+      ]
+    },
+    {
+      "path": "kernel-crash-first.tar.gz",
+      "sha256": "fb1a4118b85689366990b507587cc4f8444b59ed01da960e3c675430c03d5754",
+      "inventory": "kernel-crash-first.inventory.json.gz",
+      "inventorySha256": "d4dac859ec297c41a6d5fde5d0092247ff489179b907b8e8f9e57b2702a0da43",
+      "entries": 155,
+      "source": "/home/toshiba/aew/task128-kernel-crash-first",
+      "excludedFromArchive": [
+        "run/browser/profile (temporary Chrome profile/cache; original retained locally)"
+      ]
+    },
+    {
+      "path": "kernel-interruption-first.tar.gz",
+      "sha256": "2f351147a8f9e6490c219ca1eb43334ffbb266e4195c0b809a873b16fb959f71",
+      "inventory": "kernel-interruption-first.inventory.json.gz",
+      "inventorySha256": "c35d8618c6fcaccce80b3c42e85c4fd063e3ee95474cab644c762e48068af23c",
+      "entries": 155,
+      "source": "/home/toshiba/aew/task128-kernel-interruption-first",
+      "excludedFromArchive": [
+        "run/browser/profile (temporary Chrome profile/cache; original retained locally)"
+      ]
+    },
+    {
+      "path": "kernel-tests-first-case-1.tar.gz",
+      "sha256": "85d7690d64600d62ef71ca77a74c91954a9a0023eeb51848adb264bbef71f370",
+      "inventory": "kernel-tests-first-case-1.inventory.json.gz",
+      "inventorySha256": "cf0b96eca6a801bd90738f4b062f1e062ad9c585b08a839ccc8b5b39e9e147fc",
+      "entries": 8,
+      "source": "/tmp/loredock-kernel-adoption-iMhVN4",
+      "limitation": "Earlier owner/test revision before no-follow traversal and symlink-storage assertion."
+    },
+    {
+      "path": "kernel-tests-first-case-2.tar.gz",
+      "sha256": "9791b7f231779319611f1e6dd91969e605a69ce4b0416c80f194971ec27757f5",
+      "inventory": "kernel-tests-first-case-2.inventory.json.gz",
+      "inventorySha256": "9436481cf83558ddd5bb50d9b9784f32549e2d9eb8c0488911c1fe14e5702e8f",
+      "entries": 12,
+      "source": "/tmp/loredock-kernel-owner-5OtBMB",
+      "limitation": "Earlier owner/test revision before no-follow traversal and symlink-storage assertion."
+    },
+    {
+      "path": "kernel-tests-first-case-3.tar.gz",
+      "sha256": "5337d1350a0eb6e588ebd21ea7ea8b33323fd029540d0d5b3d22d83647d88f8a",
+      "inventory": "kernel-tests-first-case-3.inventory.json.gz",
+      "inventorySha256": "6cbcfc097953ed04442210714b059797d576a4485ff5321f109e1b45140bbd81",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-mS56Jg",
+      "limitation": "Earlier owner/test revision before no-follow traversal and symlink-storage assertion."
+    },
+    {
+      "path": "kernel-tests-first-case-4.tar.gz",
+      "sha256": "bf1820c8dea43ee6c75bbc21166ef1661783ad906cf088abac1fb17dc0b8d539",
+      "inventory": "kernel-tests-first-case-4.inventory.json.gz",
+      "inventorySha256": "feef6317b3542381ad32ec7e9766813eb1b666ac2a8723f2b01347549ddbec93",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-Uy0LEI",
+      "limitation": "Earlier owner/test revision before no-follow traversal and symlink-storage assertion."
+    },
+    {
+      "path": "kernel-tests-first-case-5.tar.gz",
+      "sha256": "d65c8db41cab9880dece5879696713de9100fe9c350292916f9e8e93344d3e6c",
+      "inventory": "kernel-tests-first-case-5.inventory.json.gz",
+      "inventorySha256": "2d3a99a1c770811b1e6311aaafcf6590789c39d1da4a8c70ccfdd7a0f0870f58",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-ARuNax",
+      "limitation": "Earlier owner/test revision before no-follow traversal and symlink-storage assertion."
+    },
+    {
+      "path": "kernel-tests-first-case-6.tar.gz",
+      "sha256": "f170c8571595f7340f18bbb4b6110553c80da2f9d729a6422491aed55f7888a9",
+      "inventory": "kernel-tests-first-case-6.inventory.json.gz",
+      "inventorySha256": "3227426c4d22006fd51c75e7578e3dc9079e69cdf8ed70f6d26e5d943a81b954",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-DQtWnX",
+      "limitation": "Earlier owner/test revision before no-follow traversal and symlink-storage assertion."
+    },
+    {
+      "path": "kernel-tests-second-case-1.tar.gz",
+      "sha256": "af3fe4e9738a4062b89431c020e4328e5b71da1d20d62973d4b27663732e7088",
+      "inventory": "kernel-tests-second-case-1.inventory.json.gz",
+      "inventorySha256": "0675d04aec33c366e4f1c8e1eb23c95d237da8e822de58be722463a26dadb2ca",
+      "entries": 8,
+      "source": "/tmp/loredock-kernel-adoption-sh7R9K"
+    },
+    {
+      "path": "kernel-tests-second-case-2.tar.gz",
+      "sha256": "247444cb7f5f046e2481ab77062f7da06138420ba70ee43051fed793b02cc7ea",
+      "inventory": "kernel-tests-second-case-2.inventory.json.gz",
+      "inventorySha256": "3c81990c74eaadb50133192a236f06ab412295f58c59f1590a19733788840bfa",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-AxKYf1"
+    },
+    {
+      "path": "kernel-tests-second-case-3.tar.gz",
+      "sha256": "548d2cd3b72da65f3f13fcfccf8db8660872167db64143c8844ea6e30644555a",
+      "inventory": "kernel-tests-second-case-3.inventory.json.gz",
+      "inventorySha256": "b41c2adc1c1a24306234ae92aa5fd4ff7e0351617522affa27e4f3a7834eaed8",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-CKJWF4"
+    },
+    {
+      "path": "kernel-tests-second-case-4.tar.gz",
+      "sha256": "af3a5ed6de97d2ae49729acf7c62f4d1216f8d0ff0325c26cbba40c07b444bb6",
+      "inventory": "kernel-tests-second-case-4.inventory.json.gz",
+      "inventorySha256": "a5f5890e0f23243d5b7025aac6e20a69ccd33612f4a4f427954509c1e682ce4c",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-qm3BeM"
+    },
+    {
+      "path": "kernel-tests-second-case-5.tar.gz",
+      "sha256": "a055c6056131d8eaecbeb6f414185446531edc1b440bd1f3491f907323099179",
+      "inventory": "kernel-tests-second-case-5.inventory.json.gz",
+      "inventorySha256": "085a621e906dcbbd52767fcbfe33666d1689f461ec990d2a6c0a119b3a3369f6",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-vKTNbh"
+    },
+    {
+      "path": "kernel-tests-second-case-6.tar.gz",
+      "sha256": "79ac3c820adbc17d82c27f020fc5b63f395c3856f9ee0d1a2fea46510d206f1e",
+      "inventory": "kernel-tests-second-case-6.inventory.json.gz",
+      "inventorySha256": "64f346f87d6f93187cb6f934e4ce685fcb938dabfd6e39ff94c2e3d70cbf08e0",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-G4HU00"
+    },
+    {
+      "path": "kernel-check-first-case-1.tar.gz",
+      "sha256": "70acb185d0fbdfa5bc151ee2ee326795a6aaad8eab770b7cf1a5598c9cf4f6c2",
+      "inventory": "kernel-check-first-case-1.inventory.json.gz",
+      "inventorySha256": "80e51d322ac09f5071cb678af2d3eeb04b7f1d518a5152b96320064438d7248c",
+      "entries": 8,
+      "source": "/tmp/loredock-kernel-adoption-cSTuC5"
+    },
+    {
+      "path": "kernel-check-first-case-2.tar.gz",
+      "sha256": "f034f578d4e410804949827c47f6da35ea1d672c55d7cd6cb515fee83a335663",
+      "inventory": "kernel-check-first-case-2.inventory.json.gz",
+      "inventorySha256": "397bc7bac6ae2e351ee637e2ee591dd25b09eea05f3294e81928e57ee4b0b8de",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-BaIm1d"
+    },
+    {
+      "path": "kernel-check-first-case-3.tar.gz",
+      "sha256": "50e50c5d6d1d4a5ea26b4527a9778e22bf93d78455613b67072753e9339b7edc",
+      "inventory": "kernel-check-first-case-3.inventory.json.gz",
+      "inventorySha256": "4b592304a815452f12d04cfff88134316ef89e960e0e30231f3ad1c1fb5b6fd8",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-FzqOn5"
+    },
+    {
+      "path": "kernel-check-first-case-4.tar.gz",
+      "sha256": "8c710ed83d4617fa859ccc611dc38e4aa5f956337d45108a1372f9afd4b226c6",
+      "inventory": "kernel-check-first-case-4.inventory.json.gz",
+      "inventorySha256": "07fb39cb8866cafcbcd422082842853465491cacac0b89e96ca6697f864fc043",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-V7pxNM"
+    },
+    {
+      "path": "kernel-check-first-case-5.tar.gz",
+      "sha256": "52fbbff157be411b6e5f0f8674d3c56e187e9af6c26633e8d2c63cd5de68373a",
+      "inventory": "kernel-check-first-case-5.inventory.json.gz",
+      "inventorySha256": "ca97d61c13f9d1e79b0925a03dc7a504b932390613b7f4858fbd188544604ef5",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-FhataW"
+    },
+    {
+      "path": "kernel-check-first-case-6.tar.gz",
+      "sha256": "3fd6d1a3ad1c8507dc9e71866e8cb4d99558b35078230a5c32cdba4ffceef8f3",
+      "inventory": "kernel-check-first-case-6.inventory.json.gz",
+      "inventorySha256": "8cb9d75bba9ac95af3f22ccdd4301172587c7a2e4bfb5628a10b07948f9e677c",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-Tv1Ym5"
+    },
+    {
+      "path": "kernel-retention-check.tar.gz",
+      "sha256": "637175e91cca6b11b88a206466786767529e0ceb7b336131379094fe4a37c818",
+      "inventory": "kernel-retention-check.inventory.json.gz",
+      "inventorySha256": "edc1b1efe6efa042b2a162e4b47667d511d2d3597e57ab22bb4026c421fc1e9f",
+      "entries": 21,
+      "source": "/home/toshiba/aew/task128-kernel-retention-check"
+    },
+    {
+      "path": "kernel-execution-inputs.tar.gz",
+      "sha256": "4b865a8582ca31a8590dfbf66b12ed23557241cc3b81542b8185646fea00486d",
+      "inventory": "kernel-execution-inputs.inventory.json.gz",
+      "inventorySha256": "6a1fbd376429c4e92df5d4aab49c8894aa175031743fc3a741a01166ed69038d",
+      "entries": 7,
+      "source": "/home/toshiba/aew/task128-kernel-execution-inputs"
+    },
+    {
+      "path": "kernel-static-review.tar.gz",
+      "sha256": "2c8ec815a120e70878d1b92b5ed155fe2bd481535eed283703dece7f57d6f672",
+      "inventory": "kernel-static-review.inventory.json.gz",
+      "inventorySha256": "398ad10aeecfc30a208c92db6d7d59061a1247504c736ccbe78abc682aeed18e",
+      "entries": 2,
+      "limitation": "Initial verification output precedes addition of this verification archive itself."
+    }
+  ],
+  "logs": [
+    {
+      "path": "kernel-core-first.log.gz",
+      "archiveSha256": "497ea43661b0e9c28e7e29943d14f7eb37a10e602e15f0d787c9df7fd2454a1b",
+      "rawBytes": 2900,
+      "rawSha256": "97e932b6e5ed63ab7a601eeb7b5b25691e307da7582e92dc8c4371c58b04d1df"
+    },
+    {
+      "path": "kernel-browser-first.log.gz",
+      "archiveSha256": "fa6d7991cdfe7e6437bcac435d25ea89543a2a9fc78b51f156c61f74ac7f2c27",
+      "rawBytes": 7247,
+      "rawSha256": "49d8b8a161f79693db1626a2827669c8f5db5cd39086fcc4ef458c520f266c10"
+    },
+    {
+      "path": "kernel-crash-first.log.gz",
+      "archiveSha256": "5ae1eeacf474e0f2695359afd4af684ccad1c93c65d1c26935689b4a0b92960d",
+      "rawBytes": 7191,
+      "rawSha256": "588ba122c1be662a05d6b8db0520d08408d21f295aa81c1f7a81e2a825e2943e"
+    },
+    {
+      "path": "kernel-interruption-first.log.gz",
+      "archiveSha256": "cbc8447d934788caed8ad6ed9ad8de25c12992002ecfb67fdbba6d8b9813b4b4",
+      "rawBytes": 7592,
+      "rawSha256": "bc7f183bee4f57005fb77d025cb39567def6451898ab5ecb96bc84956651d1cf"
+    },
+    {
+      "path": "kernel-tests-first.log.gz",
+      "archiveSha256": "8813804f5f2bebcf723a76ed50c8f5f4864e033fdaf778e0e81a7a89ca93f663",
+      "rawBytes": 1781,
+      "rawSha256": "de15771429b0ddd127831cfb79ec917dd6b62c417bbc3a09271b6f5f213bc883"
+    },
+    {
+      "path": "kernel-tests-second.log.gz",
+      "archiveSha256": "a18e2ecbed72503cfb24cfe64ecb9d8f0956758fce474b24f8691255b2197643",
+      "rawBytes": 1782,
+      "rawSha256": "e8ef3f83d3979cf8df9b002f324c9020cf578886921195f4ea7c9081603fe862"
+    },
+    {
+      "path": "kernel-check-first.log.gz",
+      "archiveSha256": "ca173813a2236b0aa53d20b2a47c1ad9cde8cee56a0a4876e81ba5be9f670ece",
+      "rawBytes": 350097,
+      "rawSha256": "0ff0deff69d2177fb5309dcce40e6f7643e59203d081c2f7c710f4d18634680a"
+    },
+    {
+      "path": "kernel-retention-check.log.gz",
+      "archiveSha256": "cbc0b54f421ae859723e6e733941f40985a130fcdd8102d52e166ca192e0124b",
+      "rawBytes": 2326,
+      "rawSha256": "59eec41d153da1e3daf23398976607ba72ab60a6bea36ec2140ad6d56858e5f7"
+    },
+    {
+      "path": "kernel-interruption-injector.log.gz",
+      "archiveSha256": "c764c0ec6e461511b3d15a0a62ec4182465d2b0253e2316e29f40764fea8ac64",
+      "rawBytes": 622,
+      "rawSha256": "dadf0ff9b16f39c81c134da1c0d50568b04bda2cf892324cb8e85093106aa168"
+    },
+    {
+      "path": "kernel-seal-check.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "owner-install.log.gz",
+      "archiveSha256": "9f67f42a158ee9b8c89947f6003fc451af3bfa59b6e6a94ee21118084cc043a8",
+      "rawBytes": 326,
+      "rawSha256": "153daef568282fe31cbb8f78fe71508665dacc77f7885d42a6c63214c3e9a005"
+    },
+    {
+      "path": "owner-build.log.gz",
+      "archiveSha256": "1f9dc7476588b17b82a69eec734cab025dd1a81359076d286a80fc763a0944e6",
+      "rawBytes": 2357,
+      "rawSha256": "6c98d2a074af5f45ad9364ca2af4687a95801f26e3d3bff7a5cbe09349130c73"
+    }
+  ],
+  "stoppedRetention": [
+    {
+      "case": "core",
+      "reason": "completed",
+      "survivors": [],
+      "errors": [],
+      "originals": 12,
+      "sourceBytesUnchanged": true,
+      "fullStoppedStorageBytes": 804177,
+      "inspectedStoppedCopies": [
+        {
+          "path": ".owner.db",
+          "integrity": "ok",
+          "foreignKeys": []
+        },
+        {
+          "path": "loredock.db",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "answers": [
+            [
+              "succeeded"
+            ]
+          ],
+          "witnesses": 1
+        }
+      ],
+      "rawTreeUnchangedByInspection": true
+    },
+    {
+      "case": "browser",
+      "reason": "completed",
+      "survivors": [],
+      "errors": [],
+      "originals": 12,
+      "sourceBytesUnchanged": true,
+      "fullStoppedStorageBytes": 8673371,
+      "inspectedStoppedCopies": [
+        {
+          "path": ".owner.db",
+          "integrity": "ok",
+          "foreignKeys": []
+        },
+        {
+          "path": "loredock.db",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "answers": [
+            [
+              "succeeded"
+            ]
+          ],
+          "witnesses": 1
+        }
+      ],
+      "rawTreeUnchangedByInspection": true
+    },
+    {
+      "case": "crash",
+      "reason": "driver-left-owned-process",
+      "survivors": [],
+      "errors": [],
+      "originals": 12,
+      "sourceBytesUnchanged": true,
+      "fullStoppedStorageBytes": 7199748,
+      "inspectedStoppedCopies": [
+        {
+          "path": ".owner.db",
+          "integrity": "ok",
+          "foreignKeys": []
+        },
+        {
+          "path": "loredock.db",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "answers": [
+            [
+              "succeeded"
+            ]
+          ],
+          "witnesses": 1
+        }
+      ],
+      "rawTreeUnchangedByInspection": true
+    },
+    {
+      "case": "interruption",
+      "reason": "owner-SIGTERM",
+      "survivors": [],
+      "errors": [],
+      "originals": 12,
+      "sourceBytesUnchanged": true,
+      "fullStoppedStorageBytes": 7198498,
+      "inspectedStoppedCopies": [
+        {
+          "path": ".owner.db",
+          "integrity": "ok",
+          "foreignKeys": []
+        },
+        {
+          "path": "loredock.db",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "answers": [
+            [
+              "succeeded"
+            ]
+          ],
+          "witnesses": 1
+        }
+      ],
+      "rawTreeUnchangedByInspection": true
+    }
+  ]
+}
