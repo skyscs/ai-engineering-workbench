@@ -1,0 +1,405 @@
+{
+  "schemaVersion": "prepared-flow-cold-warm-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "tests": 973,
+  "trees": [
+    {
+      "path": "cold-warm-first.tar.gz",
+      "sha256": "25359bd38ba26dc8302b7b8e2dbb610fb3d4986e4cdca7146f5927118fc14706",
+      "inventory": "cold-warm-first.inventory.json.gz",
+      "inventorySha256": "3340e3c32cb1c8bd2b5288eb177d09be94c94312ad2fc6f123893b4a9d186311",
+      "entries": 20936,
+      "source": "/home/toshiba/aew/task128-cold-warm-first",
+      "limitation": "Failed twenty-source scaling control: partial inventory at 240 files; no subsequent cold/warm candidate run. Earlier report predates explicit notRun/metric aggregation."
+    },
+    {
+      "path": "cold-warm-unscaled.tar.gz",
+      "sha256": "d0f136552d11a5cd6a9d1e82a6c74f556bbd28873c98eb833b0c6bcb6f9fca10",
+      "inventory": "cold-warm-unscaled.inventory.json.gz",
+      "inventorySha256": "e47bd11a78d9b4f48a13cd71f5f6f04ad2cdb20b3113580a141fd5ea851b6ca5",
+      "entries": 160,
+      "source": "/home/toshiba/aew/task128-cold-warm-unscaled",
+      "limitation": "Separate established four-source control; three functional warm lifetimes, two daemon timer failures. Does not rescue scaling failure."
+    },
+    {
+      "path": "cold-warm-retention.tar.gz",
+      "sha256": "a558e21387d8c1a0412cb579ce06e469d0194bf719c3f10bbc4c68a67d42b93c",
+      "inventory": "cold-warm-retention.inventory.json.gz",
+      "inventorySha256": "6fca47e51c0a7b13125bc2f44a81102068061181df3de30b42f8650ad96a55d3",
+      "entries": 18,
+      "source": "/home/toshiba/aew/task128-cold-warm-retention"
+    },
+    {
+      "path": "cold-warm-first-inputs.tar.gz",
+      "sha256": "12c9a5c230fd48546bec225f631538311e17fc3019f1b7d49389a84a3cbe6010",
+      "inventory": "cold-warm-first-inputs.inventory.json.gz",
+      "inventorySha256": "a51c1af055229ee86fa2f914b6fbb8250685141137a3aeb5326a0653e12366f7",
+      "entries": 3,
+      "source": "/home/toshiba/aew/task128-cold-warm-first-inputs"
+    },
+    {
+      "path": "cold-warm-check-first-sequence-1.tar.gz",
+      "sha256": "96d50f96df367cd83bb25aac08383d893bbe6aa62b3fb92f7e4d7e0097692e5d",
+      "inventory": "cold-warm-check-first-sequence-1.inventory.json.gz",
+      "inventorySha256": "f903b55a242126174cf835ee8d46c74350837226cb727ed3992918ca9ecc967c",
+      "entries": 33,
+      "source": "/tmp/loredock-flow-coordinator-WWzOEl"
+    },
+    {
+      "path": "cold-warm-check-first-sequence-2.tar.gz",
+      "sha256": "e0242edf97d87f40d66be04f64d4d7fec6454351e61e24e11961138b61b04d98",
+      "inventory": "cold-warm-check-first-sequence-2.inventory.json.gz",
+      "inventorySha256": "70f45ba535b603ab11e84449260ddacad8b796fced26ead37704d34c9313117b",
+      "entries": 29,
+      "source": "/tmp/loredock-flow-coordinator-oMHs4e"
+    },
+    {
+      "path": "cold-warm-check-first-sequence-3.tar.gz",
+      "sha256": "d9f9bd3214399f1044761391f9470153876214774b0dfda44bb08a616d6aa0d0",
+      "inventory": "cold-warm-check-first-sequence-3.inventory.json.gz",
+      "inventorySha256": "ef36b4a9dd4be8a719b34204a774522b539e24854c741679c6c918aa70aa3293",
+      "entries": 4,
+      "source": "/tmp/loredock-flow-coordinator-AloUV4"
+    },
+    {
+      "path": "cold-warm-check-first-sequence-4.tar.gz",
+      "sha256": "3b0d41efe154eb62a397a3e03aff3c2894a87d0e86fe3d4e42e63763a6917161",
+      "inventory": "cold-warm-check-first-sequence-4.inventory.json.gz",
+      "inventorySha256": "8b3e89ac190e9254696e1780e38f92ceb8f070f6443e72dd53cafc84d496668a",
+      "entries": 4,
+      "source": "/tmp/loredock-flow-coordinator-VYw6Wb"
+    },
+    {
+      "path": "cold-warm-check-first-sequence-5.tar.gz",
+      "sha256": "a8fc73c238223c35fd68ffe43496ac4d59660e3cb82b0e00ee828caff2ff6b86",
+      "inventory": "cold-warm-check-first-sequence-5.inventory.json.gz",
+      "inventorySha256": "fd96f973a4e90be86c24a8232eb8b5a73d7a82208d187152da738f37e192494e",
+      "entries": 5,
+      "source": "/tmp/loredock-flow-coordinator-S1TF5p"
+    },
+    {
+      "path": "cold-warm-check-first-sequence-6.tar.gz",
+      "sha256": "112e8d8bd68faa9a6b6447d2338e5d77f977420704a51a0039f2c8ca0fb94876",
+      "inventory": "cold-warm-check-first-sequence-6.inventory.json.gz",
+      "inventorySha256": "8b0b8749aba12de93f3cf5d86f9fac9d6de7cac400a17473718f182a34ebb7e9",
+      "entries": 0,
+      "source": "/tmp/loredock-flow-coordinator-eV1vl1"
+    },
+    {
+      "path": "cold-warm-check-first-sequence-7.tar.gz",
+      "sha256": "1cf39d4479b7f3cdb1143f53d4c3303ede7f647acf5ccccda9e4725613d5e6ad",
+      "inventory": "cold-warm-check-first-sequence-7.inventory.json.gz",
+      "inventorySha256": "fade1e2aded1a77010764cb8121c76360f6a678270c77f817c9c6413feb97940",
+      "entries": 1,
+      "source": "/tmp/loredock-flow-coordinator-8VCVOv"
+    },
+    {
+      "path": "cold-warm-check-first-sequence-8.tar.gz",
+      "sha256": "b92a025731ad0432f4b1ca69d6251b4c39bbf7ff8d699fd71614777df7b551c6",
+      "inventory": "cold-warm-check-first-sequence-8.inventory.json.gz",
+      "inventorySha256": "2f2690e3d4d7103888e223a3bf1011a97d7cb4448e0e14429b6db5add25cd1bf",
+      "entries": 5,
+      "source": "/tmp/loredock-flow-coordinator-tIj87X"
+    },
+    {
+      "path": "cold-warm-check-first-sequence-9.tar.gz",
+      "sha256": "0e24bdcb8ac1dcd160c9d3ceed4c5fa77f414e77a350c8de740d1e3c727f2957",
+      "inventory": "cold-warm-check-first-sequence-9.inventory.json.gz",
+      "inventorySha256": "e4a90fab98a70e2cbe945984aa7a91429305eb041b8688a65fb401d5a92df80d",
+      "entries": 6,
+      "source": "/tmp/loredock-flow-coordinator-eaWzr2"
+    },
+    {
+      "path": "cold-warm-check-first-sequence-10.tar.gz",
+      "sha256": "20cc00bf409df81689ab8bee014ed7c34eb2f6c4be958931617b53d66551e8dc",
+      "inventory": "cold-warm-check-first-sequence-10.inventory.json.gz",
+      "inventorySha256": "e4d5c67e739565e78b579a269c81a63a4641ac46fc65932ce2583de5a572d27c",
+      "entries": 33,
+      "source": "/tmp/loredock-flow-coordinator-osbHNq"
+    },
+    {
+      "path": "cold-warm-check-first-sequence-11.tar.gz",
+      "sha256": "dc62b1383b4b4c2519739e4a75339ef015c740be1705deb76e7c33fd2faf73eb",
+      "inventory": "cold-warm-check-first-sequence-11.inventory.json.gz",
+      "inventorySha256": "c6d4c51599244085d73fdc1cc070d2f5f83faf4a10047ec5d1a335d37ee62cee",
+      "entries": 5,
+      "source": "/tmp/loredock-flow-coordinator-WcHNlD"
+    },
+    {
+      "path": "cold-warm-check-first-lifetime-1.tar.gz",
+      "sha256": "ddc42c02861efd4fd5280c87c42f25c26da304a493070ddc08059f52bc5a15eb",
+      "inventory": "cold-warm-check-first-lifetime-1.inventory.json.gz",
+      "inventorySha256": "da979935fe3a876a1111746c97dde02a23ff2741ff2d3f969e82e6b57c3dce20",
+      "entries": 9,
+      "source": "/tmp/loredock-browser-lifetime-3bqJwm"
+    },
+    {
+      "path": "cold-warm-check-first-lifetime-2.tar.gz",
+      "sha256": "0d41eb07b39404e963c06c712b215411e40f5a25a965c87dd8538196f3360093",
+      "inventory": "cold-warm-check-first-lifetime-2.inventory.json.gz",
+      "inventorySha256": "8e834cb774d8bce45909d9157514d97e1cab258a607cfacd945ab1d57b91204e",
+      "entries": 9,
+      "source": "/tmp/loredock-browser-lifetime-QXu48p"
+    },
+    {
+      "path": "cold-warm-check-first-lifetime-3.tar.gz",
+      "sha256": "eceafe6cb2e1aa048d58f797c484f8b7c51a1b53ce7cadac4b459a9a55568ecd",
+      "inventory": "cold-warm-check-first-lifetime-3.inventory.json.gz",
+      "inventorySha256": "1f658ebefc5279f6050e63bb5ddd5baa12aeb2d262e3167b709cb15fe7c08ddf",
+      "entries": 15,
+      "source": "/tmp/loredock-browser-lifetime-UjckgU"
+    },
+    {
+      "path": "cold-warm-check-first-lifetime-4.tar.gz",
+      "sha256": "28b0dc8b5d8c6a55026e6d046701e2a14425e9d9bfce282519ecb61ee9eae29b",
+      "inventory": "cold-warm-check-first-lifetime-4.inventory.json.gz",
+      "inventorySha256": "0d6ad23d25f19857697acf98d86a71f235f29c2fc6465b7ea33d3d550ff2323c",
+      "entries": 5,
+      "source": "/tmp/loredock-browser-lifetime-eERucQ"
+    },
+    {
+      "path": "cold-warm-check-first-owner-1.tar.gz",
+      "sha256": "a764a40d53886e2e7da677dd2c532c544eb7505cc757647146252648922bdda3",
+      "inventory": "cold-warm-check-first-owner-1.inventory.json.gz",
+      "inventorySha256": "c6b4131dadce79dde7b42b6b18d32577b3d27396bf9d3fa77291fe96fe23bd0d",
+      "entries": 8,
+      "source": "/tmp/loredock-kernel-adoption-D8z56q"
+    },
+    {
+      "path": "cold-warm-check-first-owner-2.tar.gz",
+      "sha256": "bb7b70863c02a32110cff70f9ace55b0ea30cd176f9659173cb450106ba951e2",
+      "inventory": "cold-warm-check-first-owner-2.inventory.json.gz",
+      "inventorySha256": "afde2b2a1ea059ae91369d37df1d50b1e83e7699cdbdb6bd4dbac4d129c239fe",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-LfCSyJ"
+    },
+    {
+      "path": "cold-warm-check-first-owner-3.tar.gz",
+      "sha256": "68b898a967006c6aba244c7f05e447a66245acf260d8cf6a5407cadc40da6d18",
+      "inventory": "cold-warm-check-first-owner-3.inventory.json.gz",
+      "inventorySha256": "292cca163e9d80b560a73d371811412d12433df55c60b8b538d582923c493798",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-fYPIWN"
+    },
+    {
+      "path": "cold-warm-check-first-owner-4.tar.gz",
+      "sha256": "fe496d0048f0d8316e4e6c292e18b96c9dd28221fefc6f46b6e3eea82f0d3230",
+      "inventory": "cold-warm-check-first-owner-4.inventory.json.gz",
+      "inventorySha256": "8997410d204162400b275c65a1adb2063b32a7cb0f5c0c130d1f417a4920f8ca",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-bNXiJW"
+    },
+    {
+      "path": "cold-warm-check-first-owner-5.tar.gz",
+      "sha256": "62d37d161240e9c8d3518785c1cd31cad72f7a0412ab72f4affd8216965dc04c",
+      "inventory": "cold-warm-check-first-owner-5.inventory.json.gz",
+      "inventorySha256": "f5a3388e82c38eed0929bcf95d3a1874c836e5bb186a91598e7e77f346eeee62",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-RTVSic"
+    },
+    {
+      "path": "cold-warm-check-first-owner-6.tar.gz",
+      "sha256": "d13578c4d0c8bba42de6817f7dbe58a4369982ec41d2d9372f04dd8a66e5d8dd",
+      "inventory": "cold-warm-check-first-owner-6.inventory.json.gz",
+      "inventorySha256": "d8e5d0ac2c61d5e41ac6edab268b314941e5edb9fa5349dd7749cc1de9abf21a",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-kEG1jn"
+    },
+    {
+      "path": "cold-warm-check-first-checkpoint-1.tar.gz",
+      "sha256": "38bcef263c85a8c5305f9a78f5958c2ced1781246e7f30de5a545fee86b9688c",
+      "inventory": "cold-warm-check-first-checkpoint-1.inventory.json.gz",
+      "inventorySha256": "ad7aa50d08370487afdaca3bc1e57b64dafb92606bc95bbba764bfd0d9de9e17",
+      "entries": 6,
+      "source": "/tmp/loredock-history-checkpoint-j2Y7hV"
+    },
+    {
+      "path": "cold-warm-inputs.tar.gz",
+      "sha256": "6e5ddbbca82360a58b743c672117e774029f577f25c6f4ef4f6c06aa24f2ef45",
+      "inventory": "cold-warm-inputs.inventory.json.gz",
+      "inventorySha256": "c90115c108f11271c992106248983007444a81b48ae738385a5fd4ece2cbfc41",
+      "entries": 7,
+      "source": "/home/toshiba/aew/task128-cold-warm-inputs"
+    },
+    {
+      "path": "cold-warm-static-inputs.tar.gz",
+      "sha256": "7da51dbd74d1a2a04a699e32772984f7aae480165ec2096ba4941f651ab07f75",
+      "inventory": "cold-warm-static-inputs.inventory.json.gz",
+      "inventorySha256": "655fe983747e98e8da67734a3c82ddd3d4dc470e354422bb3f0b5eddea06c2ec",
+      "entries": 1,
+      "source": "/home/toshiba/aew/task128-cold-warm-static-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "cold-warm-first.log.gz",
+      "archiveSha256": "106d5cb24471ac463830b280a646e27b689b122d123a5dd3eca1e2a7ed3de97f",
+      "rawBytes": 20262,
+      "rawSha256": "704ab95814ec395d838bfefaf6de380053961ba0086e4edc64f5defd0ff7613b"
+    },
+    {
+      "path": "cold-warm-unscaled.log.gz",
+      "archiveSha256": "1a02e7af3cd965ffb08471365d3411135b0714094111635b3ab8c0e9a254a404",
+      "rawBytes": 3119,
+      "rawSha256": "ba8d48e7fc5b7a5f6dc9fbc25f61c176cbeed51997e873d1381bc379ee7c820a"
+    },
+    {
+      "path": "cold-warm-install.log.gz",
+      "archiveSha256": "cadd2b1f7cc3ca2aec3f01daded79d8bf41c8a433271d3c3a6ee2edbef247035",
+      "rawBytes": 326,
+      "rawSha256": "2410a9a14422e2264c11a444fa13469e827c1e181a151646a58cd4b256968649"
+    },
+    {
+      "path": "cold-warm-build.log.gz",
+      "archiveSha256": "fba21e8fa506541b8d133f9b6c5b9cbd5e031202690d19df521ad44c72ae60e5",
+      "rawBytes": 2349,
+      "rawSha256": "4fcaff5603aff2b2284ee6c136bef9c0c3d95845277a8812daf0742d7280eeeb"
+    },
+    {
+      "path": "cold-warm-focused-first.log.gz",
+      "archiveSha256": "ce0077fe98ec800700f05b5fcbd5753528ae6e8636046cfd4fbd51e7c773eafb",
+      "rawBytes": 957,
+      "rawSha256": "cbaf19a1a263b999600bfe3fe76e61b56ee13a196e8da8977f8b4dc6bddd03cf"
+    },
+    {
+      "path": "cold-warm-check-first.log.gz",
+      "archiveSha256": "81e8ba97c274e7c57d5d62ae38b4acf2aa455e4cda32060c6f0418d1acabafcd",
+      "rawBytes": 355834,
+      "rawSha256": "3abe66c736727a53e151d4d1d471e2fda735f01b3e5f33a9d9fa82493dfd4092"
+    },
+    {
+      "path": "cold-warm-seal-check.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "cold-warm-retention.log.gz",
+      "archiveSha256": "21998a0b998e4af069103c22678ed7162a8f59e091aa8f9005eb6968c7069c26",
+      "rawBytes": 1969,
+      "rawSha256": "d543637c9df09b29cafc387f3c0330f469a29228dfb86b20144e9216ba3fd454"
+    },
+    {
+      "path": "cold-warm-gap-inspection.log.gz",
+      "archiveSha256": "4d36d8f16a73cbd4b587217c555d72d03f1daad4b678dccc1f61536f3e3a6a2b",
+      "rawBytes": 107,
+      "rawSha256": "bc48f13baee5874db0c4e79e5f76fad190e0b4f45186ac9b7e78212a127decee"
+    },
+    {
+      "path": "coordinator-ci-push.log.gz",
+      "archiveSha256": "f2405726b1bd03b28342a5c6ffcef3aaee0a9d16607ec020847120deaf0e3a6d",
+      "rawBytes": 694302,
+      "rawSha256": "97ad4fcae3112aeee85c792a9dbfabba97c32b540f8fa5d8fd1bb7e3bfb93db7"
+    },
+    {
+      "path": "coordinator-ci-pr.log.gz",
+      "archiveSha256": "97506d2ad7964f4b7d9ef0b958ff2d0a06296ef558c2045bca53a1c3b2759540",
+      "rawBytes": 695516,
+      "rawSha256": "9c641c7db89dfb4da3a919ed644a235fbd53cb533f2525a32c7f98e37dae9f56"
+    },
+    {
+      "path": "cold-warm-static-first.log.gz",
+      "archiveSha256": "b063ff625a4ed3cccf692879087d05b6855c25af8ec293e2aa1cf45f8c661284",
+      "rawBytes": 210,
+      "rawSha256": "5d9145dd217488b48fcc84f919a1daa11db02a6264efb1f6c7d799e84ec02c69"
+    }
+  ],
+  "acceptedCoordinator": {
+    "pr": 140,
+    "head": "3ad4c5c1ba0b4029807059f8c746a05ef18d9cec",
+    "merge": "c875fa2a6ffceaf5c158f3b5c4c8cb8c24310ee2",
+    "push": 42013967631,
+    "pull_request": 42014009139,
+    "testsPerEvent": 970
+  },
+  "retention": {
+    "resourceQualification": false,
+    "modelCalls": 0,
+    "reservedFamilyReads": 0,
+    "runs": [
+      {
+        "name": "first",
+        "unchanged": true,
+        "entries": 20936,
+        "ownerExit": 1,
+        "observedCases": [
+          "cold-240"
+        ]
+      },
+      {
+        "name": "unscaled",
+        "unchanged": true,
+        "entries": 160,
+        "ownerExit": 1,
+        "observedCases": [
+          "cold-12",
+          "warm-12"
+        ]
+      }
+    ],
+    "catalogs": [
+      {
+        "source": "/home/toshiba/aew/task128-cold-warm-first/run/cold-240/data",
+        "copy": "/home/toshiba/aew/task128-cold-warm-retention/first/cold-240/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [],
+        "analyses": [
+          [
+            "partial",
+            217
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-cold-warm-unscaled/run/cold-12/checkpoint",
+        "copy": "/home/toshiba/aew/task128-cold-warm-retention/unscaled/cold-12/checkpoint",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [],
+        "analyses": [
+          [
+            "completed",
+            5
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-cold-warm-unscaled/run/cold-12/data",
+        "copy": "/home/toshiba/aew/task128-cold-warm-retention/unscaled/cold-12/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [],
+        "analyses": [
+          [
+            "completed",
+            5
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-cold-warm-unscaled/run/warm-12/data",
+        "copy": "/home/toshiba/aew/task128-cold-warm-retention/unscaled/warm-12/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "succeeded",
+            3
+          ]
+        ],
+        "analyses": [
+          [
+            "completed",
+            5
+          ]
+        ]
+      }
+    ],
+    "sourceRepositories": 44,
+    "httpBodies": 75,
+    "warmLifetimes": 3
+  }
+}

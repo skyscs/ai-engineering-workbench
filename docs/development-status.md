@@ -120,9 +120,27 @@ unknown counters remain unknown, and no callback-only result grants qualificatio
 model eligibility. The controls execute no model or candidate source read.
 The final full check passes 970 tests, strict types, builds and the unchanged original
 seal. Actual R01-R15 handler integration, full resource assessment and the final committed
-executable/environment/output seal remain required. Both exact-head CI events are still
-required for this coordinator checkpoint; known ordinary resource/positive failures
-remain unresolved.
+executable/environment/output seal remain required. Both exact-head CI events pass for
+[PR #140](https://github.com/skyscs/ai-engineering-workbench/pull/140): push 42013967631 and
+pull_request 42014009139 at `3ad4c5c`; merge `c875fa2` has the identical tree. Known ordinary
+resource/positive failures remain unresolved.
+
+The next [cold/warm handlers](fixtures/loredock-prepared-flow-cold-warm/README.md) use
+the actual cold entry and fixed three-repeat controlled flow from a complete stopped
+checkpoint. A twenty-source 240-file control fails its completed-analysis prerequisite:
+all 217 code files parse, but 212 constant-only padding files report an unsupported profile,
+making the inventory partial. Its 10,000-file candidate and scaled warm cases never run.
+The original failure, sources and catalog remain; no input or requirement is weakened.
+A separate established four-source control completes all three warm HTTP lifetimes with
+one dispatch each and exact witness/prompt/context. Both runs remain exit 1: raw daemon
+gaps of 337.984463, 333.651025 and 290.538963 ms exceed the unchanged 100 ms ceiling.
+Both external owners drain without errors or survivors. Independent inspection verifies
+44 source Git identities, 75 HTTP bodies, three warm witnesses and four complete copied
+catalogs with valid integrity/foreign keys. Raw trees remain unchanged. The full local
+check passes 973 tests, strict types, builds and the original application/input seal.
+Both exact-head CI events remain required for this checkpoint. Complete case integration,
+resource assessment and the executable seal are still pending; no reserved candidate read
+or model call occurs.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request
