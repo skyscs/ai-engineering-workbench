@@ -1,0 +1,234 @@
+import { randomBytes, timingSafeEqual } from 'node:crypto';
+import { existsSync } from 'node:fs';
+import path from 'node:path';
+import { Hono } from 'hono';
+import { getCookie, setCookie } from 'hono/cookie';
+import { bodyLimit } from 'hono/body-limit';
+import { serveStatic } from '@hono/node-server/serve-static';
+import { CatalogError } from './types.js';
+import { declarationMap } from './system-map.js';
+import { codeFlows } from './code-flows.js';
+import { Corrections } from './corrections.js';
+import { indexChanges } from './index-changes.js';
+import { Reconciliation } from './reconciliation.js';
+import { projectOrientation } from './orientation.js';
+import { sourceCandidatePreview } from './source-candidates.js';
+import { lookupCodeSymbols } from './code-symbols.js';
+import { pathRequest } from './code-paths.js';
+import { CodePathsV2 } from './code-paths-v2.js';
+import { OperationBudgetError } from './operation-budget.js';
+import { NativeCaptures } from './native-capture.js';
+import { captureSelection, historyReceiptId, nativeCaptureError, captureListSelection } from './native-capture-api.js';
+export function createApp(catalog, options = {}) {
+    const app = new Hono();
+    const hosts = new Set(['127.0.0.1:4244', ...options.development ? ['127.0.0.1:5174'] : []]);
+    const origins = new Set([...hosts].map(host => `http://${host}`));
+    const sessions = new Map();
+    app.use('*', async (c, next) => {
+        if (c.req.path === '/api' || c.req.path.startsWith('/api/'))
+            c.header('Cache-Control', 'no-store');
+        if (!hosts.has(c.req.header('host') ?? ''))
+            return c.json({ error: { message: 'Use the local LoreDock URL.' } }, 403);
+        const origin = c.req.header('origin');
+        const navigation = c.req.method === 'GET' && c.req.path !== '/api' && !c.req.path.startsWith('/api/')
+            && c.req.header('sec-fetch-mode') === 'navigate' && c.req.header('sec-fetch-dest') === 'document'
+            && c.req.header('sec-fetch-user') === '?1' && origin === undefined;
+        if ((origin !== undefined && !origins.has(origin)) || (c.req.header('sec-fetch-site') === 'cross-site' && !navigation))
+            return c.json({ error: { message: 'Cross-origin requests are not allowed.' } }, 403);
+        c.header('X-Content-Type-Options', 'nosniff');
+        c.header('X-Frame-Options', 'DENY');
+        c.header('Referrer-Policy', 'no-referrer');
+        if (!options.development)
+            c.header('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; object-src 'none'; frame-ancestors 'none'; base-uri 'none'");
+        await next();
+    });
+    app.use('/api/*', bodyLimit({ maxSize: 16384, onError: c => c.json({ error: { message: 'Request exceeds 16 KiB.' } }, 413) }));
+    app.use('/api/*', async (c, next) => {
+        for (const [id, session] of sessions)
+            if (session.expires <= Date.now())
+                sessions.delete(id);
+        if (c.req.path === '/api/health' && c.req.method === 'GET')
+            return next();
+        if (c.req.path === '/api/session' && c.req.method === 'POST') {
+            if (!origins.has(c.req.header('origin') ?? '') || c.req.header('x-loredock-client') !== 'web')
+                return c.json({ error: { message: 'Open LoreDock in your browser.' } }, 403);
+            return next();
+        }
+        const session = sessions.get(getCookie(c, 'loredock_session') ?? '');
+        if (!session)
+            return c.json({ error: { message: 'Reload to reconnect to LoreDock.' } }, 401);
+        if (!['GET', 'HEAD'].includes(c.req.method)) {
+            const token = Buffer.from(c.req.header('x-loredock-csrf') ?? ''), expected = Buffer.from(session.token);
+            if (!origins.has(c.req.header('origin') ?? '') || token.length !== expected.length || !timingSafeEqual(token, expected))
+                return c.json({ error: { message: 'The request could not be verified.' } }, 403);
+        }
+        await next();
+    });
+    app.get('/api/health', c => c.json({ service: 'loredock', version: '0.1.0', modelExecution: Boolean(options.answers), codeAnalysis: Boolean(options.codeAnalysis) }));
+    app.post('/api/session', c => {
+        const existing = sessions.get(getCookie(c, 'loredock_session') ?? '');
+        if (existing)
+            return c.json({ token: existing.token });
+        if (sessions.size >= 64)
+            return c.json({ error: { message: 'Too many browser sessions.' } }, 429);
+        const id = randomBytes(32).toString('hex'), token = randomBytes(32).toString('hex');
+        sessions.set(id, { token, expires: Date.now() + 8 * 60 * 60 * 1000 });
+        setCookie(c, 'loredock_session', id, { httpOnly: true, sameSite: 'Strict', path: '/api', maxAge: 28800 });
+        return c.json({ token });
+    });
+    const body = async (request) => {
+        let value;
+        try {
+            value = await request.json();
+        }
+        catch {
+            throw new CatalogError('INVALID_JSON', 'A JSON object is required.');
+        }
+        if (!value || typeof value !== 'object' || Array.isArray(value))
+            throw new CatalogError('INVALID_JSON', 'A JSON object is required.');
+        return value;
+    };
+    app.get('/api/project', c => c.json(catalog.state()));
+    app.post('/api/sources', async (c) => {
+        const input = await body(c.req);
+        if (typeof input.path !== 'string' || input.path.length > 4096)
+            throw new CatalogError('INVALID_PATH', 'Enter an absolute local repository path.');
+        return c.json(await catalog.addSource(input.path), 201);
+    });
+    app.post('/api/sources/preview', async (c) => c.json(await catalog.previewSources((await body(c.req)).paths)));
+    app.post('/api/sources/register', async (c) => c.json(await catalog.registerSources(await body(c.req)), 201));
+    app.post('/api/sources/:id/revoke', c => { catalog.revoke(c.req.param('id')); return c.json(catalog.state()); });
+    app.put('/api/policy', async (c) => { const input = await body(c.req); catalog.updatePolicy(input.excludedPaths); return c.json(catalog.state()); });
+    app.post('/api/builds', async (c) => {
+        const input = await body(c.req);
+        if (typeof input.requestId !== 'string' || !Number.isSafeInteger(input.sourceSetVersion) || !Number.isSafeInteger(input.policyVersion))
+            throw new CatalogError('INVALID_REQUEST', 'Request ID and current source/policy versions are required.');
+        return c.json(catalog.start(input.requestId, input.sourceSetVersion, input.policyVersion), 202);
+    });
+    app.get('/api/builds/:id', c => c.json(catalog.store.build(c.req.param('id'))));
+    app.get('/api/builds/:id/files', c => c.json({ files: catalog.files(c.req.param('id')), limit: 100 }));
+    app.get('/api/builds/:id/changes', c => c.json(indexChanges(catalog, c.req.param('id'))));
+    app.post('/api/builds/:id/:action', c => c.json(catalog.control(c.req.param('id'), c.req.param('action'))));
+    app.get('/api/search', c => c.json(catalog.search(c.req.query('q') ?? '', c.req.query('buildId'))));
+    app.get('/api/evidence/:id', c => c.json(catalog.evidence(c.req.param('id'))));
+    app.get('/api/system-map', c => c.json(declarationMap(catalog, c.req.query('buildId'))));
+    app.get('/api/code-flows', c => c.json(codeFlows(catalog, c.req.query('buildId'))));
+    app.get('/api/orientation', c => c.json(projectOrientation(catalog, c.req.query('buildId'))));
+    const codeAnalysis = options.codeAnalysis;
+    if (codeAnalysis) {
+        const codePaths = options.codePaths ?? new CodePathsV2(codeAnalysis);
+        const nativeCaptures = options.nativeCaptures ?? new NativeCaptures(codeAnalysis, { paths: codePaths });
+        app.get('/api/path-captures', async (c) => {
+            const selection = captureListSelection(new URL(c.req.url).searchParams, c.req.raw.headers);
+            return c.json(await nativeCaptures.list(selection, c.req.raw.signal));
+        });
+        app.post('/api/path-captures', async (c) => {
+            const selection = captureSelection(new URL(c.req.url).searchParams, await c.req.text());
+            const result = await nativeCaptures.capture(selection, c.req.raw.signal);
+            return c.json(result, result.created ? 201 : 200);
+        });
+        app.get('/api/path-captures/:receiptId', async (c) => {
+            const id = historyReceiptId(c.req.param('receiptId'), new URL(c.req.url).searchParams, c.req.raw.headers);
+            return c.json(await nativeCaptures.history(id, c.req.raw.signal));
+        });
+        app.get('/api/code-paths', async (c) => c.json(await codePaths.read(pathRequest(new URL(c.req.url).searchParams, 'paths'), 'paths', c.req.raw.signal)));
+        app.get('/api/code-paths/roots', async (c) => c.json(await codePaths.read(pathRequest(new URL(c.req.url).searchParams, 'roots'), 'roots', c.req.raw.signal)));
+        app.get('/api/code-symbols', async (c) => c.json(await lookupCodeSymbols(codeAnalysis, c.req.query('q') ?? '', c.req.query('buildId'))));
+        app.get('/api/code-analysis', c => c.json(options.codeFollow?.state() ?? { inventories: codeAnalysis.list(), pendingBuildId: null, automaticError: null }));
+        app.post('/api/code-analysis', async (c) => {
+            const input = await body(c.req), project = catalog.store.project();
+            if (Object.keys(input).some(key => !['requestId', 'buildId', 'policyVersion', 'sourceSetVersion'].includes(key))
+                || typeof input.requestId !== 'string' || typeof input.buildId !== 'string' || !input.buildId || input.buildId.length > 100
+                || !Number.isSafeInteger(input.policyVersion) || !Number.isSafeInteger(input.sourceSetVersion)) {
+                throw new CatalogError('INVALID_REQUEST', 'A request ID, published index and current source/policy versions are required.');
+            }
+            if (input.policyVersion !== project.policyVersion || input.sourceSetVersion !== project.sourceSetVersion
+                || catalog.readBuild(input.buildId).sourceSetVersion !== project.sourceSetVersion) {
+                throw new CatalogError('CONFLICT', 'Sources or policy changed. Update knowledge before analyzing code.', 409);
+            }
+            return c.json(codeAnalysis.start(input.requestId, input.buildId), 202);
+        });
+        app.get('/api/code-analysis/:id/files', c => {
+            const offset = c.req.query('offset');
+            if (offset !== undefined && !/^(0|[1-9]\d{0,4})$/.test(offset))
+                throw new CatalogError('INVALID_PAGE', 'Choose an available code-file page.');
+            return c.json({ files: codeAnalysis.files(c.req.param('id'), offset === undefined ? 0 : Number(offset)), offset: offset === undefined ? 0 : Number(offset), limit: 50 });
+        });
+        app.get('/api/code-analysis/:id/files/:fileId', c => c.json(codeAnalysis.file(c.req.param('id'), c.req.param('fileId'))));
+        app.post('/api/code-analysis/:id/:action', async (c) => {
+            const text = await c.req.text();
+            if (text.trim()) {
+                let input;
+                try {
+                    input = JSON.parse(text);
+                }
+                catch {
+                    throw new CatalogError('INVALID_JSON', 'Code analysis controls take no arguments.');
+                }
+                if (!input || typeof input !== 'object' || Array.isArray(input) || Object.keys(input).length)
+                    throw new CatalogError('INVALID_REQUEST', 'Code analysis controls take no arguments.');
+            }
+            const action = c.req.param('action');
+            if (action !== 'pause' && action !== 'resume' && action !== 'cancel')
+                throw new CatalogError('INVALID_ACTION', 'Unknown code analysis action.');
+            return c.json(codeAnalysis.control(c.req.param('id'), action));
+        });
+    }
+    app.post('/api/candidates/preview', async (c) => {
+        const input = await body(c.req);
+        if (Object.keys(input).some(key => key !== 'question' && key !== 'buildId' && key !== 'relatedOffset') || typeof input.question !== 'string'
+            || (input.buildId !== undefined && typeof input.buildId !== 'string')) {
+            throw new CatalogError('INVALID_REQUEST', 'A question and optional index version are required.');
+        }
+        return c.json(sourceCandidatePreview(catalog, input.question, input.buildId, input.relatedOffset));
+    });
+    const corrections = new Corrections(catalog);
+    app.get('/api/corrections', c => c.json(corrections.list(c.req.query('buildId'))));
+    app.get('/api/corrections/:id/history', c => c.json(corrections.history(c.req.param('id'))));
+    app.post('/api/corrections', async (c) => c.json(corrections.save(await body(c.req)), 201));
+    const reconciliation = new Reconciliation(catalog);
+    app.get('/api/correction-reconciliation', c => c.json(reconciliation.preview(c.req.query('buildId'), c.req.query('fromBuildId'))));
+    app.post('/api/corrections/reapply', async (c) => c.json(reconciliation.reapply(await body(c.req)), 201));
+    const answers = options.answers;
+    if (answers) {
+        app.get('/api/answers', c => c.json(answers.state()));
+        app.put('/api/answers/configuration', async (c) => c.json(await answers.configure(await body(c.req))));
+        app.post('/api/answers/preview', async (c) => {
+            const input = await body(c.req);
+            if (typeof input.question !== 'string' || (input.buildId !== undefined && typeof input.buildId !== 'string'))
+                throw new CatalogError('INVALID_REQUEST', 'A question and optional index version are required.');
+            return c.json(answers.preview(input.question, input.buildId));
+        });
+        app.post('/api/answers', async (c) => {
+            const input = await body(c.req);
+            if (![input.requestId, input.question, input.buildId, input.inputHash].every(value => typeof value === 'string'))
+                throw new CatalogError('INVALID_REQUEST', 'Request ID and reviewed question context are required.');
+            return c.json(answers.start(input.requestId, input.question, input.buildId, input.inputHash), 202);
+        });
+        app.get('/api/answers/:id', c => c.json(answers.get(c.req.param('id'))));
+        app.post('/api/answers/:id/cancel', c => c.json(answers.cancel(c.req.param('id'))));
+    }
+    app.all('/api', c => c.json({ error: { message: 'Unknown API route.' } }, 404));
+    app.all('/api/*', c => c.json({ error: { message: 'Unknown API route.' } }, 404));
+    if (options.publicDir && existsSync(path.join(options.publicDir, 'index.html'))) {
+        app.use('/*', serveStatic({ root: options.publicDir }));
+        app.get('*', serveStatic({ path: path.join(options.publicDir, 'index.html') }));
+    }
+    app.onError((error, c) => {
+        if (error instanceof CatalogError)
+            return c.json({ error: { code: error.code, message: error.message } }, error.status);
+        const native = nativeCaptureError(error);
+        if (native)
+            return c.json({ error: native.error }, native.status);
+        if (error instanceof OperationBudgetError) {
+            const message = error.code === 'CANCELLED' ? 'The path request was cancelled.'
+                : error.code === 'CAPTURE_TIME_LIMIT' ? 'The path request reached its time limit.'
+                    : error.code === 'CAPTURE_WORK_LIMIT' ? 'The path request reached its work limit.' : undefined;
+            if (message)
+                return c.json({ error: { code: error.code, message } }, 409);
+        }
+        console.error(`LoreDock request failed (${error.name}).`);
+        return c.json({ error: { message: 'The local operation failed. Check the daemon and retry.' } }, 500);
+    });
+    return app;
+}

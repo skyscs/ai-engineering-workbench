@@ -1,6 +1,7 @@
 # Task 126 — Connect prepared questions to protected HTTP and the review flow
 
-Status: scoped by Task 125; start after its exact-head acceptance.
+Status: in progress after Task 125 exact-head acceptance (`9c21c17`, merge `b0c89df`).
+The [public contract](../docs/loredock/PREPARED_QUESTION_API.md) is frozen before implementation.
 
 Connect the internal preparation/answer lifecycle to one coherent experimental user
 flow. Preserve the ordinary answer pilot until fresh complete-composition resource and
