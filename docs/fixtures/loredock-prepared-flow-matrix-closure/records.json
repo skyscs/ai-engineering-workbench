@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "prepared-flow-matrix-closure-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "trees": [
+    {
+      "path": "matrix-closure-first.tar.gz",
+      "sha256": "7e51c012bf92f416a7d72c5bb458eb067fd808f768b9b05368646462936df501",
+      "inventory": "matrix-closure-first.inventory.json.gz",
+      "inventorySha256": "9acd2d50519a9a2b14fe89c8f3735e1208b431405eb8687e90e7f2eef9c23670",
+      "entries": 14,
+      "source": "/home/toshiba/aew/task128-matrix-closure-first"
+    },
+    {
+      "path": "matrix-closure-first-inputs.tar.gz",
+      "sha256": "aef041fb03f2877374af82b778752abe9ee28894fa1ff109dc4a3688ad236de7",
+      "inventory": "matrix-closure-first-inputs.inventory.json.gz",
+      "inventorySha256": "802f0bf715b0358207bcf79e7ad9bd1133e7cd1c81743c9349373d44f0378ccf",
+      "entries": 3,
+      "source": "/home/toshiba/aew/task128-matrix-closure-first-inputs"
+    },
+    {
+      "path": "matrix-closure-retention.tar.gz",
+      "sha256": "20a5d027c3d8022d030873689a6ef8865747c070c17495005031bcd026c91425",
+      "inventory": "matrix-closure-retention.inventory.json.gz",
+      "inventorySha256": "c1497e9359f2f0a37893c364af86faae494bb9e64aa415735658ee483e665426",
+      "entries": 5,
+      "source": "/home/toshiba/aew/task128-matrix-closure-retention"
+    },
+    {
+      "path": "matrix-closure-inputs.tar.gz",
+      "sha256": "e283dbd73fa5d63cf50726ca78123738f7645316f547385a3cd4334009915ac7",
+      "inventory": "matrix-closure-inputs.inventory.json.gz",
+      "inventorySha256": "afd3dd3fd5af6262a39421be750a3534802359aa16f173751b5796986b1d3bef",
+      "entries": 9,
+      "source": "/home/toshiba/aew/task128-matrix-closure-inputs"
+    },
+    {
+      "path": "matrix-closure-static-inputs.tar.gz",
+      "sha256": "2e406de52794f0e7d9aa5d83053e0eafdc83c03b84e4f2f3d7f6ee04fd25351a",
+      "inventory": "matrix-closure-static-inputs.inventory.json.gz",
+      "inventorySha256": "94f6ef5e9b92597ff199ff7c35024005976ea96acbe36f914b666d1bc5560e53",
+      "entries": 2,
+      "source": "/home/toshiba/aew/task128-matrix-closure-static-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "matrix-closure-first.log.gz",
+      "archiveSha256": "68e10aec72f0a8f3ba8bee8f11c19bbdfead653f82c212798f1b727a6b6e7d43",
+      "rawBytes": 1104,
+      "rawSha256": "3554d7729d3c97b036ca0b23a866d7347eb551a7ab672e61996ac9d8cc1a9280"
+    },
+    {
+      "path": "matrix-closure-tests-first.log.gz",
+      "archiveSha256": "402dc0b33383200eee37beaf81c2d4cef606f3e7ccc568e9deff97aa97b75ba5",
+      "rawBytes": 3381,
+      "rawSha256": "e48bfb66e9991f038d1ebdf13fbc9cea261b2186e1efff5f4b8083ebff366380"
+    },
+    {
+      "path": "matrix-closure-install.log.gz",
+      "archiveSha256": "9f67f42a158ee9b8c89947f6003fc451af3bfa59b6e6a94ee21118084cc043a8",
+      "rawBytes": 326,
+      "rawSha256": "153daef568282fe31cbb8f78fe71508665dacc77f7885d42a6c63214c3e9a005"
+    },
+    {
+      "path": "matrix-closure-build.log.gz",
+      "archiveSha256": "0cacdd55d25e7a31c7e1007bca962fd883627dad628a0e1a150e01d5d39b00c7",
+      "rawBytes": 2354,
+      "rawSha256": "02262e4d5e6c9eebfb1dde95a36568b5228d1575110d1a3e1c05cb6f6e5f145c"
+    },
+    {
+      "path": "matrix-closure-seal.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "matrix-closure-retention.log.gz",
+      "archiveSha256": "5e2ae80ccab5975f28b82701bc768f8685fc9ebc3c52fedb7a216bf2176a85b0",
+      "rawBytes": 449,
+      "rawSha256": "315dd3a285b84b4801f4d7a0a10b09a9fac498c1643096d0d849ee14725fcece"
+    },
+    {
+      "path": "matrix-integration-ci-push.log.gz",
+      "archiveSha256": "396ec8a101cbf92c135f147319f3e1361264022f15f5a26a87d3a4fd85f25dd5",
+      "rawBytes": 719923,
+      "rawSha256": "b28a1923b806144194120fcc31908646f795578cda2a0cd1408c2a8f5ebc0489"
+    },
+    {
+      "path": "matrix-integration-ci-pr.log.gz",
+      "archiveSha256": "8719527fe38bf301d4ca95b090d6087fcf5ae54c1f2356e42d59fe4fee284ec2",
+      "rawBytes": 722218,
+      "rawSha256": "beb422b0def7aa821a58e7798196ac447dc099f57415f984e92fda2d371cc9b4"
+    },
+    {
+      "path": "matrix-closure-static-first.log.gz",
+      "archiveSha256": "b4ee938df6b05579f8358626ede0d61100b0a364cc5fbac85fd4dce8c8b33515",
+      "rawBytes": 205,
+      "rawSha256": "86ab1174d0afb048ce142b4c5588a9ff60f9e8d196e50c7a8244533e40f4c86b"
+    }
+  ],
+  "acceptedMatrixIntegration": {
+    "pr": 157,
+    "head": "7a923e7d942b4bdb9ef76a4f54ed208633002234",
+    "merge": "1d2d9ed424189750026a2e09eb44d7130f76f74d",
+    "push": 42078070857,
+    "pull_request": 42078099932,
+    "testsPerEvent": 1012
+  },
+  "retention": {
+    "catalogIntegrity": "ok",
+    "foreignKeys": [],
+    "catalogs": 1,
+    "witnessRows": 3,
+    "boundReviews": 4,
+    "unmatchedReviews": 11,
+    "lifetimeChecks": 16,
+    "originalMatrixEntries": 33062,
+    "closureEntries": 14,
+    "rawInputsUnchanged": true,
+    "originalOutcomesUnchanged": true,
+    "candidatePreparations": 0,
+    "controlledCalls": 0,
+    "modelCalls": 0,
+    "reservedFamilyReads": 0,
+    "resourceQualification": false,
+    "modelEligibility": false
+  }
+}

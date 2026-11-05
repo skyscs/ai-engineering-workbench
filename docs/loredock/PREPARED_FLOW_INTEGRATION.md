@@ -12,6 +12,12 @@ input is twelve files; the separate 10,000-file input retains its partial-analys
 failure and missing dependent operations. This run does not close the coverage gaps
 below or replace the final reserved execution seal.
 
+The [supplemental offline bindings](../fixtures/loredock-prepared-flow-matrix-closure/README.md)
+now connect R01's cold and R03's three warm reviews to exact retained content and reproduce
+R15's enclosing lifetime bounds. The eleven examined unadmitted expiry/oracle reviews
+remain unmatched in that comparison catalog. No original result is rewritten, and other
+operation work, private boundaries and the final seal remain outstanding.
+
 ## Fixed case assembly
 
 Use the existing [coordinator](../../scripts/loredock-prepared-flow/coordinator.mjs)

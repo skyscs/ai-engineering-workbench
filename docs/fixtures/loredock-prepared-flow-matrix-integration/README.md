@@ -75,8 +75,13 @@ archive and remain intact locally. The owner measured their storage. Session mat
 is redacted in HTTP/browser records. All executable/source artifacts remain English.
 
 Twelve focused controls, installation, production builds and the unchanged original
-application/input seal pass. Both full CI events at the final PR head remain required
-before merge. Application behavior, parser/schema/defaults, the user checkout and all
+application/input seal pass. Accepted through
+[PR #157](https://github.com/skyscs/ai-engineering-workbench/pull/157): push 42078070857 and
+pull_request 42078099932 each pass 1,012 tests at `7a923e7d942b4bdb9ef76a4f54ed208633002234`.
+Both complete logs and counts were verified before merge `1d2d9ed424189750026a2e09eb44d7130f76f74d`,
+whose tree is identical. The [next offline slice](../loredock-prepared-flow-matrix-closure/README.md)
+retains those CI logs and adds content/lifetime bindings without changing these original
+outcomes. Application behavior, parser/schema/defaults, the user checkout and all
 reserved inputs remain unchanged.
 
 ## Next boundary

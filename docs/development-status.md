@@ -2,11 +2,12 @@
 
 ## Task 128 — Complete-flow resource driver (in progress)
 
-Latest accepted checkpoint: [PR #156](https://github.com/skyscs/ai-engineering-workbench/pull/156)
-at merge `c14f061`. The first ordinary ordered matrix now exercises all fifteen groups:
+Latest accepted checkpoint: [PR #157](https://github.com/skyscs/ai-engineering-workbench/pull/157)
+at merge `1d2d9ed`. The first ordinary ordered matrix exercises all fifteen groups:
 eleven fail and four remain incomplete. Independent retention verifies all 55 created
-catalogs and unchanged raw inputs; both final-head CI events remain required before
-accepting this integration. Earlier resource/required-positive failures remain unresolved.
+catalogs and unchanged raw inputs; both exact-head CI events passed 1,012 tests before
+merge. Supplemental offline content/lifetime bindings are now checked and awaiting their
+own CI acceptance. Earlier resource/required-positive failures remain unresolved.
 The reserved family has zero candidate reads; no model runs.
 Known ordinary failures include partial analysis of constant-only padding, a missing
 required native positive at the derived-size limit, aggregate list work, browser RSS and
@@ -440,9 +441,23 @@ The external owner finishes in 1,067,919.32760505 ms with driver exit 1, no erro
 survivors. All 63 possible roots are declared; 55 exist. Independent inspection verifies
 55 copied catalogs, 104 Git identities, 10,233 source files, 1,700 protected responses,
 3,469 browser bodies and all 33,062 unchanged raw entries. Twelve focused controls,
-installation/builds and the original seal pass; both final-head CI events remain pending.
+installation/builds and the original seal pass. Accepted through
+[PR #157](https://github.com/skyscs/ai-engineering-workbench/pull/157): push 42078070857 and
+pull_request 42078099932 pass 1,012 tests at `7a923e7`; merge `1d2d9ed` has the identical
+tree. Both complete CI logs and counts were checked before merge.
 The [work note](loredock/PREPARED_FLOW_INTEGRATION.md) retains the remaining coverage and
 execution-seal requirements. The first run is consumed and cannot be retried into a pass.
+
+The [supplemental offline closure](fixtures/loredock-prepared-flow-matrix-closure/README.md)
+binds R01's cold review and all three R03 warm reviews to exact stored content in one
+declared three-answer catalog. Public context, compact item, selection and prompt version
+must match independently validated witness bytes; an echoed identity alone is insufficient.
+The unadmitted expiry review and ten oracle reviews remain unmatched and unmeasured in
+that catalog. Recomputed R15 lifetime bounds match all sixteen original checks, without
+diagnostic timing or new per-operation claims. One copied catalog and all 33,062 original
+entries pass independent retention. Thirteen focused controls, install/build and the
+original seal pass. No new candidate preparation, answer or model runs; all original
+outcomes remain immutable. Both final-head CI events remain required before merge.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request
