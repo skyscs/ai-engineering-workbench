@@ -167,7 +167,7 @@ test('schema identity migration is atomic, durable, private and rejected by a sc
     assert.equal(before.prepare("SELECT name FROM sqlite_schema WHERE name='catalog_identity'").get(), undefined);
     assert.equal(before.prepare('SELECT status FROM builds WHERE id=?').get(pending.id)!.status, 'preparing'); } finally { before.close(); }
   const store = new CatalogStore(directory), id = store.receipts.catalogId;
-  assert.equal(store.one<{ user_version: number }>('PRAGMA user_version')!.user_version, 10);
+  assert.equal(store.one<{ user_version: number }>('PRAGMA user_version')!.user_version, 11);
   assert.equal(store.buildRow(pending.id).status, 'interrupted'); assert.ok(!JSON.stringify(new Catalog(store).state()).includes(id));
   assert.throws(() => store.run('UPDATE catalog_identity SET id=?', randomUUID()), /immutable/);
   assert.throws(() => store.run('DELETE FROM catalog_identity'), /immutable/); store.close();
@@ -179,7 +179,7 @@ test('complete stopped backup and source-only maintenance preserve identity and 
   const s = await setup(t), record = content(s.store), saved = publish(s.store, record), id = s.store.receipts.catalogId;
   s.store.close(); const originalBytes = readFileSync(path.join(s.folder, saved.receiptHash + '.json'));
   const report = auditStorage(s.directory), history = auditHistory(s.directory);
-  assert.equal(report.databaseVersion, 10); assert.equal(history.databaseVersion, 10);
+  assert.equal(report.databaseVersion, 11); assert.equal(history.databaseVersion, 11);
   assert.equal(report.payloads.literalSearch.contentStorage, 'shared-original-spans');
   assert.ok(report.limits.some((line: string) => line.includes('Native receipt'))); assert.ok(history.limits.some((line: string) => line.includes('Native receipt')));
   compactStorage(s.directory); assert.deepEqual(readFileSync(path.join(s.folder, saved.receiptHash + '.json')), originalBytes);
@@ -215,7 +215,7 @@ test('startup filesystem failure keeps the committed identity but does not run p
   assert.throws(() => new CatalogStore(directory), { code: 'UNSAFE_RECEIPT_DIRECTORY' });
   const db = new DatabaseSync(path.join(directory, 'loredock.db')); let id: string;
   try {
-    assert.equal(db.prepare('PRAGMA user_version').get()!.user_version, 10); id = db.prepare('SELECT id FROM catalog_identity').get()!.id as string;
+    assert.equal(db.prepare('PRAGMA user_version').get()!.user_version, 11); id = db.prepare('SELECT id FROM catalog_identity').get()!.id as string;
     assert.equal(db.prepare('SELECT status FROM builds WHERE id=?').get(pending.id)!.status, 'preparing');
   } finally { db.close(); }
   unlinkSync(path.join(directory, 'path-receipts')); const store = new CatalogStore(directory);

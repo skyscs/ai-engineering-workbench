@@ -28,6 +28,14 @@ export function auditHistory(directory) {
     const literal = search('search'), question = search('question_search');
     const answers = groups(`SELECT buildId AS id,count(*) AS total,count(CASE WHEN status IN ('preparing','running') THEN 1 END) AS unfinished
       FROM answer_attempts WHERE buildId IN (${selected}) GROUP BY buildId`);
+    const witnesses = databaseVersion >= 11 ? groups(`SELECT a.buildId AS id,count(*) AS records,
+      count(CASE WHEN w.purged=0 THEN 1 END) AS retained,count(CASE WHEN w.purged=1 THEN 1 END) AS purged,
+      coalesce(sum(length(CAST(w.witness AS BLOB))),0) AS bytes FROM answer_witnesses w JOIN answer_attempts a ON a.id=w.answerId
+      WHERE a.buildId IN (${selected}) GROUP BY a.buildId`) : new Map();
+    const preparedOwnershipViolations = databaseVersion >= 11 ? one(`SELECT count(*) AS n FROM answer_attempts a
+      LEFT JOIN answer_witnesses w ON w.answerId=a.id WHERE
+      (a.inputKind='prepared-question/1' AND w.answerId IS NULL) OR (a.inputKind='legacy' AND w.answerId IS NOT NULL)
+      OR (w.purged=1 AND (w.witness IS NOT NULL OR a.context IS NOT NULL OR a.result IS NOT NULL))`).n : 0;
     const review = groups(`SELECT buildId AS id,count(*) AS versions,count(CASE WHEN purged=1 THEN 1 END) AS purged,
       count(CASE WHEN action='withdraw' THEN 1 END) AS withdrawals FROM corrections WHERE buildId IN (${selected}) GROUP BY buildId`);
     const code = groups(`SELECT buildId AS id,count(*) AS runs,count(CASE WHEN status IN ('running','paused','interrupted') THEN 1 END) AS unfinished
@@ -55,15 +63,16 @@ export function auditHistory(directory) {
         spans:spans.get(row.id)??{total:0,textBytes:0},
         search:{literalDocuments:literal.get(row.id)?.documents??0,questionDocuments:question.get(row.id)?.documents??0},
         answers:answers.get(row.id)??{total:0,unfinished:0},
+        answerWitnesses:witnesses.get(row.id)??{records:0,retained:0,purged:0,bytes:0},
         review:{...(review.get(row.id)??{versions:0,purged:0,withdrawals:0}),
           sourceForReapplications:origins.get(row.id)?.total??0,reappliedFromOtherBuilds:targets.get(row.id)?.total??0},
         code:{...(code.get(row.id)??{runs:0,unfinished:0}),payloadBytes:codePayload.get(row.id)?.bytes??0},
         incoming:{baselineBuilds:baseline.get(row.id)?.total??0,reusedFiles:reuse.get(row.id)?.total??0}};
     });
-    const report={schemaVersion:'loredock-history-audit/1',capturedAt:new Date().toISOString(),databaseVersion,
-      referenceChecks:{status:foreignKeyViolations || currentPointerMissing || currentPointerMalformed || invalidReportedMetadata?'inconsistent':'passed',
-        foreignKeyViolations,currentPointerMissing,currentPointerMalformed,invalidReportedMetadata,
-        coverage:'SQL foreign keys, current pointer and reported build metadata only; embedded JSON, FTS postings and transitive dependencies are not validated.'},
+    const report={schemaVersion:'loredock-history-audit/2',capturedAt:new Date().toISOString(),databaseVersion,
+      referenceChecks:{status:preparedOwnershipViolations || foreignKeyViolations || currentPointerMissing || currentPointerMalformed || invalidReportedMetadata?'inconsistent':'passed',
+        preparedOwnershipViolations,foreignKeyViolations,currentPointerMissing,currentPointerMalformed,invalidReportedMetadata,
+        coverage:'SQL foreign keys, prepared witness ownership/purge shape, current pointer and reported build metadata only; embedded JSON, FTS postings and transitive dependencies are not validated.'},
       generations:{total,reported:items.length,omitted:total-items.length,complete:total===items.length,limit:historyLimits.generations,items},
       limits:[
         'Native receipt files, copied originals and receipt dependencies are excluded from this source-SQLite report.',

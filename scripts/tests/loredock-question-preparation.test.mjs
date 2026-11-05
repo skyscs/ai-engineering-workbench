@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { beforeAnswerStorage } from '../../apps/loredock/tests/fixtures/answer-witness-reference/verify.mjs';
 import { test } from 'node:test';
 import { mkdtemp, rm, readFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
@@ -177,10 +178,10 @@ test('stored hashes, versions, prompt and compact corruption refuse validation w
   assert.throws(() => questionSnapshot(context, { ...witness, prompt: '"'.repeat(280000) }, retained), code('QUESTION_PREVIEW_LIMIT')); retained.close();
 });
 
-test('all preexisting source and emitted application modules stay byte-identical to the accepted controls', async () => {
+test('accepted preparation controls remain identical after only the separately proven storage deltas', async () => {
   const root = new URL('../../', import.meta.url), manifest = JSON.parse(await readFile(new URL('apps/loredock/tests/fixtures/prepared-question-reference/manifest.json', root), 'utf8'));
   for (const [file, value] of Object.entries(manifest.existingFiles)) {
-    const raw = await readFile(new URL(file, root)); assert.equal(raw.length, value.bytes, file); assert.equal(hash(raw), value.sha256, file);
+    const raw = await beforeAnswerStorage(file, await readFile(new URL(file, root))); assert.equal(raw.length, value.bytes, file); assert.equal(hash(raw), value.sha256, file);
   }
 });
 

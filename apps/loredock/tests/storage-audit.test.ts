@@ -37,7 +37,7 @@ test('storage accounting includes UTF-8/NUL, shared literal text and mapping pag
   const marker = 'private-marker-雪\u0000é';
   store.run('UPDATE files SET metadata=? WHERE id=?', marker, file.id);
   const report = auditStorage(directory);
-  assert.equal(report.schemaVersion, 'loredock-storage-audit/2'); assert.equal(report.databaseVersion, 10);
+  assert.equal(report.schemaVersion, 'loredock-storage-audit/3'); assert.equal(report.databaseVersion, 11);
   assert.equal(report.payloads.literalSearch.contentStorage, 'shared-original-spans');
   assert.equal(report.payloads.literalSearch.copiedTextBytes, 0);
   const literalPages = store.one<{bytes: number}>(`SELECT sum(d.pgsize) AS bytes FROM dbstat d
@@ -68,7 +68,7 @@ test('accounting and compaction retain schema 8 and report its copied text witho
   assert.equal(report.databaseVersion, 8); assert.equal(report.payloads.literalSearch.contentStorage, 'copied');
   assert.equal(report.payloads.literalSearch.copiedTextBytes, report.payloads.literalSearch.bytes);
   assert.ok(report.payloads.literalSearch.bytes > 0); assert.deepEqual(await readFile(path.join(directory, 'loredock.db')), before);
-  const compacted = compactStorage(directory); assert.equal(compacted.schemaVersion, 'loredock-storage-compaction/2');
+  const compacted = compactStorage(directory); assert.equal(compacted.schemaVersion, 'loredock-storage-compaction/3');
   assert.equal(compacted.after.databaseVersion, 8); assert.deepEqual(compacted.after.payloads, report.payloads);
   const db = new DatabaseSync(path.join(directory, 'loredock.db'), {readOnly: true});
   try {assert.equal(db.prepare('PRAGMA user_version').get()!.user_version, 8);
@@ -132,7 +132,7 @@ test('storage accounting rejects absent, foreign, unsupported and symlinked file
   assert.throws(() => auditStorage(root), /not found/); assert.deepEqual(await readdir(root), []);
   await writeFile(path.join(root, 'workbench.db'), 'owned sentinel');
   assert.throws(() => auditStorage(root), /Workbench/); await rm(path.join(root, 'workbench.db'));
-  const database = path.join(root, 'loredock.db'), db = new DatabaseSync(database); db.exec('PRAGMA user_version=11'); db.close();
+  const database = path.join(root, 'loredock.db'), db = new DatabaseSync(database); db.exec('PRAGMA user_version=12'); db.close();
   const before = await readFile(database); assert.throws(() => auditStorage(root), /schema 8/); assert.deepEqual(await readFile(database), before);
   await symlink(database, path.join(root, 'loredock.db-wal')); assert.throws(() => auditStorage(root), /regular files/);
   await rm(path.join(root, 'loredock.db-wal')); await rm(database); await symlink(path.join(root, 'missing'), database);

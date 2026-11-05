@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { beforeAnswerStorage } from '../answer-witness-reference/verify.mjs';
 import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 import { runtimeImports, emitSource, relocateSource } from '../integration-reference/compile.mjs';
@@ -16,8 +17,12 @@ export async function verifyQuestionReadDelta(name, compiled = true) {
   for (const { before, after } of entry.edits) {
     assert.equal(expected.split(before).length, 2, name + ': unique permitted delta'); expected = expected.replace(before, after);
   }
-  assert.equal(await readFile(new URL('src/' + name + '.ts', root), 'utf8'), expected);
-  if (compiled) assert.equal(await readFile(new URL('dist/' + name + '.js', root), 'utf8'), emitSource(expected, name + '.ts'));
+  const source = await readFile(new URL('src/' + name + '.ts', root));
+  assert.equal((await beforeAnswerStorage('apps/loredock/src/' + name + '.ts', source, compiled)).toString(), expected);
+  if (compiled) {
+    const emitted = await readFile(new URL('dist/' + name + '.js', root));
+    assert.equal((await beforeAnswerStorage('apps/loredock/dist/' + name + '.js', emitted)).toString(), emitSource(expected, name + '.ts'));
+  }
   return emitted;
 }
 

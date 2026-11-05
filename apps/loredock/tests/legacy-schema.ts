@@ -1,8 +1,19 @@
 import type { CatalogStore } from '../src/store.js';
 import type { DatabaseSync } from 'node:sqlite';
 
+/** Remove schema-11 additions only from owned fixtures without prepared answers. */
+export function removeAnswerWitnessSchema(db: DatabaseSync) {
+  if (db.prepare('PRAGMA user_version').get()!.user_version !== 11) return;
+  if (db.prepare('SELECT count(*) AS n FROM answer_witnesses').get()!.n !== 0
+    || db.prepare("SELECT count(*) AS n FROM answer_attempts WHERE inputKind!='legacy'").get()!.n !== 0) throw new Error('Legacy fixtures must have no prepared answers.');
+  for (const name of ['answer_input_kind_immutable','prepared_answer_identity','prepared_answer_replace','prepared_answer_context',
+    'prepared_sources_insert','prepared_sources_update','prepared_sources_delete']) db.exec('DROP TRIGGER ' + name);
+  db.exec('DROP TABLE answer_witnesses; DROP INDEX answer_source_purge; ALTER TABLE answer_attempts DROP COLUMN inputKind; PRAGMA user_version=10;');
+}
+
 /** Remove schema-10 additions only in empty-native-store owned legacy fixtures. */
 export function removeNativeReceiptSchema(db: DatabaseSync) {
+  removeAnswerWitnessSchema(db);
   db.exec('DROP TABLE IF EXISTS catalog_identity; PRAGMA user_version=9;');
 }
 

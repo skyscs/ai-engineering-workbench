@@ -74,7 +74,7 @@ test('schema 8 migration preserves every token, rowid, rank setting, original, h
   const originals = state.store.all<{id: string}>('SELECT id FROM spans').map(row => state.catalog.evidence(row.id));
   const settings = state.store.all('SELECT * FROM search_config ORDER BY k'), inventory = state.analysis.get(run.id), review = corrections.history(note.id);
   await state.reopen(); const after = literalIndexSnapshot(state.store);
-  assert.equal(state.store.one<{user_version: number}>('PRAGMA user_version')!.user_version, 10);
+  assert.equal(state.store.one<{user_version: number}>('PRAGMA user_version')!.user_version, 11);
   for (const key of ['vocabulary','documents','documentSizes','totals']) assert.deepEqual(after[key], before[key], key);
   // Schema 10 adds one private identity; preserve every pre-existing logical row
   // comparison from the unchanged frozen snapshot helper.
