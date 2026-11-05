@@ -8,7 +8,7 @@ import { launch, client, save, inventory, normalized, journal, until } from './i
 import { prepare } from './flow.mjs';
 import { stoppedHistoryCheckpoint } from './history-cases.mjs';
 
-async function withCatalog({ directory, checkpoint }, execute) {
+export async function withCatalog({ directory, checkpoint }, execute) {
   for (const value of [directory, checkpoint.data]) assert(path.isAbsolute(value) && path.resolve(value) === value);
   await mkdir(directory);
   const data = path.join(directory, 'data'), log = journal(path.join(directory, 'journal.jsonl'));
