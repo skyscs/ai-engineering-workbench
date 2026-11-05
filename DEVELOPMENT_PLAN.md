@@ -476,6 +476,13 @@ resource and semantic qualification before changing the answer pilot default. It
 precede [Task 128](tasks/128-loredock-prepared-flow-resource-qualification.md), a separately
 sealed model-free full-flow run. Task 126 was accepted through PR #130 after both
 final-head CI events at `480764d`, with identical-tree merge `0985f2c`.
+The single Task 128 [reserved result](docs/fixtures/loredock-prepared-flow-result/README.md)
+fails after the committed execution seal is accepted through PR #160. The family is
+consumed; semantic continuation and adoption remain closed. After result acceptance,
+[Task 129](tasks/129-loredock-partial-inventory-diagnosis.md) diagnoses terminal partial
+inventory preparation on ordinary inputs before proposing the smallest next change.
+Real startup/heap failures and earlier browser/list/native-positive failures remain
+separate unresolved work; repaired qualification needs a new prospective family.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation

@@ -1,23 +1,32 @@
 # Development status
 
-## Task 128 — Complete-flow resource driver (in progress)
+## Task 128 — First reserved gate failed; result acceptance pending
 
-Latest accepted checkpoint: [PR #159](https://github.com/skyscs/ai-engineering-workbench/pull/159)
-at merge `3fc1b46`. The first ordinary ordered matrix exercises all fifteen groups:
-eleven fail and four remain incomplete. Independent retention verifies all 55 created
-catalogs and unchanged raw inputs. Supplemental offline content/lifetime bindings are
-accepted after both exact-head CI events passed 1,016 tests. Execution adapter corrections
-are accepted after ordinary controls and both exact-head CI events pass 1,023 tests.
-The [final execution boundary](fixtures/loredock-prepared-flow-execution-seal/README.md)
-now passes six data-only/actual-owner tests. Its committed executable/environment manifest
-verifies 17,254 inventory records without candidate reads; final-head CI is pending. Earlier
-resource/required-positive failures remain unresolved.
-The reserved family has zero candidate reads; no model runs.
-Known ordinary failures include partial analysis of constant-only padding, a missing
-required native positive at the derived-size limit, aggregate list work, browser RSS and
-raw daemon timer gaps. The remaining operation/content bindings and the committed
-executable/environment/output seal are still required. The retained
-checkpoint history follows; none of its functional or subset passes grants qualification.
+Latest accepted checkpoint: [PR #160](https://github.com/skyscs/ai-engineering-workbench/pull/160)
+at identical-tree merge `6374e9e`, after both exact-head CI events pass 1,029 tests.
+The committed execution/environment seal was verified before the one reserved run.
+The [first result](fixtures/loredock-prepared-flow-result/README.md) records five failed
+groups and ten not-run groups. The family is consumed and exhausted for semantic
+continuation; zero model calls. There is no retry or default/adoption change.
+
+All 205/9,965 code files were parsed, but published inventories remain `partial` with
+195/9,955 coverage gaps, failing the frozen completed-analysis prerequisite. All fourteen
+daemon observations exceed the 100 ms raw timer-gap limit; the near-limit heap reaches
+84,732,968 bytes against 67,108,864. S07 alone passes its Catalog-only source prerequisite.
+There are no warm/history/browser/expiry/fence resource results to infer from absent
+checkpoints. The owner stops without errors or survivors; independent checks preserve
+15 catalogs, 240 Git identities, 12,640 original files, 631 responses and 28,599 raw entries.
+
+The result PR must pass both exact-head CI events before Task 128 completion is accepted.
+Then [Task 129](../tasks/129-loredock-partial-inventory-diagnosis.md) diagnoses public
+preparation over ordinary terminal partial inventories. The frozen prerequisite failure
+does not establish public API refusal: no preparation request was made in those cases.
+Earlier ordinary native-positive, list-work and browser failures also remain unresolved.
+
+## Historical driver checkpoints before the reserved run
+
+The following entries retain their original development-stage observations and scope.
+Their then-unobserved-family statements do not describe the current consumed family.
 
 The ordinary driver checkpoint is accepted through [PR #132](https://github.com/skyscs/ai-engineering-workbench/pull/132),
 merged at `f595307` after push 41964013784 and pull_request 41964018496 passed 948 tests
