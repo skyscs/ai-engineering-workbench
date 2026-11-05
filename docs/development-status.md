@@ -1,5 +1,28 @@
 # Development status
 
+## Task 128 — Complete-flow resource driver (in progress)
+
+The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
+passes real daemon index/analysis/review, exact controlled prompt/schema, durable request
+replay and restart/history. A deliberate driver failure preserves all source/catalog
+bytes; both earlier harness errors are retained and explained. The actual application
+and Task 127 input seals are unchanged. No reserved family or model has run.
+
+Ordinary browser and 64-row exercises now pass their functional checks, including quota,
+replay, reopen and complete dependency purge. They also identify prospective gate failures:
+a twenty-row list costs 3,168,560 actual units, summed Chrome RSS exceeds 1 GiB, and cold
+initialization has a timer gap above 100 ms. The limits stay unchanged. The full frozen
+matrix and final execution seal remain required; this is not resource/semantic acceptance
+or pilot adoption. All failed harness outputs and retention/redaction corrections are recorded.
+
+Additional ordinary checks cover fourteen lifecycle cases, five browser network races,
+real ten-minute expiry and complete-worker accounting (eight budgets / 2,253,226 units,
+exact prompt/schema/witness parity). An external owner and ten focused tests retain
+failed processes and storage evidence. The full check passes 948 tests. First-preflight
+and deterministic in-preparation controls, complete orphan ownership and the final frozen
+matrix/seal are still pending; [runtime review](fixtures/loredock-prepared-flow-driver/runtime-review.md)
+records those limits. No gate result or adoption is implied by this development checkpoint.
+
 ## Task 127 — Prospective complete-flow qualification inputs
 
 The [contract](loredock/PREPARED_FLOW_QUALIFICATION.md) freezes the actual daemon/browser
@@ -24,7 +47,8 @@ single attempts with explicit personal-runtime identity, usage stop rules and no
 Author scoring is not independent L5 acceptance. Failed gates exhaust the continuation.
 
 All 938 ordinary tests, strict types and builds pass; static checks verify the frozen
-inputs without executing the family. Final-head CI is pending.
+inputs without executing the family. Push 41954324724 and pull-request 41954360437
+passed at `ee7951c`; PR #131 merged with an identical tree at `4fd9e1d`.
 Verification records: [logs and review](fixtures/loredock-prepared-flow-contract/README.md).
 Next [Task 128](../tasks/128-loredock-prepared-flow-resource-qualification.md) develops on
 ordinary permit inputs, seals its executable/environment and runs the model-free gate
