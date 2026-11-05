@@ -111,11 +111,16 @@ be reported and excluded only from their explicitly named drain measurements.
 Browser-process RSS sums the owned Chrome process tree (shared pages can be counted
 more than once); its explicit 1 GiB ceiling is separate from daemon RSS. Record each PID,
 sampling cadence, process peak RSS and sampled heap. Sample the daemon timer every
-10 ms, process RSS at most every 10 ms, and browser tree at most every 100 ms. Preserve
+10 ms, process RSS at most every 10 ms, and browser tree at most every 100 ms. The
+100 ms daemon interval threshold is the raw monotonic gap between consecutive timer
+callbacks, including the nominal 10 ms; do not subtract the nominal period. Preserve
 all samples and start/end gaps. Report sampled maxima as sampled, never a mathematical
 continuous bound; include OS process high-water RSS so synchronous spikes are not hidden
 by a stalled JavaScript sampler. No forced GC, heap-size override, profiler or application
-method replacement in the resource lane. A missing sample/exit record fails measurement.
+method replacement in the resource lane. A sealed passive startup monitor may read
+process.memoryUsage and record timer samples without patching application methods;
+its code and overhead belong to the measured process. A missing sample/exit record
+fails measurement.
 
 Measure cold process startup separately from a reopened catalog and a warmed worker.
 Retain first and all subsequent samples. Ordinary user-visible polls remain enabled
@@ -152,8 +157,8 @@ model calls, a separate launcher must instantiate the identical actual services 
 shutdown order, changing only the injected TextRuntime through its existing constructor.
 It serves the real app and built assets. Audit the bootstrap diff and every emitted
 dependency. The double returns bounded cited JSON and known usage, and exposes explicit
-holds for cancellation tests; it must never rewrite prompts, select evidence or bypass
-validation. Provider CPU/network/token behavior is not qualified by that double.
+holds for cancellation tests. It may cite an ID already issued in the actual schema,
+but must never rewrite prompts, add oracle evidence or bypass validation. Provider CPU/network/token behavior is not qualified by that double.
 
 Only an all-pass resource/lifecycle report permits the separately sealed semantic stage.
 The same sources have then had declared model-free observations; this is one prospective

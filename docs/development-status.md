@@ -23,7 +23,9 @@ ordinary pilot remain unchanged. The conditional semantic stage is limited to te
 single attempts with explicit personal-runtime identity, usage stop rules and no retry.
 Author scoring is not independent L5 acceptance. Failed gates exhaust the continuation.
 
-Verification and CI status: [records](fixtures/loredock-prepared-flow-contract/README.md).
+All 938 ordinary tests, strict types and builds pass; static checks verify the frozen
+inputs without executing the family. Final-head CI is pending.
+Verification records: [logs and review](fixtures/loredock-prepared-flow-contract/README.md).
 Next [Task 128](../tasks/128-loredock-prepared-flow-resource-qualification.md) develops on
 ordinary permit inputs, seals its executable/environment and runs the model-free gate
 once. It may not execute models or silently tune the frozen inputs/thresholds.

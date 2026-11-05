@@ -226,7 +226,7 @@
     "fixtures/loredock-prepared-flow/oracle.json": "029d6558c653f79858146d298f047c44f36427b5bb0adfd33037abf252a893a6",
     "fixtures/loredock-prepared-flow/protocol.json": "dcbb9df45d33f9cdd40c13974e0841d9f43723560766ae4844e426642064d3ac",
     "fixtures/loredock-prepared-flow/seal.mjs": "308e86d43cdca248257a0539fe011cab3d8abeb9d08917d142ae72e2c8a56f71",
-    "docs/loredock/PREPARED_FLOW_QUALIFICATION.md": "bb055af184420bcfa66c913f9fb6d10bad83ce076a9734d77d3778a8d47dc1f2",
+    "docs/loredock/PREPARED_FLOW_QUALIFICATION.md": "a47a966fd8c4ac356ca31344fd5d8455918a02ff1085d6c9fe724c1962134def",
     "tasks/128-loredock-prepared-flow-resource-qualification.md": "d703147db4ba8a088a5b33dc8eb0f3bbd6ec8bf333cb4dc5b8ea155a27e94ba3"
   },
   "application": {

@@ -17,7 +17,9 @@ External package internals are bound by package/lock inputs, not a claimed recur
 
 [records.json](records.json) hashes the retained raw logs and their gzip archives.
 Installation, production build, initial seal and subsequent static verification pass.
-The ordinary full check and final-head CI status will be recorded before acceptance.
+The full ordinary `pnpm check` passes all **938 tests**, strict types and production
+builds. Ten raw gzip logs include first/reviewed input checks and both preceding CI
+events. Final-head push and pull-request CI are still required before acceptance.
 No product code, dependency, parser, schema, browser asset or ordinary test changed.
 The source-only task needs no new product tests or browser run; the existing build and
 ordinary checks verify the unchanged application, not the new evaluation family.
@@ -31,3 +33,10 @@ Potential list amplification is a source-audit finding, not a measured bottlenec
 The prospective gate may fail; no best-of samples, false bounded-refusal success or
 retrospective limit increase is allowed. Model execution is conditional, finite and
 separately sealed. Author scoring alone cannot establish independent L5 acceptance.
+
+Pre-observation review clarified three measurement details after initial input commit
+`bbc5265`: a controlled result may cite an already-issued schema ID without adding
+oracle evidence; timer limits use raw callback gaps; and a passive sealed memory/timer
+monitor is included in the measured process. Only the contract hash changed in the
+input seal. Source vectors, questions, thresholds and candidate runtime remain identical;
+the initial contract/seal is retained in Git and no family observation occurred.

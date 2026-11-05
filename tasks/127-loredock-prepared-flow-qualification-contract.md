@@ -1,7 +1,7 @@
 # Task 127 — Freeze prospective complete prepared-flow qualification
 
-Status: implemented as a prospective design/input freeze; static verification and
-exact-head CI acceptance are recorded in the development status. Task 126 passed both
+Status: implemented as a prospective design/input freeze; static checks and all 938
+ordinary tests/types/builds pass. Exact-head CI is pending. Task 126 passed both
 events at `480764d` and merged with an identical tree at `0985f2c`. No qualification
 observation or model call is performed by this task.
 

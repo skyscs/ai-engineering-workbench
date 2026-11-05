@@ -36,6 +36,45 @@
       "rawBytes": 675323,
       "rawSha256": "a8dd38f305778b8d28be5a97080b6b49113b7fe9b239efd8d91f05c8915b1611",
       "sha256": "1f2148b1f057cce663cff29f21977a7da1dc76935cc80c92646daf9f146d0ad3"
+    },
+    {
+      "path": "check.log.gz",
+      "rawBytes": 346148,
+      "rawSha256": "7fd70b24407fad58f1134a18debdc585bbb6a6589e44740967715a02c18aada0",
+      "sha256": "13c3ffb42cc81dd25b4b25c6305911581cb3949e96968d466c8000b6029ebc2a"
+    },
+    {
+      "path": "static-reviewed.log.gz",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8",
+      "sha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4"
+    },
+    {
+      "path": "documentation.log.gz",
+      "rawBytes": 204,
+      "rawSha256": "50e2ac4ecaa0de297170a1b8fa03f5d1010d5d1cd964e1a57f9b448407936c3d",
+      "sha256": "6ae7bdc8ec6290ed4a9fdd36f9781e54359e154fc0c5b0e5a15fa46ef8cc9490"
+    },
+    {
+      "path": "static-final.log.gz",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8",
+      "sha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4"
     }
-  ]
+  ],
+  "ordinaryCheck": {
+    "tests": 938,
+    "perSuite": [
+      17,
+      18,
+      43,
+      664,
+      57,
+      139
+    ],
+    "exitCode": 0,
+    "types": true,
+    "builds": true,
+    "reservedFamilyExecuted": false
+  }
 }
