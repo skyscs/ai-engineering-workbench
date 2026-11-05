@@ -1,5 +1,10 @@
 # Prepared-flow executable seal
 
+Historical pre-execution record: PR #160 accepted this seal after both CI events passed
+1,029 tests. The single [reserved run](../loredock-prepared-flow-result/README.md) has now
+consumed the family and failed the gate. Do not invoke the command below again. The
+manifest and its prior-observation values remain immutable records of the pre-run state.
+
 This is the final execution boundary for Task 128, after accepted
 [adapter controls](../loredock-prepared-flow-execution-boundary/README.md).
 It is not a resource result or permission to execute a model. The reserved

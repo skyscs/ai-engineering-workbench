@@ -1,0 +1,1089 @@
+{
+  "schemaVersion": "prepared-flow-first-reserved-result/1",
+  "family": "kiln-prepared-flow-127",
+  "familyConsumed": true,
+  "resourceQualification": false,
+  "modelEligibility": false,
+  "modelCalls": 0,
+  "candidateReadCount": null,
+  "trees": [
+    {
+      "path": "kiln-first.tar.gz",
+      "sha256": "36b9a78f9f016edb89cbd9bdde436c4fbd21b928c45ae0355985a0dc30d7971f",
+      "inventory": "kiln-first.inventory.json.gz",
+      "inventorySha256": "e8c23dcd721e05baccab4cdf09aa4727408e013c4c277c493306d9c78fb3351b",
+      "entries": 28599,
+      "source": "/home/toshiba/aew/task128-kiln-first"
+    },
+    {
+      "path": "kiln-retention.tar.gz",
+      "sha256": "4d13c913647b3688aba1d95a6f9d2c7c5de62c3333fbe65bd4bba94b13fefd0d",
+      "inventory": "kiln-retention.inventory.json.gz",
+      "inventorySha256": "2d65af8ffb41714b3b6c86e19541302e025785d02e4379191d2982670f43cfa9",
+      "entries": 62,
+      "source": "/home/toshiba/aew/task128-kiln-retention"
+    },
+    {
+      "path": "kiln-inputs.tar.gz",
+      "sha256": "249dca73394d2b3b764c0ab194938ff4439ed4c7aa6b586e95445c538db56d20",
+      "inventory": "kiln-inputs.inventory.json.gz",
+      "inventorySha256": "9d084ca2584abdb1163816bd4887da3259c3d0aa8fc3057bdc4f40977274add1",
+      "entries": 85,
+      "source": "/home/toshiba/aew/task128-kiln-inputs"
+    },
+    {
+      "path": "kiln-assessments.tar.gz",
+      "sha256": "e63f6c466bf5577ceed4f46a1e19790fc8f567d25f51bc7aa51f309fd3beac86",
+      "inventory": "kiln-assessments.inventory.json.gz",
+      "inventorySha256": "b5016fcd51e0437d4658aa6f5bc0f2d7132d0c7f27f27e28a1c2ad4ae423c652",
+      "entries": 2,
+      "source": "/home/toshiba/aew/task128-kiln-assessments"
+    },
+    {
+      "path": "kiln-static-inputs.tar.gz",
+      "sha256": "14f530dc194053e5c6d483ef8c5a3976d8ffc6b33667dbc8d6b69a04de8f0194",
+      "inventory": "kiln-static-inputs.inventory.json.gz",
+      "inventorySha256": "1ea7f3b10f4d1f0122370a151f025650ccebef3b1a185519db2731ffe782afae",
+      "entries": 2,
+      "source": "/home/toshiba/aew/task128-kiln-static-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "kiln-first.log.gz",
+      "archiveSha256": "89d0f880fc8aa42bfb8844114abd1f289ae17cb490c62ff343424528f4f24f9a",
+      "rawBytes": 324435,
+      "rawSha256": "a0a6f551b8f72fe52f3aa838e8118210b13c4ba0b74aeda254fe1fc7c61649bd"
+    },
+    {
+      "path": "kiln-retain-first.log.gz",
+      "archiveSha256": "c71bc12021c865d1bc9f46bf1327e29086b00176a717abe3787dff502337deac",
+      "rawBytes": 11724,
+      "rawSha256": "0f127dba0dd2e399bce8d8de62c30d886777c9f1a06c587871368863c089e95f"
+    },
+    {
+      "path": "kiln-owner-assess-first.log.gz",
+      "archiveSha256": "de74a5c2110251784b9492aeb1538eb22f992509f2647dc842a31b224cc82322",
+      "rawBytes": 16808,
+      "rawSha256": "4fa0d908e1f7ec6280c94b4d9100e616161a08269e6c9691e72cc7a34f4c00cf"
+    },
+    {
+      "path": "kiln-original-review-first.log.gz",
+      "archiveSha256": "2dac5393374bedce80ca484c67456b845138ed113ff26f0befbdf7266adcfee8",
+      "rawBytes": 1108,
+      "rawSha256": "a0abbf9ac78389e5ab6aa8b8ec5d770b5c5f890363b52e3c21a274834f54a9bc"
+    },
+    {
+      "path": "accepted-seal-ci-push.log.gz",
+      "archiveSha256": "49c2eb04bab36cce8dfa0bd93c64a89f34c0b431b4498be00ca6c8f3e1d74d03",
+      "rawBytes": 731210,
+      "rawSha256": "fadf1b02082f0ae77d325f4e38fc1ab8d8520b21dd276dc954fc2bdd2c31ed74"
+    },
+    {
+      "path": "accepted-seal-ci-pr.log.gz",
+      "archiveSha256": "2e609afe18a2d660edc2edf1166205414a3f791bf8d95458d0f2d5269510d70e",
+      "rawBytes": 732486,
+      "rawSha256": "f5484fe32f0215beb90f637475aed898c4e64222fc2b51167c254d38c17d8d1d"
+    },
+    {
+      "path": "kiln-static-first.log.gz",
+      "archiveSha256": "20ae00102de4f6f54445f778dbe5b2d38543a86a58a8f1166a7068fef8db556c",
+      "rawBytes": 235,
+      "rawSha256": "fc087141cd81158b1b89361ea1a83e86885d26d80949a580370788ccfcfb372d"
+    },
+    {
+      "path": "kiln-input-seal.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "kiln-archive-first.log.gz",
+      "archiveSha256": "e6f2f16f713b1bd20978c659c5338f211b8c611121fda8a322f7f6a24380f1d8",
+      "rawBytes": 105,
+      "rawSha256": "802c368b8d1e3e2378510fd3581a80440c12b11568760212a43b021857970d85"
+    },
+    {
+      "path": "kiln-raw-final.log.gz",
+      "archiveSha256": "0bd23c174e356624edd8a3b0d98b928870a7c35e5d9f673a66cde131667ee8cb",
+      "rawBytes": 107,
+      "rawSha256": "44d7a05ae51206dc87f8bfa851a56b721433694abb9652476945c8c1e6832c95"
+    }
+  ],
+  "base": "6374e9e98fd4aa74c026c98e9c457734d595ef2f",
+  "acceptedSeal": {
+    "pr": 160,
+    "head": "aff6b7691ece0f26d4c7a56c48f81f2ec4a637c0",
+    "merge": "6374e9e98fd4aa74c026c98e9c457734d595ef2f",
+    "push": 42090547226,
+    "pull_request": 42090656068,
+    "testsPerEvent": 1029,
+    "completeLogsVerifiedBeforeMerge": true,
+    "identicalTreeVerified": true
+  },
+  "retention": {
+    "catalogs": [
+      {
+        "source": "/home/toshiba/aew/task128-kiln-first/run/matrix/R01-representative-cold/cold/data",
+        "copy": "/home/toshiba/aew/task128-kiln-retention/run/matrix/R01-representative-cold/cold/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-kiln-first/run/matrix/R02-near-limit-cold/cold/data",
+        "copy": "/home/toshiba/aew/task128-kiln-retention/run/matrix/R02-near-limit-cold/cold/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-kiln-first/run/matrix/R04-history-capacity/capacity/data",
+        "copy": "/home/toshiba/aew/task128-kiln-retention/run/matrix/R04-history-capacity/capacity/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-kiln-first/run/matrix/R06-expiry/expiry/data",
+        "copy": "/home/toshiba/aew/task128-kiln-retention/run/matrix/R06-expiry/expiry/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-kiln-first/run/matrix/R14-oracle-preconditions/S01-batch-path/case/data",
+        "copy": "/home/toshiba/aew/task128-kiln-retention/run/matrix/R14-oracle-preconditions/S01-batch-path/case/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-kiln-first/run/matrix/R14-oracle-preconditions/S02-shared-topic/case/data",
+        "copy": "/home/toshiba/aew/task128-kiln-retention/run/matrix/R14-oracle-preconditions/S02-shared-topic/case/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-kiln-first/run/matrix/R14-oracle-preconditions/S03-consumer-gap/case/data",
+        "copy": "/home/toshiba/aew/task128-kiln-retention/run/matrix/R14-oracle-preconditions/S03-consumer-gap/case/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-kiln-first/run/matrix/R14-oracle-preconditions/S04-dynamic-topic/case/data",
+        "copy": "/home/toshiba/aew/task128-kiln-retention/run/matrix/R14-oracle-preconditions/S04-dynamic-topic/case/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-kiln-first/run/matrix/R14-oracle-preconditions/S05-legacy-stop/case/data",
+        "copy": "/home/toshiba/aew/task128-kiln-retention/run/matrix/R14-oracle-preconditions/S05-legacy-stop/case/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-kiln-first/run/matrix/R14-oracle-preconditions/S06-header-mismatch/case/data",
+        "copy": "/home/toshiba/aew/task128-kiln-retention/run/matrix/R14-oracle-preconditions/S06-header-mismatch/case/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-kiln-first/run/matrix/R14-oracle-preconditions/S07-no-analysis/case/catalog-only-checkpoint",
+        "copy": "/home/toshiba/aew/task128-kiln-retention/run/matrix/R14-oracle-preconditions/S07-no-analysis/case/catalog-only-checkpoint",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-kiln-first/run/matrix/R14-oracle-preconditions/S07-no-analysis/case/data",
+        "copy": "/home/toshiba/aew/task128-kiln-retention/run/matrix/R14-oracle-preconditions/S07-no-analysis/case/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-kiln-first/run/matrix/R14-oracle-preconditions/S08-unknown-deployment/case/data",
+        "copy": "/home/toshiba/aew/task128-kiln-retention/run/matrix/R14-oracle-preconditions/S08-unknown-deployment/case/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-kiln-first/run/matrix/R14-oracle-preconditions/S09-engineer-note/case/data",
+        "copy": "/home/toshiba/aew/task128-kiln-retention/run/matrix/R14-oracle-preconditions/S09-engineer-note/case/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-kiln-first/run/matrix/R14-oracle-preconditions/S10-untrusted-quote/case/data",
+        "copy": "/home/toshiba/aew/task128-kiln-retention/run/matrix/R14-oracle-preconditions/S10-untrusted-quote/case/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      }
+    ],
+    "sourceGitIdentities": 240,
+    "sourceFiles": 12640,
+    "httpResponses": 631,
+    "redactedSessions": 14,
+    "httpOutcomes": {
+      "200": 357,
+      "201": 260,
+      "202": 14
+    },
+    "failedFreshProofs": 13,
+    "controlledCalls": 0,
+    "errors": [],
+    "resourceQualification": false,
+    "modelEligibility": false,
+    "modelCalls": 0,
+    "reservedFamily": "kiln-prepared-flow-127",
+    "familyConsumed": true,
+    "candidateReadCount": null,
+    "cases": [
+      {
+        "id": "R01-representative-cold",
+        "status": "failed",
+        "reason": null,
+        "safeToContinue": true,
+        "details": {
+          "steps": 1,
+          "failures": 2,
+          "incomplete": 3,
+          "reason": null,
+          "resourceQualification": false
+        },
+        "error": null
+      },
+      {
+        "id": "R02-near-limit-cold",
+        "status": "failed",
+        "reason": null,
+        "safeToContinue": true,
+        "details": {
+          "steps": 1,
+          "failures": 3,
+          "incomplete": 3,
+          "reason": null,
+          "resourceQualification": false
+        },
+        "error": null
+      },
+      {
+        "id": "R03-fixed-warm-flow",
+        "status": "not-run",
+        "reason": null,
+        "safeToContinue": true,
+        "details": {
+          "steps": 0,
+          "failures": 0,
+          "incomplete": 3,
+          "reason": "Missing functional prerequisite: representative; Missing functional prerequisite: near-limit",
+          "resourceQualification": false
+        },
+        "error": null
+      },
+      {
+        "id": "R04-history-capacity",
+        "status": "failed",
+        "reason": null,
+        "safeToContinue": true,
+        "details": {
+          "steps": 1,
+          "failures": 2,
+          "incomplete": 2,
+          "reason": null,
+          "resourceQualification": false
+        },
+        "error": null
+      },
+      {
+        "id": "R05-browser-polling",
+        "status": "not-run",
+        "reason": null,
+        "safeToContinue": true,
+        "details": {
+          "steps": 0,
+          "failures": 0,
+          "incomplete": 2,
+          "reason": "Missing functional prerequisite: history-20; Missing functional prerequisite: history-64",
+          "resourceQualification": false
+        },
+        "error": null
+      },
+      {
+        "id": "R06-expiry",
+        "status": "failed",
+        "reason": null,
+        "safeToContinue": true,
+        "details": {
+          "steps": 1,
+          "failures": 2,
+          "incomplete": 3,
+          "reason": null,
+          "resourceQualification": false
+        },
+        "error": null
+      },
+      {
+        "id": "R07-cancel",
+        "status": "not-run",
+        "reason": null,
+        "safeToContinue": true,
+        "details": {
+          "steps": 0,
+          "failures": 0,
+          "incomplete": 2,
+          "reason": "Missing functional prerequisite: representative cold",
+          "resourceQualification": false
+        },
+        "error": null
+      },
+      {
+        "id": "R08-network-replay",
+        "status": "not-run",
+        "reason": null,
+        "safeToContinue": true,
+        "details": {
+          "steps": 0,
+          "failures": 0,
+          "incomplete": 2,
+          "reason": "Missing functional prerequisite: representative cold",
+          "resourceQualification": false
+        },
+        "error": null
+      },
+      {
+        "id": "R09-restart",
+        "status": "not-run",
+        "reason": null,
+        "safeToContinue": true,
+        "details": {
+          "steps": 0,
+          "failures": 0,
+          "incomplete": 4,
+          "reason": "Missing functional prerequisite: history-20; Missing functional prerequisite: history-64; Missing functional prerequisite: held shutdown",
+          "resourceQualification": false
+        },
+        "error": null
+      },
+      {
+        "id": "R10-inventory-eviction",
+        "status": "not-run",
+        "reason": null,
+        "safeToContinue": true,
+        "details": {
+          "steps": 0,
+          "failures": 0,
+          "incomplete": 2,
+          "reason": "Missing functional prerequisite: representative cold",
+          "resourceQualification": false
+        },
+        "error": null
+      },
+      {
+        "id": "R11-authority-fences",
+        "status": "not-run",
+        "reason": null,
+        "safeToContinue": true,
+        "details": {
+          "steps": 0,
+          "failures": 0,
+          "incomplete": 3,
+          "reason": "Missing functional prerequisite: representative cold; Missing functional prerequisite: R08 browser history",
+          "resourceQualification": false
+        },
+        "error": null
+      },
+      {
+        "id": "R12-revocation",
+        "status": "not-run",
+        "reason": null,
+        "safeToContinue": true,
+        "details": {
+          "steps": 0,
+          "failures": 0,
+          "incomplete": 3,
+          "reason": "Missing functional prerequisite: history-64; Missing functional prerequisite: R08 browser history",
+          "resourceQualification": false
+        },
+        "error": null
+      },
+      {
+        "id": "R13-original-integrity",
+        "status": "not-run",
+        "reason": null,
+        "safeToContinue": true,
+        "details": {
+          "steps": 0,
+          "failures": 0,
+          "incomplete": 2,
+          "reason": "Missing functional prerequisite: representative cold",
+          "resourceQualification": false
+        },
+        "error": null
+      },
+      {
+        "id": "R14-oracle-preconditions",
+        "status": "failed",
+        "reason": null,
+        "safeToContinue": true,
+        "details": {
+          "steps": 10,
+          "failures": 19,
+          "incomplete": 19,
+          "reason": null,
+          "resourceQualification": false
+        },
+        "error": null
+      },
+      {
+        "id": "R15-accounting",
+        "status": "not-run",
+        "reason": null,
+        "safeToContinue": true,
+        "details": {
+          "steps": 0,
+          "failures": 0,
+          "incomplete": 7,
+          "reason": "Missing functional prerequisite: representative; Missing functional prerequisite: near-limit; Missing functional prerequisite: near-limit list setup; Missing functional prerequisite: representative list-20; Missing functional prerequisite: representative list-64; Missing functional prerequisite: near-limit list-20; Missing functional prerequisite: near-limit list-64",
+          "resourceQualification": false
+        },
+        "error": null
+      }
+    ],
+    "owner": {
+      "reason": "driver-failure",
+      "driverExit": {
+        "pid": 899325,
+        "waitStatus": 256,
+        "exit": 1,
+        "userSeconds": 105.130073,
+        "systemSeconds": 177.794819,
+        "maxRssBytes": 255614976
+      },
+      "errors": [],
+      "survivors": [],
+      "elapsedMs": 333231.73562501324,
+      "cleanupMs": 0.12239196803420782,
+      "catalogRoots": [
+        "run/matrix/R01-representative-cold/cold/data",
+        "run/matrix/R01-representative-cold/cold/checkpoint",
+        "run/matrix/R02-near-limit-cold/cold/data",
+        "run/matrix/R02-near-limit-cold/cold/checkpoint",
+        "run/matrix/R03-fixed-warm-flow/representative/data",
+        "run/matrix/R03-fixed-warm-flow/near-limit/data",
+        "run/matrix/R04-history-capacity/capacity/data",
+        "run/matrix/R04-history-capacity/capacity/checkpoint-20",
+        "run/matrix/R04-history-capacity/capacity/checkpoint-64",
+        "run/matrix/R05-browser-polling/history-20/data",
+        "run/matrix/R05-browser-polling/history-64/data",
+        "run/matrix/R06-expiry/expiry/data",
+        "run/matrix/R07-cancel/preparation/data",
+        "run/matrix/R07-cancel/provider/data",
+        "run/matrix/R07-cancel/shutdown/data",
+        "run/matrix/R07-cancel/shutdown/interrupted-checkpoint",
+        "run/matrix/R08-network-replay/lost/data",
+        "run/matrix/R08-network-replay/lost/history-checkpoint",
+        "run/matrix/R08-network-replay/edit/data",
+        "run/matrix/R09-restart/history-20/data",
+        "run/matrix/R09-restart/history-64/data",
+        "run/matrix/R09-restart/interrupted/data",
+        "run/matrix/R10-inventory-eviction/eviction/data",
+        "run/matrix/R10-inventory-eviction/eviction/before-reopen",
+        "run/matrix/R11-authority-fences/alternative/data",
+        "run/matrix/R11-authority-fences/alternative/checkpoint",
+        "run/matrix/R11-authority-fences/first-preflight-review/data",
+        "run/matrix/R11-authority-fences/first-preflight-policy/data",
+        "run/matrix/R11-authority-fences/first-preflight-published-build/data",
+        "run/matrix/R11-authority-fences/before-dispatch-review/data",
+        "run/matrix/R11-authority-fences/before-dispatch-policy/data",
+        "run/matrix/R11-authority-fences/before-dispatch-published-build/data",
+        "run/matrix/R11-authority-fences/before-publication-review/data",
+        "run/matrix/R11-authority-fences/before-publication-policy/data",
+        "run/matrix/R11-authority-fences/before-publication-published-build/data",
+        "run/matrix/R11-authority-fences/browser-preparation/data",
+        "run/matrix/R11-authority-fences/browser-history/data",
+        "run/matrix/R12-revocation/revocation/data",
+        "run/matrix/R12-revocation/pending/data",
+        "run/matrix/R12-revocation/pending/pending-checkpoint",
+        "run/matrix/R12-revocation/browser/data",
+        "run/matrix/R13-original-integrity/missing/data",
+        "run/matrix/R13-original-integrity/corrupt/data",
+        "run/matrix/R14-oracle-preconditions/S01-batch-path/case/data",
+        "run/matrix/R14-oracle-preconditions/S02-shared-topic/case/data",
+        "run/matrix/R14-oracle-preconditions/S03-consumer-gap/case/data",
+        "run/matrix/R14-oracle-preconditions/S04-dynamic-topic/case/data",
+        "run/matrix/R14-oracle-preconditions/S05-legacy-stop/case/data",
+        "run/matrix/R14-oracle-preconditions/S06-header-mismatch/case/data",
+        "run/matrix/R14-oracle-preconditions/S07-no-analysis/case/data",
+        "run/matrix/R14-oracle-preconditions/S08-unknown-deployment/case/data",
+        "run/matrix/R14-oracle-preconditions/S09-engineer-note/case/data",
+        "run/matrix/R14-oracle-preconditions/S10-untrusted-quote/case/data",
+        "run/matrix/R14-oracle-preconditions/S07-no-analysis/case/catalog-only-checkpoint",
+        "run/matrix/R15-accounting/representative-worker/data",
+        "run/matrix/R15-accounting/near-limit-worker/data",
+        "run/matrix/R15-accounting/near-history/data",
+        "run/matrix/R15-accounting/near-history/checkpoint-20",
+        "run/matrix/R15-accounting/near-history/checkpoint-64",
+        "run/matrix/R15-accounting/representative-list-20/data",
+        "run/matrix/R15-accounting/representative-list-64/data",
+        "run/matrix/R15-accounting/near-limit-list-20/data",
+        "run/matrix/R15-accounting/near-limit-list-64/data"
+      ],
+      "observedCatalogRoots": [
+        "run/matrix/R01-representative-cold/cold/data",
+        "run/matrix/R02-near-limit-cold/cold/data",
+        "run/matrix/R04-history-capacity/capacity/data",
+        "run/matrix/R06-expiry/expiry/data",
+        "run/matrix/R14-oracle-preconditions/S01-batch-path/case/data",
+        "run/matrix/R14-oracle-preconditions/S02-shared-topic/case/data",
+        "run/matrix/R14-oracle-preconditions/S03-consumer-gap/case/data",
+        "run/matrix/R14-oracle-preconditions/S04-dynamic-topic/case/data",
+        "run/matrix/R14-oracle-preconditions/S05-legacy-stop/case/data",
+        "run/matrix/R14-oracle-preconditions/S06-header-mismatch/case/data",
+        "run/matrix/R14-oracle-preconditions/S07-no-analysis/case/data",
+        "run/matrix/R14-oracle-preconditions/S07-no-analysis/case/catalog-only-checkpoint",
+        "run/matrix/R14-oracle-preconditions/S08-unknown-deployment/case/data",
+        "run/matrix/R14-oracle-preconditions/S09-engineer-note/case/data",
+        "run/matrix/R14-oracle-preconditions/S10-untrusted-quote/case/data"
+      ],
+      "peakSampledStorageBytes": 69496655
+    },
+    "claimSha256": "337d450f781182889afa20ae86d678dee9631a822df9ded517ef205940fb8e61",
+    "manifestSha256": "88b72e16a3f3b93a99f5beca172cce5ee4ad84ea0471064a43b83d9da38d109a",
+    "rawInputsUnchanged": true,
+    "entries": 28599,
+    "catalogCount": 15
+  },
+  "originalReview": {
+    "sourceVectors": 12,
+    "requiredOriginals": 33,
+    "analyses": [
+      {
+        "catalog": "R01-representative-cold/cold/data",
+        "fileStatuses": {
+          "parsed": 205
+        },
+        "filesWithGaps": 195,
+        "paddingFilesWithGaps": 194,
+        "gaps": {
+          "unsupported-typescript-profile": 194,
+          "dynamic-or-unsupported-http-request": 1
+        },
+        "payloadBytes": 207157,
+        "observation": "Terminal processing and published coverage are different properties. No preparation is inferred from parsed file counts."
+      },
+      {
+        "catalog": "R02-near-limit-cold/cold/data",
+        "fileStatuses": {
+          "parsed": 9965
+        },
+        "filesWithGaps": 9955,
+        "paddingFilesWithGaps": 9954,
+        "gaps": {
+          "unsupported-typescript-profile": 9954,
+          "dynamic-or-unsupported-http-request": 1
+        },
+        "payloadBytes": 9757317,
+        "observation": "Terminal processing and published coverage are different properties. No preparation is inferred from parsed file counts."
+      }
+    ],
+    "observer": "Author review independent of candidate selection; not blind or external acceptance."
+  },
+  "ownerAssessment": {
+    "status": "incomplete",
+    "checks": [
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R01-representative-cold/cold/data",
+        "value": 5018264,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R01-representative-cold/cold/checkpoint",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R02-near-limit-cold/cold/data",
+        "value": 37780080,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R02-near-limit-cold/cold/checkpoint",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R03-fixed-warm-flow/representative/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R03-fixed-warm-flow/near-limit/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R04-history-capacity/capacity/data",
+        "value": 5317296,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R04-history-capacity/capacity/checkpoint-20",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R04-history-capacity/capacity/checkpoint-64",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R05-browser-polling/history-20/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R05-browser-polling/history-64/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R06-expiry/expiry/data",
+        "value": 5001784,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R07-cancel/preparation/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R07-cancel/provider/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R07-cancel/shutdown/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R07-cancel/shutdown/interrupted-checkpoint",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R08-network-replay/lost/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R08-network-replay/lost/history-checkpoint",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R08-network-replay/edit/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R09-restart/history-20/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R09-restart/history-64/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R09-restart/interrupted/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R10-inventory-eviction/eviction/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R10-inventory-eviction/eviction/before-reopen",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R11-authority-fences/alternative/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R11-authority-fences/alternative/checkpoint",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R11-authority-fences/first-preflight-review/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R11-authority-fences/first-preflight-policy/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R11-authority-fences/first-preflight-published-build/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R11-authority-fences/before-dispatch-review/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R11-authority-fences/before-dispatch-policy/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R11-authority-fences/before-dispatch-published-build/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R11-authority-fences/before-publication-review/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R11-authority-fences/before-publication-policy/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R11-authority-fences/before-publication-published-build/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R11-authority-fences/browser-preparation/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R11-authority-fences/browser-history/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R12-revocation/revocation/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R12-revocation/pending/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R12-revocation/pending/pending-checkpoint",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R12-revocation/browser/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R13-original-integrity/missing/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R13-original-integrity/corrupt/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R14-oracle-preconditions/S01-batch-path/case/data",
+        "value": 5313176,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R14-oracle-preconditions/S02-shared-topic/case/data",
+        "value": 5276144,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R14-oracle-preconditions/S03-consumer-gap/case/data",
+        "value": 5317296,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R14-oracle-preconditions/S04-dynamic-topic/case/data",
+        "value": 5284336,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R14-oracle-preconditions/S05-legacy-stop/case/data",
+        "value": 4948440,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R14-oracle-preconditions/S06-header-mismatch/case/data",
+        "value": 4997640,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R14-oracle-preconditions/S07-no-analysis/case/data",
+        "value": 4866472,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R14-oracle-preconditions/S08-unknown-deployment/case/data",
+        "value": 5309056,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R14-oracle-preconditions/S09-engineer-note/case/data",
+        "value": 5005880,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R14-oracle-preconditions/S10-untrusted-quote/case/data",
+        "value": 5251448,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R14-oracle-preconditions/S07-no-analysis/case/catalog-only-checkpoint",
+        "value": 749568,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R15-accounting/representative-worker/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R15-accounting/near-limit-worker/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R15-accounting/near-history/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R15-accounting/near-history/checkpoint-20",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R15-accounting/near-history/checkpoint-64",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R15-accounting/representative-list-20/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R15-accounting/representative-list-64/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R15-accounting/near-limit-list-20/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "catalogAndNativeHistoryBytes:run/matrix/R15-accounting/near-limit-list-64/data",
+        "value": 0,
+        "limit": 536870912,
+        "passed": true
+      },
+      {
+        "metric": "suiteWallMs",
+        "value": 333231.73562501324,
+        "limit": 2400000,
+        "passed": true
+      },
+      {
+        "metric": "ownerCleanupMs",
+        "value": 0.12239196803420782,
+        "limit": 10000,
+        "passed": true
+      },
+      {
+        "metric": "sampledOwnedEvaluationDirectoryBytes",
+        "value": 69496655,
+        "limit": 2147483648,
+        "passed": true
+      },
+      {
+        "metric": "finalOwnedEvaluationDirectoryBytes",
+        "value": 65990921,
+        "limit": 2147483648,
+        "passed": true
+      }
+    ],
+    "incomplete": [
+      "Declared catalog was never observed: run/matrix/R01-representative-cold/cold/checkpoint",
+      "Declared catalog was never observed: run/matrix/R02-near-limit-cold/cold/checkpoint",
+      "Declared catalog was never observed: run/matrix/R03-fixed-warm-flow/representative/data",
+      "Declared catalog was never observed: run/matrix/R03-fixed-warm-flow/near-limit/data",
+      "Declared catalog was never observed: run/matrix/R04-history-capacity/capacity/checkpoint-20",
+      "Declared catalog was never observed: run/matrix/R04-history-capacity/capacity/checkpoint-64",
+      "Declared catalog was never observed: run/matrix/R05-browser-polling/history-20/data",
+      "Declared catalog was never observed: run/matrix/R05-browser-polling/history-64/data",
+      "Declared catalog was never observed: run/matrix/R07-cancel/preparation/data",
+      "Declared catalog was never observed: run/matrix/R07-cancel/provider/data",
+      "Declared catalog was never observed: run/matrix/R07-cancel/shutdown/data",
+      "Declared catalog was never observed: run/matrix/R07-cancel/shutdown/interrupted-checkpoint",
+      "Declared catalog was never observed: run/matrix/R08-network-replay/lost/data",
+      "Declared catalog was never observed: run/matrix/R08-network-replay/lost/history-checkpoint",
+      "Declared catalog was never observed: run/matrix/R08-network-replay/edit/data",
+      "Declared catalog was never observed: run/matrix/R09-restart/history-20/data",
+      "Declared catalog was never observed: run/matrix/R09-restart/history-64/data",
+      "Declared catalog was never observed: run/matrix/R09-restart/interrupted/data",
+      "Declared catalog was never observed: run/matrix/R10-inventory-eviction/eviction/data",
+      "Declared catalog was never observed: run/matrix/R10-inventory-eviction/eviction/before-reopen",
+      "Declared catalog was never observed: run/matrix/R11-authority-fences/alternative/data",
+      "Declared catalog was never observed: run/matrix/R11-authority-fences/alternative/checkpoint",
+      "Declared catalog was never observed: run/matrix/R11-authority-fences/first-preflight-review/data",
+      "Declared catalog was never observed: run/matrix/R11-authority-fences/first-preflight-policy/data",
+      "Declared catalog was never observed: run/matrix/R11-authority-fences/first-preflight-published-build/data",
+      "Declared catalog was never observed: run/matrix/R11-authority-fences/before-dispatch-review/data",
+      "Declared catalog was never observed: run/matrix/R11-authority-fences/before-dispatch-policy/data",
+      "Declared catalog was never observed: run/matrix/R11-authority-fences/before-dispatch-published-build/data",
+      "Declared catalog was never observed: run/matrix/R11-authority-fences/before-publication-review/data",
+      "Declared catalog was never observed: run/matrix/R11-authority-fences/before-publication-policy/data",
+      "Declared catalog was never observed: run/matrix/R11-authority-fences/before-publication-published-build/data",
+      "Declared catalog was never observed: run/matrix/R11-authority-fences/browser-preparation/data",
+      "Declared catalog was never observed: run/matrix/R11-authority-fences/browser-history/data",
+      "Declared catalog was never observed: run/matrix/R12-revocation/revocation/data",
+      "Declared catalog was never observed: run/matrix/R12-revocation/pending/data",
+      "Declared catalog was never observed: run/matrix/R12-revocation/pending/pending-checkpoint",
+      "Declared catalog was never observed: run/matrix/R12-revocation/browser/data",
+      "Declared catalog was never observed: run/matrix/R13-original-integrity/missing/data",
+      "Declared catalog was never observed: run/matrix/R13-original-integrity/corrupt/data",
+      "Declared catalog was never observed: run/matrix/R15-accounting/representative-worker/data",
+      "Declared catalog was never observed: run/matrix/R15-accounting/near-limit-worker/data",
+      "Declared catalog was never observed: run/matrix/R15-accounting/near-history/data",
+      "Declared catalog was never observed: run/matrix/R15-accounting/near-history/checkpoint-20",
+      "Declared catalog was never observed: run/matrix/R15-accounting/near-history/checkpoint-64",
+      "Declared catalog was never observed: run/matrix/R15-accounting/representative-list-20/data",
+      "Declared catalog was never observed: run/matrix/R15-accounting/representative-list-64/data",
+      "Declared catalog was never observed: run/matrix/R15-accounting/near-limit-list-20/data",
+      "Declared catalog was never observed: run/matrix/R15-accounting/near-limit-list-64/data"
+    ],
+    "failures": [
+      "The owned driver did not complete successfully."
+    ],
+    "resourceQualification": false,
+    "modelEligibility": false,
+    "observed": {
+      "samples": 326,
+      "maxSampleGapMs": 1093.8159069628455,
+      "cleanupMs": 0.12239196803420782,
+      "catalogRoots": 63
+    },
+    "evidenceHashes": {
+      "owner": "a0a6f551b8f72fe52f3aa838e8118210b13c4ba0b74aeda254fe1fc7c61649bd",
+      "storage": "2dd25f05504c99c3edbe7a3404a3cf0f4d9d94d40e966c0f921c831a8ca07b82",
+      "events": "0d262b73d6c9ba6dbea953b271c025c116ab3e8ca6dd23ff4092e73b40a5539c"
+    }
+  }
+}

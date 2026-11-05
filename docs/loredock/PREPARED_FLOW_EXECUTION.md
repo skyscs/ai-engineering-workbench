@@ -1,5 +1,10 @@
 # Prepared-flow final execution work note
 
+Execution is now complete: the [first reserved result](../fixtures/loredock-prepared-flow-result/README.md)
+records a failed gate after acceptance of PR #160. The family is consumed; no model call
+or retry is permitted. The remaining text preserves the construction/verification plan
+and its pre-execution observations, rather than describing a currently unobserved family.
+
 This note starts the final Task 128 execution-boundary work after the ordinary
 [matrix](../fixtures/loredock-prepared-flow-matrix-integration/README.md) and its
 [supplemental bindings](../fixtures/loredock-prepared-flow-matrix-closure/README.md).
