@@ -1,0 +1,517 @@
+{
+  "schemaVersion": "prepared-flow-browser-lifetime-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "tests": 962,
+  "trees": [
+    {
+      "path": "lifetime-browser-first.tar.gz",
+      "sha256": "67742110d15d3e16b554c580b651bd4e4bb6a5fd7c2eef971beb993a8091b9c8",
+      "inventory": "lifetime-browser-first.inventory.json.gz",
+      "inventorySha256": "57b44f6bb79577b87bd094238de1b39574f57642b5530c6eb96ba953948def7e",
+      "entries": 181,
+      "source": "/home/toshiba/aew/task128-lifetime-browser-first",
+      "excludedFromArchive": [
+        "run/browser/profile (temporary Chrome profile/cache; original retained locally)"
+      ],
+      "limitation": "Earlier ordinary collector before explicit launcher-PID binding; original source inputs retained."
+    },
+    {
+      "path": "lifetime-crash-first.tar.gz",
+      "sha256": "75caa5568873ea39460fea416aef31e98b6e249589e8f0af7d8aa3c60e19ac66",
+      "inventory": "lifetime-crash-first.inventory.json.gz",
+      "inventorySha256": "8d3ab9f4cc7295eb42beb7f49cd081db9c2b837419e3b8906e9009739c9c969e",
+      "entries": 161,
+      "source": "/home/toshiba/aew/task128-lifetime-crash-first",
+      "excludedFromArchive": [
+        "run/browser/profile (temporary Chrome profile/cache; original retained locally)"
+      ],
+      "limitation": "Earlier ordinary collector before explicit launcher-PID binding; original source inputs retained."
+    },
+    {
+      "path": "lifetime-browser-bound-parent.tar.gz",
+      "sha256": "e43ab507df85372505b1504bca217d56daa6eda6fa628647f83ecdb573b253a7",
+      "inventory": "lifetime-browser-bound-parent.inventory.json.gz",
+      "inventorySha256": "85b3f5c4fe71a263a337063317616c21f7c5f3fb51d596b5ad0540f9260e0f58",
+      "entries": 181,
+      "source": "/home/toshiba/aew/task128-lifetime-browser-bound-parent",
+      "excludedFromArchive": [
+        "run/browser/profile (temporary Chrome profile/cache; original retained locally)"
+      ],
+      "limitation": "Final parent-bound behavior. Fault timing overlaps repository checks; no resource qualification. Final source metadata clarifies OS counter interpretation without rewriting these raw reports."
+    },
+    {
+      "path": "lifetime-crash-bound-parent.tar.gz",
+      "sha256": "af226f2ea2a5c9eec456941fe5892c000401c89fcc35062b3912d50732854784",
+      "inventory": "lifetime-crash-bound-parent.inventory.json.gz",
+      "inventorySha256": "3a20ca6a2f38f628aaed60934be6aefd34dfc8120d4916b4c60c0598f474c998",
+      "entries": 161,
+      "source": "/home/toshiba/aew/task128-lifetime-crash-bound-parent",
+      "excludedFromArchive": [
+        "run/browser/profile (temporary Chrome profile/cache; original retained locally)"
+      ],
+      "limitation": "Final parent-bound behavior. Fault timing overlaps repository checks; no resource qualification. Final source metadata clarifies OS counter interpretation without rewriting these raw reports."
+    },
+    {
+      "path": "lifetime-retention.tar.gz",
+      "sha256": "93c283ed5dc5ae1ff138fa64f306877a79e548b44435941fa572a2b5c4fc7bca",
+      "inventory": "lifetime-retention.inventory.json.gz",
+      "inventorySha256": "0c45459c333c636ebfc0d11c9deba049036fdfaa51c500c4a6ea4fa34c2455b5",
+      "entries": 17,
+      "source": "/home/toshiba/aew/task128-lifetime-retention"
+    },
+    {
+      "path": "lifetime-first-inputs.tar.gz",
+      "sha256": "22c7efb10579132b96d5d735bbe16e6e8f9ffab28139bb822f87518fb4de2920",
+      "inventory": "lifetime-first-inputs.inventory.json.gz",
+      "inventorySha256": "4245669ffb0b58ccef31c7f2139b58f1db1c727689266226af248495a99714d3",
+      "entries": 3,
+      "source": "/home/toshiba/aew/task128-lifetime-first-inputs"
+    },
+    {
+      "path": "lifetime-focused-first-lifetime-1.tar.gz",
+      "sha256": "12cb0480061faec62355dda67d283e595113e74fc74bcfc5c7320117cb0969a9",
+      "inventory": "lifetime-focused-first-lifetime-1.inventory.json.gz",
+      "inventorySha256": "39d8f8bb55f795c39da2eac260cd3c3d823711ef371a2795f25667d9e43f83b6",
+      "entries": 9,
+      "source": "/tmp/loredock-browser-lifetime-gKOrtc"
+    },
+    {
+      "path": "lifetime-focused-first-lifetime-2.tar.gz",
+      "sha256": "27d9eeddffd73ac8328f08fbd0353084ce5c1c81555bdc5e4a699e4cd022d5a5",
+      "inventory": "lifetime-focused-first-lifetime-2.inventory.json.gz",
+      "inventorySha256": "5e52957aa6046d70c83aab2447412b00dd840913c35ba199ca5c18ca3b8dba1b",
+      "entries": 9,
+      "source": "/tmp/loredock-browser-lifetime-lX8Jc3"
+    },
+    {
+      "path": "lifetime-focused-first-lifetime-3.tar.gz",
+      "sha256": "90ab3b96d9d3f23db944c9bc8369fe85c8da57c89d48d8a8abda4358ecff2f38",
+      "inventory": "lifetime-focused-first-lifetime-3.inventory.json.gz",
+      "inventorySha256": "c3faa95f067ff43f8130b450e569c5a27c6f18749eaea2fadb8ad7197b1fabf5",
+      "entries": 15,
+      "source": "/tmp/loredock-browser-lifetime-0RlcVN"
+    },
+    {
+      "path": "lifetime-focused-bound-parent-lifetime-1.tar.gz",
+      "sha256": "c7b59af5e97cff5bd5f24c0a17cd26d9dcc3275954459b68bba9e501f491be74",
+      "inventory": "lifetime-focused-bound-parent-lifetime-1.inventory.json.gz",
+      "inventorySha256": "e32a9768efdefa1de2e8f0f748521594ca8baf89c1f43c5fa1bb6a84a6745d99",
+      "entries": 9,
+      "source": "/tmp/loredock-browser-lifetime-shMuj0"
+    },
+    {
+      "path": "lifetime-focused-bound-parent-lifetime-2.tar.gz",
+      "sha256": "ef0027f87371c66cbd325e66eec859a02c58424f356c11ac52a7f733baac862c",
+      "inventory": "lifetime-focused-bound-parent-lifetime-2.inventory.json.gz",
+      "inventorySha256": "7cc0c87ab9ae7c0268a8c69e29b1f168e7c407dd787e044bc6fc220674115a03",
+      "entries": 9,
+      "source": "/tmp/loredock-browser-lifetime-bMLlWb"
+    },
+    {
+      "path": "lifetime-focused-bound-parent-lifetime-3.tar.gz",
+      "sha256": "39ad367b0d3b84eed81d0b8bb6411c6674d2836406ea9b66997255ab56ae5d27",
+      "inventory": "lifetime-focused-bound-parent-lifetime-3.inventory.json.gz",
+      "inventorySha256": "3604d5e5c5497f98849381c8b0ab88d411a72f189f3b736760b729fb1c3b0d85",
+      "entries": 15,
+      "source": "/tmp/loredock-browser-lifetime-bdkfep"
+    },
+    {
+      "path": "lifetime-focused-bound-parent-lifetime-4.tar.gz",
+      "sha256": "469ce07c11dee34ff4a779521f129e5222a6db3b67bea81557e63e0a28b6974f",
+      "inventory": "lifetime-focused-bound-parent-lifetime-4.inventory.json.gz",
+      "inventorySha256": "a4f2a6b889ee736e691e805632ac2c11bf62d62f6bf51679b935b9df8249ff9a",
+      "entries": 5,
+      "source": "/tmp/loredock-browser-lifetime-kAEVEE"
+    },
+    {
+      "path": "lifetime-focused-final-lifetime-1.tar.gz",
+      "sha256": "bb7e3a9fef427a8c671fb55b4a45e2dcc20da2af653a417263ddc84f3ae451f9",
+      "inventory": "lifetime-focused-final-lifetime-1.inventory.json.gz",
+      "inventorySha256": "17335df7e5d55d442c0d9af680f5cbb23fa982b06bd27f24439d7ec247f3741d",
+      "entries": 9,
+      "source": "/tmp/loredock-browser-lifetime-YZ5iJL"
+    },
+    {
+      "path": "lifetime-focused-final-lifetime-2.tar.gz",
+      "sha256": "1fa24c61f258c1560c2f51a7a7670b164cd95b5faf7fa2eef7bf1d7f019e32fa",
+      "inventory": "lifetime-focused-final-lifetime-2.inventory.json.gz",
+      "inventorySha256": "8e8d8854ea090d067c53cd2a1661cc42a7cb67e803c5207aa19d3e6d677d994b",
+      "entries": 9,
+      "source": "/tmp/loredock-browser-lifetime-uKC5B9"
+    },
+    {
+      "path": "lifetime-focused-final-lifetime-3.tar.gz",
+      "sha256": "f39fcf605f1023306fc18ef0e84eab0a9d5c9becf0afe5ac427841cf842bf33d",
+      "inventory": "lifetime-focused-final-lifetime-3.inventory.json.gz",
+      "inventorySha256": "69e07b65865183343ef5e0d6afd3f4d869c87123866ecf41439fbdb20a63f5a4",
+      "entries": 15,
+      "source": "/tmp/loredock-browser-lifetime-oEpBXf"
+    },
+    {
+      "path": "lifetime-focused-final-lifetime-4.tar.gz",
+      "sha256": "cc03dfd0995ccf205e88015d683ad8f83fb13dd738b542838363b9bc684029e0",
+      "inventory": "lifetime-focused-final-lifetime-4.inventory.json.gz",
+      "inventorySha256": "75dc162cb58db41802824fcf5ef7c8b4c630972b6618f324c8c5bcb053100b31",
+      "entries": 5,
+      "source": "/tmp/loredock-browser-lifetime-SA8FiV"
+    },
+    {
+      "path": "lifetime-check-first-lifetime-1.tar.gz",
+      "sha256": "8293dced0eea3ad5a33756b9524053a16c79f2267e9d7f7973dffd29a0256a05",
+      "inventory": "lifetime-check-first-lifetime-1.inventory.json.gz",
+      "inventorySha256": "5f045175f558fd7b44c4458617f6a8443c943f915816465899b79119268199bf",
+      "entries": 9,
+      "source": "/tmp/loredock-browser-lifetime-m2qpVn"
+    },
+    {
+      "path": "lifetime-check-first-lifetime-2.tar.gz",
+      "sha256": "e6375a2bc2ec035d8c7ce590a8b63532d2d808ae8b95acba6394d8b7fa8dc669",
+      "inventory": "lifetime-check-first-lifetime-2.inventory.json.gz",
+      "inventorySha256": "b18a2c3162a721293465c48b896ed377f7709d5c3685123308fa4f4d6de18e3b",
+      "entries": 9,
+      "source": "/tmp/loredock-browser-lifetime-25E8kc"
+    },
+    {
+      "path": "lifetime-check-first-lifetime-3.tar.gz",
+      "sha256": "9dc20ea177133a0b8d411a98546ba74713f629920ccfe387a63c68db48d9cf62",
+      "inventory": "lifetime-check-first-lifetime-3.inventory.json.gz",
+      "inventorySha256": "a39b9b25ce0172546c48d1859b0d64cb23e1bf21d76596126109420ba9fd6d17",
+      "entries": 15,
+      "source": "/tmp/loredock-browser-lifetime-oDBiOq"
+    },
+    {
+      "path": "lifetime-check-first-owner-1.tar.gz",
+      "sha256": "62655ebba38d8932d78b4bfe19bce15eed42bf340a186101a6bc80c7a5864233",
+      "inventory": "lifetime-check-first-owner-1.inventory.json.gz",
+      "inventorySha256": "cfbbbc9f7e3cc93e39d7655e0998cc98ceed74a3d2b83f1516d20b17141eea2d",
+      "entries": 8,
+      "source": "/tmp/loredock-kernel-adoption-XBKNBr"
+    },
+    {
+      "path": "lifetime-check-first-owner-2.tar.gz",
+      "sha256": "7ed6668fa8dba61ad81f63f4eae24c74d5f43706856706649337acac41edb1db",
+      "inventory": "lifetime-check-first-owner-2.inventory.json.gz",
+      "inventorySha256": "c6d2026dd8ef7302d4b8cfb8a01b5e837838e31f771302d2cfdb6ccbf76cfe00",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-9gl68a"
+    },
+    {
+      "path": "lifetime-check-first-owner-3.tar.gz",
+      "sha256": "a54983cbf3c56de5a566c60c65b220dafc84bd9f8810b53d64f56f4cec990e22",
+      "inventory": "lifetime-check-first-owner-3.inventory.json.gz",
+      "inventorySha256": "913ea38f980ec15d7136f94c2eb3875a3b3ba01a129220b32ff837836685fb4e",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-LMILGJ"
+    },
+    {
+      "path": "lifetime-check-first-owner-4.tar.gz",
+      "sha256": "304cabc8f9252b9dcd4cce865dd6749f5bf5e350804e6c838e722c83d8cc0e60",
+      "inventory": "lifetime-check-first-owner-4.inventory.json.gz",
+      "inventorySha256": "9d258907e394caca7b62d26b31a4b76ccdb9f7f84a94e530dfee54f3e619be80",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-wqorMt"
+    },
+    {
+      "path": "lifetime-check-first-owner-5.tar.gz",
+      "sha256": "d2cfe0b3ea9f49bfe3724202dab6da15c6239702cc1539915f0caaa29e189b92",
+      "inventory": "lifetime-check-first-owner-5.inventory.json.gz",
+      "inventorySha256": "3fe78f81defa97ee7dc8454a21117c04583b35470e6cdb5599ef9f58a9ea514f",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-N9IFB6"
+    },
+    {
+      "path": "lifetime-check-first-owner-6.tar.gz",
+      "sha256": "3d7811d96b33b84a256e968032584e2f78d4521a3054816c623aa238c3ceb3d2",
+      "inventory": "lifetime-check-first-owner-6.inventory.json.gz",
+      "inventorySha256": "0af14e412c05b2ae98de7c0a55062308469d7bdb35db588ed58a312f47b50c3b",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-cYsGlj"
+    },
+    {
+      "path": "lifetime-check-first-checkpoint-1.tar.gz",
+      "sha256": "8a8720db0e385be478f13f2ceed234c61a04de6cfc3aff9f3c077a8e8852542a",
+      "inventory": "lifetime-check-first-checkpoint-1.inventory.json.gz",
+      "inventorySha256": "ad7aa50d08370487afdaca3bc1e57b64dafb92606bc95bbba764bfd0d9de9e17",
+      "entries": 6,
+      "source": "/tmp/loredock-history-checkpoint-IkyHNk"
+    },
+    {
+      "path": "lifetime-check-final-lifetime-1.tar.gz",
+      "sha256": "2b89acfc5dae8b43fd62a2e45edf1eaf7684597914fc1e7d273a9bd81ac96de4",
+      "inventory": "lifetime-check-final-lifetime-1.inventory.json.gz",
+      "inventorySha256": "cd1f3a783cdf8f60496bfec61e929416b4b0bb237c0f38d2ad6f4f4ba1e066af",
+      "entries": 9,
+      "source": "/tmp/loredock-browser-lifetime-jgbXWL"
+    },
+    {
+      "path": "lifetime-check-final-lifetime-2.tar.gz",
+      "sha256": "55791bc6cdae3c1921921a21571d11624a916c115960c1d4e31b517b1ec117a9",
+      "inventory": "lifetime-check-final-lifetime-2.inventory.json.gz",
+      "inventorySha256": "15e72882bf68637e60cc839f8b36bbb3afd87d96ebec9ab3ea30e1739c440c4a",
+      "entries": 9,
+      "source": "/tmp/loredock-browser-lifetime-TWp9JO"
+    },
+    {
+      "path": "lifetime-check-final-lifetime-3.tar.gz",
+      "sha256": "28f08c51b097f0fb8cdd8ecce64157ac2342ff084d29f63b3f06068c0bfeb73b",
+      "inventory": "lifetime-check-final-lifetime-3.inventory.json.gz",
+      "inventorySha256": "88a0630ba573d315c182c2c73514738c4359fdd78871308fe08ddb2b8bb0e2f1",
+      "entries": 15,
+      "source": "/tmp/loredock-browser-lifetime-vqhpet"
+    },
+    {
+      "path": "lifetime-check-final-lifetime-4.tar.gz",
+      "sha256": "b22e03c1146bbab7cca67a8a62edc3075067ea32bb7d3d2d9621e17fbe20b5eb",
+      "inventory": "lifetime-check-final-lifetime-4.inventory.json.gz",
+      "inventorySha256": "86604bdab89fadc70027ffa1edbedc38099a89ce18a536b33ad9f9ae5a22fd76",
+      "entries": 5,
+      "source": "/tmp/loredock-browser-lifetime-U225Gq"
+    },
+    {
+      "path": "lifetime-check-final-owner-1.tar.gz",
+      "sha256": "301b53e680f5b8708d247e0cf26f437a83fe858758b3f153cdf2516fc138ab6b",
+      "inventory": "lifetime-check-final-owner-1.inventory.json.gz",
+      "inventorySha256": "48837360dadd072ea3cc07cd32cfd44dccc6890afd5a842eff6b9f21fb124fb3",
+      "entries": 8,
+      "source": "/tmp/loredock-kernel-adoption-34RHhA"
+    },
+    {
+      "path": "lifetime-check-final-owner-2.tar.gz",
+      "sha256": "a7e9b1460e6128d7202d4b9a46d7c0c9ea6313f4cd20ca9238f0351c796673fa",
+      "inventory": "lifetime-check-final-owner-2.inventory.json.gz",
+      "inventorySha256": "4d28fb853878dcc5ec794455c643a36e2f996260e906648d963c810275725851",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-ij5s5S"
+    },
+    {
+      "path": "lifetime-check-final-owner-3.tar.gz",
+      "sha256": "617bf8a1ad4b3a66e0501967275fbc0c83e3f91486b2d9e94b289b6dd8469460",
+      "inventory": "lifetime-check-final-owner-3.inventory.json.gz",
+      "inventorySha256": "a036fd653c85ff29c0e8f9a0f2592bdb6d3dc0287b8a8884baf762c51a6c0847",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-KBHAz3"
+    },
+    {
+      "path": "lifetime-check-final-owner-4.tar.gz",
+      "sha256": "baec2fa97e7ec18a0e048fe0de21aff5db004ee2adc7e838df468ac06b9482f8",
+      "inventory": "lifetime-check-final-owner-4.inventory.json.gz",
+      "inventorySha256": "2792457157fac451e2cc104e7ed9dd002a403d2434ab6e9e60966d8143761975",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-vmvtQv"
+    },
+    {
+      "path": "lifetime-check-final-owner-5.tar.gz",
+      "sha256": "fbf206b592b3d0849d65e31efd8ea497870ea04c4b0b2083bf370144e36b520a",
+      "inventory": "lifetime-check-final-owner-5.inventory.json.gz",
+      "inventorySha256": "309c1be8aa33e3fd6665e7fb5d9e044610fe12ff601048eb5c0285d5ff99e729",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-67fWWW"
+    },
+    {
+      "path": "lifetime-check-final-owner-6.tar.gz",
+      "sha256": "221d4ba56c14e76b791a9dbf2ae83cb16ab878a9f95abdf428866143197e5466",
+      "inventory": "lifetime-check-final-owner-6.inventory.json.gz",
+      "inventorySha256": "db53cf125683c7603a40a17db0a2ae646477453817c2192a543351805726c638",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-yMzskV"
+    },
+    {
+      "path": "lifetime-check-final-checkpoint-1.tar.gz",
+      "sha256": "c0fecfd9740360931f745f664ded0ff3db375bde8e963045a13a7c38b4d9376f",
+      "inventory": "lifetime-check-final-checkpoint-1.inventory.json.gz",
+      "inventorySha256": "ad7aa50d08370487afdaca3bc1e57b64dafb92606bc95bbba764bfd0d9de9e17",
+      "entries": 6,
+      "source": "/tmp/loredock-history-checkpoint-VrFLU2"
+    },
+    {
+      "path": "lifetime-inputs.tar.gz",
+      "sha256": "16f5a8913fa798d6a0982945c9eff36faba7cba39acb8b8177e864465cb60f5a",
+      "inventory": "lifetime-inputs.inventory.json.gz",
+      "inventorySha256": "ced1e548e50defcd2d4a57efaa091295d837784084c2d783e4cd850ffd10fc7b",
+      "entries": 7,
+      "source": "/home/toshiba/aew/task128-lifetime-inputs"
+    },
+    {
+      "path": "lifetime-static-review.tar.gz",
+      "sha256": "fb7c069cfa105c3e6d207f14f31cd9f80a8ed848326f298ebaa397636f5ff78c",
+      "inventory": "lifetime-static-review.inventory.json.gz",
+      "inventorySha256": "8e365638de37151221f32257683b1e4e1583e5abdcec4ece6d4869cde2c1915d",
+      "entries": 1,
+      "source": "/home/toshiba/aew/task128-lifetime-static-review"
+    }
+  ],
+  "logs": [
+    {
+      "path": "lifetime-browser-first.log.gz",
+      "archiveSha256": "b420205925518af0c9e40f398de2ec150a51142e9841ae06859b93fa92b215b6",
+      "rawBytes": 4706,
+      "rawSha256": "9cd3d4b0b40366e3a917bcde65472d8a6ef0f9b2358efdb72a8ef41d8432f350"
+    },
+    {
+      "path": "lifetime-crash-first.log.gz",
+      "archiveSha256": "3182f95fa44f82c64a56f269faa6c69141d8ee3b0478e6dac743368454cd8816",
+      "rawBytes": 5104,
+      "rawSha256": "b37a8377cc92fb90f594e8dfa1c2d3a1d263233843b0eca1e0697b108ad4e424"
+    },
+    {
+      "path": "lifetime-browser-bound-parent.log.gz",
+      "archiveSha256": "10564082cebfb16adc8a4ce3c619d8fed022092e88be36c4e336d4780006efed",
+      "rawBytes": 4904,
+      "rawSha256": "81aaf6a79d49f39d786d862ab78cdb480cf5d977bafa8d9d7311b26574bb62e1"
+    },
+    {
+      "path": "lifetime-crash-bound-parent.log.gz",
+      "archiveSha256": "402078b7a343fa75897143c7542b6deb55f9701b421b2939d9e5d9c8cd028bc8",
+      "rawBytes": 5259,
+      "rawSha256": "edd90040ea3637787df5a1a973e0381e45ab0c3fbd5d3dd3942f2da413675b6e"
+    },
+    {
+      "path": "lifetime-install.log.gz",
+      "archiveSha256": "1e8bb2757479bcbd482a6f0c628c126b744254d58823a772bb143fa103ac4c1b",
+      "rawBytes": 326,
+      "rawSha256": "054aa1f81762b327551da12679aa9ccbdb099202b0d30633961fcc8ca0395cd0"
+    },
+    {
+      "path": "lifetime-build.log.gz",
+      "archiveSha256": "0a90353a2cfed2e11e1463fa6e6df6b5fe27f4334afe23339e6c89c5bbb26033",
+      "rawBytes": 2356,
+      "rawSha256": "26da2a3727387af165eec3f36ac48a5e03c2018d12bfe5994af25c565dac7eab"
+    },
+    {
+      "path": "lifetime-focused-first.log.gz",
+      "archiveSha256": "43fe04d1027b81889b154de89c130bb659377c52850bd75d9a76d0d47d0172f6",
+      "rawBytes": 1002,
+      "rawSha256": "a91fd54f79eecfceac24e444994a29a1678524693ff539651dde56d6e3504073"
+    },
+    {
+      "path": "lifetime-focused-bound-parent.log.gz",
+      "archiveSha256": "30af4d7bedf317182e5dfeb683309fe4acb6baf68f9ff1461bd4614414c45b24",
+      "rawBytes": 1316,
+      "rawSha256": "ee4c61c399b4c587aae24b394d555e9148c7de3ed5284db49db123de7f16a5a5"
+    },
+    {
+      "path": "lifetime-focused-final.log.gz",
+      "archiveSha256": "c95b2800e2645f973b7156c56e6504235424d49c5ebd43ee6c9b098b163f7f60",
+      "rawBytes": 1316,
+      "rawSha256": "31125f6aad03113c95feb93903f763974b294efa57caa78066b97bdcef8cc437"
+    },
+    {
+      "path": "lifetime-check-first.log.gz",
+      "archiveSha256": "c4161af8389cdfca83f1ffd6f794ec0d2a5d6e961489e8733837f6adba30fcae",
+      "rawBytes": 352086,
+      "rawSha256": "f967fdb5268d022db29cc91ee49057311195f48db6e5b552722e1b11e5929170"
+    },
+    {
+      "path": "lifetime-check-final.log.gz",
+      "archiveSha256": "d23ecfad50eed7d859966ea9971d65b02bba8934d803b98c30056412b55f7a2b",
+      "rawBytes": 352390,
+      "rawSha256": "1f6c45560da77d42680def302f56d65e2c30ff8aabdacaaf42c88f4392de2e03"
+    },
+    {
+      "path": "lifetime-retention.log.gz",
+      "archiveSha256": "a658cbe8472ea5a8483af59e6053633e9e177e11f088fde62d14699da5a94e51",
+      "rawBytes": 1737,
+      "rawSha256": "f8564ce28ec26fa714ae65175b2f2a5cc25891eb6614235217edd147756d0f32"
+    },
+    {
+      "path": "lifetime-seal-check.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "oracle-ci-push.log.gz",
+      "archiveSha256": "57fcff41c5581996cdf010def52f8598e0263b68722a7012cb5d69ae81b32690",
+      "rawBytes": 685879,
+      "rawSha256": "c046f840fae23c304297385f6bf0899612a28bc6623fe904ed2c42d425a092a2"
+    },
+    {
+      "path": "oracle-ci-pr.log.gz",
+      "archiveSha256": "748af48b4781c809eb5c3921f41f6b4af10a4b2e11d70c804cf8f793c1eb02df",
+      "rawBytes": 687193,
+      "rawSha256": "23ee299262bccfc9e78323e223d67567e3745ae10c86c8a9c7a13c5374711d8d"
+    },
+    {
+      "path": "lifetime-static-first.log.gz",
+      "archiveSha256": "442d94d67ee43d0e7bd09e107250e6229c03045570936bcffd523a7e611690c8",
+      "rawBytes": 209,
+      "rawSha256": "41fa368caf04eb4d99cd63cd3c020f08f2b201449766e130f69d4776c37135ff"
+    }
+  ],
+  "acceptedOracle": {
+    "pr": 138,
+    "head": "5bfad57f7c500f4992a74019035ddcc6e0c80fab",
+    "merge": "16f1c07815d3122fdd7227b1306ecf00883c7f80",
+    "push": 42008587392,
+    "pull_request": 42008788188,
+    "testsPerEvent": 958
+  },
+  "retention": [
+    {
+      "case": "browser-first",
+      "sourceHashesUnchanged": true,
+      "rawTreeUnchangedByInspection": true,
+      "catalogIntegrity": "ok",
+      "foreignKeys": [],
+      "answers": 1,
+      "witnesses": 1,
+      "ownerErrors": [],
+      "ownedSurvivors": [],
+      "collectorReason": "completed",
+      "reapedChildren": 8,
+      "memorySamples": 40,
+      "incompleteSamples": 0,
+      "maximumSampledRssBytesIncludingCollector": 1371127808
+    },
+    {
+      "case": "crash-first",
+      "sourceHashesUnchanged": true,
+      "rawTreeUnchangedByInspection": true,
+      "catalogIntegrity": "ok",
+      "foreignKeys": [],
+      "answers": 1,
+      "witnesses": 1,
+      "ownerErrors": [],
+      "ownedSurvivors": [],
+      "collectorReason": "parent-exited",
+      "reapedChildren": 15,
+      "memorySamples": 9,
+      "incompleteSamples": 0,
+      "maximumSampledRssBytesIncludingCollector": 1344008192
+    },
+    {
+      "case": "browser-bound-parent",
+      "sourceHashesUnchanged": true,
+      "rawTreeUnchangedByInspection": true,
+      "catalogIntegrity": "ok",
+      "foreignKeys": [],
+      "answers": 1,
+      "witnesses": 1,
+      "ownerErrors": [],
+      "ownedSurvivors": [],
+      "collectorReason": "completed",
+      "reapedChildren": 8,
+      "memorySamples": 39,
+      "incompleteSamples": 0,
+      "maximumSampledRssBytesIncludingCollector": 1374105600
+    },
+    {
+      "case": "crash-bound-parent",
+      "sourceHashesUnchanged": true,
+      "rawTreeUnchangedByInspection": true,
+      "catalogIntegrity": "ok",
+      "foreignKeys": [],
+      "answers": 1,
+      "witnesses": 1,
+      "ownerErrors": [],
+      "ownedSurvivors": [],
+      "collectorReason": "collector-SIGTERM",
+      "reapedChildren": 12,
+      "memorySamples": 9,
+      "incompleteSamples": 1,
+      "maximumSampledRssBytesIncludingCollector": 1347878912
+    }
+  ]
+}
