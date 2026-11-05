@@ -1,0 +1,191 @@
+{
+  "schemaVersion": "prepared-flow-expiry-case-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "focusedTests": 2,
+  "trees": [
+    {
+      "path": "expiry-case-first.tar.gz",
+      "sha256": "5d8ab6eadd924ddbdfa9297c51edd121c6d3c8496b0e5d704144bc9072f53904",
+      "inventory": "expiry-case-first.inventory.json.gz",
+      "inventorySha256": "86cf003635f7fd4f359faaadc95fe81de51e6acccf8e3732d24d4e56a87f0e06",
+      "entries": 3171,
+      "source": "/home/toshiba/aew/task128-expiry-case-first",
+      "excludedFromArchive": [
+        "run/expiry/browser/profile (temporary Chrome profile/cache; original retained locally)"
+      ],
+      "limitation": "Earlier extracted DOM-expiry control before viewport checks and conservative timing assessment. Ready/expired screenshots show the top of the page. Raw timings separately pass the stronger offline bound."
+    },
+    {
+      "path": "expiry-case-visible.tar.gz",
+      "sha256": "e1adfd251799cb3ab04024c4b2085ed4fe5baddbbedaed20dc5b680ab97d2612",
+      "inventory": "expiry-case-visible.inventory.json.gz",
+      "inventorySha256": "dea6dc66df4c05fb8db0709759474de37d20dbb9d77592f75236c2d0c0d1d06a",
+      "entries": 3171,
+      "source": "/home/toshiba/aew/task128-expiry-case-visible",
+      "excludedFromArchive": [
+        "run/expiry/browser/profile (temporary Chrome profile/cache; original retained locally)"
+      ]
+    },
+    {
+      "path": "expiry-case-first-inputs.tar.gz",
+      "sha256": "9e938715bb1388c823a68347388806c9410c32f9192f9ed7e088cf20177378ce",
+      "inventory": "expiry-case-first-inputs.inventory.json.gz",
+      "inventorySha256": "4659d9e0c03f9e4270f3fa71570b609bce4cc8de6da2c08bcbcc5844a57285db",
+      "entries": 2,
+      "source": "/home/toshiba/aew/task128-expiry-case-first-inputs"
+    },
+    {
+      "path": "expiry-case-retention.tar.gz",
+      "sha256": "f2d00eff6ca7172672c94175c678965be504cc614bda8ea2a54442a1c62fe842",
+      "inventory": "expiry-case-retention.inventory.json.gz",
+      "inventorySha256": "60e86cbdbde440979b1b02d067889eeb57a1ce3e461f8358290728dc9b6a8feb",
+      "entries": 9,
+      "source": "/home/toshiba/aew/task128-expiry-case-retention"
+    },
+    {
+      "path": "expiry-case-inputs.tar.gz",
+      "sha256": "24cdea280be2abddd2e55b568b6b052c27117fbd08cf7edb073b05c530d6d288",
+      "inventory": "expiry-case-inputs.inventory.json.gz",
+      "inventorySha256": "a64cc9cbad21810655bf15a3a1645a2547f1261ee0f5af5620f7e941406b4cf4",
+      "entries": 8,
+      "source": "/home/toshiba/aew/task128-expiry-case-inputs"
+    },
+    {
+      "path": "expiry-case-static-inputs.tar.gz",
+      "sha256": "dbf0bed2aece0639e0db9e57ef40ca83dd9036bd4ce3801af4b9b446510ae582",
+      "inventory": "expiry-case-static-inputs.inventory.json.gz",
+      "inventorySha256": "e9b7ce4d741cfbabb106680293c269201fdf61959f4d8021f3e5949e5c738c61",
+      "entries": 1,
+      "source": "/home/toshiba/aew/task128-expiry-case-static-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "expiry-case-first.log.gz",
+      "archiveSha256": "deb6a59589ab211e714a4202d31c0cb4a9c246f48c9e9b659fe6b67281410f98",
+      "rawBytes": 5942,
+      "rawSha256": "8ff1757ff149c6df63a24e97bfcdf20c869c65e74b6e1b687880273107cc9ef4"
+    },
+    {
+      "path": "expiry-case-visible.log.gz",
+      "archiveSha256": "2d36693aa6e8daab14e65f5410518a8bee4e4e82c7af4db92780327dad649d23",
+      "rawBytes": 5698,
+      "rawSha256": "77449b27cb2b5342a466f9e291b8e9fc6419c6f90d8bed628bf101f1640916e0"
+    },
+    {
+      "path": "expiry-case-install.log.gz",
+      "archiveSha256": "622f4bc45bb6795e3015b91df7173de237c463b243c4f9436fa289f7a38cc11e",
+      "rawBytes": 326,
+      "rawSha256": "332ef74e1d5b22e88be87796e8745ff9fb4ad202fcbbfb6f53744703db1de91b"
+    },
+    {
+      "path": "expiry-case-build.log.gz",
+      "archiveSha256": "aece74f7c70df8a11e28d481f2b0fb53f0d9bf764237fb51d0edf320d67f5b79",
+      "rawBytes": 2351,
+      "rawSha256": "80c24ee9965c7501ed935c87ce2220e548e8aee9165d24d877fa2855fdf9e7e0"
+    },
+    {
+      "path": "expiry-case-focused.log.gz",
+      "archiveSha256": "9cfb819759935400d4db44776cb462e0a9bd5761d8336306f771ae499ad3b78f",
+      "rawBytes": 574,
+      "rawSha256": "53f58c36512423bb05fe615d8e195041a1e6bdd059db781bdedab5a7050a1b96"
+    },
+    {
+      "path": "expiry-case-first-bounds.log.gz",
+      "archiveSha256": "784b73476c6bbdcd502dc317322eb29279f277d2feefad36561076eb4852696e",
+      "rawBytes": 533,
+      "rawSha256": "6df75f6f5e0336f130779b2f5a67df0c1d61f8505fe49d4519e91a2bbb665d40"
+    },
+    {
+      "path": "expiry-case-retention.log.gz",
+      "archiveSha256": "cfed96fd2ce3252a6084b9d15ffe236504ac9b153aad9148927d4a4bb2f5e654",
+      "rawBytes": 1052,
+      "rawSha256": "95b61e5d640e7bc0dcc689bcde718e47362f64ba4ec652334b785d4437f38ce1"
+    },
+    {
+      "path": "expiry-case-seal-check.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "http-assessment-ci-push.log.gz",
+      "archiveSha256": "43a26c11333e4706a2172b1286b33ec858dc9ff0c09d15658e00a5c69fd1090a",
+      "rawBytes": 699512,
+      "rawSha256": "9fe6ef349e9174b966a3ff8241f89e32473f84a85bb2da42af9ac15350d45637"
+    },
+    {
+      "path": "http-assessment-ci-pr.log.gz",
+      "archiveSha256": "0a66bad02d41fccdc496b8b86eceb66f3f463a546e27dabeff6222911762d830",
+      "rawBytes": 700455,
+      "rawSha256": "0b6e5d7678985f32e2347a6c3cc23341e89b426380facb37214a1bdc9e9bed27"
+    },
+    {
+      "path": "expiry-case-static-first.log.gz",
+      "archiveSha256": "b5b59269902ca956483dd923a7a028b1a01774c285eed45803566f4c36f7835a",
+      "rawBytes": 208,
+      "rawSha256": "a8667ccd1ec0936d8b86e165643ef156a3110cc9f8cbbf61b488e635821c81dc"
+    }
+  ],
+  "acceptedHttp": {
+    "pr": 142,
+    "head": "0c3223208f5f90d28afc42b0535f1cfb3389adaf",
+    "merge": "f4389040308b5582539d587148d756a1c53123b0",
+    "push": 42017449096,
+    "pull_request": 42017474717,
+    "testsPerEvent": 979
+  },
+  "retention": {
+    "resourceQualification": false,
+    "modelCalls": 0,
+    "reservedFamilyReads": 0,
+    "runs": [
+      {
+        "name": "first",
+        "entries": 3539,
+        "rawInputsUnchanged": true,
+        "catalogCopyIntegrity": "ok",
+        "completedBrowserApiBodies": 3015,
+        "readyPollBodies": 600,
+        "expiredPollBodies": 1,
+        "findToClearMs": 600407.648405,
+        "readyToClearMs": 600116.138499,
+        "browserRssBytes": 1368072192,
+        "incompleteBrowserSamples": 0,
+        "daemonRawTimerGapMs": 322.92816100000005,
+        "daemonOsHighWaterRssBytes": 164552704
+      },
+      {
+        "name": "visible",
+        "entries": 3536,
+        "rawInputsUnchanged": true,
+        "catalogCopyIntegrity": "ok",
+        "completedBrowserApiBodies": 3015,
+        "readyPollBodies": 600,
+        "expiredPollBodies": 1,
+        "findToClearMs": 600509.2529539999,
+        "readyToClearMs": 600234.9849889999,
+        "browserRssBytes": 1378480128,
+        "incompleteBrowserSamples": 1,
+        "daemonRawTimerGapMs": 315.774108,
+        "daemonOsHighWaterRssBytes": 165175296
+      }
+    ]
+  },
+  "screenshots": [
+    {
+      "path": "ready.png",
+      "bytes": 110115,
+      "sha256": "d214e59d1480004c011ad78b5165af202e1c64b51b1e0c67c631c12e4997b717",
+      "source": "/home/toshiba/aew/task128-expiry-case-visible/run/expiry/browser/ready.png"
+    },
+    {
+      "path": "expired.png",
+      "bytes": 93013,
+      "sha256": "f1573bbeebfdeb940b9f4602e41490c1f62f126565fd0a3d0aa2904d31777b1b",
+      "source": "/home/toshiba/aew/task128-expiry-case-visible/run/expiry/browser/expired.png"
+    }
+  ]
+}

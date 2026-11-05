@@ -2,9 +2,10 @@
 
 ## Task 128 — Complete-flow resource driver (in progress)
 
-Latest accepted checkpoint: [PR #141](https://github.com/skyscs/ai-engineering-workbench/pull/141)
-at merge `141416d`. The next HTTP-assessment checkpoint passes 979 local tests and awaits
-both exact-head CI events. The reserved family has zero candidate reads; no model runs.
+Latest accepted checkpoint: [PR #142](https://github.com/skyscs/ai-engineering-workbench/pull/142)
+at merge `f438904`. The next reusable expiry case passes two focused bounds controls and
+two real ten-minute DOM-expiry observations; both final-head CI events remain required.
+The reserved family has zero candidate reads; no model runs.
 Known ordinary failures include partial analysis of constant-only padding, a missing
 required native positive at the derived-size limit, aggregate list work, browser RSS and
 raw daemon timer gaps. Complete ordered case integration, the remaining resource checks
@@ -162,9 +163,25 @@ and the early failed cold case stays incomplete because it reached no covered re
 The offline runner remains exit 1 and changes no raw input. Existing aggregate list-work,
 daemon timer, browser RSS and required-positive failures remain unresolved.
 Six controls and the full 979-test local check pass, including strict types, builds and
-the original application/input seal. Both exact-head CI events remain required for this
-HTTP checkpoint. This is a subset assessor, not complete R01-R15 integration or resource
-qualification; there are no new candidate or model executions.
+the original application/input seal. Both exact-head CI events pass for
+[PR #142](https://github.com/skyscs/ai-engineering-workbench/pull/142): push 42017449096 and
+pull_request 42017474717 at `0c32232`; merge `f438904` has the identical tree. This is a
+subset assessor, not complete R01-R15 integration or resource qualification; there are
+no new candidate or model executions.
+
+The [reusable expiry case](fixtures/loredock-prepared-flow-expiry-case/README.md) now
+accepts sources/question for ordered integration. Its final real ten-minute run keeps
+the question panel visible, records 601 scalar polls and shows the expiry notice without
+another scroll. Exactly one preparation and zero admissions occur. A conservative bound
+uses the earliest possible expiry to avoid hiding preparation delay; two controls verify
+that distinction. The first extracted DOM-only run and its framing limitation remain
+recorded separately; its raw times also pass the stronger offline assessment.
+Both owners finish without errors/survivors, all 6030 completed browser API bodies remain,
+and two complete catalog copies pass integrity/foreign-key checks with zero answer rows.
+Browser RSS still exceeds 1 GiB, raw daemon gaps still exceed 100 ms, and the final browser
+observation retains one incomplete sample. These are functional controls, not resource
+acceptance. Focused tests, script syntax, production builds and the unchanged original
+seal pass locally; both full final-head CI events remain required for this checkpoint.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request
