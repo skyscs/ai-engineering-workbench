@@ -72,7 +72,24 @@ WAL/SHM files after checkpoint hashing. Inspection now precedes copying and seal
 a regression test reproduces the side effect. Thirteen copied catalogs pass integrity
 and foreign-key checks, and 1,364 retained HTTP response bodies match recorded byte sizes.
 The full local check passes 957 tests, strict typechecks, production builds and the
-unchanged application/input seal. Both exact-head CI events remain required for this slice.
+unchanged application/input seal. The history slice is accepted through
+[PR #137](https://github.com/skyscs/ai-engineering-workbench/pull/137): push 42006715733
+and pull_request 42006778571 pass at exact head `3498a03`; merge `4ccf622` has the
+identical tree.
+
+The next [ordinary oracle setup](fixtures/loredock-prepared-flow-oracles/README.md)
+performs exactly ten model-free preparations across eight-source synthetic cases. All
+required original tuples are present. The first assessment reports three failures; two
+come from reading coded omissions in the wrong field. A strict positive-count reader
+and negative controls correct that independent assessor. Offline reassessment uses the
+same retained bytes and zero new preparations: nine prerequisites pass, but the complete
+path still fails because 8,368 combined derived bytes exceed the unchanged 8,192-byte
+limit. Both original and corrected outcomes remain exit 1. Ten copied catalogs pass
+integrity/foreign-key checks, with zero answers and exactly the declared analysis absence.
+No application, frozen oracle, source input or threshold is changed to rescue the positive.
+All seven focused assessor/observer tests and the corrected full 958-test check pass,
+including strict typechecks, builds and the unchanged application/input seal. Both
+exact-head CI events remain required for this oracle checkpoint.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request

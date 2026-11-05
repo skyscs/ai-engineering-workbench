@@ -1,0 +1,369 @@
+{
+  "schemaVersion": "prepared-flow-oracle-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "tests": 958,
+  "trees": [
+    {
+      "path": "oracle-setup-first.tar.gz",
+      "sha256": "4503327bbe2a59b7f2f9f8b655c296d432609a65557c45266526d767332077ac",
+      "inventory": "oracle-setup-first.inventory.json.gz",
+      "inventorySha256": "20be5e938fa9dc212fcbf185d01a456e69f72b5a85b49178dab58bc65265f513",
+      "entries": 1503,
+      "source": "/home/toshiba/aew/task128-oracle-setup-first",
+      "limitation": "The first run retains three assessment failures and exit 1."
+    },
+    {
+      "path": "oracle-reassessment-first.tar.gz",
+      "sha256": "8599252848d4d08a9b52380088c99f0803d382555cdd1c629361380add5f41ac",
+      "inventory": "oracle-reassessment-first.inventory.json.gz",
+      "inventorySha256": "374753e28688d883c120cee3d808addfec33341ad879a3390d8214db6d3c86b5",
+      "entries": 7,
+      "source": "/home/toshiba/aew/task128-oracle-reassessment-first",
+      "limitation": "Offline reassessment changes no original bytes and performs zero candidate preparations. The genuine complete-path positive still fails and exits 1."
+    },
+    {
+      "path": "oracle-retention.tar.gz",
+      "sha256": "eafde4af8b870d1d2b68a7c1b11bc5e7af037e4cf81270dc62acec143538fc28",
+      "inventory": "oracle-retention.inventory.json.gz",
+      "inventorySha256": "a0662b20a9e72b001597d8dea1c6ce792a464e73558f742a2be3ac080cede6ef",
+      "entries": 41,
+      "source": "/home/toshiba/aew/task128-oracle-retention"
+    },
+    {
+      "path": "oracle-first-inputs.tar.gz",
+      "sha256": "567a35f1c054d809b48a3fd522f3d9ef7648352df32a7bfd725e874f6f3e9914",
+      "inventory": "oracle-first-inputs.inventory.json.gz",
+      "inventorySha256": "59bebc2e27d170615c0e6531630e448d54af49f8e85ef2d36a7b6ed6ac181c25",
+      "entries": 3,
+      "source": "/home/toshiba/aew/task128-oracle-first-inputs"
+    },
+    {
+      "path": "oracle-check-first-owner-1.tar.gz",
+      "sha256": "358fcc568ffbbc228b85e1326454e43ad07b8f1eb0db4f73143af90e64192615",
+      "inventory": "oracle-check-first-owner-1.inventory.json.gz",
+      "inventorySha256": "a40cb52c0fe925314206ee55a781aacc9cda69dfec3700c18b11e4c83095ef81",
+      "entries": 8,
+      "source": "/tmp/loredock-kernel-adoption-8FF8fC"
+    },
+    {
+      "path": "oracle-check-first-owner-2.tar.gz",
+      "sha256": "cacf6cb042dd9c0cb0d091f7425324164aee974b2348daa698fef19692c03f89",
+      "inventory": "oracle-check-first-owner-2.inventory.json.gz",
+      "inventorySha256": "489dacdd05307dab53515a5e0a1a0a4b6c3502aa1f82c2c48fcd1c47d8cb8779",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-32437s"
+    },
+    {
+      "path": "oracle-check-first-owner-3.tar.gz",
+      "sha256": "c58bc893181302eca1f9ab1a6c4509d15b943c21a8bfdd1e05ef99f5e96c7aea",
+      "inventory": "oracle-check-first-owner-3.inventory.json.gz",
+      "inventorySha256": "556b0245b3a7f470f148b0b9dfd78aea2d19405a79f743005d95d1c4e5c83d9e",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-SpHotR"
+    },
+    {
+      "path": "oracle-check-first-owner-4.tar.gz",
+      "sha256": "acd0a029a3e73e1c889c1c935b4a07cfe567db473e40c7a61aeda93b446a879d",
+      "inventory": "oracle-check-first-owner-4.inventory.json.gz",
+      "inventorySha256": "08cc87ce2cd05ba495dddf75c17715eefbb97ea3a0d1549d8364978fb7c7574c",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-gMVc4M"
+    },
+    {
+      "path": "oracle-check-first-owner-5.tar.gz",
+      "sha256": "ccfb0a5662ee537e523f99f84c34b46939645a6f7a7e8a882e4bb753466679d3",
+      "inventory": "oracle-check-first-owner-5.inventory.json.gz",
+      "inventorySha256": "1599a849932d1d7bd40d9741fae7c04528b8ffb2685c9029ea26a176867afff4",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-HBm12X"
+    },
+    {
+      "path": "oracle-check-first-owner-6.tar.gz",
+      "sha256": "c7aeaff18968d7a10731dccd8b7554441e2ed8cfc4a46484d056bb39f6a87c3b",
+      "inventory": "oracle-check-first-owner-6.inventory.json.gz",
+      "inventorySha256": "822a6c6e960006e35073a8dca01a7fd2cb0fdfc63ad9c9e6cbe08da7429a6b49",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-mRoFUE"
+    },
+    {
+      "path": "oracle-check-first-checkpoint-1.tar.gz",
+      "sha256": "fd412c71478bea920df885114b7dda40a81fea74fcbecf47d7e6da0e7a15031e",
+      "inventory": "oracle-check-first-checkpoint-1.inventory.json.gz",
+      "inventorySha256": "ad7aa50d08370487afdaca3bc1e57b64dafb92606bc95bbba764bfd0d9de9e17",
+      "entries": 6,
+      "source": "/tmp/loredock-history-checkpoint-l2CAph"
+    },
+    {
+      "path": "oracle-check-corrected-owner-1.tar.gz",
+      "sha256": "b86a14a435b2313b0b625ab084be093d6424de5e8a7fdb2772cf9ff68297df10",
+      "inventory": "oracle-check-corrected-owner-1.inventory.json.gz",
+      "inventorySha256": "a330e3a32e695e906807d8ec12007ba6e3b02421be8ca6eb77a9a95e01254473",
+      "entries": 8,
+      "source": "/tmp/loredock-kernel-adoption-sKX4j6"
+    },
+    {
+      "path": "oracle-check-corrected-owner-2.tar.gz",
+      "sha256": "c870f04d47d276148ced838f83c318aacb45ba69ed8be995d03f478a143f376a",
+      "inventory": "oracle-check-corrected-owner-2.inventory.json.gz",
+      "inventorySha256": "6035a41c779e679b1f7374bc508af861c13de5e364a75ad570d2cd4675ef4d75",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-FKngF2"
+    },
+    {
+      "path": "oracle-check-corrected-owner-3.tar.gz",
+      "sha256": "877580974a3dc236841d5a535b18ddb488a38056842992782766a2c92c7b3ed8",
+      "inventory": "oracle-check-corrected-owner-3.inventory.json.gz",
+      "inventorySha256": "48ee91a35375e4e17fac56ab98451299b7387f83141c104eb2ee147a64ddb237",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-8EqPh6"
+    },
+    {
+      "path": "oracle-check-corrected-owner-4.tar.gz",
+      "sha256": "ec6d64bdaf3de4c09d9e9f42ec7c16c63a0aa27574e3f6fe6d515f537db775b2",
+      "inventory": "oracle-check-corrected-owner-4.inventory.json.gz",
+      "inventorySha256": "5513f324b9c535dbe876ab8a7e843e9a89f16bb8fb889e3a05b7d6404d0ca061",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-c2ARvE"
+    },
+    {
+      "path": "oracle-check-corrected-owner-5.tar.gz",
+      "sha256": "83cc5b4fb2aaf5c80bf7d989ca1d95506c53be92d02cc8f0995153dd87540cef",
+      "inventory": "oracle-check-corrected-owner-5.inventory.json.gz",
+      "inventorySha256": "e9d8cdf80c4a7e79b647f21f4946936efaaae439750d077f9df030f31b66b93d",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-qy264u"
+    },
+    {
+      "path": "oracle-check-corrected-owner-6.tar.gz",
+      "sha256": "1152b6c8d6acef57761c61ade51753b5d1afb6940d8ebf8ff0488b00e8bd98c8",
+      "inventory": "oracle-check-corrected-owner-6.inventory.json.gz",
+      "inventorySha256": "7cf6c4d17fbe99d30b167efc6ab5157e041b4a697e0e65e76941c49ef1385cec",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-RqUgmE"
+    },
+    {
+      "path": "oracle-check-corrected-checkpoint-1.tar.gz",
+      "sha256": "56a78ea7f235a24ea9191606b3608667d4b307981794b14649c236dedc9001ab",
+      "inventory": "oracle-check-corrected-checkpoint-1.inventory.json.gz",
+      "inventorySha256": "ad7aa50d08370487afdaca3bc1e57b64dafb92606bc95bbba764bfd0d9de9e17",
+      "entries": 6,
+      "source": "/tmp/loredock-history-checkpoint-QO4Jkj"
+    },
+    {
+      "path": "oracle-inputs.tar.gz",
+      "sha256": "03a2e7aa4f90823430cb71b825ba853625dc25424abca0babb27e6dd507b2ee1",
+      "inventory": "oracle-inputs.inventory.json.gz",
+      "inventorySha256": "ff7e5c7cb1d6374be728a0fd701c535c5a77b8abdf929b7f2b4bca6fe8f6a8dd",
+      "entries": 8,
+      "source": "/home/toshiba/aew/task128-oracle-inputs"
+    },
+    {
+      "path": "oracle-static-review.tar.gz",
+      "sha256": "f4f72a38c5079062476d93963f3aaadf012fe48b7b974885b7ae63b766f020b6",
+      "inventory": "oracle-static-review.inventory.json.gz",
+      "inventorySha256": "1651ccbdbe867285b243bd9d41142bc54ec0eb1dc0ea6d7e2b0ebe40b168c7dd",
+      "entries": 1,
+      "source": "/home/toshiba/aew/task128-oracle-static-review"
+    }
+  ],
+  "logs": [
+    {
+      "path": "oracle-setup-first.log.gz",
+      "archiveSha256": "ac309ffbd69a34396fdd343a10bda0d4a356e5f23d2bf480f19ab7007f3aa7e9",
+      "rawBytes": 33269,
+      "rawSha256": "12b67689aecfe35474f11ea8aa4ddd25df2fc93760e0c8b709cff5272a596f4b"
+    },
+    {
+      "path": "oracle-reassessment-first.log.gz",
+      "archiveSha256": "eacbb72601ebee7c15f0ad5a60713daa71e1116f3b332c8b1efdafec10a487af",
+      "rawBytes": 912,
+      "rawSha256": "f76852e8a3897c1198b282da7360a216d3db89a5a2489ab7a2435d9e920bf109"
+    },
+    {
+      "path": "oracle-install.log.gz",
+      "archiveSha256": "915dcf5fee9c7b2a30f19cdbf944918eab4073850cf20ac2eee2a8f89519a5f6",
+      "rawBytes": 326,
+      "rawSha256": "0f634af61e441c693022afa0b41cadf26dd115ed847d5c6d28fa98e6d34ed213"
+    },
+    {
+      "path": "oracle-build.log.gz",
+      "archiveSha256": "3f37cdeeaa2df764d6abaecf845f911174fa2629baaec4cccfd98347e6cbf58a",
+      "rawBytes": 2352,
+      "rawSha256": "f8f0ad0e327bf5c3738005a35e7fd8a8c643519cd69ccae63a0e4630907ef3da"
+    },
+    {
+      "path": "oracle-focused.log.gz",
+      "archiveSha256": "ef5d4b0ca80cf419776f29250eb234a469bad8537c4fab223ceb5f6d2b69ddf9",
+      "rawBytes": 1528,
+      "rawSha256": "07ab1ee8220c3aadd5923b0615c8fd528ce22ac81406edfd0396970e2cd95a4b"
+    },
+    {
+      "path": "oracle-focused-corrected.log.gz",
+      "archiveSha256": "5b58db46272d21443e68548b3a72249c95da209524d73746c71dac6131155561",
+      "rawBytes": 1778,
+      "rawSha256": "1f84be7134fe3f6b7215c7ce25c8ed7c8d55ed7a86bb2d5bc805f23847b31cc5"
+    },
+    {
+      "path": "oracle-check-first.log.gz",
+      "archiveSha256": "f031eddf4d0f86c1aeca19fea8f48144cde2c3329f4227b1018bd24e34eec2c2",
+      "rawBytes": 351019,
+      "rawSha256": "5cb589fff9f386b0c60fc2c5c2e0855fb0b61a5f636e16cee963b327a88dee2b"
+    },
+    {
+      "path": "oracle-check-corrected.log.gz",
+      "archiveSha256": "40309a79752694fd0afca132bc3b0b9306ddfa05fc41b31a2e759bf6b8c6dcd5",
+      "rawBytes": 351093,
+      "rawSha256": "be01d39835ee8cf3633f49fa07f042bf13c50ca6820054d0fe62d1443ef9c358"
+    },
+    {
+      "path": "oracle-retention.log.gz",
+      "archiveSha256": "2b4d29594e29c962afbd12fb6e8e520be76647bdbb3af81bb0e8dc78127521fd",
+      "rawBytes": 2692,
+      "rawSha256": "671416bdfcb1dc856b2b61869b40b9d0963231466e1bde1cdc15228fe36d21bd"
+    },
+    {
+      "path": "oracle-seal-check.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "ordered-ci-push.log.gz",
+      "archiveSha256": "4a1925c64269d9b892a1c77effdda9f7ee42ef1dd31ccfd91b84dafb1dcd2dd1",
+      "rawBytes": 685680,
+      "rawSha256": "3a86e689e8e28b7fc9fb8a2c62bb71fc542870a1ab692fd38dd616c3f425e145"
+    },
+    {
+      "path": "ordered-ci-pr.log.gz",
+      "archiveSha256": "b33068995272e25652d66edea5503a52dcb1a5a80639f3e8c8f6db493b258d98",
+      "rawBytes": 686784,
+      "rawSha256": "4f48f455b0017b0e58d7a3c678c2a3e840d3a788780e7b938b6074c3820c84ef"
+    },
+    {
+      "path": "oracle-static-first.log.gz",
+      "archiveSha256": "fe2db6b107c3b765ca918ec289f9b6a5475c8b61dcbb23def2e4c856dc2e1c43",
+      "rawBytes": 209,
+      "rawSha256": "cc61b76e3f8b3c32f198401b0dd281a926a953c2c28277e2d42df1f3d0084e8a"
+    }
+  ],
+  "acceptedHistory": {
+    "pr": 137,
+    "head": "3498a0333844970a51ded597dc5a2cb8a32880eb",
+    "merge": "4ccf622847e3c3d8905d14270c41fb234088cf25",
+    "push": 42006715733,
+    "pull_request": 42006778571,
+    "testsPerEvent": 957
+  },
+  "retention": {
+    "cases": [
+      {
+        "id": "D01-complete-path",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "answers": 0,
+        "analyses": 1,
+        "requiredOriginalsPresent": 8,
+        "originalFailed": true,
+        "correctedAssessmentFailed": true
+      },
+      {
+        "id": "D02-ambiguous-actions",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "answers": 0,
+        "analyses": 1,
+        "requiredOriginalsPresent": 4,
+        "originalFailed": false,
+        "correctedAssessmentFailed": false
+      },
+      {
+        "id": "D03-consumer-gap",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "answers": 0,
+        "analyses": 1,
+        "requiredOriginalsPresent": 6,
+        "originalFailed": true,
+        "correctedAssessmentFailed": false
+      },
+      {
+        "id": "D04-dynamic-topic",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "answers": 0,
+        "analyses": 1,
+        "requiredOriginalsPresent": 4,
+        "originalFailed": true,
+        "correctedAssessmentFailed": false
+      },
+      {
+        "id": "D05-empty-handler",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "answers": 0,
+        "analyses": 1,
+        "requiredOriginalsPresent": 3,
+        "originalFailed": false,
+        "correctedAssessmentFailed": false
+      },
+      {
+        "id": "D06-header-mismatch",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "answers": 0,
+        "analyses": 1,
+        "requiredOriginalsPresent": 3,
+        "originalFailed": false,
+        "correctedAssessmentFailed": false
+      },
+      {
+        "id": "D07-no-analysis",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "answers": 0,
+        "analyses": 0,
+        "requiredOriginalsPresent": 1,
+        "originalFailed": false,
+        "correctedAssessmentFailed": false
+      },
+      {
+        "id": "D08-unknown-deployment",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "answers": 0,
+        "analyses": 1,
+        "requiredOriginalsPresent": 1,
+        "originalFailed": false,
+        "correctedAssessmentFailed": false
+      },
+      {
+        "id": "D09-human-note",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "answers": 0,
+        "analyses": 1,
+        "requiredOriginalsPresent": 2,
+        "originalFailed": false,
+        "correctedAssessmentFailed": false
+      },
+      {
+        "id": "D10-untrusted-source",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "answers": 0,
+        "analyses": 1,
+        "requiredOriginalsPresent": 1,
+        "originalFailed": false,
+        "correctedAssessmentFailed": false
+      }
+    ],
+    "originalCandidatePreparations": 10,
+    "newCandidatePreparationsForReassessment": 0,
+    "sourceHashesUnchanged": true,
+    "rawTreesUnchangedByInspection": true,
+    "modelCalls": 0,
+    "reservedFamilyReads": 0
+  }
+}
