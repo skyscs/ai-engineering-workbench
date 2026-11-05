@@ -89,3 +89,53 @@ source execution. Declare a separate first two-control production observation fo
 this corrected revision, using the same ordinary comparison and unchanged limits.
 This is a new development revision, not a replay or replacement of any earlier
 result. Both earlier production observations and failed source checks remain retained.
+
+## Corrected first comparison
+
+At `f4149e8`, both actual production controls retain the useful native path and all
+eight required original references. The completed control has five parsed code files
+and no gaps; the constant variant has six parsed code files and the same explicit
+unsupported-profile gap. Immutable repeated reviews match, and native context remains
+static, partial, unverified and of unknown deployment coherence.
+
+| Observation | Raw maximum gap | Peak sampled RSS | Peak sampled heap |
+| --- | --- | --- | --- |
+| Original completed control | 320.039 ms | 162,115,584 bytes | 53,555,392 bytes |
+| Corrected completed control | 202.277 ms | 134,250,496 bytes | 35,534,904 bytes |
+| Corrected constant control | 189.904 ms | 134,778,880 bytes | 35,923,800 bytes |
+
+The like-for-like completed observation reduces the gap by about 37% and sampled
+heap by about 34%. These are single ordinary observations, not statistical performance
+guarantees. Every production timer-gap measurement still fails 100 ms. No further
+startup fix or new qualification is claimed. There is no deferred initialization,
+additional worker or hidden resource owner.
+
+The corrected strict typecheck/build and 31 focused adapter, Dojo, flow and durable
+analysis tests pass. The compiled parser function body is identical to the baseline;
+all seven ordinary TypeScript/Vue file comparisons retain exact facts. The only changed
+compiled workspace module is `code-typescript.js`; compiler and Node identities match
+across all three observations. Existing inventory fingerprints intentionally differ.
+
+Independent checks retain five complete stopped catalogs, twenty Git identities,
+62 original files, forty required-original checks, five immutable review pairs and
+103 HTTP responses. All five component records match raw import/timer/exit bytes.
+SQLite integrity/foreign keys pass, with zero answer attempts, witnesses, admissions
+or model calls. All 546 raw entries remain unchanged. The three external owners exit
+normally without errors or survivors. Separate byte checking is not external product
+acceptance.
+
+[records.json](records.json) binds all three first observations, executable snapshots,
+stopped copies, successful and failed check logs, offline parity and review helpers.
+The original failed development check remains visible alongside the corrected checks.
+The first static archive check started before the asynchronous archive finished and
+reported a missing records file. After archive completion, the same check passes;
+both logs are retained. This did not launch or repeat application observations.
+
+## Next bounded work
+
+Keep the measured startup improvement without claiming the complete resource gate.
+[Task 131](../../../tasks/131-loredock-prepared-history-list-work.md) addresses the
+separately observed twenty-row history work excess. Current summary reads validate
+full witnesses even when their content is omitted. The next task must define a correct
+bounded summary contract while retaining full content-read validation. Startup,
+near-limit heap, browser RSS and native-output size remain open qualification failures.

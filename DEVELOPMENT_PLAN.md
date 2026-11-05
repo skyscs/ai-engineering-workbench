@@ -483,7 +483,10 @@ consumed; semantic continuation and adoption remain closed. After result accepta
 inventory preparation on ordinary inputs. Its four first controls pass: the current
 public API retains useful original-backed paths over the two observed partial variants.
 No product change is justified for those gaps. [Task 130](tasks/130-loredock-cold-start-pause.md)
-next attributes the measured first-interval pause before selecting a minimal repair.
+attributes the measured first-interval pause and removes redundant ESM compiler-loading
+work. The corrected ordinary completed control improves from 320 to 202 ms, still
+failing 100 ms; useful context remains intact. [Task 131](tasks/131-loredock-prepared-history-list-work.md)
+next addresses the separately observed prepared-history list work excess.
 Real startup/heap failures and earlier browser/list/native-positive failures remain
 separate unresolved work; repaired qualification needs a new prospective family.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
