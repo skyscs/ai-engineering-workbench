@@ -1,0 +1,186 @@
+{
+  "schemaVersion": "prepared-flow-content-assessment-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "trees": [
+    {
+      "path": "content-assessment-first.tar.gz",
+      "sha256": "56e56c9201aca2bfe456868e5664ddb72ceef9d9d687e3782ee5ef8bb121ba4f",
+      "inventory": "content-assessment-first.inventory.json.gz",
+      "inventorySha256": "d8ec06d49c87397639f8055a0a6ea7618b11d3694fcaf4df815910ba60a58faf",
+      "entries": 33,
+      "source": "/home/toshiba/aew/task128-content-assessment-first"
+    },
+    {
+      "path": "content-assessment-retention.tar.gz",
+      "sha256": "6ad901bb7c27cad517fb661bc1d8bdbbc68855fd90947bc29b2811503bb58d7a",
+      "inventory": "content-assessment-retention.inventory.json.gz",
+      "inventorySha256": "97b8536d15f64463e24038cf6a282e997a639146807efe10995960a0ab34f673",
+      "entries": 17,
+      "source": "/home/toshiba/aew/task128-content-assessment-retention"
+    },
+    {
+      "path": "content-assessment-reused-warm.tar.gz",
+      "sha256": "788904d45c5e67a59c9db8b4d9dab19cbfdb7f66a955c7487b6a476fad1a17e1",
+      "inventory": "content-assessment-reused-warm.inventory.json.gz",
+      "inventorySha256": "9c4a4a946bf31566e7a3cf7c6f44d538facb0810ae4710cf55a2ae3518134023",
+      "entries": 4,
+      "source": "/home/toshiba/aew/task128-worker-accounting-case-first/run/warm/data"
+    },
+    {
+      "path": "content-assessment-reused-history-20.tar.gz",
+      "sha256": "80d7d200f7eab6a3bc183a3d48585b6b1fca41d146f521aa921f37c96b2f7593",
+      "inventory": "content-assessment-reused-history-20.inventory.json.gz",
+      "inventorySha256": "a3b6c92b3628d53e1ead4436669ab908462b475825cbe871760993a6e1e4d6a1",
+      "entries": 4,
+      "source": "/home/toshiba/aew/task128-ordered-history-second/run/capacity/checkpoint-20"
+    },
+    {
+      "path": "content-assessment-reused-history-64.tar.gz",
+      "sha256": "c31cfd803d4aaaeaaa2c9736f7cc1c14b37ba4c0aba53a7ff2739f9743aa7844",
+      "inventory": "content-assessment-reused-history-64.inventory.json.gz",
+      "inventorySha256": "69e7fa4c4791f52683fdc34cb7f103388a5df2b78f7e4c16abdd5f256f1746b8",
+      "entries": 4,
+      "source": "/home/toshiba/aew/task128-ordered-history-second/run/capacity/checkpoint-64"
+    },
+    {
+      "path": "content-assessment-reused-purged-64.tar.gz",
+      "sha256": "9fd37a5853eedd49912da9f07d4b8f818bf3e8d97f0c2bc1ce782bc334b4dafa",
+      "inventory": "content-assessment-reused-purged-64.inventory.json.gz",
+      "inventorySha256": "57ee27a3a9f9a2e20274e9e8362a3e13b16792c07bba39a2f3aa7f48ae62375b",
+      "entries": 4,
+      "source": "/home/toshiba/aew/task128-catalog-faults-first/run/pending-purge/data"
+    },
+    {
+      "path": "content-assessment-inputs.tar.gz",
+      "sha256": "4d3998b58332beae473ebefeaf88f116d6e0216c40512156aa599317e69452ce",
+      "inventory": "content-assessment-inputs.inventory.json.gz",
+      "inventorySha256": "225844761109e6d65855ab0b04f24974b098f7f228b6b275e0a2882a07d27133",
+      "entries": 9,
+      "source": "/home/toshiba/aew/task128-content-assessment-inputs"
+    },
+    {
+      "path": "content-assessment-static-inputs.tar.gz",
+      "sha256": "d533b384e9e896a69b77c0822d3321db536434b091f6245fa1f4c139938cc2d6",
+      "inventory": "content-assessment-static-inputs.inventory.json.gz",
+      "inventorySha256": "0530beb05d5a5f602cb7375699fcad8097f6b8cf359876c91f68cc1de92e28a1",
+      "entries": 1,
+      "source": "/home/toshiba/aew/task128-content-assessment-static-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "content-assessment-first.log.gz",
+      "archiveSha256": "72f8e6f6d269f557bf727c76485cd6a550d53419f0828ddfdbe3115b43afa222",
+      "rawBytes": 1394,
+      "rawSha256": "40f213ea673eeb34ecf8ffb41e956816c1b7f0f9bba611c8915bdd4e59993874"
+    },
+    {
+      "path": "content-assessment-install.log.gz",
+      "archiveSha256": "0f4bc3f45ce780fa3d35b81e55833d25be234cda266f5cc9a05b3cac805abf8b",
+      "rawBytes": 326,
+      "rawSha256": "65b3deace1c509fc11a8efc5af86563aadd9b3fe855f2634ca1e459d49955fa2"
+    },
+    {
+      "path": "content-assessment-build.log.gz",
+      "archiveSha256": "c5df2a2bc132ebeb4f47b5c60f1d2915a94ee28f98cc3242fd4acd10fa53c52c",
+      "rawBytes": 2358,
+      "rawSha256": "7ba84cfc21fe311829a2ff76a242bb54b984dd38e8e659b4374a78adabcb3684"
+    },
+    {
+      "path": "content-assessment-tests-first.log.gz",
+      "archiveSha256": "a0e32a3a17aec459a7a195e399ad7ce8470ebd6c95cae074685a516b03b21541",
+      "rawBytes": 1469,
+      "rawSha256": "9ad8419d899416dadd668411907e62eef168092cb2f6aab8752c5dce77e4e58b"
+    },
+    {
+      "path": "content-assessment-retention.log.gz",
+      "archiveSha256": "f71123ee7d0aedb6e257d313d26c8f44a9834db7d4be47d0830b690888d5670e",
+      "rawBytes": 1530,
+      "rawSha256": "9164bef47983364d73fb1366f44bf03853e5dcaa9044ddc9915d1afc48214066"
+    },
+    {
+      "path": "content-assessment-seal-check.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "resource-assessment-ci-push.log.gz",
+      "archiveSha256": "2fe0b1a77bf5450928b4563af38e0d2b2635b36a4f489b706e6a30cba0a2f05e",
+      "rawBytes": 711027,
+      "rawSha256": "102206aab4b8609ce743f44080d5f44f9ea555d4a981129d31e28cfe54e84fd6"
+    },
+    {
+      "path": "resource-assessment-ci-pr.log.gz",
+      "archiveSha256": "e5e897d4322d411db707d1e3f7a66c5b94e7ef9542c3e33ef643692612cb1de9",
+      "rawBytes": 711952,
+      "rawSha256": "d3b14ec2eba6cfd655e5ab25e4caa4b8d34979670720dacc25ad3eb157512fa8"
+    },
+    {
+      "path": "content-assessment-static-first.log.gz",
+      "archiveSha256": "0056cf1cfa7c20183fb75181fb66a8770b3d4469ecabc6d4869fe5c941fa7fab",
+      "rawBytes": 205,
+      "rawSha256": "69f8e451849c3ce2328c17cca37910bf631681345adff9702c51986307bd3e74"
+    }
+  ],
+  "acceptedResourceAssessment": {
+    "pr": 153,
+    "head": "fb8e03bac60916a75a43695a9cef23f93ea7dcd2",
+    "merge": "909ca29f5c23f5ede70097739ac8e9d874278ee6",
+    "push": 42050157252,
+    "pull_request": 42050986144,
+    "testsPerEvent": 996
+  },
+  "retention": {
+    "resourceQualification": false,
+    "modelCalls": 0,
+    "reservedFamilyReads": 0,
+    "candidatePreparations": 0,
+    "catalogs": [
+      {
+        "source": "/home/toshiba/aew/task128-content-assessment-first/run/warm-reference/data",
+        "copy": "/home/toshiba/aew/task128-content-assessment-retention/warm-reference/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 3,
+        "purged": 0,
+        "witnessBytes": 199008
+      },
+      {
+        "source": "/home/toshiba/aew/task128-content-assessment-first/run/history-20/data",
+        "copy": "/home/toshiba/aew/task128-content-assessment-retention/history-20/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 20,
+        "purged": 0,
+        "witnessBytes": 1326720
+      },
+      {
+        "source": "/home/toshiba/aew/task128-content-assessment-first/run/history-64/data",
+        "copy": "/home/toshiba/aew/task128-content-assessment-retention/history-64/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 64,
+        "purged": 0,
+        "witnessBytes": 4245504
+      },
+      {
+        "source": "/home/toshiba/aew/task128-content-assessment-first/run/purged-64/data",
+        "copy": "/home/toshiba/aew/task128-content-assessment-retention/purged-64/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 64,
+        "purged": 64,
+        "witnessBytes": 0
+      }
+    ],
+    "boundInputFiles": 18,
+    "checkedWitnesses": 87,
+    "purgedTombstones": 64,
+    "boundReviews": 4,
+    "rawInputsUnchanged": true,
+    "entries": 33
+  }
+}
