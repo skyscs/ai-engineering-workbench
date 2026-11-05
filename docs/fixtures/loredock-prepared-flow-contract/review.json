@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "prepared-flow-contract-review/1",
+  "base": "0985f2cdde4ddd6221330c8bbb02e389e8cc65fe",
+  "inputCommit": "bbc5265",
+  "productionChanges": false,
+  "candidateFamilyReads": 0,
+  "modelCalls": 0,
+  "ordinaryTests": 938,
+  "sourceAndRuntimeSealVerifiedAfterFinalBuild": true,
+  "normativeChangesAfterInitialSeal": [
+    "Before any observation, clarified issued citation IDs in controlled outputs, raw timer-gap semantics and sealed passive monitor scope; initial version retained at bbc5265. No corpus/oracle/threshold/runtime change."
+  ],
+  "limitations": [
+    "Sparse constant-padded file pressure does not qualify dense graph capacity.",
+    "Author oracle and review are not blind or external acceptance.",
+    "History amplification is prospective source-audit risk, not an observed performance finding.",
+    "Provider costs/resources require separate actual-runtime stage.",
+    "No driver/Chrome/environment execution seal exists yet; Task 128 must produce one before candidate reads."
+  ],
+  "nextTask": "128-loredock-prepared-flow-resource-qualification",
+  "requiresExactHeadCi": [
+    "push",
+    "pull_request"
+  ],
+  "staticChecks": {
+    "localDocumentationLinks": 766,
+    "logRoundTrips": 10,
+    "olderFrozenArtifactsUnchanged": 80,
+    "applicationChanges": 0,
+    "candidateFamilyReads": 0,
+    "modelCalls": 0,
+    "newArtifactsEnglish": true
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "prepared-flow-contract-records/1",
+  "logs": [
+    {
+      "path": "install.log.gz",
+      "rawBytes": 326,
+      "rawSha256": "02bf11a7bfc0b8eee0bc97657ac7aa5c9b4ca634aeb99c2998598dc37bebbca9",
+      "sha256": "0e671ebd8e12495418c90730aedbb43071d1649b58df952ed2426bb2af486258"
+    },
+    {
+      "path": "build.log.gz",
+      "rawBytes": 2376,
+      "rawSha256": "763d5f014d3953976f701e80c13d324985a2dded0f786c8d072670b0c19f5d62",
+      "sha256": "2af34e74d1ec1a74c20c04c09802727d17a45ca818296b56c17c66b76543c2a8"
+    },
+    {
+      "path": "seal-first.log.gz",
+      "rawBytes": 1377,
+      "rawSha256": "92b3b36796f76b59e716cb94f80d87b2eff307a417b367f0841897597770968c",
+      "sha256": "ad06e20103f1f5c6c3cf2723335bb0c7d8d629e1f8a4b4bb65700e794eaf640d"
+    },
+    {
+      "path": "static-verify.log.gz",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8",
+      "sha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4"
+    },
+    {
+      "path": "task126-ci-push-final.log.gz",
+      "rawBytes": 673905,
+      "rawSha256": "ddeeaee6dbe62e35352eccf8fa6ebe6426721d7cd36c0d2914a9cbfe570de7b8",
+      "sha256": "9cf93cb669a17a4f9349189edf3ea8a343a4cdfb5494a3ba205fd7d60af2d630"
+    },
+    {
+      "path": "task126-ci-pr-final.log.gz",
+      "rawBytes": 675323,
+      "rawSha256": "a8dd38f305778b8d28be5a97080b6b49113b7fe9b239efd8d91f05c8915b1611",
+      "sha256": "1f2148b1f057cce663cff29f21977a7da1dc76935cc80c92646daf9f146d0ad3"
+    },
+    {
+      "path": "check.log.gz",
+      "rawBytes": 346148,
+      "rawSha256": "7fd70b24407fad58f1134a18debdc585bbb6a6589e44740967715a02c18aada0",
+      "sha256": "13c3ffb42cc81dd25b4b25c6305911581cb3949e96968d466c8000b6029ebc2a"
+    },
+    {
+      "path": "static-reviewed.log.gz",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8",
+      "sha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4"
+    },
+    {
+      "path": "documentation.log.gz",
+      "rawBytes": 204,
+      "rawSha256": "50e2ac4ecaa0de297170a1b8fa03f5d1010d5d1cd964e1a57f9b448407936c3d",
+      "sha256": "6ae7bdc8ec6290ed4a9fdd36f9781e54359e154fc0c5b0e5a15fa46ef8cc9490"
+    },
+    {
+      "path": "static-final.log.gz",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8",
+      "sha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4"
+    }
+  ],
+  "ordinaryCheck": {
+    "tests": 938,
+    "perSuite": [
+      17,
+      18,
+      43,
+      664,
+      57,
+      139
+    ],
+    "exitCode": 0,
+    "types": true,
+    "builds": true,
+    "reservedFamilyExecuted": false
+  }
+}

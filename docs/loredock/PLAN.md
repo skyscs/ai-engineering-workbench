@@ -271,6 +271,12 @@ See [L0 measurements and blockers](FEASIBILITY.md), [contracts](CONTRACTS.md),
 See [header comparison evidence](../fixtures/loredock-http-headers/README.md) for the
 subsequent map-only improvement; it does not change any historical semantic score.
 
+Task 126 was accepted through PR #130 after both CI events at `480764d`, with identical-tree
+merge `0985f2c`. Task 127 now freezes the [complete-flow contract](PREPARED_FLOW_QUALIFICATION.md)
+and new owned twenty-source inputs before [Task 128](../../tasks/128-loredock-prepared-flow-resource-qualification.md).
+The next run measures real preparation, worker, history and browser lifetimes; semantic
+execution remains separately bounded and conditional on all model-free prerequisites.
+
 ## Outcome and delivery boundary
 
 Build a durable, source-backed understanding of a system spanning approximately

@@ -1,7 +1,8 @@
 # Task 126 — Connect prepared questions to protected HTTP and the review flow
 
-Status: implemented and locally verified (938 tests, strict types, builds and actual
-prepared/legacy Chrome smoke); exact-head CI pending.
+Status: verified and accepted through PR #130. Push 41951325641 and pull-request
+41951520368 passed at `480764d` (938 tests, strict types and builds); identical-tree
+merge `0985f2c`. Actual prepared/legacy Chrome smoke also passed.
 Task 125 passed both events at `9c21c17` and merged as identical-tree `b0c89df`.
 The [public contract](../docs/loredock/PREPARED_QUESTION_API.md) is frozen before implementation.
 

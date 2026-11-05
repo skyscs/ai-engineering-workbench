@@ -1,5 +1,35 @@
 # Development status
 
+## Task 127 — Prospective complete-flow qualification inputs
+
+The [contract](loredock/PREPARED_FLOW_QUALIFICATION.md) freezes the actual daemon/browser
+composition, fifteen resource/lifecycle cases and ten source-grounded question oracles
+before any candidate read of the [new kiln-workshop family](../fixtures/loredock-prepared-flow/README.md).
+Twenty equal-budget repositories have 240-file and 10,000-file variants, plus ambiguity,
+consumer-gap and dynamic-topic variants. Near-limit constant padding tests sparse file
+scan pressure; it does not establish dense-graph or private-project realism.
+
+The whole-flow gates include cold startup/index/analysis, exact reviewed admission,
+three witness validations, 20/64-row history, actual browser polling, TTL, cancellation,
+restart, inventory eviction and complete-source purge. The audit identifies repeated
+witness decoding in the twenty-row list; aggregate request work and UI latency must be
+measured separately from individual validation limits. No product optimization or claim
+of a passing resource/model gate follows from this prospective concern.
+
+Input hashes bind original quote ranges, every generated file vector and the accepted
+application/runtime/browser bytes. Static authoring checks execute no candidate parser,
+index, retrieval or model on this family. Existing provider/account policy and the
+ordinary pilot remain unchanged. The conditional semantic stage is limited to ten
+single attempts with explicit personal-runtime identity, usage stop rules and no retry.
+Author scoring is not independent L5 acceptance. Failed gates exhaust the continuation.
+
+All 938 ordinary tests, strict types and builds pass; static checks verify the frozen
+inputs without executing the family. Final-head CI is pending.
+Verification records: [logs and review](fixtures/loredock-prepared-flow-contract/README.md).
+Next [Task 128](../tasks/128-loredock-prepared-flow-resource-qualification.md) develops on
+ordinary permit inputs, seals its executable/environment and runs the model-free gate
+once. It may not execute models or silently tune the frozen inputs/thresholds.
+
 ## Task 126 — Protected prepared-question HTTP and browser flow
 
 The [experimental public flow](loredock/PREPARED_QUESTION_API.md) now uses one question →
@@ -25,7 +55,8 @@ external entry points and compiled browser assets are separately bound. No resou
 semantic qualification transfers to the public composition.
 
 PR #129 passed both final-head events at `9c21c17` and merged as identical-tree `b0c89df`.
-Task 126 requires both final-head CI events before acceptance. Next
+Task 126 passed push 41951325641 and pull-request 41951520368 at `480764d`,
+then merged as identical-tree `0985f2c`. Next
 [Task 127](../tasks/127-loredock-prepared-flow-qualification-contract.md) freezes a fresh
 prospective complete-flow resource/semantic contract before separately scoped execution.
 
