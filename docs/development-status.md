@@ -2,9 +2,9 @@
 
 ## Task 128 — Complete-flow resource driver (in progress)
 
-Latest accepted checkpoint: [PR #143](https://github.com/skyscs/ai-engineering-workbench/pull/143)
-at merge `9acd1f3`. The next reusable cancellation/reopen cases pass one focused integrity
-control and an actual ordered ordinary observation; both final-head CI events remain required.
+Latest accepted checkpoint: [PR #144](https://github.com/skyscs/ai-engineering-workbench/pull/144)
+at merge `1c67720`. The next reusable browser replay/question-edit cases pass actual Chrome
+observations and independent retention checks; both final-head CI events remain required.
 The reserved family has zero candidate reads; no model runs.
 Known ordinary failures include partial analysis of constant-only padding, a missing
 required native positive at the derived-size limit, aggregate list work, browser RSS and
@@ -201,8 +201,27 @@ qualify timing. Seven complete copied catalogs pass integrity/foreign-key checks
 context/witness/prompt comparisons and expected answer-state counts. All fifty HTTP
 bodies remain, including five explicitly redacted sessions; input trees stay unchanged.
 The focused test, production builds, script syntax and original seal pass locally.
-Both complete final-head CI events remain required. This is a subset for later ordered
+Both exact-head CI events pass for [PR #144](https://github.com/skyscs/ai-engineering-workbench/pull/144):
+push 42029717937 and pull_request 42029762843 pass 982 tests at `d6094de`; merge `1c67720`
+has the identical tree. This is a subset for later ordered
 integration, not complete R01-R15 execution, qualification or permission to call a model.
+
+The next [independent browser cases](fixtures/loredock-prepared-flow-network-cases/README.md)
+separate R08 replay/question edits from later review/history/revocation faults. A real
+committed admission response is dropped at Chrome's network boundary; Retry request
+sends identical JSON and retains one successful attempt/witness with one controlled
+dispatch. Question editing cancels the preparation, and the original held review cannot
+restore context or a generation action after observed network completion and two frames.
+No new preparation rescues the result. A complete successful history checkpoint stays
+available for later separate cases with its fault provenance intact.
+Both Chrome controls pass, and the external owner leaves no survivors. The run remains
+exit 1 on a 324.10599 ms cold daemon gap; both browser RSS observations exceed 1 GiB and
+each retains one incomplete sample. Independent inspection verifies five complete
+catalog copies, four source Git identities, 26 protected-client bodies, 35 completed
+browser response objects, the deliberately aborted admission and unchanged input trees.
+Production builds, syntax, retention checks and the original seal pass locally; both
+complete final-head CI events remain required. Full ordered integration, resource
+assessment and the executable/environment/output seal remain pending.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request
