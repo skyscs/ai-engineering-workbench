@@ -1,9 +1,19 @@
 // Diagnostic lane only. Forward actual budget methods; never substitute limits or validators.
 import assert from 'node:assert/strict';
+import { channel } from 'node:diagnostics_channel';
 import { OperationBudget } from '../../apps/loredock/dist/operation-budget.js';
 
 const original = Object.fromEntries(['check', 'charge', 'close'].map(name => [name, OperationBudget.prototype[name]]));
 const known = new WeakMap(), names = new Set(), finishedScopes = new Set(); const records = [], lateActivities = []; let scope = null, nextId = 0;
+const responses = [];
+// Node emits this after the actual server response finishes. Observe existing budgets
+// synchronously; do not hold HTTP, change application methods or infer a worker phase
+// from a previously returned public status.
+channel('http.server.response.finish').subscribe(({ request, response }) => {
+  if (scope === null) return;
+  responses.push({ scope, atNs: process.hrtime.bigint().toString(), method: request.method, path: request.url,
+    status: response.statusCode, openBudgets: records.filter(row => row.scope === scope && row.closes === 0).map(row => row.id) });
+});
 function record(budget) {
   let row = known.get(budget);
   if (!row) {
@@ -31,12 +41,14 @@ export function beginScope(name) {
   assert.equal(typeof name, 'string'); assert(name.length > 0 && name.length < 200);
   assert(!names.has(name), 'Diagnostic scope names cannot be reused.'); names.add(name); scope = name;
 }
-export function endScope() {
+export function inspectScope() {
   assert(scope); const selected = records.filter(row => row.scope === scope);
-  const result = { scope, budgets: selected, totalWork: selected.reduce((sum, row) => sum + row.final.totalWork, 0),
+  return { scope, budgets: selected, responses: responses.filter(row => row.scope === scope), totalWork: selected.reduce((sum, row) => sum + row.final.totalWork, 0),
     requestedWork: selected.reduce((sum, row) => sum + Object.values(row.charges).reduce((units, charge) => units + charge.requested, 0), 0),
     unclosedBudgets: selected.filter(row => row.closes === 0).map(row => row.id), timingQualified: false, memoryQualified: false };
-  finishedScopes.add(scope); scope = null; return result;
+}
+export function endScope() {
+  const result = inspectScope(); finishedScopes.add(scope); scope = null; return result;
 }
 export function audit() { return { activeScope: scope, lateActivities, unscopedBudgets: records.filter(row => row.scope === null),
   observedBudgets: records.length, unclosedBudgets: records.filter(row => row.closes === 0).map(row => row.id) }; }

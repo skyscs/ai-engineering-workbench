@@ -1,0 +1,249 @@
+{
+  "schemaVersion": "prepared-flow-cancellation-observation-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "tests": 955,
+  "trees": [
+    {
+      "path": "cancellation-observation-first.tar.gz",
+      "sha256": "506c2f153afbee903a8f5551c57a9eb780b1163c26a0855e3422a1baac9ecd8e",
+      "inventory": "cancellation-observation-first.inventory.json.gz",
+      "inventorySha256": "a5bce90db9199245a9d343e23e00fa15dd724b200c59d6ca7b77973374d5bc2e",
+      "entries": 102,
+      "source": "/home/toshiba/aew/task128-cancellation-observation-first",
+      "limitation": "Earlier driver before the additional Ready-cancellation negative control."
+    },
+    {
+      "path": "cancellation-observation-second.tar.gz",
+      "sha256": "22acd7940e697d8bb09978421000266f69eb190c70603d7a3cd3dbabf4b16f51",
+      "inventory": "cancellation-observation-second.inventory.json.gz",
+      "inventorySha256": "65130abf8162762ac3f061a5f191377777d32c99471773ce8e520bd1b7979985",
+      "entries": 103,
+      "source": "/home/toshiba/aew/task128-cancellation-observation-second"
+    },
+    {
+      "path": "boundary-accounting-parity.tar.gz",
+      "sha256": "f6189908b1d5d79b73a7ed5932b029749b59e57a503426d49ea8a749dd6c1fb8",
+      "inventory": "boundary-accounting-parity.inventory.json.gz",
+      "inventorySha256": "4a2f77df84b43bf5f464a0133991e734f723f490e871d63a6f6e902fe475ca1e",
+      "entries": 139,
+      "source": "/home/toshiba/aew/task128-boundary-accounting-parity"
+    },
+    {
+      "path": "boundary-retention.tar.gz",
+      "sha256": "b7fcf31375fe9cc2c79d7700eaef19b5919c5769d6ae3591a23bab221002dfdd",
+      "inventory": "boundary-retention.inventory.json.gz",
+      "inventorySha256": "8d500f6ebf50db54a59b074daddd8042c0b020ae2c7956ef2335e4040867fdf7",
+      "entries": 21,
+      "source": "/home/toshiba/aew/task128-boundary-retention"
+    },
+    {
+      "path": "boundary-check-owner-1.tar.gz",
+      "sha256": "bceef06d81df8262c2b83d8991cac9f347983b9ff2577332ba0eb860a9b6bd22",
+      "inventory": "boundary-check-owner-1.inventory.json.gz",
+      "inventorySha256": "517a7bcb53de54dbbab16415dc98c7c88a74d2a78aa9a64d7835077c72c3cb97",
+      "entries": 8,
+      "source": "/tmp/loredock-kernel-adoption-xidLMS"
+    },
+    {
+      "path": "boundary-check-owner-2.tar.gz",
+      "sha256": "473ce261bc0f26c6ae6db2b517b0808ed70cb3cc312adc8fa7cde65d1975d265",
+      "inventory": "boundary-check-owner-2.inventory.json.gz",
+      "inventorySha256": "9e04155bd1333a2cf5d7b1c036d7816917b081ee4692212b579774122d8f31d5",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-GQA1rs"
+    },
+    {
+      "path": "boundary-check-owner-3.tar.gz",
+      "sha256": "09a3f8034412e49ad284dcd3644c5b2f7e98061f0cca5324143c24dab8291f39",
+      "inventory": "boundary-check-owner-3.inventory.json.gz",
+      "inventorySha256": "76f30e7d3a8394916302694b844b24a88819922a365a24b19888bb40291b7ce0",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-pX5tFA"
+    },
+    {
+      "path": "boundary-check-owner-4.tar.gz",
+      "sha256": "fdbe95ccd91b441d88c0bb30c2a69a70444f27798e4402b15eb37bce935ab982",
+      "inventory": "boundary-check-owner-4.inventory.json.gz",
+      "inventorySha256": "e3dbf3ab3b643c2a7e43f5ee279c435f21564463cbb409f042a33d72c1afd358",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-X8IGVK"
+    },
+    {
+      "path": "boundary-check-owner-5.tar.gz",
+      "sha256": "5b90cc05aed62f45cee2170c68fb665fe0930b37326cf15f0cc67bdfcece2974",
+      "inventory": "boundary-check-owner-5.inventory.json.gz",
+      "inventorySha256": "26c1517ff9a18eb252479836de6109af089499b239ff80b095f4bff2fe6cb934",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-3fD8YK"
+    },
+    {
+      "path": "boundary-check-owner-6.tar.gz",
+      "sha256": "d9bd0e5dd45f87624e857d340bc995f002bfef3154ec1b2efe69223f88d90961",
+      "inventory": "boundary-check-owner-6.inventory.json.gz",
+      "inventorySha256": "ba50b1fa7ead05e3201bf8870e55681af1cd39f662de46556a365860afadc060",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-LZ0v2m"
+    },
+    {
+      "path": "boundary-inputs.tar.gz",
+      "sha256": "8521220cb7f0efe8ffb60fddf78e96ae0cd16dbea9cbf924503ca5f57680ffd9",
+      "inventory": "boundary-inputs.inventory.json.gz",
+      "inventorySha256": "aabf4222387c438e870ec331bf07608216bf399031d86ade4daa8b8dd2d39ae5",
+      "entries": 8,
+      "source": "/home/toshiba/aew/task128-boundary-inputs"
+    },
+    {
+      "path": "boundary-static-review.tar.gz",
+      "sha256": "0cddbe8c81fbf0a930dc49839397a4219bb21bd2e1a0aae37737bab1d25962eb",
+      "inventory": "boundary-static-review.inventory.json.gz",
+      "inventorySha256": "d8f5d19e7ddff0db3274a5ecc444ab1386fb87a25a36aadb83879395fb79418e",
+      "entries": 2,
+      "limitation": "Initial validation output precedes addition of this validation archive itself."
+    }
+  ],
+  "logs": [
+    {
+      "path": "cancellation-observation-first.log.gz",
+      "archiveSha256": "4eee7c37e0da87b4d587dea1183afe516cbb3496f8273ec72e9ae4a7e0eda353",
+      "rawBytes": 2767,
+      "rawSha256": "e8b077e224e9c927f982edbfe03ab2d1545c8f2dfb60998f49522576737ddc3a"
+    },
+    {
+      "path": "cancellation-observation-second.log.gz",
+      "archiveSha256": "12b98b514b42e1d42942187efdbad128d9e17b00d7ce96886af11af0878a5a12",
+      "rawBytes": 2370,
+      "rawSha256": "f56ff515986b990906f4fdb2959f1a0f62c993e9bd13192e9ee9ae74ec6f71a8"
+    },
+    {
+      "path": "boundary-accounting-parity.log.gz",
+      "archiveSha256": "c9c1d2b26103f170b73c41459370fba7e3783fd8bf8d02122d75f40917bd547f",
+      "rawBytes": 2637,
+      "rawSha256": "d3e9fd576dfc0bf274134ae2157ab495faa767452e78f3da2510ee221a14fbcf"
+    },
+    {
+      "path": "boundary-focused-first.log.gz",
+      "archiveSha256": "61f6b60568dbcf79725fded1a9f6236ff2d4c3e778a7d1b170e3aa78296ed093",
+      "rawBytes": 1528,
+      "rawSha256": "f8057f45413bc5643efaf51cd37805d6daffcdada2aea76be389c67e24fe2e66"
+    },
+    {
+      "path": "boundary-check-first.log.gz",
+      "archiveSha256": "fb230da87ba76581af3134ed5a3e7135cf4259661dbdbefefe2c732a8a5b2a9c",
+      "rawBytes": 350371,
+      "rawSha256": "49a8982783fefbcf83c4cd21e7f272bc16f49148293fe21b1932bc6a02dcbc3c"
+    },
+    {
+      "path": "boundary-install.log.gz",
+      "archiveSha256": "9d4506466a49b4ee94924ae862f5ce1d00613da288ff7e0366936369639f1893",
+      "rawBytes": 326,
+      "rawSha256": "7fc8cb82c2787b0c9a7359882eb8d57d688ca81d789a23dd495aab97a43bd679"
+    },
+    {
+      "path": "boundary-build.log.gz",
+      "archiveSha256": "1848ec7dfd9f2a0c29ffdcd3daeac9aa38cb6b9e59bcfaf9bf3d0e836664f2a6",
+      "rawBytes": 2360,
+      "rawSha256": "e44f06273a21b0145c730fdd14c6e4d252cd74b6860629dad1a9960aaf91d428"
+    },
+    {
+      "path": "boundary-seal-check.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "boundary-retention.log.gz",
+      "archiveSha256": "c0f478bfc3f2f1f446e6647044ac29e4d37d8fc0e0a951e05378b4a85d714186",
+      "rawBytes": 1364,
+      "rawSha256": "d69e3d8b6e46e1e0c58d7de56cbbc9b7999d8f28b44bb241bec3890a7655a6a2"
+    },
+    {
+      "path": "kernel-ci-push.log.gz",
+      "archiveSha256": "4b69fe44e5df05be9a1cfc6513da48feca7569e4d7adb51b65f94b8a33049d25",
+      "rawBytes": 683437,
+      "rawSha256": "06ac477a130b8981e5b82b392c0a14b023a130476ccb5484bb6e274d164d499d"
+    },
+    {
+      "path": "kernel-ci-pr.log.gz",
+      "archiveSha256": "7e721e787a83ede19c1f9e82f03075b857023f8a8f87d4c2cd7ff4449248a300",
+      "rawBytes": 684706,
+      "rawSha256": "acedeb56289809307232a99cbf33e1853b9043f1636cb383d24c30e203fe0ce1"
+    }
+  ],
+  "acceptedOwner": {
+    "pr": 133,
+    "head": "59e3f277cde1c49a6328829ed57a785373bb7920",
+    "merge": "8da3df9759b1852a0b4a3faeb504eb6f4ff0c253",
+    "push": 41994419744,
+    "pull_request": 41994481613,
+    "testsPerEvent": 954
+  },
+  "retention": [
+    {
+      "case": "cancellation-observation-first",
+      "sourceHashesUnchanged": true,
+      "rawTreeUnchangedByInspection": true,
+      "databases": [
+        {
+          "directory": "data",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "answers": []
+        }
+      ],
+      "ownerErrors": [],
+      "ownedSurvivors": []
+    },
+    {
+      "case": "cancellation-observation-second",
+      "sourceHashesUnchanged": true,
+      "rawTreeUnchangedByInspection": true,
+      "databases": [
+        {
+          "directory": "data",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "answers": []
+        }
+      ],
+      "ownerErrors": [],
+      "ownedSurvivors": []
+    },
+    {
+      "case": "boundary-accounting-parity",
+      "sourceHashesUnchanged": true,
+      "rawTreeUnchangedByInspection": true,
+      "databases": [
+        {
+          "directory": "base-data",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "answers": []
+        },
+        {
+          "directory": "diagnostic-data",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "answers": [
+            [
+              "succeeded"
+            ]
+          ]
+        },
+        {
+          "directory": "ordinary-data",
+          "integrity": "ok",
+          "foreignKeys": [],
+          "answers": [
+            [
+              "succeeded"
+            ]
+          ]
+        }
+      ],
+      "ownerErrors": [],
+      "ownedSurvivors": []
+    }
+  ]
+}

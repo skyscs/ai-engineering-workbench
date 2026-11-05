@@ -11,9 +11,19 @@ isolation, limits and interruption. Actual core/browser completion, deliberate d
 failure and external interruption leave no owned survivors and retain complete stopped
 catalogs and sources; copied-catalog integrity checks pass. The broader Task 128 gate
 is still in progress; no reserved input has been observed by a candidate.
-The local full check passes 954 tests, strict typechecks and production builds;
-the unchanged application/input seal also passes. Both final-head CI events and merge
-remain pending for this replacement-owner slice.
+The replacement owner is accepted through [PR #133](https://github.com/skyscs/ai-engineering-workbench/pull/133):
+push 41994419744 and pull_request 41994481613 pass 954 tests at exact head `59e3f27`;
+merge `8da3df9` has the identical tree. Strict typechecks, production builds and the
+unchanged application/input seal pass.
+
+The next [cancellation-observation slice](fixtures/loredock-prepared-flow-boundaries/README.md)
+records the actual preparation budget still open at completion of the cancellation HTTP
+response, followed by its real cancellation exception and closure. A Ready-cancellation
+negative control correctly records no open budget. Replacement preparation and complete
+ordinary/diagnostic answer parity pass, with no application hook or model call.
+The local check passes 955 tests, strict typechecks and builds; five stopped catalog
+copies pass integrity/foreign-key checks. Both exact-head CI events and merge remain
+pending for this observation slice.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request
@@ -32,7 +42,7 @@ Additional ordinary checks cover fourteen lifecycle cases, five browser network 
 real ten-minute expiry and complete-worker accounting (eight budgets / 2,253,226 units,
 exact prompt/schema/witness parity). An external owner and ten focused tests retain
 failed processes and storage evidence. The full check passes 948 tests. First-preflight
-and deterministic in-preparation controls and the final frozen
+authority mutations and the final frozen
 matrix/seal are still pending; [runtime review](fixtures/loredock-prepared-flow-driver/runtime-review.md)
 records those limits. No gate result or adoption is implied by this development checkpoint.
 
