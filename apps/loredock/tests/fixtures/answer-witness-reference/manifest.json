@@ -698,6 +698,6 @@
     "answer-witness-schema.ts",
     "answer-witness-store.ts"
   ],
-  "durableContractSha256": "721ef5f9cf68b6d11e5c29ae0da77957d74f092c1313d2b5fade40afa195fa3e",
+  "durableContractSha256": "179b35b9a0a9ad84771cd0d0f3eb37a006ad7165c307a00eadc907080690cdba",
   "maintenanceDelta": "Support schema 11 and explicitly version witness ownership/count/byte reports; keep old-schema reads and stopped compaction semantics."
 }

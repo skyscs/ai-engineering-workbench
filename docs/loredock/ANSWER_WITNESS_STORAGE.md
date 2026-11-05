@@ -12,12 +12,15 @@ and optional-field absence remain byte-identical. The legacy Answers reader expl
 refuses prepared rows until the separate answer adapter implements their validation.
 
 `answer_witnesses` owns one row per answer ID. Its version is `loredock-answer-witness/1`.
-It binds the exact Task 123 context JSON through its SHA-256, the reviewed snapshot hash,
+It retains the opaque preparation ID and binds the exact Task 123 context JSON through
+its SHA-256, the reviewed snapshot hash,
 composition and prompt versions, and the exact witness JSON. The latter remains
 `loredock-prepared-witness/1`; no parsed/reserialized substitute may replace its bytes.
 The unchanged snapshot hash binds the composition version and both JSON strings. The
 attempt binds question, build, policy/registry, input hash, connection/model settings
-and prompt/schema versions. Stored dependencies equal the full resolution/review union.
+and prompt/schema versions. The request payload hash is SHA-256 of the ordered JSON
+object `{preparationId, reviewedHash}`; storage computes it from the owned IDs, independently
+of later configuration changes. Stored dependencies equal the full resolution/review union.
 
 One synchronous SQLite transaction checks capacity, inserts the preparing attempt,
 inserts every dependency and finally inserts its witness. There is no await or provider
