@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { createServer } from 'node:http';
 import { assessPreview } from '../loredock-prepared-flow/assess.mjs';
 import { hash } from '../loredock-prepared-flow/io.mjs';
-import { beginScope, endScope, audit } from '../loredock-prepared-flow/accounting.mjs';
+import { beginScope, endScope, inspectScope, audit } from '../loredock-prepared-flow/accounting.mjs';
 import { OperationBudget } from '../../apps/loredock/dist/operation-budget.js';
 import { sanitized } from '../loredock-prepared-flow/browser.mjs';
 
@@ -75,4 +76,32 @@ test('accounting detects real budget work after its enclosing scope ended', () =
   const second = endScope(); assert.equal(second.budgets.length, 0);
   const observation = audit(); assert(observation.lateActivities.some(row => row.scope === 'unfinished-operation' && row.currentScope === 'following-operation' && row.method === 'charge'));
   assert.equal(budget.stats().totalWork, 3, 'The observer must retain the real operation semantics.');
+});
+
+test('actual HTTP completion distinguishes open work from already closed work without ending its scope', async t => {
+  let active;
+  const server = createServer((request, response) => {
+    const budget = new OperationBudget(); budget.charge('receipt', 1);
+    if (request.url === '/active') active = budget; else budget.close();
+    response.setHeader('Set-Cookie', 'owned-observer-secret');
+    response.end('owned');
+  });
+  t.after(async () => { active?.close(); await new Promise(resolve => server.close(resolve)); });
+  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+  const origin = 'http://127.0.0.1:' + server.address().port;
+  beginScope('http-completion-observation');
+  assert.equal(await (await fetch(origin + '/active')).text(), 'owned');
+  const first = inspectScope();
+  assert.equal(first.scope, 'http-completion-observation');
+  assert.deepEqual(first.responses[0].openBudgets, [first.budgets[0].id]);
+  assert.deepEqual(first.unclosedBudgets, [first.budgets[0].id]);
+  active.close(); active = undefined;
+  assert.equal(await (await fetch(origin + '/closed')).text(), 'owned');
+  const result = endScope();
+  assert.deepEqual(result.unclosedBudgets, []);
+  assert.deepEqual(result.responses.map(row => [row.method, row.path, row.status, row.openBudgets]), [
+    ['GET', '/active', 200, [first.budgets[0].id]], ['GET', '/closed', 200, []],
+  ]);
+  assert(!JSON.stringify(result).includes('owned-observer-secret'));
+  assert.equal(result.totalWork, 2);
 });

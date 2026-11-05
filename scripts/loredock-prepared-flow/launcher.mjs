@@ -61,9 +61,10 @@ process.on('message', message => {
   try {
     let result;
     if (message.name === 'stats') result = { ...stats };
-    else if (message.name === 'accounting-start' || message.name === 'accounting-end') {
+    else if (['accounting-start', 'accounting-end', 'accounting-status'].includes(message.name)) {
       if (!accounting) throw new Error('Accounting is disabled in the resource bootstrap.');
-      result = message.name === 'accounting-start' ? (accounting.beginScope(message.parameters.scope), { started: message.parameters.scope }) : accounting.endScope();
+      result = message.name === 'accounting-start' ? (accounting.beginScope(message.parameters.scope), { started: message.parameters.scope })
+        : message.name === 'accounting-status' ? accounting.inspectScope() : accounting.endScope();
     }
     else {
       if (process.env.AEW_FLOW_FAULTS !== '1') throw new Error('Fault controls are disabled in the resource bootstrap.');
