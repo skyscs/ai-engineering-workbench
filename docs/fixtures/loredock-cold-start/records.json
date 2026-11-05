@@ -77,6 +77,50 @@
       "inventorySha256": "fbe7c0bc70292db6a2feacbf9b604af85574f08ad371ee0ed24cbdc8dc1f1af5",
       "entries": 2,
       "source": "/home/toshiba/aew/task130-cold-static-inputs"
+    },
+    {
+      "path": "cold-reference-inputs.tar.gz",
+      "sha256": "392381e0311c78ac1f1b530ab64eada56b82e6fd26b2220b9c7bcdaa26f32591",
+      "inventory": "cold-reference-inputs.inventory.json.gz",
+      "inventorySha256": "e11ce4f1d67a5eb6fedbe74d9017fe641c1ed6f644444ab1e6a1f034b6864000",
+      "entries": 14,
+      "source": "/home/toshiba/aew/task130-cold-reference-inputs"
+    },
+    {
+      "path": "cold-script-first-native-1.tar.gz",
+      "sha256": "6f0c5b16faff10823d241bea53a395e8e2d51e51065c1087e9f44cbfe501b320",
+      "inventory": "cold-script-first-native-1.inventory.json.gz",
+      "inventorySha256": "33db6f11baef78f71bb2891e7f2a7da86b7f59c756f06717e29d1b43d81a1081",
+      "entries": 4,
+      "source": "/tmp/native-driver-8jxLI9",
+      "limitation": "First ordinary regression failure; retained without rerunning or replacing this directory."
+    },
+    {
+      "path": "cold-script-first-native-2.tar.gz",
+      "sha256": "8a4976f3f83fca559e6f31f22adb38dd8df5f3040cbdca1cb17db9d2afcc75fa",
+      "inventory": "cold-script-first-native-2.inventory.json.gz",
+      "inventorySha256": "b50cc4ddb9cdb3d31f190eaec92081f09eedb4b6536bf6584f7ad9fba5e41536",
+      "entries": 4,
+      "source": "/tmp/native-driver-9uomvS",
+      "limitation": "First ordinary regression failure; retained without rerunning or replacing this directory."
+    },
+    {
+      "path": "cold-script-first-native-3.tar.gz",
+      "sha256": "cfc6d2343e10cf4ad0b69fa164d9b57cf3b29643f00f9d858bed7301a9a03838",
+      "inventory": "cold-script-first-native-3.inventory.json.gz",
+      "inventorySha256": "78364f2700eefb9c05b0942446a8a0a4cb857c56894008c699232a39c3c76456",
+      "entries": 4,
+      "source": "/tmp/native-driver-CvshfG",
+      "limitation": "First ordinary regression failure; retained without rerunning or replacing this directory."
+    },
+    {
+      "path": "cold-script-first-native-4.tar.gz",
+      "sha256": "3c13323e8d99cd1872ed1ceff0a999b562da8d96f907cadaeb90881494a848b4",
+      "inventory": "cold-script-first-native-4.inventory.json.gz",
+      "inventorySha256": "0be1b300354c04ef03c28994cd38b1762d540f87ce8d6b896e8738f42de720c1",
+      "entries": 4,
+      "source": "/tmp/native-driver-MA5oPj",
+      "limitation": "First ordinary regression failure; retained without rerunning or replacing this directory."
     }
   ],
   "logs": [
@@ -205,6 +249,48 @@
       "archiveSha256": "918f564807f626d6729df5edf1d33e2e33b892b48bf14d45aa9ff87f2ab4c971",
       "rawBytes": 84,
       "rawSha256": "bcba396292a64d263db612d783295d7a000afb087c1c62d443611a9eb8498482"
+    },
+    {
+      "path": "cold-ci-initial-push-job.log.gz",
+      "archiveSha256": "18fce02aff6499fed7946211bc5624ecdc42bb75b3b89f00c995d05b69fdb93c",
+      "rawBytes": 451911,
+      "rawSha256": "0ada2298e0b8fe3aec8cea0002d36cd24f9b3a6270aca5340a6f1417c014385c"
+    },
+    {
+      "path": "cold-ci-initial-pr-job.log.gz",
+      "archiveSha256": "d602272f5f7fa87956c62aa0db2529059cc4d2c70865edb711aef93ad9ba6f30",
+      "rawBytes": 451197,
+      "rawSha256": "adfe121923f86532b5722c6e7086939e4e354d3ddc1c3199e60f7ff875294eba"
+    },
+    {
+      "path": "cold-reference-first.log.gz",
+      "archiveSha256": "0c9b2632bd2b447230daf2f68af5b7b94a853a1fd34bc05ad229742dc195b17d",
+      "rawBytes": 6630,
+      "rawSha256": "dcff70a585b1bb0a8015ad78aff3d495d6bcfc74d0d0087214985698994679c0"
+    },
+    {
+      "path": "cold-reference-second.log.gz",
+      "archiveSha256": "4e826b28df7abb1109249a2d76e9cf04de3e25b3fa1aa46bb76e2c9506746f14",
+      "rawBytes": 3589,
+      "rawSha256": "2f237f657076b77584a0332ec36ccd41df99839ecef0924e47a75ceea1f94c7f"
+    },
+    {
+      "path": "cold-reference-typecheck.log.gz",
+      "archiveSha256": "be810160e4f67d3c65b2cb174f630b2e482dbaaef9762365fe1904a6b8c6453c",
+      "rawBytes": 142,
+      "rawSha256": "00ef552617370cdcee8718732b8c28749290ae202c6290d3f1dc2f11d8e1ef49"
+    },
+    {
+      "path": "cold-script-tests-first.log.gz",
+      "archiveSha256": "35c47e919cb8f391f1e08e92880f1526118d73ab09a86983a5bc5ce876246321",
+      "rawBytes": 110887,
+      "rawSha256": "e20015ddb29b58cba3e80b08771877d027c988c3529bd9a75f10953c9ff92e12"
+    },
+    {
+      "path": "cold-script-tests-second.log.gz",
+      "archiveSha256": "26bc21bb9192bb215cc0a789b48468d59a2e1f818284faaea2ab502cc98c9aae",
+      "rawBytes": 19900,
+      "rawSha256": "a6c0d484b1e3d8a9069b0cece772e6c1cb6c5d47c380d959e81496b5a920fccc"
     }
   ],
   "retention": {
@@ -326,5 +412,23 @@
     ],
     "resourceQualification": false,
     "limitation": "Ordinary parser parity and unchanged compiled dependency bytes; not semantic or resource qualification."
+  },
+  "initialCI": {
+    "head": "c60b8142a2a57e5e42a4ca705c89e6741a84c555",
+    "push": 42104317222,
+    "pull_request": 42104365030,
+    "conclusion": "failure",
+    "applicationTestsPerEvent": 664,
+    "applicationPassPerEvent": 660,
+    "applicationFailuresPerEvent": 4,
+    "laterSuitesRun": false,
+    "completeJobLogsRetained": true,
+    "initialLogDownloadError": "gh run --log could not connect to results-receiver.actions.githubusercontent.com; job-log API downloads completed."
+  },
+  "correctedChecks": {
+    "focusedHistorical": 11,
+    "focusedScripts": 71,
+    "expectedFullCI": 1034,
+    "applicationChangedAfterCorrectedProductionObservation": false
   }
 }

@@ -19,6 +19,13 @@ control reduces its first raw gap from 320.039 to 202.277 ms and sampled heap fr
 revision broke `tsx` source execution; its failure is retained, and the corrected
 source/production implementation passes 31 focused tests and strict typecheck/build.
 Five complete catalog copies and 546 unchanged raw entries preserve all observations.
+Initial PR #163 CI fails four historical source pins in each event. Exact old source
+and emitted bytes now support strictly verified loading deltas without rewriting any
+historical manifest. Eleven focused historical checks pass. Nine further local script
+failures expose older byte pins and ESM-only dependency observers; their failures are
+retained, and all 71 affected checks pass with explicit CommonJS identity accounting.
+The consumed Task 128 auditor remains unchanged and is explicitly insufficient for
+the new application's external compiler edge. Final-head CI acceptance is pending.
 
 The parser fingerprint changes with the implementation; existing inventories require
 explicit reanalysis. The historical Task 128 application seal no longer describes the

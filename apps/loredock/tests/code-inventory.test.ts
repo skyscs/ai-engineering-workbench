@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { rm } from 'node:fs/promises';
+import { readFile, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { test } from 'node:test';
 import { Catalog } from '../src/catalog.js';
@@ -9,10 +9,14 @@ import { typescriptFacts } from '../src/code-typescript.js';
 import { javaFacts } from '../src/code-java.js';
 import { codeFlows } from '../src/code-flows.js';
 import { declarationMap } from '../src/system-map.js';
+import { codeAnalysisFingerprint } from '../src/code-analysis-facts.js';
+import { sha256 } from '../src/extract.js';
+// @ts-expect-error Test-only exact loading delta; the original experiment verifier remains strict.
+import { beforeCompilerLoading } from './fixtures/compiler-loading-reference/verify.mjs';
 // @ts-expect-error Owned workload generation is plain JavaScript.
 import { createCapacityFixture } from '../../../scripts/loredock-capacity-fixture.mjs';
 // @ts-expect-error The offline experiment is plain JavaScript.
-import { codeFactRanges, scanCodeInventory, verifyCodeInventoryContract } from '../../../scripts/loredock-code-inventory.mjs';
+import { codeFactRanges, scanCodeInventory, verifyCodeInventoryContract, inventoryLimits } from '../../../scripts/loredock-code-inventory.mjs';
 // @ts-expect-error The offline coverage comparison is plain JavaScript.
 import { inspectInventoryCoverage } from '../../../scripts/loredock-code-inventory-probe.mjs';
 
@@ -28,14 +32,23 @@ test('code fact offsets preserve UTF-16 source ranges and reject detached operat
 });
 
 test('full small-shape inventory repeats facts, exposes budget omissions and fences damaged or revoked originals', async t => {
-  const frozen = await verifyCodeInventoryContract(), fixture = await createCapacityFixture(1);
+  await assert.rejects(verifyCodeInventoryContract(), /Frozen inventory input changed: apps\/loredock\/src\/code-typescript.ts/);
+  const root = new URL('../../../', import.meta.url);
+  const frozen = JSON.parse(await readFile(new URL('fixtures/loredock-code-inventory/baseline.json', root), 'utf8')) as {
+    sourceHashes: Record<string, string>; parserFingerprint: string; limits: unknown;
+  };
+  for (const [file, expected] of Object.entries(frozen.sourceHashes))
+    assert.equal(sha256(await beforeCompilerLoading(file, await readFile(new URL(file, root))) as Buffer), expected, file);
+  assert.deepEqual(inventoryLimits, frozen.limits);
+  const parserFingerprint = codeAnalysisFingerprint(); assert.notEqual(parserFingerprint, frozen.parserFingerprint);
+  const fixture = await createCapacityFixture(1);
   const store = new CatalogStore(path.join(fixture.root, 'inventory-data')), catalog = new Catalog(store);
   t.after(async () => { await catalog.stop(); store.close(); await rm(fixture.root, { recursive: true, force: true }); });
   const paths = fixture.manifest.sources.map((source: { id: string }) => path.join(fixture.root, 'sources', source.id));
   const preview = await catalog.previewSources(paths); await catalog.registerSources({ paths, previewHash: preview.previewHash, requestId: 'inventory' });
   const state = catalog.state(); catalog.start('inventory', state.sourceSetVersion, state.policyVersion); await catalog.idle();
   const services = { readMapDocument, typescriptFacts, javaFacts }, gitTexts = new Map(), buildId = catalog.readBuild().id;
-  const scan = (limits = {}) => scanCodeInventory(services, catalog, fixture, frozen.parserFingerprint, { limits, gitTexts, buildId });
+  const scan = (limits = {}) => scanCodeInventory(services, catalog, fixture, parserFingerprint, { limits, gitTexts, buildId });
   const first = await scan(), second = await scan();
   assert.equal(first.summary.candidates, 41); assert.equal(first.summary.retained, 41); assert.equal(first.summary.failed, 0);
   assert.deepEqual(second.records, first.records); assert.ok(first.verifiedSpans >= 41);

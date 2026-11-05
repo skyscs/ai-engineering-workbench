@@ -131,6 +131,46 @@ The first static archive check started before the asynchronous archive finished 
 reported a missing records file. After archive completion, the same check passes;
 both logs are retained. This did not launch or repeat application observations.
 
+## Historical reference checks
+
+Initial PR #163 CI at `c60b814` fails four historical source checks in both events
+(push 42104317222 and pull_request 42104365030). Each application suite reports
+660 passes and four failures; later suites are not run. The failures expect the old
+compiler-adapter source hash while reading the changed production file. The complete
+job logs are retained; the first `gh run --log` downloads failed to connect to the
+results receiver, and the job-log API downloads subsequently completed.
+
+The correction preserves the exact independently copied old source in the
+[compiler loading reference](../../../apps/loredock/tests/fixtures/compiler-loading-reference/README.md).
+A strict helper reconstructs only the permitted loading/type changes and rejects
+any other source edit before returning historical bytes to the older test controls.
+No existing source/dependency manifest or fingerprint is updated. Two new regression
+tests verify the complete emitted parser body and actual compiler identity, and reject
+parser or loader changes beyond the explicit delta. All eleven focused historical
+checks pass, including the four affected cases and explicit reanalysis/backward reopen.
+
+The original frozen inventory verifier is untouched and still rejects this changed
+application. The ordinary inventory unit test explicitly checks that rejection, checks
+the original pins through the exact delta, and uses the current production fingerprint
+for its small functional scan. This separation cannot qualify the historical experiment.
+No new production observation follows this test-only correction.
+
+The script suite, which the initial CI did not reach, then reports nine failures:
+four older whole-application byte pins, four ordinary native-child checks that stop
+before setup because their observer assumes ESM-only external dependencies, and the
+consumed seal auditor's ESM-only dependency assertion. Its first log and the retained
+failed native-child artifacts remain available.
+
+The same strict historical delta now covers original emitted bytes. The current
+ordinary native identity observer recognizes only the exact admitted direct compiler
+load, resolves the actual installed compiler and keeps its payload hash. The consumed
+Task 128 import auditor is untouched: its regression explicitly records that the old
+ESM-only graph omits this new CommonJS edge, then checks that edge separately without
+executing application code. Future qualification must account for both mechanisms;
+the old manifest is not valid for the changed application. All 71 affected script
+checks pass after these corrections. No parser, threshold or production byte changed
+after the corrected first comparison.
+
 ## Next bounded work
 
 Keep the measured startup improvement without claiming the complete resource gate.
