@@ -39,8 +39,12 @@ Independent inspection verifies the copied catalog's integrity/foreign keys, all
 witness rows, four exact bindings, eleven explicit unmatched reviews, the sixteen bounds
 and all 33,062 unchanged original matrix entries. The fourteen new raw entries also
 remain unchanged by inspection. Thirteen focused content/lifetime controls, installation,
-production builds and the original application/input seal pass. Both full CI events at
-the final PR head remain required before merge.
+production builds and the original application/input seal pass. Accepted through
+[PR #158](https://github.com/skyscs/ai-engineering-workbench/pull/158): push 42080246585 and
+pull_request 42080275190 each pass 1,016 tests at `9c861ddfbff6ae56280fbd5935fe66089c953f0c`.
+Both complete logs and counts were checked before merge `d61149ac354265190deb9ecfb99c90ff67bd4f25`;
+the merge tree is identical. The [next checkpoint](../loredock-prepared-flow-execution-boundary/README.md)
+retains those accepted logs.
 
 [records.json](records.json) binds the [raw assessment](matrix-closure-first.tar.gz),
 [first source snapshot](matrix-closure-first-inputs.tar.gz),

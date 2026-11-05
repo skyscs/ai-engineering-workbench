@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "prepared-flow-execution-work-note/1",
+  "acceptedMatrixClosure": {
+    "pr": 158,
+    "head": "9c861ddfbff6ae56280fbd5935fe66089c953f0c",
+    "merge": "d61149ac354265190deb9ecfb99c90ff67bd4f25",
+    "push": 42080246585,
+    "pull_request": 42080275190,
+    "testsPerEvent": 1016,
+    "completeLogsVerifiedBeforeMerge": true,
+    "identicalMergeTreeVerified": true
+  },
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "resourceQualification": false,
+  "logs": [
+    {
+      "path": "accepted-closure-ci-push.log.gz",
+      "event": "push",
+      "run": 42080246585,
+      "bytes": 721832,
+      "sha256": "14da801df809d16cf990c4d63746aade521e42bd3f1bbd7a75e8d2d47a5fe608",
+      "archiveSha256": "ce282fc4c37071bb65da6c4264ba73f33d723dc1e9069fe87e095080571dc501"
+    },
+    {
+      "path": "accepted-closure-ci-pr.log.gz",
+      "event": "pull_request",
+      "run": 42080275190,
+      "bytes": 723355,
+      "sha256": "399936757a7b11cd9d226de3e33a0ec7dcead3d6d4dc1e1b34580e6cf6b362e4",
+      "archiveSha256": "5e667dad00a30438a7dff9866cce7f67624c50b21b4b0523b03d20d09a668731"
+    }
+  ]
+}
