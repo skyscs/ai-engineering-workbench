@@ -132,6 +132,13 @@ test('actual admission rolls back SQL failures and capacity refusal without cons
 for (const boundary of ['prepare', 'dispatch', 'publish']) test(`source, policy, review and source-build changes fence before ${boundary}`, async t => {
   for (const mutation of ['source', 'policy', 'review', 'build']) {
     const s = await setup(t); s.runtime.blockPrepare = boundary === 'dispatch'; s.runtime.blockRun = boundary === 'publish';
+    const admitted = gate();
+    if (boundary === 'prepare') {
+      const run = s.answers.run.bind(s.answers);
+      // Hold the scheduled worker, not validation: an index rebuild is asynchronous
+      // and must finish before this case can claim a pre-preflight boundary change.
+      t.mock.method(s.answers, 'run', async (...args) => { await admitted.promise; return run(...args); });
+    }
     const first = s.start();
     if (boundary === 'dispatch') await s.runtime.preflight.promise;
     if (boundary === 'publish') await s.runtime.dispatch.promise;
@@ -142,7 +149,8 @@ for (const boundary of ['prepare', 'dispatch', 'publish']) test(`source, policy,
     }
     if (mutation === 'policy') s.fixture.catalog.updatePolicy(['private']);
     if (mutation === 'review') s.fixture.store.run('UPDATE project SET correctionRevision=correctionRevision+1');
-    if (mutation === 'build') await s.fixture.index('replacement-build');
+    if (mutation === 'build') { try { await s.fixture.index('replacement-build'); } finally { admitted.release(); } }
+    else admitted.release();
     s.runtime.release(); await s.answers.idle(); const result = s.answers.get(first.id);
     assert.notEqual(result.status, 'succeeded', mutation); assert.equal(result.answer, null);
     assert.equal(s.runtime.prepares, boundary === 'prepare' ? 0 : 1, mutation);
