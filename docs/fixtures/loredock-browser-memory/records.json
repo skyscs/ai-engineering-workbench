@@ -1,0 +1,155 @@
+{
+  "schemaVersion": "ordinary-browser-memory-attribution/1",
+  "base": "1a03c04b03bfa61267d8f631ffb0b17df06470da",
+  "retainedCode": "eae8212",
+  "firstCode": "bf89725",
+  "assessmentCode": "4eab86b",
+  "applicationChanged": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "resourceQualification": false,
+  "trees": [
+    {
+      "path": "browser-retained-first.tar.gz",
+      "sha256": "f6ffbc4fc39552986d6ca80d97e022284876278e4c15e72cea7c0f277a93a1f6",
+      "inventory": "browser-retained-first.inventory.json.gz",
+      "inventorySha256": "d60a1df0753a50d005421de837940b4d741bd05d3059a5547f5e11e1aff37b44",
+      "entries": 10,
+      "source": "/home/toshiba/aew/task134-browser-retained-first"
+    },
+    {
+      "path": "browser-first.tar.gz",
+      "sha256": "1e8e051b6690c13ec7b206301adc1fabdc78b6571a26a13b28a828c3e544d7e3",
+      "inventory": "browser-first.inventory.json.gz",
+      "inventorySha256": "2743f3471d86f61814e46761226237b493bb3605ec56e059531201a676a2f8a2",
+      "entries": 818,
+      "source": "/home/toshiba/aew/task134-browser-first",
+      "excludedFromArchive": [
+        "run/blank-browser/browser/profile (temporary Chrome profile/cache; original retained locally)",
+        "run/indexed-ui/browser/profile (temporary Chrome profile/cache; original retained locally)",
+        "run/ready-and-saved/browser/profile (temporary Chrome profile/cache; original retained locally)"
+      ]
+    },
+    {
+      "path": "browser-first-inputs.tar.gz",
+      "sha256": "1778529836d125f9d65060f372bcac7b94f00fabdf09d6c656f8990083cc5de0",
+      "inventory": "browser-first-inputs.inventory.json.gz",
+      "inventorySha256": "acc6b0032183b710b8f426477c973650e8903e460f1bbbd4a193134e1e089683",
+      "entries": 231,
+      "source": "/home/toshiba/aew/task134-browser-first-inputs"
+    },
+    {
+      "path": "browser-assessment-first.tar.gz",
+      "sha256": "951c53732980ec60018a0057b2948bbfe688f05d0d08e9b4c2b5e1f6bd412115",
+      "inventory": "browser-assessment-first.inventory.json.gz",
+      "inventorySha256": "b7ca7368b331624d7af1849ce00cfcb4a9adef28a0a7b941b5d4b115e0dbd2f0",
+      "entries": 2,
+      "source": "/home/toshiba/aew/task134-browser-assessment-first"
+    },
+    {
+      "path": "browser-retention.tar.gz",
+      "sha256": "43620fb314d35004aeae25a0a7312cc3b6793c5868adf9293f893939dfae936a",
+      "inventory": "browser-retention.inventory.json.gz",
+      "inventorySha256": "88138bbc3341a14699c7b6a491309e997962864fdcfb2c87ad5ab4c66d13678b",
+      "entries": 9,
+      "source": "/home/toshiba/aew/task134-browser-retention"
+    },
+    {
+      "path": "browser-review-inputs.tar.gz",
+      "sha256": "6df9b775e92464ebb9cd306620d3873444aa828c1a4d3a953bb58534e2f3f498",
+      "inventory": "browser-review-inputs.inventory.json.gz",
+      "inventorySha256": "73be67f90a09978c658faec2d7b44ff76d67c1609f4257a8304557ff485b12d7",
+      "entries": 8,
+      "source": "/home/toshiba/aew/task134-browser-review-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "browser-install.log.gz",
+      "archiveSha256": "317555ba21e9333fe7e45a06ea16391ba0a0523bb265d4fc41065a62abe6b8c8",
+      "rawBytes": 326,
+      "rawSha256": "cd674ae611e25d73a535894fb9fc277e8aaffeb8471613623bfa1debd0355fb7"
+    },
+    {
+      "path": "browser-build.log.gz",
+      "archiveSha256": "b61a1593cb712549ffcae73c5860e4eae04ffb6c2810961c1e74c0a30c475895",
+      "rawBytes": 2354,
+      "rawSha256": "f2155b0738fa986b5427b25dde10a09471eba708be0d55972e914b32487bb8f1"
+    },
+    {
+      "path": "browser-retained-first.log.gz",
+      "archiveSha256": "fb294218637e7dbf36eef57f506a23bceb9705f97d4dd55ce4bf78989b0b3adb",
+      "rawBytes": 173,
+      "rawSha256": "4a78e9fd64a894439876aaaacd24125887681a94247436c4d0fb1cb830071e81"
+    },
+    {
+      "path": "browser-first.log.gz",
+      "archiveSha256": "d7e9e91b51992a3222cc96254c725a293e6e3df300a62a9dc281465e82384c2f",
+      "rawBytes": 8353,
+      "rawSha256": "538e25dd0bb449733d383a18672dcf0e836634fc8d16a0a27f0d341800778fcd"
+    },
+    {
+      "path": "browser-assessment-first.log.gz",
+      "archiveSha256": "60080d6b5137abb635808107671faffa49a832df8d520801b1f4da52b038ab4f",
+      "rawBytes": 1650,
+      "rawSha256": "48e9224509bfd7772f2096c8d9a8f4e838c45ae7dbb5ad7b5bb333bf92b71405"
+    },
+    {
+      "path": "browser-retain-first.log.gz",
+      "archiveSha256": "2310ec8b98fb15eb1ec2276189058c0d1b8a68f10f6c49aad38ba1c595313560",
+      "rawBytes": 570,
+      "rawSha256": "c0feb5864a268b706e8b66e7dc194b813b26760ace5e7c9fa43b640252a856d8"
+    },
+    {
+      "path": "browser-role-tests-first.log.gz",
+      "archiveSha256": "fc48de68946bfffb86c906b01f4824241c312aec40faf5963a57d1ca748d20ad",
+      "rawBytes": 398,
+      "rawSha256": "b8386113c9b3c415194a8c3dc5980ecca4a445681de0023a12c8f80d1c8d7267"
+    },
+    {
+      "path": "browser-script-tests-first.log.gz",
+      "archiveSha256": "5e48259a9f4ccf1cd07c71d3f7a791b261191fa281127f271800af30e1ca2a60",
+      "rawBytes": 68542,
+      "rawSha256": "a6894a36c264efe6a5b0e46219dc2458bcf830576a5d8256431e4872ba748cd4"
+    },
+    {
+      "path": "accepted-native-format-ci-push.log.gz",
+      "archiveSha256": "dd709e4dafe0dc07bcd7f5d6e133fc0b8528627931cc242e014b5c97ae646d3a",
+      "rawBytes": 592106,
+      "rawSha256": "24c20559c7687c4491f475b32896c92f59cf2305326b41da2e9abf33553c7352"
+    },
+    {
+      "path": "accepted-native-format-ci-pr.log.gz",
+      "archiveSha256": "7180703acd93f5b7eeff4c0945e0aa459fa5ebc1a7d7cbfcbf058b863d08d6ec",
+      "rawBytes": 593905,
+      "rawSha256": "0cb36f0e2fcc9dbd7226132acae022757d7dabff5384d6353d8d4313df480950"
+    }
+  ],
+  "retention": {
+    "catalogs": [
+      {
+        "relative": "run/indexed-ui/data",
+        "answers": 0,
+        "integrity": "ok",
+        "savedBytesUnchanged": true
+      },
+      {
+        "relative": "run/ready-and-saved/data",
+        "answers": 1,
+        "integrity": "ok",
+        "savedBytesUnchanged": true
+      }
+    ],
+    "originalChecks": 18,
+    "sourceFiles": 22,
+    "gitIdentities": 8,
+    "httpResponses": 7,
+    "browserResponses": 297,
+    "sessionRedactions": 4,
+    "realModelCalls": 0,
+    "controlledRuntimeCalls": 0,
+    "resourceQualification": false,
+    "rawEntries": 1460,
+    "rawUnchanged": true
+  }
+}

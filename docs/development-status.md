@@ -1,5 +1,34 @@
 # Development status
 
+## Task 134 — Browser memory attribution (failed resource controls retained)
+
+Task 133 is accepted through [PR #166](https://github.com/skyscs/ai-engineering-workbench/pull/166):
+both final exact-head CI events pass 1,045 tests at `63501cb`, before identical-tree
+merge `1a03c04`. Complete logs were inspected before merge. Task 134 preserves every
+application byte and uses only retained ordinary synthetic catalogs.
+
+Retained attribution verifies 223 archived files and reconstructs the old sixteen-process
+1,403,904,000-byte peak. Three first prospective controls at `bf89725` then observe thirty
+idle seconds each: blank browser **1,311,698,944 bytes**, indexed UI **1,383,780,352**,
+Ready plus saved context **1,386,823,680**. All fail the unchanged 1-GiB summed RSS limit.
+The blank browser makes zero application requests; no model/runtime calls occur anywhere.
+These observations do not justify an application memory fix or a relaxed gate.
+
+All 917 samples are retained, including two incomplete nonpeak samples. All three peak
+samples are complete. Original role labels missed Chrome's collapsed process titles;
+exact argv/executable identities remain intact and a checked offline classifier derives
+the roles without rerunning a browser. Terminal sequential PSS is 342–375 MB and is
+diagnostic only, not a replacement for raw summed RSS or a simultaneous peak.
+
+[Complete evidence](fixtures/loredock-browser-memory/README.md) retains the three first
+lifetimes, copied catalogs, built/runtime identities, role/PSS inputs and all responses.
+Independent review verifies eight Git identities, twenty-two source files, eighteen
+saved original spans, two catalog copies, seven HTTP and 297 browser responses. All
+1,460 raw entries remain unchanged. The 245 script tests and build pass; the application
+and all 139 compiled modules remain exact. Browser environment/contract selection is
+still unresolved. After checks and merge, [Task 135](../tasks/135-loredock-compiler-isolation-design.md)
+designs compiler isolation for the separate startup/heap work, without changing product code.
+
 ## Task 133 — Lossless native format v2 (result retained)
 
 Task 132 is accepted through [PR #165](https://github.com/skyscs/ai-engineering-workbench/pull/165):
