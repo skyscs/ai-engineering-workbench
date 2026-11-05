@@ -2,9 +2,9 @@
 
 ## Task 128 — Complete-flow resource driver (in progress)
 
-Latest accepted checkpoint: [PR #144](https://github.com/skyscs/ai-engineering-workbench/pull/144)
-at merge `1c67720`. The next reusable browser replay/question-edit cases pass actual Chrome
-observations and independent retention checks; both final-head CI events remain required.
+Latest accepted checkpoint: [PR #145](https://github.com/skyscs/ai-engineering-workbench/pull/145)
+at merge `1a98e33`. The next independent browser review/revocation cases pass three actual
+Chrome observations and retention checks; both final-head CI events remain required.
 The reserved family has zero candidate reads; no model runs.
 Known ordinary failures include partial analysis of constant-only padding, a missing
 required native positive at the derived-size limit, aggregate list work, browser RSS and
@@ -219,9 +219,29 @@ exit 1 on a 324.10599 ms cold daemon gap; both browser RSS observations exceed 1
 each retains one incomplete sample. Independent inspection verifies five complete
 catalog copies, four source Git identities, 26 protected-client bodies, 35 completed
 browser response objects, the deliberately aborted admission and unchanged input trees.
+Production builds, syntax, retention checks and the original seal pass locally. Both
+exact-head CI events pass for [PR #145](https://github.com/skyscs/ai-engineering-workbench/pull/145):
+push 42031200172 and pull_request 42031279243 pass 982 tests at `37e872f`; merge `1a98e33`
+has the identical tree. Full ordered integration, resource assessment and the execution
+seal remain pending.
+
+The next [browser review/revocation cases](fixtures/loredock-prepared-flow-browser-fences/README.md)
+use separate verified stopped cold/history copies. A public correction cannot let a late
+preparation response restore context; saved history retains its original content with a
+historical-review label. Revoking an uncited authorized source purges the single witness
+and prevents delayed answer content from reappearing. Each held response completes
+delivery before final DOM checks. There are zero new admissions or controlled runtime
+calls. Browser cleanup cancels the obsolete preparation; this does not independently
+establish a server review-validator terminal fence.
+All three fault controls complete with no errors or owned survivors. Independent checks
+bind 71 reused input files to the preceding archive, verify three complete catalog copies,
+25 protected-client bodies and 92 completed browser response objects, and preserve
+unchanged input checkpoints. All three browser RSS observations still exceed 1 GiB;
+functional exit 0 is not resource acceptance. The existing generic terminal notice's
+misleading last-authorized-answer sentence is retained in the revoked-history screenshot.
 Production builds, syntax, retention checks and the original seal pass locally; both
-complete final-head CI events remain required. Full ordered integration, resource
-assessment and the executable/environment/output seal remain pending.
+complete final-head CI events remain required. Full ordered integration and resource
+assessment remain incomplete, with zero reserved candidate reads or model executions.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request

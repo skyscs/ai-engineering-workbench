@@ -1,0 +1,219 @@
+{
+  "schemaVersion": "prepared-flow-browser-fences-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "trees": [
+    {
+      "path": "browser-fences-first.tar.gz",
+      "sha256": "50b020388c508a3a39a7c2412c42620464b9ce1e9ac33a4144956af7d2ff7f24",
+      "inventory": "browser-fences-first.inventory.json.gz",
+      "inventorySha256": "89533ac6978b3db5d4bc98835eb40c9f6d855225aa8394a4e6133764ab4cc5c2",
+      "entries": 313,
+      "source": "/home/toshiba/aew/task128-browser-fences-first",
+      "excludedFromArchive": [
+        "run/history-review/browser/profile (temporary Chrome profile/cache; original retained locally)",
+        "run/history-revoke/browser/profile (temporary Chrome profile/cache; original retained locally)",
+        "run/preparation-review/browser/profile (temporary Chrome profile/cache; original retained locally)"
+      ]
+    },
+    {
+      "path": "browser-fences-retention.tar.gz",
+      "sha256": "6e668dc5383a2348323470a4876d17379f4db9cbee2ed99af39171972c79b7b0",
+      "inventory": "browser-fences-retention.inventory.json.gz",
+      "inventorySha256": "0fa3d9f3202e350a35b8e14c57925513d0527ec8af582d92a7d68cdd8dcce9f2",
+      "entries": 13,
+      "source": "/home/toshiba/aew/task128-browser-fences-retention"
+    },
+    {
+      "path": "browser-fences-reused-sources.tar.gz",
+      "sha256": "7ab765ada70d4d717cb3319a4b8769296aeb544c379a328241665d011447602e",
+      "inventory": "browser-fences-reused-sources.inventory.json.gz",
+      "inventorySha256": "ff4381907f0c8d985b57db9eeb52c22c4ad0b787896c267832fc8becd9f2032d",
+      "entries": 63,
+      "source": "/home/toshiba/aew/task128-network-cases-first/run/sources"
+    },
+    {
+      "path": "browser-fences-reused-cold-checkpoint.tar.gz",
+      "sha256": "384b8c217efb0deb6ef3ad21f1b9db01e3fcfb26265589853b313a48f5d6d7b0",
+      "inventory": "browser-fences-reused-cold-checkpoint.inventory.json.gz",
+      "inventorySha256": "a65c401c8fd053f982d2f7949c15136610df92bbfcb00234b703f35838601165",
+      "entries": 4,
+      "source": "/home/toshiba/aew/task128-network-cases-first/run/base/checkpoint"
+    },
+    {
+      "path": "browser-fences-reused-history-checkpoint.tar.gz",
+      "sha256": "a332b0ea7aa7c1c351f81ffa4fd1d8270f0c2e8a4e0a59d56bca05e7698b7bfe",
+      "inventory": "browser-fences-reused-history-checkpoint.inventory.json.gz",
+      "inventorySha256": "2d0abd7825b0ed0e21d930f0a90aa98598603e47a9c4224a0990cf09f1fa3e64",
+      "entries": 4,
+      "source": "/home/toshiba/aew/task128-network-cases-first/run/lost-admission/history-checkpoint"
+    },
+    {
+      "path": "browser-fences-inputs.tar.gz",
+      "sha256": "1c447d4f3079d6d4010e694ab0941a413b47e64d61350f76248d339961760242",
+      "inventory": "browser-fences-inputs.inventory.json.gz",
+      "inventorySha256": "fb311df470c72f348d4c4f09d8f8a800e36bce0ffddcf8061b78a05a0597fd6e",
+      "entries": 9,
+      "source": "/home/toshiba/aew/task128-browser-fences-inputs"
+    },
+    {
+      "path": "browser-fences-static-inputs.tar.gz",
+      "sha256": "6e75e7b5c0e64944a3f9ba585b575845c7ca74b8f2a4e5c00999ff84bd084c93",
+      "inventory": "browser-fences-static-inputs.inventory.json.gz",
+      "inventorySha256": "e6c57377c1a582300814ede2d36ebd7d95365997ba60005b590a3888612e7dc3",
+      "entries": 1,
+      "source": "/home/toshiba/aew/task128-browser-fences-static-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "browser-fences-first.log.gz",
+      "archiveSha256": "664b301dc3af922a3edca00d77a8e8fe8b2986b740ac755999b51f0ffe014d3f",
+      "rawBytes": 7740,
+      "rawSha256": "de09e18c8473fd07ff2108f92666901900054a2494105a195b901ec3600bfbef"
+    },
+    {
+      "path": "browser-fences-install.log.gz",
+      "archiveSha256": "260b356b40c84c57415f98d480dffa72515d80a32d83cb1fc96d0f2631f521e6",
+      "rawBytes": 326,
+      "rawSha256": "86ef709a9828fb6348f36bd7b4221197af70f88d2fd8daa90f40259eacc69007"
+    },
+    {
+      "path": "browser-fences-build.log.gz",
+      "archiveSha256": "806d2d07079688e4a291e5ada179a958839eeef02fbddf62fff53d68b759e072",
+      "rawBytes": 2354,
+      "rawSha256": "a90434177844bc0bebd5a24f32d3faf70ac9bfe4f54e67f3172e245ea4a75fb1"
+    },
+    {
+      "path": "browser-fences-retention.log.gz",
+      "archiveSha256": "1d868ae0065db5432feaea01d09c9243fada7b3cf9f1fd57b28b9bc1ee22099d",
+      "rawBytes": 1856,
+      "rawSha256": "75360cf61ce2d7d18f815cf61677d060384157eda0cd8e219892648da76dec06"
+    },
+    {
+      "path": "browser-fences-seal-check.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "network-cases-ci-push.log.gz",
+      "archiveSha256": "b4326973f3f4a5923d8addd694fdeb0ebfcd2cf92f72a0258892d6f2fd6ae067",
+      "rawBytes": 701369,
+      "rawSha256": "b7d2d40659d2bc07349b415711e9eb4fb7ed37b61a1427752de5e522093f808a"
+    },
+    {
+      "path": "network-cases-ci-pr.log.gz",
+      "archiveSha256": "d38ff7b17e815830405464ff55e553d7b1e3d10fa9b76848b715cfdbe5a321ed",
+      "rawBytes": 702333,
+      "rawSha256": "8668b02898382f7d4a86e1e0d568013e39c9c349b06fe0c228df72db10f3c955"
+    },
+    {
+      "path": "browser-fences-static-first.log.gz",
+      "archiveSha256": "b11d3cd027b677d782fd23a0d5aa91d1359c7ce531057d0ddbb01c46356bd30f",
+      "rawBytes": 206,
+      "rawSha256": "8ba0b1e1da24a81a6bf525469b6503b52d7ec176a642abd39e70a6ea68c30878"
+    }
+  ],
+  "acceptedNetworkCases": {
+    "pr": 145,
+    "head": "37e872fa58099bd1c488755dd4b1424ae0569736",
+    "merge": "1a98e335435fa0c8a9027ff2da403b1a7379db58",
+    "push": 42031200172,
+    "pull_request": 42031279243,
+    "testsPerEvent": 982
+  },
+  "screenshots": [
+    {
+      "path": "review-context-hidden.png",
+      "source": "/home/toshiba/aew/task128-browser-fences-first/run/preparation-review/browser/review-context-hidden.png",
+      "bytes": 94123,
+      "sha256": "7c5504b95b16ed9294e6c9dfc789ae4925bdeee6a64758d43be90c96e0e1a988"
+    },
+    {
+      "path": "historical-review-labelled.png",
+      "source": "/home/toshiba/aew/task128-browser-fences-first/run/history-review/browser/historical-review-labelled.png",
+      "bytes": 92096,
+      "sha256": "e31ca67f905b71566ae99f7dd689497256f5f9ef2c52fa8a352cf25c893bfd20"
+    },
+    {
+      "path": "revoked-content-hidden.png",
+      "source": "/home/toshiba/aew/task128-browser-fences-first/run/history-revoke/browser/revoked-content-hidden.png",
+      "bytes": 94475,
+      "sha256": "af59c7fc360bc838eb9ddeaf6216ba2715e5a4c51e9b94a76fc57a53d7681976"
+    }
+  ],
+  "retention": {
+    "resourceQualification": false,
+    "modelCalls": 0,
+    "reservedFamilyReads": 0,
+    "catalogs": [
+      {
+        "source": "/home/toshiba/aew/task128-browser-fences-first/run/preparation-review/data",
+        "copy": "/home/toshiba/aew/task128-browser-fences-retention/preparation-review/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [],
+        "corrections": 1
+      },
+      {
+        "source": "/home/toshiba/aew/task128-browser-fences-first/run/history-review/data",
+        "copy": "/home/toshiba/aew/task128-browser-fences-retention/history-review/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "succeeded",
+            1
+          ]
+        ],
+        "corrections": 1
+      },
+      {
+        "source": "/home/toshiba/aew/task128-browser-fences-first/run/history-revoke/data",
+        "copy": "/home/toshiba/aew/task128-browser-fences-retention/history-revoke/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "fenced",
+            1
+          ]
+        ],
+        "corrections": 0
+      }
+    ],
+    "browsers": [
+      {
+        "name": "preparation-review",
+        "completedApiBodies": 22,
+        "preparations": 1,
+        "admissions": 0,
+        "sampledRssBytes": 1372684288,
+        "incompleteSamples": 0
+      },
+      {
+        "name": "history-review",
+        "completedApiBodies": 33,
+        "preparations": 0,
+        "admissions": 0,
+        "sampledRssBytes": 1365348352,
+        "incompleteSamples": 0
+      },
+      {
+        "name": "history-revoke",
+        "completedApiBodies": 37,
+        "preparations": 0,
+        "admissions": 0,
+        "sampledRssBytes": 1371398144,
+        "incompleteSamples": 0
+      }
+    ],
+    "httpBodies": 22,
+    "redactedSessions": 3,
+    "reusedInputFilesBoundToPreviousArchive": 71,
+    "rawInputsUnchanged": true,
+    "entries": 801
+  }
+}
