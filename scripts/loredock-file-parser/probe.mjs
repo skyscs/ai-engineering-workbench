@@ -36,7 +36,8 @@ function sample() {
     if (item.pending) { item.skipped++; event('worker-sample-pending', { threadId: item.threadId }); continue; }
     const requested = performance.now(), id = ++item.requests;
     event('worker-sample-request', { threadId: item.threadId, id, requested });
-    item.pending = Promise.allSettled([item.worker.getHeapStatistics(), item.worker.cpuUsage()]).then(([heap, cpu]) => {
+    item.pending = Promise.allSettled([Promise.resolve().then(() => item.worker.getHeapStatistics()),
+      Promise.resolve().then(() => item.worker.cpuUsage())]).then(([heap, cpu]) => {
       const outcome = value => value.status === 'fulfilled' ? { status: 'fulfilled', value: value.value }
         : { status: 'rejected', name: value.reason?.name ?? null, code: value.reason?.code ?? null };
       append('worker-samples', { threadId: item.threadId, id, requested, completed: performance.now(), heap: outcome(heap), cpu: outcome(cpu) });
