@@ -61,6 +61,14 @@ six times. Corrections use the actual alternate index and six distinct identitie
 No product change was required. The first failure log and exact test inputs are retained,
 along with the successful second focused run and full suite.
 
+Both initial CI events at `65e9eee` have 1,044 passes and one failure each: a later
+documentation edit changed the frozen Task 126 API contract after local tests ran.
+The contract is restored byte for byte; the v2 extension is now a
+[separate document](../../loredock/NATIVE_QUESTION_FORMAT.md). All nine affected API
+tests pass after this documentation-only correction. Both complete failed CI logs
+and the exact changed/restored document inputs are retained. No product, test,
+historical manifest or acceptance threshold is changed to bypass the failure.
+
 An independent review opens copies of all eight stopped catalogs, verifying integrity,
 foreign keys, saved hashes, 494 original-span checks, 34 source files, twelve Git
 identities, seventy HTTP responses and five session redactions. It independently

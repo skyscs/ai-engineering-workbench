@@ -785,6 +785,7 @@ New prepared inputs share repeated relationship details within the reviewed cont
 so some previously oversized complete paths now fit. No source passage or warning is
 removed. Existing saved answers keep their original input and prompt; no migration or
 regeneration is needed. Larger paths can still produce the explicit size omission.
+See the [format compatibility contract](NATIVE_QUESTION_FORMAT.md) for version details.
 
 A cancelled runtime may need to finish cleanup before another operation can start.
 If witness capacity is full, existing answers are retained: all 64 records, including

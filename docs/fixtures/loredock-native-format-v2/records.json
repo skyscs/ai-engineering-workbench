@@ -66,6 +66,14 @@
       "inventorySha256": "ea3247b275b4d90b70441eb56bffd706d52cda659fd91980b669d0da8a0ddafd",
       "entries": 8,
       "source": "/home/toshiba/aew/task133-native-review-inputs"
+    },
+    {
+      "path": "native-ci-correction-inputs.tar.gz",
+      "sha256": "5537431f0ec67c60e2e049db276631b84a4b0db6c88881b0e2b09a75caf952a5",
+      "inventory": "native-ci-correction-inputs.inventory.json.gz",
+      "inventorySha256": "10a6bc592596cca6d517da1ee2cb6fa0674b6b07c1ca99f08bab4590a3b32c34",
+      "entries": 5,
+      "source": "/home/toshiba/aew/task133-native-ci-correction-inputs"
     }
   ],
   "logs": [
@@ -152,6 +160,24 @@
       "archiveSha256": "66cd939d456ab5af9741e7a4c5ddc279aa0d4c0513869ca969848fbf3929afd7",
       "rawBytes": 591229,
       "rawSha256": "7e68b536a2845e3968fe88d9e0c5934e05e3c9d204652a7cf08d88de88539b40"
+    },
+    {
+      "path": "native-ci-push-first.log.gz",
+      "archiveSha256": "f6efb3cd9584a7e353fa69b8c82c138696783ccde751f3fbd51c4ca4fa67bd71",
+      "rawBytes": 587261,
+      "rawSha256": "274941f49bbc9d5abddf769c2cd35b580ddd04a12fc410c1e75698248f33e0c3"
+    },
+    {
+      "path": "native-ci-pr-first.log.gz",
+      "archiveSha256": "73ec39ad5d412698507f0b2591ff94844f563f027a384e986a0d849dd9afe437",
+      "rawBytes": 588260,
+      "rawSha256": "bd6d4e1f934caaba2cb4d78bf231041d8ca15cd3eaa2e4b8b83c347265641109"
+    },
+    {
+      "path": "native-api-after-ci.log.gz",
+      "archiveSha256": "cf29af4f26140c6ea6b5db2a21527984c4d9b4135b060dafcaf81f19f62a911b",
+      "rawBytes": 2610,
+      "rawSha256": "651fc53a1833bb3347ae1d1e3d1b4e3b3deff0284668bc96af40b9ddba1b5679"
     }
   ],
   "retention": {
@@ -250,5 +276,16 @@
         "maxSampledHeapBytes": 37413096
       }
     ]
+  },
+  "initialCi": {
+    "head": "65e9eee29f3a28acc340de566ed7d8db1beab34d",
+    "push": 42120037324,
+    "pullRequest": 42120048796,
+    "passedEach": 1044,
+    "failedEach": 1,
+    "reason": "A post-test documentation edit changed the frozen API contract. Restored exact bytes and moved v2 extension to a separate document.",
+    "productChanged": false,
+    "affectedLocalTests": 9,
+    "affectedLocalFailures": 0
   }
 }

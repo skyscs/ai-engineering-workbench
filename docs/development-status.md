@@ -20,6 +20,9 @@ The independent stopped-copy review checks eight catalogs, 494 original spans, 3
 twelve Git identities and seventy HTTP responses. No real model or corporate source is used.
 All 1,045 local tests, strict types and production build pass. The first two test-fixture
 failures are retained with their input bytes; neither required a product change.
+Initial CI also caught a later documentation edit to the frozen API contract. Its
+exact bytes are restored and the format extension is documented separately; the
+nine affected tests pass. Both failed CI logs are retained before final checks.
 
 [Complete evidence](fixtures/loredock-native-format-v2/README.md) keeps both first runs,
 the source/runtime snapshots and all stopped copies. Startup raw gaps still exceed
