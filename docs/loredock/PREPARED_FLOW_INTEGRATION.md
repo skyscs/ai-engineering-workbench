@@ -5,6 +5,13 @@ the frozen [qualification contract](PREPARED_FLOW_QUALIFICATION.md), an executio
 a qualification result or permission to run models. No reserved candidate observation
 has occurred. Development continues on ordinary synthetic inputs.
 
+The [first ordinary ordered run](../fixtures/loredock-prepared-flow-matrix-integration/README.md)
+now exercises all fifteen case groups: eleven fail and four remain incomplete. The
+assembly, fixed catalog declarations and per-case assessments exist. The small ordinary
+input is twelve files; the separate 10,000-file input retains its partial-analysis
+failure and missing dependent operations. This run does not close the coverage gaps
+below or replace the final reserved execution seal.
+
 ## Fixed case assembly
 
 Use the existing [coordinator](../../scripts/loredock-prepared-flow/coordinator.mjs)

@@ -1,0 +1,1046 @@
+{
+  "schemaVersion": "prepared-flow-matrix-integration-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "trees": [
+    {
+      "path": "matrix-first.tar.gz",
+      "sha256": "497a546f7c5430b73eb7860b635a31395f2bb9914c8ace899cf5de8dadd07300",
+      "inventory": "matrix-first.inventory.json.gz",
+      "inventorySha256": "05caa2350e6cc0f927e00801b8127a550a06fadf61cd84faf8a0b2b942910219",
+      "entries": 31447,
+      "source": "/home/toshiba/aew/task128-matrix-first",
+      "excludedFromArchive": [
+        "run/matrix/R05-browser-polling/history-20/browser/profile (temporary Chrome profile/cache; original retained locally)",
+        "run/matrix/R05-browser-polling/history-64/browser/profile (temporary Chrome profile/cache; original retained locally)",
+        "run/matrix/R06-expiry/expiry/browser/profile (temporary Chrome profile/cache; original retained locally)",
+        "run/matrix/R08-network-replay/edit/browser/profile (temporary Chrome profile/cache; original retained locally)",
+        "run/matrix/R08-network-replay/lost/browser/profile (temporary Chrome profile/cache; original retained locally)",
+        "run/matrix/R11-authority-fences/browser-history/browser/profile (temporary Chrome profile/cache; original retained locally)",
+        "run/matrix/R11-authority-fences/browser-preparation/browser/profile (temporary Chrome profile/cache; original retained locally)",
+        "run/matrix/R12-revocation/browser/browser/profile (temporary Chrome profile/cache; original retained locally)"
+      ]
+    },
+    {
+      "path": "matrix-first-inputs.tar.gz",
+      "sha256": "f8d7f095fa29c9b254134065a3c17599f5ad3368f80efcfaa7aa6370153b6dec",
+      "inventory": "matrix-first-inputs.inventory.json.gz",
+      "inventorySha256": "cc0ac45461838777a20e39c8cc9899b80b324bb48c7cb886bb6a6afc0ce7c112",
+      "entries": 10,
+      "source": "/home/toshiba/aew/task128-matrix-first-inputs"
+    },
+    {
+      "path": "matrix-integration-retention.tar.gz",
+      "sha256": "c2c1dcdac5457a549c3f4c8ace975c46f81d4f7508c95d217332365253f01532",
+      "inventory": "matrix-integration-retention.inventory.json.gz",
+      "inventorySha256": "af23f21dc9bfe5886e23c645e9b39946c6a155c52dd578a62ffc74f6cc4640db",
+      "entries": 222,
+      "source": "/home/toshiba/aew/task128-matrix-integration-retention"
+    },
+    {
+      "path": "matrix-integration-owner-assessment.tar.gz",
+      "sha256": "48664863f82b0e3f863f6f1d6d62adbb7a0fd115e19885dd18d5d0b2b7c4f47f",
+      "inventory": "matrix-integration-owner-assessment.inventory.json.gz",
+      "inventorySha256": "c74bd6947f68a531ba54d18856f75d5606d96c4c2a21c0d8a49e632eed549c2f",
+      "entries": 1,
+      "source": "/home/toshiba/aew/task128-matrix-integration-owner-assessment"
+    },
+    {
+      "path": "matrix-integration-inputs.tar.gz",
+      "sha256": "f75498d232df51876c858f21dc81560b76e0216f3bf838e835b0a867022983ae",
+      "inventory": "matrix-integration-inputs.inventory.json.gz",
+      "inventorySha256": "a23fa5af307053cf9e26136b07b71ed0dfe419a19b69d8613d7d978f83481556",
+      "entries": 77,
+      "source": "/home/toshiba/aew/task128-matrix-integration-inputs"
+    },
+    {
+      "path": "matrix-integration-static-inputs.tar.gz",
+      "sha256": "1ca99c34e6f2bd169a8fceae72bac756456249e5ccb593e577e42e9a98947a7e",
+      "inventory": "matrix-integration-static-inputs.inventory.json.gz",
+      "inventorySha256": "94f6e44bde3013c5202f231708043cd2b44f729376e3ca26e23f9f71c5d43d25",
+      "entries": 2,
+      "source": "/home/toshiba/aew/task128-matrix-integration-static-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "matrix-first.log.gz",
+      "archiveSha256": "8ae849bb52481973cb6546fbc3095f94cb1e8550545b5d39c6d7598b601cc6bc",
+      "rawBytes": 255768,
+      "rawSha256": "51bc302b80eede7f58bfb5754725743cf278d457f4a30cad056e43c8313f2b57"
+    },
+    {
+      "path": "matrix-install.log.gz",
+      "archiveSha256": "f4695782fbcaee38f9814c5a6fa1c6e517bffb98b72d8adb8f4a9985c67bc60a",
+      "rawBytes": 326,
+      "rawSha256": "0f50aafe118eb8029a3c5a20a093d23b382b1b18fd0955ad961fbc1d68669474"
+    },
+    {
+      "path": "matrix-build.log.gz",
+      "archiveSha256": "8358dabcdbfa560aa8bdd233cafe4a95afc7cdb028a6e29bfefbbb418c1b50c1",
+      "rawBytes": 2358,
+      "rawSha256": "78d084e8255a53581dc174408aa47374d1439faa5efd136295e9f93a2c631332"
+    },
+    {
+      "path": "matrix-tests-first.log.gz",
+      "archiveSha256": "2f0010881f42d4b98457c061a5cdfc473d856cbefee29e7104665e3a7b27a1cd",
+      "rawBytes": 3848,
+      "rawSha256": "4802068068094b865acd7c307db3428135c785e9db75daec44bb6f1e35b6e10e"
+    },
+    {
+      "path": "matrix-seal-first.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "matrix-integration-retention.log.gz",
+      "archiveSha256": "9da9af50fe07a475426d9f96761f316b59cd35070457a2fd9fdd7b5c5ada3354",
+      "rawBytes": 4328,
+      "rawSha256": "da39f30918332fe456a69886ad3276a4af7acbdee43ea9e0bcef192d46fc0d00"
+    },
+    {
+      "path": "matrix-integration-owner-assessment.log.gz",
+      "archiveSha256": "8abb9838f62ec613257545687218eb85a76f9c39a52fe53d5c27fabee65792e6",
+      "rawBytes": 1088,
+      "rawSha256": "6d8c12152618ebfac2a583b6c451e2571529a5f87462b7373e06ba76ae1a26f7"
+    },
+    {
+      "path": "matrix-integration-static-first.log.gz",
+      "archiveSha256": "574729ff4c6eab3f5971b6d207f4d57b3436117d79c6a93a31efa35fd936c788",
+      "rawBytes": 208,
+      "rawSha256": "d3c7869ac21450b59a38a313e6151ff514dcdcf993cf42556e17040a32eed1e8"
+    }
+  ],
+  "base": "c14f06177e0d0602cf52a5c016f486dd2659802f",
+  "retention": {
+    "resourceQualification": false,
+    "modelCalls": 0,
+    "reservedFamilyReads": 0,
+    "cases": [
+      {
+        "id": "R01-representative-cold",
+        "status": "failed",
+        "details": {
+          "steps": 1,
+          "failures": 1,
+          "incomplete": 2,
+          "reason": null,
+          "resourceQualification": false
+        },
+        "reason": null
+      },
+      {
+        "id": "R02-near-limit-cold",
+        "status": "failed",
+        "details": {
+          "steps": 1,
+          "failures": 3,
+          "incomplete": 3,
+          "reason": null,
+          "resourceQualification": false
+        },
+        "reason": null
+      },
+      {
+        "id": "R03-fixed-warm-flow",
+        "status": "failed",
+        "details": {
+          "steps": 1,
+          "failures": 1,
+          "incomplete": 2,
+          "reason": null,
+          "resourceQualification": false
+        },
+        "reason": null
+      },
+      {
+        "id": "R04-history-capacity",
+        "status": "failed",
+        "details": {
+          "steps": 1,
+          "failures": 4,
+          "incomplete": 1,
+          "reason": null,
+          "resourceQualification": false
+        },
+        "reason": null
+      },
+      {
+        "id": "R05-browser-polling",
+        "status": "failed",
+        "details": {
+          "steps": 2,
+          "failures": 8,
+          "incomplete": 1,
+          "reason": null,
+          "resourceQualification": false
+        },
+        "reason": null
+      },
+      {
+        "id": "R06-expiry",
+        "status": "failed",
+        "details": {
+          "steps": 1,
+          "failures": 3,
+          "incomplete": 3,
+          "reason": null,
+          "resourceQualification": false
+        },
+        "reason": null
+      },
+      {
+        "id": "R07-cancel",
+        "status": "incomplete",
+        "details": {
+          "steps": 3,
+          "failures": 0,
+          "incomplete": 1,
+          "reason": null,
+          "resourceQualification": false
+        },
+        "reason": null
+      },
+      {
+        "id": "R08-network-replay",
+        "status": "incomplete",
+        "details": {
+          "steps": 2,
+          "failures": 0,
+          "incomplete": 1,
+          "reason": null,
+          "resourceQualification": false
+        },
+        "reason": null
+      },
+      {
+        "id": "R09-restart",
+        "status": "failed",
+        "details": {
+          "steps": 3,
+          "failures": 2,
+          "incomplete": 1,
+          "reason": null,
+          "resourceQualification": false
+        },
+        "reason": null
+      },
+      {
+        "id": "R10-inventory-eviction",
+        "status": "failed",
+        "details": {
+          "steps": 1,
+          "failures": 2,
+          "incomplete": 1,
+          "reason": null,
+          "resourceQualification": false
+        },
+        "reason": null
+      },
+      {
+        "id": "R11-authority-fences",
+        "status": "incomplete",
+        "details": {
+          "steps": 12,
+          "failures": 0,
+          "incomplete": 1,
+          "reason": null,
+          "resourceQualification": false
+        },
+        "reason": null
+      },
+      {
+        "id": "R12-revocation",
+        "status": "failed",
+        "details": {
+          "steps": 3,
+          "failures": 1,
+          "incomplete": 1,
+          "reason": null,
+          "resourceQualification": false
+        },
+        "reason": null
+      },
+      {
+        "id": "R13-original-integrity",
+        "status": "incomplete",
+        "details": {
+          "steps": 2,
+          "failures": 0,
+          "incomplete": 1,
+          "reason": null,
+          "resourceQualification": false
+        },
+        "reason": null
+      },
+      {
+        "id": "R14-oracle-preconditions",
+        "status": "failed",
+        "details": {
+          "steps": 10,
+          "failures": 11,
+          "incomplete": 1,
+          "reason": null,
+          "resourceQualification": false
+        },
+        "reason": null
+      },
+      {
+        "id": "R15-accounting",
+        "status": "failed",
+        "details": {
+          "steps": 3,
+          "failures": 2,
+          "incomplete": 4,
+          "reason": null,
+          "resourceQualification": false
+        },
+        "reason": null
+      }
+    ],
+    "catalogs": [
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R01-representative-cold/cold/checkpoint",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R01-representative-cold/cold/checkpoint",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 0,
+        "purged": 0,
+        "witnessBytes": 0,
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R01-representative-cold/cold/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R01-representative-cold/cold/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 0,
+        "purged": 0,
+        "witnessBytes": 0,
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R02-near-limit-cold/cold/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R02-near-limit-cold/cold/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 0,
+        "purged": 0,
+        "witnessBytes": 0,
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R03-fixed-warm-flow/representative/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R03-fixed-warm-flow/representative/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 3,
+        "purged": 0,
+        "witnessBytes": 199008,
+        "answerStates": [
+          [
+            "succeeded",
+            3
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R04-history-capacity/capacity/checkpoint-20",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R04-history-capacity/capacity/checkpoint-20",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 20,
+        "purged": 0,
+        "witnessBytes": 1326720,
+        "answerStates": [
+          [
+            "succeeded",
+            20
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R04-history-capacity/capacity/checkpoint-64",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R04-history-capacity/capacity/checkpoint-64",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 64,
+        "purged": 0,
+        "witnessBytes": 4245504,
+        "answerStates": [
+          [
+            "succeeded",
+            64
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R04-history-capacity/capacity/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R04-history-capacity/capacity/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 64,
+        "purged": 0,
+        "witnessBytes": 4245504,
+        "answerStates": [
+          [
+            "succeeded",
+            64
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R05-browser-polling/history-20/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R05-browser-polling/history-20/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 20,
+        "purged": 0,
+        "witnessBytes": 1326720,
+        "answerStates": [
+          [
+            "succeeded",
+            20
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R05-browser-polling/history-64/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R05-browser-polling/history-64/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 64,
+        "purged": 0,
+        "witnessBytes": 4245504,
+        "answerStates": [
+          [
+            "succeeded",
+            64
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R06-expiry/expiry/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R06-expiry/expiry/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 0,
+        "purged": 0,
+        "witnessBytes": 0,
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R07-cancel/preparation/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R07-cancel/preparation/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 0,
+        "purged": 0,
+        "witnessBytes": 0,
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R07-cancel/provider/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R07-cancel/provider/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 0,
+        "witnessBytes": 66336,
+        "answerStates": [
+          [
+            "cancelled",
+            1
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R07-cancel/shutdown/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R07-cancel/shutdown/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 0,
+        "witnessBytes": 66336,
+        "answerStates": [
+          [
+            "interrupted",
+            1
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R07-cancel/shutdown/interrupted-checkpoint",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R07-cancel/shutdown/interrupted-checkpoint",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 0,
+        "witnessBytes": 66336,
+        "answerStates": [
+          [
+            "interrupted",
+            1
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R08-network-replay/edit/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R08-network-replay/edit/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 0,
+        "purged": 0,
+        "witnessBytes": 0,
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R08-network-replay/lost/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R08-network-replay/lost/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 0,
+        "witnessBytes": 66336,
+        "answerStates": [
+          [
+            "succeeded",
+            1
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R08-network-replay/lost/history-checkpoint",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R08-network-replay/lost/history-checkpoint",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 0,
+        "witnessBytes": 66336,
+        "answerStates": [
+          [
+            "succeeded",
+            1
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R09-restart/history-20/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R09-restart/history-20/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 20,
+        "purged": 0,
+        "witnessBytes": 1326720,
+        "answerStates": [
+          [
+            "succeeded",
+            20
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R09-restart/history-64/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R09-restart/history-64/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 64,
+        "purged": 0,
+        "witnessBytes": 4245504,
+        "answerStates": [
+          [
+            "succeeded",
+            64
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R09-restart/interrupted/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R09-restart/interrupted/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 0,
+        "witnessBytes": 66336,
+        "answerStates": [
+          [
+            "interrupted",
+            1
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R10-inventory-eviction/eviction/before-reopen",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R10-inventory-eviction/eviction/before-reopen",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 0,
+        "witnessBytes": 66336,
+        "answerStates": [
+          [
+            "succeeded",
+            1
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R10-inventory-eviction/eviction/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R10-inventory-eviction/eviction/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 0,
+        "witnessBytes": 66336,
+        "answerStates": [
+          [
+            "succeeded",
+            1
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R11-authority-fences/alternative/checkpoint",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R11-authority-fences/alternative/checkpoint",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 0,
+        "purged": 0,
+        "witnessBytes": 0,
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R11-authority-fences/alternative/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R11-authority-fences/alternative/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 0,
+        "purged": 0,
+        "witnessBytes": 0,
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R11-authority-fences/before-dispatch-policy/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R11-authority-fences/before-dispatch-policy/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 0,
+        "witnessBytes": 66336,
+        "answerStates": [
+          [
+            "fenced",
+            1
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R11-authority-fences/before-dispatch-published-build/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R11-authority-fences/before-dispatch-published-build/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 0,
+        "witnessBytes": 66336,
+        "answerStates": [
+          [
+            "failed",
+            1
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R11-authority-fences/before-dispatch-review/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R11-authority-fences/before-dispatch-review/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 0,
+        "witnessBytes": 66336,
+        "answerStates": [
+          [
+            "failed",
+            1
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R11-authority-fences/before-publication-policy/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R11-authority-fences/before-publication-policy/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 0,
+        "witnessBytes": 66336,
+        "answerStates": [
+          [
+            "fenced",
+            1
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R11-authority-fences/before-publication-published-build/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R11-authority-fences/before-publication-published-build/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 0,
+        "witnessBytes": 66336,
+        "answerStates": [
+          [
+            "failed",
+            1
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R11-authority-fences/before-publication-review/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R11-authority-fences/before-publication-review/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 0,
+        "witnessBytes": 66336,
+        "answerStates": [
+          [
+            "failed",
+            1
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R11-authority-fences/browser-history/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R11-authority-fences/browser-history/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 0,
+        "witnessBytes": 66336,
+        "answerStates": [
+          [
+            "succeeded",
+            1
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R11-authority-fences/browser-preparation/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R11-authority-fences/browser-preparation/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 0,
+        "purged": 0,
+        "witnessBytes": 0,
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R11-authority-fences/first-preflight-policy/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R11-authority-fences/first-preflight-policy/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 0,
+        "witnessBytes": 66336,
+        "answerStates": [
+          [
+            "fenced",
+            1
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R11-authority-fences/first-preflight-published-build/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R11-authority-fences/first-preflight-published-build/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 0,
+        "witnessBytes": 66336,
+        "answerStates": [
+          [
+            "failed",
+            1
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R11-authority-fences/first-preflight-review/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R11-authority-fences/first-preflight-review/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 0,
+        "witnessBytes": 66336,
+        "answerStates": [
+          [
+            "failed",
+            1
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R12-revocation/browser/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R12-revocation/browser/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 1,
+        "witnessBytes": 0,
+        "answerStates": [
+          [
+            "fenced",
+            1
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R12-revocation/pending/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R12-revocation/pending/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 64,
+        "purged": 64,
+        "witnessBytes": 0,
+        "answerStates": [
+          [
+            "fenced",
+            64
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R12-revocation/pending/pending-checkpoint",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R12-revocation/pending/pending-checkpoint",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 64,
+        "purged": 0,
+        "witnessBytes": 4245504,
+        "answerStates": [
+          [
+            "succeeded",
+            64
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R12-revocation/revocation/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R12-revocation/revocation/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 64,
+        "purged": 64,
+        "witnessBytes": 0,
+        "answerStates": [
+          [
+            "fenced",
+            64
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R13-original-integrity/corrupt/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R13-original-integrity/corrupt/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 0,
+        "witnessBytes": 66336,
+        "answerStates": [
+          [
+            "failed",
+            1
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R13-original-integrity/missing/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R13-original-integrity/missing/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 0,
+        "witnessBytes": 66336,
+        "answerStates": [
+          [
+            "failed",
+            1
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R14-oracle-preconditions/D01-complete-path/case/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R14-oracle-preconditions/D01-complete-path/case/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 0,
+        "purged": 0,
+        "witnessBytes": 0,
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R14-oracle-preconditions/D02-ambiguous-actions/case/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R14-oracle-preconditions/D02-ambiguous-actions/case/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 0,
+        "purged": 0,
+        "witnessBytes": 0,
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R14-oracle-preconditions/D03-consumer-gap/case/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R14-oracle-preconditions/D03-consumer-gap/case/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 0,
+        "purged": 0,
+        "witnessBytes": 0,
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R14-oracle-preconditions/D04-dynamic-topic/case/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R14-oracle-preconditions/D04-dynamic-topic/case/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 0,
+        "purged": 0,
+        "witnessBytes": 0,
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R14-oracle-preconditions/D05-empty-handler/case/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R14-oracle-preconditions/D05-empty-handler/case/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 0,
+        "purged": 0,
+        "witnessBytes": 0,
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R14-oracle-preconditions/D06-header-mismatch/case/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R14-oracle-preconditions/D06-header-mismatch/case/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 0,
+        "purged": 0,
+        "witnessBytes": 0,
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R14-oracle-preconditions/D07-no-analysis/case/catalog-only-checkpoint",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R14-oracle-preconditions/D07-no-analysis/case/catalog-only-checkpoint",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 0,
+        "purged": 0,
+        "witnessBytes": 0,
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R14-oracle-preconditions/D07-no-analysis/case/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R14-oracle-preconditions/D07-no-analysis/case/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 0,
+        "purged": 0,
+        "witnessBytes": 0,
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R14-oracle-preconditions/D08-unknown-deployment/case/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R14-oracle-preconditions/D08-unknown-deployment/case/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 0,
+        "purged": 0,
+        "witnessBytes": 0,
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R14-oracle-preconditions/D09-human-note/case/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R14-oracle-preconditions/D09-human-note/case/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 0,
+        "purged": 0,
+        "witnessBytes": 0,
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R14-oracle-preconditions/D10-untrusted-source/case/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R14-oracle-preconditions/D10-untrusted-source/case/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 0,
+        "purged": 0,
+        "witnessBytes": 0,
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R15-accounting/representative-list-20/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R15-accounting/representative-list-20/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 20,
+        "purged": 0,
+        "witnessBytes": 1326720,
+        "answerStates": [
+          [
+            "succeeded",
+            20
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R15-accounting/representative-list-64/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R15-accounting/representative-list-64/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 64,
+        "purged": 0,
+        "witnessBytes": 4245504,
+        "answerStates": [
+          [
+            "succeeded",
+            64
+          ]
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-matrix-first/run/matrix/R15-accounting/representative-worker/data",
+        "copy": "/home/toshiba/aew/task128-matrix-integration-retention/run/matrix/R15-accounting/representative-worker/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "rows": 1,
+        "purged": 0,
+        "witnessBytes": 66336,
+        "answerStates": [
+          [
+            "succeeded",
+            1
+          ]
+        ]
+      }
+    ],
+    "sourceGitIdentities": 104,
+    "sourceFiles": 10233,
+    "httpResponses": 1700,
+    "httpFailures": 0,
+    "redactedSessions": 50,
+    "browserBodies": 3469,
+    "browserSessions": 10,
+    "controlledCalls": 75,
+    "rawInputsUnchanged": true,
+    "entries": 33062,
+    "caseStarts": 15,
+    "declaredCatalogRoots": 63,
+    "observedCatalogRoots": 55,
+    "ownerElapsedMs": 1067919.32760505,
+    "ownerPeakBytes": 549341521
+  }
+}

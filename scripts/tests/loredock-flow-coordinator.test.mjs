@@ -52,6 +52,16 @@ test('a failed positive stays failed while only explicitly independent cases run
   assert.equal(calls.length, 13); assert.equal(report.cases.length, 15);
 });
 
+test('a handler can record an unavailable functional prerequisite without granting dependency credit', async t => {
+  const input = await fixture(t), handlers = cases(async ({ directory, index }) => ({ ...await result(directory, index === 0 ? 'not-run' : 'passed'),
+    details: index === 0 ? { reason: 'The required stopped functional artifact is unavailable.' } : null }));
+  handlers[1].requires = [resourceCaseOrder[0]];
+  const report = await coordinateOrdinary({ ...input, cases: handlers });
+  assert.equal(report.cases[0].status, 'not-run'); assert(report.cases[0].details.reason);
+  assert.equal(report.cases[1].reason, 'dependency-failed'); assert.equal(report.cases[2].status, 'passed');
+  assert.equal(report.allCasesPassed, false); assert.equal(report.modelEligibility, false);
+});
+
 test('an unclassified exception or missing evidence stops later callbacks without inventing passes', async t => {
   for (const failure of ['missing', 'exception', 'unsafe']) {
     const input = await fixture(t); let calls = 0;
