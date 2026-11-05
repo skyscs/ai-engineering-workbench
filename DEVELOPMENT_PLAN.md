@@ -500,8 +500,15 @@ v1 answers and their prompts remain exact; one controlled v2 answer passes resta
 replay, browser display and source purge. These ordinary controls repair the observed
 size failure without increasing limits. Startup, near-limit heap and browser RSS remain
 unresolved; repaired qualification needs a new prospective family.
-After exact-head checks and merge, [Task 134](tasks/134-loredock-browser-memory-attribution.md)
-attributes the retained browser RSS excess before choosing any further change.
+[Task 134](tasks/134-loredock-browser-memory-attribution.md) attributes the browser
+excess without changing application bytes. Fresh thirty-second controls all fail raw
+summed RSS, including a blank browser at 1.312 GB; UI controls reach 1.384–1.387 GB.
+The current browser environment therefore fails the existing ceiling independently
+of loading LoreDock. Diagnostic PSS and process roles do not replace that gate or prove
+an application leak. Future browser qualification needs an explicit environment/contract
+decision; no limit is relaxed and no default is activated.
+After exact-head checks and merge, [Task 135](tasks/135-loredock-compiler-isolation-design.md)
+designs owned compiler isolation for the separately measured daemon startup pause.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation

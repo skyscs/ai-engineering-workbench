@@ -1,6 +1,9 @@
 # Task 134 — Attribute browser process-tree memory
 
-Status: scoped after Task 133; begin after both exact-head CI events and identical-tree merge.
+Status: first retained and prospective attribution complete; all three raw RSS controls
+fail, including the blank browser. No product fix is justified by this observation.
+Awaiting exact-head CI and merge. See the
+[retained result](../docs/fixtures/loredock-browser-memory/README.md).
 
 ## Evidence and objective
 
