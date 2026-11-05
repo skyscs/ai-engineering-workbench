@@ -2,9 +2,9 @@
 
 ## Task 128 — Complete-flow resource driver (in progress)
 
-Latest accepted checkpoint: [PR #142](https://github.com/skyscs/ai-engineering-workbench/pull/142)
-at merge `f438904`. The next reusable expiry case passes two focused bounds controls and
-two real ten-minute DOM-expiry observations; both final-head CI events remain required.
+Latest accepted checkpoint: [PR #143](https://github.com/skyscs/ai-engineering-workbench/pull/143)
+at merge `9acd1f3`. The next reusable cancellation/reopen cases pass one focused integrity
+control and an actual ordered ordinary observation; both final-head CI events remain required.
 The reserved family has zero candidate reads; no model runs.
 Known ordinary failures include partial analysis of constant-only padding, a missing
 required native positive at the derived-size limit, aggregate list work, browser RSS and
@@ -181,7 +181,28 @@ and two complete catalog copies pass integrity/foreign-key checks with zero answ
 Browser RSS still exceeds 1 GiB, raw daemon gaps still exceed 100 ms, and the final browser
 observation retains one incomplete sample. These are functional controls, not resource
 acceptance. Focused tests, script syntax, production builds and the unchanged original
-seal pass locally; both full final-head CI events remain required for this checkpoint.
+seal pass locally. Both exact-head CI events pass for
+[PR #143](https://github.com/skyscs/ai-engineering-workbench/pull/143): push 42021909024 and
+pull_request 42021916122 pass 981 tests at `9cb7ea0`; merge `9acd1f3` has the identical tree.
+
+The next [cancellation/reopen cases](fixtures/loredock-prepared-flow-cancel-reopen/README.md)
+accept a complete stopped checkpoint and question. Active preparation cancellation
+records its open budget at HTTP completion, then the actual cancellation error and
+closure. Ready cancellation is the negative control. Provider cancellation and held
+shutdown each dispatch the controlled runtime once, retain late known usage and keep
+the result absent. Shutdown retains its checkpoint without restarting; a separate later
+case uses the production entry, preserves interrupted history and replays identical
+bytes without admitting another attempt. Fault provenance survives that restart and
+cannot become ordinary timing evidence. A focused integrity test rejects changed or
+unverified checkpoints before process launch.
+All five ordinary stages complete functionally; the run remains exit 1 because its
+base raw daemon gap is 311.397804 ms against 100 ms. Accounting/fault observations do not
+qualify timing. Seven complete copied catalogs pass integrity/foreign-key checks, exact
+context/witness/prompt comparisons and expected answer-state counts. All fifty HTTP
+bodies remain, including five explicitly redacted sessions; input trees stay unchanged.
+The focused test, production builds, script syntax and original seal pass locally.
+Both complete final-head CI events remain required. This is a subset for later ordered
+integration, not complete R01-R15 execution, qualification or permission to call a model.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request

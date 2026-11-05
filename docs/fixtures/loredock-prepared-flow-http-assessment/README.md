@@ -23,6 +23,14 @@ bytes inspected. The final execution seal remains responsible for authenticating
 complete executable/environment; these are trusted stopped ordinary artifact directories,
 not a sandbox against hostile concurrent filesystem mutation.
 
+Bootstrap flags alone cannot prove that no external fault occurred. A catalog copied
+from an interrupted/fault case or an externally intercepted HTTP response keeps that
+case's provenance even when the later daemon uses the production entry. Such an
+observation must remain excluded from resource timing. This assessor authenticates the
+recorded lane, not an absence of unrecorded SQL/CDP interventions; the final case manifest
+and execution seal must bind that wider history. Historical process records are not
+rewritten to imply stronger evidence.
+
 ## Offline observations
 
 The [read-only runner](../../../scripts/loredock-prepared-flow/reassess-retained-http.mjs)

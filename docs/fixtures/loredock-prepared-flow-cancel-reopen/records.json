@@ -1,0 +1,192 @@
+{
+  "schemaVersion": "prepared-flow-cancel-reopen-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "focusedTests": 1,
+  "trees": [
+    {
+      "path": "cancel-reopen-first.tar.gz",
+      "sha256": "2e7c13da2a6f4efbd6b1f9f5eb8d6d370e0198351db33c0b81edf3612dcb4499",
+      "inventory": "cancel-reopen-first.inventory.json.gz",
+      "inventorySha256": "0fd76ce65c7481eca3c3a5eae35818e7b704f5771a6c5ef4f4ea0715c8f6d10f",
+      "entries": 205,
+      "source": "/home/toshiba/aew/task128-cancel-reopen-first"
+    },
+    {
+      "path": "cancel-reopen-retention.tar.gz",
+      "sha256": "9ba911709979ac4161e5ed7d164a36eb1120a5b7b68aeeefa5a4327b621923e0",
+      "inventory": "cancel-reopen-retention.inventory.json.gz",
+      "inventorySha256": "7aa7c2a5e5d95ab7e0379107cf73af58668313ace7c9c24feaed3eb421469161",
+      "entries": 29,
+      "source": "/home/toshiba/aew/task128-cancel-reopen-retention"
+    },
+    {
+      "path": "cancel-reopen-focused-1.tar.gz",
+      "sha256": "ead5ee2d492d001b63640d5dc3b4adc12abb255023afeb1382b459643dec39cc",
+      "inventory": "cancel-reopen-focused-1.inventory.json.gz",
+      "inventorySha256": "7df19fdd80ab8efd5e7725a85360745559e8e7b02d7d5c3b00be3bc699ebe3ac",
+      "entries": 3,
+      "source": "/tmp/loredock-cancellation-checkpoint-jR6cDP"
+    },
+    {
+      "path": "cancel-reopen-inputs.tar.gz",
+      "sha256": "2345b8f726991bbe78c08c75607fca911add00a289072468e3c0a1c1264a3364",
+      "inventory": "cancel-reopen-inputs.inventory.json.gz",
+      "inventorySha256": "3fd93a7d065d8f5120cf4bf77a6a654ff2824c297fd571e329cf4aeb91a74041",
+      "entries": 6,
+      "source": "/home/toshiba/aew/task128-cancel-reopen-inputs"
+    },
+    {
+      "path": "cancel-reopen-static-inputs.tar.gz",
+      "sha256": "fa560440a23f1a49d4d29b56985660941c7949916217c635de9ef884d46a33a0",
+      "inventory": "cancel-reopen-static-inputs.inventory.json.gz",
+      "inventorySha256": "8eea55aa1090505802b305b13ab79443a1d44703970a8409332d93af3c865e3c",
+      "entries": 1,
+      "source": "/home/toshiba/aew/task128-cancel-reopen-static-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "cancel-reopen-first.log.gz",
+      "archiveSha256": "ce9a3a83dbdf52c7a772fcf9e0364a9d3aafd85b6bc18bb7e468ee300f2b1b86",
+      "rawBytes": 3235,
+      "rawSha256": "ed0e0b09e3576d203860c46a412d1b869cfc8db52647f0ac9bcafb509ef8dc7d"
+    },
+    {
+      "path": "cancel-reopen-install.log.gz",
+      "archiveSha256": "d45830edb881e48601ae52ae1b290bcc409ac28f7ea7f7e53db57009cb27b616",
+      "rawBytes": 326,
+      "rawSha256": "6984bc69e432767a5dc8e80781c01195850c52204814d496e15432e84f66e2a6"
+    },
+    {
+      "path": "cancel-reopen-build.log.gz",
+      "archiveSha256": "541df75d7235199d6c103fec1e84bb650573f22162befd9b04d99b2db5a194aa",
+      "rawBytes": 2353,
+      "rawSha256": "231742c57f9fa6e53dbfe0bd903a53891c6e74876902c9d27ba75fee205cbe88"
+    },
+    {
+      "path": "cancel-reopen-focused.log.gz",
+      "archiveSha256": "c84fb6af7fc079fa988306f1ce3c6b75e8488a8975260af7281ac41ca4321d9c",
+      "rawBytes": 627,
+      "rawSha256": "1b07541d3e7a23299e27400497f87ebc9243df7a480836f83ea1298d1014449f"
+    },
+    {
+      "path": "cancel-reopen-retention.log.gz",
+      "archiveSha256": "13283c78acdb87a9b9cf737edbccab5ccc5a0d059bc292a7f9c8eb3c714d2f00",
+      "rawBytes": 2455,
+      "rawSha256": "26868311f2a1ac45875d73d569e2f0ce6c92400d17cebaf1be19161eb562105f"
+    },
+    {
+      "path": "cancel-reopen-seal-check.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "expiry-case-ci-push.log.gz",
+      "archiveSha256": "31f85a5907ba2ade44fcc567dd91ddf04b904700918903e02db3c64145dfbcef",
+      "rawBytes": 700403,
+      "rawSha256": "64fb059f968c12ced85b2d02a06912bd20ee73bcf8795ed518673861920f6b31"
+    },
+    {
+      "path": "expiry-case-ci-pr.log.gz",
+      "archiveSha256": "a8e36b103cb4a75d33ed25572cab9d63ed1d19dcde34fc067b3e3e070f915c11",
+      "rawBytes": 701533,
+      "rawSha256": "6f5cf6af937b55260d7c1807031247428456a56f7156c9cf5f3edede8f83c7db"
+    },
+    {
+      "path": "cancel-reopen-static-first.log.gz",
+      "archiveSha256": "c08c552e83613ff00264085be19a3c842f1d22a9af11fdbd82224fb309af04a8",
+      "rawBytes": 206,
+      "rawSha256": "bf5b2b9cd120a2e4d1a7d1bab179d32e58c215e8d28362185d6a9d2bdbcb1716"
+    }
+  ],
+  "acceptedExpiry": {
+    "pr": 143,
+    "head": "9cb7ea07e4e1b8de8c8479e362698f2af5818425",
+    "merge": "9acd1f3d3cd038a6f160d8c392c5e7916271c13d",
+    "push": 42021909024,
+    "pull_request": 42021916122,
+    "testsPerEvent": 981
+  },
+  "retention": {
+    "resourceQualification": false,
+    "modelCalls": 0,
+    "reservedFamilyReads": 0,
+    "catalogs": [
+      {
+        "source": "/home/toshiba/aew/task128-cancel-reopen-first/run/base/checkpoint",
+        "copy": "/home/toshiba/aew/task128-cancel-reopen-retention/base/checkpoint",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-cancel-reopen-first/run/base/data",
+        "copy": "/home/toshiba/aew/task128-cancel-reopen-retention/base/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-cancel-reopen-first/run/held-shutdown/data",
+        "copy": "/home/toshiba/aew/task128-cancel-reopen-retention/held-shutdown/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          "interrupted"
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-cancel-reopen-first/run/held-shutdown/interrupted-checkpoint",
+        "copy": "/home/toshiba/aew/task128-cancel-reopen-retention/held-shutdown/interrupted-checkpoint",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          "interrupted"
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-cancel-reopen-first/run/interrupted-reopen/data",
+        "copy": "/home/toshiba/aew/task128-cancel-reopen-retention/interrupted-reopen/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          "interrupted"
+        ]
+      },
+      {
+        "source": "/home/toshiba/aew/task128-cancel-reopen-first/run/preparation-cancel/data",
+        "copy": "/home/toshiba/aew/task128-cancel-reopen-retention/preparation-cancel/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": []
+      },
+      {
+        "source": "/home/toshiba/aew/task128-cancel-reopen-first/run/provider-cancel/data",
+        "copy": "/home/toshiba/aew/task128-cancel-reopen-retention/provider-cancel/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          "cancelled"
+        ]
+      }
+    ],
+    "httpBodies": 45,
+    "redactedSessions": 5,
+    "sourceRepositories": 4,
+    "rawInputsUnchanged": true,
+    "entries": 205,
+    "baseMetricFailures": [
+      {
+        "metric": "rawIntervalGapMs",
+        "value": 311.397804,
+        "limit": 100,
+        "passed": false
+      }
+    ],
+    "cancellationWork": 6438,
+    "separateProductionReopen": true
+  }
+}
