@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "prepared-flow-kernel-owner-probes/1",
+  "qualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "acceptedCheckpoint": {
+    "pullRequest": 132,
+    "head": "3469467ea7504b6f35748c838a2d47b19cca98b1",
+    "merge": "f59530782fd63c289c0daa50ae850cd19eed33f4",
+    "push": 41964013784,
+    "pull_request": 41964018496,
+    "testsPerEvent": 948
+  },
+  "trees": [
+    {
+      "path": "subreaper-probe.tar.gz",
+      "sha256": "873432bfd87c79a51d1030ae29e89773754023f84605214907d1bc70ec7e09e3",
+      "files": {
+        "child.js": {
+          "bytes": 204,
+          "sha256": "28f86e16da6d59a38d7fd7e6647a0e97ead2c953912e25496815bb8c756ee8fa"
+        },
+        "probe.py": {
+          "bytes": 1967,
+          "sha256": "7654c8f365c6dfc56bb278d29170f708035ad9481a27197324de7aca6eb1fa52"
+        },
+        "result.json": {
+          "bytes": 381,
+          "sha256": "c2dabf1b2a2cd8ea73e1bb35112cd717a6107ba42e4ae281f1e9462f2e6607ce"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.log": {
+          "bytes": 16,
+          "sha256": "113a3c1b72f7640376cf0d4c7deb673ad99fc7bd8c7673dc27a13835a8d43b6d"
+        }
+      }
+    },
+    {
+      "path": "subreaper-pidfd-probe.tar.gz",
+      "sha256": "17d36916a866fb237cc398272420a7578bfd2b47808ca2c5f26b30a51ecebc0f",
+      "files": {
+        "child.js": {
+          "bytes": 204,
+          "sha256": "28f86e16da6d59a38d7fd7e6647a0e97ead2c953912e25496815bb8c756ee8fa"
+        },
+        "probe.py": {
+          "bytes": 2179,
+          "sha256": "c7294aac4ec5aaa143686442ec626826b1539047731c19cc54ffe10d65922222"
+        },
+        "result.json": {
+          "bytes": 431,
+          "sha256": "1ca7a0ea273e7e8bf6acdccaffa2153d5b4ddfd85235e4fedeb0626a6c2a715c"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.log": {
+          "bytes": 16,
+          "sha256": "72a16b733a9356f34081e2566aa907d8c067572e2fc90536bcb274695bdff7e3"
+        }
+      }
+    }
+  ],
+  "logs": [
+    {
+      "path": "subreaper-probe.log.gz",
+      "rawBytes": 381,
+      "rawSha256": "c2dabf1b2a2cd8ea73e1bb35112cd717a6107ba42e4ae281f1e9462f2e6607ce",
+      "archiveSha256": "b35699d4d88c630bd6d18d7b61568670b2f66626a8f00ce2246c5c450e7bebe2"
+    },
+    {
+      "path": "subreaper-pidfd-probe.log.gz",
+      "rawBytes": 431,
+      "rawSha256": "1ca7a0ea273e7e8bf6acdccaffa2153d5b4ddfd85235e4fedeb0626a6c2a715c",
+      "archiveSha256": "c8e8cd4c9306671bf035ba2c5c32db66c2171d9e103cc3a86f5717e96166e2da"
+    },
+    {
+      "path": "ci-push-final.log.gz",
+      "rawBytes": 679911,
+      "rawSha256": "26b2c70c910e4ff9dfff2ee643752b875a6d5db6d68301282051f665d1548903",
+      "archiveSha256": "ceaefb1a1342b76fd96c31b3ffd859057a654684c01e56764f208a3a024bbf8e"
+    },
+    {
+      "path": "ci-pr-final.log.gz",
+      "rawBytes": 681112,
+      "rawSha256": "6e41e1bfd9524ddb6152b2cb9eb9c50bbe94f8cc47ff2f264fe6a32bcd0fb07d",
+      "archiveSha256": "7e5a57776b0131fa26c1333d7c8e23e8f2384e901d6029d185dd614f85879757"
+    }
+  ],
+  "primaryReference": [
+    {
+      "path": "/usr/share/man/man2/PR_SET_CHILD_SUBREAPER.2const.gz",
+      "sha256": "031f11e9406c975efb63233487588e6dd9188a3d4a58cde88601304086839434",
+      "version": "Linux man-pages 6.17"
+    },
+    {
+      "path": "/usr/share/man/man2/PR_GET_CHILD_SUBREAPER.2const.gz",
+      "sha256": "0367ca7b858de06bc55b28bc1826e798f25baa23bcf8d1f22281a61573d0e923",
+      "version": "Linux man-pages 6.17"
+    }
+  ]
+}
