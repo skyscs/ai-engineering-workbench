@@ -1,7 +1,8 @@
 # Prepared-flow driver development checkpoint
 
-Task 128 is in progress. The complete resource driver, browser/full-accounting/fault lanes,
-final executable seal and reserved-family run are not complete. This checkpoint is
+Task 128 is in progress. Ordinary browser, worker-accounting and lifecycle/fault drivers
+are implemented, but the complete frozen matrix, final executable seal and reserved-family
+run are not complete. This checkpoint is
 ordinary development evidence only; it makes no resource or semantic qualification claim.
 
 The new small driver materializes ordinary permit sources without deleting teardown,
@@ -118,3 +119,93 @@ full check is not retroactively labelled as 942 tests. Archived artifact verific
 round-trips the earlier ten retained trees and seventeen raw logs; additional trees and
 logs are bound in records.json. All process exits, earlier failures and the exact executed
 commands remain retained.
+
+
+## Lifecycle, network and process ownership development
+
+The second ordinary lifecycle run passes fourteen cases in isolated retained catalog
+copies: preparation cancellation, cancellation during preflight or after dispatch,
+shutdown with late usage and actual-entry replay, real review/policy/build changes before
+dispatch and publication, actual inventory eviction, missing/corrupt originals and pending
+purge recovery. The pending-state catalog is copied before removing the deliberate SQLite
+purge-failure trigger. Its recovery uses the real production entry and never redispatches.
+The first run's two review cases used incorrect driver field names; their failures and
+independent successful cases remain retained. Production code was unchanged.
+
+Five browser fault cases now use actual CDP response interception: lost admission response
+and identical browser retry, late question/review responses, and historical reads across
+review change and source revocation. There is one controlled dispatch. Product fetch is
+not wrapped, and the held real request/response bytes are preserved. The first network
+run waited for an incorrect banner; review also corrected its unexecuted assertion that
+review changes should remove authorized history. Existing behavior intentionally preserves
+that history with an explicit historical-review label. The second run verifies that an
+old response cannot represent it as current. Revocation removes the content entirely.
+
+An external owner validates direct-child Linux process groups/start identities, records
+observed descendants and enforces wall/storage stops without deleting evidence. Tests
+cover a stuck driver, TERM-resistant daemon, abandoned child, observed orphan descendant,
+storage exceedance and stale PID identities. This is not yet proof against an unobserved
+fork-and-orphan race; the [runtime review](runtime-review.md) records that remaining seal
+requirement and the precise limitations of preparation-cancellation observations. Every
+fault command/reply is journaled, and passive daemon samples now include cumulative CPU.
+Browser sampling begins before the debugging endpoint is ready. Session redaction covers
+structured maps, raw headersText and CDP name/value header arrays.
+
+The updated complete `pnpm check` passes **948 tests**, strict typechecks and production
+builds. Ten focused driver/owner tests also pass. Its real subprocess failure directories
+are archived with their test logs, including the files that caused storage exceedance.
+These checks do not close the frozen resource gate.
+
+## Real expiry and whole-worker accounting
+
+The browser's Ready snapshot expires after its actual ten-minute lifetime. The retained
+ordinary run observes 601 scalar polls, exactly one preparation, zero answer attempts and
+context removal 600,062.98 ms after Ready was observed. No clock override or refresh is
+used. Its browser and actual daemon exit successfully. Focused tests and pnpm check ran
+concurrently during part of this functional exercise, so its resource samples are not an
+uncontended qualification measurement.
+
+A fresh ordinary resource flow and a separate diagnostic flow start from byte-identical
+stopped catalogs. The diagnostic enclosing lifetime observes **eight actual budgets and
+2,253,226 accepted/requested work units**, including preparation, admission, all three
+worker validation phases and the actual HTTP history reads. Every observed budget closes;
+there are no unscoped budgets or post-scope activities. Prompt, schema, stored context,
+witness and reviewed hash match exactly. Public useful outputs match after removing only
+preparation/answer UUIDs and created/dispatched timestamps. Both runs together dispatch
+two controlled responses and no model. Instrumented timing and memory remain excluded
+from qualification.
+
+Still required before a reserved run: deterministic preparation cancellation and authority
+changes at the first preflight boundary, complete ownership across process-orphan races,
+all frozen variant/prerequisite cases, final environment/executable closure and commands,
+and the single R01-R15 execution. The existing resource findings remain recorded failures
+against prospective criteria; no limit, oracle, source family or product switch has changed.
+
+
+A third capacity exercise uses the corrected ESM launcher and external owner. It opens
+real Ready and saved-answer views for thirty seconds each at twenty and 64 retained
+attempts. Each window records 150 API requests (about five per second) and at most two
+concurrent requests, with no failed responses or recorded long tasks in those idle windows.
+One request remains in flight at the twenty-row window boundary and completes in the
+retained shutdown trace; it is not discarded or counted as an in-window completion.
+The browser's whole-process peaks are 1,212,129,280 and 1,205,567,488 summed RSS bytes,
+still above the prospective ceiling. Desktop/390px captures retain the real UI without
+overflow. Actual-entry reopen and byte-exact list replay pass at both capacities; complete
+stopped twenty/64-row copies are retained. All 64 rows come from real protected admissions,
+the 65th refuses while Ready remains usable, and source revocation purges 4,245,504 witness
+bytes to zero while retaining 64 tombstones. Aggregate list work remains 3,168,560 units.
+The original two development capacity runs are preserved alongside this expanded exercise.
+
+The watchdog's simulated hang deadline is now five seconds to leave child startup margin
+in parallel CI. This test-only duration is separate from the unchanged forty-minute
+qualification ceiling. The next focused run exposed a termination-observation race: the owner reported a child
+as surviving immediately after sending SIGKILL. The raw failed test and process records
+are retained. The owner now waits for the kernel to report that the group stopped before
+finishing; final-head CI must verify the complete corrected checkpoint. The next implementation work stays within
+Task 128 and the frozen contract; no experimental-default change or real model call follows
+from this PR.
+
+The corrected focused run passes all ten tests, including forced termination and orphan
+cleanup. Its raw test output and all four subprocess directories are retained beside the
+failed predecessor. Static archive verification and the accepted runtime/input seal are
+checked again before publishing the checkpoint.

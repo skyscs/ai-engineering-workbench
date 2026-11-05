@@ -5,6 +5,7 @@ import { mkdir, writeFile, readFile, readdir, lstat, readlink } from 'node:fs/pr
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { registerOwnedProcess } from './ownership.mjs';
 
 export const repository = fileURLToPath(new URL('../../', import.meta.url));
 export const hash = value => createHash('sha256').update(value).digest('hex');
@@ -66,6 +67,7 @@ export async function materialize(directory, corpus) {
 export async function launch({ directory, data, controlled = false, fault = false, accounting = false }) {
   assert(!accounting || controlled, 'Accounting requires the explicit diagnostic bootstrap.');
   await mkdir(directory); const descriptors = ['stdout', 'stderr'].map(name => openSync(path.join(directory, name + '.log'), 'wx', 0o600));
+  const controls = controlled ? journal(path.join(directory, 'control.jsonl')) : null;
   const entry = controlled ? 'scripts/loredock-prepared-flow/launcher.mjs' : 'apps/loredock/dist/index.js';
   const args = ['--import', path.join(repository, 'scripts/loredock-prepared-flow/monitor.mjs'), path.join(repository, entry)];
   const env = { PATH: process.env.PATH, LC_ALL: 'C', LOREDOCK_DATA_DIR: data, LOREDOCK_ANSWERS: '1', LOREDOCK_PREPARED_ANSWERS: '1',
@@ -81,15 +83,18 @@ export async function launch({ directory, data, controlled = false, fault = fals
   });
   child.on('message', value => {
     const waiting = pending.get(value.id); if (!waiting) return; pending.delete(value.id); clearTimeout(waiting.timer);
+    controls?.append({ event: 'reply', value });
     if (value.error) waiting.reject(Object.assign(new Error(value.error.message), value.error)); else waiting.resolve(value.result);
   });
   let stopPromise;
   const stop = () => stopPromise ??= (async () => {
     if (!ended) try { process.kill(-child.pid, 'SIGTERM'); } catch (error) { if (error.code !== 'ESRCH') throw error; }
     const timer = setTimeout(() => { if (!ended) try { process.kill(-child.pid, 'SIGKILL'); } catch (error) { if (error.code !== 'ESRCH') throw error; } }, 10000);
-    try { const result = await exit; await save(path.join(directory, 'exit.json'), result); return result; } finally { clearTimeout(timer); }
+    try { const result = await exit; await save(path.join(directory, 'exit.json'), result); return result; }
+    finally { clearTimeout(timer); controls?.close(); }
   })();
   try {
+    await registerOwnedProcess(child, directory, 'daemon');
     await save(path.join(directory, 'process.json'), { executable: process.execPath, args, env, pid: child.pid, controlled, fault, accounting });
     await until(async () => {
       if (ended) throw new Error('Owned daemon exited before listening: ' + JSON.stringify(await exit));
@@ -102,8 +107,12 @@ export async function launch({ directory, data, controlled = false, fault = fals
   return { pid: child.pid, child, directory, readyMs: performance.now() - began, stop, exit,
     command(name, parameters = {}) {
       assert(controlled, 'Control channel is only available on the declared controlled bootstrap.');
+      assert(!ended && !stopPromise, 'The controlled daemon is stopping or has exited.');
       return new Promise((resolve, reject) => {
-        const request = ++id, timer = setTimeout(() => { pending.delete(request); reject(new Error('Control timeout: ' + name)); }, 10000);
+        const request = ++id, timer = setTimeout(() => {
+          pending.delete(request); controls.append({ event: 'timeout', id: request, name }); reject(new Error('Control timeout: ' + name));
+        }, 10000);
+        controls.append({ event: 'command', id: request, name, parameters });
         pending.set(request, { resolve, reject, timer }); child.send({ id: request, name, parameters });
       });
     } };

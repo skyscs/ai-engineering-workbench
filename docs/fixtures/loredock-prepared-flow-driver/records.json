@@ -144,6 +144,120 @@
       "rawBytes": 263,
       "rawSha256": "579ecd9e4c8caa43fdd02bb185d7a32d48d8ab9ca75c7ce5e0d9921de4b57aee",
       "archiveSha256": "a9c56736f48e7357511ef33eed70c324051729ccf5711a0433d835d29ace438f"
+    },
+    {
+      "path": "lifecycle-first.log.gz",
+      "rawBytes": 6383,
+      "rawSha256": "680de96e2256058458af63477cc605349409344af689203c3ca112e2da403ce2",
+      "archiveSha256": "4c87c7389411b3c369333b1c527e7bec02ba388151cc43e69ba79f53ad75836b"
+    },
+    {
+      "path": "lifecycle-second.log.gz",
+      "rawBytes": 5281,
+      "rawSha256": "1b747ea65cfd325bf5d6a4031e726139d03a89a209ea604879f718ce32d05236",
+      "archiveSha256": "14bac64e24d1af5741f1d96ea40108d2456643b28b27dff9568ae6c3a35d062b"
+    },
+    {
+      "path": "supervised-first.log.gz",
+      "rawBytes": 1658,
+      "rawSha256": "4e344cf3e6d70ce22fc2574b90a7f146d748106ccf9d044f20e4ad3403892942",
+      "archiveSha256": "984b8f28f58c9db8d6414108948fa45bcedf1142b23b627aaf5543b5dfed4e91"
+    },
+    {
+      "path": "network-first.log.gz",
+      "rawBytes": 3810,
+      "rawSha256": "8e75e17bb45eb513c7735d5a2a6ee7a46e9e8081823fafbcf84253e2fc655da0",
+      "archiveSha256": "a1a1cc9eb5032d7acc271b593b086aa112523fb3d6c530fefdd7aba2dbe376a3"
+    },
+    {
+      "path": "network-second.log.gz",
+      "rawBytes": 3653,
+      "rawSha256": "cad08b57e64a4c1944998d9c3ec7423a666e2c3a5580bf74266e80c1226756a5",
+      "archiveSha256": "32021bb291dab68fae8642cdbf251f002f8135d16b4cd44b1b8e11e29c10d2ef"
+    },
+    {
+      "path": "watchdog-tests-first.log.gz",
+      "rawBytes": 1345,
+      "rawSha256": "cd66982e915310f244700d74d4168e3212ab43d3b50ad1f4170d45f6d83b91fc",
+      "archiveSha256": "aa26ac7ee7f644be922b6858ee313668c5aede8a52a66b871796263bcdc49f03"
+    },
+    {
+      "path": "driver-watchdog-tests.log.gz",
+      "rawBytes": 2498,
+      "rawSha256": "a9de8a3ff3cf11d5a98fd3c42692acb6d37a5e6f8ac14bee1484a2f0d7d27c9b",
+      "archiveSha256": "1a8f890ce16a146246dfa829677041a1a5c521c29b06d26d476e8f3e798704d8"
+    },
+    {
+      "path": "check-second.log.gz",
+      "rawBytes": 348559,
+      "rawSha256": "10b9078cabe3a6e038f8d64994d3e60d4076f080bb5fef0c7ecaaa45ac4dc878",
+      "archiveSha256": "c044933d71cf68fe8ec9f839e78dcf721e02002fc8796a096003df44ec6d022c"
+    },
+    {
+      "path": "static-input-check-second.log.gz",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4"
+    },
+    {
+      "path": "artifact-check-second.log.gz",
+      "rawBytes": 263,
+      "rawSha256": "567c37623f480137c1b33824bd517d2ab3676925d96625e5165fc3e0d4f11210",
+      "archiveSha256": "b3d44ae7704c9915408fd976470b4d06b32ffc6743e757cf16140571d27aba85"
+    },
+    {
+      "path": "expiry-first.log.gz",
+      "rawBytes": 4448,
+      "rawSha256": "aa0fd5d90f295ed7fbe9b040362514675b7741d9627e56648a4513d3cfa25b40",
+      "archiveSha256": "38e181f9eb48c9a9256b45112bc912bc44ffd664ad4584a13b40c9dfdc8e6b1c"
+    },
+    {
+      "path": "worker-first.log.gz",
+      "rawBytes": 2150,
+      "rawSha256": "ca22ee1574a19f2631e581f75653f9ed6436716d90fe495b129dda61d242730f",
+      "archiveSha256": "bea1cb4a521ee90a5e0daf6d022c1f4256a148a77d867a0a6854d0bd8753d3f4"
+    },
+    {
+      "path": "capacity-browser-third.log.gz",
+      "rawBytes": 8250,
+      "rawSha256": "a348b3c3528ae1ad29446deab578da98e03867e9f4b9e2355e99382f43938bb7",
+      "archiveSha256": "dcfd2adf486fa3b6453ccc985f40e17dc06b617c69103338820b5ac6e87b1a9a"
+    },
+    {
+      "path": "driver-watchdog-final.log.gz",
+      "rawBytes": 4190,
+      "rawSha256": "fcb1eb68888e848a23c4eecc8eee7dd7bf4c6cfe2536cd69ef50c5866d5e54bb",
+      "archiveSha256": "41f93ddaa84354124c8f8c3da02b6ebd9b4c6ed96be92d2d6de7bda7d5cf32ad"
+    },
+    {
+      "path": "artifact-check-third.log.gz",
+      "rawBytes": 263,
+      "rawSha256": "10d9cbdfd2aa2feff03dfcc7889be7a9aeda48319d3ade84ff81199a1eaf6e02",
+      "archiveSha256": "6b275403a863ec3585702bdde271e9232be5414b49c5b45f86a7eb308d2d0052"
+    },
+    {
+      "path": "driver-watchdog-corrected.log.gz",
+      "rawBytes": 2498,
+      "rawSha256": "5f08164b677a29b7af346e21d58e9e8b24aaa2d3f20b1ef15f1d0c711e0eba0d",
+      "archiveSha256": "025c4233f6844753be59f3317b52937cb3340851ae5939dfc5d806c62b8cdfb8"
+    },
+    {
+      "path": "artifact-check-final.log.gz",
+      "rawBytes": 263,
+      "rawSha256": "0172d0d8dfcd8dca4ad3efe3da49fcf3447ec4b9a6e37f8f3afada93b7b12bbe",
+      "archiveSha256": "8d7d3e2e6ac79ebdadb5003132aa58543548674e29169df60abda7cbdcc96a37"
+    },
+    {
+      "path": "input-seal-final.log.gz",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4"
+    },
+    {
+      "path": "artifact-review-final.log.gz",
+      "rawBytes": 263,
+      "rawSha256": "b3a8a6faa8bc518df0a5c5a6846c3854d871cd6b37ed736571b6de2a1e9cf542",
+      "archiveSha256": "da5cb3302f93013cc727eb1de53d3cf23c9000e859939d4355f15d8a5c648d79"
     }
   ],
   "retainedTrees": [
@@ -2825,6 +2939,247 @@
       "excludedFromArchive": [
         "Temporary browser/profile session/cache tree; original remains local. Complete source/catalog, process, HTTP, browser observation and screenshot evidence is retained."
       ]
+    },
+    {
+      "path": "lifecycle-first.tar.gz",
+      "sha256": "439760037e07ec1f47777b27fda40cdc2959e06613a5ffa3968f5f5299bd2a1c",
+      "inventory": "lifecycle-first.inventory.json.gz",
+      "inventorySha256": "1f9501e87014a13fb01540a42834468ec5f35a31460a801a4f9f98d3c366c6bf",
+      "retainedFiles": 456,
+      "redactions": [],
+      "limitation": "Two review-mutation cases used incorrect driver field names links/projectionHash instead of the actual edges/inputHash; other independent cases continued once. The second ordinary run fixes the driver, not the product."
+    },
+    {
+      "path": "lifecycle-second.tar.gz",
+      "sha256": "f863d37ded49bc91249a71d9626d6f22fa866401fe6b7100104e53382e17cb5b",
+      "inventory": "lifecycle-second.inventory.json.gz",
+      "inventorySha256": "32151b8abe88f26e735319d427dc393125c9bb5f47571f0e12cfa40ecf9817c7",
+      "retainedFiles": 460,
+      "redactions": []
+    },
+    {
+      "path": "supervised-first.tar.gz",
+      "sha256": "41ad0665f8ab2f1f0795a5a588d2fb0641e8eb0f2f8d07c0ec5ad781e71aa2cc",
+      "inventory": "supervised-first.inventory.json.gz",
+      "inventorySha256": "9945e17de2b30de04a5ddbc8a262d173ea4363b93a8c10c5e0fe958d41ed1de5",
+      "retainedFiles": 143,
+      "redactions": [],
+      "limitation": "Ordinary successful driver under the first owner version; later owner development additionally tracks observed process-group descendants."
+    },
+    {
+      "path": "network-first.tar.gz",
+      "sha256": "872ec2a7efc8d5f4a6e6dc65282588d0976dc1ad62dbeb3e290005e13500e2d9",
+      "inventory": "network-first.inventory.json.gz",
+      "inventorySha256": "d30808ca44458b52f4176600c1dbbbbf868f2005fc8c42c6190dad7ab9c21b93",
+      "retainedFiles": 270,
+      "redactions": [],
+      "excludedFromArchive": [
+        "run/browser/profile (temporary Chrome profile/cache; original retained locally)"
+      ],
+      "limitation": "The driver waited for incorrect historical-review banner text; its next assertion also assumed authorized historical content should disappear. Existing behavior deliberately retains it with a historical-review label. The second ordinary run starts that race while review is current and verifies the correct label after the held response arrives."
+    },
+    {
+      "path": "network-second.tar.gz",
+      "sha256": "ef89fa4318f27c3ec9cfb9d87171a0148e4a98668faeb4ca1b22a4a0351ee3df",
+      "inventory": "network-second.inventory.json.gz",
+      "inventorySha256": "44bb6d1e3be27063e2d972f066eafbf3771ee10ca13a6b2d92bfca715fa6e754",
+      "retainedFiles": 237,
+      "redactions": [],
+      "excludedFromArchive": [
+        "run/browser/profile (temporary Chrome profile/cache; original retained locally)"
+      ]
+    },
+    {
+      "path": "watchdog-tests-first-case-1.tar.gz",
+      "sha256": "f40eb12f701cd8c066baae7f2167fd15afd8811caa34866032db8a99cea88f05",
+      "inventory": "watchdog-tests-first-case-1.inventory.json.gz",
+      "inventorySha256": "23a6f4a9492f52ac1dedbe5d3bda30dd7996ca1a7a8c5574a246da43df8c5665",
+      "retainedFiles": 9,
+      "redactions": []
+    },
+    {
+      "path": "watchdog-tests-first-case-2.tar.gz",
+      "sha256": "03d4a00f14f9e4c083cb2c8e3d4d10e5152bec29c9a03f1717db7a1d0699021c",
+      "inventory": "watchdog-tests-first-case-2.inventory.json.gz",
+      "inventorySha256": "6e59f8e651407f0a8bc93dd0d8694b0017a7c6ed6b0eb7d6b91f7fa50efe6194",
+      "retainedFiles": 9,
+      "redactions": []
+    },
+    {
+      "path": "watchdog-tests-first-case-3.tar.gz",
+      "sha256": "8aedd7237bf2a3a4b1230319c4d231e7aa1c84403e453d4a78b6f70b47c145fb",
+      "inventory": "watchdog-tests-first-case-3.inventory.json.gz",
+      "inventorySha256": "3969ad26d190c3806a227ede34d73b88e29e2711076d1196ecfd1df2657a5bf0",
+      "retainedFiles": 9,
+      "redactions": []
+    },
+    {
+      "path": "watchdog-tests-first-case-4.tar.gz",
+      "sha256": "a0d5550076b2d05de9ecf7de67d4d94df001ac4870a099135fd1bb006fade54f",
+      "inventory": "watchdog-tests-first-case-4.inventory.json.gz",
+      "inventorySha256": "ecaff24448c5412b0175dbebb2097cc6c850a71fae2f56d15bdc61c53382dd5a",
+      "retainedFiles": 10,
+      "redactions": []
+    },
+    {
+      "path": "driver-watchdog-tests-case-1.tar.gz",
+      "sha256": "c8c3047f0b8335508d7bb8677acf93bc7c5dcdb258d3221a881b265fc668999a",
+      "inventory": "driver-watchdog-tests-case-1.inventory.json.gz",
+      "inventorySha256": "1885e242be97011bd0cf2fcca127b91df41b2e020a631f2e2a2425f26c42fb82",
+      "retainedFiles": 9,
+      "redactions": []
+    },
+    {
+      "path": "driver-watchdog-tests-case-2.tar.gz",
+      "sha256": "e1b8bb655c08f4719b491a7e1d93534d7d630c5193e0e9a21edc1858e708929b",
+      "inventory": "driver-watchdog-tests-case-2.inventory.json.gz",
+      "inventorySha256": "e2a9fefc388724db403f66ece857d36d9abefecf796264a02df0626fa09013f3",
+      "retainedFiles": 9,
+      "redactions": []
+    },
+    {
+      "path": "driver-watchdog-tests-case-3.tar.gz",
+      "sha256": "d45cdcca6c28e97997827fd5880c9408f4f0626e5fd2df63945a106f8a7e4ff7",
+      "inventory": "driver-watchdog-tests-case-3.inventory.json.gz",
+      "inventorySha256": "1e78ccb995754fb5c2587c752d5e23f5a873e796b1c9c97656636934d462ebbc",
+      "retainedFiles": 9,
+      "redactions": []
+    },
+    {
+      "path": "driver-watchdog-tests-case-4.tar.gz",
+      "sha256": "e46a76ab43607cabb4da83be3ad963bc232e2c9bc21389c5f668ac50b9226833",
+      "inventory": "driver-watchdog-tests-case-4.inventory.json.gz",
+      "inventorySha256": "1fe9412c39ec1b406d539cd2b38554ec8a10b90464530485fa98c080704105e1",
+      "retainedFiles": 10,
+      "redactions": []
+    },
+    {
+      "path": "check-second-case-1.tar.gz",
+      "sha256": "25aef3724a7f888babc3d5c245d457309926232e696f1e97ee9fac4c022557d8",
+      "inventory": "check-second-case-1.inventory.json.gz",
+      "inventorySha256": "ac87ad5b876e9057706342e807e4e0b63854954895607bc0f813c46f1d8a310b",
+      "retainedFiles": 9,
+      "redactions": []
+    },
+    {
+      "path": "check-second-case-2.tar.gz",
+      "sha256": "7c8bee162e1b3699d58623c0fa1b6817d9a0feb5fe491850f4443192ea724b77",
+      "inventory": "check-second-case-2.inventory.json.gz",
+      "inventorySha256": "97246a1ce352e0137a508cacd9befb31f74e9d0bedb48a1ea5436df4bf375923",
+      "retainedFiles": 9,
+      "redactions": []
+    },
+    {
+      "path": "check-second-case-3.tar.gz",
+      "sha256": "08f7c084720c0b1af96e8f271247c6c51d4bfded527703bf977f54161a333fb8",
+      "inventory": "check-second-case-3.inventory.json.gz",
+      "inventorySha256": "b3d4b9bbc6bfa7c00fb4fad69fc9cd8a90661dbfe40fbb0dfbbea4effdd871fa",
+      "retainedFiles": 9,
+      "redactions": []
+    },
+    {
+      "path": "check-second-case-4.tar.gz",
+      "sha256": "6f85cd183aeb384f2cc6b6fa84a1c451c5a4aa73dc6122ae2d1414329678acb3",
+      "inventory": "check-second-case-4.inventory.json.gz",
+      "inventorySha256": "7056357e02f4e3301e85f90f0ebfbfcf0f7431eef67ab6d0aad1094da1b04d4a",
+      "retainedFiles": 10,
+      "redactions": []
+    },
+    {
+      "path": "expiry-first.tar.gz",
+      "sha256": "2eae1e1e6180d187e014721558c4b9be25d9fc05238a894bfdb6aeedd8d6ac2d",
+      "inventory": "expiry-first.inventory.json.gz",
+      "inventorySha256": "7f504913b1f37cb735cbda114e7be4052e4accaad995c9181a3c9592b8925c13",
+      "retainedFiles": 3163,
+      "redactions": [],
+      "excludedFromArchive": [
+        "run/browser/profile (temporary Chrome profile/cache; original retained locally)"
+      ],
+      "limitation": "Functional expiry exercise overlaps focused tests and the complete check; resource samples are contended ordinary observations."
+    },
+    {
+      "path": "worker-first.tar.gz",
+      "sha256": "e66b0fba69ff1ddc45da4527b05d1d8f75492515b50394f39dadd3162daca724",
+      "inventory": "worker-first.inventory.json.gz",
+      "inventorySha256": "f3a22ad3e8beffab7063559c96d5bbe13e9af19b7becaaae8e974e95499fc5f9",
+      "retainedFiles": 139,
+      "redactions": []
+    },
+    {
+      "path": "capacity-browser-third.tar.gz",
+      "sha256": "13db93cfd4423387327fc12098bcf0964c33a1e14c45b4b7fe35ae5783da790c",
+      "inventory": "capacity-browser-third.inventory.json.gz",
+      "inventorySha256": "c88b7960323ca49305d3d093f867141f4bc50c58d8d59648c02cc589632b92cb",
+      "retainedFiles": 1211,
+      "redactions": [],
+      "excludedFromArchive": [
+        "run/browser-20/profile (temporary Chrome profile/cache; original retained locally)",
+        "run/browser-64/profile (temporary Chrome profile/cache; original retained locally)"
+      ]
+    },
+    {
+      "path": "driver-watchdog-final-case-1.tar.gz",
+      "sha256": "02bf51d274aa9decafe9db980044e26727ed7e81d8693e060670791e304149d9",
+      "inventory": "driver-watchdog-final-case-1.inventory.json.gz",
+      "inventorySha256": "c5d3b6f7619ac9735a7915605757bb6e5b125a3129229f232b2872b1ba855d2a",
+      "retainedFiles": 9,
+      "redactions": []
+    },
+    {
+      "path": "driver-watchdog-final-case-2.tar.gz",
+      "sha256": "e733b6937728734843fed5b8f7cc005c8758968b9c1933be917da20125680397",
+      "inventory": "driver-watchdog-final-case-2.inventory.json.gz",
+      "inventorySha256": "3de520f7e6006b16326fd9aca6a40231e20592f110ae4e640956238ee75d6668",
+      "retainedFiles": 9,
+      "redactions": []
+    },
+    {
+      "path": "driver-watchdog-final-case-3.tar.gz",
+      "sha256": "2f12cb377c0edca7636244892c6ce8d6d845e05647fe05346b719fb18be39e13",
+      "inventory": "driver-watchdog-final-case-3.inventory.json.gz",
+      "inventorySha256": "901d3b216b5ed2a89f5c84fdc0ae0bdfb635b5e31b69037cee1a042fa62b81b0",
+      "retainedFiles": 9,
+      "redactions": []
+    },
+    {
+      "path": "driver-watchdog-final-case-4.tar.gz",
+      "sha256": "1f8c9a2c5cbbcd79c8e61cce57f8ec8655bf50c0af389067c05fc7db41d3e203",
+      "inventory": "driver-watchdog-final-case-4.inventory.json.gz",
+      "inventorySha256": "aba77026f983d8f9ce39d5e1e76c9224339ce05a71dab36a62698f8954c455a7",
+      "retainedFiles": 10,
+      "redactions": []
+    },
+    {
+      "path": "driver-watchdog-corrected-case-1.tar.gz",
+      "sha256": "2b502d1ca47291b1bffa4a098fec0b21ec024440321d936ce3ed79e594b0a72a",
+      "inventory": "driver-watchdog-corrected-case-1.inventory.json.gz",
+      "inventorySha256": "6b42e9b8f0a4e31f7d73f505ed22e64ca7b4e8aa081a8bc381823293285bb58a",
+      "retainedFiles": 9,
+      "redactions": []
+    },
+    {
+      "path": "driver-watchdog-corrected-case-2.tar.gz",
+      "sha256": "e11bcb302f495142b3468ae54d9a0c7d65c071353fb40aa5ee5a3e98b9bfdaa2",
+      "inventory": "driver-watchdog-corrected-case-2.inventory.json.gz",
+      "inventorySha256": "2920c35d2e6390bef56817ba70792964606327a95a35d215ea9fa1afdc56dd1d",
+      "retainedFiles": 9,
+      "redactions": []
+    },
+    {
+      "path": "driver-watchdog-corrected-case-3.tar.gz",
+      "sha256": "dd5c7cf1d981b450de28fa428605ede0a9e3241ebda7e642a420933c84837b34",
+      "inventory": "driver-watchdog-corrected-case-3.inventory.json.gz",
+      "inventorySha256": "6ab42ee887a125edf007c0c883d71b35736c58b32d01de353b9170c0cc6c5e72",
+      "retainedFiles": 9,
+      "redactions": []
+    },
+    {
+      "path": "driver-watchdog-corrected-case-4.tar.gz",
+      "sha256": "739396ed25d6e5541cf90873a83fd7a9eb871572dc00d9e2b47f85d81b93c9bf",
+      "inventory": "driver-watchdog-corrected-case-4.inventory.json.gz",
+      "inventorySha256": "9c855520082ab80085671112ae3cee7cd95b77ecd71efeeed699ad547b69d6fd",
+      "retainedFiles": 10,
+      "redactions": []
     }
   ],
   "reservedFamilyReads": 0,
@@ -2866,5 +3221,80 @@
     ],
     "previousRuns": "The earlier controlled bootstrap resolved the same Hono package through its CommonJS entry. Preserve these as ordinary functional observations, not exact complete-composition qualification.",
     "esmServerEntrySha256": "5db5948a966995c348aadd00721a45e60ebbad3328a7540e213b3842c84b060e"
+  },
+  "ordinaryLifecycle": {
+    "secondRunCases": 14,
+    "failedCases": 0,
+    "realReviewPolicyBuildMutationsBeforeDispatchAndPublication": true,
+    "originalIntegrityFaults": 2,
+    "pendingPurgeRecovery": true,
+    "firstPreflightBoundaryStillPending": true,
+    "resourceQualification": false
+  },
+  "ordinaryNetwork": {
+    "secondRunCases": 5,
+    "failedCases": 0,
+    "actualHttpResponseInterception": true,
+    "applicationFetchWrappers": false,
+    "controlledCalls": 1,
+    "resourceQualification": false
+  },
+  "ordinaryExpiry": {
+    "scalarPolls": 601,
+    "preparations": 1,
+    "answerAttempts": 0,
+    "readyToClearMs": 600062.978902,
+    "clockOverridden": false,
+    "resourceQualification": false,
+    "concurrentChecks": true
+  },
+  "ordinaryWorkerAccounting": {
+    "budgets": 8,
+    "actualWork": 2253226,
+    "requestedWork": 2253226,
+    "unclosedBudgets": [],
+    "lateActivities": [],
+    "unscopedBudgets": [],
+    "promptSchemaWitnessByteParity": true,
+    "controlledCalls": 2,
+    "resourceQualification": false
+  },
+  "ordinaryCapacityBrowser": {
+    "controlledCalls": 64,
+    "windows": [
+      {
+        "storedRows": 20,
+        "seconds": 30.001582728,
+        "apiRequests": 150,
+        "maximumConcurrentRequests": 2,
+        "sampledProcessTreeRssBytes": 1212129280,
+        "pendingAtWindowEnd": 1
+      },
+      {
+        "storedRows": 64,
+        "seconds": 30.000712542,
+        "apiRequests": 150,
+        "maximumConcurrentRequests": 2,
+        "sampledProcessTreeRssBytes": 1205567488,
+        "pendingAtWindowEnd": 0
+      }
+    ],
+    "actualEntryReopen": [
+      20,
+      64
+    ],
+    "completeStoppedCopies": [
+      20,
+      64
+    ],
+    "fullDependencyPurgeBytes": 0,
+    "listActualWork": 3168560,
+    "resourceQualification": false
+  },
+  "ownerTerminationCorrection": {
+    "failedLog": "driver-watchdog-final.log.gz",
+    "correctedLog": "driver-watchdog-corrected.log.gz",
+    "reason": "Sending SIGKILL does not synchronously prove process exit; wait for the registered group to stop before the final report.",
+    "focusedTestsPassed": 10
   }
 }

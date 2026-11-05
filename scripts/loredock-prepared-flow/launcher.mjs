@@ -51,6 +51,7 @@ async function shutdown() {
   for (const gate of gates.values()) gate.resolve(); gates.clear();
   codeFollow.stop(); await answers.stop(); await preparations.stop();
   await nativeCaptures.stop(); await codePaths.stop(); await codeAnalysis.stop(); await catalog.stop(); store.close();
+  if (accounting) await writeFile(path.join(directory, 'accounting-audit.json'), JSON.stringify(accounting.audit()), { flag: 'wx' });
   await writeFile(path.join(directory, 'runtime-stats.json'), JSON.stringify(stats), { flag: 'wx' });
   if (process.connected) process.disconnect();
 }

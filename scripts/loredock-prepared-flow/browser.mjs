@@ -4,10 +4,13 @@ import { openSync, closeSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { journal, until, save, normalized } from './io.mjs';
+import { registerOwnedProcess } from './ownership.mjs';
 
 export function sanitized(value) {
   if (Array.isArray(value)) return value.map(sanitized);
   if (!value || typeof value !== 'object') return value;
+  if (typeof value.name === 'string' && /^(cookie|set-cookie|x-loredock-csrf)$/i.test(value.name) && Object.hasOwn(value, 'value'))
+    return { ...value, value: '[removed-session-material]' };
   return Object.fromEntries(Object.entries(value).map(([key, child]) => [key,
     /^(cookie|set-cookie|x-loredock-csrf|token)$/i.test(key) ? '[removed-session-material]'
       : key === 'headersText' && typeof child === 'string' ? child.replace(/^(set-cookie|cookie|x-loredock-csrf):[^\r\n]*/gim, '$1: [removed-session-material]')
@@ -55,7 +58,7 @@ export async function browser({ directory, executable = '/usr/bin/google-chrome'
     XDG_CONFIG_HOME: path.join(directory, 'xdg-config'), XDG_CACHE_HOME: path.join(directory, 'xdg-cache') };
   const child = spawn(executable, args, { env, detached: true, stdio: ['ignore', ...descriptors] }); descriptors.forEach(closeSync);
   let ended = false, protocol, memoryTimer, inSample, sampleError, maxRssBytes = 0, maxPending = 0, stopped, closing = false;
-  const requests = new Map(), responseTasks = new Set(), errors = [];
+  const requests = new Map(), responseTasks = new Set(), errors = [], listeners = new Set();
   const exit = new Promise(resolve => {
     child.once('error', error => { errors.push(normalized(error)); });
     child.once('close', (code, signal) => { ended = true; resolve({ code, signal }); });
@@ -80,7 +83,9 @@ export async function browser({ directory, executable = '/usr/bin/google-chrome'
     events.close(); memory.close(); return { ...outcome, maxRssBytes, maxPending, sampleError: sampleError ?? null, errors };
   })();
   try {
+    await registerOwnedProcess(child, directory, 'browser');
     await save(path.join(directory, 'process.json'), { executable, args, env, pid: child.pid, removedJournalFields: ['cookie', 'set-cookie', 'x-loredock-csrf', 'token'] });
+    await sample(); memoryTimer = setInterval(() => { void sample(); }, 100); memoryTimer.unref();
     const endpoint = await until(async () => {
       if (ended) throw new Error('Browser exited before debugging endpoint.');
       return (await readFile(path.join(directory, 'stderr.log'), 'utf8')).match(/DevTools listening on (ws:\/\/\S+)/)?.[1];
@@ -102,11 +107,11 @@ export async function browser({ directory, executable = '/usr/bin/google-chrome'
           responseTasks.add(task);
         }
       }
+      for (const listener of listeners) listener(message);
     });
     await protocol.send('Page.enable'); await protocol.send('Network.enable'); await protocol.send('Runtime.enable');
     await protocol.send('Page.addScriptToEvaluateOnNewDocument', { source: `window.preparedFlowObservation={longTasks:[],paints:[]};
       new PerformanceObserver(list=>{for(const item of list.getEntries())window.preparedFlowObservation.longTasks.push({startTime:item.startTime,duration:item.duration});}).observe({type:'longtask',buffered:true});` });
-    await sample(); memoryTimer = setInterval(() => { void sample(); }, 100); memoryTimer.unref();
     const evaluate = async expression => {
       const value = await protocol.send('Runtime.evaluate', { expression, awaitPromise: true, returnByValue: true });
       assert(!value.exceptionDetails, value.exceptionDetails?.exception?.description); return value.result.value;
@@ -115,6 +120,36 @@ export async function browser({ directory, executable = '/usr/bin/google-chrome'
     await protocol.send('Page.navigate', { url: 'http://127.0.0.1:4244' });
     await until(() => evaluate("document.body.innerText.includes('Experimental prepared context')"), 'Prepared question UI did not load.');
     return { pid: child.pid, evaluate, protocol, stop, errors,
+      listen(listener) { listeners.add(listener); return () => listeners.delete(listener); },
+      async idleWindow(name, milliseconds) {
+        assert(/^[a-z0-9-]+$/.test(name) && Number.isSafeInteger(milliseconds) && milliseconds > 0 && milliseconds <= 600000);
+        const routes = {}, pending = new Map(), responses = [];
+        let apiRequests = 0, concurrent = requests.size;
+        const startObservation = await evaluate('window.preparedFlowObservation');
+        const listener = message => {
+          const value = message.params;
+          if (message.method === 'Network.requestWillBeSent') {
+            concurrent = Math.max(concurrent, requests.size);
+            if (value.request.url.startsWith('http://127.0.0.1:4244/api/')) {
+              const route = new URL(value.request.url).pathname; apiRequests++; routes[route] = (routes[route] ?? 0) + 1;
+              pending.set(value.requestId, { route, started: value.timestamp });
+            }
+          }
+          if (['Network.loadingFinished', 'Network.loadingFailed'].includes(message.method) && pending.has(value.requestId)) {
+            const row = pending.get(value.requestId); pending.delete(value.requestId);
+            responses.push({ ...row, durationMs: (value.timestamp - row.started) * 1000, failed: message.method === 'Network.loadingFailed' });
+          }
+        };
+        const began = performance.now(); listeners.add(listener); events.append({ event: 'idle-window-start', name, now: began, milliseconds });
+        try { await new Promise(resolve => setTimeout(resolve, milliseconds)); }
+        finally { listeners.delete(listener); }
+        const elapsedMs = performance.now() - began, endObservation = await evaluate('window.preparedFlowObservation');
+        const result = { name, elapsedMs, apiRequests, requestsPerSecond: apiRequests / (elapsedMs / 1000), routes, maxConcurrentRequests: concurrent,
+          pendingAtEnd: [...pending.values()], responses, longTasks: endObservation.longTasks.slice(startObservation.longTasks.length),
+          paints: endObservation.paints, sampledProcessTreeRssBytes: maxRssBytes, resourceQualified: false };
+        events.append({ event: 'idle-window-end', name, now: performance.now() });
+        await save(path.join(directory, name + '-window.json'), result); return result;
+      },
       async prepare(question) {
         await evaluate(`(()=>{const element=document.getElementById('project-question');Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,'value').set.call(element,${JSON.stringify(question)});element.dispatchEvent(new Event('input',{bubbles:true}));})()`);
         await until(() => evaluate("[...document.querySelectorAll('button')].some(b=>b.textContent.trim()==='Find context'&&!b.disabled)"), 'Find context did not enable.');

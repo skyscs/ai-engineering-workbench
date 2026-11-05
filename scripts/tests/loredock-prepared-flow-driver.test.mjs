@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { assessPreview } from '../loredock-prepared-flow/assess.mjs';
 import { hash } from '../loredock-prepared-flow/io.mjs';
-import { beginScope, endScope } from '../loredock-prepared-flow/accounting.mjs';
+import { beginScope, endScope, audit } from '../loredock-prepared-flow/accounting.mjs';
 import { OperationBudget } from '../../apps/loredock/dist/operation-budget.js';
 import { sanitized } from '../loredock-prepared-flow/browser.mjs';
 
@@ -57,11 +57,22 @@ test('diagnostic accounting forwards actual accepted and rejected work across se
 
 test('browser journals remove session values from both structured and raw HTTP headers', () => {
   const value = { headers: { Cookie: 'owned-cookie', 'x-loredock-csrf': 'owned-csrf', Accept: 'application/json' },
+    responseHeaders: [{ name: 'Set-Cookie', value: 'owned-response-cookie' }, { name: 'Content-Type', value: 'application/json' }],
     headersText: 'HTTP/1.1 200 OK\r\nSet-Cookie: owned-cookie\r\nX-LoreDock-CSRF: owned-csrf\r\nContent-Type: application/json\r\n',
     body: { token: 'owned-session-token', sourceText: 'Cookie: this is original source text.' } };
   const clean = sanitized(value), encoded = JSON.stringify(clean);
-  for (const secret of ['owned-cookie', 'owned-csrf', 'owned-session-token']) assert(!encoded.includes(secret));
+  for (const secret of ['owned-cookie', 'owned-csrf', 'owned-session-token', 'owned-response-cookie']) assert(!encoded.includes(secret));
+  assert.equal(clean.responseHeaders[1].value, 'application/json');
   assert.equal(clean.headers.Accept, 'application/json'); assert.equal(clean.body.sourceText, value.body.sourceText);
   assert(clean.headersText.includes('Content-Type: application/json'));
   assert.equal(value.headers.Cookie, 'owned-cookie', 'Sanitization must not mutate the captured event object.');
+});
+
+test('accounting detects real budget work after its enclosing scope ended', () => {
+  beginScope('unfinished-operation'); const budget = new OperationBudget(); budget.charge('path', 1);
+  const first = endScope(); assert.equal(first.unclosedBudgets.length, 1);
+  beginScope('following-operation'); budget.charge('path', 2); budget.close();
+  const second = endScope(); assert.equal(second.budgets.length, 0);
+  const observation = audit(); assert(observation.lateActivities.some(row => row.scope === 'unfinished-operation' && row.currentScope === 'following-operation' && row.method === 'charge'));
+  assert.equal(budget.stats().totalWork, 3, 'The observer must retain the real operation semantics.');
 });

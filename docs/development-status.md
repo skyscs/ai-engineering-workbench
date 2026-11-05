@@ -15,6 +15,14 @@ initialization has a timer gap above 100 ms. The limits stay unchanged. The full
 matrix and final execution seal remain required; this is not resource/semantic acceptance
 or pilot adoption. All failed harness outputs and retention/redaction corrections are recorded.
 
+Additional ordinary checks cover fourteen lifecycle cases, five browser network races,
+real ten-minute expiry and complete-worker accounting (eight budgets / 2,253,226 units,
+exact prompt/schema/witness parity). An external owner and ten focused tests retain
+failed processes and storage evidence. The full check passes 948 tests. First-preflight
+and deterministic in-preparation controls, complete orphan ownership and the final frozen
+matrix/seal are still pending; [runtime review](fixtures/loredock-prepared-flow-driver/runtime-review.md)
+records those limits. No gate result or adoption is implied by this development checkpoint.
+
 ## Task 127 — Prospective complete-flow qualification inputs
 
 The [contract](loredock/PREPARED_FLOW_QUALIFICATION.md) freezes the actual daemon/browser
