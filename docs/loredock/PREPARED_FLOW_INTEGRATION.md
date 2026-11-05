@@ -18,6 +18,11 @@ R15's enclosing lifetime bounds. The eleven examined unadmitted expiry/oracle re
 remain unmatched in that comparison catalog. No original result is rewritten, and other
 operation work, private boundaries and the final seal remain outstanding.
 
+The [final execution work note](PREPARED_FLOW_EXECUTION.md) makes the next adapter changes
+and seal requirements concrete. Unavailable measurements remain explicit incomplete gate
+results under the frozen contract; they never justify additional forbidden instrumentation
+or application changes within this task.
+
 ## Fixed case assembly
 
 Use the existing [coordinator](../../scripts/loredock-prepared-flow/coordinator.mjs)

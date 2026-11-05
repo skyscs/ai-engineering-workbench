@@ -1,10 +1,11 @@
 // Fixed R01-R15 assembly over caller-supplied ordinary inputs. No fallback, retries or model runtime.
 import assert from 'node:assert/strict';
-import { mkdir, readFile } from 'node:fs/promises';
+import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { materialize, inventory, save, normalized, hash } from './io.mjs';
 import { resourceCaseOrder } from './coordinator.mjs';
-import { matrixCoverageGaps, boundaries, mutations } from './matrix-layout.mjs';
+import { matrixCoverageGaps, matrixFreshSetups, boundaries, mutations } from './matrix-layout.mjs';
+import { matrixSourceInput, oracleSetup, oraclePreparationOutcome, runMatrixStep } from './matrix-adapter.mjs';
 import { assessMatrixEvidence } from './matrix-evidence.mjs';
 import { coldCatalog, warmCatalog } from './cold-warm-cases.mjs';
 import { createHistory, browserHistory, reopenHistory, revokeHistory, accountHistory } from './history-cases.mjs';
@@ -20,7 +21,8 @@ import { accountWorker } from './worker-accounting-case.mjs';
 import { assessLifetimes } from './lifetime-assess.mjs';
 
 export function matrixCases({ ownerOutput, catalogRoots, workingRows, inputFor, oracleInputFor, oracles, sourceName, noteTarget, references, engineerNote }) {
-  assert.equal(oracles.length, 10); assert.equal(oracles[6].setup, 'catalog-only');
+  assert.equal(oracles.length, 10); assert.equal(oracleSetup(oracles[6]), 'catalog-only');
+  const freshSetups = matrixFreshSetups(oracles.map(row => row.id));
   const inputs = new Map(), cold = new Map(), warm = new Map();
   let capacity, shutdown, browserHistoryCheckpoint;
   const operations = [
@@ -37,7 +39,7 @@ export function matrixCases({ ownerOutput, catalogRoots, workingRows, inputFor, 
     async c => {
       if (!c.require(inputs.get('representative'), 'representative materialized sources')) return;
       const input = inputs.get('representative');
-      capacity = await c.step('capacity', directory => createHistory({ directory, sources: input.sources, question: input.question }));
+      capacity = await c.step('capacity', directory => createHistory({ directory, sources: input.sources, question: input.question, returnResultOnFailure: true }));
       if (capacity.refusal) c.http['capacity/http-controlled-continuation'] = [{ id: capacity.refusal.response.id,
         route: '/prepared-answers', method: 'POST', status: 409, errorCode: 'ANSWER_WITNESS_LIMIT' }];
     },
@@ -126,7 +128,9 @@ export function matrixCases({ ownerOutput, catalogRoots, workingRows, inputFor, 
         await save(path.join(directory, 'sources.json'), sources);
         const value = await c.step(expected.id + '/case', output => oracleCase({ directory: output,
           corpus, sources, expected, references, engineerNote, noteTarget }));
-        assert.equal(value.preparations, 1);
+        if (oraclePreparationOutcome(value).status === 'not-run') {
+          c.missing.push('Oracle preparation not run after failed analysis: ' + expected.id); continue;
+        }
         for (const error of value.assessmentErrors) {
           assert.equal(error.code, 'ERR_ASSERTION'); c.failures.push({ oracle: expected.id, reason: 'source-prerequisite-failed', error });
         }
@@ -146,7 +150,7 @@ export function matrixCases({ ownerOutput, catalogRoots, workingRows, inputFor, 
       let nearHistory;
       if (await c.requireCheckpoint(cold.get('near-limit')?.checkpoint, 'cold-catalog', 'resource', 'near-limit list setup')) {
         const input = inputs.get('near-limit');
-        nearHistory = await c.step('near-history', directory => createHistory({ directory, sources: input.sources, question: input.question }));
+        nearHistory = await c.step('near-history', directory => createHistory({ directory, sources: input.sources, question: input.question, returnResultOnFailure: true }));
         if (nearHistory.refusal) c.http['near-history/http-controlled-continuation'] = [{ id: nearHistory.refusal.response.id,
           route: '/prepared-answers', method: 'POST', status: 409, errorCode: 'ANSWER_WITNESS_LIMIT' }];
       }
@@ -164,14 +168,14 @@ export function matrixCases({ ownerOutput, catalogRoots, workingRows, inputFor, 
     const input = inputFor(size), directory = path.join(c.directory, 'input'); await mkdir(directory);
     const sources = await materialize(path.join(directory, 'sources'), input.corpus); await save(path.join(directory, 'sources.json'), sources);
     assert.equal(sources.originals.length, input.expectedFiles);
-    const common = { sources, question: input.question, assessment: { corpus: input.corpus, sources, expected: input.expected } };
+    const common = matrixSourceInput(input, sources, references, engineerNote);
     inputs.set(size, common);
     const value = await c.step('cold', output => coldCatalog({ directory: output, ...common,
       expectedFiles: input.expectedFiles, expectedCodeFiles: input.expectedCodeFiles }));
     if (!value.errors.length) cold.set(size, value);
   }
   return resourceCaseOrder.map((id, index) => ({ id, requires: [], independentAfterFailure: true, run: async ({ directory }) => {
-    const c = { directory, steps: [], handoffs: [], missing: [], failures: [], http: {}, errors: [], safe: true,
+    const c = { directory, steps: [], handoffs: [], missing: [], failures: [], http: {}, errors: [], failedSetups: {}, safe: true,
       require(value, name) { if (!value) { c.missing.push('Missing functional prerequisite: ' + name); return false; } return true; },
       async requireCheckpoint(checkpoint, kind, lane, name) {
         if (!c.require(checkpoint, name)) return false;
@@ -183,13 +187,12 @@ export function matrixCases({ ownerOutput, catalogRoots, workingRows, inputFor, 
         return true;
       },
       async step(name, operation) {
-        const output = path.join(directory, name), value = await operation(output);
+        const output = path.join(directory, name), root = path.relative(ownerOutput, path.join(output, 'data'));
+        const { value, unavailable } = await runMatrixStep({ directory: output, operation, freshKind: freshSetups[root] });
         c.steps.push({ name, result: path.relative(directory, path.join(output, 'result.json')) });
-        assert(Array.isArray(value.errors));
-        if (value.errors.length) {
-          if (value.errors.every(error => error.code === 'INCOMPLETE_CODE_ANALYSIS')) {
-            c.failures.push({ step: name, reason: 'completed-analysis-prerequisite-failed', errors: value.errors });
-          } else throw Object.assign(new Error('Unknown case failure; no further operations are safe: ' + name), { cause: value.errors });
+        if (unavailable) {
+          c.failedSetups[root] = unavailable;
+          c.failures.push({ step: name, reason: 'completed-analysis-prerequisite-failed', errors: value.errors });
         }
         return value;
       },
@@ -197,7 +200,8 @@ export function matrixCases({ ownerOutput, catalogRoots, workingRows, inputFor, 
     let evidence;
     try { await operations[index](c); } catch (error) { c.errors.push(normalized(error)); c.safe = false; }
     try {
-      evidence = await assessMatrixEvidence({ directory, ownerOutput, catalogRoots, workingRows, expectedHttp: c.http });
+      evidence = await assessMatrixEvidence({ directory, ownerOutput, catalogRoots, workingRows,
+        expectedHttp: c.http, freshSetups, failedSetups: c.failedSetups });
       c.failures.push(...evidence.failures); c.missing.push(...evidence.incomplete);
       await save(path.join(directory, 'evidence-assessment.json'), evidence);
     } catch (error) { c.errors.push(normalized(error)); c.safe = false; }
@@ -205,7 +209,7 @@ export function matrixCases({ ownerOutput, catalogRoots, workingRows, inputFor, 
     const status = !c.safe ? 'incomplete' : !c.steps.length ? 'not-run' : c.failures.length ? 'failed'
       : c.missing.length || coverage.length ? 'incomplete' : 'passed';
     const result = { id, status, safeToContinue: c.safe, steps: c.steps, handoffs: c.handoffs,
-      failures: c.failures, incomplete: [...c.missing, ...coverage], errors: c.errors,
+      failures: c.failures, incomplete: [...c.missing, ...coverage], errors: c.errors, failedSetups: c.failedSetups,
       controlledCalls: evidence?.controlledCalls ?? null, modelCalls: 0, reservedFamilyReads: 0, resourceQualification: false };
     await save(path.join(directory, 'case-assessment.json'), result);
     return { status, safeToContinue: c.safe, artifacts: ['case-assessment.json', ...(evidence ? ['evidence-assessment.json'] : [])],

@@ -2,12 +2,13 @@
 
 ## Task 128 — Complete-flow resource driver (in progress)
 
-Latest accepted checkpoint: [PR #157](https://github.com/skyscs/ai-engineering-workbench/pull/157)
-at merge `1d2d9ed`. The first ordinary ordered matrix exercises all fifteen groups:
+Latest accepted checkpoint: [PR #158](https://github.com/skyscs/ai-engineering-workbench/pull/158)
+at merge `d61149a`. The first ordinary ordered matrix exercises all fifteen groups:
 eleven fail and four remain incomplete. Independent retention verifies all 55 created
-catalogs and unchanged raw inputs; both exact-head CI events passed 1,012 tests before
-merge. Supplemental offline content/lifetime bindings are now checked and awaiting their
-own CI acceptance. Earlier resource/required-positive failures remain unresolved.
+catalogs and unchanged raw inputs. Supplemental offline content/lifetime bindings are
+accepted after both exact-head CI events passed 1,016 tests. Execution adapter corrections
+now pass ordinary controls and await final-head CI; the final entry/seal remain outstanding. Earlier
+resource/required-positive failures remain unresolved.
 The reserved family has zero candidate reads; no model runs.
 Known ordinary failures include partial analysis of constant-only padding, a missing
 required native positive at the derived-size limit, aggregate list work, browser RSS and
@@ -457,7 +458,25 @@ that catalog. Recomputed R15 lifetime bounds match all sixteen original checks, 
 diagnostic timing or new per-operation claims. One copied catalog and all 33,062 original
 entries pass independent retention. Thirteen focused controls, install/build and the
 original seal pass. No new candidate preparation, answer or model runs; all original
-outcomes remain immutable. Both final-head CI events remain required before merge.
+outcomes remain immutable. Accepted through
+[PR #158](https://github.com/skyscs/ai-engineering-workbench/pull/158): push 42080246585 and
+pull_request 42080275190 pass 1,016 tests at `9c861dd`; merge `d61149a` has the identical
+tree. Both complete logs and test counts were verified before merge.
+
+The [execution adapter checkpoint](fixtures/loredock-prepared-flow-execution-boundary/README.md)
+implements exact required-original propagation, frozen setup mapping and explicit retained
+partial-analysis failure handoffs. Fifteen declared fresh roots may use zero-row expectations
+only after normal exit, zero attempts/witnesses/runtime work, no preparation/admission HTTP
+and exact retained-result checks. Unknown errors still stop; prevented oracle preparations
+remain not run. A first ordinary control verifies five required-original reviews, four
+controlled calls, twelve failed-fresh proofs, real Catalog-only and unverified-note setups.
+Seven case invocations remain six failed and one incomplete; raw timer failures are retained.
+Independent inspection verifies nineteen copied catalogs, 56 Git identities, 177 source files,
+214 HTTP responses and all 1,397 unchanged raw entries. Nineteen focused controls,
+install/build and the original seal pass; both final-head CI events remain required.
+The [execution work note](loredock/PREPARED_FLOW_EXECUTION.md) scopes the remaining exact
+process/environment closure and one-use entry. No reserved entry or executable seal has
+been committed yet; reserved candidate reads and model calls remain zero.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request

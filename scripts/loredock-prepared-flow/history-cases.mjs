@@ -24,10 +24,11 @@ export async function stoppedHistoryCheckpoint(data, destination) {
 }
 
 // R04 creation never runs a browser, production-history reopen, revocation or accounting.
-export async function createHistory({ directory, sources, question }) {
+export async function createHistory({ directory, sources, question, returnResultOnFailure = false }) {
+  assert.equal(typeof returnResultOnFailure, 'boolean');
   await mkdir(directory);
   const data = path.join(directory, 'data'), log = journal(path.join(directory, 'journal.jsonl'));
-  const result = { errors: [], admissions: [], lists: [], checkpoints: [], runtimeSegments: [], qualification: false };
+  const result = { errors: [], admissions: [], lists: [], checkpoints: [], runtimeSegments: [], returnResultOnFailure, qualification: false };
   let daemon, api;
   async function start(name) {
     daemon = await launch({ directory: path.join(directory, name), data, controlled: true });
@@ -97,7 +98,7 @@ export async function createHistory({ directory, sources, question }) {
     await save(path.join(directory, 'result.json'), result);
     log.append({ event: 'creation-finished', failed: result.errors.length > 0 }); log.close();
   }
-  assert.deepEqual(result.errors, [], 'History creation failed; complete partial output is retained.');
+  if (!returnResultOnFailure) assert.deepEqual(result.errors, [], 'History creation failed; complete partial output is retained.');
   return result;
 }
 
