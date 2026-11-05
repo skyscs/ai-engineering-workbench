@@ -1,0 +1,1165 @@
+{
+  "schemaVersion": "answer-witness-storage-review/1",
+  "base": "da7122b87a3e812565c50347838b5a9d535007d5",
+  "preservedControlsCommit": "76a454c",
+  "durableRequestClarificationCommit": "3a91ba5",
+  "reviewedExecutable": "32c9a49a186a74e39bf018c1ca1db6ba678d930b",
+  "node": "22.23.2",
+  "typescript": "5.9.3",
+  "pnpm": "10.15.0",
+  "checks": [
+    {
+      "path": "install-first.log.gz",
+      "exitCode": 0,
+      "bytes": 917,
+      "sha256": "06f6b8b179e7a904385a3a48c53816bba689a07ef9281fa2b40a6b804181c0f9",
+      "archiveSha256": "7e9f1c0cb9d8400536c20a5109d36f52cd4d57742b0d247b08ebe03ab473050c"
+    },
+    {
+      "path": "packages-first.log.gz",
+      "exitCode": 0,
+      "bytes": 604,
+      "sha256": "e48805f4d1d7a6a67908d2eefe62fd2d05fa3f64e3053919383d0ac423d7c72e",
+      "archiveSha256": "2485387bcc46080478d1fa93172cc77dd54ff1c1a3ed1ab178f42120a1e56acf"
+    },
+    {
+      "path": "build-before-first.log.gz",
+      "exitCode": 0,
+      "bytes": 129,
+      "sha256": "3d39f3c8e606c66d92ebf4684efa5ffdaede2349a76476edad5b5179efdc1471",
+      "archiveSha256": "f9cfe42f98dd9deeb2d2e23bc469f7be964b71d859adde4e3c028f676f606191"
+    },
+    {
+      "path": "types-first.log.gz",
+      "exitCode": 0,
+      "bytes": 154,
+      "sha256": "4f3709079fd23badefeeb48cfeda558afc32a1c1a973257513e511920dde4d6d",
+      "archiveSha256": "758e3115a60c1f8bc1c418eddef45a0de9fe9524b927b7b488645df431a9b88e"
+    },
+    {
+      "path": "build-first.log.gz",
+      "exitCode": 0,
+      "bytes": 129,
+      "sha256": "3d39f3c8e606c66d92ebf4684efa5ffdaede2349a76476edad5b5179efdc1471",
+      "archiveSha256": "f9cfe42f98dd9deeb2d2e23bc469f7be964b71d859adde4e3c028f676f606191"
+    },
+    {
+      "path": "focused-first.log.gz",
+      "exitCode": 1,
+      "bytes": 4627,
+      "sha256": "697d59199844ad4da95629d5e6114379c813f042d406a3d357c4a90f262405d7",
+      "archiveSha256": "273d1b738384e60274d0f16f1909d98e4744d7a6e01985f2e639942e819a1825"
+    },
+    {
+      "path": "focused-second.log.gz",
+      "exitCode": 1,
+      "bytes": 37389,
+      "sha256": "462cf1ad4646039eb41edab02d32634e212847c5a1265ef610877cd546735aac",
+      "archiveSha256": "e07089b345e05b41fd4754c171d290db00172b8a5950957ed1323318f763a382"
+    },
+    {
+      "path": "storage-first.log.gz",
+      "exitCode": 0,
+      "bytes": 12587,
+      "sha256": "67b48b08a5e91709beda0106dcebcd826223fa320df96c1c8bfb37188f71cbbd",
+      "archiveSha256": "cc5ce8724484e58e8bca7ed9b70ab04d32fa172ab44223e18c991e1701ff32a1"
+    },
+    {
+      "path": "build-second.log.gz",
+      "exitCode": 0,
+      "bytes": 129,
+      "sha256": "3d39f3c8e606c66d92ebf4684efa5ffdaede2349a76476edad5b5179efdc1471",
+      "archiveSha256": "f9cfe42f98dd9deeb2d2e23bc469f7be964b71d859adde4e3c028f676f606191"
+    },
+    {
+      "path": "focused-third.log.gz",
+      "exitCode": 0,
+      "bytes": 10994,
+      "sha256": "6fef6dd1c517abad4faa4f8fe55c8f8b052d994e3b71bd5a1cbe420bbf0b600b",
+      "archiveSha256": "536f8068b5b47c9565f9c252aaca3f28cd83f5b8a7dcccd4a6e72d7b22e46634"
+    },
+    {
+      "path": "check-first.log.gz",
+      "exitCode": 1,
+      "bytes": 296855,
+      "sha256": "f1fd116ed75138c2b83e2b8f308813f4aa3d7069cb9405a381827c0e1cea73f9",
+      "archiveSha256": "908ce52184814a119e7b704291982fd0f5604521ffc3286446dc1693ebb9aca2"
+    },
+    {
+      "path": "parity-first.log.gz",
+      "exitCode": 1,
+      "bytes": 13271,
+      "sha256": "5b70ebd9e84a26153bfc3c968b620222b4fc613fe0ae82a22612e9df44e71059",
+      "archiveSha256": "ed2ec760e3150e07dfff62504c49b1e302932f31333f54b73a97ed51efe6b754"
+    },
+    {
+      "path": "parity-second.log.gz",
+      "exitCode": 0,
+      "bytes": 3156,
+      "sha256": "ac6701505df10561fe51d09dd33a44cb65b37f9254091ec0c0cf15cee99f319b",
+      "archiveSha256": "c4873c04d5a24f0bd31c9f302decf663deff1f116b436fa250da9483c2597210"
+    },
+    {
+      "path": "focused-fourth.log.gz",
+      "exitCode": 0,
+      "bytes": 3919,
+      "sha256": "d680953d895cf0bc108a3cf7c2986add7a394dab2f0d4b989ff1dfe8daa037e7",
+      "archiveSha256": "8acb4efa7e39a91518083daa5497b528e33e03d56add38545c43b8197bc29b6e"
+    },
+    {
+      "path": "check-second.log.gz",
+      "exitCode": 0,
+      "bytes": 339160,
+      "sha256": "f75dcee494c57f3f5847d31cb6f40b032ccdafc510745be9ccee15d6ccbf6bad",
+      "archiveSha256": "ccaf53d09420d883dfab1582900a4dde37b2cb3e3d62f9f1a757603102bc6ac8"
+    },
+    {
+      "path": "audit-first.log.gz",
+      "exitCode": 0,
+      "bytes": 1034,
+      "sha256": "222cd6c38ae031b10c4b1f4ca66b2fc39c018c8cfb6508b37110321bcff51780",
+      "archiveSha256": "bd4904b414c0583c2f8fab80e5b0bcccabf3eeb45648a22ae1dce58429ecc7d3"
+    }
+  ],
+  "retainedOrdinaryFailures": [
+    {
+      "path": "first-full-comparison.tar.gz",
+      "archiveSha256": "4898f02d311e43ae31f4ec8ac00f243383493e326006a32f06551ce7785040a7",
+      "archiveBytes": 564383,
+      "originalDirectory": "/tmp/analysis-write-comparison-rTiOHu",
+      "files": {
+        "run/cancel-candidate/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/cancel-candidate/loredock.db": {
+          "bytes": 311296,
+          "sha256": "84d26e2f16bae779e3194eb9240685efd74707f4c20cec6dbd997295225150b6"
+        },
+        "run/cancel-reference/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/cancel-reference/loredock.db": {
+          "bytes": 299008,
+          "sha256": "5b8b8306d1967e95b573190edf5b9b5a322bd29389763ad42b3d5d3b382e55ed"
+        },
+        "run/counter-failure-candidate/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/counter-failure-candidate/loredock.db": {
+          "bytes": 344064,
+          "sha256": "33ac28ea45d733f4ed1c36f97270671b7d0006c477d87e43a3eaae345c40c4fc"
+        },
+        "run/counter-failure-reference/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/counter-failure-reference/loredock.db": {
+          "bytes": 327680,
+          "sha256": "b0544f7493a6dc1b50602318afa175f86a429b1f144dd74d573d7831386f9397"
+        },
+        "run/input.json": {
+          "bytes": 4444,
+          "sha256": "76f0f9869718a588320e141d999de52a845fec193faba8c1a5ceddc308f6c6a6"
+        },
+        "run/interrupt-resume-candidate/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/interrupt-resume-candidate/loredock.db": {
+          "bytes": 344064,
+          "sha256": "d25f829a3adf4ed06981bdb8b0f203260cac829473ae8ec19366c5bc38f284fc"
+        },
+        "run/interrupt-resume-reference/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/interrupt-resume-reference/loredock.db": {
+          "bytes": 327680,
+          "sha256": "54eab7bdb9f47839ccf52938f0a792cfc48781de1783e5511ed7e7075fd1c9f1"
+        },
+        "run/normal-candidate/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/normal-candidate/loredock.db": {
+          "bytes": 380928,
+          "sha256": "32c910aa9b6315ba1dfd407bfc9e7f6051760855cd65236855d8f3768f39d5fa"
+        },
+        "run/normal-reference/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/normal-reference/loredock.db": {
+          "bytes": 364544,
+          "sha256": "294704420a69cdc03c123cb14a14122ccea4a4feb129d3b890fa1463ae335658"
+        },
+        "run/pause-resume-candidate/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/pause-resume-candidate/loredock.db": {
+          "bytes": 344064,
+          "sha256": "21eef0e954b08602130f03a8726b80fc1257891a6186dd83de94182084fc7491"
+        },
+        "run/pause-resume-reference/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/pause-resume-reference/loredock.db": {
+          "bytes": 327680,
+          "sha256": "3322c0876dfa773c00dc32e476696042f5785b3f8ddc27cf9b44045251226349"
+        },
+        "run/policy-candidate/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/policy-candidate/loredock.db": {
+          "bytes": 311296,
+          "sha256": "086545afdb58f9669f4d372105eaeb408264d78f40901f5b456bcb4c605af16a"
+        },
+        "run/policy-reference/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/policy-reference/loredock.db": {
+          "bytes": 299008,
+          "sha256": "47117e4e265c300675288f6478e266c88e403ec80e3fe23f773d0289a9ce4b4e"
+        },
+        "run/report.json": {
+          "bytes": 1266936,
+          "sha256": "4ecab30333b9f29d8574ae2bfae3acf4a8b30fc26b695b819df9874d3fc0dccf"
+        },
+        "run/revoke-candidate/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/revoke-candidate/loredock.db": {
+          "bytes": 311296,
+          "sha256": "9917b48335ef8af0982851ecd97b31d31129cc164bd6f34ee53de6593fef77a6"
+        },
+        "run/revoke-reference/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/revoke-reference/loredock.db": {
+          "bytes": 299008,
+          "sha256": "b684eae688e59584b9234181574c096b05592965a891c6d92d763b370bc2beab"
+        },
+        "run/seed/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/seed/loredock.db": {
+          "bytes": 299008,
+          "sha256": "7e2c9cbbcdbef077e75b124f9b9014d9100da03a015ffae426e3059657822102"
+        },
+        "run/sources/a-permit-ui/.git/COMMIT_EDITMSG": {
+          "bytes": 36,
+          "sha256": "11f451b14ad9340fc36f6244fd5b60cbf301c9e51e5916ef4d3ac6134bde60e5"
+        },
+        "run/sources/a-permit-ui/.git/HEAD": {
+          "bytes": 21,
+          "sha256": "28d25bf82af4c0e2b72f50959b2beb859e3e60b9630a5e8c603dad4ddb2b6e80"
+        },
+        "run/sources/a-permit-ui/.git/config": {
+          "bytes": 92,
+          "sha256": "cfe7ba1238c9a78be7535d7c63bcaf5a4d5011d46b07c9b45d3bbf7d6c312dfe"
+        },
+        "run/sources/a-permit-ui/.git/index": {
+          "bytes": 855,
+          "sha256": "d9bf7475e9d88ef82ce2a7fadae30dd26f211c27b9939a2254a3b32c7a9369c3"
+        },
+        "run/sources/a-permit-ui/.git/logs/HEAD": {
+          "bytes": 199,
+          "sha256": "3740a76a15cbdbd803cd126eb8b9f7f86198dfc456cdff33f433bb24fb3fc02b"
+        },
+        "run/sources/a-permit-ui/.git/logs/refs/heads/main": {
+          "bytes": 199,
+          "sha256": "3740a76a15cbdbd803cd126eb8b9f7f86198dfc456cdff33f433bb24fb3fc02b"
+        },
+        "run/sources/a-permit-ui/.git/objects/09/11b9d9adb6fd91c40d133fb8d60d15c966687e": {
+          "bytes": 221,
+          "sha256": "57063619d74aa35e334ef79697a75f6972d14fed6baae4a52d42ef57b3f1f827"
+        },
+        "run/sources/a-permit-ui/.git/objects/20/120c3e6f385c09e09ddf57a98cc76c983660f4": {
+          "bytes": 189,
+          "sha256": "cb53efc293446bc0b6443d57ef3b330947e0b9e8be5eb803ed72a60a61912f34"
+        },
+        "run/sources/a-permit-ui/.git/objects/31/9cf2a183aea04e6dd096c57e8a484055fc4685": {
+          "bytes": 34,
+          "sha256": "2baf265591d584bb40115f7f650102337f6cb155999bd6ae494e38a283f42ccf"
+        },
+        "run/sources/a-permit-ui/.git/objects/4a/f73bdd7aed2fee49fa17ac74a136c9cd399cd8": {
+          "bytes": 190,
+          "sha256": "b8fb923fa6993fef74b0e429a9557bc3c707372e2f3e9dfb90d4d3808f39a406"
+        },
+        "run/sources/a-permit-ui/.git/objects/5a/5461f399b6c51b8d71e85a26d1ca7c0a372a5b": {
+          "bytes": 144,
+          "sha256": "dc4f43f22339fcacf81759a4d878fe03bb23645914881084d2e45c8e5f1aa71e"
+        },
+        "run/sources/a-permit-ui/.git/objects/5b/267b9a54511fa654cd81c7dcd637b50257e3ac": {
+          "bytes": 54,
+          "sha256": "cf514443008c25d75f0819156c33cdaadac89425c412dabd935bbb2fec40410f"
+        },
+        "run/sources/a-permit-ui/.git/objects/71/3e100a193fd37e6aaadcf790500e2fc7d8de3c": {
+          "bytes": 118,
+          "sha256": "396582e282dcd7ee5faec105d56d41c9f8417d58542ac7680cfd1349147996aa"
+        },
+        "run/sources/a-permit-ui/.git/objects/b8/e24b05fcdb59067fb1b6987c8cb9c78942165d": {
+          "bytes": 80,
+          "sha256": "dd6332b4e03429ad329351f9f1b26610fb7a4ede480aa2f881c6b93802430cfb"
+        },
+        "run/sources/a-permit-ui/.git/objects/c2/28cbe03c9ab2a28427df82286b5a227141763b": {
+          "bytes": 189,
+          "sha256": "99ad58098d6d3e63f678630aa0bce2b7e13e620e80cda97d2fb9fa7e07d98c29"
+        },
+        "run/sources/a-permit-ui/.git/objects/c3/b0ad0e30a4df8da014534decf20a6edb0e756f": {
+          "bytes": 164,
+          "sha256": "cbe64460331eb62333e46eb863133db1d7a340527299f2c61f5e791309c7ac5e"
+        },
+        "run/sources/a-permit-ui/.git/objects/c6/5c0a2eb62f62c493cee14526a11957037e4c7b": {
+          "bytes": 150,
+          "sha256": "a3dc370d9dd01d68eb8cf16fea495bdb63a5542655eb3ba61e369391a733343b"
+        },
+        "run/sources/a-permit-ui/.git/objects/da/b9c04d7f132440c4049a3c0020e9a2e8632fe5": {
+          "bytes": 190,
+          "sha256": "ad120cbb5441765a5bb2cf14f249645224d6824ce8f38c72698725f81e8b7098"
+        },
+        "run/sources/a-permit-ui/.git/objects/f9/bed1ccdcaf34033ca6fa2a2752d4b90f7ef4af": {
+          "bytes": 54,
+          "sha256": "7576ec622d2323f59b2d22379bbf0f38db9da93b61640f3659d698f4f3194ebc"
+        },
+        "run/sources/a-permit-ui/.git/refs/heads/main": {
+          "bytes": 41,
+          "sha256": "01d1e54edfbb6eebcaf41e6a46a1a223aa599d60fec99914d6eb32ff13a74221"
+        },
+        "run/sources/a-permit-ui/README.md": {
+          "bytes": 18,
+          "sha256": "e4ab6adc96c7d518e99f0fdbf33eb7d00c8b7212b278f3e1f53915d72aa86d9d"
+        },
+        "run/sources/a-permit-ui/comparison/unit-0.ts": {
+          "bytes": 40,
+          "sha256": "6eee056bf9cbc5d844629a850deaa00729852df4757ecefebed61460cead1b0c"
+        },
+        "run/sources/a-permit-ui/comparison/unit-1.ts": {
+          "bytes": 40,
+          "sha256": "baf8723881d620cf2ab6511fb68262676bf199762ddacea4a1c714407939239d"
+        },
+        "run/sources/a-permit-ui/ui/AAApply.vue": {
+          "bytes": 274,
+          "sha256": "45a549890421916bb299ad4f17f2e38cf4acbfb3fba8bd4ba8551a9c7648d386"
+        },
+        "run/sources/a-permit-ui/ui/BBRenew.vue": {
+          "bytes": 274,
+          "sha256": "21394c4e9bd0279f919891fde57d890fd4d1d3a86a64efeeaecd4c8f2b8a44ac"
+        },
+        "run/sources/a-permit-ui/ui/CCRetry.vue": {
+          "bytes": 274,
+          "sha256": "82f1687f22b2d649a5c40e020771f122e2bab6a42eee6326fee3a5300ea26eeb"
+        },
+        "run/sources/a-permit-ui/ui/DDConfirm.vue": {
+          "bytes": 278,
+          "sha256": "80716e961e363e7f2f3952cab7f51249bf35c4e73132c02d2e616d9357cbca21"
+        },
+        "run/sources/a-permit-ui/ui/ZZLocate.vue": {
+          "bytes": 182,
+          "sha256": "65b0d8f09a3e25c9b0c201d989ee0bd0e8d02860799f867eaff5e96115dad50d"
+        },
+        "run/sources/a-permit-ui/ui/request.ts": {
+          "bytes": 195,
+          "sha256": "977d787d5c174cd50add43cddee6d7f279264f409481357a8fc5ed75ea95a32f"
+        },
+        "run/sources/b-permit-api/.git/COMMIT_EDITMSG": {
+          "bytes": 36,
+          "sha256": "11f451b14ad9340fc36f6244fd5b60cbf301c9e51e5916ef4d3ac6134bde60e5"
+        },
+        "run/sources/b-permit-api/.git/HEAD": {
+          "bytes": 21,
+          "sha256": "28d25bf82af4c0e2b72f50959b2beb859e3e60b9630a5e8c603dad4ddb2b6e80"
+        },
+        "run/sources/b-permit-api/.git/config": {
+          "bytes": 92,
+          "sha256": "cfe7ba1238c9a78be7535d7c63bcaf5a4d5011d46b07c9b45d3bbf7d6c312dfe"
+        },
+        "run/sources/b-permit-api/.git/index": {
+          "bytes": 638,
+          "sha256": "302f08ce07a14f88b125d77d415e42dad9e7e9882d013d655c1d7561ae79c023"
+        },
+        "run/sources/b-permit-api/.git/logs/HEAD": {
+          "bytes": 199,
+          "sha256": "75b5ed12c634796de14ab24674d4ee76f354cae3a0f11676c0db9e3902121dc1"
+        },
+        "run/sources/b-permit-api/.git/logs/refs/heads/main": {
+          "bytes": 199,
+          "sha256": "75b5ed12c634796de14ab24674d4ee76f354cae3a0f11676c0db9e3902121dc1"
+        },
+        "run/sources/b-permit-api/.git/objects/4c/a374a4f68a4ca239558d7dcbf6bf2bc4bf88a9": {
+          "bytes": 32,
+          "sha256": "439b42bb79caf83930e699057b342a764407638b92b6348b9c5b4209b847a957"
+        },
+        "run/sources/b-permit-api/.git/objects/4d/e829230bc576d37c8e370f0d050486feefae9a": {
+          "bytes": 115,
+          "sha256": "521890b45d8431dac393f8d24db749f9a0ff6b6624f690a0823f1216c7344c56"
+        },
+        "run/sources/b-permit-api/.git/objects/5b/267b9a54511fa654cd81c7dcd637b50257e3ac": {
+          "bytes": 54,
+          "sha256": "cf514443008c25d75f0819156c33cdaadac89425c412dabd935bbb2fec40410f"
+        },
+        "run/sources/b-permit-api/.git/objects/62/6a6b8deb8c47a6302f17584b7c83e23bf0fa9c": {
+          "bytes": 151,
+          "sha256": "a41f277c92d7cffa6e3098e98cc4f228b08b7987a7863cd422426fd5bab0d656"
+        },
+        "run/sources/b-permit-api/.git/objects/95/312d76ecbcffc96f062c1b3beb97d0456a6ca1": {
+          "bytes": 63,
+          "sha256": "e0a0a7ec58c9964cd89ae681b342e488fc87ffd666285efb87fadb92fa2ccf50"
+        },
+        "run/sources/b-permit-api/.git/objects/a3/fdd3a0929af2ecab8d6c32c45cc8dafb274946": {
+          "bytes": 190,
+          "sha256": "8134a7a0cbe013391b5efb911ed13b353ed151f149ed7509d89ecf3bbdc39767"
+        },
+        "run/sources/b-permit-api/.git/objects/b8/e24b05fcdb59067fb1b6987c8cb9c78942165d": {
+          "bytes": 80,
+          "sha256": "dd6332b4e03429ad329351f9f1b26610fb7a4ede480aa2f881c6b93802430cfb"
+        },
+        "run/sources/b-permit-api/.git/objects/cf/732268d25a868531ecefd0ccbda84c5f599d78": {
+          "bytes": 224,
+          "sha256": "78654228c74df7e9ed86699e6b2112a7d1448b15298ef4743a617fe3ee406981"
+        },
+        "run/sources/b-permit-api/.git/objects/d3/2716863b9c246693df0c63917768fb06e3db9c": {
+          "bytes": 141,
+          "sha256": "265dc9fd236564af75e9c4456556386112258d832d3958361ecf44046a8a8529"
+        },
+        "run/sources/b-permit-api/.git/objects/f9/bed1ccdcaf34033ca6fa2a2752d4b90f7ef4af": {
+          "bytes": 54,
+          "sha256": "7576ec622d2323f59b2d22379bbf0f38db9da93b61640f3659d698f4f3194ebc"
+        },
+        "run/sources/b-permit-api/.git/refs/heads/main": {
+          "bytes": 41,
+          "sha256": "aec2c53d38b07d6a38efa004aa695b17669a366933d488e059d1f5e0c5700a46"
+        },
+        "run/sources/b-permit-api/Grants.java": {
+          "bytes": 435,
+          "sha256": "4e1af94768ad11cc0b35b3beba918ff3eaea154ad7725ac9f633ef80d0942598"
+        },
+        "run/sources/b-permit-api/README.md": {
+          "bytes": 16,
+          "sha256": "4487f4a521f9b8964710f741372d36e72ae52ebae949d33f656cac798c93134f"
+        },
+        "run/sources/b-permit-api/comparison/unit-0.ts": {
+          "bytes": 40,
+          "sha256": "6eee056bf9cbc5d844629a850deaa00729852df4757ecefebed61460cead1b0c"
+        },
+        "run/sources/b-permit-api/comparison/unit-1.ts": {
+          "bytes": 40,
+          "sha256": "baf8723881d620cf2ab6511fb68262676bf199762ddacea4a1c714407939239d"
+        },
+        "run/sources/b-permit-api/contracts/PermitGranted.json": {
+          "bytes": 130,
+          "sha256": "52819f478103c41f34e9d9ab71914a710651f2c998090d8ba78e0c5f9ec2ee75"
+        },
+        "run/sources/b-permit-api/routes.json": {
+          "bytes": 166,
+          "sha256": "870a016e141f809e2707436003ccf3b9deb7e26eb84ea3b0ba8ba46d6da48c02"
+        },
+        "run/sources/c-permit-store/.git/COMMIT_EDITMSG": {
+          "bytes": 36,
+          "sha256": "11f451b14ad9340fc36f6244fd5b60cbf301c9e51e5916ef4d3ac6134bde60e5"
+        },
+        "run/sources/c-permit-store/.git/HEAD": {
+          "bytes": 21,
+          "sha256": "28d25bf82af4c0e2b72f50959b2beb859e3e60b9630a5e8c603dad4ddb2b6e80"
+        },
+        "run/sources/c-permit-store/.git/config": {
+          "bytes": 92,
+          "sha256": "cfe7ba1238c9a78be7535d7c63bcaf5a4d5011d46b07c9b45d3bbf7d6c312dfe"
+        },
+        "run/sources/c-permit-store/.git/index": {
+          "bytes": 558,
+          "sha256": "3c7e569b6f5e5bb51aff690f2e5a998ba0689578b6fc80ece95a4de68d7ce9ad"
+        },
+        "run/sources/c-permit-store/.git/logs/HEAD": {
+          "bytes": 199,
+          "sha256": "52eba1b64d4f3dc86c1b22f4bd0c4bbf5162bd9ce51dd1da6ac021d74ad18c69"
+        },
+        "run/sources/c-permit-store/.git/logs/refs/heads/main": {
+          "bytes": 199,
+          "sha256": "52eba1b64d4f3dc86c1b22f4bd0c4bbf5162bd9ce51dd1da6ac021d74ad18c69"
+        },
+        "run/sources/c-permit-store/.git/objects/0a/ae2ae6c9cc515ceba4fcffb094fd146fbb2162": {
+          "bytes": 163,
+          "sha256": "0e1bc7745901e2ceaad815dd598a88f56efaabda4e5c519fcd856fea883e5a42"
+        },
+        "run/sources/c-permit-store/.git/objects/41/11c0ff280e390aa62e6092f5ff71b7e3c3019c": {
+          "bytes": 36,
+          "sha256": "bcba4e8f7f1f97918a414de3402a409b00c2d7f01df1649497a1cb9525d359b2"
+        },
+        "run/sources/c-permit-store/.git/objects/4d/e829230bc576d37c8e370f0d050486feefae9a": {
+          "bytes": 115,
+          "sha256": "521890b45d8431dac393f8d24db749f9a0ff6b6624f690a0823f1216c7344c56"
+        },
+        "run/sources/c-permit-store/.git/objects/5b/267b9a54511fa654cd81c7dcd637b50257e3ac": {
+          "bytes": 54,
+          "sha256": "cf514443008c25d75f0819156c33cdaadac89425c412dabd935bbb2fec40410f"
+        },
+        "run/sources/c-permit-store/.git/objects/95/312d76ecbcffc96f062c1b3beb97d0456a6ca1": {
+          "bytes": 63,
+          "sha256": "e0a0a7ec58c9964cd89ae681b342e488fc87ffd666285efb87fadb92fa2ccf50"
+        },
+        "run/sources/c-permit-store/.git/objects/b8/e24b05fcdb59067fb1b6987c8cb9c78942165d": {
+          "bytes": 80,
+          "sha256": "dd6332b4e03429ad329351f9f1b26610fb7a4ede480aa2f881c6b93802430cfb"
+        },
+        "run/sources/c-permit-store/.git/objects/be/236684574c2536fb1df44883ff1058004419e4": {
+          "bytes": 340,
+          "sha256": "bb458816cb2b276694f57253d2055a1e0a208203f6da3c781377252339456293"
+        },
+        "run/sources/c-permit-store/.git/objects/e6/50cc648b5fd285951b1c6e984de8ad60993090": {
+          "bytes": 151,
+          "sha256": "678c8ab37998f7625459f591c94c05b4f9ea8a55e74de29273e2fb62c4fd1f68"
+        },
+        "run/sources/c-permit-store/.git/objects/f9/bed1ccdcaf34033ca6fa2a2752d4b90f7ef4af": {
+          "bytes": 54,
+          "sha256": "7576ec622d2323f59b2d22379bbf0f38db9da93b61640f3659d698f4f3194ebc"
+        },
+        "run/sources/c-permit-store/.git/refs/heads/main": {
+          "bytes": 41,
+          "sha256": "b2e83821e407a9df1f000d0b7b75bada73703271ae643853a77ba83c7e8333d0"
+        },
+        "run/sources/c-permit-store/PermitWriter.java": {
+          "bytes": 701,
+          "sha256": "c678dc629069a9cc1ef97c964932315687d964f035ccda7e5d3860302d54c679"
+        },
+        "run/sources/c-permit-store/README.md": {
+          "bytes": 20,
+          "sha256": "bf59b689cff7c2568d7c8942db43504bab5618121cca11f397a196fe6ba429d7"
+        },
+        "run/sources/c-permit-store/comparison/unit-0.ts": {
+          "bytes": 40,
+          "sha256": "6eee056bf9cbc5d844629a850deaa00729852df4757ecefebed61460cead1b0c"
+        },
+        "run/sources/c-permit-store/comparison/unit-1.ts": {
+          "bytes": 40,
+          "sha256": "baf8723881d620cf2ab6511fb68262676bf199762ddacea4a1c714407939239d"
+        },
+        "run/sources/c-permit-store/contracts/PermitGranted.json": {
+          "bytes": 130,
+          "sha256": "52819f478103c41f34e9d9ab71914a710651f2c998090d8ba78e0c5f9ec2ee75"
+        },
+        "run/sources/z-independent-notes/.git/COMMIT_EDITMSG": {
+          "bytes": 36,
+          "sha256": "11f451b14ad9340fc36f6244fd5b60cbf301c9e51e5916ef4d3ac6134bde60e5"
+        },
+        "run/sources/z-independent-notes/.git/HEAD": {
+          "bytes": 21,
+          "sha256": "28d25bf82af4c0e2b72f50959b2beb859e3e60b9630a5e8c603dad4ddb2b6e80"
+        },
+        "run/sources/z-independent-notes/.git/config": {
+          "bytes": 92,
+          "sha256": "cfe7ba1238c9a78be7535d7c63bcaf5a4d5011d46b07c9b45d3bbf7d6c312dfe"
+        },
+        "run/sources/z-independent-notes/.git/index": {
+          "bytes": 348,
+          "sha256": "2ae0f5e734fff8a0651a8828a16ae3647f78cf86a3c0722169ddfc053a6c9543"
+        },
+        "run/sources/z-independent-notes/.git/logs/HEAD": {
+          "bytes": 199,
+          "sha256": "f73a9af7d642cc7f2a5916c2e9b7959a2b95097ca47f6367a88ae81796f79e66"
+        },
+        "run/sources/z-independent-notes/.git/logs/refs/heads/main": {
+          "bytes": 199,
+          "sha256": "f73a9af7d642cc7f2a5916c2e9b7959a2b95097ca47f6367a88ae81796f79e66"
+        },
+        "run/sources/z-independent-notes/.git/objects/10/53c3eda3476da9b58ad0fd44f3923dfdcaf59c": {
+          "bytes": 91,
+          "sha256": "ba665a7eb7bf8193897ed3e99d61d9ad38ebb7ab2fe9b9bb75a85eb98ee4ee27"
+        },
+        "run/sources/z-independent-notes/.git/objects/1f/254887efb597b404ad1135f1ea5bf75b78c3da": {
+          "bytes": 152,
+          "sha256": "abcc1ba32fa1f9c9ce101c6b9cad413fbebb06675871a18a3f2a0ea0ec5d6d01"
+        },
+        "run/sources/z-independent-notes/.git/objects/56/d2775dd463d522dbfdf8b6880c56c7688e197a": {
+          "bytes": 91,
+          "sha256": "fe4bebee62c6acb9586a0670114e2bdfafd3b88c9feeef7c0c2c44e9ef9f0c3e"
+        },
+        "run/sources/z-independent-notes/.git/objects/5b/267b9a54511fa654cd81c7dcd637b50257e3ac": {
+          "bytes": 54,
+          "sha256": "cf514443008c25d75f0819156c33cdaadac89425c412dabd935bbb2fec40410f"
+        },
+        "run/sources/z-independent-notes/.git/objects/b8/e24b05fcdb59067fb1b6987c8cb9c78942165d": {
+          "bytes": 80,
+          "sha256": "dd6332b4e03429ad329351f9f1b26610fb7a4ede480aa2f881c6b93802430cfb"
+        },
+        "run/sources/z-independent-notes/.git/objects/f9/bed1ccdcaf34033ca6fa2a2752d4b90f7ef4af": {
+          "bytes": 54,
+          "sha256": "7576ec622d2323f59b2d22379bbf0f38db9da93b61640f3659d698f4f3194ebc"
+        },
+        "run/sources/z-independent-notes/.git/refs/heads/main": {
+          "bytes": 41,
+          "sha256": "e103971ea0b54b7be1b80465a752d5bf347d66272a07b799a7273108183f1174"
+        },
+        "run/sources/z-independent-notes/README.md": {
+          "bytes": 92,
+          "sha256": "492dacdf522eb537bb7d515c1fd4fc9ecbdbcf45ee8b1e7eb0098c9b5019f9a4"
+        },
+        "run/sources/z-independent-notes/comparison/unit-0.ts": {
+          "bytes": 40,
+          "sha256": "6eee056bf9cbc5d844629a850deaa00729852df4757ecefebed61460cead1b0c"
+        },
+        "run/sources/z-independent-notes/comparison/unit-1.ts": {
+          "bytes": 40,
+          "sha256": "baf8723881d620cf2ab6511fb68262676bf199762ddacea4a1c714407939239d"
+        }
+      }
+    },
+    {
+      "path": "first-parity-comparison.tar.gz",
+      "archiveSha256": "832b8741808b8e775a0f4fa4d59f60e5576bc2357d65fea50fc7a627dd780d51",
+      "archiveBytes": 563945,
+      "originalDirectory": "/tmp/analysis-write-comparison-8pr8wH",
+      "files": {
+        "run/cancel-candidate/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/cancel-candidate/loredock.db": {
+          "bytes": 311296,
+          "sha256": "8e7e9facc7158f6780851d9589e31d8e95e07c1ef531d7fa620a1de56209a629"
+        },
+        "run/cancel-reference/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/cancel-reference/loredock.db": {
+          "bytes": 299008,
+          "sha256": "7bdec6d17cb7dffb3d3a65b1ebd55c7bd694d2a94a244a628402fc7f9c1ccd43"
+        },
+        "run/counter-failure-candidate/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/counter-failure-candidate/loredock.db": {
+          "bytes": 344064,
+          "sha256": "cb7d408e9e298483220cc28e977ed4c0c682c62fe6e52e188488faf8b8cc078b"
+        },
+        "run/counter-failure-reference/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/counter-failure-reference/loredock.db": {
+          "bytes": 327680,
+          "sha256": "cd9bfa4bec342b5e82c2274958755dd15cc00c8881d59efafff8d8b1e23a48a1"
+        },
+        "run/input.json": {
+          "bytes": 4444,
+          "sha256": "76f0f9869718a588320e141d999de52a845fec193faba8c1a5ceddc308f6c6a6"
+        },
+        "run/interrupt-resume-candidate/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/interrupt-resume-candidate/loredock.db": {
+          "bytes": 344064,
+          "sha256": "11b05ae105cb25f04cde90da842829840d7a712c1dd942aa6047001f1b576c2f"
+        },
+        "run/interrupt-resume-reference/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/interrupt-resume-reference/loredock.db": {
+          "bytes": 327680,
+          "sha256": "28ea65d036bf5c0a50dc810b367aa6ebdf490b0e11202bacb022f735b86dbf0d"
+        },
+        "run/normal-candidate/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/normal-candidate/loredock.db": {
+          "bytes": 380928,
+          "sha256": "c007c1293d98e9b53a6a73ff4d4338b7b3adfdbc459ad05da625d6fd17c3a492"
+        },
+        "run/normal-reference/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/normal-reference/loredock.db": {
+          "bytes": 364544,
+          "sha256": "04e1944255af0c574c16283efb1969c74d73babb868deca05d39118aee3c588c"
+        },
+        "run/pause-resume-candidate/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/pause-resume-candidate/loredock.db": {
+          "bytes": 344064,
+          "sha256": "82e4000e83da0680f5d12c418fd7f6615265190992f763d66f1bded3754cae65"
+        },
+        "run/pause-resume-reference/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/pause-resume-reference/loredock.db": {
+          "bytes": 327680,
+          "sha256": "e4fffbd21ab8a2b7c3669c751c52ae32e3e1a93fdc70a75ab5f306657b9f0482"
+        },
+        "run/policy-candidate/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/policy-candidate/loredock.db": {
+          "bytes": 311296,
+          "sha256": "21eadb55c22fa45c4a7c951fa960b26e7521a5d768d71d3a7291d6bc59e24d9b"
+        },
+        "run/policy-reference/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/policy-reference/loredock.db": {
+          "bytes": 299008,
+          "sha256": "c23abc9f06717275a7267723923d3fbe3cc238ab0fa2af99a3cdbc1f99c3842f"
+        },
+        "run/report.json": {
+          "bytes": 1266936,
+          "sha256": "fdc55c289f14886675cddc52619f4c2bf354ce496d16e8abcdd25eb66614f69d"
+        },
+        "run/revoke-candidate/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/revoke-candidate/loredock.db": {
+          "bytes": 311296,
+          "sha256": "12676a66ab8591bf15a124ed99da7fae8777c35c9c48f317480614984b1fa4e1"
+        },
+        "run/revoke-reference/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/revoke-reference/loredock.db": {
+          "bytes": 299008,
+          "sha256": "972fe2736fe1190f7a334b2185d6043414f88fe62b5ed35a8f9637bc630ada96"
+        },
+        "run/seed/.owner.db": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "run/seed/loredock.db": {
+          "bytes": 299008,
+          "sha256": "08d9bd84fb4ce47c221b7e07f94364a9afe33ab9eda7e573d55511d8c674d256"
+        },
+        "run/sources/a-permit-ui/.git/COMMIT_EDITMSG": {
+          "bytes": 36,
+          "sha256": "11f451b14ad9340fc36f6244fd5b60cbf301c9e51e5916ef4d3ac6134bde60e5"
+        },
+        "run/sources/a-permit-ui/.git/HEAD": {
+          "bytes": 21,
+          "sha256": "28d25bf82af4c0e2b72f50959b2beb859e3e60b9630a5e8c603dad4ddb2b6e80"
+        },
+        "run/sources/a-permit-ui/.git/config": {
+          "bytes": 92,
+          "sha256": "cfe7ba1238c9a78be7535d7c63bcaf5a4d5011d46b07c9b45d3bbf7d6c312dfe"
+        },
+        "run/sources/a-permit-ui/.git/index": {
+          "bytes": 855,
+          "sha256": "71d4013903625c64aebda381adf98c8bb0842ac6df5a900f77caeb075fab3932"
+        },
+        "run/sources/a-permit-ui/.git/logs/HEAD": {
+          "bytes": 199,
+          "sha256": "3740a76a15cbdbd803cd126eb8b9f7f86198dfc456cdff33f433bb24fb3fc02b"
+        },
+        "run/sources/a-permit-ui/.git/logs/refs/heads/main": {
+          "bytes": 199,
+          "sha256": "3740a76a15cbdbd803cd126eb8b9f7f86198dfc456cdff33f433bb24fb3fc02b"
+        },
+        "run/sources/a-permit-ui/.git/objects/09/11b9d9adb6fd91c40d133fb8d60d15c966687e": {
+          "bytes": 221,
+          "sha256": "57063619d74aa35e334ef79697a75f6972d14fed6baae4a52d42ef57b3f1f827"
+        },
+        "run/sources/a-permit-ui/.git/objects/20/120c3e6f385c09e09ddf57a98cc76c983660f4": {
+          "bytes": 189,
+          "sha256": "cb53efc293446bc0b6443d57ef3b330947e0b9e8be5eb803ed72a60a61912f34"
+        },
+        "run/sources/a-permit-ui/.git/objects/31/9cf2a183aea04e6dd096c57e8a484055fc4685": {
+          "bytes": 34,
+          "sha256": "2baf265591d584bb40115f7f650102337f6cb155999bd6ae494e38a283f42ccf"
+        },
+        "run/sources/a-permit-ui/.git/objects/4a/f73bdd7aed2fee49fa17ac74a136c9cd399cd8": {
+          "bytes": 190,
+          "sha256": "b8fb923fa6993fef74b0e429a9557bc3c707372e2f3e9dfb90d4d3808f39a406"
+        },
+        "run/sources/a-permit-ui/.git/objects/5a/5461f399b6c51b8d71e85a26d1ca7c0a372a5b": {
+          "bytes": 144,
+          "sha256": "dc4f43f22339fcacf81759a4d878fe03bb23645914881084d2e45c8e5f1aa71e"
+        },
+        "run/sources/a-permit-ui/.git/objects/5b/267b9a54511fa654cd81c7dcd637b50257e3ac": {
+          "bytes": 54,
+          "sha256": "cf514443008c25d75f0819156c33cdaadac89425c412dabd935bbb2fec40410f"
+        },
+        "run/sources/a-permit-ui/.git/objects/71/3e100a193fd37e6aaadcf790500e2fc7d8de3c": {
+          "bytes": 118,
+          "sha256": "396582e282dcd7ee5faec105d56d41c9f8417d58542ac7680cfd1349147996aa"
+        },
+        "run/sources/a-permit-ui/.git/objects/b8/e24b05fcdb59067fb1b6987c8cb9c78942165d": {
+          "bytes": 80,
+          "sha256": "dd6332b4e03429ad329351f9f1b26610fb7a4ede480aa2f881c6b93802430cfb"
+        },
+        "run/sources/a-permit-ui/.git/objects/c2/28cbe03c9ab2a28427df82286b5a227141763b": {
+          "bytes": 189,
+          "sha256": "99ad58098d6d3e63f678630aa0bce2b7e13e620e80cda97d2fb9fa7e07d98c29"
+        },
+        "run/sources/a-permit-ui/.git/objects/c3/b0ad0e30a4df8da014534decf20a6edb0e756f": {
+          "bytes": 164,
+          "sha256": "cbe64460331eb62333e46eb863133db1d7a340527299f2c61f5e791309c7ac5e"
+        },
+        "run/sources/a-permit-ui/.git/objects/c6/5c0a2eb62f62c493cee14526a11957037e4c7b": {
+          "bytes": 150,
+          "sha256": "a3dc370d9dd01d68eb8cf16fea495bdb63a5542655eb3ba61e369391a733343b"
+        },
+        "run/sources/a-permit-ui/.git/objects/da/b9c04d7f132440c4049a3c0020e9a2e8632fe5": {
+          "bytes": 190,
+          "sha256": "ad120cbb5441765a5bb2cf14f249645224d6824ce8f38c72698725f81e8b7098"
+        },
+        "run/sources/a-permit-ui/.git/objects/f9/bed1ccdcaf34033ca6fa2a2752d4b90f7ef4af": {
+          "bytes": 54,
+          "sha256": "7576ec622d2323f59b2d22379bbf0f38db9da93b61640f3659d698f4f3194ebc"
+        },
+        "run/sources/a-permit-ui/.git/refs/heads/main": {
+          "bytes": 41,
+          "sha256": "01d1e54edfbb6eebcaf41e6a46a1a223aa599d60fec99914d6eb32ff13a74221"
+        },
+        "run/sources/a-permit-ui/README.md": {
+          "bytes": 18,
+          "sha256": "e4ab6adc96c7d518e99f0fdbf33eb7d00c8b7212b278f3e1f53915d72aa86d9d"
+        },
+        "run/sources/a-permit-ui/comparison/unit-0.ts": {
+          "bytes": 40,
+          "sha256": "6eee056bf9cbc5d844629a850deaa00729852df4757ecefebed61460cead1b0c"
+        },
+        "run/sources/a-permit-ui/comparison/unit-1.ts": {
+          "bytes": 40,
+          "sha256": "baf8723881d620cf2ab6511fb68262676bf199762ddacea4a1c714407939239d"
+        },
+        "run/sources/a-permit-ui/ui/AAApply.vue": {
+          "bytes": 274,
+          "sha256": "45a549890421916bb299ad4f17f2e38cf4acbfb3fba8bd4ba8551a9c7648d386"
+        },
+        "run/sources/a-permit-ui/ui/BBRenew.vue": {
+          "bytes": 274,
+          "sha256": "21394c4e9bd0279f919891fde57d890fd4d1d3a86a64efeeaecd4c8f2b8a44ac"
+        },
+        "run/sources/a-permit-ui/ui/CCRetry.vue": {
+          "bytes": 274,
+          "sha256": "82f1687f22b2d649a5c40e020771f122e2bab6a42eee6326fee3a5300ea26eeb"
+        },
+        "run/sources/a-permit-ui/ui/DDConfirm.vue": {
+          "bytes": 278,
+          "sha256": "80716e961e363e7f2f3952cab7f51249bf35c4e73132c02d2e616d9357cbca21"
+        },
+        "run/sources/a-permit-ui/ui/ZZLocate.vue": {
+          "bytes": 182,
+          "sha256": "65b0d8f09a3e25c9b0c201d989ee0bd0e8d02860799f867eaff5e96115dad50d"
+        },
+        "run/sources/a-permit-ui/ui/request.ts": {
+          "bytes": 195,
+          "sha256": "977d787d5c174cd50add43cddee6d7f279264f409481357a8fc5ed75ea95a32f"
+        },
+        "run/sources/b-permit-api/.git/COMMIT_EDITMSG": {
+          "bytes": 36,
+          "sha256": "11f451b14ad9340fc36f6244fd5b60cbf301c9e51e5916ef4d3ac6134bde60e5"
+        },
+        "run/sources/b-permit-api/.git/HEAD": {
+          "bytes": 21,
+          "sha256": "28d25bf82af4c0e2b72f50959b2beb859e3e60b9630a5e8c603dad4ddb2b6e80"
+        },
+        "run/sources/b-permit-api/.git/config": {
+          "bytes": 92,
+          "sha256": "cfe7ba1238c9a78be7535d7c63bcaf5a4d5011d46b07c9b45d3bbf7d6c312dfe"
+        },
+        "run/sources/b-permit-api/.git/index": {
+          "bytes": 638,
+          "sha256": "5e082948b3196d03eb5c6f108b6681379f0314f8ef91fec5ef1fe6b91a82a405"
+        },
+        "run/sources/b-permit-api/.git/logs/HEAD": {
+          "bytes": 199,
+          "sha256": "75b5ed12c634796de14ab24674d4ee76f354cae3a0f11676c0db9e3902121dc1"
+        },
+        "run/sources/b-permit-api/.git/logs/refs/heads/main": {
+          "bytes": 199,
+          "sha256": "75b5ed12c634796de14ab24674d4ee76f354cae3a0f11676c0db9e3902121dc1"
+        },
+        "run/sources/b-permit-api/.git/objects/4c/a374a4f68a4ca239558d7dcbf6bf2bc4bf88a9": {
+          "bytes": 32,
+          "sha256": "439b42bb79caf83930e699057b342a764407638b92b6348b9c5b4209b847a957"
+        },
+        "run/sources/b-permit-api/.git/objects/4d/e829230bc576d37c8e370f0d050486feefae9a": {
+          "bytes": 115,
+          "sha256": "521890b45d8431dac393f8d24db749f9a0ff6b6624f690a0823f1216c7344c56"
+        },
+        "run/sources/b-permit-api/.git/objects/5b/267b9a54511fa654cd81c7dcd637b50257e3ac": {
+          "bytes": 54,
+          "sha256": "cf514443008c25d75f0819156c33cdaadac89425c412dabd935bbb2fec40410f"
+        },
+        "run/sources/b-permit-api/.git/objects/62/6a6b8deb8c47a6302f17584b7c83e23bf0fa9c": {
+          "bytes": 151,
+          "sha256": "a41f277c92d7cffa6e3098e98cc4f228b08b7987a7863cd422426fd5bab0d656"
+        },
+        "run/sources/b-permit-api/.git/objects/95/312d76ecbcffc96f062c1b3beb97d0456a6ca1": {
+          "bytes": 63,
+          "sha256": "e0a0a7ec58c9964cd89ae681b342e488fc87ffd666285efb87fadb92fa2ccf50"
+        },
+        "run/sources/b-permit-api/.git/objects/a3/fdd3a0929af2ecab8d6c32c45cc8dafb274946": {
+          "bytes": 190,
+          "sha256": "8134a7a0cbe013391b5efb911ed13b353ed151f149ed7509d89ecf3bbdc39767"
+        },
+        "run/sources/b-permit-api/.git/objects/b8/e24b05fcdb59067fb1b6987c8cb9c78942165d": {
+          "bytes": 80,
+          "sha256": "dd6332b4e03429ad329351f9f1b26610fb7a4ede480aa2f881c6b93802430cfb"
+        },
+        "run/sources/b-permit-api/.git/objects/cf/732268d25a868531ecefd0ccbda84c5f599d78": {
+          "bytes": 224,
+          "sha256": "78654228c74df7e9ed86699e6b2112a7d1448b15298ef4743a617fe3ee406981"
+        },
+        "run/sources/b-permit-api/.git/objects/d3/2716863b9c246693df0c63917768fb06e3db9c": {
+          "bytes": 141,
+          "sha256": "265dc9fd236564af75e9c4456556386112258d832d3958361ecf44046a8a8529"
+        },
+        "run/sources/b-permit-api/.git/objects/f9/bed1ccdcaf34033ca6fa2a2752d4b90f7ef4af": {
+          "bytes": 54,
+          "sha256": "7576ec622d2323f59b2d22379bbf0f38db9da93b61640f3659d698f4f3194ebc"
+        },
+        "run/sources/b-permit-api/.git/refs/heads/main": {
+          "bytes": 41,
+          "sha256": "aec2c53d38b07d6a38efa004aa695b17669a366933d488e059d1f5e0c5700a46"
+        },
+        "run/sources/b-permit-api/Grants.java": {
+          "bytes": 435,
+          "sha256": "4e1af94768ad11cc0b35b3beba918ff3eaea154ad7725ac9f633ef80d0942598"
+        },
+        "run/sources/b-permit-api/README.md": {
+          "bytes": 16,
+          "sha256": "4487f4a521f9b8964710f741372d36e72ae52ebae949d33f656cac798c93134f"
+        },
+        "run/sources/b-permit-api/comparison/unit-0.ts": {
+          "bytes": 40,
+          "sha256": "6eee056bf9cbc5d844629a850deaa00729852df4757ecefebed61460cead1b0c"
+        },
+        "run/sources/b-permit-api/comparison/unit-1.ts": {
+          "bytes": 40,
+          "sha256": "baf8723881d620cf2ab6511fb68262676bf199762ddacea4a1c714407939239d"
+        },
+        "run/sources/b-permit-api/contracts/PermitGranted.json": {
+          "bytes": 130,
+          "sha256": "52819f478103c41f34e9d9ab71914a710651f2c998090d8ba78e0c5f9ec2ee75"
+        },
+        "run/sources/b-permit-api/routes.json": {
+          "bytes": 166,
+          "sha256": "870a016e141f809e2707436003ccf3b9deb7e26eb84ea3b0ba8ba46d6da48c02"
+        },
+        "run/sources/c-permit-store/.git/COMMIT_EDITMSG": {
+          "bytes": 36,
+          "sha256": "11f451b14ad9340fc36f6244fd5b60cbf301c9e51e5916ef4d3ac6134bde60e5"
+        },
+        "run/sources/c-permit-store/.git/HEAD": {
+          "bytes": 21,
+          "sha256": "28d25bf82af4c0e2b72f50959b2beb859e3e60b9630a5e8c603dad4ddb2b6e80"
+        },
+        "run/sources/c-permit-store/.git/config": {
+          "bytes": 92,
+          "sha256": "cfe7ba1238c9a78be7535d7c63bcaf5a4d5011d46b07c9b45d3bbf7d6c312dfe"
+        },
+        "run/sources/c-permit-store/.git/index": {
+          "bytes": 558,
+          "sha256": "f9f38bd838817d3ff5db94e2d9cdd41d2fa36ffe6e220759a646bc672790b270"
+        },
+        "run/sources/c-permit-store/.git/logs/HEAD": {
+          "bytes": 199,
+          "sha256": "52eba1b64d4f3dc86c1b22f4bd0c4bbf5162bd9ce51dd1da6ac021d74ad18c69"
+        },
+        "run/sources/c-permit-store/.git/logs/refs/heads/main": {
+          "bytes": 199,
+          "sha256": "52eba1b64d4f3dc86c1b22f4bd0c4bbf5162bd9ce51dd1da6ac021d74ad18c69"
+        },
+        "run/sources/c-permit-store/.git/objects/0a/ae2ae6c9cc515ceba4fcffb094fd146fbb2162": {
+          "bytes": 163,
+          "sha256": "0e1bc7745901e2ceaad815dd598a88f56efaabda4e5c519fcd856fea883e5a42"
+        },
+        "run/sources/c-permit-store/.git/objects/41/11c0ff280e390aa62e6092f5ff71b7e3c3019c": {
+          "bytes": 36,
+          "sha256": "bcba4e8f7f1f97918a414de3402a409b00c2d7f01df1649497a1cb9525d359b2"
+        },
+        "run/sources/c-permit-store/.git/objects/4d/e829230bc576d37c8e370f0d050486feefae9a": {
+          "bytes": 115,
+          "sha256": "521890b45d8431dac393f8d24db749f9a0ff6b6624f690a0823f1216c7344c56"
+        },
+        "run/sources/c-permit-store/.git/objects/5b/267b9a54511fa654cd81c7dcd637b50257e3ac": {
+          "bytes": 54,
+          "sha256": "cf514443008c25d75f0819156c33cdaadac89425c412dabd935bbb2fec40410f"
+        },
+        "run/sources/c-permit-store/.git/objects/95/312d76ecbcffc96f062c1b3beb97d0456a6ca1": {
+          "bytes": 63,
+          "sha256": "e0a0a7ec58c9964cd89ae681b342e488fc87ffd666285efb87fadb92fa2ccf50"
+        },
+        "run/sources/c-permit-store/.git/objects/b8/e24b05fcdb59067fb1b6987c8cb9c78942165d": {
+          "bytes": 80,
+          "sha256": "dd6332b4e03429ad329351f9f1b26610fb7a4ede480aa2f881c6b93802430cfb"
+        },
+        "run/sources/c-permit-store/.git/objects/be/236684574c2536fb1df44883ff1058004419e4": {
+          "bytes": 340,
+          "sha256": "bb458816cb2b276694f57253d2055a1e0a208203f6da3c781377252339456293"
+        },
+        "run/sources/c-permit-store/.git/objects/e6/50cc648b5fd285951b1c6e984de8ad60993090": {
+          "bytes": 151,
+          "sha256": "678c8ab37998f7625459f591c94c05b4f9ea8a55e74de29273e2fb62c4fd1f68"
+        },
+        "run/sources/c-permit-store/.git/objects/f9/bed1ccdcaf34033ca6fa2a2752d4b90f7ef4af": {
+          "bytes": 54,
+          "sha256": "7576ec622d2323f59b2d22379bbf0f38db9da93b61640f3659d698f4f3194ebc"
+        },
+        "run/sources/c-permit-store/.git/refs/heads/main": {
+          "bytes": 41,
+          "sha256": "b2e83821e407a9df1f000d0b7b75bada73703271ae643853a77ba83c7e8333d0"
+        },
+        "run/sources/c-permit-store/PermitWriter.java": {
+          "bytes": 701,
+          "sha256": "c678dc629069a9cc1ef97c964932315687d964f035ccda7e5d3860302d54c679"
+        },
+        "run/sources/c-permit-store/README.md": {
+          "bytes": 20,
+          "sha256": "bf59b689cff7c2568d7c8942db43504bab5618121cca11f397a196fe6ba429d7"
+        },
+        "run/sources/c-permit-store/comparison/unit-0.ts": {
+          "bytes": 40,
+          "sha256": "6eee056bf9cbc5d844629a850deaa00729852df4757ecefebed61460cead1b0c"
+        },
+        "run/sources/c-permit-store/comparison/unit-1.ts": {
+          "bytes": 40,
+          "sha256": "baf8723881d620cf2ab6511fb68262676bf199762ddacea4a1c714407939239d"
+        },
+        "run/sources/c-permit-store/contracts/PermitGranted.json": {
+          "bytes": 130,
+          "sha256": "52819f478103c41f34e9d9ab71914a710651f2c998090d8ba78e0c5f9ec2ee75"
+        },
+        "run/sources/z-independent-notes/.git/COMMIT_EDITMSG": {
+          "bytes": 36,
+          "sha256": "11f451b14ad9340fc36f6244fd5b60cbf301c9e51e5916ef4d3ac6134bde60e5"
+        },
+        "run/sources/z-independent-notes/.git/HEAD": {
+          "bytes": 21,
+          "sha256": "28d25bf82af4c0e2b72f50959b2beb859e3e60b9630a5e8c603dad4ddb2b6e80"
+        },
+        "run/sources/z-independent-notes/.git/config": {
+          "bytes": 92,
+          "sha256": "cfe7ba1238c9a78be7535d7c63bcaf5a4d5011d46b07c9b45d3bbf7d6c312dfe"
+        },
+        "run/sources/z-independent-notes/.git/index": {
+          "bytes": 348,
+          "sha256": "4eea43543c5085c97c5b182b29c1536ad2d8c64d61b5bf342a3308920db38c96"
+        },
+        "run/sources/z-independent-notes/.git/logs/HEAD": {
+          "bytes": 199,
+          "sha256": "f73a9af7d642cc7f2a5916c2e9b7959a2b95097ca47f6367a88ae81796f79e66"
+        },
+        "run/sources/z-independent-notes/.git/logs/refs/heads/main": {
+          "bytes": 199,
+          "sha256": "f73a9af7d642cc7f2a5916c2e9b7959a2b95097ca47f6367a88ae81796f79e66"
+        },
+        "run/sources/z-independent-notes/.git/objects/10/53c3eda3476da9b58ad0fd44f3923dfdcaf59c": {
+          "bytes": 91,
+          "sha256": "ba665a7eb7bf8193897ed3e99d61d9ad38ebb7ab2fe9b9bb75a85eb98ee4ee27"
+        },
+        "run/sources/z-independent-notes/.git/objects/1f/254887efb597b404ad1135f1ea5bf75b78c3da": {
+          "bytes": 152,
+          "sha256": "abcc1ba32fa1f9c9ce101c6b9cad413fbebb06675871a18a3f2a0ea0ec5d6d01"
+        },
+        "run/sources/z-independent-notes/.git/objects/56/d2775dd463d522dbfdf8b6880c56c7688e197a": {
+          "bytes": 91,
+          "sha256": "fe4bebee62c6acb9586a0670114e2bdfafd3b88c9feeef7c0c2c44e9ef9f0c3e"
+        },
+        "run/sources/z-independent-notes/.git/objects/5b/267b9a54511fa654cd81c7dcd637b50257e3ac": {
+          "bytes": 54,
+          "sha256": "cf514443008c25d75f0819156c33cdaadac89425c412dabd935bbb2fec40410f"
+        },
+        "run/sources/z-independent-notes/.git/objects/b8/e24b05fcdb59067fb1b6987c8cb9c78942165d": {
+          "bytes": 80,
+          "sha256": "dd6332b4e03429ad329351f9f1b26610fb7a4ede480aa2f881c6b93802430cfb"
+        },
+        "run/sources/z-independent-notes/.git/objects/f9/bed1ccdcaf34033ca6fa2a2752d4b90f7ef4af": {
+          "bytes": 54,
+          "sha256": "7576ec622d2323f59b2d22379bbf0f38db9da93b61640f3659d698f4f3194ebc"
+        },
+        "run/sources/z-independent-notes/.git/refs/heads/main": {
+          "bytes": 41,
+          "sha256": "e103971ea0b54b7be1b80465a752d5bf347d66272a07b799a7273108183f1174"
+        },
+        "run/sources/z-independent-notes/README.md": {
+          "bytes": 92,
+          "sha256": "492dacdf522eb537bb7d515c1fd4fc9ecbdbcf45ee8b1e7eb0098c9b5019f9a4"
+        },
+        "run/sources/z-independent-notes/comparison/unit-0.ts": {
+          "bytes": 40,
+          "sha256": "6eee056bf9cbc5d844629a850deaa00729852df4757ecefebed61460cead1b0c"
+        },
+        "run/sources/z-independent-notes/comparison/unit-1.ts": {
+          "bytes": 40,
+          "sha256": "baf8723881d620cf2ab6511fb68262676bf199762ddacea4a1c714407939239d"
+        }
+      }
+    }
+  ],
+  "firstFailures": [
+    "The first focused run passed 8/10. The count-capacity fixture left 64 attempts preparing, so the owner correctly refused busy before reaching quota; the fixture now terminalizes them. The migration assertion used receiptHash instead of the actual capture receiptId and failed ENOENT.",
+    "The second focused run passed 12/13. Object-rest projection had a normal prototype while the unchanged SQLite row had a null prototype; byte-for-byte JSON comparison now verifies all old fields without a prototype mismatch.",
+    "The first full check passed 662/664 LoreDock tests. The historical analysis-write comparison correctly detected the new witness purge SQL; the schema-8 migration comparison correctly detected the new witness table and legacy default column.",
+    "The first parity follow-up repeated those two failures because the preceding authoring command ran in apps/loredock instead of the repository root and failed FileNotFoundError for apps/loredock/tests/analysis-write-parity.test.ts. The corrected edits were applied before the passing second parity run. The authoring stderr is retained in the conversation tool output.",
+    "The separate normal comparison adapter pins the old harness hash and requires precisely one additional witness-purge execution during revocation. Raw traces keep the new SQL; all other executions and inventory states must match. The frozen harness and old expected hashes are unchanged."
+  ],
+  "validation": {
+    "strictTests": 912,
+    "focusedCompiledTests": 34,
+    "finalStorageTests": 13,
+    "sourceStorageTests": 46,
+    "sourceParityTests": 13
+  },
+  "migration": {
+    "fromGenuineArchivedRuntime": true,
+    "olderFingerprint": "582e7b79b510b091ed2b73494b485f495aa8eecd7c6033c7c5588adf0622acdc",
+    "databaseVersion": 11,
+    "olderDaemonRefuses": true,
+    "legacyBytesPreserved": true,
+    "nativeFilesPreserved": true,
+    "partialMigrationRollsBack": true
+  },
+  "ordinaryBoundaries": {
+    "abruptProcessExitStages": [
+      "answer_attempts",
+      "answer_sources",
+      "answer_witnesses"
+    ],
+    "sqlUtf8WitnessBytes": 786432,
+    "sqlAggregateWitnessBytes": 50331648,
+    "recordCapacity": 64,
+    "purgedTombstonesCountTowardCapacity": true,
+    "nativeReceiptSlotsConsumed": 0
+  },
+  "selfReview": [
+    "Prepared byte/identity/dependency updates are immutable except source-authorized purge.",
+    "Read authorization precedes witness retrieval; structure validation is distinct from original validation before a future model call.",
+    "Legacy Answers explicitly refuses prepared rows; no new public/model consumer is enabled.",
+    "SQLite transaction rollback does not promise rollback of prior native file purge.",
+    "The quota-byte boundary fixture deliberately uses non-JSON text to isolate SQL limits; the prepared reader refuses it."
+  ],
+  "cleanup": "Successful ordinary fixtures are closed and removed. The two failed ordinary comparison trees remain stopped and are fully archived; other failed fixture directories were removed by teardown. No user checkout or demo was modified.",
+  "primary": {
+    "head": "592bbc085d9405db86461d47fda5f3382bbaccde",
+    "clean": true
+  },
+  "modelCalls": 0,
+  "reservedFamilyRuns": 0,
+  "resourceQualification": false,
+  "limitations": [
+    "Internal storage only; answer dispatch/coordination and HTTP/UI integration remain separate.",
+    "Purged tombstones retain record slots; explicit history deletion is not implemented.",
+    "Full fresh composition resource and semantic gates remain required."
+  ]
+}

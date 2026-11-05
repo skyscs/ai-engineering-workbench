@@ -64,11 +64,18 @@ Schema 10 assigns an immutable catalog identity and owns native receipt files un
 `path-receipts/<catalog UUID>/`. Startup validates bounded completed records and removes
 only recognized incomplete pending work. Source revocation removes dependent native
 copies before purge completes; failure retains pending state. Policy changes retain
-fenced history. The internal storage/codec has no HTTP consumer and does not itself
-authorize source text; later capture/history must reopen current scope and originals.
+fenced history. The storage codec alone does not authorize source text; protected
+capture/history operations reopen current scope and originals.
 Complete stopped-directory backup includes native files; source-only maintenance
 reports exclude their bytes/dependencies. See [native ownership](docs/loredock/NATIVE_CAPTURE_OWNERSHIP.md).
-The explicit storage-report command opens only an existing schema-8, schema-9 or schema-10 catalog read-only,
+Schema 11 stores answer-owned prepared witnesses in SQLite with immutable input kind,
+context/request binding and complete source dependencies. Admission inserts all rows in
+one synchronous transaction. Revocation purges witness and answer text together; pending
+purge failures remain fenced and retry at startup. All 64 witness rows, including purged
+metadata, consume record capacity; retained text is separately capped at 768 KiB per row
+and 48 MiB total. No prepared consumer or model dispatch is enabled yet. See the
+[durable contract](docs/loredock/ANSWER_WITNESS_STORAGE.md).
+The explicit storage-report command opens only an existing schema-8, schema-9, schema-10 or schema-11 catalog read-only,
 without daemon ownership, migrations or recovery. It exports aggregate counts/bytes,
 not source text, paths or connection settings. Fixed database/sidecar paths must be regular
 files. Read-only SQLite can maintain shared-memory bookkeeping; this is not a forensic

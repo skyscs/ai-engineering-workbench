@@ -43,8 +43,8 @@ payload and dependency counts; it does not select history for deletion.
 Explicit offline `pnpm loredock:compact --data-dir /absolute/loredock-data` can reclaim
 already-free SQLite pages while keeping history. See
 [storage, backup and compaction](docs/loredock/USER_GUIDE.md#local-storage-and-backup).
-The next normal start upgrades older catalogs to schema 10, including catalog-owned native
-path history and the earlier shared literal-search text storage. Back up the complete stopped data directory before upgrading; existing
+The next normal start upgrades older catalogs to schema 11, adding internal answer-owned
+witness storage alongside catalog-owned native path history and shared literal-search text. Back up the complete stopped data directory before upgrading; existing
 citations and history are preserved. The guide explains migration and rollback.
 In **Browse connected paths**, choose **Save paths**, then **Open saved paths**.
 Bookmark the local link to reopen the exact recorded paths and original passages after

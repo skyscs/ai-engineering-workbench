@@ -1,6 +1,7 @@
 # Task 123 — Own one bounded prepared question snapshot
 
-Status: implemented and locally verified (898 tests, strict types and builds); exact-head CI pending.
+Status: accepted through PR #127 at `f86f32d` after push 41939154381 and pull-request
+41939193560 passed all 898 tests/types/builds; identical-tree merge `da7122b`.
 Task 122 was accepted through identical-tree merge `7320aae`.
 
 Implement the internal transient owner from [ADR 0059](../docs/decisions/0059-loredock-prepared-question-lifecycle.md)

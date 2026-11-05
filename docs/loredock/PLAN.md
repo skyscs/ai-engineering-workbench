@@ -248,8 +248,9 @@ and atomic answer-owned durable witnesses, with old-input compatibility and expl
 capacity/purge behavior. [Task 122](../../tasks/122-loredock-question-read-selection-seams.md)
 implements scoped lexical accounting and typed native selection with public/legacy parity.
 [Task 123](../../tasks/123-loredock-prepared-question-owner.md) owns one bounded
-transient prepared snapshot. Next [Task 124](../../tasks/124-loredock-answer-owned-witness-storage.md)
-adds atomic durable ownership, before answer admission/publication and HTTP/UI adoption.
+transient prepared snapshot. [Task 124](../../tasks/124-loredock-answer-owned-witness-storage.md)
+adds atomic durable ownership. Next [Task 125](../../tasks/125-loredock-prepared-answer-admission.md)
+integrates prepared answer admission/publication before HTTP/UI adoption.
 Production answer inputs and model evaluation remain unchanged. No semantic/L5 gate
 is inferred from either the resource result or this public read migration.
 No deletion policy is implemented. Keep the prepared

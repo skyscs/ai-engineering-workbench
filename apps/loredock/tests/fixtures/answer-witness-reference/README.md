@@ -13,3 +13,8 @@ adapters may normalize only these exact additional deltas to prove the original 
 The genuine older runtime remains the existing 37-module archive, with its actual
 fingerprint. Use it to create old state and prove forward migration and explicit
 schema-11 refusal, not to claim backward application compatibility.
+
+The normal analysis-write comparison loads a hash-pinned copy of the unchanged old
+harness and requires exactly one extra schema-11 witness purge execution on revocation.
+All raw query traces retain that execution; every other statement and retained inventory
+state must match. The original harness and its archived results remain unchanged.

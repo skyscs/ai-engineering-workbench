@@ -1,6 +1,7 @@
 # Task 124 — Persist answer-owned prepared witnesses atomically
 
-Status: scoped by Task 123; start after its exact-head acceptance.
+Status: implemented and locally verified (912 tests, strict types and builds); exact-head CI pending.
+Task 123 was accepted through identical-tree merge `da7122b`.
 
 Implement the storage/recovery foundation of [ADR 0059](../docs/decisions/0059-loredock-prepared-question-lifecycle.md)
 using the exact bounded strings from [Task 123](123-loredock-prepared-question-owner.md).
@@ -50,3 +51,7 @@ complete answer admission/publication path can preserve what the user reviewed.
 No real model request, new source policy, corporate input, user-demo mutation, exhausted
 resource/model replay or default native-answer enablement. The complete composition still
 needs fresh prospective resource and semantic gates before adoption in the opt-in pilot.
+
+The [frozen storage contract](../docs/loredock/ANSWER_WITNESS_STORAGE.md) records the
+encoding and quota decisions. [Task 125](125-loredock-prepared-answer-admission.md)
+implements actual answer admission/publication before public adoption.
