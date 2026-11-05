@@ -23,9 +23,8 @@ async function setup(t, variant = 'complete') {
   const parent = await mkdtemp(path.join(tmpdir(), 'prepared-question-')), corpus = corpusFactory(variant === 'partial');
   if (variant !== 'ambiguous') for (const name of ['BBRenew', 'CCRetry', 'DDConfirm']) delete corpus['a-permit-ui'][`ui/${name}.vue`];
   if (variant === 'display-omission') {
-    const route = '/permits/' + 'x'.repeat(520);
-    corpus['a-permit-ui']['ui/request.ts'] = corpus['a-permit-ui']['ui/request.ts'].replace('/permits/grants', route);
-    corpus['b-permit-api']['routes.json'] = corpus['b-permit-api']['routes.json'].replace('/permits/grants', route);
+    const extra = Array.from({ length: 80 }, (_, i) => 'String unused' + i).join(', ');
+    corpus['b-permit-api']['Grants.java'] = corpus['b-permit-api']['Grants.java'].replace('void issue(String tenant, String permit)', 'void issue(String tenant, String permit, ' + extra + ')');
   }
   const fixture = await receiptFixture(parent, variant === 'derived-size' ? paddingCorpus(corpus, variant) : corpus, services), owners = [];
   t.after(async () => { for (const owner of owners) await owner.stop(); await fixture.close(); await rm(parent, { recursive: true, force: true }); });
@@ -239,7 +238,7 @@ test('restart drops transient IDs while the same issued bytes can still be reaut
   assert.equal((await ready(restarted, 'fresh')).status, 'ready');
 });
 
-test('an actual oversized path label preserves source context with an explicit whole-path display omission', async t => {
+test('an actual oversized node property preserves source context with an explicit whole-path display omission', async t => {
   const { fixture, owner: create } = await setup(t, 'display-omission'), owner = create(), preview = await ready(owner);
   assert.equal(preview.compact.reason, 'no-complete-path'); assert.equal(preview.compact.item, null);
   const held = snapshot(owner, preview), { witness } = readQuestionSnapshot(held);

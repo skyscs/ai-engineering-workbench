@@ -8,7 +8,8 @@ import { OperationBudget } from './operation-budget.js';
 import { LexicalReadAccount } from './lexical-read-account.js';
 import { CaptureWork } from './native-capture-work.js';
 import { decodeNativeReceipt } from './native-receipt.js';
-import { bytes, hash, same, requireReceipt } from './native-receipt-json.js';
+import { bytes, hash, same, requireReceipt, record, shape, string, hex, uuid, array } from './native-receipt-json.js';
+import { selectionVersion } from './question-path-selection.js';
 import { compactQuestionPath, inputSpan, preparedQuestionPrompt } from './question-context.js';
 import { questionPreparationLimits, questionPreparationVersion, questionPromptVersion, questionWitnessVersion,
   type QuestionSnapshot, type QuestionWitness } from './question-preparation-types.js';
@@ -40,6 +41,7 @@ export function questionSnapshot(context: AnswerContext, witness: QuestionWitnes
   // Reserve scalar slot/tombstone metadata in addition to all retained content.
   const retainedBytes = retainedQuestionBytes(contextJson, witnessJson, reviewedHash);
   requireReceipt(retainedBytes <= questionPreparationLimits.retainedBytes, 'QUESTION_PREVIEW_LIMIT');
+  budget.charge('receipt', retainedBytes - questionPreparationLimits.metadataBytes);
   return Object.freeze({ contextJson, witnessJson, retainedBytes, reviewedHash });
 }
 export function readQuestionSnapshot(snapshot: QuestionSnapshot) {
@@ -48,6 +50,10 @@ export function readQuestionSnapshot(snapshot: QuestionSnapshot) {
     && retainedBytes <= questionPreparationLimits.retainedBytes, 'QUESTION_PREVIEW_LIMIT');
   requireReceipt(hash(JSON.stringify([questionPreparationVersion, snapshot.contextJson, snapshot.witnessJson])) === snapshot.reviewedHash, 'QUESTION_SNAPSHOT_HASH');
   const context = JSON.parse(snapshot.contextJson) as AnswerContext, witness = JSON.parse(snapshot.witnessJson) as QuestionWitness;
+  requireReceipt(record(context) && shape({ schemaVersion: string(), compositionVersion: string(), promptVersion: string(),
+    catalogId: uuid, lexicalInputHash: hex, receipt: value => value === null || typeof value === 'string', compact: record,
+    selection: value => value === null || record(value), dependencies: array(record, 20), sourceIds: array(uuid, 20),
+    prompt: value => typeof value === 'string', promptHash: hex })(witness), 'QUESTION_WITNESS_CONTENT');
   requireReceipt(witness.schemaVersion === questionWitnessVersion && witness.compositionVersion === questionPreparationVersion
     && witness.promptVersion === questionPromptVersion && witness.lexicalInputHash === context.inputHash, 'QUESTION_WITNESS_VERSION');
   const { inputHash, ...content } = context;
@@ -55,6 +61,17 @@ export function readQuestionSnapshot(snapshot: QuestionSnapshot) {
   requireReceipt(context.spans.length <= answerLimits.spans && context.textBytes === context.spans.reduce((sum, row) => sum + bytes(row.text), 0)
     && context.textBytes <= answerLimits.textBytes && bytes(witness.prompt) <= answerPromptBytes && hash(witness.prompt) === witness.promptHash, 'QUESTION_WITNESS_CONTENT');
   requireReceipt(same(witness.sourceIds, questionSourceIds(context, witness)), 'QUESTION_SCOPE_FENCED');
+  const selected = witness.selection;
+  if (selected !== null) requireReceipt(selected.version === selectionVersion && Number.isSafeInteger(selected.anchors)
+    && selected.anchors >= 0 && Number.isSafeInteger(selected.traversals) && selected.traversals >= 0
+    && selected.traversals <= 1000, 'QUESTION_SELECTION_WITNESS');
+  if (witness.receipt === null) {
+    requireReceipt(same(Object.keys(witness.compact).sort(), ['item', 'reason']) && witness.compact.item === null, 'QUESTION_MISSING_RECEIPT');
+    requireReceipt(witness.compact.reason === 'INVENTORY_UNAVAILABLE' && selected === null
+      || witness.compact.reason === 'QUESTION_AMBIGUOUS' && selected?.complete === true && (selected.eligibleRoots ?? 0) > 1
+      || witness.compact.reason === 'QUESTION_INSUFFICIENT_CONTEXT' && selected?.complete === true && selected.eligibleRoots === 0
+      || witness.compact.reason === 'QUESTION_SELECTION_LIMIT' && selected?.complete === false && selected.traversals === 1000, 'QUESTION_SELECTION_WITNESS');
+  } else requireReceipt(selected?.complete === true && selected.eligibleRoots === 1 && selected.anchors > 0, 'QUESTION_SELECTION_WITNESS');
   return { context, witness };
 }
 
@@ -63,7 +80,8 @@ export async function validateQuestionWitness(catalog: Catalog, snapshot: Questi
   const budget = new OperationBudget({ signal });
   try {
     const work = new CaptureWork(catalog, budget, signal, {}), { context, witness } = readQuestionSnapshot(snapshot);
-    budget.charge('receipt', bytes(snapshot.contextJson) + bytes(snapshot.witnessJson));
+    budget.charge('receipt', bytes(snapshot.contextJson) + bytes(snapshot.witnessJson)
+      + snapshot.retainedBytes - questionPreparationLimits.metadataBytes);
     requireReceipt(witness.catalogId === catalog.store.receipts.catalogId, 'RECEIPT_CATALOG_MISMATCH');
     assertQuestionCurrent(catalog, context, witness.sourceIds);
     authorizeQuestionScope(work, context, witness);
