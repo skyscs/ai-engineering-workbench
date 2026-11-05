@@ -1,0 +1,13 @@
+export const plan = Object.freeze({ version: 'ordinary-browser-memory/1',
+  order: ['blank-browser', 'indexed-ui', 'ready-and-saved'], idleMs: 30000,
+  rssLimit: 1073741824, rawSampleCadenceMs: 100, diagnosticRoleCadenceMs: 500,
+  catalogRoots: ['run/indexed-ui/data', 'run/ready-and-saved/data'],
+  realModelCalls: 0, controlledRuntimeCalls: 0, reservedFamilyReads: 0,
+  repeatPolicy: 'Preserve every first output and failure. No retries or prior-family execution.',
+  applicationChanges: false, resourceQualification: false,
+  diagnostics: ['Clock bridge and phase boundaries in the browser observer process.',
+    'Owned process argv/executable roles after initial page readiness, checked against PID/start ticks.',
+    'One terminal smaps_rollup observation per still-owned process; PSS never substitutes for summed RSS.'],
+  limitations: ['The diagnostic observer adds work and cannot qualify timing or memory.',
+    'Process roles are sampled after initial readiness; exited startup children can remain unclassified.',
+    'Three separate lifetimes are attribution controls, not a statistical comparison or a product leak test.'] });
