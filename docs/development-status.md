@@ -2,9 +2,9 @@
 
 ## Task 128 — Complete-flow resource driver (in progress)
 
-Latest accepted checkpoint: [PR #146](https://github.com/skyscs/ai-engineering-workbench/pull/146)
-at merge `f3c343a`. The next inventory-eviction case passes one provenance control and an
-actual preservation/reopen observation; both final-head CI events remain required.
+Latest accepted checkpoint: [PR #147](https://github.com/skyscs/ai-engineering-workbench/pull/147)
+at merge `49b72ad`. The next validator-boundary extraction retains one incomplete initial
+observation and a corrected nine-phase control; both final-head CI events remain required.
 The reserved family has zero candidate reads; no model runs.
 Known ordinary failures include partial analysis of constant-only padding, a missing
 required native positive at the derived-size limit, aggregate list work, browser RSS and
@@ -258,8 +258,28 @@ The run remains exit 1: raw daemon gaps are 331.810353, 293.071319 and 286.76970
 100 ms. The two later HTTP subsets pass 21 comparisons over 43 responses; these do not
 override timer failures. No fault or accounting bootstrap is used, and the external owner
 leaves no survivors. The focused test, production builds, syntax, retention and unchanged
-original seal pass locally; both complete final-head CI events remain required. Complete
-R01-R15 assembly, remaining resource checks and the final execution seal are still pending.
+original seal pass locally. Both exact-head CI events pass for
+[PR #147](https://github.com/skyscs/ai-engineering-workbench/pull/147): push 42034450015 and
+pull_request 42034551788 pass 983 tests at `28ca35e`; merge `49b72ad` has the identical tree.
+Complete R01-R15 assembly, remaining resource checks and the final execution seal are still pending.
+
+The next [prepared-answer boundary cases](fixtures/loredock-prepared-flow-validator-cases/README.md)
+separate review, policy and published-build changes at first preflight, before dispatch
+and before publication. Build-only faults select between two real completed builds;
+source-set, policy and correction versions stay fixed. Public review/policy mutations
+remain distinct. Each case has one attempt, intact witness and exact terminal replay;
+late known usage survives without answer publication. Runtime counters locate phases,
+not private method calls; policy notifications can fence before a held worker resumes.
+The first run remains exit 1 because first-review preparation had already started. Two
+review-identity GETs were incorrectly placed after admission by the extraction. Their
+identity lookup now precedes admission; a separately retained run of that corrected
+implementation observes all nine declared phases. Neither run replaces the other or
+guarantees future race scheduling. Both external owners drain without errors/survivors.
+Independent checks verify 22 complete catalog copies, 67 reused input files, all 251
+protected-client bodies, actual completed build identities and unchanged input trees.
+Builds, syntax, retention and the original seal pass locally; both complete final-head
+CI events remain required. These fault observations do not grant resource qualification;
+full ordered integration, remaining resource assessment and the execution seal stay pending.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request

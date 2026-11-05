@@ -1,0 +1,614 @@
+{
+  "schemaVersion": "prepared-flow-validator-cases-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "trees": [
+    {
+      "path": "validator-cases-first.tar.gz",
+      "sha256": "c381881a79ba26ca46c1e41b568d4b866195cb0db99dd22ef85f27931ec22c09",
+      "inventory": "validator-cases-first.inventory.json.gz",
+      "inventorySha256": "b2053d2641fc67d4fb6d32dab72d4fa4ddd9c14e938d28bab59d06e90454584c",
+      "entries": 288,
+      "source": "/home/toshiba/aew/task128-validator-cases-first"
+    },
+    {
+      "path": "validator-cases-second.tar.gz",
+      "sha256": "697063776234dc75b3e54c91845ba517bda49fb57de3cda4f9f0a006e84054d1",
+      "inventory": "validator-cases-second.inventory.json.gz",
+      "inventorySha256": "b5fb7d791f1425fef18e2cb46f7da83bbda03758aeac837dc05390e819a5520d",
+      "entries": 287,
+      "source": "/home/toshiba/aew/task128-validator-cases-second"
+    },
+    {
+      "path": "validator-cases-first-inputs.tar.gz",
+      "sha256": "60cb71bc67cf1f13c00b79ff93dfea140bf29657e1c63f8a5b5799ad602fcf03",
+      "inventory": "validator-cases-first-inputs.inventory.json.gz",
+      "inventorySha256": "ce47831c68100a76f79310deaca7b296b37af516a8a6b0445361c61379b6cab9",
+      "entries": 2,
+      "source": "/home/toshiba/aew/task128-validator-cases-first-inputs"
+    },
+    {
+      "path": "validator-cases-retention.tar.gz",
+      "sha256": "03c1e2bdf4574f0e27b6aae8e6ed76d16e46b4aac17aae21a34289dda462f19d",
+      "inventory": "validator-cases-retention.inventory.json.gz",
+      "inventorySha256": "4b2d314895ad4e9988ccc49c3827ebd5fcf954b0e37ec77b40e6550ac4ccf0ba",
+      "entries": 90,
+      "source": "/home/toshiba/aew/task128-validator-cases-retention"
+    },
+    {
+      "path": "validator-cases-reused-sources.tar.gz",
+      "sha256": "5baa2f5865e3aeccb35494ce83194e8db7ae893db3f381deb19fbf84e0af0370",
+      "inventory": "validator-cases-reused-sources.inventory.json.gz",
+      "inventorySha256": "b8e1725cab34a8412616b640225148e13a725035bf0e079d024a9ca26531cc9d",
+      "entries": 63,
+      "source": "/home/toshiba/aew/task128-inventory-eviction-first/run/sources"
+    },
+    {
+      "path": "validator-cases-reused-checkpoint.tar.gz",
+      "sha256": "a0daf44ef7c75fb641642556cc1c25ca9e4c6f00817f3a03dfda1b6d4b2088c9",
+      "inventory": "validator-cases-reused-checkpoint.inventory.json.gz",
+      "inventorySha256": "1f991467497af62ed58885fe21762ec3baac5756c9808e5dba3514dac7721a77",
+      "entries": 4,
+      "source": "/home/toshiba/aew/task128-inventory-eviction-first/run/base/checkpoint"
+    },
+    {
+      "path": "validator-cases-inputs.tar.gz",
+      "sha256": "c2d4ba26363bb70e6b97ba1510120491aad523587a69dcb3af5f598d5b766710",
+      "inventory": "validator-cases-inputs.inventory.json.gz",
+      "inventorySha256": "bb6ba34af6e458e8a33aba314e0804134995beeb27520a7a21eb862e478ae7da",
+      "entries": 8,
+      "source": "/home/toshiba/aew/task128-validator-cases-inputs"
+    },
+    {
+      "path": "validator-cases-static-inputs.tar.gz",
+      "sha256": "e2f8a16a0b639bedf932aa76defd4cc2567591e2294f62504eb95ea10b4b3730",
+      "inventory": "validator-cases-static-inputs.inventory.json.gz",
+      "inventorySha256": "95391fde433426cc6b927cefb6ea225794a9f40287dc248fe42661b6b677f49f",
+      "entries": 1,
+      "source": "/home/toshiba/aew/task128-validator-cases-static-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "validator-cases-first.log.gz",
+      "archiveSha256": "09c0c9dc9aed8ad665f0b7f6ad3df4c75a2eab66a74da73da98668fdfbcc09f0",
+      "rawBytes": 2220,
+      "rawSha256": "da11986112ee5ef2e2a8f1760991a18a0132c1234f5b381e8fc5bc1b40a06c7f"
+    },
+    {
+      "path": "validator-cases-second.log.gz",
+      "archiveSha256": "489a14ee8afdf6a134151b55dfdf9845e44fd084c8d092220d7dffcfdb2fb2d7",
+      "rawBytes": 2319,
+      "rawSha256": "fc34e71d3b0d294e8913f257e0b170ea2f38942a26fb6b01a890247d5808f657"
+    },
+    {
+      "path": "validator-cases-install.log.gz",
+      "archiveSha256": "f24440a84d21d695c4926d4a94a8a117f9170a3295ed0aaaf7102dddca649879",
+      "rawBytes": 326,
+      "rawSha256": "4bda8413a69e79c3c836891cc76de4da64d58b110d5fef736518bd313c218091"
+    },
+    {
+      "path": "validator-cases-build.log.gz",
+      "archiveSha256": "84139235ad4a4b8ba501e8360c8d8235438044b82f8ade53cacd94075e5ab589",
+      "rawBytes": 2355,
+      "rawSha256": "163223d76f7aafc5524f4e1b3581e1fa53352c576707686b868f74d9a8e032bc"
+    },
+    {
+      "path": "validator-cases-retention.log.gz",
+      "archiveSha256": "abfea9bfaa259ae7677bc915190d60ec3559335094d37721a2845659d3c7ced4",
+      "rawBytes": 13165,
+      "rawSha256": "6c6dc9cda7fe2294f48dc79834910c70a416efbfc16f5c8e8a74f72dc03add98"
+    },
+    {
+      "path": "validator-cases-build-identities.log.gz",
+      "archiveSha256": "fa4bef400d445ea2bef25c9fd426a5ec9a70c5ff2aad4aa8293a2b942d89826f",
+      "rawBytes": 112,
+      "rawSha256": "a1a7501262673e6358269f661171c5a9b6b0f9e7b0a4a49c32483c96909f91f9"
+    },
+    {
+      "path": "validator-cases-seal-check.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "inventory-eviction-ci-push.log.gz",
+      "archiveSha256": "b2f4879e1dc6665a376fea0c7db1fa516e5e8308006f3e7f1e716138ceca97da",
+      "rawBytes": 702258,
+      "rawSha256": "666da8b13e9cecde4f2c367bbe1a67091ee158c51ce329ae49ea46016e03834d"
+    },
+    {
+      "path": "inventory-eviction-ci-pr.log.gz",
+      "archiveSha256": "15a99873abd8f6532274892a7b47ad77ed058a0371fcc31d06269a4030786e76",
+      "rawBytes": 703501,
+      "rawSha256": "0d37af1d3ef05482769861025903091ddccc8a295e7dda1ed9fb9df2e16f977a"
+    },
+    {
+      "path": "validator-cases-static-first.log.gz",
+      "archiveSha256": "aa6b909805a6112d38fe20604331b565bc08d003271553bf5504d0876b17c75a",
+      "rawBytes": 206,
+      "rawSha256": "ccdcef74559650be653ae2d37d95203f6cab14579dbf6ad54aaee7cfcc3ba4b4"
+    }
+  ],
+  "acceptedInventoryEviction": {
+    "pr": 147,
+    "head": "28ca35e5d4a4567b326bce33587dd29662f87ef5",
+    "merge": "49b72adac7b3d4d97c8a4efc5c9cda16c62936fb",
+    "push": 42034450015,
+    "pull_request": 42034551788,
+    "testsPerEvent": 983
+  },
+  "retention": {
+    "resourceQualification": false,
+    "modelCalls": 0,
+    "reservedFamilyReads": 0,
+    "runs": [
+      {
+        "name": "first",
+        "entries": 288,
+        "rawInputsUnchanged": true,
+        "outcomes": [
+          {
+            "id": "first-preflight-review",
+            "observedBoundary": false,
+            "runtime": {
+              "prepares": 1,
+              "calls": 0,
+              "closed": 1
+            },
+            "terminalStatus": "failed"
+          },
+          {
+            "id": "first-preflight-policy",
+            "observedBoundary": true,
+            "runtime": {
+              "prepares": 0,
+              "calls": 0,
+              "closed": 0
+            },
+            "terminalStatus": "fenced"
+          },
+          {
+            "id": "first-preflight-published-build",
+            "observedBoundary": true,
+            "runtime": {
+              "prepares": 0,
+              "calls": 0,
+              "closed": 0
+            },
+            "terminalStatus": "failed"
+          },
+          {
+            "id": "before-dispatch-review",
+            "observedBoundary": true,
+            "runtime": {
+              "prepares": 1,
+              "calls": 0,
+              "closed": 1
+            },
+            "terminalStatus": "failed"
+          },
+          {
+            "id": "before-dispatch-policy",
+            "observedBoundary": true,
+            "runtime": {
+              "prepares": 1,
+              "calls": 0,
+              "closed": 1
+            },
+            "terminalStatus": "fenced"
+          },
+          {
+            "id": "before-dispatch-published-build",
+            "observedBoundary": true,
+            "runtime": {
+              "prepares": 1,
+              "calls": 0,
+              "closed": 1
+            },
+            "terminalStatus": "failed"
+          },
+          {
+            "id": "before-publication-review",
+            "observedBoundary": true,
+            "runtime": {
+              "prepares": 1,
+              "calls": 1,
+              "closed": 1
+            },
+            "terminalStatus": "failed"
+          },
+          {
+            "id": "before-publication-policy",
+            "observedBoundary": true,
+            "runtime": {
+              "prepares": 1,
+              "calls": 1,
+              "closed": 1
+            },
+            "terminalStatus": "fenced"
+          },
+          {
+            "id": "before-publication-published-build",
+            "observedBoundary": true,
+            "runtime": {
+              "prepares": 1,
+              "calls": 1,
+              "closed": 1
+            },
+            "terminalStatus": "failed"
+          }
+        ]
+      },
+      {
+        "name": "second",
+        "entries": 287,
+        "rawInputsUnchanged": true,
+        "outcomes": [
+          {
+            "id": "first-preflight-review",
+            "observedBoundary": true,
+            "runtime": {
+              "prepares": 0,
+              "calls": 0,
+              "closed": 0
+            },
+            "terminalStatus": "failed"
+          },
+          {
+            "id": "first-preflight-policy",
+            "observedBoundary": true,
+            "runtime": {
+              "prepares": 0,
+              "calls": 0,
+              "closed": 0
+            },
+            "terminalStatus": "fenced"
+          },
+          {
+            "id": "first-preflight-published-build",
+            "observedBoundary": true,
+            "runtime": {
+              "prepares": 0,
+              "calls": 0,
+              "closed": 0
+            },
+            "terminalStatus": "failed"
+          },
+          {
+            "id": "before-dispatch-review",
+            "observedBoundary": true,
+            "runtime": {
+              "prepares": 1,
+              "calls": 0,
+              "closed": 1
+            },
+            "terminalStatus": "failed"
+          },
+          {
+            "id": "before-dispatch-policy",
+            "observedBoundary": true,
+            "runtime": {
+              "prepares": 1,
+              "calls": 0,
+              "closed": 1
+            },
+            "terminalStatus": "fenced"
+          },
+          {
+            "id": "before-dispatch-published-build",
+            "observedBoundary": true,
+            "runtime": {
+              "prepares": 1,
+              "calls": 0,
+              "closed": 1
+            },
+            "terminalStatus": "failed"
+          },
+          {
+            "id": "before-publication-review",
+            "observedBoundary": true,
+            "runtime": {
+              "prepares": 1,
+              "calls": 1,
+              "closed": 1
+            },
+            "terminalStatus": "failed"
+          },
+          {
+            "id": "before-publication-policy",
+            "observedBoundary": true,
+            "runtime": {
+              "prepares": 1,
+              "calls": 1,
+              "closed": 1
+            },
+            "terminalStatus": "fenced"
+          },
+          {
+            "id": "before-publication-published-build",
+            "observedBoundary": true,
+            "runtime": {
+              "prepares": 1,
+              "calls": 1,
+              "closed": 1
+            },
+            "terminalStatus": "failed"
+          }
+        ]
+      }
+    ],
+    "catalogs": [
+      {
+        "run": "first",
+        "source": "/home/toshiba/aew/task128-validator-cases-first/run/alternative-build/checkpoint",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/first/alternative-build/checkpoint",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": []
+      },
+      {
+        "run": "first",
+        "source": "/home/toshiba/aew/task128-validator-cases-first/run/alternative-build/data",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/first/alternative-build/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": []
+      },
+      {
+        "run": "first",
+        "source": "/home/toshiba/aew/task128-validator-cases-first/run/before-dispatch-policy/data",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/first/before-dispatch-policy/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "fenced",
+            1
+          ]
+        ]
+      },
+      {
+        "run": "first",
+        "source": "/home/toshiba/aew/task128-validator-cases-first/run/before-dispatch-published-build/data",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/first/before-dispatch-published-build/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "failed",
+            1
+          ]
+        ]
+      },
+      {
+        "run": "first",
+        "source": "/home/toshiba/aew/task128-validator-cases-first/run/before-dispatch-review/data",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/first/before-dispatch-review/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "failed",
+            1
+          ]
+        ]
+      },
+      {
+        "run": "first",
+        "source": "/home/toshiba/aew/task128-validator-cases-first/run/before-publication-policy/data",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/first/before-publication-policy/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "fenced",
+            1
+          ]
+        ]
+      },
+      {
+        "run": "first",
+        "source": "/home/toshiba/aew/task128-validator-cases-first/run/before-publication-published-build/data",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/first/before-publication-published-build/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "failed",
+            1
+          ]
+        ]
+      },
+      {
+        "run": "first",
+        "source": "/home/toshiba/aew/task128-validator-cases-first/run/before-publication-review/data",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/first/before-publication-review/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "failed",
+            1
+          ]
+        ]
+      },
+      {
+        "run": "first",
+        "source": "/home/toshiba/aew/task128-validator-cases-first/run/first-preflight-policy/data",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/first/first-preflight-policy/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "fenced",
+            1
+          ]
+        ]
+      },
+      {
+        "run": "first",
+        "source": "/home/toshiba/aew/task128-validator-cases-first/run/first-preflight-published-build/data",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/first/first-preflight-published-build/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "failed",
+            1
+          ]
+        ]
+      },
+      {
+        "run": "first",
+        "source": "/home/toshiba/aew/task128-validator-cases-first/run/first-preflight-review/data",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/first/first-preflight-review/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "failed",
+            1
+          ]
+        ]
+      },
+      {
+        "run": "second",
+        "source": "/home/toshiba/aew/task128-validator-cases-second/run/alternative-build/checkpoint",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/second/alternative-build/checkpoint",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": []
+      },
+      {
+        "run": "second",
+        "source": "/home/toshiba/aew/task128-validator-cases-second/run/alternative-build/data",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/second/alternative-build/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": []
+      },
+      {
+        "run": "second",
+        "source": "/home/toshiba/aew/task128-validator-cases-second/run/before-dispatch-policy/data",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/second/before-dispatch-policy/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "fenced",
+            1
+          ]
+        ]
+      },
+      {
+        "run": "second",
+        "source": "/home/toshiba/aew/task128-validator-cases-second/run/before-dispatch-published-build/data",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/second/before-dispatch-published-build/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "failed",
+            1
+          ]
+        ]
+      },
+      {
+        "run": "second",
+        "source": "/home/toshiba/aew/task128-validator-cases-second/run/before-dispatch-review/data",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/second/before-dispatch-review/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "failed",
+            1
+          ]
+        ]
+      },
+      {
+        "run": "second",
+        "source": "/home/toshiba/aew/task128-validator-cases-second/run/before-publication-policy/data",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/second/before-publication-policy/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "fenced",
+            1
+          ]
+        ]
+      },
+      {
+        "run": "second",
+        "source": "/home/toshiba/aew/task128-validator-cases-second/run/before-publication-published-build/data",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/second/before-publication-published-build/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "failed",
+            1
+          ]
+        ]
+      },
+      {
+        "run": "second",
+        "source": "/home/toshiba/aew/task128-validator-cases-second/run/before-publication-review/data",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/second/before-publication-review/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "failed",
+            1
+          ]
+        ]
+      },
+      {
+        "run": "second",
+        "source": "/home/toshiba/aew/task128-validator-cases-second/run/first-preflight-policy/data",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/second/first-preflight-policy/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "fenced",
+            1
+          ]
+        ]
+      },
+      {
+        "run": "second",
+        "source": "/home/toshiba/aew/task128-validator-cases-second/run/first-preflight-published-build/data",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/second/first-preflight-published-build/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "failed",
+            1
+          ]
+        ]
+      },
+      {
+        "run": "second",
+        "source": "/home/toshiba/aew/task128-validator-cases-second/run/first-preflight-review/data",
+        "copy": "/home/toshiba/aew/task128-validator-cases-retention/second/first-preflight-review/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "failed",
+            1
+          ]
+        ]
+      }
+    ],
+    "httpBodies": 231,
+    "redactedSessions": 20,
+    "reusedFilesBoundToPreviousArchive": 67
+  }
+}
