@@ -2,9 +2,9 @@
 
 ## Task 128 — Complete-flow resource driver (in progress)
 
-Latest accepted checkpoint: [PR #147](https://github.com/skyscs/ai-engineering-workbench/pull/147)
-at merge `49b72ad`. The next validator-boundary extraction retains one incomplete initial
-observation and a corrected nine-phase control; both final-head CI events remain required.
+Latest accepted checkpoint: [PR #148](https://github.com/skyscs/ai-engineering-workbench/pull/148)
+at merge `2db1787`. The next catalog-fault cases pass actual 64-row purge recovery and
+missing/corrupt-original refusal; both final-head CI events remain required.
 The reserved family has zero candidate reads; no model runs.
 Known ordinary failures include partial analysis of constant-only padding, a missing
 required native positive at the derived-size limit, aggregate list work, browser RSS and
@@ -277,9 +277,27 @@ implementation observes all nine declared phases. Neither run replaces the other
 guarantees future race scheduling. Both external owners drain without errors/survivors.
 Independent checks verify 22 complete catalog copies, 67 reused input files, all 251
 protected-client bodies, actual completed build identities and unchanged input trees.
-Builds, syntax, retention and the original seal pass locally; both complete final-head
-CI events remain required. These fault observations do not grant resource qualification;
-full ordered integration, remaining resource assessment and the execution seal stay pending.
+Builds, syntax, retention and the original seal pass locally. Both exact-head CI events
+pass for [PR #148](https://github.com/skyscs/ai-engineering-workbench/pull/148): push
+42036560264 and pull_request 42036661375 pass 983 tests at `48e1c7f`; merge `2db1787` has
+the identical tree. These fault observations do not grant resource qualification; full
+ordered integration, remaining resource assessment and the execution seal stay pending.
+
+The next [catalog-fault cases](fixtures/loredock-prepared-flow-catalog-faults/README.md)
+reuse actual stopped 64-admission history and empty cold inputs. A declared cleanup
+trigger causes the expected revocation HTTP 500, while all 64 public answers are already
+fenced with no original/derived text. The pending checkpoint retains synthetic witnesses
+for recovery evidence. After removing the trigger from the working copy, production
+startup completes cleanup: 64 unchanged attempt IDs/tombstones remain with zero witness
+bytes. Exact replay creates no new admission. Separate missing/corrupt-original cases
+fail before dispatch, keep their intact witnesses and replay identical failed responses.
+All three cases and the external owner finish without errors or survivors. Four complete
+copied catalogs pass integrity/foreign-key checks; 134 reused files bind to prior archives,
+all 160 protected-client bodies remain and input/pending checkpoints stay unchanged.
+Both refusal cases report prepare/run/close counts 1/0/1. Production builds, syntax,
+retention and the original seal pass locally; both complete final-head CI events remain
+required. These are fault controls, not resource acceptance. Full ordered integration,
+remaining resource assessment and the final execution seal are still pending.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request
