@@ -84,7 +84,7 @@
     "AnswerPanel": {
       "file": "apps/loredock-web/src/AnswerPanel.tsx",
       "beforeSha256": "bf3c43a84446b2c71c418bd73f71f7af6869d125326fbbb650359c482cbe68a7",
-      "afterSha256": "4b02abeac1f50f51a2be50cf569bc0df9f3609c83da0a0dbad37aaa89883e882",
+      "afterSha256": "f0a6bfb617d1b00db2ce7c735d053a91afad4dd70ed088f40ed1455ca86207b1",
       "edits": [
         {
           "start": 6,
@@ -209,15 +209,12 @@
         },
         {
           "start": 84,
-          "delete": 0,
+          "delete": 2,
           "insert": [
-            "      {preparedEnabled && prepared.preview && <NativeQuestionContext value={prepared.preview.compact} spans={context.spans} openEvidence={openEvidence} />}\n"
-          ]
-        },
-        {
-          "start": 85,
-          "delete": 1,
-          "insert": [
+            "      {preparedEnabled && prepared.preview && <NativeQuestionContext value={prepared.preview.compact} spans={context.spans} openEvidence={openEvidence} />}\n",
+            "      <p className=\"muted\">One attempt, up to two minutes. Failed or cancelled attempts keep the last successful answer. {preparedEnabled\n",
+            "        ? 'Find context again to create a new attempt, which can consume additional usage.'\n",
+            "        : 'A retry is a new request and can consume more usage.'}</p>\n",
             "      <button className=\"primary\" disabled={busy || Boolean(active) || !state?.connection} onClick={generate}>{preparedEnabled && prepared.pending ? 'Retry request' : 'Generate answer'}</button>\n"
           ]
         },

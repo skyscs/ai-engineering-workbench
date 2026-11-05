@@ -96,7 +96,9 @@ export function AnswerPanel({ buildId, boundary: sourceBoundary, correctionRevis
       {context.review && <AnswerReview review={context.review} spans={context.spans} openEvidence={openEvidence} />}
       {context.interfaces && <AnswerInterfaces value={context.interfaces} spans={context.spans} openEvidence={openEvidence} />}
       {preparedEnabled && prepared.preview && <NativeQuestionContext value={prepared.preview.compact} spans={context.spans} openEvidence={openEvidence} />}
-      <p className="muted">One attempt, up to two minutes. Failed or cancelled attempts keep the last successful answer. A retry is a new request and can consume more usage.</p>
+      <p className="muted">One attempt, up to two minutes. Failed or cancelled attempts keep the last successful answer. {preparedEnabled
+        ? 'Find context again to create a new attempt, which can consume additional usage.'
+        : 'A retry is a new request and can consume more usage.'}</p>
       <button className="primary" disabled={busy || Boolean(active) || !state?.connection} onClick={generate}>{preparedEnabled && prepared.pending ? 'Retry request' : 'Generate answer'}</button>
     </div>}
     {preparedEnabled && prepared.pending && <p className="notice">The request may already have been accepted. Retry request checks the same attempt and does not start a second generation.</p>}
