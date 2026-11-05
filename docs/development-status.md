@@ -2,6 +2,15 @@
 
 ## Task 128 — Complete-flow resource driver (in progress)
 
+Latest accepted checkpoint: [PR #141](https://github.com/skyscs/ai-engineering-workbench/pull/141)
+at merge `141416d`. The next HTTP-assessment checkpoint passes 979 local tests and awaits
+both exact-head CI events. The reserved family has zero candidate reads; no model runs.
+Known ordinary failures include partial analysis of constant-only padding, a missing
+required native positive at the derived-size limit, aggregate list work, browser RSS and
+raw daemon timer gaps. Complete ordered case integration, the remaining resource checks
+and the committed executable/environment/output seal are still required. The retained
+checkpoint history follows; none of its functional or subset passes grants qualification.
+
 The ordinary driver checkpoint is accepted through [PR #132](https://github.com/skyscs/ai-engineering-workbench/pull/132),
 merged at `f595307` after push 41964013784 and pull_request 41964018496 passed 948 tests
 at exact head `3469467`. The merge tree is identical. The next bounded slice implements
@@ -138,9 +147,24 @@ Both external owners drain without errors or survivors. Independent inspection v
 44 source Git identities, 75 HTTP bodies, three warm witnesses and four complete copied
 catalogs with valid integrity/foreign keys. Raw trees remain unchanged. The full local
 check passes 973 tests, strict types, builds and the original application/input seal.
-Both exact-head CI events remain required for this checkpoint. Complete case integration,
-resource assessment and the executable seal are still pending; no reserved candidate read
-or model call occurs.
+Both exact-head CI events pass for [PR #141](https://github.com/skyscs/ai-engineering-workbench/pull/141):
+push 42015747164 and pull_request 42015756110 at `a7a6427`; merge `141416d` has the identical
+tree. Complete case integration, resource assessment and the executable seal are still
+pending; no reserved candidate read or model call occurs.
+
+The [retained HTTP assessor](fixtures/loredock-prepared-flow-http-assessment/README.md)
+now checks exact response bytes, request pairing, missing/failing evidence and the frozen
+status/review/answer/list limits. Process metadata binds resource versus accounting/fault
+lanes; diagnostic timing cannot become a resource pass. Seven offline datasets retain
+86 responses and 61 scoped comparisons, with 79 exact unredacted bodies and seven redacted
+sessions. Four resource HTTP subsets pass, two accounting subsets remain observations,
+and the early failed cold case stays incomplete because it reached no covered response.
+The offline runner remains exit 1 and changes no raw input. Existing aggregate list-work,
+daemon timer, browser RSS and required-positive failures remain unresolved.
+Six controls and the full 979-test local check pass, including strict types, builds and
+the original application/input seal. Both exact-head CI events remain required for this
+HTTP checkpoint. This is a subset assessor, not complete R01-R15 integration or resource
+qualification; there are no new candidate or model executions.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request
