@@ -60,7 +60,7 @@ export async function coldCatalog({ directory, sources, question, assessment, ex
         const snapshot = path.join(directory, 'checkpoint');
         const retained = await stoppedHistoryCheckpoint(data, snapshot);
         assert.equal(retained.storage.rows, 0);
-        report.checkpoint = { data: snapshot, ...retained };
+        report.checkpoint = { data: snapshot, ...retained, kind: 'cold-catalog', lane: 'resource' };
       }
     } catch (error) { report.errors.push(normalized(error)); }
     await save(path.join(directory, 'result.json'), report);

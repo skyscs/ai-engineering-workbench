@@ -2,9 +2,9 @@
 
 ## Task 128 — Complete-flow resource driver (in progress)
 
-Latest accepted checkpoint: [PR #145](https://github.com/skyscs/ai-engineering-workbench/pull/145)
-at merge `1a98e33`. The next independent browser review/revocation cases pass three actual
-Chrome observations and retention checks; both final-head CI events remain required.
+Latest accepted checkpoint: [PR #146](https://github.com/skyscs/ai-engineering-workbench/pull/146)
+at merge `f3c343a`. The next inventory-eviction case passes one provenance control and an
+actual preservation/reopen observation; both final-head CI events remain required.
 The reserved family has zero candidate reads; no model runs.
 Known ordinary failures include partial analysis of constant-only padding, a missing
 required native positive at the derived-size limit, aggregate list work, browser RSS and
@@ -239,9 +239,27 @@ bind 71 reused input files to the preceding archive, verify three complete catal
 unchanged input checkpoints. All three browser RSS observations still exceed 1 GiB;
 functional exit 0 is not resource acceptance. The existing generic terminal notice's
 misleading last-authorized-answer sentence is retained in the revoked-history screenshot.
-Production builds, syntax, retention checks and the original seal pass locally; both
-complete final-head CI events remain required. Full ordered integration and resource
-assessment remain incomplete, with zero reserved candidate reads or model executions.
+Production builds, syntax, retention checks and the original seal pass locally. Both
+exact-head CI events pass for [PR #146](https://github.com/skyscs/ai-engineering-workbench/pull/146):
+push 42032914502 and pull_request 42033022361 pass 982 tests at `ccdf3c5`; merge `f3c343a`
+has the identical tree. Full ordered integration and resource assessment remain incomplete,
+with zero reserved candidate reads or model executions.
+
+The next [inventory-eviction case](fixtures/loredock-prepared-flow-inventory-eviction/README.md)
+uses an explicitly identified fresh cold checkpoint in the normal resource lane. A focused
+control rejects inherited faults, unclassified/populated snapshots and changed files
+before launch. Three actual compatible analyses evict the inventory used by Ready while
+keeping its source build; the unchanged held review admits once. Two further analyses,
+production restart and same-request replay preserve the exact saved-answer bytes and
+single witness. Independent checks verify four complete catalogs, five unique replacement
+analyses, original inventory absence, exact context/witness/prompt/schema relationships,
+four source Git identities and all 59 protected-client response bodies.
+The run remains exit 1: raw daemon gaps are 331.810353, 293.071319 and 286.769707 ms against
+100 ms. The two later HTTP subsets pass 21 comparisons over 43 responses; these do not
+override timer failures. No fault or accounting bootstrap is used, and the external owner
+leaves no survivors. The focused test, production builds, syntax, retention and unchanged
+original seal pass locally; both complete final-head CI events remain required. Complete
+R01-R15 assembly, remaining resource checks and the final execution seal are still pending.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request

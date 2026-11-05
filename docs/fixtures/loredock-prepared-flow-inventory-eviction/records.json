@@ -1,0 +1,194 @@
+{
+  "schemaVersion": "prepared-flow-inventory-eviction-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "focusedTests": 1,
+  "trees": [
+    {
+      "path": "inventory-eviction-first.tar.gz",
+      "sha256": "bfc5879ca762a55c5ce397f4f65f24e706c45ad4eb6ff1b21003462c7f8e4fb7",
+      "inventory": "inventory-eviction-first.inventory.json.gz",
+      "inventorySha256": "d7db65d8a323ba14975cac21872890f1ae0ca97b9f87fb62ebbde97bd294c9cf",
+      "entries": 174,
+      "source": "/home/toshiba/aew/task128-inventory-eviction-first"
+    },
+    {
+      "path": "inventory-eviction-retention.tar.gz",
+      "sha256": "bdc706ed8a78e1233f261e9233598451d492c09471763e42d53499377e7565f8",
+      "inventory": "inventory-eviction-retention.inventory.json.gz",
+      "inventorySha256": "f03125a7795942fb340b8760de896ec4d34127c7a13dff13b77772556949550f",
+      "entries": 17,
+      "source": "/home/toshiba/aew/task128-inventory-eviction-retention"
+    },
+    {
+      "path": "inventory-eviction-focused-1.tar.gz",
+      "sha256": "58ab3fdfad6c5c2a26e5f609a24e8712224c9983983a443f35f93675a80cff57",
+      "inventory": "inventory-eviction-focused-1.inventory.json.gz",
+      "inventorySha256": "9cda4f339bd5820205f090a5ff45864a5b4660d2fc6094011116672e172e41fb",
+      "entries": 3,
+      "source": "/tmp/loredock-eviction-checkpoint-TYX5zG"
+    },
+    {
+      "path": "inventory-eviction-inputs.tar.gz",
+      "sha256": "c7550be2bf88ec5a7340c93e47295a72bcca6ebc0928de507a26d1513f3927e0",
+      "inventory": "inventory-eviction-inputs.inventory.json.gz",
+      "inventorySha256": "4a10af8f1de13ee6a4ecab9df6dbce06629cc4e5415ef2b7241cefd063c43ab6",
+      "entries": 7,
+      "source": "/home/toshiba/aew/task128-inventory-eviction-inputs"
+    },
+    {
+      "path": "inventory-eviction-static-inputs.tar.gz",
+      "sha256": "f753a50305c3d1f29ce33fe9e7832b9506c642a727931884c667112e32860804",
+      "inventory": "inventory-eviction-static-inputs.inventory.json.gz",
+      "inventorySha256": "5f5c236826f93d425fe83fdf921185e5fe0ee4359717eba793c456b9563ff5b3",
+      "entries": 1,
+      "source": "/home/toshiba/aew/task128-inventory-eviction-static-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "inventory-eviction-first.log.gz",
+      "archiveSha256": "05c5e69769fc8986464d45eda5ccefeef238624bc4da2510ef664d740f403b0c",
+      "rawBytes": 3250,
+      "rawSha256": "2d47fac7d8d84e712a43a73f84f86c3426060cc6d8de0759ebfa76349a92017d"
+    },
+    {
+      "path": "inventory-eviction-install.log.gz",
+      "archiveSha256": "cadd2b1f7cc3ca2aec3f01daded79d8bf41c8a433271d3c3a6ee2edbef247035",
+      "rawBytes": 326,
+      "rawSha256": "2410a9a14422e2264c11a444fa13469e827c1e181a151646a58cd4b256968649"
+    },
+    {
+      "path": "inventory-eviction-build.log.gz",
+      "archiveSha256": "c2387fb83176e6adb63c166effbfff6409caa9399309fd5a282150a5b329017d",
+      "rawBytes": 2358,
+      "rawSha256": "9da97c7bfd07eb66bd8f303e2e48417a9a0dfaf28b5a61119497eea20d21175c"
+    },
+    {
+      "path": "inventory-eviction-focused.log.gz",
+      "archiveSha256": "41224c58e5d3d800cbd7ccee8278019dbe2c4acf906f4f559afc283358e360b3",
+      "rawBytes": 633,
+      "rawSha256": "2288728099a403a87c21d1ac4cb52cdfb3442521e328cd1403e4ee9fae650f41"
+    },
+    {
+      "path": "inventory-eviction-retention.log.gz",
+      "archiveSha256": "618a998020bd05af194a8a0d4c0ee074d3919e169219e52c5449741828ef90f7",
+      "rawBytes": 2168,
+      "rawSha256": "b63bde9473c98d5eb6b452960b569435fb1cb2bf990e70ecbbba89a5c1f65189"
+    },
+    {
+      "path": "inventory-eviction-seal-check.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "browser-fences-ci-push.log.gz",
+      "archiveSha256": "fdacbac8af9996cdd05ee9f7512acb9d2d247b5ab4b1abd361e413a98ce8e347",
+      "rawBytes": 701413,
+      "rawSha256": "22b9412f7f497185788fba0acd18e9476f31c429cf74c5e0ca828973fe3fb975"
+    },
+    {
+      "path": "browser-fences-ci-pr.log.gz",
+      "archiveSha256": "7d3ffacb3b673ecae5d99568fe315c9429bae197614e3e77f3de32d6bb632676",
+      "rawBytes": 702626,
+      "rawSha256": "61ccd3a7aad497b963d151fcfcd74b503995e6ef83ab255fe2bf30bff143805c"
+    },
+    {
+      "path": "inventory-eviction-static-first.log.gz",
+      "archiveSha256": "cb2be03146eda2d566191438e45978e27ab02a2f02530d750bf53a611356152a",
+      "rawBytes": 206,
+      "rawSha256": "106677c20699c1eb38c46384ea5c63c7bdb6e22292b88cf5c538d271333a7a55"
+    }
+  ],
+  "acceptedBrowserFences": {
+    "pr": 146,
+    "head": "ccdf3c5745ce3ca0edfb8f1c42f6c6678e521dc8",
+    "merge": "f3c343a204e3174d1fc7021f014dcbf9be213d1f",
+    "push": 42032914502,
+    "pull_request": 42033022361,
+    "testsPerEvent": 982
+  },
+  "retention": {
+    "resourceQualification": false,
+    "modelCalls": 0,
+    "reservedFamilyReads": 0,
+    "catalogs": [
+      {
+        "source": "/home/toshiba/aew/task128-inventory-eviction-first/run/base/checkpoint",
+        "copy": "/home/toshiba/aew/task128-inventory-eviction-retention/base/checkpoint",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [],
+        "retainedInventories": 1,
+        "initialInventoryPresent": true
+      },
+      {
+        "source": "/home/toshiba/aew/task128-inventory-eviction-first/run/base/data",
+        "copy": "/home/toshiba/aew/task128-inventory-eviction-retention/base/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [],
+        "retainedInventories": 1,
+        "initialInventoryPresent": true
+      },
+      {
+        "source": "/home/toshiba/aew/task128-inventory-eviction-first/run/eviction/before-reopen",
+        "copy": "/home/toshiba/aew/task128-inventory-eviction-retention/eviction/before-reopen",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "succeeded",
+            1
+          ]
+        ],
+        "retainedInventories": 2,
+        "initialInventoryPresent": false
+      },
+      {
+        "source": "/home/toshiba/aew/task128-inventory-eviction-first/run/eviction/data",
+        "copy": "/home/toshiba/aew/task128-inventory-eviction-retention/eviction/data",
+        "integrity": "ok",
+        "foreignKeyErrors": [],
+        "answerStates": [
+          [
+            "succeeded",
+            1
+          ]
+        ],
+        "retainedInventories": 2,
+        "initialInventoryPresent": false
+      }
+    ],
+    "httpBodies": 56,
+    "redactedSessions": 3,
+    "sourceRepositories": 4,
+    "segments": [
+      {
+        "name": "controlled",
+        "httpResponses": 37,
+        "httpChecks": 16,
+        "rawIntervalGapMs": 293.071319
+      },
+      {
+        "name": "production-reopen",
+        "httpResponses": 6,
+        "httpChecks": 5,
+        "rawIntervalGapMs": 286.769707
+      }
+    ],
+    "rawInputsUnchanged": true,
+    "entries": 174,
+    "replacements": 5,
+    "baseMetricFailures": [
+      {
+        "metric": "rawIntervalGapMs",
+        "value": 331.810353,
+        "limit": 100,
+        "passed": false
+      }
+    ]
+  }
+}
