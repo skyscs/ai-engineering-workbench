@@ -7,6 +7,7 @@ import { assessDaemonSamples } from './cold-warm-cases.mjs';
 import { assessRecordedHttp } from './http-assess.mjs';
 import { assessRecordedBrowser } from './browser-assess.mjs';
 import { assessWitnessRows } from './content-assess.mjs';
+import { verifyFailedFreshSetup } from './matrix-adapter.mjs';
 
 const json = async file => JSON.parse(await readFile(file, 'utf8'));
 export async function matrixFiles(root) {
@@ -24,11 +25,20 @@ export async function matrixFiles(root) {
   await visit(root); return result.sort();
 }
 
-export async function assessMatrixEvidence({ directory, ownerOutput, catalogRoots, workingRows, expectedHttp = {} }) {
+export async function assessMatrixEvidence({ directory, ownerOutput, catalogRoots, workingRows, expectedHttp = {}, freshSetups = {}, failedSetups = {} }) {
   const files = await matrixFiles(directory), daemons = [], browsers = [];
   const report = { daemons, browsers, http: [], content: [], catalogRoots: [], failures: [], incomplete: [], controlledCalls: 0,
     modelCalls: 0, resourceQualification: false };
   const relative = file => path.relative(directory, file), ownerRelative = file => path.relative(ownerOutput, file);
+  const rowExpectations = { ...workingRows };
+  for (const [root, proof] of Object.entries(failedSetups)) {
+    assert(Object.hasOwn(workingRows, root) && Object.hasOwn(freshSetups, root));
+    assert.equal(freshSetups[root], proof.kind); assert.equal(ownerRelative(proof.data), root);
+    const setupDirectory = path.dirname(proof.data);
+    assert(setupDirectory.startsWith(directory + path.sep), 'Failed setup belongs to another case.');
+    assert.deepEqual(await verifyFailedFreshSetup(setupDirectory, proof.kind, await json(path.join(setupDirectory, 'result.json'))), proof);
+    rowExpectations[root] = 0;
+  }
   for (const file of files.filter(file => path.basename(file) === 'loredock.db')) {
     const root = ownerRelative(path.dirname(file)); assert(catalogRoots.includes(root), 'Undeclared actual catalog: ' + root);
     report.catalogRoots.push(root);
@@ -89,13 +99,14 @@ export async function assessMatrixEvidence({ directory, ownerOutput, catalogRoot
   }
   // These are stopped working copies only, never any declared input/checkpoint root.
   for (const data of new Set(daemons.map(row => row.data))) {
-    const root = ownerRelative(data), expectedRows = workingRows[root];
+    const root = ownerRelative(data), expectedRows = rowExpectations[root];
     const database = new DatabaseSync(path.join(data, 'loredock.db'), { readOnly: true });
     try {
       assert.equal(database.prepare('PRAGMA integrity_check').get().integrity_check, 'ok');
       assert.deepEqual(database.prepare('PRAGMA foreign_key_check').all(), []);
       const rows = database.prepare('SELECT w.answerId,w.purged,w.contextHash,w.reviewedHash,w.witness AS witnessJson,w.witnessBytes,a.context AS contextJson FROM answer_witnesses w JOIN answer_attempts a ON a.id=w.answerId ORDER BY w.answerId').all();
-      const observation = assessWitnessRows(rows, expectedRows); report.content.push({ root, observation });
+      const observation = assessWitnessRows(rows, expectedRows); report.content.push({ root, plannedRows: workingRows[root],
+        expectedRows, failedFreshSetup: failedSetups[root] ?? null, observation });
       if (observation.status !== 'passed') report.failures.push({ catalog: root, reason: 'retained-content-bound-failed' });
     } finally { database.close(); }
   }

@@ -43,6 +43,16 @@ export function matrixWorkingRows(oracleIds) {
   return result;
 }
 
+export function matrixFreshSetups(oracleIds) {
+  const working = matrixWorkingRows(oracleIds), result = {};
+  for (const [index, name, kind] of [[0, 'cold', 'cold'], [1, 'cold', 'cold'], [3, 'capacity', 'history'],
+    [5, 'expiry', 'expiry'], [14, 'near-history', 'history'], ...oracleIds.map(id => [13, id + '/case', 'oracle'])]) {
+    const root = 'run/matrix/' + resourceCaseOrder[index] + '/' + name + '/data';
+    assert(Object.hasOwn(working, root)); result[root] = kind;
+  }
+  return result;
+}
+
 export const matrixCoverageGaps = {
   0: ['Unadmitted transient content needs an exact durable identity binding.', 'Cold preparation work requires the separate accounting reference.'],
   1: ['Unadmitted transient content needs an exact durable identity binding.', 'Cold preparation work requires the separate accounting reference.'],

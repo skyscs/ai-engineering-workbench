@@ -9,32 +9,28 @@ limits and application bytes remain authoritative and unchanged.
 
 ## Adapter corrections before sealing
 
-The current ordinary assembly must not be pointed directly at the reserved family.
-Source review identified these concrete adapter gaps; resolve them on ordinary inputs
-before committing the final entry:
+The ordinary assembly must not be pointed directly at the reserved family. The following
+corrections are now implemented and exercised in the
+[ordinary adapter controls](../fixtures/loredock-prepared-flow-execution-boundary/README.md).
+Final-head CI acceptance and the separate committed execution seal remain required:
 
-1. Cold/warm source assessment currently passes `corpus`, `sources` and `expected`, but
-   omits the supplied `references`. The ordinary twelve-file control has no required
-   reference list, so it did not expose this omission. The frozen S01 does require
-   original references. Pass the exact reference map through the cold/warm/diagnostic
-   assessment and verify a required-original ordinary control.
-2. The frozen S07/S09 `setup` values are prose instructions. Existing `oracleCase` accepts
-   only `catalog-only` and `engineer-note` dispatch tags. Map those exact frozen case IDs
-   to the existing implementations in the execution adapter; retain the original setup
-   text and oracle hashes. Do not rewrite or relax the frozen oracle.
-3. `createHistory` writes its complete failed result and then throws an assertion, even
-   for an underlying typed `INCOMPLETE_CODE_ANALYSIS`. The assembly currently recognizes
-   that typed prerequisite only when a helper returns. Define the failure handoff before
-   execution, using the retained original error and normal teardown. Never classify an
-   arbitrary assertion as a safe prerequisite failure.
-4. If analysis prevents fresh history setup, its catalog has zero admissions, not the
-   successful 64-row expectation. A prospective stopped-catalog check may use zero only
-   for explicitly declared fresh catalogs after the exact known setup failure. It must
-   prove no admissions/runtime calls occurred and must never alter expectations for an
-   existing checkpoint, resumed history or unexplained nonempty catalog.
-5. An oracle whose required analysis fails has no preparation. Record that unavailable
-   substep explicitly alongside the failed prerequisite, instead of applying the
-   successful `preparations === 1` assertion and losing the original failure category.
+1. Cold/warm/diagnostic source assessment carries the supplied required-original
+   reference map. The original twelve-file control lacked a required reference list;
+   the new control verifies three required originals in all five corresponding reviews.
+2. Frozen S07/S09 prose maps by exact ID and instruction to `catalog-only` and
+   `engineer-note`. Original instructions and oracle bytes remain unchanged; unknown or
+   changed instructions fail. Input artifacts record both the original and dispatch tag.
+3. `createHistory` retains its complete error report and, when explicitly requested by
+   the matrix, returns it for classification. Default callers still throw. The adapter
+   recognizes only an exact partial-analysis prerequisite with verified normal teardown;
+   an arbitrary thrown assertion or mixed error still stops the sequence.
+4. Fifteen fresh setup roots are declared prospectively. Zero-row expectations require
+   a retained result hash, zero attempts/witnesses, no preparation/admission request and
+   zero controlled runtime work. The assessor repeats those checks and retains the
+   original successful target. Existing checkpoint, warm, replay and fault roots cannot
+   use this exception.
+5. An oracle prevented by failed analysis explicitly records not-run preparation beside
+   the failed prerequisite. The successful `preparations === 1` assertion remains strict.
    Unknown errors, mismatched provenance or teardown failures still stop later cases.
 
 These changes affect the evaluation adapter only. They cannot make a partial analysis

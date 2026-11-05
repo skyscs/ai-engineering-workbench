@@ -6,8 +6,8 @@ Latest accepted checkpoint: [PR #158](https://github.com/skyscs/ai-engineering-w
 at merge `d61149a`. The first ordinary ordered matrix exercises all fifteen groups:
 eleven fail and four remain incomplete. Independent retention verifies all 55 created
 catalogs and unchanged raw inputs. Supplemental offline content/lifetime bindings are
-accepted after both exact-head CI events passed 1,016 tests. The next execution-boundary
-work identifies concrete adapter fixes and the final seal requirements. Earlier
+accepted after both exact-head CI events passed 1,016 tests. Execution adapter corrections
+now pass ordinary controls and await final-head CI; the final entry/seal remain outstanding. Earlier
 resource/required-positive failures remain unresolved.
 The reserved family has zero candidate reads; no model runs.
 Known ordinary failures include partial analysis of constant-only padding, a missing
@@ -463,13 +463,20 @@ outcomes remain immutable. Accepted through
 pull_request 42080275190 pass 1,016 tests at `9c861dd`; merge `d61149a` has the identical
 tree. Both complete logs and test counts were verified before merge.
 
-The [final execution work note](loredock/PREPARED_FLOW_EXECUTION.md) identifies missing
-cold/warm reference propagation, frozen setup-tag mapping and partial-analysis failure
-handoffs for fresh capacity/oracle setups. It scopes adapter corrections, exact process
-and environment closure, a one-use reserved entry and explicit incomplete measurement
-outcomes under the frozen contract. The [checkpoint](fixtures/loredock-prepared-flow-execution-boundary/README.md)
-retains the accepted PR #158 logs. No reserved entry or executable seal has been committed
-yet; model eligibility stays closed.
+The [execution adapter checkpoint](fixtures/loredock-prepared-flow-execution-boundary/README.md)
+implements exact required-original propagation, frozen setup mapping and explicit retained
+partial-analysis failure handoffs. Fifteen declared fresh roots may use zero-row expectations
+only after normal exit, zero attempts/witnesses/runtime work, no preparation/admission HTTP
+and exact retained-result checks. Unknown errors still stop; prevented oracle preparations
+remain not run. A first ordinary control verifies five required-original reviews, four
+controlled calls, twelve failed-fresh proofs, real Catalog-only and unverified-note setups.
+Seven case invocations remain six failed and one incomplete; raw timer failures are retained.
+Independent inspection verifies nineteen copied catalogs, 56 Git identities, 177 source files,
+214 HTTP responses and all 1,397 unchanged raw entries. Nineteen focused controls,
+install/build and the original seal pass; both final-head CI events remain required.
+The [execution work note](loredock/PREPARED_FLOW_EXECUTION.md) scopes the remaining exact
+process/environment closure and one-use entry. No reserved entry or executable seal has
+been committed yet; reserved candidate reads and model calls remain zero.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request

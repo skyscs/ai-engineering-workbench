@@ -1,0 +1,263 @@
+{
+  "schemaVersion": "prepared-flow-execution-adapter-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "trees": [
+    {
+      "path": "execution-adapter-first.tar.gz",
+      "sha256": "ed5be7e4da15734b9e6f1c87df124f1351e126dcd8c1c7da04f8c75d05c3f6f2",
+      "inventory": "execution-adapter-first.inventory.json.gz",
+      "inventorySha256": "09f1ea266363eccc600de35f1f4eb56b7994613510de0825d2038e45a0f88618",
+      "entries": 1397,
+      "source": "/home/toshiba/aew/task128-execution-adapter-first"
+    },
+    {
+      "path": "execution-adapter-first-inputs.tar.gz",
+      "sha256": "e738bf2f4e3b5ac3d751bbc3cc28cb28991eef073e72798b70ed3a884a64c2f2",
+      "inventory": "execution-adapter-first-inputs.inventory.json.gz",
+      "inventorySha256": "1e205d5da1237e5931a0bda85504c08de66fb4e86f8a406f0e14a9e66e53dc58",
+      "entries": 11,
+      "source": "/home/toshiba/aew/task128-execution-adapter-first-inputs"
+    },
+    {
+      "path": "execution-adapter-retention.tar.gz",
+      "sha256": "d25f21914788b9a8f72d75a6762be34cf496027ddc1aaaaa909235d7d62530aa",
+      "inventory": "execution-adapter-retention.inventory.json.gz",
+      "inventorySha256": "260c29d324e6ba97675368b359045041a11c205b39dd52822250a6727217b29e",
+      "entries": 77,
+      "source": "/home/toshiba/aew/task128-execution-adapter-retention"
+    },
+    {
+      "path": "execution-adapter-inputs.tar.gz",
+      "sha256": "29f69b1e23674bd4dd3e7cb126523036054055cce2836ac75f10dbb865797745",
+      "inventory": "execution-adapter-inputs.inventory.json.gz",
+      "inventorySha256": "d5f45106da29d92237d322c666f976fe0585d1e5be2dace7d586496c03054d6e",
+      "entries": 76,
+      "source": "/home/toshiba/aew/task128-execution-adapter-inputs"
+    },
+    {
+      "path": "execution-adapter-static-inputs.tar.gz",
+      "sha256": "bacf15e514b44fd66653644035795d181c7e712d8c6b2c9ea127c10a95ed8d24",
+      "inventory": "execution-adapter-static-inputs.inventory.json.gz",
+      "inventorySha256": "b3806d13c880a7ea5b1a7f42a555ee022f627e121f8250c33236d0c291f6d4ac",
+      "entries": 2,
+      "source": "/home/toshiba/aew/task128-execution-adapter-static-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "execution-adapter-first.log.gz",
+      "archiveSha256": "efaced2ed9abf7adc163569e68511683c4033b3afd35f806c0366fc20ca2754e",
+      "rawBytes": 31915,
+      "rawSha256": "a3a2d3c79af7d57532b0ff2c44e98561351ab955edcc4d62ac0e2ed437a1d4aa"
+    },
+    {
+      "path": "execution-adapter-tests-first.log.gz",
+      "archiveSha256": "d8fa0d465517cbf3ff44cbbad86497a78134eb2e229d8625d64d7ba2b13c094c",
+      "rawBytes": 5855,
+      "rawSha256": "f9be6f50680197c9ed4e04ca5ee63ac1853b3969702a89119d2a4028586bdf2d"
+    },
+    {
+      "path": "execution-adapter-install.log.gz",
+      "archiveSha256": "8721f80ef0849cd13abfd061cf29dcf73a97042c8f523d69fed574b2dbf4a93b",
+      "rawBytes": 326,
+      "rawSha256": "6b5f0426573256d346cdb1a45935d03e7902ff9849e1da7c132322fc09c56580"
+    },
+    {
+      "path": "execution-adapter-build.log.gz",
+      "archiveSha256": "3ea90be3e3ec1b7f3df3b9b90e304776106f51899e264d5ee2371da0b4592eed",
+      "rawBytes": 2358,
+      "rawSha256": "e3fd014740d428b6a7dc6d68f7c51afc652c22860da54d113b896071f3849223"
+    },
+    {
+      "path": "execution-adapter-seal.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "execution-adapter-retention.log.gz",
+      "archiveSha256": "9491267c9cb10e98d5eb0a7a62e0737f31cbdf59a08cc5a5bbd40bd42f4d2409",
+      "rawBytes": 393,
+      "rawSha256": "7c766724fa4726f588b7f10cff81f2d7220dc792b53632146589115199e0d263"
+    },
+    {
+      "path": "execution-adapter-static-first.log.gz",
+      "archiveSha256": "0a8995d8fa5222bd990cb2464fb8550ea085064d8df04090d61c2c3421c927dd",
+      "rawBytes": 207,
+      "rawSha256": "5e3cfa99b3de1e648f4d0832b9e068c5606d8de8652f22b667af3416ff726d3b"
+    }
+  ],
+  "base": "d61149ac354265190deb9ecfb99c90ff67bd4f25",
+  "retention": {
+    "catalogs": [
+      {
+        "source": "/home/toshiba/aew/task128-execution-adapter-first/run/note/case/data",
+        "copy": "/home/toshiba/aew/task128-execution-adapter-retention/run/note/case/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-execution-adapter-first/run/partial/run/matrix/R01-representative-cold/cold/data",
+        "copy": "/home/toshiba/aew/task128-execution-adapter-retention/run/partial/run/matrix/R01-representative-cold/cold/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-execution-adapter-first/run/partial/run/matrix/R04-history-capacity/capacity/data",
+        "copy": "/home/toshiba/aew/task128-execution-adapter-retention/run/partial/run/matrix/R04-history-capacity/capacity/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-execution-adapter-first/run/partial/run/matrix/R06-expiry/expiry/data",
+        "copy": "/home/toshiba/aew/task128-execution-adapter-retention/run/partial/run/matrix/R06-expiry/expiry/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-execution-adapter-first/run/partial/run/matrix/R14-oracle-preconditions/P01-adapter/case/data",
+        "copy": "/home/toshiba/aew/task128-execution-adapter-retention/run/partial/run/matrix/R14-oracle-preconditions/P01-adapter/case/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-execution-adapter-first/run/partial/run/matrix/R14-oracle-preconditions/P02-adapter/case/data",
+        "copy": "/home/toshiba/aew/task128-execution-adapter-retention/run/partial/run/matrix/R14-oracle-preconditions/P02-adapter/case/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-execution-adapter-first/run/partial/run/matrix/R14-oracle-preconditions/P03-adapter/case/data",
+        "copy": "/home/toshiba/aew/task128-execution-adapter-retention/run/partial/run/matrix/R14-oracle-preconditions/P03-adapter/case/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-execution-adapter-first/run/partial/run/matrix/R14-oracle-preconditions/P04-adapter/case/data",
+        "copy": "/home/toshiba/aew/task128-execution-adapter-retention/run/partial/run/matrix/R14-oracle-preconditions/P04-adapter/case/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-execution-adapter-first/run/partial/run/matrix/R14-oracle-preconditions/P05-adapter/case/data",
+        "copy": "/home/toshiba/aew/task128-execution-adapter-retention/run/partial/run/matrix/R14-oracle-preconditions/P05-adapter/case/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-execution-adapter-first/run/partial/run/matrix/R14-oracle-preconditions/P06-adapter/case/data",
+        "copy": "/home/toshiba/aew/task128-execution-adapter-retention/run/partial/run/matrix/R14-oracle-preconditions/P06-adapter/case/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-execution-adapter-first/run/partial/run/matrix/R14-oracle-preconditions/P07-adapter/case/catalog-only-checkpoint",
+        "copy": "/home/toshiba/aew/task128-execution-adapter-retention/run/partial/run/matrix/R14-oracle-preconditions/P07-adapter/case/catalog-only-checkpoint",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-execution-adapter-first/run/partial/run/matrix/R14-oracle-preconditions/P07-adapter/case/data",
+        "copy": "/home/toshiba/aew/task128-execution-adapter-retention/run/partial/run/matrix/R14-oracle-preconditions/P07-adapter/case/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-execution-adapter-first/run/partial/run/matrix/R14-oracle-preconditions/P08-adapter/case/data",
+        "copy": "/home/toshiba/aew/task128-execution-adapter-retention/run/partial/run/matrix/R14-oracle-preconditions/P08-adapter/case/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-execution-adapter-first/run/partial/run/matrix/R14-oracle-preconditions/P09-adapter/case/data",
+        "copy": "/home/toshiba/aew/task128-execution-adapter-retention/run/partial/run/matrix/R14-oracle-preconditions/P09-adapter/case/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-execution-adapter-first/run/partial/run/matrix/R14-oracle-preconditions/P10-adapter/case/data",
+        "copy": "/home/toshiba/aew/task128-execution-adapter-retention/run/partial/run/matrix/R14-oracle-preconditions/P10-adapter/case/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-execution-adapter-first/run/positive/run/matrix/R01-representative-cold/cold/checkpoint",
+        "copy": "/home/toshiba/aew/task128-execution-adapter-retention/run/positive/run/matrix/R01-representative-cold/cold/checkpoint",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-execution-adapter-first/run/positive/run/matrix/R01-representative-cold/cold/data",
+        "copy": "/home/toshiba/aew/task128-execution-adapter-retention/run/positive/run/matrix/R01-representative-cold/cold/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task128-execution-adapter-first/run/positive/run/matrix/R03-fixed-warm-flow/representative/data",
+        "copy": "/home/toshiba/aew/task128-execution-adapter-retention/run/positive/run/matrix/R03-fixed-warm-flow/representative/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 3,
+        "witnesses": 3
+      },
+      {
+        "source": "/home/toshiba/aew/task128-execution-adapter-first/run/positive/run/matrix/R15-accounting/representative-worker/data",
+        "copy": "/home/toshiba/aew/task128-execution-adapter-retention/run/positive/run/matrix/R15-accounting/representative-worker/data",
+        "integrity": "ok",
+        "foreignKeys": [],
+        "attempts": 1,
+        "witnesses": 1
+      }
+    ],
+    "sourceGitIdentities": 56,
+    "sourceFiles": 177,
+    "httpResponses": 214,
+    "redactedSessions": 17,
+    "failedFreshProofs": 12,
+    "controlledCalls": 4,
+    "resourceQualification": false,
+    "modelCalls": 0,
+    "reservedFamilyReads": 0,
+    "rawInputsUnchanged": true,
+    "entries": 1397,
+    "requiredOriginalReviews": 5,
+    "sourceOnlySetup": true,
+    "unverifiedNoteSetup": true
+  }
+}

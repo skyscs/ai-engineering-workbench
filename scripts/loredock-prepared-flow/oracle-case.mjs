@@ -8,6 +8,7 @@ import { CatalogStore } from '../../apps/loredock/dist/store.js';
 import { launch, client, save, inventory, normalized, hash } from './io.mjs';
 import { indexSources, prepare } from './flow.mjs';
 import { assessPreview } from './assess.mjs';
+import { oracleSetup } from './matrix-adapter.mjs';
 
 export async function oracleCase({ directory, corpus, sources, expected, references, engineerNote, noteTarget }) {
   await mkdir(directory);
@@ -15,8 +16,8 @@ export async function oracleCase({ directory, corpus, sources, expected, referen
   const result = { id: expected.id, errors: [], assessmentErrors: [], preparations: 0, resourceQualification: false };
   let daemon, api, store, catalog;
   try {
-    assert([undefined, 'catalog-only', 'engineer-note'].includes(expected.setup), 'Unknown oracle setup.');
-    await save(path.join(directory, 'inputs.json'), { sources, expected, references, engineerNote, noteTarget });
+    const setup = oracleSetup(expected);
+    await save(path.join(directory, 'inputs.json'), { sources, expected, setup, references, engineerNote, noteTarget });
     // Check supplied materialized bytes and every required quote before candidate indexing/retrieval.
     const names = Object.keys(corpus);
     assert.equal(sources.paths.length, names.length);
@@ -30,17 +31,17 @@ export async function oracleCase({ directory, corpus, sources, expected, referen
         assert.equal(raw.toString('utf8'), text); assert.equal(raw.length, rows[0].bytes); assert.equal(hash(raw), rows[0].sha256);
       }
     }
-    const required = [...expected.requiredOriginals, ...(expected.setup === 'engineer-note' ? noteTarget.requiredOriginals : [])];
+    const required = [...expected.requiredOriginals, ...(setup === 'engineer-note' ? noteTarget.requiredOriginals : [])];
     for (const name of required) {
       const reference = references[name];
       assert(reference && corpus[reference.source]?.[reference.path]?.includes(reference.quote), 'Missing required source quote: ' + name);
     }
-    if (expected.setup === 'engineer-note') {
+    if (setup === 'engineer-note') {
       assert(engineerNote && typeof engineerNote.text === 'string' && engineerNote.text.length > 0);
       assert.equal(noteTarget.kind, 'http-target');
       for (const side of ['from', 'to']) assert(corpus[noteTarget[side].source]?.[noteTarget[side].path]);
     }
-    if (expected.setup === 'catalog-only') {
+    if (setup === 'catalog-only') {
       // Actual Catalog without CodeAnalysisFollow, stopped before the real daemon reopens it.
       store = new CatalogStore(data); catalog = new Catalog(store);
       for (const source of sources.paths) await catalog.addSource(source);
@@ -57,12 +58,12 @@ export async function oracleCase({ directory, corpus, sources, expected, referen
     }
     daemon = await launch({ directory: path.join(directory, 'production'), data });
     api = await client(path.join(directory, 'http'));
-    if (expected.setup !== 'catalog-only') result.index = await indexSources(api, sources.paths);
+    if (setup !== 'catalog-only') result.index = await indexSources(api, sources.paths);
     else {
       await new Promise(resolve => setTimeout(resolve, 1100));
       assert.deepEqual((await api.request('/code-analysis')).value, { inventories: [], pendingBuildId: null, automaticError: null });
     }
-    if (expected.setup === 'engineer-note') {
+    if (setup === 'engineer-note') {
       const projection = (await api.request('/code-flows')).value, overlay = (await api.request('/corrections')).value;
       const edges = projection.edges.filter(edge => {
         const from = projection.nodes.find(node => node.id === edge.from), to = projection.nodes.find(node => node.id === edge.to);
@@ -85,7 +86,7 @@ export async function oracleCase({ directory, corpus, sources, expected, referen
     result.preparations++;
     const prepared = await prepare(api, expected.question);
     result.review = prepared.review;
-    if (expected.setup === 'catalog-only') {
+    if (setup === 'catalog-only') {
       assert.equal(prepared.review.context.buildId, result.build.id);
       assert.deepEqual((await api.request('/code-analysis')).value, { inventories: [], pendingBuildId: null, automaticError: null });
     }
