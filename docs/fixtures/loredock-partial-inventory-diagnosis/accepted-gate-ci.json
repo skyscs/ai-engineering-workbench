@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "partial-inventory-accepted-gate/1",
+  "pr": 161,
+  "head": "1dfb79e63a67dbb2d88e7ef90eef0a8184bf9482",
+  "merge": "6150630d6c708d1ee3e0a09562d5c4d518823dd6",
+  "push": 42095587170,
+  "pull_request": 42095749750,
+  "testsPerEvent": 1029,
+  "completeLogsVerifiedBeforeMerge": true,
+  "identicalTreeVerified": true,
+  "logs": [
+    {
+      "path": "accepted-gate-ci-push.log.gz",
+      "sha256": "bb0ea7322fa36f05687b36621e65c182a86627fb108cacb17cd781805480c943",
+      "rawBytes": 730024,
+      "rawSha256": "10472263e4daea4234e05c1afcac2e3460c11b1ca36d16729e7256ee30b6b691"
+    },
+    {
+      "path": "accepted-gate-ci-pr.log.gz",
+      "sha256": "7e30620e3df51f098294180defb5082afd874aa20c6b20a661a1b973543f6ff7",
+      "rawBytes": 734757,
+      "rawSha256": "fafabc42949b949c67301006df61f5aca50bdf4f96bc25f08744776151995ec0"
+    }
+  ]
+}

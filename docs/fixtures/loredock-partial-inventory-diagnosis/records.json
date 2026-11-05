@@ -1,0 +1,327 @@
+{
+  "schemaVersion": "ordinary-partial-inventory-diagnosis/1",
+  "base": "6150630d6c708d1ee3e0a09562d5c4d518823dd6",
+  "functionalPassed": true,
+  "resourceQualification": false,
+  "modelEligibility": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "trees": [
+    {
+      "path": "partial-first.tar.gz",
+      "sha256": "3a447394a2b4a9d14cc1715ffce391abe2548f489bad03c0ba9d6776c681ab6c",
+      "inventory": "partial-first.inventory.json.gz",
+      "inventorySha256": "11905205694fa2078eb87cc2e5c285bdd41ee02bae7f5d9766041e16688a9f9f",
+      "entries": 380,
+      "source": "/home/toshiba/aew/task129-partial-first"
+    },
+    {
+      "path": "partial-first-inputs.tar.gz",
+      "sha256": "f5bf088141d6a243cb6bad50a1824f4088a2308e302bf0a6ab4137da24ce2c69",
+      "inventory": "partial-first-inputs.inventory.json.gz",
+      "inventorySha256": "7a259edbc57db05d042db0fa32a211d15ffcfb2e51fc9debff2c98f331703341",
+      "entries": 86,
+      "source": "/home/toshiba/aew/task129-partial-first-inputs"
+    },
+    {
+      "path": "partial-retention.tar.gz",
+      "sha256": "3bedeb63367b48e977f858561a239e34b6945e697c42aacc860f281fec8645d9",
+      "inventory": "partial-retention.inventory.json.gz",
+      "inventorySha256": "3502acd02143cc05f6f1042659f585689e2e3a1dccd54964e71371d81deec591",
+      "entries": 22,
+      "source": "/home/toshiba/aew/task129-partial-retention"
+    },
+    {
+      "path": "partial-review-inputs.tar.gz",
+      "sha256": "cec873b79fe2be656aa64cf4f00e3a6096d51db76a806f7682a3d297fbf7c826",
+      "inventory": "partial-review-inputs.inventory.json.gz",
+      "inventorySha256": "0368834efb6479bb1fb6cfa4c050fabd519a55f155dfe5a6a1ff0613ebfb1032",
+      "entries": 6,
+      "source": "/home/toshiba/aew/task129-partial-review-inputs"
+    },
+    {
+      "path": "partial-static-inputs.tar.gz",
+      "sha256": "08bd5c66860e6bf8687b3b21e008b63d62a36ae4d9f3472fbe962b149ec97da2",
+      "inventory": "partial-static-inputs.inventory.json.gz",
+      "inventorySha256": "93c38d2c7cc73242b240a8760ac91043eb9ccefb4655ca59413bf3c61f9f332c",
+      "entries": 2,
+      "source": "/home/toshiba/aew/task129-partial-static-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "partial-install.log.gz",
+      "archiveSha256": "d45830edb881e48601ae52ae1b290bcc409ac28f7ea7f7e53db57009cb27b616",
+      "rawBytes": 326,
+      "rawSha256": "6984bc69e432767a5dc8e80781c01195850c52204814d496e15432e84f66e2a6"
+    },
+    {
+      "path": "partial-build.log.gz",
+      "archiveSha256": "8497bf77f4fcd7eddda4e75ec04b5cecae408e563f355057ef973e50cf3b1a5c",
+      "rawBytes": 2357,
+      "rawSha256": "ea4532f61af1d6f53384f25a5d01909b306d11a2b94734eba6645735700c3dc1"
+    },
+    {
+      "path": "partial-tests-first.log.gz",
+      "archiveSha256": "f7af5ae1b62987dbac198efc3a5f0fa82d556b2979293abb90905cbf83fbffa3",
+      "rawBytes": 1091,
+      "rawSha256": "a447e62c6653c6c1be2fa55f6b1d16851cef24ea9385cd77b1be2134b2821446"
+    },
+    {
+      "path": "partial-input-seal.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "partial-first.log.gz",
+      "archiveSha256": "019ae0361b1c7ae1d487221b622412aee44246471c44f79bcadc572062b073a5",
+      "rawBytes": 8788,
+      "rawSha256": "649147de9a9d176f53e929219c8020feed4672c1ccf070b1bcdb8db5f8f02ec2"
+    },
+    {
+      "path": "partial-retain-first.log.gz",
+      "archiveSha256": "13f421f92c3d2b34c8ddce1e1dbe0ea3a18f28bde03cff91f44556cb65deedf3",
+      "rawBytes": 368,
+      "rawSha256": "729114dd32352acb04b8b791080d81392d28ce2563d7da47ba5c31673cbe9e75"
+    },
+    {
+      "path": "partial-metrics-first.log.gz",
+      "archiveSha256": "cb0f0abed8a6d357b6af0c68b8b834dbc85e28b9c2f8b67e9e75cf8c9772c493",
+      "rawBytes": 4283,
+      "rawSha256": "22b3649dda1a783051e8a34a8b17c6eedb17700f81d5e4a28569b2411da02815"
+    },
+    {
+      "path": "partial-static-first.log.gz",
+      "archiveSha256": "177a315318c42d249447b54c8f6e9708d624ef8309c5429372e5d08fc0d4d2c8",
+      "rawBytes": 239,
+      "rawSha256": "de2f11532f0e8810b6ca7ab74434f85a6824af0b2298f16dffa6fe2fb6f854d0"
+    },
+    {
+      "path": "partial-archive-first.log.gz",
+      "archiveSha256": "4685d1cb7415168c7e746594da526a5254dc5c761787035be45ec852c0ab0e0a",
+      "rawBytes": 110,
+      "rawSha256": "e9fbf7c228be97584c03339d2763ffc352fba71efadf3b4500aace1450404755"
+    }
+  ],
+  "retention": {
+    "catalogs": [
+      {
+        "source": "/home/toshiba/aew/task129-partial-first/run/completed/case/data",
+        "copy": "/home/toshiba/aew/task129-partial-retention/run/completed/case/data",
+        "integrity": "ok",
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task129-partial-first/run/constant/case/data",
+        "copy": "/home/toshiba/aew/task129-partial-retention/run/constant/case/data",
+        "integrity": "ok",
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task129-partial-first/run/dynamic-request/case/data",
+        "copy": "/home/toshiba/aew/task129-partial-retention/run/dynamic-request/case/data",
+        "integrity": "ok",
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task129-partial-first/run/no-analysis/case/catalog-only-checkpoint",
+        "copy": "/home/toshiba/aew/task129-partial-retention/run/no-analysis/case/catalog-only-checkpoint",
+        "integrity": "ok",
+        "attempts": 0,
+        "witnesses": 0
+      },
+      {
+        "source": "/home/toshiba/aew/task129-partial-first/run/no-analysis/case/data",
+        "copy": "/home/toshiba/aew/task129-partial-retention/run/no-analysis/case/data",
+        "integrity": "ok",
+        "attempts": 0,
+        "witnesses": 0
+      }
+    ],
+    "gitIdentities": 16,
+    "sourceFiles": 50,
+    "httpResponses": 60,
+    "sessionRedactions": 4,
+    "preparations": 4,
+    "admissions": 0,
+    "originalChecks": 32,
+    "stableRepeatedReviews": 3,
+    "modelCalls": 0,
+    "reservedFamilyReads": 0,
+    "resourceQualification": false,
+    "modelEligibility": false,
+    "rawEntries": 380,
+    "rawInputsUnchanged": true
+  },
+  "metrics": {
+    "controls": [
+      {
+        "id": "completed",
+        "measured": {
+          "sampledRssBytes": 160874496,
+          "osHighWaterRssBytes": 160874496,
+          "heapUsedBytes": 53308752,
+          "rawIntervalGapMs": 314.36427899999995,
+          "samples": 89
+        },
+        "checks": [
+          {
+            "metric": "sampledRssBytes",
+            "value": 160874496,
+            "limit": 402653184,
+            "passed": true
+          },
+          {
+            "metric": "osHighWaterRssBytes",
+            "value": 160874496,
+            "limit": 402653184,
+            "passed": true
+          },
+          {
+            "metric": "heapUsedBytes",
+            "value": 53308752,
+            "limit": 67108864,
+            "passed": true
+          },
+          {
+            "metric": "rawIntervalGapMs",
+            "value": 314.36427899999995,
+            "limit": 100,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "resourceQualification": false,
+        "firstIntervalMs": 314.36427899999995,
+        "maximumGapIsFirstInterval": true
+      },
+      {
+        "id": "constant",
+        "measured": {
+          "sampledRssBytes": 169234432,
+          "osHighWaterRssBytes": 169234432,
+          "heapUsedBytes": 53677024,
+          "rawIntervalGapMs": 332.903393,
+          "samples": 88
+        },
+        "checks": [
+          {
+            "metric": "sampledRssBytes",
+            "value": 169234432,
+            "limit": 402653184,
+            "passed": true
+          },
+          {
+            "metric": "osHighWaterRssBytes",
+            "value": 169234432,
+            "limit": 402653184,
+            "passed": true
+          },
+          {
+            "metric": "heapUsedBytes",
+            "value": 53677024,
+            "limit": 67108864,
+            "passed": true
+          },
+          {
+            "metric": "rawIntervalGapMs",
+            "value": 332.903393,
+            "limit": 100,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "resourceQualification": false,
+        "firstIntervalMs": 332.903393,
+        "maximumGapIsFirstInterval": true
+      },
+      {
+        "id": "dynamic-request",
+        "measured": {
+          "sampledRssBytes": 159195136,
+          "osHighWaterRssBytes": 159195136,
+          "heapUsedBytes": 53812456,
+          "rawIntervalGapMs": 309.311866,
+          "samples": 88
+        },
+        "checks": [
+          {
+            "metric": "sampledRssBytes",
+            "value": 159195136,
+            "limit": 402653184,
+            "passed": true
+          },
+          {
+            "metric": "osHighWaterRssBytes",
+            "value": 159195136,
+            "limit": 402653184,
+            "passed": true
+          },
+          {
+            "metric": "heapUsedBytes",
+            "value": 53812456,
+            "limit": 67108864,
+            "passed": true
+          },
+          {
+            "metric": "rawIntervalGapMs",
+            "value": 309.311866,
+            "limit": 100,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "resourceQualification": false,
+        "firstIntervalMs": 309.311866,
+        "maximumGapIsFirstInterval": true
+      },
+      {
+        "id": "no-analysis",
+        "measured": {
+          "sampledRssBytes": 147824640,
+          "osHighWaterRssBytes": 148688896,
+          "heapUsedBytes": 44071872,
+          "rawIntervalGapMs": 282.75180700000004,
+          "samples": 140
+        },
+        "checks": [
+          {
+            "metric": "sampledRssBytes",
+            "value": 147824640,
+            "limit": 402653184,
+            "passed": true
+          },
+          {
+            "metric": "osHighWaterRssBytes",
+            "value": 148688896,
+            "limit": 402653184,
+            "passed": true
+          },
+          {
+            "metric": "heapUsedBytes",
+            "value": 44071872,
+            "limit": 67108864,
+            "passed": true
+          },
+          {
+            "metric": "rawIntervalGapMs",
+            "value": 282.75180700000004,
+            "limit": 100,
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "resourceQualification": false,
+        "firstIntervalMs": 282.75180700000004,
+        "maximumGapIsFirstInterval": true
+      }
+    ],
+    "resourceQualification": false,
+    "modelEligibility": false,
+    "newCandidateExecutions": 0
+  }
+}
