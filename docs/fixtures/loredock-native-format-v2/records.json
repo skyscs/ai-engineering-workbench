@@ -1,0 +1,254 @@
+{
+  "schemaVersion": "ordinary-native-format-v2/1",
+  "base": "d43cb05611fe41dea1107404cb6448441d18a0c5",
+  "baselineCode": "9890186",
+  "implementationCode": "451e7bb",
+  "realModelCalls": 0,
+  "controlledRuntimeCalls": 1,
+  "reservedFamilyReads": 0,
+  "resourceQualification": false,
+  "trees": [
+    {
+      "path": "native-v1-first.tar.gz",
+      "sha256": "a8f7423cf562e4e61eadb6d514786931eddd0bffe9cd8f89fac36e46a74ef136",
+      "inventory": "native-v1-first.inventory.json.gz",
+      "inventorySha256": "2ecfce64f4179f03d0c5a49c89ef826fb5e85d2353b39bb3b970db86a1e687be",
+      "entries": 164,
+      "source": "/home/toshiba/aew/task133-native-v1-first"
+    },
+    {
+      "path": "native-v1-first-inputs.tar.gz",
+      "sha256": "ce1c56c9b9515559acc6cbfc6b01b9f878637e987a9fde1854a1f30abe297198",
+      "inventory": "native-v1-first-inputs.inventory.json.gz",
+      "inventorySha256": "e4cd7708b5187f271c32983fa0b5ba0c9a01b16771f6ea56c2f7803dff0dc907",
+      "entries": 225,
+      "source": "/home/toshiba/aew/task133-native-v1-first-inputs"
+    },
+    {
+      "path": "native-v2-first.tar.gz",
+      "sha256": "3bdcf5440e367b667f5c31aaaaf8e94894a2b7239870dca55b1ba6b88bd6a513",
+      "inventory": "native-v2-first.inventory.json.gz",
+      "inventorySha256": "a564f0e0517084d58ddd783a0edb28733a772831f55619125dedee4e1012d370",
+      "entries": 223,
+      "source": "/home/toshiba/aew/task133-native-v2-first",
+      "excludedFromArchive": [
+        "run/browser/profile (temporary Chrome profile/cache; original retained locally)"
+      ]
+    },
+    {
+      "path": "native-v2-first-inputs.tar.gz",
+      "sha256": "ce05bfb1342786f8f339f70c89b17825d63a66f9acace0412d3b11da4b719156",
+      "inventory": "native-v2-first-inputs.inventory.json.gz",
+      "inventorySha256": "5ebb8e0967ed5b78b1354b7ec1670d9e510dd021f8616b35f1a982c8e6415fb8",
+      "entries": 242,
+      "source": "/home/toshiba/aew/task133-native-v2-first-inputs"
+    },
+    {
+      "path": "native-retention.tar.gz",
+      "sha256": "39fce1b573dd10c6c38c7b8309849476d2fc50d1f66ec0d6bf966c2d7ffbd45e",
+      "inventory": "native-retention.inventory.json.gz",
+      "inventorySha256": "5cc1f6a35d0ca51ba0c205b1167ec5491ba6874875e5982fef41f5751a4de26d",
+      "entries": 34,
+      "source": "/home/toshiba/aew/task133-native-retention"
+    },
+    {
+      "path": "native-tests-first-inputs.tar.gz",
+      "sha256": "608ef7902a53efe76d54182ec240e6e6228bbb8e85c2d0ae9cc765db0871bc71",
+      "inventory": "native-tests-first-inputs.inventory.json.gz",
+      "inventorySha256": "c6da2799e748a48640f48d8281bf824905df1fb7d0e6816c383db97ebdade6b4",
+      "entries": 3,
+      "source": "/home/toshiba/aew/task133-native-tests-first-inputs"
+    },
+    {
+      "path": "native-review-inputs.tar.gz",
+      "sha256": "d6a36283f56b0ba3e9e4177b3c579d1233054fb49b046358119d1eff0ad88a1a",
+      "inventory": "native-review-inputs.inventory.json.gz",
+      "inventorySha256": "ea3247b275b4d90b70441eb56bffd706d52cda659fd91980b669d0da8a0ddafd",
+      "entries": 8,
+      "source": "/home/toshiba/aew/task133-native-review-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "native-factor-first.log.gz",
+      "archiveSha256": "edb5178e9155ed1788a05c59c5aa0495416b6c9ae655744ae5e6714089a89311",
+      "rawBytes": 305,
+      "rawSha256": "3084d11bf74bb2bfa98f1b9cafa40515eb571daecaa7de27758284163e57df7b"
+    },
+    {
+      "path": "native-install.log.gz",
+      "archiveSha256": "61724a675c8137c06fe4fb7c6278f3c2ecb6a8b9fc904af10ecd1268af94f499",
+      "rawBytes": 326,
+      "rawSha256": "e16310149507bcaf116a0e207c38976905453c5a492e4779281df3836ad3bc24"
+    },
+    {
+      "path": "native-retain-first.log.gz",
+      "archiveSha256": "6504919179120b3b2dd11fcf5f42c1d94ae69103a9626954c424db451b77ccd8",
+      "rawBytes": 2234,
+      "rawSha256": "a41dccef96b0f6cf809b1f1baef0f4cd832ecb418ca1d68324103387e5958faa"
+    },
+    {
+      "path": "native-tests-first.log.gz",
+      "archiveSha256": "2c0d20b9183feef55aceedd7672e675d579815e1abb8cfc64883ac4564dffdb4",
+      "rawBytes": 13383,
+      "rawSha256": "7dfd6f6ba2fc887a0cc29d77daa108a18faa008e34e85c839d96da51f5165894"
+    },
+    {
+      "path": "native-tests-full-first.log.gz",
+      "archiveSha256": "cbc9ef7f281bb7c91ba142067a51a9521afcc5cd80b554e7d417ded515babf91",
+      "rawBytes": 372310,
+      "rawSha256": "7a46b836ff05c5419182cba997bf847eb365668d6d73c9f93761758626c3a37c"
+    },
+    {
+      "path": "native-tests-second.log.gz",
+      "archiveSha256": "7d4b29775e7b2111c84262a097f89ef5196d63eec81635dbb7fac3a2bd906c9e",
+      "rawBytes": 6225,
+      "rawSha256": "524ed62eb514d7bfe13589d5eff7b15528f770b20b3bb93ba06bc7227fb525cb"
+    },
+    {
+      "path": "native-typecheck-first.log.gz",
+      "archiveSha256": "800780c9c40b85da71c7974655c822a57bfa86de1642041ac7e80e02e422e737",
+      "rawBytes": 1721,
+      "rawSha256": "4d283a0d88180c51377bb2f9c9919450bd927449a1c327a652c73ccd7ce618ae"
+    },
+    {
+      "path": "native-v1-build.log.gz",
+      "archiveSha256": "a39685af0f24d2b177f81f417a9acc09f642f1b6322881deeb22c138cd759c16",
+      "rawBytes": 2357,
+      "rawSha256": "0273937e34f70733289b89eda961d808eea0d1f8a98bd6a3f6c639f48b0af29f"
+    },
+    {
+      "path": "native-v1-first.log.gz",
+      "archiveSha256": "4fb32e91264e2122afd29f6e159c0a565218c2a4e7c09038d1941895ef43b02a",
+      "rawBytes": 4654,
+      "rawSha256": "b13459aeeaff29ea6ecedcb20aa3ee650bec13a4b3fa5f9bff3e3be57f07c751"
+    },
+    {
+      "path": "native-v1-syntax.log.gz",
+      "archiveSha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native-v2-build-first.log.gz",
+      "archiveSha256": "fbbd929c32b7cc5eb7198c5761c080204ad8341fb3da76cc0a3f07fe781c0b80",
+      "rawBytes": 2357,
+      "rawSha256": "89960512f3faebdd1cb94aea6f5d86c978fbd3ae34f57ca529cf66c773e85983"
+    },
+    {
+      "path": "native-v2-first.log.gz",
+      "archiveSha256": "89958a7af058592679b5d3a2f2a7bfa1d02e889491d41891b5777e7238051c01",
+      "rawBytes": 4437,
+      "rawSha256": "e768ac797f52e304e8862ad9d9cc7a0315d5217c814fd1e0d6c97c887fa3ed19"
+    },
+    {
+      "path": "accepted-size-diagnosis-ci-push.log.gz",
+      "archiveSha256": "f76f838aa308d8b4f290ecd9be548b5dadb0b46636877719c6fb41027b171290",
+      "rawBytes": 590229,
+      "rawSha256": "e1e5ce8386eb56f6dc0bd0e99af051e9ad98464e81cdb325969d99228e5db29d"
+    },
+    {
+      "path": "accepted-size-diagnosis-ci-pr.log.gz",
+      "archiveSha256": "66cd939d456ab5af9741e7a4c5ddc279aa0d4c0513869ca969848fbf3929afd7",
+      "rawBytes": 591229,
+      "rawSha256": "7e68b536a2845e3968fe88d9e0c5934e05e3c9d204652a7cf08d88de88539b40"
+    }
+  ],
+  "retention": {
+    "catalogs": [
+      {
+        "root": "task133-native-v1-first",
+        "relative": "run/production-data",
+        "rows": 0,
+        "purged": 0,
+        "integrity": "ok"
+      },
+      {
+        "root": "task133-native-v1-first",
+        "relative": "run/diagnostic-data",
+        "rows": 0,
+        "purged": 0,
+        "integrity": "ok"
+      },
+      {
+        "root": "task133-native-v2-first",
+        "relative": "run/production-data",
+        "rows": 1,
+        "purged": 0,
+        "integrity": "ok"
+      },
+      {
+        "root": "task133-native-v2-first",
+        "relative": "run/checkpoint-v2",
+        "rows": 1,
+        "purged": 0,
+        "integrity": "ok"
+      },
+      {
+        "root": "task133-native-v2-first",
+        "relative": "run/restart-data",
+        "rows": 1,
+        "purged": 1,
+        "integrity": "ok"
+      },
+      {
+        "root": "task133-native-v2-first",
+        "relative": "run/v1-reopen/data",
+        "rows": 20,
+        "purged": 0,
+        "integrity": "ok"
+      },
+      {
+        "root": "task133-native-v2-first",
+        "relative": "run/diagnostic-v1",
+        "rows": 20,
+        "purged": 0,
+        "integrity": "ok"
+      },
+      {
+        "root": "task133-native-v2-first",
+        "relative": "run/diagnostic-v2",
+        "rows": 1,
+        "purged": 0,
+        "integrity": "ok"
+      }
+    ],
+    "originalChecks": 494,
+    "sourceFiles": 34,
+    "gitIdentities": 12,
+    "httpResponses": 70,
+    "sessionRedactions": 5,
+    "expandedByteParity": 3,
+    "resourceQualification": false,
+    "realModelCalls": 0,
+    "controlledRuntimeCalls": 1,
+    "reservedFamilyReads": 0,
+    "rawEntries": {
+      "task133-native-v1-first": 164,
+      "task133-native-v2-first": 382
+    },
+    "rawUnchanged": true,
+    "observations": [
+      {
+        "path": "run/controlled-v2/memory-timer.jsonl",
+        "maxRawGapMs": 172.603955,
+        "maxSampledHeapBytes": 48032552
+      },
+      {
+        "path": "run/production-v2/memory-timer.jsonl",
+        "maxRawGapMs": 168.487484,
+        "maxSampledHeapBytes": 35919256
+      },
+      {
+        "path": "run/production-restart/memory-timer.jsonl",
+        "maxRawGapMs": 167.22325899999998,
+        "maxSampledHeapBytes": 37439736
+      },
+      {
+        "path": "run/v1-reopen/daemon/memory-timer.jsonl",
+        "maxRawGapMs": 169.03031600000003,
+        "maxSampledHeapBytes": 37413096
+      }
+    ]
+  }
+}

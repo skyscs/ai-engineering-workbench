@@ -493,10 +493,15 @@ history sizes, preserving full detail and source fencing. After CI acceptance,
 native-size failure: 7,099 native bytes plus 1,268 legacy bytes and one separator.
 Three repeated components offer a conditional 287-byte saving; the missing complete
 historical item prevents claiming a repair from arithmetic alone.
-[Task 133](tasks/133-loredock-native-context-factoring.md) scopes a versioned format
-with exact v1 compatibility and fresh complete controls before any acceptance.
-Real startup/heap failures and earlier browser/native-positive failures remain
-separate unresolved work; repaired qualification needs a new prospective family.
+[Task 133](tasks/133-loredock-native-context-factoring.md) implements versioned lossless
+factoring. Its fresh full production path occupies 8,081 derived bytes and expands to
+the exact 7,099-byte v1 item, preserving all eight required originals. Twenty existing
+v1 answers and their prompts remain exact; one controlled v2 answer passes restart,
+replay, browser display and source purge. These ordinary controls repair the observed
+size failure without increasing limits. Startup, near-limit heap and browser RSS remain
+unresolved; repaired qualification needs a new prospective family.
+After exact-head checks and merge, [Task 134](tasks/134-loredock-browser-memory-attribution.md)
+attributes the retained browser RSS excess before choosing any further change.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation

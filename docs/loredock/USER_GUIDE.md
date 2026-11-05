@@ -781,6 +781,11 @@ qualification are still pending. Enabling the switch itself makes no model call.
    therefore produce an explicit error when opened even if its status appeared in the list.
 
 Only one preparation, answer or connection change can own the operation slot at a time.
+New prepared inputs share repeated relationship details within the reviewed context,
+so some previously oversized complete paths now fit. No source passage or warning is
+removed. Existing saved answers keep their original input and prompt; no migration or
+regeneration is needed. Larger paths can still produce the explicit size omission.
+
 A cancelled runtime may need to finish cleanup before another operation can start.
 If witness capacity is full, existing answers are retained: all 64 records, including
 purged metadata, count toward capacity. Do not delete individual SQLite rows or files.

@@ -1,5 +1,33 @@
 # Development status
 
+## Task 133 — Lossless native format v2 (result retained)
+
+Task 132 is accepted through [PR #165](https://github.com/skyscs/ai-engineering-workbench/pull/165):
+both complete CI events pass 1,039 tests at `8cf6232`, before identical-tree merge
+`d43cb05`. [ADR 0061](decisions/0061-loredock-native-question-format-v2.md) and the
+prospective v1 baseline were committed at `9890186` before production edits.
+
+The first complete v1 item is 7,099 bytes; its unchanged legacy context takes the combined
+size to 8,368, causing the expected public omission. Versioned factoring at `451e7bb`
+preserves every expanded byte and yields a useful production path at **8,081 bytes**,
+with all eight required source quotes, header qualifications and topic witnesses.
+The existing 8,192-byte derived limit, other limits, schemas and model policy are unchanged.
+
+One controlled v2 answer passes full validation, restart, replay, browser Ready/saved gap
+display and source purge. Twenty copied v1 saved answers, their public response bytes,
+metadata summary and exact prompts remain valid. All 21 full witnesses revalidate.
+The independent stopped-copy review checks eight catalogs, 494 original spans, 34 files,
+twelve Git identities and seventy HTTP responses. No real model or corporate source is used.
+All 1,045 local tests, strict types and production build pass. The first two test-fixture
+failures are retained with their input bytes; neither required a product change.
+
+[Complete evidence](fixtures/loredock-native-format-v2/README.md) keeps both first runs,
+the source/runtime snapshots and all stopped copies. Startup raw gaps still exceed
+100 ms; this browser's sampled tree reaches 1,403,904,000 bytes, above 1 GiB. Neither
+resource qualification nor default activation follows from the useful path. After
+exact-head CI and merge, [Task 134](../tasks/134-loredock-browser-memory-attribution.md)
+attributes browser memory on retained ordinary evidence and prospective controls.
+
 ## Task 132 — Ordinary native-size attribution (diagnosis retained)
 
 Task 131 is accepted through [PR #164](https://github.com/skyscs/ai-engineering-workbench/pull/164):

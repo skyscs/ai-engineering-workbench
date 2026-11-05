@@ -1,6 +1,7 @@
 # ADR 0061 — Lossless native question format v2
 
-Status: accepted for Task 133 implementation; prospective controls pending.
+Status: implemented in Task 133; first ordinary controls retained. Complete resource
+and semantic qualification remains pending.
 
 ## Decision and boundaries
 

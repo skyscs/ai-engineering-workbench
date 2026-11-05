@@ -1,6 +1,8 @@
 # Task 133 — Version lossless native context factoring
 
-Status: scoped after Task 132; begin after both exact-head CI events and identical-tree merge.
+Status: implemented; first ordinary controls and compatibility checks pass. Awaiting
+both exact-head CI events and identical-tree merge. See the
+[retained result](../docs/fixtures/loredock-native-format-v2/README.md).
 
 ## Objective
 
