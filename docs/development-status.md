@@ -105,7 +105,24 @@ sampled RSS remains above 1 GiB, and the failed-driver observation retains one i
 sample. No continuous memory bound or product resource acceptance is claimed.
 The final four focused controls and full 962-test local check pass, with strict types,
 production builds and the unchanged application/input seal. Both exact-head CI events
-remain required for this lifetime checkpoint.
+pass for [PR #139](https://github.com/skyscs/ai-engineering-workbench/pull/139): push
+42011188758 and pull_request 42011219339 at `288aad6`; merge `c86041d` has the identical
+tree.
+
+The [ordinary sequence coordinator](fixtures/loredock-prepared-flow-coordinator/README.md)
+now consumes an exclusive shared marker and fsyncs started records before callbacks.
+It enforces all fifteen IDs in order, preserves failed positives, runs only declared
+independent continuations and stops on unsafe or unknown failures. Eight controls include
+competing attempts, missing/invalid evidence and an actual child exit 7 whose started
+journal cannot be replayed into a new output directory. Evidence hashes and raw trees
+are independently checked. Generic callbacks are not sandboxed or activity-metered;
+unknown counters remain unknown, and no callback-only result grants qualification or
+model eligibility. The controls execute no model or candidate source read.
+The final full check passes 970 tests, strict types, builds and the unchanged original
+seal. Actual R01-R15 handler integration, full resource assessment and the final committed
+executable/environment/output seal remain required. Both exact-head CI events are still
+required for this coordinator checkpoint; known ordinary resource/positive failures
+remain unresolved.
 
 The [ordinary development checkpoint](fixtures/loredock-prepared-flow-driver/README.md)
 passes real daemon index/analysis/review, exact controlled prompt/schema, durable request

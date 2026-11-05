@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { spawn, execFileSync } from 'node:child_process';
-import { openSync, closeSync, writeSync, fsyncSync } from 'node:fs';
+import { openSync, closeSync, writeFileSync, fsyncSync } from 'node:fs';
 import { mkdir, writeFile, readFile, readdir, lstat, readlink } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
@@ -22,7 +22,7 @@ export async function until(callback, message, milliseconds = 15000, intervalMs 
 }
 export function journal(file) {
   const descriptor = openSync(file, 'wx', 0o600); let closed = false;
-  return { append(value) { assert(!closed); writeSync(descriptor, JSON.stringify({ at: new Date().toISOString(), ...value }) + '\n'); fsyncSync(descriptor); },
+  return { append(value) { assert(!closed); writeFileSync(descriptor, Buffer.from(JSON.stringify({ at: new Date().toISOString(), ...value }) + '\n')); fsyncSync(descriptor); },
     close() { if (!closed) { closed = true; fsyncSync(descriptor); closeSync(descriptor); } } };
 }
 export async function inventory(directory, { recordSymlinks = false } = {}) {

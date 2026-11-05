@@ -1,0 +1,1591 @@
+{
+  "schemaVersion": "prepared-flow-coordinator-development/1",
+  "resourceQualification": false,
+  "modelCalls": 0,
+  "reservedFamilyReads": 0,
+  "tests": 970,
+  "trees": [
+    {
+      "path": "coordinator-focused-first-sequence-1.tar.gz",
+      "sha256": "39698a87a7a7afdb30dd46648bce49d323ec5b0abf7884c9dcebccd94c560cbb",
+      "inventory": "coordinator-focused-first-sequence-1.inventory.json.gz",
+      "inventorySha256": "42b03a9cc08d8d69a803472a59ce983fd1989b3722cf9682fe3dc12a9ca77c92",
+      "entries": 33,
+      "source": "/tmp/loredock-flow-coordinator-Jz3vbY",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-focused-first-sequence-2.tar.gz",
+      "sha256": "2c3fd50656e2b1d54dd664bcc901bf8b6b3333f23936e6aa8908b3d9dedac2ab",
+      "inventory": "coordinator-focused-first-sequence-2.inventory.json.gz",
+      "inventorySha256": "e1c958fa07e6128cb972ea5e856d3dca5a668a2ed3bee548eb163f4df0529ed3",
+      "entries": 29,
+      "source": "/tmp/loredock-flow-coordinator-H9l55o",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-focused-first-sequence-3.tar.gz",
+      "sha256": "e1c3b009dc411d101dea71181d7849f9bfbc477cb271077e2eb4f933b01d9a69",
+      "inventory": "coordinator-focused-first-sequence-3.inventory.json.gz",
+      "inventorySha256": "ae0faeb736603a29426dcd6f1dc1863704ed4710d17291990582c326f03279c5",
+      "entries": 4,
+      "source": "/tmp/loredock-flow-coordinator-izQiYy",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-focused-first-sequence-4.tar.gz",
+      "sha256": "93d596e9325ebe54457ce04a76ec33807d3c3d432c8b0c8b5dbe8d3d41cf2a9d",
+      "inventory": "coordinator-focused-first-sequence-4.inventory.json.gz",
+      "inventorySha256": "8b0b8749aba12de93f3cf5d86f9fac9d6de7cac400a17473718f182a34ebb7e9",
+      "entries": 0,
+      "source": "/tmp/loredock-flow-coordinator-esA9Mh",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-focused-first-sequence-5.tar.gz",
+      "sha256": "0287d15e6e87d0f237aa18f3f284295002e9430460e749896c363ad320552e6d",
+      "inventory": "coordinator-focused-first-sequence-5.inventory.json.gz",
+      "inventorySha256": "fade1e2aded1a77010764cb8121c76360f6a678270c77f817c9c6413feb97940",
+      "entries": 1,
+      "source": "/tmp/loredock-flow-coordinator-TQ5k9r",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-focused-first-sequence-6.tar.gz",
+      "sha256": "ca0a277203fd54fab53b24f960dc911eed0bde2e05bf46923c71d92431c34609",
+      "inventory": "coordinator-focused-first-sequence-6.inventory.json.gz",
+      "inventorySha256": "fed93ddceb8ed79ead62f328ad2fe90db4e1c2987cc8ff20e3dbfef8e9f6cb54",
+      "entries": 3,
+      "source": "/tmp/loredock-flow-coordinator-AMQ9lR",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-focused-second-sequence-1.tar.gz",
+      "sha256": "6be5536027204cb0673f20e90c0016310145681174f6e157d41ff8ee87bc7d37",
+      "inventory": "coordinator-focused-second-sequence-1.inventory.json.gz",
+      "inventorySha256": "b0a69de4f7ecd9cb0dbdd74445486548910934be9663537120cd759d99af2bac",
+      "entries": 33,
+      "source": "/tmp/loredock-flow-coordinator-OIR3Q1",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-focused-second-sequence-2.tar.gz",
+      "sha256": "98a1da7c63e5415d06351f1467a8aee495d9b695750b921fee5607347992f8b7",
+      "inventory": "coordinator-focused-second-sequence-2.inventory.json.gz",
+      "inventorySha256": "f04b95ff4fe0afd67fe2119bb00505adeda6409563a5e2b7a90c659ce134d31a",
+      "entries": 29,
+      "source": "/tmp/loredock-flow-coordinator-UAuSP6",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-focused-second-sequence-3.tar.gz",
+      "sha256": "eef8b369e51de83f489d572cba378a2657cdf4370163b4150f69ca93cb8abd03",
+      "inventory": "coordinator-focused-second-sequence-3.inventory.json.gz",
+      "inventorySha256": "098173b870b7b8f9f65a30f7ea195c9230bc7e9177834ad10dbb521b8768a1cb",
+      "entries": 4,
+      "source": "/tmp/loredock-flow-coordinator-Ve41yy",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-focused-second-sequence-4.tar.gz",
+      "sha256": "ae04337574f5b53d9aea428f6a88e5e4cc2989fa51759ae2891ff5d1ebc6eb31",
+      "inventory": "coordinator-focused-second-sequence-4.inventory.json.gz",
+      "inventorySha256": "d022d57fe5f29bc7295c63f289130348628478b962649e405b7092ddb4efbdee",
+      "entries": 4,
+      "source": "/tmp/loredock-flow-coordinator-WiBRWf",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-focused-second-sequence-5.tar.gz",
+      "sha256": "665d3416dace9d645abe09f83333399c9a5ba41d5b42658c391c604d7a93e0fb",
+      "inventory": "coordinator-focused-second-sequence-5.inventory.json.gz",
+      "inventorySha256": "8b0b8749aba12de93f3cf5d86f9fac9d6de7cac400a17473718f182a34ebb7e9",
+      "entries": 0,
+      "source": "/tmp/loredock-flow-coordinator-01xzlj",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-focused-second-sequence-6.tar.gz",
+      "sha256": "29e0280ea527d17fd3904971646fef5e830d49e8346e79e50205793a260f0ace",
+      "inventory": "coordinator-focused-second-sequence-6.inventory.json.gz",
+      "inventorySha256": "fade1e2aded1a77010764cb8121c76360f6a678270c77f817c9c6413feb97940",
+      "entries": 1,
+      "source": "/tmp/loredock-flow-coordinator-QK7VKI",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-focused-second-sequence-7.tar.gz",
+      "sha256": "cf7fefee3a5fc55ba57b97470fa317d554f492b59607cd18890d928d3e2918c4",
+      "inventory": "coordinator-focused-second-sequence-7.inventory.json.gz",
+      "inventorySha256": "0af03eaa4758160877c7e884b3f4ec73ae8deb0a3c2974709f3b646c1a7ad279",
+      "entries": 3,
+      "source": "/tmp/loredock-flow-coordinator-H8xlcz",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-focused-final-sequence-1.tar.gz",
+      "sha256": "b6cad431c08c3b0cb0f3cf2af5391e2c094fabba3ea7a7e66a507aee9e3a7f2b",
+      "inventory": "coordinator-focused-final-sequence-1.inventory.json.gz",
+      "inventorySha256": "d6b53bd054b877081d1f11da4f76155dbc019583042ff122dacc3754bfd82341",
+      "entries": 33,
+      "source": "/tmp/loredock-flow-coordinator-DxoF1S"
+    },
+    {
+      "path": "coordinator-focused-final-sequence-2.tar.gz",
+      "sha256": "0a8aee6360dcdfe1b42053bbeb25607cf02417451bedb59ebb601c74935d0b9c",
+      "inventory": "coordinator-focused-final-sequence-2.inventory.json.gz",
+      "inventorySha256": "eeb12871328eacaebb5762389a9ea31664933d147840a4df4e17749b25879de6",
+      "entries": 29,
+      "source": "/tmp/loredock-flow-coordinator-l274tR"
+    },
+    {
+      "path": "coordinator-focused-final-sequence-3.tar.gz",
+      "sha256": "8c829bda5a9a06d32e3de8cdc231031b325b49bdd78e68606f7a55281bfa849c",
+      "inventory": "coordinator-focused-final-sequence-3.inventory.json.gz",
+      "inventorySha256": "0fbd48d69544bd843040558c1b974d029f20413d163deb31f10468ec1347dfad",
+      "entries": 4,
+      "source": "/tmp/loredock-flow-coordinator-pID7X3"
+    },
+    {
+      "path": "coordinator-focused-final-sequence-4.tar.gz",
+      "sha256": "172454d84be768bf1dff9ab8c482f98c49863b0ecef447854301f78361af86fa",
+      "inventory": "coordinator-focused-final-sequence-4.inventory.json.gz",
+      "inventorySha256": "88014afddc6274571298736ba996bb5b1bce2dcea84738148ece4964cef37b58",
+      "entries": 4,
+      "source": "/tmp/loredock-flow-coordinator-vbQsbv"
+    },
+    {
+      "path": "coordinator-focused-final-sequence-5.tar.gz",
+      "sha256": "05d38f56d531edc969835f5e18a24db213ee15aa9664637a66013170645e4731",
+      "inventory": "coordinator-focused-final-sequence-5.inventory.json.gz",
+      "inventorySha256": "cfe3f1fc6a75c658ee96b2e255fa9c5cd94e11abfe74908c29bed6bd75d64a6c",
+      "entries": 5,
+      "source": "/tmp/loredock-flow-coordinator-9pMqKB"
+    },
+    {
+      "path": "coordinator-focused-final-sequence-6.tar.gz",
+      "sha256": "e44435643602d62dab222d26591c2885c4605cc94f02dcdffe7a6f217b3f66dc",
+      "inventory": "coordinator-focused-final-sequence-6.inventory.json.gz",
+      "inventorySha256": "8b0b8749aba12de93f3cf5d86f9fac9d6de7cac400a17473718f182a34ebb7e9",
+      "entries": 0,
+      "source": "/tmp/loredock-flow-coordinator-GF0l5g"
+    },
+    {
+      "path": "coordinator-focused-final-sequence-7.tar.gz",
+      "sha256": "c37718079c3f582b3332e82a03007e96094525a15c7755e724cb858375005be4",
+      "inventory": "coordinator-focused-final-sequence-7.inventory.json.gz",
+      "inventorySha256": "fade1e2aded1a77010764cb8121c76360f6a678270c77f817c9c6413feb97940",
+      "entries": 1,
+      "source": "/tmp/loredock-flow-coordinator-jCzIEg"
+    },
+    {
+      "path": "coordinator-focused-final-sequence-8.tar.gz",
+      "sha256": "be52b0ffdc6d6d63b69c9cfbc254c2a536bd27aa641a8a2c5e0ab4baf78a5fb9",
+      "inventory": "coordinator-focused-final-sequence-8.inventory.json.gz",
+      "inventorySha256": "99dc602798ca97913a6535db97483fd25e857eb9a5eeeff224734da4199ffc4e",
+      "entries": 5,
+      "source": "/tmp/loredock-flow-coordinator-4DkKYv"
+    },
+    {
+      "path": "coordinator-focused-reviewed-sequence-1.tar.gz",
+      "sha256": "855506d5fe8e45ec08433d13b0eeffe3d4a7a1d5bc0052fcb862cfcdd891fad6",
+      "inventory": "coordinator-focused-reviewed-sequence-1.inventory.json.gz",
+      "inventorySha256": "66293463dd6a5e65d8b05600f2c3181b997d38f4f76e6420176693996a034723",
+      "entries": 33,
+      "source": "/tmp/loredock-flow-coordinator-4bMjQW"
+    },
+    {
+      "path": "coordinator-focused-reviewed-sequence-2.tar.gz",
+      "sha256": "df7a938f79d3342e8eb3d17553ea31a1275bea01f3820b93aec96df5063f6d52",
+      "inventory": "coordinator-focused-reviewed-sequence-2.inventory.json.gz",
+      "inventorySha256": "681f2f6ebc5826978c9d9140e189f4f462432396030d7cdd55f7643ea176d548",
+      "entries": 29,
+      "source": "/tmp/loredock-flow-coordinator-OoAG6f"
+    },
+    {
+      "path": "coordinator-focused-reviewed-sequence-3.tar.gz",
+      "sha256": "3bbee1f0160db3b65d5763708fa18166ade6b08a635b858fbb8417bcecfc197b",
+      "inventory": "coordinator-focused-reviewed-sequence-3.inventory.json.gz",
+      "inventorySha256": "6db726d7091dc7fa6aead71896bf189bc7cb1105e2bf75f1ab58138322ab2b5d",
+      "entries": 4,
+      "source": "/tmp/loredock-flow-coordinator-hl76b7"
+    },
+    {
+      "path": "coordinator-focused-reviewed-sequence-4.tar.gz",
+      "sha256": "71df4e2080a3be4b16c7585618f5c8723e7335004af1fe7ba0aee873c09337c2",
+      "inventory": "coordinator-focused-reviewed-sequence-4.inventory.json.gz",
+      "inventorySha256": "b4318169f3af18abc6fca1cf5098d129f355c504f8252a8f066082c547703321",
+      "entries": 4,
+      "source": "/tmp/loredock-flow-coordinator-YEdXNn"
+    },
+    {
+      "path": "coordinator-focused-reviewed-sequence-5.tar.gz",
+      "sha256": "3e61b09c987ba9bdd7a742acfb83a20b4a486c8f63075f8e1bfea5fb8e2d09d7",
+      "inventory": "coordinator-focused-reviewed-sequence-5.inventory.json.gz",
+      "inventorySha256": "0e6647bf6d5adcf3b58aa327f63e82d2b433c3d301feb966bd2194de0bcaf91e",
+      "entries": 5,
+      "source": "/tmp/loredock-flow-coordinator-YykXGT"
+    },
+    {
+      "path": "coordinator-focused-reviewed-sequence-6.tar.gz",
+      "sha256": "04ac0b641b9f1bd14102c72a547c4bbcafe808125323aa04bd7b36b56aacb14a",
+      "inventory": "coordinator-focused-reviewed-sequence-6.inventory.json.gz",
+      "inventorySha256": "8b0b8749aba12de93f3cf5d86f9fac9d6de7cac400a17473718f182a34ebb7e9",
+      "entries": 0,
+      "source": "/tmp/loredock-flow-coordinator-cXA64B"
+    },
+    {
+      "path": "coordinator-focused-reviewed-sequence-7.tar.gz",
+      "sha256": "99af40b2703b10dc153dec7bc95856b917510aa3093304d0c7561f59921b5aaa",
+      "inventory": "coordinator-focused-reviewed-sequence-7.inventory.json.gz",
+      "inventorySha256": "fade1e2aded1a77010764cb8121c76360f6a678270c77f817c9c6413feb97940",
+      "entries": 1,
+      "source": "/tmp/loredock-flow-coordinator-8JgVP6"
+    },
+    {
+      "path": "coordinator-focused-reviewed-sequence-8.tar.gz",
+      "sha256": "b510155f38e9bab0fe9b4a391cbed58e1d5b924890afc0187dfd1cf8014a3b42",
+      "inventory": "coordinator-focused-reviewed-sequence-8.inventory.json.gz",
+      "inventorySha256": "ac900a3c9a5fd46a9ef7819c61a3d93eda46ae8ad071baa331235c4d2a8b6a15",
+      "entries": 5,
+      "source": "/tmp/loredock-flow-coordinator-k7tI9G"
+    },
+    {
+      "path": "coordinator-focused-reviewed-sequence-9.tar.gz",
+      "sha256": "fff8b87cc3e46e84b65c550376d4384cdf154b1e0374e029f2a23fb92fe692b6",
+      "inventory": "coordinator-focused-reviewed-sequence-9.inventory.json.gz",
+      "inventorySha256": "7b8dc6cb4273bb9bc762220976848a3c9a3df2a2fe5457bf0dddb4a91ea08f5f",
+      "entries": 6,
+      "source": "/tmp/loredock-flow-coordinator-vHfZyv"
+    },
+    {
+      "path": "coordinator-focused-reviewed-sequence-10.tar.gz",
+      "sha256": "e09e976f8d65b5538e3ef22851c6e16c3db1ce7bcb59d9782a9ed572c99cb561",
+      "inventory": "coordinator-focused-reviewed-sequence-10.inventory.json.gz",
+      "inventorySha256": "f69a3e2eaebd375a7cab5d275982bf2297511deb6fcaec83ec17c915faa43461",
+      "entries": 33,
+      "source": "/tmp/loredock-flow-coordinator-aNSQLv"
+    },
+    {
+      "path": "coordinator-focused-reviewed-sequence-11.tar.gz",
+      "sha256": "4a6461873a7fcad77257c25030f2c58f7c73d4acaff93d1b89733d98e56d0cae",
+      "inventory": "coordinator-focused-reviewed-sequence-11.inventory.json.gz",
+      "inventorySha256": "f60380e9892aec8791c5e3c4d7fb04fda4671a8e4270f26cfad495fe593556b4",
+      "entries": 5,
+      "source": "/tmp/loredock-flow-coordinator-Ch3A6i"
+    },
+    {
+      "path": "coordinator-check-first-sequence-1.tar.gz",
+      "sha256": "7daf34ad5d36679a3a8641d15a32af1b5bce9bf96b029d1558d8a51dfc61f276",
+      "inventory": "coordinator-check-first-sequence-1.inventory.json.gz",
+      "inventorySha256": "1fe0148ac122b75944877820b4a7d630761379d0c4ef42399d035a874029363b",
+      "entries": 33,
+      "source": "/tmp/loredock-flow-coordinator-ST5LEZ",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-check-first-sequence-2.tar.gz",
+      "sha256": "2ef6f249bd05d169eec77e9c9b8c53e33bf7427af2a5b36a89137f52cb8f9df2",
+      "inventory": "coordinator-check-first-sequence-2.inventory.json.gz",
+      "inventorySha256": "e5c4a0b9a4076a5cf9795c8ed4b2fd3244a162ab0ddae85ffefe3db2d95853b6",
+      "entries": 29,
+      "source": "/tmp/loredock-flow-coordinator-WPDe6g",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-check-first-sequence-3.tar.gz",
+      "sha256": "61311604dfeaaeaa51e5e86c490f9e0a95e9c7421a142c72093d11d11c0ed201",
+      "inventory": "coordinator-check-first-sequence-3.inventory.json.gz",
+      "inventorySha256": "c2361216432c76210e63919046f9d2e7753c4bb26d3b5318a486e3b167a1b3fa",
+      "entries": 4,
+      "source": "/tmp/loredock-flow-coordinator-VTga5Y",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-check-first-sequence-4.tar.gz",
+      "sha256": "4e929583279c85774628fe12eebc193843a09bcbe93b94ac55f1d0394204c495",
+      "inventory": "coordinator-check-first-sequence-4.inventory.json.gz",
+      "inventorySha256": "e9eb1e04299ca42d4a83bbbe071fc963bec7315a346a842a954459e49d7d9c8a",
+      "entries": 4,
+      "source": "/tmp/loredock-flow-coordinator-RZC5AT",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-check-first-sequence-5.tar.gz",
+      "sha256": "2ddeb9b12fde7a2d17a45508493e223c6177382689dace461b957b9462072e89",
+      "inventory": "coordinator-check-first-sequence-5.inventory.json.gz",
+      "inventorySha256": "44a73b2777444499355cbd0d4efaf3b30394f87aebd222853d117c7b17b21de8",
+      "entries": 5,
+      "source": "/tmp/loredock-flow-coordinator-ggmJ6l",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-check-first-sequence-6.tar.gz",
+      "sha256": "68d218392d0e617bea8c9e390242085fc8e08e00e42e0b78548682ae19bc03cb",
+      "inventory": "coordinator-check-first-sequence-6.inventory.json.gz",
+      "inventorySha256": "8b0b8749aba12de93f3cf5d86f9fac9d6de7cac400a17473718f182a34ebb7e9",
+      "entries": 0,
+      "source": "/tmp/loredock-flow-coordinator-h7pVXr",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-check-first-sequence-7.tar.gz",
+      "sha256": "615142ab836227b0461d055418fa1cee8b11a0b563ffd8301bb21073ae21fdaa",
+      "inventory": "coordinator-check-first-sequence-7.inventory.json.gz",
+      "inventorySha256": "fade1e2aded1a77010764cb8121c76360f6a678270c77f817c9c6413feb97940",
+      "entries": 1,
+      "source": "/tmp/loredock-flow-coordinator-2wTn7X",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-check-first-sequence-8.tar.gz",
+      "sha256": "976da55c77ae00932e77b7839e50f87536f49752884a9d41910ebfb6e1224f2c",
+      "inventory": "coordinator-check-first-sequence-8.inventory.json.gz",
+      "inventorySha256": "badfaf7112e4b2a0e473e7bf133063b5fe7a94c834634f1121fb5d212415598c",
+      "entries": 5,
+      "source": "/tmp/loredock-flow-coordinator-Ywlezv",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-check-first-lifetime-1.tar.gz",
+      "sha256": "67d8709b79bbdbc53063a59ba1bdb5c1a58a67088ad7abf28b6469c36475a50f",
+      "inventory": "coordinator-check-first-lifetime-1.inventory.json.gz",
+      "inventorySha256": "0fa757655f422872f2a8de0bfe98785db3ae79a124da7f367b4733b5f1c54926",
+      "entries": 9,
+      "source": "/tmp/loredock-browser-lifetime-w4R0Qg",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-check-first-lifetime-2.tar.gz",
+      "sha256": "d85fcae09c4ec3c0309209236635a4ebc9ced4cba7fe786ee8f73aff1f06adf0",
+      "inventory": "coordinator-check-first-lifetime-2.inventory.json.gz",
+      "inventorySha256": "2b4cf9dffa9a65950b34c085569b303d352f2d718f0651e85b336c6600e21aad",
+      "entries": 9,
+      "source": "/tmp/loredock-browser-lifetime-VM6cAW",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-check-first-lifetime-3.tar.gz",
+      "sha256": "1b8f558fb4b3124cda4a1576aa83d900b7bba25f535be618b9d8711b8f742b2d",
+      "inventory": "coordinator-check-first-lifetime-3.inventory.json.gz",
+      "inventorySha256": "872b7d8e7c02e75f0d816e0ccbf2a5fbe6eda95ad5531078210ef2b44392d730",
+      "entries": 15,
+      "source": "/tmp/loredock-browser-lifetime-SyWkhw",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-check-first-lifetime-4.tar.gz",
+      "sha256": "9c7898a2800001ba36654618d4b33a3d84792da9a5d6054e2d34cef926f32163",
+      "inventory": "coordinator-check-first-lifetime-4.inventory.json.gz",
+      "inventorySha256": "c28a57580c90261d72d84421234c287032c830cd395f14492b66d69bd929a817",
+      "entries": 5,
+      "source": "/tmp/loredock-browser-lifetime-pDsgGv",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-check-first-owner-1.tar.gz",
+      "sha256": "02430aba923c3162fda2bacfcf5accc39736a537de2fff4b66befeee228127ad",
+      "inventory": "coordinator-check-first-owner-1.inventory.json.gz",
+      "inventorySha256": "a7fccaea93398ac61c3c9c9a622ebbdde6e6342f634fd4f71d28c470b9ea8049",
+      "entries": 8,
+      "source": "/tmp/loredock-kernel-adoption-9gPuRl",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-check-first-owner-2.tar.gz",
+      "sha256": "746d8a5b47d0cd3a2bf8af1b8591d9f47b236d3c8cd503bf123a3a3becebdde2",
+      "inventory": "coordinator-check-first-owner-2.inventory.json.gz",
+      "inventorySha256": "7e9f1e1129f05450225db241ca375772cdece476bd8e74f9d9c5ca4293a9d48f",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-RtffcP",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-check-first-owner-3.tar.gz",
+      "sha256": "6dc59ab3df2d64050261f274cc2d4155e6a381d0f101d98fc0e5d9bc7b1c5be1",
+      "inventory": "coordinator-check-first-owner-3.inventory.json.gz",
+      "inventorySha256": "032eb4b71dc9d5c572d8246c4e5dc068a805ee5e825bd4bf09b920c9b4f55590",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-HzKkbG",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-check-first-owner-4.tar.gz",
+      "sha256": "ef29950c9d7a4f980c518c1e9a43ad8c4959de78cf34b520de44f1b79c1183ea",
+      "inventory": "coordinator-check-first-owner-4.inventory.json.gz",
+      "inventorySha256": "d09c7e0b8d82f319f033c0a9f7d34d5e5a53d9a0b8a0e17de2770f7de53b5d52",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-onCeq7",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-check-first-owner-5.tar.gz",
+      "sha256": "2b6368e7641122c7152e9fe1df5360836fedd9ac97439f6db1fb4f8615d9ba83",
+      "inventory": "coordinator-check-first-owner-5.inventory.json.gz",
+      "inventorySha256": "2dd22cba93468d1a408cd28dceff7ed33d695188f3fb5ca612d959733240b16b",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-UxSIkn",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-check-first-owner-6.tar.gz",
+      "sha256": "a03e5628ced79c05b1a9cf403481c0c3191f8c1f94b05e2e6e54342a1a75e692",
+      "inventory": "coordinator-check-first-owner-6.inventory.json.gz",
+      "inventorySha256": "128b9d0067aaec47cec38487e03a9c1e9e09a54adcfdf5b4132bc30f9f0768b7",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-EFC2ZQ",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-check-first-checkpoint-1.tar.gz",
+      "sha256": "998b207ec7d5e0b14e56b25882a581592a8c69dd3cadecbb625218f6ff57ab86",
+      "inventory": "coordinator-check-first-checkpoint-1.inventory.json.gz",
+      "inventorySha256": "ad7aa50d08370487afdaca3bc1e57b64dafb92606bc95bbba764bfd0d9de9e17",
+      "entries": 6,
+      "source": "/tmp/loredock-history-checkpoint-AGCCHg",
+      "limitation": "Earlier ordinary control revision; no executable seal or qualification. Earliest focused revisions have logs and outputs but no exact source snapshot."
+    },
+    {
+      "path": "coordinator-check-reviewed-sequence-1.tar.gz",
+      "sha256": "4081672f5d3622eb24464d374547e9004f1d04e187a84f791fdaf24bdb066269",
+      "inventory": "coordinator-check-reviewed-sequence-1.inventory.json.gz",
+      "inventorySha256": "e33481d73cb78bb4acb759b1e7aedd9ca91cab02b9d87f54a259267a5eb76254",
+      "entries": 33,
+      "source": "/tmp/loredock-flow-coordinator-Tr6T9g"
+    },
+    {
+      "path": "coordinator-check-reviewed-sequence-2.tar.gz",
+      "sha256": "d23141956911c13fda9578a69d8654db47dd1ffa0879a1858843f2b27fd4aa3b",
+      "inventory": "coordinator-check-reviewed-sequence-2.inventory.json.gz",
+      "inventorySha256": "b20834b258119befeb0b47b7dc5b4271ef763ca26971605eb2833aeab0d41706",
+      "entries": 29,
+      "source": "/tmp/loredock-flow-coordinator-DCFMhO"
+    },
+    {
+      "path": "coordinator-check-reviewed-sequence-3.tar.gz",
+      "sha256": "562f58118a536b7beb88a30e9b5c96e80ec51e1c0000ba4de3812c76f362720c",
+      "inventory": "coordinator-check-reviewed-sequence-3.inventory.json.gz",
+      "inventorySha256": "15c7d9491c90ed03ece03251e794d475fad2289dde58c144c5aad46f586b44e5",
+      "entries": 4,
+      "source": "/tmp/loredock-flow-coordinator-err8tY"
+    },
+    {
+      "path": "coordinator-check-reviewed-sequence-4.tar.gz",
+      "sha256": "6a312400de5a444e483266e0d76e70c3dc2bf9a5e61d634123ee18e8cc0e132d",
+      "inventory": "coordinator-check-reviewed-sequence-4.inventory.json.gz",
+      "inventorySha256": "4b512bf8ff7fa01cc0b765aaf2c42536ab000e7cf97f79532f907ce2b350dec8",
+      "entries": 4,
+      "source": "/tmp/loredock-flow-coordinator-XwwzkO"
+    },
+    {
+      "path": "coordinator-check-reviewed-sequence-5.tar.gz",
+      "sha256": "4da6c156f09badba2164e1c3c7545c785b501a232305c6489abf0e9f2fa3769d",
+      "inventory": "coordinator-check-reviewed-sequence-5.inventory.json.gz",
+      "inventorySha256": "3555caf0102aab5339faada2b2c9707b6426ea7a609d565eb085d0c7a8db3cad",
+      "entries": 5,
+      "source": "/tmp/loredock-flow-coordinator-xpxIQa"
+    },
+    {
+      "path": "coordinator-check-reviewed-sequence-6.tar.gz",
+      "sha256": "ca5a3658b2f162a2709deed2999997280c49cde0f3a1453d43d6458926cb8a37",
+      "inventory": "coordinator-check-reviewed-sequence-6.inventory.json.gz",
+      "inventorySha256": "8b0b8749aba12de93f3cf5d86f9fac9d6de7cac400a17473718f182a34ebb7e9",
+      "entries": 0,
+      "source": "/tmp/loredock-flow-coordinator-JvnrRC"
+    },
+    {
+      "path": "coordinator-check-reviewed-sequence-7.tar.gz",
+      "sha256": "2193638c896d71e585b67f87941958951b5672fe3392aa9fcbd5b416abb5e334",
+      "inventory": "coordinator-check-reviewed-sequence-7.inventory.json.gz",
+      "inventorySha256": "fade1e2aded1a77010764cb8121c76360f6a678270c77f817c9c6413feb97940",
+      "entries": 1,
+      "source": "/tmp/loredock-flow-coordinator-Bm5jzu"
+    },
+    {
+      "path": "coordinator-check-reviewed-sequence-8.tar.gz",
+      "sha256": "7fb24e2f67819cc17f48ac417bd10fefe3822d4534c338e6d871550eb6aba181",
+      "inventory": "coordinator-check-reviewed-sequence-8.inventory.json.gz",
+      "inventorySha256": "0562e12bac508af6d62922b05bc38d160042138e6c15bbc58c3ca9f8cce3c541",
+      "entries": 5,
+      "source": "/tmp/loredock-flow-coordinator-Ij1f3Z"
+    },
+    {
+      "path": "coordinator-check-reviewed-sequence-9.tar.gz",
+      "sha256": "3ea13121a3cf463c9a112a52d68f61a9f7c96109d87b518232c95d0ac991c8ff",
+      "inventory": "coordinator-check-reviewed-sequence-9.inventory.json.gz",
+      "inventorySha256": "6d0cd2d382d964db8cf889a6b1270f5143817e09b6777fd4f16806e227b96c43",
+      "entries": 6,
+      "source": "/tmp/loredock-flow-coordinator-UGPzrn"
+    },
+    {
+      "path": "coordinator-check-reviewed-sequence-10.tar.gz",
+      "sha256": "bfdae58ef7c8a58eecac43e2ac853e3ae38e5ae510fb90d0db5e9bfbcde42836",
+      "inventory": "coordinator-check-reviewed-sequence-10.inventory.json.gz",
+      "inventorySha256": "0eb5d5780c0a2bced6e2c0465d3f5317c4ac563a777e9933a91141f459baf071",
+      "entries": 33,
+      "source": "/tmp/loredock-flow-coordinator-J7P7pB"
+    },
+    {
+      "path": "coordinator-check-reviewed-sequence-11.tar.gz",
+      "sha256": "25df7eb0d2bb2939eb88f7d03bbc34f4f65287bc65360aeaa6303dfdd72c5e97",
+      "inventory": "coordinator-check-reviewed-sequence-11.inventory.json.gz",
+      "inventorySha256": "b0cec7e5dee73c3bd3b528bb228691f7d5f4567081a26b8493cddf42a0787059",
+      "entries": 5,
+      "source": "/tmp/loredock-flow-coordinator-cJi6s6"
+    },
+    {
+      "path": "coordinator-check-reviewed-lifetime-1.tar.gz",
+      "sha256": "a7576acb2e2ba6c54788c1c602d64da3bb2abfc99fd396f76f9d873bb88633cd",
+      "inventory": "coordinator-check-reviewed-lifetime-1.inventory.json.gz",
+      "inventorySha256": "5afbe1a48370c6e746cb2271c6e12c41930a6b7f2ad60b51620047856b377dc7",
+      "entries": 9,
+      "source": "/tmp/loredock-browser-lifetime-05uLub"
+    },
+    {
+      "path": "coordinator-check-reviewed-lifetime-2.tar.gz",
+      "sha256": "56525c620883b06730fbef0f11f5d166961aca3d7ffd518064846344443557f7",
+      "inventory": "coordinator-check-reviewed-lifetime-2.inventory.json.gz",
+      "inventorySha256": "a7b54b9f9a46711975cae4380a89171f5af9b3161062e8a7f2f9ad3b8942e3d7",
+      "entries": 9,
+      "source": "/tmp/loredock-browser-lifetime-nXxi0R"
+    },
+    {
+      "path": "coordinator-check-reviewed-lifetime-3.tar.gz",
+      "sha256": "e8b3b82b6af7a395ee478951a05ca6a176155ad655cca298ca41ab8af541f88d",
+      "inventory": "coordinator-check-reviewed-lifetime-3.inventory.json.gz",
+      "inventorySha256": "2888f20d7e05196d19991ed3933df827e1d227756e75cc00252373e08b364ffc",
+      "entries": 15,
+      "source": "/tmp/loredock-browser-lifetime-fxwe3g"
+    },
+    {
+      "path": "coordinator-check-reviewed-lifetime-4.tar.gz",
+      "sha256": "8c569af338e25ad28b9fbb7d38003403fe7693d47bc5472c97df7b7986b2abbc",
+      "inventory": "coordinator-check-reviewed-lifetime-4.inventory.json.gz",
+      "inventorySha256": "307c2352094ea43ee2201f7cd5a0e3295c0d7766a574186728301e50995ee0f0",
+      "entries": 5,
+      "source": "/tmp/loredock-browser-lifetime-BAns3j"
+    },
+    {
+      "path": "coordinator-check-reviewed-owner-1.tar.gz",
+      "sha256": "f13614f4c8a108c30592b1684352f223e79b7e3c1d0c5f1c4ced014b0ee77eb9",
+      "inventory": "coordinator-check-reviewed-owner-1.inventory.json.gz",
+      "inventorySha256": "077bf1182cdf0a321797fa1a11dd20e38bf5a72104b801f3761abaf018667a85",
+      "entries": 8,
+      "source": "/tmp/loredock-kernel-adoption-1XFtwM"
+    },
+    {
+      "path": "coordinator-check-reviewed-owner-2.tar.gz",
+      "sha256": "60b0c5592ed22574d777dcfbe8642b34d6513348c06e8df79f3d12407533146d",
+      "inventory": "coordinator-check-reviewed-owner-2.inventory.json.gz",
+      "inventorySha256": "478da43221c26f744733c16dde3c4fa8a226ba34d26d1ea09e6ef33d0dd36641",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-fameqh"
+    },
+    {
+      "path": "coordinator-check-reviewed-owner-3.tar.gz",
+      "sha256": "94534b5f77dc9c076e9ce4a6def16b44243375618770c17e71acf2b3d46243fd",
+      "inventory": "coordinator-check-reviewed-owner-3.inventory.json.gz",
+      "inventorySha256": "e7f816cb1d2373de3c53715626fe077cdddd8e8ef09237f0634adf587feb8a04",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-BPpbwW"
+    },
+    {
+      "path": "coordinator-check-reviewed-owner-4.tar.gz",
+      "sha256": "883e0e0ccd5ecaa8f313bc4fecaa2c76e0e5bac9e1f83c932b47e59e1a1c540d",
+      "inventory": "coordinator-check-reviewed-owner-4.inventory.json.gz",
+      "inventorySha256": "9ee13de3fb12bae8fa6d9282454874da7d8faf04fc65e247f3a8e8af294b721e",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-tmyk5y"
+    },
+    {
+      "path": "coordinator-check-reviewed-owner-5.tar.gz",
+      "sha256": "c538520ef5002b0c4f52eea82bf53795ded5743a0c1cb77655862f0870b900c2",
+      "inventory": "coordinator-check-reviewed-owner-5.inventory.json.gz",
+      "inventorySha256": "489de3fd99ec3c53eed4be4a6296b5ea92fa950169ac46932c03fe26a05fdc8c",
+      "entries": 14,
+      "source": "/tmp/loredock-kernel-owner-hEf6yp"
+    },
+    {
+      "path": "coordinator-check-reviewed-owner-6.tar.gz",
+      "sha256": "1da5050986464e8040e3120e84d76d7f1d34f450eb7e8a528a0b95ffba0866c4",
+      "inventory": "coordinator-check-reviewed-owner-6.inventory.json.gz",
+      "inventorySha256": "e7b1ca2bb59ca0e57061604805085dff4cc8a8db753613dbe6a8f83b528420e8",
+      "entries": 13,
+      "source": "/tmp/loredock-kernel-owner-Yc0KmW"
+    },
+    {
+      "path": "coordinator-check-reviewed-checkpoint-1.tar.gz",
+      "sha256": "680300ae658c757ec16ad7dcdedd0731bcebe15a5a628c6c015d8c7411217c88",
+      "inventory": "coordinator-check-reviewed-checkpoint-1.inventory.json.gz",
+      "inventorySha256": "ad7aa50d08370487afdaca3bc1e57b64dafb92606bc95bbba764bfd0d9de9e17",
+      "entries": 6,
+      "source": "/tmp/loredock-history-checkpoint-Im0kb0"
+    },
+    {
+      "path": "coordinator-retention.tar.gz",
+      "sha256": "b5d449f37e7fbeea873481f73c3da7c83a89beb01924af5ef4c815be78ab8eaf",
+      "inventory": "coordinator-retention.inventory.json.gz",
+      "inventorySha256": "253d30979fd20048ba9bc445bafcdc75ddb709f5beb9283ec599265d4017a28b",
+      "entries": 1,
+      "source": "/home/toshiba/aew/task128-coordinator-retention"
+    },
+    {
+      "path": "coordinator-first-inputs.tar.gz",
+      "sha256": "9c3d65a52faff87b7f514a4e6be64b8e73255572d3c7c6cf7ae75c5c533d8dfe",
+      "inventory": "coordinator-first-inputs.inventory.json.gz",
+      "inventorySha256": "27efd625dba9d4f705a325e9ecc3a9598473ee7d4f0ca51aa2e2c454188d9ee9",
+      "entries": 3,
+      "source": "/home/toshiba/aew/task128-coordinator-first-inputs"
+    },
+    {
+      "path": "coordinator-inputs.tar.gz",
+      "sha256": "8a116f1489407840782e39d69de85b3e9652882e7aa0edf8675a4023028dcd1b",
+      "inventory": "coordinator-inputs.inventory.json.gz",
+      "inventorySha256": "724bc5fcdb2954f92a54b5a790c8a5fb100872aff8125ef5ec9f574dc9a884aa",
+      "entries": 6,
+      "source": "/home/toshiba/aew/task128-coordinator-inputs"
+    },
+    {
+      "path": "coordinator-static-inputs.tar.gz",
+      "sha256": "1ef6a628f0e57f0d8f2c933657015d6718c5b33fb7bb1a8d860744f805f95cd0",
+      "inventory": "coordinator-static-inputs.inventory.json.gz",
+      "inventorySha256": "43d4229b91751b743fd58abcad018574adb206e85d749f60978feff897895073",
+      "entries": 1,
+      "source": "/home/toshiba/aew/task128-coordinator-static-inputs"
+    }
+  ],
+  "logs": [
+    {
+      "path": "coordinator-install.log.gz",
+      "archiveSha256": "bac38f346d43e3650806e4862be243c999f96730afe6bcf0bb0028fddd1be911",
+      "rawBytes": 326,
+      "rawSha256": "2a92003f38379b85fe6d5ec05e5a92c3410d3e4f576243d3debc69c64875f992"
+    },
+    {
+      "path": "coordinator-build.log.gz",
+      "archiveSha256": "157161715c5332e03e69e809c73bf49b3c06065139cc36abd5e209ad5bb6b938",
+      "rawBytes": 2356,
+      "rawSha256": "5601e6ffd2f039e8049185397e69337b4ce3f93b3afa4d5c8162f16bb3732655"
+    },
+    {
+      "path": "coordinator-focused-first.log.gz",
+      "archiveSha256": "6c16b68b7bb350737fafedc0f2a293811d179b7d7221d202ac27e841a6bc04f0",
+      "rawBytes": 1920,
+      "rawSha256": "6b030b5d12a959ae156d7a5422d43e32689ec518ff45511cacb6903ef5be15ab"
+    },
+    {
+      "path": "coordinator-focused-second.log.gz",
+      "archiveSha256": "3c0d38fc430cec1431125f3da3664bdb76e53be549a190ee900220d9f1fe7e23",
+      "rawBytes": 1995,
+      "rawSha256": "c4ed5f70609d5ee6dc57733909d41e653c36dd43d2763cd0e10ff4d7da659b54"
+    },
+    {
+      "path": "coordinator-focused-final.log.gz",
+      "archiveSha256": "95f20204e966ad612cb23d697bcb63cc019c659a2f06985da654e31b3cce5bae",
+      "rawBytes": 2067,
+      "rawSha256": "0d2d9e50cfac31aea7013134256ac27ce860e1f6901eb3385d785e8694cb6e1d"
+    },
+    {
+      "path": "coordinator-focused-reviewed.log.gz",
+      "archiveSha256": "aa29e0f698a531477af7dce8fc4d518caf44216acbafa10c96fa326d436421df",
+      "rawBytes": 2727,
+      "rawSha256": "9111cc87df2ce12b3538c38f2270abab1a27a100e0d924d92079c0b01f2490de"
+    },
+    {
+      "path": "coordinator-check-first.log.gz",
+      "archiveSha256": "5b94e9d8fc6ae7856ebe3d63637f31831128577644a31104b919c41dd9375367",
+      "rawBytes": 354368,
+      "rawSha256": "4d1cd80bae09305b7acc14381e702b4746f43e0677c38d5c87249dc0253e1f80"
+    },
+    {
+      "path": "coordinator-check-reviewed.log.gz",
+      "archiveSha256": "2beeb27b9fc75a067644519392c4500014fa756ba16bef92a8b19ba1acf67e76",
+      "rawBytes": 355032,
+      "rawSha256": "e1653cb6e1183f51615d4cc65b101bca68bee26716bcc36b004760e9d53a984d"
+    },
+    {
+      "path": "coordinator-seal-check.log.gz",
+      "archiveSha256": "8b8823ab793d9fe181aa3bacf5dcf05f517db16e5ed8e845845d2b491d3761e4",
+      "rawBytes": 1379,
+      "rawSha256": "784a749e943638e87d0fd96a510a75f780dd14e7d3e13ac0c28abbb255d31ff8"
+    },
+    {
+      "path": "coordinator-retention.log.gz",
+      "archiveSha256": "771320a3a7474cd6de047b3a3698fb739d7b24c7dcc47e9419a2236f334d27c4",
+      "rawBytes": 207,
+      "rawSha256": "8cd9aa2485ad7d70bedf134ebd44a8ff74937f22d5d007135d8811f05bef8eea"
+    },
+    {
+      "path": "lifetime-ci-push.log.gz",
+      "archiveSha256": "0604799acef4a2ed646c0bf100d5f907ff081990b9b20c3f5b39cd559d5663d7",
+      "rawBytes": 688808,
+      "rawSha256": "648c407d114da44918c9b60dd919c1bfbab0f606c3c1ac1091877c5ab029ccfa"
+    },
+    {
+      "path": "lifetime-ci-pr.log.gz",
+      "archiveSha256": "632f5e6171952d7c3ac975692dd87eb5b86a6245455ac6dbcdd242bee49f02bd",
+      "rawBytes": 690013,
+      "rawSha256": "735adafb100284566ae65a5345b4b132f69c100050b97b197417a31c3db43603"
+    },
+    {
+      "path": "coordinator-static-first.log.gz",
+      "archiveSha256": "300a8fe55ffd0c6bf80ef5b6073b323d7465836f737884167617000925fe1491",
+      "rawBytes": 208,
+      "rawSha256": "ab24f8faa6ab9f9fc4a349436395d0dec5602790f35ddb1af29a2f19c0404de5"
+    }
+  ],
+  "acceptedLifetime": {
+    "pr": 139,
+    "head": "288aad65b827641cf0ee5709069aa7d2670a69e9",
+    "merge": "c86041dc0b9be5889479436f29d4ecb7e3aa8f2b",
+    "push": 42011188758,
+    "pull_request": 42011219339,
+    "testsPerEvent": 962
+  },
+  "retention": {
+    "schemaVersion": "prepared-flow-coordinator-retention/1",
+    "resourceQualification": false,
+    "modelCalls": 0,
+    "reservedFamilyReads": 0,
+    "roots": [
+      {
+        "root": "/tmp/loredock-flow-coordinator-01xzlj",
+        "files": 0,
+        "journals": [],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-2wTn7X",
+        "files": 1,
+        "journals": [],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-4DkKYv",
+        "files": 5,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-4bMjQW",
+        "files": 33,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold",
+              "R02-near-limit-cold",
+              "R03-fixed-warm-flow",
+              "R04-history-capacity",
+              "R05-browser-polling",
+              "R06-expiry",
+              "R07-cancel",
+              "R08-network-replay",
+              "R09-restart",
+              "R10-inventory-eviction",
+              "R11-authority-fences",
+              "R12-revocation",
+              "R13-original-integrity",
+              "R14-oracle-preconditions",
+              "R15-accounting"
+            ],
+            "complete": true,
+            "allCasesPassed": true
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-8JgVP6",
+        "files": 1,
+        "journals": [],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-9pMqKB",
+        "files": 5,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-AMQ9lR",
+        "files": 3,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-Bm5jzu",
+        "files": 1,
+        "journals": [],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-Ch3A6i",
+        "files": 5,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-DCFMhO",
+        "files": 29,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold",
+              "R02-near-limit-cold",
+              "R05-browser-polling",
+              "R06-expiry",
+              "R07-cancel",
+              "R08-network-replay",
+              "R09-restart",
+              "R10-inventory-eviction",
+              "R11-authority-fences",
+              "R12-revocation",
+              "R13-original-integrity",
+              "R14-oracle-preconditions",
+              "R15-accounting"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-DxoF1S",
+        "files": 33,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold",
+              "R02-near-limit-cold",
+              "R03-fixed-warm-flow",
+              "R04-history-capacity",
+              "R05-browser-polling",
+              "R06-expiry",
+              "R07-cancel",
+              "R08-network-replay",
+              "R09-restart",
+              "R10-inventory-eviction",
+              "R11-authority-fences",
+              "R12-revocation",
+              "R13-original-integrity",
+              "R14-oracle-preconditions",
+              "R15-accounting"
+            ],
+            "complete": true,
+            "allCasesPassed": true
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-GF0l5g",
+        "files": 0,
+        "journals": [],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-H8xlcz",
+        "files": 3,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-H9l55o",
+        "files": 29,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold",
+              "R02-near-limit-cold",
+              "R05-browser-polling",
+              "R06-expiry",
+              "R07-cancel",
+              "R08-network-replay",
+              "R09-restart",
+              "R10-inventory-eviction",
+              "R11-authority-fences",
+              "R12-revocation",
+              "R13-original-integrity",
+              "R14-oracle-preconditions",
+              "R15-accounting"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-Ij1f3Z",
+        "files": 5,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-J7P7pB",
+        "files": 33,
+        "journals": [
+          {
+            "path": "one/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold",
+              "R02-near-limit-cold",
+              "R03-fixed-warm-flow",
+              "R04-history-capacity",
+              "R05-browser-polling",
+              "R06-expiry",
+              "R07-cancel",
+              "R08-network-replay",
+              "R09-restart",
+              "R10-inventory-eviction",
+              "R11-authority-fences",
+              "R12-revocation",
+              "R13-original-integrity",
+              "R14-oracle-preconditions",
+              "R15-accounting"
+            ],
+            "complete": true,
+            "allCasesPassed": true
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-JvnrRC",
+        "files": 0,
+        "journals": [],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-Jz3vbY",
+        "files": 33,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold",
+              "R02-near-limit-cold",
+              "R03-fixed-warm-flow",
+              "R04-history-capacity",
+              "R05-browser-polling",
+              "R06-expiry",
+              "R07-cancel",
+              "R08-network-replay",
+              "R09-restart",
+              "R10-inventory-eviction",
+              "R11-authority-fences",
+              "R12-revocation",
+              "R13-original-integrity",
+              "R14-oracle-preconditions",
+              "R15-accounting"
+            ],
+            "complete": true,
+            "allCasesPassed": true
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-OIR3Q1",
+        "files": 33,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold",
+              "R02-near-limit-cold",
+              "R03-fixed-warm-flow",
+              "R04-history-capacity",
+              "R05-browser-polling",
+              "R06-expiry",
+              "R07-cancel",
+              "R08-network-replay",
+              "R09-restart",
+              "R10-inventory-eviction",
+              "R11-authority-fences",
+              "R12-revocation",
+              "R13-original-integrity",
+              "R14-oracle-preconditions",
+              "R15-accounting"
+            ],
+            "complete": true,
+            "allCasesPassed": true
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-OoAG6f",
+        "files": 29,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold",
+              "R02-near-limit-cold",
+              "R05-browser-polling",
+              "R06-expiry",
+              "R07-cancel",
+              "R08-network-replay",
+              "R09-restart",
+              "R10-inventory-eviction",
+              "R11-authority-fences",
+              "R12-revocation",
+              "R13-original-integrity",
+              "R14-oracle-preconditions",
+              "R15-accounting"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-QK7VKI",
+        "files": 1,
+        "journals": [],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-RZC5AT",
+        "files": 4,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-ST5LEZ",
+        "files": 33,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold",
+              "R02-near-limit-cold",
+              "R03-fixed-warm-flow",
+              "R04-history-capacity",
+              "R05-browser-polling",
+              "R06-expiry",
+              "R07-cancel",
+              "R08-network-replay",
+              "R09-restart",
+              "R10-inventory-eviction",
+              "R11-authority-fences",
+              "R12-revocation",
+              "R13-original-integrity",
+              "R14-oracle-preconditions",
+              "R15-accounting"
+            ],
+            "complete": true,
+            "allCasesPassed": true
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-TQ5k9r",
+        "files": 1,
+        "journals": [],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-Tr6T9g",
+        "files": 33,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold",
+              "R02-near-limit-cold",
+              "R03-fixed-warm-flow",
+              "R04-history-capacity",
+              "R05-browser-polling",
+              "R06-expiry",
+              "R07-cancel",
+              "R08-network-replay",
+              "R09-restart",
+              "R10-inventory-eviction",
+              "R11-authority-fences",
+              "R12-revocation",
+              "R13-original-integrity",
+              "R14-oracle-preconditions",
+              "R15-accounting"
+            ],
+            "complete": true,
+            "allCasesPassed": true
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-UAuSP6",
+        "files": 29,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold",
+              "R02-near-limit-cold",
+              "R05-browser-polling",
+              "R06-expiry",
+              "R07-cancel",
+              "R08-network-replay",
+              "R09-restart",
+              "R10-inventory-eviction",
+              "R11-authority-fences",
+              "R12-revocation",
+              "R13-original-integrity",
+              "R14-oracle-preconditions",
+              "R15-accounting"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-UGPzrn",
+        "files": 6,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-VTga5Y",
+        "files": 4,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-Ve41yy",
+        "files": 4,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-WPDe6g",
+        "files": 29,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold",
+              "R02-near-limit-cold",
+              "R05-browser-polling",
+              "R06-expiry",
+              "R07-cancel",
+              "R08-network-replay",
+              "R09-restart",
+              "R10-inventory-eviction",
+              "R11-authority-fences",
+              "R12-revocation",
+              "R13-original-integrity",
+              "R14-oracle-preconditions",
+              "R15-accounting"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-WiBRWf",
+        "files": 4,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-XwwzkO",
+        "files": 4,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-YEdXNn",
+        "files": 4,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-Ywlezv",
+        "files": 5,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-YykXGT",
+        "files": 5,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-aNSQLv",
+        "files": 33,
+        "journals": [
+          {
+            "path": "one/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold",
+              "R02-near-limit-cold",
+              "R03-fixed-warm-flow",
+              "R04-history-capacity",
+              "R05-browser-polling",
+              "R06-expiry",
+              "R07-cancel",
+              "R08-network-replay",
+              "R09-restart",
+              "R10-inventory-eviction",
+              "R11-authority-fences",
+              "R12-revocation",
+              "R13-original-integrity",
+              "R14-oracle-preconditions",
+              "R15-accounting"
+            ],
+            "complete": true,
+            "allCasesPassed": true
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-cJi6s6",
+        "files": 5,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-cXA64B",
+        "files": 0,
+        "journals": [],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-err8tY",
+        "files": 4,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-esA9Mh",
+        "files": 0,
+        "journals": [],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-ggmJ6l",
+        "files": 5,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-h7pVXr",
+        "files": 0,
+        "journals": [],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-hl76b7",
+        "files": 4,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-izQiYy",
+        "files": 4,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-jCzIEg",
+        "files": 1,
+        "journals": [],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-k7tI9G",
+        "files": 5,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-l274tR",
+        "files": 29,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold",
+              "R02-near-limit-cold",
+              "R05-browser-polling",
+              "R06-expiry",
+              "R07-cancel",
+              "R08-network-replay",
+              "R09-restart",
+              "R10-inventory-eviction",
+              "R11-authority-fences",
+              "R12-revocation",
+              "R13-original-integrity",
+              "R14-oracle-preconditions",
+              "R15-accounting"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-pID7X3",
+        "files": 4,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-vHfZyv",
+        "files": 6,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-vbQsbv",
+        "files": 4,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      },
+      {
+        "root": "/tmp/loredock-flow-coordinator-xpxIQa",
+        "files": 5,
+        "journals": [
+          {
+            "path": "run/sequence.jsonl",
+            "startedCases": [
+              "R01-representative-cold"
+            ],
+            "complete": true,
+            "allCasesPassed": false
+          }
+        ],
+        "unchanged": true
+      }
+    ],
+    "evidenceFiles": 198,
+    "abruptExits": 6,
+    "testRoots": 51
+  }
+}
