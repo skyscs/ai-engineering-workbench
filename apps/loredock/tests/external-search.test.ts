@@ -73,12 +73,19 @@ test('schema 8 migration preserves every token, rowid, rank setting, original, h
   const before = literalIndexSnapshot(state.store), reads = readQueries(state.catalog, [state.first, state.second]);
   const originals = state.store.all<{id: string}>('SELECT id FROM spans').map(row => state.catalog.evidence(row.id));
   const settings = state.store.all('SELECT * FROM search_config ORDER BY k'), inventory = state.analysis.get(run.id), review = corrections.history(note.id);
+  const savedLegacyRows = JSON.stringify(state.store.all('SELECT * FROM answer_attempts ORDER BY rowid'));
   await state.reopen(); const after = literalIndexSnapshot(state.store);
   assert.equal(state.store.one<{user_version: number}>('PRAGMA user_version')!.user_version, 11);
   for (const key of ['vocabulary','documents','documentSizes','totals']) assert.deepEqual(after[key], before[key], key);
-  // Schema 10 adds one private identity; preserve every pre-existing logical row
-  // comparison from the unchanged frozen snapshot helper.
-  assert.deepEqual(after.nonLiteralRecords.filter((row: {table: string}) => row.table !== 'catalog_identity'), before.nonLiteralRecords);
+  // Keep the frozen helper intact. Schema 11 adds an empty witness table and
+  // legacy input-kind default; compare every old answer field byte-for-byte.
+  const existing = (row: {table: string}) => !['catalog_identity','answer_witnesses','answer_attempts'].includes(row.table);
+  assert.deepEqual(after.nonLiteralRecords.filter(existing), before.nonLiteralRecords.filter(existing));
+  const legacyRows = state.store.all<Record<string, unknown>>('SELECT * FROM answer_attempts ORDER BY rowid').map(({inputKind, ...row}) => {
+    assert.equal(inputKind, 'legacy'); return row;
+  });
+  assert.equal(JSON.stringify(legacyRows), savedLegacyRows);
+  assert.equal(state.store.one<{n: number}>('SELECT count(*) AS n FROM answer_witnesses')!.n, 0);
   assert.equal(after.nonLiteralRecords.filter((row: {table: string}) => row.table === 'catalog_identity').length, 1);
   const catalogIdentity = state.store.receipts.catalogId;
   assert.deepEqual(state.store.all<{slot: number; id: string}>('SELECT slot,id FROM catalog_identity').map(row => [row.slot, row.id]), [[1, catalogIdentity]]);

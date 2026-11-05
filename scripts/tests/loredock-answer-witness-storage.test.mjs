@@ -94,6 +94,12 @@ test('all 64 retained records consume independent capacity and a refused 65th le
   assert.equal(storage.stats().records, 64); const before = fixture.store.one('SELECT count(*) AS n FROM answer_attempts').n;
   assert.throws(() => owner.promote(preview.id, preview.reviewedHash, value => storage.create(input(), value)), code('ANSWER_WITNESS_LIMIT'));
   assert.equal(owner.get(preview.id).status, 'ready'); assert.equal(fixture.store.one('SELECT count(*) AS n FROM answer_attempts').n, before);
+  const removed = fixture.store.sources().find(row => row.name === 'z-independent-notes'); fixture.catalog.revoke(removed.id);
+  assert.deepEqual(storage.stats(), { records: 64, retained: 0, purged: 64, bytes: 0 });
+  await fixture.index('after-purge'); const next = owner.start('after-purge', question); await owner.idle(); const reviewed = owner.review(next.id);
+  assert.throws(() => owner.promote(reviewed.id, reviewed.reviewedHash,
+    value => storage.create({ ...input(), preparationId: reviewed.id }, value)), code('ANSWER_WITNESS_LIMIT'));
+  assert.equal(owner.get(reviewed.id).status, 'ready');
   const budget = new services.OperationBudget(); try { assert.deepEqual(fixture.store.receipts.ids(budget), []); } finally { budget.close(); }
 });
 
