@@ -12,6 +12,8 @@ One owner creates one generation and cannot restart. Busy admission retains no s
 document. Every operation takes an absolute monotonic deadline, at most five minutes
 ahead, and an optional AbortSignal. Caller-specific shorter deadlines remain mandatory
 at future integration. Encoding, identity initialization and startup use that same time.
+Check the absolute deadline after identity hashing, before reading a reply and after
+decoding/validation; a delayed timer callback cannot admit an expired result.
 An independent cleanup bound of two seconds reports failure without releasing a live
 thread's ownership. `snapshot()` distinguishes `stopping`/owned from actual closed exit.
 
@@ -74,8 +76,45 @@ created in this task. Full application/near-limit controls follow production ado
 
 ## Validation status
 
-Implementation and focused verification are in progress. First source-worker tests pass
-all nine initial cases; an initial typecheck caught literal widening in the ready binding,
-which was corrected without changing parser behavior. The first log and source inputs
-are retained. Final counts, built/minimum-runtime checks and diagnostic results will be
-recorded after execution; no resource gate is passed here.
+The first candidate's full local check passes 1,059 tests, strict types and all builds.
+Added literal-event/syntax-limit and absolute-deadline regressions bring the final focused
+source suite to fourteen passing tests on both Node 22.23.2 and minimum Node 22.13.0.
+Two built-adapter tests, the final build and strict types also pass. First failures are
+retained: a literal-type widening error and
+the minimum runtime rejecting a direct `.ts` Worker entry despite a `tsx` preload.
+The fixed native ESM bootstrap with configuration discovery disabled passes the same
+minimum-runtime suite, including an invalid `tsconfig.json` in the caller's directory.
+
+Final review also found that a reply could win over a delayed deadline timer. The first
+targeted regression fails with `Missing expected rejection` before the correction.
+The owner now checks absolute time at initialization and both sides of reply validation;
+tests cover expiry before reception, during validation and before worker creation.
+This correction changes only the owner source/emitted module from the observed candidate.
+The first resource diagnostic below is retained for that earlier candidate, not relabeled
+as a measurement of the final corrected owner. It has no qualification authority.
+
+The first prospective built observation at `5036ad5` completes eight useful/unsupported
+documents with exact facts and original ranges, then joins worker exit. It produces five
+symbols, three HTTP operations and four declared gaps; its illustrative `kafka.send`
+calls are not recognized event operations. Positive literal-event support is checked
+separately by the added regression, without rerunning this first observation.
+
+The process runs 239.027 ms inside a 322.283-ms external owner, with no failures or
+survivors. Thread exit code 1 is the documented result of requested `Worker.terminate`;
+the enclosing process exits 0 and the owner records `PARSER_STOPPED`, not a worker crash.
+Twenty-five main samples reach RSS 133,906,432 bytes, process high-water RSS 144,556,032,
+parent heap 6,357,104 and raw interval 10.966 ms. Twelve successful worker heap samples
+reach 24,686,144 bytes, making the sum of observed isolate maxima **31,043,248 bytes**.
+
+Two of fourteen worker samples reject, eight timer ticks find a request still pending,
+the first successful completion is 21.979 ms after creation, and a statistics request
+takes up to 74.704 ms. These gaps prevent a whole-heap qualification claim. Whole-process
+CPU is 177,851 user / 38,681 system microseconds; worker CPU remains a separate retained
+attribution series. No instrumentation is subtracted and no resource ceiling changes.
+
+[Retained evidence](../fixtures/loredock-file-parser/README.md) includes the first raw
+lifetime, sources/emitted inputs, independent comparison, failures and logs. All 139
+preexisting workspace modules remain byte-identical; five new emitted modules remain
+unreachable from old production entrypoints. Production startup/near-limit heap and
+browser RSS are still unresolved. [Task 137](../../tasks/137-loredock-async-legacy-consumers.md)
+migrates the legacy asynchronous seam before any production thread adoption.

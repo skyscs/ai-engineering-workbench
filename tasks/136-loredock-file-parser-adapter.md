@@ -1,6 +1,9 @@
 # Task 136 — Implement an unwired owned file-parser adapter
 
-Status: scoped after Task 135; begin after both exact-head CI events and identical-tree merge.
+Status: adapter implemented and locally verified; first ordinary diagnostic retained.
+Awaiting both exact-head CI events and merge. See the
+[adapter contract and result](../docs/loredock/FILE_PARSER_ADAPTER.md) and
+[complete retained evidence](../docs/fixtures/loredock-file-parser/README.md).
 
 ## Objective and boundaries
 
