@@ -471,7 +471,11 @@ ownership, accepted through identical-tree merge `b0c89df` after both CI events 
 `9c21c17`. [Task 126](tasks/126-loredock-prepared-question-http-ui.md) connects protected
 HTTP and the review flow behind a server experiment switch. Next
 [Task 127](tasks/127-loredock-prepared-flow-qualification-contract.md) freezes fresh complete
-resource and semantic qualification before changing the answer pilot default.
+resource and semantic qualification before changing the answer pilot default. Its
+[contract](docs/loredock/PREPARED_FLOW_QUALIFICATION.md) and owned twenty-source inputs
+precede [Task 128](tasks/128-loredock-prepared-flow-resource-qualification.md), a separately
+sealed model-free full-flow run. Task 126 was accepted through PR #130 after both
+final-head CI events at `480764d`, with identical-tree merge `0985f2c`.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation

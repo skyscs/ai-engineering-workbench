@@ -1,6 +1,9 @@
 # Task 127 — Freeze prospective complete prepared-flow qualification
 
-Status: scoped by Task 126; start after its exact-head acceptance.
+Status: implemented as a prospective design/input freeze; static verification and
+exact-head CI acceptance are recorded in the development status. Task 126 passed both
+events at `480764d` and merged with an identical tree at `0985f2c`. No qualification
+observation or model call is performed by this task.
 
 The protected experimental browser flow is implemented, but its complete composition
 has no resource or semantic qualification. Before changing the ordinary answer pilot,
@@ -38,3 +41,8 @@ input preparation only; it does not execute a qualification or make model calls.
 
 Deliver one reviewable contract and frozen inputs, with appropriate input/static checks,
 then require both final-head CI events before the separately scoped execution task.
+
+Delivered: [contract](../docs/loredock/PREPARED_FLOW_QUALIFICATION.md),
+[frozen inputs](../fixtures/loredock-prepared-flow/README.md). Next:
+[Task 128](128-loredock-prepared-flow-resource-qualification.md), the separately sealed
+model-free resource/lifecycle execution.

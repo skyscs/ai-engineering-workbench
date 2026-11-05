@@ -64,6 +64,8 @@ An experimental prepared-context flow is available with both `LOREDOCK_ANSWERS=1
 with cancellation, expiry and durable request replay. See
 [prepared-context usage](docs/loredock/USER_GUIDE.md#try-prepared-context-experimental).
 It remains separate from the ordinary pilot pending fresh resource and model-quality gates.
+The [prospective complete-flow contract](docs/loredock/PREPARED_FLOW_QUALIFICATION.md)
+fixes twenty-repository inputs, history/browser limits and answer-quality criteria before execution.
 Answer previews show how many indexed repositories supply passages and can use explicit
 repository names as bounded context hints. Matching engineer disputes/clarifications are
 included separately from source
