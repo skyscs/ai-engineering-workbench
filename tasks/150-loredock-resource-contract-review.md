@@ -1,6 +1,8 @@
 # Task 150 — Review the proposed resource boundary and choose a bounded implementation
 
-Status: review, prospective adoption and local checks complete; exact-head CI pending.
+Status: accepted through PR #183, head `d5012b1`, identical-tree merge `c7adf93`.
+Both complete CI logs pass 1,169 tests, ten typechecks and ten final builds; retained
+in the [Task 151 verification](../docs/fixtures/loredock-memory-assessor/README.md).
 Task 149 is accepted through PR #182, head `e88d751`, identical-tree merge `799c7a3`,
 with both full CI logs passing 1,169 tests, ten typechecks and ten final builds.
 [ADR 0068](../docs/decisions/0068-loredock-observable-resource-contract.md) adopts the

@@ -1,5 +1,29 @@
 # Development status
 
+## Task 151 — Pure offline memory-receipt assessor
+
+Task 150 is accepted through [PR #183](https://github.com/skyscs/ai-engineering-workbench/pull/183),
+head `d5012b1`, identical-tree merge `c7adf93`; both complete CI logs pass 1,169 tests,
+ten typechecks and ten final builds. [Verification evidence](fixtures/loredock-memory-assessor/README.md)
+retains those logs and the new focused checks.
+
+The [assessor](loredock/MEMORY_RECEIPT_ASSESSMENT.md) binds the exact adopted contract,
+expected run/candidate and three scope identities. It validates canonical bounded JSON,
+raw unsigned 64-bit counters, event keys, empty acquisition, eligible accounting modes,
+read order and terminal peaks. It preserves independent violations when other evidence
+is unavailable; lost/reset counters cannot turn an observed excess into a pass.
+Heap/RSS declarations remain limited diagnostics, and all outputs explicitly decline
+executor/application qualification. There is no CLI or production integration.
+
+Thirty-three focused regressions pass, including JSON objects in identity fields,
+duplicate keys, precision limits, partial evidence and retained short-child peaks.
+Full local checks pass 1,202 tests, zero failures/cancellations, ten typechecks and ten
+final builds; both complete exact-head CI logs are pending. No new cgroup,
+service, browser/daemon resource control, model or corporate source is executed.
+Final review verifies 753 local links, six retained closed logs and source hashes;
+all 95 emitted application modules, frozen inputs/API and normal checkout are unchanged.
+After acceptance, scope an independent tiny executor prerequisite with fixed bounds.
+
 ## Task 150 — Prospective resource boundary adopted; offline assessment next
 
 Task 149 is accepted through [PR #182](https://github.com/skyscs/ai-engineering-workbench/pull/182),

@@ -1,0 +1,157 @@
+{
+  "task": 151,
+  "acceptedTask150": {
+    "pr": 183,
+    "head": "d5012b1e84aac44f3400c6696503e0f5ebd711d0",
+    "merge": "c7adf934f907540c542c7836c477aacbcc467772",
+    "identicalTree": true
+  },
+  "ci": [
+    {
+      "event": "push",
+      "run": 42289355386,
+      "job": 128138404229,
+      "head": "d5012b1e84aac44f3400c6696503e0f5ebd711d0",
+      "conclusion": "success",
+      "tests": [
+        17,
+        18,
+        43,
+        728,
+        57,
+        306
+      ],
+      "total": 1169,
+      "failures": 0,
+      "cancelled": 0,
+      "typechecks": 10,
+      "finalBuilds": 10,
+      "log": "/home/toshiba/aew/task150-ci-push-final.log",
+      "bytes": 648264,
+      "sha256": "bf42289b734ba0e32ae3cec0d394fe487a6a3b292b5051a7eacf14bdb63e60ba"
+    },
+    {
+      "event": "pull_request",
+      "run": 42289369966,
+      "job": 128138453714,
+      "head": "d5012b1e84aac44f3400c6696503e0f5ebd711d0",
+      "conclusion": "success",
+      "tests": [
+        17,
+        18,
+        43,
+        728,
+        57,
+        306
+      ],
+      "total": 1169,
+      "failures": 0,
+      "cancelled": 0,
+      "typechecks": 10,
+      "finalBuilds": 10,
+      "log": "/home/toshiba/aew/task150-ci-pr-final.log",
+      "bytes": 649979,
+      "sha256": "90701d306dbfe1015175402de38e1d42f52d6a6248830daf399c36facfcbee52"
+    }
+  ],
+  "localFullCheck": {
+    "tests": [
+      17,
+      18,
+      43,
+      728,
+      57,
+      339
+    ],
+    "total": 1202,
+    "failures": 0,
+    "cancelled": 0,
+    "typechecks": 10,
+    "finalBuilds": 10,
+    "exit": 0,
+    "log": "/home/toshiba/aew/task151-full-check.log",
+    "bytes": 418083,
+    "sha256": "26e551a712ad66facd93d623b1131b89d9fd7036a96daf0b6d505562b9cd3f1b",
+    "sourceUnchangedThroughoutCheck": true
+  },
+  "focusedTests": 33,
+  "initialFocusedHistory": {
+    "tests": 30,
+    "earlierSourceArchived": false,
+    "scope": "Development log only; not exact-head verification."
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1696,
+      "sha256": "84e03445165808434e4f712c045bcc81282f7b644592eeb80ec5419c81110042"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "scripts/loredock-memory-receipts/assess.mjs",
+      "bytes": 19036,
+      "sha256": "905fa440ccb4336b9f96948d2f08901b7ea1c8177bf9a31fac06b415099f2382"
+    },
+    {
+      "path": "scripts/tests/loredock-memory-receipts.test.mjs",
+      "bytes": 18318,
+      "sha256": "a0bad45e1fcbc3bc8aeae75ff1b0708e6cc06aa011883c557e14e7421d02013a"
+    },
+    {
+      "path": "docs/loredock/MEMORY_RECEIPT_ASSESSMENT.md",
+      "bytes": 7606,
+      "sha256": "a6dc3e8f5704c1fe7462ef2b3848e8a4c866dfdd92fc60cb584335653b662404"
+    },
+    {
+      "path": "docs/loredock/observable-resource-contract-v2.json",
+      "bytes": 5327,
+      "sha256": "759dc70e2d3b86043278b8378148785dd061cf29c06fa6f96c3a5bdf00be8e5b"
+    }
+  ],
+  "logs": [
+    {
+      "path": "logs/task150-ci-push-final.log.gz",
+      "bytes": 648264,
+      "sha256": "bf42289b734ba0e32ae3cec0d394fe487a6a3b292b5051a7eacf14bdb63e60ba",
+      "gzipSha256": "5e55dd911fc43764fe3c5da490099427cfd926a2d7b51a24dc0e0bf7e338b884"
+    },
+    {
+      "path": "logs/task150-ci-pr-final.log.gz",
+      "bytes": 649979,
+      "sha256": "90701d306dbfe1015175402de38e1d42f52d6a6248830daf399c36facfcbee52",
+      "gzipSha256": "e64d710242beb4a8eba5315033c8866bac3067a7fa0891a9084f846168886320"
+    },
+    {
+      "path": "logs/task151-install.log.gz",
+      "bytes": 326,
+      "sha256": "f57c91941cae3fed30ac2032a03f7365537b30b012daa7f5b45700af58292cff",
+      "gzipSha256": "b37e5d25cc142851f10fd91b11cc74ceda944e0d73ac9cd30d2685a06f231a00"
+    },
+    {
+      "path": "logs/task151-focused-first.log.gz",
+      "bytes": 6860,
+      "sha256": "c53241e3f72b395cb2d7134afb004df7033812190309bdd6dbe0984bbe2f413c",
+      "gzipSha256": "ac64aa14f9c613abdef11161aec0e91fdfc696a05cd5183ac009fcf654d419c4"
+    },
+    {
+      "path": "logs/task151-focused-final.log.gz",
+      "bytes": 7517,
+      "sha256": "2f206ea991c201365dae55b4b90e45b4a08f28de4d881135687abed95bacaee3",
+      "gzipSha256": "5278ef2b994c4099a29b581efb08f3a89ccb7e51e52ad3fdc7533744fa44656b"
+    },
+    {
+      "path": "logs/task151-full-check.log.gz",
+      "bytes": 418083,
+      "sha256": "26e551a712ad66facd93d623b1131b89d9fd7036a96daf0b6d505562b9cd3f1b",
+      "gzipSha256": "e089415a65c40d23e76eb4601c1301b682b488b95ccabd72175212af689ae0d2"
+    }
+  ],
+  "unchangedEmittedApplicationModules": 95,
+  "executorQualified": false,
+  "newResourceRuns": 0,
+  "modelCalls": 0,
+  "corporateSources": 0,
+  "productChanges": false,
+  "resourceQualification": false
+}

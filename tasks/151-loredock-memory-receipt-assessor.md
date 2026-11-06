@@ -1,8 +1,15 @@
 # Task 151 — Implement an offline memory-receipt assessor
 
-Status: scoped by [ADR 0068](../docs/decisions/0068-loredock-observable-resource-contract.md).
-Begin after Task 150 acceptance. No live cgroup, systemd unit, browser, application resource
-control, host configuration, model or corporate-source execution.
+Status: implementation, 33 focused regressions and full local checks pass; exact-head CI pending.
+Task 150 is accepted through PR #183, head `d5012b1`, identical-tree merge `c7adf93`,
+with both complete CI logs passing 1,169 tests, ten typechecks and ten final builds.
+The [module and receipt boundary](../docs/loredock/MEMORY_RECEIPT_ASSESSMENT.md) implement
+offline-only assessment under ADR 0068. No live cgroup, systemd unit, browser resource
+control, host configuration, model or corporate-source execution occurs.
+Full local verification passes 1,202 tests, zero failures/cancellations, ten typechecks
+and ten final builds. Source inputs remain unchanged throughout the completed check.
+Final review verifies 753 local document links, six closed logs and all retained source
+hashes. All 95 emitted application modules, frozen inputs/API and normal checkout are unchanged.
 
 1. Implement a small pure module under a new evaluation-helper directory. Bind the adopted
    v2 contract identity/digest and define one bounded receipt representation for the three
