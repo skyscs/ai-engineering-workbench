@@ -1,6 +1,10 @@
 # Task 145 — Build and test one independent browser environment
 
-Status: planned after Task 144 acceptance.
+Status: implementation in progress after Task 144 acceptance (PR #177, merge `4acc21a`).
+The [prospective controls](../scripts/loredock-container-browser/README.md) and
+[fixed plan](../scripts/loredock-container-browser/plan.json) precede image construction.
+Nine synthetic owner/adapter regressions pass. No browser launch is authorized until
+the concrete final image/input manifest and successful preflight receipts are committed.
 
 Implement [ADR 0066](../docs/decisions/0066-loredock-independent-browser-container.md)
 as ordinary test infrastructure only. Preserve all consumed controls and unchanged
