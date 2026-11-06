@@ -1,5 +1,27 @@
 # Development status
 
+## Task 153 — Corrected user-service ownership records, assessed offline
+
+Task 152 is accepted through [PR #185](https://github.com/skyscs/ai-engineering-workbench/pull/185),
+head `a0f8e4f`, identical-tree merge `5c66cf3`; both complete CI logs pass 1,203 Node tests,
+including sixteen Python cases in one wrapper, ten typechecks and ten final builds.
+Its first unavailable assessment and consumed helper remain unchanged.
+
+The [pure validator](loredock/USER_SERVICE_OWNERSHIP.md) requires exact expected subject,
+manager/service/process binding, applied delegation/security/watchdog properties and stable
+held directory/parent/mount records. Missing optional user-service markers are diagnostic;
+positive markers cannot replace required evidence. Cycles, mixed identities, stale terminal
+records, unknown settings and malformed input cannot pass. A known profile violation remains
+failed alongside separately missing evidence. Every result explicitly declines live ownership,
+executor and resource qualification; there is no CLI or application integration.
+
+The [retained evidence](fixtures/loredock-user-service-ownership/README.md) records twenty
+passing prospective offline scenarios and 1,204 Node tests, zero failures/cancellations,
+ten typechecks and ten final builds. Both complete exact-head CI logs are required before
+acceptance. No service, namespace, cgroup mutation, application resource control,
+model or corporate source is executed. [Task 154](../tasks/154-loredock-user-namespace-prerequisite.md)
+considers a separately sealed integration only after this task is accepted.
+
 ## Task 152 — One namespace prerequisite before executor implementation
 
 Task 151 is accepted through [PR #184](https://github.com/skyscs/ai-engineering-workbench/pull/184),

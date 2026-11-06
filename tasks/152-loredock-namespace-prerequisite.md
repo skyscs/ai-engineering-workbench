@@ -1,6 +1,8 @@
 # Task 152 — Check the namespace prerequisite once
 
-Status: first attempt retained as unavailable before sandbox creation; exact-head CI pending.
+Status: accepted through PR #185, head `a0f8e4f`, identical-tree merge `5c66cf3`.
+Both complete exact-head CI logs pass 1,203 tests, sixteen Python cases, ten typechecks and
+ten final builds. The first attempt remains unavailable before sandbox creation.
 The [result and source review](../docs/loredock/NAMESPACE_PREREQUISITE_RESULT.md) identify
 an unsupported user-service xattr assumption in this helper. One service request is consumed;
 no sandbox, payload or application ran. The original candidate and first bytes are unchanged.

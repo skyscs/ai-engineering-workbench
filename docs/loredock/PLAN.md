@@ -292,8 +292,12 @@ explicit non-qualification outputs. [Task 152](../../tasks/152-loredock-namespac
 checks one separately sealed namespace/service-ownership prerequisite. Its first service
 stops before the sandbox at an incorrect user-service xattr requirement. The unavailable
 [result](NAMESPACE_PREREQUISITE_RESULT.md) is retained; it does not establish a namespace
-permission failure. [Task 153](../../tasks/153-loredock-user-service-ownership.md) corrects
-the evidence model offline. No complete executor or application experiment is qualified.
+permission failure. [Task 153](../../tasks/153-loredock-user-service-ownership.md) implements
+[offline ownership-record validation](USER_SERVICE_OWNERSHIP.md), with twenty prospective
+scenarios and explicit non-authority outputs. After acceptance,
+[Task 154](../../tasks/154-loredock-user-namespace-prerequisite.md) integrates the correction
+into a fresh sealed prerequisite on the same environment. No complete executor or
+application experiment is qualified.
 Task 147's execution prerequisites pass, while its
 first blank resource control and every earlier failure remain unchanged.
 This is a narrow test-environment control, not product Docker orchestration or resource

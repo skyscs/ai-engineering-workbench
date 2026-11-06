@@ -1,7 +1,14 @@
 # Task 153 — Correct user-service ownership evidence offline
 
-Status: planned after Task 152 acceptance. No new service or namespace attempt is authorized
-by this task; the consumed Task 152 helper and first evidence remain unchanged.
+Status: pure validator implemented; twenty prospective offline scenarios and the full local
+check pass. Both complete exact-head CI logs are required before acceptance.
+The [retained evidence](../docs/fixtures/loredock-user-service-ownership/README.md) records
+1,204 Node tests, zero failures/cancellations, ten typechecks and ten final builds.
+Task 152 is accepted through PR #185, head `a0f8e4f`, identical-tree merge `5c66cf3`.
+Both complete CI logs pass 1,203 tests, sixteen Python cases, ten typechecks and ten final builds.
+The [record model](../docs/loredock/USER_SERVICE_OWNERSHIP.md) supplies consistency checks,
+not live authority. No new service or namespace attempt is authorized by this task; the
+consumed Task 152 helper and first evidence remain unchanged.
 
 Task 152 stops at a missing `user.delegate` xattr before reaching Bubblewrap. Upstream
 systemd v259.5 returns from `cgroup_xattr_apply` for user managers before applying the
@@ -30,3 +37,6 @@ unavailable. This is a concrete helper defect, not an environment-tuning hypothe
    acceptance may a separate task consider integrating the corrected receipt into a
    newly sealed tiny prerequisite on the same unchanged environment. No host/profile/
    permission change or replacement runtime is implied by fixing the helper predicate.
+
+After acceptance, [Task 154](154-loredock-user-namespace-prerequisite.md) integrates the
+corrected record into a separately sealed prerequisite without changing the host/profile.

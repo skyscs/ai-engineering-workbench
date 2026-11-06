@@ -1,0 +1,127 @@
+{
+  "status": "Prospective offline test expectations recorded before Task 153 implementation. No cases executed yet.",
+  "task152Head": "a0f8e4f52ed69166304dacd9ad19e2b31886f337",
+  "scope": "Pure supplied-record consistency, never live ownership or executor qualification.",
+  "cases": [
+    {
+      "id": "U01",
+      "case": "Valid dedicated user service with absent optional marker",
+      "expected": "PASS",
+      "executed": false
+    },
+    {
+      "id": "U02",
+      "case": "Valid supplied record with positive marker still grants no live authority",
+      "expected": "PASS",
+      "executed": false
+    },
+    {
+      "id": "U03",
+      "case": "Positive marker or writable path without required manager delegation",
+      "expected": "UNAVAILABLE",
+      "executed": false
+    },
+    {
+      "id": "U04",
+      "case": "Stale or independently mismatched invocation identity",
+      "expected": "UNAVAILABLE",
+      "executed": false
+    },
+    {
+      "id": "U05",
+      "case": "Self PID differs from the manager main PID",
+      "expected": "UNAVAILABLE",
+      "executed": false
+    },
+    {
+      "id": "U06",
+      "case": "Process start identity changes between observations",
+      "expected": "UNAVAILABLE",
+      "executed": false
+    },
+    {
+      "id": "U07",
+      "case": "Terminal scope or group outside the exact user-manager hierarchy",
+      "expected": "UNAVAILABLE",
+      "executed": false
+    },
+    {
+      "id": "U08",
+      "case": "Directory, parent or mount identity is replaced",
+      "expected": "UNAVAILABLE",
+      "executed": false
+    },
+    {
+      "id": "U09",
+      "case": "Duplicate, missing or unknown required manager fields",
+      "expected": "UNAVAILABLE",
+      "executed": false
+    },
+    {
+      "id": "U10",
+      "case": "Attributable applied no-new-privileges setting is disabled",
+      "expected": "FAIL",
+      "executed": false
+    },
+    {
+      "id": "U11",
+      "case": "Attributable watchdog or restart setting differs from the sealed profile",
+      "expected": "FAIL",
+      "executed": false
+    },
+    {
+      "id": "U12",
+      "case": "Held-descriptor continuity is absent or unspecified",
+      "expected": "UNAVAILABLE",
+      "executed": false
+    },
+    {
+      "id": "U13",
+      "case": "Explicit marker value conflicts with manager delegation",
+      "expected": "UNAVAILABLE",
+      "executed": false
+    },
+    {
+      "id": "U14",
+      "case": "Known absent/unreadable marker stays diagnostic; unexpected error is unavailable",
+      "expected": "MIXED",
+      "executed": false
+    },
+    {
+      "id": "U15",
+      "case": "Reversed windows or mixed boot/clock identities",
+      "expected": "UNAVAILABLE",
+      "executed": false
+    },
+    {
+      "id": "U16",
+      "case": "Terminal failed/inactive unit is supplied as live acquisition evidence",
+      "expected": "UNAVAILABLE",
+      "executed": false
+    },
+    {
+      "id": "U17",
+      "case": "Self-asserted qualification or unexpected schema fields",
+      "expected": "UNAVAILABLE",
+      "executed": false
+    },
+    {
+      "id": "U18",
+      "case": "Oversized, noncanonical, duplicate-key, malformed or overflowing data",
+      "expected": "UNAVAILABLE",
+      "executed": false
+    },
+    {
+      "id": "U19",
+      "case": "Wrong external run/candidate/unit/UID binding",
+      "expected": "UNAVAILABLE",
+      "executed": false
+    },
+    {
+      "id": "U20",
+      "case": "Known security violation plus separately missing later evidence",
+      "expected": "FAIL",
+      "executed": false
+    }
+  ]
+}
