@@ -1,5 +1,6 @@
 """Pinned PID-1 wrapper; the frozen kernel owner must remain a non-PID-1 child."""
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -82,6 +83,11 @@ def main(mode):
     process = None
     descriptor = None
     try:
+        spec = importlib.util.spec_from_file_location('applied_security', Path(__file__).with_name('security.py'))
+        security = importlib.util.module_from_spec(spec); spec.loader.exec_module(security)
+        applied = security.observe()
+        write(EVIDENCE / 'applied-security.json', applied)
+        report['appliedSecurity'] = security.validate(**applied)
         with (EVIDENCE / 'inner-owner.stdout.log').open('xb') as stdout, (EVIDENCE / 'inner-owner.stderr.log').open('xb') as stderr:
             process = subprocess.Popen(command, cwd=ROOT, stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr,
                                        env={'PATH': '/opt/node:/usr/local/bin:/usr/bin:/bin', 'LC_ALL': 'C',

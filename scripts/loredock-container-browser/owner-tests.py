@@ -1,5 +1,6 @@
 """Synthetic Docker API failures: no Docker socket or workload is accessed."""
 import copy
+import hashlib
 import importlib.util
 from pathlib import Path
 import tempfile
@@ -8,6 +9,9 @@ import unittest
 spec = importlib.util.spec_from_file_location('container_owner', Path(__file__).with_name('owner.py'))
 owner = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(owner)
+spec = importlib.util.spec_from_file_location('applied_security', Path(__file__).with_name('security.py'))
+security = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(security)
 IDENTIFIER = 'a' * 64
 
 
@@ -29,7 +33,7 @@ class FakeAPI:
             self.running = self.started = True
             if self.failure == 'start':
                 raise TimeoutError('Start response was lost after execution began.')
-            if self.failure not in ('interrupt', 'unavailable'):
+            if self.failure not in ('interrupt', 'unavailable', 'runtime-profile', 'missing-runtime-profile'):
                 self.running = False
             return None
         if '/kill?' in route:
@@ -51,7 +55,10 @@ class FakeAPI:
         if self.failure == 'not-started':
             status = 'created'
         return {'Id': IDENTIFIER, 'Image': self.expected['Image'], 'Config': config,
-                'HostConfig': copy.deepcopy(self.expected['HostConfig']), 'AppArmorProfile': 'docker-default',
+                'HostConfig': copy.deepcopy(self.expected['HostConfig']),
+                'AppArmorProfile': ('unconfined' if self.failure == 'created-profile' or self.started and self.failure == 'runtime-profile'
+                                    else None if self.started and self.failure == 'missing-runtime-profile'
+                                    else 'docker-default' if self.started else ''),
                 'Mounts': [{'Type': 'bind', 'Source': mount['Source'], 'Destination': '/evidence', 'RW': True, 'Propagation': 'rprivate'}],
                 'State': {'Status': status, 'Running': self.running, 'Pid': 42 if self.running else 0,
                           'ExitCode': 0, 'StartedAt': '2026-11-06T00:00:00Z' if self.started else '0001-01-01T00:00:00Z',
@@ -77,6 +84,7 @@ class Ownership(unittest.TestCase):
 
     def test_normal(self):
         api, result = self.run_case()
+        self.assertEqual(self.expected['HostConfig']['SecurityOpt'], ['no-new-privileges', 'apparmor=docker-default'])
         self.assertTrue(result['stoppedConfirmed']); self.assertEqual(result['errors'], [])
         self.assertEqual(result['startAttempts'], 1); self.assertFalse(api.signals)
 
@@ -115,6 +123,64 @@ class Ownership(unittest.TestCase):
     def test_no_execution_receipt(self):
         api, result = self.run_case('not-started')
         self.assertTrue(result['stoppedConfirmed']); self.assertTrue(result['errors'])
+
+    def test_created_profile(self):
+        api, result = self.run_case('created-profile')
+        self.assertEqual(result['startAttempts'], 0); self.assertTrue(result['errors'])
+        self.assertFalse(api.signals)
+
+    def test_runtime_profile(self):
+        api, result = self.run_case('runtime-profile')
+        self.assertEqual(result['startAttempts'], 1); self.assertTrue(result['errors'])
+        self.assertEqual(api.signals, ['SIGTERM', 'SIGKILL']); self.assertTrue(result['stoppedConfirmed'])
+
+    def test_missing_runtime_profile(self):
+        api, result = self.run_case('missing-runtime-profile')
+        self.assertEqual(result['startAttempts'], 1); self.assertTrue(result['errors'])
+        self.assertTrue(result['stoppedConfirmed'])
+
+
+class AppliedSecurity(unittest.TestCase):
+    def setUp(self):
+        self.status = '\n'.join(['Uid:\t1000 1000 1000 1000', 'Gid:\t1000 1000 1000 1000',
+                                 'Seccomp:\t2', 'NoNewPrivs:\t1'] +
+                                [name + ':\t0000000000000000' for name in ['CapInh', 'CapPrm', 'CapEff', 'CapBnd', 'CapAmb']])
+
+    def test_enforced_default(self):
+        value = security.validate('docker-default (enforce)\n', self.status, 1000, 1000)
+        self.assertTrue(value['verified']); self.assertEqual(value['seccomp'], 2)
+
+    def test_missing_or_wrong_profile(self):
+        for label in ['', 'unconfined', 'docker-default (complain)', 'another-profile (enforce)', None]:
+            with self.subTest(label=label), self.assertRaises(ValueError):
+                security.validate(label, self.status, 1000, 1000)
+
+    def test_missing_or_relaxed_restriction(self):
+        for before, after in [('Seccomp:\t2', 'Seccomp:\t0'), ('NoNewPrivs:\t1', 'NoNewPrivs:\t0'),
+                              ('CapEff:\t0000000000000000', 'CapEff:\t0000000000000001'),
+                              ('CapBnd:\t0000000000000000', ''), ('Uid:\t1000 1000 1000 1000', 'Uid:\t1000 0 0 0')]:
+            with self.subTest(field=before), self.assertRaises(ValueError):
+                security.validate('docker-default (enforce)', self.status.replace(before, after), 1000, 1000)
+        with self.assertRaises(ValueError):
+            security.validate('docker-default (enforce)', self.status + '\nSeccomp:\t2', 1000, 1000)
+
+
+class LaunchInputs(unittest.TestCase):
+    def test_changed_or_redirected_inputs(self):
+        spec = importlib.util.spec_from_file_location('container_launch', Path(__file__).with_name('launch.py'))
+        launch = importlib.util.module_from_spec(spec); spec.loader.exec_module(launch)
+        root = Path(tempfile.mkdtemp(prefix='aew-container-launch-inputs-'))
+        print('Retained launch-input fixture:', root)
+        file = root / 'input'; file.write_bytes(b'original')
+        row = {'path': 'input', 'bytes': 8, 'sha256': hashlib.sha256(b'original').hexdigest()}
+        launch.checked(root, [row])
+        file.write_bytes(b'modified')
+        with self.assertRaises(AssertionError): launch.checked(root, [row])
+        file.write_bytes(b'original')
+        with self.assertRaises(AssertionError): launch.checked(root, [row, row])
+        with self.assertRaises(AssertionError): launch.checked(root, [{**row, 'path': '../input'}])
+        (root / 'link').symlink_to(file)
+        with self.assertRaises(AssertionError): launch.checked(root, [{**row, 'path': 'link'}])
 
 
 if __name__ == '__main__':

@@ -6,7 +6,7 @@ import shutil
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[2]
-OUTPUT = Path('/home/toshiba/aew/task145-image-inputs-first')
+OUTPUT = Path('/home/toshiba/aew/task146-image-inputs-first')
 BROWSER = Path('/home/toshiba/aew/toolchain/task143-chrome-for-testing-157.0.8103.38/chrome-linux64')
 NODE = Path('/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node')
 

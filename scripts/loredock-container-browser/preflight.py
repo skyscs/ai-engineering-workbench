@@ -9,9 +9,11 @@ import sys
 import time
 
 ROOT = Path(__file__).resolve().parents[2]
-OUTPUT = Path('/home/toshiba/aew/task145-container-preflight-first')
+OUTPUT = Path('/home/toshiba/aew/task146-container-preflight-first')
 spec = importlib.util.spec_from_file_location('container_owner', Path(__file__).with_name('owner.py'))
 owner = importlib.util.module_from_spec(spec); spec.loader.exec_module(owner)
+spec = importlib.util.spec_from_file_location('applied_security', Path(__file__).with_name('security.py'))
+security = importlib.util.module_from_spec(spec); spec.loader.exec_module(security)
 
 
 def main(image):
@@ -49,6 +51,8 @@ def main(image):
             assert result['verifiedBeforeStart'] and result['startAttempts'] == 1 and result['stoppedConfirmed']
             assert result['terminal']['State']['ExitCode'] == 0
             assert wrapper['reason'] == 'completed' and not wrapper['errors']
+            applied = json.loads((directory / 'evidence/applied-security.json').read_text())
+            assert wrapper['appliedSecurity'] == security.validate(**applied)
             if mode == 'interrupt':
                 assert wrapper['interruptionForwarded']
             report['cases'].append({'mode': mode, 'containerId': result['createdId'], 'passed': True,

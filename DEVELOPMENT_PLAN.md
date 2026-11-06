@@ -556,6 +556,10 @@ on the unstarted created object. No container process or browser runs; the failu
 [Task 146](tasks/146-loredock-container-security-lifecycle.md) corrects the distinction
 between requested security and applied runtime metadata on a fresh declared control,
 requiring the default profile and actual enforcement before child execution.
+All three lifecycle/security preflights pass. Its first launch attempt then fails browser
+input verification before Chrome starts: an empty directory copied as root retains `0700`.
+[Task 147](tasks/147-loredock-container-input-readability.md) fixes ownership and checks
+complete directory metadata and non-root readability before a new prospective control.
 No application-page or full-flow gate is opened by these diagnostics.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,

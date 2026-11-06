@@ -1,0 +1,295 @@
+{
+  "prospective": "d95615561626a6b17f809a99548d5575a9defb62",
+  "manifestCommit": "1e051177900570b4d4670e1c4a5f47fbb0d84ff0",
+  "manifestSha256": "dfea3e3abf8f7f464943aab5feece322e0ca1347420a6f9ac89faa290f1da8ac",
+  "image": "sha256:f7d6e9bacbb22f384e6fe965ee4bf4be7002545acf3e779b900e95f5e6fdef2b",
+  "browserReview": {
+    "image": "sha256:f7d6e9bacbb22f384e6fe965ee4bf4be7002545acf3e779b900e95f5e6fdef2b",
+    "container": "019f3f8e9f40c9461b726f49a2f2dc8746643a99f9526d5d266b8eeafd25b861",
+    "eligible": false,
+    "launchFailure": null,
+    "controlFailure": {
+      "name": "Error",
+      "code": "EACCES",
+      "message": "EACCES: permission denied, scandir '/opt/chrome/extensions'",
+      "stack": "Error: EACCES: permission denied, scandir '/opt/chrome/extensions'\n    at async readdir (node:internal/fs/promises:955:18)\n    at async walk (file:///opt/workbench/scripts/loredock-browser-eligibility/verify.mjs:24:25)\n    at async walk (file:///opt/workbench/scripts/loredock-browser-eligibility/verify.mjs:27:32)\n    at async verifyTree (file:///opt/workbench/scripts/loredock-browser-eligibility/verify.mjs:31:3)\n    at async verify (file:///opt/workbench/scripts/loredock-container-browser/observe.mjs:18:3)\n    at async file:///opt/workbench/scripts/loredock-container-browser/observe.mjs:23:3"
+    },
+    "inputsUnchanged": true,
+    "innerInputsReadable": false,
+    "startAttempts": 1,
+    "stoppedConfirmed": true,
+    "containerExit": 1,
+    "innerErrors": [],
+    "innerSurvivors": [],
+    "reaped": [
+      {
+        "pid": 8,
+        "waitStatus": 256,
+        "exit": 1,
+        "userSeconds": 0.23759799999999998,
+        "systemSeconds": 0.080189,
+        "maxRssBytes": 95318016
+      }
+    ],
+    "browserLifetimes": 0,
+    "browserSamples": 0,
+    "applicationRuns": 0,
+    "modelCalls": 0,
+    "elapsedMs": 1049.6536759892479,
+    "wrapperMs": 457.3598400456831,
+    "directoryAudit": "/home/toshiba/aew/task146-runtime-directory-audit.json"
+  },
+  "preflightReview": {
+    "image": "sha256:f7d6e9bacbb22f384e6fe965ee4bf4be7002545acf3e779b900e95f5e6fdef2b",
+    "cases": [
+      {
+        "mode": "normal",
+        "container": "69ce290596ab4b3f31727d23f320d52555370d7931f10ad778f84d5073ee5203",
+        "wrapperMs": 622.1682809991762,
+        "hostMs": 1275.5845179781318,
+        "ownerPid": 7,
+        "actualExit": 0,
+        "appliedSecurity": {
+          "verified": true,
+          "profile": "docker-default (enforce)",
+          "uid": 1000,
+          "gid": 1000,
+          "seccomp": 2,
+          "noNewPrivileges": true,
+          "capabilities": "all zero",
+          "scope": "Applied restrictions on this PID-1 process before child execution."
+        }
+      },
+      {
+        "mode": "orphan",
+        "container": "d682ddd2af47d28634c01b3368cbe7d6f41a4198f77333a3d253edef3985d5e9",
+        "wrapperMs": 10721.775659010746,
+        "hostMs": 11364.915784972254,
+        "ownerPid": 6,
+        "actualExit": 0,
+        "appliedSecurity": {
+          "verified": true,
+          "profile": "docker-default (enforce)",
+          "uid": 1000,
+          "gid": 1000,
+          "seccomp": 2,
+          "noNewPrivileges": true,
+          "capabilities": "all zero",
+          "scope": "Applied restrictions on this PID-1 process before child execution."
+        }
+      },
+      {
+        "mode": "interrupt",
+        "container": "ef99c7babc26f451629dd6a245987841c7b5be335a6aa51b09efe6d275b4b8bf",
+        "wrapperMs": 10878.60522698611,
+        "hostMs": 11474.751016008668,
+        "ownerPid": 7,
+        "actualExit": 0,
+        "appliedSecurity": {
+          "verified": true,
+          "profile": "docker-default (enforce)",
+          "uid": 1000,
+          "gid": 1000,
+          "seccomp": 2,
+          "noNewPrivileges": true,
+          "capabilities": "all zero",
+          "scope": "Applied restrictions on this PID-1 process before child execution."
+        }
+      }
+    ],
+    "dependencyVersionsUnchanged": true,
+    "browserRuns": 0
+  },
+  "localCheck": {
+    "tests": [
+      17,
+      18,
+      43,
+      728,
+      57,
+      294
+    ],
+    "total": 1157,
+    "failures": 0,
+    "cancelled": 0,
+    "typechecks": 10,
+    "finalBuilds": 10,
+    "bytes": 408159,
+    "sha256": "5bb285e9fe34fd49ebdb6c956229bd6e234df9db4d28c690a71091e3a4dd3ee3"
+  },
+  "previousCI": {
+    "head": "e98989173d24bb6684f79ee4411e7872095ebd6f",
+    "ci": [
+      {
+        "event": "push",
+        "run": 42172819541,
+        "job": 127744365370,
+        "head": "e98989173d24bb6684f79ee4411e7872095ebd6f",
+        "conclusion": "success",
+        "tests": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          287
+        ],
+        "total": 1150,
+        "failures": 0,
+        "cancelled": 0,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "log": "/home/toshiba/aew/task145-ci-push-final.log",
+        "bytes": 641943,
+        "sha256": "a7cb356a32ecefae28750fbc41b87b5c2b66c51f70017baa2863d911af314f8d"
+      },
+      {
+        "event": "pull_request",
+        "run": 42172874835,
+        "job": 127744539114,
+        "head": "e98989173d24bb6684f79ee4411e7872095ebd6f",
+        "conclusion": "success",
+        "tests": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          287
+        ],
+        "total": 1150,
+        "failures": 0,
+        "cancelled": 0,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "log": "/home/toshiba/aew/task145-ci-pr-final.log",
+        "bytes": 640384,
+        "sha256": "f5aef3d4a63f24f6217d93688abe09dba82d095bc85e9d66a450043030671541"
+      }
+    ]
+  },
+  "stagedFiles": 328,
+  "stagedBytes": 552283125,
+  "stagedUnchanged": true,
+  "archives": [
+    {
+      "path": "preflight.tar.gz",
+      "members": 58,
+      "uncompressedFileBytes": 1513878,
+      "bytes": 41880,
+      "sha256": "7dc459fd9663147654216833c63dd9e27a124039e6056e1d04a6f96dfa95335f",
+      "inventory": "preflight-files.json.gz",
+      "inventorySha256": "b28827599623559b693657e59e13bcfb645516307756440ad590b40b2d7b53c1"
+    },
+    {
+      "path": "first-attempt.tar.gz",
+      "members": 17,
+      "uncompressedFileBytes": 70952,
+      "bytes": 7780,
+      "sha256": "57af349516cfe3944d653c4b0746f11c7368179d209575365b44b6cb64405d56",
+      "inventory": "first-attempt-files.json.gz",
+      "inventorySha256": "db310ed1b30007cfca772552d316fece0b7c7fc642554d8a25ce3e1d97b0f841"
+    },
+    {
+      "path": "helper-inputs.tar.gz",
+      "members": 26,
+      "uncompressedFileBytes": 185615,
+      "bytes": 47701,
+      "sha256": "add8039f4915ce1fdfba6b197c582ecac79c4ccc8071ada3126398ae8e93aec2",
+      "inventory": "helper-inputs-files.json.gz",
+      "inventorySha256": "efba65a03c852a1bbb6a3cabb2b7a8a3b80ee44975a5a9f3bd00cf062fafb972"
+    },
+    {
+      "path": "image-metadata.tar.gz",
+      "members": 13,
+      "uncompressedFileBytes": 1299251,
+      "bytes": 328145,
+      "sha256": "331bcadb9211bb26ab4588d90b09b5d5e717d0eff95d5adf8071631f29d4b8fe",
+      "inventory": "image-metadata-files.json.gz",
+      "inventorySha256": "e02a2a0e8407abdc224b3fb71bff56237d74c68f3f02ae9e83478756d0b7c19e"
+    },
+    {
+      "path": "receipts.tar.gz",
+      "members": 10,
+      "uncompressedFileBytes": 94065,
+      "bytes": 21001,
+      "sha256": "986f2ac9a8d3f94400d8a987002a7b7119972c7a944c5dfe032f8a0f5a321f31",
+      "inventory": "receipts-files.json.gz",
+      "inventorySha256": "183dfbf9420a480b3c576f6f36914ebbb6c613a5234f6bff741b1961cbca41f6"
+    }
+  ],
+  "logs": [
+    {
+      "path": "logs/task145-ci-push-final.log.gz",
+      "bytes": 641943,
+      "sha256": "a7cb356a32ecefae28750fbc41b87b5c2b66c51f70017baa2863d911af314f8d",
+      "gzipSha256": "83d44815e087754f8973420be96d4160928ed0c8121555f1789ab59d3287e525"
+    },
+    {
+      "path": "logs/task145-ci-pr-final.log.gz",
+      "bytes": 640384,
+      "sha256": "f5aef3d4a63f24f6217d93688abe09dba82d095bc85e9d66a450043030671541",
+      "gzipSha256": "ea89b8234ce2c4c6291d907abe59a73b5520d0e6c6f51790f2f8d962d9c400c8"
+    },
+    {
+      "path": "logs/task146-owner-tests-first.log.gz",
+      "bytes": 3335,
+      "sha256": "418b983ca5289e35b3803d8a997b1a01487ec9ad9abde500454a1f17d2be7332",
+      "gzipSha256": "250903e7d4005440ee83bef2a6781e1df4e1da9619d5d631f724eb1f8f51ba0d"
+    },
+    {
+      "path": "logs/task146-owner-tests-second.log.gz",
+      "bytes": 3568,
+      "sha256": "85abdf6a64ae5a71fb716d51a7f3f070d996f54559f0e2208439c4a867b53e23",
+      "gzipSha256": "0fc2c02cefa09107641f507ee48558c3581fcaa2ba5c7be56730179fff308b4d"
+    },
+    {
+      "path": "logs/task146-prepare-first.log.gz",
+      "bytes": 150,
+      "sha256": "71ffc4fa73590ac48e4dca14309290923f45dbe5423dbeccd615af402b6de6f0",
+      "gzipSha256": "7ac7d69b8c539b338cb6e0995fbd3248a3ba01aff9a392dd76f6c4db2880147e"
+    },
+    {
+      "path": "logs/task146-install-first.log.gz",
+      "bytes": 326,
+      "sha256": "368306f1381121db5b7bc49b4654f787366987cabbac048ec218870b23de0cf1",
+      "gzipSha256": "4a06384d312e7a0d7bd6a67d8d02bad23d4efa517a54db17a0a3301b473af564"
+    },
+    {
+      "path": "logs/task146-full-check-first.log.gz",
+      "bytes": 408159,
+      "sha256": "5bb285e9fe34fd49ebdb6c956229bd6e234df9db4d28c690a71091e3a4dd3ee3",
+      "gzipSha256": "082284a3b87270eaf39f34d8253466cefd709881cd6fc79f00e5f09b7dc4d20b"
+    },
+    {
+      "path": "logs/task146-preflight-first.log.gz",
+      "bytes": 34765,
+      "sha256": "41cfd67a4c903909c900dda2fa4530dcfc7cf574f49707b15c59c2cd1b0b59e3",
+      "gzipSha256": "d324dfbb71d48eda26a3a5830a5590ab365d20ee3586c17b0f13a20abec9829d"
+    },
+    {
+      "path": "logs/task146-browser-first.log.gz",
+      "bytes": 13909,
+      "sha256": "e98e98abd52d2c148e323a81fa4b85f24a5f6a84a23e4a13a9d38f57d3139b78",
+      "gzipSha256": "9293f6bc02dc701a6552852170808151c45c67493784a972102db83677e18394"
+    },
+    {
+      "path": "logs/task146-image-build-first.log.gz",
+      "bytes": 2667,
+      "sha256": "147ca142e96a44afa45abcbf3dd06ee714e29cb436f070811abe985903f3a648",
+      "gzipSha256": "2eb46b824666ac48830e59ab6ec9d87f6356b0015cd14d285a31a2f36f615318"
+    }
+  ],
+  "excludedPayloads": {
+    "paths": [
+      "context/chrome",
+      "context/node"
+    ],
+    "reason": "Public runtime payloads remain at the retained local paths and in the immutable image; complete staged file hashes are published.",
+    "bytes": 552097510
+  },
+  "inventoryLimit": "Build-time regular-file/symlink inventory excludes directory metadata and includes builder-injected /etc files; it is not a complete runtime filesystem metadata assertion.",
+  "resourceQualification": false,
+  "productChanges": false,
+  "modelCalls": 0
+}

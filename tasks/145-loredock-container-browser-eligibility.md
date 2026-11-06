@@ -1,7 +1,8 @@
 # Task 145 — Build and test one independent browser environment
 
-Status: implementation and first build complete; first preflight failed before start.
-Full local checks pass; exact-head CI pending.
+Status: accepted through PR #178, head `e989891`, identical-tree merge `42830f5`.
+Both complete exact-head CI logs pass 1,150 tests, ten typechecks and ten final builds.
+Implementation and first build are complete; the first preflight failure remains failed.
 See [the retained result](../docs/loredock/CONTAINER_BROWSER_ELIGIBILITY.md).
 The [prospective controls](../scripts/loredock-container-browser/README.md) and
 [fixed plan](../scripts/loredock-container-browser/plan.json) precede image construction.
