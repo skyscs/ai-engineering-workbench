@@ -522,9 +522,14 @@ accounting to explicit asynchronous phases while retaining the direct parser. Ei
 prospective baseline cases preserve exact graph/context/review/prompt bytes and twenty-one
 saved answers; delayed-parser tests enforce cancellation, write epochs and synchronous
 commit fences. After exact-head checks and merge,
-[Task 138](tasks/138-loredock-production-file-parser.md) adopts the owner in both native
-and legacy paths and makes implementation initialization asynchronous. Whole-heap observer
-coverage and resource acceptance remain future gates; no measured failure or limit is waived.
+[Task 138](tasks/138-loredock-production-file-parser.md) first tests transport compatibility
+before adoption. Two successful direct graphs fail the proposed 512-KiB wire limit even
+with sources below 32 KiB, so production adoption is deferred without changing application
+bytes. [Task 139](tasks/139-loredock-lossless-parser-transport.md) repairs repeated-string
+transport with exact fact round trips and unchanged bounds; only then does
+[Task 140](tasks/140-loredock-production-parser-adoption.md) adopt the owner in native and
+legacy paths with asynchronous initialization. Whole-heap observer coverage and resource
+acceptance remain future gates; no measured failure or limit is waived.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation

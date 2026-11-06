@@ -1,0 +1,16 @@
+{
+  "entries": 254,
+  "logs": 6,
+  "gitIdentities": [
+    "026d2a4df12e725729d660020bb4b8feeb50abdb",
+    "fc4ef608c442489027292022fbd759be7be06f2e",
+    "2061701538b380d94261163851ad0a9c62927d43"
+  ],
+  "graphOriginals": 3,
+  "unchangedEmittedModules": 146,
+  "unchangedApplicationSource": true,
+  "documentLinks": 593,
+  "modelCalls": 0,
+  "compatible": false,
+  "resourceQualification": false
+}

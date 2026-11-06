@@ -1,6 +1,7 @@
 # Task 138 — Adopt the owned file parser in production
 
-Status: scoped after Task 137; begin after both exact-head CI events and identical-tree merge.
+Status: compatibility prerequisite evaluated; production adoption deferred after two
+observed transport failures. Result review and exact-head CI acceptance pending.
 
 ## Objective and boundaries
 
@@ -57,3 +58,18 @@ activation is required. Do not claim resource qualification from responsiveness 
 Task 136's isolated adapter and Task 137's behavior parity do not repair the recorded
 startup, near-limit heap or browser RSS failures by themselves. Browser environment
 attribution remains a separate unresolved decision, with its original 1-GiB ceiling.
+
+## Observed prerequisite and revised sequence
+
+The committed [prospective control](../docs/loredock/PRODUCTION_FILE_PARSER.md) runs
+before any product edit. Two previously successful direct graphs fail through the
+owned adapter because their fact replies exceed 512 KiB, despite sources below 32 KiB.
+The ordinary control remains exact and every owner joins actual exit. All original
+application source/emission, limits and parser identities remain unchanged.
+
+ADR 0062 requires stopping adoption on this mismatch. This task records that failed
+prerequisite; it does **not** claim production adoption is implemented. The concrete
+repair is [Task 139](139-loredock-lossless-parser-transport.md), followed by the deferred
+integration requirements in [Task 140](140-loredock-production-parser-adoption.md).
+Retain the complete first result and earlier accepted Task 137 CI logs before merging
+this bounded compatibility finding. No old failed resource family is reopened.

@@ -1,5 +1,28 @@
 # Development status
 
+## Task 138 — Production parser transport prerequisite (failed gate retained)
+
+Task 137 is accepted through [PR #170](https://github.com/skyscs/ai-engineering-workbench/pull/170):
+both complete CI logs pass 1,094 tests at `bebef156`, before identical-tree merge `48b88a9`.
+The prospective transport control was committed at `d84971f` before any product edit.
+One ordinary graph remains exact through the owned adapter, but two successful direct
+graphs fail with `PARSER_RESULT_LIMIT`: their 20,328/9,878-byte sources produce
+736,909/846,464-byte replies, exceeding the unchanged 524,288-byte bound.
+
+All direct parsers return useful facts without syntax gaps; existing graph node/property
+omissions still yield valid bounded graphs. All three workers reach closed state and
+actual exit, with no remaining ownership. The whole child exits 1 after 1,171.132 ms,
+without timeout. This is a compatibility failure; no startup, aggregate heap, whole-flow
+or browser acceptance is claimed. [Complete first inputs/results](fixtures/loredock-parser-transport/README.md)
+are retained. Application source/emission, native fingerprint, schemas and defaults remain exact.
+
+ADR 0062 requires stopping adoption on a previously successful graph mismatch. The
+[revised sequence](loredock/PRODUCTION_FILE_PARSER.md) repairs lossless transport in
+[Task 139](../tasks/139-loredock-lossless-parser-transport.md), then resumes production
+adoption in [Task 140](../tasks/140-loredock-production-parser-adoption.md). Existing
+startup, near-limit heap, minimum-runtime FTS5 and browser failures remain explicit.
+CI review and merge of this bounded prerequisite finding are pending.
+
 ## Task 137 — Awaitable legacy graph consumers
 
 Task 136 is accepted through [PR #169](https://github.com/skyscs/ai-engineering-workbench/pull/169):
