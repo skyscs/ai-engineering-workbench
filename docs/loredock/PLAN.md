@@ -285,11 +285,12 @@ specifies an [unadopted resource proposal](OBSERVABLE_RESOURCE_CONTRACT.md) with
 charged-memory envelopes, labeled heap diagnostics and a complete comparison to v1.
 Task 150's [separate review](../decisions/0068-loredock-observable-resource-contract.md)
 adopts the prospective v2 boundary with delegation, accounting-mode, event-field and
-terminal-order refinements. Current next work is
+terminal-order refinements. Accepted
 [Task 151](../../tasks/151-loredock-memory-receipt-assessor.md) implements the
 [pure offline assessor](MEMORY_RECEIPT_ASSESSMENT.md), with 33 focused regressions and
-explicit non-qualification outputs. After its acceptance, scope a separately sealed tiny
-executor prerequisite. No executor or new experiment is qualified by the decision.
+explicit non-qualification outputs. [Task 152](../../tasks/152-loredock-namespace-prerequisite.md)
+now checks one separately sealed namespace/service-ownership prerequisite with bounded
+synthetic work. No complete executor or application experiment is qualified by this check.
 Task 147's execution prerequisites pass, while its
 first blank resource control and every earlier failure remain unchanged.
 This is a narrow test-environment control, not product Docker orchestration or resource
