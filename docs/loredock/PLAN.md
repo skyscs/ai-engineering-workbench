@@ -298,6 +298,13 @@ scenarios and explicit non-authority outputs. After acceptance,
 [Task 154](../../tasks/154-loredock-user-namespace-prerequisite.md) integrates the correction
 into a fresh sealed prerequisite on the same environment. No complete executor or
 application experiment is qualified.
+Its [separate adapter](USER_NAMESPACE_PREREQUISITE.md) now preserves acquisition records
+before optional reads, holds exact directory identities and checks terminal cleanup. Twenty
+offline regressions and full local checks pass. The separately sealed
+[first prerequisite](USER_NAMESPACE_PREREQUISITE_RESULT.md) passes with one sandbox/payload,
+normal exit and absent terminal group. After acceptance,
+[Task 155](../../tasks/155-loredock-direct-birth-prerequisite.md) addresses direct measured
+birth without promoting the remaining executor/application gates.
 Task 147's execution prerequisites pass, while its
 first blank resource control and every earlier failure remain unchanged.
 This is a narrow test-environment control, not product Docker orchestration or resource
