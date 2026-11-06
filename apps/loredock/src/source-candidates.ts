@@ -1,5 +1,6 @@
 import type { Catalog } from './catalog.js';
 import { retrieveAnswerContext, type AnswerContext } from './answer-context.js';
+import { LegacyReadOperation } from './legacy-read-operation.js';
 import { searchText } from './search-text.js';
 import { sha256 } from './extract.js';
 import { CatalogError } from './types.js';
@@ -69,10 +70,12 @@ export function selectSourceCandidates(context: Pick<AnswerContext, 'sources' | 
     tiedAtLimit: eligible.length > suggested.length && eligible[suggested.length]!.score === suggested.at(-1)!.score };
 }
 
-export function sourceCandidatePreview(catalog: Catalog, question: string, buildId?: string, pageOffset: unknown = 0): CandidatePreview {
+export async function sourceCandidatePreview(catalog: Catalog, question: string, buildId?: string, pageOffset: unknown = 0): Promise<CandidatePreview> {
+  const operation = new LegacyReadOperation(catalog);
   const offset = relatedPageOffset(pageOffset);
-  const context = retrieveAnswerContext(catalog, question, buildId), selection = selectSourceCandidates(context);
-  const related = candidateLinkContext(catalog, context, selection, offset);
+  const context = await retrieveAnswerContext(catalog, question, buildId, operation), selection = selectSourceCandidates(context);
+  const related = await candidateLinkContext(catalog, context, selection, offset, operation);
+  return operation.read(() => {
   const review = answerReviewContext(catalog, context.buildId, [...context.spans.map(span => span.id),
     ...related.sources.flatMap(source => source.links.flatMap(link => link.evidence.map(ref => ref.id)))]);
   const result: Omit<CandidatePreview, 'previewHash'> = { schemaVersion: 'source-candidate-preview-v1', adapterVersion: candidateVersion,
@@ -91,4 +94,5 @@ export function sourceCandidatePreview(catalog: Catalog, question: string, build
     throw new CatalogError('OUTPUT_LIMIT', 'The candidate preview exceeds its output limit. Narrow the question.');
   }
   return preview;
+  });
 }

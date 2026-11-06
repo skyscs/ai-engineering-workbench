@@ -29,13 +29,13 @@ async function setup(t:TestContext) {
 }
 
 test('history reports a refresh chain, real reapplication, withdrawn review, all answer states and code facts without private content',async t=>{
-  const s=await setup(t),first=await s.index('first'),graph=codeFlows(s.catalog),edge=graph.edges.find(edge=>edge.kind==='event-delivery')!;
-  const corrections=new Corrections(s.catalog),note=corrections.save({requestId:'note',buildId:first,targetKind:'code-link',targetId:edge.id,
+  const s=await setup(t),first=await s.index('first'),graph=await codeFlows(s.catalog),edge=graph.edges.find(edge=>edge.kind==='event-delivery')!;
+  const corrections=new Corrections(s.catalog),note=await corrections.save({requestId:'note',buildId:first,targetKind:'code-link',targetId:edge.id,
     projectionHash:graph.inputHash,expectedRevision:0,expectedPreviousId:null,action:'dispute',statement:'private-review-marker-雪',environment:'private-local'});
-  const second=await s.index('second'),review=new Reconciliation(s.catalog),preview=review.preview(),entry=preview.entries[0]!;
-  assert.equal(entry.status,'support-unchanged');const reapplied=review.reapply({requestId:'reapply',buildId:second,sourceCorrectionId:note.id,
+  const second=await s.index('second'),review=new Reconciliation(s.catalog),preview=await review.preview(),entry=preview.entries[0]!;
+  assert.equal(entry.status,'support-unchanged');const reapplied=await review.reapply({requestId:'reapply',buildId:second,sourceCorrectionId:note.id,
     targetId:entry.current!.id,previewHash:preview.previewHash,expectedRevision:preview.revision});
-  const currentGraph=codeFlows(s.catalog);corrections.save({requestId:'withdraw',buildId:second,targetKind:'code-link',targetId:reapplied.targetId,
+  const currentGraph=await codeFlows(s.catalog);await corrections.save({requestId:'withdraw',buildId:second,targetKind:'code-link',targetId:reapplied.targetId,
     projectionHash:currentGraph.inputHash,expectedRevision:s.catalog.state().correctionRevision,expectedPreviousId:reapplied.id,action:'withdraw',statement:null,environment:null});
   const third=await s.index('third'),run=s.analysis.start('code',third);await s.analysis.idle();
   const inventory=s.analysis.get(run.id);

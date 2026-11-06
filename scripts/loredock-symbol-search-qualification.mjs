@@ -156,7 +156,7 @@ export async function qualifySymbolSearch(services,output,{smoke=false}={}) {
       began=performance.now();const started=analysis.start('symbols',build.id);await analysis.idle();
       const value={status:'available',ms:performance.now()-began,inventory:analysis.get(started.id)};await checkpoint('analysis',value);return value;
     },async(build,inventory)=>{
-      const graph=services.codeFlows(catalog,build.id),outside=cases.filter(item=>item.outsideDefaultGraph);
+      const graph=await services.codeFlows(catalog,build.id),outside=cases.filter(item=>item.outsideDefaultGraph);
       graphCheck={adapterVersion:graph.adapterVersion,coverage:graph.coverage,
         absentExpected:outside.every(item=>item.expected.every(expected=>!graph.nodes.some(node=>node.kind==='symbol'&&node.sourceName===expected.source&&node.path===expected.path&&node.label===expected.symbol)))};
       const verifier=originalVerifier(fixture,catalog,analysis,inventory,build),passes=[];

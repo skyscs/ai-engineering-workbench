@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto';
+import { setImmediate as yieldTurn } from 'node:timers/promises';
 import { answerSummaries } from './answer-history.js';
 import { QuestionPreparations, reserveQuestionAnswer, reserveQuestionConfiguration } from './question-preparation.js';
 import { AnswerWitnessStore, preparedAnswerRequestHash } from './answer-witness-store.js';
@@ -11,6 +12,7 @@ import { CodexTextRuntime, RuntimeError, textCliVersion, type TextConnection, ty
 import { Catalog } from './catalog.js';
 import { answerSchemaVersion, citedAnswerSchema, retrieveAnswerContext, validateCitedAnswer, type AnswerContext, type CitedAnswer } from './answer-context.js';
 import { sha256 } from './extract.js';
+import { LegacyReadOperation } from './legacy-read-operation.js';
 import { CatalogError } from './types.js';
 import { assertAnswerReviewCurrent } from './answer-review.js';
 import { answerPrompt, answerPromptVersion } from './answer-prompt.js';
@@ -37,6 +39,7 @@ const pending = (status: string) => status === 'preparing' || status === 'runnin
 
 export class Answers {
   private worker: { id: string; controller: AbortController; done: Promise<void> } | undefined;
+  private admission: { controller: AbortController; done: Promise<AnswerAttempt> } | undefined;
   private readonly unsubscribe: () => void;
   private stopping = false;
   constructor(readonly catalog: Catalog, private readonly runtime: TextRuntime = new CodexTextRuntime(), private readonly preparations?: QuestionPreparations) {
@@ -103,20 +106,35 @@ export class Answers {
       cliVersion: textCliVersion, model: 'gpt-5.6-terra', effort: 'medium', wallMs: 120000, outputBytes: 256 * 1024 };
   }
   preview(question: string, buildId?: string) { return retrieveAnswerContext(this.catalog, question, buildId); }
-  start(requestId: string, question: string, buildId: string, inputHash: string): AnswerAttempt {
+  async start(requestId: string, question: string, buildId: string, inputHash: string): Promise<AnswerAttempt> {
     if (typeof requestId !== 'string' || !/^[A-Za-z0-9_-]{1,100}$/.test(requestId) || typeof question !== 'string' || typeof buildId !== 'string' || typeof inputHash !== 'string') throw new CatalogError('INVALID_REQUEST', 'A request ID and reviewed question context are required.');
     const connection = this.configuration();
     if (!connection) throw new CatalogError('CONFIGURATION_REQUIRED', 'Choose your Codex configuration before asking a question.');
     const payloadHash = sha256(JSON.stringify({ question, buildId, inputHash, connection }));
     const previous = this.catalog.store.one<AttemptRow>('SELECT * FROM answer_attempts WHERE requestId=?', requestId);
     if (previous) { if (previous.payloadHash !== payloadHash) throw new CatalogError('CONFLICT', 'This request ID has different inputs.', 409); return this.get(previous.id); }
-    if (this.stopping || this.worker) throw new CatalogError('BUSY', 'Another answer is active. Wait or cancel it first.', 409);
-    const release = reserveQuestionAnswer(this.catalog.store);
+    if (this.stopping || this.worker || this.admission) throw new CatalogError('BUSY', 'Another answer is active. Wait or cancel it first.', 409);
+    const lease = reserveQuestionAnswer(this.catalog.store);
+    const controller = new AbortController();
+    const done = Promise.resolve().then(() => this.admit(requestId, question, buildId, inputHash, connection, payloadHash, controller.signal, lease))
+      .finally(() => { if (this.admission?.done === done) this.admission = undefined; });
+    this.admission = { controller, done };
+    return done;
+  }
+  private async admit(requestId: string, question: string, buildId: string, inputHash: string, connection: TextConnection,
+    payloadHash: string, signal: AbortSignal, lease: ReturnType<typeof reserveQuestionAnswer>): Promise<AnswerAttempt> {
+    let launched = false;
     try {
-      const context = this.preview(question, buildId);
+      const operation = new LegacyReadOperation(this.catalog, undefined, signal);
+      const context = await retrieveAnswerContext(this.catalog, question, buildId, operation);
+      operation.check();
+      if (this.stopping || signal.aborted) throw new CatalogError('SERVICE_STOPPED', 'Answer admission is stopping.', 409);
       if (context.inputHash !== inputHash) throw new CatalogError('INPUT_CHANGED', 'Review the current context before asking.', 409);
       const id = randomUUID();
       this.catalog.store.transaction(() => {
+        lease.check();
+        operation.check();
+        assertAnswerReviewCurrent(this.catalog, context.review);
         this.catalog.store.run(`INSERT INTO answer_attempts
           (id,requestId,payloadHash,question,buildId,policyVersion,registryVersion,status,context,inputHash,connection,model,effort,promptVersion,schemaVersion,createdAt,usageUnknownReason)
           VALUES (?,?,?,?,?,?,?,'preparing',?,?,?,'gpt-5.6-terra','medium',?,?,?,'Not dispatched yet.')`,
@@ -125,8 +143,8 @@ export class Answers {
           this.catalog.store.run('INSERT INTO answer_sources VALUES (?,?)', id, sourceId);
         }
       });
-      this.launch(id, release); return this.get(id);
-    } catch (error) { if (!this.worker) release(); throw error; }
+      this.launch(id, lease.release); launched = true; return this.get(id);
+    } finally { if (!launched) lease.release(); }
   }
   startPrepared(requestId: string, preparationId: string, reviewedHash: string): AnswerAttempt {
     if (typeof requestId !== 'string' || !/^[A-Za-z0-9_-]{1,100}$/.test(requestId) || !uuid(preparationId) || !hex(reviewedHash))
@@ -149,7 +167,7 @@ export class Answers {
   private launch(id: string, release: () => void) {
     const controller = new AbortController();
     // The local worker and shared reservation exist before any synchronous runtime fake.
-    const done = Promise.resolve().then(() => this.run(id, controller.signal)).finally(() => {
+    const done = yieldTurn().then(() => this.run(id, controller.signal)).finally(() => {
       if (this.worker?.id === id) this.worker = undefined; release();
     });
     this.worker = { id, controller, done };
@@ -190,10 +208,13 @@ export class Answers {
       const output = await prepared.run({ prompt: answerPrompt(context), schema: citedAnswerSchema(context), model: row.model, effort: row.effort, signal: controller.signal });
       // A usage receipt survives failed validation or late cancelled completion.
       this.catalog.store.run('UPDATE answer_attempts SET usage=?,usageUnknownReason=? WHERE id=?', output.usage ? JSON.stringify(output.usage) : null, output.usageUnknownReason, id);
+      if (this.row(id).status !== 'running' || controller.signal.aborted) return;
+      const operation = new LegacyReadOperation(this.catalog, undefined, controller.signal);
+      const answer = await validateCitedAnswer(this.catalog, context, output.text, operation);
       this.catalog.store.transaction(() => {
         // Cancellation or revocation wins over late completion, even if a runtime ignores abort.
         if (this.row(id).status !== 'running' || controller.signal.aborted) return;
-        const answer = validateCitedAnswer(this.catalog, context, output.text);
+        operation.check();
         this.catalog.store.run("UPDATE answer_attempts SET status='succeeded',result=?,usage=?,usageUnknownReason=?,completedAt=?,reason=NULL WHERE id=? AND status='running'",
           JSON.stringify(answer), output.usage ? JSON.stringify(output.usage) : null, output.usageUnknownReason, new Date().toISOString(), id);
       });
@@ -210,9 +231,10 @@ export class Answers {
       catch { this.catalog.store.run("UPDATE answer_attempts SET reason=coalesce(reason || ' ', '') || 'Runtime temporary-directory cleanup failed.' WHERE id=?", id); }
     }
   }
-  async idle() { await this.worker?.done; }
+  async idle() { await this.admission?.done.catch(() => undefined); await this.worker?.done; }
   async stop() {
     this.stopping = true; this.unsubscribe();
+    this.admission?.controller.abort();
     if (this.worker) {
       this.catalog.store.run("UPDATE answer_attempts SET status='interrupted',reason='The daemon stopped. Retry explicitly; provider completion may be unknown.' WHERE id=? AND status IN ('preparing','running')", this.worker.id);
       this.worker.controller.abort();

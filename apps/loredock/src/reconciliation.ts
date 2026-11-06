@@ -2,6 +2,7 @@ import type { Catalog } from './catalog.js';
 import { Corrections } from './corrections.js';
 import type { CorrectionSnapshot, CorrectionTarget } from './correction-types.js';
 import { codeFlows } from './code-flows.js';
+import { LegacyReadOperation } from './legacy-read-operation.js';
 import { declarationMap } from './system-map.js';
 import type { CodeFlows, FlowEdge, FlowNode } from './code-flow-types.js';
 import type { DeclarationMap, MapEdge, MapNode } from './system-map-types.js';
@@ -48,7 +49,9 @@ export class Reconciliation {
   private revoked(buildId: string) {
     return Boolean(this.catalog.store.one("SELECT 1 FROM build_sources b JOIN sources s ON s.id=b.sourceId WHERE b.buildId=? AND s.status!='active'", buildId));
   }
-  preview(buildId?: string, fromBuildId?: string): ReconciliationPreview {
+  async preview(buildId?: string, fromBuildId?: string): Promise<ReconciliationPreview> {
+    const operation = new LegacyReadOperation(this.catalog);
+    operation.check();
     const target = this.catalog.readBuild(buildId), store = this.catalog.store, project = store.project();
     const editable = !this.revoked(target.id), gaps: string[] = [
       'Matching support does not verify the engineer statement in the wider current scope. Review both indexes before applying.',
@@ -86,9 +89,10 @@ export class Reconciliation {
       result.activeCorrections = sourceNotes.length;
       const currentNotes = this.corrections.list(target.id).corrections;
       const graphs = new Map<string, Graph>(), evidence = new Map<string, Evidence>();
-      const graph = (id: string, kind: CorrectionTarget) => {
+      const graph = async (id: string, kind: CorrectionTarget) => {
         const key = `${id}:${kind}`; let value = graphs.get(key);
-        if (!value) { value = kind === 'code-link' ? codeFlows(this.catalog, id) : declarationMap(this.catalog, id); graphs.set(key, value); }
+        if (!value) { value = kind === 'code-link' ? await codeFlows(this.catalog, id, operation) : declarationMap(this.catalog, id); graphs.set(key, value); }
+        operation.check();
         return value;
       };
       const readEvidence = (id: string) => {
@@ -117,7 +121,8 @@ export class Reconciliation {
         const entry: ReconciliationEntry = { source, original, status: 'unsupported', reason: 'The original adapter provenance is not supported for comparison.', current: null };
         const expected = source.targetKind === 'code-link' ? ['loredock-code-flows-v1', 'pilot-code-v3'] : ['loredock-map-v1', 'json-declarations-v2'];
         if (original.schemaVersion === expected[0] && original.adapterVersion === expected[1]) {
-          const oldGraph = graph(selected, source.targetKind), newGraph = graph(target.id, source.targetKind);
+          const oldGraph = await graph(selected, source.targetKind), newGraph = await graph(target.id, source.targetKind);
+          operation.check();
           const oldEdge = oldGraph.edges.find(edge => edge.id === source.targetId);
           if (oldEdge && stable(withoutProjectionHash(snapshot(oldGraph, oldEdge))) === stable(withoutProjectionHash(original))) {
             const key = logical(oldEdge, oldGraph), oldMatches = oldGraph.edges.filter(edge => logical(edge, oldGraph) === key);
@@ -154,13 +159,14 @@ export class Reconciliation {
       if (result.omittedCorrections) gaps.push(`${result.omittedCorrections} earlier corrections are outside this bounded preview.`);
     }
     const preview = { ...result, previewHash: sha256(stable(result)) };
+    operation.check();
     if (Buffer.byteLength(JSON.stringify(preview)) > reconciliationLimits.outputBytes) throw new CatalogError('RECONCILIATION_LIMIT', 'Review comparison exceeds its output budget.', 409);
     return preview;
   }
-  reapply(value: unknown) {
+  async reapply(value: unknown) {
     const input = validate(value), payloadHash = sha256(stable(['reapply-v1', input]));
     const replay = this.corrections.replay(input.requestId, payloadHash); if (replay) return replay;
-    const source = this.corrections.inspect(input.sourceCorrectionId), preview = this.preview(input.buildId, source.buildId);
+    const source = this.corrections.inspect(input.sourceCorrectionId), preview = await this.preview(input.buildId, source.buildId);
     if (preview.revision !== input.expectedRevision || preview.previewHash !== input.previewHash) {
       throw new CatalogError('INPUT_CHANGED', 'The comparison changed. Refresh and review the earlier correction again.', 409);
     }

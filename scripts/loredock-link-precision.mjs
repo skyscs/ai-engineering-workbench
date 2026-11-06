@@ -79,12 +79,12 @@ export async function qualifyLinkPrecision(services) {
   const oldLinks=JSON.parse(await readFile(new URL('../docs/fixtures/loredock-candidate-links/candidate-result.json',import.meta.url),'utf8'));
   const oldLexical=JSON.parse(await readFile(new URL('../docs/fixtures/loredock-source-candidates/candidate-result.json',import.meta.url),'utf8'));
   const oldContext=JSON.parse(await readFile(new URL('../docs/fixtures/loredock-incident-context/retrieval-result.json',import.meta.url),'utf8'));
-  const baseline=await evaluateIncidentContext({...services,retrieveAnswerContext:(catalog,question)=>{
-    const context=retrieveAnswerContext(catalog,question),before=JSON.stringify(context),selection=selectSourceCandidates(context);
-    const declarations=declarationMap(catalog,context.buildId),code=codeFlows(catalog,context.buildId);
+  const baseline=await evaluateIncidentContext({...services,retrieveAnswerContext:async (catalog,question)=>{
+    const context=await retrieveAnswerContext(catalog,question),before=JSON.stringify(context),selection=selectSourceCandidates(context);
+    const declarations=declarationMap(catalog,context.buildId),code=await codeFlows(catalog,context.buildId);
     assert.equal(code.adapterVersion,'pilot-code-v2','Task 038 qualification requires pilot-code-v2. Use its retained report or frozen implementation; current adapter measurements need a separate report.');
     const rows=relationshipInputs(catalog,context,declarations,code),v1=selectCandidateLinks(context,selection,rows.map(row=>row.link));
-    const {projections,gaps,...actual}=candidateLinkContext(catalog,context,selection);assert.deepEqual(v1,actual);
+    const {projections,gaps,...actual}=await candidateLinkContext(catalog,context,selection);assert.deepEqual(v1,actual);
     const admitted=rows.filter(row=>structuralSubject(row.link.kind,selection.distinctiveTerms,row.fromProperties,row.toProperties,searchText));
     const proposal=selectCandidateLinks(context,selection,admitted.map(row=>row.link));
     for(const output of [v1,proposal])for(const source of output.sources)for(const link of source.links)for(const ref of link.evidence) {

@@ -101,7 +101,7 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
   app.get('/api/search', c => c.json(catalog.search(c.req.query('q') ?? '', c.req.query('buildId'))));
   app.get('/api/evidence/:id', c => c.json(catalog.evidence(c.req.param('id'))));
   app.get('/api/system-map', c => c.json(declarationMap(catalog, c.req.query('buildId'))));
-  app.get('/api/code-flows', c => c.json(codeFlows(catalog, c.req.query('buildId'))));
+  app.get('/api/code-flows', async c => c.json(await codeFlows(catalog, c.req.query('buildId'))));
   app.get('/api/orientation', c => c.json(projectOrientation(catalog, c.req.query('buildId'))));
   const codeAnalysis = options.codeAnalysis;
   if (codeAnalysis) {
@@ -161,15 +161,15 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
       || (input.buildId !== undefined && typeof input.buildId !== 'string')) {
       throw new CatalogError('INVALID_REQUEST', 'A question and optional index version are required.');
     }
-    return c.json(sourceCandidatePreview(catalog, input.question, input.buildId as string | undefined, input.relatedOffset));
+    return c.json(await sourceCandidatePreview(catalog, input.question, input.buildId as string | undefined, input.relatedOffset));
   });
   const corrections = new Corrections(catalog);
   app.get('/api/corrections', c => c.json(corrections.list(c.req.query('buildId'))));
   app.get('/api/corrections/:id/history', c => c.json(corrections.history(c.req.param('id'))));
-  app.post('/api/corrections', async c => c.json(corrections.save(await body(c.req)), 201));
+  app.post('/api/corrections', async c => c.json(await corrections.save(await body(c.req)), 201));
   const reconciliation = new Reconciliation(catalog);
-  app.get('/api/correction-reconciliation', c => c.json(reconciliation.preview(c.req.query('buildId'), c.req.query('fromBuildId'))));
-  app.post('/api/corrections/reapply', async c => c.json(reconciliation.reapply(await body(c.req)), 201));
+  app.get('/api/correction-reconciliation', async c => c.json(await reconciliation.preview(c.req.query('buildId'), c.req.query('fromBuildId'))));
+  app.post('/api/corrections/reapply', async c => c.json(await reconciliation.reapply(await body(c.req)), 201));
   const answers = options.answers;
   if (answers) {
     app.get('/api/answers', c => c.json({ ...answers.state(), ...preparations ? { preparedQuestions: true } : {} }));
@@ -192,12 +192,12 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
     app.post('/api/answers/preview', async c => {
       const input = await body(c.req);
       if (typeof input.question !== 'string' || (input.buildId !== undefined && typeof input.buildId !== 'string')) throw new CatalogError('INVALID_REQUEST', 'A question and optional index version are required.');
-      return c.json(answers.preview(input.question, input.buildId as string | undefined));
+      return c.json(await answers.preview(input.question, input.buildId as string | undefined));
     });
     app.post('/api/answers', async c => {
       const input = await body(c.req);
       if (![input.requestId, input.question, input.buildId, input.inputHash].every(value => typeof value === 'string')) throw new CatalogError('INVALID_REQUEST', 'Request ID and reviewed question context are required.');
-      return c.json(answers.start(input.requestId as string, input.question as string, input.buildId as string, input.inputHash as string), 202);
+      return c.json(await answers.start(input.requestId as string, input.question as string, input.buildId as string, input.inputHash as string), 202);
     });
     app.get('/api/answers/:id', c => c.json(answers.get(c.req.param('id'))));
     app.post('/api/answers/:id/cancel', c => c.json(answers.cancel(c.req.param('id'))));

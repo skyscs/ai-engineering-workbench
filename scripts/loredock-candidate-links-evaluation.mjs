@@ -18,9 +18,9 @@ const lexicalBaseline=JSON.parse(await readFile(new URL('../docs/fixtures/loredo
 const contextBaseline=JSON.parse(await readFile(new URL('../docs/fixtures/loredock-incident-context/retrieval-result.json',import.meta.url),'utf8'));
 const measurements=[];let verifiedLinkedOccurrences=0;
 const baseline=await evaluateIncidentContext({Catalog,CatalogStore,questionTerms,retrievalVersion,
-  retrieveAnswerContext:(catalog,question)=>{
-    const context=retrieveAnswerContext(catalog,question),before=JSON.stringify(context),selection=selectSourceCandidates(context),started=performance.now();
-    const links=candidateLinkContext(catalog,context,selection),linkMs=performance.now()-started;
+  retrieveAnswerContext:async (catalog,question)=>{
+    const context=await retrieveAnswerContext(catalog,question),before=JSON.stringify(context),selection=selectSourceCandidates(context),started=performance.now();
+    const links=await candidateLinkContext(catalog,context,selection),linkMs=performance.now()-started;
     assert.equal(JSON.stringify(context),before);
     for(const source of links.sources)for(const link of source.links)for(const ref of link.evidence){
       const original=catalog.evidence(ref.id);assert.equal(original.sourceId,ref.sourceId);assert.equal(original.buildId,context.buildId);

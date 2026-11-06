@@ -12,8 +12,8 @@ const store = new CatalogStore(path.join(fixture.root, 'catalog')), catalog = ne
 try {
   for (const source of repositoryIds) await catalog.addSource(path.join(fixture.root, 'sources', source));
   const state = catalog.state(); catalog.start('flow-evaluation', state.sourceSetVersion, state.policyVersion); await catalog.idle();
-  const value = codeFlows(catalog);
-  assert.equal(value.flows.length, 2); assert.equal(value.inputHash, codeFlows(catalog).inputHash);
+  const value = await codeFlows(catalog);
+  assert.equal(value.flows.length, 2); assert.equal(value.inputHash, (await codeFlows(catalog)).inputHash);
   const evidence = Object.values(value.evidence).map(ref => {
     const original = catalog.evidence(ref.id);
     assert.equal(original.path, ref.path); assert.equal(original.revision, ref.revision);

@@ -42,9 +42,9 @@ async function setup(t: TestContext) {
   await answers.configure({ executable: process.execPath, configHome: fixture.root, profile: null });
   return { store, catalog, runtime, answers, close, directory };
 }
-function ask(answers: Answers, requestId: string = crypto.randomUUID(), question = 'Which local topic is configured?') {
-  const context = answers.preview(question);
-  return answers.start(requestId, question, context.buildId, context.inputHash);
+async function ask(answers: Answers, requestId: string = crypto.randomUUID(), question = 'Which local topic is configured?') {
+  const context = await answers.preview(question);
+  return await answers.start(requestId, question, context.buildId, context.inputHash);
 }
 async function entered(runtime: FixtureRuntime) {
   for (let i = 0; i < 50 && !runtime.release; i++) await turn();
@@ -53,18 +53,18 @@ async function entered(runtime: FixtureRuntime) {
 
 test('answer intentions persist before dispatch, replay once and publish result with provenance and usage', async t => {
   const { answers, runtime, store, catalog } = await setup(t);
-  const first = ask(answers, 'same');
+  const first = await ask(answers, 'same');
   assert.equal(first.status, 'preparing'); assert.equal(runtime.calls, 0);
-  assert.equal(ask(answers, 'same').id, first.id);
-  assert.throws(() => ask(answers, 'same', 'Changed question'), /different inputs/);
-  assert.throws(() => ask(answers), /Another answer/);
+  assert.equal((await ask(answers, 'same')).id, first.id);
+  await assert.rejects(async () => (await ask(answers, 'same', 'Changed question')), /different inputs/);
+  await assert.rejects(async () => (await ask(answers)), /Another answer/);
   await answers.idle();
   const result = answers.get(first.id);
   assert.equal(result.status, 'succeeded'); assert.equal(result.usage?.inputTokens, 100);
   assert.equal(result.runtime?.version, 'fixture-cli');
   assert.equal(answers.state().publishedAnswerId, first.id);
   assert.equal(answers.state().attempts[0]!.context, null, 'Polling must not resend source text');
-  assert.equal(ask(answers, 'same').id, first.id); assert.equal(runtime.calls, 1); assert.equal(runtime.closed, 1);
+  assert.equal((await ask(answers, 'same')).id, first.id); assert.equal(runtime.calls, 1); assert.equal(runtime.closed, 1);
   assert.equal(store.one<{ count: number }>('SELECT count(*) AS count FROM answer_attempts')!.count, 1);
   assert.equal(answers.get(first.id).stale, false);
   const state = catalog.state(); catalog.start('newer-index', state.sourceSetVersion, state.policyVersion); await catalog.idle();
@@ -74,9 +74,9 @@ test('answer intentions persist before dispatch, replay once and publish result 
 
 test('failed preflight, provider failure and invalid citations retain the last published answer and honest usage', async t => {
   const { answers, runtime } = await setup(t);
-  const good = ask(answers); await answers.idle();
+  const good = await ask(answers); await answers.idle();
   for (const mode of ['preflight-fail', 'fail', 'invalid'] as const) {
-    runtime.mode = mode; const failed = ask(answers); await answers.idle();
+    runtime.mode = mode; const failed = await ask(answers); await answers.idle();
     const result = answers.get(failed.id);
     assert.equal(result.status, 'failed'); assert.equal(result.answer, null);
     assert.equal(answers.state().publishedAnswerId, good.id);
@@ -87,22 +87,22 @@ test('failed preflight, provider failure and invalid citations retain the last p
 
 test('cancel fences late completion and a retry is a new explicit attempt', async t => {
   const { answers, runtime } = await setup(t);
-  const good = ask(answers); await answers.idle();
-  runtime.mode = 'hold'; const cancelled = ask(answers); await entered(runtime);
+  const good = await ask(answers); await answers.idle();
+  runtime.mode = 'hold'; const cancelled = await ask(answers); await entered(runtime);
   answers.cancel(cancelled.id); runtime.release!(); await answers.idle();
   assert.equal(answers.get(cancelled.id).status, 'cancelled'); assert.equal(answers.get(cancelled.id).answer, null);
   assert.equal(answers.state().publishedAnswerId, good.id);
-  runtime.mode = 'good'; const retry = ask(answers); await answers.idle();
+  runtime.mode = 'good'; const retry = await ask(answers); await answers.idle();
   assert.notEqual(retry.id, cancelled.id); assert.equal(answers.get(retry.id).status, 'succeeded');
 });
 
 test('revoking an uncited input stops the runtime and purges persisted derivative text', async t => {
   const { answers, catalog, runtime, store } = await setup(t);
-  const good = ask(answers); await answers.idle();
+  const good = await ask(answers); await answers.idle();
   const context = answers.get(good.id).context!;
   const citedSource = context.spans.find(span => span.id === answers.get(good.id).answer!.claims[0]!.evidenceIds[0])!.sourceId;
   const uncitedSource = context.sources.find(source => source.sourceId !== citedSource)!.sourceId;
-  runtime.mode = 'hold'; const active = ask(answers); await entered(runtime);
+  runtime.mode = 'hold'; const active = await ask(answers); await entered(runtime);
   catalog.revoke(uncitedSource);
   assert.equal(answers.get(good.id).context, null); assert.equal(answers.get(good.id).answer, null);
   runtime.release!(); await answers.idle();
@@ -112,18 +112,18 @@ test('revoking an uncited input stops the runtime and purges persisted derivativ
 
 test('policy changes reject a reviewed context and cannot publish a late answer', async t => {
   const { answers, runtime, catalog } = await setup(t);
-  const context = answers.preview('local topic');
-  runtime.mode = 'hold'; const active = ask(answers); await entered(runtime);
+  const context = await answers.preview('local topic');
+  runtime.mode = 'hold'; const active = await ask(answers); await entered(runtime);
   catalog.updatePolicy(['README.md']);
   runtime.release!(); await answers.idle();
   assert.equal(answers.get(active.id).status, 'fenced');
-  assert.throws(() => answers.start('stale', context.question, context.buildId, context.inputHash), /policy/);
+  await assert.rejects(async () => (await answers.start('stale', context.question, context.buildId, context.inputHash)), /policy/);
 });
 
 test('restart distinguishes recorded dispatch from preparation and never repeats external execution', async t => {
   const { answers, store, runtime, close, directory } = await setup(t);
-  const first = ask(answers); await answers.idle();
-  const second = ask(answers); await answers.idle();
+  const first = await ask(answers); await answers.idle();
+  const second = await ask(answers); await answers.idle();
   // Simulate process loss at each durable boundary, before any completed result.
   store.run("UPDATE answer_attempts SET status='preparing',result=NULL,usage=NULL,dispatchedAt=NULL WHERE id=?", first.id);
   store.run("UPDATE answer_attempts SET status='running',result=NULL,usage=NULL WHERE id=?", second.id);
@@ -139,7 +139,7 @@ test('restart distinguishes recorded dispatch from preparation and never repeats
 
 test('new prompt/schema identities persist while older answer prose remains readable unchanged', async t => {
   const { answers, store } = await setup(t);
-  const current = ask(answers); await answers.idle();
+  const current = await ask(answers); await answers.idle();
   assert.equal(answers.get(current.id).schemaVersion, 'cited-answer-v3');
   assert.equal(answers.get(current.id).promptVersion, 'loredock-answer-v9');
   assert.equal(answers.get(current.id).context!.retrievalVersion, 'fts-question-v7');

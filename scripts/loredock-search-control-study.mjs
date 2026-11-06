@@ -139,7 +139,7 @@ export async function compareSearchControl(services, fixture, {expectedFiles, ex
           const expression = query.trim().split(/\s+/).slice(0,20).map(term => '"'+term.replaceAll('"','""')+'"').join(' AND ');
           const questionExpression = questionTerms(query).map(term => '"'+term+'"').join(' OR ');
           queries.push({buildId, query, result: {literal: catalog.search(query, buildId), scores: ranked(catalog.store, 'search', expression, buildId),
-            questionScores: ranked(catalog.store, 'question_search', questionExpression, buildId), context: retrieveAnswerContext(catalog, query, buildId)}});
+            questionScores: ranked(catalog.store, 'question_search', questionExpression, buildId), context: await retrieveAnswerContext(catalog, query, buildId)}});
         }
       }
       await checkpoint(result); await closeVariants();

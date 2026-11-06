@@ -87,7 +87,7 @@ test('typed saved-tree proof preserves independent SHA-256 byte ordering and opa
 });
 
 for (const variant of ['small', 'ambiguity', 'truncated', 'topic', 'long-chain']) test(`typed paths preserve qualified ${variant} semantics and legacy derivations`, async t => {
-  const s = await setup(t, variant); await s.analyze('facts'); const legacy = codeFlows(s.catalog, s.buildId), before = s.counters();
+  const s = await setup(t, variant); await s.analyze('facts'); const legacy = await codeFlows(s.catalog, s.buildId), before = s.counters();
   const reference = await bindingProjection(services, s.analysis, s.buildId); assert.equal(reference.status, 'available');
   const service = new CodePaths(s.analysis), value = available(await service.read({ buildId: s.buildId }));
   assert.ok(value.graph); assert.deepEqual(normalized(value.graph), normalized(reference.graph));
@@ -95,7 +95,7 @@ for (const variant of ['small', 'ambiguity', 'truncated', 'topic', 'long-chain']
   assert.equal(value.coverage.resolution.alternativeReferences, reference.resolution.coverage.alternativeReferences);
   assert.deepEqual(value.coverage.omissions, reference.resolution.omissions);
   assert.deepEqual(available(await service.read({ buildId: s.buildId })), value);
-  assert.deepEqual(codeFlows(s.catalog, s.buildId), legacy); assert.deepEqual(s.counters(), before);
+  assert.deepEqual(await codeFlows(s.catalog, s.buildId), legacy); assert.deepEqual(s.counters(), before);
   assert.ok(!('resolution' in value) && !('payloads' in value) && !('units' in value));
   for (const ref of Object.values({ ...value.graph.evidence, ...value.roots.evidence })) {
     const original = s.catalog.evidence(ref.id);

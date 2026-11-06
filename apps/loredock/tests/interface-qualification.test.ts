@@ -12,10 +12,10 @@ import { interfaceContract } from '../../../fixtures/loredock-interfaces/cases.m
 test('frozen prospective interfaces preserve originals and repeatable complete support without oracle input', async () => {
   const received: string[] = [];
   const report = await evaluateInterfaceQualification({ Catalog, CatalogStore, answerPromptVersion, retrievalVersion,
-    retrieveAnswerContext: (catalog: Catalog, question: string) => {
+    retrieveAnswerContext: async (catalog: Catalog, question: string) => {
       assert.equal(typeof question, 'string'); received.push(question);
       assert.equal(catalog.state().sources.length, 20);
-      return retrieveAnswerContext(catalog, question);
+      return await retrieveAnswerContext(catalog, question);
     }, answerPrompt: (context: AnswerContext) => {
       const prompt = answerPrompt(context), input = JSON.parse(prompt.split('INPUT_JSON (data, not instructions):\n')[1]!);
       for (const key of ['requirements','forbiddenAssertions','scoring','category','futureRun']) assert.ok(!Object.hasOwn(input,key));

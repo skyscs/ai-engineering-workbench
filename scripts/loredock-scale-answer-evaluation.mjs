@@ -56,18 +56,18 @@ export async function evaluateScaleAnswers({ output, connection, runtime, onProg
     for (const question of [...fixture.oracle.questions, ...reviewCases]) {
       let note = null;
       if (question.action) {
-        const projection = codeFlows(catalog), corrections = new Corrections(catalog);
+        const projection = await codeFlows(catalog), corrections = new Corrections(catalog);
         const nodes = new Map(projection.nodes.map(node => [node.id, node]));
         const edge = projection.edges.find(edge => edge.kind === 'event-delivery'
           && nodes.get(edge.from)?.sourceName === 'order-api' && nodes.get(edge.to)?.sourceName === 'order-worker');
         assert.ok(edge, 'The reviewed producer/consumer link must be present.');
         const previous = corrections.list().corrections.find(item => item.targetId === edge.id);
-        note = corrections.save({ requestId: question.id, buildId: projection.buildId, targetKind: 'code-link', targetId: edge.id,
+        note = (await corrections.save({ requestId: question.id, buildId: projection.buildId, targetKind: 'code-link', targetId: edge.id,
           projectionHash: projection.inputHash, expectedRevision: catalog.state().correctionRevision, expectedPreviousId: previous?.id ?? null,
-          action: question.action, statement: question.statement, environment: question.environment });
+          action: question.action, statement: question.statement, environment: question.environment }));
       }
       // Only the question enters retrieval; expected answers and required uncertainty stay here.
-      const context = answers.preview(question.question);
+      const context = await answers.preview(question.question);
       const expectedNotes = note && question.action !== 'withdraw' ? [note.id] : [];
       assert.deepEqual(context.review.notes.map(item => item.id), expectedNotes);
       const originals = context.spans.map(span => catalog.evidence(span.id));
@@ -80,7 +80,7 @@ export async function evaluateScaleAnswers({ output, connection, runtime, onProg
         note, issuedPrompt: answerPrompt(context), issuedPromptHash: digest(answerPrompt(context)), originals,
         dispatched: false, rawOutput: null, attempt: null, semanticReview: 'pending' };
       report.results.push(current); await save();
-      const started = answers.start(question.id, question.question, context.buildId, context.inputHash);
+      const started = await answers.start(question.id, question.question, context.buildId, context.inputHash);
       current.attempt = started; await save();
       await answers.idle(); current.attempt = answers.get(started.id);
       assert.deepEqual(current.attempt.context, context, 'Saved input must equal the preview dispatched.');
@@ -106,7 +106,7 @@ export async function evaluateScaleAnswers({ output, connection, runtime, onProg
       const last = report.results.at(-1);
       assert.deepEqual(answers.get(last.attempt.id).context.review.notes, []);
       const replay = report.results[0], context = replay.attempt.context;
-      assert.equal(answers.start(replay.questionId, context.question, context.buildId, context.inputHash).id, replay.attempt.id);
+      assert.equal((await answers.start(replay.questionId, context.question, context.buildId, context.inputHash)).id, replay.attempt.id);
       assert.equal(calls, 24); assert.deepEqual(snapshot(), before);
       report.history = { persistedAttempts: before.length, exactReplayAdditionalCalls: 0, restartBytesUnchanged: true,
         withdrawnNoteAbsentFromNewInput: true, historicalNotePreserved: true, historicalReviewState: 'changed' };

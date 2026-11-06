@@ -107,8 +107,8 @@ test('linked original evidence, review and scope remain separate from immutable 
   const paths = fixture.manifest.sources.map(source => path.join(fixture.root, 'sources', source.id));
   const preview = await catalog.previewSources(paths); await catalog.registerSources({ paths, previewHash: preview.previewHash, requestId: 'links' });
   const state = catalog.state(); catalog.start('links', state.sourceSetVersion, state.policyVersion); await catalog.idle();
-  const question = 'OrderPlaced tenantId', context = retrieveAnswerContext(catalog, question), selection = selectSourceCandidates(context);
-  const result = sourceCandidatePreview(catalog, question);
+  const question = 'OrderPlaced tenantId', context = await retrieveAnswerContext(catalog, question), selection = selectSourceCandidates(context);
+  const result = await sourceCandidatePreview(catalog, question);
   assert.deepEqual(result.suggested, selection.suggested); assert.equal(result.inputHash, context.inputHash);
   assert.ok(result.related.sources.length > 0);
   for (const source of result.related.sources) for (const link of source.links) for (const ref of link.evidence) {
@@ -116,9 +116,9 @@ test('linked original evidence, review and scope remain separate from immutable 
     for (const key of ['sourceId', 'sourceName', 'revision', 'path', 'startLine', 'endLine', 'contentHash', 'spanHash'] as const) assert.equal(ref[key], original[key]);
     assert.equal(original.buildId, result.buildId); assert.equal('text' in ref, false);
   }
-  const firstPage = sourceCandidatePreview(catalog, 'OrderPlaced tenantId field change breaks projection and notification processing. Locate the shared declaration, publisher and both supplied consumer implementations before choosing an investigation scope.');
+  const firstPage = await sourceCandidatePreview(catalog, 'OrderPlaced tenantId field change breaks projection and notification processing. Locate the shared declaration, publisher and both supplied consumer implementations before choosing an investigation scope.');
   assert.ok(firstPage.related.page.nextOffset !== null);
-  const secondPage = sourceCandidatePreview(catalog, firstPage.question, firstPage.buildId, firstPage.related.page.nextOffset);
+  const secondPage = await sourceCandidatePreview(catalog, firstPage.question, firstPage.buildId, firstPage.related.page.nextOffset);
   assert.deepEqual(secondPage.suggested, firstPage.suggested); assert.deepEqual(secondPage.otherMatches, firstPage.otherMatches);
   assert.equal(secondPage.inputHash, firstPage.inputHash); assert.notEqual(secondPage.previewHash, firstPage.previewHash);
   assert.ok(secondPage.related.sources.every(source => !firstPage.related.sources.some(prior => prior.sourceId === source.sourceId)));
@@ -128,18 +128,18 @@ test('linked original evidence, review and scope remain separate from immutable 
     assert.equal(original.contentHash, ref.contentHash); assert.equal(original.spanHash, ref.spanHash);
   }
   const link = result.related.sources[0]!.links[0]!, corrections = new Corrections(catalog);
-  const note = corrections.save({ requestId: 'linked-review', buildId: result.buildId, targetKind: link.origin === 'code' ? 'code-link' : 'declaration-link',
+  const note = await corrections.save({ requestId: 'linked-review', buildId: result.buildId, targetKind: link.origin === 'code' ? 'code-link' : 'declaration-link',
     targetId: link.id, projectionHash: link.origin === 'code' ? result.related.projections.code.inputHash : result.related.projections.declarations.inputHash,
     expectedRevision: state.correctionRevision, expectedPreviousId: null, action: 'dispute', statement: 'This static link requires deployment evidence.', environment: null });
-  const reviewed = sourceCandidatePreview(catalog, question);
+  const reviewed = await sourceCandidatePreview(catalog, question);
   assert.ok(reviewed.review!.notes.some(item => item.id === note.id && item.verification === 'unverified'));
   assert.deepEqual(reviewed.related.sources, result.related.sources);
   assert.notEqual(reviewed.previewHash, result.previewHash);
   const removed = result.related.sources[0]!; catalog.revoke(removed.sourceId);
-  const revoked = sourceCandidatePreview(catalog, question, result.buildId);
+  const revoked = await sourceCandidatePreview(catalog, question, result.buildId);
   assert.ok(revoked.related.sources.every(source => source.sourceId !== removed.sourceId));
   for (const source of revoked.related.sources) for (const link of source.links) assert.ok(link.evidence.every(ref => ref.sourceId !== removed.sourceId));
-  catalog.updatePolicy(['config']); assert.throws(() => sourceCandidatePreview(catalog, question, result.buildId), /policy/);
-  assert.throws(() => sourceCandidatePreview(catalog, firstPage.question, firstPage.buildId, 4), /policy/);
+  catalog.updatePolicy(['config']); await assert.rejects(async () => (await sourceCandidatePreview(catalog, question, result.buildId)), /policy/);
+  await assert.rejects(async () => (await sourceCandidatePreview(catalog, firstPage.question, firstPage.buildId, 4)), /policy/);
   assert.equal(store.all('SELECT id FROM answer_attempts').length, 0);
 });

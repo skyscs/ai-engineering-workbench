@@ -35,7 +35,7 @@ export async function evaluateScaleReadiness() {
     phase = performance.now(); const overview = projectOrientation(catalog), overviewMs = performance.now() - phase;
     assert.equal(overview.coverage.withContext, 20); assert.equal(overview.sources.length, 20);
     for (const card of overview.sources) for (const id of card.context.evidenceIds) assert.equal(catalog.evidence(id).sourceId, card.sourceId);
-    const declarations = declarationMap(catalog), flows = codeFlows(catalog);
+    const declarations = declarationMap(catalog), flows = await codeFlows(catalog);
     const refresh = await index('unchanged-refresh'); assert.equal(refresh.refresh.reusedFiles, 79); assert.equal(refresh.refresh.gitReadAttempts, 20);
     const retained = store.one('SELECT coalesce(sum(length(raw)),0) rawBytes FROM files');
     const retainedSpans = store.one('SELECT coalesce(sum(length(CAST(text AS BLOB))),0) textBytes FROM spans');

@@ -34,8 +34,8 @@ try {
   await save();
   for (const question of fixture.oracle.questions) {
     rawOutput = null;
-    const context = answers.preview(question.question);
-    const started = answers.start(question.id, question.question, context.buildId, context.inputHash);
+    const context = await answers.preview(question.question);
+    const started = await answers.start(question.id, question.question, context.buildId, context.inputHash);
     await answers.idle();
     const attempt = answers.get(started.id);
     const retrieved = fixture.manifest.evidence.filter(expected => context.spans.some(span =>

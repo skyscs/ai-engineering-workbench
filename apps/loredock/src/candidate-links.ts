@@ -7,6 +7,7 @@ import type { MapEvidence } from './system-map-types.js';
 import { searchText } from './search-text.js';
 import { CatalogError } from './types.js';
 import { defaults } from './store.js';
+import { LegacyReadOperation } from './legacy-read-operation.js';
 
 export const candidateLinkLimits = { sources: 4, linksPerSource: 2 } as const;
 export function relatedPageOffset(value: unknown): number {
@@ -35,7 +36,7 @@ export interface CandidateLinks {
   limits: typeof candidateLinkLimits;
 }
 export interface CandidateLinkContext extends CandidateLinks {
-  projections: { code: { version: string; inputHash: string; coverage: ReturnType<typeof codeFlows>['coverage']; omissions: Record<string, number> };
+  projections: { code: { version: string; inputHash: string; coverage: Awaited<ReturnType<typeof codeFlows>>['coverage']; omissions: Record<string, number> };
     declarations: { version: string; inputHash: string; coverage: ReturnType<typeof declarationMap>['coverage']; omissions: Record<string, number> } };
   gaps: string[];
 }
@@ -102,9 +103,16 @@ export function selectCandidateLinks(context: Pick<AnswerContext, 'sources' | 's
     omittedLinks: eligibleLinks - sources.reduce((sum, row) => sum + row.links.length, 0), limits: candidateLinkLimits };
 }
 
-export function candidateLinkContext(catalog: Catalog, context: AnswerContext, selection: CandidateSelection, pageOffset: unknown = 0): CandidateLinkContext {
+export async function candidateLinkContext(catalog: Catalog, context: AnswerContext, selection: CandidateSelection, pageOffset: unknown = 0,
+  operation = new LegacyReadOperation(catalog)): Promise<CandidateLinkContext> {
+  const code = await codeFlows(catalog, context.buildId, operation);
+  return operation.read(() => composeCandidateLinks(catalog, context, selection, code, pageOffset));
+}
+
+function composeCandidateLinks(catalog: Catalog, context: AnswerContext, selection: CandidateSelection,
+  code: Awaited<ReturnType<typeof codeFlows>>, pageOffset: unknown): CandidateLinkContext {
   const offset = relatedPageOffset(pageOffset);
-  const declarations = declarationMap(catalog, context.buildId), code = codeFlows(catalog, context.buildId);
+  const declarations = declarationMap(catalog, context.buildId);
   const links: CandidateLink[] = [], originals = new Map<string, LinkEvidence>();
   for (const projection of [declarations, code]) {
     if (projection.buildId !== context.buildId || projection.policyVersion !== context.policyVersion

@@ -1,0 +1,159 @@
+{
+  "plan": {
+    "version": "ordinary-async-legacy/1",
+    "applicationBase": "278830b437727181385d61b958bb66191d9a9175",
+    "order": [
+      "supported",
+      "reviewed",
+      "refresh",
+      "reapplied",
+      "contradictory-topic",
+      "source-only",
+      "saved-v1",
+      "saved-v2"
+    ],
+    "questions": [
+      "How does dispatch send the site header?",
+      "How does portal submit an order to order-worker?",
+      "Which deployment is active?"
+    ],
+    "compare": "Exact JSON serialization, order, identities, hashes, omissions, coverage, original text and prompt bytes.",
+    "volatile": "New correction IDs and timestamps are recorded once; read and idempotent replay compare exact saved values.",
+    "saved": "Copy stopped ordinary Task 131 and Task 133 catalogs before opening. Never open or mutate retained originals.",
+    "repeatPolicy": "Keep the first baseline and every failure. Later comparisons use fresh copies; never overwrite the baseline.",
+    "realModelCalls": 0,
+    "controlledModelCalls": 0,
+    "reservedFamilyReads": 0,
+    "resourceQualification": false
+  },
+  "files": [
+    {
+      "path": "supported/loredock.db.gz",
+      "source": "/home/toshiba/aew/task137-legacy-baseline-first/run/supported/data/loredock.db",
+      "bytes": 356352,
+      "sha256": "10e7006ae752765d8099beeab8158984cbf3a5de072694119a249131ffdef7fa",
+      "gzipBytes": 30570,
+      "gzipSha256": "6a93b0502a2beb3caa75f09e8da3098acaf5f0deb53efbc212e4cd7b274ebda0"
+    },
+    {
+      "path": "supported/expected.json.gz",
+      "source": "/home/toshiba/aew/task137-legacy-baseline-first/run/supported/expected.json",
+      "bytes": 335551,
+      "sha256": "95f46c467a7f8176af9db57f0fce438173dc721c6be2d9f1cf9584e029860355",
+      "gzipBytes": 55051,
+      "gzipSha256": "bce14c4ed27420416ac0c7ca3cb00207d33b23c512ef7d87182cd5d0a403b152"
+    },
+    {
+      "path": "reviewed/loredock.db.gz",
+      "source": "/home/toshiba/aew/task137-legacy-baseline-first/run/reviewed/data/loredock.db",
+      "bytes": 356352,
+      "sha256": "d2380874f9db056aafd8d854f887b92b1aff0d18e6ed81d62e0efe8db97b2661",
+      "gzipBytes": 32441,
+      "gzipSha256": "eeb5ea252b177b8d52ad6ab312efb72891b49e5a7ad3b58a0db9d9b3034f6a7d"
+    },
+    {
+      "path": "reviewed/expected.json.gz",
+      "source": "/home/toshiba/aew/task137-legacy-baseline-first/run/reviewed/expected.json",
+      "bytes": 369602,
+      "sha256": "53626d89b66ccf0872b71b24bcaf529812d3ca1ef36c0e0014d220f9542d6dd1",
+      "gzipBytes": 59358,
+      "gzipSha256": "aab1e7cf59093bd109710ee763f7c29967d54f3f794203607d531ccd2f5e5891"
+    },
+    {
+      "path": "refresh/loredock.db.gz",
+      "source": "/home/toshiba/aew/task137-legacy-baseline-first/run/refresh/data/loredock.db",
+      "bytes": 425984,
+      "sha256": "96056bc5561223b30cf9ea8dad92962a34c430aa98e2d8f158df24c73eb72936",
+      "gzipBytes": 53285,
+      "gzipSha256": "ec0bcb15682d6161629bc751277aaea2e7c22a3cc38ef14cc832eee6e35eb1b3"
+    },
+    {
+      "path": "refresh/expected.json.gz",
+      "source": "/home/toshiba/aew/task137-legacy-baseline-first/run/refresh/expected.json",
+      "bytes": 347314,
+      "sha256": "2aee78dce288bd457eb23ee966e6ce32ce4d953225ec7dacf5014cb989941b18",
+      "gzipBytes": 56954,
+      "gzipSha256": "0f854ca7bd3e60b0b7cfff6e11adf79290a20b59d8dd8a4df8322234b83de957"
+    },
+    {
+      "path": "reapplied/loredock.db.gz",
+      "source": "/home/toshiba/aew/task137-legacy-baseline-first/run/reapplied/data/loredock.db",
+      "bytes": 434176,
+      "sha256": "8a41812e1238b3f3c81806d593650f457d1936861e564b96ba2ae2c77f391a07",
+      "gzipBytes": 55239,
+      "gzipSha256": "37de3c24b5be4bd7b222b1dc8085bb16d30cd4a2a2b0f51b024fac1f99c63187"
+    },
+    {
+      "path": "reapplied/expected.json.gz",
+      "source": "/home/toshiba/aew/task137-legacy-baseline-first/run/reapplied/expected.json",
+      "bytes": 387537,
+      "sha256": "21c275572817b44e68d51232f0f161662386bc54dd8583c11ff6fef7f2299856",
+      "gzipBytes": 61678,
+      "gzipSha256": "3faa898b12cba7a6c5126d5f6254594ae897fec57105ea8ad4d1adec7e8b0164"
+    },
+    {
+      "path": "contradictory-topic/loredock.db.gz",
+      "source": "/home/toshiba/aew/task137-legacy-baseline-first/run/contradictory-topic/data/loredock.db",
+      "bytes": 512000,
+      "sha256": "3e249dc1c77ac2cee83e7801ab67cd539ace84752188b583883a80bc2b8847ed",
+      "gzipBytes": 75113,
+      "gzipSha256": "602f7a595b1502758ce21a16ef73ed80dd47c9058ceaafab4352d6cb459ec63e"
+    },
+    {
+      "path": "contradictory-topic/expected.json.gz",
+      "source": "/home/toshiba/aew/task137-legacy-baseline-first/run/contradictory-topic/expected.json",
+      "bytes": 340369,
+      "sha256": "bc3d27c435dde9a344b86b9d97c96c27c856ff8a0e51a45bcba264c4c660a845",
+      "gzipBytes": 56202,
+      "gzipSha256": "6ed96c25397aca3a54e138670655f7b8299a9e41dffc4ef831e00ec8c3494b9c"
+    },
+    {
+      "path": "source-only/loredock.db.gz",
+      "source": "/home/toshiba/aew/task137-legacy-baseline-first/run/source-only/data/loredock.db",
+      "bytes": 278528,
+      "sha256": "861ccd3f614850e42abf2188cd51013f12c272aceedd4a9ad600b7197f4280ec",
+      "gzipBytes": 8181,
+      "gzipSha256": "868f3ae52c4577cdc0c47602f7cee7087da7e73250901eae1da526790bd8e00f"
+    },
+    {
+      "path": "source-only/expected.json.gz",
+      "source": "/home/toshiba/aew/task137-legacy-baseline-first/run/source-only/expected.json",
+      "bytes": 87701,
+      "sha256": "6f5bf74c3a2b04c22bf4b570dbe0de4d3cd094e1dd34c22a973f6af411ed3dd4",
+      "gzipBytes": 7614,
+      "gzipSha256": "59556a4ea10b1cb4744569789c847757512ade0fbcbfbffd8efd430adce0aa1a"
+    },
+    {
+      "path": "saved-v1/loredock.db.gz",
+      "source": "/home/toshiba/aew/task137-legacy-baseline-first/run/saved-v1/data/loredock.db",
+      "bytes": 1929216,
+      "sha256": "1528b44e523ea69855f42a664edbf5797405f2013a4122b432cfc52901043cf7",
+      "gzipBytes": 327290,
+      "gzipSha256": "b93f731a6c919cd9d21f2a7ec7145a90d10e1d582a47c63f523dc439a14b2d91"
+    },
+    {
+      "path": "saved-v1/expected.json.gz",
+      "source": "/home/toshiba/aew/task137-legacy-baseline-first/run/saved-v1/expected.json",
+      "bytes": 3038923,
+      "sha256": "fe5433d551ee54142bf873c7a2583c88176a9f0888522085e1dd44a3de37672c",
+      "gzipBytes": 423768,
+      "gzipSha256": "2659a1626923772a5170562b58a9f0cb16176e591ed8dd413e658e62c331c0f1"
+    },
+    {
+      "path": "saved-v2/loredock.db.gz",
+      "source": "/home/toshiba/aew/task137-legacy-baseline-first/run/saved-v2/data/loredock.db",
+      "bytes": 442368,
+      "sha256": "f8d8c5f5053264be41d910c3eaa35127da6464a0314a52786a7332d8728cd87b",
+      "gzipBytes": 51590,
+      "gzipSha256": "2b115f23dca15908ec814ea040d7d298ce42949006f9942613c8a071927db19a"
+    },
+    {
+      "path": "saved-v2/expected.json.gz",
+      "source": "/home/toshiba/aew/task137-legacy-baseline-first/run/saved-v2/expected.json",
+      "bytes": 189738,
+      "sha256": "cb9c0452556f096105baf70a8d5c07ba0b8f324015935009dd7e4600983055b8",
+      "gzipBytes": 35081,
+      "gzipSha256": "beb00fbebba00fa3b30261086fb23066fabbfba186164888dfa79eb3777bcff6"
+    }
+  ]
+}

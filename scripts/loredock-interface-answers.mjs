@@ -100,7 +100,7 @@ export async function evaluateInterfaceAnswers({ output, contract, runtime, runL
     const state = catalog.state(); catalog.start('interface-answers', state.sourceSetVersion, state.policyVersion); await catalog.idle();
     const { executable, configHome, profile } = contract.identity; await answers.configure({ executable, configHome, profile });
     for (const question of interfaceContract.cases) {
-      const context = answers.preview(question.question), originals = context.spans.map(span => catalog.evidence(span.id));
+      const context = await answers.preview(question.question), originals = context.spans.map(span => catalog.evidence(span.id));
       assert.deepEqual(context.review.notes, []);
       const requirements = question.requirements.map(requirement => measureRequirement(requirement, originals, fixture.manifest));
       const prompt = answerPrompt(context);
@@ -108,7 +108,7 @@ export async function evaluateInterfaceAnswers({ output, contract, runtime, runL
         requirements, issuedPrompt: prompt, issuedPromptHash: digest(prompt), originals,
         dispatched: false, rawOutput: null, attempt: null };
       report.results.push(current); await save();
-      const started = answers.start(question.id, question.question, context.buildId, context.inputHash);
+      const started = await answers.start(question.id, question.question, context.buildId, context.inputHash);
       current.attempt = started; await save();
       await answers.idle(); current.attempt = answers.get(started.id);
       assert.deepEqual(current.attempt.context, context);
@@ -125,7 +125,7 @@ export async function evaluateInterfaceAnswers({ output, contract, runtime, runL
       const snapshot = () => store.all('SELECT id,context,result FROM answer_attempts ORDER BY id');
       const before = snapshot(); await close(); open(); assert.deepEqual(snapshot(), before);
       const replay = report.results[0], context = replay.attempt.context;
-      assert.equal(answers.start(replay.questionId, context.question, context.buildId, context.inputHash).id, replay.attempt.id);
+      assert.equal((await answers.start(replay.questionId, context.question, context.buildId, context.inputHash)).id, replay.attempt.id);
       assert.equal(calls, 14); assert.deepEqual(snapshot(), before);
       report.history = { persistedAttempts: before.length, restartBytesUnchanged: true, exactReplayAdditionalCalls: 0 };
       catalog.revoke(context.sources[0].sourceId);

@@ -1,0 +1,28 @@
+{
+  "trees": 8,
+  "entries": 4053,
+  "logs": 29,
+  "portableFiles": 16,
+  "changedExistingEmittedModules": [
+    "apps/loredock/dist/answer-context.js",
+    "apps/loredock/dist/answer-interfaces.js",
+    "apps/loredock/dist/answers.js",
+    "apps/loredock/dist/app.js",
+    "apps/loredock/dist/candidate-links.js",
+    "apps/loredock/dist/catalog.js",
+    "apps/loredock/dist/code-flows.js",
+    "apps/loredock/dist/corrections.js",
+    "apps/loredock/dist/prepared-answer.js",
+    "apps/loredock/dist/question-preparation.js",
+    "apps/loredock/dist/question-witness.js",
+    "apps/loredock/dist/reconciliation.js",
+    "apps/loredock/dist/source-candidates.js"
+  ],
+  "oldEmittedModules": 91,
+  "originalTreesUnchanged": true,
+  "frozenDriversUnchanged": true,
+  "primaryCheckoutUnchanged": true,
+  "documentLinks": 642,
+  "modelCalls": 0,
+  "resourceQualification": false
+}

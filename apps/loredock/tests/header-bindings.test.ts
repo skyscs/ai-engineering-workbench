@@ -25,7 +25,7 @@ test('an independent HTTP candidate exposes a literal header gap with original e
     await catalog.addSource(path.join(fixture.root, 'sources', source));
   }
   const state = catalog.state(); catalog.start('headers', state.sourceSetVersion, state.policyVersion); await catalog.idle();
-  const projection = codeFlows(catalog), request = projection.nodes.find(node => node.kind === 'http-request' && node.path === 'src/receipt.ts')!;
+  const projection = await codeFlows(catalog), request = projection.nodes.find(node => node.kind === 'http-request' && node.path === 'src/receipt.ts')!;
   const edge = projection.edges.find(edge => edge.kind === 'http-target' && edge.from === request.id)!;
   assert.equal(edge.status, 'candidate'); assert.ok('headerCheck' in edge);
   assert.equal((edge.headerCheck as { status: string }).status, 'gap');

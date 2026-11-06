@@ -53,7 +53,7 @@ function validReferences(value: CodeFlows, catalog: Catalog) {
 }
 
 test('two partial cited outlines join both clients to the shared handler and candidate subscriber/write', async t => {
-  const { catalog, fixture } = await setup(t), value = codeFlows(catalog);
+  const { catalog, fixture } = await setup(t), value = await codeFlows(catalog);
   assert.equal(value.flows.length, 2); assert.equal(value.coverage.candidateDocuments, 5);
   assert.equal(value.flows[0]!.title, 'Vue action · Checkout.vue'); assert.equal(value.flows[1]!.title, 'Dojo action · orders.js');
   for (const flow of value.flows) {
@@ -73,20 +73,20 @@ test('two partial cited outlines join both clients to the shared handler and can
   assert.ok(event.evidenceIds.some(id => value.evidence[id]!.path === 'contracts/OrderPlaced.json'));
   assert.ok(event.evidenceIds.some(id => value.evidence[id]!.path === 'config/local.json'));
   validReferences(value, catalog);
-  assert.equal(value.inputHash, codeFlows(catalog).inputHash);
+  assert.equal(value.inputHash, (await codeFlows(catalog)).inputHash);
   assert.equal(JSON.stringify(value).includes(fixture.root), false);
   for (const repo of repos) assert.equal(fixtureGit(fixture.root, repo, ['status', '--porcelain=v1']), '');
 });
 
 test('a changed same-name record cannot create a delivery link and old flows stay pinned', async t => {
-  const setupResult = await setup(t), before = codeFlows(setupResult.catalog), file = 'src/main/java/OrderConsumer.java';
+  const setupResult = await setup(t), before = await codeFlows(setupResult.catalog), file = 'src/main/java/OrderConsumer.java';
   const source = await readFile(target(setupResult.fixture, 'order-worker', file), 'utf8');
   await put(setupResult.fixture, 'order-worker', file, source.replace('long createdAtMillis', 'String createdAtMillis')); commit(setupResult.fixture);
   await setupResult.index('changed-record');
-  const after = codeFlows(setupResult.catalog);
+  const after = await codeFlows(setupResult.catalog);
   assert.equal(after.edges.some(edge => edge.kind === 'event-delivery'), false);
   assert.ok(after.omissions['unresolved-consumer-method']);
-  const old = codeFlows(setupResult.catalog, before.buildId);
+  const old = await codeFlows(setupResult.catalog, before.buildId);
   assert.equal(old.stale, true); assert.ok(old.flows.every(flow => old.nodes.find(node => node.id === flow.nodeIds.at(-1))!.kind === 'document-write'));
   assert.deepEqual(old.nodes.map(node => node.id), before.nodes.map(node => node.id));
 });
@@ -104,7 +104,7 @@ test('distinct explicit environments, differing contracts and contradictory lite
         await put(fixture, 'order-api', file, source.replace('publisher.publish(topic,', 'publisher.publish("different-topic",'));
       }
     });
-    assert.equal(codeFlows(catalog).edges.some(edge => edge.kind === 'event-delivery'), false);
+    assert.equal((await codeFlows(catalog)).edges.some(edge => edge.kind === 'event-delivery'), false);
   });
 });
 
@@ -113,7 +113,7 @@ test('ambiguous route handlers and relative imports are not resolved by names al
     await put(fixture, 'order-api', 'other/Orders.java', 'final class Orders { Accepted accept(String orderId, String tenantId) { return null; } }');
     await put(fixture, 'portal', 'src/orders.js', `export function submitOrder() { return fetch('/api/orders', {method:'POST'}); }`);
   });
-  const value = codeFlows(catalog);
+  const value = await codeFlows(catalog);
   assert.equal(value.edges.some(edge => edge.kind === 'implements'), false); assert.ok(value.omissions['ambiguous-handler']);
   assert.equal(value.edges.some(edge => edge.kind === 'calls'), false); assert.ok(value.omissions['ambiguous-import']);
   assert.ok(value.flows.every(flow => !flow.nodeIds.some(id => value.nodes.find(node => node.id === id)!.kind === 'event-publish')));
@@ -124,7 +124,7 @@ test('dynamic URLs and unsupported code stay searchable without manufacturing fl
     await put(fixture, 'portal', 'src/orders.ts', 'export function submitOrder() { return fetch(dynamicEndpoint); }');
     await put(fixture, 'portal', 'legacy/orders.js', 'const note = "request.post(\'/legacy/orders\')";');
   });
-  const value = codeFlows(catalog);
+  const value = await codeFlows(catalog);
   assert.equal(value.nodes.some(node => node.kind === 'http-request'), false);
   assert.ok(value.omissions['adapter:dynamic-or-unsupported-http-request']);
   assert.ok(catalog.search('dynamicEndpoint').hits.length);
@@ -132,35 +132,35 @@ test('dynamic URLs and unsupported code stay searchable without manufacturing fl
 });
 
 test('flow projection survives restart, removes revoked evidence and fences old-policy reads', async t => {
-  const setupResult = await setup(t), before = codeFlows(setupResult.catalog);
-  await setupResult.restart(); assert.deepEqual(codeFlows(setupResult.catalog), before);
+  const setupResult = await setup(t), before = await codeFlows(setupResult.catalog);
+  await setupResult.restart(); assert.deepEqual(await codeFlows(setupResult.catalog), before);
   const api = setupResult.catalog.state().sources.find(source => source.name === 'order-api')!;
-  setupResult.catalog.revoke(api.id); const revoked = codeFlows(setupResult.catalog);
+  setupResult.catalog.revoke(api.id); const revoked = await codeFlows(setupResult.catalog);
   assert.equal(revoked.nodes.some(node => node.sourceId === api.id), false);
   assert.equal(Object.values(revoked.evidence).some(ref => ref.sourceName === 'order-api'), false);
   assert.equal(revoked.edges.some(edge => edge.kind === 'event-delivery'), false);
   assert.equal(revoked.stale, true); validReferences(revoked, setupResult.catalog);
   for (const source of setupResult.catalog.state().sources.filter(source => source.status === 'active')) setupResult.catalog.revoke(source.id);
-  assert.equal(codeFlows(setupResult.catalog).nodes.length, 0); assert.equal(codeFlows(setupResult.catalog).flows.length, 0);
+  assert.equal((await codeFlows(setupResult.catalog)).nodes.length, 0); assert.equal((await codeFlows(setupResult.catalog)).flows.length, 0);
   setupResult.catalog.updatePolicy(['legacy']);
-  assert.throws(() => codeFlows(setupResult.catalog, before.buildId), /old policy/);
+  await assert.rejects(async () => (await codeFlows(setupResult.catalog, before.buildId)), /old policy/);
 });
 
 test('corrupted or missing code evidence rejects whole-file analysis', async t => {
   const { catalog, store } = await setup(t, async fixture => {
     await put(fixture, 'portal', 'multi.ts', '\n'.repeat(250) + 'export function extra(){ return fetch("/api/orders", {method:"POST"}); }');
   });
-  const before = codeFlows(catalog), ref = Object.values(before.evidence).find(ref => ref.path === 'src/orders.ts')!;
+  const before = await codeFlows(catalog), ref = Object.values(before.evidence).find(ref => ref.path === 'src/orders.ts')!;
   const row = store.one<{ text: string }>('SELECT text FROM spans WHERE id=?', ref.id)!;
   store.run('UPDATE spans SET text=? WHERE id=?', 'Corrupt source', ref.id);
-  assert.throws(() => codeFlows(catalog), /integrity/);
+  await assert.rejects(async () => (await codeFlows(catalog)), /integrity/);
   store.run('UPDATE spans SET text=? WHERE id=?', row.text, ref.id);
   const file = store.one<{ id: string }>("SELECT id FROM files WHERE path='multi.ts'")!;
   const issued = store.all<{ id: string }>('SELECT id FROM spans WHERE fileId=? ORDER BY startLine', file.id);
   assert.equal(issued.length, 3); store.run('DELETE FROM spans WHERE id=?', issued[1]!.id);
-  assert.throws(() => codeFlows(catalog), /complete declaration document/);
+  await assert.rejects(async () => (await codeFlows(catalog)), /complete declaration document/);
   store.run('DELETE FROM spans WHERE fileId=?', file.id);
-  assert.throws(() => codeFlows(catalog), /no issued evidence spans/);
+  await assert.rejects(async () => (await codeFlows(catalog)), /no issued evidence spans/);
 });
 
 test('multi-span code citations retain the distant record, interface and import binding evidence', async t => {
@@ -168,7 +168,7 @@ test('multi-span code citations retain the distant record, interface and import 
     const file = 'src/main/java/Orders.java', source = await readFile(target(fixture, 'order-api', file), 'utf8');
     await put(fixture, 'order-api', file, source.replace('  Accepted accept(', '\n'.repeat(250) + '  Accepted accept('));
   });
-  const value = codeFlows(catalog), publisher = value.nodes.find(node => node.kind === 'event-publish')!;
+  const value = await codeFlows(catalog), publisher = value.nodes.find(node => node.kind === 'event-publish')!;
   assert.ok(publisher.startLine > 240);
   assert.equal(publisher.evidenceIds.length, 3);
   assert.ok(publisher.evidenceIds.some(id => catalog.evidence(id).text.includes('record OrderPlaced')));
@@ -183,7 +183,7 @@ test('document, input, file, span and node limits disclose partial work and pres
     await put(fixture, 'portal', 'z.ts', '\n'.repeat(1000) + 'export function last(){return 0;}');
     await put(fixture, 'order-worker', 'many.ts', Array.from({ length: 100 }, (_, index) => `export function w${index}(){ return fetch('/api/orders', {method:'POST'}); }`).join('\n'));
   });
-  const value = codeFlows(catalog);
+  const value = await codeFlows(catalog);
   for (const reason of ['document-limit', 'file-byte-limit', 'input-byte-limit', 'file-span-limit', 'node-limit']) assert.ok(value.omissions[reason], reason);
   assert.ok(value.nodes.length <= flowLimits.nodes); assert.ok(value.edges.length <= flowLimits.edges);
   assert.ok(value.coverage.parsedBytes <= flowLimits.textBytes); assert.ok(Buffer.byteLength(JSON.stringify(value)) <= flowLimits.outputBytes);
@@ -195,7 +195,7 @@ test('edge and comparison budgets bound repeated candidate paths', async t => {
     await put(fixture, 'order-worker', 'routes.json', JSON.stringify({ routes: Array.from({ length: 100 }, () => ({ method: 'POST', path: '/api/orders', handler: 'Missing.handle' })) }));
     await put(fixture, 'portal', 'many.ts', 'export function many(){' + `fetch('/api/orders', {method:'POST'});`.repeat(35) + '}');
   });
-  const value = codeFlows(catalog);
+  const value = await codeFlows(catalog);
   assert.ok(value.omissions['edge-limit']); assert.ok(value.omissions['comparison-limit']);
   assert.ok(value.edges.length <= flowLimits.edges); validReferences(value, catalog);
 });

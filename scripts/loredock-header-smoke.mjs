@@ -90,7 +90,7 @@ export function dynamic(options) { return fetch('/receipt/dynamic', {headers:opt
   const click = label => evaluate(`(()=>{const b=[...document.querySelectorAll('button')].find(b=>b.textContent.trim()===${JSON.stringify(label)});if(!b||b.disabled)throw Error('Button unavailable');b.click();})()`);
   const question = value => evaluate(`(()=>{const e=document.getElementById('project-question');Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,'value').set.call(e,${JSON.stringify(value)});e.dispatchEvent(new Event('input',{bubbles:true}));})()`);
   const screenshot = async name => writeFile(path.join(output, name), Buffer.from((await page.send('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
-  const graph = codeFlows(catalog), comparisons = graph.edges.filter(edge => edge.headerCheck);
+  const graph = await codeFlows(catalog), comparisons = graph.edges.filter(edge => edge.headerCheck);
   const gap = comparisons.find(edge => edge.headerCheck.status === 'gap' && graph.nodes.find(node => node.id === edge.from).sourceName === 'checkout-bff');
   assert.ok(gap); assert.ok(!graph.flows.some(flow => flow.edgeIds.includes(gap.id)));
   const byPath = requestPath => comparisons.find(edge => graph.nodes.find(node => node.id === edge.from).properties.path === requestPath);

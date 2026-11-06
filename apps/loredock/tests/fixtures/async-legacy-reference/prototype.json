@@ -1,0 +1,63 @@
+{
+  "entries": [
+    "development.mjs",
+    "development-matrix.mjs"
+  ],
+  "files": {
+    "development-matrix.mjs": {
+      "bytes": 3754,
+      "sha256": "71032c2e72273567869ecbec24accf4baf26e3f5f0a616ca5ecd5436f42abe09",
+      "resourceBindings": 2
+    },
+    "matrix.mjs": {
+      "bytes": 15077,
+      "sha256": "7783c3caf9b3682fbd29444df9ccd1598adf25718660a278577a5b32614b4fd5",
+      "resourceBindings": 0
+    },
+    "assessment.mjs": {
+      "bytes": 13793,
+      "sha256": "6c5eedeb4a7859e770e75eff8d2613d4e195049ec6f33a45ab82ae092a5ed1e8",
+      "resourceBindings": 0
+    },
+    "compact.mjs": {
+      "bytes": 6410,
+      "sha256": "28c72b471b5e724f0602b5edbd77c8464f74fa24bae775ee369a12a38d6e75af",
+      "resourceBindings": 0
+    },
+    "selection.mjs": {
+      "bytes": 3455,
+      "sha256": "1fe2bb53191c0f82a88a556e868cd254bb4a8351edb4f269d1245e998c6ff824",
+      "resourceBindings": 0
+    },
+    "boundary-inputs.mjs": {
+      "bytes": 4171,
+      "sha256": "d0c320ba1e14156124a5d4f95925a5199831247bac5dd0283b09da24693eb660",
+      "resourceBindings": 0
+    },
+    "witness.mjs": {
+      "bytes": 2820,
+      "sha256": "ac7c300e57cee10f61e997558d251962461633a288e063ad7f312bea8490c969",
+      "resourceBindings": 0
+    },
+    "prepare.mjs": {
+      "bytes": 9017,
+      "sha256": "db9f3950e01962ab45f76ec3675ff5be789efae1bcfb32c63676d9b7892f7319",
+      "resourceBindings": 0
+    },
+    "candidate-paths.mjs": {
+      "bytes": 13572,
+      "sha256": "a3ab4cb457492eed3c27fcb7852213c98816a33869bfeec10c92882238729833",
+      "resourceBindings": 0
+    },
+    "setup.mjs": {
+      "bytes": 1254,
+      "sha256": "71a09db7d299025d19132cb28e55a43e42f6cefa8f8c913edbb4b0a69301a8b7",
+      "resourceBindings": 0
+    },
+    "development.mjs": {
+      "bytes": 7413,
+      "sha256": "12a9da049d918d0ffb4af4e2c27f4b782002b90ad847ec51db1248d1bbae803d",
+      "resourceBindings": 1
+    }
+  }
+}

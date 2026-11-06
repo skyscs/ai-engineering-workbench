@@ -1,0 +1,318 @@
+{
+  "base": "278830b437727181385d61b958bb66191d9a9175",
+  "files": {
+    "apps/loredock/src/answer-context.ts": {
+      "fixture": "apps__loredock__src__answer-context.ts.txt",
+      "bytes": 17485,
+      "sha256": "2553c8f0d0de75687f83f2419fb52c590880615aca1d25d0725f7e479be672cb"
+    },
+    "apps/loredock/dist/answer-context.js": {
+      "fixture": "apps__loredock__dist__answer-context.js.txt",
+      "bytes": 16318,
+      "sha256": "423c08bdb24f09cdc54c4d3f6257e34f620d0c7f9a172c31328a376ebff70706"
+    },
+    "apps/loredock/src/answer-interfaces.ts": {
+      "fixture": "apps__loredock__src__answer-interfaces.ts.txt",
+      "bytes": 5189,
+      "sha256": "74bdab01c1cba0f3624ad33c9d6367b801a95fb423553bff3800ea383337fa2d"
+    },
+    "apps/loredock/dist/answer-interfaces.js": {
+      "fixture": "apps__loredock__dist__answer-interfaces.js.txt",
+      "bytes": 3990,
+      "sha256": "d6a6a77e2bfcd7e439cfb263c141c5b5ed2b9c7af7abcaedf749c890e75b3966"
+    },
+    "apps/loredock/src/answers.ts": {
+      "fixture": "apps__loredock__src__answers.ts.txt",
+      "bytes": 17901,
+      "sha256": "a02b3f22447b6d05fcbfcbc223ea3f6588df2ccbb8c76da111f228959624a40b"
+    },
+    "apps/loredock/dist/answers.js": {
+      "fixture": "apps__loredock__dist__answers.js.txt",
+      "bytes": 17132,
+      "sha256": "2bffde8bd70a9bc392c809d942ae94e969f88e995e0736df9d660bf25584c160"
+    },
+    "apps/loredock/src/app.ts": {
+      "fixture": "apps__loredock__src__app.ts.txt",
+      "bytes": 17266,
+      "sha256": "c38d264820f0b73b66ad407797038df72028d9f6bd359f498091cdccd1ae902e"
+    },
+    "apps/loredock/dist/app.js": {
+      "fixture": "apps__loredock__dist__app.js.txt",
+      "bytes": 17801,
+      "sha256": "11ca7626584693c33b2f54a49369a6f013bebef998fcc176bd084e5d71518b92"
+    },
+    "apps/loredock/src/candidate-links.ts": {
+      "fixture": "apps__loredock__src__candidate-links.ts.txt",
+      "bytes": 10337,
+      "sha256": "7a09fbfb892044211e47fcb5bebe298161a63caa96d0ed7e85e8ca2b05d3cf0a"
+    },
+    "apps/loredock/dist/candidate-links.js": {
+      "fixture": "apps__loredock__dist__candidate-links.js.txt",
+      "bytes": 8947,
+      "sha256": "339b9b3fed60dd82ab981eb6cc1bd714611d1b9027920e9745ed22162c4b9a0a"
+    },
+    "apps/loredock/src/catalog.ts": {
+      "fixture": "apps__loredock__src__catalog.ts.txt",
+      "bytes": 16113,
+      "sha256": "3090744fab54813a462321d421c084f1738dbf6b3fb0a2816d8155aca3c43018"
+    },
+    "apps/loredock/dist/catalog.js": {
+      "fixture": "apps__loredock__dist__catalog.js.txt",
+      "bytes": 16903,
+      "sha256": "2e30945484bc350769506950d23511c9a284662802a8936f2f65ebe9121b9736"
+    },
+    "apps/loredock/src/code-flows.ts": {
+      "fixture": "apps__loredock__src__code-flows.ts.txt",
+      "bytes": 20179,
+      "sha256": "c94ed41d6cbc86e26f7997b852eb92df32e2fb3e443a044559a52c4d80274a7f"
+    },
+    "apps/loredock/dist/code-flows.js": {
+      "fixture": "apps__loredock__dist__code-flows.js.txt",
+      "bytes": 20943,
+      "sha256": "00e2dfc1f96c1796e1acaaee1dec9952a2959151356396a92361d918a164edd6"
+    },
+    "apps/loredock/src/corrections.ts": {
+      "fixture": "apps__loredock__src__corrections.ts.txt",
+      "bytes": 17792,
+      "sha256": "798f30324dee9d6677ff65d8b3d467790123943689c150dc07904372cd000001"
+    },
+    "apps/loredock/dist/corrections.js": {
+      "fixture": "apps__loredock__dist__corrections.js.txt",
+      "bytes": 17066,
+      "sha256": "73cfeb0f8449110edbab80bb566f7dfe26c2e4be03a5e08bd4ceedf3c51051da"
+    },
+    "apps/loredock/src/prepared-answer.ts": {
+      "fixture": "apps__loredock__src__prepared-answer.ts.txt",
+      "bytes": 5802,
+      "sha256": "8855adb35d574f29040d807d122fd199c58a8e4916ba1220253d7ec74294748a"
+    },
+    "apps/loredock/dist/prepared-answer.js": {
+      "fixture": "apps__loredock__dist__prepared-answer.js.txt",
+      "bytes": 5785,
+      "sha256": "7e68fcbd8949326a1d298f56857144fa9a001ba5263b9ee118e41dd5111a9e88"
+    },
+    "apps/loredock/src/question-preparation.ts": {
+      "fixture": "apps__loredock__src__question-preparation.ts.txt",
+      "bytes": 14768,
+      "sha256": "588fceb83bd16ef5233c5a0e37d3aa24c94b0381c287725153f174928b6fa0b7"
+    },
+    "apps/loredock/dist/question-preparation.js": {
+      "fixture": "apps__loredock__dist__question-preparation.js.txt",
+      "bytes": 14686,
+      "sha256": "b5e445649e2cf5ff04bbb07473dffeb354ff85d34fa6c1e9887fa3cd878f9eab"
+    },
+    "apps/loredock/src/question-witness.ts": {
+      "fixture": "apps__loredock__src__question-witness.ts.txt",
+      "bytes": 10745,
+      "sha256": "66093cda1525c842dbaa043316dfad8c0eb7aebf53dbeab0c1b37e666f1f498f"
+    },
+    "apps/loredock/dist/question-witness.js": {
+      "fixture": "apps__loredock__dist__question-witness.js.txt",
+      "bytes": 10480,
+      "sha256": "ad674a0a30ec393f35b106c67581b5978f1a364e853b996fc28ea09f174f56d1"
+    },
+    "apps/loredock/src/reconciliation.ts": {
+      "fixture": "apps__loredock__src__reconciliation.ts.txt",
+      "bytes": 15019,
+      "sha256": "a68162812fb3bd42f75c735348fab5d7ac0e1bdb57380634687dd275d74844b4"
+    },
+    "apps/loredock/dist/reconciliation.js": {
+      "fixture": "apps__loredock__dist__reconciliation.js.txt",
+      "bytes": 15583,
+      "sha256": "a386e2b034741728bb3d823f59153f35d43ba7b88c5f485208bf0673a7df7dc0"
+    },
+    "apps/loredock/src/source-candidates.ts": {
+      "fixture": "apps__loredock__src__source-candidates.ts.txt",
+      "bytes": 7141,
+      "sha256": "0e5c742c6820165fdeef672960909d16be29ae5daa787560f571942499ec69ca"
+    },
+    "apps/loredock/dist/source-candidates.js": {
+      "fixture": "apps__loredock__dist__source-candidates.js.txt",
+      "bytes": 5905,
+      "sha256": "01790e195d6e69f302e6983dd5fe2a72ca25801aa5da18fa2bdae63bc908e2a8"
+    },
+    "scripts/loredock-answer-evaluation.mjs": {
+      "fixture": "scripts__loredock-answer-evaluation.mjs.txt",
+      "bytes": 4265,
+      "sha256": "8e8d953c38c0c014eb76ef4927bf1bf945b4a64435c80964931c43ec091f64a6"
+    },
+    "scripts/loredock-answer-interfaces-smoke.mjs": {
+      "fixture": "scripts__loredock-answer-interfaces-smoke.mjs.txt",
+      "bytes": 16148,
+      "sha256": "50360eb0d4294f524578b8509e2683cdf3d0f74fe137d66924a0092b3bc4a567"
+    },
+    "scripts/loredock-answer-smoke.mjs": {
+      "fixture": "scripts__loredock-answer-smoke.mjs.txt",
+      "bytes": 18149,
+      "sha256": "97b9b2eba71490a556e6306740a919d36f6d471a423dc7d3f1f9ad03f4339764"
+    },
+    "scripts/loredock-candidate-evaluation.mjs": {
+      "fixture": "scripts__loredock-candidate-evaluation.mjs.txt",
+      "bytes": 4554,
+      "sha256": "ef9a892b9d7676f8489795410de02ccbb7a08e865719c79cc5b42596dc4e89a9"
+    },
+    "scripts/loredock-candidate-links-evaluation.mjs": {
+      "fixture": "scripts__loredock-candidate-links-evaluation.mjs.txt",
+      "bytes": 7190,
+      "sha256": "b473e860ed6bcf6752eb05cbb583eecedb2bdf3bd2d8b77bca835d4620238249"
+    },
+    "scripts/loredock-capacity-benchmark.mjs": {
+      "fixture": "scripts__loredock-capacity-benchmark.mjs.txt",
+      "bytes": 15964,
+      "sha256": "57453cb79cd95032cecefc8931126211c0b69a2ad1c0015118a5237cd51b9ee9"
+    },
+    "scripts/loredock-code-inventory-probe.mjs": {
+      "fixture": "scripts__loredock-code-inventory-probe.mjs.txt",
+      "bytes": 8282,
+      "sha256": "70424b5298400c312f08670af7f41cc315833c78f75327d51b81eea26694fdb0"
+    },
+    "scripts/loredock-completeness.mjs": {
+      "fixture": "scripts__loredock-completeness.mjs.txt",
+      "bytes": 13557,
+      "sha256": "c47a3def44f740b1b1b4e06af46a3b8350be9952e80617e80e32f1af84cd3135"
+    },
+    "scripts/loredock-connected-probe.mjs": {
+      "fixture": "scripts__loredock-connected-probe.mjs.txt",
+      "bytes": 19187,
+      "sha256": "069478ed87d76d535ab1ad5506f250fb859b310e29a2d9b985bce9d637c94129"
+    },
+    "scripts/loredock-correction-evaluation.mjs": {
+      "fixture": "scripts__loredock-correction-evaluation.mjs.txt",
+      "bytes": 4933,
+      "sha256": "1766607d175a17e3cfe86eec0a4b76b1d13bb814f46a3674f7f7a357a8e70166"
+    },
+    "scripts/loredock-durable-flow-probe.mjs": {
+      "fixture": "scripts__loredock-durable-flow-probe.mjs.txt",
+      "bytes": 26293,
+      "sha256": "3894fef6d718f8f3edc68e9dd32b91567806242d1501e6de4c5fb35b620eb983"
+    },
+    "scripts/loredock-flow-evaluation.mjs": {
+      "fixture": "scripts__loredock-flow-evaluation.mjs.txt",
+      "bytes": 3071,
+      "sha256": "63b75d796e7ba3127a8ba061aad37f14a83a828a80b3db3861b39a759151486b"
+    },
+    "scripts/loredock-header-smoke.mjs": {
+      "fixture": "scripts__loredock-header-smoke.mjs.txt",
+      "bytes": 14392,
+      "sha256": "76a6e8e0cb05d963df3f15d0b1613799eb193180a579083c5c5d0a0feb08df71"
+    },
+    "scripts/loredock-incident-context.mjs": {
+      "fixture": "scripts__loredock-incident-context.mjs.txt",
+      "bytes": 10423,
+      "sha256": "1d4e110122f35d3ffb5e362b969f776a9e2f00c1631950547228d0233d5aca28"
+    },
+    "scripts/loredock-interface-answers.mjs": {
+      "fixture": "scripts__loredock-interface-answers.mjs.txt",
+      "bytes": 11151,
+      "sha256": "1fe637d69235e06da6ed218f989a2d4e03de4f6ea4aebaac98b635746505bfd0"
+    },
+    "scripts/loredock-interface-qualification.mjs": {
+      "fixture": "scripts__loredock-interface-qualification.mjs.txt",
+      "bytes": 9725,
+      "sha256": "e506f0406ac5f71df399cea6744f4b71a64d2e802ff3229e95510ebead472ab4"
+    },
+    "scripts/loredock-link-precision.mjs": {
+      "fixture": "scripts__loredock-link-precision.mjs.txt",
+      "bytes": 12005,
+      "sha256": "036420db095b19cc65ad4caead49ca63bf260bf39f1a69e099fffc43476f51a6"
+    },
+    "scripts/loredock-literal-topics/probe.mjs": {
+      "fixture": "scripts__loredock-literal-topics__probe.mjs.txt",
+      "bytes": 34589,
+      "sha256": "2422c7969e452facb9687c2e8a2670ba3dd05af84200f45ace4e0809668fe729"
+    },
+    "scripts/loredock-prospective-answers.mjs": {
+      "fixture": "scripts__loredock-prospective-answers.mjs.txt",
+      "bytes": 9811,
+      "sha256": "640773d89137b26804456301c1d2fbc207381553a40199d08e1b76dedb62a7cd"
+    },
+    "scripts/loredock-receipt-probe.mjs": {
+      "fixture": "scripts__loredock-receipt-probe.mjs.txt",
+      "bytes": 23713,
+      "sha256": "371f010d5ec21810c5698fd270fefda9fc79a87a26229688cd402bcef7013ab3"
+    },
+    "scripts/loredock-reconciliation-evaluation.mjs": {
+      "fixture": "scripts__loredock-reconciliation-evaluation.mjs.txt",
+      "bytes": 5163,
+      "sha256": "6e1f79fc085d1578aa343819702c45a4ba41818bb71d5bc43162a80af12ae08d"
+    },
+    "scripts/loredock-refresh-evaluation.mjs": {
+      "fixture": "scripts__loredock-refresh-evaluation.mjs.txt",
+      "bytes": 4641,
+      "sha256": "3d284b664daea1ac9bcdd1fd3bc0f6fd1c2e83ba80bc9cfba87dc78f83e8efd7"
+    },
+    "scripts/loredock-retrieval-evaluation.mjs": {
+      "fixture": "scripts__loredock-retrieval-evaluation.mjs.txt",
+      "bytes": 2716,
+      "sha256": "d568375fbc1fce4ff29b5d6919bd9d495f048e2bbd8873fe0ec61e7d653cca4d"
+    },
+    "scripts/loredock-scale-answer-evaluation.mjs": {
+      "fixture": "scripts__loredock-scale-answer-evaluation.mjs.txt",
+      "bytes": 10685,
+      "sha256": "b5de346d0d6641993cb1c8385cff59acf7907d17f0e4f695fa4a54478cc9c396"
+    },
+    "scripts/loredock-scale-readiness.mjs": {
+      "fixture": "scripts__loredock-scale-readiness.mjs.txt",
+      "bytes": 5287,
+      "sha256": "94c7697e2681ea3c1609314e21481787ddbf0bac2da4a198a1f9bf2b060a6082"
+    },
+    "scripts/loredock-scale-retrieval.mjs": {
+      "fixture": "scripts__loredock-scale-retrieval.mjs.txt",
+      "bytes": 5394,
+      "sha256": "3cae95b29db98b2005c69f2d8e759b16418a94a794ad9c1250362ebc20beea96"
+    },
+    "scripts/loredock-search-control-study.mjs": {
+      "fixture": "scripts__loredock-search-control-study.mjs.txt",
+      "bytes": 14499,
+      "sha256": "8c1c41e6fb0c50766aef97a00cb11b3e9a8e0afe5baa982384a945424f4682bd"
+    },
+    "scripts/loredock-search-storage-study.mjs": {
+      "fixture": "scripts__loredock-search-storage-study.mjs.txt",
+      "bytes": 17780,
+      "sha256": "66618ce3259a4ff5b762d3d0ad72219e000a16fbe4331a0ea9f3e1b5a5cacc07"
+    },
+    "scripts/loredock-source-order-qualification.mjs": {
+      "fixture": "scripts__loredock-source-order-qualification.mjs.txt",
+      "bytes": 14737,
+      "sha256": "6550962d2c1214e4e008968824016b45421a35e378d9fc51575efc7daad74f74"
+    },
+    "scripts/loredock-symbol-search-qualification.mjs": {
+      "fixture": "scripts__loredock-symbol-search-qualification.mjs.txt",
+      "bytes": 18189,
+      "sha256": "577550cb6cd8993b7d956a97d1a49056c50b84881b62d5ea37321eef49dbc5ee"
+    },
+    "scripts/tests/loredock-answer-witness-storage.test.mjs": {
+      "fixture": "scripts__tests__loredock-answer-witness-storage.test.mjs.txt",
+      "bytes": 24774,
+      "sha256": "a9d8d5c5b7f745cc1330fd550e3ef21cb3f725362c7e03816f5b042e1748483f"
+    },
+    "scripts/tests/loredock-prepared-answers.test.mjs": {
+      "fixture": "scripts__tests__loredock-prepared-answers.test.mjs.txt",
+      "bytes": 28439,
+      "sha256": "76d30167b741bd1a6cc1c5d38631e00832673a8dc3e9fd039dbb0971d87d7234"
+    },
+    "scripts/tests/loredock-question-preparation.test.mjs": {
+      "fixture": "scripts__tests__loredock-question-preparation.test.mjs.txt",
+      "bytes": 21244,
+      "sha256": "db55292581a228a70aa025106a2b5994397e4dd491e542c643aedfc4f332390b"
+    },
+    "scripts/tests/loredock-question-reads.test.mjs": {
+      "fixture": "scripts__tests__loredock-question-reads.test.mjs.txt",
+      "bytes": 13316,
+      "sha256": "356586469e1681f2364cdba767dc1d774f00172e1eef1423ccef976bba2c6217"
+    },
+    "scripts/tests/loredock-question-selection.test.mjs": {
+      "fixture": "scripts__tests__loredock-question-selection.test.mjs.txt",
+      "bytes": 8231,
+      "sha256": "c299256aad2cb1859fba96354e8ad1ee91fcc60e850372101818b78f042bf24d"
+    }
+  },
+  "added": {
+    "apps/loredock/src/legacy-read-operation.ts": {
+      "sha256": "1d1f8e300e94d034d1818cfe064e42b3929639b62692ed0a479b2cab6856f096"
+    },
+    "apps/loredock/src/legacy-file-parser.ts": {
+      "sha256": "5db3d72d73630a8517e6e0fa94866a3048d92a458e4d651e9142ba2630f4116b"
+    }
+  }
+}

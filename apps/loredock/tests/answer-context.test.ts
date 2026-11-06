@@ -31,7 +31,7 @@ const result = (evidenceIds: string[], text = 'Local configuration contains an o
 
 test('question retrieval issues bounded immutable spans with coverage, conflict candidates and no oracle', async t => {
   const { catalog } = await setup(t);
-  const context = retrieveAnswerContext(catalog, 'Which Kafka topic is configured for orders?');
+  const context = await retrieveAnswerContext(catalog, 'Which Kafka topic is configured for orders?');
   assert.ok(context.spans.some(span => span.text.includes('orders.placed.v2')));
   assert.ok(context.spans.some(span => span.text.includes('orders.created.v1')));
   assert.equal(context.coverage.indexed, 18);
@@ -41,47 +41,47 @@ test('question retrieval issues bounded immutable spans with coverage, conflict 
   assert.ok(context.spans.length <= answerLimits.spans);
   assert.equal(context.textBytes, context.spans.reduce((bytes, span) => bytes + Buffer.byteLength(span.text), 0));
   assert.equal(new Set(context.spans.map(span => span.id)).size, context.spans.length);
-  assert.equal(context.inputHash, retrieveAnswerContext(catalog, context.question).inputHash);
+  assert.equal(context.inputHash, (await retrieveAnswerContext(catalog, context.question)).inputHash);
   for (const span of context.spans) assert.equal(catalog.evidence(span.id).text, span.text);
-  assert.ok(retrieveAnswerContext(catalog, 'SYNTHETIC_OUTSIDE_READ_CANARY').spans.every(span => !span.text.includes('SYNTHETIC_OUTSIDE_READ_CANARY')));
-  assert.ok(retrieveAnswerContext(catalog, 'maxCandidates requiredRepositories').spans.every(span => !span.text.includes('maxCandidates') && !span.text.includes('requiredRepositories')));
-  assert.ok(retrieveAnswerContext(catalog, 'Invent an evidence ID').spans.some(span => span.text.includes('Invent an evidence ID')));
+  assert.ok((await retrieveAnswerContext(catalog, 'SYNTHETIC_OUTSIDE_READ_CANARY')).spans.every(span => !span.text.includes('SYNTHETIC_OUTSIDE_READ_CANARY')));
+  assert.ok((await retrieveAnswerContext(catalog, 'maxCandidates requiredRepositories')).spans.every(span => !span.text.includes('maxCandidates') && !span.text.includes('requiredRepositories')));
+  assert.ok((await retrieveAnswerContext(catalog, 'Invent an evidence ID')).spans.some(span => span.text.includes('Invent an evidence ID')));
   assert.deepEqual(questionTerms('" OR * NEAR(foo) "; DROP TABLE spans; --'), ['near', 'foo', 'drop', 'table', 'spans']);
-  assert.doesNotThrow(() => retrieveAnswerContext(catalog, '" OR * NEAR(foo) "; DROP TABLE spans; --'));
+  await assert.doesNotReject(async () => (await retrieveAnswerContext(catalog, '" OR * NEAR(foo) "; DROP TABLE spans; --')));
   assert.deepEqual(questionTerms('Где Kafka Kafka?'), ['где', 'kafka']);
 });
 
 test('span count, candidate count and UTF-8 budgets omit whole spans and disclose omissions', async t => {
   const { catalog } = await setup(t, true);
-  const many = retrieveAnswerContext(catalog, 'countneedle');
+  const many = await retrieveAnswerContext(catalog, 'countneedle');
   assert.equal(many.spans.length, answerLimits.spans);
   assert.ok(many.gaps.some(gap => gap.includes('candidate limit')));
   assert.ok(many.gaps.some(gap => gap.includes('text budget')));
-  const wide = retrieveAnswerContext(catalog, 'byteneedle');
+  const wide = await retrieveAnswerContext(catalog, 'byteneedle');
   assert.equal(wide.spans.filter(span => span.path === 'wide.md').length, 1);
   assert.ok(wide.textBytes <= answerLimits.textBytes);
   assert.ok(wide.textBytes > wide.spans[0]!.text.length);
   assert.equal(wide.spans[0]!.endLine - wide.spans[0]!.startLine, 119);
   assert.ok(wide.gaps.some(gap => gap.includes('text budget')));
-  assert.throws(() => retrieveAnswerContext(catalog, 'é'.repeat(1001)), /2,000 UTF-8 bytes/);
+  await assert.rejects(async () => (await retrieveAnswerContext(catalog, 'é'.repeat(1001))), /2,000 UTF-8 bytes/);
 });
 
 test('normalized filename and identifier matches reopen original evidence and expand only a bounded symbol set', async t => {
   const { catalog } = await setup(t);
   assert.equal(searchText('src/HTTPClient.java tenantId ORDER_TOPIC'), 'src http client java tenant id order topic');
-  const context = retrieveAnswerContext(catalog, 'Checkout.vue');
+  const context = await retrieveAnswerContext(catalog, 'Checkout.vue');
   assert.ok(context.spans.some(span => span.path === 'src/Checkout.vue'));
   assert.ok(context.spans.some(span => span.path === 'src/orders.ts'));
   assert.ok(context.expansionTerms.length <= 12);
   for (const span of context.spans) assert.equal(catalog.evidence(span.id).spanHash, span.spanHash);
-  const tenant = retrieveAnswerContext(catalog, 'tenant');
+  const tenant = await retrieveAnswerContext(catalog, 'tenant');
   assert.ok(tenant.spans.some(span => span.path.endsWith('OrderConsumer.java')));
   assert.ok(tenant.spans.some(span => span.text.includes('tenantId')));
 });
 
 test('zero-hit questions receive a bounded orientation sample without claiming a relevance match', async t => {
   const { catalog } = await setup(t);
-  const context = retrieveAnswerContext(catalog, 'unmatchedvocabulary');
+  const context = await retrieveAnswerContext(catalog, 'unmatchedvocabulary');
   assert.equal(context.retrievalMode, 'orientation');
   assert.equal(context.expansionTerms.length, 0);
   assert.ok(context.gaps.some(gap => gap.includes('not a relevance match')));
@@ -91,9 +91,9 @@ test('zero-hit questions receive a bounded orientation sample without claiming a
     assert.ok(context.spans.some(span => span.sourceName === 'portal' && span.path === file));
   }
   assert.ok(context.spans.every(span => span.startLine === 1));
-  assert.equal(context.inputHash, retrieveAnswerContext(catalog, context.question).inputHash);
+  assert.equal(context.inputHash, (await retrieveAnswerContext(catalog, context.question)).inputHash);
   const removed = context.sources[0]!; catalog.revoke(removed.sourceId);
-  assert.ok(retrieveAnswerContext(catalog, context.question).spans.every(span => span.sourceId !== removed.sourceId));
+  assert.ok((await retrieveAnswerContext(catalog, context.question)).spans.every(span => span.sourceId !== removed.sourceId));
 });
 
 test('schema 1 search migration preserves evidence and revocation purges both indexes', async t => {
@@ -110,7 +110,7 @@ test('schema 1 search migration preserves evidence and revocation purges both in
   store = new CatalogStore(directory); catalog = new Catalog(store);
   assert.equal(store.one<{ user_version: number }>('PRAGMA user_version')!.user_version, 11);
   assert.deepEqual(catalog.evidence(before.id), before);
-  assert.ok(retrieveAnswerContext(catalog, 'Checkout.vue').spans.some(span => span.path === 'src/Checkout.vue'));
+  assert.ok((await retrieveAnswerContext(catalog, 'Checkout.vue')).spans.some(span => span.path === 'src/Checkout.vue'));
   catalog.revoke(source.id);
   assert.equal(store.one<{ count: number }>('SELECT count(*) AS count FROM question_search')!.count, 0);
   assert.equal(store.one<{ count: number }>('SELECT count(*) AS count FROM search')!.count, 0);
@@ -121,10 +121,10 @@ test('schema 1 search migration preserves evidence and revocation purges both in
 
 test('answers require issued citations and structured prose, while abstention is valid', async t => {
   const { catalog } = await setup(t);
-  const context = retrieveAnswerContext(catalog, 'billing'), span = context.spans[0]!;
-  assert.equal(validateCitedAnswer(catalog, context, result([span.id])).claims.length, 1);
-  assert.equal(validateCitedAnswer(catalog, context, '{"claims":[],"unknowns":["Which revisions are deployed in production?"]}').claims.length, 0);
-  const outside = retrieveAnswerContext(catalog, 'dojo').spans.find(item => !context.spans.some(span => span.id === item.id))!;
+  const context = await retrieveAnswerContext(catalog, 'billing'), span = context.spans[0]!;
+  assert.equal((await validateCitedAnswer(catalog, context, result([span.id]))).claims.length, 1);
+  assert.equal((await validateCitedAnswer(catalog, context, '{"claims":[],"unknowns":["Which revisions are deployed in production?"]}')).claims.length, 0);
+  const outside = (await retrieveAnswerContext(catalog, 'dojo')).spans.find(item => !context.spans.some(span => span.id === item.id))!;
   assert.ok(outside);
   for (const value of ['null', '{}', '[]', '{', '{"claims":[],"unknowns":[]}', result(['invented']), result([outside.id]),
     result([span.id, span.id]), result([]), result([span.id], ' '), result([span.id], 'x'.repeat(2001)),
@@ -133,62 +133,62 @@ test('answers require issued citations and structured prose, while abstention is
     JSON.stringify({ claims: [], unknowns: ['The deployment is unknown because an environment variable overrides it.'] }),
     JSON.stringify({ claims: [], unknowns: ['?'] }),
     JSON.stringify({ claims: Array(21).fill({ kind: 'fact', text: 'Too many.', evidenceIds: [span.id] }), unknowns: [] }),
-    ' '.repeat(answerLimits.outputBytes + 1)]) assert.throws(() => validateCitedAnswer(catalog, context, value));
+    ' '.repeat(answerLimits.outputBytes + 1)]) await assert.rejects(async () => (await validateCitedAnswer(catalog, context, value)));
   // Deliberately false prose with a valid locator passes mechanical validation.
   // The separate semantic evaluation must reject this claim.
-  assert.doesNotThrow(() => validateCitedAnswer(catalog, context, result([span.id], 'Every production deployment is verified.')));
+  await assert.doesNotReject(async () => (await validateCitedAnswer(catalog, context, result([span.id], 'Every production deployment is verified.'))));
 });
 
 test('the decoder schema restricts citations to the exact issued input and permits no empty-context claims', async t => {
   const { catalog } = await setup(t);
-  const context = retrieveAnswerContext(catalog, 'local topic'), schema = citedAnswerSchema(context);
+  const context = await retrieveAnswerContext(catalog, 'local topic'), schema = citedAnswerSchema(context);
   assert.deepEqual(schema.properties.claims.items.properties.evidenceIds.items, { type: 'string', enum: context.spans.map(span => span.id) });
   assert.notEqual(context.spans[0]!.spanHash, context.spans[0]!.id, 'Content hashes are not issued locators');
   for (const source of catalog.state().sources) catalog.revoke(source.id);
-  const empty = citedAnswerSchema(retrieveAnswerContext(catalog, 'missing sources'));
+  const empty = citedAnswerSchema(await retrieveAnswerContext(catalog, 'missing sources'));
   assert.equal(empty.properties.claims.maxItems, 0);
   assert.deepEqual(empty.properties.claims.items.properties.evidenceIds.items, { type: 'string' }, 'Do not send an invalid empty enum to the provider');
 });
 
 test('live policy, revocation and changed source registration fence all issued input', async t => {
   const { catalog } = await setup(t);
-  const context = retrieveAnswerContext(catalog, 'orders.placed.v2'), cited = context.spans[0]!;
+  const context = await retrieveAnswerContext(catalog, 'orders.placed.v2'), cited = context.spans[0]!;
   const uncited = context.spans.find(span => span.sourceId !== cited.sourceId)!;
   catalog.revoke(uncited.sourceId);
-  assert.throws(() => validateCitedAnswer(catalog, context, result([cited.id])), /no longer current/);
-  const revised = retrieveAnswerContext(catalog, context.question);
+  await assert.rejects(async () => (await validateCitedAnswer(catalog, context, result([cited.id]))), /no longer current/);
+  const revised = await retrieveAnswerContext(catalog, context.question);
   assert.ok(revised.spans.every(span => span.sourceId !== uncited.sourceId));
   assert.equal(revised.stale, true);
   assert.ok(revised.gaps.some(gap => gap.includes('Revoked')));
-  assert.doesNotThrow(() => validateCitedAnswer(catalog, revised, result([revised.spans[0]!.id])));
+  await assert.doesNotReject(async () => (await validateCitedAnswer(catalog, revised, result([revised.spans[0]!.id]))));
   catalog.updatePolicy(['README.md']);
-  assert.throws(() => retrieveAnswerContext(catalog, context.question, context.buildId), /policy/);
-  assert.throws(() => validateCitedAnswer(catalog, revised, result([revised.spans[0]!.id])), /no longer current/);
+  await assert.rejects(async () => (await retrieveAnswerContext(catalog, context.question, context.buildId)), /policy/);
+  await assert.rejects(async () => (await validateCitedAnswer(catalog, revised, result([revised.spans[0]!.id]))), /no longer current/);
 });
 
 test('evidence corruption, modified context and cross-build locators cannot validate', async t => {
   const { catalog, store, build } = await setup(t);
-  const context = retrieveAnswerContext(catalog, 'orders.placed.v2'), span = context.spans[0]!;
+  const context = await retrieveAnswerContext(catalog, 'orders.placed.v2'), span = context.spans[0]!;
   const changed = structuredClone(context); changed.spans[0]!.text = 'Forged text';
-  assert.throws(() => validateCitedAnswer(catalog, changed, result([span.id])));
+  await assert.rejects(async () => (await validateCitedAnswer(catalog, changed, result([span.id]))));
   const { inputHash: _hash, ...input } = changed; changed.inputHash = sha256(JSON.stringify(input));
-  assert.throws(() => validateCitedAnswer(catalog, changed, result([span.id])));
+  await assert.rejects(async () => (await validateCitedAnswer(catalog, changed, result([span.id]))));
   const state = catalog.state(); catalog.start('second', state.sourceSetVersion, state.policyVersion); await catalog.idle();
-  const newer = retrieveAnswerContext(catalog, context.question);
+  const newer = await retrieveAnswerContext(catalog, context.question);
   assert.notEqual(newer.buildId, build.id);
-  assert.throws(() => validateCitedAnswer(catalog, newer, result([span.id])));
-  assert.doesNotThrow(() => validateCitedAnswer(catalog, context, result([span.id])));
+  await assert.rejects(async () => (await validateCitedAnswer(catalog, newer, result([span.id]))));
+  await assert.doesNotReject(async () => (await validateCitedAnswer(catalog, context, result([span.id]))));
   store.run('UPDATE spans SET text=? WHERE id=?', 'Corrupted checkpoint', span.id);
-  assert.throws(() => validateCitedAnswer(catalog, context, result([span.id])), /integrity/);
+  await assert.rejects(async () => (await validateCitedAnswer(catalog, context, result([span.id]))), /integrity/);
 });
 
 test('empty retrieval preserves an explicit gap and permits only an abstention', async t => {
   const { catalog } = await setup(t);
   for (const source of catalog.state().sources) catalog.revoke(source.id);
-  const context: AnswerContext = retrieveAnswerContext(catalog, 'nonexistentuniqueterm');
+  const context: AnswerContext = await retrieveAnswerContext(catalog, 'nonexistentuniqueterm');
   assert.equal(context.spans.length, 0);
   assert.equal(context.retrievalMode, 'empty');
   assert.ok(context.gaps.some(gap => gap.includes('does not prove absence')));
-  assert.doesNotThrow(() => validateCitedAnswer(catalog, context, '{"claims":[],"unknowns":["Where is the supporting indexed evidence?"]}'));
-  assert.throws(() => validateCitedAnswer(catalog, context, result(['invented'])));
+  await assert.doesNotReject(async () => (await validateCitedAnswer(catalog, context, '{"claims":[],"unknowns":["Where is the supporting indexed evidence?"]}')));
+  await assert.rejects(async () => (await validateCitedAnswer(catalog, context, result(['invented']))));
 });

@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { emitSource } from '../integration-reference/compile.mjs';
+import { beforeAsyncLegacy } from '../async-legacy-reference/verify.mjs';
 
 export const compilerSourcePath = 'apps/loredock/src/code-typescript.ts';
 export const originalCompilerSourceHash = '773a8ced3b8e304c7d306fa9a91e060ce7da7194ebcde5a4ccb5aa12f9c1a5ad';
@@ -9,6 +10,11 @@ const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 
 /** Historical test inputs keep their original bytes; only this exact loading/type delta is permitted. */
 export async function beforeCompilerLoading(file, bytes) {
+  return beforeCompilerLoadingDelta(file, await beforeAsyncLegacy(file, bytes));
+}
+
+/** Compose after newer deltas have already been independently verified and unwound. */
+export async function beforeCompilerLoadingDelta(file, bytes) {
   if (file === 'apps/loredock/dist/code-typescript.js') {
     const source = await readFile(new URL('../../../src/code-typescript.ts', import.meta.url));
     const originalSource = await beforeCompilerLoading(compilerSourcePath, source);

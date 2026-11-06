@@ -50,8 +50,8 @@ async function fixture(t: TestContext) {
 
 test('offline compaction shrinks purged allocation while preserving history, FTS ranking, notes, originals, code facts and refresh reuse', async t => {
   const state = await fixture(t), {store, catalog, analysis, directory} = state;
-  const projection = codeFlows(catalog), edge = projection.edges[0]!; assert.ok(edge);
-  const corrections = new Corrections(catalog), note = corrections.save({requestId: 'review', buildId: state.current, targetKind: 'code-link', targetId: edge.id,
+  const projection = await codeFlows(catalog), edge = projection.edges[0]!; assert.ok(edge);
+  const corrections = new Corrections(catalog), note = await corrections.save({requestId: 'review', buildId: state.current, targetKind: 'code-link', targetId: edge.id,
     projectionHash: projection.inputHash, expectedRevision: catalog.state().correctionRevision, expectedPreviousId: null,
     action: 'clarify', statement: 'Synthetic engineer review retained through offline compaction.', environment: 'local'});
   store.run(`INSERT INTO answer_attempts (id,requestId,payloadHash,question,buildId,policyVersion,registryVersion,status,context,inputHash,connection,model,effort,promptVersion,schemaVersion,result,createdAt)

@@ -94,11 +94,11 @@ test('candidate preview is available without AI and fences HTTP input, source re
   }
   assert.equal(result.historical, false); assert.deepEqual(result.coverage, catalog.readBuild().coverage);
   await catalog.addSource(path.join(fixture.root, 'sources/order-worker'));
-  assert.equal(sourceCandidatePreview(catalog, 'ZincBadge', result.buildId).stale, true);
+  assert.equal((await sourceCandidatePreview(catalog, 'ZincBadge', result.buildId)).stale, true);
   const state = catalog.state(); catalog.start('candidate-refresh', state.sourceSetVersion, state.policyVersion); await catalog.idle();
-  assert.equal(sourceCandidatePreview(catalog, 'ZincBadge', result.buildId).historical, true);
+  assert.equal((await sourceCandidatePreview(catalog, 'ZincBadge', result.buildId)).historical, true);
   catalog.revoke(chosen.sourceId);
-  const removed = sourceCandidatePreview(catalog, 'ZincBadge', result.buildId);
+  const removed = await sourceCandidatePreview(catalog, 'ZincBadge', result.buildId);
   assert.ok([...removed.suggested, ...removed.otherMatches].every(row => row.sourceId !== chosen.sourceId));
   assert.throws(() => catalog.evidence(chosen.support[0]!.id));
   catalog.updatePolicy(['src']);

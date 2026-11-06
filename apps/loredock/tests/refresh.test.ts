@@ -70,7 +70,7 @@ test('changed, added and removed paths rebuild affected code while old evidence 
   assert.equal(changes.counts.changed, 1); assert.equal(changes.counts.added, 1); assert.equal(changes.counts.removed, 1);
   assert.equal(second.refresh.reusedFiles, 16); assert.equal(second.refresh.gitReadAttempts, 5);
   assert.ok(state.catalog.search('RefreshChangedMarker').hits.length); assert.equal(state.catalog.search('submitLegacy').hits.length, 0);
-  assert.ok(codeFlows(state.catalog).nodes.some(node => node.label === 'audit.AuditConsumer.onMessage'));
+  assert.ok((await codeFlows(state.catalog)).nodes.some(node => node.label === 'audit.AuditConsumer.onMessage'));
   assert.ok(state.catalog.search('submitLegacy', first.id).hits.length); assert.deepEqual(state.catalog.evidence(old.id), old);
   for (const detail of changes.files) {
     if (detail.evidenceId) assert.equal(state.catalog.evidence(detail.evidenceId).buildId, second.id);
@@ -80,11 +80,11 @@ test('changed, added and removed paths rebuild affected code while old evidence 
 
 test('a newly registered worker is inventoried and discovered instead of reusing a closed source set', async t => {
   const state = await setup(t, ['portal', 'order-api']); await state.index('first');
-  assert.equal(codeFlows(state.catalog).nodes.some(node => node.kind === 'event-subscribe'), false);
+  assert.equal((await codeFlows(state.catalog)).nodes.some(node => node.kind === 'event-subscribe'), false);
   await state.catalog.addSource(path.join(state.fixture.root, 'sources/order-worker'));
   const build = await state.index('with-worker'), changes = indexChanges(state.catalog);
   assert.equal(build.refresh.reusedFiles, 13); assert.equal(changes.sources.find(source => source.name === 'order-worker')!.isNew, true);
-  assert.equal(changes.counts.added, 8); assert.ok(codeFlows(state.catalog).edges.some(edge => edge.kind === 'event-delivery'));
+  assert.equal(changes.counts.added, 8); assert.ok((await codeFlows(state.catalog)).edges.some(edge => edge.kind === 'event-delivery'));
 });
 
 test('corrupted bytes, incomplete spans and damaged metadata repair from pinned Git objects', async t => {
@@ -183,8 +183,8 @@ test('a failed reused-file publication rolls back its copied bytes and spans', a
 });
 
 test('schema 4 upgrade validates legacy extraction before reuse and preserves engineer history', async t => {
-  const state = await setup(t), first = await state.index('first'), code = codeFlows(state.catalog), edge = code.edges.find(edge => edge.kind === 'event-delivery')!;
-  const corrections = new Corrections(state.catalog), saved = corrections.save({ requestId: 'legacy-note', buildId: first.id, targetKind: 'code-link', targetId: edge.id,
+  const state = await setup(t), first = await state.index('first'), code = await codeFlows(state.catalog), edge = code.edges.find(edge => edge.kind === 'event-delivery')!;
+  const corrections = new Corrections(state.catalog), saved = await corrections.save({ requestId: 'legacy-note', buildId: first.id, targetKind: 'code-link', targetId: edge.id,
     projectionHash: code.inputHash, expectedRevision: 0, expectedPreviousId: null, action: 'clarify', statement: 'This is a local candidate.', environment: 'local' });
   const history = corrections.history(saved.id), evidence = state.catalog.evidence(state.catalog.search('OrderConsumer').hits[0]!.id);
   removeRefreshSchema(state.store); state.store.db.exec('PRAGMA user_version=4'); await state.restart();

@@ -185,10 +185,10 @@ test('shared ownership covers all Answers instances, asynchronous configuration 
   assert.throws(() => s.start(), code('QUESTION_BUSY'));
   await assert.rejects(s.answers.configure(connection), code('QUESTION_BUSY')); await configuring;
   s.runtime.blockPrepare = true; const first = s.start(); await s.runtime.preflight.promise;
-  const context = other.answers.preview(question);
-  assert.throws(() => other.answers.start('legacy', question, context.buildId, context.inputHash), code('QUESTION_BUSY'));
+  const context = await other.answers.preview(question);
+  await assert.rejects(async () => (await other.answers.start('legacy', question, context.buildId, context.inputHash)), code('QUESTION_BUSY'));
   await assert.rejects(other.answers.configure(connection), code('QUESTION_BUSY'));
-  s.answers.cancel(first.id); assert.throws(() => other.answers.start('legacy', question, context.buildId, context.inputHash), code('QUESTION_BUSY'));
+  s.answers.cancel(first.id); await assert.rejects(async () => (await other.answers.start('legacy', question, context.buildId, context.inputHash)), code('QUESTION_BUSY'));
   s.runtime.release(); await s.answers.idle(); assert.equal(s.runtime.calls, 0); assert.equal(s.runtime.closed, 1);
   const pending = other.answers.configure(connection); const stopped = other.answers.stop();
   await assert.rejects(pending, code('SERVICE_STOPPED')); await stopped;
@@ -336,9 +336,9 @@ test('loading and revalidation share an actual bounded lifetime and synchronous 
 
 test('accepted legacy execution retains prompt, context, optional fields and response bytes', async t => {
   const s = await setup(t, false), { Answers: Accepted } = await loadPreparedAnswerControl(s.parent), old = s.create(null, Accepted);
-  const current = s.create(null), context = current.answers.preview(question); old.runtime.context = context; current.runtime.context = context;
-  const baseline = old.answers.start('accepted-legacy', question, context.buildId, context.inputHash); await old.answers.idle();
-  const changed = current.answers.start('current-legacy', question, context.buildId, context.inputHash); await current.answers.idle();
+  const current = s.create(null), context = await current.answers.preview(question); old.runtime.context = context; current.runtime.context = context;
+  const baseline = await old.answers.start('accepted-legacy', question, context.buildId, context.inputHash); await old.answers.idle();
+  const changed = await current.answers.start('current-legacy', question, context.buildId, context.inputHash); await current.answers.idle();
   const normalize = answer => { const { id, createdAt, dispatchedAt, ...rest } = answer; return rest; };
   assert.equal(JSON.stringify(normalize(current.answers.get(changed.id))), JSON.stringify(normalize(old.answers.get(baseline.id))));
   assert.equal(current.runtime.requests[0].prompt, old.runtime.requests[0].prompt);

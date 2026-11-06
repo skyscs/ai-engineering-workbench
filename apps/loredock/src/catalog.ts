@@ -14,6 +14,7 @@ export class Catalog {
   private readonly workers = new Map<string, { controller: AbortController; done: Promise<void> }>();
   readonly limits: typeof defaults;
   private stopping = false;
+  assertReading() { if (this.stopping) throw new CatalogError('SERVICE_STOPPED', 'The catalog is stopping.', 409); }
   private readonly boundaryListeners = new Set<() => void>();
   onBoundaryChange(listener: () => void) { this.boundaryListeners.add(listener); return () => this.boundaryListeners.delete(listener); }
   private boundaryChanged() { for (const listener of this.boundaryListeners) listener(); }

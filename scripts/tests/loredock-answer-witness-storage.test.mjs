@@ -160,7 +160,8 @@ test('genuine schema-10 runtime state migrates without rewriting legacy answers 
   t.after(async () => { current?.close(); if (!stopped) await fixture.close(); await rm(parent, { recursive: true, force: true }); });
   await fixture.analyze(); const captures = new prior.services.NativeCaptures(fixture.analysis);
   const saved = await captures.capture({ buildId: fixture.buildId }); await captures.stop();
-  const legacy = new Answers(fixture.catalog, { async prepare() { throw new Error('Synthetic preflight stop.'); } });
+  const { Answers: LegacyAnswers } = await loadPreparedAnswerControl(parent);
+  const legacy = new LegacyAnswers(fixture.catalog, { async prepare() { throw new Error('Synthetic preflight stop.'); } });
   await legacy.configure({ executable: process.execPath, configHome: parent, profile: null });
   const preview = legacy.preview(question), attempt = legacy.start('legacy', question, fixture.buildId, preview.inputHash); await legacy.idle();
   const oldRow = fixture.store.one('SELECT * FROM answer_attempts WHERE id=?', attempt.id), oldResponse = legacy.get(attempt.id);

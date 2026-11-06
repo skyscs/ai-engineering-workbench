@@ -82,7 +82,7 @@ export async function evaluateIncidentContext(services) {
       const results=[];
       for(const item of routingContract.cases) {
         let time=performance.now();const keyword=keywordIncidentContext(catalog,item.description,questionTerms),keywordMs=performance.now()-time;
-        time=performance.now();const context=retrieveAnswerContext(catalog,item.description),contextMs=performance.now()-time;
+        time=performance.now();const context=await retrieveAnswerContext(catalog,item.description),contextMs=performance.now()-time;
         assert.equal(context.question,item.description);assert.ok(context.spans.length<=30 && context.textBytes<=64*1024);
         assert.deepEqual(context.review.notes,[]);
         const originals=context.spans.map(span=>catalog.evidence(span.id));

@@ -44,7 +44,7 @@ async function setup(t: TestContext, options: { volume?: boolean; repeatedClass?
 
 test('literal simple, qualified and class lookup retains original support without recomputing full index summaries per file', async t => {
   const s = await setup(t); assert.equal((await lookupCodeSymbols(s.analysis, 'Orders.accept', s.buildId)).status, 'unavailable');
-  const id = await s.analyze('all'), graph = codeFlows(s.catalog);
+  const id = await s.analyze('all'), graph = await codeFlows(s.catalog);
   let summaries = 0; const originalBuild = s.store.build.bind(s.store); s.store.build = id => { summaries++; return originalBuild(id); };
   const qualified = await lookupCodeSymbols(s.analysis, ' Orders.accept ', s.buildId);
   assert.equal(qualified.query, 'Orders.accept'); assert.equal(qualified.matches.length, 1); assert.equal(qualified.inventory!.id, id);
@@ -60,7 +60,7 @@ test('literal simple, qualified and class lookup retains original support withou
     assert.ok(ref.startLine <= match.range.endLine && ref.endLine >= match.range.startLine);
   }
   for (const bad of ['', ' '.repeat(2), '😀'.repeat(51)]) await assert.rejects(lookupCodeSymbols(s.analysis, bad, s.buildId), { code: 'INVALID_QUERY' });
-  assert.deepEqual(codeFlows(s.catalog), graph); assert.equal(s.store.all('SELECT id FROM answer_attempts').length, 0);
+  assert.deepEqual(await codeFlows(s.catalog), graph); assert.equal(s.store.all('SELECT id FROM answer_attempts').length, 0);
 });
 
 test('symbol lookup balances duplicate display names by source identity and exposes match, output and time bounds', async t => {
@@ -156,14 +156,14 @@ test('revocation, policy changes and inventory eviction during a yielded lookup 
 });
 
 test('full inventory lookup reaches supported symbols outside the unchanged graph sample while unsupported files remain gaps', async t => {
-  const s = await setup(t, { volume: true }), graph = codeFlows(s.catalog); await s.analyze('shape');
+  const s = await setup(t, { volume: true }), graph = await codeFlows(s.catalog); await s.analyze('shape');
   assert.equal(graph.coverage.examinedDocuments, 100); assert.equal(graph.coverage.candidateDocuments, 121);
   assert.ok(!graph.nodes.some(node => node.kind === 'symbol' && node.label === 'Orders.accept'));
   const result = await lookupCodeSymbols(s.analysis, 'Orders.accept', s.buildId);
   assert.equal(result.coverage!.scannedFiles, 121); assert.equal(result.matches.length, 1); assert.equal(result.matches[0]!.sourceName, 'order-api');
   assert.equal(result.coverage!.filesWithSyntaxGaps, 6); assert.equal(result.coverage!.syntaxGapMessages, 7);
   const unsupported = await lookupCodeSymbols(s.analysis, 'OrderBadge', s.buildId); assert.equal(unsupported.matches.length, 0); assert.equal(unsupported.partial, true);
-  assert.deepEqual(codeFlows(s.catalog), graph);
+  assert.deepEqual(await codeFlows(s.catalog), graph);
 });
 
 test('symbol HTTP lookup requires protected scope and validates literal query input', async t => {

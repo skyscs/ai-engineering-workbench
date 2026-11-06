@@ -96,7 +96,7 @@ export async function evaluateCompleteness(services) {
       const state = catalog.state(); catalog.start('completeness', state.sourceSetVersion, state.policyVersion); await catalog.idle();
       const results = [];
       for (const item of completenessContract.cases) {
-        const context = retrieveAnswerContext(catalog, item.question), prompt = answerPrompt(context);
+        const context = await retrieveAnswerContext(catalog, item.question), prompt = answerPrompt(context);
         const originals = context.spans.map(span => catalog.evidence(span.id));
         assert.ok(context.spans.length <= answerLimits.spans && context.textBytes <= answerLimits.textBytes);
         assert.ok(Buffer.byteLength(prompt) <= 96 * 1024);
