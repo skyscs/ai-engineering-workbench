@@ -78,7 +78,15 @@ export async function historicalParserRoot() {
       await mkdir(path.dirname(emitted), { recursive: true });
       if (name === 'apps/loredock/src/types.ts') {
         const current = new URL('apps/loredock/dist/types.js', root);
-        assert.equal(await readFile(current, 'utf8'), emitSource(content, name)); await symlink(current, emitted);
+        let installed;
+        try { installed = await readFile(current, 'utf8'); }
+        catch (error) { if (error.code !== 'ENOENT') throw error; }
+        if (installed === undefined) {
+          // Source tests run before the daemon build in a clean checkout.
+          await writeFile(emitted, emitSource(content, name), { flag: 'wx' });
+        } else {
+          assert.equal(installed, emitSource(content, name)); await symlink(current, emitted);
+        }
       } else await writeFile(emitted, emitSource(content, name), { flag: 'wx' });
     }
     return pathToFileURL(folder + '/');
