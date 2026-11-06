@@ -1,17 +1,21 @@
 {
-  "version": "ordinary-container-browser-eligibility/1",
-  "applicationBase": "4acc21aee7d35d4d7f4e04d0f5d0a87ddd02d490",
+  "version": "ordinary-container-browser-eligibility/2",
+  "applicationBase": "42830f574a05941136a3cc0f9c30aab44664c35f",
   "baseImage": "docker.io/library/python@sha256:db5942d111df72110e7a67da3fc5159e83ac85cd24808b91bdc4769e166ed1b7",
   "browserVersion": "157.0.8103.38",
   "browserSha256": "41ea350a7f209da77c14d1df3924d71ac66988623e71d44459b49a3dceb1c14e",
   "nodeVersion": "22.23.2",
   "nodeSha256": "3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327",
-  "imageInputs": "/home/toshiba/aew/task145-image-inputs-first",
-  "imageBuild": "/home/toshiba/aew/task145-image-build-first",
-  "preflight": "/home/toshiba/aew/task145-container-preflight-first",
-  "browserOutputCandidate": "/home/toshiba/aew/task145-container-browser-first",
+  "imageInputs": "/home/toshiba/aew/task146-image-inputs-first",
+  "imageBuild": "/home/toshiba/aew/task146-image-build-first",
+  "preflight": "/home/toshiba/aew/task146-container-preflight-first",
+  "browserOutputCandidate": "/home/toshiba/aew/task146-container-browser-first",
   "browserLaunchAuthorizedByThisPlanAlone": false,
-  "requiredBeforeBrowser": ["exact final image and inputs", "three successful non-browser lifecycle prerequisites", "committed concrete single-use launch manifest"],
+  "requiredBeforeBrowser": [
+    "exact final image and inputs",
+    "three successful non-browser lifecycle prerequisites",
+    "committed concrete single-use launch manifest"
+  ],
   "idleMs": 30000,
   "nominalRssCadenceMs": 50,
   "actualMaximumRssGapMs": 100,
@@ -33,5 +37,17 @@
   "productChanges": false,
   "resourceQualification": false,
   "modelCalls": 0,
-  "corporateSources": 0
+  "corporateSources": 0,
+  "requestedSecurityOptions": [
+    "no-new-privileges",
+    "apparmor=docker-default"
+  ],
+  "beforeChildExecution": [
+    "Own applied AppArmor label docker-default (enforce)",
+    "Seccomp mode2",
+    "NoNewPrivs1",
+    "UID/GID1000",
+    "All capability sets zero"
+  ],
+  "preservedFirstFailure": "Task145 object56e390f717ffd910f3ac65b95081426483414cee4cf9f8f0feb83bcddb2f534e remains unstarted and is never repurposed."
 }

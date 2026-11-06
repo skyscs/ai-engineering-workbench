@@ -1,6 +1,9 @@
 # Task 146 — Verify container security at the correct lifecycle boundary
 
-Status: planned after Task 145 acceptance.
+Status: implementation in progress after Task 145 acceptance (PR #178, merge `42830f5`).
+Sixteen focused owner/adapter/applied-security/input regressions cover fresh construction.
+See the [prospective controls](../scripts/loredock-container-browser/README.md) and
+[fixed plan](../scripts/loredock-container-browser/plan.json).
 
 Task 145's first preflight creates one object but sends no start request. Docker 29.7.2
 returns an empty `AppArmorProfile` in state `created`; the controller's unconditional

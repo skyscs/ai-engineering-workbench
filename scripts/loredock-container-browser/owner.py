@@ -89,11 +89,11 @@ def specification(image, evidence, nonce, mode):
                        '/opt/workbench/scripts/loredock-container-browser/init.py'],
         'Cmd': [mode], 'Env': ['PATH=/opt/node:/usr/local/bin:/usr/bin:/bin', 'LC_ALL=C',
                                'HOME=/evidence/owner/run/home'],
-        'Labels': {'aew.task': '145', 'aew.attempt': nonce},
+        'Labels': {'aew.task': '146', 'aew.attempt': nonce},
         'AttachStdin': False, 'OpenStdin': False, 'Tty': False, 'StopSignal': 'SIGTERM',
         'HostConfig': {
             'CapDrop': ['ALL'], 'CapAdd': [], 'Privileged': False,
-            'SecurityOpt': ['no-new-privileges'], 'ReadonlyRootfs': True,
+            'SecurityOpt': ['no-new-privileges', 'apparmor=docker-default'], 'ReadonlyRootfs': True,
             'NetworkMode': 'none', 'PidMode': '', 'IpcMode': 'private', 'CgroupnsMode': 'private',
             'RestartPolicy': {'Name': 'no', 'MaximumRetryCount': 0}, 'AutoRemove': False,
             'ShmSize': 67108864, 'LogConfig': {'Type': 'none', 'Config': {}},
@@ -103,7 +103,7 @@ def specification(image, evidence, nonce, mode):
     }
 
 
-def verify_inspect(value, expected, identifier, require_created=False):
+def verify_inspect(value, expected, identifier, require_created=False, require_applied=True):
     if not re.fullmatch('[0-9a-f]{64}', identifier) or value.get('Id') != identifier:
         raise ValueError('Container identity mismatch.')
     if value.get('Image') != expected['Image']:
@@ -139,8 +139,6 @@ def verify_inspect(value, expected, identifier, require_created=False):
         raise ValueError('Unexpected CPU restriction or injected init.')
     if config.get('Volumes') or config.get('ExposedPorts') or config.get('Healthcheck'):
         raise ValueError('Unexpected image mounts, ports or healthcheck.')
-    if value.get('AppArmorProfile') != 'docker-default':
-        raise ValueError('Expected the existing default AppArmor profile.')
     mounts = value.get('Mounts', [])
     if len(mounts) != 1:
         raise ValueError('Unexpected container mount count.')
@@ -153,6 +151,12 @@ def verify_inspect(value, expected, identifier, require_created=False):
     state = value['State']
     if require_created and (state.get('Status') != 'created' or state.get('Running') or state.get('Pid') != 0):
         raise ValueError('New container was already started.')
+    if require_applied:
+        unstarted = (state.get('Status') == 'created' and not state.get('Running') and state.get('Pid') == 0
+                     and str(state.get('StartedAt', '')).startswith('0001-'))
+        allowed = ('', 'docker-default') if unstarted else ('docker-default',)
+        if value.get('AppArmorProfile') not in allowed:
+            raise ValueError('Unexpected applied AppArmor profile at this lifecycle state.')
     return state
 
 
@@ -168,9 +172,9 @@ class Owner:
                        'stoppedConfirmed': False, 'errors': [], 'terminal': None,
                        'removed': False, 'resourceQualification': False}
 
-    def inspect(self):
+    def inspect(self, require_applied=True):
         value = self.api.request('GET', f'/containers/{self.identifier}/json')
-        verify_inspect(value, self.expected, self.identifier)
+        verify_inspect(value, self.expected, self.identifier, require_applied=require_applied)
         return value
 
     def terminal(self, value):
@@ -186,7 +190,7 @@ class Owner:
         deadline = self.clock() + self.cleanup_seconds
         # Even a failed inspect cannot widen authority beyond this previously verified ID.
         try:
-            if self.terminal(self.inspect()):
+            if self.terminal(self.inspect(require_applied=False)):
                 return
         except Exception as error:
             self.report['errors'].append(error_record(error))
@@ -197,7 +201,7 @@ class Owner:
                 self.report['errors'].append(error_record(error))
             while self.clock() < until:
                 try:
-                    if self.terminal(self.inspect()):
+                    if self.terminal(self.inspect(require_applied=False)):
                         return
                 except Exception as error:
                     self.report['errors'].append(error_record(error))
