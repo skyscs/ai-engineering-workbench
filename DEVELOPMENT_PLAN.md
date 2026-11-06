@@ -529,9 +529,12 @@ bytes. [Task 139](tasks/139-loredock-lossless-parser-transport.md) repairs repea
 transport with exact fact round trips and unchanged bounds. Its first candidate preserves
 all three original graphs; the two failing replies now occupy 143,742 and 29,747 bytes
 under the unchanged 524,288-byte limit. After exact-head checks and merge,
-[Task 140](tasks/140-loredock-production-parser-adoption.md) adopt the owner in native and
-legacy paths with asynchronous initialization. Whole-heap observer coverage and resource
-acceptance remain future gates; no measured failure or limit is waived.
+[Task 140](tasks/140-loredock-production-parser-adoption.md) adopts the owner in native and
+legacy paths with asynchronous initialization, whole-operation admission and actual-exit
+shutdown. Eleven ordinary catalog comparisons retain exact results and all 21 saved answers.
+[Task 141](tasks/141-loredock-parser-observer-coverage.md) establishes complete startup and
+parent/worker observer coverage before another near-limit gate. No measured failure or
+resource limit is waived; the browser baseline failure remains a separate decision.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation

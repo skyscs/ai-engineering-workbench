@@ -1,0 +1,16 @@
+[
+  {
+    "archive": "first.tar.gz",
+    "sha256": "4da2aef07ff758998cd89da63fcdfd5d71d044edd5ecf027a311c1b1aa9d46e1",
+    "entries": 577,
+    "inventory": "first.inventory.json.gz",
+    "inventorySha256": "5d623422b74c56461f64bc0b5c6d03a380d0ebeb1401d2dcb9aa3888fcd866b1"
+  },
+  {
+    "archive": "early-inputs.tar.gz",
+    "sha256": "75110f25111bb230c32854c0334d5ce44cf39bb7b8e5ebf9641bc8eaadf944ef",
+    "entries": 540,
+    "inventory": "early-inputs.inventory.json.gz",
+    "inventorySha256": "5b769f3e0fa166cc42d1b6d7805d9bddbf070ff4b83168d6331b1c3a3e913a54"
+  }
+]

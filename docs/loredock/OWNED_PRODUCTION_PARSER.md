@@ -56,8 +56,19 @@ crashes, malformed replies, budget failure, parser upgrades and actual server sh
 [Historical controls](../../apps/loredock/tests/fixtures/owned-parser-reference/README.md)
 retain their original bytes and assertions with explicitly pinned old dependencies.
 
-The first ordinary observation and final verification are pending. No real model or
-corporate code is required. Compatibility does not qualify whole-process heap, complete
+The [first ordinary observation](../fixtures/loredock-owned-parser/README.md), at
+`f20dfd27330b32469be03428c160a81a4e0f0788`, preserves all eight projections and all
+21 saved answer reads/replays, plus exact facts/ranges/graphs in all three transport
+cases. It creates ten threads for eleven catalogs; the README-only catalog starts none.
+All 540 requests complete and all ten threads exit. The child exits 0 after 3,625.049 ms,
+without timeout or surviving ownership. All 254 copied original transport entries and
+262 candidate input files remain exact. No model or corporate input is used.
+
+The 297 parent samples have a maximum interval of 37.670 ms; kernel process high-water
+RSS is 248,792 KiB. Parent sampled heap reaches 43,760,592 bytes. These are diagnostics:
+worker heap is not sampled, and module evaluation before the observer is not covered.
+The record cannot establish simultaneous heap or complete startup acceptance. Final
+local and exact-head CI verification is recorded in the development status. Compatibility does not qualify whole-process heap, complete
 startup, near-limit or browser resource gates. Parent composition and expanded native
 payload allocation remain resource risks even though compiler parsing is isolated.
 Those gates require the next prospective observer stage; existing limits and consumed

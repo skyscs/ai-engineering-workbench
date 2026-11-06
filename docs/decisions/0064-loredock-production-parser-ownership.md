@@ -1,6 +1,6 @@
 # ADR 0064 — Production parser ownership and admission
 
-Status: implemented in Task 140; final compatibility and exact-head CI acceptance pending.
+Status: implemented and locally verified in Task 140; exact-head CI acceptance pending.
 
 ## Ownership and contention
 
@@ -85,3 +85,13 @@ rerun consumed families or rewrite historical fixtures. Current-byte integrity c
 need a new explicit delta layer preserving older reference bytes. Aggregate heap,
 complete startup, near-limit and browser qualification remain separate unresolved
 gates; no diagnostic here certifies those resource bounds.
+
+## Verification record
+
+The [first ordinary comparison](../fixtures/loredock-owned-parser/README.md) preserves
+all eleven catalog cases and 21 saved answers. Ten worker lifetimes all reach actual
+exit. The final full check passes 1,125 tests, all typechecks and builds. Source/emitted
+server tests cover real readiness and SIGTERM; late startup readiness cannot open the
+listener. Initial failure logs remain retained. No resource qualification follows from
+these compatibility results; [Task 141](../../tasks/141-loredock-parser-observer-coverage.md)
+addresses the remaining observer coverage.
