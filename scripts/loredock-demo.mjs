@@ -26,7 +26,7 @@ export async function prepareDemo(services,{signal,onProgress=()=>{}}={}) {
   const stop=()=>closing??=Promise.allSettled([analysis?.stop(),catalog?.stop()]);
   const interrupt=()=>{void stop();};
   try {
-    signal?.throwIfAborted();store=new services.CatalogStore(dataDirectory);catalog=new services.Catalog(store);analysis=new services.CodeAnalysis(catalog);
+    signal?.throwIfAborted();store=new services.CatalogStore(dataDirectory);catalog=new services.Catalog(store);analysis=await services.CodeAnalysis.create(catalog);
     signal?.addEventListener('abort',interrupt,{once:true});signal?.throwIfAborted();
     const paths=fixture.manifest.sources.map(source=>path.join(fixture.root,'sources',source.id));
     if(paths.length!==20)throw new Error('The bundled demo must contain exactly twenty repositories.');

@@ -32,7 +32,7 @@ function gate(when = () => true) {
 const observed = <T>(promise: Promise<T>) => { void promise.catch(() => undefined); return promise; };
 async function setup(t: TestContext) {
   const fixture = await createLoreDockFixture() as { root: string }, store = new CatalogStore(path.join(fixture.root, 'data'));
-  const catalog = new Catalog(store), analysis = new CodeAnalysis(catalog), preparations = new QuestionPreparations(analysis);
+  const catalog = new Catalog(store), analysis = await CodeAnalysis.create(catalog), preparations = new QuestionPreparations(analysis);
   const counts = { prepares: 0, calls: 0, closed: 0 };
   const runtime: TextRuntime = { prepare: async connection => {
     counts.prepares++;
@@ -63,10 +63,12 @@ test('delayed graph reads reject revocation, intervening writes and stop before 
   for (const event of ['revoke', 'write', 'stop'] as const) await t.test(event, async t => {
     const s = await setup(t), hold = gate(), pending = observed(hold.run(() => codeFlows(s.catalog)));
     await hold.ready;
+    let stopped: Promise<void> | undefined;
     if (event === 'revoke') s.revoke();
-    else if (event === 'stop') await s.catalog.stop();
+    else if (event === 'stop') stopped = s.catalog.stop();
     else s.store.run('UPDATE project SET correctionRevision=correctionRevision+1 WHERE id=1');
     hold.release(); await assert.rejects(pending, /changed during legacy|catalog is stopping/);
+    await stopped;
   });
 });
 
@@ -80,16 +82,17 @@ test('retrieval and the second candidate graph retain the original authority epo
   });
 });
 
-test('both correction kinds refuse late writes and a competing correction owns the only new revision', async t => {
+test('both correction kinds reject competing admission before a second revision can be written', async t => {
   for (const kind of ['code-link', 'declaration-link'] as const) await t.test(kind, async t => {
     const s = await setup(t), input = await note(s.catalog, kind), hold = gate();
     const pending = observed(hold.run(() => new Corrections(s.catalog).save(input)));
     await hold.ready;
-    const winner = await new Corrections(s.catalog).save({ ...input, requestId: 'winner' });
-    hold.release(); await assert.rejects(pending, /changed during legacy|correction changed/);
+    await assert.rejects(new Corrections(s.catalog).save({ ...input, requestId: 'competitor' }), { code: 'BUSY' });
+    assert.equal(s.catalog.state().correctionRevision, 0);
+    hold.release(); const winner = await pending;
     assert.equal(s.catalog.state().correctionRevision, 1);
     assert.deepEqual(new Corrections(s.catalog).list().corrections.map(row => row.id), [winner.id]);
-    assert.deepEqual(await new Corrections(s.catalog).save({ ...input, requestId: 'winner' }), winner);
+    assert.deepEqual(await new Corrections(s.catalog).save(input), winner);
   });
 });
 
@@ -171,7 +174,8 @@ test('all lexical phases charge one original budget and a closed budget rejects 
   await retrieveAnswerContext(s.catalog, 'How does portal submit an order?', undefined, operation);
   const stats = operation.stats(); assert(stats.originalReads > 0 && stats.sqlRows > 0);
   assert.equal(stats.acceptedUnits, stats.sqlRows + stats.originalBytes); assert.equal(stats.rejectedUnits, 0);
-  assert.equal(budget.stats().receiptWork, 37 + stats.acceptedUnits);
+  assert(operation.parserBytes > 0);
+  assert.equal(budget.stats().receiptWork, 37 + stats.acceptedUnits + operation.parserBytes);
   const hold = gate(), pending = observed(hold.run(() => codeFlows(s.catalog, undefined, operation)));
   await hold.ready; budget.close(); const before = operation.stats(); hold.release();
   await assert.rejects(pending, /completed operation budget/); assert.deepEqual(operation.stats(), before);

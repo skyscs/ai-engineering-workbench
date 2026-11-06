@@ -1,5 +1,45 @@
 # Development status
 
+## Task 140 — Owned production parser
+
+Task 139 is accepted through [PR #172](https://github.com/skyscs/ai-engineering-workbench/pull/172):
+both complete CI logs pass 1,107 tests at `ef371a2`, before identical-tree merge `41d70a1`.
+[ADR 0064](decisions/0064-loredock-production-parser-ownership.md) predates implementation.
+Native inventories and foreground context operations now share one catalog-owned parser
+with exclusive admission, absolute deadlines, shared transport accounting and actual-exit
+shutdown. Competing calls receive `BUSY`; failures never become successful empty context.
+The daemon streams implementation identity and waits for worker readiness before listening.
+Native parser upgrades require explicit reanalysis while saved v1/v2 answers remain readable.
+
+The [first ordinary comparison](fixtures/loredock-owned-parser/README.md) at `f20dfd2`
+preserves eight catalog projections, all 21 saved answer reads/replays and three original
+fact/range/graph cases. Ten threads process 540 requests and all actually exit. The whole
+child exits 0 after 3,625.049 ms without timeout; 254 original transport entries and 262
+candidate files stay exact. The source-only case starts no thread. There are zero model
+calls, corporate inputs or consumed-family replays.
+
+The first successful full check passes 1,124 tests after retained historical-dependency
+and asynchronous-ordering fixes. Final review adds a pre-listen deadline fence, one lifecycle
+test and accurate timeout/cancellation messages. The final full check passes **1,125 tests**
+(728 LoreDock, 262 scripts, 135 other package tests), all ten typechecks and all builds.
+An initial implicit-any failure in the new readiness test is retained and fixed.
+The first push/PR CI attempts at `e701fc0` expose an undeclared dependency on generated
+`dist/types.js` in the historical test materializer. Both complete failed logs are retained;
+the source-only fallback emits the pinned original type module before daemon build.
+A fresh detached checkout at `cffcd1d` independently passes the complete normal sequence:
+1,125 tests, ten typechecks and ten final builds, without prebuilt daemon output.
+Application source remains unchanged. Both new exact-head CI logs are required before merge.
+The first observation predates only those startup/message changes and its explicit delta.
+All parser, graph, prompt and native fingerprint bytes remain unchanged after that record.
+Standalone Node 22.13 passes 23 source and six built parser tests; full LoreDock rejects
+its missing FTS5 before directory creation. The application requires Node >=22.23.2 + FTS5.
+
+First failures, exact historical controls, initial/core inputs and closed logs are retained.
+Parent-only memory/timing diagnostics do not qualify aggregate heap or complete startup.
+After exact-head CI acceptance and merge, [Task 141](../tasks/141-loredock-parser-observer-coverage.md)
+establishes observation coverage before another ordinary near-limit gate. The browser RSS
+baseline failure remains separate, and no existing resource ceiling or default is changed.
+
 ## Task 139 — Lossless parser transport (ordinary compatibility repaired)
 
 Task 138 is accepted through [PR #171](https://github.com/skyscs/ai-engineering-workbench/pull/171):

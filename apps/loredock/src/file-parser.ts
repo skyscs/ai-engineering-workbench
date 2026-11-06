@@ -2,7 +2,7 @@ import { Worker } from 'node:worker_threads';
 import { fileParserIdentity } from './file-parser-identity.js';
 import { FileParserOwner } from './file-parser-owner.js';
 
-/** Unwired adapter: production call sites still use their existing synchronous parsers. */
+/** Installed worker factory. Catalog ownership and admission live in FileParserService. */
 export class OwnedFileParser extends FileParserOwner {
   constructor() {
     super({ identify: fileParserIdentity, spawn: generation => {

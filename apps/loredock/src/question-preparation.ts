@@ -133,57 +133,60 @@ export class QuestionPreparations {
     let budget: OperationBudget | undefined, lexical: LegacyReadOperation | undefined, paths: CodePathsV2 | undefined, nativeReads = 0;
     try {
       budget = new OperationBudget({ ...this.options.budget, signal });
-      const checkpoint = async (info: { stage: Stage }) => { await this.options.checkpoint?.(info); };
-      const work = new CaptureWork(catalog, budget, signal, { checkpoint });
-      await yieldTurn(); await checkpoint({ stage: 'lexical' }); work.check();
       lexical = new LegacyReadOperation(catalog, budget, signal);
-      const account = lexical;
-      const context = await store.withPreparedReads(() => retrieveAnswerContext(catalog, question, buildId, account));
-      const { dependencies } = work.dependencies(buildId), sourceIds = questionSourceIds(context, { dependencies });
-      assertQuestionCurrent(catalog, context, sourceIds);
-      let selection: SelectionObservation | null = null, receipt: string | null = null;
-      let compact: NativeQuestionCompact = { item: null, reason: null };
-      paths = new CodePathsV2(this.analysis, { checkpoint, selectRoot: async (resolution, pathWork) => {
-        const selected = await chooseQuestionRoot(resolution, context, pathWork); selection = selected.observation; return selected;
-      } });
-      try {
-        nativeReads++;
-        const projection = await paths.read({ buildId }, 'paths', signal, budget);
-        if (projection.status === 'unavailable') compact = { item: null, reason: projection.reason.code };
-        else {
-          await work.step('projection');
-          const projectionJson = JSON.stringify(projection), decoded = decodeProjection(projectionJson, work.context);
-          work.authorized(decoded.value, dependencies);
-          const originals = [];
-          for (const id of [...decoded.evidence.keys()].sort()) { await work.step('originals'); originals.push(work.original(id)); }
-          const encoded = encodeNativeReceipt({ schemaVersion: 'loredock-code-path-receipt/1', catalogId: store.receipts.catalogId,
-            projectionJson, originals, dependencies }, store.receipts.catalogId, budget);
-          receipt = encoded.serialized; compact = compactQuestionPath(context, encoded, budget);
+      const account = lexical, operationBudget = budget;
+      await account.run(async () => {
+        const checkpoint = async (info: { stage: Stage }) => { await this.options.checkpoint?.(info); };
+        const work = new CaptureWork(catalog, operationBudget, signal, { checkpoint });
+        await yieldTurn(); await checkpoint({ stage: 'lexical' }); work.check();
+        const context = await store.withPreparedReads(() => retrieveAnswerContext(catalog, question, buildId, account));
+        const { dependencies } = work.dependencies(buildId), sourceIds = questionSourceIds(context, { dependencies });
+        assertQuestionCurrent(catalog, context, sourceIds);
+        let selection: SelectionObservation | null = null, receipt: string | null = null;
+        let compact: NativeQuestionCompact = { item: null, reason: null };
+        paths = new CodePathsV2(this.analysis, { checkpoint, selectRoot: async (resolution, pathWork) => {
+          const selected = await chooseQuestionRoot(resolution, context, pathWork); selection = selected.observation; return selected;
+        } });
+        try {
+          nativeReads++;
+          const projection = await paths.read({ buildId }, 'paths', signal, operationBudget);
+          if (projection.status === 'unavailable') compact = { item: null, reason: projection.reason.code };
+          else {
+            await work.step('projection');
+            const projectionJson = JSON.stringify(projection), decoded = decodeProjection(projectionJson, work.context);
+            work.authorized(decoded.value, dependencies);
+            const originals = [];
+            for (const id of [...decoded.evidence.keys()].sort()) { await work.step('originals'); originals.push(work.original(id)); }
+            const encoded = encodeNativeReceipt({ schemaVersion: 'loredock-code-path-receipt/1', catalogId: store.receipts.catalogId,
+              projectionJson, originals, dependencies }, store.receipts.catalogId, operationBudget);
+            receipt = encoded.serialized; compact = compactQuestionPath(context, encoded, operationBudget);
+          }
+        } catch (error) {
+          if (!(error instanceof SelectionUnavailable)) throw error;
+          selection = error.observation; compact = { item: null, reason: error.code };
         }
-      } catch (error) {
-        if (!(error instanceof SelectionUnavailable)) throw error;
-        selection = error.observation; compact = { item: null, reason: error.code };
-      }
-      for (const span of context.spans) { await work.step('originals'); const original = work.original(span.id);
-        requireReceipt(original.buildId === context.buildId && same(inputSpan(original), span), 'QUESTION_ORIGINAL_MISMATCH'); }
-      const prompt = preparedQuestionPrompt(context, compact.item); budget.charge('receipt', bytes(prompt));
-      const witness: QuestionWitness = { schemaVersion: questionWitnessVersion, compositionVersion: questionPreparationVersion,
-        promptVersion: questionPromptVersion, catalogId: store.receipts.catalogId, lexicalInputHash: context.inputHash,
-        receipt, compact, selection, dependencies, sourceIds, prompt, promptHash: hash(prompt) };
-      const snapshot = questionSnapshot(context, witness, budget);
-      await work.step('handoff');
-      assertQuestionCurrent(catalog, context, sourceIds); authorizeQuestionScope(work, context, witness); work.check();
-      requireReceipt(this.shared.entry === entry && !this.shared.stopped && !signal.aborted, 'CANCELLED');
-      // No await between the final authority fence and publishing owned immutable bytes.
-      entry.snapshot = snapshot; entry.expires = performance.now() + questionPreparationLimits.readyMs;
-      entry.state = { ...entry.state, status: 'ready', reviewedHash: snapshot.reviewedHash };
-      const expire = () => {
-        if (this.shared.entry !== entry) return;
-        const remaining = entry.expires! - performance.now();
-        if (remaining <= 0) this.discard('expired', 'QUESTION_EXPIRED');
-        else { entry.timer = setTimeout(expire, Math.ceil(remaining)); entry.timer.unref(); }
-      };
-      entry.timer = setTimeout(expire, questionPreparationLimits.readyMs); entry.timer.unref();
+        for (const span of context.spans) { await work.step('originals'); const original = work.original(span.id);
+          requireReceipt(original.buildId === context.buildId && same(inputSpan(original), span), 'QUESTION_ORIGINAL_MISMATCH'); }
+        const prompt = preparedQuestionPrompt(context, compact.item); operationBudget.charge('receipt', bytes(prompt));
+        const witness: QuestionWitness = { schemaVersion: questionWitnessVersion, compositionVersion: questionPreparationVersion,
+          promptVersion: questionPromptVersion, catalogId: store.receipts.catalogId, lexicalInputHash: context.inputHash,
+          receipt, compact, selection, dependencies, sourceIds, prompt, promptHash: hash(prompt) };
+        const snapshot = questionSnapshot(context, witness, operationBudget);
+        await work.step('handoff');
+        assertQuestionCurrent(catalog, context, sourceIds); authorizeQuestionScope(work, context, witness); work.check();
+        account.check();
+        requireReceipt(this.shared.entry === entry && !this.shared.stopped && !signal.aborted, 'CANCELLED');
+        // No await between the final authority fence and publishing owned immutable bytes.
+        entry.snapshot = snapshot; entry.expires = performance.now() + questionPreparationLimits.readyMs;
+        entry.state = { ...entry.state, status: 'ready', reviewedHash: snapshot.reviewedHash };
+        const expire = () => {
+          if (this.shared.entry !== entry) return;
+          const remaining = entry.expires! - performance.now();
+          if (remaining <= 0) this.discard('expired', 'QUESTION_EXPIRED');
+          else { entry.timer = setTimeout(expire, Math.ceil(remaining)); entry.timer.unref(); }
+        };
+        entry.timer = setTimeout(expire, questionPreparationLimits.readyMs); entry.timer.unref();
+      });
     } finally {
       budget?.close(); this.observation = { id: entry.state.id, budget: budget?.stats() ?? null, lexical: lexical?.stats() ?? null, nativeReads };
       if (paths) void paths.stop();

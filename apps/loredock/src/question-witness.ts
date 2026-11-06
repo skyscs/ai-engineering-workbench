@@ -88,41 +88,43 @@ export async function validateQuestionWitness(catalog: Catalog, snapshot: Questi
   requireReceipt(options.budget === undefined || options.budget instanceof OperationBudget, 'INVALID_CAPTURE_BUDGET');
   requireReceipt(signal instanceof AbortSignal && (options.finalize === undefined || typeof options.finalize === 'function'), 'INVALID_WITNESS_VALIDATION');
   const budget = options.budget ?? new OperationBudget({ signal });
+  const lexical = new LegacyReadOperation(catalog, budget, signal);
   try {
-    const work = new CaptureWork(catalog, budget, signal, {}), { context, witness } = readQuestionSnapshot(snapshot);
-    budget.charge('receipt', bytes(snapshot.contextJson) + bytes(snapshot.witnessJson)
-      + snapshot.retainedBytes - questionPreparationLimits.metadataBytes);
-    requireReceipt(witness.catalogId === catalog.store.receipts.catalogId, 'RECEIPT_CATALOG_MISMATCH');
-    assertQuestionCurrent(catalog, context, witness.sourceIds);
-    authorizeQuestionScope(work, context, witness);
-    if (witness.receipt !== null) {
-      const encoded = decodeNativeReceipt(Buffer.from(witness.receipt), witness.catalogId, budget);
-      work.authorized(encoded.projection, encoded.receipt.dependencies);
-      requireReceipt(encoded.projection.identity.buildId === context.buildId && same(encoded.receipt.dependencies, witness.dependencies), 'QUESTION_RECEIPT_BINDING');
-      for (const original of encoded.receipt.originals) { await work.step('originals'); requireReceipt(same(work.original(original.id), original)); }
-      requireReceipt(same(compactQuestionPath(context, encoded, budget, compactVersionForPrompt(witness.promptVersion)), witness.compact), 'QUESTION_COMPACT_MISMATCH');
-    } else requireReceipt(witness.compact.item === null && typeof witness.compact.reason === 'string', 'QUESTION_MISSING_RECEIPT');
-    for (const span of context.spans) {
-      await work.step('originals'); const original = work.original(span.id);
-      requireReceipt(original.buildId === context.buildId && same(inputSpan(original), span), 'QUESTION_ORIGINAL_MISMATCH');
-    }
-    // Legacy interfaces keep their own validator and actual lexical accounting.
-    const lexical = new LegacyReadOperation(catalog, budget, signal);
-    await assertAnswerInterfaces(catalog, context, lexical);
-    const answer = options.answer === undefined ? undefined : await validateCitedAnswer(catalog, context, options.answer, lexical);
-    const prompt = preparedQuestionPrompt(context, witness.compact.item); budget.charge('receipt', bytes(prompt));
-    requireReceipt(prompt === witness.prompt, 'QUESTION_PROMPT_MISMATCH');
-    await work.step('handoff'); assertQuestionCurrent(catalog, context, witness.sourceIds);
-    authorizeQuestionScope(work, context, witness);
-    work.check();
-    // A trusted consumer commits or starts its owned promise synchronously at this fence.
-    // Its own writes end the read-only epoch; do not check that epoch afterward.
-    lexical.check();
-    const result = options.finalize?.({ context, witness, budget, check: () => { work.check(); lexical.check(); }, ...(answer ? { answer } : {}) });
-    if (result !== null && (typeof result === 'object' || typeof result === 'function') && 'then' in result) {
-      if (result instanceof Promise) void result.catch(() => undefined);
-      requireReceipt(false, 'ASYNC_WITNESS_FINALIZER');
-    }
-    return { status: 'revalidated' as const, reviewedHash: snapshot.reviewedHash, budget: budget.stats(), lexical: lexical.stats() };
+    return await lexical.run(async () => {
+      const work = new CaptureWork(catalog, budget, signal, {}), { context, witness } = readQuestionSnapshot(snapshot);
+      budget.charge('receipt', bytes(snapshot.contextJson) + bytes(snapshot.witnessJson)
+        + snapshot.retainedBytes - questionPreparationLimits.metadataBytes);
+      requireReceipt(witness.catalogId === catalog.store.receipts.catalogId, 'RECEIPT_CATALOG_MISMATCH');
+      assertQuestionCurrent(catalog, context, witness.sourceIds);
+      authorizeQuestionScope(work, context, witness);
+      if (witness.receipt !== null) {
+        const encoded = decodeNativeReceipt(Buffer.from(witness.receipt), witness.catalogId, budget);
+        work.authorized(encoded.projection, encoded.receipt.dependencies);
+        requireReceipt(encoded.projection.identity.buildId === context.buildId && same(encoded.receipt.dependencies, witness.dependencies), 'QUESTION_RECEIPT_BINDING');
+        for (const original of encoded.receipt.originals) { await work.step('originals'); requireReceipt(same(work.original(original.id), original)); }
+        requireReceipt(same(compactQuestionPath(context, encoded, budget, compactVersionForPrompt(witness.promptVersion)), witness.compact), 'QUESTION_COMPACT_MISMATCH');
+      } else requireReceipt(witness.compact.item === null && typeof witness.compact.reason === 'string', 'QUESTION_MISSING_RECEIPT');
+      for (const span of context.spans) {
+        await work.step('originals'); const original = work.original(span.id);
+        requireReceipt(original.buildId === context.buildId && same(inputSpan(original), span), 'QUESTION_ORIGINAL_MISMATCH');
+      }
+      // Legacy interfaces keep their own validator and actual lexical accounting.
+      await assertAnswerInterfaces(catalog, context, lexical);
+      const answer = options.answer === undefined ? undefined : await validateCitedAnswer(catalog, context, options.answer, lexical);
+      const prompt = preparedQuestionPrompt(context, witness.compact.item); budget.charge('receipt', bytes(prompt));
+      requireReceipt(prompt === witness.prompt, 'QUESTION_PROMPT_MISMATCH');
+      await work.step('handoff'); assertQuestionCurrent(catalog, context, witness.sourceIds);
+      authorizeQuestionScope(work, context, witness);
+      work.check();
+      // A trusted consumer commits or starts its owned promise synchronously at this fence.
+      // Its own writes end the read-only epoch; do not check that epoch afterward.
+      lexical.check();
+      const result = options.finalize?.({ context, witness, budget, check: () => { work.check(); lexical.check(); }, ...(answer ? { answer } : {}) });
+      if (result !== null && (typeof result === 'object' || typeof result === 'function') && 'then' in result) {
+        if (result instanceof Promise) void result.catch(() => undefined);
+        requireReceipt(false, 'ASYNC_WITNESS_FINALIZER');
+      }
+      return { status: 'revalidated' as const, reviewedHash: snapshot.reviewedHash, budget: budget.stats(), lexical: lexical.stats() };
+    });
   } finally { if (options.budget === undefined) budget.close(); }
 }

@@ -1,0 +1,18 @@
+export const ownedPlan = Object.freeze({
+  schemaVersion: 'ordinary-owned-production-parser/1',
+  applicationBase: '41d70a1b7423ab52a482ba81b9f432d343fa0eb2',
+  legacyCases: ['supported', 'reviewed', 'refresh', 'reapplied', 'contradictory-topic', 'source-only', 'saved-v1', 'saved-v2'],
+  legacyInputs: 'docs/fixtures/loredock-async-legacy/baseline',
+  transportCases: ['ordinary', 'dense-operations', 'long-owner'],
+  transportArchive: 'docs/fixtures/loredock-parser-transport/first.tar.gz',
+  transportArchiveSha256: '77c99c02c04923ec66cbcd50d5964792c79626a010ed4412f7d466f5489089a0',
+  compare: 'Exact serialized facts, ranges, graphs, contexts, reviews, prompt bytes and saved v1/v2 witnesses; no new expected values.',
+  native: 'New honest fingerprint; old inventory incompatible, explicit reanalysis, restart/resume checkpoints and no same-build automatic retry.',
+  lifecycle: ['source-worker', 'emitted-worker', 'busy-before-read', 'whole-operation-generation', 'pause-resume', 'cancel',
+    'source-policy-fence', 'stop-initialization', 'infrastructure-failure', 'late-reply', 'idle-stop', 'server-signal-stop'],
+  node: '22.23.2', standaloneMinimumNode: '22.13.0',
+  operationMs: 5000, analysisMs: 300000, firstChildMs: 120000, cleanupMs: 10000,
+  observer: 'Record parent/worker lifetime, actual exit and whole-process CPU/RSS diagnostics; explicitly incomplete heap/startup sampling.',
+  repeatPolicy: 'Exclusive first result directory and immutable original inputs; every later attempt has a different directory.',
+  realModelCalls: 0, maximumControlledModelCalls: 1, corporateSources: 0, reservedFamilyReads: 0, resourceQualification: false,
+});

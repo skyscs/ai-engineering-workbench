@@ -140,7 +140,7 @@ export async function qualifySymbolSearch(services,output,{smoke=false}={}) {
   try {
     let began=performance.now();fixture=await createCapacityFixture(smoke?5:180);const fixtureMs=performance.now()-began,baseline=capacityBaseline(fixture);
     if(!smoke)for(const key of Object.keys(baseline))assert.deepEqual(baseline[key],capacity[key]);
-    store=new services.CatalogStore(path.join(fixture.root,'data'));catalog=new services.Catalog(store);analysis=new services.CodeAnalysis(catalog);
+    store=new services.CatalogStore(path.join(fixture.root,'data'));catalog=new services.Catalog(store);analysis=await services.CodeAnalysis.create(catalog);
     const paths=fixture.manifest.sources.map(source=>path.join(fixture.root,'sources',source.id)),preview=await catalog.previewSources(paths);
     await catalog.registerSources({paths,previewHash:preview.previewHash,requestId:'symbols'});
     const cases=structuredClone(symbolLookupCases);

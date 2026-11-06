@@ -1,7 +1,7 @@
 import path from 'node:path';
 import type { Catalog } from './catalog.js';
 import type { CodeFacts, OperationFact, SymbolFact } from './code-facts.js';
-import { parseLegacyFile, type LegacyFileInput } from './legacy-file-parser.js';
+import type { LegacyFileInput } from './legacy-file-parser.js';
 import { LegacyReadOperation } from './legacy-read-operation.js';
 import { sha256 } from './extract.js';
 import { readMapDocument, type MapDocument } from './map-document.js';
@@ -20,16 +20,18 @@ const unique = (values: string[]) => [...new Set(values)].sort();
 
 /** Code syntax and candidate wiring are navigation aids, never observed execution. */
 export async function codeFlows(catalog: Catalog, buildId?: string, operation = new LegacyReadOperation(catalog)): Promise<CodeFlows> {
-  const projection = composeCodeFlows(catalog, buildId);
-  try {
-    let step = operation.read(() => projection.next());
-    while (!step.done) {
-      // No SQL transaction or lexical scope crosses this parser boundary.
-      const facts = await parseLegacyFile(step.value);
-      step = operation.read(() => projection.next(facts));
-    }
-    return step.value;
-  } finally { projection.return(undefined as never); }
+  return operation.run(async () => {
+    const projection = composeCodeFlows(catalog, buildId);
+    try {
+      let step = operation.read(() => projection.next());
+      while (!step.done) {
+        // No SQL transaction or lexical scope crosses this parser boundary.
+        const facts = await operation.parse(step.value);
+        step = operation.read(() => projection.next(facts));
+      }
+      return step.value;
+    } finally { projection.return(undefined as never); }
+  });
 }
 
 /** Each synchronous segment reads bounded originals or composes deterministic facts. */

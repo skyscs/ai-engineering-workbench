@@ -14,7 +14,7 @@ const output = process.argv[2];
 assert.ok(output && path.isAbsolute(output), 'An absolute report directory is required.');
 await mkdir(output, {recursive: true});
 const fixture = await createScaleFixture(), directory = path.join(fixture.root, 'storage-data');
-const store = new CatalogStore(directory), catalog = new Catalog(store), analysis = new CodeAnalysis(catalog);
+const store = new CatalogStore(directory), catalog = new Catalog(store), analysis = await CodeAnalysis.create(catalog);
 let closed = false;
 try {
   for (const source of fixture.manifest.sources) await catalog.addSource(path.join(fixture.root, 'sources', source.id));

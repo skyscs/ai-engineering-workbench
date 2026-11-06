@@ -19,7 +19,7 @@ import {createLoreDockFixture} from '../../../scripts/loredock-fixture.mjs';
 async function setup(t: TestContext) {
   const fixture = await createLoreDockFixture(), directory = path.join(fixture.root, 'audit-data');
   let closed = false;
-  const store = new CatalogStore(directory), catalog = new Catalog(store), analysis = new CodeAnalysis(catalog);
+  const store = new CatalogStore(directory), catalog = new Catalog(store), analysis = await CodeAnalysis.create(catalog);
   const close = async () => {if (!closed) {await analysis.stop(); await catalog.stop(); store.close(); closed = true;}};
   t.after(async () => {await close(); await rm(fixture.root, {recursive: true, force: true});});
   const source = await catalog.addSource(path.join(fixture.root, 'sources/order-api'));

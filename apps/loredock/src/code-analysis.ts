@@ -4,8 +4,8 @@ import type { Catalog } from './catalog.js';
 import { CatalogError } from './types.js';
 import { gitBlobHash, sha256 } from './extract.js';
 import { readMapDocument } from './map-document.js';
-import { typescriptFacts } from './code-typescript.js';
-import { javaFacts } from './code-java.js';
+import { FileParserError } from './file-parser-protocol.js';
+import type { ParserLease } from './file-parser-service.js';
 import { codeAnalysisFingerprint, factRanges, verifyFactRanges } from './code-analysis-facts.js';
 import { codeAnalysisLimits, type AnalysisLimits, type AnalysisRow, type AnalysisFile, type AnalysisUnit, type AnalysisPayload, type AnalysisSummary, type AnalysisFileSummary } from './code-analysis-types.js';
 
@@ -26,11 +26,13 @@ function checkpointHash(unit: Omit<AnalysisUnit, 'payload'>) {
 
 /** Disposable derived inventory. Original source evidence remains authoritative. */
 export class CodeAnalysis {
-  readonly fingerprint = codeAnalysisFingerprint();
+  private implementation = '';
+  get fingerprint() { return this.implementation; }
   readonly limits: AnalysisLimits;
-  private worker: { id: string; done: Promise<void> } | undefined;
+  private worker: { id: string; done: Promise<void>; lease: ParserLease } | undefined;
   private stopping = false;
-  constructor(readonly catalog: Catalog, limits: Partial<AnalysisLimits> = {}) {
+  private readonly unsubscribe: () => void;
+  protected constructor(readonly catalog: Catalog, limits: Partial<AnalysisLimits> = {}) {
     this.limits = { ...codeAnalysisLimits, ...limits };
     for (const key of Object.keys(this.limits) as (keyof AnalysisLimits)[]) {
       if (!Number.isSafeInteger(this.limits[key]) || this.limits[key] < 0 || this.limits[key] > codeAnalysisLimits[key]) {
@@ -39,6 +41,12 @@ export class CodeAnalysis {
     }
     if (instances.has(catalog)) throw new CatalogError('BUSY', 'This catalog already has a code analysis service.', 409);
     instances.add(catalog);
+    this.unsubscribe = catalog.onBoundaryChange(() => this.worker?.lease.abort());
+  }
+  static async create(catalog: Catalog, limits: Partial<AnalysisLimits> = {}) {
+    const analysis = new this(catalog, limits);
+    try { analysis.implementation = await catalog.parser.initialize(codeAnalysisFingerprint); return analysis; }
+    catch (error) { analysis.unsubscribe(); instances.delete(catalog); throw error; }
   }
   private get store() { return this.catalog.store; }
   private row(id: string) {
@@ -148,6 +156,7 @@ export class CodeAnalysis {
       fileId: file.id, sourceId: file.sourceId, sourceName: file.sourceName, revision: file.revision, path: file.path, blob: file.blob, contentHash: file.contentHash };
   }
   start(requestId: string, buildId: string) {
+    const begin = performance.now();
     if (this.stopping) throw new CatalogError('STOPPING', 'Code analysis is stopping.', 409);
     if (!/^[A-Za-z0-9_-]{1,100}$/.test(requestId)) throw new CatalogError('INVALID_REQUEST', 'A valid code analysis request ID is required.');
     this.catalog.readBuild(buildId); const project = this.store.project();
@@ -157,7 +166,9 @@ export class CodeAnalysis {
       if (previous.payloadHash !== payloadHash) throw new CatalogError('CONFLICT', 'This request ID has different code analysis inputs.', 409);
       this.authorize(previous); return this.get(previous.id);
     }
-    const id = this.store.transaction(() => {
+    const lease = this.catalog.parser.acquire('native', { deadline: begin + this.limits.wallMs });
+    let id: string;
+    try { id = this.store.transaction(() => {
       if (this.store.one("SELECT id FROM code_analyses WHERE status='running'") || this.worker) throw new CatalogError('BUSY', 'Pause or cancel the active code inventory first.', 409);
       const files = this.store.all<AnalysisFile>(`SELECT ${fileColumns} ${fileJoins} WHERE f.buildId=? AND src.status='active' AND f.status='indexed'
         AND ${predicate} ORDER BY bs.rowid,f.path LIMIT ?`, buildId, codeAnalysisLimits.documents + 1);
@@ -172,20 +183,28 @@ export class CodeAnalysis {
       this.store.run(`INSERT INTO code_analysis_sources SELECT ?,bs.sourceId FROM build_sources bs JOIN sources s ON s.id=bs.sourceId WHERE bs.buildId=? AND s.status='active'`, id, buildId);
       this.store.withPreparedAnalysisWritesSync(() => units.forEach((unit, ordinal) => this.store.run('INSERT INTO code_analysis_files (runId,fileId,ordinal,inputHash) VALUES (?,?,?,?)', id, unit.fileId, ordinal, unit.inputHash)));
       return id;
-    });
-    this.schedule(id); return this.get(id);
+    }); } catch (error) { void lease.release(); throw error; }
+    this.schedule(id, lease, begin); return this.get(id);
   }
-  control(id: string, action: 'pause' | 'resume' | 'cancel') {
+  async control(id: string, action: 'pause' | 'resume' | 'cancel') {
     if (!['pause', 'resume', 'cancel'].includes(action)) throw new CatalogError('INVALID_ACTION', 'Unknown code analysis action.');
     const row = this.row(id);
-    if (action === 'pause' && row.status === 'running') this.store.run("UPDATE code_analyses SET status='paused',reason='Paused between files.' WHERE id=?", id);
+    if (action === 'pause' && row.status === 'running') this.store.run("UPDATE code_analyses SET status='paused',reason='Paused. Resume explicitly from the last completed file.' WHERE id=?", id);
     else if (action === 'cancel' && ['running', 'paused', 'interrupted'].includes(row.status)) this.store.run("UPDATE code_analyses SET status='cancelled',reason='Cancelled by the user.' WHERE id=?", id);
     else if (action === 'resume') {
       if (this.stopping) throw new CatalogError('STOPPING', 'Code analysis is stopping.', 409);
       if (row.status === 'running') return this.get(id);
       if (!['paused', 'interrupted'].includes(row.status)) throw new CatalogError('CONFLICT', 'Only paused or interrupted code analysis can resume.', 409);
       this.authorize(row);
+      // An explicit resume joins the previous lease before requesting a generation.
+      if (this.worker?.id === id) await this.worker.done;
+      if (this.stopping) throw new CatalogError('STOPPING', 'Code analysis is stopping.', 409);
+      const current = this.row(id);
+      if (!['paused', 'interrupted'].includes(current.status)) throw new CatalogError('CONFLICT', 'Code analysis changed while resuming.', 409);
+      this.authorize(current);
       if (this.store.one("SELECT id FROM code_analyses WHERE status='running'")) throw new CatalogError('BUSY', 'Another code inventory is running.', 409);
+      const lease = this.catalog.parser.acquire('native', { deadline: performance.now() + Math.max(0, this.limits.wallMs - current.elapsedMs) });
+      try {
       const validationStarted = performance.now();
       const units = this.store.all<AnalysisUnit>('SELECT * FROM code_analysis_files WHERE runId=? ORDER BY ordinal', id);
       checked(units.length === row.candidates && units.every((unit, index) => unit.ordinal === index)
@@ -194,32 +213,42 @@ export class CodeAnalysis {
       checked(units.reduce((sum, unit) => sum + unit.inputBytes, 0) === row.textBytes && row.textBytes <= this.limits.textBytes
         && units.reduce((sum, unit) => sum + unit.payloadBytes, 0) === row.payloadBytes && row.payloadBytes <= this.limits.payloadBytes
         && Number.isFinite(row.elapsedMs) && row.elapsedMs >= 0);
-      this.store.run("UPDATE code_analyses SET status='running',reason=NULL,elapsedMs=elapsedMs+? WHERE id=?", performance.now() - validationStarted, id); this.schedule(id);
+      this.store.run("UPDATE code_analyses SET status='running',reason=NULL,elapsedMs=elapsedMs+? WHERE id=?", performance.now() - validationStarted, id); this.schedule(id, lease);
+      } catch (error) { await lease.release(); throw error; }
+    }
+    if ((action === 'pause' || action === 'cancel') && this.worker?.id === id) {
+      this.worker.lease.abort(); await this.worker.done;
     }
     return this.get(id);
   }
-  private schedule(id: string) {
-    if (this.worker || this.stopping) return;
-    const done = Promise.resolve().then(() => this.store.withPreparedAnalysisWrites(() => this.store.withPreparedReads(() => this.run(id)))).catch(error => {
+  private schedule(id: string, lease: ParserLease, begin = performance.now()) {
+    const elapsed = this.row(id).elapsedMs;
+    const done = Promise.resolve().then(() => this.store.withPreparedAnalysisWrites(() => this.store.withPreparedReads(() => this.run(id, lease, begin, elapsed)))).catch(error => {
       if (this.row(id).status === 'running') this.store.run("UPDATE code_analyses SET status='failed',reason=? WHERE id=?", `Code analysis failed: ${error instanceof Error ? error.message.slice(0, 1024) : 'Unknown error.'}`, id);
-    }).finally(() => {
-      this.worker = undefined;
-      // An explicit resume can race with the previous worker's final cleanup.
-      if (!this.stopping && this.row(id).status === 'running') this.schedule(id);
+    }).finally(async () => {
+      try { await lease.release(() => {
+        this.store.run('UPDATE code_analyses SET elapsedMs=max(elapsedMs,?) WHERE id=?', elapsed + performance.now() - begin, id);
+      }); } finally { if (this.worker?.lease === lease) this.worker = undefined; }
     });
-    this.worker = { id, done };
+    this.worker = { id, done, lease };
+    void done.catch(() => undefined);
   }
   async idle() { while (this.worker) await this.worker.done; }
   async stop() {
     if (this.stopping) { await this.idle(); return; }
     this.stopping = true;
+    this.unsubscribe();
     if (this.worker && this.row(this.worker.id).status === 'running') this.store.run("UPDATE code_analyses SET status='interrupted',reason='The daemon stopped. Resume code analysis explicitly.' WHERE id=?", this.worker.id);
+    this.worker?.lease.abort();
     await this.idle(); instances.delete(this.catalog);
   }
-  private async run(id: string) {
-    const begin = performance.now(), elapsed = this.row(id).elapsedMs;
+  private async run(id: string, lease: ParserLease, begin: number, elapsed: number) {
     for (;;) {
-      const row = this.row(id); if (row.status !== 'running') return; this.authorize(row);
+      const row = this.row(id); if (row.status !== 'running') return;
+      // Exhaustion between files retains the original explicit unattempted coverage.
+      // An in-flight timeout still fails the operation before publishing that file.
+      if (elapsed + performance.now() - begin < this.limits.wallMs) lease.check();
+      this.authorize(row);
       const unit = this.store.one<AnalysisUnit>("SELECT * FROM code_analysis_files WHERE runId=? AND status='pending' ORDER BY ordinal LIMIT 1", id);
       if (!unit) {
         const partial = this.store.one("SELECT fileId FROM code_analysis_files WHERE runId=? AND (status<>'parsed' OR gapCount>0) LIMIT 1", id)
@@ -237,6 +266,8 @@ export class CodeAnalysis {
         }); continue;
       }
       let result = { ...unit };
+      let parsing = false;
+      let parsedFence: (() => void) | undefined;
       try {
         const file = this.metadata(row, unit.fileId); checked(inputHash(row, file) === unit.inputHash);
         checked(Number.isSafeInteger(file.size) && file.size > 0 && file.size === file.storedBytes);
@@ -247,7 +278,18 @@ export class CodeAnalysis {
         else {
           const document = this.document(row, file);
           result.inputBytes = document.raw.length;
-          const facts = file.path.endsWith('.java') ? javaFacts(document.content) : typescriptFacts(document.content, file.path);
+          const epoch = () => JSON.stringify([this.store.one<{ n: number }>('SELECT total_changes() n')!.n,
+            this.store.one<{ data_version: number }>('PRAGMA data_version')!.data_version]);
+          const before = epoch(); parsing = true;
+          parsedFence = () => {
+            lease.check(); const current = this.row(id); this.authorize(current);
+            if (this.stopping || this.worker?.lease !== lease || current.status !== 'running') throw new CatalogError('CANCELLED', 'Code analysis was stopped.', 409);
+            if (epoch() !== before) throw new CatalogError('INPUT_CHANGED', 'Catalog inputs changed during code parsing. Start a new inventory.', 409);
+            const pending = this.store.one<AnalysisUnit>('SELECT * FROM code_analysis_files WHERE runId=? AND fileId=?', id, file.id);
+            checked(JSON.stringify(pending) === JSON.stringify(unit) && inputHash(current, this.metadata(current, file.id)) === unit.inputHash);
+          };
+          const facts = await lease.parse(file.path, document.content); parsedFence();
+          parsing = false;
           const ranges = factRanges(document.content, facts);
           const payload = JSON.stringify({ ...this.payloadIdentity(row, unit, file), facts, ranges, evidence: document.refs } satisfies AnalysisPayload);
           const bytes = Buffer.byteLength(payload); result.gapCount = facts.gaps.length;
@@ -256,10 +298,16 @@ export class CodeAnalysis {
           else result = { ...result, status: 'parsed', payload, payloadHash: sha256(payload), payloadBytes: bytes };
         }
       } catch (error) {
+        if (parsing || error instanceof FileParserError || lease.signal.aborted || this.worker?.lease !== lease) throw error;
+        // Parser/service failures are terminal even when represented as catalog errors.
+        if (error instanceof CatalogError && ['PARSER_UNAVAILABLE', 'PARSER_OWNERSHIP', 'BUSY', 'CANCELLED'].includes(error.code)) throw error;
         result = { ...unit, status: 'failed', inputBytes: result.inputBytes, reason: error instanceof CatalogError ? error.code : 'CODE_EXTRACTION_FAILED' };
       }
       this.store.transaction(() => {
-        this.authorize(this.row(id));
+        parsedFence?.();
+        lease.check(); const current = this.row(id); this.authorize(current);
+        if (this.stopping || this.worker?.lease !== lease || current.status !== 'running') throw new CatalogError('CANCELLED', 'Code analysis was stopped.', 409);
+        checked(this.store.one<{ status: string; inputHash: string }>('SELECT status,inputHash FROM code_analysis_files WHERE runId=? AND fileId=?', id, unit.fileId)?.status === 'pending');
         if (reason === 'input-byte-limit') result = { ...result, status: 'unattempted', reason };
         this.save(result, elapsed + performance.now() - begin);
         if (reason) for (const pending of this.store.all<AnalysisUnit>("SELECT * FROM code_analysis_files WHERE runId=? AND status='pending'", id)) {

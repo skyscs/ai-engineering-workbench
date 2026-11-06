@@ -41,14 +41,14 @@ export async function prepareFlowCase(services, variant = 'small', limits = {}) 
         originals.set(`${source}/${revisions[source]}/${file}`, text);
       }
     }
-    function open() {
+    async function open() {
       store = new services.CatalogStore(directory);
       const run = store.run.bind(store); store.run = (...args) => { writeCalls++; return run(...args); };
       const git = new services.SourceGit(), gitRun = git.run.bind(git);
       git.run = (...args) => { gitCalls++; return gitRun(...args); };
-      catalog = new services.Catalog(store, git); analysis = new services.CodeAnalysis(catalog, limits);
+      catalog = new services.Catalog(store, git); analysis = (services.CodeAnalysis.create ? await services.CodeAnalysis.create(catalog, limits) : new services.CodeAnalysis(catalog, limits));
     }
-    open();
+    await open();
     for (const source of sources) await catalog.addSource(path.join(fixture.root, 'sources', source));
     const index = async key => { const state = catalog.state(), build = catalog.start(key, state.sourceSetVersion, state.policyVersion); await catalog.idle(); return build.id; };
     const buildId = await index('initial');
@@ -56,7 +56,7 @@ export async function prepareFlowCase(services, variant = 'small', limits = {}) 
       get store() { return store; }, get catalog() { return catalog; }, get analysis() { return analysis; },
       counters: () => ({ gitCalls, writeCalls, changedRows: store.one('SELECT total_changes() n').n }),
       analyze: async (key, id = buildId) => { const run = analysis.start(key, id); await analysis.idle(); return run.id; },
-      restart: async () => { await analysis.stop(); await catalog.stop(); store.close(); open(); },
+      restart: async () => { await analysis.stop(); await catalog.stop(); store.close(); await open(); },
       close: async () => { await analysis.stop(); await catalog.stop(); store.close(); await rm(fixture.root, { recursive: true, force: true }); } };
   } catch (error) { await analysis?.stop(); await catalog?.stop(); store?.close(); await rm(fixture.root, { recursive: true, force: true }); throw error; }
 }

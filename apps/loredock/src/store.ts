@@ -34,6 +34,10 @@ export class CatalogStore {
   private closed = false;
   constructor(directory: string, receiptOptions: NativeStorageOptions = {}) {
     if (!path.isAbsolute(directory)) throw new Error('LoreDock data directory must be absolute.');
+    const probe = new DatabaseSync(':memory:');
+    try { probe.exec('CREATE VIRTUAL TABLE runtime_probe USING fts5(text)'); }
+    catch { throw new Error('LoreDock requires SQLite FTS5. Use the supported Node 22.23.2 runtime or a newer build with FTS5 enabled.'); }
+    finally { probe.close(); }
     mkdirSync(directory, { recursive: true, mode: 0o700 });
     this.directory = realpathSync(directory);
     if (existsSync(path.join(this.directory, 'workbench.db'))) throw new Error('Use a separate LoreDock data directory.');

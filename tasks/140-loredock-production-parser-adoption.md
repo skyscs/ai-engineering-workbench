@@ -1,6 +1,10 @@
 # Task 140 — Adopt the compatible owned parser in production
 
-Status: deferred until Tasks 138–139 pass review, exact-head CI and identical-tree merge.
+Status: implemented and locally verified; exact-head CI acceptance pending.
+Base: accepted Task 139 merge `41d70a1b7423ab52a482ba81b9f432d343fa0eb2`.
+
+The prospective admission/readiness/accounting decisions are recorded in
+[ADR 0064](../docs/decisions/0064-loredock-production-parser-ownership.md) before product edits.
 
 Implement the production-adoption requirements originally scoped in
 [Task 138](138-loredock-production-file-parser.md), after
@@ -30,3 +34,17 @@ coverage. Aggregate heap, complete startup, ordinary near-limit and browser RSS 
 remain separate; no existing limit or consumed family changes. Run strict types,
 regressions and full builds, inspect both complete CI logs for the final head, merge,
 then scope the observer/near-limit stage from the actual remaining gaps.
+
+## Implementation record
+
+Production ownership, readiness, cancellation and accounting are implemented; see
+[the result and limits](../docs/loredock/OWNED_PRODUCTION_PARSER.md). The first ordinary
+comparison preserves all eleven catalogs and 21 saved answers without a model call.
+The first full check passes 1,124 tests after retained regression fixes. Final review
+adds a late-readiness fence and regression. The final full check passes 1,125 tests,
+ten typechecks and all builds; exact-head CI review remains pending. Continue with [Task 141](141-loredock-parser-observer-coverage.md) after merge.
+
+The first CI attempts exposed a source-only historical-loader dependency on daemon
+emission. Both failed logs are retained. The corrected helper passes all 1,125 tests,
+ten typechecks and ten final builds in a fresh detached checkout at `cffcd1d` before
+new exact-head CI. No application source changes in that correction.

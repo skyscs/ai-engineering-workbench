@@ -27,7 +27,7 @@ async function setup(t: TestContext) {
   const fixture = await createLoreDockFixture(), directory = path.join(fixture.root, 'catalog');
   await writeFile(path.join(fixture.root, 'sources/portal/unicode.md'), 'Café alpha alpha.\nQuoted "alpha" and dash-token.\n');
   fixtureGit(fixture.root, 'portal', ['add', 'unicode.md']); fixtureGit(fixture.root, 'portal', ['commit', '-qm', 'Add owned literal-search edge cases']);
-  let store: CatalogStore | undefined = new CatalogStore(directory), catalog = new Catalog(store), analysis = new CodeAnalysis(catalog);
+  let store: CatalogStore | undefined = new CatalogStore(directory), catalog = new Catalog(store), analysis = await CodeAnalysis.create(catalog);
   const close = async () => {if (store) {await analysis.stop(); await catalog.stop(); store.close(); store = undefined;}};
   t.after(async () => {await close(); await rm(fixture.root, {recursive: true, force: true});});
   for (const source of ['portal','order-api','order-worker']) await catalog.addSource(path.join(fixture.root, 'sources', source));
@@ -37,16 +37,18 @@ async function setup(t: TestContext) {
   };
   const first = await index('first'), second = await index('second');
   return {fixture, directory, first, second, index, close, get store() {return store!;}, get catalog() {return catalog;}, get analysis() {return analysis;},
-    async reopen() {await close(); store = new CatalogStore(directory); catalog = new Catalog(store); analysis = new CodeAnalysis(catalog);}};
+    async reopen() {await close(); store = new CatalogStore(directory); catalog = new Catalog(store); analysis = await CodeAnalysis.create(catalog);}};
 }
 const queries = ['orders', 'tenantId', 'café', 'alpha', 'dash-token', '" OR *', 'noSuch055'];
 async function readQueries(catalog: Catalog, builds: string[]) {
-  return Promise.all(builds.flatMap(build => queries.map(async query => {
+  const result = [];
+  for (const build of builds) for (const query of queries) {
     const terms = query.trim().split(/\s+/).map(term => '"' + term.replaceAll('"','""') + '"').join(' AND ');
-    return {literal: catalog.search(query, build), context: await retrieveAnswerContext(catalog, query, build),
+    result.push({literal: catalog.search(query, build), context: await retrieveAnswerContext(catalog, query, build),
       scores: catalog.store.all(`SELECT search.rowid,search.spanId,rank,snippet(search,1,'','','…',24) AS snippet FROM search
-        JOIN spans s ON s.id=search.spanId JOIN files f ON f.id=s.fileId WHERE search MATCH ? AND f.buildId=? ORDER BY rank,search.rowid`, terms, build)};
-  })));
+        JOIN spans s ON s.id=search.spanId JOIN files f ON f.id=s.fileId WHERE search MATCH ? AND f.buildId=? ORDER BY rank,search.rowid`, terms, build)});
+  }
+  return result;
 }
 function logicalRows(db: DatabaseSync) {
   return db.prepare("SELECT name,sql FROM sqlite_schema WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name").all().map(row => {

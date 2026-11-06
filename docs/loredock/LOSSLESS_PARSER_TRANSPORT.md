@@ -1,5 +1,9 @@
 # Lossless parser result transport
 
+This document records the historical prerequisite. Current production adoption is
+described in [Owned production parser](OWNED_PRODUCTION_PARSER.md). The original
+observations and acceptance limits below are unchanged.
+
 Task 139 repairs the two concrete transport failures retained by
 [Task 138](PRODUCTION_FILE_PARSER.md). [ADR 0063](../decisions/0063-loredock-lossless-parser-wire.md)
 was committed at `0b8b582` before implementation. Protocol v2 shares repeated strings

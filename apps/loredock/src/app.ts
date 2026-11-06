@@ -13,6 +13,7 @@ import { preparationInput, preparationId, preparedAnswerInput, questionFields, s
 import type { TextConnection } from '@aew/ai';
 import { declarationMap } from './system-map.js';
 import { codeFlows } from './code-flows.js';
+import { FileParserError } from './file-parser-protocol.js';
 import { Corrections } from './corrections.js';
 import { indexChanges } from './index-changes.js';
 import { Reconciliation } from './reconciliation.js';
@@ -152,7 +153,7 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
       }
       const action = c.req.param('action');
       if (action !== 'pause' && action !== 'resume' && action !== 'cancel') throw new CatalogError('INVALID_ACTION', 'Unknown code analysis action.');
-      return c.json(codeAnalysis.control(c.req.param('id'), action));
+      return c.json(await codeAnalysis.control(c.req.param('id'), action));
     });
   }
   app.post('/api/candidates/preview', async c => {
@@ -210,6 +211,10 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
   }
   app.onError((error, c) => {
     if (error instanceof CatalogError) return c.json({ error: { code: error.code, message: error.message } }, error.status);
+    if (error instanceof FileParserError) return c.json({ error: { code: error.code,
+      message: error.code === 'PARSER_DEADLINE' ? 'Code parsing exceeded this operation\'s time limit.'
+        : error.code === 'PARSER_CANCELLED' ? 'Code parsing was cancelled.'
+        : 'Code parsing failed. Restart LoreDock before trying code analysis again.' } }, 409);
     if (preparations && /^\/api\/(?:answers|prepared-answers|question-preparations)(?:\/|$)/.test(c.req.path)) {
       const question = preparedQuestionError(error);
       if (question) return c.json({ error: { code: question.code, message: question.message } }, question.status);

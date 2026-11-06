@@ -111,16 +111,16 @@ export async function compareSearchStorage(services, fixture, {expectedFiles, ex
     await leftAnalysis?.stop(); await rightAnalysis?.stop(); await left?.stop(); await right?.stop();
     left?.store.close(); right?.store.close(); left = right = leftAnalysis = rightAnalysis = undefined;
   };
-  const open = () => {
+  const open = async () => {
     left = new Catalog(new CatalogStore(baselineDir)); right = new Catalog(new CandidateStore(candidateDir));
-    leftAnalysis = new CodeAnalysis(left); rightAnalysis = new CodeAnalysis(right);
+    leftAnalysis = await CodeAnalysis.create(left); rightAnalysis = await CodeAnalysis.create(right);
   };
   try {
     left = new Catalog(new CatalogStore(baselineDir));
     result.sqliteVersion = left.store.one('SELECT sqlite_version() AS version').version;
     for (const source of fixture.manifest.sources) await left.addSource(path.join(fixture.root, 'sources', source.id));
     const first = await index(left, 'first'), second = await index(left, 'second');
-    leftAnalysis = new CodeAnalysis(left); const inventory = leftAnalysis.start('code', second.id); await leftAnalysis.idle();
+    leftAnalysis = await CodeAnalysis.create(left); const inventory = leftAnalysis.start('code', second.id); await leftAnalysis.idle();
     assert.equal(leftAnalysis.get(inventory.id).counts.parsed, expectedCodeFiles);
     const projection = declarationMap(left), edge = projection.edges.find(edge => edge.kind === 'contract-match'); assert.ok(edge);
     await new Corrections(left).save({requestId: 'storage-review', buildId: second.id, targetKind: 'declaration-link', targetId: edge.id,
@@ -132,7 +132,7 @@ export async function compareSearchStorage(services, fixture, {expectedFiles, ex
       context.question, second.id, project.policyVersion, project.sourceSetVersion, JSON.stringify(context), context.inputHash);
     for (const source of left.store.sources()) left.store.run("INSERT INTO answer_sources VALUES ('storage-answer',?)", source.id);
     await stop(); await mkdir(candidateDir); await copyFile(path.join(baselineDir, 'loredock.db'), path.join(candidateDir, 'loredock.db'));
-    await writeFile(path.join(candidateDir, 'EXPERIMENT_ONLY.txt'), 'Owned external-search prototype. Do not open with the production writer.\n'); open();
+    await writeFile(path.join(candidateDir, 'EXPERIMENT_ONLY.txt'), 'Owned external-search prototype. Do not open with the production writer.\n'); await open();
     const baselineBuilds = [first.id, second.id], candidateBuilds = [...baselineBuilds];
     mark('conversion retains all non-literal-search records', () => assert.deepEqual(logicalRecords(right.store), logicalRecords(left.store)));
     mark('all copied original evidence and code payloads agree', () => {
@@ -163,7 +163,7 @@ export async function compareSearchStorage(services, fixture, {expectedFiles, ex
       }
       await checkpoint(result);
     };
-    await runStage('converted'); await stop(); open(); await runStage('reopened');
+    await runStage('converted'); await stop(); await open(); await runStage('reopened');
     const refreshedLeft = await index(left, 'third'), refreshedRight = await index(right, 'third');
     baselineBuilds.push(refreshedLeft.id); candidateBuilds.push(refreshedRight.id);
     mark('both new generations reuse every indexed original', () => {
@@ -182,7 +182,7 @@ export async function compareSearchStorage(services, fixture, {expectedFiles, ex
         assert.equal(catalog.store.one('SELECT count(*) AS n FROM corrections WHERE purged=0').n, 0);
       }
     });
-    await runStage('revoked'); left.store.db.exec('VACUUM'); right.store.db.exec('VACUUM'); await stop(); open(); await runStage('compacted');
+    await runStage('revoked'); left.store.db.exec('VACUUM'); right.store.db.exec('VACUUM'); await stop(); await open(); await runStage('compacted');
     result.summary = assessSearchStorage(result); await checkpoint(result);
   } catch (error) {
     result.error = {code: error.code ?? null, message: error.message}; result.summary = assessSearchStorage(result); await checkpoint(result);

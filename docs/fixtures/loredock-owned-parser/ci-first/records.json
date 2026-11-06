@@ -1,0 +1,24 @@
+{
+  "head": "e701fc0e1ec86d9cc125d20d59d9ffe5b301cbe1",
+  "runs": {
+    "push": 42158696030,
+    "pull_request": 42158744756
+  },
+  "finding": "Both clean CI attempts fail while historical controls try to read not-yet-generated dist/types.js. The source-only materializer now emits the original type module when no production emission exists; when it does exist, it still verifies bytes and shares class identity. No application source change.",
+  "logs": [
+    {
+      "event": "push",
+      "path": "ci-first/push.log.gz",
+      "bytes": 422445,
+      "sha256": "a72aa392bcd36cd148a1177b0e221778bb82bcb6eaac1ff133349915a5c8696c",
+      "gzipSha256": "7ccb0806ed122f853eba95df4396279a1bf36167610b3662423d3cb9bf6b8b17"
+    },
+    {
+      "event": "pr",
+      "path": "ci-first/pr.log.gz",
+      "bytes": 420958,
+      "sha256": "828b14e41c37802ffda65f41b495457839687a56903a961ab98c31bb20f4f9e8",
+      "gzipSha256": "46114a434b32ae6e9a6d8f00dacb2c960eced91040336e6b6f2fcaf451e5b7ae"
+    }
+  ]
+}

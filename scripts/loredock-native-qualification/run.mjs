@@ -21,14 +21,14 @@ export async function runNativeWorker({ root, arm, config, services }) {
   async function analyze(key) {
     point(key + '-before'); const job = state.analysis.start(key, metadata.buildId); await state.analysis.idle();
     for (let attempt = 0; attempt < 3 && ['paused', 'interrupted'].includes(state.analysis.get(job.id).status); attempt++) {
-      state.analysis.control(job.id, 'resume'); await state.analysis.idle();
+      await state.analysis.control(job.id, 'resume'); await state.analysis.idle();
     }
     const summary = state.analysis.get(job.id); assert.ok(summary.published); point(key + '-after'); await save(); return summary;
   }
   async function prepare() {
     point('preparation-before'); const corpus = config.corpusFactory(); assert.equal(hash(JSON.stringify(corpus)), config.corpusHash);
     assert.equal(Object.keys(corpus).length, config.oracle.sourceCount);
-    state = openNativeState(directory, services); const revisions = await prepareSources(root, corpus, state), project = state.catalog.state();
+    state = await openNativeState(directory, services); const revisions = await prepareSources(root, corpus, state), project = state.catalog.state();
     const build = state.catalog.start('native-initial', project.sourceSetVersion, project.policyVersion); await state.catalog.idle();
     for (let attempt = 0; attempt < 3 && ['paused', 'interrupted'].includes(state.store.buildRow(build.id).status); attempt++) {
       state.catalog.control(build.id, 'resume'); await state.catalog.idle();
@@ -85,7 +85,7 @@ export async function runNativeWorker({ root, arm, config, services }) {
     if (arm === 'same-process') await prepare(); else metadata = await readJSON(path.join(root, 'metadata.json'));
     assert.deepEqual(report.runtime, metadata.runtime);
     report.initialHashes = await dataHashes(directory); assert.deepEqual(report.initialHashes, metadata.initialHashes);
-    point('opening-before'); state = openNativeState(directory, services); point('opening-after');
+    point('opening-before'); state = await openNativeState(directory, services); point('opening-after');
     assert.equal(state.store.receipts.catalogId, metadata.catalogId); assert.equal(state.analysis.snapshot(metadata.inventory.id).manifestHash, metadata.manifestHash);
     assertSourceRowsEqual(state.store.buildSources(metadata.buildId), metadata.sources); await save();
     const first = await capture('first'); let projection;

@@ -53,11 +53,13 @@ async function entered(runtime: FixtureRuntime) {
 
 test('answer intentions persist before dispatch, replay once and publish result with provenance and usage', async t => {
   const { answers, runtime, store, catalog } = await setup(t);
-  const first = await ask(answers, 'same');
+  const context = await answers.preview('Which local topic is configured?');
+  const first = await answers.start('same', context.question, context.buildId, context.inputHash);
   assert.equal(first.status, 'preparing'); assert.equal(runtime.calls, 0);
-  assert.equal((await ask(answers, 'same')).id, first.id);
-  await assert.rejects(async () => (await ask(answers, 'same', 'Changed question')), /different inputs/);
-  await assert.rejects(async () => (await ask(answers)), /Another answer/);
+  // Replay the admitted input; an unrelated preview may overlap runtime metadata writes.
+  assert.equal((await answers.start('same', context.question, context.buildId, context.inputHash)).id, first.id);
+  await assert.rejects(answers.start('same', 'Changed question', context.buildId, context.inputHash), /different inputs/);
+  await assert.rejects(answers.start('another', context.question, context.buildId, context.inputHash), /Another answer/);
   await answers.idle();
   const result = answers.get(first.id);
   assert.equal(result.status, 'succeeded'); assert.equal(result.usage?.inputTokens, 100);

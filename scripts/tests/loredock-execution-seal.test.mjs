@@ -65,7 +65,7 @@ test('the ordinary coordinator still rejects the reserved family before writing 
 
 test('historical ESM audit and explicit current compiler resolution preserve static dependency identity without execution', async () => {
   const audit = JSON.parse(execFileSync(process.execPath, ['--experimental-import-meta-resolve',
-    'scripts/loredock-prepared-flow/import-audit.mjs'], { cwd: root, encoding: 'utf8' }));
+    'scripts/loredock-owned-parser/import-audit.mjs'], { cwd: root, encoding: 'utf8' }));
   assert.equal(audit.candidateModulesEvaluated, 0); assert(audit.honoEntry.endsWith('/@hono/node-server/dist/index.mjs'));
   assert(Object.keys(audit.modules).some(file => file.endsWith('/apps/loredock/dist/question-preparation.js')));
   assert(Object.keys(audit.modules).some(file => file.endsWith('/scripts/loredock-prepared-flow/matrix-cases.mjs')));

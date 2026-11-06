@@ -24,12 +24,12 @@ export async function receiptFixture(parent, corpus, { Catalog, CatalogStore, So
     const revision = git(source, ['rev-parse', 'HEAD']); revisions[source] = revision;
     for (const [file, text] of Object.entries(files)) if (typeof text === 'string') originals.set(`${source}/${revision}/${file}`, text);
   };
-  const open = () => {
+  const open = async () => {
     store = new CatalogStore(path.join(root, 'data')); const run = store.run.bind(store);
     store.run = (...args) => { writeCalls++; return run(...args); };
     const sourceGit = new SourceGit(), sourceRun = sourceGit.run.bind(sourceGit);
     sourceGit.run = (...args) => { gitCalls++; return sourceRun(...args); };
-    catalog = new Catalog(store, sourceGit); analysis = new CodeAnalysis(catalog); paths = new CodePaths(analysis);
+    catalog = new Catalog(store, sourceGit); analysis = (CodeAnalysis.create ? await CodeAnalysis.create(catalog) : new CodeAnalysis(catalog)); paths = new CodePaths(analysis);
     const file = analysis.file.bind(analysis), snapshot = analysis.snapshot.bind(analysis), read = paths.read.bind(paths);
     analysis.file = (...args) => { factReads++; return file(...args); };
     analysis.snapshot = (...args) => { snapshots++; return snapshot(...args); };
@@ -38,7 +38,7 @@ export async function receiptFixture(parent, corpus, { Catalog, CatalogStore, So
   const stop = async () => { await paths?.stop(); await analysis?.stop(); await catalog?.stop(); store?.close(); };
   try {
     for (const [source, files] of Object.entries(corpus)) await makeSource(source, files);
-    await mkdir(path.join(root, 'receipts')); open();
+    await mkdir(path.join(root, 'receipts')); await open();
     for (const source of Object.keys(corpus)) await catalog.addSource(path.join(root, 'sources', source));
     const index = async key => { const state = catalog.state(), build = catalog.start(key, state.sourceSetVersion, state.policyVersion); await catalog.idle(); return build.id; };
     const buildId = await index('receipt-initial');
@@ -51,7 +51,7 @@ export async function receiptFixture(parent, corpus, { Catalog, CatalogStore, So
       commit: source => { git(source, ['add', '--all']); git(source, ['commit', '-qm', 'Update owned receipt lifecycle input']); return git(source, ['rev-parse', 'HEAD']); },
       legacyRows: () => createHash('sha256').update(JSON.stringify(['answer_attempts', 'answer_sources', 'corrections', 'correction_sources', 'correction_flows', 'correction_reapplications']
         .map(table => store.all('SELECT * FROM ' + table)))).digest('hex'),
-      restart: async () => { await stop(); open(); },
+      restart: async () => { await stop(); await open(); },
       close: async () => { await stop(); await rm(root, { recursive: true, force: true }); } };
   } catch (error) { await stop(); await rm(root, { recursive: true, force: true }); throw error; }
 }

@@ -13,7 +13,7 @@ import { createLoreDockFixture } from '../../../scripts/loredock-fixture.mjs';
 
 async function setup(t: TestContext) {
   const fixture = await createLoreDockFixture() as { root: string }, directory = path.join(fixture.root, 'coverage-data');
-  const store = new CatalogStore(directory), catalog = new Catalog(store), analysis = new CodeAnalysis(catalog);
+  const store = new CatalogStore(directory), catalog = new Catalog(store), analysis = await CodeAnalysis.create(catalog);
   for (const source of ['portal', 'order-api', 'order-worker']) await catalog.addSource(path.join(fixture.root, 'sources', source));
   const index = async (key: string) => { const state = catalog.state(), build = catalog.start(key, state.sourceSetVersion, state.policyVersion); await catalog.idle(); return build.id; };
   const initial = await index('initial'), follow = new CodeAnalysisFollow(analysis);
@@ -27,9 +27,9 @@ test('new index publication starts one automatic inventory while existing indexe
   assert.equal(s.analysis.list().length, 1); assert.equal(s.analysis.list()[0]!.buildId, build); assert.equal(s.analysis.list()[0]!.counts.parsed, 5);
   s.follow.tick(); assert.equal(s.analysis.list().length, 1);
   const manualBuild = await s.index('manual'), manual = s.analysis.start('manual', manualBuild);
-  s.analysis.control(manual.id, 'pause'); await s.analysis.idle(); s.follow.tick();
+  await s.analysis.control(manual.id, 'pause'); await s.analysis.idle(); s.follow.tick();
   assert.equal(s.analysis.get(manual.id).status, 'paused'); assert.equal(s.follow.state().pendingBuildId, null);
-  s.analysis.control(manual.id, 'resume'); await s.analysis.stop();
+  await s.analysis.control(manual.id, 'resume'); await s.analysis.stop();
   assert.equal(s.analysis.get(manual.id).status, 'interrupted');
   const afterRestart = new CodeAnalysisFollow(s.analysis); afterRestart.tick(); assert.equal(s.analysis.get(manual.id).status, 'interrupted'); afterRestart.stop();
   const ids = s.analysis.list().map(run => run.id); s.follow.stop();
@@ -42,7 +42,7 @@ test('automatic inventory waits for active work, coalesces publications and disc
   const active = s.analysis.start('active', s.initial);
   s.store.run('UPDATE project SET publishedBuildId=? WHERE id=1', second); s.follow.tick(); assert.equal(s.follow.state().pendingBuildId, second);
   s.store.run('UPDATE project SET publishedBuildId=? WHERE id=1', third); s.follow.tick(); assert.equal(s.follow.state().pendingBuildId, third);
-  s.analysis.control(active.id, 'cancel'); await s.analysis.idle(); s.follow.tick(); await s.analysis.idle();
+  await s.analysis.control(active.id, 'cancel'); await s.analysis.idle(); s.follow.tick(); await s.analysis.idle();
   assert.equal(s.analysis.list()[0]!.buildId, third); assert.ok(s.analysis.list().every(run => run.buildId !== second));
   const current = s.analysis.start('occupy', third);
   s.store.run('UPDATE project SET publishedBuildId=? WHERE id=1', second); s.follow.tick(); assert.equal(s.follow.state().pendingBuildId, second);

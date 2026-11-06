@@ -22,7 +22,7 @@ test('the synthetic demo publishes twenty owned sources and code facts, then rel
   assert.equal(demo.sourceCount,20);assert.equal(demo.build.coverage.indexed,79);assert.equal(demo.build.coverage.excluded,60);
   assert.equal(demo.inventory.candidates,21);assert.equal(demo.inventory.counts.parsed,21);assert.equal(demo.inventory.filesWithGaps,6);assert.equal(demo.inventory.gaps,7);
   assert.deepEqual(JSON.parse(await readFile(path.join(state.root,'demo.json'),'utf8')),demo);
-  const store=new CatalogStore(state.dataDirectory),catalog=new Catalog(store),analysis=new CodeAnalysis(catalog);
+  const store=new CatalogStore(state.dataDirectory),catalog=new Catalog(store),analysis=await CodeAnalysis.create(catalog);
   try {
     const sources=catalog.state().sources;assert.equal(sources.length,20);
     for(const source of sources)assert.ok(source.path.startsWith(path.join(state.root,'sources')+path.sep));

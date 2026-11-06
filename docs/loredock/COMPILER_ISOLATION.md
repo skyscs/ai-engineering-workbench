@@ -1,5 +1,9 @@
 # Compiler isolation: source audit and adoption gates
 
+This document records the historical prerequisite. Current production adoption is
+described in [Owned production parser](OWNED_PRODUCTION_PARSER.md). The original
+observations and acceptance limits below are unchanged.
+
 Task 135 audits accepted source `8dfa00f` after Task 134. This is a design record;
 no application execution, worker implementation or resource retest occurred here.
 [ADR 0062](../decisions/0062-loredock-owned-file-parser.md) selects an owned file-parser

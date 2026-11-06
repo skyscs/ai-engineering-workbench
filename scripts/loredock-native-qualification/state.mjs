@@ -1,9 +1,9 @@
 import { hash } from '../loredock-capture-memory/fixture.mjs';
 
 // Only scalar counters around real services. No diagnostic callbacks or SQL hooks.
-export function openNativeState(directory, services) {
+export async function openNativeState(directory, services) {
   const { CatalogStore, Catalog, SourceGit, CodeAnalysis, CodePaths, NativeCaptures } = services;
-  const store = new CatalogStore(directory), git = new SourceGit(), catalog = new Catalog(store, git), analysis = new CodeAnalysis(catalog);
+  const store = new CatalogStore(directory), git = new SourceGit(), catalog = new Catalog(store, git), analysis = await CodeAnalysis.create(catalog);
   const paths = new CodePaths(analysis), captures = new NativeCaptures(analysis, { paths });
   const counts = { gitCalls: 0, writeCalls: 0, factReads: 0, snapshots: 0, pathReads: 0, originalReads: 0 };
   const wrap = (owner, method, counter) => { const original = owner[method].bind(owner); owner[method] = (...args) => { counts[counter]++; return original(...args); }; };

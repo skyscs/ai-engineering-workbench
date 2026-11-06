@@ -32,7 +32,7 @@ async function fixture(t: TestContext) {
   const generated = await createLoreDockFixture(), directory = path.join(generated.root, 'compact data');
   await writeFile(path.join(generated.root, 'sources/order-worker/large.md'), 'Synthetic removable page allocation.\n'.repeat(18000));
   fixtureGit(generated.root, 'order-worker', ['add', 'large.md']); fixtureGit(generated.root, 'order-worker', ['commit', '-qm', 'Add owned removable storage pressure']);
-  let store = new CatalogStore(directory), catalog = new Catalog(store), analysis = new CodeAnalysis(catalog), closed = false;
+  let store = new CatalogStore(directory), catalog = new Catalog(store), analysis = await CodeAnalysis.create(catalog), closed = false;
   const close = async () => {if (!closed) {await analysis.stop(); await catalog.stop(); store.close(); closed = true;}};
   t.after(async () => {await close(); await rm(generated.root, {recursive: true, force: true});});
   const sources = [];
@@ -45,7 +45,7 @@ async function fixture(t: TestContext) {
   catalog.revoke(sources[2]!.id);
   const current = await index('after-removal'), run = analysis.start('code', current); await analysis.idle();
   return {directory, first, current, run, index, close, get store() {return store;}, get catalog() {return catalog;}, get analysis() {return analysis;},
-    reopen() {store = new CatalogStore(directory); catalog = new Catalog(store); analysis = new CodeAnalysis(catalog); closed = false;}};
+    async reopen() {store = new CatalogStore(directory); catalog = new Catalog(store); analysis = await CodeAnalysis.create(catalog); closed = false;}};
 }
 
 test('offline compaction shrinks purged allocation while preserving history, FTS ranking, notes, originals, code facts and refresh reuse', async t => {
@@ -66,7 +66,7 @@ test('offline compaction shrinks purged allocation while preserving history, FTS
   assert.equal(report.status, 'compacted'); assert.ok(report.before.sqlite.freePageBytes > 1024 * 1024);
   assert.ok(report.reclaimedSqliteBytes > 1024 * 1024); assert.equal(report.after.sqlite.freePages, 0);
   assert.deepEqual(report.before.payloads, report.after.payloads); assert.deepEqual(report.before.generations, report.after.generations);
-  state.reopen(); assert.deepEqual(snapshot(state.store.db), before);
+  await state.reopen(); assert.deepEqual(snapshot(state.store.db), before);
   assert.deepEqual(state.catalog.search('orders', state.current), currentSearch);
   assert.deepEqual(state.catalog.search('orders', state.first), historicalSearch);
   assert.deepEqual(state.store.all("SELECT rowid,spanId,rank FROM question_search WHERE question_search MATCH 'order' ORDER BY rank,rowid"), questionRows);
@@ -100,7 +100,7 @@ test('a separate database writer blocks compaction without recovery, retries or 
     database.exec('ROLLBACK;'); assert.deepEqual(snapshot(database), before);
     assert.ok(auditStorage(state.directory).sqlite.freePages > 0);
   } finally {database.close();}
-  state.reopen(); assert.equal(state.store.project().publishedBuildId, state.current);
+  await state.reopen(); assert.equal(state.store.project().publishedBuildId, state.current);
 });
 
 test('compaction refuses unsupported, missing and symlinked data before creating or upgrading a catalog', async t => {

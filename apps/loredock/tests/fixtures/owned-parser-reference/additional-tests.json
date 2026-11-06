@@ -1,0 +1,13 @@
+{
+  "base": "41d70a1b7423ab52a482ba81b9f432d343fa0eb2",
+  "archiveSha256": "0ee592b377bb3df1a4a525380688015b4320ac0a38105b6441443275bfc67e95",
+  "rawSha256": "ff6af811788bdc09f116dfb58132681a1f2328c28ee085b7ad05370f5b2be009",
+  "tests": [
+    "analysis-write-parity.test.ts",
+    "integration-reference.test.ts"
+  ],
+  "files": {
+    "apps/loredock/tests/analysis-write-parity.test.ts": "30bd2eb1450af1d53e9fbf51d65364319bb84ca72d73f76c27940f0d7fa03504",
+    "apps/loredock/tests/integration-reference.test.ts": "b952c3deb16dd466e93d25b6a97d365367d72c41b110dda5d4b7def12839a8f3"
+  }
+}
