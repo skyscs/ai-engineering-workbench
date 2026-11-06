@@ -1,6 +1,8 @@
 # Task 142 — Decide the resource observation boundary
 
-Status: design complete after Task 141 acceptance (PR #174, merge `361728e`).
+Status: accepted through PR #175, head `24e1589`, identical-tree merge `98dc39e`.
+Both complete CI logs pass 1,133 tests, ten typechecks and ten final builds; they are
+retained with [Task 143 evidence](../docs/fixtures/loredock-browser-eligibility/README.md).
 See [ADR 0065](../docs/decisions/0065-loredock-resource-observation-boundary.md).
 
 The unchanged Task 140 application completes the small source/emitted lifecycle control,

@@ -541,6 +541,11 @@ unchanged limits and blocked daemon heap/startup qualification; no narrower cove
 contract is adopted. [Task 143](tasks/143-loredock-pinned-browser-eligibility.md) independently
 pins an official standalone browser for one fresh blank-page environment control. Neither
 an eligible empty page nor a new binary repairs the old browser or full-flow failure.
+That first control remains ineligible: 1,937,039,360 bytes summed RSS and a 103.099-ms
+actual sampling gap exceed unchanged bounds, despite complete samples and clean shutdown.
+[Task 144](tasks/144-loredock-browser-environment-decision.md) designs an independent
+environment and sampling headroom before another single-use control. No application-page
+or full-flow gate is opened by these diagnostics.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation

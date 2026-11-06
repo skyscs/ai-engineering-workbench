@@ -1,0 +1,39 @@
+[
+  {
+    "name": "first",
+    "archive": "first.tar.gz",
+    "bytes": 51084,
+    "sha256": "ce2ca3669385c10cc608cad10db052f4c959b53bccd12347182f608f275147f5",
+    "entries": 39,
+    "rawBytes": 3097555,
+    "inventory": "first-inventory.json.gz",
+    "inventorySha256": "97d299708d7ee5a1004054e7645853f084e9bb5dbe503e369267b13dccdda909",
+    "excludedPrefixes": {
+      "run/browser/profile/": {
+        "files": 176,
+        "bytes": 4162883
+      },
+      "run/browser/xdg-config/": {
+        "files": 1,
+        "bytes": 40
+      },
+      "run/browser/xdg-cache/": {
+        "files": 28,
+        "bytes": 1196506
+      }
+    },
+    "exclusionReason": "Fresh browser profile/cache contents remain at original local paths and are not published; all raw observations, clocks, process records and launch/result files are included."
+  },
+  {
+    "name": "inputs",
+    "archive": "inputs.tar.gz",
+    "bytes": 66892,
+    "sha256": "2401307c773581fba1a05cf8c920d9524478fdd3d53ad927b0086345311e442c",
+    "entries": 36,
+    "rawBytes": 263684,
+    "inventory": "inputs-inventory.json.gz",
+    "inventorySha256": "3b840a530a27d2d3a0ec04dae377c82da1f83bf40da04faf61a22acf472e1634",
+    "excludedPrefixes": {},
+    "exclusionReason": null
+  }
+]
