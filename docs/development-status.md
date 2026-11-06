@@ -1,5 +1,27 @@
 # Development status
 
+## Task 144 — Independent browser environment decision
+
+Task 143 is accepted through [PR #176](https://github.com/skyscs/ai-engineering-workbench/pull/176),
+head `3bf786a`, identical-tree merge `86d1908`. Both complete exact-head CI logs pass
+**1,141 tests**, ten typechecks and ten final builds, with no failures or cancellations.
+The first host browser control remains failed and is never rerun.
+
+[ADR 0066](decisions/0066-loredock-independent-browser-container.md) selects a separately
+pinned Linux container on the accessible existing Docker 29.7.2 server. The
+[read-only audit](fixtures/loredock-browser-environment/README.md) retains server capability
+metadata and digest-verified official Python 3.14.4 base-image metadata. No image pull/build,
+container creation/start, browser execution, application edit or model call occurs.
+
+The design keeps the exact Chrome/Node binaries and browser flags, private namespaces,
+non-root container user and default security. A durable full container ID precedes start;
+the unchanged inner kernel owner runs below PID 1 and retains independent deadlines.
+The prospective nominal RSS interval is 50 ms under the unchanged 100-ms actual maximum.
+All first failures, summed-RSS limits and daemon heap/startup blockers remain unchanged.
+Compatibility and eligibility are still untested. After exact-head CI acceptance,
+[Task 145](../tasks/145-loredock-container-browser-eligibility.md) builds the environment,
+tests ownership and conditionally performs one exclusive blank-page control.
+
 ## Task 143 — Pinned browser eligibility (failed control retained)
 
 Task 142 is accepted through [PR #175](https://github.com/skyscs/ai-engineering-workbench/pull/175),
@@ -18,7 +40,8 @@ All 36 frozen inputs remain exact; 75 published archive members and ten closed l
 retained. Fresh profile/cache contents and the browser installation remain at original
 local paths with explicit archive exclusions. Eight focused tests and the full local check
 pass **1,141 tests** (728 LoreDock, 278 scripts, 135 other package tests), ten typechecks
-and ten final builds. Exact-head CI review is pending. Application code, original collectors,
+and ten final builds. Both exact-head CI logs pass; PR #176 merged at `86d1908`.
+Application code, original collectors,
 schemas and defaults remain unchanged; daemon heap/startup qualification stays blocked.
 After merge, [Task 144](../tasks/144-loredock-browser-environment-decision.md) decides an
 independent environment and prospective sampling margin before another browser execution.

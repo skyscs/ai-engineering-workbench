@@ -1,6 +1,8 @@
 # Task 144 — Decide an independent browser environment and observation margin
 
-Status: planned after Task 143 acceptance.
+Status: design complete; local documentation verification passes. Exact-head CI pending.
+See [ADR 0066](../docs/decisions/0066-loredock-independent-browser-container.md) and the
+[retained read-only audit](../docs/fixtures/loredock-browser-environment/README.md).
 
 The first pinned Chrome for Testing blank-page control fails the original 1-GiB summed
 RSS gate at 1,937,039,360 bytes and at-most-100-ms sampling requirement at 103.099 ms.
@@ -37,3 +39,11 @@ Update the ADR/roadmap/status and scope the next bounded task. Documentation che
 both complete exact-head CI logs precede merge. This design task makes no application edits,
 browser runs, model calls or changes to system configuration. Any proposed resource-contract
 change must be explicit and separately reviewed; it is not authorized by this task.
+
+The accessible local Docker server is the selected candidate; no image or container
+mutation occurred. Public OCI metadata pins the Python 3.14.4 Linux amd64 base by digest.
+The design retains the same browser/Node binaries and browser flags, a 50-ms nominal
+timer under the unchanged 100-ms actual limit, durable exact container ownership and
+an inner kernel owner below PID 1. Compatibility remains untested. After CI acceptance,
+continue with [Task 145](145-loredock-container-browser-eligibility.md); no resource gate
+or narrower daemon coverage contract is adopted by this decision.

@@ -1,0 +1,32 @@
+{
+  "readOnlyEndpoints": [
+    "GET /version",
+    "GET /info"
+  ],
+  "server": {
+    "Version": "29.7.2",
+    "ApiVersion": "1.55",
+    "MinAPIVersion": "1.40",
+    "Os": "linux",
+    "Arch": "amd64",
+    "KernelVersion": "7.0.0-38-generic"
+  },
+  "capabilities": {
+    "SecurityOptions": [
+      "name=apparmor",
+      "name=seccomp,profile=builtin",
+      "name=cgroupns"
+    ],
+    "CgroupDriver": "systemd",
+    "CgroupVersion": "2",
+    "OSType": "linux",
+    "Architecture": "x86_64",
+    "MemoryLimit": true,
+    "PidsLimit": true,
+    "CPUCfsPeriod": null,
+    "CPUCfsQuota": null
+  },
+  "containersListed": false,
+  "imagesListed": false,
+  "mutations": false
+}
