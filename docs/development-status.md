@@ -1,5 +1,21 @@
 # Development status
 
+## Task 155 — Direct process birth with durable pre-exec observation
+
+Task 154 is accepted through [PR #187](https://github.com/skyscs/ai-engineering-workbench/pull/187),
+head 14c4430, identical-tree merge 768f673. Both complete exact-head CI logs pass 1,205
+Node tests, the 20 acquisition/20 ownership/16 transport Python cases, ten typechecks
+and ten final builds with no failures or cancellations.
+
+The [separate prerequisite](loredock/DIRECT_BIRTH_PREREQUISITE.md) implements one native
+clone3 birth into a fresh owned leaf, independent kernel observation retained before
+the execution permit, actual child wait and terminal group observation. Previous consumed
+helpers remain unchanged. Thirty-four offline cases and full local checks pass: 1,206 Node
+tests, ten typechecks and ten final builds, zero failures/cancellations. All 148 emitted
+application/package modules remain unchanged. Source review is complete; the sole sealed
+live attempt remains pending. No new service, real clone3, sandbox,
+application or model has run. Executor and application resource gates remain closed.
+
 ## Task 154 — Corrected acquisition for a fresh namespace prerequisite
 
 Task 153 is accepted through [PR #186](https://github.com/skyscs/ai-engineering-workbench/pull/186),

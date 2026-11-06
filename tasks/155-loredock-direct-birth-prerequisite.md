@@ -1,7 +1,10 @@
 # Task 155 — Prove direct measured process birth once
 
-Status: planned after Task 154 acceptance. Its first namespace prerequisite passes; no
-complete resource executor or direct cgroup birth is qualified yet.
+Status: implemented prospectively after Task 154 acceptance through PR #187, merge
+768f673. Thirty-four offline boundary cases and full local checks pass (1,206 Node tests,
+ten typechecks and ten final builds). The sole sealed attempt remains pending.
+See the [design](../docs/loredock/DIRECT_BIRTH_PREREQUISITE.md).
+No complete resource executor or direct cgroup birth is qualified yet.
 
 1. Review the installed kernel ABI and existing compiler availability without running a
    process in a measured group. Design a minimal owned native helper for

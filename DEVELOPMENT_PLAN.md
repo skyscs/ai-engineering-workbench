@@ -595,8 +595,12 @@ and full executor qualification remain separate.
 Task 154's [separate adapter](docs/loredock/USER_NAMESPACE_PREREQUISITE.md) is implemented with
 twenty offline regressions and passing full local checks. Its
 [first prerequisite](docs/loredock/USER_NAMESPACE_PREREQUISITE_RESULT.md) passes on the unchanged
-environment and stays consumed. After acceptance, [Task 155](tasks/155-loredock-direct-birth-prerequisite.md)
-addresses direct measured birth; full executor and application gates remain separate.
+environment and stays consumed. Accepted PR #187 merges at 768f673 after both complete
+exact-head CI logs pass. [Task 155](tasks/155-loredock-direct-birth-prerequisite.md)
+implements a [separate direct-birth prerequisite](docs/loredock/DIRECT_BIRTH_PREREQUISITE.md)
+with durable independent observation before execution. Thirty-four offline cases pass;
+full local checks pass 1,206 Node tests, ten typechecks and ten final builds. The sole
+sealed attempt remains pending. Full executor and application gates remain separate.
 No application-page or full-flow gate is opened by these diagnostics.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
