@@ -1,6 +1,9 @@
 # Task 140 — Adopt the compatible owned parser in production
 
-Status: deferred until Tasks 138–139 pass review, exact-head CI and identical-tree merge.
+Status: in progress after accepted Task 139 merge `41d70a1b7423ab52a482ba81b9f432d343fa0eb2`.
+
+The prospective admission/readiness/accounting decisions are recorded in
+[ADR 0064](../docs/decisions/0064-loredock-production-parser-ownership.md) before product edits.
 
 Implement the production-adoption requirements originally scoped in
 [Task 138](138-loredock-production-file-parser.md), after
