@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "ordinary-parser-transport-retention/1",
+  "source": "/home/toshiba/aew/task138-transport-first",
+  "head": "d84971fec360540db4266d38a65e9b9840ae1881",
+  "entries": 254,
+  "archive": "first.tar.gz",
+  "archiveSha256": "77c99c02c04923ec66cbcd50d5964792c79626a010ed4412f7d466f5489089a0",
+  "inventory": "first.files.json.gz",
+  "inventorySha256": "a0a0cfd6ea65fde1aaa961c15289ecfad17f769222ee49357cfda87c7d088fc0",
+  "rawInventorySha256": "40e5e7422de6adba0473dc102849cd38c0ca4f335cd16554ef5801127a6fb913",
+  "logs": [
+    {
+      "source": "/home/toshiba/aew/task138-install-first.log",
+      "archive": "task138-install-first.log.gz",
+      "bytes": 326,
+      "sha256": "7fc8cb82c2787b0c9a7359882eb8d57d688ca81d789a23dd495aab97a43bd679",
+      "archiveSha256": "9d4506466a49b4ee94924ae862f5ce1d00613da288ff7e0366936369639f1893"
+    },
+    {
+      "source": "/home/toshiba/aew/task138-baseline-build-first.log",
+      "archive": "task138-baseline-build-first.log.gz",
+      "bytes": 2357,
+      "sha256": "6410a4b7829dbcbfd987e668b85fa9aa73f500d79b4ce8108393fb7ca0b32d65",
+      "archiveSha256": "3f83f29fc1f46988e0bcf5a31a51865a77b033adf9e1064ff549dd9ce4e3a301"
+    },
+    {
+      "source": "/home/toshiba/aew/task138-transport-owner.log",
+      "archive": "task138-transport-owner.log.gz",
+      "bytes": 312,
+      "sha256": "38d7e7de835a23a9cfdefde442051e3f19c0d8eb10b492fa937d4e28db6704db",
+      "archiveSha256": "923c0b2328ff87671663bcc58a88e4b7a7527c20b7bd2119302dedf4e5196db5"
+    },
+    {
+      "source": "/home/toshiba/aew/task137-async-ci-push.log",
+      "archive": "task137-async-ci-push.log.gz",
+      "bytes": 651016,
+      "sha256": "a25308d821e752b9b7001fb1f50fa604dacf04aa52b368500e4b5a29d015df66",
+      "archiveSha256": "6d627d73c12f2c63597cd9539d1153d653de13442df5723f591425884cd267ba"
+    },
+    {
+      "source": "/home/toshiba/aew/task137-async-ci-pr.log",
+      "archive": "task137-async-ci-pr.log.gz",
+      "bytes": 617056,
+      "sha256": "cf8799d14095e8c1aefd2f63b20bf4e583da2fafa3c96041e5375da5bd6bbb86",
+      "archiveSha256": "dade504594b994273ce968a6a0b5878252e0c63f193532a4109b7068f1baf554"
+    },
+    {
+      "source": "/home/toshiba/aew/task137-async-ci-review.json",
+      "archive": "task137-async-ci-review.json.gz",
+      "bytes": 3189,
+      "sha256": "0e397d649526b6b482e3f0e3ec1bb088b869818f029bd50fa82ce143afb836b7",
+      "archiveSha256": "b0ed983bfc9edaae17497e6c58385a630046cd95099f39781d682d0355d5a2a0"
+    }
+  ],
+  "modelCalls": 0,
+  "resourceQualification": false
+}
