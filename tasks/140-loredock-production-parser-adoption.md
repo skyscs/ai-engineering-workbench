@@ -43,3 +43,8 @@ comparison preserves all eleven catalogs and 21 saved answers without a model ca
 The first full check passes 1,124 tests after retained regression fixes. Final review
 adds a late-readiness fence and regression. The final full check passes 1,125 tests,
 ten typechecks and all builds; exact-head CI review remains pending. Continue with [Task 141](141-loredock-parser-observer-coverage.md) after merge.
+
+The first CI attempts exposed a source-only historical-loader dependency on daemon
+emission. Both failed logs are retained. The corrected helper passes all 1,125 tests,
+ten typechecks and ten final builds in a fresh detached checkout at `cffcd1d` before
+new exact-head CI. No application source changes in that correction.

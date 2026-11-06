@@ -15,7 +15,7 @@ The prospective plan was committed at `fcdee57`; the first observed candidate is
   the first core-test patch and untracked first core-test modules. These are identified
   development checkpoints, not an assertion that every failed interim tree was captured.
 
-The final log inventory separately pins every closed Task 140 validation log and both
+The log inventory separately pins 44 closed local validation logs and both
 complete Task 139 CI logs. Initial typecheck, source syntax, asynchronous test ordering,
 historical dependency and prototype failures remain visible. Expectations and old
 fixture manifests were not rebaselined. Current source/emission has an explicit verified
@@ -42,3 +42,13 @@ application source and compiled `app`/`server` modules plus the explicit integri
 therefore differ from the first snapshot. Parser facts, native fingerprint inputs,
 composition, prompts and limits remain exact. The final full suite independently repeats
 the eight fresh catalog comparisons and all 21 saved reads; the first observation is kept.
+
+Both first CI events at `e701fc0` fail before historical tests load because the materializer
+expects `dist/types.js` before the daemon build. The independently retained complete logs
+and job identities are in `ci-first/records.json`. The fix emits the pinned historical type
+module when current emission is absent; existing current bytes are still verified when
+available. No production implementation changes. A fresh detached checkout at `cffcd1d` passes the
+entire normal build/test sequence: 1,125 tests, ten typechecks and all ten final builds,
+with no prebuilt application output. `ci-first/clean-verification.json` retains the
+independent result and closed logs. Only the historical helper and its documentation
+change after the previously verified application candidate.

@@ -19,8 +19,11 @@ Older normalization layers may supply independently pinned historical sources; o
 those exact source/manifest pairs are accepted. Old manifest hashes and original fixture
 modules remain unchanged. Historical modules are materialized into a temporary root so
 their installed-code fingerprint reads see the corresponding historical bytes. The
-unchanged error-type module is shared only after byte verification, preserving the
-original mixed-control exception identity.
+unchanged source error-type module is shared only after byte verification. When
+production emission exists, its identical error module is shared too. In a clean
+checkout, source tests run before daemon emission, so the historical compiled module
+is emitted from its pinned original instead. This preserves source-only loading and
+the original mixed-control exception identity once production output is available.
 
 The ordinary prototype unit adapter also resolves all native dependencies from that
 historical root. It cannot execute a reserved entry. No consumed observation, reserved

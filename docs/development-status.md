@@ -23,7 +23,12 @@ and asynchronous-ordering fixes. Final review adds a pre-listen deadline fence, 
 test and accurate timeout/cancellation messages. The final full check passes **1,125 tests**
 (728 LoreDock, 262 scripts, 135 other package tests), all ten typechecks and all builds.
 An initial implicit-any failure in the new readiness test is retained and fixed.
-Both complete exact-head CI logs are still required before merge.
+The first push/PR CI attempts at `e701fc0` expose an undeclared dependency on generated
+`dist/types.js` in the historical test materializer. Both complete failed logs are retained;
+the source-only fallback emits the pinned original type module before daemon build.
+A fresh detached checkout at `cffcd1d` independently passes the complete normal sequence:
+1,125 tests, ten typechecks and ten final builds, without prebuilt daemon output.
+Application source remains unchanged. Both new exact-head CI logs are required before merge.
 The first observation predates only those startup/message changes and its explicit delta.
 All parser, graph, prompt and native fingerprint bytes remain unchanged after that record.
 Standalone Node 22.13 passes 23 source and six built parser tests; full LoreDock rejects
