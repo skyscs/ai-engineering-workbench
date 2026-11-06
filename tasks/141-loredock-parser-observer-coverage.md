@@ -1,7 +1,9 @@
 # Task 141 — Establish production parser observation coverage
 
-Status: first control complete; lifecycle passes, coverage remains blocked. The full local
-check passes 1,133 tests, ten typechecks and ten final builds. Exact-head CI review is pending.
+Status: accepted through PR #174, head `9cdccb1`, identical-tree merge `361728e`.
+Lifecycle passes; coverage remains blocked. The full local check and both complete CI logs
+pass 1,133 tests, ten typechecks and ten final builds. Accepted logs are retained in
+[the decision evidence](../docs/fixtures/loredock-resource-decision/README.md).
 
 See [the prospective method](../docs/loredock/PARSER_OBSERVATION_COVERAGE.md) and
 [fixed inputs and bounds](../scripts/loredock-parser-coverage/plan.mjs).

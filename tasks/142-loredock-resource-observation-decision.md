@@ -1,6 +1,7 @@
 # Task 142 — Decide the resource observation boundary
 
-Status: planned after Task 141 acceptance.
+Status: design complete after Task 141 acceptance (PR #174, merge `361728e`).
+See [ADR 0065](../docs/decisions/0065-loredock-resource-observation-boundary.md).
 
 The unchanged Task 140 application completes the small source/emitted lifecycle control,
 but Task 141 cannot certify early worker heap or the full source isolate set. Source
@@ -34,3 +35,10 @@ This is a design task, not permission to change the contract to fit the measurem
 Deliver an ADR, updated roadmap/status and a concrete next task. Run documentation checks;
 review complete CI logs if required by the repository workflow, merge, and continue only
 with the selected bounded scope. No product edits, resource/model measurements or retries.
+
+Decision: retain the worker architecture and current limits, keep daemon heap/startup
+qualification blocked, and make no near-limit attempt. A narrower JavaScript-lifetime
+measurement contract is identified as a separate possible decision, not adopted here.
+Continue independently with [Task 143](143-loredock-pinned-browser-eligibility.md): pin
+an official standalone browser and run one prospectively declared blank-page eligibility
+control before considering another application UI measurement.

@@ -1,0 +1,65 @@
+{
+  "previousCI": {
+    "head": "9cdccb1e7b3fff24eea293a727eb44e8ae2f196b",
+    "pr": 174,
+    "events": [
+      {
+        "event": "push",
+        "run": 42162837654,
+        "job": 127712344836,
+        "log": "/home/toshiba/aew/task141-ci-push-final.log",
+        "bytes": 632734,
+        "sha256": "b6d575e584e3c235a9a88ef6b5a70662fd1c492aa7d5942b395731274dccb62e",
+        "tests": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          270
+        ],
+        "total": 1133,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "completeLogReviewed": true
+      },
+      {
+        "event": "pr",
+        "run": 42162880154,
+        "job": 127712476018,
+        "log": "/home/toshiba/aew/task141-ci-pr-final.log",
+        "bytes": 635984,
+        "sha256": "f0c42f8881e078a2338d6b33e3721ebf24e572f2f252242537a978d5f679e80b",
+        "tests": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          270
+        ],
+        "total": 1133,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "completeLogReviewed": true
+      }
+    ]
+  },
+  "logs": [
+    {
+      "path": "task141-ci-push.log.gz",
+      "bytes": 632734,
+      "sha256": "b6d575e584e3c235a9a88ef6b5a70662fd1c492aa7d5942b395731274dccb62e",
+      "gzipSha256": "a5311856e244115947a2a5cb1f40b9d37319553789bd850d0c5b3d73a46eca4c"
+    },
+    {
+      "path": "task141-ci-pr.log.gz",
+      "bytes": 635984,
+      "sha256": "f0c42f8881e078a2338d6b33e3721ebf24e572f2f252242537a978d5f679e80b",
+      "gzipSha256": "cd03a4be7989a5529f9c26140929a8f7dee1b44f402e22c5e30b1a50ae25562d"
+    }
+  ],
+  "applicationBase": "361728e19cdea54688b35e0b0920a24037ace54f",
+  "productChanges": false,
+  "newMeasurements": false
+}

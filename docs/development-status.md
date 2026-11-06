@@ -1,5 +1,22 @@
 # Development status
 
+## Task 142 — Resource observation decision
+
+Task 141 is accepted through [PR #174](https://github.com/skyscs/ai-engineering-workbench/pull/174),
+head `9cdccb1`, identical-tree merge `361728e`. Both complete CI logs pass 1,133 tests,
+ten typechecks and ten final builds; [the decision evidence](fixtures/loredock-resource-decision/README.md)
+retains their exact bytes. [ADR 0065](decisions/0065-loredock-resource-observation-boundary.md)
+keeps the current worker architecture and resource ceilings. The audited Node facilities
+do not establish the missing startup/teardown/isolate coverage. No narrower contract,
+topology change or another daemon near-limit attempt is adopted.
+
+The independent next step is [Task 143](../tasks/143-loredock-pinned-browser-eligibility.md):
+pin the official full Chrome for Testing 157.0.8103.38 Linux x64 distribution and prospectively
+declare one blank-page environment eligibility control. The system browser, existing
+profiles and policies stay outside the work. The previous 1-GiB browser failure remains
+failed; an eligible new empty page would not qualify application or full-flow memory.
+This design task makes no product changes, installations, resource runs or model calls.
+
 ## Task 141 — Parser observation coverage
 
 Task 140 is accepted through [PR #173](https://github.com/skyscs/ai-engineering-workbench/pull/173),
