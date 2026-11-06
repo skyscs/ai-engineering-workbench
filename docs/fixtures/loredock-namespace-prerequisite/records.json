@@ -1,0 +1,205 @@
+{
+  "task": 152,
+  "candidateHead": "b1ac7b1c092e73c20a31dc5e3ea6f5ebe78b04b3",
+  "firstManifestSha256": "a40c05afe1a5716662e472dbc2c8cd71c9d4b66df0cfdef8101c32921c29f9e6",
+  "firstAssessment": "UNAVAILABLE",
+  "cause": "Probe incorrectly required user.delegate for a user-manager service; missing marker is not evidence of unavailable delegation/namespaces.",
+  "firstAttemptConsumed": true,
+  "serviceRequests": 1,
+  "sandboxInvocations": 0,
+  "payloadInvocations": 0,
+  "explicitPayloadAllocationBytes": 0,
+  "applicationResourceRuns": 0,
+  "modelCalls": 0,
+  "executorQualified": false,
+  "resourceQualification": false,
+  "firstFiles": 6,
+  "firstBytes": 4020,
+  "closedInvocationId": "6bed74c3015c40148ee518843f77ab3c",
+  "terminalReviewIsSeparate": true,
+  "sourceReview": {
+    "repository": "systemd/systemd",
+    "ref": "v259.5",
+    "path": "src/core/cgroup.c",
+    "blobSha": "1708e46b7fe1d8765b4a4976ac9fda86298c7a8b",
+    "function": "cgroup_xattr_apply",
+    "startLine": 975,
+    "finding": "The function returns for a non-system manager before cgroup_delegate_xattr_apply. Requiring user.delegate on every user-manager service was an unsupported probe assumption. Missing xattr does not establish absent delegation or unavailable namespaces.",
+    "installed": "259.5-0ubuntu3.4; upstream source review is not a byte-for-byte attestation of the distribution binary.",
+    "firstResultUnchanged": true,
+    "liveReruns": 0,
+    "nextScope": "Review and correct the manager-issued ownership receipt offline; retain first evidence. No new environment/profile trial or new live run is implied."
+  },
+  "acceptedTask151": {
+    "pr": 184,
+    "head": "902c98f33e908fc491dff7245317eb7776846f6e",
+    "merge": "a42a006a1b59a879605fa76e8a5d03323a37ae66",
+    "ci": [
+      {
+        "event": "push",
+        "id": 42294110625,
+        "jobId": 128154784770,
+        "head": "902c98f33e908fc491dff7245317eb7776846f6e",
+        "conclusion": "success",
+        "path": "/home/toshiba/aew/task151-ci-push-final.log",
+        "bytes": 662310,
+        "sha256": "247837f393fb4e801e818d089c1d918ae8df6d3a8e73f8fcb474d2658e40b496",
+        "tests": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          339
+        ],
+        "totalTests": 1202,
+        "failures": 0,
+        "cancelled": 0,
+        "typechecks": 10,
+        "finalBuilds": 10
+      },
+      {
+        "event": "pull_request",
+        "id": 42294134568,
+        "jobId": 128154864785,
+        "head": "902c98f33e908fc491dff7245317eb7776846f6e",
+        "conclusion": "success",
+        "path": "/home/toshiba/aew/task151-ci-pr-final.log",
+        "bytes": 662510,
+        "sha256": "6a65478f9643b24f250b1f3180ac1e02276d22bbf21bf79ec6e05861381eb0b2",
+        "tests": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          339
+        ],
+        "totalTests": 1202,
+        "failures": 0,
+        "cancelled": 0,
+        "typechecks": 10,
+        "finalBuilds": 10
+      }
+    ]
+  },
+  "localCheck": {
+    "task": 152,
+    "fullTests": 1203,
+    "testGroups": [
+      17,
+      18,
+      43,
+      728,
+      57,
+      340
+    ],
+    "pythonOfflineCases": 16,
+    "typechecks": 10,
+    "finalBuilds": 10,
+    "failures": 0,
+    "cancelled": 0,
+    "localLinks": 746,
+    "brokenLinks": [],
+    "fullCheckLog": "/home/toshiba/aew/task152-full-check.log",
+    "fullCheckBytes": 420490,
+    "fullCheckSha256": "e28889bee281a8f25307c3cde359a736564536d568821cffef304a3a18eef764",
+    "sourceHashesStable": true,
+    "unchangedLoreDockModules": 95,
+    "unchangedTotalEmittedModules": 148,
+    "diffReviewed": true,
+    "liveAttemptStarted": false
+  },
+  "logs": [
+    {
+      "path": "logs/task151-ci-push-final.log.gz",
+      "rawBytes": 662310,
+      "rawSha256": "247837f393fb4e801e818d089c1d918ae8df6d3a8e73f8fcb474d2658e40b496",
+      "gzipSha256": "b61686366847a9f8a1daecaeeae771c32fb0d00aa0153cfc0fdbed0c2b0c74d1",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task151-ci-pr-final.log.gz",
+      "rawBytes": 662510,
+      "rawSha256": "6a65478f9643b24f250b1f3180ac1e02276d22bbf21bf79ec6e05861381eb0b2",
+      "gzipSha256": "bf5e97379ba506edf00672e70d3749eb76b9577f174bea3ad198a1229fb817fb",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task152-install.log.gz",
+      "rawBytes": 326,
+      "rawSha256": "2410a9a14422e2264c11a444fa13469e827c1e181a151646a58cd4b256968649",
+      "gzipSha256": "cadd2b1f7cc3ca2aec3f01daded79d8bf41c8a433271d3c3a6ee2edbef247035",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task152-focused-first.log.gz",
+      "rawBytes": 348,
+      "rawSha256": "29a1a9c91ae44e4f79b8681b15c5f2adf1b39597161a4ccce88ec58c18f1dfa9",
+      "gzipSha256": "2d82470258803bbe8bfbb78d6e72029a6fee62d3428832095122eb0806419f02",
+      "role": "development-history-only"
+    },
+    {
+      "path": "logs/task152-focused-final.log.gz",
+      "rawBytes": 2256,
+      "rawSha256": "f4f1e5b312e140a36852a7d23e06ed91c8107b5cb6c0bf39cb75f6038381930a",
+      "gzipSha256": "b6aaf28fde407af825c5fb130c5c19a427f33eb309b7758aee954be8c1d0cad3",
+      "role": "development-history-only"
+    },
+    {
+      "path": "logs/task152-focused-reviewed.log.gz",
+      "rawBytes": 2528,
+      "rawSha256": "87e63eecd37ad5f8d26827a9545c248585ed3c8b7e38f9710c254e3df422fccd",
+      "gzipSha256": "15f07cbe339d464359a20f15c28ad8d5bfaecad0a832e445e5978314e6d772f6",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task152-full-check-before-review.log.gz",
+      "rawBytes": 420251,
+      "rawSha256": "04abcdaea6ec2eb50235c3f60f24b649cd8fcf6b92ec32f4fb39e729d236b73b",
+      "gzipSha256": "a6eccc2ed9bd9475e9f81182f89aae4aea97369ce27ba911e24be83d89a3f8ad",
+      "role": "development-history-only"
+    },
+    {
+      "path": "logs/task152-full-check.log.gz",
+      "rawBytes": 420490,
+      "rawSha256": "e28889bee281a8f25307c3cde359a736564536d568821cffef304a3a18eef764",
+      "gzipSha256": "87e4fd85433487c1889a6d31290f549a0d8340ad3224fc26e29ffec9fe691388",
+      "role": "accepted-or-final-verification"
+    }
+  ],
+  "archive": {
+    "path": "first.tar.gz",
+    "sha256": "d8a4f1e281c24a2496413652bdb99d6d192da411572f9c21a8ba1a40d6b4b449",
+    "members": 18
+  },
+  "inventory": {
+    "path": "first-inventory.json",
+    "sha256": "9ad6c83ee21029a340cd711a183f1b1750550373d520bef630a360485755e3ec"
+  },
+  "sources": [
+    {
+      "path": "scripts/loredock-namespace-prerequisite/probe.py",
+      "sha256": "c80a52ee64a84d4ca93436a55d02b24bdaf1fbee6834d2c2f17f230f6fa17c24"
+    },
+    {
+      "path": "scripts/loredock-namespace-prerequisite/payload.py",
+      "sha256": "497dee9e852e861451ba7c2e321f77457ee18a30c1d1f392dc06f85fcb47107f"
+    },
+    {
+      "path": "scripts/loredock-namespace-prerequisite/test_probe.py",
+      "sha256": "6e96d4d0ee28c93c213478a5612e9b32e1c1b6bf378d744842ad035324d9561f"
+    },
+    {
+      "path": "scripts/tests/loredock-namespace-prerequisite.test.mjs",
+      "sha256": "9dc79a57bd1692012bfa90017f7e240da6c6a34244b2c3efd011a86a3e665845"
+    },
+    {
+      "path": "docs/loredock/observable-resource-contract-v2.json",
+      "sha256": "759dc70e2d3b86043278b8378148785dd061cf29c06fa6f96c3a5bdf00be8e5b"
+    }
+  ],
+  "normalCheckoutUnchanged": true,
+  "developmentHistoryLimit": "Superseded helper/test snapshots for the earlier 13/14-case and full-check logs are not archived. Those logs are not exact-head evidence.",
+  "readmeSha256": "e7a4987b472d6d2b664662b2cf096c34215e704ab232fc5b92bf50f575e1721b"
+}

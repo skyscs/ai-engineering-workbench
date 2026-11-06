@@ -289,8 +289,11 @@ terminal-order refinements. Accepted
 [Task 151](../../tasks/151-loredock-memory-receipt-assessor.md) implements the
 [pure offline assessor](MEMORY_RECEIPT_ASSESSMENT.md), with 33 focused regressions and
 explicit non-qualification outputs. [Task 152](../../tasks/152-loredock-namespace-prerequisite.md)
-now checks one separately sealed namespace/service-ownership prerequisite with bounded
-synthetic work. No complete executor or application experiment is qualified by this check.
+checks one separately sealed namespace/service-ownership prerequisite. Its first service
+stops before the sandbox at an incorrect user-service xattr requirement. The unavailable
+[result](NAMESPACE_PREREQUISITE_RESULT.md) is retained; it does not establish a namespace
+permission failure. [Task 153](../../tasks/153-loredock-user-service-ownership.md) corrects
+the evidence model offline. No complete executor or application experiment is qualified.
 Task 147's execution prerequisites pass, while its
 first blank resource control and every earlier failure remain unchanged.
 This is a narrow test-environment control, not product Docker orchestration or resource

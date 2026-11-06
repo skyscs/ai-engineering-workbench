@@ -1,6 +1,12 @@
 # Task 152 — Check the namespace prerequisite once
 
-Status: implementation in progress; no live attempt yet.
+Status: first attempt retained as unavailable before sandbox creation; exact-head CI pending.
+The [result and source review](../docs/loredock/NAMESPACE_PREREQUISITE_RESULT.md) identify
+an unsupported user-service xattr assumption in this helper. One service request is consumed;
+no sandbox, payload or application ran. The original candidate and first bytes are unchanged.
+Revised local checks pass 1,203 Node tests, including one wrapper for 16 Python regressions,
+ten typechecks and ten final builds. [Task 153](153-loredock-user-service-ownership.md)
+corrects the ownership evidence model offline after this result is accepted.
 Task 151 is accepted through PR #184, head `902c98f`, identical-tree merge `a42a006`.
 Both complete CI logs pass 1,202 tests, ten typechecks and ten final builds.
 

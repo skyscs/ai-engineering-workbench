@@ -1,5 +1,10 @@
 # Namespace prerequisite
 
+The first sealed attempt is consumed and unavailable before sandbox creation. Its required
+user-service xattr was an incorrect assumption; this helper is retained as experiment
+history, not a reusable qualified executor. See [the result](NAMESPACE_PREREQUISITE_RESULT.md)
+and [the planned offline correction](../../tasks/153-loredock-user-service-ownership.md).
+
 Task 152 checks one necessary condition for the prospective resource executor: an
 unprivileged process can enter the required namespaces under a fresh delegated user
 service and complete a fixed, small confinement probe. It is not a memory measurement,
