@@ -280,7 +280,8 @@ execution remains separately bounded and conditional on all model-free prerequis
 The retained Task 128 full-flow failure remains failed. Tasks 129–140 preserve exact
 saved/native behavior and adopt the bounded owned parser; Tasks 141–143 retain independent
 daemon observation and browser blockers. Current next work is
-[Task 145](../../tasks/145-loredock-container-browser-eligibility.md), following the
+[Task 146](../../tasks/146-loredock-container-security-lifecycle.md), following the retained
+Task 145 pre-start metadata failure and the
 [container environment decision](../decisions/0066-loredock-independent-browser-container.md).
 This is a narrow test-environment control, not product Docker orchestration or resource
 acceptance. Daemon aggregate heap/startup and application/full-flow gates remain blocked.

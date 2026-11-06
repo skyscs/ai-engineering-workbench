@@ -1,5 +1,11 @@
 # Prospective container control
 
+The first image build passed. The first preflight failed before start because the created
+object's `AppArmorProfile` was empty. Its input/build/preflight directories are consumed;
+do not rerun them or start the retained object. See the
+[result](../../docs/loredock/CONTAINER_BROWSER_ELIGIBILITY.md) and Task 146 follow-up.
+The remaining text records the prospective design at `d13b5a4`.
+
 Task 145 implements [ADR 0066](../../docs/decisions/0066-loredock-independent-browser-container.md).
 The production application and original collectors remain unchanged. All commands here
 are single-use local test infrastructure, not application setup requirements.

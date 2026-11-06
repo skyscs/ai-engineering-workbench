@@ -551,6 +551,11 @@ defines durable exact container ownership, a kernel owner below PID 1, unchanged
 and browser flags, and a 50-ms nominal timer under the same 100-ms actual limit.
 [Task 145](tasks/145-loredock-container-browser-eligibility.md) builds/freezes that environment,
 tests ownership first and runs one blank control only if its prerequisites pass.
+Its first image build succeeds, but the first preflight rejects an empty AppArmorProfile
+on the unstarted created object. No container process or browser runs; the failure remains.
+[Task 146](tasks/146-loredock-container-security-lifecycle.md) corrects the distinction
+between requested security and applied runtime metadata on a fresh declared control,
+requiring the default profile and actual enforcement before child execution.
 No application-page or full-flow gate is opened by these diagnostics.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,

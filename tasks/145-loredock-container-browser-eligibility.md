@@ -1,10 +1,18 @@
 # Task 145 — Build and test one independent browser environment
 
-Status: implementation in progress after Task 144 acceptance (PR #177, merge `4acc21a`).
+Status: implementation and first build complete; first preflight failed before start.
+Full local checks pass; exact-head CI pending.
+See [the retained result](../docs/loredock/CONTAINER_BROWSER_ELIGIBILITY.md).
 The [prospective controls](../scripts/loredock-container-browser/README.md) and
 [fixed plan](../scripts/loredock-container-browser/plan.json) precede image construction.
 Nine synthetic owner/adapter regressions pass. No browser launch is authorized until
 the concrete final image/input manifest and successful preflight receipts are committed.
+
+The first create/inspect returns an empty `AppArmorProfile` in state `created` with PID 0.
+The controller rejects it before any start request. That object remains retained; no
+container process/browser runs and the later preflight cases are unexecuted. Preserve this
+first failure and continue with [Task 146](146-loredock-container-security-lifecycle.md)
+after acceptance. Do not relax security or retry any first path to complete this attempt.
 
 Implement [ADR 0066](../docs/decisions/0066-loredock-independent-browser-container.md)
 as ordinary test infrastructure only. Preserve all consumed controls and unchanged

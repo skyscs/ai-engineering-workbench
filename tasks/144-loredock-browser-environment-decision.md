@@ -1,6 +1,7 @@
 # Task 144 — Decide an independent browser environment and observation margin
 
-Status: design complete; local documentation verification passes. Exact-head CI pending.
+Status: accepted through PR #177, head `54d7a9d`, identical-tree merge `4acc21a`.
+Both complete exact-head CI logs pass 1,141 tests, ten typechecks and ten final builds.
 See [ADR 0066](../docs/decisions/0066-loredock-independent-browser-container.md) and the
 [retained read-only audit](../docs/fixtures/loredock-browser-environment/README.md).
 
