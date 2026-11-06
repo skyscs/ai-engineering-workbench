@@ -1,6 +1,6 @@
 import { parentPort, workerData } from 'node:worker_threads';
 import { fileParserIdentity } from './file-parser-identity.js';
-import { decodeParseRequest, encodeParserFrame, fileParserLimits, fileParserProtocol, requireParser, validateParserFacts,
+import { decodeParseRequest, encodeParserReply, fileParserProtocol, requireParser, validateParserFacts,
   FileParserError, type ParserReply } from './file-parser-protocol.js';
 
 requireParser(parentPort && workerData && typeof workerData === 'object'
@@ -10,7 +10,7 @@ const port = parentPort!, generation = workerData.generation as string;
 const identity = await fileParserIdentity();
 const [{ typescriptFacts }, { javaFacts }] = await Promise.all([import('./code-typescript.js'), import('./code-java.js')]);
 const binding = { version: fileParserProtocol, generation, identity } as const;
-const send = (value: ParserReply) => { const frame = encodeParserFrame(value, fileParserLimits.responseBytes); port.postMessage(frame, [frame]); };
+const send = (value: ParserReply) => { const frame = encodeParserReply(value); port.postMessage(frame, [frame]); };
 let previousId = 0;
 port.on('message', (frame: unknown) => {
   const request = decodeParseRequest(frame);

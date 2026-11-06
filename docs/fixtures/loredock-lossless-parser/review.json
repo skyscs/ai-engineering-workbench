@@ -1,0 +1,19 @@
+{
+  "trees": 3,
+  "entries": 479,
+  "logs": 13,
+  "currentCandidateInputsUnchanged": 198,
+  "retainedOriginalEntriesUnchanged": 254,
+  "oldEmittedModules": 146,
+  "changedUnwiredModules": [
+    "apps/loredock/dist/file-parser-protocol.js",
+    "apps/loredock/dist/file-parser-worker.js",
+    "apps/loredock/dist/file-parser-owner.js"
+  ],
+  "unchangedEmittedModules": 143,
+  "frozenInputsUnchanged": true,
+  "primaryCheckoutUnchanged": true,
+  "documentLinks": 595,
+  "modelCalls": 0,
+  "resourceQualification": false
+}

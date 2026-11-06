@@ -1,0 +1,130 @@
+{
+  "schemaVersion": "ordinary-lossless-parser-retention/1",
+  "trees": [
+    {
+      "name": "first",
+      "source": "/home/toshiba/aew/task139-lossless-first",
+      "entries": 474,
+      "archive": "first.tar.gz",
+      "archiveSha256": "98beaa7c8ba95d22d011d2fb35ef1591df1e05774678d361514d6a6287dcd8e0",
+      "inventory": "first.files.json.gz",
+      "inventorySha256": "9917b1e44a875827d797469850cf406297dfd8e305bdf0629a1dad61acb3ca76",
+      "rawInventorySha256": "9c5b6d4c29da9c6ff383399bd599a4861768c3ec5d084892e983517199f2f9e8"
+    },
+    {
+      "name": "typecheck-first",
+      "source": "/home/toshiba/aew/task139-typecheck-first-inputs",
+      "entries": 4,
+      "archive": "typecheck-first.tar.gz",
+      "archiveSha256": "f7db207abb0d57d29824851d139f0a2c56307c1abc2ee45ba00230b8cb43c004",
+      "inventory": "typecheck-first.files.json.gz",
+      "inventorySha256": "aeb8b96ed545bf2da668a9dfd6db77e33d3e6091095b9f60e3982280800c6ec1",
+      "rawInventorySha256": "f75268860508c58a2e8f604a7aaa13de32a646839663e98ddf4f9bb5b3792133"
+    },
+    {
+      "name": "typecheck-second",
+      "source": "/home/toshiba/aew/task139-typecheck-second-inputs",
+      "entries": 1,
+      "archive": "typecheck-second.tar.gz",
+      "archiveSha256": "04c31a2203598711090c0c081dd7ed40d56076172fb6e1745c8d40f58ecbc463",
+      "inventory": "typecheck-second.files.json.gz",
+      "inventorySha256": "b61878cd3d4f8f053167bf6e2cbc893fd1497c1b51877ebc28acf6d674376f2a",
+      "rawInventorySha256": "a0a24ed78417f6262ddb59af9fa36ec1263779da6d831b76674614da2c91f046"
+    }
+  ],
+  "logs": [
+    {
+      "source": "/home/toshiba/aew/task138-transport-ci-pr.log",
+      "archive": "task138-transport-ci-pr.log.gz",
+      "bytes": 617183,
+      "sha256": "f6e6464ba81b4bd41a34af3980ab064061dac4f6caaa6ef5c078ab21c4131bd8",
+      "archiveSha256": "2ed04aa77c9bafa3103bd6b616e44ed7f14736eaa02f041ddb364a1c8fcbdff1"
+    },
+    {
+      "source": "/home/toshiba/aew/task138-transport-ci-push.log",
+      "archive": "task138-transport-ci-push.log.gz",
+      "bytes": 613887,
+      "sha256": "7eeefa3e820a2f44f00fd32bbe27326ecb0616ce5fc0bd4033a8e78198d0ce22",
+      "archiveSha256": "3b8200f8d10db2446c523a80077a35142a1f9d5cffb9b1f2659b918caaaaa1d5"
+    },
+    {
+      "source": "/home/toshiba/aew/task139-build-first.log",
+      "archive": "task139-build-first.log.gz",
+      "bytes": 2353,
+      "sha256": "7383b962d93cc8cfe843a9143dccd3a0d7bc7b0714f956e6884f846d0d8b9ebb",
+      "archiveSha256": "b0a4259fe0f0ebac08e65beee63ee07bfd27758736ae6dbf5ad5100ee4e4e82c"
+    },
+    {
+      "source": "/home/toshiba/aew/task139-built-minimum.log",
+      "archive": "task139-built-minimum.log.gz",
+      "bytes": 1077,
+      "sha256": "b99df4fa03b83a17142c86b5a70b6980cc5ef691eec4f72f0d1cbe58aa241cd7",
+      "archiveSha256": "2bd4d9f04c5e9a3af36bccc309aa8459e7054df9e9711d861490db7068bf1ae0"
+    },
+    {
+      "source": "/home/toshiba/aew/task139-built-pinned.log",
+      "archive": "task139-built-pinned.log.gz",
+      "bytes": 1178,
+      "sha256": "8c040b48c582c1e828c30d031fab11413c5531695b72cc63ef57f75ac212b3d3",
+      "archiveSha256": "f38b5b58e1d9450db16246444bc1de661290b0b9eb7c60cc4684d0d955bb7afd"
+    },
+    {
+      "source": "/home/toshiba/aew/task139-check-first.log",
+      "archive": "task139-check-first.log.gz",
+      "bytes": 394599,
+      "sha256": "d1c66f2fb0a15212b20c75f0b4904d302c63ed46e460847995195b4a62ac3ae7",
+      "archiveSha256": "64fc814b24ce1137af1845a20de6476c048ee51ac5270b5fda3231d65b23eb53"
+    },
+    {
+      "source": "/home/toshiba/aew/task139-codec-tests-first.log",
+      "archive": "task139-codec-tests-first.log.gz",
+      "bytes": 5293,
+      "sha256": "1b57ba5e0f561f1c3fb1e045d0756085998e548e33c1f868bb3419c528eaf410",
+      "archiveSha256": "d568a3d8f6cd1384a4452d081829f72ef267a884263bc8e862aacd6f8bfcd2cc"
+    },
+    {
+      "source": "/home/toshiba/aew/task139-first-owner.log",
+      "archive": "task139-first-owner.log.gz",
+      "bytes": 278,
+      "sha256": "771bc06ed895f5ca9ca9b78bda8ecbe64653ca39f085c1580206621fb077b6d8",
+      "archiveSha256": "488cfadee13228d51750e12111039edb26e345f4293a5777549e5a460aedf3e5"
+    },
+    {
+      "source": "/home/toshiba/aew/task139-install-first.log",
+      "archive": "task139-install-first.log.gz",
+      "bytes": 326,
+      "sha256": "51406a9b5c2338788a0120c1370c9cc648b04b85857153f24e5db43ee296f7af",
+      "archiveSha256": "8cce0d9bc5acc635dd22d2d9d0a5c7fb71bb525ca1fa4ea98556c8eeb2630c05"
+    },
+    {
+      "source": "/home/toshiba/aew/task139-minimum-source.log",
+      "archive": "task139-minimum-source.log.gz",
+      "bytes": 4938,
+      "sha256": "0694570072f53c30cd4a93e51762e982d767c9c950777cc0d9902dfb99ef5bcb",
+      "archiveSha256": "023176a4378a0e2a74b74cac2cb6c0f484521ede44b2bfb711539433f11371a3"
+    },
+    {
+      "source": "/home/toshiba/aew/task139-typecheck-first.log",
+      "archive": "task139-typecheck-first.log.gz",
+      "bytes": 1913,
+      "sha256": "1c957d1c48afcc833f5702d81f266554bb95568f97c52a57d9eadea7980b3183",
+      "archiveSha256": "f793d3cc35af0e0fd78a807aaa9a607cd0f8a1cf1a8df77dea46a89bb6647379"
+    },
+    {
+      "source": "/home/toshiba/aew/task139-typecheck-second.log",
+      "archive": "task139-typecheck-second.log.gz",
+      "bytes": 4222,
+      "sha256": "ff16b815f35256ebf27104ddbc79914fee7fc4604be01e84f2fe0b8fba320671",
+      "archiveSha256": "a247f57fcb02fd7115ab08bee602b0697fff583a9c1ae9c81441b2c6a128c52c"
+    },
+    {
+      "source": "/home/toshiba/aew/task139-typecheck-third.log",
+      "archive": "task139-typecheck-third.log.gz",
+      "bytes": 145,
+      "sha256": "054033c08312c9475078532d70041ce3987d82bc2ebee3b2f265e3ddb9439356",
+      "archiveSha256": "71bf81cd60690de2b209b29f2a5c21aa37e94dbb56378064ec1cc30291ec8937"
+    }
+  ],
+  "modelCalls": 0,
+  "resourceQualification": false
+}

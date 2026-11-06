@@ -94,7 +94,7 @@ export class FileParserOwner {
     if (this.state === 'stopping' || this.state === 'closed') return;
     try {
       const pending = this.pending; requireParser(pending); pending.check();
-      const reply = decodeParserReply(frame);
+      const reply = decodeParserReply(frame, pending.check);
       requireParser(reply.generation === this.generation && reply.identity === this.identity);
       if (reply.type === 'ready') {
         requireParser(this.state === 'starting' && !pending.request);

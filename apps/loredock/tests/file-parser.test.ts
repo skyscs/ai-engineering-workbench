@@ -8,7 +8,8 @@ import { Worker } from 'node:worker_threads';
 import { OwnedFileParser } from '../src/file-parser.js';
 import { FileParserOwner } from '../src/file-parser-owner.js';
 import { fileParserIdentity } from '../src/file-parser-identity.js';
-import { FileParserError, decodeParseRequest, encodeParserFrame, fileParserDigest, fileParserLimits, fileParserProtocol } from '../src/file-parser-protocol.js';
+import { FileParserError, decodeParseRequest, encodeParserFrame, fileParserDigest, fileParserLimits, fileParserProtocol, packParserFacts } from '../src/file-parser-protocol.js';
+import type { CodeFacts } from '../src/code-facts.js';
 import { typescriptFacts } from '../src/code-typescript.js';
 import { javaFacts } from '../src/code-java.js';
 import { factRanges } from '../src/code-analysis-facts.js';
@@ -82,7 +83,7 @@ test('literal event support and syntax limits keep their exact parser meaning', 
 
 const fixture = `
 const { parentPort: port, workerData: data } = require('node:worker_threads');
-const binding = { version: 'loredock-file-parser/1', generation: data.generation, identity: '${identity}' };
+const binding = { version: '${fileParserProtocol}', generation: data.generation, identity: '${identity}' };
 const send = value => { const bytes = Buffer.from(JSON.stringify(value)); const frame = new ArrayBuffer(bytes.length); new Uint8Array(frame).set(bytes); port.postMessage(frame, [frame]); };
 if (data.mode === 'start-exit') process.exit(7);
 if (data.mode === 'start-hang') { while (true) {} }
@@ -95,13 +96,10 @@ port.on('message', frame => {
   if (data.mode === 'invalid-utf8') { port.postMessage(Uint8Array.of(255).buffer); return; }
   if (data.mode === 'oversized') { port.postMessage(new ArrayBuffer(512 * 1024 + 1)); return; }
   const result = { ...binding, type: 'facts', id: request.id, digest: request.digest,
-    facts: { symbols: [], operations: [], calls: [], records: {}, gaps: [] } };
+    facts: data.facts };
   if (data.mode === 'wrong-id') result.id++;
   if (data.mode === 'wrong-generation') result.generation = 'f'.repeat(36);
   if (data.mode === 'wrong-digest') result.digest = '0'.repeat(64);
-  if (data.mode === 'extra') result.facts.extra = true;
-  if (data.mode === 'invalid-range') result.facts.symbols.push({key:'a',name:'a',qualifiedName:'a',role:'function',exported:false,start:0,end:999});
-  if (data.mode === 'unknown-owner') result.facts.calls.push({owner:'missing',local:'a',imported:'b',module:'c'});
   send(result);
   if (data.mode === 'duplicate') send(result);
   if (data.mode === 'exit-after-result') process.exit(0);
@@ -109,8 +107,12 @@ port.on('message', frame => {
 `;
 function controlled(mode: string, cleanupMs?: number) {
   const workers: Worker[] = [], exits: number[] = [];
+  const facts: CodeFacts & { extra?: boolean } = { symbols: [], operations: [], calls: [], records: {}, gaps: [] };
+  if (mode === 'extra') facts.extra = true;
+  if (mode === 'invalid-range') facts.symbols.push({ key: 'a', name: 'a', qualifiedName: 'a', role: 'function', exported: false, start: 0, end: 999 });
+  if (mode === 'unknown-owner') facts.calls.push({ owner: 'missing', local: 'a', imported: 'b', module: 'c' });
   const parser = new FileParserOwner({ identify: async () => identity, spawn: generation => {
-    const worker = new Worker(fixture, { eval: true, workerData: { generation, mode }, execArgv: [], env: {}, stdout: true, stderr: true });
+    const worker = new Worker(fixture, { eval: true, workerData: { generation, mode, facts: packParserFacts(facts) }, execArgv: [], env: {}, stdout: true, stderr: true });
     workers.push(worker); worker.once('exit', value => exits.push(value)); return worker;
   }, ...(cleanupMs ? { cleanupMs } : {}) });
   return { parser, workers, exits };

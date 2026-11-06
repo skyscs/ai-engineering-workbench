@@ -1,5 +1,28 @@
 # Development status
 
+## Task 139 — Lossless parser transport (ordinary compatibility repaired)
+
+Task 138 is accepted through [PR #171](https://github.com/skyscs/ai-engineering-workbench/pull/171):
+both complete CI logs pass 1,094 tests at `3cd3044`, before identical-tree merge `6cb2ce5`.
+[ADR 0063](decisions/0063-loredock-lossless-parser-wire.md) precedes the v2 implementation,
+which shares strings, strictly validates references and reconstructs exact ordered facts
+without an expanded intermediate JSON string. All frame and operation bounds stay exact.
+
+The [first candidate](loredock/LOSSLESS_PARSER_TRANSPORT.md) at `bdb8f6e` preserves all
+three retained direct fact/range/graph results. Previously failing replies of 736,909 and
+846,464 bytes become 143,742 and 29,747 bytes, below the unchanged 524,288-byte ceiling.
+Every owner joins actual exit; the complete child exits 0 without timeout after 828.747 ms.
+All 254 copied original entries and the first failed archive remain exact; no model is used.
+
+Twenty-three source tests and six built tests pass on pinned Node 22.23.2 and standalone
+minimum 22.13.0. Two initial typecheck failures are retained with their fixes. The complete
+local check passes 1,107 tests, ten typechecks and all builds; exact-head CI acceptance
+is pending. Production call sites, imports, fingerprint, schemas
+and defaults are unchanged; only the unwired adapter's protocol/owner/worker modules change.
+The concrete transport failures are repaired, but universal fit and all startup/aggregate
+heap/browser resource gates remain unqualified. After merge,
+[Task 140](../tasks/140-loredock-production-parser-adoption.md) adopts the owner in production.
+
 ## Task 138 — Production parser transport prerequisite (failed gate retained)
 
 Task 137 is accepted through [PR #170](https://github.com/skyscs/ai-engineering-workbench/pull/170):

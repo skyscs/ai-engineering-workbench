@@ -1,5 +1,10 @@
 # Unwired file-parser adapter
 
+This document records Task 136's original adapter and first observation. Task 139
+updates only its result transport through [protocol v2](LOSSLESS_PARSER_TRANSPORT.md);
+the original observation remains a v1 result. Task 137 separately made legacy consumers
+awaitable. The production parser remains direct until Task 140.
+
 Task 136 implements the first stage of [ADR 0062](../decisions/0062-loredock-owned-file-parser.md).
 The production entry, synchronous analysis/graphs/answer consumers and existing parser
 modules remain unchanged. Importing `file-parser` creates no worker and loads no compiler.
