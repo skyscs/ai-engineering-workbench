@@ -576,6 +576,10 @@ Its [review decision](docs/decisions/0068-loredock-observable-resource-contract.
 the prospective v2 boundary with explicit delegation/accounting/event/order refinements.
 [Task 151](tasks/151-loredock-memory-receipt-assessor.md) next implements pure offline
 memory-receipt assessment; a secure executor and application resource result remain unproven.
+Its [pure assessor](docs/loredock/MEMORY_RECEIPT_ASSESSMENT.md) now validates bounded raw
+counter records with exact integer arithmetic, identity/order checks and explicit missing
+evidence. Thirty-three focused regressions pass. After acceptance, scope one independent
+tiny executor prerequisite; no live resource family or semantic continuation opens here.
 No application-page or full-flow gate is opened by these diagnostics.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
