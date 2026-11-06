@@ -1,6 +1,7 @@
 # Task 151 — Implement an offline memory-receipt assessor
 
-Status: implementation, 33 focused regressions and full local checks pass; exact-head CI pending.
+Status: accepted through PR #184, head `902c98f`, identical-tree merge `a42a006`.
+Both complete exact-head CI logs pass 1,202 tests, ten typechecks and ten final builds.
 Task 150 is accepted through PR #183, head `d5012b1`, identical-tree merge `c7adf93`,
 with both complete CI logs passing 1,169 tests, ten typechecks and ten final builds.
 The [module and receipt boundary](../docs/loredock/MEMORY_RECEIPT_ASSESSMENT.md) implement

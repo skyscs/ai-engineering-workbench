@@ -580,6 +580,13 @@ Its [pure assessor](docs/loredock/MEMORY_RECEIPT_ASSESSMENT.md) now validates bo
 counter records with exact integer arithmetic, identity/order checks and explicit missing
 evidence. Thirty-three focused regressions pass. After acceptance, scope one independent
 tiny executor prerequisite; no live resource family or semantic continuation opens here.
+[Task 152](tasks/152-loredock-namespace-prerequisite.md) now scopes one namespace and
+service-ownership check with fixed tiny synthetic work, durable first-attempt admission
+and no privilege/profile fallback. Its first attempt stops before sandbox creation because
+the helper incorrectly requires a system-manager xattr on a user service. The result is
+retained as unavailable, without inferring a namespace or actual delegation failure.
+[Task 153](tasks/153-loredock-user-service-ownership.md) corrects that ownership evidence
+model offline. Direct birth, retained counters and full executor qualification remain separate.
 No application-page or full-flow gate is opened by these diagnostics.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,

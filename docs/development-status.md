@@ -1,5 +1,32 @@
 # Development status
 
+## Task 152 — One namespace prerequisite before executor implementation
+
+Task 151 is accepted through [PR #184](https://github.com/skyscs/ai-engineering-workbench/pull/184),
+head `902c98f`, identical-tree merge `a42a006`; both complete CI logs pass 1,202 tests,
+ten typechecks and ten final builds. Its offline assessor remains separate from live trust.
+
+[Task 152](../tasks/152-loredock-namespace-prerequisite.md) implements a single-attempt
+[namespace prerequisite](loredock/NAMESPACE_PREREQUISITE.md) using one dedicated user
+service and the existing non-setuid Bubblewrap. Sixteen offline regressions cover claims,
+manager identity, confinement predicates, output bounds, normal exit and interrupted reaping.
+Review added an exclusive internal service entry and preserved normal exits after early
+stream closure. Revised local checks pass 1,203 Node tests (including one wrapper for the
+16 Python cases), ten typechecks and ten final builds. Both complete exact-head CI logs
+remain required before merge.
+
+The [single first attempt](loredock/NAMESPACE_PREREQUISITE_RESULT.md) requested one user
+service and stopped at a missing `user.delegate` xattr, before sandbox or payload creation.
+Upstream v259.5 applies that marker only for the system manager: the helper imposed an
+unsupported user-manager requirement. This is not evidence of unavailable namespaces or
+absent delegation. The first unavailable assessment stays unchanged. A read-only review
+confirms the same failed invocation with MainPID zero, no ControlGroup and an absent
+claimed path. No forced cleanup, restart, host/profile change or fallback occurs.
+[Task 153](../tasks/153-loredock-user-service-ownership.md) corrects the evidence model
+offline; another live attempt is not opened by this result. No application resource result,
+executor qualification, model call or corporate source is introduced. All 95 LoreDock and
+148 total emitted modules, frozen inputs and the normal checkout remain unchanged.
+
 ## Task 151 — Pure offline memory-receipt assessor
 
 Task 150 is accepted through [PR #183](https://github.com/skyscs/ai-engineering-workbench/pull/183),
