@@ -1,0 +1,2 @@
+export function useful() { return fetch('/useful'); }
+export function aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa() { fetch('/bounded');fetch('/bounded');fetch('/bounded');fetch('/bounded'); }

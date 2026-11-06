@@ -4,8 +4,16 @@ import { test } from 'node:test';
 import { OwnedFileParser } from '../../apps/loredock/dist/file-parser.js';
 import { typescriptFacts } from '../../apps/loredock/dist/code-typescript.js';
 import { javaFacts } from '../../apps/loredock/dist/code-java.js';
+import { retainedTransportCases } from '../../apps/loredock/tests/fixtures/parser-transport-reference/read.mjs';
 
 const operation = signal => ({ deadline: performance.now() + 15000, ...(signal ? { signal } : {}) });
+test('built worker preserves retained facts that failed the first transport prerequisite', async t => {
+  const parser = new OwnedFileParser(); t.after(() => parser.stop()); await parser.start(operation());
+  for (const input of await retainedTransportCases()) await t.test(input.id, async () => {
+    assert.equal(JSON.stringify(await parser.parse(input.path, input.content, operation())), input.serialized);
+  });
+  await parser.stop(); assert.equal(parser.snapshot().state, 'closed'); assert.equal(parser.snapshot().owned, false);
+});
 test('built parser preserves useful language facts and rejects expired or pre-cancelled admission', async t => {
   const parser = new OwnedFileParser(); t.after(() => parser.stop());
   const cancelled = new AbortController(); cancelled.abort();

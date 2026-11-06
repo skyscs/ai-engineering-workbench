@@ -1,0 +1,132 @@
+{
+  "firstObservation": "d84971fec360540db4266d38a65e9b9840ae1881",
+  "sourceArchiveSha256": "77c99c02c04923ec66cbcd50d5964792c79626a010ed4412f7d466f5489089a0",
+  "files": [
+    {
+      "path": "ordinary.source.txt",
+      "sourceMember": "run/ordinary/source/src/control.ts",
+      "bytes": 182,
+      "sha256": "fa23c8f50edfe2ad2c2777d0d2fb3f15f3ec58abd31a38dee54440d1f2f9fcb7",
+      "storedSha256": "fa23c8f50edfe2ad2c2777d0d2fb3f15f3ec58abd31a38dee54440d1f2f9fcb7"
+    },
+    {
+      "path": "ordinary.facts.json.gz",
+      "sourceMember": "run/ordinary/direct-facts.json",
+      "bytes": 1574,
+      "sha256": "0b81ff7ab4a7aa4f89f9e8964508761fba1177195b924408c78e4caac586c8ce",
+      "storedSha256": "b294dcc46f9ad3d111fa0f85ee366904554d70a2ffb2879e34c290ac8ea152ac"
+    },
+    {
+      "path": "dense-operations.source.txt",
+      "sourceMember": "run/dense-operations/source/src/control.ts",
+      "bytes": 20328,
+      "sha256": "d6a225ffb4cc2378d17015e02faadac8b55b718c022a39b1b67506193889c8a1",
+      "storedSha256": "d6a225ffb4cc2378d17015e02faadac8b55b718c022a39b1b67506193889c8a1"
+    },
+    {
+      "path": "dense-operations.facts.json.gz",
+      "sourceMember": "run/dense-operations/direct-facts.json",
+      "bytes": 736636,
+      "sha256": "3fc0a0ffbfd74abac8589301a6946ad5383839fae63802aa6bfabd3e467b7960",
+      "storedSha256": "20565e4c89ed2347ec002df1e87019d068e136afebc9a8bbc689be47c1ee7550"
+    },
+    {
+      "path": "long-owner.source.txt",
+      "sourceMember": "run/long-owner/source/src/control.ts",
+      "bytes": 9878,
+      "sha256": "4521c024943d8e2033bc262dcfbc08d39e620e6cf7f33c2fb9ad14572f6c4c0c",
+      "storedSha256": "4521c024943d8e2033bc262dcfbc08d39e620e6cf7f33c2fb9ad14572f6c4c0c"
+    },
+    {
+      "path": "long-owner.facts.json.gz",
+      "sourceMember": "run/long-owner/direct-facts.json",
+      "bytes": 846191,
+      "sha256": "a6306c2fa375f14de7caade3d444156572da0763bb3c7b6a809d1e04831d07b8",
+      "storedSha256": "7b9a4c8d670f7fc06f2d7bf276e99da8edb15c4e4e15ab61b611582e18e0382e"
+    }
+  ],
+  "cases": [
+    {
+      "id": "ordinary",
+      "path": "src/control.ts",
+      "input": {
+        "path": "src/control.ts",
+        "bytes": 182,
+        "sha256": "fa23c8f50edfe2ad2c2777d0d2fb3f15f3ec58abd31a38dee54440d1f2f9fcb7",
+        "revision": "026d2a4df12e725729d660020bb4b8feeb50abdb"
+      },
+      "direct": {
+        "factsBytes": 1574,
+        "factsHash": "0b81ff7ab4a7aa4f89f9e8964508761fba1177195b924408c78e4caac586c8ce",
+        "graphBytes": 8090,
+        "graphHash": "7f2245e3fee6f2a0c3b54bddbccff4c6360450845a8da5b509a963c2ffeea5ea",
+        "symbols": 2,
+        "operations": 5,
+        "gaps": [],
+        "coverage": {
+          "candidateDocuments": 1,
+          "examinedDocuments": 1,
+          "parsedBytes": 182
+        },
+        "omissions": {},
+        "replyBytes": 1847
+      }
+    },
+    {
+      "id": "dense-operations",
+      "path": "src/control.ts",
+      "input": {
+        "path": "src/control.ts",
+        "bytes": 20328,
+        "sha256": "d6a225ffb4cc2378d17015e02faadac8b55b718c022a39b1b67506193889c8a1",
+        "revision": "fc4ef608c442489027292022fbd759be7be06f2e"
+      },
+      "direct": {
+        "factsBytes": 736636,
+        "factsHash": "3fc0a0ffbfd74abac8589301a6946ad5383839fae63802aa6bfabd3e467b7960",
+        "graphBytes": 156559,
+        "graphHash": "c436e87a5a4e3d34dad300ab2dc7bb678c28611d01c51e65688756e52bfbcbcc",
+        "symbols": 2,
+        "operations": 1101,
+        "gaps": [],
+        "coverage": {
+          "candidateDocuments": 1,
+          "examinedDocuments": 1,
+          "parsedBytes": 20328
+        },
+        "omissions": {
+          "node-limit": 943
+        },
+        "replyBytes": 736909
+      }
+    },
+    {
+      "id": "long-owner",
+      "path": "src/control.ts",
+      "input": {
+        "path": "src/control.ts",
+        "bytes": 9878,
+        "sha256": "4521c024943d8e2033bc262dcfbc08d39e620e6cf7f33c2fb9ad14572f6c4c0c",
+        "revision": "2061701538b380d94261163851ad0a9c62927d43"
+      },
+      "direct": {
+        "factsBytes": 846191,
+        "factsHash": "a6306c2fa375f14de7caade3d444156572da0763bb3c7b6a809d1e04831d07b8",
+        "graphBytes": 3270,
+        "graphHash": "0309791cd2fd6fbb16bfc4edbf4dbd9b62eeddbcbff0037bc7bf4473a3c045f6",
+        "symbols": 2,
+        "operations": 101,
+        "gaps": [],
+        "coverage": {
+          "candidateDocuments": 1,
+          "examinedDocuments": 1,
+          "parsedBytes": 9878
+        },
+        "omissions": {
+          "property-byte-limit": 1
+        },
+        "replyBytes": 846464
+      }
+    }
+  ]
+}
