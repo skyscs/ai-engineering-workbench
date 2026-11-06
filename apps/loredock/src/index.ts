@@ -1,44 +1,36 @@
 import { homedir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { serve } from '@hono/node-server';
-import { createApp } from './app.js';
-import { Catalog } from './catalog.js';
-import { CatalogStore } from './store.js';
-import { Answers } from './answers.js';
-import { QuestionPreparations } from './question-preparation.js';
-import { CodeAnalysis } from './code-analysis.js';
-import { CodeAnalysisFollow } from './code-analysis-follow.js';
-import { CodePathsV2 } from './code-paths-v2.js';
-import { NativeCaptures } from './native-capture.js';
+import { LoreDockServer } from './server.js';
 
 function defaultDirectory() {
   if (process.platform === 'darwin') return path.join(homedir(), 'Library', 'Application Support', 'loredock');
   if (process.platform === 'win32') return path.join(process.env.LOCALAPPDATA ?? path.join(homedir(), 'AppData', 'Local'), 'loredock');
   return path.join(process.env.XDG_DATA_HOME ?? path.join(homedir(), '.local', 'share'), 'loredock');
 }
-const preparedQuestionsEnabled = process.env.LOREDOCK_PREPARED_ANSWERS === '1';
-if (preparedQuestionsEnabled && process.env.LOREDOCK_ANSWERS !== '1')
-  throw new Error('LOREDOCK_PREPARED_ANSWERS=1 requires LOREDOCK_ANSWERS=1.');
-const store = new CatalogStore(process.env.LOREDOCK_DATA_DIR ?? defaultDirectory());
-const catalog = new Catalog(store);
-const codeAnalysis = new CodeAnalysis(catalog), codeFollow = new CodeAnalysisFollow(codeAnalysis);
-const codePaths = new CodePathsV2(codeAnalysis);
-const nativeCaptures = new NativeCaptures(codeAnalysis, { paths: codePaths });
-codeFollow.start();
-// Cited answers are optional; indexing and map browsing need no Codex connection.
-const preparations = process.env.LOREDOCK_ANSWERS === '1' ? new QuestionPreparations(codeAnalysis) : undefined;
-const answers = preparations ? new Answers(catalog, undefined, preparations) : undefined;
-const app = createApp(catalog, { publicDir: fileURLToPath(new URL('../public/', import.meta.url)), development: process.env.LOREDOCK_DEVELOPMENT === '1', codeAnalysis, codeFollow, codePaths, nativeCaptures, ...answers ? { answers } : {}, ...preparedQuestionsEnabled && preparations ? { preparations } : {} });
-const server = serve({ fetch: app.fetch, hostname: '127.0.0.1', port: 4244 });
-server.on('listening', () => console.log('LoreDock listening on http://127.0.0.1:4244'));
-let closing = false;
+const controller = new AbortController();
+let server: LoreDockServer | undefined;
 async function shutdown() {
-  if (closing) return; closing = true;
-  server.close();
-  codeFollow.stop(); await answers?.stop(); await preparations?.stop();
-  await nativeCaptures.stop(); await codePaths.stop(); await codeAnalysis.stop(); await catalog.stop(); store.close();
+  controller.abort();
+  try { await server?.stop(); }
+  catch (error) { console.error(error instanceof Error ? error.message : 'LoreDock shutdown failed.'); process.exitCode = 1; }
 }
-server.on('error', error => { console.error(`LoreDock could not listen (${(error as NodeJS.ErrnoException).code ?? 'UNKNOWN'}). Check port 4244.`); void shutdown().finally(() => { process.exitCode = 1; }); });
 process.once('SIGINT', () => { void shutdown(); });
 process.once('SIGTERM', () => { void shutdown(); });
+try {
+  const preparedQuestionsEnabled = process.env.LOREDOCK_PREPARED_ANSWERS === '1';
+  if (preparedQuestionsEnabled && process.env.LOREDOCK_ANSWERS !== '1')
+    throw new Error('LOREDOCK_PREPARED_ANSWERS=1 requires LOREDOCK_ANSWERS=1.');
+  server = new LoreDockServer({ directory: process.env.LOREDOCK_DATA_DIR ?? defaultDirectory(),
+    publicDir: fileURLToPath(new URL('../public/', import.meta.url)), development: process.env.LOREDOCK_DEVELOPMENT === '1',
+    answers: process.env.LOREDOCK_ANSWERS === '1', preparedAnswers: preparedQuestionsEnabled });
+  controller.signal.throwIfAborted();
+  const port = await server.start();
+  console.log(`LoreDock listening on http://127.0.0.1:${port}`);
+} catch (error) {
+  if (!controller.signal.aborted) {
+    console.error(`LoreDock could not start: ${error instanceof Error ? error.message : 'Unknown startup failure.'}`);
+    process.exitCode = 1;
+  }
+  await shutdown();
+}

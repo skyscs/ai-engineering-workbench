@@ -20,7 +20,7 @@ import { createCapacityFixture } from '../../../scripts/loredock-capacity-fixtur
 async function setup(t: TestContext, initialLimits: Partial<AnalysisLimits> = {}) {
   const fixture = await createLoreDockFixture() as { root: string };
   const directory = path.join(fixture.root, 'analysis-data');
-  let store = new CatalogStore(directory), catalog = new Catalog(store), analysis = new CodeAnalysis(catalog, initialLimits);
+  let store = new CatalogStore(directory), catalog = new Catalog(store), analysis = await CodeAnalysis.create(catalog, initialLimits);
   t.after(async () => { await analysis.stop(); await catalog.stop(); store.close(); await rm(fixture.root, { recursive: true, force: true }); });
   for (const source of ['portal', 'order-api', 'order-worker']) await catalog.addSource(path.join(fixture.root, 'sources', source));
   const index = async (requestId: string) => {
@@ -29,25 +29,30 @@ async function setup(t: TestContext, initialLimits: Partial<AnalysisLimits> = {}
   };
   const buildId = await index('initial');
   return { directory, fixture, buildId, index, get store() { return store; }, get catalog() { return catalog; }, get analysis() { return analysis; },
-    replace: async (limits: Partial<AnalysisLimits> = {}) => { await analysis.stop(); analysis = new CodeAnalysis(catalog, limits); },
+    replace: async (limits: Partial<AnalysisLimits> = {}) => { await analysis.stop(); analysis = await CodeAnalysis.create(catalog, limits); },
     restart: async (limits: Partial<AnalysisLimits> = initialLimits) => {
-      await analysis.stop(); await catalog.stop(); store.close(); store = new CatalogStore(directory); catalog = new Catalog(store); analysis = new CodeAnalysis(catalog, limits);
+      await analysis.stop(); await catalog.stop(); store.close(); store = new CatalogStore(directory); catalog = new Catalog(store); analysis = await CodeAnalysis.create(catalog, limits);
     } };
 }
 async function pauseAfterFile(state: Awaited<ReturnType<typeof setup>>, requestId = 'pause') {
-  const run = state.analysis.start(requestId, state.buildId); await yieldTurn(); state.analysis.control(run.id, 'pause'); await state.analysis.idle();
+  const run = state.analysis.start(requestId, state.buildId);
+  await firstCheckpoint(state.analysis, run.id); await state.analysis.control(run.id, 'pause'); await state.analysis.idle();
   assert.equal(state.analysis.get(run.id).counts.parsed, 1); return run.id;
+}
+async function firstCheckpoint(analysis: CodeAnalysis, id: string) {
+  while (analysis.get(id).status === 'running' && !analysis.get(id).counts.parsed) await yieldTurn();
+  assert.equal(analysis.get(id).counts.parsed, 1);
 }
 
 test('durable code facts retain original ranges across restart without changing sampled graphs or answers', async t => {
   const s = await setup(t), before = await codeFlows(s.catalog), run = s.analysis.start('all', s.buildId);
   assert.equal(s.analysis.start('all', s.buildId).id, run.id);
   assert.throws(() => s.analysis.start('other', s.buildId), { code: 'BUSY' });
-  assert.throws(() => new CodeAnalysis(s.catalog), { code: 'BUSY' });
+  await assert.rejects(CodeAnalysis.create(s.catalog), { code: 'BUSY' });
   await s.analysis.idle(); const completed = s.analysis.get(run.id);
   assert.equal(completed.candidates, 5); assert.equal(completed.counts.parsed, 5); assert.equal(completed.published, true);
   const files = s.analysis.files(run.id), facts = files.map(file => s.analysis.file(run.id, file.fileId));
-  assert.ok(facts.every(file => file.evidence.length > 0 && file.fingerprint === codeAnalysisFingerprint()));
+  assert.ok(facts.every(file => file.evidence.length > 0 && file.fingerprint === s.analysis.fingerprint));
   for (const file of facts) for (const original of file.evidence) {
     const checked = s.catalog.evidence(original.id); assert.equal(checked.buildId, s.buildId); assert.equal(checked.path, file.path); assert.equal(checked.sourceId, file.sourceId);
   }
@@ -72,37 +77,37 @@ test('pause, shutdown and recovery resume only validated units on the same pinne
   s.store.run("UPDATE code_analyses SET status='running' WHERE id=?", id);
   await s.restart(); assert.equal(s.analysis.get(id).status, 'interrupted');
   await yieldTurn(); assert.equal(s.analysis.get(id).counts.parsed, 1);
-  s.analysis.control(id, 'resume'); await s.analysis.idle(); assert.equal(s.analysis.get(id).counts.parsed, 5);
+  await s.analysis.control(id, 'resume'); await s.analysis.idle(); assert.equal(s.analysis.get(id).counts.parsed, 5);
   assert.deepEqual(s.store.one('SELECT * FROM code_analysis_files WHERE runId=? AND fileId=?', id, original.fileId), original);
   assert.ok(s.analysis.get(id).elapsedMs >= progress.elapsedMs);
   const race = s.analysis.start('resume-race', s.buildId);
-  s.analysis.control(race.id, 'pause'); s.analysis.control(race.id, 'resume');
+  await s.analysis.control(race.id, 'pause'); await s.analysis.control(race.id, 'resume');
   await s.analysis.idle(); assert.equal(s.analysis.get(race.id).counts.parsed, 5);
-  const next = s.analysis.start('stop', s.buildId); await yieldTurn(); await s.analysis.stop();
+  const next = s.analysis.start('stop', s.buildId); await firstCheckpoint(s.analysis, next.id); await s.analysis.stop();
   assert.equal(s.analysis.get(next.id).status, 'interrupted'); assert.equal(s.analysis.get(next.id).counts.parsed, 1);
-  await s.restart(); s.analysis.control(next.id, 'cancel'); assert.equal(s.analysis.get(next.id).status, 'cancelled');
-  assert.throws(() => s.analysis.control(next.id, 'resume'), { code: 'CONFLICT' });
+  await s.restart(); await s.analysis.control(next.id, 'cancel'); assert.equal(s.analysis.get(next.id).status, 'cancelled');
+  await assert.rejects(s.analysis.control(next.id, 'resume'), { code: 'CONFLICT' });
 });
 
 test('resume and fact reads reject corrupt payloads, original bytes, manifests, counters and parser identity', async t => {
   const s = await setup(t), id = await pauseAfterFile(s);
   const unit = s.store.one<AnalysisUnit>("SELECT * FROM code_analysis_files WHERE runId=? AND status='parsed'", id)!;
   s.store.run("UPDATE code_analysis_files SET payload='{}' WHERE runId=? AND fileId=?", id, unit.fileId);
-  assert.throws(() => s.analysis.control(id, 'resume'), { code: 'CORRUPT_CODE_CHECKPOINT' });
+  await assert.rejects(s.analysis.control(id, 'resume'), { code: 'CORRUPT_CODE_CHECKPOINT' });
   s.store.run('UPDATE code_analysis_files SET payload=? WHERE runId=? AND fileId=?', unit.payload, id, unit.fileId);
   const raw = s.store.one<{ raw: Uint8Array }>('SELECT raw FROM files WHERE id=?', unit.fileId)!.raw;
   s.store.run('UPDATE files SET raw=? WHERE id=?', Buffer.alloc(raw.length, 97), unit.fileId);
-  assert.throws(() => s.analysis.control(id, 'resume'), { code: 'CORRUPT_EVIDENCE' });
+  await assert.rejects(s.analysis.control(id, 'resume'), { code: 'CORRUPT_EVIDENCE' });
   s.store.run('UPDATE files SET raw=? WHERE id=?', raw, unit.fileId);
   const span = s.store.one<{ id: string; hash: string }>('SELECT id,hash FROM spans WHERE fileId=? LIMIT 1', unit.fileId)!;
-  s.store.run("UPDATE spans SET hash='damaged' WHERE id=?", span.id); assert.throws(() => s.analysis.control(id, 'resume'), { code: 'CORRUPT_EVIDENCE' });
+  s.store.run("UPDATE spans SET hash='damaged' WHERE id=?", span.id); await assert.rejects(s.analysis.control(id, 'resume'), { code: 'CORRUPT_EVIDENCE' });
   s.store.run('UPDATE spans SET hash=? WHERE id=?', span.hash, span.id);
   const row = s.store.one<{ manifestHash: string; fingerprint: string; textBytes: number }>('SELECT * FROM code_analyses WHERE id=?', id)!;
-  s.store.run("UPDATE code_analyses SET manifestHash='damaged' WHERE id=?", id); assert.throws(() => s.analysis.control(id, 'resume'), { code: 'CORRUPT_CODE_CHECKPOINT' });
-  s.store.run('UPDATE code_analyses SET manifestHash=?,textBytes=textBytes+1 WHERE id=?', row.manifestHash, id); assert.throws(() => s.analysis.control(id, 'resume'), { code: 'CORRUPT_CODE_CHECKPOINT' });
-  s.store.run("UPDATE code_analyses SET textBytes=?,fingerprint='old-parser' WHERE id=?", row.textBytes, id); assert.throws(() => s.analysis.control(id, 'resume'), { code: 'PARSER_CHANGED' });
+  s.store.run("UPDATE code_analyses SET manifestHash='damaged' WHERE id=?", id); await assert.rejects(s.analysis.control(id, 'resume'), { code: 'CORRUPT_CODE_CHECKPOINT' });
+  s.store.run('UPDATE code_analyses SET manifestHash=?,textBytes=textBytes+1 WHERE id=?', row.manifestHash, id); await assert.rejects(s.analysis.control(id, 'resume'), { code: 'CORRUPT_CODE_CHECKPOINT' });
+  s.store.run("UPDATE code_analyses SET textBytes=?,fingerprint='old-parser' WHERE id=?", row.textBytes, id); await assert.rejects(s.analysis.control(id, 'resume'), { code: 'PARSER_CHANGED' });
   s.store.run('UPDATE code_analyses SET fingerprint=? WHERE id=?', row.fingerprint, id);
-  s.analysis.control(id, 'resume'); await s.analysis.idle();
+  await s.analysis.control(id, 'resume'); await s.analysis.idle();
   s.store.run("UPDATE code_analysis_files SET payload='damaged' WHERE runId=? AND fileId=?", id, unit.fileId);
   assert.throws(() => s.analysis.file(id, unit.fileId), { code: 'CORRUPT_CODE_CHECKPOINT' });
   s.store.run('UPDATE code_analysis_files SET payload=? WHERE runId=? AND fileId=?', unit.payload, id, unit.fileId);
@@ -126,10 +131,10 @@ test('all code inventory budgets leave explicit durable omissions and preserve c
     assert.ok(s.analysis.files(run.id).every(file => file.reason === example.reason)); assert.equal(result.payloadBytes, 0);
   }
   await s.replace({ documents: 2 }); const id = await pauseAfterFile(s, 'cumulative');
-  s.analysis.control(id, 'resume'); await s.analysis.idle(); assert.equal(s.analysis.get(id).counts.parsed, 2); assert.equal(s.analysis.get(id).counts.unattempted, 3);
-  await s.replace(); assert.throws(() => new CodeAnalysis(s.catalog, { documents: 10001 }), { code: 'INVALID_LIMIT' });
+  await s.analysis.control(id, 'resume'); await s.analysis.idle(); assert.equal(s.analysis.get(id).counts.parsed, 2); assert.equal(s.analysis.get(id).counts.unattempted, 3);
+  await s.replace(); await assert.rejects(CodeAnalysis.create(s.catalog, { documents: 10001 }), { code: 'INVALID_LIMIT' });
   const pending = await pauseAfterFile(s, 'changed-limits'); await s.replace({ documents: 2 });
-  assert.throws(() => s.analysis.control(pending, 'resume'), { code: 'CORRUPT_CODE_CHECKPOINT' });
+  await assert.rejects(s.analysis.control(pending, 'resume'), { code: 'CORRUPT_CODE_CHECKPOINT' });
 });
 
 test('transaction failure preserves the previous inventory and bounded retention evicts only replaceable data', async t => {
@@ -157,7 +162,7 @@ test('registry, revocation and policy changes atomically fence and purge complet
   assert.ok(s.analysis.list().every(run => run.status === 'fenced' && run.payloadBytes === 0));
   assert.equal(s.store.all('SELECT * FROM code_analysis_files').length, 0);
   assert.throws(() => s.analysis.file(good.id, codeFile), { code: 'ANALYSIS_FENCED' });
-  assert.throws(() => s.analysis.control(id, 'resume'), { code: 'CONFLICT' });
+  await assert.rejects(s.analysis.control(id, 'resume'), { code: 'CONFLICT' });
   await s.restart(); assert.equal(s.store.all('SELECT * FROM code_analysis_files').length, 0);
   const remaining = s.analysis.start('remaining', s.buildId); await yieldTurn();
   await s.catalog.addSource(path.join(s.fixture.root, 'sources', 'portal')); await s.analysis.idle();
@@ -189,7 +194,7 @@ test('a mismatched original Git blob is a visible file failure even before an an
 });
 
 test('durable inventory covers files beyond the graph sample and retains unsupported syntax across bounded pages', async t => {
-  const fixture = await createCapacityFixture(5), store = new CatalogStore(path.join(fixture.root, 'code-data')), catalog = new Catalog(store), analysis = new CodeAnalysis(catalog);
+  const fixture = await createCapacityFixture(5), store = new CatalogStore(path.join(fixture.root, 'code-data')), catalog = new Catalog(store), analysis = await CodeAnalysis.create(catalog);
   t.after(async () => { await analysis.stop(); await catalog.stop(); store.close(); await rm(fixture.root, { recursive: true, force: true }); });
   const paths = fixture.manifest.sources.map((source: { id: string }) => path.join(fixture.root, 'sources', source.id));
   const preview = await catalog.previewSources(paths); await catalog.registerSources({ paths, previewHash: preview.previewHash, requestId: 'shape' });

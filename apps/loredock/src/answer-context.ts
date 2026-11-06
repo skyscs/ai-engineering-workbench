@@ -60,12 +60,14 @@ export function questionTerms(question: string): string[] {
 /** Retrieve only authorized, immutable evidence. Never load the evaluation oracle. */
 export async function retrieveAnswerContext(catalog: Catalog, question: string, buildId?: string,
   operation = new LegacyReadOperation(catalog)): Promise<AnswerContext> {
-  const input = operation.read(() => retrieveSourceContext(catalog, question, buildId));
-  const interfaces = await answerInterfaces(catalog, input.buildId, input.spans.map(span => span.id), operation);
-  return operation.read(() => {
-    const context = { ...input, interfaces };
-    fitAnswerInterfaces(context);
-    return { ...context, inputHash: sha256(JSON.stringify(context)) };
+  return operation.run(async () => {
+    const input = operation.read(() => retrieveSourceContext(catalog, question, buildId));
+    const interfaces = await answerInterfaces(catalog, input.buildId, input.spans.map(span => span.id), operation);
+    return operation.read(() => {
+      const context = { ...input, interfaces };
+      fitAnswerInterfaces(context);
+      return { ...context, inputHash: sha256(JSON.stringify(context)) };
+    });
   });
 }
 
@@ -196,11 +198,13 @@ function prose(value: unknown): value is string { return typeof value === 'strin
 /** Mechanical validation only: a resolving citation does not prove semantic support. */
 export async function validateCitedAnswer(catalog: Catalog, context: AnswerContext, serialized: string,
   operation = new LegacyReadOperation(catalog)): Promise<CitedAnswer> {
-  const issued = JSON.stringify(context);
-  const answer = operation.read(() => validateAnswerOriginals(catalog, context, serialized));
-  await assertAnswerInterfaces(catalog, context, operation);
-  if (JSON.stringify(context) !== issued) throw new CatalogError('INPUT_CHANGED', 'The issued answer context changed during validation.', 409);
-  operation.check(); return answer;
+  return operation.run(async () => {
+    const issued = JSON.stringify(context);
+    const answer = operation.read(() => validateAnswerOriginals(catalog, context, serialized));
+    await assertAnswerInterfaces(catalog, context, operation);
+    if (JSON.stringify(context) !== issued) throw new CatalogError('INPUT_CHANGED', 'The issued answer context changed during validation.', 409);
+    operation.check(); return answer;
+  });
 }
 
 function validateAnswerOriginals(catalog: Catalog, context: AnswerContext, serialized: string): CitedAnswer {

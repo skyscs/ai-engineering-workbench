@@ -120,7 +120,7 @@ export async function compareSearchControl(services, fixture, {expectedFiles, ex
       const project = preparer.store.project(), build = preparer.start(requestId, project.sourceSetVersion, project.policyVersion); await preparer.idle();
       assert.ok(preparer.store.build(build.id).published); assert.equal(preparer.store.build(build.id).coverage.indexed, expectedFiles); result.builds.push(build.id);
     }
-    analysis = new CodeAnalysis(preparer); const inventory = analysis.start('code', result.builds[1]); await analysis.idle();
+    analysis = await CodeAnalysis.create(preparer); const inventory = analysis.start('code', result.builds[1]); await analysis.idle();
     assert.equal(analysis.get(inventory.id).counts.parsed, expectedCodeFiles);
     result.expectedSpanCount = preparer.store.one('SELECT count(*) AS n FROM spans').n;
     await analysis.stop(); analysis = undefined; await preparer.stop(); preparer.store.close(); preparer = undefined;

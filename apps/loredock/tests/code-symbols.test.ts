@@ -30,7 +30,7 @@ async function setup(t: TestContext, options: { volume?: boolean; repeatedClass?
     await writeFile(path.join(fixture.root, 'sources/portal/src/Shared.ts'), 'export function run() { return "owned"; }\n');
     fixtureGit(fixture.root, 'portal', ['add', 'src/Shared.ts']); fixtureGit(fixture.root, 'portal', ['commit', '-m', 'Add unrelated TypeScript function']);
   }
-  const store = new CatalogStore(path.join(fixture.root, 'symbols-data')), catalog = new Catalog(store), analysis = new CodeAnalysis(catalog);
+  const store = new CatalogStore(path.join(fixture.root, 'symbols-data')), catalog = new Catalog(store), analysis = await CodeAnalysis.create(catalog);
   t.after(async () => { await analysis.stop(); await catalog.stop(); store.close(); await rm(fixture.root, { recursive: true, force: true }); });
   const sources: string[] = options.volume ? fixture.manifest.sources.map((source: { id: string }) => source.id) : ['portal', 'order-api', 'order-worker'];
   const paths = sources.map(id => path.join(fixture.root, 'sources', id)), preview = await catalog.previewSources(paths);

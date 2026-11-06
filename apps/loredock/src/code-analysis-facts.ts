@@ -1,10 +1,11 @@
-import { readFileSync } from 'node:fs';
-import { createRequire } from 'node:module';
+import { createReadStream } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { isDeepStrictEqual } from 'node:util';
 import { sha256 } from './extract.js';
 import { CatalogError } from './types.js';
 import type { CodeFacts, CodeRange } from './code-facts.js';
 import type { FactRanges } from './code-analysis-types.js';
+import { fileParserIdentity } from './file-parser-identity.js';
 
 function valid(value: unknown): asserts value {
   if (!value) throw new CatalogError('CORRUPT_CODE_FACTS', 'Code facts do not match their original ranges or schema.', 409);
@@ -47,13 +48,19 @@ export function verifyFactRanges(content: string, facts: unknown, ranges: unknow
 
 let fingerprint: string | undefined;
 /** Hash installed implementation bytes; no project configuration or source module is loaded. */
-export function codeAnalysisFingerprint() {
-  if (!fingerprint) {
-    const extension = import.meta.url.endsWith('.ts') ? '.ts' : '.js';
-    const modules = ['code-typescript', 'code-java', 'code-facts', 'http-headers', 'code-analysis', 'code-analysis-facts', 'code-analysis-types', 'map-document', 'extract'];
-    const hashes = modules.map(name => [name, sha256(readFileSync(new URL(`./${name}${extension}`, import.meta.url)))]);
-    hashes.push(['typescript', sha256(readFileSync(createRequire(import.meta.url).resolve('typescript')))]);
-    fingerprint = sha256(JSON.stringify({ version: 'loredock-file-facts/1', node: process.versions.node, hashes }));
+export async function codeAnalysisFingerprint(signal?: AbortSignal) {
+  signal?.throwIfAborted();
+  if (fingerprint) return fingerprint;
+  const extension = import.meta.url.endsWith('.ts') ? '.ts' : '.js';
+  const modules = ['code-analysis', 'code-analysis-facts', 'code-analysis-types', 'map-document', 'extract', 'file-parser-service'];
+  const hashes: [string, string][] = [];
+  for (const name of modules) {
+    const hash = createHash('sha256');
+    for await (const chunk of createReadStream(new URL(`./${name}${extension}`, import.meta.url), signal ? { signal } : {})) hash.update(chunk);
+    hashes.push([name, hash.digest('hex')]);
   }
-  return fingerprint;
+  const value = sha256(JSON.stringify({ version: 'loredock-owned-file-facts/1', parser: await fileParserIdentity(signal), hashes }));
+  signal?.throwIfAborted();
+  // Cache completed identity only; one catalog's cancellation cannot cancel another's initialization.
+  return fingerprint ??= value;
 }

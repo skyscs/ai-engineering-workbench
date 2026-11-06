@@ -1,4 +1,5 @@
 import { recordLexicalOriginal } from './lexical-read-account.js';
+import { FileParserService } from './file-parser-service.js';
 import { setImmediate as yieldTurn } from 'node:timers/promises';
 import path from 'node:path';
 import { SourceRegistration } from './source-registration.js';
@@ -18,7 +19,7 @@ export class Catalog {
   private readonly boundaryListeners = new Set<() => void>();
   onBoundaryChange(listener: () => void) { this.boundaryListeners.add(listener); return () => this.boundaryListeners.delete(listener); }
   private boundaryChanged() { for (const listener of this.boundaryListeners) listener(); }
-  constructor(readonly store: CatalogStore, private readonly git = new SourceGit(), limits: Partial<typeof defaults> = {}) {
+  constructor(readonly store: CatalogStore, private readonly git = new SourceGit(), limits: Partial<typeof defaults> = {}, readonly parser = new FileParserService()) {
     this.limits = { ...defaults, ...limits, sources: defaults.sources };
     store.purge();
   }
@@ -83,7 +84,7 @@ export class Catalog {
       if (active.includes(this.store.buildRow(id).status)) this.store.run("UPDATE builds SET status='interrupted',reason='The daemon stopped. Resume explicitly.' WHERE id=?", id);
       worker.controller.abort();
     }
-    await this.idle();
+    await Promise.all([this.idle(), this.parser.stop()]);
   }
   private checkpoint(id: string, deadline: number): boolean {
     const build = this.store.buildRow(id);

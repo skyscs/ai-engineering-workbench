@@ -15,7 +15,7 @@ await mkdir(output, {recursive: true});
 let root, store, catalog, analysis;
 try {
   const demo = await prepareDemo({CatalogStore, Catalog, CodeAnalysis}, {onProgress: event => {if (event.root) root = event.root;}});
-  store = new CatalogStore(demo.dataDirectory); catalog = new Catalog(store); analysis = new CodeAnalysis(catalog);
+  store = new CatalogStore(demo.dataDirectory); catalog = new Catalog(store); analysis = await CodeAnalysis.create(catalog);
   const project = store.project(), build = catalog.start('refresh', project.sourceSetVersion, project.policyVersion);
   await catalog.idle(); const run = analysis.start('refresh', build.id); await analysis.idle(); assert.equal(analysis.get(run.id).counts.parsed, 21);
   catalog.revoke(store.sources()[0].id);
@@ -28,7 +28,7 @@ try {
   const report = JSON.parse(execFileSync('pnpm', command, {cwd: repo, encoding: 'utf8'}));
   assert.equal(report.status, 'compacted'); assert.ok(report.reclaimedSqliteBytes > 0); assert.equal(report.after.sqlite.freePages, 0);
   assert.deepEqual(report.before.payloads, report.after.payloads); assert.deepEqual(report.before.dependencies, report.after.dependencies);
-  store = new CatalogStore(demo.dataDirectory); catalog = new Catalog(store); analysis = new CodeAnalysis(catalog);
+  store = new CatalogStore(demo.dataDirectory); catalog = new Catalog(store); analysis = await CodeAnalysis.create(catalog);
   assert.deepEqual(catalog.evidence(hit.id), original); assert.deepEqual(store.all('SELECT * FROM builds ORDER BY rowid'), generations);
   const result = {schemaVersion: 'loredock-compaction-smoke/1', checkedAt: new Date().toISOString(), sourceCount: 20,
     modelRequests: 0, originalPreserved: true, generationsPreserved: true, usedPackageCommand: true,

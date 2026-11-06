@@ -56,7 +56,7 @@ try {
   const builds = [demo.build.id,second.id], before = literalIndexSnapshot(store), queries = readQueries(catalog,builds,legacy.retrieveAnswerContext);
   const inventory = analysis.get(code.id), auditBefore = auditStorage(demo.dataDirectory);
   await close();
-  store = new CatalogStore(demo.dataDirectory); catalog = new Catalog(store); analysis = new CodeAnalysis(catalog);
+  store = new CatalogStore(demo.dataDirectory); catalog = new Catalog(store); analysis = await CodeAnalysis.create(catalog);
   assert.equal(store.one('PRAGMA user_version').user_version,9);
   const after = literalIndexSnapshot(store), preserved = {};
   for (const key of ['vocabulary','documents','documentSizes','totals','nonLiteralRecords']) {
@@ -68,7 +68,7 @@ try {
   const command = ['--silent','loredock:compact','--data-dir',demo.dataDirectory];
   const compaction = JSON.parse(execFileSync('pnpm',command,{cwd:repo,encoding:'utf8'}));
   assert.equal(compaction.after.databaseVersion,9); assert.equal(compaction.after.sqlite.freePages,0);
-  store = new CatalogStore(demo.dataDirectory); catalog = new Catalog(store); analysis = new CodeAnalysis(catalog);
+  store = new CatalogStore(demo.dataDirectory); catalog = new Catalog(store); analysis = await CodeAnalysis.create(catalog);
   assert.deepEqual(readQueries(catalog,builds,retrieveAnswerContext),queries); assert.deepEqual(analysis.get(code.id),inventory);
   const state = catalog.state(), refresh = catalog.start('after-migration',state.sourceSetVersion,state.policyVersion);
   await catalog.idle(); const refreshed = store.build(refresh.id); assert.equal(refreshed.refresh.reusedFiles,79);

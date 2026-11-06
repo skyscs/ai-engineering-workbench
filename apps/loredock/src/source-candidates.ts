@@ -72,27 +72,29 @@ export function selectSourceCandidates(context: Pick<AnswerContext, 'sources' | 
 
 export async function sourceCandidatePreview(catalog: Catalog, question: string, buildId?: string, pageOffset: unknown = 0): Promise<CandidatePreview> {
   const operation = new LegacyReadOperation(catalog);
-  const offset = relatedPageOffset(pageOffset);
-  const context = await retrieveAnswerContext(catalog, question, buildId, operation), selection = selectSourceCandidates(context);
-  const related = await candidateLinkContext(catalog, context, selection, offset, operation);
-  return operation.read(() => {
-  const review = answerReviewContext(catalog, context.buildId, [...context.spans.map(span => span.id),
-    ...related.sources.flatMap(source => source.links.flatMap(link => link.evidence.map(ref => ref.id)))]);
-  const result: Omit<CandidatePreview, 'previewHash'> = { schemaVersion: 'source-candidate-preview-v1', adapterVersion: candidateVersion,
-    ...selection, question: context.question, buildId: context.buildId, inputHash: context.inputHash,
-    policyVersion: context.policyVersion, sourceSetVersion: context.sourceSetVersion, registryVersion: context.registryVersion,
-    partial: context.partial, stale: context.stale, historical: context.buildId !== catalog.state().publishedBuildId,
-    sourceCount: context.sources.length, coverage: context.coverage, review, related, limits: candidateLimits,
-    gaps: [...context.gaps,
-      'Lexical matches are reading clues, including negative mentions. They do not establish implementation ownership, root cause or a repository to modify.',
-      'Missing implementations, external systems and runtime evidence can change the investigation scope. These suggestions require source review.',
-      'Distinctiveness is measured only within the bounded retrieved sample; omitted sources and passages may be relevant.',
-      ...selection.tiedAtLimit ? ['Equally scored candidates cross the suggestion limit. Inspect other matches before narrowing the scope.'] : [],
-    ] };
-  const preview = { ...result, previewHash: sha256(JSON.stringify(result)) };
-  if (Buffer.byteLength(JSON.stringify(preview)) > candidateLimits.outputBytes) {
-    throw new CatalogError('OUTPUT_LIMIT', 'The candidate preview exceeds its output limit. Narrow the question.');
-  }
-  return preview;
+  return operation.run(async () => {
+    const offset = relatedPageOffset(pageOffset);
+    const context = await retrieveAnswerContext(catalog, question, buildId, operation), selection = selectSourceCandidates(context);
+    const related = await candidateLinkContext(catalog, context, selection, offset, operation);
+    return operation.read(() => {
+    const review = answerReviewContext(catalog, context.buildId, [...context.spans.map(span => span.id),
+      ...related.sources.flatMap(source => source.links.flatMap(link => link.evidence.map(ref => ref.id)))]);
+    const result: Omit<CandidatePreview, 'previewHash'> = { schemaVersion: 'source-candidate-preview-v1', adapterVersion: candidateVersion,
+      ...selection, question: context.question, buildId: context.buildId, inputHash: context.inputHash,
+      policyVersion: context.policyVersion, sourceSetVersion: context.sourceSetVersion, registryVersion: context.registryVersion,
+      partial: context.partial, stale: context.stale, historical: context.buildId !== catalog.state().publishedBuildId,
+      sourceCount: context.sources.length, coverage: context.coverage, review, related, limits: candidateLimits,
+      gaps: [...context.gaps,
+        'Lexical matches are reading clues, including negative mentions. They do not establish implementation ownership, root cause or a repository to modify.',
+        'Missing implementations, external systems and runtime evidence can change the investigation scope. These suggestions require source review.',
+        'Distinctiveness is measured only within the bounded retrieved sample; omitted sources and passages may be relevant.',
+        ...selection.tiedAtLimit ? ['Equally scored candidates cross the suggestion limit. Inspect other matches before narrowing the scope.'] : [],
+      ] };
+    const preview = { ...result, previewHash: sha256(JSON.stringify(result)) };
+    if (Buffer.byteLength(JSON.stringify(preview)) > candidateLimits.outputBytes) {
+      throw new CatalogError('OUTPUT_LIMIT', 'The candidate preview exceeds its output limit. Narrow the question.');
+    }
+    return preview;
+    });
   });
 }

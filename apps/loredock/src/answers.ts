@@ -126,24 +126,26 @@ export class Answers {
     let launched = false;
     try {
       const operation = new LegacyReadOperation(this.catalog, undefined, signal);
-      const context = await retrieveAnswerContext(this.catalog, question, buildId, operation);
-      operation.check();
-      if (this.stopping || signal.aborted) throw new CatalogError('SERVICE_STOPPED', 'Answer admission is stopping.', 409);
-      if (context.inputHash !== inputHash) throw new CatalogError('INPUT_CHANGED', 'Review the current context before asking.', 409);
-      const id = randomUUID();
-      this.catalog.store.transaction(() => {
-        lease.check();
+      return await operation.run(async () => {
+        const context = await retrieveAnswerContext(this.catalog, question, buildId, operation);
         operation.check();
-        assertAnswerReviewCurrent(this.catalog, context.review);
-        this.catalog.store.run(`INSERT INTO answer_attempts
-          (id,requestId,payloadHash,question,buildId,policyVersion,registryVersion,status,context,inputHash,connection,model,effort,promptVersion,schemaVersion,createdAt,usageUnknownReason)
-          VALUES (?,?,?,?,?,?,?,'preparing',?,?,?,'gpt-5.6-terra','medium',?,?,?,'Not dispatched yet.')`,
-        id, requestId, payloadHash, context.question, buildId, context.policyVersion, context.registryVersion, JSON.stringify(context), inputHash, JSON.stringify(connection), answerPromptVersion, answerSchemaVersion, new Date().toISOString());
-        for (const sourceId of new Set([...context.sources.map(source => source.sourceId), ...(context.review?.sourceIds ?? [])])) {
-          this.catalog.store.run('INSERT INTO answer_sources VALUES (?,?)', id, sourceId);
-        }
+        if (this.stopping || signal.aborted) throw new CatalogError('SERVICE_STOPPED', 'Answer admission is stopping.', 409);
+        if (context.inputHash !== inputHash) throw new CatalogError('INPUT_CHANGED', 'Review the current context before asking.', 409);
+        const id = randomUUID();
+        this.catalog.store.transaction(() => {
+          lease.check();
+          operation.check();
+          assertAnswerReviewCurrent(this.catalog, context.review);
+          this.catalog.store.run(`INSERT INTO answer_attempts
+            (id,requestId,payloadHash,question,buildId,policyVersion,registryVersion,status,context,inputHash,connection,model,effort,promptVersion,schemaVersion,createdAt,usageUnknownReason)
+            VALUES (?,?,?,?,?,?,?,'preparing',?,?,?,'gpt-5.6-terra','medium',?,?,?,'Not dispatched yet.')`,
+          id, requestId, payloadHash, context.question, buildId, context.policyVersion, context.registryVersion, JSON.stringify(context), inputHash, JSON.stringify(connection), answerPromptVersion, answerSchemaVersion, new Date().toISOString());
+          for (const sourceId of new Set([...context.sources.map(source => source.sourceId), ...(context.review?.sourceIds ?? [])])) {
+            this.catalog.store.run('INSERT INTO answer_sources VALUES (?,?)', id, sourceId);
+          }
+        });
+        this.launch(id, lease.release); launched = true; return this.get(id);
       });
-      this.launch(id, lease.release); launched = true; return this.get(id);
     } finally { if (!launched) lease.release(); }
   }
   startPrepared(requestId: string, preparationId: string, reviewedHash: string): AnswerAttempt {
@@ -210,13 +212,15 @@ export class Answers {
       this.catalog.store.run('UPDATE answer_attempts SET usage=?,usageUnknownReason=? WHERE id=?', output.usage ? JSON.stringify(output.usage) : null, output.usageUnknownReason, id);
       if (this.row(id).status !== 'running' || controller.signal.aborted) return;
       const operation = new LegacyReadOperation(this.catalog, undefined, controller.signal);
-      const answer = await validateCitedAnswer(this.catalog, context, output.text, operation);
-      this.catalog.store.transaction(() => {
-        // Cancellation or revocation wins over late completion, even if a runtime ignores abort.
-        if (this.row(id).status !== 'running' || controller.signal.aborted) return;
-        operation.check();
-        this.catalog.store.run("UPDATE answer_attempts SET status='succeeded',result=?,usage=?,usageUnknownReason=?,completedAt=?,reason=NULL WHERE id=? AND status='running'",
-          JSON.stringify(answer), output.usage ? JSON.stringify(output.usage) : null, output.usageUnknownReason, new Date().toISOString(), id);
+      await operation.run(async () => {
+        const answer = await validateCitedAnswer(this.catalog, context, output.text, operation);
+        this.catalog.store.transaction(() => {
+          // Cancellation or revocation wins over late completion, even if a runtime ignores abort.
+          if (this.row(id).status !== 'running' || controller.signal.aborted) return;
+          operation.check();
+          this.catalog.store.run("UPDATE answer_attempts SET status='succeeded',result=?,usage=?,usageUnknownReason=?,completedAt=?,reason=NULL WHERE id=? AND status='running'",
+            JSON.stringify(answer), output.usage ? JSON.stringify(output.usage) : null, output.usageUnknownReason, new Date().toISOString(), id);
+        });
       });
     } catch (error) {
       if (pending(this.row(id).status)) {

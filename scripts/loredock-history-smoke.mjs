@@ -20,7 +20,7 @@ const close=async()=>{if(store){await analysis?.stop();await catalog?.stop();sto
 try {
   await mkdir(output,{recursive:true});
   const demo=await prepareDemo({CatalogStore,Catalog,CodeAnalysis},{onProgress:event=>{if(event.root)root=event.root;}});
-  store=new CatalogStore(demo.dataDirectory);catalog=new Catalog(store);analysis=new CodeAnalysis(catalog);
+  store=new CatalogStore(demo.dataDirectory);catalog=new Catalog(store);analysis=await CodeAnalysis.create(catalog);
   const sources=store.sources().map(source=>source.name),sourceState=()=>sources.map(source=>[source,scaleGit(root,source,['rev-parse','HEAD']),scaleGit(root,source,['status','--porcelain'])]);
   const originalSources=sourceState(),builds=[demo.build.id];
   for(const request of ['second','third']) {

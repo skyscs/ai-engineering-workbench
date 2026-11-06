@@ -160,8 +160,9 @@ and [reviewed example reports](docs/fixtures/release/README.md) for verified beh
 - **Linux:** the verified runtime platform. macOS/Windows path conventions are
   tested, but their complete runtimes are not accepted.
 - **Node.js 22.23.2:** use the version pinned in `.nvmrc` and `.node-version`.
-  The package engine lower bound is 22.13.0, but its official Linux binary lacks
-  SQLite FTS5 and cannot initialize LoreDock's search tables. Use the pinned runtime.
+  This is the minimum declared application version. LoreDock also checks SQLite
+  FTS5 before opening a catalog. Standalone parser compatibility with 22.13.0 does
+  not imply application support: that official Linux binary lacks FTS5.
 - **pnpm 10.15.0** and **system Git**. Git authentication must already work for
   repositories you intend to clone or fetch.
 - **Codex CLI for Workbench AI runs:** the adapter accepts versions 0.153.4 and 0.154.0.

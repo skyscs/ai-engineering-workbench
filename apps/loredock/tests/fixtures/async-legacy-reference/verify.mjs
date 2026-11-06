@@ -4,6 +4,7 @@ import { mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { emitSource, runtimeImports, relocateSource } from '../integration-reference/compile.mjs';
+import { beforeOwnedParser, historicalParserRoot } from '../owned-parser-reference/verify.mjs';
 
 const directory = new URL('./', import.meta.url), root = new URL('../../../../../', import.meta.url);
 const hash = value => createHash('sha256').update(value).digest('hex');
@@ -15,6 +16,7 @@ async function original(manifest, file) {
 
 /** Unwind only the reviewed await/authority delta; historical manifests and observations stay exact. */
 export async function beforeAsyncLegacy(file, raw, compiled = file.includes('/dist/')) {
+  raw = await beforeOwnedParser(file, raw);
   const manifest = JSON.parse(await readFile(new URL('manifest.json', directory), 'utf8'));
   const old = await original(manifest, file); if (!old) return raw;
   const sourceFile = file.replace('/dist/', '/src/').replace(/\.js$/, '.ts');
@@ -24,7 +26,7 @@ export async function beforeAsyncLegacy(file, raw, compiled = file.includes('/di
   const lines = source.toString().match(/.*\n|.+$/g) ?? [];
   for (const edit of [...delta.edits].reverse()) lines.splice(edit.start, edit.delete, ...edit.insert);
   const expected = lines.join(''); assert.equal(hash(expected), delta.afterSha256);
-  assert.equal(await readFile(new URL(sourceFile, root), 'utf8'), expected, 'Undeclared legacy async change: ' + sourceFile);
+  assert.equal((await beforeOwnedParser(sourceFile, await readFile(new URL(sourceFile, root)))).toString(), expected, 'Undeclared legacy async change: ' + sourceFile);
   let current = expected;
   if (file !== sourceFile) {
     assert.equal(emitSource(source.toString(), sourceFile), old.toString());
@@ -34,12 +36,15 @@ export async function beforeAsyncLegacy(file, raw, compiled = file.includes('/di
   // the actual current implementation first; accepting old bytes is not a bypass.
   assert(raw.toString() === current || raw.toString() === old.toString(), 'Unexpected comparison input: ' + file);
   for (const [added, entry] of Object.entries(manifest.added)) {
-    const implementation = await readFile(new URL(added, root), 'utf8'); assert.equal(hash(implementation), entry.sha256, added);
-    if (compiled) assert.equal(await readFile(new URL(added.replace('/src/', '/dist/').replace(/\.ts$/, '.js'), root), 'utf8'), emitSource(implementation, added));
+    const implementation = (await beforeOwnedParser(added, await readFile(new URL(added, root)))).toString(); assert.equal(hash(implementation), entry.sha256, added);
+    if (compiled) {
+      const emitted = added.replace('/src/', '/dist/').replace(/\.ts$/, '.js');
+      assert.equal((await beforeOwnedParser(emitted, await readFile(new URL(emitted, root)))).toString(), emitSource(implementation, added));
+    }
   }
   if (compiled && file.startsWith('apps/loredock/')) {
     const emitted = sourceFile.replace('/src/', '/dist/').replace(/\.ts$/, '.js');
-    assert.equal(await readFile(new URL(emitted, root), 'utf8'), emitSource(expected, sourceFile));
+    assert.equal((await beforeOwnedParser(emitted, await readFile(new URL(emitted, root)))).toString(), emitSource(expected, sourceFile));
   }
   return old;
 }
@@ -49,9 +54,10 @@ export async function legacyControlImports(folder, emitted) {
   const target = await mkdtemp(path.join(folder, 'async-legacy-control-'));
   const manifest = JSON.parse(await readFile(new URL('manifest.json', directory), 'utf8'));
   const files = Object.keys(manifest.files).filter(file => file.startsWith('apps/loredock/dist/'));
+  const historical = await historicalParserRoot();
   const urls = new Map(files.map(file => [path.basename(file), pathToFileURL(path.join(target, path.basename(file).replace(/\.js$/, '.mjs')))]));
   const relocations = value => Object.fromEntries(runtimeImports(value).filter(row => row.name.startsWith('.'))
-    .map(row => [row.name, (urls.get(row.name.slice(2)) ?? new URL('apps/loredock/dist/' + row.name.slice(2), root)).href]));
+    .map(row => [row.name, (urls.get(row.name.slice(2)) ?? new URL('apps/loredock/dist/' + row.name.slice(2), historical)).href]));
   for (const file of files) {
     const raw = await beforeAsyncLegacy(file, await readFile(new URL(file, root)));
     let value = relocateSource(raw.toString(), relocations(raw.toString()));

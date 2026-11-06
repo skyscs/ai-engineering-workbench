@@ -51,8 +51,10 @@ export function selectAnswerInterfaces(graph: CodeFlows, evidenceIds: string[]):
 }
 
 export async function answerInterfaces(catalog: Catalog, buildId: string, evidenceIds: string[], operation = new LegacyReadOperation(catalog)) {
-  const graph = await codeFlows(catalog, buildId, operation);
-  return operation.read(() => selectAnswerInterfaces(graph, evidenceIds));
+  return operation.run(async () => {
+    const graph = await codeFlows(catalog, buildId, operation);
+    return operation.read(() => selectAnswerInterfaces(graph, evidenceIds));
+  });
 }
 
 /** Drop whole derived items, never original source spans or engineer notes. */
@@ -68,12 +70,14 @@ export function fitAnswerInterfaces(context: Omit<AnswerContext, 'inputHash'>) {
 }
 
 export async function assertAnswerInterfaces(catalog: Catalog, context: AnswerContext, operation = new LegacyReadOperation(catalog)) {
-  // Legacy contexts retain their original optional-field absence and hashed bytes.
-  if (context.interfaces === undefined) return;
-  const expected = { ...context, interfaces: await answerInterfaces(catalog, context.buildId, context.spans.map(span => span.id), operation) };
-  operation.check();
-  fitAnswerInterfaces(expected);
-  if (JSON.stringify(context.interfaces) !== JSON.stringify(expected.interfaces)) {
-    throw new CatalogError('INVALID_ANSWER', 'The derived interface comparisons do not match their issued original support and adapter provenance.', 422);
-  }
+  return operation.run(async () => {
+    // Legacy contexts retain their original optional-field absence and hashed bytes.
+    if (context.interfaces === undefined) return;
+    const expected = { ...context, interfaces: await answerInterfaces(catalog, context.buildId, context.spans.map(span => span.id), operation) };
+    operation.check();
+    fitAnswerInterfaces(expected);
+    if (JSON.stringify(context.interfaces) !== JSON.stringify(expected.interfaces)) {
+      throw new CatalogError('INVALID_ANSWER', 'The derived interface comparisons do not match their issued original support and adapter provenance.', 422);
+    }
+  });
 }

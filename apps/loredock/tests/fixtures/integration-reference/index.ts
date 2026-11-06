@@ -3,13 +3,13 @@ import { readFile } from 'node:fs/promises';
 import { beforeCompilerLoading } from '../compiler-loading-reference/verify.mjs';
 import type { CodeAnalysis as CurrentAnalysis } from '../../../src/code-analysis.js';
 import type { CatalogStore as CurrentStore } from '../../../src/store.js';
-// @ts-expect-error Preserved test-only compiled source; manifest verification checks its exact origin.
-import { CodeAnalysis as ReferenceAnalysis } from './code-analysis.mjs';
+// @ts-expect-error Relocate the unchanged historical module to its synchronous fingerprint dependencies.
+import { loadHistoricalIntegrationAnalysis } from '../owned-parser-reference/verify.mjs';
 // @ts-expect-error Preserved test-only compiled source; no application imports this facade.
 import { CatalogStore as ReferenceStore } from './store.mjs';
 
 // The constructor types describe the unchanged public interface, not shared private ownership.
-export const CodeAnalysis = ReferenceAnalysis as typeof CurrentAnalysis;
+export const CodeAnalysis = (await loadHistoricalIntegrationAnalysis()).CodeAnalysis as typeof CurrentAnalysis;
 export type CodeAnalysis = CurrentAnalysis;
 export const CatalogStore = ReferenceStore as typeof CurrentStore;
 export type CatalogStore = CurrentStore;

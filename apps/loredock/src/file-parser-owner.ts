@@ -4,9 +4,9 @@ import type { CodeFacts } from './code-facts.js';
 import { decodeParserReply, encodeParserFrame, fileParserDigest, fileParserLimits, fileParserProtocol,
   FileParserError, requireParser, validateParserFacts, validateParserInput, type ParseRequest } from './file-parser-protocol.js';
 
-export interface ParserOperation { deadline: number; signal?: AbortSignal }
+export interface ParserOperation { deadline: number; signal?: AbortSignal; charge?: (bytes: number) => void }
 interface Pending { resolve: (value?: CodeFacts) => void; reject: (error: FileParserError) => void;
-  check: () => void; release: () => void; request?: ParseRequest }
+  check: () => void; release: () => void; charge?: (bytes: number) => void; request?: ParseRequest }
 type State = 'new' | 'starting' | 'ready' | 'busy' | 'stopping' | 'closed';
 /** Internal dependency seam for lifecycle tests. Production supplies a fixed installed factory. */
 export interface ParserDependencies {
@@ -44,6 +44,7 @@ export class FileParserOwner {
     requireParser(options && Number.isFinite(options.deadline) && options.deadline > performance.now()
       && options.deadline - performance.now() <= fileParserLimits.wallMs, 'PARSER_DEADLINE');
     requireParser(options.signal === undefined || options.signal instanceof AbortSignal, 'PARSER_OPTIONS');
+    requireParser(options.charge === undefined || typeof options.charge === 'function', 'PARSER_OPTIONS');
     requireParser(!options.signal?.aborted, 'PARSER_CANCELLED');
   }
   private waiting<T extends void | CodeFacts>(options: ParserOperation, request?: ParseRequest): Promise<T> {
@@ -54,7 +55,8 @@ export class FileParserOwner {
       signal?.addEventListener('abort', abort, { once: true });
       this.pending = { resolve: value => resolve(value as T), reject,
         check: () => { requireParser(!signal?.aborted, 'PARSER_CANCELLED'); requireParser(performance.now() < deadline, 'PARSER_DEADLINE'); },
-        release: () => { clearTimeout(timer); signal?.removeEventListener('abort', abort); }, ...(request ? { request } : {}) };
+        release: () => { clearTimeout(timer); signal?.removeEventListener('abort', abort); },
+        ...(options.charge ? { charge: options.charge } : {}), ...(request ? { request } : {}) };
     });
   }
   async start(options: ParserOperation): Promise<void> {
@@ -94,6 +96,8 @@ export class FileParserOwner {
     if (this.state === 'stopping' || this.state === 'closed') return;
     try {
       const pending = this.pending; requireParser(pending); pending.check();
+      requireParser(frame instanceof ArrayBuffer && frame.byteLength > 0 && frame.byteLength <= fileParserLimits.responseBytes, 'PARSER_FRAME_LIMIT');
+      pending.charge?.(frame.byteLength);
       const reply = decodeParserReply(frame, pending.check);
       requireParser(reply.generation === this.generation && reply.identity === this.identity);
       if (reply.type === 'ready') {
@@ -118,6 +122,7 @@ export class FileParserOwner {
     const request: ParseRequest = { version: fileParserProtocol, generation: this.generation, identity: this.identity,
       type: 'parse', id: ++this.sequence, path, content, digest: fileParserDigest(path, content) };
     const frame = encodeParserFrame(request, fileParserLimits.requestBytes);
+    options.charge?.(frame.byteLength);
     // Encoding time consumes the same absolute deadline.
     this.operation(options); this.state = 'busy'; const result = this.waiting<CodeFacts>(options, request);
     try { this.worker.postMessage(frame, [frame]); }
@@ -152,7 +157,7 @@ export class FileParserOwner {
   }
   stop() { return this.close(new FileParserError('PARSER_STOPPED')); }
   snapshot() { return { generation: this.generation, state: this.state, threadId: this.threadId,
-    owned: Boolean(this.worker && !this.exited), exitCode: this.exitCode, requests: this.sequence,
+    owned: Boolean(this.worker && !this.exited), identity: this.identity ?? null, exitCode: this.exitCode, requests: this.sequence,
     terminalCode: this.terminalCode, cleanupIncomplete: this.cleanupIncomplete,
     workerError: this.workerError ? { ...this.workerError } : null, outputBytes: this.outputBytes }; }
 }

@@ -105,8 +105,10 @@ export function selectCandidateLinks(context: Pick<AnswerContext, 'sources' | 's
 
 export async function candidateLinkContext(catalog: Catalog, context: AnswerContext, selection: CandidateSelection, pageOffset: unknown = 0,
   operation = new LegacyReadOperation(catalog)): Promise<CandidateLinkContext> {
-  const code = await codeFlows(catalog, context.buildId, operation);
-  return operation.read(() => composeCandidateLinks(catalog, context, selection, code, pageOffset));
+  return operation.run(async () => {
+    const code = await codeFlows(catalog, context.buildId, operation);
+    return operation.read(() => composeCandidateLinks(catalog, context, selection, code, pageOffset));
+  });
 }
 
 function composeCandidateLinks(catalog: Catalog, context: AnswerContext, selection: CandidateSelection,
