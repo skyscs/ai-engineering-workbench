@@ -1,0 +1,20 @@
+{
+  "commands": {
+    "docker": "/usr/bin/docker",
+    "podman": null,
+    "nerdctl": null,
+    "buildah": null,
+    "bwrap": "/usr/bin/bwrap",
+    "unshare": "/usr/bin/unshare"
+  },
+  "dockerSocket": {
+    "exists": true,
+    "readable": true,
+    "writable": true
+  },
+  "kernel": {
+    "/proc/sys/kernel/unprivileged_userns_clone": "1",
+    "/proc/sys/user/max_user_namespaces": "124623",
+    "/proc/sys/kernel/apparmor_restrict_unprivileged_userns": "1"
+  }
+}

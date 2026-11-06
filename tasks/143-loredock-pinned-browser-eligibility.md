@@ -1,6 +1,8 @@
 # Task 143 — Pin and test a standalone browser environment
 
-Status: first control complete and ineligible; full local checks pass. Exact-head CI pending.
+Status: accepted through PR #176, head `3bf786a`, identical-tree merge `86d1908`.
+The first control remains ineligible. Both complete CI logs pass 1,141 tests,
+ten typechecks and ten final builds.
 See [the control method](../docs/loredock/PINNED_BROWSER_ELIGIBILITY.md) and
 [fixed plan](../scripts/loredock-browser-eligibility/plan.mjs).
 

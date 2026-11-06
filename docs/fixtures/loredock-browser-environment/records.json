@@ -1,0 +1,102 @@
+{
+  "task": 144,
+  "previousPR": 176,
+  "previousHead": "3bf786a1d5d20e023b6510a9b6c631ca46755abc",
+  "merge": "86d1908a7ca8c4030e78edd5ea72253cb7a9fdab",
+  "ci": [
+    {
+      "event": "push",
+      "run": 42167726112,
+      "job": 127727993493,
+      "head": "3bf786a1d5d20e023b6510a9b6c631ca46755abc",
+      "conclusion": "success",
+      "tests": [
+        17,
+        18,
+        43,
+        728,
+        57,
+        278
+      ],
+      "total": 1141,
+      "failures": 0,
+      "cancelled": 0,
+      "typechecks": 10,
+      "finalBuilds": 10,
+      "log": "/home/toshiba/aew/task143-ci-push-final.log",
+      "bytes": 638277,
+      "sha256": "9215bd7ca0a2a1027e34f4143c18086409b6208c3855951932f64ff7a297cfdd"
+    },
+    {
+      "event": "pull_request",
+      "run": 42167791682,
+      "job": 127728207384,
+      "head": "3bf786a1d5d20e023b6510a9b6c631ca46755abc",
+      "conclusion": "success",
+      "tests": [
+        17,
+        18,
+        43,
+        728,
+        57,
+        278
+      ],
+      "total": 1141,
+      "failures": 0,
+      "cancelled": 0,
+      "typechecks": 10,
+      "finalBuilds": 10,
+      "log": "/home/toshiba/aew/task143-ci-pr-final.log",
+      "bytes": 639120,
+      "sha256": "d1def2c4d1fb2b441a4711bd5d1e13b0cbc745efaf28dbda250e5a71f55d1b8f"
+    }
+  ],
+  "files": [
+    {
+      "path": "capabilities.json",
+      "bytes": 464,
+      "sha256": "28113b5a1c31561ae1a8bcd0d963947e15f95e0d8e42792a4de9d2bbb2a98629"
+    },
+    {
+      "path": "docker.json",
+      "bytes": 672,
+      "sha256": "ae2c136404a6a1ebb7f8e54af6d308fb23f1471781d7b1e940efb6a190db4b00"
+    },
+    {
+      "path": "python-index.json",
+      "bytes": 7845,
+      "sha256": "fc74d22ffd0d5ac395a4b7bdda75a4539758862c49ebf3005647084631e63789"
+    },
+    {
+      "path": "python-linux-amd64.json",
+      "bytes": 1751,
+      "sha256": "db5942d111df72110e7a67da3fc5159e83ac85cd24808b91bdc4769e166ed1b7"
+    },
+    {
+      "path": "python-config.json",
+      "bytes": 4954,
+      "sha256": "5d9e1d8aed6d5c02ffd513a13685501b342789c10f3d7595aa2151438afc2809"
+    },
+    {
+      "path": "python-record.json",
+      "bytes": 667,
+      "sha256": "712e54d042a21f98baeac5563ac18cbb5ef3296234495659748c5462e441b1f9"
+    },
+    {
+      "path": "task143-ci-push.log.gz",
+      "bytes": 638277,
+      "sha256": "9215bd7ca0a2a1027e34f4143c18086409b6208c3855951932f64ff7a297cfdd",
+      "gzipSha256": "f642fcc501cca5518d2eab4ed245e833699dc880f704e5f4e10bb088fdb88ece"
+    },
+    {
+      "path": "task143-ci-pr.log.gz",
+      "bytes": 639120,
+      "sha256": "d1def2c4d1fb2b441a4711bd5d1e13b0cbc745efaf28dbda250e5a71f55d1b8f",
+      "gzipSha256": "1d8dd45a642c294f4a17e0fc754df8ed1ef21ce2a224bce67aae882f152595de"
+    }
+  ],
+  "auditScope": "Read-only server capabilities and public image metadata; no container/image/browser mutation.",
+  "productChanges": false,
+  "browserRuns": 0,
+  "modelCalls": 0
+}

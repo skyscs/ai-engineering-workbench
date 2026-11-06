@@ -544,8 +544,14 @@ an eligible empty page nor a new binary repairs the old browser or full-flow fai
 That first control remains ineligible: 1,937,039,360 bytes summed RSS and a 103.099-ms
 actual sampling gap exceed unchanged bounds, despite complete samples and clean shutdown.
 [Task 144](tasks/144-loredock-browser-environment-decision.md) designs an independent
-environment and sampling headroom before another single-use control. No application-page
-or full-flow gate is opened by these diagnostics.
+environment and sampling headroom before another single-use control. The read-only audit
+selects the existing local Docker server and a digest-pinned Python base; no runtime
+compatibility or eligibility is assumed. [ADR 0066](docs/decisions/0066-loredock-independent-browser-container.md)
+defines durable exact container ownership, a kernel owner below PID 1, unchanged security
+and browser flags, and a 50-ms nominal timer under the same 100-ms actual limit.
+[Task 145](tasks/145-loredock-container-browser-eligibility.md) builds/freezes that environment,
+tests ownership first and runs one blank control only if its prerequisites pass.
+No application-page or full-flow gate is opened by these diagnostics.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation
