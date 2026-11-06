@@ -1,0 +1,216 @@
+{
+  "status": "Read-only preparation during Task149 CI. No cgroup creation, unit start, namespace probe, child control, browser/daemon/model or privilege change.",
+  "uid": 1000,
+  "gid": 1000,
+  "selfCgroup": "/user.slice/user-1000.slice/user@1000.service/app.slice/ptyxis-spawn-ec288e8e-eebc-408f-9ebc-101df4755bfe.scope",
+  "mount": "48 46 0:30 / /sys/fs/cgroup rw,nosuid,nodev,noexec,relatime shared:7 - cgroup2 cgroup2 rw,nsdelegate,memory_recursiveprot,memory_hugetlb_accounting",
+  "userManager": {
+    "exit": 0,
+    "stdout": "Version=259.5-0ubuntu3.4\nControlGroup=/user.slice/user-1000.slice/user@1000.service\nDefaultMemoryAccounting=yes\n",
+    "stderr": ""
+  },
+  "locations": [
+    {
+      "path": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service",
+      "exists": true,
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o755",
+      "readable": true,
+      "writable": true,
+      "interfaces": [
+        {
+          "path": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/cgroup.controllers",
+          "exists": true,
+          "uid": 0,
+          "gid": 0,
+          "mode": "0o444",
+          "readable": true,
+          "writable": false
+        },
+        {
+          "path": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/cgroup.subtree_control",
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o644",
+          "readable": true,
+          "writable": true
+        },
+        {
+          "path": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/cgroup.procs",
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o644",
+          "readable": true,
+          "writable": true
+        },
+        {
+          "path": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/cgroup.kill",
+          "exists": true,
+          "uid": 0,
+          "gid": 0,
+          "mode": "0o200",
+          "readable": false,
+          "writable": false
+        },
+        {
+          "path": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/memory.current",
+          "exists": true,
+          "uid": 0,
+          "gid": 0,
+          "mode": "0o444",
+          "readable": true,
+          "writable": false
+        },
+        {
+          "path": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/memory.peak",
+          "exists": true,
+          "uid": 0,
+          "gid": 0,
+          "mode": "0o644",
+          "readable": true,
+          "writable": false
+        },
+        {
+          "path": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/memory.swap.peak",
+          "exists": true,
+          "uid": 0,
+          "gid": 0,
+          "mode": "0o644",
+          "readable": true,
+          "writable": false
+        },
+        {
+          "path": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/memory.events",
+          "exists": true,
+          "uid": 0,
+          "gid": 0,
+          "mode": "0o444",
+          "readable": true,
+          "writable": false
+        }
+      ],
+      "controllers": "cpu memory pids",
+      "enabledControllers": "cpu memory pids",
+      "systemdDelegateXattr": "1"
+    },
+    {
+      "path": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/ptyxis-spawn-ec288e8e-eebc-408f-9ebc-101df4755bfe.scope",
+      "exists": true,
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o755",
+      "readable": true,
+      "writable": true,
+      "interfaces": [
+        {
+          "path": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/ptyxis-spawn-ec288e8e-eebc-408f-9ebc-101df4755bfe.scope/cgroup.controllers",
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o444",
+          "readable": true,
+          "writable": false
+        },
+        {
+          "path": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/ptyxis-spawn-ec288e8e-eebc-408f-9ebc-101df4755bfe.scope/cgroup.subtree_control",
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o644",
+          "readable": true,
+          "writable": true
+        },
+        {
+          "path": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/ptyxis-spawn-ec288e8e-eebc-408f-9ebc-101df4755bfe.scope/cgroup.procs",
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o644",
+          "readable": true,
+          "writable": true
+        },
+        {
+          "path": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/ptyxis-spawn-ec288e8e-eebc-408f-9ebc-101df4755bfe.scope/cgroup.kill",
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o200",
+          "readable": false,
+          "writable": true
+        },
+        {
+          "path": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/ptyxis-spawn-ec288e8e-eebc-408f-9ebc-101df4755bfe.scope/memory.current",
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o444",
+          "readable": true,
+          "writable": false
+        },
+        {
+          "path": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/ptyxis-spawn-ec288e8e-eebc-408f-9ebc-101df4755bfe.scope/memory.peak",
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o644",
+          "readable": true,
+          "writable": true
+        },
+        {
+          "path": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/ptyxis-spawn-ec288e8e-eebc-408f-9ebc-101df4755bfe.scope/memory.swap.peak",
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o644",
+          "readable": true,
+          "writable": true
+        },
+        {
+          "path": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/ptyxis-spawn-ec288e8e-eebc-408f-9ebc-101df4755bfe.scope/memory.events",
+          "exists": true,
+          "uid": 1000,
+          "gid": 1000,
+          "mode": "0o444",
+          "readable": true,
+          "writable": false
+        }
+      ],
+      "controllers": "memory pids",
+      "enabledControllers": "",
+      "systemdDelegateXattr": {
+        "errno": 61,
+        "error": "No data available"
+      }
+    }
+  ],
+  "installedTools": {
+    "systemd-run": {
+      "path": "/usr/bin/systemd-run",
+      "exists": true,
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o755",
+      "readable": true,
+      "writable": false
+    },
+    "bwrap": {
+      "path": "/usr/bin/bwrap",
+      "exists": true,
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o755",
+      "readable": true,
+      "writable": false
+    }
+  },
+  "limitations": [
+    "Mode/access checks do not prove delegation for a new subtree or successful direct child creation.",
+    "Installed tools do not prove namespace/security compatibility.",
+    "Existing counters are not new resource measurements and were not read."
+  ],
+  "kernelRelease": "7.0.0-38-generic",
+  "recordCompletedAt": "2026-11-06T20:25:17.150804+00:00"
+}

@@ -1,0 +1,109 @@
+{
+  "task": 150,
+  "acceptedTask149": {
+    "pr": 182,
+    "head": "e88d75173eb027ceb403fa8d87d284fbc0a7bfc7",
+    "merge": "799c7a394e1d3d97bec84719c16fec4e06ce8465",
+    "identicalTree": true
+  },
+  "ci": [
+    {
+      "event": "push",
+      "run": 42286874943,
+      "job": 128129854214,
+      "head": "e88d75173eb027ceb403fa8d87d284fbc0a7bfc7",
+      "conclusion": "success",
+      "tests": [
+        17,
+        18,
+        43,
+        728,
+        57,
+        306
+      ],
+      "total": 1169,
+      "failures": 0,
+      "cancelled": 0,
+      "typechecks": 10,
+      "finalBuilds": 10,
+      "log": "/home/toshiba/aew/task149-ci-push-final.log",
+      "bytes": 648276,
+      "sha256": "10d37280ec21c409bd3f9b34994645f202c5dbcd2486861eb458c3af2e99b222"
+    },
+    {
+      "event": "pull_request",
+      "run": 42286885727,
+      "job": 128129890649,
+      "head": "e88d75173eb027ceb403fa8d87d284fbc0a7bfc7",
+      "conclusion": "success",
+      "tests": [
+        17,
+        18,
+        43,
+        728,
+        57,
+        306
+      ],
+      "total": 1169,
+      "failures": 0,
+      "cancelled": 0,
+      "typechecks": 10,
+      "finalBuilds": 10,
+      "log": "/home/toshiba/aew/task149-ci-pr-final.log",
+      "bytes": 649927,
+      "sha256": "97c3ed568983df83705470b7296c02d6b6662a1fc5f6aae6a75b1921211f246d"
+    }
+  ],
+  "logs": [
+    {
+      "path": "logs/task149-ci-push-final.log.gz",
+      "bytes": 648276,
+      "sha256": "10d37280ec21c409bd3f9b34994645f202c5dbcd2486861eb458c3af2e99b222",
+      "gzipSha256": "1e06910111ac3a43eed052f4e3c886d65fea949ba533d6b866a597cb8aeb6493"
+    },
+    {
+      "path": "logs/task149-ci-pr-final.log.gz",
+      "bytes": 649927,
+      "sha256": "97c3ed568983df83705470b7296c02d6b6662a1fc5f6aae6a75b1921211f246d",
+      "gzipSha256": "67cefa41ee46745f3fc9740e0f4cb641da796c0a441f0c76f8c3b8c78037bf44"
+    }
+  ],
+  "contract": {
+    "path": "docs/loredock/observable-resource-contract-v2.json",
+    "sha256": "759dc70e2d3b86043278b8378148785dd061cf29c06fa6f96c3a5bdf00be8e5b"
+  },
+  "proposalAdopted": true,
+  "executorQualified": false,
+  "newResourceRuns": 0,
+  "modelCalls": 0,
+  "corporateSources": 0,
+  "productChanges": false,
+  "resourceQualification": false,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1532,
+      "sha256": "9014b79c4ac559c952e134c746c56a83b23aa746d687cd3809df2bd74a296a71"
+    },
+    {
+      "path": "capability-readonly.json",
+      "bytes": 7172,
+      "sha256": "6c29d86e8d529e863122c6b218c02d5012ab442390c877952d24ebe627b0263d"
+    },
+    {
+      "path": "review-findings.json",
+      "bytes": 2995,
+      "sha256": "4683f8f537f2ea7e5b5777af3b6cc4a4def9d0aa574e8d89ef10233a1b4c1c6c"
+    },
+    {
+      "path": "sources.json",
+      "bytes": 1387,
+      "sha256": "e5669cac2d4b7c87b7560e30a44afb556a212cae9715e189f42a2a9a8d8f0430"
+    }
+  ],
+  "decision": {
+    "path": "docs/decisions/0068-loredock-observable-resource-contract.md",
+    "bytes": 9830,
+    "sha256": "caebac6ac80baef34eb7e36889c5fef48ef3c15f4e3e70d33a58481abd58a804"
+  }
+}

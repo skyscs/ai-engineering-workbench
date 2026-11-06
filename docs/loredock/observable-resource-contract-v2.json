@@ -1,0 +1,162 @@
+{
+  "schemaVersion": "loredock-observable-resources/2",
+  "status": "adopted-for-prospective-implementation",
+  "decision": "docs/decisions/0068-loredock-observable-resource-contract.md",
+  "baselineDraft": {
+    "path": "docs/loredock/OBSERVABLE_RESOURCE_CONTRACT.md",
+    "sha256": "c8dfdb654065c02be11280e25a10e542ff4b81a523cce1e1d1d98baeec57ab8b"
+  },
+  "originalV1": {
+    "path": "fixtures/loredock-prepared-flow/protocol.json",
+    "sha256": "dcbb9df45d33f9cdd40c13974e0841d9f43723560766ae4844e426642064d3ac",
+    "comparison": "docs/fixtures/loredock-resource-contract/threshold-comparison.json",
+    "comparisonSha256": "bbd3b06be90fe31c1b812932203a50de60b1711b8c6350f259fdeea2df8d393e"
+  },
+  "units": "Bytes are UTF-8 or actual process/storage bytes as named; MiB is 1048576 bytes. Durations use monotonic clocks; limits are maxima, not percentiles.",
+  "memory": {
+    "quantity": "Cgroup v2 creation-to-terminal charged-memory peak; not physical attribution, process RSS or V8 heap.",
+    "requiredScopes": [
+      "run",
+      "daemon",
+      "browser"
+    ],
+    "chargedPeakCeilingsBytes": {
+      "run": 1476395008,
+      "daemon": 402653184,
+      "browser": 1073741824
+    },
+    "swapPeakCeilingBytes": 0,
+    "scopeLayout": {
+      "run": [
+        "daemon",
+        "browser",
+        "control"
+      ]
+    },
+    "baselineSubtractionAllowed": false,
+    "sumIndependentPeaksAllowed": false,
+    "terminalRootAfterRoles": true,
+    "requiredMountOptions": [
+      "memory_hugetlb_accounting"
+    ],
+    "prohibitedMountOptions": [
+      "memory_localevents"
+    ],
+    "requiredCgroupType": "domain",
+    "memoryEvents": {
+      "required": [
+        "low",
+        "high",
+        "max",
+        "oom",
+        "oom_kill",
+        "oom_group_kill"
+      ],
+      "optional": [
+        "sock_throttled"
+      ],
+      "failureWhenPositive": [
+        "high",
+        "max",
+        "oom",
+        "oom_kill",
+        "oom_group_kill"
+      ],
+      "diagnostic": [
+        "low",
+        "sock_throttled"
+      ],
+      "unknownFields": "unavailable",
+      "initialAndTerminalKeySets": "identical"
+    },
+    "swapEvents": {
+      "required": [
+        "high",
+        "max",
+        "fail"
+      ],
+      "optional": [],
+      "failureWhenPositive": [
+        "high",
+        "max",
+        "fail"
+      ],
+      "unknownFields": "unavailable",
+      "initialAndTerminalKeySets": "identical"
+    },
+    "initialCounters": "Empty before any measured child; do not reset counters.",
+    "terminal": "Same held hierarchy after actual application/collector exits; raw final role records before root peak, fsynced before removal.",
+    "missingEvidence": "unavailable; retain independently established failures"
+  },
+  "observer": {
+    "scopeCount": 3,
+    "maxInterfaceReadBytes": 4096,
+    "maxReceiptBytes": 1048576,
+    "maxPendingReceipts": 1,
+    "outsideAttestor": "Ownership, watchdog and durable final receipt only; cost separately reported. Detailed periodic telemetry belongs to measured control."
+  },
+  "preservedV1Thresholds": {
+    "daemonIntervalDelayMs": 100,
+    "intervalPeriodMs": 10,
+    "browserMainThreadTaskMs": 200,
+    "browserActionPaintMs": 2000,
+    "browserIdleRequestsPerSecondMean": 6,
+    "browserConcurrentRequests": 8,
+    "coldListenMs": 10000,
+    "indexMs": 300000,
+    "analysisMs": 300000,
+    "preparedReviewHttpMs": 6000,
+    "perActualOperationWork": 1000000,
+    "perActualOperationMs": 5000,
+    "controlledFindThroughHistoryMs": 20000,
+    "controlledFindThroughHistoryWork": 6000000,
+    "readyStatusHttpMs": 250,
+    "answerListHttpMs": 500,
+    "answerListAggregateWork": 1000000,
+    "savedAnswerHttpMs": 1500,
+    "cancelDrainMsExcludingDeclaredHold": 2000,
+    "shutdownMsExcludingDeclaredHold": 10000,
+    "reviewResponseBytes": 1048576,
+    "answerResponseBytes": 1310720,
+    "answerListResponseBytes": 65536,
+    "readyStatusResponseBytes": 4096,
+    "witnessRowBytes": 786432,
+    "witnessRowsIncludingPurged": 64,
+    "witnessTotalBytes": 50331648,
+    "retainedPreparationBytes": 1048576,
+    "promptBytes": 98304,
+    "nativeAndLegacyDerivedBytes": 8192,
+    "sourceEvidenceBytes": 65536,
+    "sourceEvidenceSpans": 30,
+    "catalogAndNativeHistoryBytes": 536870912,
+    "ownedEvaluationDirectoryBytes": 2147483648,
+    "suiteWallMs": 2400000
+  },
+  "diagnostics": {
+    "daemonRssReferenceBytes": 402653184,
+    "browserSummedRssReferenceBytes": 1073741824,
+    "historicalAggregateHeapReferenceBytes": 67108864,
+    "completeAggregateHeapClaim": false,
+    "missingSamples": "Retain unavailable intervals and unknown instants; do not replace with zero.",
+    "cacheCondition": "uncontrolled; external shared charges and HugeTLB pool/pre-existing-page limitations retained."
+  },
+  "assessment": {
+    "outcomes": [
+      "PASS",
+      "FAIL",
+      "UNAVAILABLE",
+      "NOT_RUN"
+    ],
+    "knownFailurePrecedesMissingEvidence": true,
+    "offlineOnly": true,
+    "resourceQualification": false,
+    "scope": "Receipt consistency and memory predicates only; no executor, useful-case, responsiveness, storage, authority, semantic or product acceptance."
+  },
+  "execution": {
+    "authorizedByThisDecision": false,
+    "executorQualified": false,
+    "existingFamilyReusable": false,
+    "modelCallsAuthorized": false,
+    "nextTask": 151
+  }
+}

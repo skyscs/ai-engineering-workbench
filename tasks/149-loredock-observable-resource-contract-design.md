@@ -1,12 +1,16 @@
 # Task 149 — Specify an observable resource contract for explicit review
 
-Status: design and documentation/evidence checks complete; exact-head CI pending.
+Status: accepted through PR #182, head `e88d751`, identical-tree merge `799c7a3`.
+Both complete CI logs pass 1,169 tests, ten typechecks and ten final builds; retained
+in the [Task 150 review evidence](../docs/fixtures/loredock-resource-review/README.md).
 Task 148 is accepted through PR #181, head `ba4d280`, identical-tree merge `082c119`,
 with both full CI logs passing 1,169 tests, ten typechecks and ten final builds.
 The [proposal](../docs/loredock/OBSERVABLE_RESOURCE_CONTRACT.md) and
 [complete comparison/prerequisites](../docs/fixtures/loredock-resource-contract/README.md)
 are unadopted and unexecuted. [Task 150](150-loredock-resource-contract-review.md) supplies
 the separate review decision. No runtime, observer or product implementation occurs.
+The draft remains a historical proposal; [ADR 0068](../docs/decisions/0068-loredock-observable-resource-contract.md)
+records the subsequent prospective adoption with explicit refinements.
 Local review verifies all 38 numeric comparisons, 747 document links, proposal/evidence
 hashes, both retained CI logs and unchanged production/frozen inputs/normal checkout.
 Twenty prerequisite cases are specified; none has been executed by this design task.

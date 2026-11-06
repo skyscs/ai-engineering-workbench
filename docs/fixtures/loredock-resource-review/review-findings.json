@@ -1,0 +1,42 @@
+{
+  "status": "Read-only review preparation while Task149 CI runs; no adoption, implementation or live probe.",
+  "proposal": "loredock-observable-resources/2-draft1",
+  "capabilityEvidence": "/home/toshiba/aew/task150-capability-readonly.json",
+  "findings": [
+    {
+      "topic": "Delegation ownership",
+      "finding": "The user manager has user.delegate=1. The writable terminal scope lacks that marker; mode/access alone does not grant single-writer ownership. Do not reuse or mutate either existing hierarchy. A fresh dedicated delegated transient user service is a candidate, not a qualified executor."
+    },
+    {
+      "topic": "Hierarchical events",
+      "finding": "memory_localevents makes memory.events local. A prospective profile must reject that mode or specify another complete mechanism before accepting parent-only event records; prefer a fixed absent-mode prerequisite."
+    },
+    {
+      "topic": "HugeTLB coverage",
+      "finding": "The observed mount advertises memory_hugetlb_accounting. The draft instead assumes HugeTLB is excluded/prohibited. A reviewed profile can require pre-existing accounted mode explicitly, retaining documented pool/pre-existing-page limitations; never remount or configure a pool."
+    },
+    {
+      "topic": "Unknown event fields",
+      "finding": "Retaining unknown event keys alone must not silently grant acceptance. Freeze recognized field semantics; new unreviewed fields require unavailable assessment rather than ignore-by-default."
+    },
+    {
+      "topic": "Executor confinement",
+      "finding": "systemd 259.5 user manager, writable delegated manager root and installed non-setuid bwrap are only capability clues. Direct birth, bounded ownership, default security, namespace isolation and retained terminal counters require an independent future proof."
+    },
+    {
+      "topic": "Terminal read order",
+      "finding": "Read final daemon/browser scope peaks before the final root peak, after all owned processes and collectors have exited. This supports parent >= child consistency without claiming simultaneous snapshots; unspecified or reversed order is unavailable."
+    },
+    {
+      "topic": "Pressure labels",
+      "finding": "The draft must not imply absence of all ambient pressure. Keep known low/sock_throttled events visible separately; reject high/max/oom/oom_kill/oom_group_kill and nonzero swap. New event keys require review. No imposed reclaim/limit changes is the intended restriction."
+    }
+  ],
+  "primaryReferences": [
+    "https://systemd.io/CGROUP_DELEGATION/",
+    "https://www.freedesktop.org/software/systemd/man/259/systemd.resource-control.html",
+    "https://docs.kernel.org/admin-guide/cgroup-v2.html",
+    "https://github.com/containers/bubblewrap/blob/main/README.md"
+  ],
+  "nextCandidate": "Adopt a precise prospective contract only after resolving these scope/evidence ambiguities; implement a pure offline memory-receipt assessor first, never a full-flow acceptance shortcut."
+}

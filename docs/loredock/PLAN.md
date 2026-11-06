@@ -283,12 +283,16 @@ daemon observation and browser blockers. Following the
 [resource-gate decision](../decisions/0067-loredock-resource-gate-feasibility.md), Task 149
 specifies an [unadopted resource proposal](OBSERVABLE_RESOURCE_CONTRACT.md) with hierarchical
 charged-memory envelopes, labeled heap diagnostics and a complete comparison to v1.
-Current next work is [Task 150](../../tasks/150-loredock-resource-contract-review.md): review
-the metric, exclusions and secure executor feasibility as a separate decision. No new
-metric is adopted and no new experiment is authorized. Task 147's execution prerequisites pass, while its
+Task 150's [separate review](../decisions/0068-loredock-observable-resource-contract.md)
+adopts the prospective v2 boundary with delegation, accounting-mode, event-field and
+terminal-order refinements. Current next work is
+[Task 151](../../tasks/151-loredock-memory-receipt-assessor.md): implement pure offline
+memory-receipt assessment. No executor or new experiment is qualified by the decision.
+Task 147's execution prerequisites pass, while its
 first blank resource control and every earlier failure remain unchanged.
 This is a narrow test-environment control, not product Docker orchestration or resource
-acceptance. Daemon aggregate heap/startup and application/full-flow gates remain blocked.
+acceptance. The original aggregate-heap/startup gate remains failed; no v2 application
+resource or full-flow result exists.
 
 ## Outcome and delivery boundary
 
