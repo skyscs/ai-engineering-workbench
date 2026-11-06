@@ -536,8 +536,11 @@ shutdown. Eleven ordinary catalog comparisons retain exact results and all 21 sa
 coverage with unchanged application bytes. Both small lifecycle controls pass, but source
 loading has a 324.833-ms parent interval and both modes have incomplete heap coverage.
 [Task 142](tasks/142-loredock-resource-observation-decision.md) decides the supported
-measurement boundary before another near-limit gate. No measured failure or resource
-limit is waived; the browser baseline failure remains a separate decision.
+measurement boundary before another near-limit gate. It retains the worker architecture,
+unchanged limits and blocked daemon heap/startup qualification; no narrower coverage
+contract is adopted. [Task 143](tasks/143-loredock-pinned-browser-eligibility.md) independently
+pins an official standalone browser for one fresh blank-page environment control. Neither
+an eligible empty page nor a new binary repairs the old browser or full-flow failure.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation
