@@ -279,11 +279,13 @@ execution remains separately bounded and conditional on all model-free prerequis
 
 The retained Task 128 full-flow failure remains failed. Tasks 129–140 preserve exact
 saved/native behavior and adopt the bounded owned parser; Tasks 141–143 retain independent
-daemon observation and browser blockers. Current next work is
-[Task 149](../../tasks/149-loredock-observable-resource-contract-design.md), following the
-[resource-gate decision](../decisions/0067-loredock-resource-gate-feasibility.md). It designs
-a separately versioned observable contract for explicit review; no new metric is adopted
-and no new experiment is authorized. Task 147's execution prerequisites pass, while its
+daemon observation and browser blockers. Following the
+[resource-gate decision](../decisions/0067-loredock-resource-gate-feasibility.md), Task 149
+specifies an [unadopted resource proposal](OBSERVABLE_RESOURCE_CONTRACT.md) with hierarchical
+charged-memory envelopes, labeled heap diagnostics and a complete comparison to v1.
+Current next work is [Task 150](../../tasks/150-loredock-resource-contract-review.md): review
+the metric, exclusions and secure executor feasibility as a separate decision. No new
+metric is adopted and no new experiment is authorized. Task 147's execution prerequisites pass, while its
 first blank resource control and every earlier failure remain unchanged.
 This is a narrow test-environment control, not product Docker orchestration or resource
 acceptance. Daemon aggregate heap/startup and application/full-flow gates remain blocked.

@@ -1,0 +1,147 @@
+{
+  "version": "observable-resource-prerequisites/1",
+  "proposal": "loredock-observable-resources/2-draft1",
+  "status": "specified-not-executed",
+  "cases": [
+    {
+      "id": "P01",
+      "input": "No delegation, denied counter open, missing swap peak, or missing confinement",
+      "expected": "UNAVAILABLE",
+      "required": "No application creation; retained prerequisite reason; no privileged fallback."
+    },
+    {
+      "id": "P02",
+      "input": "Stale directory, nonempty initial counters, unexpected member or path identity replacement",
+      "expected": "UNAVAILABLE",
+      "required": "Reject ownership acquisition; never attach to a previous run."
+    },
+    {
+      "id": "P03",
+      "input": "Complete adopted/sealed transcript, useful outputs, all mandatory limits and boundaries satisfied",
+      "expected": "PASS",
+      "required": "Pass only the declared resource scope; v1, semantic and independent acceptance remain separate."
+    },
+    {
+      "id": "P04",
+      "input": "Role peak one byte above its ceiling; a separate row equals the ceiling",
+      "expected": "FAIL / PASS",
+      "required": "Inclusive maximum; values are integer bytes, not rounded MiB."
+    },
+    {
+      "id": "P05",
+      "input": "Daemon/browser peaks individually within bounds but parent peak exceeds 1476395008",
+      "expected": "FAIL",
+      "required": "Control overhead cannot disappear; read the parent peak directly."
+    },
+    {
+      "id": "P06",
+      "input": "Short-lived nested child allocates and exits between periodic RSS samples",
+      "expected": "FAIL when kernel peak exceeds ceiling",
+      "required": "Do not replace the retained hierarchical peak with sampled survivors or a terminal zero."
+    },
+    {
+      "id": "P07",
+      "input": "Missing final peak, removed/recreated group, interrupted terminal recorder, or absent exit ledger",
+      "expected": "UNAVAILABLE",
+      "required": "A last live reading or cleanup result cannot stand in for the required terminal receipt."
+    },
+    {
+      "id": "P08",
+      "input": "Known threshold breach plus missing terminal data",
+      "expected": "FAIL",
+      "required": "Preserve both the known violation and missing-evidence reasons."
+    },
+    {
+      "id": "P09",
+      "input": "Nonzero swap peak or owned high/max/oom/oom-kill event",
+      "expected": "FAIL",
+      "required": "No swap subtraction, reset, retry or pressure-induced pass."
+    },
+    {
+      "id": "P10",
+      "input": "Counter decrease/reset, altered ancestor controls, escaped child or unknown ownership",
+      "expected": "UNAVAILABLE for unestablished evidence; FAIL for a proven escape",
+      "required": "Preserve both integrity and lifecycle findings; a later small counter cannot restore a pass."
+    },
+    {
+      "id": "P11",
+      "input": "Assessor is asked to accept a terminal receipt while an orphan/reparented child remains after the original parent exits",
+      "expected": "FAIL",
+      "required": "Reject early terminal acceptance. A normal drain may continue inside its deadline; timeout/escape fails, and safe cleanup is separate."
+    },
+    {
+      "id": "P12",
+      "input": "Child deliberately resists cancellation and needs watchdog kill in a normal positive case",
+      "expected": "FAIL",
+      "required": "Actual cleanup must still be proven; exclude only predeclared fault holds."
+    },
+    {
+      "id": "P13",
+      "input": "Worker heap rejection, late/pending sample, unavailable native interval or no observed worker handle",
+      "expected": "PASS only for independently complete operational axes",
+      "required": "Heap value/instant and aggregate remain unavailable; mandatory honest diagnostic ledger retained; no complete-heap claim."
+    },
+    {
+      "id": "P14",
+      "input": "Independent parent/worker maxima or role peaks presented as a simultaneous aggregate",
+      "expected": "FAIL",
+      "required": "Reject fabricated aggregate evidence, even if the invented sum is below a threshold."
+    },
+    {
+      "id": "P15",
+      "input": "Missing RSS sample but intact ownership/counters/timing versus missing mandatory timer/trace boundary",
+      "expected": "PASS / UNAVAILABLE",
+      "required": "Keep the RSS diagnostic gap; missing responsiveness coverage prevents complete acceptance."
+    },
+    {
+      "id": "P16",
+      "input": "Raw parent interval 100 ms versus greater than 100 ms; missing start/end clock mapping",
+      "expected": "PASS / FAIL / UNAVAILABLE",
+      "required": "Do not subtract nominal period or omit startup/shutdown."
+    },
+    {
+      "id": "P17",
+      "input": "Malformed, duplicate, negative, noninteger or truncated mandatory counter/event data",
+      "expected": "UNAVAILABLE",
+      "required": "Never coerce to zero; validate keys and monotonic windows with bounded input."
+    },
+    {
+      "id": "P18",
+      "input": "Unadopted contract, unsealed candidate or consumed family supplied to assessor",
+      "expected": "UNAVAILABLE",
+      "required": "No accepted qualification can be issued from a proposed contract or historical replay."
+    },
+    {
+      "id": "P19",
+      "input": "Page-cache/shared charges were created before acquisition; blank baseline is smaller",
+      "expected": "PASS only for declared charged-memory scope",
+      "required": "Cache remains uncontrolled and externally charged memory excluded from claim; no cold-cache or total-physical-cost claim and no baseline subtraction."
+    },
+    {
+      "id": "P20",
+      "input": "Budget refusal, missing useful original, bad source authority or unsupported output despite small memory",
+      "expected": "FAIL",
+      "required": "Positive-case, work, authority and semantic boundaries are independent of the memory metric."
+    }
+  ],
+  "liveExecutorControls": {
+    "status": "requires-separate-seal",
+    "cases": [
+      "Direct creation into fresh owned hierarchy with readable retained peaks.",
+      "Short-lived allocating child and nested group survive in root accounting after actual exit.",
+      "Natural exit, resistant orphan and interrupted collector retain non-passing fault outcomes and prove actual cleanup."
+    ],
+    "requiredBeforeExecution": [
+      "Fixed independent synthetic inputs and expected lifecycle outcomes.",
+      "Declared work, allocation, wall and storage bounds; exclusive first-output path.",
+      "Existing permitted delegation and default security; no host reconfiguration.",
+      "Counter persistence and terminal evidence retention proven before any application run."
+    ]
+  },
+  "baseTranscriptRequirements": [
+    "An independently hand-authored, explicitly adopted test contract; no real family or result is being rescored.",
+    "All mandatory useful-case outputs, exact ownership and clock mappings, final counter reads and actual exits.",
+    "Nonnegative integer byte counters with immutable identities and no reset; role peaks no greater than parent peak.",
+    "Heap and process-RSS diagnostics retain unknown intervals; no simultaneous aggregate is invented."
+  ]
+}

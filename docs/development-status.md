@@ -1,5 +1,28 @@
 # Development status
 
+## Task 149 — Observable resource contract proposed for separate review
+
+Task 148 is accepted through [PR #181](https://github.com/skyscs/ai-engineering-workbench/pull/181),
+head `ba4d280`, identical-tree merge `082c119`; both complete CI logs pass 1,169 tests,
+ten typechecks and ten final builds. [Retained evidence](fixtures/loredock-resource-contract/README.md)
+includes those logs, the complete numeric comparison and twenty specified prerequisite cases.
+
+The [v2 draft](loredock/OBSERVABLE_RESOURCE_CONTRACT.md) proposes creation-to-terminal
+cgroup charged-memory peaks, retaining 384-MiB daemon/1-GiB browser numerical targets and
+adding their 1,408-MiB combined envelope plus zero swap. These are different quantities;
+no historical result is converted into a pass. Whole-isolate heap acceptance would become
+explicitly incomplete diagnostics, a separate substantive change requiring adoption.
+Cache/shared charges, external attestor cost, startup/exit acquisition, actual descendants,
+lost terminal evidence and unavailable permissions are covered explicitly. All remaining
+numeric limits, useful-case requirements and authority/lifecycle boundaries are preserved.
+
+The proposal is unadopted and unexecuted. [Task 150](../tasks/150-loredock-resource-contract-review.md)
+reviews its scope and secure executor feasibility before implementation. No host setup,
+application change, browser/daemon/resource/model run or full-flow promotion occurs.
+Local checks verify 747 document links, all 38 numeric comparisons and retained file/log
+hashes. Production, frozen inputs/API and the normal checkout are unchanged. Both complete
+exact-head CI logs are required before merge; the twenty prerequisite cases are unexecuted.
+
 ## Task 148 — Resource-gate feasibility and next design boundary
 
 Task 147 is accepted through [PR #180](https://github.com/skyscs/ai-engineering-workbench/pull/180),
