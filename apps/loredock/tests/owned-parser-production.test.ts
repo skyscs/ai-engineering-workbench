@@ -183,7 +183,7 @@ test('a ready handshake delivered after the server deadline cannot open its list
   const directory = await mkdtemp(path.join(tmpdir(), 'loredock-server-late-')), server = new LoreDockServer({ directory, port: 0 });
   t.after(async () => { await server.stop(); await rm(directory, { recursive: true, force: true }); });
   const warm = server.catalog.parser.warm.bind(server.catalog.parser);
-  t.mock.method(server.catalog.parser, 'warm', async options => {
+  t.mock.method(server.catalog.parser, 'warm', async (options: Parameters<FileParserService['warm']>[0]) => {
     await warm(options);
     // Controlled handoff delay after the real worker handshake and admission release.
     Object.defineProperty(server, 'deadline', { value: performance.now() - 1 });
