@@ -2,7 +2,11 @@
 
 Status: implemented prospectively after Task 154 acceptance through PR #187, merge
 768f673. Thirty-four offline boundary cases and full local checks pass (1,206 Node tests,
-ten typechecks and ten final builds). The sole sealed attempt remains pending.
+ten typechecks and ten final builds). The sole attempt is consumed and UNAVAILABLE:
+the helper rejects a valid zero-byte empty controller list before any native execution.
+See the [retained result](../docs/loredock/DIRECT_BIRTH_PREREQUISITE_RESULT.md).
+Both complete exact-head CI logs remain required before acceptance; then Task 156 corrects
+the separate next candidate on the unchanged environment.
 See the [design](../docs/loredock/DIRECT_BIRTH_PREREQUISITE.md).
 No complete resource executor or direct cgroup birth is qualified yet.
 

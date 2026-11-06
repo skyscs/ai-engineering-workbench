@@ -2,7 +2,9 @@
 
 Task 155 adds a separate, prospectively sealed prerequisite after the accepted
 [user-service namespace check](USER_NAMESPACE_PREREQUISITE_RESULT.md).
-No first attempt has run at this document's prospective candidate revision.
+The sole first attempt is consumed and unavailable because its empty-controller admission
+check is incorrect; no native helper or payload runs. See the [retained result](DIRECT_BIRTH_PREREQUISITE_RESULT.md).
+This adapter is frozen experiment history. Do not repair or rerun its first entry.
 The consumed Task 152/154 implementations and first evidence remain unchanged.
 
 The new [adapter](../../scripts/loredock-direct-birth-prerequisite/probe.py) uses the

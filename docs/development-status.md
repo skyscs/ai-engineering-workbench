@@ -12,9 +12,14 @@ clone3 birth into a fresh owned leaf, independent kernel observation retained be
 the execution permit, actual child wait and terminal group observation. Previous consumed
 helpers remain unchanged. Thirty-four offline cases and full local checks pass: 1,206 Node
 tests, ten typechecks and ten final builds, zero failures/cancellations. All 148 emitted
-application/package modules remain unchanged. Source review is complete; the sole sealed
-live attempt remains pending. No new service, real clone3, sandbox,
-application or model has run. Executor and application resource gates remain closed.
+application/package modules remain unchanged. The sole [first attempt](loredock/DIRECT_BIRTH_PREREQUISITE_RESULT.md)
+is consumed and UNAVAILABLE: one fresh service verifies ownership and enables accounting
+only inside its owned boundary, then stops because the helper wrongly expects a newline
+in a zero-byte empty controller list. No native helper, clone3, sandbox or payload runs.
+The same failed invocation has zero MainPID and its owned group is absent; no forced
+cleanup or host-policy change occurs. Complete first evidence is retained. Both complete
+exact-head CI logs are required before acceptance, then Task 156 corrects a separate
+candidate. Executor and application resource gates remain closed.
 
 ## Task 154 — Corrected acquisition for a fresh namespace prerequisite
 
