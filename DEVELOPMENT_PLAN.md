@@ -526,7 +526,9 @@ commit fences. After exact-head checks and merge,
 before adoption. Two successful direct graphs fail the proposed 512-KiB wire limit even
 with sources below 32 KiB, so production adoption is deferred without changing application
 bytes. [Task 139](tasks/139-loredock-lossless-parser-transport.md) repairs repeated-string
-transport with exact fact round trips and unchanged bounds; only then does
+transport with exact fact round trips and unchanged bounds. Its first candidate preserves
+all three original graphs; the two failing replies now occupy 143,742 and 29,747 bytes
+under the unchanged 524,288-byte limit. After exact-head checks and merge,
 [Task 140](tasks/140-loredock-production-parser-adoption.md) adopt the owner in native and
 legacy paths with asynchronous initialization. Whole-heap observer coverage and resource
 acceptance remain future gates; no measured failure or limit is waived.

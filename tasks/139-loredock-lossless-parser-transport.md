@@ -1,6 +1,7 @@
 # Task 139 — Encode parser results without repeated strings
 
-Status: scoped after Task 138; begin after both exact-head CI events and identical-tree merge.
+Status: implemented and locally verified; first ordinary comparison and 1,107 regression
+tests pass. Exact-head CI acceptance pending. The adapter remains unwired.
 
 ## Objective
 
@@ -44,3 +45,16 @@ truncate facts; use a direct fallback; or change parser extraction/legacy semant
 
 Production integration remains [Task 140](140-loredock-production-parser-adoption.md).
 No corporate source, real model calls or consumed-family replay is authorized here.
+
+## Result
+
+[ADR 0063](../docs/decisions/0063-loredock-lossless-parser-wire.md) precedes implementation.
+The first [candidate result](../docs/loredock/LOSSLESS_PARSER_TRANSPORT.md) preserves all
+three original fact/range/graph outputs. The two failing replies shrink from 736,909 and
+846,464 bytes to 143,742 and 29,747 bytes under the unchanged 524,288-byte bound.
+All three owners join actual exit. Exact byte-boundary, malformed-input and source/built
+worker tests pass on pinned and standalone minimum Node; original failures are retained.
+No startup, aggregate memory, production adoption or universal input-fit claim is made.
+
+Task 138 is accepted through PR 171 at merge `6cb2ce53939932e4aaf705a4afb95cb1f570172d`,
+after both complete exact-head CI logs pass 1,094 tests at `3cd3044`.
