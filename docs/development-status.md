@@ -1,5 +1,26 @@
 # Development status
 
+## Task 148 — Resource-gate feasibility and next design boundary
+
+Task 147 is accepted through [PR #180](https://github.com/skyscs/ai-engineering-workbench/pull/180),
+head `6e36976`, identical-tree merge `e673d43`; both complete CI logs pass 1,169 tests,
+ten typechecks and ten final builds. The container browser's first resource failure remains.
+
+The read-only comparison verifies original archive hashes and separates three independent
+issues: standalone browser baseline RSS, process-sample completeness, and daemon startup/
+isolate heap coverage. Input/security/ownership repairs do not resolve those resource gates.
+[ADR 0067](decisions/0067-loredock-resource-gate-feasibility.md) preserves the existing
+contract and stops further environment trials without an evidence-backed hypothesis.
+See [retained evidence and accepted CI](fixtures/loredock-resource-gates/README.md).
+
+[Task 149](../tasks/149-loredock-observable-resource-contract-design.md) prepares a concrete
+versioned observation-contract proposal for explicit review. Whole-lifetime OS accounting
+and labeled application-heap diagnostics are a design direction, not adopted acceptance
+metrics. Useful independent model-free regressions can continue under existing scope.
+No new resource execution, contract relaxation, semantic continuation or full-flow claim
+is authorized. Production/API/collector bytes and normal checkout remain untouched.
+Document/evidence checks precede both complete exact-head CI logs for this documentation task.
+
 ## Task 147 — Readable inputs; first container browser resource failure retained
 
 Task 146 is accepted through [PR #179](https://github.com/skyscs/ai-engineering-workbench/pull/179),

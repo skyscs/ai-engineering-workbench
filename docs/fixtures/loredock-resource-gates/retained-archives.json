@@ -1,0 +1,30 @@
+[
+  {
+    "path": "docs/fixtures/loredock-browser-memory/browser-first.tar.gz",
+    "bytes": 831149,
+    "sha256": "1e8e051b6690c13ec7b206301adc1fabdc78b6571a26a13b28a828c3e544d7e3",
+    "inventory": "browser-first.inventory.json.gz",
+    "inventorySha256": "2743f3471d86f61814e46761226237b493bb3605ec56e059531201a676a2f8a2"
+  },
+  {
+    "path": "docs/fixtures/loredock-browser-eligibility/first.tar.gz",
+    "bytes": 51084,
+    "sha256": "ce2ca3669385c10cc608cad10db052f4c959b53bccd12347182f608f275147f5",
+    "inventory": "first-inventory.json.gz",
+    "inventorySha256": "97d299708d7ee5a1004054e7645853f084e9bb5dbe503e369267b13dccdda909"
+  },
+  {
+    "path": "docs/fixtures/loredock-parser-coverage/first.tar.gz",
+    "bytes": 9720262,
+    "sha256": "4674e3fc4d9ebf567f5679b80d2a820522e0bd7f833d748cacd64ab2fac55279",
+    "inventory": "inventory.json.gz",
+    "inventorySha256": "9e3c27b4c91ec308c878cccea3308c6e696e55b0cfb9dfbff76489c6e309391a"
+  },
+  {
+    "path": "docs/fixtures/loredock-container-inputs/first-attempt.tar.gz",
+    "bytes": 107775,
+    "sha256": "3300bc53fe751b53c489e3e118ed29424de106d0dfb0561e7fa56b8fb5fce9a2",
+    "inventory": "first-attempt-files.json.gz",
+    "inventorySha256": "2286ef4b08b8bec8ff3b201ad90a78b6d9ba24047b5d43a49504f453025e6be9"
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "reviewedOn": "2026-11-06",
+  "primaryReferences": [
+    {
+      "url": "https://docs.kernel.org/filesystems/proc.html",
+      "finding": "RSS bookkeeping is asynchronous; smaps is a slower per-process view. PSS divides shared mappings and is a different metric."
+    },
+    {
+      "url": "https://docs.kernel.org/admin-guide/cgroup-v2.html",
+      "finding": "memory.current and memory.peak account the cgroup and descendants; scope includes cache/kernel/socket charges. This is not the fixed summed-process-RSS or V8-heap metric."
+    }
+  ],
+  "existingNodeAudit": "docs/loredock/PARSER_OBSERVATION_COVERAGE.md",
+  "existingDecision": "docs/decisions/0065-loredock-resource-observation-boundary.md",
+  "scope": "Read-only documentation review; no new runtime/cgroup observation or contract adoption."
+}

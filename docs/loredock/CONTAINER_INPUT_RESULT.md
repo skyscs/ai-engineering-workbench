@@ -1,7 +1,9 @@
 # Readable container inputs: first browser resource control remains failed
 
-Status: directory ownership and non-root input verification are fixed. The first actual
-blank-browser lifetime completes and remains ineligible under the unchanged resource contract.
+Status: Task 147 is accepted through PR #180 (head `6e36976`, merge `e673d43`), with
+both complete CI logs passing 1,169 tests, ten typechecks and ten final builds.
+Directory ownership and non-root input verification are fixed. The first blank-browser
+lifetime completes and remains ineligible under the unchanged resource contract.
 
 Task 146 is accepted through [PR #179](https://github.com/skyscs/ai-engineering-workbench/pull/179),
 head `f60e6f4`, identical-tree merge `4b501a7`. Both complete CI logs pass 1,157 tests,
@@ -85,8 +87,8 @@ Outer namespace/observer measurements remain separate from the fixed browser met
 [Portable evidence](../fixtures/loredock-container-inputs/README.md) retains all operational
 records and raw samples. Twenty-eight focused tests and the full local check pass
 **1,169 tests** (728 LoreDock, 306 scripts, 135 other tests), ten typechecks and ten final
-builds, with no failures or cancellations. Both complete exact-head CI logs must pass
-before merge. All 95 emitted LoreDock JavaScript files, application sources, original
+builds, with no failures or cancellations. Both complete exact-head CI logs passed before
+merge and are retained with Task 148's evidence. All 95 emitted LoreDock JavaScript files, application sources, original
 collectors and the frozen API remain unchanged.
 
 [Task 148](../../tasks/148-loredock-resource-gate-feasibility.md) reviews the retained
