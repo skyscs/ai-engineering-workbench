@@ -1,5 +1,30 @@
 # Development status
 
+## Task 145 — Container owner and first preflight
+
+Task 144 is accepted through [PR #177](https://github.com/skyscs/ai-engineering-workbench/pull/177),
+head `54d7a9d`, identical-tree merge `4acc21a`; both complete CI logs pass 1,141 tests,
+ten typechecks and ten final builds. Task 145 fixes its prospective code/plan at `d13b5a4`.
+
+The new owner persists and verifies the exact created container ID before one start;
+the PID-1 wrapper preserves the frozen inner owner's actual-exit/deadline boundary.
+Nine synthetic owner/adapter regressions and the full local check pass **1,150 tests**,
+ten typechecks and ten final builds. Application bytes and original collectors stay exact.
+
+The first pinned image builds successfully with 326 verified staged files and 7,259
+recorded image entries. Its first preflight creates one object, then fails before start:
+Docker reports an empty `AppArmorProfile` in state `created`, which the controller rejects.
+Start attempts are **zero**; final read-only inspect confirms Running false/PID 0.
+The object and all first records remain retained; orphan/interruption probes and the
+browser control are unexecuted. No runtime security or resource eligibility is claimed.
+See [the full result](loredock/CONTAINER_BROWSER_ELIGIBILITY.md) and
+[portable evidence](fixtures/loredock-container-browser/README.md).
+
+After exact-head CI acceptance, [Task 146](../tasks/146-loredock-container-security-lifecycle.md)
+corrects the requested/applied security lifecycle boundary using an explicit default
+profile and applied process checks before child execution. No prior attempt is retried;
+daemon aggregate heap/startup and application/full-flow gates remain blocked.
+
 ## Task 144 — Independent browser environment decision
 
 Task 143 is accepted through [PR #176](https://github.com/skyscs/ai-engineering-workbench/pull/176),

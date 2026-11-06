@@ -1,0 +1,170 @@
+{
+  "prospective": "d13b5a478606f2d20570c3ec914da94d9cdcb0e2",
+  "image": "sha256:772d3eb806a22a9a7a0094e7462ea8cf5c87c314d32c464dd2e7342d4a06500d",
+  "createdContainer": "56e390f717ffd910f3ac65b95081426483414cee4cf9f8f0feb83bcddb2f534e",
+  "startAttempts": 0,
+  "browserRuns": 0,
+  "stagedFiles": 326,
+  "stagedBytes": 552268810,
+  "stagedUnchanged": true,
+  "archives": [
+    {
+      "path": "preflight.tar.gz",
+      "members": 5,
+      "uncompressedFileBytes": 10105,
+      "bytes": 3142,
+      "sha256": "550be5df6bcf3a1c56fa9830d069a963e6090fc34c38c942d0f37ea55d97775a",
+      "inventory": "preflight-files.json.gz",
+      "inventorySha256": "9f57f4a0432e27146f543b7f6a3ec3f3ba30074314b03f8b8f170390ed55416b"
+    },
+    {
+      "path": "helper-inputs.tar.gz",
+      "members": 24,
+      "uncompressedFileBytes": 171300,
+      "bytes": 44199,
+      "sha256": "d86b48f0ec6ff9c83240e8f29e02edfc3ca29577eb21fd4c96cfacc871af1aa4",
+      "inventory": "helper-inputs-files.json.gz",
+      "inventorySha256": "d3d2ddaf20ebe04d731f16aed381b882943bfe5a1ec06d7003d0c9c4478f0cb0"
+    },
+    {
+      "path": "image-metadata.tar.gz",
+      "members": 18,
+      "uncompressedFileBytes": 1299242,
+      "bytes": 328025,
+      "sha256": "4c5adb6ff3b7667a7738472604f39d4f32160791c3aff34f1536b048e757234d",
+      "inventory": "image-metadata-files.json.gz",
+      "inventorySha256": "7e86cf210028860869c4f2010e02aa22d38c0d6675d0f799c9eb0c921e7704aa"
+    }
+  ],
+  "logs": [
+    {
+      "path": "logs/task144-ci-push-final.log.gz",
+      "bytes": 635928,
+      "sha256": "85d716a4dcdee206b8f6a5b1da989f1c0f49aba140bc5b062b42f4ad4b6d3628",
+      "gzipSha256": "e570bdf9e826b2a0cf90cfe8d672d96ad7496c3d1d5dad4ff2406ea46e2252f1"
+    },
+    {
+      "path": "logs/task144-ci-pr-final.log.gz",
+      "bytes": 638318,
+      "sha256": "e4e4382890c159cbe0209bdeed6466398117e500071b273ee8b7c2346713df3a",
+      "gzipSha256": "1970f88dae2ddddca7815fe1d10e3464ad300b43f4f5454c480513357eb0d137"
+    },
+    {
+      "path": "logs/task145-owner-tests-first.log.gz",
+      "bytes": 2169,
+      "sha256": "a3a7241fb602342df1f44b5c0d6ead23162cd00a46511b6428d4c98f306e1bb8",
+      "gzipSha256": "86eafb645bb79e7582d3b58c73d7b76420e531dd51568491e31d219a3d00ec14"
+    },
+    {
+      "path": "logs/task145-owner-tests-second.log.gz",
+      "bytes": 2170,
+      "sha256": "b8744d76fc40505f780752cbeac32fc2d62e0dca5e280799608a8ad82657e705",
+      "gzipSha256": "b41d4b5c26fff299f007a468c92a7443b0d15306bbee5cf8281ed0343a297e51"
+    },
+    {
+      "path": "logs/task145-prepare-first.log.gz",
+      "bytes": 150,
+      "sha256": "30a58aadc563ce72fa0adde1e2a4226643ed92bdb90d4c06cf68745dfe1693b4",
+      "gzipSha256": "c87e716b1ecc3b767bc4c69558451c8f67a2e284c303a347892b980b76c541f8"
+    },
+    {
+      "path": "logs/task145-image-build-first.log.gz",
+      "bytes": 34455,
+      "sha256": "0861d1137ca47be87138f21856d85ed33605ea8761c06afb19d323658f585baa",
+      "gzipSha256": "75bd918da453f8dd591fa72e8f5ae870b2371c6a1994a4255e3552db7bf4177a"
+    },
+    {
+      "path": "logs/task145-install-first.log.gz",
+      "bytes": 917,
+      "sha256": "baadb349f7abbded712b1e7e4f88583ebf4c1dcf7ddaeebefa8533f485992d68",
+      "gzipSha256": "d1f48ef27b159f655717cd8fc4bf66f8424a3f617bebe78ad9f616008b98c45c"
+    },
+    {
+      "path": "logs/task145-full-check-first.log.gz",
+      "bytes": 406743,
+      "sha256": "eb337e8694659809026df5aba8bba0a3d62a356527da142ef29fdccba91fd481",
+      "gzipSha256": "a62b8cdfd35f8e52c4a5f2f49585eec51feb8626a85d728d830dc2e532bc5808"
+    },
+    {
+      "path": "logs/task145-preflight-first.log.gz",
+      "bytes": 1982,
+      "sha256": "c890320f0e8e37fe4000744038fb83675c7db1b5650b04bde06dbd26976f6f54",
+      "gzipSha256": "f7a6fd6a889c3eddab1dfda0e3a8d4cf1567c57206d94970d14f00b4d7f7e3d7"
+    }
+  ],
+  "previousCI": {
+    "head": "54d7a9d06b0c3ccf2973d70cd55d7295a0c41e26",
+    "ci": [
+      {
+        "event": "push",
+        "run": 42169780530,
+        "job": 127734631391,
+        "head": "54d7a9d06b0c3ccf2973d70cd55d7295a0c41e26",
+        "conclusion": "success",
+        "tests": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          278
+        ],
+        "total": 1141,
+        "failures": 0,
+        "cancelled": 0,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "log": "/home/toshiba/aew/task144-ci-push-final.log",
+        "bytes": 635928,
+        "sha256": "85d716a4dcdee206b8f6a5b1da989f1c0f49aba140bc5b062b42f4ad4b6d3628"
+      },
+      {
+        "event": "pull_request",
+        "run": 42169802193,
+        "job": 127734697895,
+        "head": "54d7a9d06b0c3ccf2973d70cd55d7295a0c41e26",
+        "conclusion": "success",
+        "tests": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          278
+        ],
+        "total": 1141,
+        "failures": 0,
+        "cancelled": 0,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "log": "/home/toshiba/aew/task144-ci-pr-final.log",
+        "bytes": 638318,
+        "sha256": "e4e4382890c159cbe0209bdeed6466398117e500071b273ee8b7c2346713df3a"
+      }
+    ]
+  },
+  "localCheck": {
+    "tests": [
+      17,
+      18,
+      43,
+      728,
+      57,
+      287
+    ],
+    "total": 1150,
+    "failures": 0,
+    "cancelled": 0,
+    "typechecks": 10,
+    "finalBuilds": 10,
+    "sha256": "eb337e8694659809026df5aba8bba0a3d62a356527da142ef29fdccba91fd481"
+  },
+  "excludedPayloads": {
+    "paths": [
+      "context/chrome",
+      "context/node"
+    ],
+    "reason": "Public runtime payloads remain in the original staged context, Task143 installation and immutable local Docker image; exact complete staged hashes are published.",
+    "bytes": 552097510
+  }
+}
