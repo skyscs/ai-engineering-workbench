@@ -564,6 +564,10 @@ Its image/input/lifecycle prerequisites pass and the blank lifetime completes, b
 first resource result remains failed: 1,309,532,160 bytes summed RSS and three incomplete
 samples; cadence and actual exits pass. [Task 148](tasks/148-loredock-resource-gate-feasibility.md)
 reviews feasibility and the acceptance boundary before another environment experiment.
+Its [decision](docs/decisions/0067-loredock-resource-gate-feasibility.md) retains v1 and stops
+undirected environment trials. [Task 149](tasks/149-loredock-observable-resource-contract-design.md)
+designs a separately versioned observable resource contract for explicit review, without
+adopting new metrics, rescoring old failures or authorizing another execution.
 No application-page or full-flow gate is opened by these diagnostics.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,

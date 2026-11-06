@@ -1,0 +1,100 @@
+{
+  "task": 148,
+  "acceptedTask147": {
+    "pr": 180,
+    "head": "6e36976fe27231f66ab6da5812866f5add2317ee",
+    "merge": "e673d43d548bebb5cec83f4e351c1accf501dc6f",
+    "identicalTree": true
+  },
+  "ci": [
+    {
+      "event": "push",
+      "run": 42180124856,
+      "job": 127767558092,
+      "head": "6e36976fe27231f66ab6da5812866f5add2317ee",
+      "conclusion": "success",
+      "tests": [
+        17,
+        18,
+        43,
+        728,
+        57,
+        306
+      ],
+      "total": 1169,
+      "failures": 0,
+      "cancelled": 0,
+      "typechecks": 10,
+      "finalBuilds": 10,
+      "log": "/home/toshiba/aew/task147-ci-push-final.log",
+      "bytes": 646795,
+      "sha256": "c5259d1cfb053181ec95b0178b908e3eb24962abd62df2edbe95d938b6161c44"
+    },
+    {
+      "event": "pull_request",
+      "run": 42180153687,
+      "job": 127767647658,
+      "head": "6e36976fe27231f66ab6da5812866f5add2317ee",
+      "conclusion": "success",
+      "tests": [
+        17,
+        18,
+        43,
+        728,
+        57,
+        306
+      ],
+      "total": 1169,
+      "failures": 0,
+      "cancelled": 0,
+      "typechecks": 10,
+      "finalBuilds": 10,
+      "log": "/home/toshiba/aew/task147-ci-pr-final.log",
+      "bytes": 650327,
+      "sha256": "9a30b833f8bce8aa4c423b4c319d5cec9bd2b012f9fdf69ef5968cf776de969c"
+    }
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1268,
+      "sha256": "88d681b32d6fdc0675a9aaeff30acb5fdfc4ff4162ab79d748136e17e552865e"
+    },
+    {
+      "path": "retained-archives.json",
+      "bytes": 1281,
+      "sha256": "ef8f106a937273e2a33a8bcff5971545f7ade1213b97cf2270e98d1ab910b495"
+    },
+    {
+      "path": "retained-facts.json",
+      "bytes": 5954,
+      "sha256": "5c91ac8ad34f1023a4de707584af05b776f93d4dad1ecde1309c5ca655786141"
+    },
+    {
+      "path": "sources.json",
+      "bytes": 810,
+      "sha256": "c4239e0e3f7f2f9dee3cd932635656118b847516ea4c7a69d60c6b879f0e9cc8"
+    }
+  ],
+  "logs": [
+    {
+      "path": "logs/task147-ci-push-final.log.gz",
+      "bytes": 646795,
+      "sha256": "c5259d1cfb053181ec95b0178b908e3eb24962abd62df2edbe95d938b6161c44",
+      "gzipSha256": "4d976e27b8a48f6057f6f0d04d565218872fa939a18c0520a384d6dec07fac14"
+    },
+    {
+      "path": "logs/task147-ci-pr-final.log.gz",
+      "bytes": 650327,
+      "sha256": "9a30b833f8bce8aa4c423b4c319d5cec9bd2b012f9fdf69ef5968cf776de969c",
+      "gzipSha256": "7d91f53e8599afdba8c9a651ad6342ac8f4ea828cbe97ec7404d424051e93bfa"
+    }
+  ],
+  "verifiedRetainedArchives": 4,
+  "newResourceRuns": 0,
+  "modelCalls": 0,
+  "corporateSources": 0,
+  "productChanges": false,
+  "contractChanged": false,
+  "resourceQualification": false
+}

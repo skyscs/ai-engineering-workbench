@@ -1,8 +1,12 @@
 # Task 148 — Decide a feasible resource qualification path from retained evidence
 
-Status: scoped after Task 147's first readable container control. Begin after Task 147
-passes exact-head CI and merges. This is a read-only assessment and planning task;
-it authorizes no new resource control or product implementation.
+Status: retained-evidence assessment and decision complete; exact-head CI pending.
+Task 147 is accepted through PR #180, head `6e36976`, identical-tree merge `e673d43`,
+with both complete CI logs passing 1,169 tests, ten typechecks and ten final builds.
+[ADR 0067](../docs/decisions/0067-loredock-resource-gate-feasibility.md) stops undirected
+environment trials and scopes a versioned observation-contract proposal in
+[Task 149](149-loredock-observable-resource-contract-design.md). Existing requirements
+remain unchanged. No new resource control or product implementation occurs.
 
 The standalone container browser completes but exceeds the unchanged 1-GiB summed-RSS
 ceiling in 596 samples and has three incomplete samples. Daemon aggregate-heap/startup

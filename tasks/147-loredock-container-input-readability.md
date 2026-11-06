@@ -1,8 +1,10 @@
 # Task 147 — Verify browser input ownership and non-root readability
 
-Status: implementation, first image and three preflights complete. The first blank
+Status: accepted through PR #180, head `6e36976`, identical-tree merge `e673d43`.
+Both complete exact-head CI logs pass 1,169 tests, ten typechecks and ten final builds.
+Implementation, first image and three preflights are complete. The first blank
 lifetime completes but remains ineligible: 1,309,532,160 bytes summed RSS and three
-incomplete samples. Full local checks pass 1,169 tests; exact-head CI pending.
+incomplete samples. Its failed resource assessment remains unchanged.
 See the [retained result](../docs/loredock/CONTAINER_INPUT_RESULT.md).
 Task 146 is accepted through PR #179, head
 `f60e6f4`, identical-tree merge `4b501a7`. Both complete CI logs pass 1,157 tests,
