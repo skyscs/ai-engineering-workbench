@@ -1,6 +1,8 @@
 # Task 143 — Pin and test a standalone browser environment
 
-Status: planned after Task 142 acceptance.
+Status: prospective control after Task 142 acceptance (PR #175, merge `98dc39e`).
+See [the control method](../docs/loredock/PINNED_BROWSER_ELIGIBILITY.md) and
+[fixed plan](../scripts/loredock-browser-eligibility/plan.mjs).
 
 Follow [ADR 0065](../docs/decisions/0065-loredock-resource-observation-boundary.md).
 This is a new ordinary browser-environment control, independent of blocked daemon
