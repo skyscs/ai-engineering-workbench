@@ -22,6 +22,8 @@ The ordinary driver opens only `about:blank`, observes thirty idle seconds and c
 the browser through the existing collector. No daemon, application page or model runs.
 Retain full raw samples, phase clocks, process identities/roles and actual cleanup.
 Any missing observation, error, survivor or over-limit value prevents eligibility.
+Check actual sample-start and start/end gaps against the original at-most-100-ms
+sampling requirement; a nominal `setInterval(100)` is not proof of that cadence.
 An eligible result would support planning a separate application-page control only;
 it cannot qualify application memory, browser responsiveness or the full prepared flow.
 
