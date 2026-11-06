@@ -1,0 +1,106 @@
+{
+  "task": 149,
+  "acceptedTask148": {
+    "pr": 181,
+    "head": "ba4d2803d0cb3343b2ed0b02a561e858f99b4aa6",
+    "merge": "082c11943beea139f5e42b6c3428755590b4d45c",
+    "identicalTree": true
+  },
+  "ci": [
+    {
+      "event": "push",
+      "run": 42284050973,
+      "job": 128120163598,
+      "head": "ba4d2803d0cb3343b2ed0b02a561e858f99b4aa6",
+      "conclusion": "success",
+      "tests": [
+        17,
+        18,
+        43,
+        728,
+        57,
+        306
+      ],
+      "total": 1169,
+      "failures": 0,
+      "cancelled": 0,
+      "typechecks": 10,
+      "finalBuilds": 10,
+      "log": "/home/toshiba/aew/task148-ci-push-final.log",
+      "bytes": 649244,
+      "sha256": "be7b9669a2654f3f9cd674003f355156ff97c96ab1dd5f2163b8a50ad8122ac7"
+    },
+    {
+      "event": "pull_request",
+      "run": 42284111597,
+      "job": 128120374076,
+      "head": "ba4d2803d0cb3343b2ed0b02a561e858f99b4aa6",
+      "conclusion": "success",
+      "tests": [
+        17,
+        18,
+        43,
+        728,
+        57,
+        306
+      ],
+      "total": 1169,
+      "failures": 0,
+      "cancelled": 0,
+      "typechecks": 10,
+      "finalBuilds": 10,
+      "log": "/home/toshiba/aew/task148-ci-pr-final.log",
+      "bytes": 650289,
+      "sha256": "ade7aca3d5d0b1b91c3b86e9f2b11a49b6d5ed2e9c45c1dce51d9752bdd0ef0d"
+    }
+  ],
+  "logs": [
+    {
+      "path": "logs/task148-ci-push-final.log.gz",
+      "bytes": 649244,
+      "sha256": "be7b9669a2654f3f9cd674003f355156ff97c96ab1dd5f2163b8a50ad8122ac7",
+      "gzipSha256": "6519985fce6c70b5f783cbac782cb3c0114e585a8e5c4639e8d5e9c89499bc8f"
+    },
+    {
+      "path": "logs/task148-ci-pr-final.log.gz",
+      "bytes": 650289,
+      "sha256": "ade7aca3d5d0b1b91c3b86e9f2b11a49b6d5ed2e9c45c1dce51d9752bdd0ef0d",
+      "gzipSha256": "32f6a89c46dfb0bfa6e923fe8233f9c7428aa9f2623489b4e4cd39f458279a8c"
+    }
+  ],
+  "proposal": "loredock-observable-resources/2-draft1",
+  "proposalAdopted": false,
+  "prerequisiteCasesExecuted": false,
+  "newResourceRuns": 0,
+  "modelCalls": 0,
+  "corporateSources": 0,
+  "productChanges": false,
+  "resourceQualification": false,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1509,
+      "sha256": "abb8e42fd3f197b506e6cbd94e30096281aec97c44d081e1e7e1c2e15a8ad592"
+    },
+    {
+      "path": "prerequisite-cases.json",
+      "bytes": 7088,
+      "sha256": "04e66a7e0e0fc32232562457547c627dcf9cb8509038b40710790f9641c49a95"
+    },
+    {
+      "path": "sources.json",
+      "bytes": 1030,
+      "sha256": "014f1bb39c618df8d8af3fe73cb49b3ad1b4b6d4ba8d6f5a8df036f3e001ecdd"
+    },
+    {
+      "path": "threshold-comparison.json",
+      "bytes": 11630,
+      "sha256": "bbd3b06be90fe31c1b812932203a50de60b1711b8c6350f259fdeea2df8d393e"
+    }
+  ],
+  "proposalDocument": {
+    "path": "docs/loredock/OBSERVABLE_RESOURCE_CONTRACT.md",
+    "bytes": 17676,
+    "sha256": "c8dfdb654065c02be11280e25a10e542ff4b81a523cce1e1d1d98baeec57ab8b"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "reviewedOn": "2026-11-06",
+  "scope": "Read-only primary documentation/source review; no cgroup capability probe or resource execution.",
+  "primaryReferences": [
+    {
+      "url": "https://docs.kernel.org/admin-guide/cgroup-v2.html#memory",
+      "sections": [
+        "Memory Interface Files",
+        "Memory Ownership",
+        "Delegation",
+        "cgroup.events",
+        "cgroup.kill"
+      ],
+      "finding": "Hierarchical charged memory/swap peaks differ from RSS; page-cache/shared charge ownership and lifetime retention limit the claim."
+    },
+    {
+      "url": "https://man7.org/linux/man-pages/man2/clone.2.html",
+      "section": "CLONE_INTO_CGROUP",
+      "finding": "A target cgroup descriptor can place a newly created child directly in cgroup v2, subject to permissions. This does not establish local capability or security compatibility."
+    }
+  ],
+  "retainedNodeAudit": "docs/loredock/PARSER_OBSERVATION_COVERAGE.md",
+  "retainedV1Evidence": "docs/fixtures/loredock-resource-gates/records.json"
+}

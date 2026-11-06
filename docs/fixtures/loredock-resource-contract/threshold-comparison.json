@@ -1,0 +1,339 @@
+{
+  "proposal": "loredock-observable-resources/2-draft1",
+  "status": "unadopted",
+  "v1Path": "fixtures/loredock-prepared-flow/protocol.json",
+  "v1Sha256": "dcbb9df45d33f9cdd40c13974e0841d9f43723560766ae4844e426642064d3ac",
+  "v1Units": "Bytes are UTF-8 or actual process/storage bytes as named; MiB is 1048576 bytes. Durations use monotonic clocks; limits are maxima, not percentiles.",
+  "numericComparisons": [
+    {
+      "v1Key": "daemonRssBytes",
+      "v1Value": 402653184,
+      "disposition": "replace-quantity",
+      "proposedKey": "daemonChargedMemoryPeakBytes",
+      "proposedValue": 402653184,
+      "meaning": "Creation-to-terminal cgroup memory.peak; original process RSS remains diagnostic."
+    },
+    {
+      "v1Key": "daemonHeapUsedBytes",
+      "v1Value": 67108864,
+      "disposition": "diagnostic-reference",
+      "proposedKey": "historicalAggregateHeapReferenceBytes",
+      "proposedValue": 67108864,
+      "meaning": "Remove the aggregate-heap acceptance predicate. Do not reinterpret the reference as a per-isolate limit or complete observation."
+    },
+    {
+      "v1Key": "daemonIntervalDelayMs",
+      "v1Value": 100,
+      "disposition": "preserve",
+      "proposedKey": "daemonIntervalDelayMs",
+      "proposedValue": 100,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "intervalPeriodMs",
+      "v1Value": 10,
+      "disposition": "preserve",
+      "proposedKey": "intervalPeriodMs",
+      "proposedValue": 10,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "browserProcessTreeRssBytes",
+      "v1Value": 1073741824,
+      "disposition": "replace-quantity",
+      "proposedKey": "browserChargedMemoryPeakBytes",
+      "proposedValue": 1073741824,
+      "meaning": "Creation-to-terminal cgroup memory.peak; complete browser scope, no baseline subtraction; original summed RSS remains diagnostic."
+    },
+    {
+      "v1Key": "browserMainThreadTaskMs",
+      "v1Value": 200,
+      "disposition": "preserve",
+      "proposedKey": "browserMainThreadTaskMs",
+      "proposedValue": 200,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "browserActionPaintMs",
+      "v1Value": 2000,
+      "disposition": "preserve",
+      "proposedKey": "browserActionPaintMs",
+      "proposedValue": 2000,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "browserIdleRequestsPerSecondMean",
+      "v1Value": 6,
+      "disposition": "preserve",
+      "proposedKey": "browserIdleRequestsPerSecondMean",
+      "proposedValue": 6,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "browserConcurrentRequests",
+      "v1Value": 8,
+      "disposition": "preserve",
+      "proposedKey": "browserConcurrentRequests",
+      "proposedValue": 8,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "coldListenMs",
+      "v1Value": 10000,
+      "disposition": "preserve",
+      "proposedKey": "coldListenMs",
+      "proposedValue": 10000,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "indexMs",
+      "v1Value": 300000,
+      "disposition": "preserve",
+      "proposedKey": "indexMs",
+      "proposedValue": 300000,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "analysisMs",
+      "v1Value": 300000,
+      "disposition": "preserve",
+      "proposedKey": "analysisMs",
+      "proposedValue": 300000,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "preparedReviewHttpMs",
+      "v1Value": 6000,
+      "disposition": "preserve",
+      "proposedKey": "preparedReviewHttpMs",
+      "proposedValue": 6000,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "perActualOperationWork",
+      "v1Value": 1000000,
+      "disposition": "preserve",
+      "proposedKey": "perActualOperationWork",
+      "proposedValue": 1000000,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "perActualOperationMs",
+      "v1Value": 5000,
+      "disposition": "preserve",
+      "proposedKey": "perActualOperationMs",
+      "proposedValue": 5000,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "controlledFindThroughHistoryMs",
+      "v1Value": 20000,
+      "disposition": "preserve",
+      "proposedKey": "controlledFindThroughHistoryMs",
+      "proposedValue": 20000,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "controlledFindThroughHistoryWork",
+      "v1Value": 6000000,
+      "disposition": "preserve",
+      "proposedKey": "controlledFindThroughHistoryWork",
+      "proposedValue": 6000000,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "readyStatusHttpMs",
+      "v1Value": 250,
+      "disposition": "preserve",
+      "proposedKey": "readyStatusHttpMs",
+      "proposedValue": 250,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "answerListHttpMs",
+      "v1Value": 500,
+      "disposition": "preserve",
+      "proposedKey": "answerListHttpMs",
+      "proposedValue": 500,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "answerListAggregateWork",
+      "v1Value": 1000000,
+      "disposition": "preserve",
+      "proposedKey": "answerListAggregateWork",
+      "proposedValue": 1000000,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "savedAnswerHttpMs",
+      "v1Value": 1500,
+      "disposition": "preserve",
+      "proposedKey": "savedAnswerHttpMs",
+      "proposedValue": 1500,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "cancelDrainMsExcludingDeclaredHold",
+      "v1Value": 2000,
+      "disposition": "preserve",
+      "proposedKey": "cancelDrainMsExcludingDeclaredHold",
+      "proposedValue": 2000,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "shutdownMsExcludingDeclaredHold",
+      "v1Value": 10000,
+      "disposition": "preserve",
+      "proposedKey": "shutdownMsExcludingDeclaredHold",
+      "proposedValue": 10000,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "reviewResponseBytes",
+      "v1Value": 1048576,
+      "disposition": "preserve",
+      "proposedKey": "reviewResponseBytes",
+      "proposedValue": 1048576,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "answerResponseBytes",
+      "v1Value": 1310720,
+      "disposition": "preserve",
+      "proposedKey": "answerResponseBytes",
+      "proposedValue": 1310720,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "answerListResponseBytes",
+      "v1Value": 65536,
+      "disposition": "preserve",
+      "proposedKey": "answerListResponseBytes",
+      "proposedValue": 65536,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "readyStatusResponseBytes",
+      "v1Value": 4096,
+      "disposition": "preserve",
+      "proposedKey": "readyStatusResponseBytes",
+      "proposedValue": 4096,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "witnessRowBytes",
+      "v1Value": 786432,
+      "disposition": "preserve",
+      "proposedKey": "witnessRowBytes",
+      "proposedValue": 786432,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "witnessRowsIncludingPurged",
+      "v1Value": 64,
+      "disposition": "preserve",
+      "proposedKey": "witnessRowsIncludingPurged",
+      "proposedValue": 64,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "witnessTotalBytes",
+      "v1Value": 50331648,
+      "disposition": "preserve",
+      "proposedKey": "witnessTotalBytes",
+      "proposedValue": 50331648,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "retainedPreparationBytes",
+      "v1Value": 1048576,
+      "disposition": "preserve",
+      "proposedKey": "retainedPreparationBytes",
+      "proposedValue": 1048576,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "promptBytes",
+      "v1Value": 98304,
+      "disposition": "preserve",
+      "proposedKey": "promptBytes",
+      "proposedValue": 98304,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "nativeAndLegacyDerivedBytes",
+      "v1Value": 8192,
+      "disposition": "preserve",
+      "proposedKey": "nativeAndLegacyDerivedBytes",
+      "proposedValue": 8192,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "sourceEvidenceBytes",
+      "v1Value": 65536,
+      "disposition": "preserve",
+      "proposedKey": "sourceEvidenceBytes",
+      "proposedValue": 65536,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "sourceEvidenceSpans",
+      "v1Value": 30,
+      "disposition": "preserve",
+      "proposedKey": "sourceEvidenceSpans",
+      "proposedValue": 30,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "catalogAndNativeHistoryBytes",
+      "v1Value": 536870912,
+      "disposition": "preserve",
+      "proposedKey": "catalogAndNativeHistoryBytes",
+      "proposedValue": 536870912,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "ownedEvaluationDirectoryBytes",
+      "v1Value": 2147483648,
+      "disposition": "preserve",
+      "proposedKey": "ownedEvaluationDirectoryBytes",
+      "proposedValue": 2147483648,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    },
+    {
+      "v1Key": "suiteWallMs",
+      "v1Value": 2400000,
+      "disposition": "preserve",
+      "proposedKey": "suiteWallMs",
+      "proposedValue": 2400000,
+      "meaning": "Same quantity, value, scope and acceptance meaning as v1."
+    }
+  ],
+  "newPredicates": [
+    {
+      "key": "runChargedMemoryPeakBytes",
+      "value": 1476395008,
+      "derivation": "402653184 + 1073741824; direct parent peak, not the sum of observed child peaks; includes control leaf."
+    },
+    {
+      "key": "scopeSwapPeakBytes",
+      "value": 0,
+      "scopes": [
+        "run",
+        "daemon",
+        "browser"
+      ],
+      "derivation": "No swapping credit for resident charged-memory acceptance; no swap limit modification."
+    }
+  ],
+  "nonnumericComparison": "docs/loredock/OBSERVABLE_RESOURCE_CONTRACT.md#complete-compatibility-comparison",
+  "executed": false,
+  "newObserverLimits": {
+    "requiredScopes": 3,
+    "maxInterfaceReadBytes": 4096,
+    "maxReceiptBytes": 1048576,
+    "maxPendingReceipts": 1,
+    "rationale": "Bounded reads and receipts for three fixed scope identities; detailed periodic telemetry remains in control. These are design input/retention limits, not measured footprint claims."
+  }
+}

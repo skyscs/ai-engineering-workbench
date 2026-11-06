@@ -1,6 +1,8 @@
 # Task 148 — Decide a feasible resource qualification path from retained evidence
 
-Status: retained-evidence assessment and decision complete; exact-head CI pending.
+Status: accepted through PR #181, head `ba4d280`, identical-tree merge `082c119`.
+Both complete CI logs pass 1,169 tests, ten typechecks and ten final builds; retained
+in the [Task 149 evidence](../docs/fixtures/loredock-resource-contract/README.md).
 Task 147 is accepted through PR #180, head `6e36976`, identical-tree merge `e673d43`,
 with both complete CI logs passing 1,169 tests, ten typechecks and ten final builds.
 [ADR 0067](../docs/decisions/0067-loredock-resource-gate-feasibility.md) stops undirected

@@ -1,7 +1,15 @@
 # Task 149 — Specify an observable resource contract for explicit review
 
-Status: scoped by [ADR 0067](../docs/decisions/0067-loredock-resource-gate-feasibility.md).
-Begin after Task 148 acceptance. Design only; no runtime, observer or product implementation.
+Status: design and documentation/evidence checks complete; exact-head CI pending.
+Task 148 is accepted through PR #181, head `ba4d280`, identical-tree merge `082c119`,
+with both full CI logs passing 1,169 tests, ten typechecks and ten final builds.
+The [proposal](../docs/loredock/OBSERVABLE_RESOURCE_CONTRACT.md) and
+[complete comparison/prerequisites](../docs/fixtures/loredock-resource-contract/README.md)
+are unadopted and unexecuted. [Task 150](150-loredock-resource-contract-review.md) supplies
+the separate review decision. No runtime, observer or product implementation occurs.
+Local review verifies all 38 numeric comparisons, 747 document links, proposal/evidence
+hashes, both retained CI logs and unchanged production/frozen inputs/normal checkout.
+Twenty prerequisite cases are specified; none has been executed by this design task.
 
 1. Write a concrete versioned proposal beside the unchanged original qualification contract.
    Define the user-facing resource objective, owned scope, measurement quantity, start/end
