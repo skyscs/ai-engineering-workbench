@@ -179,6 +179,20 @@ test('server shutdown joins startup before listen and releases the partial store
   const reopened = new CatalogStore(directory); reopened.close();
 });
 
+test('a ready handshake delivered after the server deadline cannot open its listener', async t => {
+  const directory = await mkdtemp(path.join(tmpdir(), 'loredock-server-late-')), server = new LoreDockServer({ directory, port: 0 });
+  t.after(async () => { await server.stop(); await rm(directory, { recursive: true, force: true }); });
+  const warm = server.catalog.parser.warm.bind(server.catalog.parser);
+  t.mock.method(server.catalog.parser, 'warm', async options => {
+    await warm(options);
+    // Controlled handoff delay after the real worker handshake and admission release.
+    Object.defineProperty(server, 'deadline', { value: performance.now() - 1 });
+  });
+  await assert.rejects(server.start(), { code: 'PARSER_DEADLINE' });
+  await server.stop(); assert.equal(server.catalog.parser.snapshot().owner!.owned, false);
+  const reopened = new CatalogStore(directory); reopened.close();
+});
+
 test('an old native inventory requires explicit reanalysis while its saved v2 witness stays exact and readable', async t => {
   const directory = await mkdtemp(path.join(tmpdir(), 'owned-parser-upgrade-'));
   const baseline = new URL('../../../docs/fixtures/loredock-async-legacy/baseline/', import.meta.url);

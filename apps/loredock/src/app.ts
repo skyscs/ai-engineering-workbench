@@ -212,7 +212,9 @@ export function createApp(catalog: Catalog, options: { publicDir?: string; devel
   app.onError((error, c) => {
     if (error instanceof CatalogError) return c.json({ error: { code: error.code, message: error.message } }, error.status);
     if (error instanceof FileParserError) return c.json({ error: { code: error.code,
-      message: 'Code parsing failed. Restart LoreDock before trying code analysis again.' } }, 409);
+      message: error.code === 'PARSER_DEADLINE' ? 'Code parsing exceeded this operation\'s time limit.'
+        : error.code === 'PARSER_CANCELLED' ? 'Code parsing was cancelled.'
+        : 'Code parsing failed. Restart LoreDock before trying code analysis again.' } }, 409);
     if (preparations && /^\/api\/(?:answers|prepared-answers|question-preparations)(?:\/|$)/.test(c.req.path)) {
       const question = preparedQuestionError(error);
       if (question) return c.json({ error: { code: question.code, message: question.message } }, question.status);

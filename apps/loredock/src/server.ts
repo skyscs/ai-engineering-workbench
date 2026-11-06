@@ -8,6 +8,7 @@ import { CodeAnalysis } from './code-analysis.js';
 import { CodeAnalysisFollow } from './code-analysis-follow.js';
 import { CodePathsV2 } from './code-paths-v2.js';
 import { NativeCaptures } from './native-capture.js';
+import { FileParserError } from './file-parser-protocol.js';
 
 interface ServerOptions { directory: string; publicDir?: string; development?: boolean; answers?: boolean; preparedAnswers?: boolean; port?: number }
 
@@ -41,6 +42,8 @@ export class LoreDockServer {
     this.controller.signal.throwIfAborted();
     await this.catalog.parser.warm({ deadline: this.deadline, signal: this.controller.signal });
     this.controller.signal.throwIfAborted();
+    if (performance.now() >= this.deadline) throw new FileParserError('PARSER_DEADLINE');
+    if (this.catalog.parser.snapshot().owner?.state !== 'ready') throw new FileParserError('PARSER_STATE');
     this.follow = new CodeAnalysisFollow(this.analysis); this.paths = new CodePathsV2(this.analysis);
     this.captures = new NativeCaptures(this.analysis, { paths: this.paths });
     if (this.options.answers) { this.preparations = new QuestionPreparations(this.analysis); this.answers = new Answers(this.catalog, undefined, this.preparations); }

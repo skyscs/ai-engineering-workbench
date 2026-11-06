@@ -15,7 +15,7 @@
     },
     "apps/loredock/src/app.ts": {
       "beforeSha256": "2df3b5bdfd7e2f3e9125d8d3d972f96c8e0bc034de030b4588222b3d5cb2fdad",
-      "afterSha256": "b45da59c9d255910bd8761bff65bf60e0f9ce2a6bb9ca3befad532cad4270e5b"
+      "afterSha256": "92d1a136e3877a409b92e9ce451f386ee6da440a84b50c2770fe5e9a195b9547"
     },
     "apps/loredock/src/candidate-links.ts": {
       "beforeSha256": "3009ecc911516c05f43f6514a1a16068a3b0fbde42f2403ccca7df8c3f5d8b6c",
@@ -183,6 +183,6 @@
   },
   "added": {
     "apps/loredock/src/file-parser-service.ts": "d6cd67c90635d1f4042c17c90e142cf14a3c7b07d3f66802eb2367f6a2b0887b",
-    "apps/loredock/src/server.ts": "20b70705dc8c7563f9ba8f9592eb79ca6a9bd56fb20476737241d835ef53d8cb"
+    "apps/loredock/src/server.ts": "1616b645be5b0e0bdbf8413a4cfd373015f37dbf13ab4e397f61d16c551ae3c7"
   }
 }
