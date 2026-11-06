@@ -1,9 +1,17 @@
 # Task 146 — Verify container security at the correct lifecycle boundary
 
-Status: implementation in progress after Task 145 acceptance (PR #178, merge `42830f5`).
-Sixteen focused owner/adapter/applied-security/input regressions cover fresh construction.
+Status: implementation and three actual preflights complete; the first launch attempt
+fails input verification before Chrome starts. Full local checks pass 1,157 tests;
+exact-head CI pending. See the [retained result](../docs/loredock/CONTAINER_SECURITY_RESULT.md).
+Task 145 is accepted through PR #178, identical-tree merge `42830f5`, with both complete
+CI logs passing 1,150 tests. Sixteen focused owner/adapter/applied-security/input regressions pass.
 See the [prospective controls](../scripts/loredock-container-browser/README.md) and
 [fixed plan](../scripts/loredock-container-browser/plan.json).
+
+The consumed first attempt discovers a root-owned `0700` empty browser directory, reaps
+its observer and stops cleanly with exit 1. There is no Chrome lifetime or RSS score.
+[Task 147](147-loredock-container-input-readability.md) fixes directory ownership and
+actual non-root input verification prospectively. No old attempt is retried.
 
 Task 145's first preflight creates one object but sends no start request. Docker 29.7.2
 returns an empty `AppArmorProfile` in state `created`; the controller's unconditional

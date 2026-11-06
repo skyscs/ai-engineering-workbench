@@ -1,6 +1,9 @@
 # Container browser eligibility: first preflight stopped before start
 
-Status: first preflight failed; no container process or browser was started.
+Status: Task 145 is accepted through PR #178 (head `e989891`, merge `42830f5`), with
+both complete CI logs passing 1,150 tests, ten typechecks and ten final builds.
+Its first preflight remains failed; no container process or browser was started.
+The later [Task 146 result](CONTAINER_SECURITY_RESULT.md) is recorded separately.
 
 [ADR 0066](../decisions/0066-loredock-independent-browser-container.md) was accepted through
 [PR #177](https://github.com/skyscs/ai-engineering-workbench/pull/177), head `54d7a9d`,
@@ -77,8 +80,8 @@ No user profile/cache or corporate source bytes enter these artifacts.
 Nine focused synthetic controller/adapter tests and the full local check pass **1,150 tests**
 (728 LoreDock, 287 scripts, 135 other package tests), ten typechecks and ten final builds,
 with no failures or cancellations. Those regressions do not grant runtime eligibility:
-the first actual preflight remains failed. Both complete exact-head CI logs are required
-before merge. Product source/emission, original collectors/API and resource ceilings remain
+the first actual preflight remains failed. Both complete exact-head CI logs passed before
+merge and are retained with Task 146's evidence. Product source/emission, original collectors/API and resource ceilings remain
 unchanged. Daemon aggregate heap/startup and application/full-flow gates remain blocked.
 
 [Task 146](../../tasks/146-loredock-container-security-lifecycle.md) corrects the security

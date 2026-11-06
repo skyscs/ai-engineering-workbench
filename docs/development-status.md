@@ -1,5 +1,30 @@
 # Development status
 
+## Task 146 — Applied security passes; browser input check fails
+
+Task 145 is accepted through [PR #178](https://github.com/skyscs/ai-engineering-workbench/pull/178),
+head `e989891`, identical-tree merge `42830f5`; both complete CI logs pass 1,150 tests,
+ten typechecks and ten final builds. Its first unstarted object remains untouched.
+
+Task 146 separates requested configuration from applied runtime security and checks the
+PID-1 process before spawning children. All three first normal/orphan/host-interruption
+preflights pass, including actual stop, enforced default security and no surviving children.
+The new image preserves the original dependency/runtime layers and exact staged file bytes.
+
+The committed first launch attempt fails before Chrome starts: an empty `0700` directory
+is root-owned in the image. The Node observer cannot traverse it. Docker confirms exit 1;
+the observer is reaped and no survivors remain. There are zero browser lifetimes/samples
+and no RSS score. The failure, consumed claim and exact inputs remain retained.
+See [the result](loredock/CONTAINER_SECURITY_RESULT.md) and
+[evidence](fixtures/loredock-container-security/README.md).
+
+Sixteen focused regressions and the full local check pass **1,157 tests**, ten typechecks
+and ten final builds. Both complete exact-head CI logs are required before merge.
+[Task 147](../tasks/147-loredock-container-input-readability.md) fixes image ownership
+and verifies directory metadata/readability as the actual non-root runtime user before
+another prospective control. Application bytes, original collectors/API, limits and all
+daemon/application/full-flow blockers remain unchanged. No real model or corporate input.
+
 ## Task 145 — Container owner and first preflight
 
 Task 144 is accepted through [PR #177](https://github.com/skyscs/ai-engineering-workbench/pull/177),
