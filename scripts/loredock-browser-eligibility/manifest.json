@@ -1902,6 +1902,11 @@
       "path": "scripts/loredock-browser-eligibility/observe.mjs",
       "bytes": 4069,
       "sha256": "2162b49de28bc9afffd7aa9717dee71d233f238ecf99908a4b5e3a825561a908"
+    },
+    {
+      "path": "scripts/loredock-browser-eligibility/launch.py",
+      "bytes": 4305,
+      "sha256": "663d31424b976ecc2271e7ecf195bf91f26509ed51ecb2ad6c3546ac1bffa7ea"
     }
   ]
 }
