@@ -15,7 +15,7 @@ const root=fileURLToPath(new URL('../',import.meta.url));
 const errorRecord=error=>({name:error.name??'Error',code:error.code??null,message:String(error.message??error)});
 const json=value=>JSON.stringify(value,null,2)+'\n';
 const sort=values=>values.sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b),'en'));
-const timed=fn=>{const start=performance.now(),value=fn();return {value,ms:performance.now()-start};};
+const timed=async fn=>{const start=performance.now(),value=await fn();return {value,ms:performance.now()-start};};
 
 export async function verifyCapacityContract() {
   const frozen=JSON.parse(await readFile(new URL('../fixtures/loredock-capacity/baseline.json',import.meta.url),'utf8'));
@@ -63,36 +63,38 @@ function assess(item,selected,sources,manifest) {
     scopeNecessaryConditionsMet:!missingRepositories.length&&sources.length<=item.maxCandidates};
 }
 
-function inspectQueries(services,fixture,catalog,build) {
+async function inspectQueries(services,fixture,catalog,build) {
   const {retrieveAnswerContext,sourceCandidatePreview,projectOrientation,codeFlows,declarationMap}=services;
   const {verify,stats}=originalVerifier(fixture,catalog,build);
-  const capture=fn=>{try{return {status:'available',...fn()};}catch(error){return {status:'unavailable',error:errorRecord(error)};}};
-  const orientation=capture(()=>{
-    const {value,ms}=timed(()=>projectOrientation(catalog,build.id));
+  const capture=async fn=>{try{return {status:'available',...await fn()};}catch(error){return {status:'unavailable',error:errorRecord(error)};}};
+  const orientation=await capture(async ()=>{
+    const {value,ms}=await timed(()=>projectOrientation(catalog,build.id));
     const evidence=Object.values(value.evidence).map(ref=>verify(ref.id));
     return {ms,version:value.adapterVersion,coverage:value.coverage,limits:value.limits,omissions:value.omissions,gaps:value.gaps,
       sources:value.sources.map(source=>({source:source.sourceName,revision:source.revision,readme:source.readme,
         context:source.context?{...source.context,evidenceIds:undefined}:null,reading:source.reading.map(link=>({kind:link.kind,path:link.path,evidence:link.evidenceIds.map(verify)}))})),evidence};
   });
-  const projections=Object.fromEntries([['code',codeFlows],['declarations',declarationMap]].map(([name,project])=>[name,capture(()=>{
-    const {value,ms}=timed(()=>project(catalog,build.id));
+  const projections={};
+  for (const [name,project] of [['code',codeFlows],['declarations',declarationMap]]) projections[name]=await capture(async ()=>{
+    const {value,ms}=await timed(()=>project(catalog,build.id));
     return {ms,version:value.adapterVersion,coverage:value.coverage,limits:value.limits,omissions:value.omissions,
       declarationOmissions:value.declarationOmissions??null,gaps:value.gaps,nodes:value.nodes.length,edges:value.edges.length,
       originals:sort(Object.values(value.evidence).map(ref=>verify(ref.id)))};
-  })]));
+  });
   const questions=[...routingCases.map(row=>({...row,question:row.description,group:'incident'})),...fixture.probes.map(row=>({...row,group:'exact-symbol'}))];
-  const results=questions.map(item=>({id:item.id,group:item.group,question:item.question,
+  const results=[];
+  for (const item of questions) results.push({id:item.id,group:item.group,question:item.question,
     expectedDecision:item.decision??'investigate-candidates',expectedGap:item.gap??null,automaticRoutingDecision:'not-implemented',
-    context:capture(()=>{
-      const {value,ms}=timed(()=>retrieveAnswerContext(catalog,item.question,build.id));
+    context:await capture(async ()=>{
+      const {value,ms}=await timed(async ()=>(await retrieveAnswerContext(catalog,item.question,build.id)));
       const selected=value.spans.map(span=>verify(span.id));
       assert.ok(value.spans.length<=value.limits.spans&&value.textBytes<=value.limits.textBytes);
       return {ms,selected,selectionHash:digest(JSON.stringify(selected)),textBytes:value.textBytes,limits:value.limits,
         terms:value.terms,expansionTerms:value.expansionTerms,mode:value.retrievalMode,gaps:value.gaps,
         ...assess(item,selected,[...new Set(selected.map(ref=>ref.source))],fixture.manifest)};
     }),
-    preview:capture(()=>{
-      const {value,ms}=timed(()=>sourceCandidatePreview(catalog,item.question,build.id));
+    preview:await capture(async ()=>{
+      const {value,ms}=await timed(async ()=>(await sourceCandidatePreview(catalog,item.question,build.id)));
       const source=row=>({source:row.sourceName,revision:row.revision,score:row.score,omittedSupport:row.omittedSupport,
         support:row.support.map(ref=>({...verify(ref.id),matchedTerms:ref.matchedTerms}))});
       const primary=value.suggested.map(source),otherMatches=value.otherMatches.map(source);
@@ -109,7 +111,7 @@ function inspectQueries(services,fixture,catalog,build) {
         omissions:{matches:value.omittedMatches,sources:value.related.omittedSources,links:value.related.omittedLinks},
         gaps:value.gaps,relatedGaps:value.related.gaps,
         ...assess(item,selected,[...primary,...related].map(row=>row.source),fixture.manifest)};
-    })}));
+    })});
   const summary=capacityQuerySummary(results,fixture.probes);
   return {status:'available',orientation,projections,results,summary,...stats()};
 }
@@ -174,7 +176,7 @@ export async function runCapacityBenchmark(services,outputDirectory) {
         finally {clearInterval(sample);clearInterval(progress);}
         // Persist indexing outcomes before expensive query/provenance inspection.
         report.stages[stage]=result;await checkpoint(`generation-${generation}`,report);
-        result.queries=result.build?.published?inspectQueries(services,fixture,catalog,result.build):{status:'unavailable',reason:'Index did not publish.'};
+        result.queries=result.build?.published?await inspectQueries(services,fixture,catalog,result.build):{status:'unavailable',reason:'Index did not publish.'};
         await checkpoint(`generation-${generation}`,report);
         process.stderr.write(`Generation ${generation} ${stage}: ${result.build?.status??'error'}; ${result.build?.coverage.indexed??0} indexed files.\n`);
         return result;

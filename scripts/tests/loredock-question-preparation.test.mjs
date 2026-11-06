@@ -44,7 +44,7 @@ function snapshot(owner, preview) {
 
 test('prepared context preserves legacy bytes, compact semantics and owned no-write behavior', async t => {
   const { fixture, owner: create } = await setup(t), owner = create();
-  const baseline = retrieveAnswerContext(fixture.catalog, question, fixture.buildId), before = fixture.counters(), legacy = fixture.legacyRows();
+  const baseline = await retrieveAnswerContext(fixture.catalog, question, fixture.buildId), before = fixture.counters(), legacy = fixture.legacyRows();
   const preview = await ready(owner);
   assert.equal(JSON.stringify(preview.context), JSON.stringify(baseline)); assert(preview.compact.item);
   assert.equal(preview.compact.item.schemaVersion, questionCompactVersion);

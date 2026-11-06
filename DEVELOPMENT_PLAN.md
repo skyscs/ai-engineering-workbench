@@ -517,10 +517,14 @@ with bounded ownership, actual exit joining and exact parser parity on pinned an
 minimum Node versions. Its first ordinary lifetime yields eight exact results, but
 delayed/missing external heap samples prevent memory qualification. The 139 existing
 emitted modules and production entry behavior remain unchanged.
-After exact-head checks and merge, [Task 137](tasks/137-loredock-async-legacy-consumers.md)
-migrates legacy consumers and accounting to explicit asynchronous phases before thread
-adoption. Whole-heap observer coverage, production integration and resource acceptance
-remain future gates; no measured failure or limit is waived.
+[Task 137](tasks/137-loredock-async-legacy-consumers.md) migrates legacy consumers and
+accounting to explicit asynchronous phases while retaining the direct parser. Eight
+prospective baseline cases preserve exact graph/context/review/prompt bytes and twenty-one
+saved answers; delayed-parser tests enforce cancellation, write epochs and synchronous
+commit fences. After exact-head checks and merge,
+[Task 138](tasks/138-loredock-production-file-parser.md) adopts the owner in both native
+and legacy paths and makes implementation initialization asynchronous. Whole-heap observer
+coverage and resource acceptance remain future gates; no measured failure or limit is waived.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation

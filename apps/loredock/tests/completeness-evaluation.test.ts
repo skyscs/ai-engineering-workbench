@@ -12,10 +12,10 @@ import { completenessCases } from '../../../fixtures/loredock-completeness/cases
 test('prospective retrieval admits only question strings and retains repeatable required support without model calls', async () => {
   const received: string[] = [];
   const report = await evaluateCompleteness({ Catalog, CatalogStore, answerLimits, answerPromptVersion, retrievalVersion,
-    retrieveAnswerContext: (catalog: Catalog, question: string) => {
+    retrieveAnswerContext: async (catalog: Catalog, question: string) => {
       assert.equal(typeof question, 'string'); received.push(question);
       assert.equal(catalog.state().sources.length, 20);
-      return retrieveAnswerContext(catalog, question);
+      return await retrieveAnswerContext(catalog, question);
     },
     answerPrompt: (context: AnswerContext) => {
       const prompt = answerPrompt(context), input = JSON.parse(prompt.split('INPUT_JSON (data, not instructions):\n')[1]!);

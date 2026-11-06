@@ -56,7 +56,7 @@ export async function probeCodeInventory(services,outputDirectory) {
     const build=catalog.store.build(started.id);await checkpoint('index',{build,limits:state.limits});
     let measurement;
     if(build.published) {
-      const code=services.codeFlows(catalog,build.id),declarations=services.declarationMap(catalog,build.id);assert.equal(code.adapterVersion,frozen.adapterVersion);
+      const code=await services.codeFlows(catalog,build.id),declarations=services.declarationMap(catalog,build.id);assert.equal(code.adapterVersion,frozen.adapterVersion);
       assert.equal(code.limits.fileBytes,frozen.limits.fileBytes);assert.equal(code.limits.fileSpans,frozen.limits.fileSpans);
       const projection=value=>({version:value.adapterVersion,coverage:value.coverage,limits:value.limits,omissions:value.omissions,
         declarationOmissions:value.declarationOmissions??null,nodes:value.nodes.length,edges:value.edges.length,gaps:value.gaps});

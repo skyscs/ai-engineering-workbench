@@ -1,0 +1,1658 @@
+{
+  "files": {
+    "apps/loredock/src/answer-context.ts": {
+      "beforeSha256": "2553c8f0d0de75687f83f2419fb52c590880615aca1d25d0725f7e479be672cb",
+      "afterSha256": "4bcc79738a6c81b555cddea768d97a4e1500caf8a1646b45a13f05e5639bd8c1",
+      "edits": [
+        {
+          "start": 7,
+          "delete": 0,
+          "insert": [
+            "import { LegacyReadOperation } from './legacy-read-operation.js';\n"
+          ]
+        },
+        {
+          "start": 59,
+          "delete": 1,
+          "insert": [
+            "export async function retrieveAnswerContext(catalog: Catalog, question: string, buildId?: string,\n",
+            "  operation = new LegacyReadOperation(catalog)): Promise<AnswerContext> {\n",
+            "  const input = operation.read(() => retrieveSourceContext(catalog, question, buildId));\n",
+            "  const interfaces = await answerInterfaces(catalog, input.buildId, input.spans.map(span => span.id), operation);\n",
+            "  return operation.read(() => {\n",
+            "    const context = { ...input, interfaces };\n",
+            "    fitAnswerInterfaces(context);\n",
+            "    return { ...context, inputHash: sha256(JSON.stringify(context)) };\n",
+            "  });\n",
+            "}\n",
+            "\n",
+            "function retrieveSourceContext(catalog: Catalog, question: string, buildId?: string) {\n"
+          ]
+        },
+        {
+          "start": 160,
+          "delete": 4,
+          "insert": [
+            "    spans, textBytes, limits: answerLimits, gaps, review: answerReviewContext(catalog, id, spans.map(span => span.id)) };\n",
+            "  return context;\n"
+          ]
+        },
+        {
+          "start": 186,
+          "delete": 1,
+          "insert": [
+            "export async function validateCitedAnswer(catalog: Catalog, context: AnswerContext, serialized: string,\n",
+            "  operation = new LegacyReadOperation(catalog)): Promise<CitedAnswer> {\n",
+            "  const issued = JSON.stringify(context);\n",
+            "  const answer = operation.read(() => validateAnswerOriginals(catalog, context, serialized));\n",
+            "  await assertAnswerInterfaces(catalog, context, operation);\n",
+            "  if (JSON.stringify(context) !== issued) throw new CatalogError('INPUT_CHANGED', 'The issued answer context changed during validation.', 409);\n",
+            "  operation.check(); return answer;\n",
+            "}\n",
+            "\n",
+            "function validateAnswerOriginals(catalog: Catalog, context: AnswerContext, serialized: string): CitedAnswer {\n"
+          ]
+        },
+        {
+          "start": 210,
+          "delete": 1,
+          "insert": []
+        }
+      ]
+    },
+    "apps/loredock/src/answer-interfaces.ts": {
+      "beforeSha256": "74bdab01c1cba0f3624ad33c9d6367b801a95fb423553bff3800ea383337fa2d",
+      "afterSha256": "80140463e2746608e7686cada1e4b44684269b5e9ac7f42131575cf12dedeb89",
+      "edits": [
+        {
+          "start": 8,
+          "delete": 0,
+          "insert": [
+            "import { LegacyReadOperation } from './legacy-read-operation.js';\n"
+          ]
+        },
+        {
+          "start": 51,
+          "delete": 2,
+          "insert": [
+            "export async function answerInterfaces(catalog: Catalog, buildId: string, evidenceIds: string[], operation = new LegacyReadOperation(catalog)) {\n",
+            "  const graph = await codeFlows(catalog, buildId, operation);\n",
+            "  return operation.read(() => selectAnswerInterfaces(graph, evidenceIds));\n"
+          ]
+        },
+        {
+          "start": 67,
+          "delete": 1,
+          "insert": [
+            "export async function assertAnswerInterfaces(catalog: Catalog, context: AnswerContext, operation = new LegacyReadOperation(catalog)) {\n"
+          ]
+        },
+        {
+          "start": 70,
+          "delete": 1,
+          "insert": [
+            "  const expected = { ...context, interfaces: await answerInterfaces(catalog, context.buildId, context.spans.map(span => span.id), operation) };\n",
+            "  operation.check();\n"
+          ]
+        }
+      ]
+    },
+    "apps/loredock/src/answers.ts": {
+      "beforeSha256": "a02b3f22447b6d05fcbfcbc223ea3f6588df2ccbb8c76da111f228959624a40b",
+      "afterSha256": "6ec6bb10870ce9086560b9db8e984e4b302b7de02ebe776717865ca277e7a0cb",
+      "edits": [
+        {
+          "start": 1,
+          "delete": 0,
+          "insert": [
+            "import { setImmediate as yieldTurn } from 'node:timers/promises';\n"
+          ]
+        },
+        {
+          "start": 13,
+          "delete": 0,
+          "insert": [
+            "import { LegacyReadOperation } from './legacy-read-operation.js';\n"
+          ]
+        },
+        {
+          "start": 39,
+          "delete": 0,
+          "insert": [
+            "  private admission: { controller: AbortController; done: Promise<AnswerAttempt> } | undefined;\n"
+          ]
+        },
+        {
+          "start": 105,
+          "delete": 1,
+          "insert": [
+            "  async start(requestId: string, question: string, buildId: string, inputHash: string): Promise<AnswerAttempt> {\n"
+          ]
+        },
+        {
+          "start": 112,
+          "delete": 2,
+          "insert": [
+            "    if (this.stopping || this.worker || this.admission) throw new CatalogError('BUSY', 'Another answer is active. Wait or cancel it first.', 409);\n",
+            "    const lease = reserveQuestionAnswer(this.catalog.store);\n",
+            "    const controller = new AbortController();\n",
+            "    const done = Promise.resolve().then(() => this.admit(requestId, question, buildId, inputHash, connection, payloadHash, controller.signal, lease))\n",
+            "      .finally(() => { if (this.admission?.done === done) this.admission = undefined; });\n",
+            "    this.admission = { controller, done };\n",
+            "    return done;\n",
+            "  }\n",
+            "  private async admit(requestId: string, question: string, buildId: string, inputHash: string, connection: TextConnection,\n",
+            "    payloadHash: string, signal: AbortSignal, lease: ReturnType<typeof reserveQuestionAnswer>): Promise<AnswerAttempt> {\n",
+            "    let launched = false;\n"
+          ]
+        },
+        {
+          "start": 115,
+          "delete": 1,
+          "insert": [
+            "      const operation = new LegacyReadOperation(this.catalog, undefined, signal);\n",
+            "      const context = await retrieveAnswerContext(this.catalog, question, buildId, operation);\n",
+            "      operation.check();\n",
+            "      if (this.stopping || signal.aborted) throw new CatalogError('SERVICE_STOPPED', 'Answer admission is stopping.', 409);\n"
+          ]
+        },
+        {
+          "start": 119,
+          "delete": 0,
+          "insert": [
+            "        lease.check();\n",
+            "        operation.check();\n",
+            "        assertAnswerReviewCurrent(this.catalog, context.review);\n"
+          ]
+        },
+        {
+          "start": 127,
+          "delete": 2,
+          "insert": [
+            "      this.launch(id, lease.release); launched = true; return this.get(id);\n",
+            "    } finally { if (!launched) lease.release(); }\n"
+          ]
+        },
+        {
+          "start": 151,
+          "delete": 1,
+          "insert": [
+            "    const done = yieldTurn().then(() => this.run(id, controller.signal)).finally(() => {\n"
+          ]
+        },
+        {
+          "start": 192,
+          "delete": 0,
+          "insert": [
+            "      if (this.row(id).status !== 'running' || controller.signal.aborted) return;\n",
+            "      const operation = new LegacyReadOperation(this.catalog, undefined, controller.signal);\n",
+            "      const answer = await validateCitedAnswer(this.catalog, context, output.text, operation);\n"
+          ]
+        },
+        {
+          "start": 195,
+          "delete": 1,
+          "insert": [
+            "        operation.check();\n"
+          ]
+        },
+        {
+          "start": 212,
+          "delete": 1,
+          "insert": [
+            "  async idle() { await this.admission?.done.catch(() => undefined); await this.worker?.done; }\n"
+          ]
+        },
+        {
+          "start": 215,
+          "delete": 0,
+          "insert": [
+            "    this.admission?.controller.abort();\n"
+          ]
+        }
+      ]
+    },
+    "apps/loredock/src/app.ts": {
+      "beforeSha256": "c38d264820f0b73b66ad407797038df72028d9f6bd359f498091cdccd1ae902e",
+      "afterSha256": "2df3b5bdfd7e2f3e9125d8d3d972f96c8e0bc034de030b4588222b3d5cb2fdad",
+      "edits": [
+        {
+          "start": 103,
+          "delete": 1,
+          "insert": [
+            "  app.get('/api/code-flows', async c => c.json(await codeFlows(catalog, c.req.query('buildId'))));\n"
+          ]
+        },
+        {
+          "start": 163,
+          "delete": 1,
+          "insert": [
+            "    return c.json(await sourceCandidatePreview(catalog, input.question, input.buildId as string | undefined, input.relatedOffset));\n"
+          ]
+        },
+        {
+          "start": 168,
+          "delete": 1,
+          "insert": [
+            "  app.post('/api/corrections', async c => c.json(await corrections.save(await body(c.req)), 201));\n"
+          ]
+        },
+        {
+          "start": 170,
+          "delete": 2,
+          "insert": [
+            "  app.get('/api/correction-reconciliation', async c => c.json(await reconciliation.preview(c.req.query('buildId'), c.req.query('fromBuildId'))));\n",
+            "  app.post('/api/corrections/reapply', async c => c.json(await reconciliation.reapply(await body(c.req)), 201));\n"
+          ]
+        },
+        {
+          "start": 194,
+          "delete": 1,
+          "insert": [
+            "      return c.json(await answers.preview(input.question, input.buildId as string | undefined));\n"
+          ]
+        },
+        {
+          "start": 199,
+          "delete": 1,
+          "insert": [
+            "      return c.json(await answers.start(input.requestId as string, input.question as string, input.buildId as string, input.inputHash as string), 202);\n"
+          ]
+        }
+      ]
+    },
+    "apps/loredock/src/candidate-links.ts": {
+      "beforeSha256": "7a09fbfb892044211e47fcb5bebe298161a63caa96d0ed7e85e8ca2b05d3cf0a",
+      "afterSha256": "3009ecc911516c05f43f6514a1a16068a3b0fbde42f2403ccca7df8c3f5d8b6c",
+      "edits": [
+        {
+          "start": 9,
+          "delete": 0,
+          "insert": [
+            "import { LegacyReadOperation } from './legacy-read-operation.js';\n"
+          ]
+        },
+        {
+          "start": 37,
+          "delete": 1,
+          "insert": [
+            "  projections: { code: { version: string; inputHash: string; coverage: Awaited<ReturnType<typeof codeFlows>>['coverage']; omissions: Record<string, number> };\n"
+          ]
+        },
+        {
+          "start": 104,
+          "delete": 1,
+          "insert": [
+            "export async function candidateLinkContext(catalog: Catalog, context: AnswerContext, selection: CandidateSelection, pageOffset: unknown = 0,\n",
+            "  operation = new LegacyReadOperation(catalog)): Promise<CandidateLinkContext> {\n",
+            "  const code = await codeFlows(catalog, context.buildId, operation);\n",
+            "  return operation.read(() => composeCandidateLinks(catalog, context, selection, code, pageOffset));\n",
+            "}\n",
+            "\n",
+            "function composeCandidateLinks(catalog: Catalog, context: AnswerContext, selection: CandidateSelection,\n",
+            "  code: Awaited<ReturnType<typeof codeFlows>>, pageOffset: unknown): CandidateLinkContext {\n"
+          ]
+        },
+        {
+          "start": 106,
+          "delete": 1,
+          "insert": [
+            "  const declarations = declarationMap(catalog, context.buildId);\n"
+          ]
+        }
+      ]
+    },
+    "apps/loredock/src/catalog.ts": {
+      "beforeSha256": "3090744fab54813a462321d421c084f1738dbf6b3fb0a2816d8155aca3c43018",
+      "afterSha256": "f6e34fff644ca70cd2debff9eda481ec8f8162bed92200638e9e436e0e15e935",
+      "edits": [
+        {
+          "start": 16,
+          "delete": 0,
+          "insert": [
+            "  assertReading() { if (this.stopping) throw new CatalogError('SERVICE_STOPPED', 'The catalog is stopping.', 409); }\n"
+          ]
+        }
+      ]
+    },
+    "apps/loredock/src/code-flows.ts": {
+      "beforeSha256": "c94ed41d6cbc86e26f7997b852eb92df32e2fb3e443a044559a52c4d80274a7f",
+      "afterSha256": "9a52a99d1a18bc78d5acc5a201fba3b36940171689ff8e40bf32b2344f442c78",
+      "edits": [
+        {
+          "start": 3,
+          "delete": 2,
+          "insert": [
+            "import { parseLegacyFile, type LegacyFileInput } from './legacy-file-parser.js';\n",
+            "import { LegacyReadOperation } from './legacy-read-operation.js';\n"
+          ]
+        },
+        {
+          "start": 21,
+          "delete": 1,
+          "insert": [
+            "export async function codeFlows(catalog: Catalog, buildId?: string, operation = new LegacyReadOperation(catalog)): Promise<CodeFlows> {\n",
+            "  const projection = composeCodeFlows(catalog, buildId);\n",
+            "  try {\n",
+            "    let step = operation.read(() => projection.next());\n",
+            "    while (!step.done) {\n",
+            "      // No SQL transaction or lexical scope crosses this parser boundary.\n",
+            "      const facts = await parseLegacyFile(step.value);\n",
+            "      step = operation.read(() => projection.next(facts));\n",
+            "    }\n",
+            "    return step.value;\n",
+            "  } finally { projection.return(undefined as never); }\n",
+            "}\n",
+            "\n",
+            "/** Each synchronous segment reads bounded originals or composes deterministic facts. */\n",
+            "function* composeCodeFlows(catalog: Catalog, buildId?: string): Generator<LegacyFileInput, CodeFlows, CodeFacts> {\n"
+          ]
+        },
+        {
+          "start": 73,
+          "delete": 1,
+          "insert": [
+            "    const facts = yield { content, path: file.path };\n"
+          ]
+        }
+      ]
+    },
+    "apps/loredock/src/corrections.ts": {
+      "beforeSha256": "798f30324dee9d6677ff65d8b3d467790123943689c150dc07904372cd000001",
+      "afterSha256": "7957c6319655bd10fb504aafa42bde00a46148c593b0ebee4ec73b1ee8da53ea",
+      "edits": [
+        {
+          "start": 3,
+          "delete": 0,
+          "insert": [
+            "import { LegacyReadOperation } from './legacy-read-operation.js';\n"
+          ]
+        },
+        {
+          "start": 133,
+          "delete": 1,
+          "insert": [
+            "  async save(value: unknown): Promise<CorrectionSummary> {\n"
+          ]
+        },
+        {
+          "start": 138,
+          "delete": 1,
+          "insert": [
+            "  async reapply(value: CorrectionInput, payloadHash: string, sourceCorrectionId: string, previewHash: string): Promise<CorrectionSummary> {\n"
+          ]
+        },
+        {
+          "start": 141,
+          "delete": 1,
+          "insert": [
+            "  private async write(input: CorrectionInput, payloadHash: string, origin?: { sourceCorrectionId: string; previewHash: string }): Promise<CorrectionSummary> {\n"
+          ]
+        },
+        {
+          "start": 144,
+          "delete": 0,
+          "insert": [
+            "    const operation = new LegacyReadOperation(this.catalog);\n",
+            "    operation.check();\n"
+          ]
+        },
+        {
+          "start": 146,
+          "delete": 1,
+          "insert": [
+            "    const projection = input.targetKind === 'code-link' ? await codeFlows(this.catalog, build.id, operation) : declarationMap(this.catalog, build.id);\n",
+            "    operation.check();\n"
+          ]
+        },
+        {
+          "start": 162,
+          "delete": 1,
+          "insert": [
+            "      const code = 'flows' in projection ? projection : await codeFlows(this.catalog, build.id, operation);\n",
+            "      operation.check();\n"
+          ]
+        },
+        {
+          "start": 169,
+          "delete": 0,
+          "insert": [
+            "      const replay = this.replay(input.requestId, payloadHash); if (replay) return replay;\n"
+          ]
+        },
+        {
+          "start": 173,
+          "delete": 0,
+          "insert": [
+            "      operation.check();\n",
+            "      this.catalog.readBuild(build.id);\n",
+            "      if (this.revoked(build.id)) throw new CatalogError('SOURCE_CHANGED', 'Index the remaining sources before adding corrections.', 409);\n"
+          ]
+        }
+      ]
+    },
+    "apps/loredock/src/prepared-answer.ts": {
+      "beforeSha256": "8855adb35d574f29040d807d122fd199c58a8e4916ba1220253d7ec74294748a",
+      "afterSha256": "bdb50939edc0f09b48b3f7684f48e80f1dff2c7b661352014a451195fd960428",
+      "edits": [
+        {
+          "start": 7,
+          "delete": 2,
+          "insert": [
+            "import { citedAnswerSchema } from './answer-context.js';\n"
+          ]
+        },
+        {
+          "start": 22,
+          "delete": 1,
+          "insert": [
+            "  const phase = async (expected: string, finalize: NonNullable<QuestionValidationOptions['finalize']>, answer?: string) => {\n"
+          ]
+        },
+        {
+          "start": 27,
+          "delete": 1,
+          "insert": [
+            "      await validateQuestionWitness(catalog, snapshot, controller.signal, { budget, ...(answer === undefined ? {} : { answer }), finalize: boundary => {\n"
+          ]
+        },
+        {
+          "start": 57,
+          "delete": 1,
+          "insert": [
+            "    await phase('running', ({ answer, check }) => {\n"
+          ]
+        },
+        {
+          "start": 60,
+          "delete": 2,
+          "insert": [
+            "        if (!answer) throw new CatalogError('INVALID_ANSWER', 'A validated answer is required for publication.', 422);\n"
+          ]
+        },
+        {
+          "start": 66,
+          "delete": 1,
+          "insert": [
+            "    }, output.text);\n"
+          ]
+        }
+      ]
+    },
+    "apps/loredock/src/question-preparation.ts": {
+      "beforeSha256": "588fceb83bd16ef5233c5a0e37d3aa24c94b0381c287725153f174928b6fa0b7",
+      "afterSha256": "eec9ee056d7eae53ea14dc25462e9060533496c8c017c5f6d3d5bcd1c7e3731c",
+      "edits": [
+        {
+          "start": 7,
+          "delete": 1,
+          "insert": [
+            "import { LegacyReadOperation } from './legacy-read-operation.js';\n"
+          ]
+        },
+        {
+          "start": 47,
+          "delete": 1,
+          "insert": [
+            "  return { release: () => { if (shared.answer === token) delete shared.answer; },\n",
+            "    check: () => { if (shared.stopped || shared.answer !== token) fail('QUESTION_LEASE_EXPIRED', 'This answer reservation ended.'); } };\n"
+          ]
+        },
+        {
+          "start": 59,
+          "delete": 1,
+          "insert": [
+            "  private observation: { id: string; budget: ReturnType<OperationBudget['stats']> | null; lexical: ReturnType<LegacyReadOperation['stats']> | null; nativeReads: number } | null = null;\n"
+          ]
+        },
+        {
+          "start": 131,
+          "delete": 1,
+          "insert": [
+            "    let budget: OperationBudget | undefined, lexical: LegacyReadOperation | undefined, paths: CodePathsV2 | undefined, nativeReads = 0;\n"
+          ]
+        },
+        {
+          "start": 137,
+          "delete": 1,
+          "insert": [
+            "      lexical = new LegacyReadOperation(catalog, budget, signal);\n"
+          ]
+        },
+        {
+          "start": 139,
+          "delete": 1,
+          "insert": [
+            "      const context = await store.withPreparedReads(() => retrieveAnswerContext(catalog, question, buildId, account));\n"
+          ]
+        }
+      ]
+    },
+    "apps/loredock/src/question-witness.ts": {
+      "beforeSha256": "66093cda1525c842dbaa043316dfad8c0eb7aebf53dbeab0c1b37e666f1f498f",
+      "afterSha256": "739bc993a47fa2bd2add2c1940c69834157b41d2b4b54bf2c37946afab07adae",
+      "edits": [
+        {
+          "start": 2,
+          "delete": 1,
+          "insert": [
+            "import { answerLimits, retrievalVersion, validateCitedAnswer, type CitedAnswer } from './answer-context.js';\n"
+          ]
+        },
+        {
+          "start": 7,
+          "delete": 1,
+          "insert": [
+            "import { LegacyReadOperation } from './legacy-read-operation.js';\n"
+          ]
+        },
+        {
+          "start": 81,
+          "delete": 1,
+          "insert": [
+            "  answer?: string;\n",
+            "  finalize?: (input: { context: AnswerContext; witness: QuestionWitness; budget: OperationBudget; check: () => void; answer?: CitedAnswer }) => unknown;\n"
+          ]
+        },
+        {
+          "start": 108,
+          "delete": 2,
+          "insert": [
+            "    const lexical = new LegacyReadOperation(catalog, budget, signal);\n",
+            "    await assertAnswerInterfaces(catalog, context, lexical);\n",
+            "    const answer = options.answer === undefined ? undefined : await validateCitedAnswer(catalog, context, options.answer, lexical);\n"
+          ]
+        },
+        {
+          "start": 117,
+          "delete": 1,
+          "insert": [
+            "    lexical.check();\n",
+            "    const result = options.finalize?.({ context, witness, budget, check: () => { work.check(); lexical.check(); }, ...(answer ? { answer } : {}) });\n"
+          ]
+        }
+      ]
+    },
+    "apps/loredock/src/reconciliation.ts": {
+      "beforeSha256": "a68162812fb3bd42f75c735348fab5d7ac0e1bdb57380634687dd275d74844b4",
+      "afterSha256": "fae539b73730f5910fc354bdf146810f8d3f7a59289ffcbeea3e6ef17a6a94fe",
+      "edits": [
+        {
+          "start": 4,
+          "delete": 0,
+          "insert": [
+            "import { LegacyReadOperation } from './legacy-read-operation.js';\n"
+          ]
+        },
+        {
+          "start": 50,
+          "delete": 1,
+          "insert": [
+            "  async preview(buildId?: string, fromBuildId?: string): Promise<ReconciliationPreview> {\n",
+            "    const operation = new LegacyReadOperation(this.catalog);\n",
+            "    operation.check();\n"
+          ]
+        },
+        {
+          "start": 88,
+          "delete": 1,
+          "insert": [
+            "      const graph = async (id: string, kind: CorrectionTarget) => {\n"
+          ]
+        },
+        {
+          "start": 90,
+          "delete": 1,
+          "insert": [
+            "        if (!value) { value = kind === 'code-link' ? await codeFlows(this.catalog, id, operation) : declarationMap(this.catalog, id); graphs.set(key, value); }\n",
+            "        operation.check();\n"
+          ]
+        },
+        {
+          "start": 119,
+          "delete": 1,
+          "insert": [
+            "          const oldGraph = await graph(selected, source.targetKind), newGraph = await graph(target.id, source.targetKind);\n",
+            "          operation.check();\n"
+          ]
+        },
+        {
+          "start": 156,
+          "delete": 0,
+          "insert": [
+            "    operation.check();\n"
+          ]
+        },
+        {
+          "start": 159,
+          "delete": 1,
+          "insert": [
+            "  async reapply(value: unknown) {\n"
+          ]
+        },
+        {
+          "start": 162,
+          "delete": 1,
+          "insert": [
+            "    const source = this.corrections.inspect(input.sourceCorrectionId), preview = await this.preview(input.buildId, source.buildId);\n"
+          ]
+        }
+      ]
+    },
+    "apps/loredock/src/source-candidates.ts": {
+      "beforeSha256": "0e5c742c6820165fdeef672960909d16be29ae5daa787560f571942499ec69ca",
+      "afterSha256": "0544c70580f1e4084ca3f4d3c28acd6b79cb605901415a4e36a4cc1419f37e4d",
+      "edits": [
+        {
+          "start": 2,
+          "delete": 0,
+          "insert": [
+            "import { LegacyReadOperation } from './legacy-read-operation.js';\n"
+          ]
+        },
+        {
+          "start": 71,
+          "delete": 1,
+          "insert": [
+            "export async function sourceCandidatePreview(catalog: Catalog, question: string, buildId?: string, pageOffset: unknown = 0): Promise<CandidatePreview> {\n",
+            "  const operation = new LegacyReadOperation(catalog);\n"
+          ]
+        },
+        {
+          "start": 73,
+          "delete": 2,
+          "insert": [
+            "  const context = await retrieveAnswerContext(catalog, question, buildId, operation), selection = selectSourceCandidates(context);\n",
+            "  const related = await candidateLinkContext(catalog, context, selection, offset, operation);\n",
+            "  return operation.read(() => {\n"
+          ]
+        },
+        {
+          "start": 93,
+          "delete": 0,
+          "insert": [
+            "  });\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-answer-evaluation.mjs": {
+      "beforeSha256": "8e8d953c38c0c014eb76ef4927bf1bf945b4a64435c80964931c43ec091f64a6",
+      "afterSha256": "f0390227d3e2aabf63cbd674a7fe658ea7fb5abb629a306cb5b46b75d9a37731",
+      "edits": [
+        {
+          "start": 36,
+          "delete": 2,
+          "insert": [
+            "    const context = await answers.preview(question.question);\n",
+            "    const started = await answers.start(question.id, question.question, context.buildId, context.inputHash);\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-answer-interfaces-smoke.mjs": {
+      "beforeSha256": "50360eb0d4294f524578b8509e2683cdf3d0f74fe137d66924a0092b3bc4a567",
+      "afterSha256": "d46150766977b0318d776880bfc6c65b336725da81ec5058677bd752acf23ee4",
+      "edits": [
+        {
+          "start": 105,
+          "delete": 1,
+          "insert": [
+            "  const answerPreview = await answers.preview(questionText), gap = answerPreview.interfaces.comparisons.find(item => item.headerCheck.status === 'gap');\n"
+          ]
+        },
+        {
+          "start": 140,
+          "delete": 1,
+          "insert": [
+            "  const refreshed = await answers.preview(questionText), legacy = await answers.start('legacy-example',questionText,refreshed.buildId,refreshed.inputHash);\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-answer-smoke.mjs": {
+      "beforeSha256": "97b9b2eba71490a556e6306740a919d36f6d471a423dc7d3f1f9ad03f4339764",
+      "afterSha256": "1345bb9bfdfc1396011f841e2b5329fdc8ed5de1917ede8055ebcc521ad2f640",
+      "edits": [
+        {
+          "start": 123,
+          "delete": 2,
+          "insert": [
+            "  async function review(action = 'dispute', statement = 'ReviewBrokerMarker: verify deployment wiring. <script>window.reviewInjected=true</script>') {\n",
+            "    const corrections = new Corrections(catalog), projection = await codeFlows(catalog);\n"
+          ]
+        },
+        {
+          "start": 127,
+          "delete": 1,
+          "insert": [
+            "    return await corrections.save({ requestId: crypto.randomUUID(), buildId: projection.buildId, targetKind: 'code-link', targetId: edge.id,\n"
+          ]
+        },
+        {
+          "start": 132,
+          "delete": 1,
+          "insert": [
+            "  const originalNote = await review(); await reviewSeen();\n"
+          ]
+        },
+        {
+          "start": 144,
+          "delete": 1,
+          "insert": [
+            "  await review('clarify', 'RevisedBrokerMarker: the original candidate still needs deployment evidence.'); await reviewSeen();\n"
+          ]
+        },
+        {
+          "start": 153,
+          "delete": 1,
+          "insert": [
+            "  await review('withdraw'); await reviewSeen();\n"
+          ]
+        },
+        {
+          "start": 175,
+          "delete": 1,
+          "insert": [
+            "  await review(); await reviewSeen();\n"
+          ]
+        },
+        {
+          "start": 183,
+          "delete": 1,
+          "insert": [
+            "  await review('clarify', 'LateReviewMarker: updated while the preview response was held.'); await reviewSeen();\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-candidate-evaluation.mjs": {
+      "beforeSha256": "ef9a892b9d7676f8489795410de02ccbb7a08e865719c79cc5b42596dc4e89a9",
+      "afterSha256": "6d4c2cd56099335b4490c571166a87cf3228e52c301a95fed5fa64a87fdced05",
+      "edits": [
+        {
+          "start": 14,
+          "delete": 2,
+          "insert": [
+            "  retrieveAnswerContext:async (catalog,question)=>{\n",
+            "    const context=await retrieveAnswerContext(catalog,question),before=JSON.stringify(context),selection=selectSourceCandidates(context);\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-candidate-links-evaluation.mjs": {
+      "beforeSha256": "b473e860ed6bcf6752eb05cbb583eecedb2bdf3bd2d8b77bca835d4620238249",
+      "afterSha256": "840672c5e843839feafc04d5be3662ab957f22e47bf210b2378c7fdb06c85a21",
+      "edits": [
+        {
+          "start": 20,
+          "delete": 3,
+          "insert": [
+            "  retrieveAnswerContext:async (catalog,question)=>{\n",
+            "    const context=await retrieveAnswerContext(catalog,question),before=JSON.stringify(context),selection=selectSourceCandidates(context),started=performance.now();\n",
+            "    const links=await candidateLinkContext(catalog,context,selection),linkMs=performance.now()-started;\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-capacity-benchmark.mjs": {
+      "beforeSha256": "57453cb79cd95032cecefc8931126211c0b69a2ad1c0015118a5237cd51b9ee9",
+      "afterSha256": "be0c46cbdc7cf95b94e3de153e38240811a0a98e7fa6647825a28def1810ecc7",
+      "edits": [
+        {
+          "start": 17,
+          "delete": 1,
+          "insert": [
+            "const timed=async fn=>{const start=performance.now(),value=await fn();return {value,ms:performance.now()-start};};\n"
+          ]
+        },
+        {
+          "start": 65,
+          "delete": 1,
+          "insert": [
+            "async function inspectQueries(services,fixture,catalog,build) {\n"
+          ]
+        },
+        {
+          "start": 68,
+          "delete": 3,
+          "insert": [
+            "  const capture=async fn=>{try{return {status:'available',...await fn()};}catch(error){return {status:'unavailable',error:errorRecord(error)};}};\n",
+            "  const orientation=await capture(async ()=>{\n",
+            "    const {value,ms}=await timed(()=>projectOrientation(catalog,build.id));\n"
+          ]
+        },
+        {
+          "start": 76,
+          "delete": 2,
+          "insert": [
+            "  const projections={};\n",
+            "  for (const [name,project] of [['code',codeFlows],['declarations',declarationMap]]) projections[name]=await capture(async ()=>{\n",
+            "    const {value,ms}=await timed(()=>project(catalog,build.id));\n"
+          ]
+        },
+        {
+          "start": 81,
+          "delete": 1,
+          "insert": [
+            "  });\n"
+          ]
+        },
+        {
+          "start": 83,
+          "delete": 1,
+          "insert": [
+            "  const results=[];\n",
+            "  for (const item of questions) results.push({id:item.id,group:item.group,question:item.question,\n"
+          ]
+        },
+        {
+          "start": 85,
+          "delete": 2,
+          "insert": [
+            "    context:await capture(async ()=>{\n",
+            "      const {value,ms}=await timed(async ()=>(await retrieveAnswerContext(catalog,item.question,build.id)));\n"
+          ]
+        },
+        {
+          "start": 93,
+          "delete": 2,
+          "insert": [
+            "    preview:await capture(async ()=>{\n",
+            "      const {value,ms}=await timed(async ()=>(await sourceCandidatePreview(catalog,item.question,build.id)));\n"
+          ]
+        },
+        {
+          "start": 111,
+          "delete": 1,
+          "insert": [
+            "    })});\n"
+          ]
+        },
+        {
+          "start": 176,
+          "delete": 1,
+          "insert": [
+            "        result.queries=result.build?.published?await inspectQueries(services,fixture,catalog,result.build):{status:'unavailable',reason:'Index did not publish.'};\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-code-inventory-probe.mjs": {
+      "beforeSha256": "70424b5298400c312f08670af7f41cc315833c78f75327d51b81eea26694fdb0",
+      "afterSha256": "955a0deb812e2504f3e7466394216194346a98a55a7f0080e9e4bd978215d05f",
+      "edits": [
+        {
+          "start": 58,
+          "delete": 1,
+          "insert": [
+            "      const code=await services.codeFlows(catalog,build.id),declarations=services.declarationMap(catalog,build.id);assert.equal(code.adapterVersion,frozen.adapterVersion);\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-completeness.mjs": {
+      "beforeSha256": "c47a3def44f740b1b1b4e06af46a3b8350be9952e80617e80e32f1af84cd3135",
+      "afterSha256": "f907317f2d98c3ed9f4b26ec28a31fcbc7e0f0019c94c7776dba2bdc26731cac",
+      "edits": [
+        {
+          "start": 98,
+          "delete": 1,
+          "insert": [
+            "        const context = await retrieveAnswerContext(catalog, item.question), prompt = answerPrompt(context);\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-connected-probe.mjs": {
+      "beforeSha256": "069478ed87d76d535ab1ad5506f250fb859b310e29a2d9b985bce9d637c94129",
+      "afterSha256": "b24bab9b1049e73fe4f50de58729b8a31755359d2c5190d6aac0757551ba4a0d",
+      "edits": [
+        {
+          "start": 48,
+          "delete": 1,
+          "insert": [
+            "    value = mode === 'production' ? { status: 'available', graph: await services.codeFlows(state.catalog, buildId), payloads: [] }\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-correction-evaluation.mjs": {
+      "beforeSha256": "1766607d175a17e3cfe86eec0a4b76b1d13bb814f46a3674f7f7a357a8e70166",
+      "afterSha256": "c6134a99f352bfcb1ece34854fa3bc2e76922d9cff6e685d1d6fa1568815c4f4",
+      "edits": [
+        {
+          "start": 16,
+          "delete": 1,
+          "insert": [
+            "  const original = await codeFlows(catalog), originalMap = declarationMap(catalog), edge = original.edges.find(edge => edge.kind === 'event-delivery');\n"
+          ]
+        },
+        {
+          "start": 20,
+          "delete": 1,
+          "insert": [
+            "  const first = await corrections.save(input); assert.deepEqual(await corrections.save(input), first);\n"
+          ]
+        },
+        {
+          "start": 22,
+          "delete": 1,
+          "insert": [
+            "  const second = await corrections.save({ ...input, requestId: 'clarify', expectedRevision: 1, expectedPreviousId: first.id,\n"
+          ]
+        },
+        {
+          "start": 27,
+          "delete": 2,
+          "insert": [
+            "  assert.deepEqual(await codeFlows(catalog), original); assert.deepEqual(declarationMap(catalog), originalMap);\n",
+            "  const withdrawn = await corrections.save({ ...input, requestId: 'withdraw', expectedRevision: 2, expectedPreviousId: second.id,\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-durable-flow-probe.mjs": {
+      "beforeSha256": "3894fef6d718f8f3edc68e9dd32b91567806242d1501e6de4c5fb35b620eb983",
+      "afterSha256": "961e0630dccc5c2a945e1bc25d2b1df5c8fd4554c991b07fbf832fb7f02b6a9f",
+      "edits": [
+        {
+          "start": 63,
+          "delete": 2,
+          "insert": [
+            "async function captureControl(services, state, buildId) {\n",
+            "  const start = performance.now(), graph = await services.codeFlows(state.catalog, buildId), projectionMs = performance.now() - start;\n"
+          ]
+        },
+        {
+          "start": 119,
+          "delete": 1,
+          "insert": [
+            "    value = mode === 'control' ? await captureControl(services, state, buildId)\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-flow-evaluation.mjs": {
+      "beforeSha256": "63b75d796e7ba3127a8ba061aad37f14a83a828a80b3db3861b39a759151486b",
+      "afterSha256": "73264c321eb8fe98fff2f6a50843d9bbc39649c0f64d9e68d3f83a4baa197cd0",
+      "edits": [
+        {
+          "start": 14,
+          "delete": 2,
+          "insert": [
+            "  const value = await codeFlows(catalog);\n",
+            "  assert.equal(value.flows.length, 2); assert.equal(value.inputHash, (await codeFlows(catalog)).inputHash);\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-header-smoke.mjs": {
+      "beforeSha256": "76a6e8e0cb05d963df3f15d0b1613799eb193180a579083c5c5d0a0feb08df71",
+      "afterSha256": "33b0fc9cf80816f168630cf1a60e905e575506b4073be768514359840d886803",
+      "edits": [
+        {
+          "start": 92,
+          "delete": 1,
+          "insert": [
+            "  const graph = await codeFlows(catalog), comparisons = graph.edges.filter(edge => edge.headerCheck);\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-incident-context.mjs": {
+      "beforeSha256": "1d4e110122f35d3ffb5e362b969f776a9e2f00c1631950547228d0233d5aca28",
+      "afterSha256": "e5d7169609082f0f4f004fe19f80bb7aeb15dcb91b926ed072578faad1a55a57",
+      "edits": [
+        {
+          "start": 84,
+          "delete": 1,
+          "insert": [
+            "        time=performance.now();const context=await retrieveAnswerContext(catalog,item.description),contextMs=performance.now()-time;\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-interface-answers.mjs": {
+      "beforeSha256": "1fe637d69235e06da6ed218f989a2d4e03de4f6ea4aebaac98b635746505bfd0",
+      "afterSha256": "067e9ec693d12de0b443c32d7cdad261e116ed9e9b90a4e2ba02bec51010899d",
+      "edits": [
+        {
+          "start": 102,
+          "delete": 1,
+          "insert": [
+            "      const context = await answers.preview(question.question), originals = context.spans.map(span => catalog.evidence(span.id));\n"
+          ]
+        },
+        {
+          "start": 110,
+          "delete": 1,
+          "insert": [
+            "      const started = await answers.start(question.id, question.question, context.buildId, context.inputHash);\n"
+          ]
+        },
+        {
+          "start": 127,
+          "delete": 1,
+          "insert": [
+            "      assert.equal((await answers.start(replay.questionId, context.question, context.buildId, context.inputHash)).id, replay.attempt.id);\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-interface-qualification.mjs": {
+      "beforeSha256": "e506f0406ac5f71df399cea6744f4b71a64d2e802ff3229e95510ebead472ab4",
+      "afterSha256": "c3252d567642fe0eb1d83999595f075e866b001285c939240d69279aad5cb074",
+      "edits": [
+        {
+          "start": 41,
+          "delete": 1,
+          "insert": [
+            "        const context=await retrieveAnswerContext(catalog,item.question),prompt=answerPrompt(context),originals=context.spans.map(span=>catalog.evidence(span.id));\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-link-precision.mjs": {
+      "beforeSha256": "036420db095b19cc65ad4caead49ca63bf260bf39f1a69e099fffc43476f51a6",
+      "afterSha256": "fde57e9e677a280e66546b43b2fc5c8c1a8e2fb4afcf2b1e6a19cc42eddc52d2",
+      "edits": [
+        {
+          "start": 81,
+          "delete": 3,
+          "insert": [
+            "  const baseline=await evaluateIncidentContext({...services,retrieveAnswerContext:async (catalog,question)=>{\n",
+            "    const context=await retrieveAnswerContext(catalog,question),before=JSON.stringify(context),selection=selectSourceCandidates(context);\n",
+            "    const declarations=declarationMap(catalog,context.buildId),code=await codeFlows(catalog,context.buildId);\n"
+          ]
+        },
+        {
+          "start": 86,
+          "delete": 1,
+          "insert": [
+            "    const {projections,gaps,...actual}=await candidateLinkContext(catalog,context,selection);assert.deepEqual(v1,actual);\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-literal-topics/probe.mjs": {
+      "beforeSha256": "2422c7969e452facb9687c2e8a2670ba3dd05af84200f45ace4e0809668fe729",
+      "afterSha256": "df07fc88d8d8022e62acb69bce87dfc14397a18c92da2ce6e56257535648b4f1",
+      "edits": [
+        {
+          "start": 130,
+          "delete": 1,
+          "insert": [
+            "  const graph = await codeFlows(s.catalog, s.buildId), edge = graph.edges.find(item => item.kind === 'calls');\n"
+          ]
+        },
+        {
+          "start": 132,
+          "delete": 1,
+          "insert": [
+            "  await new Corrections(s.catalog).save({ requestId: 'owned-legacy-note', buildId: s.buildId, targetKind: 'code-link', targetId: edge.id,\n"
+          ]
+        },
+        {
+          "start": 135,
+          "delete": 1,
+          "insert": [
+            "  const context = await retrieveAnswerContext(s.catalog, 'How is a parcel queued?', s.buildId), id = randomUUID();\n"
+          ]
+        },
+        {
+          "start": 142,
+          "delete": 1,
+          "insert": [
+            "  return { context: JSON.stringify(context), graph: JSON.stringify(await codeFlows(s.catalog, s.buildId)), rows: s.legacyRows() };\n"
+          ]
+        },
+        {
+          "start": 265,
+          "delete": 2,
+          "insert": [
+            "    equal(JSON.stringify(await retrieveAnswerContext(s.catalog, 'How is a parcel queued?', s.buildId)), legacy.context);\n",
+            "    equal(JSON.stringify(await codeFlows(s.catalog, s.buildId)), legacy.graph); equal(s.legacyRows(), legacy.rows);\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-prospective-answers.mjs": {
+      "beforeSha256": "640773d89137b26804456301c1d2fbc207381553a40199d08e1b76dedb62a7cd",
+      "afterSha256": "70f64565a6afee7c0655f9ad2eddb30a322dd5d5dcb4eb81e2b766383ef4a443",
+      "edits": [
+        {
+          "start": 77,
+          "delete": 1,
+          "insert": [
+            "      const context = await answers.preview(question.question), originals = context.spans.map(span => catalog.evidence(span.id));\n"
+          ]
+        },
+        {
+          "start": 86,
+          "delete": 1,
+          "insert": [
+            "      const started = await answers.start(question.id, question.question, context.buildId, context.inputHash);\n"
+          ]
+        },
+        {
+          "start": 103,
+          "delete": 1,
+          "insert": [
+            "      assert.equal((await answers.start(replay.questionId, context.question, context.buildId, context.inputHash)).id, replay.attempt.id);\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-receipt-probe.mjs": {
+      "beforeSha256": "371f010d5ec21810c5698fd270fefda9fc79a87a26229688cd402bcef7013ab3",
+      "afterSha256": "54a24c786c44d2114cbe612b24c013da7f135991c39752564658fe5d28303d61",
+      "edits": [
+        {
+          "start": 98,
+          "delete": 1,
+          "insert": [
+            "  const graph = await codeFlows(s.catalog, s.buildId), edge = graph.edges.find(item => item.kind === 'calls');\n"
+          ]
+        },
+        {
+          "start": 100,
+          "delete": 1,
+          "insert": [
+            "  await new Corrections(s.catalog).save({ requestId: 'owned-legacy-note', buildId: s.buildId, targetKind: 'code-link', targetId: edge.id,\n"
+          ]
+        },
+        {
+          "start": 103,
+          "delete": 1,
+          "insert": [
+            "  const context = await retrieveAnswerContext(s.catalog, 'How is a seat booking placed?', s.buildId), id = randomUUID();\n"
+          ]
+        },
+        {
+          "start": 110,
+          "delete": 1,
+          "insert": [
+            "  return { context: JSON.stringify(context), graph: JSON.stringify(await codeFlows(s.catalog, s.buildId)), rows: s.legacyRows() };\n"
+          ]
+        },
+        {
+          "start": 149,
+          "delete": 2,
+          "insert": [
+            "    equal(JSON.stringify(await retrieveAnswerContext(s.catalog, 'How is a seat booking placed?', s.buildId)), legacy.context);\n",
+            "    equal(JSON.stringify(await codeFlows(s.catalog, s.buildId)), legacy.graph); equal(s.legacyRows(), legacy.rows);\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-reconciliation-evaluation.mjs": {
+      "beforeSha256": "6e1f79fc085d1578aa343819702c45a4ba41818bb71d5bc43162a80af12ae08d",
+      "afterSha256": "f5d484b75b678cc3fd64300978c162a12ae1c592ba20a0e461b3659f3bf7c318",
+      "edits": [
+        {
+          "start": 15,
+          "delete": 2,
+          "insert": [
+            "  const initial = await index('initial'), originalGraph = await codeFlows(catalog), edge = originalGraph.edges.find(edge => edge.kind === 'event-delivery');\n",
+            "  const original = await corrections.save({ requestId: 'original-review', buildId: initial.id, targetKind: 'code-link', targetId: edge.id, projectionHash: originalGraph.inputHash,\n"
+          ]
+        },
+        {
+          "start": 18,
+          "delete": 1,
+          "insert": [
+            "  const pinnedOriginal = corrections.inspect(original.id), unchanged = await index('unchanged'), preview = await reconciliation.preview();\n"
+          ]
+        },
+        {
+          "start": 21,
+          "delete": 4,
+          "insert": [
+            "  const reapplied = await reconciliation.reapply(request), current = corrections.inspect(reapplied.id);\n",
+            "  assert.deepEqual(reapplied.affectedFlowIds, (await codeFlows(catalog)).flows.map(flow => flow.id).sort());\n",
+            "  assert.deepEqual(corrections.inspect(original.id), pinnedOriginal); assert.deepEqual(await reconciliation.reapply(request), reapplied);\n",
+            "  const protectedPreview = await reconciliation.preview(); assert.equal(protectedPreview.entries[0].status, 'already-reviewed');\n"
+          ]
+        },
+        {
+          "start": 29,
+          "delete": 1,
+          "insert": [
+            "  const changed = await index('changed-support'), defaultPreview = await reconciliation.preview(), changedPreview = await reconciliation.preview(undefined, unchanged.id);\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-refresh-evaluation.mjs": {
+      "beforeSha256": "3d284b664daea1ac9bcdd1fd3bc0f6fd1c2e83ba80bc9cfba87dc78f83e8efd7",
+      "afterSha256": "69b970cceff623e72741b1a8aecfa10ac47a0d1850b9b2c8844371e9be3d1a78",
+      "edits": [
+        {
+          "start": 35,
+          "delete": 1,
+          "insert": [
+            "  assert.ok((await codeFlows(catalog)).nodes.some(node => node.label === 'audit.AuditConsumer.onMessage'));\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-retrieval-evaluation.mjs": {
+      "beforeSha256": "d568375fbc1fce4ff29b5d6919bd9d495f048e2bbd8873fe0ec61e7d653cca4d",
+      "afterSha256": "3eada033f69722040bbaa2075ce1722d037db846a0282b9149b6eeebb9073178",
+      "edits": [
+        {
+          "start": 20,
+          "delete": 2,
+          "insert": [
+            "    const results = [];\n",
+            "    for (const question of fixture.oracle.questions) {\n",
+            "      const context = await retrieveAnswerContext(catalog, question.question);\n"
+          ]
+        },
+        {
+          "start": 26,
+          "delete": 1,
+          "insert": [
+            "      results.push({ id: question.id, question: question.question, requiredEvidence: question.evidence, retrievedEvidence: retrieved,\n"
+          ]
+        },
+        {
+          "start": 29,
+          "delete": 2,
+          "insert": [
+            "        answerCorrectness: 'not-evaluated', unsupportedClaims: null, semanticReview: 'not-performed' });\n",
+            "    }\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-scale-answer-evaluation.mjs": {
+      "beforeSha256": "b5de346d0d6641993cb1c8385cff59acf7907d17f0e4f695fa4a54478cc9c396",
+      "afterSha256": "73ba085a78723666db0e6b77e13776da92a926842872a4d7fe79dc713f0a6ffb",
+      "edits": [
+        {
+          "start": 58,
+          "delete": 1,
+          "insert": [
+            "        const projection = await codeFlows(catalog), corrections = new Corrections(catalog);\n"
+          ]
+        },
+        {
+          "start": 64,
+          "delete": 1,
+          "insert": [
+            "        note = (await corrections.save({ requestId: question.id, buildId: projection.buildId, targetKind: 'code-link', targetId: edge.id,\n"
+          ]
+        },
+        {
+          "start": 66,
+          "delete": 1,
+          "insert": [
+            "          action: question.action, statement: question.statement, environment: question.environment }));\n"
+          ]
+        },
+        {
+          "start": 69,
+          "delete": 1,
+          "insert": [
+            "      const context = await answers.preview(question.question);\n"
+          ]
+        },
+        {
+          "start": 82,
+          "delete": 1,
+          "insert": [
+            "      const started = await answers.start(question.id, question.question, context.buildId, context.inputHash);\n"
+          ]
+        },
+        {
+          "start": 108,
+          "delete": 1,
+          "insert": [
+            "      assert.equal((await answers.start(replay.questionId, context.question, context.buildId, context.inputHash)).id, replay.attempt.id);\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-scale-readiness.mjs": {
+      "beforeSha256": "94c7697e2681ea3c1609314e21481787ddbf0bac2da4a198a1f9bf2b060a6082",
+      "afterSha256": "b1c95ed0fb9d98e1cb9ee26c14eed09b7eb7c45a3e2389999b965cce029bda71",
+      "edits": [
+        {
+          "start": 37,
+          "delete": 1,
+          "insert": [
+            "    const declarations = declarationMap(catalog), flows = await codeFlows(catalog);\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-scale-retrieval.mjs": {
+      "beforeSha256": "3cae95b29db98b2005c69f2d8e759b16418a94a794ad9c1250362ebc20beea96",
+      "afterSha256": "e036c304b5dc905552bab91d054378880897ceab9941e2e66543119522768661",
+      "edits": [
+        {
+          "start": 21,
+          "delete": 2,
+          "insert": [
+            "    async function inspect(question) {\n",
+            "      const context = await retrieveAnswerContext(catalog, question);\n"
+          ]
+        },
+        {
+          "start": 31,
+          "delete": 2,
+          "insert": [
+            "    const results = [];\n",
+            "    for (const question of fixture.oracle.questions) {\n",
+            "      const read = await inspect(question.question), { context } = read;\n"
+          ]
+        },
+        {
+          "start": 37,
+          "delete": 1,
+          "insert": [
+            "      results.push({ id: question.id, question: question.question, requiredEvidence: question.evidence, missingEvidence: missing,\n"
+          ]
+        },
+        {
+          "start": 40,
+          "delete": 3,
+          "insert": [
+            "        requiredUncertainty: question.requiredUncertainty, gaps: context.gaps });\n",
+            "    }\n",
+            "    const noHit = await inspect('unmatchedvocabulary026');\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-search-control-study.mjs": {
+      "beforeSha256": "8c1c41e6fb0c50766aef97a00cb11b3e9a8e0afe5baa982384a945424f4682bd",
+      "afterSha256": "f8e2d70f4ceb26eea6a0258a54fd7c19e3eaa04dce5c9386b412c17a3137c8d6",
+      "edits": [
+        {
+          "start": 141,
+          "delete": 1,
+          "insert": [
+            "            questionScores: ranked(catalog.store, 'question_search', questionExpression, buildId), context: await retrieveAnswerContext(catalog, query, buildId)}});\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-search-storage-study.mjs": {
+      "beforeSha256": "66618ce3259a4ff5b762d3d0ad72219e000a16fbe4331a0ea9f3e1b5a5cacc07",
+      "afterSha256": "1d812c33add8dba441b2c01ce2b3b2c297fed3df464ccbb73ac30db4466e6491",
+      "edits": [
+        {
+          "start": 17,
+          "delete": 0,
+          "insert": [
+            "const captureAsync = async fn => {try {return {value: await fn()};} catch (error) {return {error: {code: error.code ?? null, message: error.message}};}};\n"
+          ]
+        },
+        {
+          "start": 124,
+          "delete": 1,
+          "insert": [
+            "    await new Corrections(left).save({requestId: 'storage-review', buildId: second.id, targetKind: 'declaration-link', targetId: edge.id,\n"
+          ]
+        },
+        {
+          "start": 127,
+          "delete": 1,
+          "insert": [
+            "    const context = await retrieveAnswerContext(left, queries[0], second.id), project = left.store.project();\n"
+          ]
+        },
+        {
+          "start": 149,
+          "delete": 1,
+          "insert": [
+            "        const measure = async (catalog, buildId) => {\n"
+          ]
+        },
+        {
+          "start": 155,
+          "delete": 1,
+          "insert": [
+            "          const context = await captureAsync(() => retrieveAnswerContext(catalog, query, buildId));\n"
+          ]
+        },
+        {
+          "start": 158,
+          "delete": 1,
+          "insert": [
+            "        const baseline = await measure(left, baselineBuilds[generation]), candidate = await measure(right, candidateBuilds[generation]);\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-source-order-qualification.mjs": {
+      "beforeSha256": "6550962d2c1214e4e008968824016b45421a35e378d9fc51575efc7daad74f74",
+      "afterSha256": "7cfb1f42e1f132297581f7a11b948bf77eba67d70663ae4f699bffe4d3cfb09b",
+      "edits": [
+        {
+          "start": 55,
+          "delete": 3,
+          "insert": [
+            "  async function observe(catalog,fixture,item) {\n",
+            "    const context=await retrieveAnswerContext(catalog,item.question??item.description),before=JSON.stringify(context),selection=selectSourceCandidates(context);\n",
+            "    const declarations=declarationMap(catalog,context.buildId),code=await codeFlows(catalog,context.buildId);assert.equal(code.adapterVersion,'pilot-code-v3');\n"
+          ]
+        },
+        {
+          "start": 59,
+          "delete": 1,
+          "insert": [
+            "    const {projections,gaps,...actual}=await candidateLinkContext(catalog,context,selection);assert.deepEqual(v1,actual);\n"
+          ]
+        },
+        {
+          "start": 97,
+          "delete": 1,
+          "insert": [
+            "  const baseline=await evaluateIncidentContext({...services,retrieveAnswerContext:async (catalog,question)=>{\n"
+          ]
+        },
+        {
+          "start": 100,
+          "delete": 1,
+          "insert": [
+            "    const {context,row}=await observe(catalog,fixtures.get(catalog),item);smallRows.push(row);return context;\n"
+          ]
+        },
+        {
+          "start": 126,
+          "delete": 1,
+          "insert": [
+            "        const {row}=await observe(catalog,fixture,item),old=oldVolume.generations[0].stages.initial.queries.results[index];\n"
+          ]
+        }
+      ]
+    },
+    "scripts/loredock-symbol-search-qualification.mjs": {
+      "beforeSha256": "577550cb6cd8993b7d956a97d1a49056c50b84881b62d5ea37321eef49dbc5ee",
+      "afterSha256": "9d0173aafb38595d2f6de8d3ddbecefa290ad71e22ca1ba5464dc124506bfb43",
+      "edits": [
+        {
+          "start": 158,
+          "delete": 1,
+          "insert": [
+            "      const graph=await services.codeFlows(catalog,build.id),outside=cases.filter(item=>item.outsideDefaultGraph);\n"
+          ]
+        }
+      ]
+    },
+    "scripts/tests/loredock-answer-witness-storage.test.mjs": {
+      "beforeSha256": "a9d8d5c5b7f745cc1330fd550e3ef21cb3f725362c7e03816f5b042e1748483f",
+      "afterSha256": "85789c76a648f228b47d5defa9213ee2fe5d039c8222a10fdd9cccf4b4f72923",
+      "edits": [
+        {
+          "start": 162,
+          "delete": 1,
+          "insert": [
+            "  const { Answers: LegacyAnswers } = await loadPreparedAnswerControl(parent);\n",
+            "  const legacy = new LegacyAnswers(fixture.catalog, { async prepare() { throw new Error('Synthetic preflight stop.'); } });\n"
+          ]
+        }
+      ]
+    },
+    "scripts/tests/loredock-prepared-answers.test.mjs": {
+      "beforeSha256": "76d30167b741bd1a6cc1c5d38631e00832673a8dc3e9fd039dbb0971d87d7234",
+      "afterSha256": "5fdd3016cfc20d3bb8ea82928bcf57f4e75d0e886932b068645e45e0ccd5b2f8",
+      "edits": [
+        {
+          "start": 187,
+          "delete": 2,
+          "insert": [
+            "  const context = await other.answers.preview(question);\n",
+            "  await assert.rejects(async () => (await other.answers.start('legacy', question, context.buildId, context.inputHash)), code('QUESTION_BUSY'));\n"
+          ]
+        },
+        {
+          "start": 190,
+          "delete": 1,
+          "insert": [
+            "  s.answers.cancel(first.id); await assert.rejects(async () => (await other.answers.start('legacy', question, context.buildId, context.inputHash)), code('QUESTION_BUSY'));\n"
+          ]
+        },
+        {
+          "start": 338,
+          "delete": 3,
+          "insert": [
+            "  const current = s.create(null), context = await current.answers.preview(question); old.runtime.context = context; current.runtime.context = context;\n",
+            "  const baseline = await old.answers.start('accepted-legacy', question, context.buildId, context.inputHash); await old.answers.idle();\n",
+            "  const changed = await current.answers.start('current-legacy', question, context.buildId, context.inputHash); await current.answers.idle();\n"
+          ]
+        }
+      ]
+    },
+    "scripts/tests/loredock-question-preparation.test.mjs": {
+      "beforeSha256": "db55292581a228a70aa025106a2b5994397e4dd491e542c643aedfc4f332390b",
+      "afterSha256": "bf1ffc084c4dd808aab4a6c4405f9f9f45816fb9c00cae7465f8fe8c59c7acb1",
+      "edits": [
+        {
+          "start": 46,
+          "delete": 1,
+          "insert": [
+            "  const baseline = await retrieveAnswerContext(fixture.catalog, question, fixture.buildId), before = fixture.counters(), legacy = fixture.legacyRows();\n"
+          ]
+        }
+      ]
+    },
+    "scripts/tests/loredock-question-reads.test.mjs": {
+      "beforeSha256": "356586469e1681f2364cdba767dc1d774f00172e1eef1423ccef976bba2c6217",
+      "afterSha256": "77b45e5215f44d5fc8fc3729afcb796901bab24e7ca3c4b609f6df40f27a4fcd",
+      "edits": [
+        {
+          "start": 9,
+          "delete": 0,
+          "insert": [
+            "import { legacyControlImports } from '../../apps/loredock/tests/fixtures/async-legacy-reference/verify.mjs';\n",
+            "import { LegacyReadOperation } from '../../apps/loredock/dist/legacy-read-operation.js';\n"
+          ]
+        },
+        {
+          "start": 67,
+          "delete": 0,
+          "insert": [
+            "  const { contextUrl } = await legacyControlImports(parent, '');\n",
+            "  const { retrieveAnswerContext: retrieveControl } = await import(contextUrl);\n"
+          ]
+        },
+        {
+          "start": 70,
+          "delete": 1,
+          "insert": [
+            "    try { baseline = await store.withPreparedReads(() => retrieveControl(control, query, fixture.buildId)); }\n"
+          ]
+        },
+        {
+          "start": 72,
+          "delete": 2,
+          "insert": [
+            "    const budget = new services.OperationBudget(), current = countControlReads(store, catalog);\n",
+            "    let account, actual;\n",
+            "    try {\n",
+            "      account = new LegacyReadOperation(catalog, budget);\n",
+            "      actual = await store.withPreparedReads(() => retrieveAnswerContext(catalog, query, fixture.buildId, account));\n",
+            "    } finally { current.restore(); }\n"
+          ]
+        },
+        {
+          "start": 76,
+          "delete": 1,
+          "insert": [
+            "    assert.deepEqual(account.stats(), { ...current.result, acceptedUnits: current.result.sqlRows + current.result.originalBytes, rejectedUnits: 0 });\n",
+            "    assert.equal(current.result.originalReads, counter.result.originalReads);\n",
+            "    assert.equal(current.result.originalBytes, counter.result.originalBytes);\n",
+            "    assert(current.result.sqlRows > counter.result.sqlRows, 'Every additional authority query is counted.');\n"
+          ]
+        },
+        {
+          "start": 92,
+          "delete": 1,
+          "insert": [
+            "  const oldContext = await retrieveAnswerContext(old.catalog, question, old.buildId);\n"
+          ]
+        },
+        {
+          "start": 96,
+          "delete": 1,
+          "insert": [
+            "  const { store, catalog } = fixture, id = (await retrieveAnswerContext(catalog, question, fixture.buildId)).spans.find(span => Buffer.byteLength(span.text) > 100).id;\n"
+          ]
+        },
+        {
+          "start": 120,
+          "delete": 1,
+          "insert": [
+            "  const context = await retrieveAnswerContext(fixture.catalog, question, fixture.buildId); let chosen;\n"
+          ]
+        },
+        {
+          "start": 140,
+          "delete": 1,
+          "insert": [
+            "    const context = await retrieveAnswerContext(fixture.catalog, 'Which entry point reaches permit.granted.v3?', fixture.buildId);\n"
+          ]
+        },
+        {
+          "start": 152,
+          "delete": 1,
+          "insert": [
+            "  const { fixture, create, request } = await setup(t), context = await retrieveAnswerContext(fixture.catalog, question, fixture.buildId);\n"
+          ]
+        }
+      ]
+    },
+    "scripts/tests/loredock-question-selection.test.mjs": {
+      "beforeSha256": "c299256aad2cb1859fba96354e8ad1ee91fcc60e850372101818b78f042bf24d",
+      "afterSha256": "896ff27e30be1b15c0070f261835116e222440ba79694edc976b50a703cd2458",
+      "edits": [
+        {
+          "start": 6,
+          "delete": 0,
+          "insert": [
+            "import { loadLegacyQuestionPrototype } from '../../apps/loredock/tests/fixtures/async-legacy-reference/verify.mjs';\n"
+          ]
+        },
+        {
+          "start": 65,
+          "delete": 1,
+          "insert": [
+            "  const { runDevelopment } = await loadLegacyQuestionPrototype('development.mjs', directory);\n"
+          ]
+        },
+        {
+          "start": 72,
+          "delete": 1,
+          "insert": [
+            "  const { runOrdinaryMatrix, ordinaryMatrixInputs } = await loadLegacyQuestionPrototype('development-matrix.mjs', directory);\n"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -15,6 +15,7 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const hash = value => createHash('sha256').update(value).digest('hex');
 const json = value => JSON.stringify(value, null, 2) + '\n';
 const capture = fn => {try {return {value: fn()};} catch (error) {return {error: {code: error.code ?? null, message: error.message}};}};
+const captureAsync = async fn => {try {return {value: await fn()};} catch (error) {return {error: {code: error.code ?? null, message: error.message}};}};
 export async function verifySearchStorageContract({implementation = false} = {}) {
   const baseline = JSON.parse(await readFile(path.join(root, 'fixtures/loredock-search-storage/baseline.json'), 'utf8'));
   for (const [file, digest] of Object.entries(baseline.hashes)) {
@@ -122,10 +123,10 @@ export async function compareSearchStorage(services, fixture, {expectedFiles, ex
     leftAnalysis = new CodeAnalysis(left); const inventory = leftAnalysis.start('code', second.id); await leftAnalysis.idle();
     assert.equal(leftAnalysis.get(inventory.id).counts.parsed, expectedCodeFiles);
     const projection = declarationMap(left), edge = projection.edges.find(edge => edge.kind === 'contract-match'); assert.ok(edge);
-    new Corrections(left).save({requestId: 'storage-review', buildId: second.id, targetKind: 'declaration-link', targetId: edge.id,
+    await new Corrections(left).save({requestId: 'storage-review', buildId: second.id, targetKind: 'declaration-link', targetId: edge.id,
       projectionHash: projection.inputHash, expectedRevision: left.state().correctionRevision, expectedPreviousId: null,
       action: 'clarify', statement: 'Synthetic retained engineer note for storage equivalence.', environment: 'local'});
-    const context = retrieveAnswerContext(left, queries[0], second.id), project = left.store.project();
+    const context = await retrieveAnswerContext(left, queries[0], second.id), project = left.store.project();
     left.store.run(`INSERT INTO answer_attempts (id,requestId,payloadHash,question,buildId,policyVersion,registryVersion,status,context,inputHash,connection,model,effort,promptVersion,schemaVersion,result,createdAt)
       VALUES ('storage-answer','storage-answer','fixture',?,?,?,?,'succeeded',?,?,'{}','fixture','medium','fixture','fixture','{}','fixture')`,
       context.question, second.id, project.policyVersion, project.sourceSetVersion, JSON.stringify(context), context.inputHash);
@@ -147,16 +148,16 @@ export async function compareSearchStorage(services, fixture, {expectedFiles, ex
         allocation: {baseline: searchStorageAllocation(left.store), candidate: searchStorageAllocation(right.store)}, queries: []};
       result.stages.push(stage);
       for (let generation = 0; generation < baselineBuilds.length; generation++) for (const query of queries) {
-        const measure = (catalog, buildId) => {
+        const measure = async (catalog, buildId) => {
           const started = performance.now(), expression = query.trim().split(/\s+/).slice(0,20).map(term => '"' + term.replaceAll('"','""') + '"').join(' AND ');
           const literal = capture(() => catalog.search(query, buildId));
           const literalMs = performance.now() - started;
           const scores = capture(() => scoreRows(catalog, 'search', expression, buildId));
           const questionScores = capture(() => scoreRows(catalog, 'question_search', questionTerms(query).map(term => '"'+term+'"').join(' OR '), buildId));
-          const context = capture(() => retrieveAnswerContext(catalog, query, buildId));
+          const context = await captureAsync(() => retrieveAnswerContext(catalog, query, buildId));
           return {value: {literal, scores, questionScores, context}, literalMs};
         };
-        const baseline = measure(left, baselineBuilds[generation]), candidate = measure(right, candidateBuilds[generation]);
+        const baseline = await measure(left, baselineBuilds[generation]), candidate = await measure(right, candidateBuilds[generation]);
         stage.queries.push({generation, query, exact: generation < 2, baseline: baseline.value, candidate: candidate.value,
           durationsMs: {baseline: baseline.literalMs, candidate: candidate.literalMs}});
       }

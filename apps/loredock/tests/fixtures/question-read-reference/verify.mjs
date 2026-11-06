@@ -3,6 +3,7 @@ import { beforeAnswerStorage } from '../answer-witness-reference/verify.mjs';
 import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 import { runtimeImports, emitSource, relocateSource } from '../integration-reference/compile.mjs';
+import { beforeAsyncLegacy } from '../async-legacy-reference/verify.mjs';
 const directory = new URL('./', import.meta.url), root = new URL('../../../', import.meta.url);
 const hash = text => createHash('sha256').update(text).digest('hex');
 
@@ -37,8 +38,9 @@ export async function loadQuestionReadControl(name, temporaryDirectory) {
 
 /** Preserve historical pins while proving the precise additive Catalog hook. */
 export async function assertHistoricalSource(file, bytes, expectedHash) {
+  bytes = await beforeAsyncLegacy(file, bytes);
   if (file !== 'apps/loredock/src/catalog.ts') { assert.equal(hash(bytes), expectedHash, file); return; }
   await verifyQuestionReadDelta('catalog', false);
-  assert.equal(bytes.toString(), await readFile(new URL('src/catalog.ts', root), 'utf8'));
+  assert.equal(bytes.toString(), (await beforeAsyncLegacy(file, await readFile(new URL('src/catalog.ts', root)))).toString());
   assert.equal(hash(await readFile(new URL('catalog.ts.txt', directory))), expectedHash, file);
 }

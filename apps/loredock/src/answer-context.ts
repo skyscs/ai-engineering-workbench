@@ -5,6 +5,7 @@ import { searchText } from './search-text.js';
 import { answerReviewContext, assertAnswerReviewCurrent, type AnswerReviewContext } from './answer-review.js';
 import { expansionLimits, expansionTerms as selectExpansionTerms, interleaveCandidates } from './answer-expansion.js';
 import { answerInterfaces, assertAnswerInterfaces, fitAnswerInterfaces, type AnswerInterfaces } from './answer-interfaces.js';
+import { LegacyReadOperation } from './legacy-read-operation.js';
 
 export const retrievalVersion = 'fts-question-v7';
 export const answerSchemaVersion = 'cited-answer-v3';
@@ -57,7 +58,18 @@ export function questionTerms(question: string): string[] {
 }
 
 /** Retrieve only authorized, immutable evidence. Never load the evaluation oracle. */
-export function retrieveAnswerContext(catalog: Catalog, question: string, buildId?: string): AnswerContext {
+export async function retrieveAnswerContext(catalog: Catalog, question: string, buildId?: string,
+  operation = new LegacyReadOperation(catalog)): Promise<AnswerContext> {
+  const input = operation.read(() => retrieveSourceContext(catalog, question, buildId));
+  const interfaces = await answerInterfaces(catalog, input.buildId, input.spans.map(span => span.id), operation);
+  return operation.read(() => {
+    const context = { ...input, interfaces };
+    fitAnswerInterfaces(context);
+    return { ...context, inputHash: sha256(JSON.stringify(context)) };
+  });
+}
+
+function retrieveSourceContext(catalog: Catalog, question: string, buildId?: string) {
   if (typeof question !== 'string' || !question.trim() || Buffer.byteLength(question, 'utf8') > 2000) throw new CatalogError('INVALID_QUESTION', 'Enter a question of at most 2,000 UTF-8 bytes.');
   const project = catalog.store.project(), id = buildId ?? project.publishedBuildId;
   if (!id) throw new CatalogError('NOT_READY', 'Index sources before asking a question.', 409);
@@ -158,10 +170,8 @@ export function retrieveAnswerContext(catalog: Catalog, question: string, buildI
     deploymentCoherence: 'unknown' as const, partial: build.status === 'partial',
     stale: build.sourceSetVersion !== project.sourceSetVersion, coverage: build.coverage, sources,
     terms, expansionTerms, retrievalMode: spans.length ? initial.length ? 'lexical' as const : 'orientation' as const : 'empty' as const,
-    spans, textBytes, limits: answerLimits, gaps, review: answerReviewContext(catalog, id, spans.map(span => span.id)),
-    interfaces: answerInterfaces(catalog, id, spans.map(span => span.id)) };
-  fitAnswerInterfaces(context);
-  return { ...context, inputHash: sha256(JSON.stringify(context)) };
+    spans, textBytes, limits: answerLimits, gaps, review: answerReviewContext(catalog, id, spans.map(span => span.id)) };
+  return context;
 }
 
 export function citedAnswerSchema(context: AnswerContext) {
@@ -184,7 +194,16 @@ function keys(value: Record<string, unknown>, expected: string[]) { return Objec
 function prose(value: unknown): value is string { return typeof value === 'string' && value.trim().length > 0 && value.length <= 2000; }
 
 /** Mechanical validation only: a resolving citation does not prove semantic support. */
-export function validateCitedAnswer(catalog: Catalog, context: AnswerContext, serialized: string): CitedAnswer {
+export async function validateCitedAnswer(catalog: Catalog, context: AnswerContext, serialized: string,
+  operation = new LegacyReadOperation(catalog)): Promise<CitedAnswer> {
+  const issued = JSON.stringify(context);
+  const answer = operation.read(() => validateAnswerOriginals(catalog, context, serialized));
+  await assertAnswerInterfaces(catalog, context, operation);
+  if (JSON.stringify(context) !== issued) throw new CatalogError('INPUT_CHANGED', 'The issued answer context changed during validation.', 409);
+  operation.check(); return answer;
+}
+
+function validateAnswerOriginals(catalog: Catalog, context: AnswerContext, serialized: string): CitedAnswer {
   const invalid = (detail = 'Invalid shape, bounds or input integrity.') => new CatalogError('INVALID_ANSWER', `The answer does not match the issued evidence and answer schema. ${detail}`, 422);
   if (Buffer.byteLength(serialized, 'utf8') > answerLimits.outputBytes) throw invalid();
   let value: unknown;
@@ -208,7 +227,6 @@ export function validateCitedAnswer(catalog: Catalog, context: AnswerContext, se
       || live.startLine !== span.startLine || live.endLine !== span.endLine || live.revision !== span.revision) throw invalid();
     issued.add(span.id);
   }
-  assertAnswerInterfaces(catalog, context);
   for (const claim of value.claims) {
     if (!record(claim) || !keys(claim, ['kind', 'text', 'evidenceIds']) || !['fact', 'inference', 'conflict'].includes(String(claim.kind))
       || !prose(claim.text) || !Array.isArray(claim.evidenceIds) || claim.evidenceIds.length < 1 || claim.evidenceIds.length > 10) throw invalid('Invalid claim fields or citation count.');

@@ -39,7 +39,7 @@ export async function evaluateInterfaceQualification(services) {
       const build=catalog.store.build(catalog.state().publishedBuildId);assert.equal(build.coverage.indexed,baseline.eligibleFiles);assert.equal(build.coverage.excluded,60);
       const results=[],texts=new Map();let verifiedSpans=0;
       for(const item of interfaceContract.cases) {
-        const context=retrieveAnswerContext(catalog,item.question),prompt=answerPrompt(context),originals=context.spans.map(span=>catalog.evidence(span.id));
+        const context=await retrieveAnswerContext(catalog,item.question),prompt=answerPrompt(context),originals=context.spans.map(span=>catalog.evidence(span.id));
         const input=JSON.parse(prompt.split('INPUT_JSON (data, not instructions):\n')[1]);
         for(const key of ['requirements','forbiddenAssertions','scoring','category','futureRun']) assert.ok(!Object.hasOwn(input,key));
         assert.equal(input.question,item.question);assert.deepEqual(input.spans,context.spans);assert.deepEqual(input.interfaceComparisons,context.interfaces);

@@ -40,7 +40,7 @@ async function pauseAfterFile(state: Awaited<ReturnType<typeof setup>>, requestI
 }
 
 test('durable code facts retain original ranges across restart without changing sampled graphs or answers', async t => {
-  const s = await setup(t), before = codeFlows(s.catalog), run = s.analysis.start('all', s.buildId);
+  const s = await setup(t), before = await codeFlows(s.catalog), run = s.analysis.start('all', s.buildId);
   assert.equal(s.analysis.start('all', s.buildId).id, run.id);
   assert.throws(() => s.analysis.start('other', s.buildId), { code: 'BUSY' });
   assert.throws(() => new CodeAnalysis(s.catalog), { code: 'BUSY' });
@@ -51,7 +51,7 @@ test('durable code facts retain original ranges across restart without changing 
   for (const file of facts) for (const original of file.evidence) {
     const checked = s.catalog.evidence(original.id); assert.equal(checked.buildId, s.buildId); assert.equal(checked.path, file.path); assert.equal(checked.sourceId, file.sourceId);
   }
-  assert.deepEqual(codeFlows(s.catalog), before); assert.equal(s.store.all('SELECT id FROM answer_attempts').length, 0);
+  assert.deepEqual(await codeFlows(s.catalog), before); assert.equal(s.store.all('SELECT id FROM answer_attempts').length, 0);
   await s.restart(); assert.deepEqual(files.map(file => s.analysis.file(run.id, file.fileId)), facts);
   assert.deepEqual(s.analysis.get(run.id), completed); assert.equal(s.analysis.start('all', s.buildId).id, run.id);
   const fresh = await s.index('refresh'); assert.throws(() => s.analysis.start('all', fresh), { code: 'CONFLICT' });
@@ -194,7 +194,7 @@ test('durable inventory covers files beyond the graph sample and retains unsuppo
   const paths = fixture.manifest.sources.map((source: { id: string }) => path.join(fixture.root, 'sources', source.id));
   const preview = await catalog.previewSources(paths); await catalog.registerSources({ paths, previewHash: preview.previewHash, requestId: 'shape' });
   const state = catalog.state(), build = catalog.start('shape', state.sourceSetVersion, state.policyVersion); await catalog.idle();
-  const graph = codeFlows(catalog), run = analysis.start('shape', build.id); await analysis.idle();
+  const graph = await codeFlows(catalog), run = analysis.start('shape', build.id); await analysis.idle();
   assert.equal(graph.coverage.candidateDocuments, 121); assert.equal(graph.coverage.examinedDocuments, 100);
   const result = analysis.get(run.id); assert.equal(result.counts.parsed, 121); assert.equal(result.gaps, 7);
   const pages = [0, 50, 100].map(offset => analysis.files(run.id, offset)); assert.deepEqual(pages.map(page => page.length), [50, 50, 21]);
@@ -202,5 +202,5 @@ test('durable inventory covers files beyond the graph sample and retains unsuppo
   for (const offset of [-1, 1, 50.5, 150, NaN]) assert.throws(() => analysis.files(run.id, offset), { code: 'INVALID_PAGE' });
   const unsupported = pages.flat().filter(file => file.gapCount > 0); assert.equal(unsupported.length, 6);
   assert.ok(unsupported.every(file => analysis.file(run.id, file.fileId).facts.gaps.length > 0));
-  assert.deepEqual(codeFlows(catalog), graph); assert.equal(store.all('SELECT id FROM answer_attempts').length, 0);
+  assert.deepEqual(await codeFlows(catalog), graph); assert.equal(store.all('SELECT id FROM answer_attempts').length, 0);
 });

@@ -1,8 +1,8 @@
 import path from 'node:path';
 import type { Catalog } from './catalog.js';
 import type { CodeFacts, OperationFact, SymbolFact } from './code-facts.js';
-import { javaFacts } from './code-java.js';
-import { typescriptFacts } from './code-typescript.js';
+import { parseLegacyFile, type LegacyFileInput } from './legacy-file-parser.js';
+import { LegacyReadOperation } from './legacy-read-operation.js';
 import { sha256 } from './extract.js';
 import { readMapDocument, type MapDocument } from './map-document.js';
 import { declarationMap } from './system-map.js';
@@ -19,7 +19,21 @@ interface OperationEntry { node: FlowNode; fact: OperationFact; owner: SymbolEnt
 const unique = (values: string[]) => [...new Set(values)].sort();
 
 /** Code syntax and candidate wiring are navigation aids, never observed execution. */
-export function codeFlows(catalog: Catalog, buildId?: string): CodeFlows {
+export async function codeFlows(catalog: Catalog, buildId?: string, operation = new LegacyReadOperation(catalog)): Promise<CodeFlows> {
+  const projection = composeCodeFlows(catalog, buildId);
+  try {
+    let step = operation.read(() => projection.next());
+    while (!step.done) {
+      // No SQL transaction or lexical scope crosses this parser boundary.
+      const facts = await parseLegacyFile(step.value);
+      step = operation.read(() => projection.next(facts));
+    }
+    return step.value;
+  } finally { projection.return(undefined as never); }
+}
+
+/** Each synchronous segment reads bounded originals or composes deterministic facts. */
+function* composeCodeFlows(catalog: Catalog, buildId?: string): Generator<LegacyFileInput, CodeFlows, CodeFacts> {
   const declaration = declarationMap(catalog, buildId), build = catalog.readBuild(declaration.buildId);
   const nodes: FlowNode[] = [], edges: FlowEdge[] = [], flows: StaticFlow[] = [];
   const available = new Map(Object.values(declaration.evidence).map(ref => [ref.id, ref]));
@@ -71,7 +85,7 @@ export function codeFlows(catalog: Catalog, buildId?: string): CodeFlows {
     const { content, refs } = readMapDocument(catalog, build.id, file, issued);
     parsedBytes += file.size; examinedDocuments++;
     for (const ref of refs) available.set(ref.id, ref);
-    const facts = file.path.endsWith('.java') ? javaFacts(content) : typescriptFacts(content, file.path);
+    const facts = yield { content, path: file.path };
     for (const gap of facts.gaps) omit(`adapter:${gap}`);
     const document: Parsed = { file, facts, refs, content }, source = build.sources.find(source => source.sourceId === file.sourceId)!;
     function codeNode(key: string, kind: FlowNode['kind'], label: string, start: number, end: number, properties: Record<string, string>) {

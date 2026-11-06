@@ -6,6 +6,7 @@ import type { HeaderCheck } from './http-headers.js';
 import { codeFlows } from './code-flows.js';
 import { answerPrompt, answerPromptBytes } from './answer-prompt.js';
 import { CatalogError } from './types.js';
+import { LegacyReadOperation } from './legacy-read-operation.js';
 
 export const answerInterfaceLimits = { comparisons: 6, comparisonBytes: 8 * 1024 } as const;
 type Endpoint = Pick<FlowNode, 'sourceId' | 'sourceName' | 'path' | 'label'>;
@@ -49,8 +50,9 @@ export function selectAnswerInterfaces(graph: CodeFlows, evidenceIds: string[]):
     ] };
 }
 
-export function answerInterfaces(catalog: Catalog, buildId: string, evidenceIds: string[]) {
-  return selectAnswerInterfaces(codeFlows(catalog, buildId), evidenceIds);
+export async function answerInterfaces(catalog: Catalog, buildId: string, evidenceIds: string[], operation = new LegacyReadOperation(catalog)) {
+  const graph = await codeFlows(catalog, buildId, operation);
+  return operation.read(() => selectAnswerInterfaces(graph, evidenceIds));
 }
 
 /** Drop whole derived items, never original source spans or engineer notes. */
@@ -65,10 +67,11 @@ export function fitAnswerInterfaces(context: Omit<AnswerContext, 'inputHash'>) {
   }
 }
 
-export function assertAnswerInterfaces(catalog: Catalog, context: AnswerContext) {
+export async function assertAnswerInterfaces(catalog: Catalog, context: AnswerContext, operation = new LegacyReadOperation(catalog)) {
   // Legacy contexts retain their original optional-field absence and hashed bytes.
   if (context.interfaces === undefined) return;
-  const expected = { ...context, interfaces: answerInterfaces(catalog, context.buildId, context.spans.map(span => span.id)) };
+  const expected = { ...context, interfaces: await answerInterfaces(catalog, context.buildId, context.spans.map(span => span.id), operation) };
+  operation.check();
   fitAnswerInterfaces(expected);
   if (JSON.stringify(context.interfaces) !== JSON.stringify(expected.interfaces)) {
     throw new CatalogError('INVALID_ANSWER', 'The derived interface comparisons do not match their issued original support and adapter provenance.', 422);

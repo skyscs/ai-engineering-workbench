@@ -40,13 +40,13 @@ async function setup(t: TestContext) {
     async reopen() {await close(); store = new CatalogStore(directory); catalog = new Catalog(store); analysis = new CodeAnalysis(catalog);}};
 }
 const queries = ['orders', 'tenantId', 'café', 'alpha', 'dash-token', '" OR *', 'noSuch055'];
-function readQueries(catalog: Catalog, builds: string[]) {
-  return builds.flatMap(build => queries.map(query => {
+async function readQueries(catalog: Catalog, builds: string[]) {
+  return Promise.all(builds.flatMap(build => queries.map(async query => {
     const terms = query.trim().split(/\s+/).map(term => '"' + term.replaceAll('"','""') + '"').join(' AND ');
-    return {literal: catalog.search(query, build), context: retrieveAnswerContext(catalog, query, build),
+    return {literal: catalog.search(query, build), context: await retrieveAnswerContext(catalog, query, build),
       scores: catalog.store.all(`SELECT search.rowid,search.spanId,rank,snippet(search,1,'','','…',24) AS snippet FROM search
         JOIN spans s ON s.id=search.spanId JOIN files f ON f.id=s.fileId WHERE search MATCH ? AND f.buildId=? ORDER BY rank,search.rowid`, terms, build)};
-  }));
+  })));
 }
 function logicalRows(db: DatabaseSync) {
   return db.prepare("SELECT name,sql FROM sqlite_schema WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name").all().map(row => {
@@ -59,18 +59,18 @@ function logicalRows(db: DatabaseSync) {
 
 test('schema 8 migration preserves every token, rowid, rank setting, original, historical context, review and code fact', async t => {
   const state = await setup(t), run = state.analysis.start('inventory', state.second); await state.analysis.idle();
-  const projection = codeFlows(state.catalog), edge = projection.edges[0]!;
-  const corrections = new Corrections(state.catalog), note = corrections.save({requestId: 'review', buildId: state.second, targetKind: 'code-link', targetId: edge.id,
+  const projection = await codeFlows(state.catalog), edge = projection.edges[0]!;
+  const corrections = new Corrections(state.catalog), note = await corrections.save({requestId: 'review', buildId: state.second, targetKind: 'code-link', targetId: edge.id,
     projectionHash: projection.inputHash, expectedRevision: state.catalog.state().correctionRevision, expectedPreviousId: null,
     action: 'clarify', statement: 'Synthetic migration review.', environment: 'local'});
-  const context = retrieveAnswerContext(state.catalog, 'orders');
+  const context = await retrieveAnswerContext(state.catalog, 'orders');
   state.store.run(`INSERT INTO answer_attempts (id,requestId,payloadHash,question,buildId,policyVersion,registryVersion,status,context,inputHash,connection,model,effort,promptVersion,schemaVersion,result,createdAt)
     VALUES ('saved','saved','hash','orders',?,?,?,'succeeded',?,?,'{}','fixture','medium','fixture','fixture','{}','now')`,
     state.second, state.store.project().policyVersion, state.store.project().sourceSetVersion, JSON.stringify(context), context.inputHash);
   for (const source of state.store.sources()) state.store.run("INSERT INTO answer_sources VALUES ('saved',?)", source.id);
   removeExternalSearchSchema(state.store.db);
   state.store.db.exec("UPDATE search SET rowid=rowid+5000; INSERT INTO search(search,rank) VALUES('rank','bm25(0.0, 2.0)'); INSERT INTO search(search,rank) VALUES('automerge',0)");
-  const before = literalIndexSnapshot(state.store), reads = readQueries(state.catalog, [state.first, state.second]);
+  const before = literalIndexSnapshot(state.store), reads = await readQueries(state.catalog, [state.first, state.second]);
   const originals = state.store.all<{id: string}>('SELECT id FROM spans').map(row => state.catalog.evidence(row.id));
   const settings = state.store.all('SELECT * FROM search_config ORDER BY k'), inventory = state.analysis.get(run.id), review = corrections.history(note.id);
   const savedLegacyRows = JSON.stringify(state.store.all('SELECT * FROM answer_attempts ORDER BY rowid'));
@@ -90,11 +90,11 @@ test('schema 8 migration preserves every token, rowid, rank setting, original, h
   const catalogIdentity = state.store.receipts.catalogId;
   assert.deepEqual(state.store.all<{slot: number; id: string}>('SELECT slot,id FROM catalog_identity').map(row => [row.slot, row.id]), [[1, catalogIdentity]]);
   assert.deepEqual(state.store.all('SELECT * FROM search_config ORDER BY k'), settings);
-  assert.deepEqual(readQueries(state.catalog, [state.first, state.second]), reads);
+  assert.deepEqual(await readQueries(state.catalog, [state.first, state.second]), reads);
   assert.deepEqual(originals.map(row => state.catalog.evidence(row.id)), originals);
   assert.deepEqual(state.analysis.get(run.id), inventory); assert.deepEqual(new Corrections(state.catalog).history(note.id), review);
   assert.equal(state.store.one("SELECT name FROM sqlite_schema WHERE name='search_content'"), undefined); validate(state.store);
-  await state.reopen(); assert.equal(state.store.receipts.catalogId, catalogIdentity); assert.deepEqual(readQueries(state.catalog, [state.first, state.second]), reads);
+  await state.reopen(); assert.equal(state.store.receipts.catalogId, catalogIdentity); assert.deepEqual(await readQueries(state.catalog, [state.first, state.second]), reads);
   const build = state.store.build(await state.index('refresh')); assert.equal(build.refresh!.reusedFiles, build.coverage.indexed); validate(state.store);
   const source = state.store.sources().find(source => source.name === 'portal')!;
   state.catalog.revoke(source.id); validate(state.store);

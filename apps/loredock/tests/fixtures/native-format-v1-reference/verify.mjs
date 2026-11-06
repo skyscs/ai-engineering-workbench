@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
 import { emitSource, runtimeImports, relocateSource } from '../integration-reference/compile.mjs';
+import { beforeAsyncLegacy } from '../async-legacy-reference/verify.mjs';
 
 const directory = new URL('./', import.meta.url), root = new URL('../../../../../', import.meta.url);
 const hash = value => createHash('sha256').update(value).digest('hex');
@@ -13,6 +14,7 @@ async function original(file) {
   assert.equal(raw.length, entry.bytes); assert.equal(hash(raw), entry.sha256); return raw;
 }
 export async function beforeNativeFormat(file, raw) {
+  raw = await beforeAsyncLegacy(file, raw);
   const old = await original(file); if (!old) return raw;
   const sourceFile = file.replace('/dist/', '/src/').replace(/\.js$/, '.ts');
   const source = await original(sourceFile), delta = JSON.parse(await readFile(new URL('./deltas.json', directory), 'utf8')).files[sourceFile];
@@ -20,7 +22,7 @@ export async function beforeNativeFormat(file, raw) {
   const lines = source.toString().match(/.*\n|.+$/g) ?? [];
   for (const edit of [...delta.edits].reverse()) lines.splice(edit.start, edit.delete, ...edit.insert);
   const expected = lines.join(''); assert.equal(hash(expected), delta.afterSha256);
-  assert.equal(await readFile(new URL(sourceFile, root), 'utf8'), expected, 'Only the declared versioned-format delta is permitted: ' + sourceFile);
+  assert.equal((await beforeAsyncLegacy(sourceFile, await readFile(new URL(sourceFile, root)))).toString(), expected, 'Only the declared versioned-format delta is permitted: ' + sourceFile);
   if (sourceFile === file) assert.equal(raw.toString(), expected);
   else {
     assert.equal(emitSource(source.toString(), sourceFile), old.toString());

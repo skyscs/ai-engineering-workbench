@@ -41,8 +41,8 @@ test('all twenty frozen questions recover original required evidence with stable
   const first = await setup(t), second = await setup(t);
   assert.notEqual(first.catalog.state().sources[0]!.id, second.catalog.state().sources[0]!.id);
   for (const question of first.fixture.oracle.questions) {
-    const context = retrieveAnswerContext(first.catalog, question.question); bounded(context);
-    assert.deepEqual(locators(context), locators(retrieveAnswerContext(second.catalog, question.question)), question.id);
+    const context = await retrieveAnswerContext(first.catalog, question.question); bounded(context);
+    assert.deepEqual(locators(context), locators(await retrieveAnswerContext(second.catalog, question.question)), question.id);
     for (const id of question.evidence) {
       const expected = first.fixture.manifest.evidence.find(ref => ref.id === id)!;
       const match = context.spans.find(span => span.sourceName === expected.sourceId && span.revision === expected.revision && span.path === expected.path
@@ -51,13 +51,13 @@ test('all twenty frozen questions recover original required evidence with stable
     }
   }
   for (const state of [first, second]) {
-    const sample = retrieveAnswerContext(state.catalog, 'unmatchedvocabulary026'); bounded(sample);
+    const sample = await retrieveAnswerContext(state.catalog, 'unmatchedvocabulary026'); bounded(sample);
     assert.equal(sample.retrievalMode, 'orientation'); assert.equal(represented(sample).size, 20);
     assert.ok(sample.sources.every(source => sample.spans.some(span => span.sourceId === source.sourceId && span.path === 'README.md')));
     assert.ok(sample.gaps.some(gap => gap.includes('not a relevance match')));
   }
-  assert.deepEqual(locators(retrieveAnswerContext(first.catalog, 'unmatchedvocabulary026')), locators(retrieveAnswerContext(second.catalog, 'unmatchedvocabulary026')));
-  assert.equal(hint(retrieveAnswerContext(first.catalog, 'What happened to fulfillment-api?')), false, 'Historical names are not registry aliases.');
+  assert.deepEqual(locators(await retrieveAnswerContext(first.catalog, 'unmatchedvocabulary026')), locators(await retrieveAnswerContext(second.catalog, 'unmatchedvocabulary026')));
+  assert.equal(hint(await retrieveAnswerContext(first.catalog, 'What happened to fulfillment-api?')), false, 'Historical names are not registry aliases.');
 });
 
 test('normalized full names preserve ambiguous identities, reject identifier prefixes and disclose sample limits', async t => {
@@ -70,13 +70,13 @@ test('normalized full names preserve ambiguous identities, reject identifier pre
     return paths;
   });
   for (const question of ['What is SHARED service?', 'Explain shared_service.', 'Explain sharedService.']) {
-    const context = retrieveAnswerContext(state.catalog, question); assert.equal(hint(context), true); bounded(context);
+    const context = await retrieveAnswerContext(state.catalog, question); assert.equal(hint(context), true); bounded(context);
     assert.equal(context.sources.length, 2); assert.equal(represented(context).size, 2);
     assert.equal(context.spans.filter(span => span.path === 'README.md').length, 2, 'Display names cannot collapse different identities.');
   }
-  for (const question of ['unshared-service', 'shared-service-extra', 'shared-service.other', 'sharedservice']) assert.equal(hint(retrieveAnswerContext(state.catalog, question)), false, question);
+  for (const question of ['unshared-service', 'shared-service-extra', 'shared-service.other', 'sharedservice']) assert.equal(hint(await retrieveAnswerContext(state.catalog, question)), false, question);
   const full = await setup(t); const names = full.catalog.state().sources.map(source => source.name).join(', ');
-  const limited = retrieveAnswerContext(full.catalog, names); bounded(limited);
+  const limited = await retrieveAnswerContext(full.catalog, names); bounded(limited);
   assert.ok(limited.gaps.some(gap => gap.includes('named-source sample limit')));
 });
 
@@ -93,7 +93,7 @@ test('oversized or missing baseline documents do not consume other source opport
     assert.ok(file.name !== 'portal' || file.path !== 'README.md', 'Do not reopen a span already known to exceed the text budget.');
     return evidence(id);
   };
-  const context = retrieveAnswerContext(state.catalog, 'unmatchedvocabulary026'); bounded(context);
+  const context = await retrieveAnswerContext(state.catalog, 'unmatchedvocabulary026'); bounded(context);
   assert.equal(represented(context).size, 19);
   assert.ok(context.spans.some(span => span.sourceName === 'portal' && span.path === 'package.json'));
   assert.ok(context.spans.some(span => span.sourceName === 'order-api' && span.path === 'pom.xml'));
@@ -103,14 +103,14 @@ test('oversized or missing baseline documents do not consume other source opport
 
 test('source representation, exact historical evidence and authorization survive refresh and restart', async t => {
   const state = await setup(t), question = 'Does inventory-api represent one application?';
-  const before = retrieveAnswerContext(state.catalog, question), bytes = JSON.stringify(before);
+  const before = await retrieveAnswerContext(state.catalog, question), bytes = JSON.stringify(before);
   const original = state.catalog.evidence(before.spans.find(span => span.sourceName === 'inventory-api' && span.path === 'config/routes.json')!.id);
-  await state.restart(); assert.deepEqual(retrieveAnswerContext(state.catalog, question), before);
+  await state.restart(); assert.deepEqual(await retrieveAnswerContext(state.catalog, question), before);
   await state.index('refresh'); assert.deepEqual(state.catalog.evidence(original.id), original); assert.equal(JSON.stringify(before), bytes);
-  assert.equal(retrieveAnswerContext(state.catalog, question, before.buildId).buildId, before.buildId);
+  assert.equal((await retrieveAnswerContext(state.catalog, question, before.buildId)).buildId, before.buildId);
   state.catalog.revoke(original.sourceId);
-  const after = retrieveAnswerContext(state.catalog, question); assert.equal(after.sources.length, 19);
+  const after = await retrieveAnswerContext(state.catalog, question); assert.equal(after.sources.length, 19);
   assert.ok(after.spans.every(span => span.sourceId !== original.sourceId)); assert.throws(() => state.catalog.evidence(original.id), /unavailable/);
   assert.equal(hint(after), false, 'Revoked names cannot add sampling hints.');
-  state.catalog.updatePolicy(['README.md']); assert.throws(() => retrieveAnswerContext(state.catalog, question, before.buildId), /policy/);
+  state.catalog.updatePolicy(['README.md']); await assert.rejects(async () => (await retrieveAnswerContext(state.catalog, question, before.buildId)), /policy/);
 });

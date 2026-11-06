@@ -7,6 +7,8 @@ import { pathToFileURL, fileURLToPath } from 'node:url';
 import { corpusFactory } from '../loredock-native-assessment/fixture.mjs';
 import { receiptFixture } from '../loredock-receipt-fixture.mjs';
 import { loadQuestionReadControl, verifyQuestionReadDelta } from '../../apps/loredock/tests/fixtures/question-read-reference/verify.mjs';
+import { legacyControlImports } from '../../apps/loredock/tests/fixtures/async-legacy-reference/verify.mjs';
+import { LegacyReadOperation } from '../../apps/loredock/dist/legacy-read-operation.js';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 let services, LexicalReadAccount, chooseQuestionRoot, retrieveAnswerContext, answerPrompt;
@@ -65,16 +67,25 @@ test('compiled lexical composition preserves every context and prompt byte with 
   const { fixture, parent } = await setup(t), { store, catalog } = fixture;
   const { Catalog: OldCatalog } = await loadQuestionReadControl('catalog', pathToFileURL(parent + '/'));
   const control = new OldCatalog(store);
+  const { contextUrl } = await legacyControlImports(parent, '');
+  const { retrieveAnswerContext: retrieveControl } = await import(contextUrl);
   const before = fixture.counters(), legacy = fixture.legacyRows();
   for (const query of [question, 'Which entry point publishes permit.granted.v3?', 'unmatchedvocabulary']) {
     const counter = countControlReads(store, control); let baseline;
-    try { baseline = await store.withPreparedReads(() => retrieveAnswerContext(control, query, fixture.buildId)); }
+    try { baseline = await store.withPreparedReads(() => retrieveControl(control, query, fixture.buildId)); }
     finally { counter.restore(); }
-    const budget = new services.OperationBudget(), account = new LexicalReadAccount(budget);
-    const actual = await store.withPreparedReads(() => store.withLexicalReads(account, () => retrieveAnswerContext(catalog, query, fixture.buildId)));
+    const budget = new services.OperationBudget(), current = countControlReads(store, catalog);
+    let account, actual;
+    try {
+      account = new LegacyReadOperation(catalog, budget);
+      actual = await store.withPreparedReads(() => retrieveAnswerContext(catalog, query, fixture.buildId, account));
+    } finally { current.restore(); }
     assert.equal(JSON.stringify(actual), JSON.stringify(baseline)); assert.equal(actual.inputHash, baseline.inputHash);
     assert.equal(answerPrompt(actual), answerPrompt(baseline));
-    assert.deepEqual(account.stats(), { ...counter.result, acceptedUnits: counter.result.sqlRows + counter.result.originalBytes, rejectedUnits: 0 });
+    assert.deepEqual(account.stats(), { ...current.result, acceptedUnits: current.result.sqlRows + current.result.originalBytes, rejectedUnits: 0 });
+    assert.equal(current.result.originalReads, counter.result.originalReads);
+    assert.equal(current.result.originalBytes, counter.result.originalBytes);
+    assert(current.result.sqlRows > counter.result.sqlRows, 'Every additional authority query is counted.');
     assert.equal(budget.stats().totalWork, account.stats().acceptedUnits); assert(account.stats().originalBytes > 0);
     t.diagnostic(JSON.stringify({ query, inputHash: actual.inputHash, ...account.stats() }));
     // Reuse the actual capability after the lexical phase; no double billing there.
@@ -90,11 +101,11 @@ test('current catalog keeps archived store compatibility and evidence failures p
   const { fixture, parent } = await setup(t);
   const { CatalogStore: OldStore } = await loadQuestionReadControl('store', pathToFileURL(parent + '/'));
   const old = await receiptFixture(parent, corpus(), { ...services, CatalogStore: OldStore }); t.after(() => old.close());
-  const oldContext = retrieveAnswerContext(old.catalog, question, old.buildId);
+  const oldContext = await retrieveAnswerContext(old.catalog, question, old.buildId);
   assert(oldContext.spans.length > 0);
   for (const span of oldContext.spans) assert.equal(old.catalog.evidence(span.id).text, span.text);
   assert.throws(() => old.catalog.evidence('missing'), code('NOT_FOUND'));
-  const { store, catalog } = fixture, id = retrieveAnswerContext(catalog, question, fixture.buildId).spans.find(span => Buffer.byteLength(span.text) > 100).id;
+  const { store, catalog } = fixture, id = (await retrieveAnswerContext(catalog, question, fixture.buildId)).spans.find(span => Buffer.byteLength(span.text) > 100).id;
   const original = catalog.evidence(id), budget = new services.OperationBudget(), account = new LexicalReadAccount(budget);
   store.withLexicalReads(account, () => { assert.equal(catalog.evidence(id).text, original.text); assert.throws(() => catalog.evidence('missing'), code('NOT_FOUND')); });
   assert.equal(account.stats().originalReads, 1); assert.equal(account.stats().originalBytes, Buffer.byteLength(original.text));
@@ -118,7 +129,7 @@ test('default, explicit and paged compiled output stays byte-identical while que
   const binding = { ...request, inventoryId: actual.identity.inventoryId, generationId: actual.generationId };
   for (let offset = 0; offset < actual.roots.total; offset += 4)
     assert.deepEqual(await fixture.paths.read({ ...binding, offset }, 'roots'), await control.read({ ...binding, offset }, 'roots'));
-  const context = retrieveAnswerContext(fixture.catalog, question, fixture.buildId); let chosen;
+  const context = await retrieveAnswerContext(fixture.catalog, question, fixture.buildId); let chosen;
   const selected = create({ selectRoot: async (resolution, work) => { chosen = await chooseQuestionRoot(resolution, context, work); return chosen; } });
   const budget = new services.OperationBudget(), graph = await selected.read(request, 'paths', undefined, budget);
   const explicit = { ...binding, rootId: graph.selection.rootId };
@@ -138,7 +149,7 @@ test('default, explicit and paged compiled output stays byte-identical while que
 test('selected production reads preserve partial wiring and reject ambiguity or unsupported original anchors', async t => {
   for (const variant of ['partial', 'ambiguous']) {
     const { fixture, create, request } = await setup(t, variant);
-    const context = retrieveAnswerContext(fixture.catalog, 'Which entry point reaches permit.granted.v3?', fixture.buildId);
+    const context = await retrieveAnswerContext(fixture.catalog, 'Which entry point reaches permit.granted.v3?', fixture.buildId);
     const owner = create({ selectRoot: (resolution, work) => chooseQuestionRoot(resolution, context, work) });
     if (variant === 'ambiguous') { await assert.rejects(owner.read(request), code('QUESTION_AMBIGUOUS')); continue; }
     const result = await owner.read(request);
@@ -150,7 +161,7 @@ test('selected production reads preserve partial wiring and reject ambiguity or 
 });
 
 test('selector remains inside the actual path owner, cancellation, write fence and shared budget', async t => {
-  const { fixture, create, request } = await setup(t), context = retrieveAnswerContext(fixture.catalog, question, fixture.buildId);
+  const { fixture, create, request } = await setup(t), context = await retrieveAnswerContext(fixture.catalog, question, fixture.buildId);
   const selectRoot = (resolution, work) => chooseQuestionRoot(resolution, context, work);
   let enter, release; const entered = new Promise(resolve => { enter = resolve; }), gate = new Promise(resolve => { release = resolve; });
   const occupied = create({ selectRoot: async (...args) => { enter(); await gate; return selectRoot(...args); } });

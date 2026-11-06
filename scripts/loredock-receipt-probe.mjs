@@ -96,19 +96,19 @@ async function rejected(s, name, fn, expected, mutable = false) {
   equal(await readdir(s.folder), before, 'Failure creates no receipt or pending file.'); return { code: caught.code ?? caught.name };
 }
 async function seedLegacy(s) {
-  const graph = codeFlows(s.catalog, s.buildId), edge = graph.edges.find(item => item.kind === 'calls');
+  const graph = await codeFlows(s.catalog, s.buildId), edge = graph.edges.find(item => item.kind === 'calls');
   assert.ok(edge, 'Owned legacy fixture must provide a source link.');
-  new Corrections(s.catalog).save({ requestId: 'owned-legacy-note', buildId: s.buildId, targetKind: 'code-link', targetId: edge.id,
+  await new Corrections(s.catalog).save({ requestId: 'owned-legacy-note', buildId: s.buildId, targetKind: 'code-link', targetId: edge.id,
     projectionHash: graph.inputHash, expectedRevision: 0, expectedPreviousId: null, action: 'clarify',
     statement: 'This owned source link does not verify runtime wiring.', environment: null });
-  const context = retrieveAnswerContext(s.catalog, 'How is a seat booking placed?', s.buildId), id = randomUUID();
+  const context = await retrieveAnswerContext(s.catalog, 'How is a seat booking placed?', s.buildId), id = randomUUID();
   s.store.run(`INSERT INTO answer_attempts
     (id,requestId,payloadHash,question,buildId,policyVersion,registryVersion,status,context,inputHash,connection,model,effort,promptVersion,schemaVersion,createdAt,reason)
     VALUES (?,?,?,?,?,?,?,'cancelled',?,?,?,'not-dispatched','not-dispatched','loredock-answer-v9','cited-answer-v3',?,?)`,
     id, 'owned-cancelled-answer', hash('owned fixture'), context.question, s.buildId, context.policyVersion, context.registryVersion,
     JSON.stringify(context), context.inputHash, '{}', '2026-03-03T00:00:00.000Z', 'Owned fixture row; no model dispatched.');
   for (const source of context.sources) s.store.run('INSERT INTO answer_sources VALUES (?,?)', id, source.sourceId);
-  return { context: JSON.stringify(context), graph: JSON.stringify(codeFlows(s.catalog, s.buildId)), rows: s.legacyRows() };
+  return { context: JSON.stringify(context), graph: JSON.stringify(await codeFlows(s.catalog, s.buildId)), rows: s.legacyRows() };
 }
 
 async function lifecycle(s, allowed, fn) {
@@ -147,8 +147,8 @@ await fresh(async s => {
     const parsed = JSON.parse(wrapper.projectionJson), { projectionId, ...content } = parsed;
     equal(hash(JSON.stringify(content)), projectionId); check(hash(canonical(content)) !== projectionId, 'Recursive canonicalization would break the producer projection hash.');
     equal(wrapper.projectionJson, JSON.parse(raw).projectionJson); const read = await history(s, 'roundtrip-read', first); equal(read.projection, projection);
-    equal(JSON.stringify(retrieveAnswerContext(s.catalog, 'How is a seat booking placed?', s.buildId)), legacy.context);
-    equal(JSON.stringify(codeFlows(s.catalog, s.buildId)), legacy.graph); equal(s.legacyRows(), legacy.rows);
+    equal(JSON.stringify(await retrieveAnswerContext(s.catalog, 'How is a seat booking placed?', s.buildId)), legacy.context);
+    equal(JSON.stringify(await codeFlows(s.catalog, s.buildId)), legacy.graph); equal(s.legacyRows(), legacy.rows);
     for (const [source, revision] of Object.entries(s.revisions)) { equal(s.git(source, ['rev-parse', 'HEAD']), revision); equal(s.git(source, ['status', '--porcelain=v1']), ''); }
   });
   await run('external-lock', async () => { const writer = new DatabaseSync(path.join(s.root, 'data/loredock.db')); let blocked = false;

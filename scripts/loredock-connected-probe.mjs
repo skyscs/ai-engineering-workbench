@@ -46,7 +46,7 @@ async function measure(services, state, mode, buildId, options = {}) {
       }
     } : undefined;
     const projectionStart = performance.now();
-    value = mode === 'production' ? { status: 'available', graph: services.codeFlows(state.catalog, buildId), payloads: [] }
+    value = mode === 'production' ? { status: 'available', graph: await services.codeFlows(state.catalog, buildId), payloads: [] }
       : mode === 'naive' ? await savedFlowProjection(services, state.analysis, buildId, 'wide')
         : await connectedProjection(services, state.analysis, buildId, { ...options, afterFile });
     value.projectionMs = performance.now() - projectionStart;

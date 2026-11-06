@@ -11,7 +11,7 @@ import {routingCases} from '../../../fixtures/loredock-routing/cases.mjs';
 test('incident baseline keeps original ownership, fresh-ID stability and absent routing decisions explicit',async()=>{
   const questions:string[]=[];
   const report=await evaluateIncidentContext({Catalog,CatalogStore,questionTerms,retrievalVersion,
-    retrieveAnswerContext:(catalog:Catalog,question:string)=>{questions.push(question);return retrieveAnswerContext(catalog,question);}});
+    retrieveAnswerContext:async (catalog:Catalog,question:string)=>{questions.push(question);return await retrieveAnswerContext(catalog,question);}});
   const expected=routingCases.map((row:{description:string})=>row.description);
   assert.deepEqual(questions,[...expected,...expected]);
   assert.equal(report.modelRequests,0);assert.equal(report.answerAttempts,0);assert.equal(report.routingAccepted,false);

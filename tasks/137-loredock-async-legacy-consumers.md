@@ -1,6 +1,6 @@
 # Task 137 — Make legacy graph consumers awaitable
 
-Status: scoped after Task 136; begin after both exact-head CI events and identical-tree merge.
+Status: implemented and locally verified; exact-head CI acceptance pending.
 
 ## Objective and boundaries
 
@@ -57,3 +57,16 @@ The Task 136 first adapter observation has useful exact facts, but misses startu
 coverage and has asynchronous statistics delays up to 74.704 ms. It does not qualify
 aggregate memory or production startup. Existing startup, near-limit heap and browser
 resource failures remain separate, unchanged gates.
+
+## Result
+
+The [implementation record](../docs/loredock/ASYNC_LEGACY_CONSUMERS.md) describes the
+generator/adapter boundary, single-budget synchronous read phases, conservative write
+epochs and final transaction checks. Eight prospective baseline cases preserve graphs,
+contexts, review history, prompts and twenty-one saved v1/v2 answers. Delayed-parser
+regressions exercise actual waits, cancellation, competing writes and owner shutdown.
+The direct parser remains in production; no resource improvement is claimed.
+
+Task 136 is accepted at merge `278830b437727181385d61b958bb66191d9a9175`, after both
+complete CI logs passed 1,062 tests at `ba94c28e6bde8cecf1f0a63d839a010abe219964`.
+The next bounded task is [production adoption](138-loredock-production-file-parser.md).

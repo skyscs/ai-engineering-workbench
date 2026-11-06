@@ -13,21 +13,21 @@ const corrections = new Corrections(catalog), reconciliation = new Reconciliatio
 try {
   for (const repo of repositoryIds) await catalog.addSource(path.join(fixture.root, 'sources', repo));
   const index = async requestId => { const state = catalog.state(), result = catalog.start(requestId, state.sourceSetVersion, state.policyVersion); await catalog.idle(); return store.build(result.id); };
-  const initial = await index('initial'), originalGraph = codeFlows(catalog), edge = originalGraph.edges.find(edge => edge.kind === 'event-delivery');
-  const original = corrections.save({ requestId: 'original-review', buildId: initial.id, targetKind: 'code-link', targetId: edge.id, projectionHash: originalGraph.inputHash,
+  const initial = await index('initial'), originalGraph = await codeFlows(catalog), edge = originalGraph.edges.find(edge => edge.kind === 'event-delivery');
+  const original = await corrections.save({ requestId: 'original-review', buildId: initial.id, targetKind: 'code-link', targetId: edge.id, projectionHash: originalGraph.inputHash,
     expectedRevision: 0, expectedPreviousId: null, action: 'dispute', statement: 'Review the broker binding before relying on delivery in this scope.', environment: 'local' });
-  const pinnedOriginal = corrections.inspect(original.id), unchanged = await index('unchanged'), preview = reconciliation.preview();
+  const pinnedOriginal = corrections.inspect(original.id), unchanged = await index('unchanged'), preview = await reconciliation.preview();
   assert.equal(preview.entries[0].status, 'support-unchanged'); assert.equal(corrections.list().corrections.length, 0);
   const request = { requestId: 'explicit-reapplication', buildId: unchanged.id, sourceCorrectionId: original.id, targetId: preview.entries[0].current.id, previewHash: preview.previewHash, expectedRevision: preview.revision };
-  const reapplied = reconciliation.reapply(request), current = corrections.inspect(reapplied.id);
-  assert.deepEqual(reapplied.affectedFlowIds, codeFlows(catalog).flows.map(flow => flow.id).sort());
-  assert.deepEqual(corrections.inspect(original.id), pinnedOriginal); assert.deepEqual(reconciliation.reapply(request), reapplied);
-  const protectedPreview = reconciliation.preview(); assert.equal(protectedPreview.entries[0].status, 'already-reviewed');
+  const reapplied = await reconciliation.reapply(request), current = corrections.inspect(reapplied.id);
+  assert.deepEqual(reapplied.affectedFlowIds, (await codeFlows(catalog)).flows.map(flow => flow.id).sort());
+  assert.deepEqual(corrections.inspect(original.id), pinnedOriginal); assert.deepEqual(await reconciliation.reapply(request), reapplied);
+  const protectedPreview = await reconciliation.preview(); assert.equal(protectedPreview.entries[0].status, 'already-reviewed');
   const skipped = await index('skipped-review'); assert.equal(corrections.list().corrections.length, 0);
   const target = path.join(fixture.root, 'sources/order-worker/src/main/java/OrderConsumer.java');
   await writeFile(target, await readFile(target, 'utf8') + '\n// Review the external broker binding separately.\n');
   fixtureGit(fixture.root, 'order-worker', ['add', '--all']); fixtureGit(fixture.root, 'order-worker', ['commit', '-qm', 'Change owned reconciliation source context']);
-  const changed = await index('changed-support'), defaultPreview = reconciliation.preview(), changedPreview = reconciliation.preview(undefined, unchanged.id);
+  const changed = await index('changed-support'), defaultPreview = await reconciliation.preview(), changedPreview = await reconciliation.preview(undefined, unchanged.id);
   assert.equal(defaultPreview.entries.length, 0); assert.equal(changedPreview.entries[0].status, 'support-changed');
   const evidenceIds = [...new Set([pinnedOriginal, current].flatMap(version => version.original.evidenceIds).concat(changedPreview.entries[0].current.evidenceIds))];
   const evidence = evidenceIds.map(id => { const span = catalog.evidence(id); return { id, buildId: span.buildId, sourceId: span.sourceId, sourceName: span.sourceName,

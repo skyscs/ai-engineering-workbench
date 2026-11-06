@@ -21,7 +21,7 @@ test('offline saved-fact comparison preserves graph semantics and detects change
   const unavailable = await savedFlowProjection(services, state.analysis, state.buildId);
   assert.equal(unavailable.status, 'unavailable'); assert.equal(unavailable.graph, null);
   await state.analyze('facts');
-  const current = codeFlows(state.catalog), saved = await savedFlowProjection(services, state.analysis, state.buildId);
+  const current = await codeFlows(state.catalog), saved = await savedFlowProjection(services, state.analysis, state.buildId);
   assert.ok(saved.graph); assert.notEqual(saved.graph.adapterVersion, current.adapterVersion);
   assert.deepEqual(graphSemantics(saved.graph), graphSemantics(current));
   assert.ok(reopenSupport(state, saved).length >= 5);

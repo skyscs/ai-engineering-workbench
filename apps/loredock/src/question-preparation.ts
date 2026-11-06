@@ -5,7 +5,7 @@ import type { CatalogStore } from './store.js';
 import { CatalogError } from './types.js';
 import { retrieveAnswerContext } from './answer-context.js';
 import { OperationBudget } from './operation-budget.js';
-import { LexicalReadAccount } from './lexical-read-account.js';
+import { LegacyReadOperation } from './legacy-read-operation.js';
 import { CaptureWork, type CaptureStage } from './native-capture-work.js';
 import { CodePathsV2 } from './code-paths-v2.js';
 import type { PathStage } from './code-paths-work.js';
@@ -45,7 +45,8 @@ function checkIdle(store: CatalogStore, shared: Shared) {
 /** Every answer instance shares these reservations, even without a preparation consumer. */
 export function reserveQuestionAnswer(store: CatalogStore) {
   const shared = sharedOwner(store); checkIdle(store, shared); const token = Symbol('question-answer'); shared.answer = token;
-  return () => { if (shared.answer === token) delete shared.answer; };
+  return { release: () => { if (shared.answer === token) delete shared.answer; },
+    check: () => { if (shared.stopped || shared.answer !== token) fail('QUESTION_LEASE_EXPIRED', 'This answer reservation ended.'); } };
 }
 export function reserveQuestionConfiguration(store: CatalogStore) {
   const shared = sharedOwner(store); checkIdle(store, shared); const token = Symbol('question-configuration'); shared.configuration = token;
@@ -57,7 +58,7 @@ export function reserveQuestionConfiguration(store: CatalogStore) {
 export class QuestionPreparations {
   private readonly shared: Shared;
   private readonly unsubscribe: () => void;
-  private observation: { id: string; budget: ReturnType<OperationBudget['stats']> | null; lexical: ReturnType<LexicalReadAccount['stats']> | null; nativeReads: number } | null = null;
+  private observation: { id: string; budget: ReturnType<OperationBudget['stats']> | null; lexical: ReturnType<LegacyReadOperation['stats']> | null; nativeReads: number } | null = null;
   constructor(private readonly analysis: CodeAnalysis, private readonly options: PreparationOptions = {}) {
     const store = analysis.catalog.store;
     this.shared = sharedOwner(store);
@@ -129,15 +130,15 @@ export class QuestionPreparations {
   }
   private async prepare(entry: Entry, question: string, buildId: string, signal: AbortSignal) {
     const catalog = this.analysis.catalog, store = catalog.store;
-    let budget: OperationBudget | undefined, lexical: LexicalReadAccount | undefined, paths: CodePathsV2 | undefined, nativeReads = 0;
+    let budget: OperationBudget | undefined, lexical: LegacyReadOperation | undefined, paths: CodePathsV2 | undefined, nativeReads = 0;
     try {
       budget = new OperationBudget({ ...this.options.budget, signal });
       const checkpoint = async (info: { stage: Stage }) => { await this.options.checkpoint?.(info); };
       const work = new CaptureWork(catalog, budget, signal, { checkpoint });
       await yieldTurn(); await checkpoint({ stage: 'lexical' }); work.check();
-      lexical = new LexicalReadAccount(budget);
+      lexical = new LegacyReadOperation(catalog, budget, signal);
       const account = lexical;
-      const context = await store.withPreparedReads(() => store.withLexicalReads(account, () => retrieveAnswerContext(catalog, question, buildId)));
+      const context = await store.withPreparedReads(() => retrieveAnswerContext(catalog, question, buildId, account));
       const { dependencies } = work.dependencies(buildId), sourceIds = questionSourceIds(context, { dependencies });
       assertQuestionCurrent(catalog, context, sourceIds);
       let selection: SelectionObservation | null = null, receipt: string | null = null;

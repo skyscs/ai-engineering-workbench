@@ -4,6 +4,7 @@ import { mkdtemp, rm, readFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { loadLegacyQuestionPrototype } from '../../apps/loredock/tests/fixtures/async-legacy-reference/verify.mjs';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const node = (id, label, kind = 'symbol', properties = {}) => ({ id, label, kind, properties, evidenceIds: [id] });
@@ -63,14 +64,14 @@ test('candidate delta is exactly two retained edits and deterministic static imp
 test('compiled ordinary permit preparation preserves retrieval, support, cancellation and ownership', { timeout: 60000 }, async t => {
   const directory = await mkdtemp(path.join(tmpdir(), 'question-development-')); let passed = false;
   t.after(async () => { if (passed) await rm(directory, { recursive: true, force: true }); else t.diagnostic('Retained ordinary question development: ' + directory); });
-  const { runDevelopment } = await import('../loredock-native-question-context/development.mjs');
+  const { runDevelopment } = await loadLegacyQuestionPrototype('development.mjs', directory);
   const checks = await runDevelopment(path.join(directory, 'run')); assert.equal(checks.length, 7); passed = true;
 });
 
 test('ordinary 44-case matrix retains identities, unchanged witnesses and refuses corrupted assessments', { timeout: 180000 }, async t => {
   const directory = await mkdtemp(path.join(tmpdir(), 'question-matrix-')); let passed = false;
   t.after(async () => { if (passed) await rm(directory, { recursive: true, force: true }); else t.diagnostic('Retained ordinary matrix: ' + directory); });
-  const { runOrdinaryMatrix, ordinaryMatrixInputs } = await import('../loredock-native-question-context/development-matrix.mjs');
+  const { runOrdinaryMatrix, ordinaryMatrixInputs } = await loadLegacyQuestionPrototype('development-matrix.mjs', directory);
   const { assessMatrix } = await import('../loredock-native-question-context/assessment.mjs');
   const result = await runOrdinaryMatrix(path.join(directory, 'run'));
   assert.equal(result.assessment.prospective, 44); assert.equal(result.assessment.observed, 44);

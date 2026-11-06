@@ -12,8 +12,8 @@ const frozen=JSON.parse(await readFile(new URL('../fixtures/loredock-candidates/
 for(const [file,hash] of Object.entries(frozen.sourceHashes))assert.equal(digest(await readFile(new URL('../'+file,import.meta.url))),hash);
 const measurements=[];
 const baseline=await evaluateIncidentContext({Catalog,CatalogStore,questionTerms,retrievalVersion,
-  retrieveAnswerContext:(catalog,question)=>{
-    const context=retrieveAnswerContext(catalog,question),before=JSON.stringify(context),selection=selectSourceCandidates(context);
+  retrieveAnswerContext:async (catalog,question)=>{
+    const context=await retrieveAnswerContext(catalog,question),before=JSON.stringify(context),selection=selectSourceCandidates(context);
     assert.equal(JSON.stringify(context),before);
     measurements.push({question,selection,spans:context.spans});return context;
   }});

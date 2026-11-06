@@ -5,8 +5,7 @@ import { AnswerWitnessStore } from './answer-witness-store.js';
 import { preparedAnswerInputKind } from './answer-witness-schema.js';
 import { validateQuestionWitness, type QuestionValidationOptions } from './question-witness.js';
 import { OperationBudget } from './operation-budget.js';
-import { LexicalReadAccount } from './lexical-read-account.js';
-import { citedAnswerSchema, validateCitedAnswer } from './answer-context.js';
+import { citedAnswerSchema } from './answer-context.js';
 
 interface ExecutionRow { status: string; inputKind: string; connection: string; model: string; effort: 'medium' }
 const pending = (status: string | undefined) => status === 'preparing' || status === 'running';
@@ -20,12 +19,12 @@ export async function runPreparedAnswer(catalog: Catalog, runtime: TextRuntime, 
   const timer = setTimeout(abort, 120000);
   let prepared: PreparedTextRuntime | undefined;
   const started: { prepare?: Promise<PreparedTextRuntime>; output?: Promise<TextOutput> } = {};
-  const phase = async (expected: string, finalize: NonNullable<QuestionValidationOptions['finalize']>) => {
+  const phase = async (expected: string, finalize: NonNullable<QuestionValidationOptions['finalize']>, answer?: string) => {
     if (row()?.status !== expected || controller.signal.aborted) return;
     const budget = new OperationBudget({ signal: controller.signal });
     try {
       const snapshot = witnesses.read(id, budget);
-      await validateQuestionWitness(catalog, snapshot, controller.signal, { budget, finalize: boundary => {
+      await validateQuestionWitness(catalog, snapshot, controller.signal, { budget, ...(answer === undefined ? {} : { answer }), finalize: boundary => {
         if (row()?.status !== expected || controller.signal.aborted) return;
         boundary.check(); return finalize(boundary);
       } });
@@ -55,16 +54,15 @@ export async function runPreparedAnswer(catalog: Catalog, runtime: TextRuntime, 
     // This write must precede the publication validator's read-only authority epoch.
     store.run('UPDATE answer_attempts SET usage=?,usageUnknownReason=? WHERE id=?',
       output.usage ? JSON.stringify(output.usage) : null, output.usageUnknownReason, id);
-    await phase('running', ({ context, budget, check }) => {
+    await phase('running', ({ answer, check }) => {
       store.transaction(() => {
         if (row()?.status !== 'running' || controller.signal.aborted) return;
-        const lexical = new LexicalReadAccount(budget);
-        const answer = store.withLexicalReads(lexical, () => validateCitedAnswer(catalog, context, output.text));
+        if (!answer) throw new CatalogError('INVALID_ANSWER', 'A validated answer is required for publication.', 422);
         check();
         store.run("UPDATE answer_attempts SET status='succeeded',result=?,completedAt=?,reason=NULL WHERE id=? AND status='running'",
           JSON.stringify(answer), new Date().toISOString(), id);
       });
-    });
+    }, output.text);
   } catch (error) {
     if (pending(row()?.status)) {
       const reason = error instanceof RuntimeError ? `${error.failure.code}: ${error.message}${error.failure.stderr ? `\n${error.failure.stderr}` : ''}`

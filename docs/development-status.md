@@ -1,5 +1,37 @@
 # Development status
 
+## Task 137 — Awaitable legacy graph consumers
+
+Task 136 is accepted through [PR #169](https://github.com/skyscs/ai-engineering-workbench/pull/169):
+both complete CI logs pass 1,062 tests at `ba94c28`, before identical-tree merge `278830b`.
+The [new seam](loredock/ASYNC_LEGACY_CONSUMERS.md) separates original reads, asynchronous
+file parsing and deterministic composition while retaining the production direct parser.
+All transitive consumers await results; SQL transactions, lexical scopes, Ready promotion
+and publication finalizers stay synchronous. Read phases share one operation budget and
+reject intervening writes. Added authority reads retain their actual accounting cost.
+
+Eight prospective ordinary cases preserve exact graph/context/review/prompt bytes and
+twenty saved v1 plus one saved v2 answer, with zero model calls. Twenty-three delayed-parser
+tests cover cancellation, competing writes, admission ownership and late publication.
+A shared-service stop regression exposed late admission and now passes with a final
+reservation check. First baseline/comparison inputs, failures and explicit historical
+compatibility deltas are [retained](fixtures/loredock-async-legacy/README.md).
+
+Final local verification passes strict types, 703 LoreDock tests, 256 script tests,
+135 other package tests and the complete build (1,094 tests across the successful
+suites). The first full command reached three failing historical script controls;
+their old synchronous dependencies are now explicit and the complete script suite
+passes. No production source changed after the 703-test run. Exact-head CI acceptance
+is still required before merge.
+
+The minimum-runtime attempt exposes a pre-existing contract gap: official Linux
+Node 22.13.0 lacks SQLite FTS5 and cannot open a LoreDock catalog. An independent SQLite
+probe fails there and succeeds on pinned 22.23.2; README directs users to the latter.
+Standalone parser compatibility on 22.13.0 does not establish application compatibility.
+After CI and merge, [Task 138](../tasks/138-loredock-production-file-parser.md) adopts the
+parser owner and asynchronous initialization. Startup, near-limit heap, aggregate heap
+coverage and browser RSS remain unresolved; no ceiling, default or old family is changed.
+
 ## Task 136 — Unwired owned file-parser adapter
 
 Task 135 is accepted through [PR #168](https://github.com/skyscs/ai-engineering-workbench/pull/168):

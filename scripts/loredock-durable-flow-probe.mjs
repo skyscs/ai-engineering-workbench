@@ -61,8 +61,8 @@ export async function prepareFlowCase(services, variant = 'small', limits = {}) 
   } catch (error) { await analysis?.stop(); await catalog?.stop(); store?.close(); await rm(fixture.root, { recursive: true, force: true }); throw error; }
 }
 
-function captureControl(services, state, buildId) {
-  const start = performance.now(), graph = services.codeFlows(state.catalog, buildId), projectionMs = performance.now() - start;
+async function captureControl(services, state, buildId) {
+  const start = performance.now(), graph = await services.codeFlows(state.catalog, buildId), projectionMs = performance.now() - start;
   const selection = selectFlowFiles(state.catalog, buildId), payloads = []; let bytes = 0;
   const verifyStart = performance.now();
   for (const file of selection.files) {
@@ -117,7 +117,7 @@ async function measure(services, state, mode, buildId = state.buildId, options =
         const end = state.counters(); for (const key of Object.keys(excludedHook)) excludedHook[key] += end[key] - begin[key];
       }
     } : undefined;
-    value = mode === 'control' ? captureControl(services, state, buildId)
+    value = mode === 'control' ? await captureControl(services, state, buildId)
       : await savedFlowProjection(services, state.analysis, buildId, mode, { ...options, afterFile });
     const reopenStart = performance.now(); value.reopened = reopenSupport(state, value); value.reopenMs = performance.now() - reopenStart;
   } catch (error) { value = { ...value, status: 'harness-failed', error: { code: error.code ?? null, message: error.message, stack: error.stack } }; }

@@ -3,7 +3,8 @@ import { beforeQuestionApi } from '../prepared-question-api-reference/verify.mjs
 import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
-import { emitSource, runtimeImports, relocateSource } from '../integration-reference/compile.mjs';
+import { emitSource, relocateSource } from '../integration-reference/compile.mjs';
+import { legacyControlImports } from '../async-legacy-reference/verify.mjs';
 const directory = new URL('./', import.meta.url), root = new URL('../../../', import.meta.url);
 const hash = value => createHash('sha256').update(value).digest('hex');
 
@@ -34,8 +35,7 @@ export async function beforePreparedAnswer(file, raw, compiled = true) {
 /** Actual accepted old Answers behavior; relocation does not alter its implementation. */
 export async function loadPreparedAnswerControl(folder) {
   const { emitted } = await verifyPreparedAnswerDelta('answers');
-  const relocations = Object.fromEntries(runtimeImports(emitted).filter(row => row.name.startsWith('.'))
-    .map(row => [row.name, new URL('dist/' + row.name.slice(2), root).href]));
+  const { relocations } = await legacyControlImports(folder, emitted);
   let value = relocateSource(emitted, relocations);
   assert.equal(value.split("'@aew/ai'").length, 2);
   value = value.replace("'@aew/ai'", JSON.stringify(import.meta.resolve('@aew/ai')));

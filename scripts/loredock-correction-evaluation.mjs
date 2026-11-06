@@ -14,19 +14,19 @@ let store = new CatalogStore(directory), catalog = new Catalog(store), correctio
 try {
   for (const source of repositoryIds) await catalog.addSource(path.join(fixture.root, 'sources', source));
   const state = catalog.state(); catalog.start('correction-evaluation', state.sourceSetVersion, state.policyVersion); await catalog.idle();
-  const original = codeFlows(catalog), originalMap = declarationMap(catalog), edge = original.edges.find(edge => edge.kind === 'event-delivery');
+  const original = await codeFlows(catalog), originalMap = declarationMap(catalog), edge = original.edges.find(edge => edge.kind === 'event-delivery');
   const input = { requestId: 'dispute', buildId: original.buildId, targetKind: 'code-link', targetId: edge.id,
     projectionHash: original.inputHash, expectedRevision: 0, expectedPreviousId: null,
     action: 'dispute', statement: 'The declared local topic does not establish a shared broker or runtime parameter binding.', environment: 'local' };
-  const first = corrections.save(input); assert.deepEqual(corrections.save(input), first);
+  const first = await corrections.save(input); assert.deepEqual(await corrections.save(input), first);
   assert.deepEqual(first.affectedFlowIds, original.flows.map(flow => flow.id).sort());
-  const second = corrections.save({ ...input, requestId: 'clarify', expectedRevision: 1, expectedPreviousId: first.id,
+  const second = await corrections.save({ ...input, requestId: 'clarify', expectedRevision: 1, expectedPreviousId: first.id,
     action: 'clarify', statement: 'Review this delivery relationship only as a local candidate; production wiring remains unknown.' });
   const beforeRestart = corrections.history(first.id);
   await catalog.stop(); store.close(); store = new CatalogStore(directory); catalog = new Catalog(store); corrections = new Corrections(catalog);
   assert.deepEqual(corrections.history(first.id), beforeRestart);
-  assert.deepEqual(codeFlows(catalog), original); assert.deepEqual(declarationMap(catalog), originalMap);
-  const withdrawn = corrections.save({ ...input, requestId: 'withdraw', expectedRevision: 2, expectedPreviousId: second.id,
+  assert.deepEqual(await codeFlows(catalog), original); assert.deepEqual(declarationMap(catalog), originalMap);
+  const withdrawn = await corrections.save({ ...input, requestId: 'withdraw', expectedRevision: 2, expectedPreviousId: second.id,
     action: 'withdraw', statement: null, environment: null });
   assert.equal(corrections.list().corrections.filter(item => item.action !== 'withdraw').length, 0);
   const history = corrections.history(withdrawn.id);

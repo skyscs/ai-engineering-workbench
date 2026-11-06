@@ -24,7 +24,7 @@ test('a quoted handler reference discovers a single-word type in another source 
     await catalog.addSource(path.join(fixture.root, 'sources', id));
   }
   const state = catalog.state(); catalog.start('literal-reference', state.sourceSetVersion, state.policyVersion); await catalog.idle();
-  const context = retrieveAnswerContext(catalog, 'Which component receives receipt uploads?');
+  const context = await retrieveAnswerContext(catalog, 'Which component receives receipt uploads?');
   assert.ok(context.expansionTerms.includes('Journal'));
   assert.ok(context.spans.some(span => span.sourceName === 'order-worker' && span.path.endsWith('/Journal.java')));
   assert.ok(context.expansionTerms.length <= 12 && context.spans.length <= 30 && context.textBytes <= 64 * 1024);

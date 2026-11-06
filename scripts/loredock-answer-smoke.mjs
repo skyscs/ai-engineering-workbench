@@ -121,16 +121,16 @@ try {
     await waitFor(() => evaluate("[...document.querySelectorAll('button')].some(b=>b.textContent==='Generate answer'&&!b.disabled)"), 'Generate button did not enable.');
     await click('Generate answer');
   }
-  function review(action = 'dispute', statement = 'ReviewBrokerMarker: verify deployment wiring. <script>window.reviewInjected=true</script>') {
-    const corrections = new Corrections(catalog), projection = codeFlows(catalog);
+  async function review(action = 'dispute', statement = 'ReviewBrokerMarker: verify deployment wiring. <script>window.reviewInjected=true</script>') {
+    const corrections = new Corrections(catalog), projection = await codeFlows(catalog);
     const edge = projection.edges.find(edge => edge.kind === 'event-delivery');
     const previous = corrections.list().corrections.find(note => note.targetId === edge.id);
-    return corrections.save({ requestId: crypto.randomUUID(), buildId: projection.buildId, targetKind: 'code-link', targetId: edge.id,
+    return await corrections.save({ requestId: crypto.randomUUID(), buildId: projection.buildId, targetKind: 'code-link', targetId: edge.id,
       projectionHash: projection.inputHash, expectedRevision: catalog.state().correctionRevision, expectedPreviousId: previous?.id ?? null,
       action, statement: action === 'withdraw' ? null : statement, environment: action === 'withdraw' ? null : 'production' });
   }
   const reviewSeen = () => waitFor(() => evaluate(`document.querySelector('.answer-panel')?.dataset.reviewRevision===${JSON.stringify(String(catalog.state().correctionRevision))}`), 'Answer panel did not observe the review revision.');
-  const originalNote = review(); await reviewSeen();
+  const originalNote = await review(); await reviewSeen();
   await ask('Which local topic is configured?'); await text('Conflicting sources');
   assert.equal(suppliedReviews[0].engineerReview.notes[0].id, originalNote.id);
   await evaluate("document.querySelector('.answer-result .answer-review').open=true"); await text('ReviewBrokerMarker');
@@ -142,7 +142,7 @@ try {
   assert.equal(await evaluate("document.querySelector('.evidence pre').innerText.includes('orders.created.v1')"), true);
   const successful = answers.state().publishedAnswerId;
   await writeFile(path.join(output, 'answer-review-context.json'), JSON.stringify(answers.get(successful).context, null, 2) + '\n');
-  review('clarify', 'RevisedBrokerMarker: the original candidate still needs deployment evidence.'); await reviewSeen();
+  await review('clarify', 'RevisedBrokerMarker: the original candidate still needs deployment evidence.'); await reviewSeen();
   await text('Engineer review changed after this answer');
   assert.equal(await evaluate("document.querySelector('.question-context')===null"), true, 'Review changes must clear the old preview.');
   await evaluate("document.querySelector('.answer-result .answer-review').open=true"); await text('ReviewBrokerMarker');
@@ -151,7 +151,7 @@ try {
   assert.equal(answers.state().publishedAnswerId, successful); await text('Conflicting sources');
   await ask('Wait local topic'); await text('Generating answer…'); await click('Cancel answer'); await text('Latest attempt: cancelled.');
   assert.equal(answers.state().publishedAnswerId, successful);
-  review('withdraw'); await reviewSeen();
+  await review('withdraw'); await reviewSeen();
   await ask('Unknown deployed host'); await text('What remains unknown');
   assert.equal(suppliedReviews.at(-1).engineerReview.notes.length, 0, 'Withdrawal must exclude the note from fresh prompts.');
   await waitFor(() => evaluate("document.querySelector('.answer-result h3')?.textContent==='Unknown deployed host'"), 'Abstention did not publish.');
@@ -173,7 +173,7 @@ try {
   const mobile = await page.send('Page.captureScreenshot', { format: 'png' }); await writeFile(path.join(output, 'mobile.png'), Buffer.from(mobile.data, 'base64'));
   assert.equal(await evaluate("document.querySelectorAll('[role=alert]').length"), 0);
   // Delay a real response across a review edit; it must not restore the old preview.
-  review(); await reviewSeen();
+  await review(); await reviewSeen();
   await evaluate(`window.originalFetch=window.fetch; window.fetch=async (...args)=>{
     const response=await window.originalFetch(...args);
     if(String(args[0]).includes('/answers/preview')&&!window.previewHeld){window.previewHeld=true; await new Promise(resolve=>window.releasePreview=resolve);}
@@ -181,7 +181,7 @@ try {
   };`);
   await input('project-question', 'local topic'); await click('Find context');
   await waitFor(() => evaluate('window.previewHeld===true'), 'Preview response was not held.');
-  review('clarify', 'LateReviewMarker: updated while the preview response was held.'); await reviewSeen();
+  await review('clarify', 'LateReviewMarker: updated while the preview response was held.'); await reviewSeen();
   await evaluate('window.releasePreview(); window.fetch=window.originalFetch;');
   await waitFor(() => evaluate("[...document.querySelectorAll('button')].some(b=>b.textContent==='Find context'&&!b.disabled)"), 'Preview did not settle.');
   assert.equal(await evaluate("document.querySelector('.question-context')===null"), true, 'Late preview restored obsolete review.');

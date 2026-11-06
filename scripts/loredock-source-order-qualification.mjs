@@ -53,11 +53,11 @@ export async function qualifySourceOrder(services,outputDirectory) {
     sourceHashes:Object.fromEntries(await Promise.all(['scripts/loredock-source-order.mjs','scripts/loredock-source-order-qualification.mjs'].map(async file=>[file,digest(await readFile(path.join(root,file)))])))};
   await checkpoint('contract',{frozen,implementation,examples,startedAt:new Date().toISOString()});
   let verifiedOriginalOccurrences=0;const verifiedFiles=new Set(),gitTexts=new Map();
-  function observe(catalog,fixture,item) {
-    const context=retrieveAnswerContext(catalog,item.question??item.description),before=JSON.stringify(context),selection=selectSourceCandidates(context);
-    const declarations=declarationMap(catalog,context.buildId),code=codeFlows(catalog,context.buildId);assert.equal(code.adapterVersion,'pilot-code-v3');
+  async function observe(catalog,fixture,item) {
+    const context=await retrieveAnswerContext(catalog,item.question??item.description),before=JSON.stringify(context),selection=selectSourceCandidates(context);
+    const declarations=declarationMap(catalog,context.buildId),code=await codeFlows(catalog,context.buildId);assert.equal(code.adapterVersion,'pilot-code-v3');
     const links=sourceOrderInputs(catalog,context,declarations,code),v1=selectCandidateLinks(context,selection,links);
-    const {projections,gaps,...actual}=candidateLinkContext(catalog,context,selection);assert.deepEqual(v1,actual);
+    const {projections,gaps,...actual}=await candidateLinkContext(catalog,context,selection);assert.deepEqual(v1,actual);
     const {selection:proposal,eligibleOrder}=strongestLinkOrder(context,selection,links,selectCandidateLinks);
     assert.equal(proposal.eligibleSources,v1.eligibleSources);assert.equal(proposal.eligibleLinks,v1.eligibleLinks);
     function verify(id) {
@@ -95,10 +95,10 @@ export async function qualifySourceOrder(services,outputDirectory) {
   }
 
   const smallRows=[],fixtures=new WeakMap();
-  const baseline=await evaluateIncidentContext({...services,retrieveAnswerContext:(catalog,question)=>{
+  const baseline=await evaluateIncidentContext({...services,retrieveAnswerContext:async (catalog,question)=>{
     if(!fixtures.has(catalog)) {const directory=path.dirname(catalog.store.directory);fixtures.set(catalog,{root:directory,manifest:JSON.parse(readFileSync(path.join(directory,'manifest.json'),'utf8'))});}
     const item=routingCases.find(item=>item.description===question);assert.ok(item);
-    const {context,row}=observe(catalog,fixtures.get(catalog),item);smallRows.push(row);return context;
+    const {context,row}=await observe(catalog,fixtures.get(catalog),item);smallRows.push(row);return context;
   }});
   const originalContextBaselineUnchanged=isDeepStrictEqual(baseline.summary,oldContext.summary)
     &&isDeepStrictEqual(baseline.results.map(row=>row.answerContext.selectedLocatorHash),oldContext.results.map(row=>row.answerContext.selectedLocatorHash));
@@ -124,7 +124,7 @@ export async function qualifySourceOrder(services,outputDirectory) {
     if(build.published) {
       const questions=[...routingCases,...fixture.probes],results=[];
       for(const [index,item] of questions.entries()) {
-        const {row}=observe(catalog,fixture,item),old=oldVolume.generations[0].stages.initial.queries.results[index];
+        const {row}=await observe(catalog,fixture,item),old=oldVolume.generations[0].stages.initial.queries.results[index];
         assert.equal(row.id,old.id);
         row.baselineComparison={originalContextUnchanged:isDeepStrictEqual(row.contextOriginals,old.context.selected.map(originalLocator)),
           primaryUnchanged:isDeepStrictEqual(row.primary,old.preview.primary.map(source=>({...source,support:source.support.map(ref=>({...originalLocator(ref),matchedTerms:ref.matchedTerms}))}))),

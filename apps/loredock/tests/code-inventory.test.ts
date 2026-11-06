@@ -52,7 +52,7 @@ test('full small-shape inventory repeats facts, exposes budget omissions and fen
   const first = await scan(), second = await scan();
   assert.equal(first.summary.candidates, 41); assert.equal(first.summary.retained, 41); assert.equal(first.summary.failed, 0);
   assert.deepEqual(second.records, first.records); assert.ok(first.verifiedSpans >= 41);
-  const coverage = inspectInventoryCoverage(first, codeFlows(catalog), declarationMap(catalog), fixture.probes);
+  const coverage = inspectInventoryCoverage(first, await codeFlows(catalog), declarationMap(catalog), fixture.probes);
   assert.deepEqual(coverage.missingDefaultSymbols, []); assert.equal(coverage.exactSymbols.filter((row: { found: boolean }) => row.found).length, 3);
   const bounded = await scan({ documents: 1 }); assert.equal(bounded.summary.examined, 1); assert.equal(bounded.summary.unattempted, 40);
   assert.equal((await scan({ fileBytes: 0 })).summary.excluded, 41);

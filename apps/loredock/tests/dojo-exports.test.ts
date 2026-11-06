@@ -55,7 +55,7 @@ test('Dojo sibling exports retain exact code ownership, original evidence, histo
   t.after(async () => { await catalog.stop(); store.close(); await rm(fixture.root, { recursive: true, force: true }); });
   for (const repo of ['portal', 'order-api', 'order-worker']) await catalog.addSource(path.join(fixture.root, 'sources', repo));
   const index = async (request: string) => { const state = catalog.state(); catalog.start(request, state.sourceSetVersion, state.policyVersion); await catalog.idle(); };
-  await index('dojo-first'); const before = codeFlows(catalog);
+  await index('dojo-first'); const before = await codeFlows(catalog);
   assert.equal(before.adapterVersion, 'pilot-code-v3');
   const symbols = before.nodes.filter(node => node.kind === 'symbol' && node.path === 'legacy/batch.js');
   assert.deepEqual(symbols.map(node => [node.label, node.startLine, node.endLine]), [['reserve', 3, 3], ['cancel', 4, 4]]);
@@ -75,16 +75,16 @@ test('Dojo sibling exports retain exact code ownership, original evidence, histo
       if (original.sourceName === 'portal') { assert.equal(original.path, 'legacy/batch.js'); assert.equal(original.startLine, 1); assert.match(original.text, /define\(\['dojo\/request'\]/); }
     }
   }
-  const context = retrieveAnswerContext(catalog, 'cedar'); assert.equal(context.interfaces!.codeAdapter, 'pilot-code-v3');
+  const context = await retrieveAnswerContext(catalog, 'cedar'); assert.equal(context.interfaces!.codeAdapter, 'pilot-code-v3');
   assert.ok(context.interfaces!.comparisons.some(item => item.from.path === 'legacy/batch.js'));
   await writeFile(file, source.replaceAll('/cedar', '/birch')); fixtureGit(fixture.root, 'portal', ['add', '--all']);
   fixtureGit(fixture.root, 'portal', ['commit', '-qm', 'Change only the owned Dojo example']); await index('dojo-next');
-  const current = codeFlows(catalog), old = codeFlows(catalog, before.buildId);
+  const current = await codeFlows(catalog), old = await codeFlows(catalog, before.buildId);
   assert.equal(old.stale, true); assert.deepEqual(old.nodes.map(node => node.id), before.nodes.map(node => node.id));
   assert.ok(current.nodes.some(node => node.path === 'legacy/batch.js' && node.properties.path === '/birch'));
   const originalId = symbols[0]!.evidenceIds[0]!; catalog.revoke(symbols[0]!.sourceId);
   assert.throws(() => catalog.evidence(originalId));
-  assert.ok(codeFlows(catalog, before.buildId).nodes.every(node => node.sourceId !== symbols[0]!.sourceId));
+  assert.ok((await codeFlows(catalog, before.buildId)).nodes.every(node => node.sourceId !== symbols[0]!.sourceId));
   assert.equal(store.all('SELECT id FROM answer_attempts').length, 0);
   for (const repo of ['portal', 'order-api', 'order-worker']) assert.equal(fixtureGit(fixture.root, repo, ['status', '--porcelain=v1']), '');
 });

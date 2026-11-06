@@ -39,7 +39,7 @@ export function dynamic(headers) { return fetch('/dispatch/dynamic', {headers:he
 }
 
 test('an independent dispatch mismatch reaches the answer only beside both original source passages', async t => {
-  const { catalog } = await setup(t), context = retrieveAnswerContext(catalog, 'How does dispatch send the site header?');
+  const { catalog } = await setup(t), context = await retrieveAnswerContext(catalog, 'How does dispatch send the site header?');
   assert.ok(context.spans.some(span => span.path === 'src/dispatch.ts'));
   assert.ok(context.spans.some(span => span.path === 'config/dispatch.json'));
   const input = JSON.parse(answerPrompt(context).split('INPUT_JSON (data, not instructions):\n')[1]!);
@@ -51,7 +51,7 @@ test('an independent dispatch mismatch reaches the answer only beside both origi
 });
 
 test('derived context retains all three candidate states and requires complete issued support', async t => {
-  const s = await setup(t), context = retrieveAnswerContext(s.catalog, 'How does dispatch send the site header?');
+  const s = await setup(t), context = await retrieveAnswerContext(s.catalog, 'How does dispatch send the site header?');
   const block = context.interfaces!;
   assert.equal(block.provenance, 'static-analysis'); assert.equal(block.verification, 'unverified');
   assert.equal(block.codeAdapter, 'pilot-code-v3'); assert.equal(block.declarationAdapter, 'json-declarations-v2');
@@ -59,17 +59,17 @@ test('derived context retains all three candidate states and requires complete i
     assert.equal(block.comparisons.find(item => item.from.label === label)!.headerCheck.status, status);
   }
   const withoutRoute = context.spans.filter(span => span.path !== 'config/dispatch.json');
-  const incomplete = answerInterfaces(s.catalog, context.buildId, withoutRoute.map(span => span.id));
+  const incomplete = await answerInterfaces(s.catalog, context.buildId, withoutRoute.map(span => span.id));
   assert.equal(incomplete.comparisons.some(item => item.from.path === 'src/dispatch.ts'), false);
   assert.ok(incomplete.incomplete >= 3);
-  const empty = answerInterfaces(s.catalog, context.buildId, []);
+  const empty = await answerInterfaces(s.catalog, context.buildId, []);
   assert.equal(empty.comparisons.length, 0); assert.ok(empty.unrelated >= 3);
-  assert.deepEqual(context, retrieveAnswerContext(s.catalog, context.question));
+  assert.deepEqual(context, await retrieveAnswerContext(s.catalog, context.question));
   assert.deepEqual(context.spans, JSON.parse(answerPrompt(context).split('INPUT_JSON (data, not instructions):\n')[1]!).spans);
 });
 
 test('count and UTF-8 budgets omit whole comparisons with exact accounting', async t => {
-  const s = await setup(t), graph = codeFlows(s.catalog), edge = graph.edges.find(item => item.kind === 'http-target')!;
+  const s = await setup(t), graph = await codeFlows(s.catalog), edge = graph.edges.find(item => item.kind === 'http-target')!;
   const target = graph.nodes.find(node => node.id === edge.to)!;
   const many = { ...graph, nodes: [...graph.nodes, ...Array.from({length:12}, (_, i) => ({...target, id:`route-${i}`}))],
     edges: Array.from({length:12}, (_, i) => ({...edge, id:`comparison-${i}`, to:`route-${i}`})) };
@@ -85,7 +85,7 @@ test('count and UTF-8 budgets omit whole comparisons with exact accounting', asy
 });
 
 test('complete prompt fitting preserves source and review bytes and rejects an oversized base', async t => {
-  const s = await setup(t), context = retrieveAnswerContext(s.catalog, 'How does dispatch send the site header?');
+  const s = await setup(t), context = await retrieveAnswerContext(s.catalog, 'How does dispatch send the site header?');
   const sources = JSON.stringify(context.spans), review = JSON.stringify(context.review), count = context.interfaces!.comparisons.length;
   context.gaps.push('x'.repeat(answerPromptBytes - Buffer.byteLength(answerPrompt(context)) + 500));
   fitAnswerInterfaces(context);
@@ -93,7 +93,7 @@ test('complete prompt fitting preserves source and review bytes and rejects an o
   assert.ok(Buffer.byteLength(answerPrompt(context)) <= answerPromptBytes);
   assert.equal(JSON.stringify(context.spans), sources); assert.equal(JSON.stringify(context.review), review);
   assert.equal(context.interfaces!.omitted, context.interfaces!.matching - context.interfaces!.comparisons.length);
-  assert.doesNotThrow(() => validateCitedAnswer(s.catalog, rehash(context), JSON.stringify({claims:[],unknowns:['Which runtime evidence is still needed?']})));
+  await assert.doesNotReject(async () => (await validateCitedAnswer(s.catalog, rehash(context), JSON.stringify({claims:[],unknowns:['Which runtime evidence is still needed?']}))));
   context.gaps.push('x'.repeat(answerPromptBytes));
   assert.throws(() => fitAnswerInterfaces(context), /complete context exceeds 96 KiB/);
 });
@@ -102,9 +102,9 @@ function rehash(context: AnswerContext) {
   const { inputHash: _previous, ...input } = context; return { ...input, inputHash: sha256(JSON.stringify(input)) };
 }
 test('validation rejects derived citation IDs and rehashed invented comparisons or provenance', async t => {
-  const s = await setup(t), context = retrieveAnswerContext(s.catalog, 'How does dispatch send the site header?');
+  const s = await setup(t), context = await retrieveAnswerContext(s.catalog, 'How does dispatch send the site header?');
   const answer = JSON.stringify({claims:[{kind:'inference',text:'The declarations need review.',evidenceIds:[context.spans[0]!.id]}],unknowns:[]});
-  assert.doesNotThrow(() => validateCitedAnswer(s.catalog, context, answer));
+  await assert.doesNotReject(async () => (await validateCitedAnswer(s.catalog, context, answer)));
   for (const edit of [
     (c: AnswerContext) => { c.interfaces!.comparisons[0]!.headerCheck.status = 'unknown'; },
     (c: AnswerContext) => { c.interfaces!.comparisons[0]!.from.sourceId = 'invented'; },
@@ -115,10 +115,10 @@ test('validation rejects derived citation IDs and rehashed invented comparisons 
     (c: AnswerContext) => { Object.assign(c, {interfaces:null}); },
   ]) {
     const changed = structuredClone(context); edit(changed);
-    assert.throws(() => validateCitedAnswer(s.catalog, rehash(changed), answer), /derived interface comparisons/);
+    await assert.rejects(async () => (await validateCitedAnswer(s.catalog, rehash(changed), answer)), /derived interface comparisons/);
   }
   const derivedId = context.interfaces!.comparisons[0]!.id;
-  assert.throws(() => validateCitedAnswer(s.catalog, context, JSON.stringify({claims:[{kind:'fact',text:'Unsupported derived citation.',evidenceIds:[derivedId]}],unknowns:[]})), /unissued citation/);
+  await assert.rejects(async () => (await validateCitedAnswer(s.catalog, context, JSON.stringify({claims:[{kind:'fact',text:'Unsupported derived citation.',evidenceIds:[derivedId]}],unknowns:[]}))), /unissued citation/);
 });
 
 test('issued comparisons survive restart and replay; revocation purges their saved input', async t => {
@@ -129,20 +129,20 @@ test('issued comparisons survive restart and replay; revocation purges their sav
     } }) };
   let answers = new Answers(s.catalog, runtime); t.after(() => answers.stop());
   await answers.configure({executable:process.execPath,configHome:s.fixture.root,profile:null});
-  const context = answers.preview('How does dispatch send the site header?');
-  const start = () => answers.start('comparison-history', context.question, context.buildId, context.inputHash);
-  const attempt = start(); await answers.idle();
+  const context = await answers.preview('How does dispatch send the site header?');
+  const start = async () => (await answers.start('comparison-history', context.question, context.buildId, context.inputHash));
+  const attempt = await start(); await answers.idle();
   assert.equal(answers.get(attempt.id).status, 'succeeded'); assert.equal(answers.get(attempt.id).promptVersion, answerPromptVersion);
   assert.equal(requests[0]!.prompt, answerPrompt(context));
   const before = s.store.one<{context:string;result:string}>('SELECT context,result FROM answer_attempts WHERE id=?',attempt.id)!;
   await answers.stop(); await s.restart(); answers = new Answers(s.catalog, runtime);
   assert.deepEqual(answers.get(attempt.id).context!.interfaces, context.interfaces);
-  assert.equal(start().id, attempt.id); assert.equal(requests.length, 1);
+  assert.equal((await start()).id, attempt.id); assert.equal(requests.length, 1);
   assert.deepEqual(s.store.one('SELECT context,result FROM answer_attempts WHERE id=?',attempt.id), before);
   s.catalog.revoke(s.catalog.state().sources.find(source => source.name === 'order-api')!.id);
   assert.equal(answers.get(attempt.id).context, null); assert.equal(answers.get(attempt.id).answer, null);
   assert.equal(s.store.one<{context:string|null}>('SELECT context FROM answer_attempts WHERE id=?',attempt.id)!.context, null);
-  assert.equal(start().status, 'fenced'); assert.equal(start().context, null); assert.equal(requests.length, 1);
+  assert.equal((await start()).status, 'fenced'); assert.equal((await start()).context, null); assert.equal(requests.length, 1);
 });
 
 test('owned historical v2 answer inputs remain byte-identical and replay without rederivation', async t => {
@@ -152,7 +152,7 @@ test('owned historical v2 answer inputs remain byte-identical and replay without
       usage:null,usageUnknownReason:'Fixture runtime.' }; } }) };
   let answers = new Answers(s.catalog, runtime); t.after(() => answers.stop());
   await answers.configure({executable:process.execPath,configHome:s.fixture.root,profile:null});
-  const current = answers.preview('dispatch'), attempt = answers.start('historical-v2', current.question, current.buildId, current.inputHash);
+  const current = await answers.preview('dispatch'), attempt = await answers.start('historical-v2', current.question, current.buildId, current.inputHash);
   await answers.idle(); assert.equal(answers.get(attempt.id).status, 'succeeded');
   // Seed an internally hashed historical record only in this owned synthetic store.
   const historical = structuredClone(current); historical.interfaces!.codeAdapter = 'pilot-code-v2';
@@ -162,8 +162,8 @@ test('owned historical v2 answer inputs remain byte-identical and replay without
   const before = s.store.one('SELECT context,result,inputHash,payloadHash FROM answer_attempts WHERE id=?',attempt.id);
   await answers.stop(); await s.restart(); answers = new Answers(s.catalog,runtime);
   assert.equal(answers.get(attempt.id).context!.interfaces!.codeAdapter,'pilot-code-v2');
-  assert.equal(answers.start('historical-v2',saved.question,saved.buildId,saved.inputHash).id,attempt.id); assert.equal(calls,1);
+  assert.equal((await answers.start('historical-v2',saved.question,saved.buildId,saved.inputHash)).id,attempt.id); assert.equal(calls,1);
   assert.deepEqual(s.store.one('SELECT context,result,inputHash,payloadHash FROM answer_attempts WHERE id=?',attempt.id),before);
-  assert.equal(answers.preview(saved.question).interfaces!.codeAdapter,'pilot-code-v3');
-  assert.throws(()=>answers.start('new-v2',saved.question,saved.buildId,saved.inputHash),/current context/);
+  assert.equal((await answers.preview(saved.question)).interfaces!.codeAdapter,'pilot-code-v3');
+  await assert.rejects(async ()=>(await answers.start('new-v2',saved.question,saved.buildId,saved.inputHash)),/current context/);
 });

@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import type { Catalog } from './catalog.js';
 import { codeFlows } from './code-flows.js';
+import { LegacyReadOperation } from './legacy-read-operation.js';
 import { declarationMap } from './system-map.js';
 import { sha256 } from './extract.js';
 import { CatalogError } from './types.js';
@@ -131,20 +132,23 @@ export class Corrections {
       row.buildId, row.targetKind, row.targetId, correctionLimits.versions).map(item => ({ ...this.summary(item), original: this.original(item) }));
     return bounded({ buildId: row.buildId, revision: this.catalog.store.project().correctionRevision, versions }, correctionLimits.historyBytes);
   }
-  save(value: unknown): CorrectionSummary {
+  async save(value: unknown): Promise<CorrectionSummary> {
     const input = validate(value);
     return this.write(input, sha256(JSON.stringify(input)));
   }
   /** Called only after the server has compared the exact preview and both source projections. */
-  reapply(value: CorrectionInput, payloadHash: string, sourceCorrectionId: string, previewHash: string): CorrectionSummary {
+  async reapply(value: CorrectionInput, payloadHash: string, sourceCorrectionId: string, previewHash: string): Promise<CorrectionSummary> {
     return this.write(validate(value), payloadHash, { sourceCorrectionId, previewHash });
   }
-  private write(input: CorrectionInput, payloadHash: string, origin?: { sourceCorrectionId: string; previewHash: string }): CorrectionSummary {
+  private async write(input: CorrectionInput, payloadHash: string, origin?: { sourceCorrectionId: string; previewHash: string }): Promise<CorrectionSummary> {
     const store = this.catalog.store, replay = this.replay(input.requestId, payloadHash);
     if (replay) return replay;
+    const operation = new LegacyReadOperation(this.catalog);
+    operation.check();
     const build = this.catalog.readBuild(input.buildId);
     if (this.revoked(build.id)) throw new CatalogError('SOURCE_CHANGED', 'Index the remaining sources before adding corrections.', 409);
-    const projection = input.targetKind === 'code-link' ? codeFlows(this.catalog, build.id) : declarationMap(this.catalog, build.id);
+    const projection = input.targetKind === 'code-link' ? await codeFlows(this.catalog, build.id, operation) : declarationMap(this.catalog, build.id);
+    operation.check();
     if (projection.inputHash !== input.projectionHash) throw new CatalogError('INPUT_CHANGED', 'The map changed. Review the current link before saving.', 409);
     const previous = this.latest(build.id, input.targetKind, input.targetId);
     let snapshot: CorrectionSnapshot;
@@ -160,17 +164,22 @@ export class Corrections {
       snapshot = { schemaVersion: projection.schemaVersion, adapterVersion: projection.adapterVersion, projectionHash: projection.inputHash,
         id: edge.id, kind: edge.kind, status: edge.status, reason: edge.reason, environment: edge.environment,
         from: endpoint(from), to: endpoint(to), evidenceIds: edge.evidenceIds };
-      const code = 'flows' in projection ? projection : codeFlows(this.catalog, build.id);
+      const code = 'flows' in projection ? projection : await codeFlows(this.catalog, build.id, operation);
+      operation.check();
       affectedFlowIds = code.flows.filter(flow => input.targetKind === 'code-link' ? flow.edgeIds.includes(edge.id)
         : flow.evidenceIds.some(id => edge.evidenceIds.includes(id))).map(flow => flow.id).sort();
     }
     const target = JSON.stringify(snapshot);
     if (Buffer.byteLength(target) > correctionLimits.snapshotBytes) throw new CatalogError('CORRECTION_LIMIT', 'This link exceeds the correction evidence budget.', 409);
     return store.transaction(() => {
+      const replay = this.replay(input.requestId, payloadHash); if (replay) return replay;
       const project = store.project(), current = this.latest(build.id, input.targetKind, input.targetId);
       if (project.correctionRevision !== input.expectedRevision || (current?.id ?? null) !== input.expectedPreviousId) {
         throw new CatalogError('CONFLICT', 'A correction changed. Refresh and review the latest version before saving.', 409);
       }
+      operation.check();
+      this.catalog.readBuild(build.id);
+      if (this.revoked(build.id)) throw new CatalogError('SOURCE_CHANGED', 'Index the remaining sources before adding corrections.', 409);
       const source = origin ? this.row(origin.sourceCorrectionId) : undefined;
       if (source) {
         this.original(source);

@@ -103,7 +103,7 @@ export function dynamic(options) { return fetch('/receipt/dynamic', {headers:opt
   const question = value => evaluate(`(()=>{const e=document.getElementById('project-question');Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,'value').set.call(e,${JSON.stringify(value)});e.dispatchEvent(new Event('input',{bubbles:true}));})()`);
   const screenshot = async name => writeFile(path.join(output, name), Buffer.from((await page.send('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
   const questionText = 'How do receipt headers and checkout-bff connect to order-api?';
-  const answerPreview = answers.preview(questionText), gap = answerPreview.interfaces.comparisons.find(item => item.headerCheck.status === 'gap');
+  const answerPreview = await answers.preview(questionText), gap = answerPreview.interfaces.comparisons.find(item => item.headerCheck.status === 'gap');
   assert.ok(gap); assert.ok(answerPreview.interfaces.comparisons.some(item => item.headerCheck.status === 'unknown'));
   assert.ok(answerPreview.interfaces.comparisons.some(item => item.from.label === 'GET /<img>' && item.headerCheck.status === 'match'));
   await page.send('Emulation.setDeviceMetricsOverride', { width:1280,height:1100,deviceScaleFactor:1,mobile:false });
@@ -138,7 +138,7 @@ export function dynamic(options) { return fetch('/receipt/dynamic', {headers:opt
   await text('A newer index or source registry is available.');
   assert.deepEqual(store.one('SELECT context,result FROM answer_attempts WHERE id=?',original),saved);
   // Seed a separately generated owned attempt with the pre-v9 optional-field absence.
-  const refreshed = answers.preview(questionText), legacy = answers.start('legacy-example',questionText,refreshed.buildId,refreshed.inputHash);
+  const refreshed = await answers.preview(questionText), legacy = await answers.start('legacy-example',questionText,refreshed.buildId,refreshed.inputHash);
   await answers.idle(); const oldContext = structuredClone(answers.get(legacy.id).context); delete oldContext.interfaces;
   const {inputHash:previousHash,...oldInput}=oldContext; oldContext.inputHash=sha256(JSON.stringify(oldInput));
   store.run("UPDATE answer_attempts SET context=?,inputHash=?,promptVersion='loredock-answer-v8' WHERE id=?",JSON.stringify(oldContext),oldContext.inputHash,legacy.id);

@@ -1,11 +1,11 @@
 import type { Catalog } from './catalog.js';
 import type { AnswerContext } from './answer-context.js';
-import { answerLimits, retrievalVersion } from './answer-context.js';
+import { answerLimits, retrievalVersion, validateCitedAnswer, type CitedAnswer } from './answer-context.js';
 import { answerPromptBytes } from './answer-prompt.js';
 import { assertAnswerReviewCurrent } from './answer-review.js';
 import { assertAnswerInterfaces } from './answer-interfaces.js';
 import { OperationBudget } from './operation-budget.js';
-import { LexicalReadAccount } from './lexical-read-account.js';
+import { LegacyReadOperation } from './legacy-read-operation.js';
 import { CaptureWork } from './native-capture-work.js';
 import { decodeNativeReceipt } from './native-receipt.js';
 import { bytes, hash, same, requireReceipt, record, shape, string, hex, uuid, array } from './native-receipt-json.js';
@@ -79,7 +79,8 @@ export function readQuestionSnapshot(snapshot: QuestionSnapshot) {
 
 export interface QuestionValidationOptions {
   budget?: OperationBudget;
-  finalize?: (input: { context: AnswerContext; witness: QuestionWitness; budget: OperationBudget; check: () => void }) => unknown;
+  answer?: string;
+  finalize?: (input: { context: AnswerContext; witness: QuestionWitness; budget: OperationBudget; check: () => void; answer?: CitedAnswer }) => unknown;
 }
 
 /** Trusted server-held bytes only. No current native analysis, path or inventory lookup. */
@@ -106,8 +107,9 @@ export async function validateQuestionWitness(catalog: Catalog, snapshot: Questi
       requireReceipt(original.buildId === context.buildId && same(inputSpan(original), span), 'QUESTION_ORIGINAL_MISMATCH');
     }
     // Legacy interfaces keep their own validator and actual lexical accounting.
-    const lexical = new LexicalReadAccount(budget);
-    catalog.store.withLexicalReads(lexical, () => assertAnswerInterfaces(catalog, context));
+    const lexical = new LegacyReadOperation(catalog, budget, signal);
+    await assertAnswerInterfaces(catalog, context, lexical);
+    const answer = options.answer === undefined ? undefined : await validateCitedAnswer(catalog, context, options.answer, lexical);
     const prompt = preparedQuestionPrompt(context, witness.compact.item); budget.charge('receipt', bytes(prompt));
     requireReceipt(prompt === witness.prompt, 'QUESTION_PROMPT_MISMATCH');
     await work.step('handoff'); assertQuestionCurrent(catalog, context, witness.sourceIds);
@@ -115,7 +117,8 @@ export async function validateQuestionWitness(catalog: Catalog, snapshot: Questi
     work.check();
     // A trusted consumer commits or starts its owned promise synchronously at this fence.
     // Its own writes end the read-only epoch; do not check that epoch afterward.
-    const result = options.finalize?.({ context, witness, budget, check: () => work.check() });
+    lexical.check();
+    const result = options.finalize?.({ context, witness, budget, check: () => { work.check(); lexical.check(); }, ...(answer ? { answer } : {}) });
     if (result !== null && (typeof result === 'object' || typeof result === 'function') && 'then' in result) {
       if (result instanceof Promise) void result.catch(() => undefined);
       requireReceipt(false, 'ASYNC_WITNESS_FINALIZER');
