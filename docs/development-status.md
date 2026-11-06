@@ -1,5 +1,29 @@
 # Development status
 
+## Task 141 — Parser observation coverage
+
+Task 140 is accepted through [PR #173](https://github.com/skyscs/ai-engineering-workbench/pull/173),
+head `a8c7b44`, identical-tree merge `410e9ac`. Both complete CI logs pass 1,125 tests,
+ten typechecks and ten final builds. The [retained first record](fixtures/loredock-parser-coverage/README.md)
+fixes Task 141 inputs prospectively at `fd4f2e3`, then observes candidate `7080e75` once.
+No application implementation changes; all 95 emitted LoreDock modules remain exact.
+
+Source and emitted modes both complete real server startup, indexing, native analysis,
+foreground graph, parser termination and catalog integrity checks. Whole children exit 0
+after 846.277/481.120 ms without timeout or surviving descendants. No models, corporate
+sources, browsers or consumed families run.
+
+The source parent interval reaches 324.833 ms and its process tree includes two native
+esbuild services. Emitted reaches 72.231 ms, but both modes lack complete startup and
+isolate heap coverage. The observer preserves unknown sample times, rejected requests,
+pending-at-close records and creation/exit windows; it reports no simultaneous heap peak.
+Eight focused regressions and the full local check pass: **1,133 tests** (728 LoreDock,
+270 scripts, 135 other package tests), ten typechecks and ten final builds, with no failures
+or cancellations. Final exact-head CI remains pending.
+See [the findings](loredock/PARSER_OBSERVATION_COVERAGE.md).
+After merge, [Task 142](../tasks/142-loredock-resource-observation-decision.md) makes the
+measurement decision before a new near-limit attempt. All resource ceilings remain fixed.
+
 ## Task 140 — Owned production parser
 
 Task 139 is accepted through [PR #172](https://github.com/skyscs/ai-engineering-workbench/pull/172):

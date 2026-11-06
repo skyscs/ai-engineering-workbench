@@ -532,9 +532,12 @@ under the unchanged 524,288-byte limit. After exact-head checks and merge,
 [Task 140](tasks/140-loredock-production-parser-adoption.md) adopts the owner in native and
 legacy paths with asynchronous initialization, whole-operation admission and actual-exit
 shutdown. Eleven ordinary catalog comparisons retain exact results and all 21 saved answers.
-[Task 141](tasks/141-loredock-parser-observer-coverage.md) establishes complete startup and
-parent/worker observer coverage before another near-limit gate. No measured failure or
-resource limit is waived; the browser baseline failure remains a separate decision.
+[Task 141](tasks/141-loredock-parser-observer-coverage.md) audits startup and parent/worker
+coverage with unchanged application bytes. Both small lifecycle controls pass, but source
+loading has a 324.833-ms parent interval and both modes have incomplete heap coverage.
+[Task 142](tasks/142-loredock-resource-observation-decision.md) decides the supported
+measurement boundary before another near-limit gate. No measured failure or resource
+limit is waived; the browser baseline failure remains a separate decision.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
 and continuation through the planned development sequence. Keep each implementation
