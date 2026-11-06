@@ -1,0 +1,178 @@
+{
+  "candidate": "b31bbba",
+  "applicationBase": "98dc39ec6f407a929e1b46219bf45905950c87eb",
+  "assessment": {
+    "eligible": false,
+    "failures": [
+      {
+        "code": "RSS_LIMIT",
+        "actual": 1937039360,
+        "limit": 1073741824
+      },
+      {
+        "code": "SAMPLING_GAP",
+        "actual": 103.09935999999999,
+        "limit": 100
+      }
+    ],
+    "samples": 306,
+    "completeSamples": 306,
+    "maximumRecordedRssBytes": 1937039360,
+    "maximumCompleteSampleRssBytes": 1937039360,
+    "maximumSampleStartGapMs": 103.09935999999999,
+    "startupSampleGapMs": 5.037161999999967,
+    "exitSampleGapMs": 38.51655600000231,
+    "nominalCadenceMs": 100,
+    "rssLimitBytes": 1073741824,
+    "resourceQualification": false,
+    "scope": "One blank-browser environment control; no daemon, application page or repaired full-flow qualification."
+  },
+  "peak": {
+    "began": 5421.897302,
+    "at": 5432.308938,
+    "processes": 15,
+    "rssByObservedRole": {
+      "lifetime-collector": 18407424,
+      "crashpad": 8413184,
+      "browser-root": 292519936,
+      "utility:network.mojom.NetworkService": 184008704,
+      "zygote": 247283712,
+      "renderer": 947032064,
+      "utility:storage.mojom.StorageService": 98578432,
+      "gpu-process": 140795904
+    },
+    "rows": [
+      {
+        "pid": 2400504,
+        "startedTicks": "31878579",
+        "role": "lifetime-collector",
+        "rssBytes": 18407424,
+        "extensionFlagObserved": false
+      },
+      {
+        "pid": 2400509,
+        "startedTicks": "31878585",
+        "role": "crashpad",
+        "rssBytes": 3899392,
+        "extensionFlagObserved": false
+      },
+      {
+        "pid": 2400507,
+        "startedTicks": "31878585",
+        "role": "crashpad",
+        "rssBytes": 4513792,
+        "extensionFlagObserved": false
+      },
+      {
+        "pid": 2400505,
+        "startedTicks": "31878583",
+        "role": "browser-root",
+        "rssBytes": 292519936,
+        "extensionFlagObserved": false
+      },
+      {
+        "pid": 2400565,
+        "startedTicks": "31878612",
+        "role": "utility:network.mojom.NetworkService",
+        "rssBytes": 184008704,
+        "extensionFlagObserved": false
+      },
+      {
+        "pid": 2400513,
+        "startedTicks": "31878586",
+        "role": "zygote",
+        "rssBytes": 123203584,
+        "extensionFlagObserved": false
+      },
+      {
+        "pid": 2400700,
+        "startedTicks": "31878919",
+        "role": "renderer",
+        "rssBytes": 126406656,
+        "extensionFlagObserved": false
+      },
+      {
+        "pid": 2400675,
+        "startedTicks": "31878628",
+        "role": "renderer",
+        "rssBytes": 154451968,
+        "extensionFlagObserved": true
+      },
+      {
+        "pid": 2400674,
+        "startedTicks": "31878627",
+        "role": "renderer",
+        "rssBytes": 151236608,
+        "extensionFlagObserved": true
+      },
+      {
+        "pid": 2400645,
+        "startedTicks": "31878621",
+        "role": "renderer",
+        "rssBytes": 168878080,
+        "extensionFlagObserved": false
+      },
+      {
+        "pid": 2400644,
+        "startedTicks": "31878621",
+        "role": "renderer",
+        "rssBytes": 126672896,
+        "extensionFlagObserved": false
+      },
+      {
+        "pid": 2400609,
+        "startedTicks": "31878617",
+        "role": "renderer",
+        "rssBytes": 219385856,
+        "extensionFlagObserved": false
+      },
+      {
+        "pid": 2400569,
+        "startedTicks": "31878614",
+        "role": "utility:storage.mojom.StorageService",
+        "rssBytes": 98578432,
+        "extensionFlagObserved": false
+      },
+      {
+        "pid": 2400512,
+        "startedTicks": "31878585",
+        "role": "zygote",
+        "rssBytes": 124080128,
+        "extensionFlagObserved": false
+      },
+      {
+        "pid": 2400535,
+        "startedTicks": "31878588",
+        "role": "gpu-process",
+        "rssBytes": 140795904,
+        "extensionFlagObserved": false
+      }
+    ]
+  },
+  "diagnosticRoleCount": 15,
+  "terminalSequentialPssBytes": 479755264,
+  "terminalSequentialRssBytes": 1629847552,
+  "terminalProportionalSamples": 13,
+  "owner": {
+    "elapsedMs": 31664.036727976054,
+    "reason": "driver-failure",
+    "driverExit": {
+      "pid": 2400493,
+      "waitStatus": 256,
+      "exit": 1,
+      "userSeconds": 5.421929,
+      "systemSeconds": 2.800763,
+      "maxRssBytes": 293892096
+    },
+    "errors": [],
+    "survivors": []
+  },
+  "modelCalls": 0,
+  "applicationRequests": 0,
+  "resourceQualification": false,
+  "limitations": [
+    "Roles are observed flags, not extension identity or cause.",
+    "Terminal sequential PSS is diagnostic, not a replacement for the failed summed RSS gate.",
+    "No application page, daemon or near-limit workload ran."
+  ]
+}

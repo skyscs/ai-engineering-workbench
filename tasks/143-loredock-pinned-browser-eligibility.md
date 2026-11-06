@@ -1,6 +1,6 @@
 # Task 143 — Pin and test a standalone browser environment
 
-Status: prospective control after Task 142 acceptance (PR #175, merge `98dc39e`).
+Status: first control complete and ineligible; full local checks pass. Exact-head CI pending.
 See [the control method](../docs/loredock/PINNED_BROWSER_ELIGIBILITY.md) and
 [fixed plan](../scripts/loredock-browser-eligibility/plan.mjs).
 
@@ -36,3 +36,11 @@ whole-isolate heap qualification. Preserve every old failure, limit and consumed
 No download or runtime call occurs as part of the preceding design task. If the selected
 vendor artifact is unavailable, report that condition and choose a new version prospectively
 in a separate review; do not silently use a different channel, version or installed browser.
+
+The selected archive/version and all 301 installed files are verified. The one blank-page
+control produces 306 complete samples, zero application/model requests and actual cleanup
+without survivors. It fails summed RSS at 1,937,039,360 bytes and the actual sample gap at
+103.099 ms. Both failures and all raw evidence remain retained without a rerun.
+Eight focused tests and the full 1,141-test check pass, including ten typechecks/builds.
+After CI review and merge, continue with [Task 144](144-loredock-browser-environment-decision.md);
+do not start an application-page control in this ineligible environment.

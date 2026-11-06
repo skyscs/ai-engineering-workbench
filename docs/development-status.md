@@ -1,5 +1,28 @@
 # Development status
 
+## Task 143 — Pinned browser eligibility (failed control retained)
+
+Task 142 is accepted through [PR #175](https://github.com/skyscs/ai-engineering-workbench/pull/175),
+head `24e1589`, identical-tree merge `98dc39e`. Both complete CI logs pass 1,133 tests,
+ten typechecks and ten final builds. Task 143 commits its plan at `4addac2`, exact inputs
+at `eb89ab2` and launch owner at `b31bbba` before one blank-browser lifetime.
+
+Official full Chrome for Testing 157.0.8103.38, its vendor archive and all 301 installed
+files are verified. The [first record](fixtures/loredock-browser-eligibility/README.md)
+contains 306 complete raw samples, zero application requests and normal browser/collector
+exit. The kernel owner records no errors or survivors. The driver exits 1 because summed
+RSS reaches **1,937,039,360 bytes** and the actual sample gap **103.099 ms**, exceeding
+the unchanged 1-GiB/100-ms limits. No retry, flag tuning or metric substitution occurs.
+
+All 36 frozen inputs remain exact; 75 published archive members and ten closed logs are
+retained. Fresh profile/cache contents and the browser installation remain at original
+local paths with explicit archive exclusions. Eight focused tests and the full local check
+pass **1,141 tests** (728 LoreDock, 278 scripts, 135 other package tests), ten typechecks
+and ten final builds. Exact-head CI review is pending. Application code, original collectors,
+schemas and defaults remain unchanged; daemon heap/startup qualification stays blocked.
+After merge, [Task 144](../tasks/144-loredock-browser-environment-decision.md) decides an
+independent environment and prospective sampling margin before another browser execution.
+
 ## Task 142 — Resource observation decision
 
 Task 141 is accepted through [PR #174](https://github.com/skyscs/ai-engineering-workbench/pull/174),

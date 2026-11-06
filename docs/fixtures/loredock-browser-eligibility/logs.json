@@ -1,0 +1,123 @@
+{
+  "records": [
+    {
+      "path": "logs/task143-install-browser-first.log.gz",
+      "bytes": 1080,
+      "sha256": "60c2d8ac5e015329a059814df91573f7fa84a3942259fd93ea9f0677f29a564d",
+      "gzipSha256": "cc472b9b166a7ce848f412f799f1db39f532503660d2df3555a95b24ac7c50ad"
+    },
+    {
+      "path": "logs/task143-install-dependencies.log.gz",
+      "bytes": 326,
+      "sha256": "e16310149507bcaf116a0e207c38976905453c5a492e4779281df3836ad3bc24",
+      "gzipSha256": "61724a675c8137c06fe4fb7c6278f3c2ecb6a8b9fc904af10ecd1268af94f499"
+    },
+    {
+      "path": "logs/task143-observer-tests-first.log.gz",
+      "bytes": 1724,
+      "sha256": "4763ad4b15153f686e58adc9eb5c87aac63284783f4a134daa83f698513bd678",
+      "gzipSha256": "1721e46d4a5c9585a6db99cd59809494191b1a00f6169347c0df16781e10dbae"
+    },
+    {
+      "path": "logs/task143-observer-tests-second.log.gz",
+      "bytes": 1921,
+      "sha256": "b75fb73bf1ff1ff6ddfc4c5fa521a4f3b3e722672fba51c83f0c0fb56893911c",
+      "gzipSha256": "92269d420f46a6edb18a90528170374aa879d37dea3ed2faf5b094767303ad66"
+    },
+    {
+      "path": "logs/task143-first-launch.log.gz",
+      "bytes": 178,
+      "sha256": "a28d26fa83dc29fb9ca76702fa2fb1e769395dd842d225ebdf95646899622372",
+      "gzipSha256": "a5e67564f986be3fb2fb16ae628385c89025f4d4e1540cc98dd95b4d4b28da9a"
+    },
+    {
+      "path": "logs/task143-owner-first.stdout.log.gz",
+      "bytes": 3276,
+      "sha256": "100ddbbdc2138b7152e3c424737032a34a641bad03348608d160f9c10d508027",
+      "gzipSha256": "88e039f7bf4425181d389272f7451797c03d013d54810eaa1b6c2ff53de7abc2"
+    },
+    {
+      "path": "logs/task143-owner-first.stderr.log.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzipSha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "path": "logs/task143-full-check-first.log.gz",
+      "bytes": 404673,
+      "sha256": "efd7e218517fc33c74762d8a1562ecdaa6a0b7832e3b1e34142aaa869caded6f",
+      "gzipSha256": "a13b54e234892e27be8d5818e45d9da71eb700ca7f0e071f135241314516ec17"
+    },
+    {
+      "path": "logs/task142-ci-push-final.log.gz",
+      "bytes": 635430,
+      "sha256": "3f67d5cba9a9eb12ec690a32a44d2f375aede9cc899d7783cf753b87c7c60dc7",
+      "gzipSha256": "5d8ec9af9f354a2dcd83527a27318dda9160683f8424a2bb0e848d750299c6e0"
+    },
+    {
+      "path": "logs/task142-ci-pr-final.log.gz",
+      "bytes": 635916,
+      "sha256": "735d85ede7f51225479808fe03386b19b9ee52a6aa479c7b788ca1c38dfd87f3",
+      "gzipSha256": "0e4ebce9d351ee6022fea637008e04ce9b9875f0353dc1c6d11071ed8da89763"
+    }
+  ],
+  "localCheck": {
+    "tests": [
+      17,
+      18,
+      43,
+      728,
+      57,
+      278
+    ],
+    "total": 1141,
+    "typechecks": 10,
+    "finalBuilds": 10
+  },
+  "previousCI": {
+    "head": "24e1589c23ae5d12fa667c8a7564f3c63e3b3125",
+    "pr": 175,
+    "events": [
+      {
+        "event": "push",
+        "run": 42164429243,
+        "job": 127717445350,
+        "log": "/home/toshiba/aew/task142-ci-push-final.log",
+        "bytes": 635430,
+        "sha256": "3f67d5cba9a9eb12ec690a32a44d2f375aede9cc899d7783cf753b87c7c60dc7",
+        "tests": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          270
+        ],
+        "total": 1133,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "completeLogReviewed": true
+      },
+      {
+        "event": "pr",
+        "run": 42164484760,
+        "job": 127717626865,
+        "log": "/home/toshiba/aew/task142-ci-pr-final.log",
+        "bytes": 635916,
+        "sha256": "735d85ede7f51225479808fe03386b19b9ee52a6aa479c7b788ca1c38dfd87f3",
+        "tests": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          270
+        ],
+        "total": 1133,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "completeLogReviewed": true
+      }
+    ]
+  }
+}
