@@ -1,0 +1,157 @@
+{
+  "version": "ordinary-parser-coverage-assessment/1",
+  "modes": [
+    {
+      "mode": "source",
+      "lifecyclePassed": true,
+      "wholeChildMs": 846.277241,
+      "observerEntryMs": 23.907754,
+      "listeningAtMs": 648.359175,
+      "parentSamples": 48,
+      "maximumParentGapMs": 324.833427,
+      "sampledParentHeapMaximumBytes": 21312392,
+      "processHighWaterRssBytes": 203759616,
+      "sampledProcessTreeRssMaximumBytes": 238866432,
+      "sampledProcessIdentities": [
+        [
+          2279832,
+          31593085
+        ],
+        [
+          2279840,
+          31593092
+        ],
+        [
+          2279861,
+          31593132
+        ]
+      ],
+      "maximumCensusRequestGapMs": 26.562137,
+      "heapRequestStatuses": {
+        "rejected": 5,
+        "fulfilled": 77,
+        "pending": 1
+      },
+      "maximumHeapRequestLatencyMs": 81.51861799999995,
+      "workers": [
+        {
+          "id": 1,
+          "createdAt": 40.87714,
+          "returnedAt": 41.759511,
+          "exitedAt": null,
+          "skipped": 0,
+          "pendingAtClose": 83,
+          "firstSuccessfulWindow": [
+            349.719454,
+            352.623787
+          ],
+          "lastSuccessfulWindow": [
+            820.985775,
+            821.135141
+          ],
+          "sampledHeapMaximumBytes": 9069920,
+          "creationToFirstWindowMs": [
+            308.842314,
+            311.746647
+          ],
+          "lastWindowToExitMs": null
+        },
+        {
+          "id": 2,
+          "createdAt": 394.448452,
+          "returnedAt": 394.727768,
+          "exitedAt": 825.257447,
+          "skipped": 7,
+          "pendingAtClose": null,
+          "firstSuccessfulWindow": [
+            420.43632,
+            420.517075
+          ],
+          "lastSuccessfulWindow": [
+            810.527333,
+            810.660733
+          ],
+          "sampledHeapMaximumBytes": 33814904,
+          "creationToFirstWindowMs": [
+            25.98786800000005,
+            26.068623000000002
+          ],
+          "lastWindowToExitMs": [
+            14.596713999999906,
+            14.730113999999958
+          ]
+        }
+      ],
+      "completeIsolateSet": false,
+      "completeStartup": false,
+      "simultaneousHeapPeakBytes": null,
+      "resourceQualification": false
+    },
+    {
+      "mode": "emitted",
+      "lifecyclePassed": true,
+      "wholeChildMs": 481.11964,
+      "observerEntryMs": 19.441013,
+      "listeningAtMs": 285.602544,
+      "parentSamples": 37,
+      "maximumParentGapMs": 72.23093,
+      "sampledParentHeapMaximumBytes": 13645312,
+      "processHighWaterRssBytes": 170586112,
+      "sampledProcessTreeRssMaximumBytes": 170586112,
+      "sampledProcessIdentities": [
+        [
+          2279892,
+          31593182
+        ]
+      ],
+      "maximumCensusRequestGapMs": 25.389373,
+      "heapRequestStatuses": {
+        "rejected": 4,
+        "fulfilled": 21
+      },
+      "maximumHeapRequestLatencyMs": 78.61539100000002,
+      "workers": [
+        {
+          "id": 1,
+          "createdAt": 125.441745,
+          "returnedAt": 126.1212,
+          "exitedAt": 452.609981,
+          "skipped": 7,
+          "pendingAtClose": null,
+          "firstSuccessfulWindow": [
+            153.196093,
+            153.357051
+          ],
+          "lastSuccessfulWindow": [
+            438.783303,
+            438.916354
+          ],
+          "sampledHeapMaximumBytes": 23924728,
+          "creationToFirstWindowMs": [
+            27.754347999999993,
+            27.915306000000015
+          ],
+          "lastWindowToExitMs": [
+            13.693626999999992,
+            13.826678000000015
+          ]
+        }
+      ],
+      "completeIsolateSet": false,
+      "completeStartup": false,
+      "simultaneousHeapPeakBytes": null,
+      "resourceQualification": false
+    }
+  ],
+  "decision": "Lifecycle control passes. Whole-isolate heap and complete startup remain blocked. Design the measurement boundary before near-limit execution.",
+  "limitations": [
+    "JavaScript entry misses process bootstrap.",
+    "Worker sample instants are unknown.",
+    "Early, late and pending worker samples remain missing.",
+    "Public Worker hooks cannot discover every nested/internal isolate.",
+    "Linux census is interval sampled and cannot prove that no short-lived descendant existed.",
+    "The observer allocates and writes synchronously; this is not an uninstrumented benchmark.",
+    "Source loader cache state is uncontrolled; no cold-cache claim.",
+    "No browser or near-limit workload ran."
+  ]
+}

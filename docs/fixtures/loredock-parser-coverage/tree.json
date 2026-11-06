@@ -1,0 +1,11 @@
+{
+  "candidate": "7080e75",
+  "prospective": "fd4f2e3",
+  "applicationBase": "410e9acd4e113a0175e806444f31b8b9273cd887",
+  "archive": "first.tar.gz",
+  "archiveBytes": 9720262,
+  "archiveSha256": "4674e3fc4d9ebf567f5679b80d2a820522e0bd7f833d748cacd64ab2fac55279",
+  "entries": 487,
+  "rawBytes": 38258735,
+  "inventorySha256": "9e3c27b4c91ec308c878cccea3308c6e696e55b0cfb9dfbff76489c6e309391a"
+}

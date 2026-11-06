@@ -1,6 +1,10 @@
 # Task 141 — Establish production parser observation coverage
 
-Status: planned after Task 140 acceptance.
+Status: first control complete; lifecycle passes, coverage remains blocked. The full local
+check passes 1,133 tests, ten typechecks and ten final builds. Exact-head CI review is pending.
+
+See [the prospective method](../docs/loredock/PARSER_OBSERVATION_COVERAGE.md) and
+[fixed inputs and bounds](../scripts/loredock-parser-coverage/plan.mjs).
 
 Task 140's compatibility and worker lifecycle results do not qualify complete startup,
 whole-isolate heap, ordinary near-limit preparation or browser memory. Its parent-only
@@ -34,3 +38,10 @@ Keep the application implementation fixed while evaluating observation coverage.
 Run focused observer regressions, strict types and full checks; inspect both complete CI
 logs for the exact PR head, merge, and continue with the next evidence-supported task.
 No new product features, schemas, model calls, background retries or default changes.
+
+The original source/emitted children both exit 0 with no descendants, one parsed native
+file and an integrity-checked stopped catalog. Source's parent interval reaches 324.833 ms;
+emitted reaches 72.231 ms. Missing startup/worker/nested-isolate coverage remains explicit.
+All 95 emitted LoreDock modules match Task 140. Eight observer regression tests pass.
+Continue with [Task 142](142-loredock-resource-observation-decision.md) after acceptance;
+do not launch a near-limit gate with this incomplete observer.

@@ -1,6 +1,8 @@
 # Task 140 — Adopt the compatible owned parser in production
 
-Status: implemented and locally verified; exact-head CI acceptance pending.
+Status: accepted through PR #173, head `a8c7b44`, identical-tree merge `410e9ac`.
+Both complete final CI logs pass 1,125 tests, ten typechecks and ten final builds;
+the [next-stage archive](../docs/fixtures/loredock-parser-coverage/README.md) retains them.
 Base: accepted Task 139 merge `41d70a1b7423ab52a482ba81b9f432d343fa0eb2`.
 
 The prospective admission/readiness/accounting decisions are recorded in

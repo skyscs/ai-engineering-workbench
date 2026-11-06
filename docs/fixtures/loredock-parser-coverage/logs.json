@@ -1,0 +1,105 @@
+{
+  "records": [
+    {
+      "path": "logs/task141-install.log.gz",
+      "bytes": 326,
+      "sha256": "e9b6e3fee64f37ff217dec016f8d53a9cd5ee267cbfa51c4ca379bfdfd82f722",
+      "gzipSha256": "bc8f97a9a2282ed8152e7d79b73b7b3d0132684f9b3298bdb4aa6b2f695d0a0f"
+    },
+    {
+      "path": "logs/task141-initial-build.log.gz",
+      "bytes": 2348,
+      "sha256": "4b8352d4ee6a9854ec573cb21a276fe12a6e868ea43d0ba8699d5c9c6dd614ea",
+      "gzipSha256": "df98a591db8bba2d0fa6705965a2948f6041429b19fd137cc93c71f1ff3bc528"
+    },
+    {
+      "path": "logs/task141-observer-tests-first.log.gz",
+      "bytes": 1797,
+      "sha256": "ec53af3b3454f66f9d1284f37b5c3ac34c19db2ba580d87f2596aa8e68236a64",
+      "gzipSha256": "45cec83cc8d34310e56eeee1835797e30bc362b43b2c431518184aae9b554109"
+    },
+    {
+      "path": "logs/task141-first-launch.log.gz",
+      "bytes": 691,
+      "sha256": "438ca71f50576d4dc500f27875ff07279b5eae41a01f4e4a12f627e31846104a",
+      "gzipSha256": "886732873ad65e1a49c303eb402110ce62b7350a836bc99ff5d4837d665ae5f1"
+    },
+    {
+      "path": "logs/task141-full-check-first.log.gz",
+      "bytes": 402771,
+      "sha256": "cd34e2155e64c03c0cb5fae7cf3e086dfce3907de97a68de2fcccbcde979dbcf",
+      "gzipSha256": "f1b97dd8f5e3ce24ea329fcd4a07a71b548b5ee5b6523e786650dea5669b3062"
+    },
+    {
+      "path": "logs/task140-ci-push-final.log.gz",
+      "bytes": 632039,
+      "sha256": "e2b6770eedb9b72968ea5be20564ff02653cb1405ac718c2a3d952dade9171d4",
+      "gzipSha256": "c4e2528ec315346ec760f3d3614e9dcbd08a71b2536951df54f4b19c94987c7c"
+    },
+    {
+      "path": "logs/task140-ci-pr-final.log.gz",
+      "bytes": 632874,
+      "sha256": "d278c469b7f2ee42339da9c737ee3f1ac6d9f327f03166322cd15430d130add3",
+      "gzipSha256": "dca709a45758c351f9c6476f76469c93179680db1f42e26ed2c96716d3a5521e"
+    }
+  ],
+  "localFullCheck": {
+    "tests": [
+      17,
+      18,
+      43,
+      728,
+      57,
+      270
+    ],
+    "total": 1133,
+    "typechecks": 10,
+    "finalBuilds": 10
+  },
+  "previousCI": {
+    "head": "a8c7b44f77370848a39ce97aef6aeb42b40402af",
+    "PR": 173,
+    "events": [
+      {
+        "event": "push",
+        "run": 42159818825,
+        "job": 127702580767,
+        "log": "/home/toshiba/aew/task140-ci-push-final.log",
+        "bytes": 632039,
+        "sha256": "e2b6770eedb9b72968ea5be20564ff02653cb1405ac718c2a3d952dade9171d4",
+        "tests": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          262
+        ],
+        "total": 1125,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "completeLogReviewed": true
+      },
+      {
+        "event": "pr",
+        "run": 42159822935,
+        "job": 127702594861,
+        "log": "/home/toshiba/aew/task140-ci-pr-final.log",
+        "bytes": 632874,
+        "sha256": "d278c469b7f2ee42339da9c737ee3f1ac6d9f327f03166322cd15430d130add3",
+        "tests": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          262
+        ],
+        "total": 1125,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "completeLogReviewed": true
+      }
+    ]
+  }
+}
