@@ -1,6 +1,9 @@
 # Task 141 — Establish production parser observation coverage
 
-Status: planned after Task 140 acceptance.
+Status: prospective control committed after Task 140 acceptance (PR #173, merge `410e9ac`).
+
+See [the prospective method](../docs/loredock/PARSER_OBSERVATION_COVERAGE.md) and
+[fixed inputs and bounds](../scripts/loredock-parser-coverage/plan.mjs).
 
 Task 140's compatibility and worker lifecycle results do not qualify complete startup,
 whole-isolate heap, ordinary near-limit preparation or browser memory. Its parent-only
