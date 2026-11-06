@@ -1,5 +1,9 @@
 # Corrected user-service namespace prerequisite
 
+The sole first attempt is consumed and passed its named prerequisite checks. See the
+[retained result and limits](USER_NAMESPACE_PREREQUISITE_RESULT.md). This adapter is sealed
+experiment history, not a reusable qualified executor; do not rerun its first entry.
+
 Task 154 integrates the accepted [ownership-record validator](USER_SERVICE_OWNERSHIP.md)
 into a separate [adapter](../../scripts/loredock-user-namespace-prerequisite/probe.py).
 The Task 152 helper, inputs, claim and unavailable first result remain unchanged and consumed.

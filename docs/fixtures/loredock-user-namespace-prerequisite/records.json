@@ -1,0 +1,226 @@
+{
+  "task": 154,
+  "candidateHead": "0f24bf692fa1b9943e24dd7eed67728822a5b84e",
+  "firstManifestSha256": "55bdfbc8cbc1081998cbf22ec6ed80ec1c132a0048b79780edef114f70109c90",
+  "firstAttemptConsumed": true,
+  "firstAssessment": "PASS",
+  "scope": "Only retained user-service ownership/acquisition and namespace prerequisite checks.",
+  "unit": "loredock-task154-2e25f8bb-5d26-49cd-89c3-cfca38a5061d.service",
+  "invocationId": "082100a286444e8ea11e78992bc38b2a",
+  "serviceRequests": 1,
+  "sandboxInvocations": 1,
+  "payloadInvocations": 1,
+  "explicitPayloadAllocationBytes": 1048576,
+  "touchedPages": 256,
+  "applicationResourceRuns": 0,
+  "modelCalls": 0,
+  "executorQualified": false,
+  "resourceQualification": false,
+  "firstFiles": 32,
+  "firstBytes": 26468,
+  "outerDurationNs": "267177792",
+  "sandboxDurationNs": "26946630",
+  "sandboxExitCode": 0,
+  "payloadSeccompDiagnostic": "0",
+  "optionalMarker": {
+    "before": {
+      "state": "missing",
+      "errno": 61
+    },
+    "after": {
+      "state": "missing",
+      "errno": 61
+    }
+  },
+  "terminalState": {
+    "loadState": "not-found",
+    "activeState": "inactive",
+    "mainPID": "0",
+    "invocationId": "",
+    "controlGroup": "",
+    "claimedGroupAbsent": true,
+    "forcedCleanup": false
+  },
+  "acceptedTask153": {
+    "pr": 186,
+    "head": "2b2ae8609be50279e31503fc1c3b87b107ef9921",
+    "merge": "7951934aaf08d1bd03281b17f41e8cea2e1ee607",
+    "ci": [
+      {
+        "event": "push",
+        "id": 42303193677,
+        "jobId": 128185895065,
+        "head": "2b2ae8609be50279e31503fc1c3b87b107ef9921",
+        "conclusion": "success",
+        "path": "/home/toshiba/aew/task153-ci-push-final.log",
+        "bytes": 668698,
+        "sha256": "a599ad3337fa17abf9999256a90baf1dc0aa39749c03b890bdb1e3f682a5e0f7",
+        "tests": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          341
+        ],
+        "totalTests": 1204,
+        "pythonCases": 20,
+        "priorPythonCases": 16,
+        "failures": 0,
+        "cancelled": 0,
+        "typechecks": 10,
+        "finalBuilds": 10
+      },
+      {
+        "event": "pull_request",
+        "id": 42303224565,
+        "jobId": 128186010769,
+        "head": "2b2ae8609be50279e31503fc1c3b87b107ef9921",
+        "conclusion": "success",
+        "path": "/home/toshiba/aew/task153-ci-pr-final.log",
+        "bytes": 669833,
+        "sha256": "a21b38207898a4888735eec2ab483948eb159732647bdc35b800414a3fdfdc20",
+        "tests": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          341
+        ],
+        "totalTests": 1204,
+        "pythonCases": 20,
+        "priorPythonCases": 16,
+        "failures": 0,
+        "cancelled": 0,
+        "typechecks": 10,
+        "finalBuilds": 10
+      }
+    ]
+  },
+  "localCheck": {
+    "task": 154,
+    "fullTests": 1205,
+    "testGroups": [
+      17,
+      18,
+      43,
+      728,
+      57,
+      342
+    ],
+    "pythonAdapterCases": 20,
+    "pythonOwnershipCases": 20,
+    "pythonPriorCases": 16,
+    "failures": 0,
+    "cancelled": 0,
+    "typechecks": 10,
+    "finalBuilds": 10,
+    "fullCheckLog": "/home/toshiba/aew/task154-full-check.log",
+    "fullCheckBytes": 427465,
+    "fullCheckSha256": "1e6405dbd4a28069c2706372f0c545ab1481f5881646130e4c88212411b3fec8",
+    "sourceHashesStable": true,
+    "sourceHashesChecked": 7,
+    "unchangedLoreDockModules": 95,
+    "unchangedTotalEmittedModules": 148,
+    "localLinks": 764,
+    "brokenLinks": [],
+    "normalCheckoutUnchanged": true,
+    "productAndFrozenInputsUnchanged": true,
+    "diffReviewed": true,
+    "liveAttemptStarted": false
+  },
+  "sources": [
+    {
+      "path": "scripts/loredock-user-namespace-prerequisite/probe.py",
+      "sha256": "b367bc71459ea966413d4955e018f38ecb4c4df6622e804a9cfb54352ac27b70"
+    },
+    {
+      "path": "scripts/loredock-user-namespace-prerequisite/test_probe.py",
+      "sha256": "9ef488894832f0957601289504cd1ddea0150b6e0a937b5f20357fa9afed2b97"
+    },
+    {
+      "path": "scripts/tests/loredock-user-namespace-prerequisite.test.mjs",
+      "sha256": "b0b93648b4f2f7d53badaff7e9b585be8304724f40fe750bd963be125a3ec604"
+    },
+    {
+      "path": "scripts/loredock-user-service-ownership/assess.py",
+      "sha256": "f44932b3c33b997a55cd5693f7435c458cc40dd59ab15deb8da51162d636affd"
+    },
+    {
+      "path": "scripts/loredock-namespace-prerequisite/probe.py",
+      "sha256": "c80a52ee64a84d4ca93436a55d02b24bdaf1fbee6834d2c2f17f230f6fa17c24"
+    },
+    {
+      "path": "scripts/loredock-namespace-prerequisite/payload.py",
+      "sha256": "497dee9e852e861451ba7c2e321f77457ee18a30c1d1f392dc06f85fcb47107f"
+    },
+    {
+      "path": "docs/loredock/observable-resource-contract-v2.json",
+      "sha256": "759dc70e2d3b86043278b8378148785dd061cf29c06fa6f96c3a5bdf00be8e5b"
+    }
+  ],
+  "logs": [
+    {
+      "path": "logs/task153-ci-push-final.log.gz",
+      "rawBytes": 668698,
+      "rawSha256": "a599ad3337fa17abf9999256a90baf1dc0aa39749c03b890bdb1e3f682a5e0f7",
+      "gzipSha256": "9b6004157a91b31e8499e2ccf53f1f52af11bb4311b885f96eee077e966163cd",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task153-ci-pr-final.log.gz",
+      "rawBytes": 669833,
+      "rawSha256": "a21b38207898a4888735eec2ab483948eb159732647bdc35b800414a3fdfdc20",
+      "gzipSha256": "a6cd0c51f036b4646552c22fbf9015f4a907e39a5305b81c2605812c58196abe",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task154-install.log.gz",
+      "rawBytes": 326,
+      "rawSha256": "fc9d1bfacf50d1043aac7795795c91f9e0d81f2efafa24419d7bee9c1cb8d9d7",
+      "gzipSha256": "6a41e6d05c56c229dec2124bfab91e06cd3abf228066e31857a190c30aa27a03",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task154-focused-first.log.gz",
+      "rawBytes": 3550,
+      "rawSha256": "e4e41f5caa53eb8440f40e5df820892c0f2a495254717f373c5ceafc3adf9879",
+      "gzipSha256": "8a069fd9bef6b8e73d31c11def4159ca8c85948da9d13286e981a3aa8bb7b460",
+      "role": "development-history-only"
+    },
+    {
+      "path": "logs/task154-focused-reviewed.log.gz",
+      "rawBytes": 3085,
+      "rawSha256": "1d6b0fe6bbaebf7a3d74658602f8addd4e076b6ae0763c1508c24af0347cbac3",
+      "gzipSha256": "60827664241567011762b6e73b4ecc8ad54ed9e337aed283882fd5a363058072",
+      "role": "development-history-only"
+    },
+    {
+      "path": "logs/task154-focused-final.log.gz",
+      "rawBytes": 3085,
+      "rawSha256": "1d6b0fe6bbaebf7a3d74658602f8addd4e076b6ae0763c1508c24af0347cbac3",
+      "gzipSha256": "60827664241567011762b6e73b4ecc8ad54ed9e337aed283882fd5a363058072",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task154-full-check.log.gz",
+      "rawBytes": 427465,
+      "rawSha256": "1e6405dbd4a28069c2706372f0c545ab1481f5881646130e4c88212411b3fec8",
+      "gzipSha256": "05a905cd3860ed0d182e261efc5ea18cced556a245a710f618fa4df28bb59275",
+      "role": "accepted-or-final-verification"
+    }
+  ],
+  "archive": {
+    "path": "first.tar.gz",
+    "sha256": "7e038c7f88288fd414485f487b108122d24f6e1d8b06a7922b3a185655a8656d",
+    "members": 48
+  },
+  "inventory": {
+    "path": "first-inventory.json",
+    "sha256": "915dcdda7fd7a658a67506e626eb73dbaa4d0f1eb0b5b7d4d0121a3de85184df"
+  },
+  "previousTask152FirstUnchanged": true,
+  "normalCheckoutUnchanged": true,
+  "developmentHistoryLimit": "The initial 18-case run failed its terminal-state regression. The reviewed 20-case run precedes the final controller-read addition. Both are history only; superseded source snapshots are not archived. The final focused and full logs verify the recorded candidate sources."
+}

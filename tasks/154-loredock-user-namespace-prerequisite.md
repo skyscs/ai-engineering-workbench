@@ -3,7 +3,10 @@
 Status: separate adapter implemented after Task 153 acceptance through PR #186 (`7951934`).
 Twenty offline adapter regressions and the full local check pass: 1,205 Node tests, zero
 failures/cancellations, ten typechecks and ten final builds. Candidate source/identity review
-is complete; sealing and the sole live prerequisite remain pending.
+is complete. The sole sealed first attempt passes its named acquisition/namespace checks;
+both complete exact-head CI logs remain required before acceptance.
+The [first result](../docs/loredock/USER_NAMESPACE_PREREQUISITE_RESULT.md) and all 32 output
+files are retained. No executor or application resource qualification follows.
 See the [adapter boundaries](../docs/loredock/USER_NAMESPACE_PREREQUISITE.md).
 
 Integrate the corrected receipt into one newly sealed tiny prerequisite on the same
@@ -37,3 +40,6 @@ consumed. Fixing its unsupported xattr requirement is not a host-policy or runti
    CI logs before merge. A successful namespace prerequisite still does not qualify direct
    measured birth, protected counters, terminal peaks, orphan/interrupted-collector lifetime,
    application resource gates, semantic quality or the Workbench bridge.
+
+After acceptance, [Task 155](155-loredock-direct-birth-prerequisite.md) addresses direct
+measured birth in a separately sealed tiny prerequisite. This first attempt stays consumed.

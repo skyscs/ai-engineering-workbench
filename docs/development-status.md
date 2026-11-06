@@ -16,9 +16,16 @@ Twenty offline regressions pass, including successful mocked admission, replacem
 closure/inheritance, interruption, timeout and forced cleanup. An initial regression caught and
 fixed an unloaded-unit record being accepted by the loaded-terminal branch. Full local checks
 pass 1,205 Node tests, zero failures/cancellations, ten typechecks and ten final builds. All 148
-emitted application/package modules are unchanged. The separately sealed first attempt remains
-pending. No new service, namespace, application or model
-has run. This does not qualify an executor or promote application/semantic gates.
+emitted application/package modules are unchanged.
+
+The [first result](loredock/USER_NAMESPACE_PREREQUISITE_RESULT.md) passes: one service,
+sandbox and fixed 1-MiB payload complete normally. All seven namespaces differ; required
+identity/security/path/descriptor predicates hold. Both optional markers are absent. The unit
+is unloaded and the owned group absent, with no timeout or forced cleanup. The
+[48-member archive](fixtures/loredock-user-namespace-prerequisite/README.md) retains all 32
+first files and sealed inputs. All qualification flags remain false; no application or model
+ran. Both complete exact-head CI logs are required before acceptance, then
+[Task 155](../tasks/155-loredock-direct-birth-prerequisite.md) addresses direct measured birth.
 
 ## Task 153 — Corrected user-service ownership records, assessed offline
 

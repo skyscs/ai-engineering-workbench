@@ -593,8 +593,10 @@ scenarios, while explicitly granting no live authority. After acceptance,
 fresh sealed prerequisite on the unchanged environment. Direct birth, retained counters
 and full executor qualification remain separate.
 Task 154's [separate adapter](docs/loredock/USER_NAMESPACE_PREREQUISITE.md) is implemented with
-twenty offline regressions and passing full local checks; the separately sealed first attempt
-remains pending.
+twenty offline regressions and passing full local checks. Its
+[first prerequisite](docs/loredock/USER_NAMESPACE_PREREQUISITE_RESULT.md) passes on the unchanged
+environment and stays consumed. After acceptance, [Task 155](tasks/155-loredock-direct-birth-prerequisite.md)
+addresses direct measured birth; full executor and application gates remain separate.
 No application-page or full-flow gate is opened by these diagnostics.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,
