@@ -586,7 +586,12 @@ and no privilege/profile fallback. Its first attempt stops before sandbox creati
 the helper incorrectly requires a system-manager xattr on a user service. The result is
 retained as unavailable, without inferring a namespace or actual delegation failure.
 [Task 153](tasks/153-loredock-user-service-ownership.md) corrects that ownership evidence
-model offline. Direct birth, retained counters and full executor qualification remain separate.
+model offline. Its [pure validator](docs/loredock/USER_SERVICE_OWNERSHIP.md) now checks
+manager/process/directory consistency and applied settings against twenty prospective
+scenarios, while explicitly granting no live authority. After acceptance,
+[Task 154](tasks/154-loredock-user-namespace-prerequisite.md) integrates that record into a
+fresh sealed prerequisite on the unchanged environment. Direct birth, retained counters
+and full executor qualification remain separate.
 No application-page or full-flow gate is opened by these diagnostics.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,

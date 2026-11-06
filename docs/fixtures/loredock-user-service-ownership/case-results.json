@@ -1,0 +1,129 @@
+{
+  "task": 153,
+  "source": "logs/task153-focused-final.log.gz",
+  "cases": [
+    {
+      "id": "U01",
+      "test": "test_u01_absent_marker_does_not_erase_complete_user_manager_records",
+      "result": "PASS",
+      "scope": "Test expectation satisfied; no live ownership established."
+    },
+    {
+      "id": "U02",
+      "test": "test_u02_positive_marker_does_not_grant_live_authority",
+      "result": "PASS",
+      "scope": "Test expectation satisfied; no live ownership established."
+    },
+    {
+      "id": "U03",
+      "test": "test_u03_marker_and_writable_paths_cannot_replace_manager_delegation",
+      "result": "PASS",
+      "scope": "Test expectation satisfied; no live ownership established."
+    },
+    {
+      "id": "U04",
+      "test": "test_u04_stale_or_mixed_invocations_are_unavailable",
+      "result": "PASS",
+      "scope": "Test expectation satisfied; no live ownership established."
+    },
+    {
+      "id": "U05",
+      "test": "test_u05_process_pid_must_match_the_live_main_pid",
+      "result": "PASS",
+      "scope": "Test expectation satisfied; no live ownership established."
+    },
+    {
+      "id": "U06",
+      "test": "test_u06_process_start_identity_cannot_change",
+      "result": "PASS",
+      "scope": "Test expectation satisfied; no live ownership established."
+    },
+    {
+      "id": "U07",
+      "test": "test_u07_foreign_managers_terminal_scopes_and_placements_are_rejected",
+      "result": "PASS",
+      "scope": "Test expectation satisfied; no live ownership established."
+    },
+    {
+      "id": "U08",
+      "test": "test_u08_directory_parent_and_mount_identities_are_stable",
+      "result": "PASS",
+      "scope": "Test expectation satisfied; no live ownership established."
+    },
+    {
+      "id": "U09",
+      "test": "test_u09_duplicate_missing_unknown_and_truncated_properties_are_unavailable",
+      "result": "PASS",
+      "scope": "Test expectation satisfied; no live ownership established."
+    },
+    {
+      "id": "U10",
+      "test": "test_u10_disabled_no_new_privileges_is_a_known_profile_violation",
+      "result": "PASS",
+      "scope": "Test expectation satisfied; no live ownership established."
+    },
+    {
+      "id": "U11",
+      "test": "test_u11_changed_watchdog_cleanup_and_restart_settings_fail",
+      "result": "PASS",
+      "scope": "Test expectation satisfied; no live ownership established."
+    },
+    {
+      "id": "U12",
+      "test": "test_u12_missing_retention_freshness_or_descriptor_continuity_is_unavailable",
+      "result": "PASS",
+      "scope": "Test expectation satisfied; no live ownership established."
+    },
+    {
+      "id": "U13",
+      "test": "test_u13_explicit_marker_conflicts_remain_visible",
+      "result": "PASS",
+      "scope": "Test expectation satisfied; no live ownership established."
+    },
+    {
+      "id": "U14",
+      "test": "test_u14_known_marker_gaps_are_diagnostic_unexpected_errors_are_unavailable",
+      "result": "PASS",
+      "scope": "Test expectation satisfied; no live ownership established."
+    },
+    {
+      "id": "U15",
+      "test": "test_u15_reversed_windows_and_mixed_boot_or_clock_cannot_pass",
+      "result": "PASS",
+      "scope": "Test expectation satisfied; no live ownership established."
+    },
+    {
+      "id": "U16",
+      "test": "test_u16_terminal_manager_data_is_not_live_acquisition",
+      "result": "PASS",
+      "scope": "Test expectation satisfied; no live ownership established."
+    },
+    {
+      "id": "U17",
+      "test": "test_u17_asserted_qualification_and_unknown_schema_fields_are_rejected",
+      "result": "PASS",
+      "scope": "Test expectation satisfied; no live ownership established."
+    },
+    {
+      "id": "U18",
+      "test": "test_u18_malformed_noncanonical_and_oversized_input_never_throws",
+      "result": "PASS",
+      "scope": "Test expectation satisfied; no live ownership established."
+    },
+    {
+      "id": "U19",
+      "test": "test_u19_external_subject_and_contract_binding_are_exact",
+      "result": "PASS",
+      "scope": "Test expectation satisfied; no live ownership established."
+    },
+    {
+      "id": "U20",
+      "test": "test_u20_known_security_violation_survives_separately_missing_evidence",
+      "result": "PASS",
+      "scope": "Test expectation satisfied; no live ownership established."
+    }
+  ],
+  "offlineOnly": true,
+  "ownershipEstablished": false,
+  "executorQualified": false
+}
