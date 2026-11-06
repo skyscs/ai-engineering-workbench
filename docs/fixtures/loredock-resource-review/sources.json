@@ -1,0 +1,31 @@
+{
+  "reviewedOn": "2026-11-06",
+  "references": [
+    {
+      "url": "https://docs.kernel.org/admin-guide/cgroup-v2.html",
+      "sections": [
+        "memory_localevents",
+        "memory_hugetlb_accounting",
+        "memory.events",
+        "memory.swap.events"
+      ],
+      "finding": "Fixed accounting modes and recognized event semantics are prerequisite requirements, not inferred from directory permissions."
+    },
+    {
+      "url": "https://systemd.io/CGROUP_DELEGATION/",
+      "finding": "Single-writer delegation applies to services/scopes; writable directories alone do not transfer ownership."
+    },
+    {
+      "url": "https://www.freedesktop.org/software/systemd/man/259/systemd.resource-control.html",
+      "documentVersion": "259.6",
+      "observedInstalledVersion": "259.5-0ubuntu3.4",
+      "finding": "Delegate and DelegateSubgroup describe a candidate dedicated user-service boundary; local execution remains unproven."
+    },
+    {
+      "url": "https://github.com/containers/bubblewrap/blob/main/README.md",
+      "blobSha": "69addd6f4cbda5ccd1c47e7022a022d305ad4965",
+      "finding": "Installed Bubblewrap is not a complete sandbox policy; arguments and actual confinement require separate proof."
+    }
+  ],
+  "scope": "Read-only documents and current-user capability metadata; no memory counter reads, cgroup creation, service start or resource run."
+}

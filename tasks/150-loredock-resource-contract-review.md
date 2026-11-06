@@ -1,7 +1,16 @@
 # Task 150 — Review the proposed resource boundary and choose a bounded implementation
 
-Status: scoped after Task 149 acceptance. Review only; no application, browser, model,
-resource experiment, host configuration change or retroactive acceptance.
+Status: review, prospective adoption and local checks complete; exact-head CI pending.
+Task 149 is accepted through PR #182, head `e88d751`, identical-tree merge `799c7a3`,
+with both full CI logs passing 1,169 tests, ten typechecks and ten final builds.
+[ADR 0068](../docs/decisions/0068-loredock-observable-resource-contract.md) adopts the
+separate v2 contract after resolving delegation, accounting-mode, event-field and terminal
+read-order ambiguities. [Task 151](151-loredock-memory-receipt-assessor.md) implements
+offline assessment only. No executor qualification, resource experiment, host configuration
+change, model call or retroactive acceptance occurs.
+Local review verifies 818 document links, all 35 preserved numeric predicates, six
+evidence/normative file hashes and both retained CI logs. The original draft, production,
+frozen inputs/API and normal checkout are unchanged.
 
 1. Review `loredock-observable-resources/2-draft1` against the original resource objective
    and all v1 numeric/nonnumeric requirements. Explicitly decide whether charged-memory

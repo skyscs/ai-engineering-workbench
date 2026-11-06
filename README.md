@@ -66,6 +66,10 @@ with cancellation, expiry and durable request replay. See
 It remains separate from the ordinary pilot pending fresh resource and model-quality gates.
 The [prospective complete-flow contract](docs/loredock/PREPARED_FLOW_QUALIFICATION.md)
 fixes twenty-repository inputs, history/browser limits and answer-quality criteria before execution.
+Its retained first resource failure remains failed. A separately reviewed
+[observable resource contract](docs/decisions/0068-loredock-observable-resource-contract.md)
+now guides future measurement work; neither its executor nor a new application resource
+result is qualified. Prepared answers remain experimental.
 Answer previews show how many indexed repositories supply passages and can use explicit
 repository names as bounded context hints. Matching engineer disputes/clarifications are
 included separately from source

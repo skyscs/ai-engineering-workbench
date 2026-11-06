@@ -572,6 +572,10 @@ Its [v2 draft](docs/loredock/OBSERVABLE_RESOURCE_CONTRACT.md) proposes hierarchi
 charged-memory envelopes and explicit heap diagnostics, with a complete v1 comparison
 and prerequisite failure cases. Next [Task 150](tasks/150-loredock-resource-contract-review.md)
 decides adoption and secure executor feasibility before any implementation or new run.
+Its [review decision](docs/decisions/0068-loredock-observable-resource-contract.md) adopts
+the prospective v2 boundary with explicit delegation/accounting/event/order refinements.
+[Task 151](tasks/151-loredock-memory-receipt-assessor.md) next implements pure offline
+memory-receipt assessment; a secure executor and application resource result remain unproven.
 No application-page or full-flow gate is opened by these diagnostics.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,

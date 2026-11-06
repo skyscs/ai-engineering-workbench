@@ -1,5 +1,30 @@
 # Development status
 
+## Task 150 — Prospective resource boundary adopted; offline assessment next
+
+Task 149 is accepted through [PR #182](https://github.com/skyscs/ai-engineering-workbench/pull/182),
+head `e88d751`, identical-tree merge `799c7a3`; both complete CI logs pass 1,169 tests,
+ten typechecks and ten final builds. [Review evidence](fixtures/loredock-resource-review/README.md)
+retains those logs and current-user capability metadata without reading memory counters
+or creating cgroups/services.
+
+[ADR 0068](decisions/0068-loredock-observable-resource-contract.md) adopts the prospective
+v2 charged-memory boundary with explicit changes from v1. It resolves exclusive delegation,
+hierarchical events, existing HugeTLB accounting, recognized event fields and final
+role-before-root ordering. The same numerical daemon/browser targets now measure a
+different quantity; heap becomes honestly limited diagnostics. All other 35 numeric
+predicates and useful-case/work/storage/authority/lifecycle requirements remain.
+
+The existing user manager supplies a documented candidate for later executor investigation,
+not proof of direct creation, confinement or retained terminal counters. The writable
+terminal scope must not be reused. No host configuration or production changes occur.
+[Task 151](../tasks/151-loredock-memory-receipt-assessor.md) implements a pure offline
+assessor whose outputs cannot qualify execution or the application. All historical
+failures and consumed families remain unchanged; no new resource/model run is authorized.
+Local checks verify 818 document links, all 35 preserved numeric predicates and retained
+file/log hashes. The original draft and production/frozen inputs/normal checkout remain
+unchanged. Both complete exact-head CI logs are required before merge.
+
 ## Task 149 — Observable resource contract proposed for separate review
 
 Task 148 is accepted through [PR #181](https://github.com/skyscs/ai-engineering-workbench/pull/181),
