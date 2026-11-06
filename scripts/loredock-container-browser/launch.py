@@ -1,4 +1,4 @@
-"""Consume one declared Task 146 blank lifetime only after exact successful prerequisites."""
+"""Consume one declared Task 147 blank lifetime only after exact successful prerequisites."""
 import hashlib
 import importlib.util
 import json
@@ -10,9 +10,9 @@ import time
 
 ROOT = Path(__file__).resolve().parents[2]
 BASE = Path('/home/toshiba/aew')
-OUTPUT = BASE / 'task146-container-browser-first'
-PREFLIGHT = BASE / 'task146-container-preflight-first'
-INPUTS = BASE / 'task146-image-inputs-first'
+OUTPUT = BASE / 'task147-container-browser-first'
+PREFLIGHT = BASE / 'task147-container-preflight-first'
+INPUTS = BASE / 'task147-image-inputs-first'
 
 
 def digest(path):
@@ -43,7 +43,7 @@ def main():
     assert not subprocess.check_output(['git', 'status', '--porcelain'], cwd=ROOT)
     manifest_path = Path(__file__).with_name('manifest.json')
     manifest = json.loads(manifest_path.read_text())
-    assert manifest['task'] == 146 and manifest['output'] == str(OUTPUT)
+    assert manifest['task'] == 147 and manifest['output'] == str(OUTPUT)
     assert manifest['hostPython']['executable'] == sys.executable
     assert digest(Path(sys.executable)) == manifest['hostPython']['sha256']
     checked(ROOT, manifest['hostFiles']); checked(INPUTS / 'context', manifest['stagedFiles'])
@@ -52,6 +52,7 @@ def main():
     assert source['image'] == manifest['image']['Id'] and source['failure'] is None
     assert [case['mode'] for case in source['cases']] == ['normal', 'orphan', 'interrupt']
     security = module('security')
+    preflight = module('preflight')
     for case in source['cases']:
         assert case['passed'] and case['host']['stoppedConfirmed'] and case['host']['startAttempts'] == 1
         assert case['host']['terminal']['State']['ExitCode'] == 0
@@ -59,6 +60,8 @@ def main():
         assert wrapper['reason'] == 'completed' and not wrapper['errors']
         raw = json.loads((PREFLIGHT / case['mode'] / 'evidence/applied-security.json').read_text())
         assert wrapper['appliedSecurity'] == security.validate(**raw)
+        inputs = json.loads((PREFLIGHT / case['mode'] / 'evidence/owner/run/input-verification.json').read_text())
+        preflight.validate_inputs(inputs, (INPUTS / 'context/workbench/control-inputs.json').read_bytes())
     owner = module('owner')
     image_records = []
     api = owner.API(image_records.append)
@@ -66,7 +69,7 @@ def main():
     for key in ['Id', 'Architecture', 'Os', 'Config', 'RootFS']:
         assert image[key] == manifest['image'][key], key
     # A durable exclusive claim prevents a second attempt even if create/start becomes ambiguous.
-    owner.save(BASE / 'task146-container-browser-first.claim', {
+    owner.save(BASE / 'task147-container-browser-first.claim', {
         'manifestSha256': digest(manifest_path), 'image': image['Id'],
         'candidate': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
     })
@@ -99,7 +102,7 @@ def main():
         report['eligible'] = report['eligible'] and report['inputsUnchanged'] and report['failure'] is None
         report['elapsedMs'] = (time.monotonic() - began) * 1000
         report['imageInspectRequests'] = image_records
-        owner.save(BASE / 'task146-browser-launch-first.json', report)
+        owner.save(BASE / 'task147-browser-launch-first.json', report)
     print(json.dumps(report, indent=2))
     return 0 if report['eligible'] else 1
 

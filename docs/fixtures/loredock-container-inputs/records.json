@@ -1,0 +1,1080 @@
+{
+  "prospective": "f4c948720a78795744fbd0d052b643a85803c1a3",
+  "manifestCommit": "c3b5f37141431a228a7f8d2cbfea97ffe6677628",
+  "manifestSha256": "d58e09825260f2a6d7ebf0f1957d72e744236ce0e70cdcb607446d5c5e92c129",
+  "image": "sha256:480c5c77ed525237b731fa7f82e6124e86a272a0f5609091dfd738c37934e0ea",
+  "browserReview": {
+    "image": "sha256:480c5c77ed525237b731fa7f82e6124e86a272a0f5609091dfd738c37934e0ea",
+    "container": "21a6ef25ee6faac25dd5c3f2342362346b6e16d4babefa339074c857c7c3f77c",
+    "eligible": false,
+    "failure": null,
+    "assessment": {
+      "eligible": false,
+      "failures": [
+        {
+          "code": "INCOMPLETE_RSS_SAMPLE",
+          "index": 5
+        },
+        {
+          "code": "INCOMPLETE_RSS_SAMPLE",
+          "index": 604
+        },
+        {
+          "code": "INCOMPLETE_RSS_SAMPLE",
+          "index": 605
+        },
+        {
+          "code": "RSS_LIMIT",
+          "actual": 1309532160,
+          "limit": 1073741824
+        }
+      ],
+      "samples": 606,
+      "completeSamples": 603,
+      "maximumRecordedRssBytes": 1309532160,
+      "maximumCompleteSampleRssBytes": 1309532160,
+      "maximumSampleStartGapMs": 55.632791999999995,
+      "startupSampleGapMs": 3.9851150000000075,
+      "exitSampleGapMs": 14.508824000000459,
+      "nominalCadenceMs": 50,
+      "rssLimitBytes": 1073741824,
+      "resourceQualification": false,
+      "scope": "One blank control in the pinned private container; no application or full-flow qualification."
+    },
+    "idle": {
+      "name": "container-blank-browser",
+      "elapsedMs": 30000.302962,
+      "apiRequests": 0,
+      "requestsPerSecond": 0,
+      "routes": {},
+      "maxConcurrentRequests": 0,
+      "pendingAtEnd": [],
+      "responses": [],
+      "longTasks": [],
+      "paints": [],
+      "sampledProcessTreeRssBytes": 1309532160,
+      "resourceQualified": false
+    },
+    "inputVerificationBefore": {
+      "verified": true,
+      "version": "container-runtime-inputs/1",
+      "manifestSha256": "8b3757f333be64573720cf2d19a4b3890a0c565d048a3c8362afad9c052d2ee7",
+      "uid": 1000,
+      "gid": 1000,
+      "nodeVersion": "22.23.2",
+      "browserFiles": 301,
+      "browserDirectories": [
+        {
+          "path": ".",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "extensions",
+          "kind": "directory",
+          "mode": 448,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "hyphen-data",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "locales",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "MEIPreload",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "resources",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "resources/accessibility",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "resources/accessibility/reading_mode_gdocs_helper",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "resources/inspector_overlay",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "WidevineCdm",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "WidevineCdm/_platform_specific",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "WidevineCdm/_platform_specific/linux_x64",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        }
+      ],
+      "browserParents": [
+        {
+          "path": "/",
+          "kind": "directory",
+          "mode": 493,
+          "uid": 0,
+          "gid": 0
+        },
+        {
+          "path": "/opt",
+          "kind": "directory",
+          "mode": 493,
+          "uid": 0,
+          "gid": 0
+        }
+      ],
+      "scriptFiles": 26
+    },
+    "inputVerificationAfter": {
+      "verified": true,
+      "version": "container-runtime-inputs/1",
+      "manifestSha256": "8b3757f333be64573720cf2d19a4b3890a0c565d048a3c8362afad9c052d2ee7",
+      "uid": 1000,
+      "gid": 1000,
+      "nodeVersion": "22.23.2",
+      "browserFiles": 301,
+      "browserDirectories": [
+        {
+          "path": ".",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "extensions",
+          "kind": "directory",
+          "mode": 448,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "hyphen-data",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "locales",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "MEIPreload",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "resources",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "resources/accessibility",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "resources/accessibility/reading_mode_gdocs_helper",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "resources/inspector_overlay",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "WidevineCdm",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "WidevineCdm/_platform_specific",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        },
+        {
+          "path": "WidevineCdm/_platform_specific/linux_x64",
+          "kind": "directory",
+          "mode": 509,
+          "uid": 1000,
+          "gid": 1000
+        }
+      ],
+      "browserParents": [
+        {
+          "path": "/",
+          "kind": "directory",
+          "mode": 493,
+          "uid": 0,
+          "gid": 0
+        },
+        {
+          "path": "/opt",
+          "kind": "directory",
+          "mode": 493,
+          "uid": 0,
+          "gid": 0
+        }
+      ],
+      "scriptFiles": 26
+    },
+    "outerInputsUnchanged": true,
+    "innerInputsUnchanged": true,
+    "browserExit": 0,
+    "containerExit": 1,
+    "stoppedConfirmed": true,
+    "innerErrors": [],
+    "innerSurvivors": [],
+    "browserSurvivors": [],
+    "elapsedMs": 32201.417863019742,
+    "wrapperMs": 31634.086120990105,
+    "incompleteSamples": [
+      {
+        "index": 5,
+        "began": 659.436738,
+        "at": 661.848557,
+        "issues": [
+          {
+            "pid": 21,
+            "state": "R",
+            "issues": [
+              {
+                "kind": "resident-memory-unavailable"
+              }
+            ]
+          },
+          {
+            "pid": 22,
+            "state": "R",
+            "issues": [
+              {
+                "kind": "identity-or-parent-changed"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "index": 604,
+        "began": 30876.79386,
+        "at": 30882.083475,
+        "issues": [
+          {
+            "pid": 71,
+            "state": null,
+            "issues": [
+              {
+                "kind": "process-exited-during-sample"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "index": 605,
+        "began": 30926.158262,
+        "at": 30930.13016,
+        "issues": [
+          {
+            "pid": 27,
+            "state": "Z",
+            "issues": [
+              {
+                "kind": "thread-exited-during-sample",
+                "tid": 27
+              },
+              {
+                "kind": "process-exited-during-sample"
+              }
+            ]
+          },
+          {
+            "pid": 24,
+            "state": null,
+            "issues": [
+              {
+                "kind": "process-exited-during-sample"
+              }
+            ]
+          },
+          {
+            "pid": 22,
+            "state": null,
+            "issues": [
+              {
+                "kind": "process-exited-during-sample"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "peak": {
+      "index": 105,
+      "complete": true,
+      "processes": [
+        {
+          "pid": 19,
+          "startedTicks": "32611847",
+          "rssBytes": 22831104,
+          "role": "lifetime-collector"
+        },
+        {
+          "pid": 24,
+          "startedTicks": "32611872",
+          "rssBytes": 3440640,
+          "role": "crashpad"
+        },
+        {
+          "pid": 22,
+          "startedTicks": "32611872",
+          "rssBytes": 3977216,
+          "role": "crashpad"
+        },
+        {
+          "pid": 20,
+          "startedTicks": "32611867",
+          "rssBytes": 222519296,
+          "role": "browser-root"
+        },
+        {
+          "pid": 71,
+          "startedTicks": "32611876",
+          "rssBytes": 117747712,
+          "role": "utility:network.mojom.NetworkService"
+        },
+        {
+          "pid": 28,
+          "startedTicks": "32611873",
+          "rssBytes": 76890112,
+          "role": "zygote"
+        },
+        {
+          "pid": 184,
+          "startedTicks": "32612181",
+          "rssBytes": 79757312,
+          "role": "renderer"
+        },
+        {
+          "pid": 160,
+          "startedTicks": "32611887",
+          "rssBytes": 102883328,
+          "role": "renderer"
+        },
+        {
+          "pid": 159,
+          "startedTicks": "32611887",
+          "rssBytes": 98607104,
+          "role": "renderer"
+        },
+        {
+          "pid": 135,
+          "startedTicks": "32611883",
+          "rssBytes": 115589120,
+          "role": "renderer"
+        },
+        {
+          "pid": 134,
+          "startedTicks": "32611883",
+          "rssBytes": 80744448,
+          "role": "renderer"
+        },
+        {
+          "pid": 118,
+          "startedTicks": "32611880",
+          "rssBytes": 158859264,
+          "role": "renderer"
+        },
+        {
+          "pid": 82,
+          "startedTicks": "32611877",
+          "rssBytes": 53452800,
+          "role": "utility:storage.mojom.StorageService"
+        },
+        {
+          "pid": 27,
+          "startedTicks": "32611873",
+          "rssBytes": 78229504,
+          "role": "zygote"
+        },
+        {
+          "pid": 51,
+          "startedTicks": "32611875",
+          "rssBytes": 94003200,
+          "role": "gpu-process"
+        }
+      ],
+      "roleTotals": {
+        "lifetime-collector": 22831104,
+        "crashpad": 7417856,
+        "browser-root": 222519296,
+        "utility:network.mojom.NetworkService": 117747712,
+        "zygote": 155119616,
+        "renderer": 636440576,
+        "utility:storage.mojom.StorageService": 53452800,
+        "gpu-process": 94003200
+      },
+      "rssBytes": 1309532160
+    },
+    "samplesAboveLimit": 596,
+    "roleScope": "Offline join of retained namespace argv by PID and start ticks; role flags only. No extension identity, origin or causal inference.",
+    "resourceQualification": false,
+    "modelCalls": 0,
+    "applicationRuns": 0
+  },
+  "preflightReview": {
+    "image": "sha256:480c5c77ed525237b731fa7f82e6124e86a272a0f5609091dfd738c37934e0ea",
+    "cases": [
+      {
+        "mode": "normal",
+        "container": "62d1247149a40537e9cb351f83a58f42b14698521e9ad76cd3ea8199f18bb263",
+        "wrapperMs": 708.3655209862627,
+        "hostMs": 1054.6948130358942,
+        "ownerPid": 7,
+        "actualExit": 0,
+        "appliedSecurity": {
+          "verified": true,
+          "profile": "docker-default (enforce)",
+          "uid": 1000,
+          "gid": 1000,
+          "seccomp": 2,
+          "noNewPrivileges": true,
+          "capabilities": "all zero",
+          "scope": "Applied restrictions on this PID-1 process before child execution."
+        },
+        "inputVerification": {
+          "verified": true,
+          "version": "container-runtime-inputs/1",
+          "manifestSha256": "8b3757f333be64573720cf2d19a4b3890a0c565d048a3c8362afad9c052d2ee7",
+          "uid": 1000,
+          "gid": 1000,
+          "nodeVersion": "22.23.2",
+          "browserFiles": 301,
+          "browserDirectories": [
+            {
+              "path": ".",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "extensions",
+              "kind": "directory",
+              "mode": 448,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "hyphen-data",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "locales",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "MEIPreload",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "resources",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "resources/accessibility",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "resources/accessibility/reading_mode_gdocs_helper",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "resources/inspector_overlay",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "WidevineCdm",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "WidevineCdm/_platform_specific",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "WidevineCdm/_platform_specific/linux_x64",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            }
+          ],
+          "browserParents": [
+            {
+              "path": "/",
+              "kind": "directory",
+              "mode": 493,
+              "uid": 0,
+              "gid": 0
+            },
+            {
+              "path": "/opt",
+              "kind": "directory",
+              "mode": 493,
+              "uid": 0,
+              "gid": 0
+            }
+          ],
+          "scriptFiles": 26
+        }
+      },
+      {
+        "mode": "orphan",
+        "container": "de5fd1ab19c4ff9e5b2223bfa906d8569cbb1621580e9469f4e4b7c6525fc4ea",
+        "wrapperMs": 10758.390663017053,
+        "hostMs": 11081.6046949476,
+        "ownerPid": 7,
+        "actualExit": 0,
+        "appliedSecurity": {
+          "verified": true,
+          "profile": "docker-default (enforce)",
+          "uid": 1000,
+          "gid": 1000,
+          "seccomp": 2,
+          "noNewPrivileges": true,
+          "capabilities": "all zero",
+          "scope": "Applied restrictions on this PID-1 process before child execution."
+        },
+        "inputVerification": {
+          "verified": true,
+          "version": "container-runtime-inputs/1",
+          "manifestSha256": "8b3757f333be64573720cf2d19a4b3890a0c565d048a3c8362afad9c052d2ee7",
+          "uid": 1000,
+          "gid": 1000,
+          "nodeVersion": "22.23.2",
+          "browserFiles": 301,
+          "browserDirectories": [
+            {
+              "path": ".",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "extensions",
+              "kind": "directory",
+              "mode": 448,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "hyphen-data",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "locales",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "MEIPreload",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "resources",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "resources/accessibility",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "resources/accessibility/reading_mode_gdocs_helper",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "resources/inspector_overlay",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "WidevineCdm",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "WidevineCdm/_platform_specific",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "WidevineCdm/_platform_specific/linux_x64",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            }
+          ],
+          "browserParents": [
+            {
+              "path": "/",
+              "kind": "directory",
+              "mode": 493,
+              "uid": 0,
+              "gid": 0
+            },
+            {
+              "path": "/opt",
+              "kind": "directory",
+              "mode": 493,
+              "uid": 0,
+              "gid": 0
+            }
+          ],
+          "scriptFiles": 26
+        }
+      },
+      {
+        "mode": "interrupt",
+        "container": "d0ca66b7ba9481948fd7ede6c38ef014c5f48e616b38c9b84a6cd018c45fd18c",
+        "wrapperMs": 10858.816523046698,
+        "hostMs": 11096.107479010243,
+        "ownerPid": 7,
+        "actualExit": 0,
+        "appliedSecurity": {
+          "verified": true,
+          "profile": "docker-default (enforce)",
+          "uid": 1000,
+          "gid": 1000,
+          "seccomp": 2,
+          "noNewPrivileges": true,
+          "capabilities": "all zero",
+          "scope": "Applied restrictions on this PID-1 process before child execution."
+        },
+        "inputVerification": {
+          "verified": true,
+          "version": "container-runtime-inputs/1",
+          "manifestSha256": "8b3757f333be64573720cf2d19a4b3890a0c565d048a3c8362afad9c052d2ee7",
+          "uid": 1000,
+          "gid": 1000,
+          "nodeVersion": "22.23.2",
+          "browserFiles": 301,
+          "browserDirectories": [
+            {
+              "path": ".",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "extensions",
+              "kind": "directory",
+              "mode": 448,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "hyphen-data",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "locales",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "MEIPreload",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "resources",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "resources/accessibility",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "resources/accessibility/reading_mode_gdocs_helper",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "resources/inspector_overlay",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "WidevineCdm",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "WidevineCdm/_platform_specific",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            },
+            {
+              "path": "WidevineCdm/_platform_specific/linux_x64",
+              "kind": "directory",
+              "mode": 509,
+              "uid": 1000,
+              "gid": 1000
+            }
+          ],
+          "browserParents": [
+            {
+              "path": "/",
+              "kind": "directory",
+              "mode": 493,
+              "uid": 0,
+              "gid": 0
+            },
+            {
+              "path": "/opt",
+              "kind": "directory",
+              "mode": 493,
+              "uid": 0,
+              "gid": 0
+            }
+          ],
+          "scriptFiles": 26
+        }
+      }
+    ],
+    "dependencyVersionsUnchanged": true,
+    "browserRuns": 0
+  },
+  "localCheck": {
+    "tests": [
+      17,
+      18,
+      43,
+      728,
+      57,
+      306
+    ],
+    "failures": 0,
+    "cancelled": 0,
+    "typechecks": 10,
+    "finalBuilds": 10,
+    "bytes": 410627,
+    "sha256": "4053b13672a64d4a8ad1132fc6771a9e3761faf6218259175260b2d20a8155f3",
+    "total": 1169
+  },
+  "previousCI": {
+    "head": "f60e6f4f2ef2f83ea81aa89bfe190275ff36a992",
+    "ci": [
+      {
+        "event": "push",
+        "run": 42176794607,
+        "job": 127756997829,
+        "head": "f60e6f4f2ef2f83ea81aa89bfe190275ff36a992",
+        "conclusion": "success",
+        "tests": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          294
+        ],
+        "total": 1157,
+        "failures": 0,
+        "cancelled": 0,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "log": "/home/toshiba/aew/task146-ci-push-final.log",
+        "bytes": 644896,
+        "sha256": "a68329056d09547a1eef3db36abccbbc7d227ca8474878e300801c72e64fc295"
+      },
+      {
+        "event": "pull_request",
+        "run": 42176817478,
+        "job": 127757069404,
+        "head": "f60e6f4f2ef2f83ea81aa89bfe190275ff36a992",
+        "conclusion": "success",
+        "tests": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          294
+        ],
+        "total": 1157,
+        "failures": 0,
+        "cancelled": 0,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "log": "/home/toshiba/aew/task146-ci-pr-final.log",
+        "bytes": 645352,
+        "sha256": "23c4f709e4ab476fd3b142ffcf33f1129e350252bc47a878f2b3047a2ff8fcbe"
+      }
+    ]
+  },
+  "stagedFiles": 330,
+  "stagedBytes": 552294995,
+  "stagedUnchanged": true,
+  "archives": [
+    {
+      "path": "preflight.tar.gz",
+      "members": 61,
+      "uncompressedFileBytes": 1544477,
+      "bytes": 43149,
+      "sha256": "d8a3167139718e45f85e8e5fee1bba8ea598e520a368b7f1634a38bad5a827be",
+      "inventory": "preflight-files.json.gz",
+      "inventorySha256": "9113e6e81abea09dea0b7ebeee250e41454464afee6fb33ba46daabc960ab02b"
+    },
+    {
+      "path": "first-attempt.tar.gz",
+      "members": 36,
+      "uncompressedFileBytes": 7626964,
+      "bytes": 107775,
+      "sha256": "3300bc53fe751b53c489e3e118ed29424de106d0dfb0561e7fa56b8fb5fce9a2",
+      "inventory": "first-attempt-files.json.gz",
+      "inventorySha256": "2286ef4b08b8bec8ff3b201ad90a78b6d9ba24047b5d43a49504f453025e6be9"
+    },
+    {
+      "path": "helper-inputs.tar.gz",
+      "members": 28,
+      "uncompressedFileBytes": 197485,
+      "bytes": 50371,
+      "sha256": "3bc21ea21349d76b24c65bd5b9328adbbeaae9f844bf02a428acc0bb962b5f1c",
+      "inventory": "helper-inputs-files.json.gz",
+      "inventorySha256": "62e6e6ada599edc292deb2c0ad34c0615291687cfb79d0e219c89bf1c1b98d1d"
+    },
+    {
+      "path": "image-metadata.tar.gz",
+      "members": 14,
+      "uncompressedFileBytes": 1303583,
+      "bytes": 328788,
+      "sha256": "ac997f1a824385a1431371dcc33e349d10cca795c0b40405a04ac6709a93a8af",
+      "inventory": "image-metadata-files.json.gz",
+      "inventorySha256": "9bcb86db1c572622acadf6a2ea39a22ef8f724416e1fbb9d079b5f4920d1c9fe"
+    },
+    {
+      "path": "receipts.tar.gz",
+      "members": 7,
+      "uncompressedFileBytes": 118601,
+      "bytes": 22707,
+      "sha256": "927e479b9bbb0bea2b6aa50f00b4d5b6bc1e69d7a15520ec9019831e8f1ce9e1",
+      "inventory": "receipts-files.json.gz",
+      "inventorySha256": "ff418ff5f4098d4dc75c833d40592a6595832b5b0781d92a91f533f306521f5f"
+    }
+  ],
+  "logs": [
+    {
+      "path": "logs/task146-ci-push-final.log.gz",
+      "bytes": 644896,
+      "sha256": "a68329056d09547a1eef3db36abccbbc7d227ca8474878e300801c72e64fc295",
+      "gzipSha256": "561bfe3fa9547a6c6ad21730785e288e90a9bab5d66d25769364b51dd082497b"
+    },
+    {
+      "path": "logs/task146-ci-pr-final.log.gz",
+      "bytes": 645352,
+      "sha256": "23c4f709e4ab476fd3b142ffcf33f1129e350252bc47a878f2b3047a2ff8fcbe",
+      "gzipSha256": "f943c555dd3e6c667a47ab89ca93255020b96479d2c84956710c6051a2f153bf"
+    },
+    {
+      "path": "logs/task147-input-tests-first.log.gz",
+      "bytes": 6059,
+      "sha256": "c133eb5c9218d59198d880bcb75850ee85d30f66e105243a2f44ad66a79db33b",
+      "gzipSha256": "643c0e0965732a172841440f629b2c2f2d08c3a601a991c7c288dd555a8272b3"
+    },
+    {
+      "path": "logs/task147-prepare-first.log.gz",
+      "bytes": 150,
+      "sha256": "e32316bd04fa4cb87775f03b355d3c92285359893db1dcf7f56236fafd195f39",
+      "gzipSha256": "b4cd44af68bf5aecafa296b036d2167304485ae9789ac8cf4fda3644ceacfbb6"
+    },
+    {
+      "path": "logs/task147-install-first.log.gz",
+      "bytes": 326,
+      "sha256": "415d948d1f2d9ad62689898120d41a1044b4cf91b56859f778ce56a485004538",
+      "gzipSha256": "8fb0b7ac8883d250d7562df164320059ad34a438c5193fd80e846e92aacfffa0"
+    },
+    {
+      "path": "logs/task147-full-check-first.log.gz",
+      "bytes": 410627,
+      "sha256": "4053b13672a64d4a8ad1132fc6771a9e3761faf6218259175260b2d20a8155f3",
+      "gzipSha256": "3fbfb531dfde4048956003d964277e533fc5603555bba29a897ab9b156a31eac"
+    },
+    {
+      "path": "logs/task147-preflight-first.log.gz",
+      "bytes": 34772,
+      "sha256": "2323700038a8c74e0fcfcdad7c3313d6f871f4b8d02d65a9f749119957e6bb6e",
+      "gzipSha256": "102073f4d70237545db6863c7838620fff57974f1c5c4fa7ad16bef13e417a50"
+    },
+    {
+      "path": "logs/task147-browser-first.log.gz",
+      "bytes": 20893,
+      "sha256": "9b4d43bd66abdd5381931930b28d7f034fe179ac49653485e22d433e5d7b274b",
+      "gzipSha256": "fc3d4eef6880963f57b5725132eb94efc9ad101a1fe72d0bbcc8ff9abbc59cf6"
+    },
+    {
+      "path": "logs/task147-image-build-first.log.gz",
+      "bytes": 4254,
+      "sha256": "42df1863bdfa519eab606eb0d32e514e3b2eecd806ecae0c70b4f3c053981fd3",
+      "gzipSha256": "9f540aafea883adb9012e20af165beec54bc4e431fd2e85552e57e8c45210da2"
+    }
+  ],
+  "excludedPayloads": {
+    "paths": [
+      "context/chrome",
+      "context/node"
+    ],
+    "reason": "Public runtime payloads remain at the retained local paths and in the immutable image; complete staged file hashes are published.",
+    "bytes": 552097510
+  },
+  "inventoryLimit": "Build-time regular-file/symlink inventory excludes directory metadata and includes builder-injected /etc files; it is not a complete runtime filesystem metadata assertion.",
+  "excludedRuntimePaths": {
+    "names": [
+      "profile",
+      "cache",
+      "xdg-cache",
+      "xdg-config",
+      "home",
+      "tmp"
+    ],
+    "reason": "Fresh browser profiles and caches remain in the original owned output; only operational records are published."
+  },
+  "resourceQualification": false,
+  "productChanges": false,
+  "modelCalls": 0
+}

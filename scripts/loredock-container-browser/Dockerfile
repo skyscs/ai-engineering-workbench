@@ -8,12 +8,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 RUN groupadd -g 1000 aew && useradd -u 1000 -g 1000 -d /evidence/owner/run/home -M aew \
     && rmdir /tmp && ln -s /evidence/owner/run/tmp /tmp
-COPY chrome/ /opt/chrome/
+COPY --chown=1000:1000 chrome/ /opt/chrome/
 COPY node /opt/node/node
 COPY workbench/ /opt/workbench/
-RUN python3 --version && /opt/node/node --version \
+RUN chmod 0775 /opt/chrome && chown 1000:1000 /opt/chrome \
+    && python3 --version && /opt/node/node --version \
     && ldd /opt/chrome/chrome > /browser-libraries.txt \
     && ldd /opt/node/node > /node-libraries.txt \
     && python3 -I -S -B /opt/workbench/scripts/loredock-container-browser/image-inventory.py
 USER 1000:1000
 WORKDIR /opt/workbench
+RUN /opt/node/node scripts/loredock-container-browser/verify-inputs.mjs

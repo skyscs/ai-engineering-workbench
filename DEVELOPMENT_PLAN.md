@@ -560,6 +560,10 @@ All three lifecycle/security preflights pass. Its first launch attempt then fail
 input verification before Chrome starts: an empty directory copied as root retains `0700`.
 [Task 147](tasks/147-loredock-container-input-readability.md) fixes ownership and checks
 complete directory metadata and non-root readability before a new prospective control.
+Its image/input/lifecycle prerequisites pass and the blank lifetime completes, but the
+first resource result remains failed: 1,309,532,160 bytes summed RSS and three incomplete
+samples; cadence and actual exits pass. [Task 148](tasks/148-loredock-resource-gate-feasibility.md)
+reviews feasibility and the acceptance boundary before another environment experiment.
 No application-page or full-flow gate is opened by these diagnostics.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).
 On 2026-10-31 the owner authorized autonomous review, merging after successful checks,

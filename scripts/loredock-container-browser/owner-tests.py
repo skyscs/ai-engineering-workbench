@@ -2,6 +2,7 @@
 import copy
 import hashlib
 import importlib.util
+import json
 from pathlib import Path
 import tempfile
 import unittest
@@ -166,6 +167,23 @@ class AppliedSecurity(unittest.TestCase):
 
 
 class LaunchInputs(unittest.TestCase):
+    def test_preflight_input_receipt(self):
+        spec = importlib.util.spec_from_file_location('container_preflight', Path(__file__).with_name('preflight.py'))
+        preflight = importlib.util.module_from_spec(spec); spec.loader.exec_module(preflight)
+        manifest = {'version': 'container-runtime-inputs/1', 'browserFiles': [{}], 'scripts': [{}],
+                    'browserDirectories': [{'path': '.', 'kind': 'directory', 'mode': 0o775, 'uid': 1000, 'gid': 1000}],
+                    'browserParents': [{'path': '/', 'kind': 'directory', 'mode': 0o755, 'uid': 0, 'gid': 0}]}
+        raw = json.dumps(manifest).encode()
+        receipt = {'verified': True, 'version': manifest['version'], 'manifestSha256': hashlib.sha256(raw).hexdigest(),
+                   'uid': 1000, 'gid': 1000, 'nodeVersion': '22.23.2', 'browserFiles': 1, 'scriptFiles': 1,
+                   'browserDirectories': manifest['browserDirectories'], 'browserParents': manifest['browserParents']}
+        preflight.validate_inputs(receipt, raw)
+        for key, bad in [('verified', False), ('manifestSha256', '0' * 64), ('uid', 0), ('gid', 0),
+                         ('browserFiles', 0), ('scriptFiles', 0), ('browserDirectories', []), ('browserParents', [])]:
+            with self.subTest(field=key), self.assertRaises(AssertionError):
+                preflight.validate_inputs({**receipt, key: bad}, raw)
+        with self.assertRaises(KeyError): preflight.validate_inputs({}, raw)
+
     def test_changed_or_redirected_inputs(self):
         spec = importlib.util.spec_from_file_location('container_launch', Path(__file__).with_name('launch.py'))
         launch = importlib.util.module_from_spec(spec); spec.loader.exec_module(launch)

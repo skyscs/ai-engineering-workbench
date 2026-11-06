@@ -1,7 +1,9 @@
 # Container security: verified lifecycle, unreadable browser input
 
-Status: the security and lifecycle prerequisites pass; the first blank-control attempt
-fails before Chrome starts. Browser resource eligibility remains unmeasured.
+Status: Task 146 is accepted through PR #179 (head `f60e6f4`, merge `4b501a7`), with
+both complete CI logs passing 1,157 tests, ten typechecks and ten final builds.
+Its security and lifecycle prerequisites pass; its first attempt remains failed before
+Chrome starts. The later [Task 147 result](CONTAINER_INPUT_RESULT.md) is recorded separately.
 
 Task 145 is accepted through [PR #178](https://github.com/skyscs/ai-engineering-workbench/pull/178),
 head `e989891`, identical-tree merge `42830f5`. Both complete CI logs pass 1,150 tests,
@@ -88,8 +90,9 @@ that limitation stated explicitly.
 attempt, all three preflights, exact helper/image inputs, security/exit receipts, directory
 audit and ten complete closed logs. Sixteen focused regressions and the full local check
 pass **1,157 tests** (728 LoreDock, 294 scripts, 135 other tests), ten typechecks and ten
-final builds, with no failures or cancellations. Both complete exact-head CI logs must
-pass before merge. Application bytes, original collectors/API and numeric limits are unchanged.
+final builds, with no failures or cancellations. Both complete exact-head CI logs passed
+before merge and are retained with Task 147's evidence. Application bytes, original
+collectors/API and numeric limits are unchanged.
 
 [Task 147](../../tasks/147-loredock-container-input-readability.md) fixes image ownership
 prospectively and checks complete directory metadata and actual non-root readability
