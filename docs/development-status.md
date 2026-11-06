@@ -1,5 +1,31 @@
 # Development status
 
+## Task 147 — Readable inputs; first container browser resource failure retained
+
+Task 146 is accepted through [PR #179](https://github.com/skyscs/ai-engineering-workbench/pull/179),
+head `f60e6f4`, identical-tree merge `4b501a7`; both complete CI logs pass 1,157 tests,
+ten typechecks and ten final builds. Its consumed attempt remains unchanged.
+
+Task 147 assigns copied browser inputs to UID/GID1000 and shares complete directory/file
+verification across image construction, lifecycle probes and browser execution. All 301
+files and 12 directories pass actual non-root checks. The first image and all three
+normal/orphan/host-interruption preflights pass with unchanged security and dependency versions.
+
+The first blank lifetime completes and retains a negative resource assessment:
+**1,309,532,160 bytes summed RSS**, **603/606 complete samples**, maximum sample gap
+**55.633 ms**. A complete 15-process sample records the peak; 596 samples exceed 1 GiB.
+Three startup/terminal samples retain process-memory/identity/exit gaps. The browser exits
+0, the container reports the failed assessment with exit 1, and no survivors remain.
+Before/after inputs remain exact. See [the result](loredock/CONTAINER_INPUT_RESULT.md)
+and [evidence](fixtures/loredock-container-inputs/README.md).
+
+Twenty-eight focused regressions and the full local check pass **1,169 tests**, ten
+typechecks and ten final builds. Both complete exact-head CI logs are required before
+merge. [Task 148](../tasks/148-loredock-resource-gate-feasibility.md) reviews resource-gate
+feasibility before another experiment. No contract relaxation, application/model/corporate
+run or full-flow acceptance follows. Product/API/collector bytes and the normal checkout
+remain unchanged; daemon aggregate-heap/startup qualification stays blocked.
+
 ## Task 146 — Applied security passes; browser input check fails
 
 Task 145 is accepted through [PR #178](https://github.com/skyscs/ai-engineering-workbench/pull/178),
