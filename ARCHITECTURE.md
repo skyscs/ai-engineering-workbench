@@ -186,7 +186,7 @@ The browser never accesses repositories or arbitrary local files directly. The d
 
 ### Daemon
 
-- Node.js 22.13+ (tested and pinned to 22.23.2)
+- Node.js 22.23.2+ with SQLite FTS5 (tested and pinned to 22.23.2)
 - TypeScript
 - Hono
 
@@ -503,3 +503,10 @@ ownership integration into existing connected-path v1 services from the later
 literal-topic/receipt identity migration. Preserve independent historical test
 controls and qualify the final production composition; experimental factories and
 private emitted-method overrides are not production dependencies.
+
+LoreDock owns one file-parser worker per catalog. Native inventories and foreground
+context operations acquire exclusive admission before their first read and release
+it after final publication. The daemon initializes parser identity asynchronously and
+awaits readiness before listening; shutdown joins actual thread exit. SQLite and
+source authority remain in the parent. See [ADR 0064](docs/decisions/0064-loredock-production-parser-ownership.md)
+and [production ownership](docs/loredock/OWNED_PRODUCTION_PARSER.md).

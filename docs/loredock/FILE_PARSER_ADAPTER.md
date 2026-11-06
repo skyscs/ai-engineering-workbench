@@ -1,5 +1,9 @@
 # Unwired file-parser adapter
 
+This document records the historical prerequisite. Current production adoption is
+described in [Owned production parser](OWNED_PRODUCTION_PARSER.md). The original
+observations and acceptance limits below are unchanged.
+
 This document records Task 136's original adapter and first observation. Task 139
 updates only its result transport through [protocol v2](LOSSLESS_PARSER_TRANSPORT.md);
 the original observation remains a v1 result. Task 137 separately made legacy consumers

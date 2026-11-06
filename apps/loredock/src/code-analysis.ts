@@ -244,7 +244,11 @@ export class CodeAnalysis {
   }
   private async run(id: string, lease: ParserLease, begin: number, elapsed: number) {
     for (;;) {
-      const row = this.row(id); if (row.status !== 'running') return; lease.check(); this.authorize(row);
+      const row = this.row(id); if (row.status !== 'running') return;
+      // Exhaustion between files retains the original explicit unattempted coverage.
+      // An in-flight timeout still fails the operation before publishing that file.
+      if (elapsed + performance.now() - begin < this.limits.wallMs) lease.check();
+      this.authorize(row);
       const unit = this.store.one<AnalysisUnit>("SELECT * FROM code_analysis_files WHERE runId=? AND status='pending' ORDER BY ordinal LIMIT 1", id);
       if (!unit) {
         const partial = this.store.one("SELECT fileId FROM code_analysis_files WHERE runId=? AND (status<>'parsed' OR gapCount>0) LIMIT 1", id)

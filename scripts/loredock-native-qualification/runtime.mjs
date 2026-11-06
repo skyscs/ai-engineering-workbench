@@ -10,7 +10,7 @@ import { directCompilerDependency } from '../loredock-cold-start/compiler-import
 // runtime identity, not a source-file substitute or a complete OS provenance claim.
 export async function runtimeIdentity() {
   const directory = fileURLToPath(new URL('../../apps/loredock/dist/', import.meta.url));
-  const pending = ['catalog.js', 'store.js', 'git.js', 'code-analysis.js', 'code-paths-v2.js', 'native-capture.js', 'operation-budget.js'];
+  const pending = ['catalog.js', 'store.js', 'git.js', 'code-analysis.js', 'code-paths-v2.js', 'native-capture.js', 'operation-budget.js', 'file-parser-worker.js'];
   const modules = {}, external = new Set();
   while (pending.length) {
     const file = pending.pop(); if (Object.hasOwn(modules, file)) continue;
@@ -23,7 +23,7 @@ export async function runtimeIdentity() {
     }
     if (file === 'code-typescript.js' && !external.has('typescript')) external.add(directCompilerDependency(code));
   }
-  // The closure's only external runtime code is TypeScript, also read by the
+  // The explicit worker entry supplements static imports; its external code is TypeScript, read by the
   // production analysis fingerprint. Fail if a future integration adds another.
   assert.deepEqual([...external].sort(), ['typescript']);
   const require = createRequire(path.join(directory, 'code-analysis-facts.js')), parser = await readFile(require.resolve('typescript'));

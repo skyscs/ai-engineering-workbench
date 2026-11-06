@@ -34,6 +34,7 @@ export class LegacyReadOperation {
   }
   private epoch() {
     this.catalog.assertReading();
+    this.budget?.check();
     this.lease?.check();
     if (this.signal?.aborted) throw new CatalogError('CANCELLED', 'The legacy read was cancelled.', 409);
     this.budget?.check();

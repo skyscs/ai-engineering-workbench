@@ -31,6 +31,18 @@ async function until(check: () => boolean) {
   const deadline = performance.now() + 10000;
   while (!check()) { assert(performance.now() < deadline, 'The owned lifecycle checkpoint was not reached.'); await delay(1); }
 }
+
+test('identity initialization expires within its admission deadline and permits a later explicit operation', async () => {
+  const parser = new FileParserService();
+  try {
+    await assert.rejects(parser.initialize(async signal => {
+      await delay(10000, undefined, { signal }); return 'too late';
+    }, performance.now() + 25), { code: 'PARSER_DEADLINE' });
+    assert.equal(parser.snapshot().active, false); assert.equal(parser.snapshot().owner, null);
+    assert.equal(parser.snapshot().failed, false);
+    assert.equal(await parser.initialize(async () => 'ready'), 'ready');
+  } finally { await parser.stop(); }
+});
 async function setup(t: TestContext, parser = new FileParserService()) {
   const fixture = await createLoreDockFixture() as { root: string }, directory = path.join(fixture.root, 'data');
   const store = new CatalogStore(directory), catalog = new Catalog(store, undefined, {}, parser), analysis = await CodeAnalysis.create(catalog);

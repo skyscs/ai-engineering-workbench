@@ -137,10 +137,24 @@ index usable and appears beside coverage.
 
 Limits are 10,000 candidates, 32 KiB/file, eight original spans/file, 50 MiB examined
 text, 128 KiB fact/provenance payload per file, 16 MiB per inventory and five minutes of
-cumulative active work, checked between files. Unsupported parser guards still apply.
+cumulative active work. Parsing shares that deadline, including worker readiness.
+Unsupported parser guards still apply.
 The two payload budgets exclude SQLite/metadata/WAL overhead and original index history.
 Exact-symbol lookup uses this wider inventory. Maps, candidate previews and answer prompts
 still use their existing bounded projections; broader query integration remains separate.
+
+Code analysis and context building share one parser. While analysis is running, a
+context request can report that code analysis is active. Wait for it to finish, or
+choose **Pause** in Code coverage, then retry the request. Pause and Cancel wait for
+the active file parser to exit; a late result cannot be saved. Resume continues from
+the last completed file and parses the unfinished file again. No automatic retry is
+performed after a parser failure. If the message says the parser is unavailable,
+restart LoreDock, then explicitly start or resume the intended work.
+
+After this parser upgrade, existing source evidence and saved answers remain readable.
+Code coverage may request **Analyze code** again because its disposable inventory was
+created by an older parser. This step is explicit, including when the indexed commit
+has not changed.
 
 ## Find candidate repositories
 

@@ -1,5 +1,9 @@
 # Production file-parser adoption
 
+This document records the historical prerequisite. Current production adoption is
+described in [Owned production parser](OWNED_PRODUCTION_PARSER.md). The original
+observations and acceptance limits below are unchanged.
+
 Task 138 begins from accepted Task 137 merge `48b88a9b5b7f7a70bc2a8a5491007279ad7ec57e`.
 Both complete CI logs pass 1,094 tests at `bebef1567e8b9c9e4a7966e5f360e66ff23ec0f1`.
 The legacy seam is awaitable, but production still uses the direct parser. No default,

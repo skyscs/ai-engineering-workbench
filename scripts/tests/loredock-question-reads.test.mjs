@@ -86,7 +86,7 @@ test('compiled lexical composition preserves every context and prompt byte with 
     assert.equal(current.result.originalReads, counter.result.originalReads);
     assert.equal(current.result.originalBytes, counter.result.originalBytes);
     assert(current.result.sqlRows > counter.result.sqlRows, 'Every additional authority query is counted.');
-    assert.equal(budget.stats().totalWork, account.stats().acceptedUnits); assert(account.stats().originalBytes > 0);
+    assert.equal(budget.stats().totalWork, account.stats().acceptedUnits + account.parserBytes); assert(account.stats().originalBytes > 0);
     t.diagnostic(JSON.stringify({ query, inputHash: actual.inputHash, ...account.stats() }));
     // Reuse the actual capability after the lexical phase; no double billing there.
     const stats = account.stats(); await fixture.paths.read({ buildId: fixture.buildId }, 'paths', undefined, budget);

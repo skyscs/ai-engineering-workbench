@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+import { setTimeout as delay } from 'node:timers/promises';
 import { mkdtemp, rm, readFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
@@ -18,6 +19,10 @@ import { beforePreparedAnswer, loadPreparedAnswerControl } from '../../apps/lore
 
 const question = 'How does apply reach PermitWriter.onMessage through permit.granted.v3?';
 const code = expected => error => error.code === expected;
+async function admissionReleased(catalog) {
+  const deadline = performance.now() + 1000;
+  while (catalog.parser.snapshot().active) { assert(performance.now() < deadline, 'Witness validation must release parser admission.'); await delay(1); }
+}
 const hash = value => createHash('sha256').update(value).digest('hex');
 function gate() { let release; const promise = new Promise(resolve => { release = resolve; }); return { promise, release }; }
 class Runtime {
@@ -184,7 +189,7 @@ test('shared ownership covers all Answers instances, asynchronous configuration 
   const configuring = other.answers.configure(connection);
   assert.throws(() => s.start(), code('QUESTION_BUSY'));
   await assert.rejects(s.answers.configure(connection), code('QUESTION_BUSY')); await configuring;
-  s.runtime.blockPrepare = true; const first = s.start(); await s.runtime.preflight.promise;
+  s.runtime.blockPrepare = true; const first = s.start(); await s.runtime.preflight.promise; await admissionReleased(s.fixture.catalog);
   const context = await other.answers.preview(question);
   await assert.rejects(async () => (await other.answers.start('legacy', question, context.buildId, context.inputHash)), code('QUESTION_BUSY'));
   await assert.rejects(other.answers.configure(connection), code('QUESTION_BUSY'));
@@ -260,7 +265,7 @@ test('corrupt, missing and unknown witnesses and changed originals cannot fall b
 });
 
 test('inventory eviction preserves exact dispatch and historical context without native rereads', async t => {
-  const s = await setup(t); s.runtime.blockPrepare = true; const first = s.start(); await s.runtime.preflight.promise;
+  const s = await setup(t); s.runtime.blockPrepare = true; const first = s.start(); await s.runtime.preflight.promise; await admissionReleased(s.fixture.catalog);
   const snapshot = new AnswerWitnessStore(s.fixture.catalog).read(first.id), receipt = JSON.parse(JSON.parse(snapshot.witnessJson).receipt);
   const inventoryId = JSON.parse(receipt.projectionJson).identity.inventoryId;
   await s.fixture.analyze('replacement-one'); await s.fixture.analyze('replacement-two');

@@ -1,6 +1,6 @@
 # ADR 0064 — Production parser ownership and admission
 
-Status: prospective Task 140 decision; implementation and compatibility checks pending.
+Status: implemented in Task 140; final compatibility and exact-head CI acceptance pending.
 
 ## Ownership and contention
 

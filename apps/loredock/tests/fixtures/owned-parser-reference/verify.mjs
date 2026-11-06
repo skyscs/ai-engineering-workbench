@@ -17,6 +17,12 @@ async function before() {
     const raw = gunzipSync(compressed); assert.equal(hash(raw), manifest.rawSha256);
     const files = JSON.parse(raw); assert.deepEqual(Object.keys(files), Object.keys(manifest.files));
     for (const [file, text] of Object.entries(files)) assert.equal(hash(text), manifest.files[file], file);
+    const additional = JSON.parse(await readFile(new URL('additional-tests.json', directory), 'utf8'));
+    const packed = await readFile(new URL('additional-tests.json.gz', directory)); assert.equal(hash(packed), additional.archiveSha256);
+    const expanded = gunzipSync(packed); assert.equal(hash(expanded), additional.rawSha256);
+    const tests = JSON.parse(expanded); assert.deepEqual(Object.keys(tests), Object.keys(additional.files));
+    for (const [file, text] of Object.entries(tests)) { assert.equal(hash(text), additional.files[file]); assert(!Object.hasOwn(files, file)); files[file] = text; }
+    manifest.tests.push(...additional.tests);
     return { manifest, files };
   })();
   return originals;
@@ -44,6 +50,9 @@ export async function beforeOwnedParser(file, raw) {
     // The older normalizer can already have selected this independently pinned control.
     assert.equal(hash(bytes), pinned.sources[file].sha256, 'The historical source changed: ' + file);
     archived ||= raw.equals(bytes);
+    const writes = JSON.parse(await readFile(new URL('../analysis-write-reference/manifest.json', directory), 'utf8'));
+    const writeBytes = await readFile(new URL('../analysis-write-reference/' + name, directory));
+    assert.equal(hash(writeBytes), writes.sources[file].sha256); archived ||= raw.equals(writeBytes);
   }
   assert(archived || raw.toString() === expected || raw.toString() === original, 'Undeclared owned-parser input: ' + file);
   if (source !== file) assert.equal(await readFile(new URL(file, root), 'utf8'), expected);
@@ -95,14 +104,15 @@ export async function loadHistoricalParserTest(name) {
   return import(output.href);
 }
 
-export async function loadHistoricalIntegrationAnalysis() {
-  const source = new URL('../integration-reference/code-analysis.mjs', directory), raw = await readFile(source, 'utf8');
-  const manifest = JSON.parse(await readFile(new URL('../integration-reference/manifest.json', directory), 'utf8'));
+export async function loadHistoricalIntegrationAnalysis(kind = 'integration-reference') {
+  assert(['integration-reference', 'analysis-write-reference'].includes(kind));
+  const source = new URL('../' + kind + '/code-analysis.mjs', directory), raw = await readFile(source, 'utf8');
+  const manifest = JSON.parse(await readFile(new URL('../' + kind + '/manifest.json', directory), 'utf8'));
   assert.equal(hash(raw), manifest.sources['apps/loredock/src/code-analysis.ts'].moduleSha256, 'The historical inventory module changed.');
   const target = await historicalParserRoot();
   const relocations = Object.fromEntries(runtimeImports(raw).filter(row => row.name.startsWith('.')).map(row =>
     [row.name, new URL('apps/loredock/src/' + path.basename(row.name).replace(/\.js$/, '.ts'), target).href]));
-  const output = new URL('integration-code-analysis.mjs', target);
+  const output = new URL(kind + '-code-analysis.mjs', target);
   await writeFile(output, relocateSource(raw, relocations), { flag: 'wx' });
   return import(output.href);
 }

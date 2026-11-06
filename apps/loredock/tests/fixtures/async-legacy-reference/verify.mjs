@@ -74,18 +74,32 @@ export async function loadLegacyQuestionPrototype(entry, folder) {
   const manifest = JSON.parse(await readFile(new URL('prototype.json', directory), 'utf8'));
   assert(manifest.entries.includes(entry), 'Only ordinary prototype test entries are admitted.');
   const controls = await legacyControlImports(folder, '');
+  const historical = await historicalParserRoot();
   const source = new URL('scripts/loredock-native-question-context/', root);
   const target = pathToFileURL((await mkdtemp(path.join(folder, 'question-prototype-'))) + '/');
   const records = [];
+  const dependencies = JSON.parse(await readFile(new URL('../owned-parser-reference/prototype-dependencies.json', directory), 'utf8'));
+  const extraUrls = new Map(Object.keys(dependencies.files).map(file => [new URL(file, root).href, new URL('native-' + path.basename(file), target)]));
+  const externalImport = url => {
+    if (extraUrls.has(url.href)) return extraUrls.get(url.href).href;
+    if (url.href.startsWith(new URL('apps/loredock/dist/', root).href))
+      return controls.modules[path.basename(url.pathname)] ?? new URL('apps/loredock/dist/' + path.basename(url.pathname), historical).href;
+    return url.href;
+  };
+  for (const [file, entry] of Object.entries(dependencies.files)) {
+    assert.equal(hash(entry.source), entry.sha256);
+    assert.equal((await beforeOwnedParser(file, await readFile(new URL(file, root)))).toString(), entry.source);
+    const imports = Object.fromEntries(runtimeImports(entry.source).filter(row => row.name.startsWith('.'))
+      .map(row => [row.name, externalImport(new URL(row.name, new URL(file, root)))]));
+    await writeFile(extraUrls.get(new URL(file, root).href), relocateSource(entry.source, imports), { flag: 'wx' });
+  }
   for (const [name, expected] of Object.entries(manifest.files)) {
     const originalUrl = new URL(name, source), raw = await readFile(originalUrl);
     assert.equal(raw.length, expected.bytes); assert.equal(hash(raw), expected.sha256);
     const imports = Object.fromEntries(runtimeImports(raw.toString()).filter(row => row.name.startsWith('.')).map(row => {
       const url = new URL(row.name, originalUrl);
       if (url.href.startsWith(source.href)) { const child = url.href.slice(source.href.length); assert(manifest.files[child]); return [row.name, new URL(child, target).href]; }
-      if (url.href.startsWith(new URL('apps/loredock/dist/', root).href) && controls.modules[path.basename(url.pathname)])
-        return [row.name, controls.modules[path.basename(url.pathname)]];
-      return [row.name, url.href];
+      return [row.name, externalImport(url)];
     }));
     let emitted = relocateSource(raw.toString(), imports);
     // Relative resource reads and the CLI entry guard retain their original location.
