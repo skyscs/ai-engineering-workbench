@@ -1,7 +1,8 @@
 # Task 153 — Correct user-service ownership evidence offline
 
-Status: pure validator implemented; twenty prospective offline scenarios and the full local
-check pass. Both complete exact-head CI logs are required before acceptance.
+Status: accepted through PR #186, head `2b2ae86`, identical-tree merge `7951934`.
+Both complete exact-head CI logs pass 1,204 tests, twenty Python cases, ten typechecks
+and ten final builds, with zero failures/cancellations.
 The [retained evidence](../docs/fixtures/loredock-user-service-ownership/README.md) records
 1,204 Node tests, zero failures/cancellations, ten typechecks and ten final builds.
 Task 152 is accepted through PR #185, head `a0f8e4f`, identical-tree merge `5c66cf3`.

@@ -1,5 +1,25 @@
 # Development status
 
+## Task 154 — Corrected acquisition for a fresh namespace prerequisite
+
+Task 153 is accepted through [PR #186](https://github.com/skyscs/ai-engineering-workbench/pull/186),
+head `2b2ae86`, identical-tree merge `7951934`. Both complete CI logs pass 1,204 tests,
+twenty new Python scenarios, ten typechecks and ten final builds without failures/cancellations.
+
+The [separate adapter](loredock/USER_NAMESPACE_PREREQUISITE.md) retains mandatory acquisition
+records before optional markers, holds and rechecks exact directory identities, and binds
+the manager invocation independently of the receipt. It preserves partial evidence and known
+profile violations on later failure. Fresh-unit and two exclusive entry checks prevent reuse;
+terminal cleanup requires the same invocation/group. The consumed Task 152 helper remains frozen.
+
+Twenty offline regressions pass, including successful mocked admission, replacement, descriptor
+closure/inheritance, interruption, timeout and forced cleanup. An initial regression caught and
+fixed an unloaded-unit record being accepted by the loaded-terminal branch. Full local checks
+pass 1,205 Node tests, zero failures/cancellations, ten typechecks and ten final builds. All 148
+emitted application/package modules are unchanged. The separately sealed first attempt remains
+pending. No new service, namespace, application or model
+has run. This does not qualify an executor or promote application/semantic gates.
+
 ## Task 153 — Corrected user-service ownership records, assessed offline
 
 Task 152 is accepted through [PR #185](https://github.com/skyscs/ai-engineering-workbench/pull/185),

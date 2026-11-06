@@ -1,6 +1,10 @@
 # Task 154 — Integrate corrected user-service ownership into a fresh prerequisite
 
-Status: planned after Task 153 acceptance. No new live attempt is opened by Task 153.
+Status: separate adapter implemented after Task 153 acceptance through PR #186 (`7951934`).
+Twenty offline adapter regressions and the full local check pass: 1,205 Node tests, zero
+failures/cancellations, ten typechecks and ten final builds. Candidate source/identity review
+is complete; sealing and the sole live prerequisite remain pending.
+See the [adapter boundaries](../docs/loredock/USER_NAMESPACE_PREREQUISITE.md).
 
 Integrate the corrected receipt into one newly sealed tiny prerequisite on the same
 unchanged environment. The Task 152 source/helper/claim/first assessment stays frozen and
