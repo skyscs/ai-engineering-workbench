@@ -36,6 +36,12 @@ test('container first launch rejects changed, duplicate, escaping and redirected
   assert.equal(result.error, undefined); assert.equal(result.status, 0, result.stdout + result.stderr);
 });
 
+test('container preflight refuses missing, failed or mismatched non-root input receipts', () => {
+  const result = spawnSync('python3', ['-I', '-S', '-B', fileURLToPath(new URL('../loredock-container-browser/owner-tests.py', import.meta.url)),
+    'LaunchInputs.test_preflight_input_receipt'], { encoding: 'utf8', timeout: 10000, maxBuffer: 1024 * 1024 });
+  assert.equal(result.error, undefined); assert.equal(result.status, 0, result.stdout + result.stderr);
+});
+
 test('container browser adapter preserves the fixed source and declares only prospective changes', async () => {
   const original = await readFile(new URL('../loredock-prepared-flow/browser.mjs', import.meta.url), 'utf8');
   const result = adapt(original, new URL('../loredock-prepared-flow/', import.meta.url));

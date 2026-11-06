@@ -1,7 +1,8 @@
 # Task 147 — Verify browser input ownership and non-root readability
 
-Status: scoped after Task 146's first attempt fails before Chrome starts. Begin after
-Task 146 passes exact-head CI and merges. See the
+Status: implementation in progress after Task 146 acceptance through PR #179, head
+`f60e6f4`, identical-tree merge `4b501a7`. Both complete CI logs pass 1,157 tests,
+ten typechecks and ten final builds. See the
 [retained result](../docs/loredock/CONTAINER_SECURITY_RESULT.md).
 
 The image copied an empty `0700` directory with root ownership. File hashes alone did

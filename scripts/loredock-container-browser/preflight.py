@@ -1,5 +1,6 @@
 """One exclusive set of actual non-browser container lifecycle prerequisites."""
 import importlib.util
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -9,11 +10,22 @@ import sys
 import time
 
 ROOT = Path(__file__).resolve().parents[2]
-OUTPUT = Path('/home/toshiba/aew/task146-container-preflight-first')
+OUTPUT = Path('/home/toshiba/aew/task147-container-preflight-first')
+INPUTS = Path('/home/toshiba/aew/task147-image-inputs-first/context/workbench/control-inputs.json')
 spec = importlib.util.spec_from_file_location('container_owner', Path(__file__).with_name('owner.py'))
 owner = importlib.util.module_from_spec(spec); spec.loader.exec_module(owner)
 spec = importlib.util.spec_from_file_location('applied_security', Path(__file__).with_name('security.py'))
 security = importlib.util.module_from_spec(spec); spec.loader.exec_module(security)
+
+
+def validate_inputs(receipt, raw):
+    manifest = json.loads(raw)
+    assert receipt['verified'] is True and receipt['version'] == manifest['version'] == 'container-runtime-inputs/1'
+    assert receipt['manifestSha256'] == hashlib.sha256(raw).hexdigest()
+    assert receipt['uid'] == receipt['gid'] == 1000 and receipt['nodeVersion'] == '22.23.2'
+    assert receipt['browserFiles'] == len(manifest['browserFiles']) and receipt['scriptFiles'] == len(manifest['scripts'])
+    assert sorted(receipt['browserDirectories'], key=lambda row: row['path']) == manifest['browserDirectories']
+    assert receipt['browserParents'] == manifest['browserParents']
 
 
 def main(image):
@@ -53,6 +65,8 @@ def main(image):
             assert wrapper['reason'] == 'completed' and not wrapper['errors']
             applied = json.loads((directory / 'evidence/applied-security.json').read_text())
             assert wrapper['appliedSecurity'] == security.validate(**applied)
+            inputs = json.loads((directory / 'evidence/owner/run/input-verification.json').read_text())
+            validate_inputs(inputs, INPUTS.read_bytes())
             if mode == 'interrupt':
                 assert wrapper['interruptionForwarded']
             report['cases'].append({'mode': mode, 'containerId': result['createdId'], 'passed': True,

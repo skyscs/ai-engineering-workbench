@@ -2,6 +2,7 @@
 import assert from 'node:assert/strict';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { spawn } from 'node:child_process';
+import { verifyRuntimeInputs } from './inputs.mjs';
 
 const [output, mode] = process.argv.slice(2);
 assert.equal(output, '/evidence/owner/run');
@@ -9,6 +10,7 @@ assert(['normal', 'orphan', 'interrupt'].includes(mode));
 assert.equal(process.versions.node, '22.23.2');
 await mkdir(output);
 await mkdir(output + '/home'); await mkdir(output + '/tmp');
+await writeFile(output + '/input-verification.json', JSON.stringify(await verifyRuntimeInputs(), null, 2) + '\n', { flag: 'wx' });
 await writeFile(output + '/runtime.json', JSON.stringify({ node: process.versions, pid: process.pid,
   uid: process.getuid(), gid: process.getgid(), mode }), { flag: 'wx' });
 if (mode !== 'normal') {

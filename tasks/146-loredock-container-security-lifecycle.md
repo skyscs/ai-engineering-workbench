@@ -1,8 +1,9 @@
 # Task 146 — Verify container security at the correct lifecycle boundary
 
-Status: implementation and three actual preflights complete; the first launch attempt
-fails input verification before Chrome starts. Full local checks pass 1,157 tests;
-exact-head CI pending. See the [retained result](../docs/loredock/CONTAINER_SECURITY_RESULT.md).
+Status: accepted through PR #179, head `f60e6f4`, identical-tree merge `4b501a7`.
+Both complete exact-head CI logs pass 1,157 tests, ten typechecks and ten final builds.
+Implementation and three actual preflights are complete; the first launch attempt
+still fails input verification before Chrome starts. See the [retained result](../docs/loredock/CONTAINER_SECURITY_RESULT.md).
 Task 145 is accepted through PR #178, identical-tree merge `42830f5`, with both complete
 CI logs passing 1,150 tests. Sixteen focused owner/adapter/applied-security/input regressions pass.
 See the [prospective controls](../scripts/loredock-container-browser/README.md) and

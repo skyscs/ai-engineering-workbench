@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
-import { digestFile, verifyTree } from '../loredock-browser-eligibility/verify.mjs';
+import { verifyRuntimeInputs } from './inputs.mjs';
 import { assess } from '../loredock-browser-eligibility/assess.mjs';
 import { browserAdapter } from './adapter.mjs';
 
@@ -13,14 +13,9 @@ const manifest = JSON.parse(await readFile('/opt/workbench/control-inputs.json',
 const save = (name, value) => writeFile(output + '/' + name, JSON.stringify(value, null, 2) + '\n', { flag: 'wx' });
 const report = { mode, nominalCadenceMs: 50, actualMaximumGapMs: 100, failure: null, assessment: null,
   lifecycle: null, browser: null, idle: null, inputsUnchanged: false, resourceQualification: false };
-async function verify() {
-  assert.equal(await digestFile('/opt/node/node'), manifest.nodeSha256);
-  await verifyTree('/opt/chrome', manifest.browserFiles);
-  for (const row of manifest.scripts) assert.equal(await digestFile('/opt/workbench/' + row.path), row.sha256, row.path);
-}
 let page;
 try {
-  await verify(); await save('input-manifest.json', manifest);
+  await save('input-verification.json', await verifyRuntimeInputs()); await save('input-manifest.json', manifest);
   const browser = await browserAdapter(output);
   report.lifecycle = { began: performance.now(), ended: null, timeOrigin: performance.timeOrigin, clock: 'driver performance.now()' };
   page = await browser({ directory: output + '/browser', executable: '/opt/chrome/chrome', blank: true });
@@ -34,7 +29,7 @@ try {
 finally {
   if (page) try { report.browser = await page.stop(); } catch (error) { report.failure ??= { message: error.message, stack: error.stack }; }
   if (report.lifecycle && report.lifecycle.ended === null) report.lifecycle.ended = performance.now();
-  try { await verify(); report.inputsUnchanged = true; } catch (error) { report.failure ??= { message: error.message, stack: error.stack }; }
+  try { await save('input-verification-after.json', await verifyRuntimeInputs()); report.inputsUnchanged = true; } catch (error) { report.failure ??= { message: error.message, stack: error.stack }; }
   await save('result.json', report);
   if (report.failure || !report.assessment?.eligible || !report.inputsUnchanged) process.exitCode = 1;
 }

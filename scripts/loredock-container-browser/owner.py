@@ -89,7 +89,7 @@ def specification(image, evidence, nonce, mode):
                        '/opt/workbench/scripts/loredock-container-browser/init.py'],
         'Cmd': [mode], 'Env': ['PATH=/opt/node:/usr/local/bin:/usr/bin:/bin', 'LC_ALL=C',
                                'HOME=/evidence/owner/run/home'],
-        'Labels': {'aew.task': '146', 'aew.attempt': nonce},
+        'Labels': {'aew.task': '147', 'aew.attempt': nonce},
         'AttachStdin': False, 'OpenStdin': False, 'Tty': False, 'StopSignal': 'SIGTERM',
         'HostConfig': {
             'CapDrop': ['ALL'], 'CapAdd': [], 'Privileged': False,

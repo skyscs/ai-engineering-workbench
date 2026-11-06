@@ -1,52 +1,50 @@
-# Prospective container security and browser control
+# Prospective container input readability
 
-Task 146 follows [the retained Task 145 failure](../../docs/loredock/CONTAINER_BROWSER_ELIGIBILITY.md).
-The original image, unstarted object and first paths remain unchanged. This revision uses
-fresh Task 146 paths and explicitly requests the existing default AppArmor profile.
+Task 147 follows the [retained Task 146 result](../../docs/loredock/CONTAINER_SECURITY_RESULT.md).
+All three security/lifecycle preflights passed, but input verification stopped the first
+blank attempt before Chrome started: an empty `0700` directory was copied with root
+ownership. Every earlier image, object, attempt and claim remains retained without retry.
 
-The running Docker daemon reports source commit `6a43e3d`; the exact
-[start implementation](https://github.com/moby/moby/blob/6a43e3d5afddf4111da0f864bbc7cae5d7e95001/daemon/start.go#L181)
-calls profile configuration during start. The
-[profile selection](https://github.com/moby/moby/blob/6a43e3d5afddf4111da0f864bbc7cae5d7e95001/daemon/container_linux.go#L10)
-resolves the requested/default profile. The
-[OCI process configuration](https://github.com/moby/moby/blob/6a43e3d5afddf4111da0f864bbc7cae5d7e95001/daemon/oci_linux.go#L124)
-applies it to execution. The first empty created-state field is consistent with that order.
-No host policy/profile/configuration file was inspected or modified.
+The new Dockerfile uses `COPY --chown=1000:1000` for the exact browser input tree.
+[Docker documents](https://docs.docker.com/reference/dockerfile/#copy---chown) that ordinary
+COPY creates root-owned files. It copies directory contents rather than the source root;
+therefore the new image explicitly preserves the recorded root mode `0775` and owner.
+Nested directory modes, all Chrome/Node file bytes, browser flags and default security
+remain unchanged. Only the newly built image changes; no host toolchain permissions do.
 
-The exact-ID owner still persists create before one start and verifies all fixed requested
-configuration, user, security, namespaces, mounts and resource settings. An empty applied
-profile is unresolved metadata only on an unstarted created object. The explicit requested
-`apparmor=docker-default` remains mandatory. Runtime metadata must resolve to that profile;
-a wrong/missing/unconfined runtime value fails. Cleanup separately confirms actual stopped
-state for the already verified object without treating failed security as a passing control.
+`prepare.py` records the complete source/staged browser directory set, including the root
+and empty directories, with type, mode and UID/GID. It rejects symlinks and verifies every
+original file hash/mode before staging. The runtime manifest separately declares the
+canonical `/` and `/opt` parents. Whole-image file inventory remains build-time metadata;
+it does not assert identity for Docker's runtime-injected `/etc` files.
 
-Before spawning the frozen kernel owner, PID 1 records its own applied AppArmor label and
-process status, requiring `docker-default (enforce)`, seccomp mode 2, no-new-privileges,
-UID/GID 1000 and zero inheritable/permitted/effective/bounding/ambient capabilities.
-Missing or relaxed values stop child execution. Preflight revalidates the raw receipt.
+`inputs.mjs` verifies this metadata, rejects redirected roots/parents/children, checks
+actual read/traverse access as UID/GID1000 and reads every file through the unchanged
+hash verifier. Directory identity is checked again after hashing. The same function runs:
 
-`prepare.py` stages a clean committed candidate exclusively at
-`/home/toshiba/aew/task146-image-inputs-first`. The exact Chrome/Node files and original
-collectors stay unchanged. The new image must retain the original dependency layer or
-record a concrete prospective difference. Image config/layers, runtime/dependency files,
-source/input hashes and complete build logs precede any browser control.
+- during image construction after `USER 1000:1000`, without launching Chrome;
+- before the normal/orphan/interruption probes create their synthetic children;
+- before and after the actual blank-browser lifetime.
 
-`preflight.py` runs one normal/orphan/host-interruption set at
-`/home/toshiba/aew/task146-container-preflight-first`. The orphan ignores TERM; successful
-preflight requires real pidfd KILL/wait receipts and no survivors. Host interruption must
-propagate through Docker/PID 1 to the actual inner owner, and Docker stopped state is
-inspected. Expected induced failures stay explicit. Unexpected first failures stop the set.
+Each runtime check records the control-manifest digest, directory observations and file
+counts. Both preflight and the exclusive launcher require matching successful non-root
+receipts. Missing, failed or mismatched input verification cannot authorize a browser.
+The consumed Task 146 launch manifest remains in accepted Git history and the immutable
+[receipt archive](../../docs/fixtures/loredock-container-security/README.md); it is removed
+from the active launcher path and excluded from future staged helper inputs. A concrete
+Task 147 manifest may be committed only after the new prerequisites pass.
 
-The [fixed plan](plan.json) retains all limits: 120-second inner owner, ten-second grace,
-five-second forced-exit wait, 150-second wrapper, 160-second host and five-second API calls.
-There is no restart, automatic removal, name lookup, host profile/socket mount or privileged
-mode. Runtime network is disabled; the browser debugging endpoint stays on private loopback.
-Evidence and private-shm storage are observed together under the same 2-GiB ceiling.
+Fresh exclusive roots are `/home/toshiba/aew/task147-image-inputs-first`,
+`/home/toshiba/aew/task147-image-build-first`,
+`/home/toshiba/aew/task147-container-preflight-first` and
+`/home/toshiba/aew/task147-container-browser-first`. The [fixed plan](plan.json) preserves
+one-start exact-ID ownership, applied default AppArmor/seccomp, no capabilities,
+no-new-privileges, non-root execution, network isolation, read-only root and one evidence
+mount. The original kernel owner stays below PID1; all wall/cleanup deadlines remain.
 
-Only after these prerequisites pass may a committed concrete manifest authorize one fresh
-thirty-second blank browser lifetime. The unchanged adapter varies only import/page
-relocation and the 50-ms nominal timer; actual gaps must remain at most 100 ms and browser
-collector-inclusive summed RSS at most 1,073,741,824 bytes. Separate namespace/outer-owner
-observations do not change that metric. No browser run is authorized by this preparatory
-commit alone. No daemon, application UI, model or corporate source runs; daemon resource
-qualification stays blocked. Preserve every first failure without retry or fallback.
+No browser launch is authorized by this preparatory commit alone. After a verified image,
+three passing input/security/lifecycle prerequisites and a committed concrete manifest,
+consume at most one thirty-second blank lifetime. Retain 50-ms nominal/100-ms actual
+cadence, collector-inclusive 1-GiB summed RSS, 2-GiB storage and 64-MiB private shm limits.
+No retry, metric substitution, application/model/corporate input or full-flow acceptance.
+Daemon aggregate-heap/startup qualification remains blocked.

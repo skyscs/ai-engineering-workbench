@@ -1,12 +1,14 @@
 """Stage an exclusive, explicit public-runtime build context without host configuration."""
 import hashlib
 import json
+import os
 from pathlib import Path
 import shutil
+import stat
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[2]
-OUTPUT = Path('/home/toshiba/aew/task146-image-inputs-first')
+OUTPUT = Path('/home/toshiba/aew/task147-image-inputs-first')
 BROWSER = Path('/home/toshiba/aew/toolchain/task143-chrome-for-testing-157.0.8103.38/chrome-linux64')
 NODE = Path('/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node')
 
@@ -14,6 +16,23 @@ NODE = Path('/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node')
 def digest(path):
     with path.open('rb') as stream:
         return hashlib.file_digest(stream, 'sha256').hexdigest()
+
+
+def directories(root):
+    assert root.resolve() == root and not root.is_symlink()
+    rows = []
+    def failed(error):
+        raise error
+    for current, children, files in os.walk(root, followlinks=False, onerror=failed):
+        directory = Path(current)
+        for name in children + files:
+            assert not (directory / name).is_symlink()
+        value = directory.lstat()
+        assert stat.S_ISDIR(value.st_mode)
+        rows.append({'path': directory.relative_to(root).as_posix(), 'kind': 'directory',
+                     'mode': stat.S_IMODE(value.st_mode), 'uid': value.st_uid, 'gid': value.st_gid})
+        assert len(rows) <= 256
+    return sorted(rows, key=lambda row: row['path'])
 
 
 def main():
@@ -24,21 +43,30 @@ def main():
     assert sorted(row['path'] for row in files) == sorted(str(path.relative_to(BROWSER)) for path in BROWSER.rglob('*') if path.is_file())
     for row in files:
         assert digest(BROWSER / row['path']) == row['sha256']
+        assert (BROWSER / row['path']).stat().st_mode & 0o777 == row['mode']
+    source_directories = directories(BROWSER)
+    assert all(row['uid'] == row['gid'] == 1000 for row in source_directories)
+    assert source_directories[0]['path'] == '.' and source_directories[0]['mode'] == 0o775
     OUTPUT.mkdir(mode=0o700)
     context = OUTPUT / 'context'; context.mkdir()
     shutil.copytree(BROWSER, context / 'chrome', symlinks=False)
+    assert directories(context / 'chrome') == source_directories
     shutil.copy2(NODE, context / 'node')
     names = ['scripts/loredock-prepared-flow/' + name for name in
              ['browser.mjs', 'io.mjs', 'ownership.mjs', 'process-tree.mjs', 'browser-evidence.mjs', 'kernel-owner.py', 'browser-lifetime.py']]
     names += ['scripts/loredock-browser-eligibility/' + name for name in ['verify.mjs', 'assess.mjs', 'plan.mjs']]
-    names += [str(path.relative_to(ROOT)) for path in sorted((ROOT / 'scripts/loredock-container-browser').iterdir()) if path.is_file()]
+    names += [str(path.relative_to(ROOT)) for path in sorted((ROOT / 'scripts/loredock-container-browser').iterdir())
+              if path.is_file() and path.name != 'manifest.json']
     inputs = []
     for name in names:
         source = ROOT / name; target = context / 'workbench' / name
         target.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(source, target)
         inputs.append({'path': name, 'bytes': source.stat().st_size, 'sha256': digest(source)})
-    manifest = {'candidate': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
+    manifest = {'version': 'container-runtime-inputs/1',
+                'candidate': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
                 'nodeSha256': digest(NODE), 'browserFiles': files, 'scripts': inputs,
+                'browserDirectories': source_directories,
+                'browserParents': [{'path': name, 'kind': 'directory', 'mode': 0o755, 'uid': 0, 'gid': 0} for name in ['/', '/opt']],
                 'browserVersion': '157.0.8103.38', 'nominalCadenceMs': 50, 'actualMaximumGapMs': 100,
                 'rssLimitBytes': 1073741824, 'resourceQualification': False}
     (context / 'workbench/control-inputs.json').write_text(json.dumps(manifest, indent=2) + '\n')
