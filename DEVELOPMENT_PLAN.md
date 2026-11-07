@@ -651,6 +651,14 @@ Eight explicitly synthetic receipts confirm existing-assessor compatibility and 
 failure/unavailability predicates. No implementation or live probe is added. After review
 and exact-head CI acceptance, [Task 161](tasks/161-loredock-staged-counter-reader.md) implements
 the staged reader offline; owned-construction integration and any new sealed attempt remain later.
+Task 160 is accepted through PR #193, identical-tree merge f0c7564, after both complete
+exact-head CI logs pass. Task 161's [staged reader](docs/loredock/STAGED_COUNTER_ACQUISITION.md)
+is locally verified with 28 temporary-file Python cases, four Node checks, 1,225 full Node
+tests, ten typechecks and ten final builds. It preserves original root descriptors and separate
+initial windows before final role/root collection; no actual service/counter/workload is run.
+After both complete exact-head CI logs pass, [Task 162](tasks/162-loredock-staged-counter-prerequisite.md)
+integrates actual exclusive construction and durable publication around one separately sealed
+tiny workload. That prerequisite cannot qualify the application or reopen consumed attempts.
 Full executor and
 application gates remain separate.
 No application-page or full-flow gate is opened by these diagnostics.

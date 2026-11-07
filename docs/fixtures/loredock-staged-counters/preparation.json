@@ -1,0 +1,24 @@
+{
+  "task": 161,
+  "status": "Read-only design preparation during Task 160 CI; no implementation or worktree yet.",
+  "scope": "Separate offline staged reader, no service, controller write or live counter/workload probe.",
+  "proposedLifecycle": [
+    "Acquire parent/run handles and root counters before roles exist; retain the earliest monotonic acquisition boundary.",
+    "Capture initial root exactly once; complete zero/empty evidence is required before role attachment can be eligible.",
+    "Attach exactly daemon/browser once without reopening or replacing root directory/counter descriptors.",
+    "Capture initial roles once; preserve partial opens/reads and mark incomplete/nonzero initial sets ineligible for owner review.",
+    "Capture final daemon/browser/root once after complete initial phases; generic final capture still has no actual-wait or terminal authority.",
+    "Reject premature/repeated/reentrant/after-close transitions and attempts to repair a consumed missing/replaced interface. Close every owned FD on terminal cleanup."
+  ],
+  "boundaries": [
+    "Keep accepted Task 158/159 code frozen. Prefer a small explicit standalone implementation over monkey-patching their fixed constructors or inventing placeholder role handles.",
+    "The Task 158 byte/metadata/read-window algorithms are the reviewed reference; new lifecycle must preserve equivalent strict identity, base64/raw, short-read/error, overflow and clock behavior.",
+    "Reader eligibility is only supplied-data consistency. Actual root fsync before descendant creation and role fsync before process admission belong to a later independently pinned owned-service adapter.",
+    "Do not read a new zero root baseline after roles appear. Later root setup charges are retained unreset, with unchanged final values and no subtraction.",
+    "Initial capture comprises 8 root plus 16 role interfaces; final comprises the same 24, ordered roles then root. Separate initial phases do not add extra sampling, a queue or a bigger byte budget.",
+    "Snapshots remain compatible with the unchanged Task 151 assessor, but the whole observation needs an explicit staged schema/phase rather than falsely using Task 158's fixed scope order.",
+    "Tests should construct roles only after the initial root read, then alter temporary root counters and prove no root counter reopen. Include partial attachment, late missing values plus known breach, stage misuse, mutation isolation and complete FD cleanup."
+  ],
+  "liveAttemptStarted": false,
+  "executorQualified": false
+}
