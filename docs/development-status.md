@@ -15,8 +15,15 @@ Four Python tests include 26 intercepted C capability scenarios. An initial comp
 test harness is corrected by compiling wrappers separately; its failed log is preserved.
 Full local checks pass 1,208 Node tests, ten typechecks and ten final builds with zero
 failures/cancellations/skips. All 148 emitted application/package modules and previous
-consumed inputs/first records remain unchanged. A committed seal precedes the sole live
-attempt. No complete executor or application resource qualification is claimed.
+consumed inputs/first records remain unchanged. The sole sealed
+[first attempt](loredock/NATIVE_CAPABILITY_PREREQUISITE_RESULT.md) is consumed and PASS:
+independent child status confirms zero capability sets before the permit, one sandbox and
+1-MiB payload complete normally, the native parent actually waits for exit zero, and the
+terminal target is empty. The successful unit is unloaded and its group absent, without
+forced cleanup. Complete first evidence and development history are retained. Both complete
+exact-head CI logs are required before acceptance, then
+[Task 158](../tasks/158-loredock-held-counter-reader.md) implements held-counter acquisition
+offline. No complete executor or application resource qualification is claimed.
 
 ## Task 156 — Correct zero-byte controller admission in a separate candidate
 

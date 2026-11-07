@@ -620,7 +620,12 @@ exact-head CI logs pass. Task 157's [separate implementation](docs/loredock/NATI
 adds self-only zero-valued reduction, exact readback and no-new-privileges checks before
 creation. Its focused suite includes 26 intercepted C boundary cases and four Python tests;
 full local verification passes 1,208 Node tests, ten typechecks and ten final builds.
-A committed seal precedes its sole actual attempt.
+A committed seal precedes its sole actual attempt, now
+[consumed and PASS](docs/loredock/NATIVE_CAPABILITY_PREREQUISITE_RESULT.md). Independent
+child status verifies zero capability sets before permitting the sandbox; normal wait and
+empty terminal state follow. After result acceptance,
+[Task 158](tasks/158-loredock-held-counter-reader.md) implements bounded held-counter
+acquisition offline before a separately scoped live integration.
 Full executor and
 application gates remain separate.
 No application-page or full-flow gate is opened by these diagnostics.

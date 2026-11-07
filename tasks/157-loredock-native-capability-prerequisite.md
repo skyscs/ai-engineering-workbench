@@ -6,6 +6,12 @@ CI logs pass 1,207 Node tests, ten typechecks and ten final builds. Its sole att
 direct child, then the independent pre-exec guard rejects nonzero inheritable capability
 bit 35. No sandbox/payload executes. Preserve this FAIL and the forced native-child cleanup.
 
+Task 157's sole separately sealed attempt is now consumed and PASS. Independent child
+status confirms zero capability sets; the fixed sandbox/payload and actual child wait
+complete normally, with an empty terminal target and absent service group. See the
+[retained result](../docs/loredock/NATIVE_CAPABILITY_PREREQUISITE_RESULT.md). Both complete
+exact-head CI logs remain required before acceptance and Task 158 implementation.
+
 1. Use the retained capability/status records and system header ABI to design an explicit
    reduction of the owned native control process's effective, permitted and inheritable
    capability sets before clone3. Require and verify the existing no-new-privileges state;

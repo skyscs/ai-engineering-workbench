@@ -3,7 +3,9 @@
 Task 157 addresses the owned-process defect observed by the
 [Task 156 first attempt](EMPTY_CONTROLLER_PREREQUISITE_RESULT.md). That FAIL, consumed
 entry, strict independent pre-exec guard and complete raw observations remain unchanged.
-The new candidate has not yet been sealed or executed.
+The sole new candidate is sealed, consumed and PASS; see the
+[retained first result](NATIVE_CAPABILITY_PREREQUISITE_RESULT.md). Its entry and inputs
+are now frozen first-attempt history and must not be repaired or rerun.
 
 The separate [native helper](../../scripts/loredock-native-capability-prerequisite/native.c)
 requires the existing no-new-privileges state to be exactly one. Before clone3 it makes
