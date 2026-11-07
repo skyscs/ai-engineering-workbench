@@ -1,8 +1,16 @@
 # Task 157 — Reduce owned native capabilities before direct birth
 
-Status: planned after Task 156 retained-result acceptance. Its sole attempt creates the
+Status: implemented; focused checks and 1,208 full Node tests/typechecks/builds pass before sealing. Task 156
+is accepted through PR #189, identical-tree merge 35c1a9e, after both complete exact-head
+CI logs pass 1,207 Node tests, ten typechecks and ten final builds. Its sole attempt creates the
 direct child, then the independent pre-exec guard rejects nonzero inheritable capability
 bit 35. No sandbox/payload executes. Preserve this FAIL and the forced native-child cleanup.
+
+Task 157's sole separately sealed attempt is now consumed and PASS. Independent child
+status confirms zero capability sets; the fixed sandbox/payload and actual child wait
+complete normally, with an empty terminal target and absent service group. See the
+[retained result](../docs/loredock/NATIVE_CAPABILITY_PREREQUISITE_RESULT.md). Both complete
+exact-head CI logs remain required before acceptance and Task 158 implementation.
 
 1. Use the retained capability/status records and system header ABI to design an explicit
    reduction of the owned native control process's effective, permitted and inheritable
