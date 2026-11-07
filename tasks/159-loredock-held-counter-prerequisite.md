@@ -1,8 +1,13 @@
 # Task 159 — Retain real counters around one direct-born synthetic child
 
-Status: planned after Task 158 acceptance. The held reader passes offline checks, and
+Status: in progress after Task 158 acceptance through PR #191, merge baa638b. The held reader passes offline checks, and
 Task 157 established one direct-birth/fixed-namespace prerequisite. Neither proves actual
 retained counter capability or complete executor qualification.
+
+The [separate implementation](../docs/loredock/HELD_COUNTER_PREREQUISITE.md) passes
+full local verification: 1,221 Node tests, sixteen new Python cases, ten typechecks and
+ten final builds. Focused checks cover sixteen Python cases and nine Node cases.
+No committed seal or actual Task 159 attempt exists yet.
 
 1. Review the accepted reader, immutable v2 contract/assessor and Task 157's consumed
    native/guard/first evidence. Prepare one separate candidate that keeps the fixed native

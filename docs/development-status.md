@@ -1,5 +1,22 @@
 # Development status
 
+## Task 159 — Retain counters around one direct-born synthetic child
+
+Task 158 is accepted through [PR #191](https://github.com/skyscs/ai-engineering-workbench/pull/191),
+head da6d882, identical-tree merge baa638b. Both complete exact-head CI logs pass 1,212 Node
+tests, 28/4/18/34/20/20/16 Python cases, ten typechecks and ten final builds without
+failures/cancellations/skips. The consumed Task 157 direct-birth result remains unchanged.
+
+The [separate counter integration](loredock/HELD_COUNTER_PREREQUISITE.md) adds empty sibling
+roles, durable zero-counter admission, final role-before-root reads and an outside offline
+assessment. It preserves the native source, run/probe target, sandbox, payload and existing
+work/deadline bounds. Sixteen new Python and nine Node checks cover admission, partial data,
+replacement, wait/retention ordering and known-failure preservation. Full local verification
+passes 1,221 Node tests, ten typechecks and ten final builds; all 148 emitted application
+modules remain identical. The first focused Node failure is preserved as development history.
+No actual Task 159 attempt has started. One committed seal and bounded first attempt are next;
+complete executor/application qualification and independent semantic acceptance remain separate.
+
 ## Task 158 — Acquire bounded counter records through retained descriptors
 
 Task 157 is accepted through [PR #190](https://github.com/skyscs/ai-engineering-workbench/pull/190),
