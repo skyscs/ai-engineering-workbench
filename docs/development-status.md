@@ -22,10 +22,19 @@ and all subsequent checks pass. Temporary-file tests prove fsync failure prevent
 or native admission and reject rehashed invalid chronology/membership/bindings. All emitted
 application modules and frozen prior implementations/evidence remain unchanged.
 
-One separately sealed tiny actual attempt, retained result and both complete exact-head CI
-logs remain pending. No Task 162 service/native/sandbox/payload/application/browser/model
-attempt has occurred at this candidate checkpoint. Full executor, resource/timing, semantic,
-L5 and Workbench bridge gates remain separate; agent review is not independent acceptance.
+The sole separately sealed [actual result](loredock/STAGED_COUNTER_PREREQUISITE_RESULT.md)
+is consumed and PASS: complete 8 + 16 initial and 24 final interfaces, original zero root
+before descendants, unchanged root bindings, one direct-born normal-waited 1-MiB payload,
+unreset final root peak 8,667,136 bytes, complete raw/receipt fsync and owned group disappearance.
+The combined outside assessment and unchanged memory assessor pass; qualification remains false.
+The [176-member archive](fixtures/loredock-staged-counter-prerequisite/README.md) preserves
+136 first records / 77,228 bytes, sealed inputs, outside evidence and eleven closed logs.
+No forced cleanup, retry, host/profile/runtime changes, application/browser/model or corporate code.
+
+Both complete exact-head CI logs remain required before acceptance. Then
+[Task 163](../tasks/163-loredock-complete-executor-layout-review.md) reviews the complete
+Node/Chromium/control layout and remaining ancestor/orphan/interruption/lifetime gates before
+broader executor work. Full resource/timing, semantic, L5 and bridge acceptance remain separate.
 
 ## Task 161 — Staged held-counter acquisition offline
 

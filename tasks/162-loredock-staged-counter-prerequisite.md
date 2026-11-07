@@ -1,8 +1,9 @@
 # Task 162 — Integrate creation-ordered counters around one tiny owned workload
 
 Status: implemented and locally verified; 24 Python and 12 Node focused checks plus 1,237
-full Node tests, ten typechecks and ten final builds pass. One separately sealed tiny attempt
-and exact-head CI acceptance remain pending. Task 161 is
+full Node tests, ten typechecks and ten final builds pass. The sole separately sealed tiny
+attempt is consumed and PASS; exact-head CI acceptance remains pending. See the
+[retained result](../docs/loredock/STAGED_COUNTER_PREREQUISITE_RESULT.md). Task 161 is
 accepted through PR #194, identical-tree merge 7907726. Follow
 [ADR 0069](../docs/decisions/0069-loredock-creation-ordered-counters.md) and the
 [staged reader](../docs/loredock/STAGED_COUNTER_ACQUISITION.md). No application gate opens.

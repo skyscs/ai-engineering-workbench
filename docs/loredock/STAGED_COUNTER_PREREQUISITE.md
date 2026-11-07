@@ -87,8 +87,9 @@ verify valid receipts and independently rehashed invalid chronology/membership/b
 Focused verification passes 24 Python cases and 12 Node checks. The first Python run exposed
 a shadowed scope parameter in the new bindings function (eight failures among sixteen cases);
 it is corrected and the closed failed log is preserved. Full local verification passes 1,237
-Node tests, all Python suites, ten typechecks and ten final builds. Sealed execution, retained
-outcome and both complete exact-head CI reviews remain required before acceptance.
+Node tests, all Python suites, ten typechecks and ten final builds. The sole separately
+sealed [actual result](STAGED_COUNTER_PREREQUISITE_RESULT.md) is now consumed and PASS for
+this tiny prerequisite. Both complete exact-head CI reviews remain required before acceptance.
 
 Even a complete tiny PASS establishes only this prerequisite. Ancestor controls, orphan and
 interrupted collector behavior, full lifetime, application resource/timing, semantic-readiness,
