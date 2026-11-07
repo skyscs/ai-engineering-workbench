@@ -1,0 +1,234 @@
+{
+  "schemaVersion": "loredock-server-fencing-recovery-review/1",
+  "task": 165,
+  "base": "294f217e2a3625afb2bbc89ecc03bf4164cc94ad",
+  "acceptedTask164": {
+    "pr": 197,
+    "head": "381195af47f123b141bfc2c9d775e5807c1db16d",
+    "merge": "294f217e2a3625afb2bbc89ecc03bf4164cc94ad",
+    "ci": [
+      {
+        "event": "push",
+        "run": 42359736920,
+        "job": 128365372546,
+        "head": "381195af47f123b141bfc2c9d775e5807c1db16d",
+        "conclusion": "success",
+        "tests": 1251,
+        "groups": [
+          18,
+          17,
+          43,
+          732,
+          57,
+          384
+        ],
+        "pythonCases": [
+          34,
+          18,
+          16,
+          28,
+          16,
+          4,
+          24,
+          28,
+          20,
+          20
+        ],
+        "failures": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "log": "/home/toshiba/aew/task164-ci-push-final.log",
+        "bytes": 714599,
+        "sha256": "9ab48ac91e4290258d21d1686a56acc857bcdea88ca8eddec048acf29b3a35a9",
+        "fullLogReviewed": true,
+        "warnings": [
+          "Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, pnpm/action-setup@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+        ],
+        "retainedLog": "logs/task164-ci-push-final.log.gz"
+      },
+      {
+        "event": "pull_request",
+        "run": 42359747476,
+        "job": 128365407575,
+        "head": "381195af47f123b141bfc2c9d775e5807c1db16d",
+        "conclusion": "success",
+        "tests": 1251,
+        "groups": [
+          17,
+          18,
+          43,
+          732,
+          57,
+          384
+        ],
+        "pythonCases": [
+          34,
+          18,
+          16,
+          28,
+          16,
+          4,
+          24,
+          28,
+          20,
+          20
+        ],
+        "failures": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "log": "/home/toshiba/aew/task164-ci-pr-final.log",
+        "bytes": 716550,
+        "sha256": "14c33aca1626542f892f0b24e3eb1a6ac1703bb691c39af3c1612239f4adb436",
+        "fullLogReviewed": true,
+        "warnings": [
+          "Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, pnpm/action-setup@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+        ],
+        "retainedLog": "logs/task164-ci-pr-final.log.gz"
+      }
+    ]
+  },
+  "sources": {
+    "scripts/loredock-controlled-server/http.mjs": {
+      "bytes": 2016,
+      "sha256": "3315f8f040cbd698344c3b1ea9c5133c90777888abc2a232be056a49373ec35a"
+    },
+    "scripts/tests/loredock-server-fencing-recovery.test.mjs": {
+      "bytes": 7830,
+      "sha256": "7f729f98afec09bd7a591a5902490d87bb4a24670100d2788f82a97beb0c694c"
+    },
+    "scripts/tests/loredock-controlled-server.test.mjs": {
+      "bytes": 11601,
+      "sha256": "0a4b1ffc791a714e07125bda20946c75e1873d8bab1417fc3e92e459fe4dfe2a"
+    }
+  },
+  "logs": [
+    {
+      "path": "logs/task165-install.log.gz",
+      "bytes": 326,
+      "sha256": "1c2b0f4e2d176c585d51c6b9005af0b79b084c43d1c5ec14391a5ca1afa9ec93",
+      "exitCode": 0
+    },
+    {
+      "path": "logs/task165-build-packages.log.gz",
+      "bytes": 935,
+      "sha256": "ed8d93ebb68ae47b677043685eda698afd28d84fb5be66945ae330367d607e0b",
+      "exitCode": 0
+    },
+    {
+      "path": "logs/task165-build-daemon.log.gz",
+      "bytes": 130,
+      "sha256": "6411555367fae72af11152a33d039e4028bc52f16580b1f6ff730e724912c97e",
+      "exitCode": 0
+    },
+    {
+      "path": "logs/task165-focused-first.log.gz",
+      "bytes": 3584,
+      "sha256": "d5ff6dc38225ee37bde05f17009060fd96cfc284b611cc2b4aa904716fc5968d",
+      "exitCode": 0
+    },
+    {
+      "path": "logs/task165-full-check.log.gz",
+      "bytes": 354127,
+      "sha256": "3b8ae776bc77c555407c13f55440a05835adc6400e44a8f6314662888e0a8f14",
+      "exitCode": 0
+    }
+  ],
+  "focusedTests": 13,
+  "newScenarios": 3,
+  "fullCheck": {
+    "groups": [
+      18,
+      17,
+      732,
+      43,
+      57,
+      387
+    ],
+    "total": 1254,
+    "pythonCases": [
+      34,
+      18,
+      16,
+      28,
+      16,
+      4,
+      24,
+      28,
+      20,
+      20
+    ],
+    "typechecks": 10,
+    "finalBuilds": 10,
+    "failures": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "localScheduling": "Unchanged pnpm check, workspace concurrency one, CPU affinity two available CPUs.",
+  "helperBodiesUnchanged": true,
+  "unchangedEmittedModules": 148,
+  "emittedBaseline": "Accepted Task 164 build; its historical one-line server.js delta remains explicit.",
+  "immutable": {
+    "docs/loredock/observable-resource-contract-v2.json": {
+      "bytes": 5327,
+      "sha256": "759dc70e2d3b86043278b8378148785dd061cf29c06fa6f96c3a5bdf00be8e5b",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "docs/loredock/OBSERVABLE_RESOURCE_CONTRACT.md": {
+      "bytes": 17676,
+      "sha256": "c8dfdb654065c02be11280e25a10e542ff4b81a523cce1e1d1d98baeec57ab8b",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "scripts/loredock-memory-receipts/assess.mjs": {
+      "bytes": 19036,
+      "sha256": "905fa440ccb4336b9f96948d2f08901b7ea1c8177bf9a31fac06b415099f2382",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "docs/loredock/PREPARED_QUESTION_API.md": {
+      "bytes": 7504,
+      "sha256": "32a860b044172a4cada083d1f65a692b7f3b4791558242f9b4c9086c6df182c8",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "docs/fixtures/loredock-staged-counter-prerequisite/first.tar.gz": {
+      "bytes": 108274,
+      "sha256": "5e9a2876e6eb96df85c4522debc4abf0bc2d5db67c04058a635c13a0404b52d2",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    }
+  },
+  "findings": [
+    "Revoking an uncited input source aborts the held answer, closes its runtime once and makes prior/pending derived content unavailable through HTTP.",
+    "Policy exclusion supplies the same production-boundary fence and prevents late output.",
+    "Actual orderly shutdown interrupts an active dispatched answer. A fresh owner retains successful/interrupted context and never dispatches on startup or request replay. An explicit fresh preparation/request completes one new attempt."
+  ],
+  "newScenarioFakeDispatches": 7,
+  "productionDefectFound": false,
+  "modelCalls": 0,
+  "browserRuns": 0,
+  "nativeExecutorRuns": 0,
+  "corporateSources": 0,
+  "resourceQualification": false,
+  "semanticAcceptance": false,
+  "independentHumanAcceptance": false,
+  "limitations": "Three-repository synthetic functional fixtures only; orderly interruption/reopen is not forced-crash, orphan, browser, resource or semantic qualification. Fake request records are external test evidence, not a product export or revocation promise.",
+  "finalFormatting": {
+    "path": "scripts/loredock-controlled-server/http.mjs",
+    "before": {
+      "bytes": 2017,
+      "sha256": "fea2194f822ded11816bc504ae758bba748be3bb5bc3ec65dd77890d0fb8f1db"
+    },
+    "change": "Removed one trailing blank line after the completed local check; helper function bodies are byte-identical. Both exact-head CI runs still required."
+  }
+}

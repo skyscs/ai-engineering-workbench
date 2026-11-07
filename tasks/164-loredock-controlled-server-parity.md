@@ -1,6 +1,8 @@
 # Task 164 — Use the production server owner for controlled-runtime tests
 
-Status: implemented and locally verified; exact-head CI acceptance pending. Task 163 is
+Status: accepted through PR #197, head 381195a, identical-tree merge 294f217. Both complete
+exact-head CI logs pass 1,251 Node tests, ten Python suites, ten typechecks and ten final
+builds with zero failures/cancellations/skips. Task 163 is
 accepted through PR #196 / merge 7d769c7. Independent functional work under
 [ADR 0070](../docs/decisions/0070-loredock-complete-runtime-boundary.md); no executor or resource run.
 

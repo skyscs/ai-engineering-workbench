@@ -320,6 +320,12 @@ ten Python suites, typechecks and builds; complete exact-head CI remains require
 [Task 165](../../tasks/165-loredock-server-fencing-recovery.md) next checks source/policy
 fencing and owner restart through real HTTP. Local checks retain bounded parallelism
 after workstation memory exhaustion; no product resource limit is changed.
+Task 164 is accepted through PR #197 / merge 294f217. Task 165's three production-owner
+HTTP scenarios pass, including an uncited-source fence and real shutdown/reopen without
+automatic redispatch. All 148 emitted JavaScript modules remain unchanged; 1,254 full
+Node tests pass. After exact-head CI acceptance,
+[Task 166](../../tasks/166-loredock-first-use-documentation.md) simplifies first-use docs,
+keeping the model-free path easy to find and all qualification limits visible.
 Shared-namespace implementation, remaining executor proof and any live gate require
 separate scope; all consumed families and semantic/private-pilot boundaries remain intact.
 Task 147's execution prerequisites pass, while its
