@@ -1,6 +1,8 @@
 # Task 165 — Verify source fencing and recovery through the production server
 
-Status: implemented and locally verified; exact-head CI acceptance pending. Task 164 is
+Status: accepted through PR #198, head 037b0cb, identical-tree merge 52d69a0. Both complete
+exact-head CI logs pass 1,254 Node tests, ten Python suites, ten typechecks and ten final
+builds with zero failures/cancellations/skips. Task 164 is
 accepted through PR #197 / merge 294f217. Independent functional integration work under
 ADR 0070; no resource or native executor attempt.
 

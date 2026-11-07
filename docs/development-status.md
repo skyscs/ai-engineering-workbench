@@ -1,5 +1,29 @@
 # Development status
 
+## Task 166 — Simpler LoreDock first-use documentation
+
+Task 165 is accepted through [PR #198](https://github.com/skyscs/ai-engineering-workbench/pull/198),
+head 037b0cb, identical-tree merge 52d69a0. Both complete exact-head CI logs pass 1,254 Node
+tests, ten Python suites, ten typechecks and ten final builds without failures/cancellations/skips.
+
+The README now leads with two model-free starting points: a prepared synthetic example,
+or local repositories. The guide explains expected outcomes, registration versus indexing,
+the separate analysis phase and artifact storage near startup. CLI configuration remains
+separate optional model setup. Existing Workbench sections and detailed guide chapters stay
+available; technical history is linked through the roadmap/status and remains unchanged.
+
+The [source review](loredock/FIRST_USE_REVIEW.md) also identifies an inherited prepared-answer
+flag conflict in demo startup and its printed reopening command. Production correctly
+rejects that combination. The guide includes a temporary command-scoped workaround;
+[Task 167](../tasks/167-loredock-demo-mode-isolation.md) scopes the narrow helper repair and
+historical inverse check. No failing demo was executed to establish this static finding.
+
+[Retained review evidence](fixtures/loredock-first-use/README.md) binds source identities,
+document changes and accepted Task 165 CI. This is documentation-only work: no local full
+check, model, browser/demo, corporate source, native executor or resource attempt. Both
+complete exact-head CI logs remain required before merge. All broader qualification gates
+stay unchanged.
+
 ## Task 165 — Source fencing and recovery through the production server
 
 Task 164 is accepted through [PR #197](https://github.com/skyscs/ai-engineering-workbench/pull/197),

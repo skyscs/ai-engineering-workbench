@@ -3,143 +3,55 @@
 A local application for investigating software defects across Git repositories,
 reviewing evidence and revising AI conclusions with human feedback.
 
-The repository also contains **LoreDock**, the new local source catalog that will
-provide system context for future Workbench investigations. Its first implementation
-connects up to twenty local Git repositories through one reviewed path list, indexes
-committed text with equal source budgets and opens exact
-source citations. **Project overview** shows original README context or an explicit gap for
-each repository. **Browse README sections** opens documented architecture, terminology
-or setup sections through their original source parts. **Documentation linked from README**
-opens supported local documents from the same saved repository revision. **Guide me** provides a short route through source context, interfaces,
-one partial flow and coverage. A declaration map shows scoped routes, contracts and
-configuration comparisons. Two bounded static flow outlines connect supported Vue/TypeScript and
-Dojo client code to Java interface calls, with candidate hops and unresolved wiring.
-**HTTP header bindings** compares literal client names with declared handler bindings,
-including candidate links outside those outlines, and opens the original evidence.
-Engineers can dispute/clarify those links, record environment scope and retain review
-history; affected outlines are marked for review. **Update knowledge** reuses validated
-unchanged text and shows committed file changes while retaining earlier indexes.
-After an update, compare earlier engineer corrections with the new evidence and explicitly
-reapply eligible notes; each new review retains its exact origin and separate history.
-Indexing, source search and map review
-need no Codex configuration or model calls.
+The repository contains two local tools:
 
-**Where should I look?** suggests a small set of repositories for a problem or source
-clue, with original evidence and inspectable **Other matches**. It works in the default
-model-free mode. The shortlist needs review and leaves the broader answer context intact.
+- **LoreDock** helps you explore a system across up to twenty Git repositories:
+  indexed source passages, README context, code clues and candidate repositories.
+  Its default workflow makes no model calls.
+- **Workbench** investigates a described defect with an explicitly selected Codex setup,
+  then saves reports, evidence and human revisions. See [your first investigation](#your-first-investigation).
 
-After the shared installation/build steps below, run `pnpm loredock` and open
-**http://127.0.0.1:4244**. Follow the [LoreDock guide](docs/loredock/USER_GUIDE.md)
-for indexing, project orientation/Guide me, the declaration map, static flow outlines, engineer corrections, search, updates, coverage,
-storage and the synthetic demo.
-To explore without supplying repositories, run **`pnpm loredock:demo`** after dependency
-installation. It builds and prepares an isolated twenty-repository example with model
-calls disabled. Open the printed URL after **Demo ready**; Ctrl+C stops the server and
-retains the example. See [demo usage and reopening](docs/loredock/USER_GUIDE.md#try-the-synthetic-system).
-For storage diagnosis, `pnpm loredock:storage --data-dir /absolute/loredock-data` reports
-aggregate SQLite, payload and history-dependency sizes without modifying the catalog.
-`pnpm loredock:history --data-dir /absolute/loredock-data` shows bounded per-index
-payload and dependency counts; it does not select history for deletion.
-Explicit offline `pnpm loredock:compact --data-dir /absolute/loredock-data` can reclaim
-already-free SQLite pages while keeping history. See
-[storage, backup and compaction](docs/loredock/USER_GUIDE.md#local-storage-and-backup).
-The next normal start upgrades older catalogs to schema 11, adding internal answer-owned
-witness storage alongside catalog-owned native path history and shared literal-search text. Back up the complete stopped data directory before upgrading; existing
-citations and history are preserved. The guide explains migration and rollback.
-In **Browse connected paths**, choose **Save paths**, then **Open saved paths**.
-Bookmark the local link to reopen the exact recorded paths and original passages after
-reanalysis or restart. The page checks source access and labels current-code applicability
-as unchecked. See [saved-path usage](docs/loredock/USER_GUIDE.md#save-and-reopen-connected-paths)
-and the [API](docs/loredock/NATIVE_CAPTURE_API.md). **Browse saved paths** in the workspace
-finds existing records without bookmarks, with explicit pages and refresh. Ordinary path
-browsing does not create history.
-The [answer-stage checkpoint](docs/loredock/ANSWER_FOUNDATION.md) records internal
-retrieval and real-model evaluation results. An **opt-in cited-answer pilot** is now
-available with `LOREDOCK_ANSWERS=1 pnpm loredock`; follow the guide's
-[answer setup](docs/loredock/USER_GUIDE.md#ask-a-question-opt-in-pilot). The bounded answer
-slice is [owner-accepted](docs/loredock/L2_ACCEPTANCE.md). Default startup remains
-model-free; cited answers use an explicitly selected connection.
-An experimental prepared-context flow is available with both `LOREDOCK_ANSWERS=1` and
-`LOREDOCK_PREPARED_ANSWERS=1`. It binds Generate to the exact reviewed source/code context,
-with cancellation, expiry and durable request replay. See
-[prepared-context usage](docs/loredock/USER_GUIDE.md#try-prepared-context-experimental).
-It remains separate from the ordinary pilot pending fresh resource and model-quality gates.
-The [prospective complete-flow contract](docs/loredock/PREPARED_FLOW_QUALIFICATION.md)
-fixes twenty-repository inputs, history/browser limits and answer-quality criteria before execution.
-Its retained first resource failure remains failed. A separately reviewed
-[observable resource contract](docs/decisions/0068-loredock-observable-resource-contract.md)
-now guides future measurement work; neither its executor nor a new application resource
-result is qualified. Prepared answers remain experimental.
-Answer previews show how many indexed repositories supply passages and can use explicit
-repository names as bounded context hints. Matching engineer disputes/clarifications are
-included separately from source
-evidence. Saved answers retain those exact notes and show when engineer review changes.
-**Interface comparisons in this context** separately shows bounded static header checks
-whose complete original support is already among the retrieved passages. The reviewed
-comparisons are included in new answer inputs and preserved in answer history.
-Development now has a [heterogeneous twenty-repository fixture](fixtures/loredock-scale/README.md)
-and a [capacity baseline](docs/loredock/SCALE_READINESS.md). A separate
-[larger synthetic measurement](docs/fixtures/loredock-capacity/README.md) indexes 3,679
-files across twenty sources and reuses all text files on refresh. Required original
-context is retained, but candidate scope and the 100-file code projection remain limited.
-[Expanded real-model evaluation](docs/fixtures/loredock-scale-answer-quality/README.md)
-scores 18/20 under agent review but still fails the required-completeness gate;
-private-project and full-system semantic readiness remain unverified.
-The [completeness investigation](docs/loredock/ANSWER_COMPLETENESS.md) separates direct
-answers from wider context. [Improved literal-reference retrieval](docs/fixtures/loredock-reference-retrieval/README.md)
-now supplies the recorded reference basis for all twenty-four new wordings, preserving
-both earlier 20/20 retrieval baselines within the same limits. The separate
-[prospective answer run](docs/fixtures/loredock-prospective-answers/README.md) passes 23/24
-cases under agent review, but one extra claim invents tenant-header propagation between
-incompatible declarations. The map now exposes literal header comparisons as review clues;
-new prompt v9 also supplies fully supported comparisons as derived clues. Saved answers
-remain unchanged. The [single v9 qualification run](docs/fixtures/loredock-interface-answers/README.md)
-passes 8/14 under agent review and fails its gate: missing specific qualifications,
-repository-scope overstatements and incomplete per-claim citations remain recorded.
-The [new prospective qualification design](fixtures/loredock-interfaces/README.md)
-freezes fourteen fresh freight-system questions before model outputs; all required
-original references are available, with the derived-comparison limit disclosed.
-The [incident-context baseline](docs/fixtures/loredock-incident-context/README.md) finds
-all required source owners but returns 11–17 repositories per incident. The separate
-[candidate preview](docs/fixtures/loredock-source-candidates/README.md) narrows the primary
-list to 1–4 in that diagnostic, retaining 18/22 required repository occurrences; four
-remain in Other matches. Optional [related-source clues](docs/fixtures/loredock-candidate-links/README.md)
-recover 21/22 when combined with the primary list, but widen scope to 1–8 repositories.
-They stay in a separate collapsed reading section. Autonomous routing and the Workbench bridge remain planned,
-with independent/private-pilot acceptance pending.
-An [offline precision comparison](docs/fixtures/loredock-link-precision/README.md) reduces
-those lists but loses one useful configuration clue; it has not replaced production behavior.
-[Dojo object-export support](docs/fixtures/loredock-dojo-exports/README.md) subsequently
-adds the missing stock caller/route clue under code adapter v3. The small-corpus default
-page retains 22/22 critical occurrences, while five candidate scopes remain too broad.
-This remains a reading aid.
-Related sources use [compact expandable cards](docs/fixtures/loredock-compact-related-sources/README.md):
-scan the relationship subject first, then open its complete original evidence and limits.
-Use **Next repositories** and **Previous repositories** to inspect remaining eligible
-sources in pages of four, retaining the original default order and citations.
-The separate [full code-inventory experiment](docs/fixtures/loredock-code-inventory/README.md)
-examines all 3,621 synthetic code files with reproducible facts and explicit syntax gaps.
-The [durable inventory foundation](docs/decisions/0040-loredock-durable-code-inventory.md)
-persists bounded per-file facts with validated restart/resume and source purge.
-New indexes now start local code analysis automatically. **Code coverage** shows progress
-and syntax gaps; expand its file pages to inspect facts and original sources. Existing
-indexes can be analyzed explicitly. In **Explore the sources**, an exact name such as
-`Orders.accept` also searches the compatible code inventory and opens its original lines.
-Symbol coverage and limits are visible; original text search remains independently available.
-Packaged Java methods also accept short names such as `StockProjection.accept`; results
-retain full qualified names, original ranges and every admitted ambiguous match.
-A separate [larger lookup qualification](docs/fixtures/loredock-symbol-qualification/README.md)
-checks all 3,621 retained synthetic code files per query, with original verification and
-recorded local timings. Broader framework and semantic acceptance remain open.
+## Start with LoreDock
 
-In **System map**, expand **Browse connected paths** to read up to two paths from the
-published code inventory, page through supported entry points, choose one path and open
-its original lines. Coverage gaps and static connection candidates remain visible. This
-optional local preview makes no model calls and does not change answer or routing behavior.
-Matching direct Kafka topic literals are shown beside candidate connections; dynamic
-topic expressions remain unresolved. These paths are derived from the selected saved
-index, with explicit coverage and runtime uncertainty.
-See the [usage guide](docs/loredock/USER_GUIDE.md#browse-connected-paths).
+Use the [required Node/pnpm toolchain](#requirements) and run
+`pnpm install --frozen-lockfile` from this repository. For a fresh checkout, the
+[repository setup commands](#quick-start) show how to clone and select Node.
+
+Choose one starting point:
+
+| What you want to do | Run from the repository root | What happens |
+| --- | --- | --- |
+| Explore a ready-made example | `pnpm loredock:demo` | Builds and prepares twenty synthetic repositories; wait for **Demo ready**. |
+| Connect your own local repositories | `pnpm build`, then `pnpm loredock` | Opens an empty or previously saved catalog; add repositories in the UI. |
+
+Open **http://127.0.0.1:4244** and keep the terminal running. Stop with Ctrl+C.
+The [first-use guide](docs/loredock/USER_GUIDE.md#choose-your-starting-point) explains
+both paths, expected results and reopening a saved example.
+
+For your own repositories, use **Repository paths** → **Preview repositories** →
+**Add N repositories** → **Index sources**. Then open **Project overview** and
+**Guide me**, or search under **Explore the sources** and inspect the original lines.
+**Where should I look?** provides repository suggestions to review.
+See [indexing and exploration](docs/loredock/USER_GUIDE.md#index-and-explore-your-repositories).
+
+LoreDock indexes committed files without fetching remote branches or changing your
+checkout. Source coverage and static connections are partial; suggestions and README
+text need review. Automatic repository selection for Workbench remains planned.
+[Coverage and limits](docs/loredock/USER_GUIDE.md#supported-content-and-limits) explains
+what the catalog can and cannot establish.
+
+On Linux, data normally lives in `~/.local/share/loredock`; `XDG_DATA_HOME` or
+`LOREDOCK_DATA_DIR` can select another location. This stores indexes, notes and history.
+A Codex **Configuration directory** belongs to optional model setup and is separate.
+See [where data is stored](docs/loredock/USER_GUIDE.md#where-your-data-is-stored).
+
+Model-based [cited answers](docs/loredock/USER_GUIDE.md#ask-a-question-opt-in-pilot) are
+opt-in. [Prepared context](docs/loredock/USER_GUIDE.md#try-prepared-context-experimental)
+remains experimental, with resource and answer-quality gates still open.
+The [full guide](docs/loredock/USER_GUIDE.md) covers maps, saved paths, updates, corrections,
+storage and recovery. [Development status](docs/development-status.md) and the
+[LoreDock roadmap](docs/loredock/PLAN.md) retain the detailed acceptance history,
+failed evaluations and remaining Workbench integration work.
 
 ## What v0.1 does
 

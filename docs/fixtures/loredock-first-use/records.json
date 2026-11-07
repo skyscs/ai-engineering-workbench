@@ -1,0 +1,223 @@
+{
+  "schemaVersion": "loredock-first-use-review/1",
+  "task": 166,
+  "base": "52d69a02f66f384b610ce8035cff2d5b67476cb3",
+  "acceptedTask165": {
+    "pr": 198,
+    "head": "037b0cb9f00c6366e5420a0426aae4194ca863bf",
+    "merge": "52d69a02f66f384b610ce8035cff2d5b67476cb3",
+    "ci": [
+      {
+        "event": "push",
+        "run": 42361879308,
+        "job": 128371798953,
+        "head": "037b0cb9f00c6366e5420a0426aae4194ca863bf",
+        "conclusion": "success",
+        "tests": 1254,
+        "groups": [
+          17,
+          18,
+          43,
+          732,
+          57,
+          387
+        ],
+        "pythonCases": [
+          34,
+          18,
+          16,
+          28,
+          16,
+          4,
+          24,
+          28,
+          20,
+          20
+        ],
+        "failures": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "log": "/home/toshiba/aew/task165-ci-push-final.log",
+        "bytes": 716848,
+        "sha256": "c5d9fa8795378c4a1d5a174b3c8dc16e29bee0842468ae298d06916715b24dad",
+        "fullLogReviewed": true,
+        "warnings": [
+          "Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, pnpm/action-setup@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+        ],
+        "retainedLog": "logs/task165-ci-push-final.log.gz"
+      },
+      {
+        "event": "pull_request",
+        "run": 42361892874,
+        "job": 128371841472,
+        "head": "037b0cb9f00c6366e5420a0426aae4194ca863bf",
+        "conclusion": "success",
+        "tests": 1254,
+        "groups": [
+          17,
+          18,
+          43,
+          732,
+          57,
+          387
+        ],
+        "pythonCases": [
+          34,
+          18,
+          16,
+          28,
+          16,
+          4,
+          24,
+          28,
+          20,
+          20
+        ],
+        "failures": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "log": "/home/toshiba/aew/task165-ci-pr-final.log",
+        "bytes": 716877,
+        "sha256": "6bf2f969ea65ebb5fe907512883328f5e2c7552f882432198764618169b8e88f",
+        "fullLogReviewed": true,
+        "warnings": [
+          "Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, pnpm/action-setup@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+        ],
+        "retainedLog": "logs/task165-ci-pr-final.log.gz"
+      }
+    ]
+  },
+  "inspectedSources": {
+    "package.json": {
+      "bytes": 1079,
+      "sha256": "55a365ff2dfbba711225e3b25b5743e6850691ad0b4d0bad004a1a36c95ac01f"
+    },
+    ".node-version": {
+      "bytes": 8,
+      "sha256": "08062faf0d7a2d22f5d7933c50e975dd1527034275597be7c1b3b9fd2b9d079a"
+    },
+    ".nvmrc": {
+      "bytes": 8,
+      "sha256": "08062faf0d7a2d22f5d7933c50e975dd1527034275597be7c1b3b9fd2b9d079a"
+    },
+    "apps/loredock/src/index.ts": {
+      "bytes": 1858,
+      "sha256": "ce49602da2e7ecbf753882cc130487dcdc7435ecff866b18ef7044375e250ce2"
+    },
+    "apps/loredock/src/server.ts": {
+      "bytes": 5788,
+      "sha256": "d9ba09e4a4ecda75baaad1ec3532d165203a4ec593e85c494e6d8aad5093c8e8"
+    },
+    "apps/loredock/src/code-analysis-follow.ts": {
+      "bytes": 3099,
+      "sha256": "6bcf81dcb92d0fe254a34e4419d5f4173ad0ab2148d73790725e28e5ebfaf844"
+    },
+    "apps/loredock-web/src/SourceOnboarding.tsx": {
+      "bytes": 3651,
+      "sha256": "de9033eeac694396c7ec401c9c72bb4c55c1f263f2d813da368c200c1dbb800a"
+    },
+    "apps/loredock-web/src/main.tsx": {
+      "bytes": 18948,
+      "sha256": "3717b6bf9c0e03d9307584b73b34cd09ed6d2d1eed6fea35a31409eb8d214988"
+    },
+    "apps/loredock-web/src/ProjectOverview.tsx": {
+      "bytes": 11267,
+      "sha256": "442d654aea953f2ccdba85bd0d368125cd1b4c6b27ebfa072371c1655fc009a4"
+    },
+    "scripts/loredock-demo.mjs": {
+      "bytes": 8533,
+      "sha256": "b89d9b136ee7db112e011cf1cc3e380efd5a3e4df5482017b2ca7e482b461c8b"
+    },
+    "scripts/tests/loredock-demo.test.mjs": {
+      "bytes": 1759,
+      "sha256": "e8f2f04e5f90ca3ae26f37d856b5b5c4e69f1c57df56ed63098822c5877532d8"
+    },
+    "apps/loredock/tests/fixtures/owned-parser-reference/delta.json": {
+      "bytes": 206633,
+      "sha256": "c83da724987c0a712351d2d61ed114e6de0471387488dca2a207771130036df1"
+    }
+  },
+  "documents": {
+    "README.md": {
+      "before": {
+        "bytes": 20743,
+        "sha256": "49f9fc7bb57995d5c3edf7af3b07ccafe57a39b5908af6fd3e3c9088416743a0"
+      },
+      "after": {
+        "bytes": 12357,
+        "sha256": "24562ef1bfe7a2eb9b3c4263d9b74fb01cfb40db1e0bdbcd564554a4397c7864"
+      },
+      "beforeLines": 295,
+      "afterLines": 207
+    },
+    "docs/loredock/USER_GUIDE.md": {
+      "before": {
+        "bytes": 81974,
+        "sha256": "9b6d88396036dbc1ebc24443414265ce9f8e4299872c3389df69f294d34c8ce8"
+      },
+      "after": {
+        "bytes": 85073,
+        "sha256": "df35deff79fde6f8ad06a5e401075a58a4b40228ea2371086bcf4e9a3de0d9da"
+      },
+      "beforeLines": 1172,
+      "afterLines": 1228
+    }
+  },
+  "workbenchReadmeTailUnchanged": true,
+  "readmeEntryLines": {
+    "before": 143,
+    "after": 55
+  },
+  "implementationUnchanged": true,
+  "immutable": {
+    "docs/loredock/observable-resource-contract-v2.json": {
+      "bytes": 5327,
+      "sha256": "759dc70e2d3b86043278b8378148785dd061cf29c06fa6f96c3a5bdf00be8e5b",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "docs/loredock/OBSERVABLE_RESOURCE_CONTRACT.md": {
+      "bytes": 17676,
+      "sha256": "c8dfdb654065c02be11280e25a10e542ff4b81a523cce1e1d1d98baeec57ab8b",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "scripts/loredock-memory-receipts/assess.mjs": {
+      "bytes": 19036,
+      "sha256": "905fa440ccb4336b9f96948d2f08901b7ea1c8177bf9a31fac06b415099f2382",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "docs/loredock/PREPARED_QUESTION_API.md": {
+      "bytes": 7504,
+      "sha256": "32a860b044172a4cada083d1f65a692b7f3b4791558242f9b4c9086c6df182c8",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "docs/fixtures/loredock-staged-counter-prerequisite/first.tar.gz": {
+      "bytes": 108274,
+      "sha256": "5e9a2876e6eb96df85c4522debc4abf0bc2d5db67c04058a635c13a0404b52d2",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    }
+  },
+  "localFullCheck": "Not repeated for documentation alone; both complete exact-head CI logs required before merge.",
+  "finding": "The demo child and printed reopening command preserve an inherited prepared-answer flag while disabling cited answers. Production rejects the combination. This is a source-derived conflict, not an executed demo failure.",
+  "nextTask": 167,
+  "modelCalls": 0,
+  "browserRuns": 0,
+  "demoRuns": 0,
+  "nativeExecutorRuns": 0,
+  "corporateSources": 0,
+  "resourceQualification": false,
+  "independentHumanAcceptance": false
+}

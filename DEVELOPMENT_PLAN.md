@@ -689,6 +689,12 @@ repair was needed; all emitted application JavaScript remains unchanged. After c
 exact-head CI review and merge, [Task 166](tasks/166-loredock-first-use-documentation.md)
 simplifies the README entry path and first-use guide, keeping technical history linked
 and experimental/partial-coverage limits explicit.
+Task 165 is accepted through PR #198 / merge 52d69a0. Task 166 simplifies the README
+entry path and adds first-use outcomes and storage guidance without implementation changes.
+Its [source review](docs/loredock/FIRST_USE_REVIEW.md) finds an inherited experimental
+flag conflict in demo startup/reopening. After exact-head CI acceptance,
+[Task 167](tasks/167-loredock-demo-mode-isolation.md) repairs that helper environment
+without weakening production mode guards or historical source verification.
 Any shared-namespace helper and later live gate require separate concrete scope; no new
 resource family, model run or bridge promotion follows from this review.
 Full executor and
