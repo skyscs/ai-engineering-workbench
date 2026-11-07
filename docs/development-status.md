@@ -1,5 +1,33 @@
 # Development status
 
+## Task 163 — Review complete runtime layout and controlled-bootstrap parity
+
+Task 162 is accepted through [PR #195](https://github.com/skyscs/ai-engineering-workbench/pull/195),
+head c32205e, identical-tree merge b6e71b2. Both complete exact-head CI logs pass 1,237 Node
+tests, ten Python suites, ten typechecks and ten final builds without failures/cancellations/skips.
+Its consumed tiny normal-exit PASS and complete first archive remain unchanged.
+
+The [static layout review](loredock/COMPLETE_EXECUTOR_LAYOUT.md) maps direct role birth,
+shared isolated loopback, namespace lifetime, runtime closures and writable state. Three
+independent tiny sandboxes have separate networks; an inside-control sibling launcher
+conflicts with the existing nsdelegate boundary. These findings reject those compositions,
+not every possible Linux implementation. The existing no-sandbox browser flag was already
+explicit in ADR 0066; it supplies no Chromium inner-sandbox proof and is not silently changed.
+Ancestor controls, orphan/interruption, final-record loss, watchdog cleanup and complete
+outside-attestor cost remain unqualified. The memory assessor and contract are unchanged.
+
+The frozen controlled bootstrap also predates production's asynchronous parser readiness
+and unified shutdown. [ADR 0070](decisions/0070-loredock-complete-runtime-boundary.md) stops
+expansion of the unchanged tiny executor and selects independent functional work:
+[Task 164](../tasks/164-loredock-controlled-server-parity.md) will inject a controlled runtime
+through the existing production server owner, with a new launcher and ordinary lifecycle tests.
+No duplicated service wiring, frozen-file edits, consumed-family reruns or new model calls.
+
+This task changes documentation and [retained review evidence](fixtures/loredock-complete-executor-layout/README.md)
+only. No service/counter/namespace/application/browser/model execution. Exact-head CI review
+remains required before merge. Full executor/application resources, answer semantics, L5,
+private-project and Workbench bridge acceptance remain separate.
+
 ## Task 162 — Integrate creation-ordered counter publication
 
 Task 161 is accepted through [PR #194](https://github.com/skyscs/ai-engineering-workbench/pull/194),

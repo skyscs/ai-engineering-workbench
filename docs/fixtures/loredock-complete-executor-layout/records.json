@@ -1,0 +1,339 @@
+{
+  "schemaVersion": "loredock-complete-executor-layout-review/1",
+  "task": 163,
+  "acceptedTask162": {
+    "pr": 195,
+    "head": "c32205ea5823ebf320cd38b4b041f417b3f15f0c",
+    "merge": "b6e71b2a523cd95867e6eb128e24cc6a199ba50f",
+    "firstResult": "PASS",
+    "firstConsumed": true,
+    "ci": [
+      {
+        "event": "push",
+        "run": 42335289184,
+        "job": 128290732433,
+        "head": "c32205ea5823ebf320cd38b4b041f417b3f15f0c",
+        "conclusion": "success",
+        "tests": 1237,
+        "groups": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          374
+        ],
+        "pythonCases": [
+          34,
+          18,
+          16,
+          28,
+          16,
+          4,
+          24,
+          28,
+          20,
+          20
+        ],
+        "failures": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "log": "/home/toshiba/aew/task162-ci-push-final.log",
+        "bytes": 706194,
+        "sha256": "a8590d3edb0bf25fd3a2b9ea88dfa4c90c5c027e59d799ceee8dad91628caa60",
+        "fullLogReviewed": true,
+        "warnings": [
+          "Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, pnpm/action-setup@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+        ],
+        "retainedLog": "logs/task162-ci-push-final.log.gz"
+      },
+      {
+        "event": "pull_request",
+        "run": 42335298387,
+        "job": 128290761438,
+        "head": "c32205ea5823ebf320cd38b4b041f417b3f15f0c",
+        "conclusion": "success",
+        "tests": 1237,
+        "groups": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          374
+        ],
+        "pythonCases": [
+          34,
+          18,
+          16,
+          28,
+          16,
+          4,
+          24,
+          28,
+          20,
+          20
+        ],
+        "failures": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "log": "/home/toshiba/aew/task162-ci-pr-final.log",
+        "bytes": 709464,
+        "sha256": "84ccd17598f59d51a14a9bc6da706a707df85f1bdbcccc0a4d157e63772ec1b7",
+        "fullLogReviewed": true,
+        "warnings": [
+          "Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, pnpm/action-setup@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+        ],
+        "retainedLog": "logs/task162-ci-pr-final.log.gz"
+      }
+    ]
+  },
+  "immutable": {
+    "docs/loredock/observable-resource-contract-v2.json": {
+      "bytes": 5327,
+      "sha256": "759dc70e2d3b86043278b8378148785dd061cf29c06fa6f96c3a5bdf00be8e5b",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "docs/loredock/OBSERVABLE_RESOURCE_CONTRACT.md": {
+      "bytes": 17676,
+      "sha256": "c8dfdb654065c02be11280e25a10e542ff4b81a523cce1e1d1d98baeec57ab8b",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "scripts/loredock-memory-receipts/assess.mjs": {
+      "bytes": 19036,
+      "sha256": "905fa440ccb4336b9f96948d2f08901b7ea1c8177bf9a31fac06b415099f2382",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "docs/loredock/PREPARED_QUESTION_API.md": {
+      "bytes": 7504,
+      "sha256": "32a860b044172a4cada083d1f65a692b7f3b4791558242f9b4c9086c6df182c8",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "docs/fixtures/loredock-staged-counter-prerequisite/first.tar.gz": {
+      "bytes": 108274,
+      "sha256": "5e9a2876e6eb96df85c4522debc4abf0bc2d5db67c04058a635c13a0404b52d2",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    }
+  },
+  "inspectedSources": {
+    "apps/loredock/src/index.ts": {
+      "bytes": 1858,
+      "sha256": "ce49602da2e7ecbf753882cc130487dcdc7435ecff866b18ef7044375e250ce2",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "apps/loredock/src/server.ts": {
+      "bytes": 5702,
+      "sha256": "1616b645be5b0e0bdbf8413a4cfd373015f37dbf13ab4e397f61d16c551ae3c7",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "scripts/loredock-prepared-flow/launcher.mjs": {
+      "bytes": 5964,
+      "sha256": "6d6193ad85673a8e47593bd3bc9812f8851290c1f0f1d44e3c199675c046403e",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "scripts/loredock-prepared-flow/io.mjs": {
+      "bytes": 11043,
+      "sha256": "940f8eb680c3c1d61e05550b20d715126f239d5cbce92e3ae9bc10823753e86b",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "scripts/loredock-prepared-flow/browser.mjs": {
+      "bytes": 14739,
+      "sha256": "1dea3e4279a7f35eb7e829c44aaf5198eb453e17b9f8a3f85fba9c18276bfc4a",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "scripts/loredock-prepared-flow/browser-lifetime.py": {
+      "bytes": 5687,
+      "sha256": "b6bac1b802e189631da872db872f095707eb049ce1b182bd05000ce3ba691069",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "scripts/loredock-prepared-flow/monitor.mjs": {
+      "bytes": 1034,
+      "sha256": "bee82c05b13fab7afa11d572ef854d2413d012796dc8a7c0f9ad31a6413d2c3e",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "scripts/loredock-browser-memory/adapter.mjs": {
+      "bytes": 1979,
+      "sha256": "5c25c99fbaf3c1023abc7a8d91ff6cfa798d9ff4efb569ad3f6501410989e560",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "scripts/loredock-container-browser/adapter.mjs": {
+      "bytes": 2223,
+      "sha256": "f88e613564c17a54fd795ab7dd37a11e5a16d3a7f1d90ed0b6a0b6ab5fcf63cc",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "scripts/loredock-namespace-prerequisite/probe.py": {
+      "bytes": 18487,
+      "sha256": "c80a52ee64a84d4ca93436a55d02b24bdaf1fbee6834d2c2f17f230f6fa17c24",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "scripts/loredock-staged-counter-prerequisite/probe.py": {
+      "bytes": 30603,
+      "sha256": "cc128af46d288b2ad657e4f4201af93f0420e0112371247af1ee658b72e7e171",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "scripts/loredock-staged-counters/reader.py": {
+      "bytes": 16766,
+      "sha256": "2798cd470e8a0f18d6c18c9a64e2364df730d80a490effc69fe1cce27afce27c",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    },
+    "scripts/loredock-native-capability-prerequisite/native.c": {
+      "bytes": 15906,
+      "sha256": "cceb7d0fb49d5e18373d5511dcae2193b431bc2559721d9388940d45bf6fdc04",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o664"
+    }
+  },
+  "readOnlyRuntimeFiles": {
+    "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node": {
+      "bytes": 124836408,
+      "sha256": "3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o755"
+    },
+    "/home/toshiba/aew/toolchain/task143-chrome-for-testing-157.0.8103.38/chrome-linux64/chrome": {
+      "bytes": 306691400,
+      "sha256": "41ea350a7f209da77c14d1df3924d71ac66988623e71d44459b49a3dceb1c14e",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o755"
+    },
+    "/home/toshiba/aew/toolchain/task143-chrome-for-testing-157.0.8103.38/chrome-linux64/chrome_sandbox": {
+      "bytes": 15248,
+      "sha256": "8f93aa6b8dbf07073b2baedf2ae7b169515922bc097043de9dca27f6c7905704",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o755"
+    },
+    "/usr/bin/python3.14": {
+      "bytes": 7477160,
+      "sha256": "52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o755"
+    },
+    "/usr/bin/bwrap": {
+      "bytes": 80424,
+      "sha256": "523da3e7399044be5163aee6f57a77a6bef7454376e28f0a0627920bae1b76b6",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o755"
+    },
+    "/etc/apparmor.d/bwrap-userns-restrict": {
+      "bytes": 3028,
+      "sha256": "d61facde27707b9c47ffe47921b7273e788784484cb5530eb819e6daac1f1990",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644"
+    }
+  },
+  "installedBubblewrapPackage": "0.11.1-1ubuntu0.3",
+  "primarySourceReferences": [
+    {
+      "repository": "chromium/chromium",
+      "ref": "157.0.8103.38",
+      "path": "content/browser/zygote_host/zygote_host_impl_linux.cc",
+      "blob": "32e6d8b560fe7b27c8528956a5c00b6f8b72480c",
+      "lines": [
+        102,
+        154
+      ],
+      "finding": "The retained no-sandbox switch returns before selection; otherwise namespace creation or a usable setuid path is required. Source reference, not attestation of the local binary."
+    },
+    {
+      "repository": "chromium/chromium",
+      "ref": "157.0.8103.38",
+      "path": "sandbox/policy/switches.cc",
+      "blob": "700387e3e048a6f9d8a54ee80b533bb661431f88",
+      "lines": [
+        42,
+        44
+      ],
+      "finding": "The existing no-sandbox switch disables normally sandboxed process types; it is not an inner-sandbox success."
+    },
+    {
+      "repository": "containers/bubblewrap",
+      "ref": "v0.11.1",
+      "path": "bubblewrap.c",
+      "blob": "687ed71f7044ca997a100eef847a5de71164581b",
+      "lines": [
+        2949,
+        3502
+      ],
+      "finding": "Independent unshare-net calls create different networks. Existing-userns and disable-userns flags are not interchangeable; the disabled payload namespace is nested below setup. Installed Ubuntu build may differ from upstream tag."
+    },
+    {
+      "repository": "torvalds/linux",
+      "ref": "v7.0",
+      "path": "kernel/cgroup/cgroup.c",
+      "blob": "4ca3cb993da299aa10174cc619268840b7984049",
+      "lines": [
+        5314,
+        5354,
+        6815,
+        6842
+      ],
+      "finding": "CLONE_INTO_CGROUP checks current credentials and current cgroup namespace. With nsdelegate, source and target must lie under its root; a control-rooted namespace cannot directly spawn into sibling roles. Upstream mechanism, not installed-kernel attestation."
+    }
+  ],
+  "referenceLimits": "Upstream tag mechanisms are not attestations of distribution patches or installed executables. No copied source implementation is introduced.",
+  "execution": {
+    "services": 0,
+    "counterReads": 0,
+    "namespaceProbes": 0,
+    "applicationRuns": 0,
+    "browserRuns": 0,
+    "modelCalls": 0
+  },
+  "findings": [
+    "The tiny fixture proves staged acquisition and normal exit only; two roles remain unused.",
+    "The fixed three-independent-bwrap recipe cannot share loopback, and an inside-control sibling launcher conflicts with nsdelegate.",
+    "ADR 0066 explicitly preserved the existing no-sandbox flag. Do not retroactively pretend it was new, remove it silently or claim default Chromium sandbox coverage.",
+    "Current controlled launcher uses synchronous CodeAnalysis construction and manual startup/stop while production LoreDockServer awaits CodeAnalysis.create/parser warm and owns shutdown.",
+    "Prefer bounded controlled-runtime parity work before more native executor expansion; complete isolation remains unqualified."
+  ],
+  "nextTask": 164,
+  "decision": "Stop expansion of the unchanged tiny recipe; repair controlled-runtime parity through the production server owner using ordinary synthetic lifecycle tests.",
+  "executorQualified": false,
+  "resourceQualification": false,
+  "independentHumanSemanticAcceptance": false
+}

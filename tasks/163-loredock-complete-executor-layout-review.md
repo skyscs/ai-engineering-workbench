@@ -1,7 +1,11 @@
 # Task 163 — Review the complete runtime layout and remaining executor gates
 
-Status: planned after Task 162 retained-result and exact-head CI acceptance. Review only;
-do not start a service, workload, browser, model, counter/capability probe or consumed entry.
+Status: review completed; Task 163 exact-head CI acceptance pending. Task 162 is accepted
+through PR #195, head c32205e, identical-tree merge b6e71b2. The
+[layout review](../docs/loredock/COMPLETE_EXECUTOR_LAYOUT.md) and
+[ADR 0070](../docs/decisions/0070-loredock-complete-runtime-boundary.md) stop expansion of
+the unchanged tiny recipe and scope independent controlled-server parity in Task 164.
+No service, workload, browser, model, counter/capability probe or consumed entry was started.
 
 1. Retain Task 162's complete first result, source pins and both exact-head CI logs. State
    precisely what its tiny normal-exit PASS establishes and what remains unqualified under
