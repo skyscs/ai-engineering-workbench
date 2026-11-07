@@ -3,7 +3,10 @@
 Task 156 corrects the helper defect retained by the
 [first direct-birth prerequisite](DIRECT_BIRTH_PREREQUISITE_RESULT.md). That attempt,
 its code, claims, failed-unit state and all first records remain consumed and unchanged.
-No new first attempt has run at this prospective revision.
+The sole new attempt is consumed and FAIL: direct creation succeeds, but the independent
+pre-exec guard rejects a nonzero inheritable capability before any payload. See the
+[retained result](EMPTY_CONTROLLER_PREREQUISITE_RESULT.md). This adapter is frozen first-attempt
+history; do not repair or rerun its entry.
 
 The separate [adapter](../../scripts/loredock-empty-controller-prerequisite/probe.py)
 uses a new manifest schema, task-specific unit/output and exclusive entries. Its native

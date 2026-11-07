@@ -1,0 +1,294 @@
+{
+  "task": 156,
+  "candidateHead": "83d1520bacd6008a24714f78cd934b1d0f248b16",
+  "firstManifestSha256": "7ed1727631a2af9e0ae7b0ab8dc97c0480c2ff90f315ce1b6d571a6fa721057a",
+  "firstAttemptConsumed": true,
+  "firstAssessment": "FAIL",
+  "unit": "loredock-task156-53e1fd29-9de1-4d1b-8b55-a0bade4b9be3.service",
+  "invocationId": "420803c4a45d4209a93176a65ffebf3e",
+  "serviceRequests": 1,
+  "nativeExecutions": 1,
+  "clone3Attempts": 1,
+  "clone3Successes": 1,
+  "sandboxInvocations": 0,
+  "payloadInvocations": 0,
+  "explicitPayloadAllocationBytes": 0,
+  "applicationResourceRuns": 0,
+  "modelCalls": 0,
+  "nativeBirthObserved": true,
+  "directBirthEstablished": false,
+  "executorQualified": false,
+  "resourceQualification": false,
+  "firstFiles": 79,
+  "firstBytes": 36057,
+  "outerDurationNs": "317695131",
+  "securityFailure": "Independent pre-exec status shows CapInh 0000000800000000; execution permit denied.",
+  "childPid": "3983339",
+  "childStartTimeTicks": "38719616",
+  "forcedNativeCleanup": true,
+  "nativeChildWaited": true,
+  "nativeChildSignal": 9,
+  "forcedServiceCleanup": false,
+  "terminalTargetEmpty": true,
+  "terminalReview": {
+    "unit": "loredock-task156-53e1fd29-9de1-4d1b-8b55-a0bade4b9be3.service",
+    "invocationId": "420803c4a45d4209a93176a65ffebf3e",
+    "manager": {
+      "command": [
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "loredock-task156-53e1fd29-9de1-4d1b-8b55-a0bade4b9be3.service",
+        "--no-pager",
+        "--property=Id,InvocationID,ControlGroup,Delegate,DelegateControllers,DelegateSubgroup,MainPID,LoadState,NoNewPrivileges,RuntimeMaxUSec,TimeoutStartUSec,TimeoutStopUSec,KillMode,Restart,ActiveState,SubState,Result"
+      ],
+      "exitCode": 0,
+      "failure": null,
+      "durationNs": "7851412",
+      "stdout": "Id=loredock-task156-53e1fd29-9de1-4d1b-8b55-a0bade4b9be3.service\nLoadState=loaded\nActiveState=failed\nSubState=failed\nInvocationID=420803c4a45d4209a93176a65ffebf3e\nRestart=no\nTimeoutStartUSec=5s\nTimeoutStopUSec=2s\nRuntimeMaxUSec=10s\nMainPID=0\nResult=exit-code\nControlGroup=\nDelegate=yes\nDelegateControllers=memory\nDelegateSubgroup=attestor\nNoNewPrivileges=yes\nKillMode=control-group\n",
+      "stderr": ""
+    },
+    "properties": {
+      "Id": "loredock-task156-53e1fd29-9de1-4d1b-8b55-a0bade4b9be3.service",
+      "LoadState": "loaded",
+      "ActiveState": "failed",
+      "SubState": "failed",
+      "InvocationID": "420803c4a45d4209a93176a65ffebf3e",
+      "Restart": "no",
+      "TimeoutStartUSec": "5s",
+      "TimeoutStopUSec": "2s",
+      "RuntimeMaxUSec": "10s",
+      "MainPID": "0",
+      "Result": "exit-code",
+      "ControlGroup": "",
+      "Delegate": "yes",
+      "DelegateControllers": "memory",
+      "DelegateSubgroup": "attestor",
+      "NoNewPrivileges": "yes",
+      "KillMode": "control-group"
+    },
+    "terminalValid": true,
+    "ownedGroup": {
+      "absent": true,
+      "empty": true
+    },
+    "firstResultUnchanged": "a2b735791edd5524377f5f70ecada860caff31f91179ff92461b64ce4d377ed1",
+    "action": "Read-only terminal review; no stop/reset/restart request."
+  },
+  "nativeBinarySha256": "a7beefc865891512a36cef66968a21cf42ca7f095121738fe33f53ae81c60c49",
+  "nativeBinaryIdenticalToTask155": true,
+  "acceptedTask155": {
+    "pr": 188,
+    "head": "88e692c0e1a83ca04cf6453feb2248d7ddebfe3b",
+    "merge": "5b8fd78520ac155c9abc72eca1d9b6fe38d415b6",
+    "ci": [
+      {
+        "event": "push",
+        "id": 42314209785,
+        "jobId": 128222756398,
+        "head": "88e692c0e1a83ca04cf6453feb2248d7ddebfe3b",
+        "conclusion": "success",
+        "path": "/home/toshiba/aew/task155-ci-push-final.log",
+        "bytes": 676499,
+        "sha256": "240879b9fd4b47d5144f693ef7a5d90b87f776b78ed9289eeaa016dea78db10a",
+        "tests": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          343
+        ],
+        "totalTests": 1206,
+        "pythonCases": 34,
+        "priorPythonCases": [
+          20,
+          20,
+          16
+        ],
+        "failures": 0,
+        "cancelled": 0,
+        "typechecks": 10,
+        "finalBuilds": 10
+      },
+      {
+        "event": "pull_request",
+        "id": 42314223328,
+        "jobId": 128222801704,
+        "head": "88e692c0e1a83ca04cf6453feb2248d7ddebfe3b",
+        "conclusion": "success",
+        "path": "/home/toshiba/aew/task155-ci-pr-final.log",
+        "bytes": 678159,
+        "sha256": "d016327679dbfe74c74ff7a63b733cbe0299711c155b740aa696b1dfbec86804",
+        "tests": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          343
+        ],
+        "totalTests": 1206,
+        "pythonCases": 34,
+        "priorPythonCases": [
+          20,
+          20,
+          16
+        ],
+        "failures": 0,
+        "cancelled": 0,
+        "typechecks": 10,
+        "finalBuilds": 10
+      }
+    ]
+  },
+  "localCheck": {
+    "task": 156,
+    "fullTests": 1207,
+    "testGroups": [
+      17,
+      18,
+      43,
+      728,
+      57,
+      344
+    ],
+    "pythonCases": 18,
+    "priorPythonCases": [
+      34,
+      20,
+      20,
+      16
+    ],
+    "failures": 0,
+    "cancelled": 0,
+    "typechecks": 10,
+    "finalBuilds": 10,
+    "fullCheckLog": "/home/toshiba/aew/task156-full-check.log",
+    "fullCheckBytes": 435146,
+    "fullCheckSha256": "ef476081e381e7e42ba32d4926a2ba8666c219e5e2a8bf854392e0d0033526c3",
+    "sources": [
+      {
+        "path": "scripts/loredock-empty-controller-prerequisite/leaf.py",
+        "bytes": 4864,
+        "sha256": "01da8fb7401fc9dd5bfc5b9c076116bde09da7f06e07bbb9b2dcb6df2418d851"
+      },
+      {
+        "path": "scripts/loredock-empty-controller-prerequisite/probe.py",
+        "bytes": 18410,
+        "sha256": "9ad44d800ec739076287330ed0fe7d32a8e8a1c2b60e1c73b91af31cd3433d68"
+      },
+      {
+        "path": "scripts/loredock-empty-controller-prerequisite/test_probe.py",
+        "bytes": 16662,
+        "sha256": "3e7579c9b47a816cd1efae343ee61c41c56109406332e86b2b8ee7733adb6714"
+      },
+      {
+        "path": "scripts/tests/loredock-empty-controller-prerequisite.test.mjs",
+        "bytes": 773,
+        "sha256": "cb37741a4983c94a8e33e7249b889a1c73ebc053f19443bb1db256b4d8453855"
+      }
+    ],
+    "sourceHashesStable": true,
+    "unchangedLoreDockModules": 95,
+    "unchangedTotalEmittedModules": 148,
+    "localLinks": 658,
+    "brokenLinks": [],
+    "normalCheckoutUnchanged": true,
+    "productAndFrozenInputsUnchanged": true,
+    "diffReviewed": true,
+    "liveAttemptStarted": false
+  },
+  "sources": [
+    {
+      "path": "scripts/loredock-empty-controller-prerequisite/leaf.py",
+      "bytes": 4864,
+      "sha256": "01da8fb7401fc9dd5bfc5b9c076116bde09da7f06e07bbb9b2dcb6df2418d851"
+    },
+    {
+      "path": "scripts/loredock-empty-controller-prerequisite/probe.py",
+      "bytes": 18410,
+      "sha256": "9ad44d800ec739076287330ed0fe7d32a8e8a1c2b60e1c73b91af31cd3433d68"
+    },
+    {
+      "path": "scripts/loredock-empty-controller-prerequisite/test_probe.py",
+      "bytes": 16662,
+      "sha256": "3e7579c9b47a816cd1efae343ee61c41c56109406332e86b2b8ee7733adb6714"
+    },
+    {
+      "path": "scripts/tests/loredock-empty-controller-prerequisite.test.mjs",
+      "bytes": 773,
+      "sha256": "cb37741a4983c94a8e33e7249b889a1c73ebc053f19443bb1db256b4d8453855"
+    },
+    {
+      "path": "scripts/loredock-direct-birth-prerequisite/native.c",
+      "bytes": 14087,
+      "sha256": "c0147c69395d35323f4dac157efe2a3cc407d2ee4005ad3634a56895dbfbd194"
+    },
+    {
+      "path": "scripts/loredock-direct-birth-prerequisite/capture.py",
+      "bytes": 3926,
+      "sha256": "99647e9466101cef1abe65d62d2d996d77b17f58251bef0a92cf0d91b2f47a4d"
+    },
+    {
+      "path": "scripts/loredock-direct-birth-prerequisite/protocol.py",
+      "bytes": 9585,
+      "sha256": "b371780718a1133e0dc27d7d98d665c3fb20934dbbf0ea7a2dd35af89dffd2d9"
+    }
+  ],
+  "logs": [
+    {
+      "path": "logs/task155-ci-push-final.log.gz",
+      "rawBytes": 676499,
+      "rawSha256": "240879b9fd4b47d5144f693ef7a5d90b87f776b78ed9289eeaa016dea78db10a",
+      "gzipSha256": "c9e4cfad50078ee3a3b69df7b4ad0f63cee2f23af50967b5043a08c5366a17dd",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task155-ci-pr-final.log.gz",
+      "rawBytes": 678159,
+      "rawSha256": "d016327679dbfe74c74ff7a63b733cbe0299711c155b740aa696b1dfbec86804",
+      "gzipSha256": "b6199356eed08c33dd56d98ca187c78aae63b1349d58d0d3d10518f355f05a09",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task156-install.log.gz",
+      "rawBytes": 326,
+      "rawSha256": "f418da9cb4350cb6ba236fc7aa04eae5d034ea529a44245e969de392cbc1eca2",
+      "gzipSha256": "7aca6477c78f01d31af772d24b7a45c8cc1e3da0191cfc3122b03c703665674d",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task156-focused-first.log.gz",
+      "rawBytes": 2610,
+      "rawSha256": "9570a68268d676f065e0b1ce1ca2b9b340e33977a972a5e4b3c326fbe0b17ff7",
+      "gzipSha256": "f7538de08b5c934e9ff716cd9f810d019ada4b128583db47396b38b5a1027570",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task156-full-check.log.gz",
+      "rawBytes": 435146,
+      "rawSha256": "ef476081e381e7e42ba32d4926a2ba8666c219e5e2a8bf854392e0d0033526c3",
+      "gzipSha256": "435742dd7cef9c8572c8c9a3169cf7d940b51977750cd13ec51b023854b27b16",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task156-native-sealed-build.log.gz",
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzipSha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "role": "accepted-or-final-verification"
+    }
+  ],
+  "archive": {
+    "path": "first.tar.gz",
+    "sha256": "9e176fe67dc3a280db0cf9f49e5944a5c1a05ff260391f4e473d0dd61c2b67a1",
+    "members": 106
+  },
+  "inventory": {
+    "path": "first-inventory.json",
+    "sha256": "34344651d1192349eeba038318b0f8b40d57e293c6e09675ce1d3321ad0e162f"
+  },
+  "consumedTask152And154And155Unchanged": true,
+  "normalCheckoutUnchanged": true
+}

@@ -609,7 +609,13 @@ through PR #188, identical-tree merge 5b8fd78, with both full exact-head CI logs
 Task 156's [separate admission correction](docs/loredock/EMPTY_CONTROLLER_PREREQUISITE.md)
 passes eighteen offline cases, including complete leaf creation from retained zero-byte
 input and mocked service admission through native capture. Full local checks pass 1,207
-Node tests, ten typechecks and ten final builds. The sole new attempt remains pending. Full executor and
+Node tests, ten typechecks and ten final builds. Its sole
+[attempt is consumed and FAIL](docs/loredock/EMPTY_CONTROLLER_PREREQUISITE_RESULT.md):
+direct creation succeeds, but a nonzero inheritable capability blocks the execution permit
+and triggers native-child kill/reaping before any sandbox. After result acceptance,
+[Task 157](tasks/157-loredock-native-capability-prerequisite.md) reduces the owned native
+process's capability sets before birth in a separate candidate, preserving the strict guard.
+Full executor and
 application gates remain separate.
 No application-page or full-flow gate is opened by these diagnostics.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).

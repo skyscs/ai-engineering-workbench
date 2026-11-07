@@ -14,8 +14,14 @@ the complete mocked service path through native capture and durable pre-exec obs
 They cover admission failures and descriptor closure. Native, capture, protocol and earlier
 dependencies remain pinned to accepted bytes. Full local checks pass 1,207 Node tests,
 ten typechecks and ten final builds without failures/cancellations. All 148 emitted
-application/package modules remain unchanged. The sole fresh attempt remains pending;
-no new actual service, clone3, namespace, payload, application or model runs.
+application/package modules remain unchanged. The sole [first attempt](loredock/EMPTY_CONTROLLER_PREREQUISITE_RESULT.md)
+is consumed and FAIL: one native invocation creates the child directly in the owned target,
+then independent status reads find nonzero CapInh and deny the execution permit. The native
+parent kills and actually reaps the child; terminal target reads are empty and the service
+group is absent. No sandbox, payload, application or model runs. Complete evidence remains
+retained, with no timeout or outside service-stop request. Both complete exact-head CI logs
+are required before acceptance; Task 157 next scopes explicit owned-process capability
+reduction while preserving the guard. No executor/resource qualification is claimed.
 
 ## Task 155 — Direct process birth with durable pre-exec observation
 

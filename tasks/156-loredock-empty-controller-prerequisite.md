@@ -2,7 +2,12 @@
 
 Status: implemented prospectively after Task 155 acceptance through PR #188, identical-tree
 merge 5b8fd78. Eighteen new offline cases and full local checks pass: 1,207 Node tests,
-ten typechecks and ten final builds. The sole fresh attempt remains pending.
+ten typechecks and ten final builds. The sole fresh attempt is consumed and FAIL: one
+successful clone3 creates the child, but the strict pre-exec capability check denies the
+permit; the native parent kills/reaps the child. No sandbox or payload executes.
+See the [result](../docs/loredock/EMPTY_CONTROLLER_PREREQUISITE_RESULT.md). Both complete
+exact-head CI logs remain required before acceptance, then Task 157 tightens a separate
+native candidate's capability baseline without weakening the guard.
 See the [design](../docs/loredock/EMPTY_CONTROLLER_PREREQUISITE.md). The consumed
 Task 155 result remains an adapter defect, not an observed clone3 capability failure.
 
