@@ -305,6 +305,17 @@ offline regressions and full local checks pass. The separately sealed
 normal exit and absent terminal group. After acceptance,
 [Task 155](../../tasks/155-loredock-direct-birth-prerequisite.md) addresses direct measured
 birth without promoting the remaining executor/application gates.
+Tasks 155–162 retain each first outcome and establish one normal direct-birth lifetime
+with creation-ordered zero counters and durable original final peaks. The accepted
+[Task 162 result](STAGED_COUNTER_PREREQUISITE_RESULT.md) remains a tiny prerequisite,
+with no application or complete-executor qualification. Task 163's
+[complete layout review](COMPLETE_EXECUTOR_LAYOUT.md) identifies incompatible simple
+compositions and stale controlled-bootstrap wiring. [ADR 0070](../decisions/0070-loredock-complete-runtime-boundary.md)
+stops expansion of that unchanged recipe and selects
+[Task 164](../../tasks/164-loredock-controlled-server-parity.md): bounded runtime injection
+through the current production server owner and ordinary synthetic lifecycle tests.
+Shared-namespace implementation, remaining executor proof and any live gate require
+separate scope; all consumed families and semantic/private-pilot boundaries remain intact.
 Task 147's execution prerequisites pass, while its
 first blank resource control and every earlier failure remain unchanged.
 This is a narrow test-environment control, not product Docker orchestration or resource

@@ -2,7 +2,8 @@
 
 Status: implemented and locally verified; 24 Python and 12 Node focused checks plus 1,237
 full Node tests, ten typechecks and ten final builds pass. The sole separately sealed tiny
-attempt is consumed and PASS; exact-head CI acceptance remains pending. See the
+attempt is consumed and PASS. Accepted through PR #195, head c32205e, identical-tree
+merge b6e71b2, after both complete exact-head CI logs pass. See the
 [retained result](../docs/loredock/STAGED_COUNTER_PREREQUISITE_RESULT.md). Task 161 is
 accepted through PR #194, identical-tree merge 7907726. Follow
 [ADR 0069](../docs/decisions/0069-loredock-creation-ordered-counters.md) and the

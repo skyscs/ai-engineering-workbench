@@ -668,6 +668,16 @@ tiny child, retained original final root peak 8,667,136 bytes and terminal group
 No zero baseline or peak was replaced, reset or adjusted. Full executor/application qualification
 remains false. After exact-head CI acceptance, [Task 163](tasks/163-loredock-complete-executor-layout-review.md)
 reviews the complete shared runtime layout and remaining gates before broader implementation.
+Task 162 is accepted through PR #195, identical-tree merge b6e71b2, after both complete
+exact-head CI logs pass. Task 163's [layout review](docs/loredock/COMPLETE_EXECUTOR_LAYOUT.md)
+rejects simple independent-network and inside-control sibling-launch compositions, records
+remaining executor gates and identifies controlled-bootstrap drift from the production owner.
+[ADR 0070](docs/decisions/0070-loredock-complete-runtime-boundary.md) stops expansion of the
+unchanged tiny recipe without declaring all secure compositions impossible. After Task 163
+acceptance, [Task 164](tasks/164-loredock-controlled-server-parity.md) repairs controlled-runtime
+parity through the production server's existing lifecycle, using ordinary synthetic tests.
+Any shared-namespace helper and later live gate require separate concrete scope; no new
+resource family, model run or bridge promotion follows from this review.
 Full executor and
 application gates remain separate.
 No application-page or full-flow gate is opened by these diagnostics.
