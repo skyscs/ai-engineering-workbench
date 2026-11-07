@@ -1,0 +1,195 @@
+{
+  "task": 160,
+  "acceptedTask159": {
+    "pr": 192,
+    "head": "06ddef0e9d2825c185cb428b79f0a82be778cf62",
+    "merge": "55fe1eb94c1a813b85391d8342615272009bbb8f",
+    "ci": [
+      {
+        "event": "push",
+        "run": 42327879519,
+        "job": 128267305138,
+        "head": "06ddef0e9d2825c185cb428b79f0a82be778cf62",
+        "conclusion": "success",
+        "tests": 1221,
+        "groups": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          358
+        ],
+        "pythonCases": [
+          16,
+          28,
+          4,
+          18,
+          34,
+          20,
+          20,
+          16
+        ],
+        "failures": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "log": "/home/toshiba/aew/task159-ci-push-final.log",
+        "bytes": 692872,
+        "sha256": "bb8dc4033add3678780e2f0dda92aa20020773b4a12a58005560be4e6d128996",
+        "fullLogReviewed": true
+      },
+      {
+        "event": "pull_request",
+        "run": 42327889137,
+        "job": 128267337397,
+        "head": "06ddef0e9d2825c185cb428b79f0a82be778cf62",
+        "conclusion": "success",
+        "tests": 1221,
+        "groups": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          358
+        ],
+        "pythonCases": [
+          16,
+          28,
+          4,
+          18,
+          34,
+          20,
+          20,
+          16
+        ],
+        "failures": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "log": "/home/toshiba/aew/task159-ci-pr-final.log",
+        "bytes": 694556,
+        "sha256": "cdb8e9654d0b3e80cf024e3d63991ef3a3ccc813253b1dcb090cc2113f63598a",
+        "fullLogReviewed": true
+      }
+    ]
+  },
+  "reviewCases": 8,
+  "reviewExpectedOutcomes": {
+    "PASS": 1,
+    "UNAVAILABLE": 6,
+    "FAIL": 1
+  },
+  "failures": 0,
+  "sources": [
+    {
+      "path": "mm/memcontrol.c",
+      "ref": "v7.0",
+      "blob": "772bac21d15584ce495cba6ad2eebfa7f693677f",
+      "url": "https://github.com/torvalds/linux/blob/v7.0/mm/memcontrol.c#L3823",
+      "finding": "Child css allocation selects the parent active memcg; child stats use GFP_KERNEL_ACCOUNT."
+    },
+    {
+      "path": "include/linux/sched/mm.h",
+      "ref": "v7.0",
+      "blob": "95d0040df58413fc5d436c0c12cde664532c1a28",
+      "url": "https://github.com/torvalds/linux/blob/v7.0/include/linux/sched/mm.h#L477",
+      "finding": "The active memcg charging scope directs accounted allocations to the selected memcg."
+    }
+  ],
+  "assessorSha256": "905fa440ccb4336b9f96948d2f08901b7ea1c8177bf9a31fac06b415099f2382",
+  "contractSha256": "759dc70e2d3b86043278b8378148785dd061cf29c06fa6f96c3a5bdf00be8e5b",
+  "applicationAndTestImplementationChanged": false,
+  "localFullCheckRun": false,
+  "verificationScope": "Documentation-only review: pure receipt checks, local links, complete artifact hashes and source immutability; both complete exact-head CI logs required before merge.",
+  "liveCounterReads": 0,
+  "serviceRequests": 0,
+  "nativeExecutions": 0,
+  "sandboxInvocations": 0,
+  "payloadInvocations": 0,
+  "applicationRuns": 0,
+  "modelCalls": 0,
+  "executorQualified": false,
+  "resourceQualification": false,
+  "previousConsumedEvidenceUnchanged": true,
+  "logs": [
+    {
+      "path": "logs/task159-ci-push-final.log.gz",
+      "rawBytes": 692872,
+      "rawSha256": "bb8dc4033add3678780e2f0dda92aa20020773b4a12a58005560be4e6d128996",
+      "gzipSha256": "7a344d9d6bccec7787ffb92d4e911d37794a42efc7f3c41a7c10bf7de6008d8c"
+    },
+    {
+      "path": "logs/task159-ci-pr-final.log.gz",
+      "rawBytes": 694556,
+      "rawSha256": "cdb8e9654d0b3e80cf024e3d63991ef3a3ccc813253b1dcb090cc2113f63598a",
+      "gzipSha256": "6335ee9575988b1f8c5ad597ef3671518fa7ed3c8cd019f13236ee83ac551cf7"
+    },
+    {
+      "path": "logs/task160-receipt-review.stderr.log.gz",
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzipSha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    }
+  ],
+  "files": [
+    {
+      "path": "cases.json",
+      "bytes": 2911,
+      "sha256": "4d858097affd75bb1868d3bdbfd3bc9f155ccef2a82232afa9998abeb781d59b"
+    },
+    {
+      "path": "receipts/changed-role-parent.json",
+      "bytes": 4541,
+      "sha256": "f70507e7c110018788ad514d86614cf0c20db739a227bd1c7bd2ee1a96eea978"
+    },
+    {
+      "path": "receipts/decreased-root-peak.json",
+      "bytes": 4843,
+      "sha256": "1db4e1cc5db929dfe946cb40d216bff5a3c0c9d4991c0195beb543b2b6b4a0cb"
+    },
+    {
+      "path": "receipts/early-final-root.json",
+      "bytes": 4542,
+      "sha256": "f7ff14144ff7a8029c82fcf85206a8ba1b7188e55feba38d23dccdae39b94fc5"
+    },
+    {
+      "path": "receipts/late-acquisition-boundary.json",
+      "bytes": 4543,
+      "sha256": "543cb91377a68bd50dadc9ed942d96ee0638b2de38929b2298eedbc16a36e3bc"
+    },
+    {
+      "path": "receipts/missing-root-initial.json",
+      "bytes": 3992,
+      "sha256": "53c9fcf98ca8124e370c30c65493383056f1a0127c2d145b54c4349a964ba873"
+    },
+    {
+      "path": "receipts/nonzero-initial-root.json",
+      "bytes": 4552,
+      "sha256": "4b412e4c09f4600dd314b924f6a7d7cb99a7b2e4ef67e2ed11922c7260db7cbf"
+    },
+    {
+      "path": "receipts/root-before-descendants.json",
+      "bytes": 4542,
+      "sha256": "f41fc96fd0e3a08f39e0e95d3811c24a641846e42cfb648d87037cb4069d9c5c"
+    },
+    {
+      "path": "receipts/root-breach-missing-final.json",
+      "bytes": 3992,
+      "sha256": "6d18c3bebe5ccdce1cb99da927a99c8d897a2d48c75f4290250ca7cac2872ba2"
+    },
+    {
+      "path": "results.json",
+      "bytes": 21309,
+      "sha256": "dd59c5a96a460bee1f6d4ba66260797bb0ef9f6a95b98e76e55946fa22df63f3"
+    },
+    {
+      "path": "review-command.json",
+      "bytes": 2477,
+      "sha256": "a12e8ce6f1c80ed366916c0180859d83f8ea6c8dd34b7221de8603c707200823"
+    }
+  ]
+}

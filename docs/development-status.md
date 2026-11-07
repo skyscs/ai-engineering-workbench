@@ -1,5 +1,23 @@
 # Development status
 
+## Task 160 — Review creation-ordered initial counter acquisition
+
+Task 159 is accepted through [PR #192](https://github.com/skyscs/ai-engineering-workbench/pull/192),
+head 06ddef0, identical-tree merge 55fe1eb. Both complete exact-head CI logs pass 1,221 Node
+tests, 16/28/4/18/34/20/20/16 Python cases, ten typechecks and ten final builds, with no
+failures/cancellations/skips. Its consumed initial-admission UNAVAILABLE remains unchanged.
+
+[ADR 0069](decisions/0069-loredock-creation-ordered-counters.md) reviews the parent-accounted
+setup mechanism and adopts a prospective root-first initial sequence under the same v2
+contract. All setup charges remain inside the unreset final root peak. The existing assessor
+already permits separate root-first initial windows; final role-before-root ordering and
+all predicates stay fixed. Eight [synthetic review receipts](fixtures/loredock-initial-counter-order/README.md)
+confirm representation/predicate compatibility, including unchanged rejection and known-failure
+preservation. This supplies no live ownership, fsync, FD continuity or kernel qualification.
+No implementation, new service/counter probe, application or model runs. After exact-head CI
+acceptance, [Task 161](../tasks/161-loredock-staged-counter-reader.md) implements a separate
+staged reader with temporary-file fixtures before any later owned-construction integration.
+
 ## Task 159 — Retain counters around one direct-born synthetic child
 
 Task 158 is accepted through [PR #191](https://github.com/skyscs/ai-engineering-workbench/pull/191),

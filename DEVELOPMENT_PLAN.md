@@ -643,6 +643,14 @@ complete initial reads find nonzero fresh-root current/peak after descendant set
 native child starts. Full evidence is retained without reset, subtraction or rerun. After
 result and exact-head CI acceptance, [Task 160](tasks/160-loredock-initial-counter-order-review.md)
 reviews initial acquisition order and scopes a prospective next step without live execution.
+Task 159 is accepted through PR #192, identical-tree merge 55fe1eb, after both complete
+exact-head CI logs pass. Task 160's [review](docs/decisions/0069-loredock-creation-ordered-counters.md)
+adopts root initial acquisition before accounted descendants, preserving setup charges,
+zero starts, descriptor continuity and final ordering under the unchanged contract.
+Eight explicitly synthetic receipts confirm existing-assessor compatibility and unchanged
+failure/unavailability predicates. No implementation or live probe is added. After review
+and exact-head CI acceptance, [Task 161](tasks/161-loredock-staged-counter-reader.md) implements
+the staged reader offline; owned-construction integration and any new sealed attempt remain later.
 Full executor and
 application gates remain separate.
 No application-page or full-flow gate is opened by these diagnostics.

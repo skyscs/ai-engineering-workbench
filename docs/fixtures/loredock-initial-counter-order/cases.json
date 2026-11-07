@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "loredock-initial-counter-order-review/1",
+  "binding": {
+    "runId": "33333333-3333-4333-8333-333333333333",
+    "candidateSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+  },
+  "syntheticOnly": true,
+  "lifecycleAndFsyncAreSuppliedAssumptions": true,
+  "noLiveProvenance": true,
+  "cases": [
+    {
+      "id": "root-before-descendants",
+      "path": "receipts/root-before-descendants.json",
+      "expectedStatus": "PASS",
+      "requiredReasonCodes": [],
+      "description": "Synthetic zero root initial precedes zero role initials. Positive direct terminal root charges remain unreset and unsubtracted; role scopes are empty."
+    },
+    {
+      "id": "late-acquisition-boundary",
+      "path": "receipts/late-acquisition-boundary.json",
+      "expectedStatus": "UNAVAILABLE",
+      "requiredReasonCodes": [
+        "INITIAL_READ_ORDER"
+      ],
+      "description": "Using the daemon acquisition as the global start cannot hide an earlier root read."
+    },
+    {
+      "id": "nonzero-initial-root",
+      "path": "receipts/nonzero-initial-root.json",
+      "expectedStatus": "UNAVAILABLE",
+      "requiredReasonCodes": [
+        "INITIAL_NOT_EMPTY"
+      ],
+      "description": "Nonzero starting root remains unavailable; this synthetic counterexample does not replay Task 159."
+    },
+    {
+      "id": "early-final-root",
+      "path": "receipts/early-final-root.json",
+      "expectedStatus": "UNAVAILABLE",
+      "requiredReasonCodes": [
+        "ROOT_READ_ORDER"
+      ],
+      "description": "Changing initial order does not relax final roles-before-root ordering."
+    },
+    {
+      "id": "missing-root-initial",
+      "path": "receipts/missing-root-initial.json",
+      "expectedStatus": "UNAVAILABLE",
+      "requiredReasonCodes": [
+        "SNAPSHOT_UNAVAILABLE"
+      ],
+      "description": "A missing earliest root observation cannot be supplied by later evidence."
+    },
+    {
+      "id": "root-breach-missing-final",
+      "path": "receipts/root-breach-missing-final.json",
+      "expectedStatus": "FAIL",
+      "requiredReasonCodes": [
+        "CHARGED_MEMORY_EXCEEDED",
+        "SNAPSHOT_UNAVAILABLE"
+      ],
+      "description": "Direct root excess survives a separately unavailable final role record."
+    },
+    {
+      "id": "changed-role-parent",
+      "path": "receipts/changed-role-parent.json",
+      "expectedStatus": "UNAVAILABLE",
+      "requiredReasonCodes": [
+        "PARENT_IDENTITY"
+      ],
+      "description": "Staged role construction must still bind each role to the originally held root."
+    },
+    {
+      "id": "decreased-root-peak",
+      "path": "receipts/decreased-root-peak.json",
+      "expectedStatus": "UNAVAILABLE",
+      "requiredReasonCodes": [
+        "PEAK_DECREASE"
+      ],
+      "description": "The final root cannot replace an earlier higher peak after measured-child creation."
+    }
+  ]
+}
