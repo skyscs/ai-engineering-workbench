@@ -659,6 +659,12 @@ initial windows before final role/root collection; no actual service/counter/wor
 After both complete exact-head CI logs pass, [Task 162](tasks/162-loredock-staged-counter-prerequisite.md)
 integrates actual exclusive construction and durable publication around one separately sealed
 tiny workload. That prerequisite cannot qualify the application or reopen consumed attempts.
+Task 161 is accepted through PR #194, identical-tree merge 7907726, after both complete
+exact-head CI logs pass. Task 162's [owned integration](docs/loredock/STAGED_COUNTER_PREREQUISITE.md)
+is locally verified with 24 Python cases, 12 Node checks, 1,237 full Node tests, ten typechecks
+and ten final builds. Its separately sealed actual attempt and final CI acceptance remain
+pending. Root publication must complete before descendant construction and role publication
+before native admission; no zero baseline or peak is replaced, reset or adjusted.
 Full executor and
 application gates remain separate.
 No application-page or full-flow gate is opened by these diagnostics.

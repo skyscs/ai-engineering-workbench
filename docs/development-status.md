@@ -1,5 +1,32 @@
 # Development status
 
+## Task 162 — Integrate creation-ordered counter publication
+
+Task 161 is accepted through [PR #194](https://github.com/skyscs/ai-engineering-workbench/pull/194),
+head d1e1ad6, identical-tree merge 7907726. Both complete exact-head CI logs pass 1,225 Node
+tests, all Python suites, ten typechecks and ten final builds without failures/cancellations/skips.
+
+The separate [owned integration](loredock/STAGED_COUNTER_PREREQUISITE.md) publishes original
+root data before descendant construction and role data before native admission. Actual
+file/directory fsync returns gate the next action; stage hashes/windows and four pre-admission
+membership records preserve the construction/publication sequence. Root descriptors and
+original zero samples remain unchanged while setup charges enter the final root peak.
+The fixed native/capability/clone3/permit/sandbox path and all bounds remain unchanged.
+The outside assessor checks the staged records before combining the unchanged memory verdict;
+separately known breaches remain visible beside missing final or retention evidence.
+
+Local verification passes 24 new Python cases, 12 Node checks, 1,237 full Node tests, prior
+Python suites, ten typechecks and ten final builds. The first Python run found a shadowed
+scope parameter (eight failures among sixteen then-present cases); the failed log is preserved
+and all subsequent checks pass. Temporary-file tests prove fsync failure prevents descendants
+or native admission and reject rehashed invalid chronology/membership/bindings. All emitted
+application modules and frozen prior implementations/evidence remain unchanged.
+
+One separately sealed tiny actual attempt, retained result and both complete exact-head CI
+logs remain pending. No Task 162 service/native/sandbox/payload/application/browser/model
+attempt has occurred at this candidate checkpoint. Full executor, resource/timing, semantic,
+L5 and Workbench bridge gates remain separate; agent review is not independent acceptance.
+
 ## Task 161 — Staged held-counter acquisition offline
 
 Task 160 is accepted through [PR #193](https://github.com/skyscs/ai-engineering-workbench/pull/193),
