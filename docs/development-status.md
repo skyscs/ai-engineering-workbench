@@ -1,5 +1,23 @@
 # Development status
 
+## Task 157 — Reduce owned native capabilities before direct birth
+
+Task 156 is accepted through [PR #189](https://github.com/skyscs/ai-engineering-workbench/pull/189),
+head 4dca3a9, identical-tree merge 35c1a9e. Both complete exact-head CI logs pass 1,207 Node
+tests, 18/34/20/20/16 Python cases, ten typechecks and ten final builds without failures or
+cancellations. Its observed capability FAIL and consumed inputs remain unchanged.
+
+The [separate candidate](loredock/NATIVE_CAPABILITY_PREREQUISITE.md) reduces only its own
+native process's effective, permitted and inheritable sets, checks the two-word readback
+and verifies no-new-privileges before and after. Admission failure prevents clone3.
+The strict independent pre-exec guard and all existing work/deadline bounds are preserved.
+Four Python tests include 26 intercepted C capability scenarios. An initial compiler-sensitive
+test harness is corrected by compiling wrappers separately; its failed log is preserved.
+Full local checks pass 1,208 Node tests, ten typechecks and ten final builds with zero
+failures/cancellations/skips. All 148 emitted application/package modules and previous
+consumed inputs/first records remain unchanged. A committed seal precedes the sole live
+attempt. No complete executor or application resource qualification is claimed.
+
 ## Task 156 — Correct zero-byte controller admission in a separate candidate
 
 Task 155 is accepted through [PR #188](https://github.com/skyscs/ai-engineering-workbench/pull/188),

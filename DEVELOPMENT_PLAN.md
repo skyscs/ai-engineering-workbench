@@ -615,6 +615,12 @@ direct creation succeeds, but a nonzero inheritable capability blocks the execut
 and triggers native-child kill/reaping before any sandbox. After result acceptance,
 [Task 157](tasks/157-loredock-native-capability-prerequisite.md) reduces the owned native
 process's capability sets before birth in a separate candidate, preserving the strict guard.
+Task 156 is accepted through PR #189, identical-tree merge 35c1a9e, after both complete
+exact-head CI logs pass. Task 157's [separate implementation](docs/loredock/NATIVE_CAPABILITY_PREREQUISITE.md)
+adds self-only zero-valued reduction, exact readback and no-new-privileges checks before
+creation. Its focused suite includes 26 intercepted C boundary cases and four Python tests;
+full local verification passes 1,208 Node tests, ten typechecks and ten final builds.
+A committed seal precedes its sole actual attempt.
 Full executor and
 application gates remain separate.
 No application-page or full-flow gate is opened by these diagnostics.
