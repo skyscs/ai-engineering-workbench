@@ -1,7 +1,14 @@
 # Task 166 — Simplify the LoreDock first-use documentation
 
-Status: planned after Task 165 exact-head CI acceptance. Documentation-only work
+Status: documentation updated and source review completed; exact-head CI acceptance
+pending. Task 165 is accepted through PR #198 / merge 52d69a0. Documentation-only work
 toward the owner's simpler onboarding goal; no new product flow or runtime.
+
+The README now leads with the synthetic/local-repository choices. The guide adds expected
+first-use outcomes and explains artifact storage before optional CLI setup. The
+[source review](../docs/loredock/FIRST_USE_REVIEW.md) records the inherited demo prepared-flag
+conflict and [Task 167](167-loredock-demo-mode-isolation.md) scopes its repair separately.
+No implementation or historical qualification result changes in this task.
 
 The README's opening LoreDock section now mixes first-use instructions, feature
 inventory, API/storage details and historical qualification results before the shared

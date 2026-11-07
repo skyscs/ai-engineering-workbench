@@ -6,6 +6,51 @@ no model calls. Source suggestions, a declaration map and partial static flows h
 explore the system. An opt-in pilot adds cited answers; automatic Workbench repository
 selection belongs to later iterations.
 
+## Choose your starting point
+
+You can explore the catalog without selecting a model or configuring Codex.
+
+| Starting point | First action | Expected result |
+| --- | --- | --- |
+| Try a complete example | After installing dependencies, run `pnpm loredock:demo`. | Wait for **Demo ready**, then open the printed URL. Twenty synthetic repositories are already indexed. |
+| Explore your repositories | Follow [Start LoreDock](#start-loredock), then add local paths. | Preview and register the repositories, then choose **Index sources**. |
+| Return to existing work | Start with the same data directory, or use the demo's printed **Reopen later** command. | Saved indexes and notes remain available; unfinished work needs an explicit action. |
+
+For the example, follow [Try the synthetic system](#try-the-synthetic-system);
+there are no repository paths to enter. For your own sources, the first useful route is:
+
+1. **Repository paths** → **Preview repositories** → **Add N repositories**.
+   The repositories are registered; their files have not been indexed yet.
+2. **Index sources**. When the index publishes, text search and README context become
+   available. **Code coverage** continues as a separate local phase.
+3. **Project overview** → **Guide me** to read source context, or search a known name
+   under **Explore the sources** and open its original lines.
+4. Check **Coverage and revisions** before treating missing results as missing behavior.
+   Use **Update knowledge** after committing source changes.
+
+[Detailed indexing instructions](#index-and-explore-your-repositories) explain each
+control. Optional [cited answers](#ask-a-question-opt-in-pilot) have their own setup;
+indexing and source exploration work without it.
+
+## Where your data is stored
+
+LoreDock stores its indexes, notes and saved history in its **data directory**.
+On Linux, the default is `~/.local/share/loredock`, or `$XDG_DATA_HOME/loredock`
+when `XDG_DATA_HOME` is set. `LOREDOCK_DATA_DIR` selects a custom directory:
+
+```sh
+LOREDOCK_DATA_DIR=/absolute/path/to/loredock-data pnpm loredock
+```
+
+Use the same setting when reopening that project. The synthetic demo creates a separate
+temporary directory and prints its location and reopening command. Repository files stay
+in their existing locations. See [storage and backup](#local-storage-and-backup) before
+moving, upgrading or deleting data.
+
+The optional answer setup's **Configuration directory** is the existing Codex CLI
+configuration/account directory. It does not choose where LoreDock artifacts are stored.
+You do not need to select it for the default model-free catalog.
+
 ## Start LoreDock
 
 Use the repository's Node 22.23.2 and pnpm 10.15.0 toolchain. From the repository root:
@@ -1056,6 +1101,17 @@ After installing dependencies with the documented Node/pnpm toolchain, run:
 ```sh
 pnpm loredock:demo
 ```
+
+If startup reports `LOREDOCK_PREPARED_ANSWERS=1 requires LOREDOCK_ANSWERS=1.`, an
+experimental setting is still enabled in your shell. For this demo launch, use:
+
+```sh
+LOREDOCK_PREPARED_ANSWERS=0 pnpm loredock:demo
+```
+
+Apply the same prefix to the printed **Reopen later** command if needed. This affects
+that command only. The current demo helper does not clear this inherited setting;
+a [separate repair is planned](../../tasks/167-loredock-demo-mode-isolation.md).
 
 The command builds LoreDock, creates twenty synthetic repositories in a fresh temporary
 root, prepares a separate data directory, indexes their committed files and analyzes code.

@@ -326,6 +326,11 @@ automatic redispatch. All 148 emitted JavaScript modules remain unchanged; 1,254
 Node tests pass. After exact-head CI acceptance,
 [Task 166](../../tasks/166-loredock-first-use-documentation.md) simplifies first-use docs,
 keeping the model-free path easy to find and all qualification limits visible.
+Task 165 is accepted through PR #198 / merge 52d69a0. Task 166 now places the two starting
+paths and artifact-storage guidance near the beginning of the docs. A
+[source-reviewed demo flag conflict](FIRST_USE_REVIEW.md) remains separate from that prose
+change; [Task 167](../../tasks/167-loredock-demo-mode-isolation.md) scopes its narrow repair
+after CI acceptance, preserving normal startup guards and historical evidence.
 Shared-namespace implementation, remaining executor proof and any live gate require
 separate scope; all consumed families and semantic/private-pilot boundaries remain intact.
 Task 147's execution prerequisites pass, while its
