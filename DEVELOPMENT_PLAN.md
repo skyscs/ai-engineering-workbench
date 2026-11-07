@@ -683,6 +683,12 @@ parallelism. Initial failures/incomplete checks remain retained. Only the server
 dependency changes emitted application bytes. After both complete exact-head CI logs and
 merge, [Task 165](tasks/165-loredock-server-fencing-recovery.md) checks source/policy fencing
 and actual owner restart through protected HTTP without model or resource experiments.
+Task 164 is accepted through PR #197 / merge 294f217. Task 165 verifies those fences and
+actual orderly reopen through thirteen focused tests and 1,254 full Node tests. No product
+repair was needed; all emitted application JavaScript remains unchanged. After complete
+exact-head CI review and merge, [Task 166](tasks/166-loredock-first-use-documentation.md)
+simplifies the README entry path and first-use guide, keeping technical history linked
+and experimental/partial-coverage limits explicit.
 Any shared-namespace helper and later live gate require separate concrete scope; no new
 resource family, model run or bridge promotion follows from this review.
 Full executor and

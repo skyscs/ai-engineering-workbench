@@ -1,5 +1,31 @@
 # Development status
 
+## Task 165 — Source fencing and recovery through the production server
+
+Task 164 is accepted through [PR #197](https://github.com/skyscs/ai-engineering-workbench/pull/197),
+head 381195a, identical-tree merge 294f217. Both complete exact-head CI logs pass 1,251
+Node tests, ten Python suites, ten typechecks and ten final builds.
+
+Three new [real-owner HTTP scenarios](loredock/CONTROLLED_SERVER.md#source-fencing-and-owner-recovery)
+verify that revoking an uncited input source or changing exclusions aborts a held answer,
+closes its runtime once and fences prior/pending derived content. Actual orderly shutdown
+and a new owner preserve success/interruption and saved context. Startup and durable
+request replay do not dispatch; an explicit fresh preparation/request creates a new attempt.
+No SQL statuses are fabricated. Seven fake dispatches use three fresh synthetic fixtures.
+
+All thirteen focused tests pass. The full check passes 1,254 Node tests, ten Python suites,
+ten typechecks and ten final builds with zero failures/cancellations/skips. Local scheduling
+remains one workspace package and two CPUs. The shared bounded HTTP helper bodies are
+unchanged; all 148 emitted application JavaScript modules match accepted Task 164.
+No product defect was found and no application code needed a repair.
+
+[Seven retained logs](fixtures/loredock-server-fencing-recovery/README.md) include both
+accepted Task 164 CI logs. Both complete Task 165 exact-head CI logs remain required before
+merge. This covers orderly interruption/reopen, not forced-crash, orphan, resource or semantic
+qualification. No browser, real model, corporate source or native executor was used.
+After acceptance, [Task 166](../tasks/166-loredock-first-use-documentation.md) simplifies the
+README and first-use guide while preserving all historical limits and results.
+
 ## Task 164 — Controlled runtime through the production server
 
 Task 163 is accepted through [PR #196](https://github.com/skyscs/ai-engineering-workbench/pull/196),

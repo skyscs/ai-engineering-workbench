@@ -1,7 +1,17 @@
 # Task 165 — Verify source fencing and recovery through the production server
 
-Status: planned after Task 164 exact-head CI acceptance. Independent functional
-integration work under ADR 0070; no resource or native executor attempt.
+Status: implemented and locally verified; exact-head CI acceptance pending. Task 164 is
+accepted through PR #197 / merge 294f217. Independent functional integration work under
+ADR 0070; no resource or native executor attempt.
+
+Thirteen focused tests and the full check pass: 1,254 Node tests, ten Python suites,
+ten typechecks and ten final builds. The three new scenarios verify actual protected
+HTTP source/policy fencing and orderly shutdown/reopen without fabricating SQL statuses.
+No product defect was found. Shared HTTP helper bodies are unchanged, and all 148 emitted
+JavaScript modules match accepted Task 164. Local checks use one workspace package and
+two CPUs. See the [retained evidence](../docs/fixtures/loredock-server-fencing-recovery/README.md).
+After acceptance, [Task 166](166-loredock-first-use-documentation.md) simplifies the
+README and first-use guide without changing product behavior or qualification results.
 
 1. Retain Task 164's checks, incomplete/failed logs, source identities and both full
    exact-head CI logs. Preserve every consumed first result, frozen launcher,

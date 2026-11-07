@@ -93,6 +93,26 @@ and exhausted families are untouched and uninvoked.
 
 No browser, model, corporate repository, namespace or delegated-service experiment.
 [Complete executor gaps](COMPLETE_EXECUTOR_LAYOUT.md), v2 application resources, answer
-semantics, L5 and the Workbench bridge remain unqualified. The next
-[functional task](../../tasks/165-loredock-server-fencing-recovery.md) covers source/policy
-revocation and restart through the same production owner.
+semantics, L5 and the Workbench bridge remain unqualified.
+
+## Source fencing and owner recovery
+
+[Task 165](../../tasks/165-loredock-server-fencing-recovery.md) extends the same dependency
+through three protected HTTP scenarios. Revoking an uncited input source or excluding
+paths aborts a held prepared answer, closes its lease once and hides earlier/pending
+derived content. No late fake output is retained for the fenced request.
+
+An actual orderly stop followed by a new production owner preserves successful and
+interrupted history. HTTP reads return the same context/native context and successful
+answer values. Startup and replay of the interrupted request make zero runtime calls;
+an explicit fresh preparation/request creates one distinct successful attempt.
+No SQL statuses are edited to manufacture recovery. This does not simulate abrupt
+process loss or establish orphan closure.
+
+The bounded HTTP client and polling helper now live in http.mjs; their bodies are
+unchanged. The existing launcher and runtime remain unchanged. All 148 emitted JavaScript
+modules match accepted Task 164. Thirteen focused tests and 1,254 full Node tests pass,
+with ten Python suites, ten typechecks and ten final builds. See the
+[seven retained logs and review](../fixtures/loredock-server-fencing-recovery/README.md).
+The [next task](../../tasks/166-loredock-first-use-documentation.md) simplifies first-use
+documentation; resource and semantic gates remain separate.

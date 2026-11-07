@@ -2,23 +2,17 @@ import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
 import { mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
-import { request as httpRequest } from 'node:http';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { setTimeout as delay } from 'node:timers/promises';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
 import { createLoreDockFixture } from '../loredock-fixture.mjs';
+import { client, until } from '../loredock-controlled-server/http.mjs';
 import { CatalogStore } from '../../apps/loredock/dist/store.js';
 import { Catalog } from '../../apps/loredock/dist/catalog.js';
 import { AnswerWitnessStore } from '../../apps/loredock/dist/answer-witness-store.js';
 
 const entry = fileURLToPath(new URL('../loredock-controlled-server/launcher.mjs', import.meta.url));
-async function until(check, message) {
-  const end = performance.now() + 10000;
-  for (;;) { const value = await check(); if (value) return value;
-    assert(performance.now() < end, message); await delay(50); }
-}
 function launch(t, output) {
   const child = spawn(process.execPath, [entry, output], { env: { PATH: process.env.PATH, LC_ALL: 'C' },
     detached: true, stdio: ['pipe', 'pipe', 'pipe'] });
@@ -67,26 +61,6 @@ function launch(t, output) {
     },
   };
 }
-async function client(port) {
-  let cookie, token;
-  async function request(route, method = 'GET', body, overrides = {}) {
-    const raw = body === undefined ? undefined : JSON.stringify(body);
-    return new Promise((resolve, reject) => {
-      const req = httpRequest({ hostname: '127.0.0.1', port, path: '/api' + route, method, agent: false,
-        headers: { host: '127.0.0.1:4244', origin: 'http://127.0.0.1:4244', 'x-loredock-client': 'web',
-          ...cookie ? { cookie, 'x-loredock-csrf': token } : {}, ...raw ? { 'content-type': 'application/json', 'content-length': Buffer.byteLength(raw) } : {}, ...overrides } }, response => {
-        let value = ''; response.setEncoding('utf8');
-        response.on('data', chunk => { value += chunk; if (Buffer.byteLength(value) > 1048576) response.destroy(new Error('Controlled HTTP response exceeds 1 MiB.')); });
-        response.once('error', reject); response.once('end', () => { try { resolve({ status: response.statusCode, value: JSON.parse(value), headers: response.headers }); } catch (error) { reject(error); } });
-      });
-      req.setTimeout(5000, () => req.destroy(new Error('Controlled HTTP request timed out.'))); req.once('error', reject); req.end(raw);
-    });
-  }
-  const session = await request('/session', 'POST'); assert.equal(session.status, 200);
-  cookie = session.headers['set-cookie'][0].split(';')[0]; token = session.value.token;
-  return { request, async json(route, method, body, status = 200) { const response = await request(route, method, body); assert.equal(response.status, status, JSON.stringify(response.value)); return response.value; } };
-}
-
 test('emitted controlled server owns prepared/legacy dispatch, cancellation and interrupted shutdown through real HTTP', async t => {
   const fixture = await createLoreDockFixture(), output = path.join(fixture.root, 'controlled');
   const run = launch(t, output); t.after(async () => { await run.close(); await rm(fixture.root, { recursive: true, force: true }); });
