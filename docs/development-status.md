@@ -14,8 +14,15 @@ work/deadline bounds. Sixteen new Python and nine Node checks cover admission, p
 replacement, wait/retention ordering and known-failure preservation. Full local verification
 passes 1,221 Node tests, ten typechecks and ten final builds; all 148 emitted application
 modules remain identical. The first focused Node failure is preserved as development history.
-No actual Task 159 attempt has started. One committed seal and bounded first attempt are next;
-complete executor/application qualification and independent semantic acceptance remain separate.
+The sole sealed [attempt](loredock/HELD_COUNTER_PREREQUISITE_RESULT.md) is consumed and
+UNAVAILABLE: all 24 initial interfaces are complete, but the fresh empty root reports
+512,000 bytes current and 520,192 bytes peak after descendant setup. Admission stops before
+native/clone3/sandbox/payload execution. The same failed invocation has MainPID zero and an
+absent owned group, with no forced cleanup. Complete [evidence](fixtures/loredock-held-counter-prerequisite/README.md)
+and nine closed logs are retained. Both complete final-head CI logs are required before
+acceptance, then [Task 160](../tasks/160-loredock-initial-counter-order-review.md) reviews
+initial acquisition order without another live probe. Contract, limits and historical
+outcomes remain unchanged; complete executor/application and semantic acceptance remain separate.
 
 ## Task 158 — Acquire bounded counter records through retained descriptors
 

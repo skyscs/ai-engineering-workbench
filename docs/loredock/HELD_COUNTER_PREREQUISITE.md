@@ -88,6 +88,9 @@ retained as development history; existing filenames with underscores are now acc
 
 Full local checks pass 1,221 Node tests, ten typechecks and ten final builds, without
 failures/cancellations/skips. All 148 emitted application/package modules remain unchanged.
+The sole sealed [first attempt](HELD_COUNTER_PREREQUISITE_RESULT.md) is consumed and
+UNAVAILABLE: initial root counters are nonzero after descendant setup, so no native child
+is admitted. All 24 initial interfaces are complete; final retention remains untested.
 
 Full executor lifetime, ancestor controls, orphan/interruption handling, application memory,
 responsiveness, semantic readiness and the Workbench bridge remain separate. A tiny

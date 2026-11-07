@@ -637,8 +637,12 @@ separate tiny counter-lifetime integration; no actual counter capability is infe
 Task 158 is accepted through PR #191, identical-tree merge baa638b, after both complete
 exact-head CI logs pass. Task 159's [counter integration](docs/loredock/HELD_COUNTER_PREREQUISITE.md)
 passes sixteen new Python checks, nine Node checks and full local verification: 1,221 Node
-tests, ten typechecks and ten final builds. Its sole actual attempt requires a committed
-seal; no actual counter result is claimed yet.
+tests, ten typechecks and ten final builds. Its sole sealed
+[attempt](docs/loredock/HELD_COUNTER_PREREQUISITE_RESULT.md) is consumed and UNAVAILABLE:
+complete initial reads find nonzero fresh-root current/peak after descendant setup, so no
+native child starts. Full evidence is retained without reset, subtraction or rerun. After
+result and exact-head CI acceptance, [Task 160](tasks/160-loredock-initial-counter-order-review.md)
+reviews initial acquisition order and scopes a prospective next step without live execution.
 Full executor and
 application gates remain separate.
 No application-page or full-flow gate is opened by these diagnostics.
