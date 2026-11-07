@@ -1,0 +1,118 @@
+{
+  "task": 158,
+  "status": "Read-only design preparation during Task 157 CI; no implementation or worktree yet.",
+  "priorHead": "8911942427fdde120133e4f1cdadb553e43e8afa",
+  "priorPR": 190,
+  "contractSha256": "759dc70e2d3b86043278b8378148785dd061cf29c06fa6f96c3a5bdf00be8e5b",
+  "design": [
+    "Separate Python helper, supplied already-owned parent/run/daemon/browser directory handles. Caller context is not live authority.",
+    "Duplicate read-only directory handles with CLOEXEC; bind named entry, held identity, parent and mount; exact fixed topology.",
+    "Open eight fixed counter/event interfaces per scope read-only/no-follow/nonblocking/CLOEXEC before snapshots; preserve open failures, never silently reopen missing counters.",
+    "Keep descriptors for complete caller-owned lifetime; capture all scopes in daemon/browser/run order with per-interface and aggregate monotonic windows.",
+    "Bound each raw read to 4096 bytes plus one overflow sentinel; preserve exact bytes, explicit bounded errors and incomplete prefixes without normalizing or zero filling.",
+    "A generic capture never asserts terminal/all-exited/fsynced/ownership/qualification; later adapter must bind actual exit and durable-retention evidence.",
+    "Partial failure keeps successful raw fields available to the existing offline assessor; replacement cannot attribute reads to a new directory.",
+    "Close every owned duplicate/interface on construction failure, normal close or context exception; never close caller handles.",
+    "Only temporary filesystem fixtures and injected clocks/failures; Node wrapper can assess compatible snapshots with explicitly synthetic lifecycle declarations."
+  ],
+  "prospectiveCases": [
+    "exact raw scalar/event bytes and eight fixed interfaces",
+    "run/daemon/browser-only shape and topology",
+    "4096-byte inclusive bound and 4097-byte rejection with retained prefix",
+    "short reads and interrupted/error-after-prefix reads",
+    "open/read errors retain other successful fields",
+    "same held interfaces across observations without reopen",
+    "named counter and directory replacement; symlinks and FIFO rejection",
+    "no write/reset, no service/runtime/clone3 launch",
+    "CLOEXEC/read-only flags and descriptor closure",
+    "clock ordering and role-before-root windows",
+    "caller handles survive normal/error close",
+    "compatibility with offline assessor PASS, known breach plus missing read, and missing terminal never filled from earlier observation"
+  ],
+  "executorQualified": false,
+  "liveAttemptStarted": false,
+  "primarySources": [
+    {
+      "url": "https://www.kernel.org/doc/html/v7.0/admin-guide/cgroup-v2.html",
+      "finding": "memory.peak and memory.swap.peak are creation-to-current maxima unless reset by a nonempty write for that FD; reader must never write/reset."
+    },
+    {
+      "url": "https://man7.org/linux/man-pages/man2/open.2.html",
+      "finding": "Use relative fixed-name reads under held directory FDs with read-only, no-follow, close-on-exec and nonblocking flags; check types and identities independently."
+    },
+    {
+      "url": "https://man7.org/linux/man-pages/man2/pread.2.html",
+      "finding": "pread uses an explicit offset without changing the open file description offset; retain partial reads/errors and bounded windows."
+    }
+  ],
+  "remainingDesignChecks": [
+    "Do not imply retained FDs keep a removed cgroup readable; named replacement/removal and failed counter reads remain unavailable.",
+    "Do not treat caller-provided boot/clock/ownership context as attested live authority.",
+    "Separate raw byte records and assessor projection: failed or oversized reads retain bounded bytes/error but do not become complete scalar fields.",
+    "No final/last-exit/fsynced claims in generic capture; live adapter must establish those independently.",
+    "Counter open failures remain sticky for that reader; no reopen after application start."
+  ],
+  "prospectiveExpectedOutcomes": [
+    {
+      "case": "Complete temporary three-scope hierarchy",
+      "expected": "Exact raw values, stable held identities and daemon/browser/run ordered windows; no live qualification."
+    },
+    {
+      "case": "Counter missing at construction, later appears",
+      "expected": "Sticky missing-interface evidence; no reopen and no zero substitution."
+    },
+    {
+      "case": "One final counter read fails after successful prior observations",
+      "expected": "Only current complete fields enter assessor projection; unavailable field stays absent; prior complete capture unchanged."
+    },
+    {
+      "case": "Known final peak excess plus another missing final field",
+      "expected": "Existing assessor retains FAIL and separate missing-evidence reasons."
+    },
+    {
+      "case": "Counter or scope name replaced while original FD remains open",
+      "expected": "Identity conflict retained; no read attributed to replacement."
+    },
+    {
+      "case": "Symlink, FIFO, directory or device at a counter name",
+      "expected": "Rejected without blocking or following the link."
+    },
+    {
+      "case": "One-byte short reads up to 4096 bytes and EOF",
+      "expected": "Complete original bytes retained exactly within a bounded number of reads."
+    },
+    {
+      "case": "4097th byte or interrupted read after prefix",
+      "expected": "Bounded prefix and explicit incompleteness retained; no complete raw scalar emitted."
+    },
+    {
+      "case": "Non-UTF8 counter bytes",
+      "expected": "Exact bounded bytes remain available separately; no fabricated UTF-8 scalar."
+    },
+    {
+      "case": "Reversed clock or clock failure",
+      "expected": "No valid observation window is manufactured; retain explicit timing failure."
+    },
+    {
+      "case": "Construction or caller context exception",
+      "expected": "Every owned duplicate/interface closes; caller-owned directory handles remain valid."
+    },
+    {
+      "case": "Writable, inheritable or ambiguous original directory handles",
+      "expected": "Reject admission without changing caller flags."
+    },
+    {
+      "case": "Arbitrary role/interface or extra scopes",
+      "expected": "Reject before uncontrolled opening; fixed schema only."
+    },
+    {
+      "case": "Two generic captures without supplied actual exits",
+      "expected": "Neither capture claims terminal retention, allExited, fsynced, ownership or executor qualification."
+    }
+  ],
+  "ownershipNotes": [
+    "Counter ownership UID need not equal the delegated directory UID; record identities and read permissions, do not invent a same-owner rule for every cgroup interface.",
+    "Retaining an FD does not prevent group removal or guarantee readable counters; a future service must keep its owned lifetime until fsync.",
+    "No new Task 158 checkout or implementation exists before Task 157 acceptance."
+  ]
+}

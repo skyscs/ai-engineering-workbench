@@ -626,6 +626,14 @@ child status verifies zero capability sets before permitting the sandbox; normal
 empty terminal state follow. After result acceptance,
 [Task 158](tasks/158-loredock-held-counter-reader.md) implements bounded held-counter
 acquisition offline before a separately scoped live integration.
+Task 157 is accepted through PR #190, identical-tree merge 0e7351e, after both complete
+exact-head CI logs pass. Task 158's [held reader](docs/loredock/HELD_COUNTER_ACQUISITION.md)
+retains bounded raw counter data and partial errors through fixed read-only descriptors.
+Twenty-eight Python regressions and four Node checks cover identities, byte/time bounds,
+closure and compatibility with the unchanged offline assessor. Full local checks pass
+1,212 Node tests, ten typechecks and ten final builds. After both complete exact-head CI
+logs pass review, [Task 159](tasks/159-loredock-held-counter-prerequisite.md) scopes one
+separate tiny counter-lifetime integration; no actual counter capability is inferred here.
 Full executor and
 application gates remain separate.
 No application-page or full-flow gate is opened by these diagnostics.

@@ -1,6 +1,9 @@
 # Task 158 — Acquire bounded counter records through retained descriptors
 
-Status: planned after Task 157 first-result acceptance. Direct birth and the fixed namespace
+Status: implemented; 28 Python/four Node focused checks and 1,212 full Node tests pass,
+with ten typechecks/builds and no failures/cancellations/skips. Exact-head CI review pending.
+Task 157 is accepted through PR #190, identical-tree merge 0e7351e, after both complete CI
+logs pass 1,208 Node tests, ten typechecks and ten final builds. Direct birth and the fixed namespace
 prerequisite pass; counter lifetime and complete executor qualification remain unproven.
 
 1. Read the adopted v2 contract, Task 151 receipt schema and accepted ownership/direct-birth

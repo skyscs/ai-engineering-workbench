@@ -1,5 +1,28 @@
 # Development status
 
+## Task 158 — Acquire bounded counter records through retained descriptors
+
+Task 157 is accepted through [PR #190](https://github.com/skyscs/ai-engineering-workbench/pull/190),
+head 8911942, identical-tree merge 0e7351e. Both complete exact-head CI logs pass 1,208 Node
+tests, 4/18/34/20/20/16 Python cases including 26 intercepted C scenarios, ten typechecks and
+ten final builds without failures/cancellations/skips. Its sole actual prerequisite remains
+consumed and PASS; complete executor and application gates remain unqualified.
+
+The [standalone reader](loredock/HELD_COUNTER_ACQUISITION.md) retains read-only counter
+descriptors for exactly three supplied scopes, binds held/named identities and preserves
+exact bounded bytes, read windows, partial errors and errno. It never reopens a missing
+interface, resets a peak or substitutes a prior capture for a final value. Generic captures
+do not assert actual exits, terminal retention or ownership. Twenty-eight Python checks
+and four Node checks pass, including compatibility with the unchanged memory assessor and
+known failure preservation alongside a missing final read. Full local verification passes
+1,212 Node tests, ten typechecks and ten final builds without failures/cancellations/skips.
+All 148 emitted application/package modules and previous consumed evidence remain unchanged.
+The [retained verification](fixtures/loredock-held-counters/README.md) includes seven closed
+logs and three source hashes. Both complete final-head CI logs remain required, then
+[Task 159](../tasks/159-loredock-held-counter-prerequisite.md) scopes one separate tiny
+counter-lifetime integration. No live service, cgroup counter, workload,
+application, browser or model is executed; the default product flow remains unchanged.
+
 ## Task 157 — Reduce owned native capabilities before direct birth
 
 Task 156 is accepted through [PR #189](https://github.com/skyscs/ai-engineering-workbench/pull/189),

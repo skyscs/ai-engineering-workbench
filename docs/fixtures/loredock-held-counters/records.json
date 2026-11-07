@@ -1,0 +1,218 @@
+{
+  "task": 158,
+  "status": "Offline implementation verified locally; final exact-head CI acceptance pending.",
+  "localCheck": {
+    "task": 158,
+    "fullTests": 1212,
+    "testGroups": [
+      17,
+      18,
+      43,
+      728,
+      57,
+      349
+    ],
+    "pythonCases": 28,
+    "focusedNodeCases": 4,
+    "priorPythonCases": [
+      4,
+      18,
+      34,
+      20,
+      20,
+      16
+    ],
+    "failures": 0,
+    "cancelled": 0,
+    "typechecks": 10,
+    "finalBuilds": 10,
+    "fullCheckLog": "/home/toshiba/aew/task158-full-check.log",
+    "fullCheckBytes": 441333,
+    "fullCheckSha256": "763bbebd393973c7095f4a718a0694291e28c6a557030341a1d483cb80c2b6dc",
+    "sources": [
+      {
+        "path": "scripts/loredock-held-counters/reader.py",
+        "bytes": 12181,
+        "sha256": "efb2849488984f4228a80ecff27018a2e8d711672322f6c00f9317ecde169f07"
+      },
+      {
+        "path": "scripts/loredock-held-counters/test_reader.py",
+        "bytes": 22594,
+        "sha256": "b5a83da15aeee3fb43501a9fc5fbae8844c4b11f377ea2a406ee5eebbbf2ff93"
+      },
+      {
+        "path": "scripts/tests/loredock-held-counters.test.mjs",
+        "bytes": 4096,
+        "sha256": "9be507876b33854727e0be3e34b853447226f60695f172411fdcd980071a5a3f"
+      }
+    ],
+    "sourceHashesStable": true,
+    "unchangedLoreDockModules": 95,
+    "unchangedTotalEmittedModules": 148,
+    "localLinks": 667,
+    "brokenLinks": [],
+    "normalCheckoutUnchanged": true,
+    "productAndFrozenInputsUnchanged": true,
+    "diffReviewed": true,
+    "liveAttemptStarted": false
+  },
+  "sources": [
+    {
+      "path": "scripts/loredock-held-counters/reader.py",
+      "bytes": 12181,
+      "sha256": "efb2849488984f4228a80ecff27018a2e8d711672322f6c00f9317ecde169f07"
+    },
+    {
+      "path": "scripts/loredock-held-counters/test_reader.py",
+      "bytes": 22594,
+      "sha256": "b5a83da15aeee3fb43501a9fc5fbae8844c4b11f377ea2a406ee5eebbbf2ff93"
+    },
+    {
+      "path": "scripts/tests/loredock-held-counters.test.mjs",
+      "bytes": 4096,
+      "sha256": "9be507876b33854727e0be3e34b853447226f60695f172411fdcd980071a5a3f"
+    }
+  ],
+  "logs": [
+    {
+      "path": "logs/task157-ci-push-final.log.gz",
+      "rawBytes": 681777,
+      "rawSha256": "b2f8b5cfe31862cc39bad3eb83a08db397a674e3413e88807573f9c8e3350567",
+      "gzipSha256": "cb3bb3baa0706b94dabf1d9a6cd1fa39bde2b3cc8aaceb323f1ca4f96ca68721",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task157-ci-pr-final.log.gz",
+      "rawBytes": 680214,
+      "rawSha256": "9599a79aaccac624240e1543d78423370db41b32322e5eec369dee337469b0ba",
+      "gzipSha256": "8463228fddde7e95492e0c25d870d94353fa7370b7e718378c16462b3f580233",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task158-install.log.gz",
+      "rawBytes": 326,
+      "rawSha256": "332ef74e1d5b22e88be87796e8745ff9fb4ad202fcbbfb6f53744703db1de91b",
+      "gzipSha256": "622f4bc45bb6795e3015b91df7173de237c463b243c4f9436fa289f7a38cc11e",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task158-focused-first.log.gz",
+      "rawBytes": 3513,
+      "rawSha256": "e573143aef55155f792850d9651f692bb472d4f35b567f0bea4dbc4ca9d3ee81",
+      "gzipSha256": "de8f73572cedd8e4757e0befc8343b9a6ff1659bb38b41f6cb691c4cc25a0289",
+      "role": "development-history"
+    },
+    {
+      "path": "logs/task158-focused-final.log.gz",
+      "rawBytes": 5075,
+      "rawSha256": "80a33acdac8c12cbe7801520d51447a0f8c776465ffa31f22b59d4924f68a09c",
+      "gzipSha256": "5d57ec90d583863055b901416537d257805f49e2669f16a81fc65013123e0a59",
+      "role": "development-history"
+    },
+    {
+      "path": "logs/task158-focused-reviewed.log.gz",
+      "rawBytes": 5237,
+      "rawSha256": "99264ef5fed0a630397433de95b9a57653c2e5c4b09eb882a04b7cb288bcae89",
+      "gzipSha256": "598b4c49ad7bf534fee122830ddd3a67275699451ed5b2eb72b27bd6ad02773e",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task158-full-check.log.gz",
+      "rawBytes": 441333,
+      "rawSha256": "763bbebd393973c7095f4a718a0694291e28c6a557030341a1d483cb80c2b6dc",
+      "gzipSha256": "cf7954d186239ebb12ccb4b2200647285e3e7e4f19e71412d46783f542ffb297",
+      "role": "accepted-or-final-verification"
+    }
+  ],
+  "preparationSha256": "77918e55e457ee87791f1a7317844069e2ea0ed00eafa2d47bcb226cce2fe518",
+  "acceptedTask157": {
+    "pr": 190,
+    "head": "8911942427fdde120133e4f1cdadb553e43e8afa",
+    "merge": "0e7351eb8d2a40344dea0c0105a9aba633251930",
+    "ci": [
+      {
+        "event": "push",
+        "run": 42320861012,
+        "job": 128244798434,
+        "head": "8911942427fdde120133e4f1cdadb553e43e8afa",
+        "conclusion": "success",
+        "tests": 1208,
+        "groups": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          345
+        ],
+        "pythonCases": [
+          4,
+          18,
+          34,
+          20,
+          20,
+          16
+        ],
+        "interceptedCapabilityCases": 26,
+        "failures": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "log": "/home/toshiba/aew/task157-ci-push-final.log",
+        "bytes": 681777,
+        "sha256": "b2f8b5cfe31862cc39bad3eb83a08db397a674e3413e88807573f9c8e3350567",
+        "fullLogReviewed": true
+      },
+      {
+        "event": "pull_request",
+        "run": 42320876206,
+        "job": 128244847709,
+        "head": "8911942427fdde120133e4f1cdadb553e43e8afa",
+        "conclusion": "success",
+        "tests": 1208,
+        "groups": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          345
+        ],
+        "pythonCases": [
+          4,
+          18,
+          34,
+          20,
+          20,
+          16
+        ],
+        "interceptedCapabilityCases": 26,
+        "failures": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "log": "/home/toshiba/aew/task157-ci-pr-final.log",
+        "bytes": 680214,
+        "sha256": "9599a79aaccac624240e1543d78423370db41b32322e5eec369dee337469b0ba",
+        "fullLogReviewed": true
+      }
+    ],
+    "firstArchiveSha256": "eb079ce8e253f5ce3b33919f1238c3760aefd584224abb58f661993801a3ab07",
+    "firstResult": "PASS; consumed and unchanged"
+  },
+  "fixtureScope": "Temporary regular files, actual descriptor metadata and injected clocks/errors. Lifecycle/environment declarations supplied to the assessor are synthetic.",
+  "liveAttemptStarted": false,
+  "actualCgroupCounterReads": 0,
+  "serviceRequests": 0,
+  "clone3Attempts": 0,
+  "sandboxInvocations": 0,
+  "explicitPayloadAllocationBytes": 0,
+  "applicationResourceRuns": 0,
+  "modelCalls": 0,
+  "executorQualified": false,
+  "resourceQualification": false,
+  "normalCheckoutUnchanged": true,
+  "previousConsumedInputsAndFirstEvidenceUnchanged": true
+}
