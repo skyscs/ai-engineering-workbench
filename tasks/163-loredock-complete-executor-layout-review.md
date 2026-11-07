@@ -1,6 +1,8 @@
 # Task 163 — Review the complete runtime layout and remaining executor gates
 
-Status: review completed; Task 163 exact-head CI acceptance pending. Task 162 is accepted
+Status: accepted through PR #196, head 020c565, identical-tree merge 7d769c7, after both
+complete exact-head CI logs passed 1,237 Node tests, ten Python suites, ten typechecks
+and ten final builds. Task 162 is accepted
 through PR #195, head c32205e, identical-tree merge b6e71b2. The
 [layout review](../docs/loredock/COMPLETE_EXECUTOR_LAYOUT.md) and
 [ADR 0070](../docs/decisions/0070-loredock-complete-runtime-boundary.md) stop expansion of

@@ -1,5 +1,37 @@
 # Development status
 
+## Task 164 — Controlled runtime through the production server
+
+Task 163 is accepted through [PR #196](https://github.com/skyscs/ai-engineering-workbench/pull/196),
+head 020c565, identical-tree merge 7d769c7. Both complete exact-head CI logs pass 1,237
+Node tests, ten Python suites, ten typechecks and ten final builds.
+
+The [new controlled launcher](loredock/CONTROLLED_SERVER.md) uses emitted LoreDockServer,
+including actual parser readiness, protected HTTP and joined shutdown. One typed internal
+runtime dependency reaches the existing Answers constructor. The normal entry point,
+disabled behavior, experimental switches and public configuration remain unchanged.
+The fake has one bounded lease and fixed controls, retains exact requests, and aborts
+pending work. Process tests cover prepared/legacy answers, cancellation, interrupted
+shutdown, invalid controls and reopening storage only after actual process exit.
+
+The completed full check passes 1,251 Node tests, ten Python suites, ten typechecks and
+ten final builds with zero failures/cancellations/skips. The first process check found an
+invalid declarative unknown in the fake; the unchanged production validator rejected it.
+The corrected fake passes. Two incomplete full checks remain retained: SIGTERM / exit 143,
+then a truncated session during owner-reported workstation memory exhaustion. The completed
+check runs unchanged code with one workspace package and two-CPU local scheduling.
+
+[Thirteen complete or explicitly incomplete retained logs](fixtures/loredock-controlled-server/README.md)
+include accepted Task 163 CI. Only server.js changes among 148 emitted JavaScript modules;
+historical contracts, archives and the frozen launcher remain unchanged. The compatibility
+verifier reverses only the three source edits and checks the original full source hash.
+Both complete Task 164 exact-head CI logs remain required before merge.
+
+No browser, model, corporate source or native/resource experiment. After acceptance,
+[Task 165](../tasks/165-loredock-server-fencing-recovery.md) checks source/policy fencing and
+owner restart through real HTTP. Full executor, application resources, answer semantics,
+L5 and Workbench bridge acceptance remain separate.
+
 ## Task 163 — Review complete runtime layout and controlled-bootstrap parity
 
 Task 162 is accepted through [PR #195](https://github.com/skyscs/ai-engineering-workbench/pull/195),

@@ -1,7 +1,19 @@
 # Task 164 — Use the production server owner for controlled-runtime tests
 
-Status: planned after Task 163 exact-head CI acceptance. Independent functional work under
+Status: implemented and locally verified; exact-head CI acceptance pending. Task 163 is
+accepted through PR #196 / merge 7d769c7. Independent functional work under
 [ADR 0070](../docs/decisions/0070-loredock-complete-runtime-boundary.md); no executor or resource run.
+
+The [new launcher and typed dependency](../docs/loredock/CONTROLLED_SERVER.md) use the
+actual production lifecycle. The completed full check passes 1,251 Node tests, ten
+Python suites, ten typechecks and ten final builds. Local scheduling uses one workspace
+package and two CPUs following workstation memory exhaustion. The initial fake-schema
+failure and two incomplete full logs are preserved with the passing checks in the
+[review evidence](../docs/fixtures/loredock-controlled-server/README.md).
+Only server.js differs among 148 emitted JavaScript modules. The original server
+compatibility hash is retained through an exact inverse of the three source edits.
+After acceptance, [Task 165](165-loredock-server-fencing-recovery.md) verifies source
+fencing and actual owner reopen through protected HTTP; native expansion remains paused.
 
 1. Preserve Task 163's layout review, both complete CI logs, every consumed first result,
    frozen prepared-flow implementation, memory assessor, API and v2 contract. Do not edit

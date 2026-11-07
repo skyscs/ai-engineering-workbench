@@ -676,6 +676,13 @@ remaining executor gates and identifies controlled-bootstrap drift from the prod
 unchanged tiny recipe without declaring all secure compositions impossible. After Task 163
 acceptance, [Task 164](tasks/164-loredock-controlled-server-parity.md) repairs controlled-runtime
 parity through the production server's existing lifecycle, using ordinary synthetic tests.
+Task 163 is accepted through PR #196 / merge 7d769c7. Task 164's
+[controlled server](docs/loredock/CONTROLLED_SERVER.md) now reuses the emitted owner;
+1,251 local Node tests, ten Python suites, typechecks and builds pass with bounded local
+parallelism. Initial failures/incomplete checks remain retained. Only the server runtime
+dependency changes emitted application bytes. After both complete exact-head CI logs and
+merge, [Task 165](tasks/165-loredock-server-fencing-recovery.md) checks source/policy fencing
+and actual owner restart through protected HTTP without model or resource experiments.
 Any shared-namespace helper and later live gate require separate concrete scope; no new
 resource family, model run or bridge promotion follows from this review.
 Full executor and
