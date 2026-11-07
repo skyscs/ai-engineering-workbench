@@ -1,0 +1,413 @@
+{
+  "task": 159,
+  "manifestSha256": "a855bd9f27397f4d14f2a3138c9197bf1e2209789005beedab0841eb33ace2d2",
+  "firstAttemptConsumed": true,
+  "acquisitionStatus": "UNAVAILABLE",
+  "combinedStatus": "UNAVAILABLE",
+  "reason": "Nonzero fresh root counters after descendant creation; native admission correctly refused.",
+  "initialScopes": {
+    "daemon": {
+      "identity": {
+        "bootId": "47535de3-7236-47d4-b5e8-231c3b313885",
+        "mountId": "48",
+        "device": "0:30",
+        "inode": "116747",
+        "parentInode": "116669"
+      },
+      "window": {
+        "fromNs": "394159311616967",
+        "toNs": "394159312136619",
+        "clockId": "551793ae3bf77ea0216b517cbef1641df3fe2cb5602fef9d688c6165c58ca722"
+      },
+      "raw": {
+        "memory.current": "0\n",
+        "memory.peak": "0\n",
+        "memory.swap.current": "0\n",
+        "memory.swap.peak": "0\n",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+        "memory.swap.events": "high 0\nmax 0\nfail 0\n",
+        "cgroup.events": "populated 0\nfrozen 0\n",
+        "cgroup.type": "domain\n"
+      }
+    },
+    "browser": {
+      "identity": {
+        "bootId": "47535de3-7236-47d4-b5e8-231c3b313885",
+        "mountId": "48",
+        "device": "0:30",
+        "inode": "116786",
+        "parentInode": "116669"
+      },
+      "window": {
+        "fromNs": "394159312140370",
+        "toNs": "394159312603458",
+        "clockId": "551793ae3bf77ea0216b517cbef1641df3fe2cb5602fef9d688c6165c58ca722"
+      },
+      "raw": {
+        "memory.current": "0\n",
+        "memory.peak": "0\n",
+        "memory.swap.current": "0\n",
+        "memory.swap.peak": "0\n",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+        "memory.swap.events": "high 0\nmax 0\nfail 0\n",
+        "cgroup.events": "populated 0\nfrozen 0\n",
+        "cgroup.type": "domain\n"
+      }
+    },
+    "run": {
+      "identity": {
+        "bootId": "47535de3-7236-47d4-b5e8-231c3b313885",
+        "mountId": "48",
+        "device": "0:30",
+        "inode": "116669",
+        "parentInode": "116586"
+      },
+      "window": {
+        "fromNs": "394159312606105",
+        "toNs": "394159312938800",
+        "clockId": "551793ae3bf77ea0216b517cbef1641df3fe2cb5602fef9d688c6165c58ca722"
+      },
+      "raw": {
+        "memory.current": "512000\n",
+        "memory.peak": "520192\n",
+        "memory.swap.current": "0\n",
+        "memory.swap.peak": "0\n",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+        "memory.swap.events": "high 0\nmax 0\nfail 0\n",
+        "cgroup.events": "populated 0\nfrozen 0\n",
+        "cgroup.type": "domain\n"
+      }
+    }
+  },
+  "completeInitialInterfaces": 24,
+  "counterBatches": 1,
+  "finalCounterBatchObserved": false,
+  "serviceRequests": 1,
+  "nativeExecutions": 0,
+  "clone3Attempts": 0,
+  "sandboxInvocations": 0,
+  "payloadInvocations": 0,
+  "explicitPayloadAllocationBytes": 0,
+  "applicationRuns": 0,
+  "modelCalls": 0,
+  "forcedCleanup": false,
+  "executorQualified": false,
+  "resourceQualification": false,
+  "firstFiles": 78,
+  "firstBytes": 41032,
+  "outsideAttestorCost": {
+    "detailedSnapshot": "Not reached because initial admission stopped execution.",
+    "roundedServicePeak": "23.4M; launcher diagnostic only, not workload or exact whole-helper cost."
+  },
+  "offlineDurationNs": "38328743",
+  "initialChargeReviewSha256": "31a28e707fb67065fc8db5737266fa2920daab483f931a15c05d94f76d552e8d",
+  "terminalReviewSha256": "d924632c64b1734970b3c8841cf7f52c7e6d8ee87a437ba76d72892cf064109a",
+  "inputClosureUnchanged": true,
+  "noAdditionalCapabilityProbe": true,
+  "candidateHead": "4d7e72a8983eedb302312f5353f090056f01f7fa",
+  "unit": "loredock-task159-5a774b90-7297-453d-9095-97639f42a743.service",
+  "invocationId": "f5caa29366fc4be88219dfdb7c70b1ab",
+  "terminalReview": {
+    "unit": "loredock-task159-5a774b90-7297-453d-9095-97639f42a743.service",
+    "invocationId": "f5caa29366fc4be88219dfdb7c70b1ab",
+    "manager": {
+      "command": [
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "loredock-task159-5a774b90-7297-453d-9095-97639f42a743.service",
+        "--no-pager",
+        "--property=Id,InvocationID,ControlGroup,Delegate,DelegateControllers,DelegateSubgroup,MainPID,LoadState,NoNewPrivileges,RuntimeMaxUSec,TimeoutStartUSec,TimeoutStopUSec,KillMode,Restart,ActiveState,SubState,Result"
+      ],
+      "exitCode": 0,
+      "failure": null,
+      "durationNs": "5432395",
+      "stdout": "Id=loredock-task159-5a774b90-7297-453d-9095-97639f42a743.service\nLoadState=loaded\nActiveState=failed\nSubState=failed\nInvocationID=f5caa29366fc4be88219dfdb7c70b1ab\nRestart=no\nTimeoutStartUSec=5s\nTimeoutStopUSec=2s\nRuntimeMaxUSec=10s\nMainPID=0\nResult=exit-code\nControlGroup=\nDelegate=yes\nDelegateControllers=memory\nDelegateSubgroup=attestor\nNoNewPrivileges=yes\nKillMode=control-group\n",
+      "stderr": ""
+    },
+    "properties": {
+      "Id": "loredock-task159-5a774b90-7297-453d-9095-97639f42a743.service",
+      "LoadState": "loaded",
+      "ActiveState": "failed",
+      "SubState": "failed",
+      "InvocationID": "f5caa29366fc4be88219dfdb7c70b1ab",
+      "Restart": "no",
+      "TimeoutStartUSec": "5s",
+      "TimeoutStopUSec": "2s",
+      "RuntimeMaxUSec": "10s",
+      "MainPID": "0",
+      "Result": "exit-code",
+      "ControlGroup": "",
+      "Delegate": "yes",
+      "DelegateControllers": "memory",
+      "DelegateSubgroup": "attestor",
+      "NoNewPrivileges": "yes",
+      "KillMode": "control-group"
+    },
+    "terminalValid": true,
+    "ownedGroup": {
+      "absent": true,
+      "empty": true
+    },
+    "firstAssessmentSha256": "e704e3171c917e19838f2d70c8f8901e81a2c4f6038d15adc34b1eab69fdd2e6",
+    "action": "Read-only terminal review; no stop/reset/restart request."
+  },
+  "nativeBinarySha256": "0604c465eb6a6397c411f30c0d53ca95e368a573a6cc49339cb4657d730ee3a3",
+  "nativeBinaryIdenticalToTask157": true,
+  "acceptedTask158": {
+    "pr": 191,
+    "head": "da6d882949aba911a2de7128ceac0f0f2b3e1b0f",
+    "merge": "baa638b6476a14b330f2267834e1fa6c14355024",
+    "ci": [
+      {
+        "event": "push",
+        "run": 42323683648,
+        "job": 128253893723,
+        "head": "da6d882949aba911a2de7128ceac0f0f2b3e1b0f",
+        "conclusion": "success",
+        "tests": 1212,
+        "groups": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          349
+        ],
+        "pythonCases": [
+          28,
+          4,
+          18,
+          34,
+          20,
+          20,
+          16
+        ],
+        "failures": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "log": "/home/toshiba/aew/task158-ci-push-final.log",
+        "bytes": 687650,
+        "sha256": "043e2e171746543e51cd2c7651f5a67ee701f448ebfa2757517ceaef0d830268",
+        "fullLogReviewed": true
+      },
+      {
+        "event": "pull_request",
+        "run": 42323715917,
+        "job": 128253995813,
+        "head": "da6d882949aba911a2de7128ceac0f0f2b3e1b0f",
+        "conclusion": "success",
+        "tests": 1212,
+        "groups": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          349
+        ],
+        "pythonCases": [
+          28,
+          4,
+          18,
+          34,
+          20,
+          20,
+          16
+        ],
+        "failures": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "log": "/home/toshiba/aew/task158-ci-pr-final.log",
+        "bytes": 685990,
+        "sha256": "f02e9956f22805831c3e659115077aa7a3bf114e667822e7dbe0fb4430149cc5",
+        "fullLogReviewed": true
+      }
+    ]
+  },
+  "localCheck": {
+    "task": 159,
+    "fullTests": 1221,
+    "testGroups": [
+      17,
+      18,
+      43,
+      728,
+      57,
+      358
+    ],
+    "pythonCases": 16,
+    "focusedNodeCases": 9,
+    "priorPythonCases": [
+      28,
+      4,
+      18,
+      34,
+      20,
+      20,
+      16
+    ],
+    "failures": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "typechecks": 10,
+    "finalBuilds": 10,
+    "fullCheckLog": "/home/toshiba/aew/task159-full-check.log",
+    "fullCheckBytes": 445743,
+    "fullCheckSha256": "d2c63e3b7f47a3a9fbd288c9832ca03accf70b37ad3162f5482fbab1c92ff77e",
+    "sources": [
+      {
+        "path": "scripts/loredock-held-counter-prerequisite/assess.mjs",
+        "bytes": 6955,
+        "sha256": "c5597926d0890c00c6a521b530333378ac8842b437f4929e4746e42483b3daf8"
+      },
+      {
+        "path": "scripts/loredock-held-counter-prerequisite/counters.py",
+        "bytes": 12065,
+        "sha256": "148ecbecf3d477897af73d43a318fa13b88225bc411aea044556c29a1db61566"
+      },
+      {
+        "path": "scripts/loredock-held-counter-prerequisite/postprocess.mjs",
+        "bytes": 4159,
+        "sha256": "e727a1f55958e0986f5cc5b8664b4fde057e78bcabd29b0d42e05dcc9597cbfc"
+      },
+      {
+        "path": "scripts/loredock-held-counter-prerequisite/probe.py",
+        "bytes": 26651,
+        "sha256": "25e11aa66c248c76df8880947efe154e7a281f1bbae35bc8de233293466fb34e"
+      },
+      {
+        "path": "scripts/loredock-held-counter-prerequisite/test_probe.py",
+        "bytes": 19468,
+        "sha256": "341db2b580317b3913be5384b89707c30738c8eaadc7cbce5722d8254be4855d"
+      },
+      {
+        "path": "scripts/tests/loredock-held-counter-prerequisite.test.mjs",
+        "bytes": 7462,
+        "sha256": "c4d006c4b0b319f7b93a3c32c514f0ae6099a62f6df461654d0cd3068b7e8436"
+      }
+    ],
+    "sourceHashesStable": true,
+    "unchangedLoreDockModules": 95,
+    "unchangedTotalEmittedModules": 148,
+    "localLinks": 2786,
+    "brokenLinks": [],
+    "normalCheckoutUnchanged": true,
+    "productAndFrozenInputsUnchanged": true,
+    "diffReviewed": true,
+    "liveAttemptStarted": false,
+    "linkReviewNote": "Inline code examples are excluded; the first ad hoc scanner incorrectly treated relative/path.md as a real link."
+  },
+  "sources": [
+    {
+      "path": "scripts/loredock-held-counter-prerequisite/assess.mjs",
+      "bytes": 6955,
+      "sha256": "c5597926d0890c00c6a521b530333378ac8842b437f4929e4746e42483b3daf8"
+    },
+    {
+      "path": "scripts/loredock-held-counter-prerequisite/counters.py",
+      "bytes": 12065,
+      "sha256": "148ecbecf3d477897af73d43a318fa13b88225bc411aea044556c29a1db61566"
+    },
+    {
+      "path": "scripts/loredock-held-counter-prerequisite/postprocess.mjs",
+      "bytes": 4159,
+      "sha256": "e727a1f55958e0986f5cc5b8664b4fde057e78bcabd29b0d42e05dcc9597cbfc"
+    },
+    {
+      "path": "scripts/loredock-held-counter-prerequisite/probe.py",
+      "bytes": 26651,
+      "sha256": "25e11aa66c248c76df8880947efe154e7a281f1bbae35bc8de233293466fb34e"
+    },
+    {
+      "path": "scripts/loredock-held-counter-prerequisite/test_probe.py",
+      "bytes": 19468,
+      "sha256": "341db2b580317b3913be5384b89707c30738c8eaadc7cbce5722d8254be4855d"
+    },
+    {
+      "path": "scripts/tests/loredock-held-counter-prerequisite.test.mjs",
+      "bytes": 7462,
+      "sha256": "c4d006c4b0b319f7b93a3c32c514f0ae6099a62f6df461654d0cd3068b7e8436"
+    }
+  ],
+  "logs": [
+    {
+      "path": "logs/task158-ci-push-final.log.gz",
+      "rawBytes": 687650,
+      "rawSha256": "043e2e171746543e51cd2c7651f5a67ee701f448ebfa2757517ceaef0d830268",
+      "gzipSha256": "02978143e436ac13bb0302ad96f25441a410a94639f42630c33c2608b6593a99",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task158-ci-pr-final.log.gz",
+      "rawBytes": 685990,
+      "rawSha256": "f02e9956f22805831c3e659115077aa7a3bf114e667822e7dbe0fb4430149cc5",
+      "gzipSha256": "60b305958d63ecf0aedc648a1f41a3612a24dc7fe7b8f1f371f097a4db8dc657",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task159-install.log.gz",
+      "rawBytes": 326,
+      "rawSha256": "ffaec3032b3594a12546214034dca2d0a75a5765e6a9789bf3b3ced9ca69afae",
+      "gzipSha256": "289ab494ca99074dc14ee648040df37027e8229bbdaad41a983672038f6f65c7",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task159-focused-python-first.log.gz",
+      "rawBytes": 2469,
+      "rawSha256": "37e70d84e80c6da09f3fc4e572e675403139cf88146d682953617e059d808bd1",
+      "gzipSha256": "17f8f5cf7f3fb0ba51a8a2613cc86f343de666edcbfbbacc9480a7ea6697d881",
+      "role": "development-history"
+    },
+    {
+      "path": "logs/task159-focused-node-first.log.gz",
+      "rawBytes": 8103,
+      "rawSha256": "8983b0a994b069f5a8f909b53e790ba0b30b57baa627ff7e0642a8370d6ffa23",
+      "gzipSha256": "5e79c5a00d2c6e63071b09b29b6330b8fdd8d217d032b3076dc57d291f34685f",
+      "role": "development-history"
+    },
+    {
+      "path": "logs/task159-focused-node-reviewed.log.gz",
+      "rawBytes": 4407,
+      "rawSha256": "b0a6031e99f5cd930ecf42d38ef220a34aedc6fbe8e5b9e12be121def7332375",
+      "gzipSha256": "5eb58686db69a81b94d2096f0354892cf9c0d24ab07d15ffba662df14813c6d4",
+      "role": "development-history"
+    },
+    {
+      "path": "logs/task159-focused-final.log.gz",
+      "rawBytes": 4638,
+      "rawSha256": "c5a35065917655ec0f5899ff324f6b53f4f6c6f2cdc946f2657ce6a96478ac0d",
+      "gzipSha256": "fee146d47306c532faeb13883f293b9b0131f0128c855767a862e0f477177277",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task159-full-check.log.gz",
+      "rawBytes": 445743,
+      "rawSha256": "d2c63e3b7f47a3a9fbd288c9832ca03accf70b37ad3162f5482fbab1c92ff77e",
+      "gzipSha256": "6393c0c1f1c9692c775c7e11a28c85a5dbd57f152ad23c160559d8d0fca4cd4f",
+      "role": "accepted-or-final-verification"
+    },
+    {
+      "path": "logs/task159-native-sealed-build.log.gz",
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzipSha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "role": "accepted-or-final-verification"
+    }
+  ],
+  "archive": {
+    "path": "first.tar.gz",
+    "sha256": "a036ff88ab9f0a145aba9cf8bf2faef966d2419141f1ac0abc2b8cea28bd7fe9",
+    "members": 119
+  },
+  "inventory": {
+    "path": "first-inventory.json",
+    "sha256": "a9a152a67c735fa3faf241ead26d98a5e07729a5c673d31d01713271284aa529"
+  },
+  "previousConsumedEvidenceUnchanged": true,
+  "normalCheckoutUnchanged": true
+}
