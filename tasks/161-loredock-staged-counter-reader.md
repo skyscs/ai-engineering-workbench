@@ -1,6 +1,7 @@
 # Task 161 — Implement staged held-counter acquisition offline
 
-Status: planned after Task 160 review and exact-head CI acceptance. Follow
+Status: implemented and locally verified offline; exact-head CI acceptance pending.
+Task 160 is accepted through PR #193, identical-tree merge f0c7564. Follow
 [ADR 0069](../docs/decisions/0069-loredock-creation-ordered-counters.md). No live entry point
 or service/cgroup/workload execution is part of this task.
 

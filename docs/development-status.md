@@ -1,5 +1,33 @@
 # Development status
 
+## Task 161 — Staged held-counter acquisition offline
+
+Task 160 is accepted through [PR #193](https://github.com/skyscs/ai-engineering-workbench/pull/193),
+head 599b8ba, identical-tree merge f0c7564. Both complete exact-head CI logs pass 1,221 Node
+tests, the prior Python cases, ten typechecks and ten final builds without failures/cancellations/skips.
+
+The separate [staged reader](loredock/STAGED_COUNTER_ACQUISITION.md) opens root counters before
+role attachment, preserves original FDs and separate initial windows, then captures final roles
+before root. One-shot stages reject retry/reentry/replacement; initial failures and clock errors
+remain ineligible. Exact bounded bytes, partial data, identity/errno evidence and the earliest
+acquisition boundary remain available without normalization or initial-for-final substitution.
+Root identity is checked across attachment and role initial capture; later setup charges stay
+in the unreset root peak. No generic reader flag supplies ownership, fsync or admission authority.
+
+Local verification passes 1,225 Node tests, 28 new Python cases plus the previous
+16/28/4/18/34/20/20/16 cases, ten typechecks and ten final builds. Four new Node checks include
+the Python suite and compatibility with the unchanged assessor. The first focused wrapper
+expected the wrong Python test count; all 23 then-present Python cases passed, and its failed
+log is retained. Five additional boundary regressions and the corrected wrapper pass.
+See [closed logs and source hashes](fixtures/loredock-staged-counters/README.md).
+
+No actual cgroup/counter/service/native/sandbox/payload/application/browser/model attempt.
+Frozen implementations, consumed evidence, contract and emitted application modules are unchanged.
+Both complete exact-head CI logs remain required before merge. After acceptance,
+[Task 162](../tasks/162-loredock-staged-counter-prerequisite.md) integrates actual owned
+construction/publication order around one separately sealed tiny workload. All broader executor,
+resource/timing, semantic-readiness, L5 and bridge gates remain separate.
+
 ## Task 160 — Review creation-ordered initial counter acquisition
 
 Task 159 is accepted through [PR #192](https://github.com/skyscs/ai-engineering-workbench/pull/192),

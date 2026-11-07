@@ -1,0 +1,171 @@
+{
+  "task": 161,
+  "acceptedTask160": {
+    "pr": 193,
+    "head": "599b8ba67793d455ccf4e7785a39be2941ac49c9",
+    "merge": "f0c7564d23bdf837dce12cf7bb7949e7c2ed7ef6",
+    "ci": [
+      {
+        "event": "push",
+        "run": 42329360012,
+        "job": 128272074983,
+        "head": "599b8ba67793d455ccf4e7785a39be2941ac49c9",
+        "conclusion": "success",
+        "tests": 1221,
+        "groups": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          358
+        ],
+        "pythonCases": [
+          16,
+          28,
+          4,
+          18,
+          34,
+          20,
+          20,
+          16
+        ],
+        "failures": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "log": "/home/toshiba/aew/task160-ci-push-final.log",
+        "bytes": 693806,
+        "sha256": "b3c0253374df135e11af7220aaf19f2f6efd1d13844cf2585a20cdaf51399f88",
+        "fullLogReviewed": true
+      },
+      {
+        "event": "pull_request",
+        "run": 42329395686,
+        "job": 128272192626,
+        "head": "599b8ba67793d455ccf4e7785a39be2941ac49c9",
+        "conclusion": "success",
+        "tests": 1221,
+        "groups": [
+          17,
+          18,
+          43,
+          728,
+          57,
+          358
+        ],
+        "pythonCases": [
+          16,
+          28,
+          4,
+          18,
+          34,
+          20,
+          20,
+          16
+        ],
+        "failures": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "typechecks": 10,
+        "finalBuilds": 10,
+        "log": "/home/toshiba/aew/task160-ci-pr-final.log",
+        "bytes": 694797,
+        "sha256": "6b5df515c9111a9b279e6f9a2cda0ab0c67e6a093615e2a3343a1a94fc54a670",
+        "fullLogReviewed": true
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "scripts/loredock-staged-counters/reader.py",
+      "bytes": 16766,
+      "sha256": "2798cd470e8a0f18d6c18c9a64e2364df730d80a490effc69fe1cce27afce27c"
+    },
+    {
+      "path": "scripts/loredock-staged-counters/test_reader.py",
+      "bytes": 30326,
+      "sha256": "7fb15309636f5e408a085459b00a0c5f7ad2920e3733c38d7f2c3942088f6a58"
+    },
+    {
+      "path": "scripts/tests/loredock-staged-counters.test.mjs",
+      "bytes": 4566,
+      "sha256": "89d901c77f4ea9752c914dd4324fc8db3d78ccc73293f0319fa514d4c156c046"
+    }
+  ],
+  "logs": [
+    {
+      "path": "logs/task160-ci-push-final.log.gz",
+      "rawBytes": 693806,
+      "rawSha256": "b3c0253374df135e11af7220aaf19f2f6efd1d13844cf2585a20cdaf51399f88",
+      "gzipSha256": "f71a8a0311082f269a1d41fab6d9db21db9d5134305fb7d6a245892452910bfa"
+    },
+    {
+      "path": "logs/task160-ci-pr-final.log.gz",
+      "rawBytes": 694797,
+      "rawSha256": "6b5df515c9111a9b279e6f9a2cda0ab0c67e6a093615e2a3343a1a94fc54a670",
+      "gzipSha256": "200ce414b4bfc78181f72df6dd42948663892e530d046850271919a0a64cf1bd"
+    },
+    {
+      "path": "logs/task161-install.log.gz",
+      "rawBytes": 326,
+      "rawSha256": "cd674ae611e25d73a535894fb9fc277e8aaffeb8471613623bfa1debd0355fb7",
+      "gzipSha256": "317555ba21e9333fe7e45a06ea16391ba0a0523bb265d4fc41065a62abe6b8c8"
+    },
+    {
+      "path": "logs/task161-focused-first.log.gz",
+      "rawBytes": 9538,
+      "rawSha256": "efdf8e832c47a07a7e6cded9535efd9e62df2c2c042e4e17c72553a0c859f29d",
+      "gzipSha256": "cb7795bf033677e67d03368d33dbb5c3268725950b5fee87756e93ffda71c66c"
+    },
+    {
+      "path": "logs/task161-focused-reviewed.log.gz",
+      "rawBytes": 5529,
+      "rawSha256": "d8d50a255041cb8367bb9e46047cda48e410994126266eac7cfc13c3b09889bd",
+      "gzipSha256": "d3031832d8537fb88f2ba96416863211ba449dcb1544c8a47abac8829b14aa77"
+    },
+    {
+      "path": "logs/task161-full-check.log.gz",
+      "rawBytes": 451228,
+      "rawSha256": "4bebda750944d936757ffe1e6d255b57cb1f7351cb5bda7f60cc8534286b6e5b",
+      "gzipSha256": "3c6b3c56c20db6d162af5b6bc8901ae8711f2a1f2bce85b4afb9c03b99d32bd9"
+    }
+  ],
+  "preparationSha256": "bac09ffd30e642a5c8194778bf973b2a360497dd710d0a0ddd75a3e265359a8c",
+  "fullNodeTests": 1225,
+  "testGroups": [
+    17,
+    18,
+    43,
+    728,
+    57,
+    362
+  ],
+  "focusedNodeCases": 4,
+  "pythonCases": 28,
+  "priorPythonCases": [
+    16,
+    28,
+    4,
+    18,
+    34,
+    20,
+    20,
+    16
+  ],
+  "typechecks": 10,
+  "finalBuilds": 10,
+  "fullFailures": 0,
+  "fullCancelled": 0,
+  "fullSkipped": 0,
+  "firstFocusedIssue": "One wrapper failure: expected 24 Python cases; all 23 then-present cases passed. Reviewed 28-case suite and four Node checks pass.",
+  "unchangedLoreDockModules": 95,
+  "unchangedTotalEmittedModules": 148,
+  "sourceHashesStableDuringFullCheck": true,
+  "normalCheckoutUnchanged": true,
+  "liveAttemptStarted": false,
+  "executorQualified": false,
+  "resourceQualification": false,
+  "ciAcceptancePending": true
+}
