@@ -314,6 +314,12 @@ compositions and stale controlled-bootstrap wiring. [ADR 0070](../decisions/0070
 stops expansion of that unchanged recipe and selects
 [Task 164](../../tasks/164-loredock-controlled-server-parity.md): bounded runtime injection
 through the current production server owner and ordinary synthetic lifecycle tests.
+Task 163 is accepted through PR #196 / merge 7d769c7. The Task 164
+[controlled server](CONTROLLED_SERVER.md) is locally verified with 1,251 Node tests,
+ten Python suites, typechecks and builds; complete exact-head CI remains required.
+[Task 165](../../tasks/165-loredock-server-fencing-recovery.md) next checks source/policy
+fencing and owner restart through real HTTP. Local checks retain bounded parallelism
+after workstation memory exhaustion; no product resource limit is changed.
 Shared-namespace implementation, remaining executor proof and any live gate require
 separate scope; all consumed families and semantic/private-pilot boundaries remain intact.
 Task 147's execution prerequisites pass, while its

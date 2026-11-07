@@ -9,8 +9,9 @@ import { CodeAnalysisFollow } from './code-analysis-follow.js';
 import { CodePathsV2 } from './code-paths-v2.js';
 import { NativeCaptures } from './native-capture.js';
 import { FileParserError } from './file-parser-protocol.js';
+import type { TextRuntime } from '@aew/ai';
 
-interface ServerOptions { directory: string; publicDir?: string; development?: boolean; answers?: boolean; preparedAnswers?: boolean; port?: number }
+interface ServerOptions { directory: string; publicDir?: string; development?: boolean; answers?: boolean; preparedAnswers?: boolean; port?: number; textRuntime?: TextRuntime }
 
 /** Own startup before its first await, and listen only after the parser's ready handshake. */
 export class LoreDockServer {
@@ -46,7 +47,7 @@ export class LoreDockServer {
     if (this.catalog.parser.snapshot().owner?.state !== 'ready') throw new FileParserError('PARSER_STATE');
     this.follow = new CodeAnalysisFollow(this.analysis); this.paths = new CodePathsV2(this.analysis);
     this.captures = new NativeCaptures(this.analysis, { paths: this.paths });
-    if (this.options.answers) { this.preparations = new QuestionPreparations(this.analysis); this.answers = new Answers(this.catalog, undefined, this.preparations); }
+    if (this.options.answers) { this.preparations = new QuestionPreparations(this.analysis); this.answers = new Answers(this.catalog, this.options.textRuntime, this.preparations); }
     const app = createApp(this.catalog, { codeAnalysis: this.analysis, codeFollow: this.follow, codePaths: this.paths, nativeCaptures: this.captures,
       ...(this.options.publicDir ? { publicDir: this.options.publicDir } : {}), development: this.options.development ?? false,
       ...(this.answers ? { answers: this.answers } : {}), ...(this.options.preparedAnswers && this.preparations ? { preparations: this.preparations } : {}) });

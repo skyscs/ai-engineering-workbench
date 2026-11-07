@@ -6,6 +6,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { emitSource, runtimeImports, relocateSource } from '../integration-reference/compile.mjs';
+import { beforeControlledServer } from '../controlled-server-reference/verify.mjs';
 
 const directory = new URL('./', import.meta.url), root = new URL('../../../../../', import.meta.url);
 const hash = value => createHash('sha256').update(value).digest('hex');
@@ -56,7 +57,7 @@ export async function beforeOwnedParser(file, raw) {
   }
   assert(archived || raw.toString() === expected || raw.toString() === original, 'Undeclared owned-parser input: ' + file);
   if (source !== file) assert.equal(await readFile(new URL(file, root), 'utf8'), expected);
-  for (const [name, sha256] of Object.entries(delta.added)) assert.equal(hash(await readFile(new URL(name, root))), sha256, name);
+  for (const [name, sha256] of Object.entries(delta.added)) assert.equal(hash(beforeControlledServer(name, await readFile(new URL(name, root)))), sha256, name);
   return archived ? raw : Buffer.from(original);
 }
 
