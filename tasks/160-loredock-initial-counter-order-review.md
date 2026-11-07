@@ -1,8 +1,15 @@
 # Task 160 — Review creation-ordered initial counter acquisition
 
-Status: planned after Task 159 result and exact-head CI acceptance. Task 159's sole
+Status: review complete; exact-head CI acceptance pending. Task 159 is accepted through
+PR #192, identical-tree merge 55fe1eb, after both complete CI logs pass. Task 159's sole
 attempt is consumed and UNAVAILABLE: complete initial root counters were nonzero after
 descendant setup, and no native child was admitted. This is a review-only task.
+
+[ADR 0069](../docs/decisions/0069-loredock-creation-ordered-counters.md) adopts a prospective
+collection-order correction under the unchanged contract: retain the root's zero initial
+state before accounted descendants, then retain role initials before any measured child.
+Eight synthetic review receipts pass their expected outcomes through the unchanged assessor.
+No implementation or live probe is added. Task 161 scopes the separate staged reader offline.
 
 1. Review the consumed first evidence, accepted v2 contract/assessor and upstream kernel
    parent-accounted child-group allocation path. Separate observed bytes, source-supported

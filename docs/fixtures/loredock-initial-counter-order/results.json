@@ -1,0 +1,707 @@
+{
+  "schemaVersion": "loredock-initial-counter-order-review-results/1",
+  "syntheticOnly": true,
+  "liveProbeExecuted": false,
+  "assessorSha256": "905fa440ccb4336b9f96948d2f08901b7ea1c8177bf9a31fac06b415099f2382",
+  "contractSha256": "759dc70e2d3b86043278b8378148785dd061cf29c06fa6f96c3a5bdf00be8e5b",
+  "checkedCases": 8,
+  "failures": 0,
+  "results": [
+    {
+      "id": "root-before-descendants",
+      "receiptSha256": "f41fc96fd0e3a08f39e0e95d3811c24a641846e42cfb648d87037cb4069d9c5c",
+      "bytes": 4542,
+      "schemaVersion": "loredock-memory-assessment/1",
+      "contractId": "loredock-observable-resources/2",
+      "contractSha256": "759dc70e2d3b86043278b8378148785dd061cf29c06fa6f96c3a5bdf00be8e5b",
+      "subject": {
+        "runId": "33333333-3333-4333-8333-333333333333",
+        "candidateSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "status": "PASS",
+      "offlineOnly": true,
+      "resourceQualification": false,
+      "axes": {
+        "evidence": {
+          "status": "PASS"
+        },
+        "run": {
+          "status": "PASS",
+          "values": {
+            "ceilingBytes": "1476395008",
+            "maximumObservedPeakBytes": "2097152",
+            "maximumObservedCurrentBytes": "524288",
+            "terminalPeakBytes": "2097152",
+            "terminalCurrentBytes": "524288",
+            "diagnosticEvents": {
+              "low": "0",
+              "sock_throttled": "0"
+            }
+          }
+        },
+        "daemon": {
+          "status": "PASS",
+          "values": {
+            "ceilingBytes": "402653184",
+            "maximumObservedPeakBytes": "0",
+            "maximumObservedCurrentBytes": "0",
+            "terminalPeakBytes": "0",
+            "terminalCurrentBytes": "0",
+            "diagnosticEvents": {
+              "low": "0",
+              "sock_throttled": "0"
+            }
+          }
+        },
+        "browser": {
+          "status": "PASS",
+          "values": {
+            "ceilingBytes": "1073741824",
+            "maximumObservedPeakBytes": "0",
+            "maximumObservedCurrentBytes": "0",
+            "terminalPeakBytes": "0",
+            "terminalCurrentBytes": "0",
+            "diagnosticEvents": {
+              "low": "0",
+              "sock_throttled": "0"
+            }
+          }
+        },
+        "diagnosticDeclarations": {
+          "status": "PASS"
+        }
+      },
+      "reasons": [],
+      "aggregateHeapPeakBytes": null,
+      "completeIsolateCoverage": false,
+      "notAssessed": [
+        "live-executor",
+        "complete-heap-or-rss-ledger",
+        "useful-cases",
+        "responsiveness",
+        "work",
+        "storage",
+        "source-authority",
+        "semantic-quality",
+        "v1-qualification"
+      ]
+    },
+    {
+      "id": "late-acquisition-boundary",
+      "receiptSha256": "543cb91377a68bd50dadc9ed942d96ee0638b2de38929b2298eedbc16a36e3bc",
+      "bytes": 4543,
+      "schemaVersion": "loredock-memory-assessment/1",
+      "contractId": "loredock-observable-resources/2",
+      "contractSha256": "759dc70e2d3b86043278b8378148785dd061cf29c06fa6f96c3a5bdf00be8e5b",
+      "subject": {
+        "runId": "33333333-3333-4333-8333-333333333333",
+        "candidateSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "status": "UNAVAILABLE",
+      "offlineOnly": true,
+      "resourceQualification": false,
+      "axes": {
+        "evidence": {
+          "status": "PASS"
+        },
+        "run": {
+          "status": "UNAVAILABLE",
+          "values": {
+            "ceilingBytes": "1476395008",
+            "maximumObservedPeakBytes": null,
+            "maximumObservedCurrentBytes": null,
+            "terminalPeakBytes": null,
+            "terminalCurrentBytes": null,
+            "diagnosticEvents": null
+          }
+        },
+        "daemon": {
+          "status": "PASS",
+          "values": {
+            "ceilingBytes": "402653184",
+            "maximumObservedPeakBytes": "0",
+            "maximumObservedCurrentBytes": "0",
+            "terminalPeakBytes": "0",
+            "terminalCurrentBytes": "0",
+            "diagnosticEvents": {
+              "low": "0",
+              "sock_throttled": "0"
+            }
+          }
+        },
+        "browser": {
+          "status": "PASS",
+          "values": {
+            "ceilingBytes": "1073741824",
+            "maximumObservedPeakBytes": "0",
+            "maximumObservedCurrentBytes": "0",
+            "terminalPeakBytes": "0",
+            "terminalCurrentBytes": "0",
+            "diagnosticEvents": {
+              "low": "0",
+              "sock_throttled": "0"
+            }
+          }
+        },
+        "diagnosticDeclarations": {
+          "status": "PASS"
+        }
+      },
+      "reasons": [
+        {
+          "axis": "run",
+          "code": "INITIAL_READ_ORDER",
+          "status": "UNAVAILABLE",
+          "location": ""
+        }
+      ],
+      "aggregateHeapPeakBytes": null,
+      "completeIsolateCoverage": false,
+      "notAssessed": [
+        "live-executor",
+        "complete-heap-or-rss-ledger",
+        "useful-cases",
+        "responsiveness",
+        "work",
+        "storage",
+        "source-authority",
+        "semantic-quality",
+        "v1-qualification"
+      ]
+    },
+    {
+      "id": "nonzero-initial-root",
+      "receiptSha256": "4b412e4c09f4600dd314b924f6a7d7cb99a7b2e4ef67e2ed11922c7260db7cbf",
+      "bytes": 4552,
+      "schemaVersion": "loredock-memory-assessment/1",
+      "contractId": "loredock-observable-resources/2",
+      "contractSha256": "759dc70e2d3b86043278b8378148785dd061cf29c06fa6f96c3a5bdf00be8e5b",
+      "subject": {
+        "runId": "33333333-3333-4333-8333-333333333333",
+        "candidateSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "status": "UNAVAILABLE",
+      "offlineOnly": true,
+      "resourceQualification": false,
+      "axes": {
+        "evidence": {
+          "status": "PASS"
+        },
+        "run": {
+          "status": "UNAVAILABLE",
+          "values": {
+            "ceilingBytes": "1476395008",
+            "maximumObservedPeakBytes": null,
+            "maximumObservedCurrentBytes": null,
+            "terminalPeakBytes": null,
+            "terminalCurrentBytes": null,
+            "diagnosticEvents": null
+          }
+        },
+        "daemon": {
+          "status": "PASS",
+          "values": {
+            "ceilingBytes": "402653184",
+            "maximumObservedPeakBytes": "0",
+            "maximumObservedCurrentBytes": "0",
+            "terminalPeakBytes": "0",
+            "terminalCurrentBytes": "0",
+            "diagnosticEvents": {
+              "low": "0",
+              "sock_throttled": "0"
+            }
+          }
+        },
+        "browser": {
+          "status": "PASS",
+          "values": {
+            "ceilingBytes": "1073741824",
+            "maximumObservedPeakBytes": "0",
+            "maximumObservedCurrentBytes": "0",
+            "terminalPeakBytes": "0",
+            "terminalCurrentBytes": "0",
+            "diagnosticEvents": {
+              "low": "0",
+              "sock_throttled": "0"
+            }
+          }
+        },
+        "diagnosticDeclarations": {
+          "status": "PASS"
+        }
+      },
+      "reasons": [
+        {
+          "axis": "run",
+          "code": "INITIAL_NOT_EMPTY",
+          "status": "UNAVAILABLE",
+          "location": ""
+        }
+      ],
+      "aggregateHeapPeakBytes": null,
+      "completeIsolateCoverage": false,
+      "notAssessed": [
+        "live-executor",
+        "complete-heap-or-rss-ledger",
+        "useful-cases",
+        "responsiveness",
+        "work",
+        "storage",
+        "source-authority",
+        "semantic-quality",
+        "v1-qualification"
+      ]
+    },
+    {
+      "id": "early-final-root",
+      "receiptSha256": "f7ff14144ff7a8029c82fcf85206a8ba1b7188e55feba38d23dccdae39b94fc5",
+      "bytes": 4542,
+      "schemaVersion": "loredock-memory-assessment/1",
+      "contractId": "loredock-observable-resources/2",
+      "contractSha256": "759dc70e2d3b86043278b8378148785dd061cf29c06fa6f96c3a5bdf00be8e5b",
+      "subject": {
+        "runId": "33333333-3333-4333-8333-333333333333",
+        "candidateSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "status": "UNAVAILABLE",
+      "offlineOnly": true,
+      "resourceQualification": false,
+      "axes": {
+        "evidence": {
+          "status": "UNAVAILABLE"
+        },
+        "run": {
+          "status": "PASS",
+          "values": {
+            "ceilingBytes": "1476395008",
+            "maximumObservedPeakBytes": "2097152",
+            "maximumObservedCurrentBytes": "524288",
+            "terminalPeakBytes": "2097152",
+            "terminalCurrentBytes": "524288",
+            "diagnosticEvents": {
+              "low": "0",
+              "sock_throttled": "0"
+            }
+          }
+        },
+        "daemon": {
+          "status": "PASS",
+          "values": {
+            "ceilingBytes": "402653184",
+            "maximumObservedPeakBytes": "0",
+            "maximumObservedCurrentBytes": "0",
+            "terminalPeakBytes": "0",
+            "terminalCurrentBytes": "0",
+            "diagnosticEvents": {
+              "low": "0",
+              "sock_throttled": "0"
+            }
+          }
+        },
+        "browser": {
+          "status": "PASS",
+          "values": {
+            "ceilingBytes": "1073741824",
+            "maximumObservedPeakBytes": "0",
+            "maximumObservedCurrentBytes": "0",
+            "terminalPeakBytes": "0",
+            "terminalCurrentBytes": "0",
+            "diagnosticEvents": {
+              "low": "0",
+              "sock_throttled": "0"
+            }
+          }
+        },
+        "diagnosticDeclarations": {
+          "status": "PASS"
+        }
+      },
+      "reasons": [
+        {
+          "axis": "evidence",
+          "code": "ROOT_READ_ORDER",
+          "status": "UNAVAILABLE",
+          "location": "browser"
+        }
+      ],
+      "aggregateHeapPeakBytes": null,
+      "completeIsolateCoverage": false,
+      "notAssessed": [
+        "live-executor",
+        "complete-heap-or-rss-ledger",
+        "useful-cases",
+        "responsiveness",
+        "work",
+        "storage",
+        "source-authority",
+        "semantic-quality",
+        "v1-qualification"
+      ]
+    },
+    {
+      "id": "missing-root-initial",
+      "receiptSha256": "53c9fcf98ca8124e370c30c65493383056f1a0127c2d145b54c4349a964ba873",
+      "bytes": 3992,
+      "schemaVersion": "loredock-memory-assessment/1",
+      "contractId": "loredock-observable-resources/2",
+      "contractSha256": "759dc70e2d3b86043278b8378148785dd061cf29c06fa6f96c3a5bdf00be8e5b",
+      "subject": {
+        "runId": "33333333-3333-4333-8333-333333333333",
+        "candidateSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "status": "UNAVAILABLE",
+      "offlineOnly": true,
+      "resourceQualification": false,
+      "axes": {
+        "evidence": {
+          "status": "PASS"
+        },
+        "run": {
+          "status": "UNAVAILABLE",
+          "values": {
+            "ceilingBytes": "1476395008",
+            "maximumObservedPeakBytes": null,
+            "maximumObservedCurrentBytes": null,
+            "terminalPeakBytes": null,
+            "terminalCurrentBytes": null,
+            "diagnosticEvents": null
+          }
+        },
+        "daemon": {
+          "status": "UNAVAILABLE",
+          "values": {
+            "ceilingBytes": "402653184",
+            "maximumObservedPeakBytes": null,
+            "maximumObservedCurrentBytes": null,
+            "terminalPeakBytes": null,
+            "terminalCurrentBytes": null,
+            "diagnosticEvents": null
+          }
+        },
+        "browser": {
+          "status": "UNAVAILABLE",
+          "values": {
+            "ceilingBytes": "1073741824",
+            "maximumObservedPeakBytes": null,
+            "maximumObservedCurrentBytes": null,
+            "terminalPeakBytes": null,
+            "terminalCurrentBytes": null,
+            "diagnosticEvents": null
+          }
+        },
+        "diagnosticDeclarations": {
+          "status": "PASS"
+        }
+      },
+      "reasons": [
+        {
+          "axis": "run",
+          "code": "SNAPSHOT_UNAVAILABLE",
+          "status": "UNAVAILABLE",
+          "location": "initial"
+        },
+        {
+          "axis": "daemon",
+          "code": "PARENT_IDENTITY",
+          "status": "UNAVAILABLE",
+          "location": ""
+        },
+        {
+          "axis": "browser",
+          "code": "PARENT_IDENTITY",
+          "status": "UNAVAILABLE",
+          "location": ""
+        },
+        {
+          "axis": "run",
+          "code": "GROUP_IDENTITY_CHANGED",
+          "status": "UNAVAILABLE",
+          "location": "final"
+        }
+      ],
+      "aggregateHeapPeakBytes": null,
+      "completeIsolateCoverage": false,
+      "notAssessed": [
+        "live-executor",
+        "complete-heap-or-rss-ledger",
+        "useful-cases",
+        "responsiveness",
+        "work",
+        "storage",
+        "source-authority",
+        "semantic-quality",
+        "v1-qualification"
+      ]
+    },
+    {
+      "id": "root-breach-missing-final",
+      "receiptSha256": "6d18c3bebe5ccdce1cb99da927a99c8d897a2d48c75f4290250ca7cac2872ba2",
+      "bytes": 3992,
+      "schemaVersion": "loredock-memory-assessment/1",
+      "contractId": "loredock-observable-resources/2",
+      "contractSha256": "759dc70e2d3b86043278b8378148785dd061cf29c06fa6f96c3a5bdf00be8e5b",
+      "subject": {
+        "runId": "33333333-3333-4333-8333-333333333333",
+        "candidateSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "status": "FAIL",
+      "offlineOnly": true,
+      "resourceQualification": false,
+      "axes": {
+        "evidence": {
+          "status": "UNAVAILABLE"
+        },
+        "run": {
+          "status": "FAIL",
+          "values": {
+            "ceilingBytes": "1476395008",
+            "maximumObservedPeakBytes": "1476395009",
+            "maximumObservedCurrentBytes": "524288",
+            "terminalPeakBytes": "1476395009",
+            "terminalCurrentBytes": "524288",
+            "diagnosticEvents": {
+              "low": "0",
+              "sock_throttled": "0"
+            }
+          }
+        },
+        "daemon": {
+          "status": "PASS",
+          "values": {
+            "ceilingBytes": "402653184",
+            "maximumObservedPeakBytes": "0",
+            "maximumObservedCurrentBytes": "0",
+            "terminalPeakBytes": "0",
+            "terminalCurrentBytes": "0",
+            "diagnosticEvents": {
+              "low": "0",
+              "sock_throttled": "0"
+            }
+          }
+        },
+        "browser": {
+          "status": "UNAVAILABLE",
+          "values": {
+            "ceilingBytes": "1073741824",
+            "maximumObservedPeakBytes": null,
+            "maximumObservedCurrentBytes": null,
+            "terminalPeakBytes": null,
+            "terminalCurrentBytes": null,
+            "diagnosticEvents": null
+          }
+        },
+        "diagnosticDeclarations": {
+          "status": "PASS"
+        }
+      },
+      "reasons": [
+        {
+          "axis": "run",
+          "code": "CHARGED_MEMORY_EXCEEDED",
+          "status": "FAIL",
+          "location": "final"
+        },
+        {
+          "axis": "browser",
+          "code": "SNAPSHOT_UNAVAILABLE",
+          "status": "UNAVAILABLE",
+          "location": "final"
+        },
+        {
+          "axis": "evidence",
+          "code": "ROOT_READ_ORDER",
+          "status": "UNAVAILABLE",
+          "location": "browser"
+        }
+      ],
+      "aggregateHeapPeakBytes": null,
+      "completeIsolateCoverage": false,
+      "notAssessed": [
+        "live-executor",
+        "complete-heap-or-rss-ledger",
+        "useful-cases",
+        "responsiveness",
+        "work",
+        "storage",
+        "source-authority",
+        "semantic-quality",
+        "v1-qualification"
+      ]
+    },
+    {
+      "id": "changed-role-parent",
+      "receiptSha256": "f70507e7c110018788ad514d86614cf0c20db739a227bd1c7bd2ee1a96eea978",
+      "bytes": 4541,
+      "schemaVersion": "loredock-memory-assessment/1",
+      "contractId": "loredock-observable-resources/2",
+      "contractSha256": "759dc70e2d3b86043278b8378148785dd061cf29c06fa6f96c3a5bdf00be8e5b",
+      "subject": {
+        "runId": "33333333-3333-4333-8333-333333333333",
+        "candidateSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "status": "UNAVAILABLE",
+      "offlineOnly": true,
+      "resourceQualification": false,
+      "axes": {
+        "evidence": {
+          "status": "PASS"
+        },
+        "run": {
+          "status": "PASS",
+          "values": {
+            "ceilingBytes": "1476395008",
+            "maximumObservedPeakBytes": "2097152",
+            "maximumObservedCurrentBytes": "524288",
+            "terminalPeakBytes": "2097152",
+            "terminalCurrentBytes": "524288",
+            "diagnosticEvents": {
+              "low": "0",
+              "sock_throttled": "0"
+            }
+          }
+        },
+        "daemon": {
+          "status": "PASS",
+          "values": {
+            "ceilingBytes": "402653184",
+            "maximumObservedPeakBytes": "0",
+            "maximumObservedCurrentBytes": "0",
+            "terminalPeakBytes": "0",
+            "terminalCurrentBytes": "0",
+            "diagnosticEvents": {
+              "low": "0",
+              "sock_throttled": "0"
+            }
+          }
+        },
+        "browser": {
+          "status": "UNAVAILABLE",
+          "values": {
+            "ceilingBytes": "1073741824",
+            "maximumObservedPeakBytes": null,
+            "maximumObservedCurrentBytes": null,
+            "terminalPeakBytes": null,
+            "terminalCurrentBytes": null,
+            "diagnosticEvents": null
+          }
+        },
+        "diagnosticDeclarations": {
+          "status": "PASS"
+        }
+      },
+      "reasons": [
+        {
+          "axis": "browser",
+          "code": "PARENT_IDENTITY",
+          "status": "UNAVAILABLE",
+          "location": ""
+        },
+        {
+          "axis": "browser",
+          "code": "GROUP_IDENTITY_CHANGED",
+          "status": "UNAVAILABLE",
+          "location": "final"
+        }
+      ],
+      "aggregateHeapPeakBytes": null,
+      "completeIsolateCoverage": false,
+      "notAssessed": [
+        "live-executor",
+        "complete-heap-or-rss-ledger",
+        "useful-cases",
+        "responsiveness",
+        "work",
+        "storage",
+        "source-authority",
+        "semantic-quality",
+        "v1-qualification"
+      ]
+    },
+    {
+      "id": "decreased-root-peak",
+      "receiptSha256": "1db4e1cc5db929dfe946cb40d216bff5a3c0c9d4991c0195beb543b2b6b4a0cb",
+      "bytes": 4843,
+      "schemaVersion": "loredock-memory-assessment/1",
+      "contractId": "loredock-observable-resources/2",
+      "contractSha256": "759dc70e2d3b86043278b8378148785dd061cf29c06fa6f96c3a5bdf00be8e5b",
+      "subject": {
+        "runId": "33333333-3333-4333-8333-333333333333",
+        "candidateSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "status": "UNAVAILABLE",
+      "offlineOnly": true,
+      "resourceQualification": false,
+      "axes": {
+        "evidence": {
+          "status": "PASS"
+        },
+        "run": {
+          "status": "UNAVAILABLE",
+          "values": {
+            "ceilingBytes": "1476395008",
+            "maximumObservedPeakBytes": "2097153",
+            "maximumObservedCurrentBytes": "524288",
+            "terminalPeakBytes": "2097152",
+            "terminalCurrentBytes": "524288",
+            "diagnosticEvents": {
+              "low": "0",
+              "sock_throttled": "0"
+            }
+          }
+        },
+        "daemon": {
+          "status": "PASS",
+          "values": {
+            "ceilingBytes": "402653184",
+            "maximumObservedPeakBytes": "0",
+            "maximumObservedCurrentBytes": "0",
+            "terminalPeakBytes": "0",
+            "terminalCurrentBytes": "0",
+            "diagnosticEvents": {
+              "low": "0",
+              "sock_throttled": "0"
+            }
+          }
+        },
+        "browser": {
+          "status": "PASS",
+          "values": {
+            "ceilingBytes": "1073741824",
+            "maximumObservedPeakBytes": "0",
+            "maximumObservedCurrentBytes": "0",
+            "terminalPeakBytes": "0",
+            "terminalCurrentBytes": "0",
+            "diagnosticEvents": {
+              "low": "0",
+              "sock_throttled": "0"
+            }
+          }
+        },
+        "diagnosticDeclarations": {
+          "status": "PASS"
+        }
+      },
+      "reasons": [
+        {
+          "axis": "run",
+          "code": "PEAK_DECREASE",
+          "status": "UNAVAILABLE",
+          "location": "final"
+        }
+      ],
+      "aggregateHeapPeakBytes": null,
+      "completeIsolateCoverage": false,
+      "notAssessed": [
+        "live-executor",
+        "complete-heap-or-rss-ledger",
+        "useful-cases",
+        "responsiveness",
+        "work",
+        "storage",
+        "source-authority",
+        "semantic-quality",
+        "v1-qualification"
+      ]
+    }
+  ]
+}

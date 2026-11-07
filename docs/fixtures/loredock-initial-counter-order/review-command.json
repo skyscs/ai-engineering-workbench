@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/home/toshiba/aew/toolchain/node-v22.23.2-linux-x64/bin/node",
+    "/home/toshiba/aew/task160-review-receipts.mjs"
+  ],
+  "stdout": "/home/toshiba/aew/task160-receipt-review.json",
+  "stderr": "/home/toshiba/aew/task160-receipt-review.stderr.log",
+  "exitCode": 0,
+  "purpose": "Pure consistency review using hand-authored receipts and the unchanged assessor; no collector or workload.",
+  "scriptSha256": "5670fc795d8efe48e40d2bd8edfee6fbd1e0ce57e2adbc28c703e6242a5d0681",
+  "scriptSource": "// Read-only consistency review of hand-authored receipts; no live collector or application.\nimport assert from 'node:assert/strict';\nimport { createHash } from 'node:crypto';\nimport { readFileSync } from 'node:fs';\nimport { assessMemoryReceipt, CONTRACT_SHA256 } from './worktrees/task160-initial-counter-order/scripts/loredock-memory-receipts/assess.mjs';\n\nconst root = new URL('./worktrees/task160-initial-counter-order/', import.meta.url);\nconst directory = new URL('docs/fixtures/loredock-initial-counter-order/', root);\nconst cases = JSON.parse(readFileSync(new URL('cases.json', directory), 'utf8'));\nconst sha = value => createHash('sha256').update(value).digest('hex');\nconst assessor = readFileSync(new URL('scripts/loredock-memory-receipts/assess.mjs', root));\nassert.equal(sha(assessor), '905fa440ccb4336b9f96948d2f08901b7ea1c8177bf9a31fac06b415099f2382');\nassert.equal(sha(readFileSync(new URL('docs/loredock/observable-resource-contract-v2.json', root))), CONTRACT_SHA256);\nassert.equal(cases.syntheticOnly, true);\nconst results = cases.cases.map(item => {\n  const raw = readFileSync(new URL(item.path, directory), 'utf8');\n  const result = assessMemoryReceipt(raw, cases.binding);\n  assert.equal(result.status, item.expectedStatus, item.id);\n  for (const code of item.requiredReasonCodes) assert(result.reasons.some(row => row.code === code), item.id + ':' + code);\n  assert.equal(result.offlineOnly, true);\n  assert.equal(result.resourceQualification, false);\n  return { id: item.id, receiptSha256: sha(raw), bytes: Buffer.byteLength(raw), ...result };\n});\nconsole.log(JSON.stringify({ schemaVersion: 'loredock-initial-counter-order-review-results/1',\n  syntheticOnly: true, liveProbeExecuted: false, assessorSha256: sha(assessor), contractSha256: CONTRACT_SHA256,\n  checkedCases: results.length, failures: 0, results }, null, 2));\n",
+  "nodeSha256": "3517c2df0b2f8cd7f422b4b8450ef81c6889f08eb03e281d6de9079b15e6a327"
+}
