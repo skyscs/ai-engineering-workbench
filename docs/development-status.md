@@ -1,5 +1,41 @@
 # Development status
 
+## Task 162 — Integrate creation-ordered counter publication
+
+Task 161 is accepted through [PR #194](https://github.com/skyscs/ai-engineering-workbench/pull/194),
+head d1e1ad6, identical-tree merge 7907726. Both complete exact-head CI logs pass 1,225 Node
+tests, all Python suites, ten typechecks and ten final builds without failures/cancellations/skips.
+
+The separate [owned integration](loredock/STAGED_COUNTER_PREREQUISITE.md) publishes original
+root data before descendant construction and role data before native admission. Actual
+file/directory fsync returns gate the next action; stage hashes/windows and four pre-admission
+membership records preserve the construction/publication sequence. Root descriptors and
+original zero samples remain unchanged while setup charges enter the final root peak.
+The fixed native/capability/clone3/permit/sandbox path and all bounds remain unchanged.
+The outside assessor checks the staged records before combining the unchanged memory verdict;
+separately known breaches remain visible beside missing final or retention evidence.
+
+Local verification passes 24 new Python cases, 12 Node checks, 1,237 full Node tests, prior
+Python suites, ten typechecks and ten final builds. The first Python run found a shadowed
+scope parameter (eight failures among sixteen then-present cases); the failed log is preserved
+and all subsequent checks pass. Temporary-file tests prove fsync failure prevents descendants
+or native admission and reject rehashed invalid chronology/membership/bindings. All emitted
+application modules and frozen prior implementations/evidence remain unchanged.
+
+The sole separately sealed [actual result](loredock/STAGED_COUNTER_PREREQUISITE_RESULT.md)
+is consumed and PASS: complete 8 + 16 initial and 24 final interfaces, original zero root
+before descendants, unchanged root bindings, one direct-born normal-waited 1-MiB payload,
+unreset final root peak 8,667,136 bytes, complete raw/receipt fsync and owned group disappearance.
+The combined outside assessment and unchanged memory assessor pass; qualification remains false.
+The [176-member archive](fixtures/loredock-staged-counter-prerequisite/README.md) preserves
+136 first records / 77,228 bytes, sealed inputs, outside evidence and eleven closed logs.
+No forced cleanup, retry, host/profile/runtime changes, application/browser/model or corporate code.
+
+Both complete exact-head CI logs remain required before acceptance. Then
+[Task 163](../tasks/163-loredock-complete-executor-layout-review.md) reviews the complete
+Node/Chromium/control layout and remaining ancestor/orphan/interruption/lifetime gates before
+broader executor work. Full resource/timing, semantic, L5 and bridge acceptance remain separate.
+
 ## Task 161 — Staged held-counter acquisition offline
 
 Task 160 is accepted through [PR #193](https://github.com/skyscs/ai-engineering-workbench/pull/193),
