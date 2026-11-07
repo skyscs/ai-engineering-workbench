@@ -604,7 +604,12 @@ sealed [attempt is consumed and unavailable](docs/loredock/DIRECT_BIRTH_PREREQUI
 the helper rejects a valid zero-byte empty controller list before native execution.
 No actual clone3 capability failure is established. After result acceptance,
 [Task 156](tasks/156-loredock-empty-controller-prerequisite.md) corrects this boundary and
-qualifies one separate fresh candidate on the unchanged environment. Full executor and
+qualifies one separate fresh candidate on the unchanged environment. Task 155 is accepted
+through PR #188, identical-tree merge 5b8fd78, with both full exact-head CI logs reviewed.
+Task 156's [separate admission correction](docs/loredock/EMPTY_CONTROLLER_PREREQUISITE.md)
+passes eighteen offline cases, including complete leaf creation from retained zero-byte
+input and mocked service admission through native capture. Full local checks pass 1,207
+Node tests, ten typechecks and ten final builds. The sole new attempt remains pending. Full executor and
 application gates remain separate.
 No application-page or full-flow gate is opened by these diagnostics.
 See the [result and limits](docs/loredock/NATIVE_QUESTION_CONTEXT_RESULT.md).

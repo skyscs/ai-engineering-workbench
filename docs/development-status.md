@@ -1,5 +1,22 @@
 # Development status
 
+## Task 156 — Correct zero-byte controller admission in a separate candidate
+
+Task 155 is accepted through [PR #188](https://github.com/skyscs/ai-engineering-workbench/pull/188),
+head 88e692c, identical-tree merge 5b8fd78. Both complete exact-head CI logs pass 1,206 Node
+tests, 34 new Python cases and the previous 20/20/16 cases, ten typechecks and ten final
+builds, with zero failures/cancellations. Its sole unavailable first attempt remains consumed.
+
+The [separate correction](loredock/EMPTY_CONTROLLER_PREREQUISITE.md) accepts exact zero-byte
+empty lists, checks canonical nonempty lists and preserves available/enabled membership.
+Eighteen new offline tests exercise full owned-leaf creation from retained raw bytes and
+the complete mocked service path through native capture and durable pre-exec observation.
+They cover admission failures and descriptor closure. Native, capture, protocol and earlier
+dependencies remain pinned to accepted bytes. Full local checks pass 1,207 Node tests,
+ten typechecks and ten final builds without failures/cancellations. All 148 emitted
+application/package modules remain unchanged. The sole fresh attempt remains pending;
+no new actual service, clone3, namespace, payload, application or model runs.
+
 ## Task 155 — Direct process birth with durable pre-exec observation
 
 Task 154 is accepted through [PR #187](https://github.com/skyscs/ai-engineering-workbench/pull/187),

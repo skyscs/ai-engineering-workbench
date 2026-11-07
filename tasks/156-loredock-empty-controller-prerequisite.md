@@ -1,8 +1,10 @@
 # Task 156 — Correct empty controller evidence before direct birth
 
-Status: planned after Task 155 retained-result acceptance. Its sole attempt stops before
-native execution because the helper expects a newline instead of a zero-byte empty
-controller list. This is an adapter defect, not an observed clone3 capability failure.
+Status: implemented prospectively after Task 155 acceptance through PR #188, identical-tree
+merge 5b8fd78. Eighteen new offline cases and full local checks pass: 1,207 Node tests,
+ten typechecks and ten final builds. The sole fresh attempt remains pending.
+See the [design](../docs/loredock/EMPTY_CONTROLLER_PREREQUISITE.md). The consumed
+Task 155 result remains an adapter defect, not an observed clone3 capability failure.
 
 1. Preserve every consumed Task 155 input, helper, claim, failed-unit state and first
    record. Use the retained raw target observation and versioned kernel formatter source
@@ -11,7 +13,7 @@ controller list. This is an adapter defect, not an observed clone3 capability fa
    capture, protocol, ownership and payload implementations where appropriate; alter only
    new-candidate admission and controller parsing. Keep raw observations unchanged.
 3. Add an end-to-end mocked leaf-creation regression using the actual retained zero-byte
-   inputs. Cover malformed/duplicate/unknown controller text, enabled target controllers,
+   inputs. Cover malformed/duplicate lists, enabled names absent from availability, enabled target controllers,
    changed identities, errors between mkdir/open and descriptor cleanup. Exercise the
    complete service admission path so a valid empty leaf actually reaches native capture.
 4. Keep Task 155's exact tiny work, namespace/security/retention and 10/5/2-second profile,
